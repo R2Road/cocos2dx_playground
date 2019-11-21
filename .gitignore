@@ -33,3 +33,5 @@ cocos2dx_playground/cocos2d/*
 *.exe
 *.out
 *.app
+cocos2dx_playground/proj.win32/.vs/*
+cocos2dx_playground/proj.win32/Debug.win32/*
