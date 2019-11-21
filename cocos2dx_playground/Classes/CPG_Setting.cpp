@@ -5,11 +5,16 @@
 
 namespace CPG
 {
-	void Setting::load( cocos2d::Size& frame_resolution, cocos2d::Size& design_resolution )
+	Setting::Setting( const cocos2d::Size _frame_resolution, const cocos2d::Size _design_resolution ) :
+		frame_resolution( _frame_resolution )
+		, design_resolution( _design_resolution )
+	{}
+
+	const Setting Setting::load()
 	{
 		// default
-		frame_resolution.setSize( 1024, 768 );
-		design_resolution.setSize( 480, 320 );
+		cocos2d::Size frame_resolution( 1024, 768 );
+		cocos2d::Size design_resolution( 480, 320 );
 
 		// load json
 		const std::string& regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( "config/setting.json" );
@@ -51,5 +56,7 @@ namespace CPG
 				&& y_itr->value.IsInt() )
 				design_resolution.setSize( x_itr->value.GetInt(), y_itr->value.GetInt() );
 		}
+
+		return Setting( frame_resolution, design_resolution );
 	}
 }
