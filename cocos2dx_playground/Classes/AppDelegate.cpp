@@ -25,6 +25,8 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 
+#include "CPG_Setting.h"
+
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
 
@@ -79,8 +81,10 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
-	const cocos2d::Size my_frame_resolution = designResolutionSize;
-	const cocos2d::Size my_design_resolution = designResolutionSize;
+	cocos2d::Size my_frame_resolution;
+	cocos2d::Size my_design_resolution;
+
+	CPG::Setting::load( my_frame_resolution, my_design_resolution );
 
     // initialize director
     auto director = Director::getInstance();
