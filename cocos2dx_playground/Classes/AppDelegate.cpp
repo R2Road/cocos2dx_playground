@@ -79,6 +79,7 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
+	const cocos2d::Size my_frame_resolution = designResolutionSize;
 	const cocos2d::Size my_design_resolution = designResolutionSize;
 
     // initialize director
@@ -86,7 +87,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("cocos2dx_playground", cocos2d::Rect(0, 0, my_design_resolution.width, my_design_resolution.height));
+        glview = GLViewImpl::createWithRect("cocos2dx_playground", cocos2d::Rect(0, 0, my_frame_resolution.width, my_frame_resolution.height));
 #else
         glview = GLViewImpl::create("cocos2dx_playground");
 #endif
