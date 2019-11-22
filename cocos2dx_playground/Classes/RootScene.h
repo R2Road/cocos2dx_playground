@@ -5,10 +5,16 @@
 class RootScene : public cocos2d::Scene
 {
 public:
+	RootScene();
+
     static cocos2d::Scene* create();
 
     bool init() override;
+	void onEnter() override;
+	void onExit() override;
     
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
+	void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
+
+private:
+	cocos2d::EventListenerKeyboard* listener;
 };
