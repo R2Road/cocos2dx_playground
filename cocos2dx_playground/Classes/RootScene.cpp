@@ -28,10 +28,11 @@ Scene* RootScene::create()
 	ss << "\n";
 	ss << "[ESC] : Exit";
 
-	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12 );
+	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+	label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 	label->setPosition( Vec2(
 		origin.x + visibleSize.width / 2
-		, origin.y + visibleSize.height - label->getContentSize().height
+		, origin.y + visibleSize.height
 	) );
 	ret->addChild( label, 1 );
 
