@@ -9,8 +9,7 @@ public:
 
     static cocos2d::Scene* create();
 
-    bool init() override;
-	void onEnter() override;
+    void onEnter() override;
 	void onExit() override;
     
 	void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
