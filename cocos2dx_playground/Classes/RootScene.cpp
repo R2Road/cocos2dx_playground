@@ -22,7 +22,7 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "HelloWorldScene.h"
+#include "RootScene.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;

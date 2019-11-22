@@ -18,10 +18,10 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+    <ClCompile Include="..\Classes\CPG_Setting.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Setting.cpp">
+    <ClCompile Include="..\Classes\RootScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
+    <ClInclude Include="..\Classes\CPG_Setting.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Setting.h">
+    <ClInclude Include="..\Classes\RootScene.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
