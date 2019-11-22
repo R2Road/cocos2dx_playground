@@ -24,6 +24,9 @@
     <ClCompile Include="..\Classes\RootScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_KeyboardInputScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -36,6 +39,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\RootScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_KeyboardInputScene.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "SimpleAudioEngine.h"
+#include "Research_KeyboardInputScene.h"
 
 USING_NS_CC;
 
@@ -27,6 +28,9 @@ Scene* RootScene::create()
 	ss << "\n";
 	ss << "\n";
 	ss << "[ESC] : Exit";
+	ss << "\n";
+	ss << "\n";
+	ss << "[1] : Research - Keyboard Input Scene";
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 	label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
@@ -65,6 +69,12 @@ void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ 
 	case EventKeyboard::KeyCode::KEY_ESCAPE:
 	{
 		cocos2d::Director::getInstance()->end();
+	}
+	break;
+
+	case EventKeyboard::KeyCode::KEY_1:
+	{
+		Director::getInstance()->replaceScene( Research::KeyboardInputScene::create() );
 	}
 	break;
 
