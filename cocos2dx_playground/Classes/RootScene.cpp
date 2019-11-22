@@ -1,5 +1,7 @@
 #include "RootScene.h"
 
+#include <sstream>
+
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -20,8 +22,13 @@ Scene* RootScene::create()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	std::stringstream ss;
+	ss << "+ Root Scene";
+	ss << "\n";
+	ss << "\n";
+	ss << "[ESC] : Exit";
 
-	auto label = Label::createWithTTF( "[ESC] : Exit", "fonts/arial.ttf", 12 );
+	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12 );
 	label->setPosition( Vec2(
 		origin.x + visibleSize.width / 2
 		, origin.y + visibleSize.height - label->getContentSize().height
