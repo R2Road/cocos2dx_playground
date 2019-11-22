@@ -21,7 +21,7 @@ Scene* RootScene::create()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 
-	auto label = Label::createWithTTF( "[ESC] : Exit", "fonts/Marker Felt.ttf", 24 );
+	auto label = Label::createWithTTF( "[ESC] : Exit", "fonts/arial.ttf", 12 );
 	label->setPosition( Vec2(
 		origin.x + visibleSize.width / 2
 		, origin.y + visibleSize.height - label->getContentSize().height
