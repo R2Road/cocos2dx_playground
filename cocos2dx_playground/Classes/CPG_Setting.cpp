@@ -24,13 +24,13 @@ namespace CPG
 		if( doc.HasParseError() )
 		{
 			cocos2d::log( "json parse error" );
-			return;
+			return Setting( frame_resolution, design_resolution );
 		}
 
 		if( doc.IsNull() )
 		{
 			cocos2d::log( "json is empty" );
-			return;
+			return Setting( frame_resolution, design_resolution );
 		}
 
 		const auto frame_resolution_itr = doc.FindMember( "frame_resolution" );
