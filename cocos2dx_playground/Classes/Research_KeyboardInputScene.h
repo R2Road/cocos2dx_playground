@@ -2,6 +2,14 @@
 
 #include "cocos2d.h"
 
+namespace CPG
+{
+	namespace Input
+	{
+		class Delegator;
+	}
+}
+
 namespace Research
 {
 	class KeyboardInputScene : public cocos2d::Scene
@@ -11,12 +19,9 @@ namespace Research
 
 		static cocos2d::Scene* create();
 
-		void onEnter() override;
-		void onExit() override;
-
-		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
+		void update( float dt ) override;
 
 	private:
-		cocos2d::EventListenerKeyboard* listener;
+		CPG::Input::Delegator* input_delegator;
 	};
 }

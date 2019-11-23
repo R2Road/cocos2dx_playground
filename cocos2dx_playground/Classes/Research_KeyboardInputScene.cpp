@@ -2,11 +2,13 @@
 
 #include <sstream>
 
+#include "CPG_InputDelegator.h"
+
 USING_NS_CC;
 
 namespace Research
 {
-	KeyboardInputScene::KeyboardInputScene() : listener( nullptr ) {}
+	KeyboardInputScene::KeyboardInputScene() : input_delegator( nullptr ) {}
 
 	Scene* KeyboardInputScene::create()
 	{
@@ -37,39 +39,26 @@ namespace Research
 		ret->addChild( label, 1 );
 
 
+		//
+		// input
+		//
+		ret->input_delegator = CPG::Input::Delegator::create();
+		ret->addChild( ret->input_delegator, 0 );
+
+
 		ret->autorelease();
+		ret->scheduleUpdate();
 
 		return ret;
 	}
 
-	void KeyboardInputScene::onEnter()
+	void KeyboardInputScene::update( float dt )
 	{
-		Scene::onEnter();
-
-		listener = EventListenerKeyboard::create();
-		listener->onKeyPressed = CC_CALLBACK_2( KeyboardInputScene::onKeyPressed, this );
-		getEventDispatcher()->addEventListenerWithFixedPriority( listener, 1 );
-	}
-	void KeyboardInputScene::onExit()
-	{
-		if( listener )
-			getEventDispatcher()->removeEventListener( listener );
-		Scene::onExit();
-	}
-
-
-	void KeyboardInputScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
-	{
-		switch( keycode )
-		{
-		case EventKeyboard::KeyCode::KEY_ESCAPE:
+		if( input_delegator->keyPressed_ESC() )
 		{
 			cocos2d::Director::getInstance()->end();
 		}
-		break;
 
-		default:
-			CCLOG( "Key Code : %d", keycode );
-		}
+		Scene::update( dt );
 	}
 }
