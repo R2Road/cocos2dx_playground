@@ -2,6 +2,7 @@
 
 #include <sstream>
 
+#include "RootScene.h"
 #include "CPG_InputDelegator.h"
 
 USING_NS_CC;
@@ -56,7 +57,7 @@ namespace Research
 	{
 		if( input_delegator->keyPressed_ESC() )
 		{
-			cocos2d::Director::getInstance()->end();
+			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 
 		Scene::update( dt );
