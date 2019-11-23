@@ -27,7 +27,7 @@ Scene* RootScene::create()
 	ss << "+ Root Scene";
 	ss << "\n";
 	ss << "\n";
-	ss << "[ESC] : Exit";
+	ss << "[ESC] : Shutdown";
 	ss << "\n";
 	ss << "\n";
 	ss << "[1] : Research - Keyboard Input Scene";
