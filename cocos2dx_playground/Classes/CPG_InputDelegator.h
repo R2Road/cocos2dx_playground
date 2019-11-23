@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "cocos2d.h"
 
 namespace CPG
@@ -9,6 +11,16 @@ namespace CPG
 		class Delegator : public cocos2d::Node
 		{
 		private:
+			struct KeyStatus
+			{
+				KeyStatus() : keycode( cocos2d::EventKeyboard::KeyCode::KEY_NONE ), status( false ) {}
+				KeyStatus( cocos2d::EventKeyboard::KeyCode _keycode ) : keycode( _keycode ), status( false ) {}
+
+				cocos2d::EventKeyboard::KeyCode keycode;
+				bool status;
+			};
+			using KeyStatusContainer = std::vector<KeyStatus>;
+
 			Delegator();
 
 		public:
@@ -22,12 +34,11 @@ namespace CPG
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
 
 		public:
-			const bool keyPressed_ESC() const { return key_pressed_esc; }
+			const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const;
 
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
-
-			bool key_pressed_esc;
+			KeyStatusContainer key_status_container;
 		};
 	}
 }

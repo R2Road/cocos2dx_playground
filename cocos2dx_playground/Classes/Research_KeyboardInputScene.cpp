@@ -55,7 +55,7 @@ namespace Research
 
 	void KeyboardInputScene::update( float dt )
 	{
-		if( input_delegator->keyPressed_ESC() )
+		if( input_delegator->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
 		{
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}

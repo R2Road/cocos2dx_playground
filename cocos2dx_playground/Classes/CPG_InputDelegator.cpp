@@ -6,7 +6,7 @@ namespace CPG
 {
 	namespace Input
 	{
-		Delegator::Delegator() : keyboard_listener( nullptr ), key_pressed_esc( false ) {}
+		Delegator::Delegator() : keyboard_listener( nullptr ), key_status_container() {}
 
 		Delegator* Delegator::create()
 		{
@@ -18,8 +18,19 @@ namespace CPG
 				return nullptr;
 			}
 
-			ret->autorelease();
 
+			//
+			// key status setup
+			//
+			ret->key_status_container.reserve( 5 );
+			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE );
+			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW );
+			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW );
+			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW );
+			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW );
+
+
+			ret->autorelease();
 			return ret;
 		}
 
@@ -44,32 +55,25 @@ namespace CPG
 
 		void Delegator::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			switch( keycode )
-			{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
-			{
-				key_pressed_esc = true;
-			}
-			break;
-
-			default:
-				CCLOG( "Key Code : %d", keycode );
-			}
+			for( auto& k : key_status_container )
+				if( keycode == k.keycode )
+					k.status = true;
 		}
 
 		void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			switch( keycode )
-			{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
-			{
-				key_pressed_esc = false;
-			}
-			break;
+			for( auto& k : key_status_container )
+				if( keycode == k.keycode )
+					k.status = false;
+		}
 
-			default:
-				CCLOG( "Key Code : %d", keycode );
-			}
+		const bool Delegator::getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const
+		{
+			for( auto& k : key_status_container )
+				if( keycode == k.keycode )
+					return k.status;
+
+			return false;
 		}
 	}
 }
