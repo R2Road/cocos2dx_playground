@@ -8,19 +8,11 @@ namespace CPG
 {
 	namespace Input
 	{
+		using AnalyzerSp = std::shared_ptr<class Analyzer>;
+
 		class Delegator : public cocos2d::Node
 		{
 		private:
-			struct KeyStatus
-			{
-				KeyStatus() : keycode( cocos2d::EventKeyboard::KeyCode::KEY_NONE ), status( false ) {}
-				KeyStatus( cocos2d::EventKeyboard::KeyCode _keycode ) : keycode( _keycode ), status( false ) {}
-
-				cocos2d::EventKeyboard::KeyCode keycode;
-				bool status;
-			};
-			using KeyStatusContainer = std::vector<KeyStatus>;
-
 			Delegator();
 
 		public:
@@ -34,11 +26,11 @@ namespace CPG
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
 
 		public:
-			const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const;
+			void addAnalyzer( AnalyzerSp& _new_analyzer );
 
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
-			KeyStatusContainer key_status_container;
+			AnalyzerSp analyzer;
 		};
 	}
 }

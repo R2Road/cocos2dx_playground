@@ -4,12 +4,15 @@
 
 #include "RootScene.h"
 #include "CPG_InputDelegator.h"
+#include "CPG_InputAnalyzer.h"
 
 USING_NS_CC;
 
 namespace Research
 {
-	KeyboardInputScene::KeyboardInputScene() : input_delegator( nullptr ) {}
+	KeyboardInputScene::KeyboardInputScene() :
+		input_analyzer()
+	{}
 
 	Scene* KeyboardInputScene::create()
 	{
@@ -43,8 +46,11 @@ namespace Research
 		//
 		// input
 		//
-		ret->input_delegator = CPG::Input::Delegator::create();
-		ret->addChild( ret->input_delegator, 0 );
+		auto input_delegator = CPG::Input::Delegator::create();
+		ret->addChild( input_delegator, 0 );
+
+		ret->input_analyzer = CPG::Input::Analyzer::create();
+		input_delegator->addAnalyzer( ret->input_analyzer );
 
 
 		ret->autorelease();
@@ -55,7 +61,7 @@ namespace Research
 
 	void KeyboardInputScene::update( float dt )
 	{
-		if( input_delegator->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
+		if( input_analyzer->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
 		{
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}

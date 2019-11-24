@@ -30,6 +30,9 @@
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CPG_InputAnalyzer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -48,6 +51,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_InputDelegator.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_InputAnalyzer.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

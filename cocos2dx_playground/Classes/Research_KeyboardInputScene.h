@@ -6,7 +6,7 @@ namespace CPG
 {
 	namespace Input
 	{
-		class Delegator;
+		using AnalyzerSp = std::shared_ptr<class Analyzer>;
 	}
 }
 
@@ -22,6 +22,6 @@ namespace Research
 		void update( float dt ) override;
 
 	private:
-		CPG::Input::Delegator* input_delegator;
+		CPG::Input::AnalyzerSp input_analyzer;
 	};
 }

@@ -1,12 +1,14 @@
 #include "CPG_InputDelegator.h"
 
+#include "CPG_InputAnalyzer.h"
+
 USING_NS_CC;
 
 namespace CPG
 {
 	namespace Input
 	{
-		Delegator::Delegator() : keyboard_listener( nullptr ), key_status_container() {}
+		Delegator::Delegator() : keyboard_listener( nullptr ) {}
 
 		Delegator* Delegator::create()
 		{
@@ -17,18 +19,6 @@ namespace CPG
 				ret = nullptr;
 				return nullptr;
 			}
-
-
-			//
-			// key status setup
-			//
-			ret->key_status_container.reserve( 5 );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW );
-
 
 			ret->autorelease();
 			return ret;
@@ -55,25 +45,19 @@ namespace CPG
 
 		void Delegator::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			for( auto& k : key_status_container )
-				if( keycode == k.keycode )
-					k.status = true;
+			if( analyzer )
+				analyzer->onKeyPressed( keycode );
 		}
 
 		void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			for( auto& k : key_status_container )
-				if( keycode == k.keycode )
-					k.status = false;
+			if( analyzer )
+				analyzer->onKeyReleased( keycode );
 		}
 
-		const bool Delegator::getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const
+		void Delegator::addAnalyzer( AnalyzerSp& _new_analyzer )
 		{
-			for( auto& k : key_status_container )
-				if( keycode == k.keycode )
-					return k.status;
-
-			return false;
+			analyzer = _new_analyzer;
 		}
 	}
 }
