@@ -6,7 +6,10 @@ namespace CPG
 {
 	namespace Input
 	{
-		Analyzer::Analyzer() : key_status_container() {}
+		Analyzer::Analyzer() :
+			key_map_container()
+			, key_status_container()
+		{}
 
 		AnalyzerSp Analyzer::create()
 		{
@@ -15,12 +18,25 @@ namespace CPG
 			//
 			// key status setup
 			//
-			ret->key_status_container.reserve( 5 );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW );
-			ret->key_status_container.emplace_back( cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW );
+			{
+				const std::vector<cocos2d::EventKeyboard::KeyCode> use_keys = {
+					cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE
+					, cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW
+					, cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW
+					, cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW
+					, cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW
+				};
+
+				ret->key_map_container.reserve( use_keys.size() );
+				int k_i = 0;
+				for( const auto k : use_keys )
+				{
+					ret->key_map_container.emplace_back( KeyMapPiece{ k, k_i } );
+					++k_i;
+				}
+			}
+
+			ret->key_status_container.resize( ret->key_map_container.size() );
 
 
 			return ret;
@@ -28,23 +44,23 @@ namespace CPG
 
 		void Analyzer::onKeyPressed( EventKeyboard::KeyCode keycode )
 		{
-			for( auto& k : key_status_container )
+			for( auto& k : key_map_container )
 				if( keycode == k.keycode )
-					k.status = true;
+					key_status_container[k.idx] = true;
 		}
 
 		void Analyzer::onKeyReleased( EventKeyboard::KeyCode keycode )
 		{
-			for( auto& k : key_status_container )
+			for( auto& k : key_map_container )
 				if( keycode == k.keycode )
-					k.status = false;
+					key_status_container[k.idx] = false;
 		}
 
 		const bool Analyzer::getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const
 		{
-			for( auto& k : key_status_container )
+			for( auto& k : key_map_container )
 				if( keycode == k.keycode )
-					return k.status;
+					return key_status_container[k.idx];
 
 			return false;
 		}

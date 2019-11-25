@@ -14,15 +14,16 @@ namespace CPG
 		class Analyzer
 		{
 		private:
-			struct KeyStatus
+			struct KeyMapPiece
 			{
-				KeyStatus() : keycode( cocos2d::EventKeyboard::KeyCode::KEY_NONE ), status( false ) {}
-				KeyStatus( cocos2d::EventKeyboard::KeyCode _keycode ) : keycode( _keycode ), status( false ) {}
+				KeyMapPiece( const cocos2d::EventKeyboard::KeyCode _keycode, const int _idx ) : keycode( _keycode ), idx( _idx ) {}
 
 				cocos2d::EventKeyboard::KeyCode keycode;
-				bool status;
+				int idx;
 			};
-			using KeyStatusContainer = std::vector<KeyStatus>;
+			using KeyMapContainer = std::vector<KeyMapPiece>;
+
+			using KeyStatusContainer = std::vector<bool>;
 
 			Analyzer();
 
@@ -36,6 +37,7 @@ namespace CPG
 			const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const;
 
 		private:
+			KeyMapContainer key_map_container;
 			KeyStatusContainer key_status_container;
 		};
 	}
