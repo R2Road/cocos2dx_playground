@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <bitset>
 
 #include "cocos2d.h"
 
@@ -23,7 +24,7 @@ namespace CPG
 			};
 			using KeyMapContainer = std::vector<KeyMapPiece>;
 
-			using KeyStatusContainer = std::vector<bool>;
+			using KeyStatusContainer = std::bitset<31u>;
 
 			Analyzer();
 

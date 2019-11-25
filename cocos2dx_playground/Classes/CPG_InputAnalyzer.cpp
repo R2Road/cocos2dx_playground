@@ -36,8 +36,6 @@ namespace CPG
 				}
 			}
 
-			ret->key_status_container.resize( ret->key_map_container.size() );
-
 
 			return ret;
 		}
