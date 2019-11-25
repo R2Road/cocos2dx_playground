@@ -21,6 +21,7 @@ namespace Research
 
 		static cocos2d::Scene* create();
 
+		bool init() override;
 		void update( float dt ) override;
 
 	private:

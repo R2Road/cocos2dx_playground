@@ -24,7 +24,17 @@ namespace Research
 			ret = nullptr;
 			return nullptr;
 		}
+		
+		ret->autorelease();
+		ret->scheduleUpdate();
 
+		return ret;
+	}
+
+	bool KeyboardInputScene::init()
+	{
+		if( !Scene::init() )
+			return false;
 
 		auto visibleSize = Director::getInstance()->getVisibleSize();
 		Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -41,17 +51,17 @@ namespace Research
 			origin.x
 			, origin.y + visibleSize.height
 		) );
-		ret->addChild( label, 1 );
+		addChild( label, 1 );
 
 
 		//
 		// input
 		//
 		auto input_delegator = CPG::Input::Delegator::create();
-		ret->addChild( input_delegator, 0 );
+		addChild( input_delegator, 0 );
 
-		ret->input_analyzer = CPG::Input::Analyzer::create();
-		input_delegator->addAnalyzer( ret->input_analyzer );
+		input_analyzer = CPG::Input::Analyzer::create();
+		input_delegator->addAnalyzer( input_analyzer );
 
 
 		//
@@ -69,33 +79,29 @@ namespace Research
 			{
 				auto arrow_sprite = Sprite::create( arrow_sprite_path[a_i] );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-				ret->addChild( arrow_sprite );
+				addChild( arrow_sprite );
 
-				ret->arrow_views[a_i] = arrow_sprite;
+				arrow_views[a_i] = arrow_sprite;
 			}
 
 			const float a_margin = 4.f;
-			const auto a_size = ret->arrow_views[0]->getContentSize();
+			const auto a_size = arrow_views[0]->getContentSize();
 			const float a_total_width =
-				( ret->arrow_views[0]->getContentSize().width * arrow_sprite_count )
+				( arrow_views[0]->getContentSize().width * arrow_sprite_count )
 				+ ( a_margin * std::max( 0, arrow_sprite_count - 1 ) );
 
 			const float a_start_w = origin.x + ( visibleSize.width * 0.5f ) - ( a_total_width * 0.5f );
 			const float a_start_h = origin.y + visibleSize.height * 0.5f;
 			for( int a_i = 0; a_i < arrow_sprite_count; ++a_i )
 			{
-				ret->arrow_views[a_i]->setPosition( Vec2(
+				arrow_views[a_i]->setPosition( Vec2(
 					a_start_w + ( ( a_size.width + a_margin ) * a_i )
 					, a_start_h
 				) );
 			}
 		}
 
-
-		ret->autorelease();
-		ret->scheduleUpdate();
-
-		return ret;
+		return true;
 	}
 
 	void KeyboardInputScene::update( float dt )
