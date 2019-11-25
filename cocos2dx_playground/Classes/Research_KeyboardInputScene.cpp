@@ -80,8 +80,8 @@ namespace Research
 				( ret->arrow_views[0]->getContentSize().width * arrow_sprite_count )
 				+ ( a_margin * std::max( 0, arrow_sprite_count - 1 ) );
 
-			const float a_start_w = ( visibleSize.width * 0.5f ) - ( a_total_width * 0.5f );
-			const float a_start_h = visibleSize.height *0.5f;
+			const float a_start_w = origin.x + ( visibleSize.width * 0.5f ) - ( a_total_width * 0.5f );
+			const float a_start_h = origin.y + visibleSize.height * 0.5f;
 			for( int a_i = 0; a_i < arrow_sprite_count; ++a_i )
 			{
 				ret->arrow_views[a_i]->setPosition( Vec2(
