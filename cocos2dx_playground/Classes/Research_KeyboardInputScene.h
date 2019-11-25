@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+
 #include "cocos2d.h"
 
 namespace CPG
@@ -23,5 +25,7 @@ namespace Research
 
 	private:
 		CPG::Input::AnalyzerSp input_analyzer;
+
+		std::array<cocos2d::Sprite*, 4u> arrow_views;
 	};
 }
