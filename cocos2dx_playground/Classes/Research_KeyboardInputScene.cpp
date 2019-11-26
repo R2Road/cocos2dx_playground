@@ -12,7 +12,8 @@ USING_NS_CC;
 namespace Research
 {
 	KeyboardInputScene::KeyboardInputScene() :
-		input_analyzer()
+		key_map()
+		, input_analyzer()
 		, arrow_views()
 	{}
 
@@ -61,7 +62,7 @@ namespace Research
 		auto input_delegator = CPG::Input::Delegator::create();
 		addChild( input_delegator, 0 );
 
-		auto key_map = CPG::Input::KeyMap::create();
+		key_map = CPG::Input::KeyMap::create();
 
 		input_analyzer = CPG::Input::Analyzer::create( key_map );
 		input_delegator->addAnalyzer( input_analyzer );

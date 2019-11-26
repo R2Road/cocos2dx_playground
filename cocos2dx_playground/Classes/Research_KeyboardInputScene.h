@@ -8,6 +8,7 @@ namespace CPG
 {
 	namespace Input
 	{
+		using KeyMapSp = std::shared_ptr<class KeyMap>;
 		using AnalyzerSp = std::shared_ptr<class Analyzer>;
 	}
 }
@@ -25,6 +26,7 @@ namespace Research
 		void update( float dt ) override;
 
 	private:
+		CPG::Input::KeyMapSp key_map;
 		CPG::Input::AnalyzerSp input_analyzer;
 
 		std::array<cocos2d::Sprite*, 4u> arrow_views;
