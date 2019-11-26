@@ -152,6 +152,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\CPG_InputAnalyzer.cpp" />
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp" />
+    <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp" />
     <ClCompile Include="..\Classes\CPG_Setting.cpp" />
     <ClCompile Include="..\Classes\Research_KeyboardInputScene.cpp" />
     <ClCompile Include="..\Classes\RootScene.cpp" />
@@ -161,6 +162,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\CPG_InputAnalyzer.h" />
     <ClInclude Include="..\Classes\CPG_InputDelegator.h" />
+    <ClInclude Include="..\Classes\CPG_InputKeyMap.h" />
     <ClInclude Include="..\Classes\CPG_Setting.h" />
     <ClInclude Include="..\Classes\Research_KeyboardInputScene.h" />
     <ClInclude Include="..\Classes\RootScene.h" />

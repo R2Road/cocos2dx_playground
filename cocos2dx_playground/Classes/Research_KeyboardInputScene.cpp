@@ -5,6 +5,7 @@
 #include "RootScene.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_InputAnalyzer.h"
+#include "CPG_InputKeyMap.h"
 
 USING_NS_CC;
 
@@ -60,7 +61,9 @@ namespace Research
 		auto input_delegator = CPG::Input::Delegator::create();
 		addChild( input_delegator, 0 );
 
-		input_analyzer = CPG::Input::Analyzer::create();
+		auto key_map = CPG::Input::KeyMap::create();
+
+		input_analyzer = CPG::Input::Analyzer::create( key_map );
 		input_delegator->addAnalyzer( input_analyzer );
 
 
