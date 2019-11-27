@@ -30,7 +30,7 @@ namespace CPG
 
 			keyboard_listener = EventListenerKeyboard::create();
 			keyboard_listener->onKeyPressed = CC_CALLBACK_2( Delegator::onKeyPressed, this );
-			keyboard_listener->onKeyReleased = CC_CALLBACK_2( Delegator::onKeyPressed, this );
+			keyboard_listener->onKeyReleased = CC_CALLBACK_2( Delegator::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
 		}
 		void Delegator::onExit()
