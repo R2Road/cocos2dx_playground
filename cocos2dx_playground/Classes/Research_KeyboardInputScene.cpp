@@ -73,32 +73,38 @@ namespace Research
 		//
 		{
 			const int arrow_sprite_count = 4;
-			const char* arrow_sprite_path[arrow_sprite_count] = {
-				"arrow/arrow_u.png"
-				, "arrow/arrow_d.png"
-				, "arrow/arrow_l.png"
-				, "arrow/arrow_r.png"
-			};
-			for( int a_i = 0; a_i < arrow_sprite_count; ++a_i )
+			struct ArrowConfigData
 			{
-				auto arrow_sprite = Sprite::create( arrow_sprite_path[a_i] );
+				int key_idx;
+				char* sprite_path;
+			};
+			const ArrowConfigData arrow_data_list[arrow_sprite_count] = {
+				{ 3, "arrow/arrow_u.png" }
+				,{ 4, "arrow/arrow_d.png" }
+				,{ 1, "arrow/arrow_l.png" }
+				,{ 2, "arrow/arrow_r.png" }
+			};
+			arrow_views.reserve( arrow_sprite_count );
+			for( const auto& a : arrow_data_list )
+			{
+				auto arrow_sprite = Sprite::create( a.sprite_path );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				addChild( arrow_sprite );
 
-				arrow_views[a_i] = arrow_sprite;
+				arrow_views.emplace_back( a.key_idx, arrow_sprite );
 			}
 
 			const float a_margin = 4.f;
-			const auto a_size = arrow_views[0]->getContentSize();
+			const auto a_size = arrow_views[0].sprite->getContentSize();
 			const float a_total_width =
-				( arrow_views[0]->getContentSize().width * arrow_sprite_count )
+				( arrow_views[0].sprite->getContentSize().width * arrow_sprite_count )
 				+ ( a_margin * std::max( 0, arrow_sprite_count - 1 ) );
 
 			const float a_start_w = origin.x + ( visibleSize.width * 0.5f ) - ( a_total_width * 0.5f );
 			const float a_start_h = origin.y + visibleSize.height * 0.5f;
 			for( int a_i = 0; a_i < arrow_sprite_count; ++a_i )
 			{
-				arrow_views[a_i]->setPosition( Vec2(
+				arrow_views[a_i].sprite->setPosition( Vec2(
 					a_start_w + ( ( a_size.width + a_margin ) * a_i )
 					, a_start_h
 				) );

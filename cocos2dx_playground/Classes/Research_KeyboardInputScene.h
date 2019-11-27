@@ -1,6 +1,6 @@
 #pragma once
 
-#include <array>
+#include <vector>
 
 #include "cocos2d.h"
 
@@ -29,6 +29,13 @@ namespace Research
 		CPG::Input::KeyMapSp key_map;
 		CPG::Input::AnalyzerSp input_analyzer;
 
-		std::array<cocos2d::Sprite*, 4u> arrow_views;
+		struct ArrowData
+		{
+			ArrowData( int _key_index, cocos2d::Sprite* _sprite ) : key_index( _key_index ), sprite( _sprite ) {}
+
+			int key_index;
+			cocos2d::Sprite* sprite;
+		};
+		std::vector<ArrowData> arrow_views;
 	};
 }
