@@ -42,5 +42,12 @@ namespace CPG
 
 			return false;
 		}
+		const bool Analyzer::getKeyStatus( const int target_key_index ) const
+		{
+			if( 0 > target_key_index || static_cast<std::size_t>( target_key_index ) >= key_status_container.size() )
+				return false;
+
+			return key_status_container[target_key_index];
+		}
 	}
 }

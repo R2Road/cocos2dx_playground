@@ -121,6 +121,9 @@ namespace Research
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 
+		for( auto& a : arrow_views )
+			a.sprite->setVisible( input_analyzer->getKeyStatus( a.key_index ) );
+
 		Scene::update( dt );
 	}
 }
