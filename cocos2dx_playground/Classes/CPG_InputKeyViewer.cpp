@@ -29,9 +29,6 @@ namespace CPG
 		{
 			Node::init();
 
-			auto visibleSize = Director::getInstance()->getVisibleSize();
-			Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 			struct KeyViewConfig
 			{
 				cocos2d::EventKeyboard::KeyCode key_code;
@@ -56,12 +53,18 @@ namespace CPG
 
 			const float a_margin = 4.f;
 			const auto a_size = key_views[0].sprite->getContentSize();
-			const float a_total_width =
+			const Size content_size(
 				( key_views[0].sprite->getContentSize().width * key_view_config_list.size() )
-				+ ( a_margin * std::max( 0, static_cast<int>( key_view_config_list.size() ) - 1 ) );
+				+ ( a_margin * std::max( 0, static_cast<int>( key_view_config_list.size() ) - 1 ) )
+				, a_size.height
+			);
 
-			const float a_start_w = origin.x + ( visibleSize.width * 0.5f ) - ( a_total_width * 0.5f );
-			const float a_start_h = origin.y + visibleSize.height * 0.5f;
+			const Size total_margin( 3, 3 );
+			const Size total_size( content_size + total_margin + total_margin );
+
+
+			const float a_start_w = ( total_size.width * 0.5f ) - ( content_size.width * 0.5f );
+			const float a_start_h = total_size.height * 0.5f;
 			for( std::size_t a_i = 0, a_e = key_view_config_list.size(); a_i < a_e; ++a_i )
 			{
 				key_views[a_i].sprite->setPosition( Vec2(

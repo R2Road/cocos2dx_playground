@@ -76,6 +76,10 @@ namespace Research
 		// key viewer
 		//
 		key_viewer = CPG::Input::KeyViewer::create( key_map );
+		key_viewer->setPosition(
+			origin.x
+			, origin.y + ( visibleSize.height * 0.5f )
+		);
 		addChild( key_viewer, 1 );
 
 
