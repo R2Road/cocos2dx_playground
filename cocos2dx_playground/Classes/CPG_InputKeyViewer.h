@@ -24,14 +24,14 @@ namespace CPG
 			void setup( const CPG::Input::AnalyzerSp input_analyzer );
 
 		private:
-			struct ArrowData
+			struct KeyViewData
 			{
-				ArrowData( int _key_index, cocos2d::Sprite* _sprite ) : key_index( _key_index ), sprite( _sprite ) {}
+				KeyViewData( int _key_index, cocos2d::Sprite* _sprite ) : key_index( _key_index ), sprite( _sprite ) {}
 
 				int key_index;
 				cocos2d::Sprite* sprite;
 			};
-			std::vector<ArrowData> arrow_views;
+			std::vector<KeyViewData> key_views;
 		};
 	}
 }

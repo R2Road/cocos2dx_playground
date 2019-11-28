@@ -9,7 +9,7 @@ namespace CPG
 {
 	namespace Input
 	{
-		KeyViewer::KeyViewer() : arrow_views() {}
+		KeyViewer::KeyViewer() : key_views() {}
 
 		KeyViewer* KeyViewer::create( const KeyMapSp& key_map )
 		{
@@ -44,27 +44,27 @@ namespace CPG
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "arrow/arrow_l.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "arrow/arrow_r.png" }
 			};
-			arrow_views.reserve( arrow_sprite_count );
+			key_views.reserve( arrow_sprite_count );
 			for( const auto& a : arrow_data_list )
 			{
 				auto arrow_sprite = Sprite::create( a.sprite_path );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				addChild( arrow_sprite );
 
-				arrow_views.emplace_back( key_map->getKeyIndex( a.key_code ), arrow_sprite );
+				key_views.emplace_back( key_map->getKeyIndex( a.key_code ), arrow_sprite );
 			}
 
 			const float a_margin = 4.f;
-			const auto a_size = arrow_views[0].sprite->getContentSize();
+			const auto a_size = key_views[0].sprite->getContentSize();
 			const float a_total_width =
-				( arrow_views[0].sprite->getContentSize().width * arrow_sprite_count )
+				( key_views[0].sprite->getContentSize().width * arrow_sprite_count )
 				+ ( a_margin * std::max( 0, arrow_sprite_count - 1 ) );
 
 			const float a_start_w = origin.x + ( visibleSize.width * 0.5f ) - ( a_total_width * 0.5f );
 			const float a_start_h = origin.y + visibleSize.height * 0.5f;
 			for( int a_i = 0; a_i < arrow_sprite_count; ++a_i )
 			{
-				arrow_views[a_i].sprite->setPosition( Vec2(
+				key_views[a_i].sprite->setPosition( Vec2(
 					a_start_w + ( ( a_size.width + a_margin ) * a_i )
 					, a_start_h
 				) );
@@ -75,7 +75,7 @@ namespace CPG
 
 		void KeyViewer::setup( const CPG::Input::AnalyzerSp input_analyzer )
 		{
-			for( auto& a : arrow_views )
+			for( auto& a : key_views )
 				a.sprite->setVisible( input_analyzer->getKeyStatus( a.key_index ) );
 		}
 	}
