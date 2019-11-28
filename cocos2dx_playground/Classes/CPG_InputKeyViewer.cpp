@@ -32,19 +32,19 @@ namespace CPG
 			auto visibleSize = Director::getInstance()->getVisibleSize();
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-			const int arrow_sprite_count = 4;
 			struct KeyViewConfig
 			{
 				cocos2d::EventKeyboard::KeyCode key_code;
 				char* sprite_path;
 			};
-			const KeyViewConfig key_view_config_list[arrow_sprite_count] = {
+			const std::vector<KeyViewConfig> key_view_config_list( {
 				{ cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW, "arrow/arrow_u.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "arrow/arrow_d.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "arrow/arrow_l.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "arrow/arrow_r.png" }
-			};
-			key_views.reserve( arrow_sprite_count );
+			} );
+
+			key_views.reserve( key_view_config_list.size() );
 			for( const auto& a : key_view_config_list )
 			{
 				auto arrow_sprite = Sprite::create( a.sprite_path );
@@ -57,12 +57,12 @@ namespace CPG
 			const float a_margin = 4.f;
 			const auto a_size = key_views[0].sprite->getContentSize();
 			const float a_total_width =
-				( key_views[0].sprite->getContentSize().width * arrow_sprite_count )
-				+ ( a_margin * std::max( 0, arrow_sprite_count - 1 ) );
+				( key_views[0].sprite->getContentSize().width * key_view_config_list.size() )
+				+ ( a_margin * std::max( 0, static_cast<int>( key_view_config_list.size() ) - 1 ) );
 
 			const float a_start_w = origin.x + ( visibleSize.width * 0.5f ) - ( a_total_width * 0.5f );
 			const float a_start_h = origin.y + visibleSize.height * 0.5f;
-			for( int a_i = 0; a_i < arrow_sprite_count; ++a_i )
+			for( std::size_t a_i = 0, a_e = key_view_config_list.size(); a_i < a_e; ++a_i )
 			{
 				key_views[a_i].sprite->setPosition( Vec2(
 					a_start_w + ( ( a_size.width + a_margin ) * a_i )
