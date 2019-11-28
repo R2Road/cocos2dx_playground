@@ -33,19 +33,19 @@ namespace CPG
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 			const int arrow_sprite_count = 4;
-			struct ArrowConfigData
+			struct KeyViewConfig
 			{
 				cocos2d::EventKeyboard::KeyCode key_code;
 				char* sprite_path;
 			};
-			const ArrowConfigData arrow_data_list[arrow_sprite_count] = {
+			const KeyViewConfig key_view_config_list[arrow_sprite_count] = {
 				{ cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW, "arrow/arrow_u.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "arrow/arrow_d.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "arrow/arrow_l.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "arrow/arrow_r.png" }
 			};
 			key_views.reserve( arrow_sprite_count );
-			for( const auto& a : arrow_data_list )
+			for( const auto& a : key_view_config_list )
 			{
 				auto arrow_sprite = Sprite::create( a.sprite_path );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
