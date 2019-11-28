@@ -33,5 +33,14 @@ namespace CPG
 			KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
 			return ret;
 		}
+
+		const int KeyMap::getKeyIndex( const cocos2d::EventKeyboard::KeyCode _key_code ) const
+		{
+			for( const auto& k : container )
+				if( k.keycode == _key_code )
+					return k.idx;
+
+			return 0;
+		}
 	}
 }

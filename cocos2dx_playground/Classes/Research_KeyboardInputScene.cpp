@@ -78,14 +78,14 @@ namespace Research
 			const int arrow_sprite_count = 4;
 			struct ArrowConfigData
 			{
-				int key_idx;
+				cocos2d::EventKeyboard::KeyCode key_code;
 				char* sprite_path;
 			};
 			const ArrowConfigData arrow_data_list[arrow_sprite_count] = {
-				{ 3, "arrow/arrow_u.png" }
-				,{ 4, "arrow/arrow_d.png" }
-				,{ 1, "arrow/arrow_l.png" }
-				,{ 2, "arrow/arrow_r.png" }
+				{ cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW, "arrow/arrow_u.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "arrow/arrow_d.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "arrow/arrow_l.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "arrow/arrow_r.png" }
 			};
 			arrow_views.reserve( arrow_sprite_count );
 			for( const auto& a : arrow_data_list )
@@ -94,7 +94,7 @@ namespace Research
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				addChild( arrow_sprite );
 
-				arrow_views.emplace_back( a.key_idx, arrow_sprite );
+				arrow_views.emplace_back( key_map->getKeyIndex( a.key_code ), arrow_sprite );
 			}
 
 			const float a_margin = 4.f;

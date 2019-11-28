@@ -28,6 +28,8 @@ namespace CPG
 		public:
 			static KeyMapSp create();
 
+			const int getKeyIndex( const cocos2d::EventKeyboard::KeyCode _key_code ) const;
+
 			const KeyMapContainer container;
 		};
 	}
