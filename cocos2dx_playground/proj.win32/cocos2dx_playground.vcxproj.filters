@@ -36,6 +36,9 @@
     <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CPG_InputKeyViewer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -60,6 +63,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_InputKeyMap.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_InputKeyViewer.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

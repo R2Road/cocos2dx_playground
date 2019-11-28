@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "cocos2d.h"
 
 namespace CPG
@@ -10,6 +8,8 @@ namespace CPG
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
 		using AnalyzerSp = std::shared_ptr<class Analyzer>;
+
+		class KeyViewer;
 	}
 }
 
@@ -28,14 +28,6 @@ namespace Research
 	private:
 		CPG::Input::KeyMapSp key_map;
 		CPG::Input::AnalyzerSp input_analyzer;
-
-		struct ArrowData
-		{
-			ArrowData( int _key_index, cocos2d::Sprite* _sprite ) : key_index( _key_index ), sprite( _sprite ) {}
-
-			int key_index;
-			cocos2d::Sprite* sprite;
-		};
-		std::vector<ArrowData> arrow_views;
+		CPG::Input::KeyViewer* key_viewer;
 	};
 }
