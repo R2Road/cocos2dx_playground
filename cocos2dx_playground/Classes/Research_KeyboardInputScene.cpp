@@ -12,10 +12,14 @@ USING_NS_CC;
 
 namespace Research
 {
+	const int key_viewer_count = 10;
+	const float key_viewer_margin = 4.f;
+
 	KeyboardInputScene::KeyboardInputScene() :
 		key_map()
 		, input_analyzer()
-		, key_viewer()
+		, key_viewer_list()
+		, key_viewer_start_position()
 	{}
 
 	Scene* KeyboardInputScene::create()
@@ -75,13 +79,24 @@ namespace Research
 		//
 		// key viewer
 		//
-		key_viewer = CPG::Input::KeyViewer::create( key_map );
-		key_viewer->setPosition(
+		CPG::Input::KeyViewer* key_viewer = nullptr;
+		key_viewer_start_position.set(
 			origin.x
 			, origin.y + ( visibleSize.height * 0.5f )
 		);
-		addChild( key_viewer, 1 );
+		for( int i = 0; i < key_viewer_count; ++i )
+		{
+			key_viewer = CPG::Input::KeyViewer::create( key_map );
+			key_viewer->setPosition( key_viewer_start_position );
+			key_viewer->setVisible( false );
+			addChild( key_viewer, 1 );
 
+			key_viewer_list.push_back( key_viewer );
+		}
+		key_viewer_end_position.set(
+			key_viewer_start_position.x
+			, key_viewer_start_position.y + ( key_viewer_list.front()->getContentSize().height * ( key_viewer_count - 1 ) )
+		);
 
 		return true;
 	}
@@ -94,7 +109,27 @@ namespace Research
 		}
 
 		if( 0 != input_analyzer->getKeyStatusPackage() )
-			key_viewer->setup( input_analyzer );
+		{
+			for( auto v : key_viewer_list )
+			{
+				if( !v->isVisible() )
+					continue;
+
+				v->setPositionY( v->getPositionY() + v->getContentSize().height + key_viewer_margin );
+				v->setVisible( key_viewer_end_position.y > v->getPositionY() );
+			}
+
+			for( auto v : key_viewer_list )
+			{
+				if( v->isVisible() )
+					continue;
+
+				v->setVisible( true );
+				v->setPosition( key_viewer_start_position );
+				v->setup( input_analyzer );
+				break;
+			}
+		}
 
 		Scene::update( dt );
 	}

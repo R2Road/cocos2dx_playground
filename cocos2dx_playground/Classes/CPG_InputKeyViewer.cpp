@@ -78,6 +78,8 @@ namespace CPG
 				) );
 			}
 
+			setContentSize( total_size );
+
 			return true;
 		}
 

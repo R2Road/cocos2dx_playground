@@ -1,5 +1,7 @@
 #pragma once
 
+#include <list>
+
 #include "cocos2d.h"
 
 namespace CPG
@@ -28,6 +30,8 @@ namespace Research
 	private:
 		CPG::Input::KeyMapSp key_map;
 		CPG::Input::AnalyzerSp input_analyzer;
-		CPG::Input::KeyViewer* key_viewer;
+		std::list<CPG::Input::KeyViewer*> key_viewer_list;
+		cocos2d::Vec2 key_viewer_start_position;
+		cocos2d::Vec2 key_viewer_end_position;
 	};
 }
