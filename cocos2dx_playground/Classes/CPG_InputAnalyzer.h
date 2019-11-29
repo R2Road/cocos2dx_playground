@@ -29,6 +29,7 @@ namespace CPG
 
 			const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const;
 			const bool getKeyStatus( const int target_key_index ) const;
+			const int getKeyStatusPackage() const { return key_status_container.to_ulong(); }
 
 		private:
 			const KeyMapSp key_map_container;

@@ -93,7 +93,8 @@ namespace Research
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 
-		key_viewer->setup( input_analyzer );
+		if( 0 != input_analyzer->getKeyStatusPackage() )
+			key_viewer->setup( input_analyzer );
 
 		Scene::update( dt );
 	}
