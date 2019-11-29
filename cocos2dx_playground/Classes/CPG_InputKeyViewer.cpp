@@ -9,7 +9,13 @@ namespace CPG
 {
 	namespace Input
 	{
-		KeyViewer::KeyViewer() : key_views() {}
+		const float view_margin = 4.f;
+
+		KeyViewer::KeyViewer() :
+			key_views()
+			, view_start_x( 0 )
+			, view_size()
+		{}
 
 		KeyViewer* KeyViewer::create( const KeyMapSp& key_map )
 		{
@@ -51,24 +57,23 @@ namespace CPG
 				key_views.emplace_back( key_map->getKeyIndex( a.key_code ), arrow_sprite );
 			}
 
-			const float a_margin = 4.f;
-			const auto a_size = key_views[0].sprite->getContentSize();
+			view_size = key_views[0].sprite->getContentSize();
 			const Size content_size(
 				( key_views[0].sprite->getContentSize().width * key_view_config_list.size() )
-				+ ( a_margin * std::max( 0, static_cast<int>( key_view_config_list.size() ) - 1 ) )
-				, a_size.height
+				+ ( view_margin * std::max( 0, static_cast<int>( key_view_config_list.size() ) - 1 ) )
+				, view_size.height
 			);
 
 			const Size total_margin( 3, 3 );
 			const Size total_size( content_size + total_margin + total_margin );
 
 
-			const float a_start_w = ( total_size.width * 0.5f ) - ( content_size.width * 0.5f );
+			view_start_x = ( total_size.width * 0.5f ) - ( content_size.width * 0.5f );
 			const float a_start_h = total_size.height * 0.5f;
 			for( std::size_t a_i = 0, a_e = key_view_config_list.size(); a_i < a_e; ++a_i )
 			{
 				key_views[a_i].sprite->setPosition( Vec2(
-					a_start_w + ( ( a_size.width + a_margin ) * a_i )
+					view_start_x + ( ( view_size.width + view_margin ) * a_i )
 					, a_start_h
 				) );
 			}
@@ -78,8 +83,16 @@ namespace CPG
 
 		void KeyViewer::setup( const CPG::Input::AnalyzerSp input_analyzer )
 		{
-			for( auto& a : key_views )
-				a.sprite->setVisible( input_analyzer->getKeyStatus( a.key_index ) );
+			int v_i = 0;
+			for( auto& v : key_views )
+			{
+				v.sprite->setVisible( input_analyzer->getKeyStatus( v.key_index ) );
+				if( !v.sprite->isVisible() )
+					continue;
+				
+				v.sprite->setPositionX( view_start_x + ( ( view_size.width + view_margin ) * v_i ) );
+				++v_i;
+			}
 		}
 	}
 }

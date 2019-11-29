@@ -32,6 +32,8 @@ namespace CPG
 				cocos2d::Sprite* sprite;
 			};
 			std::vector<KeyViewData> key_views;
+			float view_start_x;
+			cocos2d::Size view_size;
 		};
 	}
 }
