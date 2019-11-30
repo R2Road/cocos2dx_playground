@@ -23,6 +23,17 @@ namespace CPG
 			return ret;
 		}
 
+		void Analyzer::update()
+		{
+			if( 0 != current_key_status_container->to_ulong() )
+			{
+				++current_key_status_container;
+				if( key_history.end() == current_key_status_container )
+					current_key_status_container = key_history.begin();
+				current_key_status_container->reset();
+			}
+		}
+
 		void Analyzer::onKeyPressed( EventKeyboard::KeyCode keycode )
 		{
 			for( auto& k : key_map_container->container )

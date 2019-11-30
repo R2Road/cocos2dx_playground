@@ -20,6 +20,7 @@ namespace CPG
 				return nullptr;
 			}
 
+			ret->scheduleUpdateWithPriority( 1 );
 			ret->autorelease();
 			return ret;
 		}
@@ -32,6 +33,12 @@ namespace CPG
 			keyboard_listener->onKeyPressed = CC_CALLBACK_2( Delegator::onKeyPressed, this );
 			keyboard_listener->onKeyReleased = CC_CALLBACK_2( Delegator::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
+		}
+		void Delegator::update( float _dt )
+		{
+			if( analyzer )
+				analyzer->update();
+			Node::update( _dt );
 		}
 		void Delegator::onExit()
 		{

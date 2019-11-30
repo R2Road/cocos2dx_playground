@@ -19,6 +19,7 @@ namespace CPG
 			static Delegator* create();
 
 			void onEnter() override;
+			void update( float _dt ) override;
 			void onExit() override;
 
 		private:

@@ -25,6 +25,7 @@ namespace CPG
 			static AnalyzerSp create( const KeyMapSp& _key_map_container );
 
 		public:
+			void update();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode );
 
