@@ -23,19 +23,13 @@ namespace CPG
 			if( doc.HasParseError() )
 			{
 				cocos2d::log( "json parse error" );
-
-				KeyMapContainer container( { KeyMapPiece{ cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE, 0 } } );
-				KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
-				return ret;
+				return get_dummy();
 			}
 
 			if( doc.IsNull() )
 			{
 				cocos2d::log( "json is empty" );
-
-				KeyMapContainer container( { KeyMapPiece{ cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE, 0 } } );
-				KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
-				return ret;
+				return get_dummy();
 			}
 
 			KeyMapContainer container;
@@ -48,6 +42,12 @@ namespace CPG
 				} );
 
 			KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
+			return ret;
+		}
+
+		const KeyMapSp& KeyMap::get_dummy()
+		{
+			static const KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( KeyMapContainer( { KeyMapPiece{ cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE, 0 } } ) ) ) );
 			return ret;
 		}
 
