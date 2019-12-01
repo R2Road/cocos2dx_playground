@@ -41,12 +41,11 @@ namespace CPG
 			KeyMapContainer container;
 			container.reserve( doc.Size() );
 
-			int k_i = 0;
 			for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
-			{
-				container.emplace_back( KeyMapPiece{ static_cast<EventKeyboard::KeyCode>( (*cur)["key_code"].GetInt() ), k_i } );
-				++k_i;
-			}
+				container.emplace_back( KeyMapPiece{ static_cast<EventKeyboard::KeyCode>(
+					(*cur)["key_code"].GetInt() )
+					, ( *cur )["idx"].GetInt()
+				} );
 
 			KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
 			return ret;
