@@ -1,4 +1,4 @@
 {
-  "frame_resolution":{ "x":1280, "y":720 }
+  "frame_resolution":{ "x":960, "y":640 }
   , "design_resolution":{ "x":480, "y":320 }
 }
