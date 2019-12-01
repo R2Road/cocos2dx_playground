@@ -4,6 +4,7 @@
 
 #include "SimpleAudioEngine.h"
 #include "Research_KeyboardInputScene.h"
+#include "Research_Input_KeyConfigScene.h"
 
 USING_NS_CC;
 
@@ -31,6 +32,8 @@ Scene* RootScene::create()
 	ss << "\n";
 	ss << "\n";
 	ss << "[1] : Research - Keyboard Input Scene";
+	ss << "\n";
+	ss << "[2] : Research - Key Config Scene";
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 	label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
@@ -75,6 +78,11 @@ void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ 
 	case EventKeyboard::KeyCode::KEY_1:
 	{
 		Director::getInstance()->replaceScene( Research::KeyboardInputScene::create() );
+	}
+	break;
+	case EventKeyboard::KeyCode::KEY_2:
+	{
+		Director::getInstance()->replaceScene( Research::Input::KeyConfigScene::create() );
 	}
 	break;
 
