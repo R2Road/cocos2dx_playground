@@ -5,9 +5,10 @@
 
 namespace CPG
 {
-	Setting::Setting( const cocos2d::Size _frame_resolution, const cocos2d::Size _design_resolution ) :
+	Setting::Setting( const cocos2d::Size _frame_resolution, const cocos2d::Size _design_resolution, const bool _show_display_stats ) :
 		frame_resolution( _frame_resolution )
 		, design_resolution( _design_resolution )
+		, show_display_stats( _show_display_stats )
 	{}
 
 	const Setting Setting::load()
@@ -15,6 +16,7 @@ namespace CPG
 		// default
 		cocos2d::Size frame_resolution( 1024, 768 );
 		cocos2d::Size design_resolution( 480, 320 );
+		bool show_display_stats = true;
 
 		// load json
 		const std::string& regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( "config/setting.json" );
@@ -24,13 +26,13 @@ namespace CPG
 		if( doc.HasParseError() )
 		{
 			cocos2d::log( "json parse error" );
-			return Setting( frame_resolution, design_resolution );
+			return Setting( frame_resolution, design_resolution, show_display_stats );
 		}
 
 		if( doc.IsNull() )
 		{
 			cocos2d::log( "json is empty" );
-			return Setting( frame_resolution, design_resolution );
+			return Setting( frame_resolution, design_resolution, show_display_stats );
 		}
 
 		const auto frame_resolution_itr = doc.FindMember( "frame_resolution" );
@@ -57,6 +59,10 @@ namespace CPG
 				design_resolution.setSize( x_itr->value.GetInt(), y_itr->value.GetInt() );
 		}
 
-		return Setting( frame_resolution, design_resolution );
+		const auto display_stats_itr = doc.FindMember( "display_stats" );
+		if( doc.MemberEnd() != display_stats_itr )
+			show_display_stats = display_stats_itr->value.GetBool();
+
+		return Setting( frame_resolution, design_resolution, show_display_stats );
 	}
 }
