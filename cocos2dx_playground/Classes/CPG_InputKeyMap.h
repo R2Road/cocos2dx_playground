@@ -26,7 +26,7 @@ namespace CPG
 			explicit KeyMap( KeyMapContainer&& _container );
 
 		public:
-			static KeyMapSp create();
+			static KeyMapSp create( const char* _key_map_path );
 
 			const int getKeyIndex( const cocos2d::EventKeyboard::KeyCode _key_code ) const;
 

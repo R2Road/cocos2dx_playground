@@ -2,6 +2,9 @@
 
 #include <utility>
 
+#include "platform\CCFileUtils.h"
+#include "json/document.h"
+
 USING_NS_CC;
 
 namespace CPG
@@ -10,23 +13,38 @@ namespace CPG
 	{
 		KeyMap::KeyMap( KeyMapContainer&& _container ) : container( std::move( _container ) ) {}
 
-		KeyMapSp KeyMap::create()
+		KeyMapSp KeyMap::create( const char* _key_map_path )
 		{
-			const std::vector<cocos2d::EventKeyboard::KeyCode> use_keys = {
-				cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE
-				, cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW
-				, cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW
-				, cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW
-				, cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW
-			};
+			// load json
+			const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( _key_map_path );
+			rapidjson::Document doc;
+			doc.Parse<0>( regionStr.c_str() );
+
+			if( doc.HasParseError() )
+			{
+				cocos2d::log( "json parse error" );
+
+				KeyMapContainer container( { KeyMapPiece{ cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE, 0 } } );
+				KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
+				return ret;
+			}
+
+			if( doc.IsNull() )
+			{
+				cocos2d::log( "json is empty" );
+
+				KeyMapContainer container( { KeyMapPiece{ cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE, 0 } } );
+				KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
+				return ret;
+			}
 
 			KeyMapContainer container;
-			container.reserve( use_keys.size() );
+			container.reserve( doc.Size() );
 
 			int k_i = 0;
-			for( const auto k : use_keys )
+			for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
 			{
-				container.emplace_back( KeyMapPiece{ k, k_i } );
+				container.emplace_back( KeyMapPiece{ static_cast<EventKeyboard::KeyCode>( (*cur)["key_code"].GetInt() ), k_i } );
 				++k_i;
 			}
 

@@ -70,7 +70,7 @@ namespace Research
 		auto input_delegator = CPG::Input::Delegator::create();
 		addChild( input_delegator, 0 );
 
-		key_map = CPG::Input::KeyMap::create();
+		key_map = CPG::Input::KeyMap::create( "datas/keyconfig/keymap_keyboardtest.json" );
 
 		input_analyzer = CPG::Input::Analyzer::create( key_map );
 		input_delegator->addAnalyzer( input_analyzer );
