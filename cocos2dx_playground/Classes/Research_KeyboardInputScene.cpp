@@ -61,7 +61,7 @@ namespace Research
 			origin.x
 			, origin.y + visibleSize.height
 		) );
-		addChild( label, 1 );
+		addChild( label, 9999 );
 
 
 		//
