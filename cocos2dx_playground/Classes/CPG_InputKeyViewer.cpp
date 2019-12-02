@@ -41,10 +41,10 @@ namespace CPG
 				char* sprite_path;
 			};
 			const std::vector<KeyViewConfig> key_view_config_list( {
-				{ cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW, "arrow/arrow_u.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "arrow/arrow_d.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "arrow/arrow_l.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "arrow/arrow_r.png" }
+				{ cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW, "textures/keys/arrow_u.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "textures/keys/arrow_d.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "textures/keys/arrow_l.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "textures/keys/arrow_r.png" }
 			} );
 
 			key_views.reserve( key_view_config_list.size() );
