@@ -4,7 +4,7 @@
 
 #include "RootScene.h"
 #include "CPG_InputDelegator.h"
-#include "CPG_InputAnalyzer.h"
+#include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
 #include "CPG_InputKeyViewer.h"
 

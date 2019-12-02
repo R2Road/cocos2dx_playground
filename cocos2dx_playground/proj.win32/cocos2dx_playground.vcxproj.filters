@@ -30,9 +30,6 @@
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputAnalyzer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -40,6 +37,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,9 +62,6 @@
     <ClInclude Include="..\Classes\CPG_InputDelegator.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputAnalyzer.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\CPG_InputKeyMap.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -72,6 +69,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
