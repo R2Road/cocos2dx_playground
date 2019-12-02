@@ -45,6 +45,9 @@ namespace CPG
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "textures/keys/arrow_d.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "textures/keys/arrow_l.png" }
 				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "textures/keys/arrow_r.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_A, "textures/keys/key_a.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_B, "textures/keys/key_b.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_S, "textures/keys/key_s.png" }
 			} );
 
 			key_views.reserve( key_view_config_list.size() );

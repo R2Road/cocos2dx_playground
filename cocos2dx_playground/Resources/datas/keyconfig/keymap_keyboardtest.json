@@ -4,4 +4,7 @@
   ,{ "idx" : 2, "key_code":27 ,"desc":"right_arrow" }
   ,{ "idx" : 3, "key_code":28 ,"desc":"up_arrow" }
   ,{ "idx" : 4, "key_code":29 ,"desc":"down_arrow" }
+  ,{ "idx" : 5, "key_code":124 ,"desc":"a" }
+  ,{ "idx" : 6, "key_code":125 ,"desc":"b" }
+  ,{ "idx" : 7, "key_code":142 ,"desc":"s" }
 ]
