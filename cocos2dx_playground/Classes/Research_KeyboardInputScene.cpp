@@ -17,7 +17,7 @@ namespace Research
 
 	KeyboardInputScene::KeyboardInputScene() :
 		key_map()
-		, input_analyzer()
+		, input_collector()
 		, key_viewer_list()
 		, key_viewer_start_position()
 	{}
@@ -72,8 +72,8 @@ namespace Research
 
 		key_map = CPG::Input::KeyMap::create( "datas/keyconfig/keymap_keyboardtest.json" );
 
-		input_analyzer = CPG::Input::Analyzer::create( key_map );
-		input_delegator->addAnalyzer( input_analyzer );
+		input_collector = CPG::Input::BasicCollector::create( key_map );
+		input_delegator->addInputCollector( input_collector );
 
 
 		//
@@ -103,12 +103,12 @@ namespace Research
 
 	void KeyboardInputScene::update( float dt )
 	{
-		if( input_analyzer->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
+		if( input_collector->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
 		{
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 
-		if( 0 != input_analyzer->getKeyStatusPackage() )
+		if( 0 != input_collector->getKeyStatusPackage() )
 		{
 			for( auto v : key_viewer_list )
 			{
@@ -126,7 +126,7 @@ namespace Research
 
 				v->setVisible( true );
 				v->setPosition( key_viewer_start_position );
-				v->setup( input_analyzer );
+				v->setup( input_collector );
 				break;
 			}
 		}

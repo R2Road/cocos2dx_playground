@@ -7,7 +7,7 @@ namespace CPG
 	namespace Input
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
-		using AnalyzerSp = std::shared_ptr<class Analyzer>;
+		using BasicCollectorSp = std::shared_ptr<class BasicCollector>;
 	}
 }
 
@@ -25,7 +25,7 @@ namespace Research
 			void update( float dt ) override;
 
 		private:
-			CPG::Input::AnalyzerSp input_analyzer;
+			CPG::Input::BasicCollectorSp input_collector;
 		};
 	}
 }

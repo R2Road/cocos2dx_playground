@@ -9,7 +9,7 @@ namespace CPG
 	namespace Input
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
-		using AnalyzerSp = std::shared_ptr<class Analyzer>;
+		using BasicCollectorSp = std::shared_ptr<class BasicCollector>;
 
 		class KeyViewer;
 	}
@@ -29,7 +29,7 @@ namespace Research
 
 	private:
 		CPG::Input::KeyMapSp key_map;
-		CPG::Input::AnalyzerSp input_analyzer;
+		CPG::Input::BasicCollectorSp input_collector;
 		std::list<CPG::Input::KeyViewer*> key_viewer_list;
 		cocos2d::Vec2 key_viewer_start_position;
 		cocos2d::Vec2 key_viewer_end_position;

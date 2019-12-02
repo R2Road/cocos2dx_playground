@@ -54,8 +54,8 @@ namespace Research
 
 				auto key_map = CPG::Input::KeyMap::create( "" );
 
-				ret->input_analyzer = CPG::Input::Analyzer::create( key_map );
-				input_delegator->addAnalyzer( ret->input_analyzer );
+				ret->input_collector = CPG::Input::BasicCollector::create( key_map );
+				input_delegator->addInputCollector( ret->input_collector );
 			}
 
 
@@ -67,7 +67,7 @@ namespace Research
 
 		void KeyConfigScene::update( float dt )
 		{
-			if( input_analyzer->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
+			if( input_collector->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
 			{
 				Director::getInstance()->replaceScene( RootScene::create() );
 			}

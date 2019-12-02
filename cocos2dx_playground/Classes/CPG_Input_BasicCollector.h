@@ -11,18 +11,18 @@ namespace CPG
 	namespace Input
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
-		using AnalyzerSp = std::shared_ptr<class Analyzer>;
+		using BasicCollectorSp = std::shared_ptr<class BasicCollector>;
 
-		class Analyzer
+		class BasicCollector
 		{
 		private:
 			using KeyStatusContainer = std::bitset<31u>;
 			using KeyHistory = std::array<KeyStatusContainer, 10u>;
 
-			Analyzer( const KeyMapSp& _key_map_container );
+			BasicCollector( const KeyMapSp& _key_map_container );
 
 		public:
-			static AnalyzerSp create( const KeyMapSp& _key_map_container );
+			static BasicCollectorSp create( const KeyMapSp& _key_map_container );
 
 		public:
 			void update();

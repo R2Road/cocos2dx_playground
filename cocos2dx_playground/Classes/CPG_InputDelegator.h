@@ -8,7 +8,7 @@ namespace CPG
 {
 	namespace Input
 	{
-		using AnalyzerSp = std::shared_ptr<class Analyzer>;
+		using BasicCollectorSp = std::shared_ptr<class BasicCollector>;
 
 		class Delegator : public cocos2d::Node
 		{
@@ -27,11 +27,11 @@ namespace CPG
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
 
 		public:
-			void addAnalyzer( AnalyzerSp& _new_analyzer );
+			void addInputCollector( BasicCollectorSp& _new_input_collector );
 
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
-			AnalyzerSp analyzer;
+			BasicCollectorSp input_collector;
 		};
 	}
 }

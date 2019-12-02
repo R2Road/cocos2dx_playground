@@ -9,7 +9,7 @@ namespace CPG
 	namespace Input
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
-		using AnalyzerSp = std::shared_ptr<class Analyzer>;
+		using BasicCollectorSp = std::shared_ptr<class BasicCollector>;
 
 		class KeyViewer : public cocos2d::Node
 		{
@@ -21,7 +21,7 @@ namespace CPG
 
 			bool init( const KeyMapSp& key_map );
 
-			void setup( const CPG::Input::AnalyzerSp input_analyzer );
+			void setup( const CPG::Input::BasicCollectorSp input_collector );
 
 		private:
 			struct KeyViewData

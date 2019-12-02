@@ -36,8 +36,8 @@ namespace CPG
 		}
 		void Delegator::update( float _dt )
 		{
-			if( analyzer )
-				analyzer->update();
+			if( input_collector )
+				input_collector->update();
 			Node::update( _dt );
 		}
 		void Delegator::onExit()
@@ -52,19 +52,19 @@ namespace CPG
 
 		void Delegator::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( analyzer )
-				analyzer->onKeyPressed( keycode );
+			if( input_collector )
+				input_collector->onKeyPressed( keycode );
 		}
 
 		void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( analyzer )
-				analyzer->onKeyReleased( keycode );
+			if( input_collector )
+				input_collector->onKeyReleased( keycode );
 		}
 
-		void Delegator::addAnalyzer( AnalyzerSp& _new_analyzer )
+		void Delegator::addInputCollector( BasicCollectorSp& _new_input_collector )
 		{
-			analyzer = _new_analyzer;
+			input_collector = _new_input_collector;
 		}
 	}
 }
