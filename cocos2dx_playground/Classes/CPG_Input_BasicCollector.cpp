@@ -13,7 +13,8 @@ namespace CPG
 			, key_history()
 			, current_key_status_container()
 		{
-			current_key_status_container = key_history.begin();
+			last_key_status_container = key_history.begin();
+			current_key_status_container = last_key_status_container + 1;
 		}
 
 		BasicCollectorSp BasicCollector::create( const KeyMapSp& _key_map_container )
@@ -25,12 +26,13 @@ namespace CPG
 
 		void BasicCollector::update()
 		{
-			if( 0 != current_key_status_container->to_ulong() )
+			if( last_key_status_container->to_ulong() != current_key_status_container->to_ulong() )
 			{
+				last_key_status_container = current_key_status_container;
 				++current_key_status_container;
 				if( key_history.end() == current_key_status_container )
 					current_key_status_container = key_history.begin();
-				current_key_status_container->reset();
+				*current_key_status_container = *last_key_status_container;
 			}
 		}
 
@@ -62,6 +64,10 @@ namespace CPG
 				return false;
 
 			return ( *current_key_status_container )[target_key_index];
+		}
+		const bool BasicCollector::hasChanged() const
+		{
+			return last_key_status_container->to_ulong() != current_key_status_container->to_ulong();
 		}
 	}
 }

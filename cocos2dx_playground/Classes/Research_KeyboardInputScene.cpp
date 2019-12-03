@@ -108,7 +108,7 @@ namespace Research
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 
-		if( 0 != input_collector->getKeyStatusPackage() )
+		if( input_collector->hasChanged() )
 		{
 			for( auto v : key_viewer_list )
 			{
