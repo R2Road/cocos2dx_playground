@@ -81,8 +81,8 @@ namespace Research
 		//
 		CPG::Input::KeyViewer* key_viewer = nullptr;
 		key_viewer_start_position.set(
-			origin.x
-			, origin.y + ( visibleSize.height * 0.5f )
+			origin.x + ( visibleSize.width * 0.5f )
+			, origin.y + ( visibleSize.height * 0.1f )
 		);
 		for( int i = 0; i < key_viewer_count; ++i )
 		{
