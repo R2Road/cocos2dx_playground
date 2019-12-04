@@ -77,7 +77,7 @@ void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ 
 
 	case EventKeyboard::KeyCode::KEY_1:
 	{
-		Director::getInstance()->replaceScene( Research::KeyboardInputScene::create() );
+		Director::getInstance()->replaceScene( Research::Input::KeyboardTestScene::create() );
 	}
 	break;
 	case EventKeyboard::KeyCode::KEY_2:

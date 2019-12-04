@@ -17,21 +17,24 @@ namespace CPG
 
 namespace Research
 {
-	class KeyboardInputScene : public cocos2d::Scene
+	namespace Input
 	{
-	public:
-		KeyboardInputScene();
+		class KeyboardTestScene : public cocos2d::Scene
+		{
+		public:
+			KeyboardTestScene();
 
-		static cocos2d::Scene* create();
+			static cocos2d::Scene* create();
 
-		bool init() override;
-		void update( float dt ) override;
+			bool init() override;
+			void update( float dt ) override;
 
-	private:
-		CPG::Input::KeyMapSp key_map;
-		CPG::Input::BasicCollectorSp input_collector;
-		std::list<CPG::Input::KeyViewer*> key_viewer_list;
-		cocos2d::Vec2 key_viewer_start_position;
-		cocos2d::Vec2 key_viewer_end_position;
-	};
+		private:
+			CPG::Input::KeyMapSp key_map;
+			CPG::Input::BasicCollectorSp input_collector;
+			std::list<CPG::Input::KeyViewer*> key_viewer_list;
+			cocos2d::Vec2 key_viewer_start_position;
+			cocos2d::Vec2 key_viewer_end_position;
+		};
+	}
 }
