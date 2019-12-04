@@ -3,7 +3,7 @@
 #include <sstream>
 
 #include "SimpleAudioEngine.h"
-#include "Research_KeyboardInputScene.h"
+#include "Research_Input_KeyboardTestScene.h"
 #include "Research_Input_KeyConfigScene.h"
 
 USING_NS_CC;
@@ -31,7 +31,7 @@ Scene* RootScene::create()
 	ss << "[ESC] : Shutdown";
 	ss << "\n";
 	ss << "\n";
-	ss << "[1] : Research - Keyboard Input Scene";
+	ss << "[1] : Research - Keyboard Test Scene";
 	ss << "\n";
 	ss << "[2] : Research - Key Config Scene";
 
