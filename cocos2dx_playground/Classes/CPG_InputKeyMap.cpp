@@ -114,7 +114,7 @@ namespace CPG
 
 		const KeyMapSp& KeyMap::get_default()
 		{
-			static const auto default = create_with_json( "datas/keyconfig/keymap_keyboardtest.json" );
+			static const auto default = create_with_json( "datas/keyconfig/keymap_default.json" );
 			return default;
 		}
 
