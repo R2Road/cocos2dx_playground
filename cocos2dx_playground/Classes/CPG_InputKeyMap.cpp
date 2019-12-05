@@ -59,6 +59,8 @@ namespace CPG
 						, idx_itr->value.GetInt()
 					} );
 				}
+
+				return true;
 			}
 
 			const bool saveKeyMapJson( const char* _key_map_path, const KeyMap::KeyMapContainer& _container )
