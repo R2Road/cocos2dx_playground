@@ -13,7 +13,7 @@ namespace CPG
 
 		class KeyMap
 		{
-		private:
+		public:
 			struct KeyMapPiece
 			{
 				KeyMapPiece( const cocos2d::EventKeyboard::KeyCode _keycode, const int _idx ) : keycode( _keycode ), idx( _idx ) {}
@@ -23,6 +23,7 @@ namespace CPG
 			};
 			using KeyMapContainer = std::vector<KeyMapPiece>;
 
+		private:
 			explicit KeyMap( KeyMapContainer&& _container );
 
 		public:
