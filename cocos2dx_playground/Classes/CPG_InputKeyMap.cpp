@@ -13,6 +13,8 @@ namespace CPG
 	{
 		namespace
 		{
+			const char* string_key_code = "key_code";
+			const char* string_idx = "idx";
 			const bool loadKeyMapJson( const char* _key_map_path, KeyMap::KeyMapContainer& _container )
 			{
 				// load json
@@ -44,8 +46,8 @@ namespace CPG
 				rapidjson::Value::MemberIterator idx_itr;
 				for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
 				{
-					key_code_itr = cur->FindMember( "key_code" );
-					idx_itr = cur->FindMember( "idx" );
+					key_code_itr = cur->FindMember( string_key_code );
+					idx_itr = cur->FindMember( string_idx );
 					if( key_code_itr == cur->MemberEnd() || idx_itr == cur->MemberEnd() )
 						continue;
 
