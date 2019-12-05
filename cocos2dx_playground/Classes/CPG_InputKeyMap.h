@@ -28,6 +28,8 @@ namespace CPG
 
 		public:
 			static KeyMapSp create( const char* _key_map_path );
+
+			static const KeyMapSp& get_default();
 			static const KeyMapSp& get_dummy();
 
 			void save( const char* _key_map_path ) const;

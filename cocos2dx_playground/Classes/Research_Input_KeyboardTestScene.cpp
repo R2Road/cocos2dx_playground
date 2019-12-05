@@ -72,7 +72,7 @@ namespace Research
 			auto input_delegator = CPG::Input::Delegator::create();
 			addChild( input_delegator, 0 );
 
-			key_map = CPG::Input::KeyMap::create( "datas/keyconfig/keymap_keyboardtest.json" );
+			key_map = CPG::Input::KeyMap::get_default();
 
 			input_collector = CPG::Input::BasicCollector::create( key_map );
 			input_delegator->addInputCollector( input_collector );

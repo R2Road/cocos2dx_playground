@@ -104,6 +104,12 @@ namespace CPG
 			return ret;
 		}
 
+		const KeyMapSp& KeyMap::get_default()
+		{
+			static const auto default = create( "datas/keyconfig/keymap_keyboardtest.json" );
+			return default;
+		}
+
 		const KeyMapSp& KeyMap::get_dummy()
 		{
 			static const KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( KeyMapContainer( { KeyMapPiece{ cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE, 0 } } ) ) ) );
