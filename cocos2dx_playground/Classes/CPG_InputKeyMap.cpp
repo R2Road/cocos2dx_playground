@@ -11,35 +11,44 @@ namespace CPG
 {
 	namespace Input
 	{
+		namespace
+		{
+			const bool loadKeyMapJson( const char* _key_map_path, KeyMap::KeyMapContainer& _container )
+			{
+				// load json
+				const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( _key_map_path );
+				rapidjson::Document doc;
+				doc.Parse<0>( regionStr.c_str() );
+
+				if( doc.HasParseError() )
+				{
+					cocos2d::log( "json parse error" );
+					return false;
+				}
+
+				if( doc.IsNull() )
+				{
+					cocos2d::log( "json is empty" );
+					return false;
+				}
+
+				_container.reserve( doc.Size() );
+
+				for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
+					_container.emplace_back( KeyMap::KeyMapPiece{ static_cast<EventKeyboard::KeyCode>(
+						( *cur )["key_code"].GetInt() )
+						, ( *cur )["idx"].GetInt()
+					} );
+			}
+		}
+
 		KeyMap::KeyMap( KeyMapContainer&& _container ) : container( std::move( _container ) ) {}
 
 		KeyMapSp KeyMap::create( const char* _key_map_path )
 		{
-			// load json
-			const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( _key_map_path );
-			rapidjson::Document doc;
-			doc.Parse<0>( regionStr.c_str() );
-
-			if( doc.HasParseError() )
-			{
-				cocos2d::log( "json parse error" );
-				return get_dummy();
-			}
-
-			if( doc.IsNull() )
-			{
-				cocos2d::log( "json is empty" );
-				return get_dummy();
-			}
-
 			KeyMapContainer container;
-			container.reserve( doc.Size() );
-
-			for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
-				container.emplace_back( KeyMapPiece{ static_cast<EventKeyboard::KeyCode>(
-					(*cur)["key_code"].GetInt() )
-					, ( *cur )["idx"].GetInt()
-				} );
+			if( !loadKeyMapJson( _key_map_path, container ) )
+				return get_dummy();
 
 			KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
 			return ret;
