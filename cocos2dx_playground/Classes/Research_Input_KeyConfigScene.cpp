@@ -52,7 +52,7 @@ namespace Research
 				auto input_delegator = CPG::Input::Delegator::create();
 				ret->addChild( input_delegator, 0 );
 
-				auto key_map = CPG::Input::KeyMap::create( "" );
+				auto key_map = CPG::Input::KeyMap::create( "research_input_keyconfigscene_keymap.json" );
 				key_map->save( "research_input_keyconfigscene_keymap.json" );
 
 				ret->input_collector = CPG::Input::BasicCollector::create( key_map );

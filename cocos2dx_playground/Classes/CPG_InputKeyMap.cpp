@@ -94,7 +94,7 @@ namespace CPG
 
 		KeyMap::KeyMap( KeyMapContainer&& _container ) : container( std::move( _container ) ) {}
 
-		KeyMapSp KeyMap::create( const char* _key_map_path )
+		KeyMapSp KeyMap::create_with_json( const char* _key_map_path )
 		{
 			KeyMapContainer container;
 			if( !loadKeyMapJson( _key_map_path, container ) )
@@ -104,9 +104,17 @@ namespace CPG
 			return ret;
 		}
 
+		KeyMapSp KeyMap::create( const char* _key_map_file_name )
+		{
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( _key_map_file_name );
+
+			return create_with_json( path.c_str() );
+		}
+
 		const KeyMapSp& KeyMap::get_default()
 		{
-			static const auto default = create( "datas/keyconfig/keymap_keyboardtest.json" );
+			static const auto default = create_with_json( "datas/keyconfig/keymap_keyboardtest.json" );
 			return default;
 		}
 

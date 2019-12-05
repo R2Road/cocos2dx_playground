@@ -25,9 +25,10 @@ namespace CPG
 
 		private:
 			explicit KeyMap( KeyMapContainer&& _container );
+			static KeyMapSp create_with_json( const char* _key_map_path );
 
 		public:
-			static KeyMapSp create( const char* _key_map_path );
+			static KeyMapSp create( const char* _key_map_file_name );
 
 			static const KeyMapSp& get_default();
 			static const KeyMapSp& get_dummy();
