@@ -35,6 +35,9 @@ namespace Research
 				ss << "\n";
 				ss << "\n";
 				ss << "[ESC] : Exit";
+				ss << "\n";
+				ss << "\n";
+				ss << "<Config File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath();
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
