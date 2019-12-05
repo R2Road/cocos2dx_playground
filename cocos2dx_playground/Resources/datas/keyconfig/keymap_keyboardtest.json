@@ -7,4 +7,7 @@
   ,{ "idx" : 5, "key_code":124 ,"desc":"a" }
   ,{ "idx" : 6, "key_code":125 ,"desc":"b" }
   ,{ "idx" : 7, "key_code":142 ,"desc":"s" }
+
+  ,{ "idx" : 77, "desc":"invalid data test" }
+  ,{ "key_code":125 ,"desc":"invalid data test" }
 ]

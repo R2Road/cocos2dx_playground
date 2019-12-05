@@ -32,13 +32,28 @@ namespace CPG
 					return false;
 				}
 
+				if( !doc.IsArray() )
+				{
+					cocos2d::log( "invalid data struct" );
+					return false;
+				}
+
 				_container.reserve( doc.Size() );
 
+				rapidjson::Value::MemberIterator key_code_itr;
+				rapidjson::Value::MemberIterator idx_itr;
 				for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
-					_container.emplace_back( KeyMap::KeyMapPiece{ static_cast<EventKeyboard::KeyCode>(
-						( *cur )["key_code"].GetInt() )
-						, ( *cur )["idx"].GetInt()
+				{
+					key_code_itr = cur->FindMember( "key_code" );
+					idx_itr = cur->FindMember( "idx" );
+					if( key_code_itr == cur->MemberEnd() || idx_itr == cur->MemberEnd() )
+						continue;
+
+					_container.emplace_back( KeyMap::KeyMapPiece{
+						static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() )
+						, idx_itr->value.GetInt()
 					} );
+				}
 			}
 		}
 
