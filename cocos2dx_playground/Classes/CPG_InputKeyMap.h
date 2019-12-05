@@ -30,6 +30,7 @@ namespace CPG
 			static KeyMapSp create( const char* _key_map_path );
 			static const KeyMapSp& get_dummy();
 
+			void save( const char* _key_map_path ) const;
 			const int getKeyIndex( const cocos2d::EventKeyboard::KeyCode _key_code ) const;
 
 			const KeyMapContainer container;
