@@ -54,10 +54,7 @@ namespace CPG
 					if( key_code_itr == cur->MemberEnd() || idx_itr == cur->MemberEnd() )
 						continue;
 
-					_container.emplace_back( KeyMap::KeyMapPiece{
-						static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() )
-						, idx_itr->value.GetInt()
-					} );
+					_container.emplace_back( static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() ), idx_itr->value.GetInt() );
 				}
 
 				return true;
