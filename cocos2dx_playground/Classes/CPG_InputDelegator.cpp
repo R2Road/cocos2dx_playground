@@ -8,7 +8,10 @@ namespace CPG
 {
 	namespace Input
 	{
-		Delegator::Delegator() : keyboard_listener( nullptr ) {}
+		Delegator::Delegator() :
+			keyboard_listener( nullptr )
+			, allowed_keys()
+		{}
 
 		Delegator* Delegator::create()
 		{
@@ -19,6 +22,8 @@ namespace CPG
 				ret = nullptr;
 				return nullptr;
 			}
+
+			ret->allowed_keys.load();
 
 			ret->scheduleUpdateWithPriority( 1 );
 			ret->autorelease();
@@ -52,12 +57,18 @@ namespace CPG
 
 		void Delegator::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
+			if( !allowed_keys.isAllowed( keycode ) )
+				return;
+
 			if( input_collector )
 				input_collector->onKeyPressed( keycode );
 		}
 
 		void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
+			if( !allowed_keys.isAllowed( keycode ) )
+				return;
+
 			if( input_collector )
 				input_collector->onKeyReleased( keycode );
 		}

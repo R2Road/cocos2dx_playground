@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "cocos2d.h"
+#include "CPG_Input_AllowedKeys.h"
 
 namespace CPG
 {
@@ -31,6 +32,7 @@ namespace CPG
 
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
+			AllowedKeys allowed_keys;
 			BasicCollectorSp input_collector;
 		};
 	}
