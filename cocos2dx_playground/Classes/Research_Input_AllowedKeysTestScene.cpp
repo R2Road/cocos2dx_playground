@@ -66,7 +66,7 @@ namespace Research
 			//
 			// key viewer
 			//
-			key_viewer = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+			key_viewer = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 			key_viewer->setPosition( Vec2(
 				origin.x + ( visibleSize.width * 0.5f )
 				, origin.y + ( visibleSize.height * 0.5f )
