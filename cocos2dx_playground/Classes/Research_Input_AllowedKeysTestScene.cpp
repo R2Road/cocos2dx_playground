@@ -14,7 +14,7 @@ namespace Research
 		const int key_viewer_count = 10;
 		const float key_viewer_margin = 4.f;
 
-		AllowedKeysTestScene::AllowedKeysTestScene() {}
+		AllowedKeysTestScene::AllowedKeysTestScene() : input_delegator( nullptr ) {}
 
 		Scene* AllowedKeysTestScene::create()
 		{
@@ -58,10 +58,19 @@ namespace Research
 			//
 			// input
 			//
-			auto input_delegator = CPG::Input::Delegator::create();
+			input_delegator = CPG::Input::Delegator::create();
 			addChild( input_delegator, 0 );
 
 			return true;
+		}
+		void AllowedKeysTestScene::update( float dt )
+		{
+			if( input_delegator->isActiveKey( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
+			{
+				Director::getInstance()->replaceScene( RootScene::create() );
+			}
+
+			Scene::update( dt );
 		}
 	}
 }
