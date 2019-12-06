@@ -14,7 +14,7 @@ namespace Research
 		const int key_viewer_count = 10;
 		const float key_viewer_margin = 4.f;
 
-		AllowedKeysTestScene::AllowedKeysTestScene() : input_delegator( nullptr ) {}
+		AllowedKeysTestScene::AllowedKeysTestScene() : input_delegator( nullptr ), key_viewer( nullptr ), key_string( 200, 0 ) {}
 
 		Scene* AllowedKeysTestScene::create()
 		{
@@ -61,6 +61,17 @@ namespace Research
 			input_delegator = CPG::Input::Delegator::create( "research_input_allowedKeysTest_allowed_keys.json" );
 			addChild( input_delegator, 0 );
 
+
+			//
+			// key viewer
+			//
+			key_viewer = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+			key_viewer->setPosition( Vec2(
+				origin.x + ( visibleSize.width * 0.5f )
+				, origin.y + ( visibleSize.height * 0.5f )
+			) );
+			addChild( key_viewer, 9999 );
+
 			return true;
 		}
 		void AllowedKeysTestScene::update( float dt )
@@ -69,6 +80,17 @@ namespace Research
 			{
 				Director::getInstance()->replaceScene( RootScene::create() );
 			}
+
+			key_string.clear();
+			for( std::size_t cur = 0; cur < CPG::Input::AllowedKeys::ContainerSize; ++cur )
+			{
+				if( input_delegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
+				{
+					key_string += std::to_string( cur );
+					key_string += " ";
+				}
+			}
+			key_viewer->setString( key_string );
 
 			Scene::update( dt );
 		}

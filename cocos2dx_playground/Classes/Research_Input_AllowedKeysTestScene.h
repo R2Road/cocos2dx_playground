@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "cocos2d.h"
 
 namespace CPG
@@ -26,6 +27,8 @@ namespace Research
 
 		private:
 			CPG::Input::Delegator* input_delegator;
+			cocos2d::Label* key_viewer;
+			std::string key_string;
 		};
 	}
 }
