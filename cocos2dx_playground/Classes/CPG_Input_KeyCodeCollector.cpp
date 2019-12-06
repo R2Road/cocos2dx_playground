@@ -6,16 +6,18 @@ namespace CPG
 {
 	namespace Input
 	{
-		KeyCodeCollector::KeyCodeCollector() : container()
+		KeyCodeCollector::KeyCodeCollector() : changed( false ), container()
 		{}
 
 		void KeyCodeCollector::onKeyPressed( EventKeyboard::KeyCode keycode )
 		{
+			changed = true;
 			container[static_cast<std::size_t>( keycode )] = true;
 		}
 
 		void KeyCodeCollector::onKeyReleased( EventKeyboard::KeyCode keycode )
 		{
+			changed = true;
 			container[static_cast<std::size_t>( keycode )] = false;
 		}
 	}

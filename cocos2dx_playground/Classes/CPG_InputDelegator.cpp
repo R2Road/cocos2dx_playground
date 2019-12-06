@@ -43,6 +43,7 @@ namespace CPG
 		}
 		void Delegator::update( float _dt )
 		{
+			keycode_collector.clearChangedFlag();
 			if( input_collector )
 				input_collector->update();
 			Node::update( _dt );

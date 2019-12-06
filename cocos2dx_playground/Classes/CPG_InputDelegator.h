@@ -29,6 +29,7 @@ namespace CPG
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
 
 		public:
+			inline const bool hasChanged() const { return keycode_collector.hasChanged(); }
 			inline const bool isActiveKey( const cocos2d::EventKeyboard::KeyCode _keycode ) const { return keycode_collector.isActiveKey(_keycode ); }
 			void addInputCollector( BasicCollectorSp& _new_input_collector );
 

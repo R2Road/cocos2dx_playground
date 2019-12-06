@@ -77,21 +77,24 @@ namespace Research
 		}
 		void AllowedKeysTestScene::update( float dt )
 		{
-			if( input_delegator->isActiveKey( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
+			if( input_delegator->hasChanged() )
 			{
-				Director::getInstance()->replaceScene( RootScene::create() );
-			}
-
-			key_string.clear();
-			for( std::size_t cur = 0; cur < CPG::Input::AllowedKeys::ContainerSize; ++cur )
-			{
-				if( input_delegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
+				if( input_delegator->isActiveKey( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
 				{
-					key_string += CPG::Input::KeyNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
-					key_string += "\n";
+					Director::getInstance()->replaceScene( RootScene::create() );
 				}
+
+				key_string.clear();
+				for( std::size_t cur = 0; cur < CPG::Input::AllowedKeys::ContainerSize; ++cur )
+				{
+					if( input_delegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
+					{
+						key_string += CPG::Input::KeyNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
+						key_string += "\n";
+					}
+				}
+				key_viewer->setString( key_string );
 			}
-			key_viewer->setString( key_string );
 
 			Scene::update( dt );
 		}
