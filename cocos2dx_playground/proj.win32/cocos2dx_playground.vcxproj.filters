@@ -45,6 +45,9 @@
     <ClCompile Include="..\Classes\CPG_Input_AllowedKeys.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -78,6 +81,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_AllowedKeys.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
