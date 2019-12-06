@@ -4,6 +4,7 @@
 
 #include "cocos2d.h"
 #include "CPG_Input_AllowedKeys.h"
+#include "CPG_Input_KeyCodeCollector.h"
 
 namespace CPG
 {
@@ -33,6 +34,7 @@ namespace CPG
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
 			AllowedKeys allowed_keys;
+			KeyCodeCollector keycode_collector;
 			BasicCollectorSp input_collector;
 		};
 	}

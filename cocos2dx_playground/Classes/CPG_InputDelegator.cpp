@@ -11,6 +11,8 @@ namespace CPG
 		Delegator::Delegator() :
 			keyboard_listener( nullptr )
 			, allowed_keys()
+			, keycode_collector()
+			, input_collector( nullptr )
 		{}
 
 		Delegator* Delegator::create()
@@ -60,6 +62,8 @@ namespace CPG
 			if( !allowed_keys.isAllowed( keycode ) )
 				return;
 
+			keycode_collector.onKeyPressed( keycode );
+
 			if( input_collector )
 				input_collector->onKeyPressed( keycode );
 		}
@@ -68,6 +72,8 @@ namespace CPG
 		{
 			if( !allowed_keys.isAllowed( keycode ) )
 				return;
+
+			keycode_collector.onKeyReleased( keycode );
 
 			if( input_collector )
 				input_collector->onKeyReleased( keycode );
