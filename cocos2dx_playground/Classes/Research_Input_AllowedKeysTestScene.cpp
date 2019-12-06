@@ -4,6 +4,7 @@
 
 #include "RootScene.h"
 #include "CPG_InputDelegator.h"
+#include "CPG_Input_KeyNames.h"
 
 USING_NS_CC;
 
@@ -86,7 +87,7 @@ namespace Research
 			{
 				if( input_delegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 				{
-					key_string += std::to_string( cur );
+					key_string += CPG::Input::KeyNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
 					key_string += " ";
 				}
 			}
