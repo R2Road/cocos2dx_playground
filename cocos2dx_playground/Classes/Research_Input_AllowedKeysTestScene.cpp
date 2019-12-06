@@ -88,7 +88,7 @@ namespace Research
 				if( input_delegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 				{
 					key_string += CPG::Input::KeyNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
-					key_string += " ";
+					key_string += "\n";
 				}
 			}
 			key_viewer->setString( key_string );
