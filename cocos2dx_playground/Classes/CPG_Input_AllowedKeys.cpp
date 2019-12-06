@@ -15,7 +15,7 @@ namespace CPG
 	{
 		namespace
 		{
-			void load_Allowed_keys( AllowedKeys::AllowedInfos& _container )
+			void loadAllowedKeys( AllowedKeys::AllowedInfos& _container )
 			{
 				const std::initializer_list<bool> temp_container( {
 					  false		// KEY_NONE,
@@ -264,7 +264,7 @@ namespace CPG
 			if( loadAllowedKeysJson( path.c_str(), container ) )
 				return;
 
-			load_Allowed_keys( container );
+			loadAllowedKeys( container );
 
 			saveAllowedKeysJson( path.c_str(), container );
 		}
