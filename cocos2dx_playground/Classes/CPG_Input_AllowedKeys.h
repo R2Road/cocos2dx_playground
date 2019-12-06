@@ -12,7 +12,8 @@ namespace CPG
 		class AllowedKeys
 		{
 		public:
-			using AllowedInfos = std::bitset<static_cast<std::size_t>( static_cast<int>( cocos2d::EventKeyboard::KeyCode::KEY_PLAY ) + 1 )>;
+			static const std::size_t ContainerSize = static_cast<std::size_t>( static_cast<int>( cocos2d::EventKeyboard::KeyCode::KEY_PLAY ) + 1 );
+			using AllowedInfos = std::bitset<ContainerSize>;
 
 			AllowedKeys();
 
