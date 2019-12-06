@@ -69,7 +69,7 @@ namespace Research
 			//
 			// input
 			//
-			auto input_delegator = CPG::Input::Delegator::create();
+			auto input_delegator = CPG::Input::Delegator::create( "research_input_keyboardTest_allowed_keys.json" );
 			addChild( input_delegator, 0 );
 
 			key_map = CPG::Input::KeyMap::get_default();

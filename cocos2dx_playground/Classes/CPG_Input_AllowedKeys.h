@@ -18,7 +18,7 @@ namespace CPG
 			AllowedKeys();
 
 		public:
-			void load();
+			void load( const char* _allowed_keys_file_name );
 
 			inline const bool isAllowed( const cocos2d::EventKeyboard::KeyCode _target_key_code ) const { return container[static_cast<std::size_t>( _target_key_code )]; }
 

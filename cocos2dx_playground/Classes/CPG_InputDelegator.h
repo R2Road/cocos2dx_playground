@@ -18,7 +18,7 @@ namespace CPG
 			Delegator();
 
 		public:
-			static Delegator* create();
+			static Delegator* create( const char* _allowed_keys_file_name );
 
 			void onEnter() override;
 			void update( float _dt ) override;

@@ -15,7 +15,7 @@ namespace CPG
 			, input_collector( nullptr )
 		{}
 
-		Delegator* Delegator::create()
+		Delegator* Delegator::create( const char* _allowed_keys_file_name )
 		{
 			auto ret = new ( std::nothrow ) Delegator();
 			if( !ret || !ret->init() )
@@ -25,7 +25,7 @@ namespace CPG
 				return nullptr;
 			}
 
-			ret->allowed_keys.load();
+			ret->allowed_keys.load( _allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( 1 );
 			ret->autorelease();

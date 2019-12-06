@@ -58,7 +58,7 @@ namespace Research
 			//
 			// input
 			//
-			input_delegator = CPG::Input::Delegator::create();
+			input_delegator = CPG::Input::Delegator::create( "research_input_allowedKeysTest_allowed_keys.json" );
 			addChild( input_delegator, 0 );
 
 			return true;

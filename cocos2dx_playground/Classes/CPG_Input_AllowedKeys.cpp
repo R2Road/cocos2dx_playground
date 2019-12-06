@@ -1,6 +1,11 @@
 #include "CPG_Input_AllowedKeys.h"
 
-#include "CPG_InputKeyMap.h"
+#include <fstream>
+
+#include "platform\CCFileUtils.h"
+#include "json/document.h"
+#include "json/stringbuffer.h"
+#include "json/writer.h"
 
 USING_NS_CC;
 
@@ -188,14 +193,80 @@ namespace CPG
 					++i;
 				}
 			}
+
+			const bool loadAllowedKeysJson( const char* _path, AllowedKeys::AllowedInfos& _container )
+			{
+				// load json
+				const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( _path );
+				rapidjson::Document doc;
+				doc.Parse<0>( regionStr.c_str() );
+
+				if( doc.HasParseError() )
+				{
+					cocos2d::log( "json parse error" );
+					return false;
+				}
+
+				if( doc.IsNull() )
+				{
+					cocos2d::log( "json is empty" );
+					return false;
+				}
+
+				if( !doc.IsArray() )
+				{
+					cocos2d::log( "invalid data struct" );
+					return false;
+				}
+
+				_container.reset();
+				std::size_t target_idx = 0u;
+				for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
+				{
+					target_idx = static_cast<std::size_t>( cur->GetUint() );
+					if( _container.size() <= target_idx )
+						continue;
+
+					_container[target_idx] = true;
+				}
+
+				return true;
+			}
+
+			const bool saveAllowedKeysJson( const char* _key_map_path, AllowedKeys::AllowedInfos& _container )
+			{
+				rapidjson::Document document;
+				document.SetArray();
+
+				for( std::size_t cur = 0; _container.size() > cur; ++cur )
+					if( _container[cur] )
+						document.PushBack( static_cast<int>( cur ), document.GetAllocator() );
+
+				rapidjson::StringBuffer buffer;
+				rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
+				document.Accept( writer );
+
+				std::ofstream fs( _key_map_path, std::ios::out );
+				fs << buffer.GetString() << std::endl;
+				fs.close();
+
+				return true;
+			}
 		}
 
 		AllowedKeys::AllowedKeys() : container()
 		{}
 
-		void AllowedKeys::load()
+		void AllowedKeys::load( const char* _allowed_keys_file_name )
 		{
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( _allowed_keys_file_name );
+			if( loadAllowedKeysJson( path.c_str(), container ) )
+				return;
+
 			load_Allowed_keys( container );
+
+			saveAllowedKeysJson( path.c_str(), container );
 		}
 	}
 }
