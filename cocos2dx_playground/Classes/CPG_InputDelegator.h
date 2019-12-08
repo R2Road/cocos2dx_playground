@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "cocos2d.h"
 #include "CPG_Input_AllowedKeys.h"
 #include "CPG_Input_KeyCodeCollector.h"
