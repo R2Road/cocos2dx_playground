@@ -1,6 +1,7 @@
 #include "CPG_Input_BasicCollector.h"
 
 #include "CPG_InputKeyMap.h"
+#include "CPG_Input_KeyCodeCollector.h"
 
 USING_NS_CC;
 
@@ -24,6 +25,11 @@ namespace CPG
 			return ret;
 		}
 
+		void BasicCollector::collect( const KeyCodeCollector& _key_code_collector )
+		{
+			for( const auto k : key_map_container->container )
+				( *current_key_status_container )[k.idx] = _key_code_collector.isActiveKey( k.keycode );
+		}
 		void BasicCollector::update()
 		{
 			if( last_key_status_container->to_ulong() != current_key_status_container->to_ulong() )
@@ -34,20 +40,6 @@ namespace CPG
 					current_key_status_container = key_history.begin();
 				*current_key_status_container = *last_key_status_container;
 			}
-		}
-
-		void BasicCollector::onKeyPressed( EventKeyboard::KeyCode keycode )
-		{
-			for( auto& k : key_map_container->container )
-				if( keycode == k.keycode )
-					( *current_key_status_container )[k.idx] = true;
-		}
-
-		void BasicCollector::onKeyReleased( EventKeyboard::KeyCode keycode )
-		{
-			for( auto& k : key_map_container->container )
-				if( keycode == k.keycode )
-					( *current_key_status_container )[k.idx] = false;
 		}
 
 		const bool BasicCollector::getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const

@@ -12,6 +12,7 @@ namespace CPG
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
 		using BasicCollectorSp = std::shared_ptr<class BasicCollector>;
+		class KeyCodeCollector;
 
 		class BasicCollector
 		{
@@ -25,9 +26,8 @@ namespace CPG
 			static BasicCollectorSp create( const KeyMapSp& _key_map_container );
 
 		public:
+			void collect( const KeyCodeCollector& _key_code_collector );
 			void update();
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode );
 
 			const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const;
 			const bool getKeyStatus( const int target_key_index ) const;

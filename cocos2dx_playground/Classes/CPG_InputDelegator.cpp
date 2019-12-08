@@ -27,7 +27,7 @@ namespace CPG
 
 			ret->allowed_keys.load( _allowed_keys_file_name );
 
-			ret->scheduleUpdateWithPriority( 1 );
+			ret->scheduleUpdateWithPriority( -1 );
 			ret->schedule( schedule_selector( Delegator::post_update) );
 
 			ret->autorelease();
@@ -45,6 +45,9 @@ namespace CPG
 		}
 		void Delegator::update( float _dt )
 		{
+			if( input_collector )
+				input_collector->collect( keycode_collector );
+
 			Node::update( _dt );
 		}
 		void Delegator::post_update( float _dt )
@@ -69,9 +72,6 @@ namespace CPG
 				return;
 
 			keycode_collector.onKeyPressed( keycode );
-
-			if( input_collector )
-				input_collector->onKeyPressed( keycode );
 		}
 
 		void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
@@ -80,9 +80,6 @@ namespace CPG
 				return;
 
 			keycode_collector.onKeyReleased( keycode );
-
-			if( input_collector )
-				input_collector->onKeyReleased( keycode );
 		}
 
 		void Delegator::addInputCollector( BasicCollectorSp& _new_input_collector )
