@@ -28,6 +28,8 @@ namespace CPG
 			ret->allowed_keys.load( _allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( 1 );
+			ret->schedule( schedule_selector( Delegator::post_update) );
+
 			ret->autorelease();
 			return ret;
 		}
@@ -43,10 +45,13 @@ namespace CPG
 		}
 		void Delegator::update( float _dt )
 		{
+			Node::update( _dt );
+		}
+		void Delegator::post_update( float _dt )
+		{
 			keycode_collector.clearChangedFlag();
 			if( input_collector )
 				input_collector->update();
-			Node::update( _dt );
 		}
 		void Delegator::onExit()
 		{

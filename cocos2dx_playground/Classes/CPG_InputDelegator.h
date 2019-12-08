@@ -20,6 +20,7 @@ namespace CPG
 
 			void onEnter() override;
 			void update( float _dt ) override;
+			void post_update( float _dt );
 			void onExit() override;
 
 		private:
