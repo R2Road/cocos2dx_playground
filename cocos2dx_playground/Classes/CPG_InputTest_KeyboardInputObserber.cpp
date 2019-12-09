@@ -8,9 +8,12 @@ namespace CPG
 {
 	namespace InputTest
 	{
-		KeyboardInputObserber::KeyboardInputObserber() : found( false ) {}
+		KeyboardInputObserber::KeyboardInputObserber() :
+			found( false )
+			, allowed_keys()
+		{}
 
-		KeyboardInputObserber* KeyboardInputObserber::create()
+		KeyboardInputObserber* KeyboardInputObserber::create( const char* _allowed_keys_file_name )
 		{
 			auto ret = new ( std::nothrow ) KeyboardInputObserber();
 			if( !ret || !ret->init() )
@@ -19,6 +22,8 @@ namespace CPG
 				ret = nullptr;
 				return nullptr;
 			}
+
+			ret->allowed_keys.load( _allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( 1 );
 
@@ -52,12 +57,14 @@ namespace CPG
 
 		void KeyboardInputObserber::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			found = true;
+			if( allowed_keys.isAllowed( keycode ) )
+				found = true;
 		}
 
 		void KeyboardInputObserber::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			found = true;
+			if( allowed_keys.isAllowed( keycode ) )
+				found = true;
 		}
 	}
 }

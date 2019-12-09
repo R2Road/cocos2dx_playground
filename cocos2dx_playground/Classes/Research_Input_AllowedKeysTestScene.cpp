@@ -68,7 +68,7 @@ namespace Research
 			input_delegator = CPG::Input::Delegator::create( "research_input_allowedKeysTest_allowed_keys.json" );
 			addChild( input_delegator, 0 );
 
-			input_obserber = CPG::InputTest::KeyboardInputObserber::create();
+			input_obserber = CPG::InputTest::KeyboardInputObserber::create( "research_input_allowedKeysTest_allowed_keys.json" );
 			addChild( input_obserber, 1 );
 
 

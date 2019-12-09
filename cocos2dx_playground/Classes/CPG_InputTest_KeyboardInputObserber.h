@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "CPG_Input_AllowedKeys.h"
 
 namespace CPG
 {
@@ -12,7 +13,7 @@ namespace CPG
 			KeyboardInputObserber();
 
 		public:
-			static KeyboardInputObserber* create();
+			static KeyboardInputObserber* create( const char* _allowed_keys_file_name );
 
 			void onEnter() override;
 			void update( float _dt ) override;
@@ -27,6 +28,7 @@ namespace CPG
 
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
+			Input::AllowedKeys allowed_keys;
 			bool found;
 		};
 	}
