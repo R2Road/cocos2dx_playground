@@ -9,6 +9,11 @@ namespace CPG
 	{
 		class Delegator;
 	}
+
+	namespace InputTest
+	{
+		class KeyboardInputObserber;
+	}
 }
 
 namespace Research
@@ -29,6 +34,8 @@ namespace Research
 			CPG::Input::Delegator* input_delegator;
 			cocos2d::Label* key_viewer;
 			std::string key_string;
+
+			CPG::InputTest::KeyboardInputObserber* input_obserber;
 		};
 	}
 }

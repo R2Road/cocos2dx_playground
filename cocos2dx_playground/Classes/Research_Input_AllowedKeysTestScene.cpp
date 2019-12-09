@@ -4,6 +4,7 @@
 
 #include "RootScene.h"
 #include "CPG_InputDelegator.h"
+#include "CPG_InputTest_KeyboardInputObserber.h"
 #include "CPG_Input_KeyNames.h"
 
 USING_NS_CC;
@@ -15,7 +16,12 @@ namespace Research
 		const int key_viewer_count = 10;
 		const float key_viewer_margin = 4.f;
 
-		AllowedKeysTestScene::AllowedKeysTestScene() : input_delegator( nullptr ), key_viewer( nullptr ), key_string( 200, 0 ) {}
+		AllowedKeysTestScene::AllowedKeysTestScene() :
+			input_delegator( nullptr )
+			, key_viewer( nullptr )
+			, key_string( 200, 0 )
+			, input_obserber( nullptr )
+		{}
 
 		Scene* AllowedKeysTestScene::create()
 		{
@@ -62,6 +68,9 @@ namespace Research
 			input_delegator = CPG::Input::Delegator::create( "research_input_allowedKeysTest_allowed_keys.json" );
 			addChild( input_delegator, 0 );
 
+			input_obserber = CPG::InputTest::KeyboardInputObserber::create();
+			addChild( input_obserber, 1 );
+
 
 			//
 			// key viewer
@@ -77,7 +86,7 @@ namespace Research
 		}
 		void AllowedKeysTestScene::update( float dt )
 		{
-			if( input_delegator->hasChanged() )
+			if( input_obserber->inputFound() )
 			{
 				if( input_delegator->isActiveKey( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
 				{
