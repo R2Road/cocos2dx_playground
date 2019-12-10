@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "SimpleAudioEngine.h"
+#include "Research_Input_KeyAllowScene.h"
 #include "Research_Input_AllowedKeysTestScene.h"
 #include "Research_Input_KeyboardTestScene.h"
 #include "Research_Input_KeyConfigScene.h"
@@ -32,11 +33,14 @@ Scene* RootScene::create()
 	ss << "[ESC] : Shutdown";
 	ss << "\n";
 	ss << "\n";
-	ss << "[1] : Research - Allowed Keys Test";
+	ss << "[1] : Research - Key Allow";
 	ss << "\n";
-	ss << "[2] : Research - Keyboard Test";
+	ss << "[2] : Research - Allowed Keys Test";
 	ss << "\n";
-	ss << "[3] : Research - Key Config";
+	ss << "\n";
+	ss << "[3] : Research - Keyboard Test";
+	ss << "\n";
+	ss << "[4] : Research - Key Config";
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 	label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
@@ -80,15 +84,21 @@ void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ 
 
 	case EventKeyboard::KeyCode::KEY_1:
 	{
-		Director::getInstance()->replaceScene( Research::Input::AllowedKeysTestScene::create() );
+		Director::getInstance()->replaceScene( Research::Input::KeyAllowScene::create() );
 	}
 	break;
 	case EventKeyboard::KeyCode::KEY_2:
 	{
+		Director::getInstance()->replaceScene( Research::Input::AllowedKeysTestScene::create() );
+	}
+	break;
+
+	case EventKeyboard::KeyCode::KEY_3:
+	{
 		Director::getInstance()->replaceScene( Research::Input::KeyboardTestScene::create() );
 	}
 	break;
-	case EventKeyboard::KeyCode::KEY_3:
+	case EventKeyboard::KeyCode::KEY_4:
 	{
 		Director::getInstance()->replaceScene( Research::Input::KeyConfigScene::create() );
 	}

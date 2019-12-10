@@ -57,6 +57,9 @@
     <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserber.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -102,6 +105,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserber.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
