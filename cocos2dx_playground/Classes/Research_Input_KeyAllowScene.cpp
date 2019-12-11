@@ -10,7 +10,11 @@ namespace Research
 {
 	namespace Input
 	{
-		KeyAllowScene::KeyAllowScene() : keyboard_listener( nullptr ), go_exit( false ) {}
+		KeyAllowScene::KeyAllowScene() :
+			keyboard_listener( nullptr )
+			, go_exit( false )
+			, allowed_keys()
+		{}
 
 		Scene* KeyAllowScene::create()
 		{
@@ -49,6 +53,8 @@ namespace Research
 				, origin.y + visibleSize.height
 			) );
 			addChild( label, 9999 );
+
+			allowed_keys.load( "research_input_allowedKeysTest_allowed_keys.json" );
 
 			return true;
 		}

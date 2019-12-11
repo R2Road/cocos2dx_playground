@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "CPG_Input_AllowedKeys.h"
 
 namespace Research
 {
@@ -24,6 +25,7 @@ namespace Research
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
 			bool go_exit;
+			CPG::Input::AllowedKeys allowed_keys;
 		};
 	}
 }
