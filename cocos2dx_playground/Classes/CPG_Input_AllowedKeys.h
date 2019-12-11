@@ -1,6 +1,5 @@
 #pragma once
 
-#include <memory>
 #include <bitset>
 
 #include "cocos2d.h"
@@ -17,7 +16,6 @@ namespace CPG
 
 			AllowedKeys() = delete;
 
-		public:
 			static const Container load( const char* _allowed_keys_file_name );
 		};
 	}
