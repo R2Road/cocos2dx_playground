@@ -33,7 +33,7 @@ namespace CPG
 
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
-			AllowedKeys allowed_keys;
+			AllowedKeys::Container allowed_keys;
 			KeyCodeCollector keycode_collector;
 			BasicCollectorSp input_collector;
 		};

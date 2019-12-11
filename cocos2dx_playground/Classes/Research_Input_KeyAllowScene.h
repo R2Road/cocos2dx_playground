@@ -25,7 +25,7 @@ namespace Research
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
 			bool go_exit;
-			CPG::Input::AllowedKeys allowed_keys;
+			CPG::Input::AllowedKeys::Container allowed_keys;
 		};
 	}
 }

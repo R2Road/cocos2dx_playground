@@ -23,7 +23,7 @@ namespace CPG
 				return nullptr;
 			}
 
-			ret->allowed_keys.load( _allowed_keys_file_name );
+			ret->allowed_keys = Input::AllowedKeys::load( _allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( 1 );
 
@@ -57,13 +57,13 @@ namespace CPG
 
 		void KeyboardInputObserber::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( allowed_keys.container[static_cast<std::size_t>( keycode )] )
+			if( allowed_keys[static_cast<std::size_t>( keycode )] )
 				found = true;
 		}
 
 		void KeyboardInputObserber::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( allowed_keys.container[static_cast<std::size_t>( keycode )] )
+			if( allowed_keys[static_cast<std::size_t>( keycode )] )
 				found = true;
 		}
 	}

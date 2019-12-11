@@ -28,7 +28,7 @@ namespace CPG
 
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
-			Input::AllowedKeys allowed_keys;
+			Input::AllowedKeys::Container allowed_keys;
 			bool found;
 		};
 	}

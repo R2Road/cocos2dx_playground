@@ -18,7 +18,7 @@ namespace CPG
 			AllowedKeys();
 
 		public:
-			void load( const char* _allowed_keys_file_name );
+			static const Container load( const char* _allowed_keys_file_name );
 
 		public:
 			Container container;

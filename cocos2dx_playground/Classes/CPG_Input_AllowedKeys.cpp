@@ -257,16 +257,20 @@ namespace CPG
 		AllowedKeys::AllowedKeys() : container()
 		{}
 
-		void AllowedKeys::load( const char* _allowed_keys_file_name )
+		const AllowedKeys::Container AllowedKeys::load( const char* _allowed_keys_file_name )
 		{
+			Container container;
+
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 			path.append( _allowed_keys_file_name );
 			if( loadAllowedKeysJson( path.c_str(), container ) )
-				return;
+				return container;
 
 			loadAllowedKeys( container );
 
 			saveAllowedKeysJson( path.c_str(), container );
+
+			return container;
 		}
 	}
 }

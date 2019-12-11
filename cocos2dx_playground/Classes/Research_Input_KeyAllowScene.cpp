@@ -54,7 +54,7 @@ namespace Research
 			) );
 			addChild( label, 9999 );
 
-			allowed_keys.load( "research_input_allowedKeysTest_allowed_keys.json" );
+			allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
 
 			return true;
 		}

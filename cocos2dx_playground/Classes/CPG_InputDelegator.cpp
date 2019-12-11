@@ -25,7 +25,7 @@ namespace CPG
 				return nullptr;
 			}
 
-			ret->allowed_keys.load( _allowed_keys_file_name );
+			ret->allowed_keys = AllowedKeys::load( _allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( -1 );
 			ret->schedule( schedule_selector( Delegator::post_update) );
@@ -67,7 +67,7 @@ namespace CPG
 
 		void Delegator::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( !allowed_keys.container[static_cast<std::size_t>( keycode )] )
+			if( !allowed_keys[static_cast<std::size_t>( keycode )] )
 				return;
 
 			keycode_collector.onKeyPressed( keycode );
@@ -75,7 +75,7 @@ namespace CPG
 
 		void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( !allowed_keys.container[static_cast<std::size_t>( keycode )] )
+			if( !allowed_keys[static_cast<std::size_t>( keycode )] )
 				return;
 
 			keycode_collector.onKeyReleased( keycode );
