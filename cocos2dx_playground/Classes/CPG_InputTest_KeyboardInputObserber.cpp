@@ -57,13 +57,13 @@ namespace CPG
 
 		void KeyboardInputObserber::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( allowed_keys.isAllowed( keycode ) )
+			if( allowed_keys.container[static_cast<std::size_t>( keycode )] )
 				found = true;
 		}
 
 		void KeyboardInputObserber::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( allowed_keys.isAllowed( keycode ) )
+			if( allowed_keys.container[static_cast<std::size_t>( keycode )] )
 				found = true;
 		}
 	}

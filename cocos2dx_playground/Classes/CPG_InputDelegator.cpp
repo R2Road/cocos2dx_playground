@@ -67,7 +67,7 @@ namespace CPG
 
 		void Delegator::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( !allowed_keys.isAllowed( keycode ) )
+			if( !allowed_keys.container[static_cast<std::size_t>( keycode )] )
 				return;
 
 			keycode_collector.onKeyPressed( keycode );
@@ -75,7 +75,7 @@ namespace CPG
 
 		void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( !allowed_keys.isAllowed( keycode ) )
+			if( !allowed_keys.container[static_cast<std::size_t>( keycode )] )
 				return;
 
 			keycode_collector.onKeyReleased( keycode );
