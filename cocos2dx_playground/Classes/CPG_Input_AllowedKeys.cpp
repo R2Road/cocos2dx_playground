@@ -254,9 +254,6 @@ namespace CPG
 			}
 		}
 
-		AllowedKeys::AllowedKeys() : container()
-		{}
-
 		const AllowedKeys::Container AllowedKeys::load( const char* _allowed_keys_file_name )
 		{
 			Container container;
