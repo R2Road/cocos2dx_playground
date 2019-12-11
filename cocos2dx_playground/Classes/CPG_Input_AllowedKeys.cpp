@@ -15,7 +15,7 @@ namespace CPG
 	{
 		namespace
 		{
-			void loadAllowedKeys( AllowedKeys::AllowedInfos& _container )
+			void loadAllowedKeys( AllowedKeys::Container& _container )
 			{
 				const std::initializer_list<bool> temp_container( {
 					  false		// KEY_NONE,
@@ -194,7 +194,7 @@ namespace CPG
 				}
 			}
 
-			const bool loadAllowedKeysJson( const char* _path, AllowedKeys::AllowedInfos& _container )
+			const bool loadAllowedKeysJson( const char* _path, AllowedKeys::Container& _container )
 			{
 				// load json
 				const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( _path );
@@ -233,7 +233,7 @@ namespace CPG
 				return true;
 			}
 
-			const bool saveAllowedKeysJson( const char* _key_map_path, AllowedKeys::AllowedInfos& _container )
+			const bool saveAllowedKeysJson( const char* _key_map_path, AllowedKeys::Container& _container )
 			{
 				rapidjson::Document document;
 				document.SetArray();
