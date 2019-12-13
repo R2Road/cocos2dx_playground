@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "ui/UIWidget.h"
 #include "CPG_Input_AllowedKeys.h"
 
 namespace Research
@@ -20,6 +21,7 @@ namespace Research
 			void onExit() override;
 
 		private:
+			void onKeyAllowControl( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
 
 		private:

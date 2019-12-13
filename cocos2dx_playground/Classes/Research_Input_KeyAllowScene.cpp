@@ -2,7 +2,8 @@
 
 #include <sstream>
 
-#include "ui/UICheckBox.h"
+#include "ui/UIButton.h"
+#include "ui/UIScale9Sprite.h"
 
 #include "RootScene.h"
 
@@ -12,6 +13,11 @@ namespace Research
 {
 	namespace Input
 	{
+		namespace
+		{
+			const int TAG_KeyAllowControl_BG = 20140416;
+		}
+
 		KeyAllowScene::KeyAllowScene() :
 			keyboard_listener( nullptr )
 			, go_exit( false )
@@ -66,15 +72,26 @@ namespace Research
 			) );
 			addChild( key_allow_control_root, 1 );
 			{
-				auto checkbox = ui::CheckBox::create( "textures/ui/checkbox_normal.png", "textures/ui/checkbox_cross.png", ui::Widget::TextureResType::LOCAL );
-				checkbox->getRendererBackground()->getTexture()->setAliasTexParameters();
-				checkbox->getRendererFrontCross()->getTexture()->setAliasTexParameters();
-				checkbox->setScale( 10.f );
-				key_allow_control_root->addChild( checkbox, 1 );
+				const Size key_allow_margin( 8.f, 4.f );
 
-				auto checkbox_label = Label::createWithTTF( "RIGHT_PARENTHESIS", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
-				checkbox_label->getFontAtlas()->setAliasTexParameters();
-				key_allow_control_root->addChild( checkbox_label );
+				auto key_allow_label = Label::createWithTTF( "RIGHT_PARENTHESIS", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				key_allow_label->getFontAtlas()->setAliasTexParameters();
+				key_allow_control_root->addChild( key_allow_label, 2 );
+
+				auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
+				button->getRendererNormal()->getTexture()->setAliasTexParameters();
+				button->getRendererClicked()->getTexture()->setAliasTexParameters();
+				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
+				button->setScale9Enabled( true );
+				button->setContentSize( key_allow_label->getContentSize() + ( key_allow_margin * 2 ) );
+				button->addTouchEventListener( CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this ) );
+				key_allow_control_root->addChild( button, 1 );
+
+				auto bg = ui::Scale9Sprite::create( "textures/ui/guide_01_3.png" );
+				bg->setTag( TAG_KeyAllowControl_BG );
+				bg->setVisible( false );
+				bg->setContentSize( button->getContentSize() );
+				key_allow_control_root->addChild( bg, 0 );
 			}
 
 			return true;
@@ -106,6 +123,16 @@ namespace Research
 				keyboard_listener = nullptr;
 			}
 			Node::onExit();
+		}
+
+		void KeyAllowScene::onKeyAllowControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+				return;
+
+			auto button = static_cast<ui::Button*>( _sender );
+			auto bg = button->getParent()->getChildByTag( TAG_KeyAllowControl_BG );
+			bg->setVisible( !bg->isVisible() );
 		}
 
 		void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
