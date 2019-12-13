@@ -58,15 +58,24 @@ namespace Research
 
 			allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
 
-			auto checkbox = ui::CheckBox::create( "textures/ui/checkbox_normal.png", "textures/ui/checkbox_cross.png", ui::Widget::TextureResType::LOCAL );
-			checkbox->getRendererBackground()->getTexture()->setAliasTexParameters();
-			checkbox->getRendererFrontCross()->getTexture()->setAliasTexParameters();
-			checkbox->setScale( 10.f );
-			checkbox->setPosition( Vec2(
+
+			auto key_allow_control_root = Node::create();
+			key_allow_control_root->setPosition( Vec2(
 				origin.x + ( visibleSize.width * 0.5f )
 				, origin.y + ( visibleSize.height * 0.5f )
 			) );
-			addChild( checkbox, 1 );
+			addChild( key_allow_control_root, 1 );
+			{
+				auto checkbox = ui::CheckBox::create( "textures/ui/checkbox_normal.png", "textures/ui/checkbox_cross.png", ui::Widget::TextureResType::LOCAL );
+				checkbox->getRendererBackground()->getTexture()->setAliasTexParameters();
+				checkbox->getRendererFrontCross()->getTexture()->setAliasTexParameters();
+				checkbox->setScale( 10.f );
+				key_allow_control_root->addChild( checkbox, 1 );
+
+				auto checkbox_label = Label::createWithTTF( "RIGHT_PARENTHESIS", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				checkbox_label->getFontAtlas()->setAliasTexParameters();
+				key_allow_control_root->addChild( checkbox_label );
+			}
 
 			return true;
 		}
