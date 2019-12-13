@@ -2,6 +2,8 @@
 
 #include <sstream>
 
+#include "ui/UICheckBox.h"
+
 #include "RootScene.h"
 
 USING_NS_CC;
@@ -55,6 +57,16 @@ namespace Research
 			addChild( label, 9999 );
 
 			allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
+
+			auto checkbox = ui::CheckBox::create( "textures/ui/checkbox_normal.png", "textures/ui/checkbox_cross.png", ui::Widget::TextureResType::LOCAL );
+			checkbox->getRendererBackground()->getTexture()->setAliasTexParameters();
+			checkbox->getRendererFrontCross()->getTexture()->setAliasTexParameters();
+			checkbox->setScale( 10.f );
+			checkbox->setPosition( Vec2(
+				origin.x + ( visibleSize.width * 0.5f )
+				, origin.y + ( visibleSize.height * 0.5f )
+			) );
+			addChild( checkbox, 1 );
 
 			return true;
 		}
