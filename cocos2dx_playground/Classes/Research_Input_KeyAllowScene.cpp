@@ -4,6 +4,7 @@
 
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
+#include "CPG_Input_KeyNames.h"
 
 #include "RootScene.h"
 
@@ -17,13 +18,13 @@ namespace Research
 		{
 			const int TAG_KeyAllowControl_BG = 20140416;
 
-			Node* createKeyAllowControl( const ui::Widget::ccWidgetTouchCallback& _callback )
+			Node* createKeyAllowControl( const EventKeyboard::KeyCode _target_key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
 			{
 				auto key_allow_control_root = Node::create();
 				{
 					const Size key_allow_margin( 8.f, 4.f );
 
-					auto key_allow_label = Label::createWithTTF( "RIGHT_PARENTHESIS", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_allow_label = Label::createWithTTF( CPG::Input::KeyNames::get( _target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
 					auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
@@ -93,7 +94,10 @@ namespace Research
 			allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
 
 
-			auto key_allow_control_root = createKeyAllowControl( CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this ) );
+			auto key_allow_control_root = createKeyAllowControl( 
+				EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS
+				, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
+			);
 			key_allow_control_root->setPosition( Vec2(
 				origin.x + ( visibleSize.width * 0.5f )
 				, origin.y + ( visibleSize.height * 0.5f )
