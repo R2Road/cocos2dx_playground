@@ -86,6 +86,11 @@ namespace Research
 			auto visibleSize = Director::getInstance()->getVisibleSize();
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+
+
+			//
+			// Summury
+			//
 			std::stringstream ss;
 			ss << "+ Key Allow Scene";
 			ss << "\n";
@@ -100,9 +105,18 @@ namespace Research
 			) );
 			addChild( label, 9999 );
 
+
+
+			//
+			// Load Allowed Keys
+			//
 			allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
 
 
+
+			//
+			// Setup Key Allow Controls
+			//
 			static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
 			const Size key_margin( 2.f, 2.f );
 			const auto div_result = ldiv( static_cast<int>( visibleSize.height ), static_cast<int>( size_of_key_allow_control.height + key_margin.height ) );
