@@ -17,13 +17,17 @@ namespace Research
 		namespace
 		{
 			const int TAG_KeyAllowControl_BG = 20140416;
+			const Size calculateSizeOfKeyAllowControl( const char* _str )
+			{
+				const Size key_allow_margin( 8.f, 4.f );
+				auto temp = Label::createWithTTF( "RIGHT_PARENTHESIS", "fonts/arial.ttf", 10 );
+				return temp->getContentSize() + ( key_allow_margin * 2 );
+			}
 
-			Node* createKeyAllowControl( const EventKeyboard::KeyCode _target_key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
+			Node* createKeyAllowControl( const Size _control_size, const EventKeyboard::KeyCode _target_key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
 			{
 				auto key_allow_control_root = Node::create();
 				{
-					const Size key_allow_margin( 8.f, 4.f );
-
 					auto key_allow_label = Label::createWithTTF( CPG::Input::KeyNames::get( _target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
@@ -32,14 +36,14 @@ namespace Research
 					button->getRendererClicked()->getTexture()->setAliasTexParameters();
 					button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 					button->setScale9Enabled( true );
-					button->setContentSize( key_allow_label->getContentSize() + ( key_allow_margin * 2 ) );
+					button->setContentSize( _control_size );
 					button->addTouchEventListener( _callback );
 					key_allow_control_root->addChild( button, 1 );
 
 					auto indicator = ui::Scale9Sprite::create( "textures/ui/guide_01_3.png" );
 					indicator->setTag( TAG_KeyAllowControl_BG );
 					indicator->setVisible( false );
-					indicator->setContentSize( button->getContentSize() );
+					indicator->setContentSize( _control_size );
 					key_allow_control_root->addChild( indicator, 0 );
 				}
 
@@ -94,8 +98,11 @@ namespace Research
 			allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
 
 
+			
+			static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
 			auto key_allow_control_root = createKeyAllowControl( 
-				EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS
+				size_of_key_allow_control
+				, EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS
 				, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
 			);
 			key_allow_control_root->setPosition( Vec2(
