@@ -24,7 +24,6 @@ namespace Research
 					const Size key_allow_margin( 8.f, 4.f );
 
 					auto key_allow_label = Label::createWithTTF( "RIGHT_PARENTHESIS", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
-					key_allow_label->getFontAtlas()->setAliasTexParameters();
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
 					auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
