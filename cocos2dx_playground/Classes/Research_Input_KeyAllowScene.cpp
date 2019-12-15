@@ -2,6 +2,7 @@
 
 #include <cmath> // ceil
 #include <sstream>
+#include <cstdlib> // ldiv
 
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
@@ -102,18 +103,33 @@ namespace Research
 			allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
 
 
-			
 			static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
-			auto key_allow_control_root = createKeyAllowControl( 
-				size_of_key_allow_control
-				, EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS
-				, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
-			);
-			key_allow_control_root->setPosition( Vec2(
-				origin.x + ( visibleSize.width * 0.5f )
-				, origin.y + ( visibleSize.height * 0.5f )
-			) );
-			addChild( key_allow_control_root, 1 );
+			const Size key_margin( 2.f, 2.f );
+			const auto div_result = ldiv( static_cast<int>( visibleSize.height ), static_cast<int>( size_of_key_allow_control.height + key_margin.height ) );
+			const Size side_margin( 0.5f * div_result.rem, 0.5f * div_result.rem );
+
+			int grid_x = 0;
+			int grid_y = 0;
+			for( std::size_t cur = CPG::Input::AllowedKeys::ContainerFirst; CPG::Input::AllowedKeys::ContainerSize > cur; ++cur )
+			{
+				auto key_allow_control_root = createKeyAllowControl(
+					size_of_key_allow_control
+					, static_cast<EventKeyboard::KeyCode>( cur )
+					, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
+				);
+				key_allow_control_root->setPosition( Vec2(
+					origin.x + side_margin.width + ( size_of_key_allow_control.width * 0.5f ) + ( ( size_of_key_allow_control.width + key_margin.width ) * grid_x )
+					, origin.y + side_margin.width + ( size_of_key_allow_control.height * 0.5f ) + ( ( size_of_key_allow_control.height + key_margin.height ) * grid_y )
+				) );
+				addChild( key_allow_control_root, 1 );
+
+				++grid_y;
+				if( div_result.quot <= grid_y )
+				{
+					grid_y = 0;
+					++grid_x;
+				}
+			}
 
 			return true;
 		}
