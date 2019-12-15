@@ -36,11 +36,11 @@ namespace Research
 					button->addTouchEventListener( _callback );
 					key_allow_control_root->addChild( button, 1 );
 
-					auto bg = ui::Scale9Sprite::create( "textures/ui/guide_01_3.png" );
-					bg->setTag( TAG_KeyAllowControl_BG );
-					bg->setVisible( false );
-					bg->setContentSize( button->getContentSize() );
-					key_allow_control_root->addChild( bg, 0 );
+					auto indicator = ui::Scale9Sprite::create( "textures/ui/guide_01_3.png" );
+					indicator->setTag( TAG_KeyAllowControl_BG );
+					indicator->setVisible( false );
+					indicator->setContentSize( button->getContentSize() );
+					key_allow_control_root->addChild( indicator, 0 );
 				}
 
 				return key_allow_control_root;
