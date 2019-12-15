@@ -1,5 +1,6 @@
 #include "Research_Input_KeyAllowScene.h"
 
+#include <cmath> // ceil
 #include <sstream>
 
 #include "ui/UIButton.h"
@@ -21,7 +22,10 @@ namespace Research
 			{
 				const Size key_allow_margin( 8.f, 4.f );
 				auto temp = Label::createWithTTF( "RIGHT_PARENTHESIS", "fonts/arial.ttf", 10 );
-				return temp->getContentSize() + ( key_allow_margin * 2 );
+				return Size(
+					std::ceilf( temp->getContentSize().width + ( key_allow_margin.width * 2 ) )
+					, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
+				);
 			}
 
 			Node* createKeyAllowControl( const Size _control_size, const EventKeyboard::KeyCode _target_key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
