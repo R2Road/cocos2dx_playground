@@ -135,7 +135,6 @@ namespace Research
 			//
 			auto scroll_view = ui::ScrollView::create();
 			scroll_view->setDirection( ui::ScrollView::Direction::HORIZONTAL );
-			scroll_view->setBackGroundColor( Color3B::GREEN );
 			scroll_view->setContentSize( visibleSize );
 			addChild( scroll_view );
 
