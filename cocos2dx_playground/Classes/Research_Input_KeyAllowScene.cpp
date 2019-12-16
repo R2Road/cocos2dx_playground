@@ -144,16 +144,26 @@ namespace Research
 			scroll_view->addChild( key_allow_controls_root );
 			{
 				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
-				const Size key_margin( 2.f, 2.f );
+				const Size expected_margin_of_key_allow_control( 2.f, 2.f );
 				const Size side_margin( 20.f, 20.f );
 				const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
 					visibleSize - ( side_margin * 2 )
 					, size_of_key_allow_control
-					, key_margin
+					, expected_margin_of_key_allow_control
+				);
+
+				const float margin_of_key_allow_control(
+					0 >= row_n_column_count.second
+					? 2.f
+					: (
+						( visibleSize.height - ( side_margin.height * 2 ) )
+						- ( row_n_column_count.second * size_of_key_allow_control.height )
+					)
+					/ row_n_column_count.second
 				);
 
 				scroll_view->setInnerContainerSize( Size(
-					origin.x + ( side_margin.width * 2 ) + ( ( size_of_key_allow_control.width + key_margin.width ) * row_n_column_count.first ) - key_margin.width
+					origin.x + ( side_margin.width * 2 ) + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * row_n_column_count.first ) - margin_of_key_allow_control
 					, visibleSize.height
 				) );
 
@@ -167,8 +177,8 @@ namespace Research
 						, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
 					);
 					key_allow_control_root->setPosition( Vec2(
-						origin.x + side_margin.width + ( size_of_key_allow_control.width * 0.5f ) + ( ( size_of_key_allow_control.width + key_margin.width ) * grid_x )
-						, origin.y + side_margin.height + ( size_of_key_allow_control.height * 0.5f ) + ( ( size_of_key_allow_control.height + key_margin.height ) * grid_y )
+						origin.x + side_margin.width + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * 0.5f ) + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * grid_x )
+						, origin.y + side_margin.height + ( ( size_of_key_allow_control.height + margin_of_key_allow_control ) * 0.5f ) + ( ( size_of_key_allow_control.height + margin_of_key_allow_control ) * grid_y )
 					) );
 					key_allow_controls_root->addChild( key_allow_control_root, 1 );
 
