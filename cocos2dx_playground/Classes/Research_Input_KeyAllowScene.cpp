@@ -167,6 +167,15 @@ namespace Research
 					, visibleSize.height
 				) );
 
+				const Vec2 start_position(
+					origin.x + side_margin.width + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * 0.5f )
+					, origin.y + side_margin.height + ( ( size_of_key_allow_control.height + margin_of_key_allow_control ) * 0.5f )
+				);
+				const Size spacing_of_control(
+					( size_of_key_allow_control.width + margin_of_key_allow_control )
+					, ( size_of_key_allow_control.height + margin_of_key_allow_control )
+				);
+
 				int grid_x = 0;
 				int grid_y = 0;
 				for( std::size_t cur = CPG::Input::AllowedKeys::ContainerFirst; CPG::Input::AllowedKeys::ContainerSize > cur; ++cur )
@@ -177,8 +186,8 @@ namespace Research
 						, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
 					);
 					key_allow_control_root->setPosition( Vec2(
-						origin.x + side_margin.width + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * 0.5f ) + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * grid_x )
-						, origin.y + side_margin.height + ( ( size_of_key_allow_control.height + margin_of_key_allow_control ) * 0.5f ) + ( ( size_of_key_allow_control.height + margin_of_key_allow_control ) * grid_y )
+						start_position.x + ( spacing_of_control.width * grid_x )
+						, start_position.y + ( spacing_of_control.height * grid_y )
 					) );
 					key_allow_controls_root->addChild( key_allow_control_root, 1 );
 
