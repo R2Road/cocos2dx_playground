@@ -6,6 +6,7 @@
 
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
+#include "ui/UIScrollView.h"
 #include "CPG_Input_KeyNames.h"
 
 #include "RootScene.h"
@@ -27,6 +28,11 @@ namespace Research
 					std::ceilf( temp->getContentSize().width + ( key_allow_margin.width * 2 ) )
 					, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
 				);
+			}
+			const int calculateKeyAllowControlsColumnCount( const int _row_count )
+			{
+				const auto div_result = std::ldiv( CPG::Input::AllowedKeys::ContainerSize, _row_count );
+				return div_result.rem > 0 ? div_result.quot + 1 : div_result.quot;
 			}
 
 			Node* createKeyAllowControl( const Size _control_size, const EventKeyboard::KeyCode _target_key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
@@ -117,31 +123,48 @@ namespace Research
 			//
 			// Setup Key Allow Controls
 			//
-			static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
-			const Size key_margin( 2.f, 2.f );
-			const auto div_result = ldiv( static_cast<int>( visibleSize.height ), static_cast<int>( size_of_key_allow_control.height + key_margin.height ) );
-			const Size side_margin( 0.5f * div_result.rem, 0.5f * div_result.rem );
+			auto scroll_view = ui::ScrollView::create();
+			scroll_view->setDirection( ui::ScrollView::Direction::HORIZONTAL );
+			scroll_view->setBackGroundColor( Color3B::GREEN );
+			scroll_view->setContentSize( visibleSize );
+			addChild( scroll_view );
 
-			int grid_x = 0;
-			int grid_y = 0;
-			for( std::size_t cur = CPG::Input::AllowedKeys::ContainerFirst; CPG::Input::AllowedKeys::ContainerSize > cur; ++cur )
+			auto key_allow_controls_root = Node::create();
+			key_allow_controls_root->setPosition( Vec2( origin.x, origin.y ) );
+			scroll_view->addChild( key_allow_controls_root );
 			{
-				auto key_allow_control_root = createKeyAllowControl(
-					size_of_key_allow_control
-					, static_cast<EventKeyboard::KeyCode>( cur )
-					, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
-				);
-				key_allow_control_root->setPosition( Vec2(
-					origin.x + side_margin.width + ( size_of_key_allow_control.width * 0.5f ) + ( ( size_of_key_allow_control.width + key_margin.width ) * grid_x )
-					, origin.y + side_margin.width + ( size_of_key_allow_control.height * 0.5f ) + ( ( size_of_key_allow_control.height + key_margin.height ) * grid_y )
-				) );
-				addChild( key_allow_control_root, 1 );
+				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
+				const Size key_margin( 2.f, 2.f );
+				const auto div_result = ldiv( static_cast<int>( visibleSize.height ), static_cast<int>( size_of_key_allow_control.height + key_margin.height ) );
+				const Size side_margin( 0.5f * div_result.rem, 0.5f * div_result.rem );
+				const int column_count = calculateKeyAllowControlsColumnCount( div_result.quot );
 
-				++grid_y;
-				if( div_result.quot <= grid_y )
+				scroll_view->setInnerContainerSize( Size(
+					origin.x + ( side_margin.width * 2 ) + ( ( size_of_key_allow_control.width + key_margin.width ) * column_count ) - key_margin.width
+					, visibleSize.height
+				) );
+
+				int grid_x = 0;
+				int grid_y = 0;
+				for( std::size_t cur = CPG::Input::AllowedKeys::ContainerFirst; CPG::Input::AllowedKeys::ContainerSize > cur; ++cur )
 				{
-					grid_y = 0;
-					++grid_x;
+					auto key_allow_control_root = createKeyAllowControl(
+						size_of_key_allow_control
+						, static_cast<EventKeyboard::KeyCode>( cur )
+						, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
+					);
+					key_allow_control_root->setPosition( Vec2(
+						origin.x + side_margin.width + ( size_of_key_allow_control.width * 0.5f ) + ( ( size_of_key_allow_control.width + key_margin.width ) * grid_x )
+						, origin.y + side_margin.width + ( size_of_key_allow_control.height * 0.5f ) + ( ( size_of_key_allow_control.height + key_margin.height ) * grid_y )
+					) );
+					key_allow_controls_root->addChild( key_allow_control_root, 1 );
+
+					++grid_y;
+					if( div_result.quot <= grid_y )
+					{
+						grid_y = 0;
+						++grid_x;
+					}
 				}
 			}
 
