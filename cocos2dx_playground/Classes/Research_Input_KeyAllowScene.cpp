@@ -189,7 +189,7 @@ namespace Research
 						start_position.x + ( spacing_of_control.width * grid_x )
 						, start_position.y + ( spacing_of_control.height * grid_y )
 					) );
-					key_allow_controls_root->addChild( key_allow_control_root, 1 );
+					key_allow_controls_root->addChild( key_allow_control_root );
 
 					++grid_y;
 					if( row_n_column_count.second <= grid_y )
