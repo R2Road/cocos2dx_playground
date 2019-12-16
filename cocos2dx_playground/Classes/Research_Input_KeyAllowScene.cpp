@@ -155,7 +155,7 @@ namespace Research
 					);
 					key_allow_control_root->setPosition( Vec2(
 						origin.x + side_margin.width + ( size_of_key_allow_control.width * 0.5f ) + ( ( size_of_key_allow_control.width + key_margin.width ) * grid_x )
-						, origin.y + side_margin.width + ( size_of_key_allow_control.height * 0.5f ) + ( ( size_of_key_allow_control.height + key_margin.height ) * grid_y )
+						, origin.y + side_margin.height + ( size_of_key_allow_control.height * 0.5f ) + ( ( size_of_key_allow_control.height + key_margin.height ) * grid_y )
 					) );
 					key_allow_controls_root->addChild( key_allow_control_root, 1 );
 
