@@ -135,8 +135,8 @@ namespace Research
 			{
 				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
 				const Size key_margin( 2.f, 2.f );
-				const auto div_result = ldiv( static_cast<int>( visibleSize.height ), static_cast<int>( size_of_key_allow_control.height + key_margin.height ) );
-				const Size side_margin( 0.5f * div_result.rem, 0.5f * div_result.rem );
+				const Size side_margin( 20.f, 20.f );
+				const auto div_result = ldiv( static_cast<int>( visibleSize.height - ( side_margin.height * 2 ) ), static_cast<int>( size_of_key_allow_control.height + key_margin.height ) );
 				const int column_count = calculateKeyAllowControlsColumnCount( div_result.quot );
 
 				scroll_view->setInnerContainerSize( Size(
