@@ -3,6 +3,7 @@
 #include <cmath> // ceil
 #include <sstream>
 #include <cstdlib> // ldiv
+#include <utility> // pair
 
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
@@ -29,10 +30,19 @@ namespace Research
 					, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
 				);
 			}
-			const int calculateKeyAllowControlsColumnCount( const int _row_count )
+			const std::pair<int,int> calculateKeyAllowControlsRowAndColumn( const Size _view_size, const Size _control_size, const Size _control_margin )
 			{
+				const auto _row_count = ldiv(
+					static_cast<int>( _view_size.height )
+					, static_cast<int>( _control_size.height + _control_margin.height )
+				).quot;
+
 				const auto div_result = std::ldiv( CPG::Input::AllowedKeys::ContainerSize, _row_count );
-				return div_result.rem > 0 ? div_result.quot + 1 : div_result.quot;
+
+				return std::make_pair(
+					div_result.rem > 0 ? div_result.quot + 1 : div_result.quot
+					, _row_count
+				);
 			}
 
 			Node* createKeyAllowControl( const Size _control_size, const EventKeyboard::KeyCode _target_key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
@@ -136,11 +146,14 @@ namespace Research
 				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
 				const Size key_margin( 2.f, 2.f );
 				const Size side_margin( 20.f, 20.f );
-				const auto div_result = ldiv( static_cast<int>( visibleSize.height - ( side_margin.height * 2 ) ), static_cast<int>( size_of_key_allow_control.height + key_margin.height ) );
-				const int column_count = calculateKeyAllowControlsColumnCount( div_result.quot );
+				const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
+					visibleSize - ( side_margin * 2 )
+					, size_of_key_allow_control
+					, key_margin
+				);
 
 				scroll_view->setInnerContainerSize( Size(
-					origin.x + ( side_margin.width * 2 ) + ( ( size_of_key_allow_control.width + key_margin.width ) * column_count ) - key_margin.width
+					origin.x + ( side_margin.width * 2 ) + ( ( size_of_key_allow_control.width + key_margin.width ) * row_n_column_count.first ) - key_margin.width
 					, visibleSize.height
 				) );
 
@@ -160,7 +173,7 @@ namespace Research
 					key_allow_controls_root->addChild( key_allow_control_root, 1 );
 
 					++grid_y;
-					if( div_result.quot <= grid_y )
+					if( row_n_column_count.second <= grid_y )
 					{
 						grid_y = 0;
 						++grid_x;
