@@ -113,6 +113,8 @@ namespace Research
 			ss << "\n";
 			ss << "\n";
 			ss << "[ESC] : ...";
+			ss << "\n";
+			ss << "[Mouse] : Horizontal Scrolling";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
