@@ -191,6 +191,9 @@ namespace Research
 					) );
 					key_allow_controls_root->addChild( key_allow_control_root );
 
+					auto bg = key_allow_control_root->getChildByTag( TAG_KeyAllowControl_BG );
+					bg->setVisible( allowed_keys[cur] );
+
 					++grid_y;
 					if( row_n_column_count.second <= grid_y )
 					{
@@ -240,7 +243,7 @@ namespace Research
 			auto bg = button->getParent()->getChildByTag( TAG_KeyAllowControl_BG );
 			bg->setVisible( !bg->isVisible() );
 
-			CCLOG( "key_code %d", button->getTag() );
+			allowed_keys[button->getTag()] = bg->isVisible();
 		}
 
 		void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
