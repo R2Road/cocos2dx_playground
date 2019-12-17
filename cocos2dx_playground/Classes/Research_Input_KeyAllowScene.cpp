@@ -53,6 +53,7 @@ namespace Research
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
 					auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
+					button->setTag( static_cast<int>( _target_key_code ) );
 					button->getRendererNormal()->getTexture()->setAliasTexParameters();
 					button->getRendererClicked()->getTexture()->setAliasTexParameters();
 					button->getRendererDisabled()->getTexture()->setAliasTexParameters();
@@ -238,6 +239,8 @@ namespace Research
 			auto button = static_cast<ui::Button*>( _sender );
 			auto bg = button->getParent()->getChildByTag( TAG_KeyAllowControl_BG );
 			bg->setVisible( !bg->isVisible() );
+
+			CCLOG( "key_code %d", button->getTag() );
 		}
 
 		void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
