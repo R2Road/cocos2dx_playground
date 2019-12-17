@@ -221,6 +221,7 @@ namespace Research
 			if( go_exit )
 			{
 				go_exit = false;
+				CPG::Input::AllowedKeys::save( allowed_keys, "research_input_allowedKeysTest_allowed_keys.json" );
 				Director::getInstance()->replaceScene( RootScene::create() );
 			}
 

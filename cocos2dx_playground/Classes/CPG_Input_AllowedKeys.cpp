@@ -269,5 +269,13 @@ namespace CPG
 
 			return container;
 		}
+
+		void AllowedKeys::save( Container _container, const char* _allowed_keys_file_name )
+		{
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( _allowed_keys_file_name );
+
+			saveAllowedKeysJson( path.c_str(), _container );
+		}
 	}
 }

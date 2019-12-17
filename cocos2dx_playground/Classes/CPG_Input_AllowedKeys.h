@@ -18,6 +18,7 @@ namespace CPG
 			AllowedKeys() = delete;
 
 			static const Container load( const char* _allowed_keys_file_name );
+			static void save( Container _container, const char* _allowed_keys_file_name );
 		};
 	}
 }
