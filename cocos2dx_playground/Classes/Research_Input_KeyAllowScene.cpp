@@ -227,12 +227,8 @@ namespace Research
 
 		void KeyAllowScene::updateForExit( float _dt )
 		{
-			if( go_exit )
-			{
-				go_exit = false;
-				CPG::Input::AllowedKeys::save( allowed_keys, "research_input_allowedKeysTest_allowed_keys.json" );
-				Director::getInstance()->replaceScene( RootScene::create() );
-			}
+			CPG::Input::AllowedKeys::save( allowed_keys, "research_input_allowedKeysTest_allowed_keys.json" );
+			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 		void KeyAllowScene::onKeyAllowControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
 		{
