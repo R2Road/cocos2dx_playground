@@ -153,7 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp" />
     <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp" />
     <ClCompile Include="..\Classes\CPG_InputKeyViewer.cpp" />
-    <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserber.cpp" />
+    <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserver.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_AllowedKeys.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeCollector.cpp" />
@@ -171,7 +171,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_InputDelegator.h" />
     <ClInclude Include="..\Classes\CPG_InputKeyMap.h" />
     <ClInclude Include="..\Classes\CPG_InputKeyViewer.h" />
-    <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserber.h" />
+    <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserver.h" />
     <ClInclude Include="..\Classes\CPG_Input_AllowedKeys.h" />
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeCollector.h" />

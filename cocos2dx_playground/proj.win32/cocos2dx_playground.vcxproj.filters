@@ -54,10 +54,10 @@
     <ClCompile Include="..\Classes\CPG_Input_KeyNames.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserber.cpp">
+    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
+    <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserver.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,10 +104,10 @@
     <ClInclude Include="..\Classes\CPG_Input_KeyNames.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserber.h">
+    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
+    <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserver.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
