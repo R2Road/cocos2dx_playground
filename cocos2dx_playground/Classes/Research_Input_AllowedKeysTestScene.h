@@ -12,7 +12,7 @@ namespace CPG
 
 	namespace InputTest
 	{
-		class KeyboardInputObserber;
+		class KeyboardInputObserver;
 	}
 }
 
@@ -35,7 +35,7 @@ namespace Research
 			cocos2d::Label* key_viewer;
 			std::string key_string;
 
-			CPG::InputTest::KeyboardInputObserber* input_obserber;
+			CPG::InputTest::KeyboardInputObserver* input_observer;
 		};
 	}
 }

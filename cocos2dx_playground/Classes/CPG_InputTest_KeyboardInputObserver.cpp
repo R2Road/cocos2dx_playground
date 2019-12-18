@@ -8,14 +8,14 @@ namespace CPG
 {
 	namespace InputTest
 	{
-		KeyboardInputObserber::KeyboardInputObserber() :
+		KeyboardInputObserver::KeyboardInputObserver() :
 			found( false )
 			, allowed_keys()
 		{}
 
-		KeyboardInputObserber* KeyboardInputObserber::create( const char* _allowed_keys_file_name )
+		KeyboardInputObserver* KeyboardInputObserver::create( const char* _allowed_keys_file_name )
 		{
-			auto ret = new ( std::nothrow ) KeyboardInputObserber();
+			auto ret = new ( std::nothrow ) KeyboardInputObserver();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -31,21 +31,21 @@ namespace CPG
 			return ret;
 		}
 
-		void KeyboardInputObserber::onEnter()
+		void KeyboardInputObserver::onEnter()
 		{
 			Node::onEnter();
 
 			keyboard_listener = EventListenerKeyboard::create();
-			keyboard_listener->onKeyPressed = CC_CALLBACK_2( KeyboardInputObserber::onKeyPressed, this );
-			keyboard_listener->onKeyReleased = CC_CALLBACK_2( KeyboardInputObserber::onKeyReleased, this );
+			keyboard_listener->onKeyPressed = CC_CALLBACK_2( KeyboardInputObserver::onKeyPressed, this );
+			keyboard_listener->onKeyReleased = CC_CALLBACK_2( KeyboardInputObserver::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
 		}
-		void KeyboardInputObserber::update( float _dt )
+		void KeyboardInputObserver::update( float _dt )
 		{
 			found = false;
 			Node::update( _dt );
 		}
-		void KeyboardInputObserber::onExit()
+		void KeyboardInputObserver::onExit()
 		{
 			if( keyboard_listener )
 			{
@@ -55,13 +55,13 @@ namespace CPG
 			Node::onExit();
 		}
 
-		void KeyboardInputObserber::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
+		void KeyboardInputObserver::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
 			if( allowed_keys[static_cast<std::size_t>( keycode )] )
 				found = true;
 		}
 
-		void KeyboardInputObserber::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
+		void KeyboardInputObserver::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
 			if( allowed_keys[static_cast<std::size_t>( keycode )] )
 				found = true;

@@ -7,13 +7,13 @@ namespace CPG
 {
 	namespace InputTest
 	{
-		class KeyboardInputObserber : public cocos2d::Node
+		class KeyboardInputObserver : public cocos2d::Node
 		{
 		private:
-			KeyboardInputObserber();
+			KeyboardInputObserver();
 
 		public:
-			static KeyboardInputObserber* create( const char* _allowed_keys_file_name );
+			static KeyboardInputObserver* create( const char* _allowed_keys_file_name );
 
 			void onEnter() override;
 			void update( float _dt ) override;

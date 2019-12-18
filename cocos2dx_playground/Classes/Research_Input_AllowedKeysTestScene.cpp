@@ -20,7 +20,7 @@ namespace Research
 			input_delegator( nullptr )
 			, key_viewer( nullptr )
 			, key_string( 200, 0 )
-			, input_obserber( nullptr )
+			, input_observer( nullptr )
 		{}
 
 		Scene* AllowedKeysTestScene::create()
@@ -68,8 +68,8 @@ namespace Research
 			input_delegator = CPG::Input::Delegator::create( "research_input_allowedKeysTest_allowed_keys.json" );
 			addChild( input_delegator, 0 );
 
-			input_obserber = CPG::InputTest::KeyboardInputObserber::create( "research_input_allowedKeysTest_allowed_keys.json" );
-			addChild( input_obserber, 1 );
+			input_observer = CPG::InputTest::KeyboardInputObserver::create( "research_input_allowedKeysTest_allowed_keys.json" );
+			addChild( input_observer, 1 );
 
 
 			//
@@ -86,7 +86,7 @@ namespace Research
 		}
 		void AllowedKeysTestScene::update( float dt )
 		{
-			if( input_obserber->inputFound() )
+			if( input_observer->inputFound() )
 			{
 				if( input_delegator->isActiveKey( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
 				{
