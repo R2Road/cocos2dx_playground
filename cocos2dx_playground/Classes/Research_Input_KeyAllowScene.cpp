@@ -248,14 +248,14 @@ namespace Research
 
 		void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
-			{
-				if( go_exit )
-					return;
+			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+				return;
 
-				go_exit = true;
-				scheduleOnce( schedule_selector( KeyAllowScene::updateForExit ), 0.f );
-			}
+			if( go_exit )
+				return;
+
+			go_exit = true;
+			scheduleOnce( schedule_selector( KeyAllowScene::updateForExit ), 0.f );
 		}
 	}
 }
