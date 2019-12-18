@@ -90,7 +90,6 @@ namespace Research
 			}
 
 			ret->autorelease();
-			ret->scheduleUpdate();
 
 			return ret;
 		}
@@ -216,17 +215,6 @@ namespace Research
 			keyboard_listener->onKeyReleased = CC_CALLBACK_2( KeyAllowScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
 		}
-		void KeyAllowScene::update( float _dt )
-		{
-			if( go_exit )
-			{
-				go_exit = false;
-				CPG::Input::AllowedKeys::save( allowed_keys, "research_input_allowedKeysTest_allowed_keys.json" );
-				Director::getInstance()->replaceScene( RootScene::create() );
-			}
-
-			Node::update( _dt );
-		}
 		void KeyAllowScene::onExit()
 		{
 			if( keyboard_listener )
@@ -237,6 +225,15 @@ namespace Research
 			Node::onExit();
 		}
 
+		void KeyAllowScene::updateForExit( float _dt )
+		{
+			if( go_exit )
+			{
+				go_exit = false;
+				CPG::Input::AllowedKeys::save( allowed_keys, "research_input_allowedKeysTest_allowed_keys.json" );
+				Director::getInstance()->replaceScene( RootScene::create() );
+			}
+		}
 		void KeyAllowScene::onKeyAllowControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
@@ -252,7 +249,13 @@ namespace Research
 		void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
+			{
+				if( go_exit )
+					return;
+
 				go_exit = true;
+				scheduleOnce( schedule_selector( KeyAllowScene::updateForExit ), 0.f );
+			}
 		}
 	}
 }

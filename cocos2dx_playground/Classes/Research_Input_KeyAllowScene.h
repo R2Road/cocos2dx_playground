@@ -17,10 +17,10 @@ namespace Research
 
 			bool init() override;
 			void onEnter() override;
-			void update( float _dt ) override;
 			void onExit() override;
 
 		private:
+			void updateForExit( float _dt );
 			void onKeyAllowControl( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
 
