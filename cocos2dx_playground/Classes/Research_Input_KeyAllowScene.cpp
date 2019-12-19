@@ -107,15 +107,18 @@ namespace Research
 			//
 			// Summury
 			//
+			static const auto tab_char = "    ";
 			std::stringstream ss;
 			ss << "+ Key Allow Scene";
-			ss << "\n";
-			ss << "\n";
-			ss << "[ESC] : ...";
-			ss << "\n";
+			ss << tab_char;
+			ss << tab_char;
+			ss << "[ESC] : Save & Exit";
+			ss << tab_char;
+			ss << tab_char;
 			ss << "[Mouse] : Horizontal Scrolling";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			label->setColor( Color3B::GREEN );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				origin.x
