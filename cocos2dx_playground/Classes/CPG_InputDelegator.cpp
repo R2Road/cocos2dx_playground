@@ -53,7 +53,7 @@ namespace CPG
 		void Delegator::post_update( float _dt )
 		{
 			if( input_collector )
-				input_collector->update();
+				input_collector->update_forHistory();
 		}
 		void Delegator::onExit()
 		{

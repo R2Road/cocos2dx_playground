@@ -27,7 +27,7 @@ namespace CPG
 
 		public:
 			void collect( const KeyCodeCollector& _key_code_collector );
-			void update();
+			void update_forHistory();
 
 			const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const;
 			const bool getKeyStatus( const int target_key_index ) const;

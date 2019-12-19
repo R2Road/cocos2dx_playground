@@ -30,7 +30,7 @@ namespace CPG
 			for( const auto k : key_map_container->container )
 				( *current_key_status_container )[k.idx] = _key_code_collector.isActiveKey( k.keycode );
 		}
-		void BasicCollector::update()
+		void BasicCollector::update_forHistory()
 		{
 			if( last_key_status_container->to_ulong() != current_key_status_container->to_ulong() )
 			{
