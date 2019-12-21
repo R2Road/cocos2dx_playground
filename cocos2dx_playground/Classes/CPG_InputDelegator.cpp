@@ -81,9 +81,9 @@ namespace CPG
 			keycode_collector.onKeyReleased( keycode );
 		}
 
-		void Delegator::addInputCollector( BasicCollectorSp& _new_input_collector )
+		void Delegator::addInputCollector( KeyCollectorSp& _new_key_collector )
 		{
-			input_collector = _new_input_collector;
+			input_collector = _new_key_collector;
 		}
 	}
 }

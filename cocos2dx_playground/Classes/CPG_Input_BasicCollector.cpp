@@ -9,19 +9,18 @@ namespace CPG
 {
 	namespace Input
 	{
-		BasicCollector::BasicCollector( const KeyMapSp& _key_map_container ) :
-			key_map_container( _key_map_container )
+		BasicCollector::BasicCollector( const KeyMapSp& _key_map_container ) : iKeyCollector( _key_map_container )
 			, key_history()
 			, current_key_status_container()
+			, last_key_status_container()
 		{
 			last_key_status_container = key_history.begin();
 			current_key_status_container = last_key_status_container + 1;
 		}
 
-		BasicCollectorSp BasicCollector::create( const KeyMapSp& _key_map_container )
+		KeyCollectorSp BasicCollector::create( const KeyMapSp& _key_map_container )
 		{
-			BasicCollectorSp ret( new ( std::nothrow ) BasicCollector( _key_map_container ) );
-
+			KeyCollectorSp ret( new ( std::nothrow ) BasicCollector( _key_map_container ) );
 			return ret;
 		}
 

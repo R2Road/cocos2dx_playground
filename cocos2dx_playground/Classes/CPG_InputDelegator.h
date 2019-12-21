@@ -8,7 +8,7 @@ namespace CPG
 {
 	namespace Input
 	{
-		using BasicCollectorSp = std::shared_ptr<class BasicCollector>;
+		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
 
 		class Delegator : public cocos2d::Node
 		{
@@ -29,13 +29,13 @@ namespace CPG
 
 		public:
 			inline const bool isActiveKey( const cocos2d::EventKeyboard::KeyCode _keycode ) const { return keycode_collector.isActiveKey(_keycode ); }
-			void addInputCollector( BasicCollectorSp& _new_input_collector );
+			void addInputCollector( KeyCollectorSp& _new_key_collector );
 
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
 			AllowedKeys::Container allowed_keys;
 			KeyCodeCollector keycode_collector;
-			BasicCollectorSp input_collector;
+			KeyCollectorSp input_collector;
 		};
 	}
 }

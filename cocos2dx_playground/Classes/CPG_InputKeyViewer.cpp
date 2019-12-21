@@ -86,12 +86,12 @@ namespace CPG
 			return true;
 		}
 
-		void KeyViewer::setup( const CPG::Input::BasicCollectorSp input_collector )
+		void KeyViewer::setup( const CPG::Input::KeyCollectorSp key_collector )
 		{
 			int v_i = 0;
 			for( auto& v : key_views )
 			{
-				v.sprite->setVisible( input_collector->getKeyStatus( v.key_index ) );
+				v.sprite->setVisible( key_collector->getKeyStatus( v.key_index ) );
 				if( !v.sprite->isVisible() )
 					continue;
 				
