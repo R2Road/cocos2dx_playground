@@ -17,7 +17,6 @@ namespace CPG
 		namespace
 		{
 			const char* string_key_code = "key_code";
-			const char* string_idx = "idx";
 			const bool loadKeyMapJson( const char* _key_map_path, KeyMap::KeyMapContainer& _container )
 			{
 				// load json
@@ -46,15 +45,16 @@ namespace CPG
 				_container.reserve( doc.Size() );
 
 				rapidjson::Value::MemberIterator key_code_itr;
-				rapidjson::Value::MemberIterator idx_itr;
+				int key_idx = 0;
 				for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
 				{
 					key_code_itr = cur->FindMember( string_key_code );
-					idx_itr = cur->FindMember( string_idx );
-					if( key_code_itr == cur->MemberEnd() || idx_itr == cur->MemberEnd() )
+					if( key_code_itr == cur->MemberEnd() )
 						continue;
 
-					_container.emplace_back( static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() ), idx_itr->value.GetInt() );
+					_container.emplace_back( static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() ), key_idx );
+
+					++key_idx;
 				}
 
 				return true;
@@ -73,7 +73,6 @@ namespace CPG
 					rapidjson::Value val;
 					val.SetObject();
 
-					val.AddMember( rapidjson::Value::StringRefType( string_idx ), static_cast<int>( k.idx ), document.GetAllocator() );
 					val.AddMember( rapidjson::Value::StringRefType( string_key_code ), static_cast<int>( k.keycode ),  document.GetAllocator() );
 
 					document.PushBack( val, document.GetAllocator() );
