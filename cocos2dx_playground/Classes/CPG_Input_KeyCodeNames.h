@@ -6,10 +6,10 @@ namespace CPG
 {
 	namespace Input
 	{
-		class KeyNames
+		class KeyCodeNames
 		{
 		private:
-			KeyNames() = delete;
+			KeyCodeNames() = delete;
 
 		public:
 			static const char* get( const cocos2d::EventKeyboard::KeyCode _keycode );

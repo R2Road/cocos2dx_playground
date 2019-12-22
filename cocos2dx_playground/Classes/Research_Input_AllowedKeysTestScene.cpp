@@ -99,7 +99,7 @@ namespace Research
 				{
 					if( input_delegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 					{
-						key_string += CPG::Input::KeyNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
+						key_string += CPG::Input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
 						key_string += "\n";
 					}
 				}

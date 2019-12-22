@@ -49,7 +49,7 @@ namespace Research
 			{
 				auto key_allow_control_root = Node::create();
 				{
-					auto key_allow_label = Label::createWithTTF( CPG::Input::KeyNames::get( _target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_allow_label = Label::createWithTTF( CPG::Input::KeyCodeNames::get( _target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
 					auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
@@ -147,7 +147,7 @@ namespace Research
 			key_allow_controls_root->setPosition( Vec2( origin.x, origin.y ) );
 			scroll_view->addChild( key_allow_controls_root );
 			{
-				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
+				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( CPG::Input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
 				const Size expected_margin_of_key_allow_control( 2.f, 2.f );
 				const Size side_margin( 20.f, 20.f );
 				const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(

@@ -11,7 +11,7 @@ namespace CPG
 {
 	namespace Input
 	{
-		const char* KeyNames::get( const cocos2d::EventKeyboard::KeyCode _keycode )
+		const char* KeyCodeNames::get( const cocos2d::EventKeyboard::KeyCode _keycode )
 		{
 			static const std::array<std::string, AllowedKeys::ContainerSize> temp_container( {
 				"NONE"
