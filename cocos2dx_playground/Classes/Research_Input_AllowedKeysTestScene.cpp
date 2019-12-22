@@ -5,7 +5,7 @@
 #include "RootScene.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_InputTest_KeyboardInputObserver.h"
-#include "CPG_Input_KeyNames.h"
+#include "CPG_Input_KeyCodeNames.h"
 
 USING_NS_CC;
 

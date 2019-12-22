@@ -158,7 +158,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeCollector.cpp" />
-    <ClCompile Include="..\Classes\CPG_Input_KeyNames.cpp" />
+    <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp" />
     <ClCompile Include="..\Classes\CPG_Setting.cpp" />
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp" />
@@ -177,7 +177,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeCollector.h" />
-    <ClInclude Include="..\Classes\CPG_Input_KeyNames.h" />
+    <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h" />
     <ClInclude Include="..\Classes\CPG_Setting.h" />
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h" />
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h" />

@@ -51,9 +51,6 @@
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeCollector.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_KeyNames.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -61,6 +58,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,9 +104,6 @@
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeCollector.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_KeyNames.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -114,6 +111,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

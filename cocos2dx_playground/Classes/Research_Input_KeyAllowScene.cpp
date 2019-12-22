@@ -8,7 +8,7 @@
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"
-#include "CPG_Input_KeyNames.h"
+#include "CPG_Input_KeyCodeNames.h"
 
 #include "RootScene.h"
 
