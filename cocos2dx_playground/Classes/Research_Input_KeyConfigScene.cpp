@@ -6,6 +6,7 @@
 #include "CPG_InputDelegator.h"
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
+#include "CPG_Input_KeyCodeNames.h"
 
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
@@ -22,7 +23,8 @@ namespace Research
 
 			const Size calculateSizeOfKeyConfigControl( CPG::Input::KeyMapConfigHelper& _helper )
 			{
-				const Size key_allow_margin( 8.f, 4.f );
+				const Size control_side_margin( 8.f, 4.f );
+				const float inner_horizontal_margin = 10.f;
 
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
 				Size result_size;
@@ -37,19 +39,30 @@ namespace Research
 						result_size.height = label->getContentSize().height;
 				}
 
+				label->setString( CPG::Input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
+				if( result_size.width < label->getContentSize().width )
+					result_size.width = label->getContentSize().width;
+				if( result_size.height < label->getContentSize().height )
+					result_size.height = label->getContentSize().height;
+
 				return Size(
-					std::ceilf( result_size.width + ( key_allow_margin.width * 2 ) )
-					, std::ceilf( result_size.height + ( key_allow_margin.height * 2 ) )
+					std::ceilf( ( result_size.width * 2 ) + ( control_side_margin.width * 2 ) + inner_horizontal_margin )
+					, std::ceilf( result_size.height + ( control_side_margin.height * 2 ) )
 				);
 			}
 
-			Node* createKeyConfigControl( const Size _control_size, const std::string& _key_name, const int _key_idx, const ui::Widget::ccWidgetTouchCallback& _callback )
+			Node* createKeyConfigControl( const Size _control_size, const std::string& _key_name, const int _key_idx, const EventKeyboard::KeyCode _key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
 			{
 				auto root = Node::create();
 				root->setContentSize( _control_size );
 				{
-					auto label = Label::createWithTTF( _key_name, "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
-					root->addChild( label, 2 );
+					auto key_name_label = Label::createWithTTF( _key_name, "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					key_name_label->setPositionX( -_control_size.width * 0.25f );
+					root->addChild( key_name_label, 2 );
+
+					auto key_code_label = Label::createWithTTF( CPG::Input::KeyCodeNames::get( _key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					key_code_label->setPositionX( _control_size.width * 0.25f );
+					root->addChild( key_code_label, 2 );
 
 					auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
 					button->setTag( static_cast<int>( _key_idx ) );
@@ -132,7 +145,7 @@ namespace Research
 				int count = 0;
 				for( const auto& h : ret->keymap_config_helper.getContainer() )
 				{
-					auto control = createKeyConfigControl( size_of_key_config_control, h.name, h.idx, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
+					auto control = createKeyConfigControl( size_of_key_config_control, h.name, h.idx, h.keycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
 					control->setPosition( Vec2(
 						origin.x + ( visibleSize.width * 0.5f )
 						, origin.y + ( control->getContentSize().height * 0.5f ) + 4.f + ( control->getContentSize().height * count )
