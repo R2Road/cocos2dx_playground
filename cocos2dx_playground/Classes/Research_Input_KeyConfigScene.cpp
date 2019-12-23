@@ -39,7 +39,7 @@ namespace Research
 						result_size.height = label->getContentSize().height;
 				}
 
-				label->setString( CPG::Input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS ) );
+				label->setString( CPG::Input::KeyCodeNames::get_longest() );
 				if( result_size.width < label->getContentSize().width )
 					result_size.width = label->getContentSize().width;
 				if( result_size.height < label->getContentSize().height )

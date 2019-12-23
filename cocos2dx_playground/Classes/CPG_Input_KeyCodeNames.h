@@ -13,6 +13,7 @@ namespace CPG
 
 		public:
 			static const char* get( const cocos2d::EventKeyboard::KeyCode _keycode );
+			static const char* get_longest();
 		};
 	}
 }

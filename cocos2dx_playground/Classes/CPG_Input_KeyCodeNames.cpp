@@ -188,5 +188,10 @@ namespace CPG
 			static const char* dummy = "";
 			return dummy;
 		}
+
+		const char* KeyCodeNames::get_longest()
+		{
+			return CPG::Input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS );
+		}
 	}
 }
