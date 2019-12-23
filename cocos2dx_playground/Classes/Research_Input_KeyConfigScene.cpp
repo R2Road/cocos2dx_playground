@@ -10,6 +10,7 @@
 
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
+#include "ui/UIScrollView.h"
 
 USING_NS_CC;
 
@@ -141,18 +142,47 @@ namespace Research
 				ret->keymap_config_helper.load( "research_input_keyconfigscene_keymap.json" );
 
 				static const Size size_of_key_config_control = calculateSizeOfKeyConfigControl( ret->keymap_config_helper );
+				const Size side_margin( 8.f, 8.f );
+				const float inner_margin = 4.f;
+				const float total_height = (
+					( size_of_key_config_control.height * ret->keymap_config_helper.getContainer().size() )
+					+ ( inner_margin * std::max( 0, static_cast<int>( ret->keymap_config_helper.getContainer().size() ) - 1 )  )
+					+ ( side_margin.height * 2 )
+				);
+				const float start_x = origin.x + ( visibleSize.width * 0.5f );
+				const float start_y = origin.y + side_margin.height + ( size_of_key_config_control.height * 0.5f );
 
-				int count = 0;
-				for( const auto& h : ret->keymap_config_helper.getContainer() )
+				auto scroll_view = ui::ScrollView::create();
+				scroll_view->setDirection( ui::ScrollView::Direction::VERTICAL );
+				scroll_view->setContentSize( visibleSize );
+				ret->addChild( scroll_view );
 				{
-					auto control = createKeyConfigControl( size_of_key_config_control, h.name, h.idx, h.keycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
-					control->setPosition( Vec2(
-						origin.x + ( visibleSize.width * 0.5f )
-						, origin.y + ( control->getContentSize().height * 0.5f ) + 4.f + ( control->getContentSize().height * count )
+					Node* root_node = Node::create();
+					root_node->setContentSize( Size(
+						visibleSize.width
+						, total_height
 					) );
-					ret->addChild( control );
+					root_node->setPositionY(
+						total_height < scroll_view->getContentSize().height
+						? ( scroll_view->getContentSize().height - total_height ) * 0.5f
+						: 0.f
+					);
+					scroll_view->addChild( root_node );
+					scroll_view->setInnerContainerSize( root_node->getContentSize() );
+					{
+						int count = 0;
+						for( const auto& h : ret->keymap_config_helper.getContainer() )
+						{
+							auto control = createKeyConfigControl( size_of_key_config_control, h.name, h.idx, h.keycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
+							control->setPosition( Vec2(
+								start_x
+								, start_y + ( ( control->getContentSize().height + inner_margin ) * count )
+							) );
+							root_node->addChild( control );
 
-					++count;
+							++count;
+						}
+					}
 				}
 			}
 
