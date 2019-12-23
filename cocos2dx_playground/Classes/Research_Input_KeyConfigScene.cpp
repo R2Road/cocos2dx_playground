@@ -57,10 +57,19 @@ namespace Research
 				ret->addChild( input_delegator, 0 );
 
 				auto key_map = CPG::Input::KeyMap::create( "research_input_keyconfigscene_keymap.json" );
-				key_map->save( "research_input_keyconfigscene_keymap.json" );
 
 				ret->input_collector = CPG::Input::BasicCollector::create( key_map );
 				input_delegator->addInputCollector( ret->input_collector );
+			}
+
+			//
+			// Setup Key Config Controls
+			//
+			{
+				ret->keymap_config_helper.load( "research_input_keyconfigscene_keymap.json" );
+
+				for( const auto& h : ret->keymap_config_helper.getContainer() )
+					CCLOG( "%s", h.name );
 			}
 
 

@@ -1,12 +1,12 @@
 [
-  { "key_code":6 ,"desc":"esc" }
-  ,{ "key_code":26 ,"desc":"left_arrow" }
-  ,{ "key_code":27 ,"desc":"right_arrow" }
-  ,{ "key_code":28 ,"desc":"up_arrow" }
-  ,{ "key_code":29 ,"desc":"down_arrow" }
-  ,{ "key_code":124 ,"desc":"a" }
-  ,{ "key_code":125 ,"desc":"b" }
-  ,{ "key_code":142 ,"desc":"s" }
+  { "key_code":6 ,   "name":"menu",    "desc":"esc" }
+  ,{ "key_code":26,  "name":"left",    "desc":"left_arrow" }
+  ,{ "key_code":27,  "name":"right",   "desc":"right_arrow" }
+  ,{ "key_code":28,  "name":"up",      "desc":"up_arrow" }
+  ,{ "key_code":29,  "name":"down",    "desc":"down_arrow" }
+  ,{ "key_code":124, "name":"shot",    "desc":"a" }
+  ,{ "key_code":125, "name":"bomb",    "desc":"b" }
+  ,{ "key_code":142, "name":"dash",    "desc":"s" }
 
   ,{ "desc":"invalid data test" }
 ]

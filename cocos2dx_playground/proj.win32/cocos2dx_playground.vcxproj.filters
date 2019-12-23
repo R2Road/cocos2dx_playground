@@ -63,6 +63,9 @@
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CPG_Input_KeyMapConfigHelper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -114,6 +117,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_Input_KeyMapConfigHelper.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

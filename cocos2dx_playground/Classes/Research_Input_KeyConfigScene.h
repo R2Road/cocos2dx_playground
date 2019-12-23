@@ -2,6 +2,8 @@
 
 #include "cocos2d.h"
 
+#include "CPG_Input_KeyMapConfigHelper.h"
+
 namespace CPG
 {
 	namespace Input
@@ -26,6 +28,7 @@ namespace Research
 
 		private:
 			CPG::Input::KeyCollectorSp input_collector;
+			CPG::Input::KeyMapConfigHelper keymap_config_helper;
 		};
 	}
 }

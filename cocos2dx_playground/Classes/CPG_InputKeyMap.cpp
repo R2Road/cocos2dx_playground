@@ -1,12 +1,9 @@
 #include "CPG_InputKeyMap.h"
 
 #include <utility>
-#include <fstream>
 
 #include "platform\CCFileUtils.h"
 #include "json/document.h"
-#include "json/stringbuffer.h"
-#include "json/writer.h"
 
 USING_NS_CC;
 
@@ -59,35 +56,6 @@ namespace CPG
 
 				return true;
 			}
-
-			const bool saveKeyMapJson( const char* _key_map_path, const KeyMap::KeyMapContainer& _container )
-			{
-				std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-				path.append( _key_map_path );
-
-				rapidjson::Document document;
-				document.SetArray();
-
-				for( const auto k : _container )
-				{
-					rapidjson::Value val;
-					val.SetObject();
-
-					val.AddMember( rapidjson::Value::StringRefType( string_key_code ), static_cast<int>( k.keycode ),  document.GetAllocator() );
-
-					document.PushBack( val, document.GetAllocator() );
-				}
-
-				rapidjson::StringBuffer buffer;
-				rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
-				document.Accept( writer );
-
-				std::ofstream fs( path.c_str(), std::ios::out );
-				fs << buffer.GetString() << std::endl;
-				fs.close();
-
-				return true;
-			}
 		}
 
 		KeyMap::KeyMap( KeyMapContainer&& _container ) : container( std::move( _container ) ) {}
@@ -122,10 +90,6 @@ namespace CPG
 			return ret;
 		}
 
-		void KeyMap::save( const char* _key_map_path ) const
-		{
-			saveKeyMapJson( _key_map_path, container );
-		}
 		const int KeyMap::getKeyIndex( const cocos2d::EventKeyboard::KeyCode _key_code ) const
 		{
 			for( const auto& k : container )
