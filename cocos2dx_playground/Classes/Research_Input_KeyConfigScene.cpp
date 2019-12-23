@@ -20,6 +20,29 @@ namespace Research
 		{
 			const int TAG_KeyConfigControl_BG = 20140416;
 
+			const Size calculateSizeOfKeyConfigControl( CPG::Input::KeyMapConfigHelper& _helper )
+			{
+				const Size key_allow_margin( 8.f, 4.f );
+
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
+				Size result_size;
+				for( const auto& h : _helper.getContainer() )
+				{
+					label->setString( h.name );
+
+					if( result_size.width < label->getContentSize().width )
+						result_size.width = label->getContentSize().width;
+
+					if( result_size.height < label->getContentSize().height )
+						result_size.height = label->getContentSize().height;
+				}
+
+				return Size(
+					std::ceilf( result_size.width + ( key_allow_margin.width * 2 ) )
+					, std::ceilf( result_size.height + ( key_allow_margin.height * 2 ) )
+				);
+			}
+
 			Node* createKeyConfigControl( const Size _control_size, const std::string& _key_name, const int _key_idx, const ui::Widget::ccWidgetTouchCallback& _callback )
 			{
 				auto root = Node::create();
@@ -104,10 +127,12 @@ namespace Research
 			{
 				ret->keymap_config_helper.load( "research_input_keyconfigscene_keymap.json" );
 
+				static const Size size_of_key_config_control = calculateSizeOfKeyConfigControl( ret->keymap_config_helper );
+
 				int count = 0;
 				for( const auto& h : ret->keymap_config_helper.getContainer() )
 				{
-					auto control = createKeyConfigControl( Size( 60, 20 ), h.name, h.idx, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
+					auto control = createKeyConfigControl( size_of_key_config_control, h.name, h.idx, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
 					control->setPosition( Vec2(
 						origin.x + ( visibleSize.width * 0.5f )
 						, origin.y + ( control->getContentSize().height * 0.5f ) + 4.f + ( control->getContentSize().height * count )
