@@ -86,6 +86,12 @@ namespace Research
 			}
 		}
 
+		KeyConfigScene::KeyConfigScene() :
+			input_collector()
+			, keymap_config_helper()
+			, current_button_node( nullptr )
+		{}
+
 		Scene* KeyConfigScene::create()
 		{
 			auto ret = new ( std::nothrow ) KeyConfigScene();

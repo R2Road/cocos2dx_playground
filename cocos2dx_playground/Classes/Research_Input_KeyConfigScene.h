@@ -20,9 +20,10 @@ namespace Research
 	{
 		class KeyConfigScene : public cocos2d::Scene
 		{
-		public:
-			KeyConfigScene() = default;
+		private:
+			KeyConfigScene();
 
+		public:
 			static cocos2d::Scene* create();
 
 			void update( float dt ) override;
