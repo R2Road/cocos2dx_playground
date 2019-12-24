@@ -206,8 +206,8 @@ namespace Research
 			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
 				return;
 
-			auto button = static_cast<ui::Button*>( _sender );
-			auto bg = button->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
+			auto button_node = static_cast<Node*>( _sender );
+			auto bg = button_node->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
 			bg->setVisible( !bg->isVisible() );
 		}
 	}
