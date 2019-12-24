@@ -207,8 +207,21 @@ namespace Research
 				return;
 
 			auto button_node = static_cast<Node*>( _sender );
-			auto bg = button_node->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
-			bg->setVisible( !bg->isVisible() );
+			{
+				auto bg = button_node->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
+				bg->setVisible( !bg->isVisible() );
+			}
+
+			if( current_button_node )
+			{
+				if( current_button_node != button_node )
+				{
+					auto bg = current_button_node->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
+					bg->setVisible( !bg->isVisible() );
+				}
+			}
+
+			current_button_node = button_node;
 		}
 	}
 }

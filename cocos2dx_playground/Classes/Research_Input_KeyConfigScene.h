@@ -33,6 +33,7 @@ namespace Research
 		private:
 			CPG::Input::KeyCollectorSp input_collector;
 			CPG::Input::KeyMapConfigHelper keymap_config_helper;
+			cocos2d::Node* current_button_node;
 		};
 	}
 }
