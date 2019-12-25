@@ -40,6 +40,13 @@ namespace CPG
 
 			return false;
 		}
+		void KeyMapConfigHelper::save( const char* _key_map_file_name )
+		{
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( _key_map_file_name );
+
+			save_Json( path.c_str() );
+		}
 
 		void KeyMapConfigHelper::set( const int _key_index, const cocos2d::EventKeyboard::KeyCode _new_keycode )
 		{
@@ -97,11 +104,8 @@ namespace CPG
 			return true;
 		}
 
-		const bool KeyMapConfigHelper::save_Json( const char* _key_map_path ) const
+		void KeyMapConfigHelper::save_Json( const char* _key_map_path ) const
 		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( _key_map_path );
-
 			rapidjson::Document document;
 			document.SetArray();
 
@@ -111,7 +115,7 @@ namespace CPG
 				val.SetObject();
 
 				val.AddMember( rapidjson::Value::StringRefType( string_key_code ), static_cast<int>( h.keycode ), document.GetAllocator() );
-				val.AddMember( rapidjson::Value::StringRefType( string_name ), h.idx, document.GetAllocator() );
+				val.AddMember( rapidjson::Value::StringRefType( string_name ), rapidjson::Value( h.name.c_str(), document.GetAllocator() ), document.GetAllocator() );
 
 				document.PushBack( val, document.GetAllocator() );
 			}
@@ -120,11 +124,9 @@ namespace CPG
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 			document.Accept( writer );
 
-			std::ofstream fs( path.c_str(), std::ios::out );
+			std::ofstream fs( _key_map_path, std::ios::out );
 			fs << buffer.GetString() << std::endl;
 			fs.close();
-
-			return true;
 		}
 	}
 }

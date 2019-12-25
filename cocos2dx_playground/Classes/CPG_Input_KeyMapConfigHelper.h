@@ -26,12 +26,13 @@ namespace CPG
 			explicit KeyMapConfigHelper();
 
 			const bool load( const char* _key_map_file_name );
+			void save( const char* _key_map_file_name );
 			inline const KeyMapAndName_Container& getContainer() const { return container; }
 			void set( const int _key_index, const cocos2d::EventKeyboard::KeyCode _new_keycode );
 
 		private:
 			const bool load_Json( const char* _key_map_path );
-			const bool save_Json( const char* _key_map_path ) const;
+			void save_Json( const char* _key_map_path ) const;
 
 			KeyMapAndName_Container container;
 		};

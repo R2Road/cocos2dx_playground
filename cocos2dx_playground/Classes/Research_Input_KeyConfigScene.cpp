@@ -130,7 +130,7 @@ namespace Research
 			// exit interface
 			//
 			{
-				auto label = Label::createWithTTF( "Exit", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Save & Exit", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 
 				auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
@@ -285,6 +285,7 @@ namespace Research
 		}
 		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
+			keymap_config_helper.save( "research_input_keyconfigscene_keymap.json" );
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 	}
