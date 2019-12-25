@@ -10,6 +10,8 @@
 #include "CPG_InputTest_KeyboardInputObserver.h"
 #include "CPG_Input_KeyCodeNames.h"
 
+#include "Research_Setting.h"
+
 USING_NS_CC;
 
 namespace Research
@@ -96,10 +98,10 @@ namespace Research
 			//
 			// input
 			//
-			input_delegator = CPG::Input::Delegator::create( "research_input_allowedKeysTest_allowed_keys.json" );
+			input_delegator = CPG::Input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_delegator, 0 );
 
-			input_observer = CPG::InputTest::KeyboardInputObserver::create( "research_input_allowedKeysTest_allowed_keys.json" );
+			input_observer = CPG::InputTest::KeyboardInputObserver::create( Research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_observer, 1 );
 
 

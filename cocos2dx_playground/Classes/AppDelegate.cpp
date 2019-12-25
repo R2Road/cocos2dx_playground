@@ -26,6 +26,7 @@
 #include "RootScene.h"
 
 #include "CPG_Setting.h"
+#include "Research_Setting.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -81,6 +82,7 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
+	Research::Setting::load();
 	const auto my_setting = CPG::Setting::load();
 
     // initialize director

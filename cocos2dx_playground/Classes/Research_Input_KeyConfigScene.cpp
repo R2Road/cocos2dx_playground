@@ -9,6 +9,8 @@
 #include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"
 
+#include "Research_Setting.h"
+
 USING_NS_CC;
 
 namespace Research
@@ -154,8 +156,8 @@ namespace Research
 			// key info
 			//
 			{
-				ret->allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
-				ret->keymap_config_helper.load( "research_input_keyconfigscene_keymap.json" );
+				ret->allowed_keys = CPG::Input::AllowedKeys::load( Research::Setting::getKeyAllowFileName().c_str() );
+				ret->keymap_config_helper.load( Research::Setting::getKeyMapFileName().c_str() );
 			}
 
 			//
@@ -285,7 +287,7 @@ namespace Research
 		}
 		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
-			keymap_config_helper.save( "research_input_keyconfigscene_keymap.json" );
+			keymap_config_helper.save( Research::Setting::getKeyMapFileName().c_str() );
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 	}

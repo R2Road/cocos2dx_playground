@@ -8,6 +8,8 @@
 #include "CPG_InputKeyMap.h"
 #include "CPG_InputKeyViewer.h"
 
+#include "Research_Setting.h"
+
 USING_NS_CC;
 
 namespace Research
@@ -70,7 +72,7 @@ namespace Research
 			//
 			// input
 			//
-			auto input_delegator = CPG::Input::Delegator::create( "research_input_allowedKeysTest_allowed_keys.json" );
+			auto input_delegator = CPG::Input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_delegator, 0 );
 
 			key_map = CPG::Input::KeyMap::get_default();

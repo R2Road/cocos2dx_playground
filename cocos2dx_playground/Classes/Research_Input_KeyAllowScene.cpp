@@ -11,6 +11,7 @@
 #include "CPG_Input_KeyCodeNames.h"
 
 #include "RootScene.h"
+#include "Research_Setting.h"
 
 USING_NS_CC;
 
@@ -131,7 +132,7 @@ namespace Research
 			//
 			// Load Allowed Keys
 			//
-			allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
+			allowed_keys = CPG::Input::AllowedKeys::load( Research::Setting::getKeyAllowFileName().c_str() );
 
 
 
@@ -230,7 +231,7 @@ namespace Research
 
 		void KeyAllowScene::updateForExit( float /*_dt*/ )
 		{
-			CPG::Input::AllowedKeys::save( allowed_keys, "research_input_allowedKeysTest_allowed_keys.json" );
+			CPG::Input::AllowedKeys::save( allowed_keys, Research::Setting::getKeyAllowFileName().c_str() );
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 		void KeyAllowScene::onKeyAllowControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
