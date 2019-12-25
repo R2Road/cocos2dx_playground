@@ -3,9 +3,6 @@
 #include <sstream>
 
 #include "RootScene.h"
-#include "CPG_InputDelegator.h"
-#include "CPG_Input_BasicCollector.h"
-#include "CPG_InputKeyMap.h"
 #include "CPG_Input_KeyCodeNames.h"
 
 #include "ui/UIButton.h"
@@ -87,8 +84,7 @@ namespace Research
 		}
 
 		KeyConfigScene::KeyConfigScene() :
-			input_collector()
-			, keymap_config_helper()
+			keymap_config_helper()
 			, current_button_node( nullptr )
 		{}
 
@@ -113,9 +109,6 @@ namespace Research
 				ss << "+ Input : Key Config Scene";
 				ss << "\n";
 				ss << "\n";
-				ss << "[ESC] : Exit";
-				ss << "\n";
-				ss << "\n";
 				ss << "<Config File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath();
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
@@ -129,24 +122,40 @@ namespace Research
 			}
 
 			//
-			// input
+			// exit interface
 			//
 			{
-				auto input_delegator = CPG::Input::Delegator::create( "research_input_allowedKeysTest_allowed_keys.json" );
-				ret->addChild( input_delegator, 0 );
+				auto label = Label::createWithTTF( "Exit", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				label->setColor( Color3B::GREEN );
 
-				auto key_map = CPG::Input::KeyMap::create( "research_input_keyconfigscene_keymap.json" );
+				auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
+				button->setColor( Color3B::GREEN );
+				button->getRendererNormal()->getTexture()->setAliasTexParameters();
+				button->getRendererClicked()->getTexture()->setAliasTexParameters();
+				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
+				button->setScale9Enabled( true );
+				button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
+				button->addTouchEventListener( CC_CALLBACK_2( KeyConfigScene::onExit, ret ) );
+				ret->addChild( button, 9999 );
+				button->setTitleLabel( label );
 
-				ret->input_collector = CPG::Input::BasicCollector::create( key_map );
-				input_delegator->addInputCollector( ret->input_collector );
+				button->setPosition( Vec2(
+					origin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
+					, origin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
+				) );
+			}
+
+			//
+			// key map
+			//
+			{
+				ret->keymap_config_helper.load( "research_input_keyconfigscene_keymap.json" );
 			}
 
 			//
 			// Setup Key Config Controls
 			//
 			{
-				ret->keymap_config_helper.load( "research_input_keyconfigscene_keymap.json" );
-
 				static const Size size_of_key_config_control = calculateSizeOfKeyConfigControl( ret->keymap_config_helper );
 				const Size side_margin( 8.f, 8.f );
 				const float inner_margin = 4.f;
@@ -199,14 +208,6 @@ namespace Research
 			return ret;
 		}
 
-		void KeyConfigScene::update( float dt )
-		{
-			if( input_collector->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
-			{
-				Director::getInstance()->replaceScene( RootScene::create() );
-			}
-		}
-
 		void KeyConfigScene::onKeyConfigControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
@@ -230,6 +231,20 @@ namespace Research
 				current_button_node = button_node;
 			else
 				current_button_node = nullptr;
+		}
+
+
+		void KeyConfigScene::onExit( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+				return;
+
+			if( !isScheduled( schedule_selector( KeyConfigScene::update_forExit ) ) )
+				scheduleOnce( schedule_selector( KeyConfigScene::update_forExit ), 0.f );
+		}
+		void KeyConfigScene::update_forExit( float dt )
+		{
+			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 	}
 }

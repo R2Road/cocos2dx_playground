@@ -5,15 +5,6 @@
 
 #include "CPG_Input_KeyMapConfigHelper.h"
 
-namespace CPG
-{
-	namespace Input
-	{
-		using KeyMapSp = std::shared_ptr<class KeyMap>;
-		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
-	}
-}
-
 namespace Research
 {
 	namespace Input
@@ -26,13 +17,13 @@ namespace Research
 		public:
 			static cocos2d::Scene* create();
 
-			void update( float dt ) override;
-
 		private:
 			void onKeyConfigControl( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
 
+			void onExit( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
+			void update_forExit( float dt );
+
 		private:
-			CPG::Input::KeyCollectorSp input_collector;
 			CPG::Input::KeyMapConfigHelper keymap_config_helper;
 			cocos2d::Node* current_button_node;
 		};
