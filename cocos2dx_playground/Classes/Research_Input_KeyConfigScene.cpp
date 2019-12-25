@@ -136,7 +136,7 @@ namespace Research
 				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 				button->setScale9Enabled( true );
 				button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
-				button->addTouchEventListener( CC_CALLBACK_2( KeyConfigScene::onExit, ret ) );
+				button->addTouchEventListener( CC_CALLBACK_2( KeyConfigScene::onExitButton, ret ) );
 				ret->addChild( button, 9999 );
 				button->setTitleLabel( label );
 
@@ -236,7 +236,7 @@ namespace Research
 		}
 
 
-		void KeyConfigScene::onExit( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
+		void KeyConfigScene::onExitButton( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
 				return;

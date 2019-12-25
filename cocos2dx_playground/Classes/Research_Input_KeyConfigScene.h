@@ -21,7 +21,7 @@ namespace Research
 		private:
 			void onKeyConfigControl( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
 
-			void onExit( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
+			void onExitButton( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
 			void update_forExit( float dt );
 
 		private:
