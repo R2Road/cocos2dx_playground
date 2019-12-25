@@ -18,6 +18,7 @@ namespace Research
 		namespace
 		{
 			const int TAG_KeyConfigControl_BG = 20140416;
+			const int TAG_KeyCode_Label = 20160528;
 
 			const Size calculateSizeOfKeyConfigControl( CPG::Input::KeyMapConfigHelper& _helper )
 			{
@@ -59,6 +60,7 @@ namespace Research
 					root->addChild( key_name_label, 2 );
 
 					auto key_code_label = Label::createWithTTF( CPG::Input::KeyCodeNames::get( _key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					key_code_label->setTag( TAG_KeyCode_Label );
 					key_code_label->setPositionX( _control_size.width * 0.25f );
 					root->addChild( key_code_label, 2 );
 
@@ -260,10 +262,16 @@ namespace Research
 
 		void KeyConfigScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
 		{
+			if( !current_button_node )
+				return;
+
 			if( !allowed_keys[static_cast<std::size_t>( keycode )] )
 				return;
 
-			CCLOG( "key input %d", keycode );
+			keymap_config_helper.set( current_button_node->getTag(), keycode );
+
+			auto label = static_cast<Label*>( current_button_node->getParent()->getChildByTag( TAG_KeyCode_Label ) );
+			label->setString( CPG::Input::KeyCodeNames::get( keycode ) );
 		}
 
 

@@ -41,6 +41,14 @@ namespace CPG
 			return false;
 		}
 
+		void KeyMapConfigHelper::set( const int _key_index, const cocos2d::EventKeyboard::KeyCode _new_keycode )
+		{
+			if( 0 > _key_index || _key_index >= container.size() )
+				return;
+
+			container[static_cast<std::size_t>( _key_index )].keycode = _new_keycode;
+		}
+
 		const bool KeyMapConfigHelper::load_Json( const char* _key_map_path )
 		{
 			// load json

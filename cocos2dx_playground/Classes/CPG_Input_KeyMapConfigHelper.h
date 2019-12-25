@@ -27,6 +27,7 @@ namespace CPG
 
 			const bool load( const char* _key_map_file_name );
 			inline const KeyMapAndName_Container& getContainer() const { return container; }
+			void set( const int _key_index, const cocos2d::EventKeyboard::KeyCode _new_keycode );
 
 		private:
 			const bool load_Json( const char* _key_map_path );
