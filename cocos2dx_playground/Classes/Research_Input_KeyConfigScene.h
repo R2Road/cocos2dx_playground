@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "ui/UIWidget.h"
 
+#include "CPG_Input_AllowedKeys.h"
 #include "CPG_Input_KeyMapConfigHelper.h"
 
 namespace Research
@@ -24,6 +25,7 @@ namespace Research
 			void update_forExit( float dt );
 
 		private:
+			CPG::Input::AllowedKeys::Container allowed_keys;
 			CPG::Input::KeyMapConfigHelper keymap_config_helper;
 			cocos2d::Node* current_button_node;
 		};

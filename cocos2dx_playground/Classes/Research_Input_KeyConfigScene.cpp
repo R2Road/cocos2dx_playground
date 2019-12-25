@@ -84,7 +84,8 @@ namespace Research
 		}
 
 		KeyConfigScene::KeyConfigScene() :
-			keymap_config_helper()
+			allowed_keys()
+			, keymap_config_helper()
 			, current_button_node( nullptr )
 		{}
 
@@ -146,9 +147,10 @@ namespace Research
 			}
 
 			//
-			// key map
+			// key info
 			//
 			{
+				ret->allowed_keys = CPG::Input::AllowedKeys::load( "research_input_allowedKeysTest_allowed_keys.json" );
 				ret->keymap_config_helper.load( "research_input_keyconfigscene_keymap.json" );
 			}
 
