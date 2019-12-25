@@ -24,7 +24,7 @@ namespace Research
 			const Size calculateSizeOfKeyAllowControl( const char* _str )
 			{
 				const Size key_allow_margin( 8.f, 4.f );
-				auto temp = Label::createWithTTF( "RIGHT_PARENTHESIS", "fonts/arial.ttf", 10 );
+				auto temp = Label::createWithTTF( _str, "fonts/arial.ttf", 10 );
 				return Size(
 					std::ceilf( temp->getContentSize().width + ( key_allow_margin.width * 2 ) )
 					, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
