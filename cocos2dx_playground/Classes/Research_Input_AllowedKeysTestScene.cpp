@@ -2,6 +2,9 @@
 
 #include <sstream>
 
+#include "ui/UIButton.h"
+#include "ui/UIScale9Sprite.h"
+
 #include "RootScene.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_InputTest_KeyboardInputObserver.h"
@@ -47,20 +50,47 @@ namespace Research
 			auto visibleSize = Director::getInstance()->getVisibleSize();
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-			std::stringstream ss;
-			ss << "+ Allowed Keys Test Scene";
-			ss << "\n";
-			ss << "\n";
-			ss << "[ESC] : ...";
+			//
+			// summury
+			//
+			{
+				std::stringstream ss;
+				ss << "+ Allowed Keys Test Scene";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-			label->setColor( Color3B::GREEN );
-			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPosition( Vec2(
-				origin.x
-				, origin.y + visibleSize.height
-			) );
-			addChild( label, 9999 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+				label->setPosition( Vec2(
+					origin.x
+					, origin.y + visibleSize.height
+				) );
+				addChild( label, 9999 );
+			}
+
+
+			//
+			// exit interface
+			//
+			{
+				auto label = Label::createWithTTF( "Exit", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				label->setColor( Color3B::GREEN );
+
+				auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
+				button->setColor( Color3B::GREEN );
+				button->getRendererNormal()->getTexture()->setAliasTexParameters();
+				button->getRendererClicked()->getTexture()->setAliasTexParameters();
+				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
+				button->setScale9Enabled( true );
+				button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
+				button->addTouchEventListener( CC_CALLBACK_2( AllowedKeysTestScene::onExit, this ) );
+				addChild( button, 9999 );
+				button->setTitleLabel( label );
+
+				button->setPosition( Vec2(
+					origin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
+					, origin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
+				) );
+			}
 
 
 			//
@@ -89,11 +119,6 @@ namespace Research
 		{
 			if( input_observer->inputFound() )
 			{
-				if( input_delegator->isActiveKey( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
-				{
-					Director::getInstance()->replaceScene( RootScene::create() );
-				}
-
 				key_string.clear();
 				for( std::size_t cur = 0; cur < CPG::Input::AllowedKeys::ContainerSize; ++cur )
 				{
@@ -107,6 +132,20 @@ namespace Research
 			}
 
 			Scene::update( dt );
+		}
+
+
+		void AllowedKeysTestScene::onExit( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+				return;
+
+			if( !isScheduled( schedule_selector( AllowedKeysTestScene::update_forExit ) ) )
+				scheduleOnce( schedule_selector( AllowedKeysTestScene::update_forExit ), 0.f );
+		}
+		void AllowedKeysTestScene::update_forExit( float dt )
+		{
+			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 	}
 }
