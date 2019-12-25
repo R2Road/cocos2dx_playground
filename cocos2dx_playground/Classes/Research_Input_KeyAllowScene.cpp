@@ -228,7 +228,7 @@ namespace Research
 			Node::onExit();
 		}
 
-		void KeyAllowScene::updateForExit( float _dt )
+		void KeyAllowScene::updateForExit( float /*_dt*/ )
 		{
 			CPG::Input::AllowedKeys::save( allowed_keys, "research_input_allowedKeysTest_allowed_keys.json" );
 			Director::getInstance()->replaceScene( RootScene::create() );

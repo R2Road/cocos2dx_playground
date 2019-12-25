@@ -50,7 +50,7 @@ namespace CPG
 
 			Node::update( _dt );
 		}
-		void Delegator::post_update( float _dt )
+		void Delegator::post_update( float /*_dt*/ )
 		{
 			if( input_collector )
 				input_collector->update_forHistory();

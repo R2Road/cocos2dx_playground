@@ -267,7 +267,7 @@ namespace Research
 		}
 
 
-		void KeyConfigScene::onExitButton( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
+		void KeyConfigScene::onExitButton( Ref* /*_sender*/, ui::Widget::TouchEventType _touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
 				return;
@@ -275,7 +275,7 @@ namespace Research
 			if( !isScheduled( schedule_selector( KeyConfigScene::update_forExit ) ) )
 				scheduleOnce( schedule_selector( KeyConfigScene::update_forExit ), 0.f );
 		}
-		void KeyConfigScene::update_forExit( float dt )
+		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}

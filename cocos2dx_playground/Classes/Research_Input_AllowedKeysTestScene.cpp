@@ -135,7 +135,7 @@ namespace Research
 		}
 
 
-		void AllowedKeysTestScene::onExit( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
+		void AllowedKeysTestScene::onExit( Ref* /*_sender*/, ui::Widget::TouchEventType _touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
 				return;
@@ -143,7 +143,7 @@ namespace Research
 			if( !isScheduled( schedule_selector( AllowedKeysTestScene::update_forExit ) ) )
 				scheduleOnce( schedule_selector( AllowedKeysTestScene::update_forExit ), 0.f );
 		}
-		void AllowedKeysTestScene::update_forExit( float dt )
+		void AllowedKeysTestScene::update_forExit( float /*dt*/ )
 		{
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
