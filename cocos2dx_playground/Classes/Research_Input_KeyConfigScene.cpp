@@ -84,7 +84,9 @@ namespace Research
 		}
 
 		KeyConfigScene::KeyConfigScene() :
-			allowed_keys()
+			keyboard_listener( nullptr )
+
+			, allowed_keys()
 			, keymap_config_helper()
 			, current_button_node( nullptr )
 		{}
@@ -210,6 +212,26 @@ namespace Research
 			return ret;
 		}
 
+
+		void KeyConfigScene::onEnter()
+		{
+			Scene::onEnter();
+
+			keyboard_listener = EventListenerKeyboard::create();
+			keyboard_listener->onKeyReleased = CC_CALLBACK_2( KeyConfigScene::onKeyReleased, this );
+			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
+		}
+		void KeyConfigScene::onExit()
+		{
+			if( keyboard_listener )
+			{
+				getEventDispatcher()->removeEventListener( keyboard_listener );
+				keyboard_listener = nullptr;
+			}
+			Node::onExit();
+		}
+
+
 		void KeyConfigScene::onKeyConfigControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
@@ -233,6 +255,15 @@ namespace Research
 				current_button_node = button_node;
 			else
 				current_button_node = nullptr;
+		}
+
+
+		void KeyConfigScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
+		{
+			if( !allowed_keys[static_cast<std::size_t>( keycode )] )
+				return;
+
+			CCLOG( "key input %d", keycode );
 		}
 
 
