@@ -10,6 +10,12 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene">
+      <UniqueIdentifier>{af770cbc-a9e3-4e6e-953b-11b73854268a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{38d6d0ea-b379-4bdf-8de1-4eb67b03947a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,53 +27,53 @@
     <ClCompile Include="..\Classes\CPG_Setting.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\RootScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputDelegator.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputKeyViewer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyboardTestScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_AllowedKeys.cpp">
+    <ClCompile Include="..\Classes\Research_Setting.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_KeyCodeCollector.cpp">
-      <Filter>src</Filter>
+      <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
-      <Filter>src</Filter>
+      <Filter>src\scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserver.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\Research_Input_KeyboardTestScene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_Input_AllowedKeys.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp">
-      <Filter>src</Filter>
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_Input_KeyCodeCollector.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp">
-      <Filter>src</Filter>
+      <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CPG_Input_KeyMapConfigHelper.cpp">
-      <Filter>src</Filter>
+      <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Setting.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\CPG_InputDelegator.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_InputKeyViewer.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserver.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RootScene.cpp">
+      <Filter>src\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,53 +86,53 @@
     <ClInclude Include="..\Classes\CPG_Setting.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\RootScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputDelegator.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputKeyMap.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputKeyViewer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyboardTestScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_AllowedKeys.h">
+    <ClInclude Include="..\Classes\Research_Setting.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_KeyCodeCollector.h">
-      <Filter>src</Filter>
+      <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
-      <Filter>src</Filter>
+      <Filter>src\scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserver.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\Research_Input_KeyboardTestScene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_Input_AllowedKeys.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h">
+      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h">
-      <Filter>src</Filter>
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_Input_KeyCodeCollector.h">
+      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h">
-      <Filter>src</Filter>
+      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_KeyMapConfigHelper.h">
-      <Filter>src</Filter>
+      <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Setting.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\CPG_InputDelegator.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_InputKeyMap.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_InputKeyViewer.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserver.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RootScene.h">
+      <Filter>src\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
