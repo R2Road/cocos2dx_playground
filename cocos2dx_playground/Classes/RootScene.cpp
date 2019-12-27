@@ -22,9 +22,6 @@ Scene* RootScene::create()
 		return nullptr;
 	}
 
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( "textures/texture_001.plist", "textures/texture_001.png" );
-	Director::getInstance()->getTextureCache()->getTextureForKey( "textures/texture_001.png" )->setAliasTexParameters();
-
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 

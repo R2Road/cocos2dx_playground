@@ -23,10 +23,9 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
-#include "RootScene.h"
+#include "EntryScene.h"
 
 #include "CPG_Setting.h"
-#include "Research_Setting.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -82,7 +81,6 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
-	Research::Setting::load();
 	const auto my_setting = CPG::Setting::load();
 
     // initialize director
@@ -125,7 +123,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = RootScene::create();
+    auto scene = EntryScene::create();
 
     // run
     director->runWithScene(scene);
