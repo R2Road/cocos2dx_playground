@@ -41,19 +41,19 @@ namespace CPG
 				char* sprite_path;
 			};
 			const std::vector<KeyViewConfig> key_view_config_list( {
-				{ cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW, "textures/keys/arrow_u.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "textures/keys/arrow_d.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "textures/keys/arrow_l.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "textures/keys/arrow_r.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_A, "textures/keys/key_a.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_B, "textures/keys/key_b.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_S, "textures/keys/key_s.png" }
+				{ cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW, "arrow_u.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "arrow_d.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "arrow_l.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "arrow_r.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_A, "key_a.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_B, "key_b.png" }
+				,{ cocos2d::EventKeyboard::KeyCode::KEY_S, "key_s.png" }
 			} );
 
 			key_views.reserve( key_view_config_list.size() );
 			for( const auto& a : key_view_config_list )
 			{
-				auto arrow_sprite = Sprite::create( a.sprite_path );
+				auto arrow_sprite = Sprite::createWithSpriteFrameName( a.sprite_path );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				addChild( arrow_sprite );
 
