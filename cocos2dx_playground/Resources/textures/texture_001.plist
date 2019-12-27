@@ -60,7 +60,112 @@
                 <key>spriteSourceSize</key>
                 <string>{32,32}</string>
                 <key>textureRect</key>
-                <string>{{2,36},{32,32}}</string>
+                <string>{{104,2},{32,32}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>checkbox_01_bg.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{64,64}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{138,2},{64,64}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>checkbox_01_cross.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{64,64}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{2,68},{64,64}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>checkbox_cross.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{11,11}</string>
+                <key>spriteSourceSize</key>
+                <string>{11,11}</string>
+                <key>textureRect</key>
+                <string>{{68,68},{11,11}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>checkbox_normal.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{11,11}</string>
+                <key>spriteSourceSize</key>
+                <string>{11,11}</string>
+                <key>textureRect</key>
+                <string>{{81,68},{11,11}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>guide_01_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{64,64}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{138,2},{64,64}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>guide_01_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{64,64}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{94,68},{64,64}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>guide_01_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{64,64}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{2,68},{64,64}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -75,7 +180,7 @@
                 <key>spriteSourceSize</key>
                 <string>{32,32}</string>
                 <key>textureRect</key>
-                <string>{{36,36},{32,32}}</string>
+                <string>{{160,68},{32,32}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -90,7 +195,7 @@
                 <key>spriteSourceSize</key>
                 <string>{32,32}</string>
                 <key>textureRect</key>
-                <string>{{70,36},{32,32}}</string>
+                <string>{{194,68},{32,32}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -105,7 +210,7 @@
                 <key>spriteSourceSize</key>
                 <string>{32,32}</string>
                 <key>textureRect</key>
-                <string>{{2,70},{32,32}}</string>
+                <string>{{2,134},{32,32}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -120,7 +225,7 @@
                 <key>spriteSourceSize</key>
                 <string>{32,32}</string>
                 <key>textureRect</key>
-                <string>{{36,70},{32,32}}</string>
+                <string>{{36,134},{32,32}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -136,9 +241,9 @@
             <key>realTextureFileName</key>
             <string>texture_001.png</string>
             <key>size</key>
-            <string>{128,128}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c2bd6d3d65ec1a3d53a0743621a2814c:7a83cb8818fdecfec2dea524d0d53418:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:62888a5d2a1dc1b2c43fb4c00fc63280:78bb4622f1c9901207bb53b4a44cf4fe:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>

@@ -77,7 +77,7 @@ namespace Research
 				auto label = Label::createWithTTF( "Exit", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 
-				auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
+				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_1.png", ui::Widget::TextureResType::PLIST );
 				button->setColor( Color3B::GREEN );
 				button->getRendererNormal()->getTexture()->setAliasTexParameters();
 				button->getRendererClicked()->getTexture()->setAliasTexParameters();

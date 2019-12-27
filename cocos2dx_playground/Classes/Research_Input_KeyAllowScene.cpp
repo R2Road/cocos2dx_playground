@@ -53,7 +53,7 @@ namespace Research
 					auto key_allow_label = Label::createWithTTF( CPG::Input::KeyCodeNames::get( _target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
-					auto button = ui::Button::create( "textures/ui/guide_01_1.png", "textures/ui/guide_01_2.png", "textures/ui/guide_01_1.png", ui::Widget::TextureResType::LOCAL );
+					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_1.png", ui::Widget::TextureResType::PLIST );
 					button->setTag( static_cast<int>( _target_key_code ) );
 					button->getRendererNormal()->getTexture()->setAliasTexParameters();
 					button->getRendererClicked()->getTexture()->setAliasTexParameters();
@@ -63,7 +63,7 @@ namespace Research
 					button->addTouchEventListener( _callback );
 					key_allow_control_root->addChild( button, 1 );
 
-					auto indicator = ui::Scale9Sprite::create( "textures/ui/guide_01_3.png" );
+					auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 					indicator->setTag( TAG_KeyAllowControl_BG );
 					indicator->setVisible( false );
 					indicator->setContentSize( _control_size );
