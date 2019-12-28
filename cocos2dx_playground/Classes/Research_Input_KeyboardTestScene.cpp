@@ -75,7 +75,7 @@ namespace Research
 			auto input_delegator = CPG::Input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_delegator, 0 );
 
-			key_map = CPG::Input::KeyMap::get_default();
+			key_map = CPG::Input::KeyMap::create( Research::Setting::getKeyMapFileName().c_str() );
 
 			input_collector = CPG::Input::BasicCollector::create( key_map );
 			input_delegator->addInputCollector( input_collector );
