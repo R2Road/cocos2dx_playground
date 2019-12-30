@@ -18,6 +18,7 @@ namespace CPG
 		{
 			const char* string_key_code = "key_code";
 			const char* string_name = "name";
+			const char* string_sprite_frame = "sprite_frame";
 			const char* string_empty = "o_o";
 		}
 
@@ -90,17 +91,19 @@ namespace CPG
 			container.reserve( doc.Size() );
 
 			rapidjson::Value::MemberIterator name_itr;
+			rapidjson::Value::MemberIterator sprite_frame_itr;
 			int key_idx = 0;
 			for( auto cur = doc.Begin(); cur != doc.End(); ++cur, ++key_idx )
 			{
 				name_itr = cur->FindMember( string_name );
-				if( name_itr == cur->MemberEnd() )
-				{
-					container.emplace_back( "-", key_idx, EventKeyboard::KeyCode::KEY_NONE );
-					continue;
-				}
+				sprite_frame_itr = cur->FindMember( string_sprite_frame );
 
-				container.emplace_back( name_itr->value.GetString(), key_idx, EventKeyboard::KeyCode::KEY_NONE );
+				container.emplace_back(
+					( name_itr == cur->MemberEnd() ?  "-" : name_itr->value.GetString() )
+					, key_idx
+					, EventKeyboard::KeyCode::KEY_NONE
+					, ( sprite_frame_itr == cur->MemberEnd() ? "" : sprite_frame_itr->value.GetString() )
+				);
 			}
 
 			return true;

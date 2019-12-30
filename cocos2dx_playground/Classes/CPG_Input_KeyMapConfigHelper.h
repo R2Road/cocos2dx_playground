@@ -14,11 +14,17 @@ namespace CPG
 		public:
 			struct KeyMapAndNamePiece
 			{
-				KeyMapAndNamePiece( const char* _name, const int _idx, const cocos2d::EventKeyboard::KeyCode _keycode ) : name( _name ), idx( _idx ), keycode( _keycode ) {}
+				KeyMapAndNamePiece( const char* _name, const int _idx, const cocos2d::EventKeyboard::KeyCode _keycode, const char* _sprite_frame_name ) :
+					name( _name )
+					, idx( _idx )
+					, keycode( _keycode )
+					, sprite_frame_name( _sprite_frame_name )
+				{}
 
 				const std::string name;
 				const int idx;
 				cocos2d::EventKeyboard::KeyCode keycode;
+				const std::string sprite_frame_name;
 			};
 			using KeyMapAndName_Container = std::vector<KeyMapAndNamePiece>;
 

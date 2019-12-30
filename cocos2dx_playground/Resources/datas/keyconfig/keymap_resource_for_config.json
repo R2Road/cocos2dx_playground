@@ -1,12 +1,12 @@
 [
-  { "name":"menu",    "desc":"esc" }
-  ,{ "name":"left",    "desc":"left_arrow" }
-  ,{ "name":"right",   "desc":"right_arrow" }
-  ,{ "name":"up",      "desc":"up_arrow" }
-  ,{ "name":"down",    "desc":"down_arrow" }
-  ,{ "name":"shot",    "desc":"attack" }
-  ,{ "name":"bomb",    "desc":"sub_weapon " }
-  ,{ "name":"dash",    "desc":"dash" }
+  { "name":"menu"     ,"sprite_frame":"key_a.png"     ,"desc":"esc"         }
+  ,{ "name":"left"    ,"sprite_frame":"arrow_l.png"   ,"desc":"left_arrow"  }
+  ,{ "name":"right"   ,"sprite_frame":"arrow_r.png"   ,"desc":"right_arrow" }
+  ,{ "name":"up"      ,"sprite_frame":"arrow_u.png"   ,"desc":"up_arrow"    }
+  ,{ "name":"down"    ,"sprite_frame":"arrow_d.png"   ,"desc":"down_arrow"  }
+  ,{ "name":"shot"    ,"sprite_frame":"key_a.png"     ,"desc":"attack"      }
+  ,{ "name":"bomb"    ,"sprite_frame":"key_b.png"     ,"desc":"sub_weapon " }
+  ,{ "name":"dash"    ,"sprite_frame":"key_s.png"     ,"desc":"dash"        }
 
   ,{ "desc":"invalid data test" }
 ]
