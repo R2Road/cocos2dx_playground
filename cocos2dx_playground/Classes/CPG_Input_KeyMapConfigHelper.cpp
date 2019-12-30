@@ -86,19 +86,23 @@ namespace CPG
 			rapidjson::Value::MemberIterator name_itr;
 			int key_idx = 0;
 			rapidjson::Value::MemberIterator key_code_itr;
-			for( auto cur = doc.Begin(); cur != doc.End(); ++cur )
+			for( auto cur = doc.Begin(); cur != doc.End(); ++cur, ++key_idx )
 			{
 				name_itr = cur->FindMember( string_name );
 				if( name_itr == cur->MemberEnd() )
+				{
+					container.emplace_back( "-", key_idx, EventKeyboard::KeyCode::KEY_NONE );
 					continue;
+				}
 
 				key_code_itr = cur->FindMember( string_key_code );
 				if( key_code_itr == cur->MemberEnd() )
+				{
+					container.emplace_back( name_itr->value.GetString(), key_idx, EventKeyboard::KeyCode::KEY_NONE );
 					continue;
+				}
 
 				container.emplace_back( name_itr->value.GetString(), key_idx, static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() ) );
-
-				++key_idx;
 			}
 
 			return true;
