@@ -1,0 +1,12 @@
+[
+  { "name":"menu",    "desc":"esc" }
+  ,{ "name":"left",    "desc":"left_arrow" }
+  ,{ "name":"right",   "desc":"right_arrow" }
+  ,{ "name":"up",      "desc":"up_arrow" }
+  ,{ "name":"down",    "desc":"down_arrow" }
+  ,{ "name":"shot",    "desc":"attack" }
+  ,{ "name":"bomb",    "desc":"sub_weapon " }
+  ,{ "name":"dash",    "desc":"dash" }
+
+  ,{ "desc":"invalid data test" }
+]

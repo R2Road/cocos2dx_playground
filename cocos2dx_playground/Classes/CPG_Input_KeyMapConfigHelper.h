@@ -31,6 +31,7 @@ namespace CPG
 			void set( const int _key_index, const cocos2d::EventKeyboard::KeyCode _new_keycode );
 
 		private:
+			const bool load_Resource();
 			const bool load_Json( const char* _key_map_path );
 			void save_Json( const char* _key_map_path ) const;
 
