@@ -84,14 +84,14 @@ namespace Research
 			//
 			// key viewer
 			//
-			CPG::Input::KeyViewer* key_viewer = nullptr;
+			CPG::InputTest::KeyViewer* key_viewer = nullptr;
 			key_viewer_start_position.set(
 				origin.x + ( visibleSize.width * 0.5f )
 				, origin.y + ( visibleSize.height * 0.1f )
 			);
 			for( int i = 0; i < key_viewer_count; ++i )
 			{
-				key_viewer = CPG::Input::KeyViewer::create( key_map );
+				key_viewer = CPG::InputTest::KeyViewer::create( key_map );
 				key_viewer->setPosition( key_viewer_start_position );
 				key_viewer->setVisible( false );
 				addChild( key_viewer, 1 );

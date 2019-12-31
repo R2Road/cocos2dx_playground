@@ -7,7 +7,7 @@ USING_NS_CC;
 
 namespace CPG
 {
-	namespace Input
+	namespace InputTest
 	{
 		const float view_margin = 4.f;
 
@@ -17,7 +17,7 @@ namespace CPG
 			, view_size()
 		{}
 
-		KeyViewer* KeyViewer::create( const KeyMapSp& key_map )
+		KeyViewer* KeyViewer::create( const Input::KeyMapSp& key_map )
 		{
 			auto ret = new ( std::nothrow ) KeyViewer();
 			if( !ret || !ret->init( key_map ) )
@@ -31,7 +31,7 @@ namespace CPG
 			return ret;
 		}
 
-		bool KeyViewer::init( const KeyMapSp& key_map )
+		bool KeyViewer::init( const Input::KeyMapSp& key_map )
 		{
 			Node::init();
 

@@ -10,7 +10,10 @@ namespace CPG
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
 		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
+	}
 
+	namespace InputTest
+	{
 		class KeyViewer;
 	}
 }
@@ -32,7 +35,7 @@ namespace Research
 		private:
 			CPG::Input::KeyMapSp key_map;
 			CPG::Input::KeyCollectorSp input_collector;
-			std::list<CPG::Input::KeyViewer*> key_viewer_list;
+			std::list<CPG::InputTest::KeyViewer*> key_viewer_list;
 			cocos2d::Vec2 key_viewer_start_position;
 			cocos2d::Vec2 key_viewer_end_position;
 		};

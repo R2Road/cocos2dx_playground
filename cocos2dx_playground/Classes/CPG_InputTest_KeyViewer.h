@@ -10,16 +10,19 @@ namespace CPG
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
 		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
+	}
 
+	namespace InputTest
+	{
 		class KeyViewer : public cocos2d::Node
 		{
 		private:
 			KeyViewer();
 
 		public:
-			static KeyViewer* create( const KeyMapSp& key_map );
+			static KeyViewer* create( const Input::KeyMapSp& key_map );
 
-			bool init( const KeyMapSp& key_map );
+			bool init( const Input::KeyMapSp& key_map );
 
 			void setup( const CPG::Input::KeyCollectorSp key_collector );
 
