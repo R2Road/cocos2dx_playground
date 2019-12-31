@@ -3,6 +3,7 @@
 #include <list>
 
 #include "cocos2d.h"
+#include "ui/UIWidget.h"
 
 namespace CPG
 {
@@ -31,6 +32,10 @@ namespace Research
 
 			bool init() override;
 			void update( float dt ) override;
+
+		private:
+			void onExitButton( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
+			void update_forExit( float dt );
 
 		private:
 			CPG::Input::KeyMapSp key_map;

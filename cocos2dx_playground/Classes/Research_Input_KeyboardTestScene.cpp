@@ -2,6 +2,9 @@
 
 #include <sstream>
 
+#include "ui/UIButton.h"
+#include "ui/UIScale9Sprite.h"
+
 #include "RootScene.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_Input_BasicCollector.h"
@@ -58,9 +61,6 @@ namespace Research
 				ss << "+ Keyboard Input Scene";
 				ss << "\n";
 				ss << "\n";
-				ss << "[ESC] : Exit";
-				ss << "\n";
-				ss << "\n";
 				ss << "[Arrow + A + S + B] : ...";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
@@ -71,6 +71,30 @@ namespace Research
 					, origin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
+			}
+
+			//
+			// exit interface
+			//
+			{
+				auto label = Label::createWithTTF( "Exit", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				label->setColor( Color3B::GREEN );
+
+				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_1.png", ui::Widget::TextureResType::PLIST );
+				button->setColor( Color3B::GREEN );
+				button->getRendererNormal()->getTexture()->setAliasTexParameters();
+				button->getRendererClicked()->getTexture()->setAliasTexParameters();
+				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
+				button->setScale9Enabled( true );
+				button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
+				button->addTouchEventListener( CC_CALLBACK_2( KeyboardTestScene::onExitButton, this ) );
+				addChild( button, 9999 );
+				button->setTitleLabel( label );
+
+				button->setPosition( Vec2(
+					origin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
+					, origin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
+				) );
 			}
 
 
@@ -117,11 +141,6 @@ namespace Research
 
 		void KeyboardTestScene::update( float dt )
 		{
-			if( input_collector->getKeyStatus( cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE ) )
-			{
-				Director::getInstance()->replaceScene( RootScene::create() );
-			}
-
 			if( input_collector->hasChanged() )
 			{
 				for( auto v : key_viewer_list )
@@ -146,6 +165,19 @@ namespace Research
 			}
 
 			Scene::update( dt );
+		}
+
+		void KeyboardTestScene::onExitButton( Ref* /*_sender*/, ui::Widget::TouchEventType _touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+				return;
+
+			if( !isScheduled( schedule_selector( KeyboardTestScene::update_forExit ) ) )
+				scheduleOnce( schedule_selector( KeyboardTestScene::update_forExit ), 0.f );
+		}
+		void KeyboardTestScene::update_forExit( float /*dt*/ )
+		{
+			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 	}
 }
