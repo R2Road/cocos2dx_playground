@@ -1,4 +1,4 @@
-#include "CPG_InputKeyViewer.h"
+#include "CPG_InputTest_KeyViewer.h"
 
 #include "CPG_InputKeyMap.h"
 #include "CPG_Input_BasicCollector.h"
