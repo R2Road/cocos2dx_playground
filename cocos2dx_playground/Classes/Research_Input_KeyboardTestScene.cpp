@@ -10,6 +10,8 @@
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
 #include "CPG_InputTest_KeyViewer.h"
+#include "CPG_Input_KeyMapConfigHelper.h"
+#include "CPG_Input_KeyCodeNames.h"
 
 #include "Research_Setting.h"
 
@@ -53,6 +55,9 @@ namespace Research
 			auto visibleSize = Director::getInstance()->getVisibleSize();
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+			CPG::Input::KeyMapConfigHelper key_map_config_helper;
+			key_map_config_helper.load( Research::Setting::getKeyMapFileName().c_str() );
+
 			//
 			// summury
 			//
@@ -61,7 +66,8 @@ namespace Research
 				ss << "+ Keyboard Input Scene";
 				ss << "\n";
 				ss << "\n";
-				ss << "[Arrow + A + S + B] : ...";
+				for( const auto& h : key_map_config_helper.getContainer() )
+					ss << "[ " << h.name << " : " << CPG::Input::KeyCodeNames::get( h.keycode ) << " ]" << std::endl;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
