@@ -50,58 +50,67 @@ namespace Research
 			auto visibleSize = Director::getInstance()->getVisibleSize();
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-			std::stringstream ss;
-			ss << "+ Keyboard Input Scene";
-			ss << "\n";
-			ss << "\n";
-			ss << "[ESC] : Exit";
-			ss << "\n";
-			ss << "\n";
-			ss << "[Arrow + A + S + B] : ...";
+			//
+			// summury
+			//
+			{
+				std::stringstream ss;
+				ss << "+ Keyboard Input Scene";
+				ss << "\n";
+				ss << "\n";
+				ss << "[ESC] : Exit";
+				ss << "\n";
+				ss << "\n";
+				ss << "[Arrow + A + S + B] : ...";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-			label->setColor( Color3B::GREEN );
-			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPosition( Vec2(
-				origin.x
-				, origin.y + visibleSize.height
-			) );
-			addChild( label, 9999 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+				label->setPosition( Vec2(
+					origin.x
+					, origin.y + visibleSize.height
+				) );
+				addChild( label, 9999 );
+			}
 
 
 			//
 			// input
 			//
-			auto input_delegator = CPG::Input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
-			addChild( input_delegator, 0 );
+			{
+				auto input_delegator = CPG::Input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
+				addChild( input_delegator, 0 );
 
-			key_map = CPG::Input::KeyMap::create( Research::Setting::getKeyMapFileName().c_str() );
+				key_map = CPG::Input::KeyMap::create( Research::Setting::getKeyMapFileName().c_str() );
 
-			input_collector = CPG::Input::BasicCollector::create( key_map );
-			input_delegator->addInputCollector( input_collector );
+				input_collector = CPG::Input::BasicCollector::create( key_map );
+				input_delegator->addInputCollector( input_collector );
+			}
 
 
 			//
 			// key viewer
 			//
-			CPG::InputTest::KeyViewer* key_viewer = nullptr;
-			key_viewer_start_position.set(
-				origin.x + ( visibleSize.width * 0.5f )
-				, origin.y + ( visibleSize.height * 0.1f )
-			);
-			for( int i = 0; i < key_viewer_count; ++i )
 			{
-				key_viewer = CPG::InputTest::KeyViewer::create( key_map );
-				key_viewer->setPosition( key_viewer_start_position );
-				key_viewer->setVisible( false );
-				addChild( key_viewer, 1 );
+				CPG::InputTest::KeyViewer* key_viewer = nullptr;
+				key_viewer_start_position.set(
+					origin.x + ( visibleSize.width * 0.5f )
+					, origin.y + ( visibleSize.height * 0.1f )
+				);
+				for( int i = 0; i < key_viewer_count; ++i )
+				{
+					key_viewer = CPG::InputTest::KeyViewer::create( key_map );
+					key_viewer->setPosition( key_viewer_start_position );
+					key_viewer->setVisible( false );
+					addChild( key_viewer, 1 );
 
-				key_viewer_list.push_back( key_viewer );
+					key_viewer_list.push_back( key_viewer );
+				}
+				key_viewer_end_position.set(
+					key_viewer_start_position.x
+					, key_viewer_start_position.y + ( key_viewer_list.front()->getContentSize().height * ( key_viewer_count - 1 ) )
+				);
 			}
-			key_viewer_end_position.set(
-				key_viewer_start_position.x
-				, key_viewer_start_position.y + ( key_viewer_list.front()->getContentSize().height * ( key_viewer_count - 1 ) )
-			);
 
 			return true;
 		}
