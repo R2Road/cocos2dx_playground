@@ -4,7 +4,7 @@
 #include "ui/UIWidget.h"
 
 #include "CPG_Input_AllowedKeys.h"
-#include "CPG_Input_KeyMapConfigHelper.h"
+#include "CPG_InputTest_KeyMapConfigHelper.h"
 
 namespace Research
 {

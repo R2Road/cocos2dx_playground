@@ -10,7 +10,7 @@
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
 #include "CPG_InputTest_KeyViewer.h"
-#include "CPG_Input_KeyMapConfigHelper.h"
+#include "CPG_InputTest_KeyMapConfigHelper.h"
 #include "CPG_Input_KeyCodeNames.h"
 
 #include "Research_Setting.h"

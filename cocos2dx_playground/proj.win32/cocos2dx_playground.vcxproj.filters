@@ -57,9 +57,6 @@
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_KeyMapConfigHelper.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
@@ -76,6 +73,9 @@
       <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CPG_InputTest_KeyViewer.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,9 +119,6 @@
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h">
       <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_KeyMapConfigHelper.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\CPG_InputDelegator.h">
       <Filter>src\input</Filter>
     </ClInclude>
@@ -138,6 +135,9 @@
       <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_InputTest_KeyViewer.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>
