@@ -22,7 +22,7 @@ namespace Research
 			const int TAG_KeyConfigControl_BG = 20140416;
 			const int TAG_KeyCode_Label = 20160528;
 
-			const Size calculateSizeOfKeyConfigControl( CPG::Input::KeyMapConfigHelper& _helper )
+			const Size calculateSizeOfKeyConfigControl( CPG::InputTest::KeyMapConfigHelper& _helper )
 			{
 				const Size control_side_margin( 8.f, 4.f );
 				const float inner_horizontal_margin = 10.f;

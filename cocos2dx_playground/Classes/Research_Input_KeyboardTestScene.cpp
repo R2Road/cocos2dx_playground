@@ -55,7 +55,7 @@ namespace Research
 			auto visibleSize = Director::getInstance()->getVisibleSize();
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-			CPG::Input::KeyMapConfigHelper key_map_config_helper;
+			CPG::InputTest::KeyMapConfigHelper key_map_config_helper;
 			key_map_config_helper.load( Research::Setting::getKeyMapFileName().c_str() );
 
 			//

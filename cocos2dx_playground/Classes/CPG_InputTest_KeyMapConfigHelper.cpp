@@ -12,7 +12,7 @@ USING_NS_CC;
 
 namespace CPG
 {
-	namespace Input
+	namespace InputTest
 	{
 		namespace
 		{
