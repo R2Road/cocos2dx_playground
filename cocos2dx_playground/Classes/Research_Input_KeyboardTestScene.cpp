@@ -129,7 +129,7 @@ namespace Research
 				);
 				for( int i = 0; i < key_viewer_count; ++i )
 				{
-					key_viewer = CPG::InputTest::KeyViewer::create( key_map );
+					key_viewer = CPG::InputTest::KeyViewer::create( key_map_config_helper );
 					key_viewer->setPosition( key_viewer_start_position );
 					key_viewer->setVisible( false );
 					addChild( key_viewer, 1 );

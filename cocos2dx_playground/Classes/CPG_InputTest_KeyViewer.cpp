@@ -1,7 +1,7 @@
 #include "CPG_InputTest_KeyViewer.h"
 
-#include "CPG_InputKeyMap.h"
 #include "CPG_Input_BasicCollector.h"
+#include "CPG_InputTest_KeyMapConfigHelper.h"
 
 USING_NS_CC;
 
@@ -17,10 +17,10 @@ namespace CPG
 			, view_size()
 		{}
 
-		KeyViewer* KeyViewer::create( const Input::KeyMapSp& key_map )
+		KeyViewer* KeyViewer::create( const KeyMapConfigHelper& _key_map_config_helper )
 		{
 			auto ret = new ( std::nothrow ) KeyViewer();
-			if( !ret || !ret->init( key_map ) )
+			if( !ret || !ret->init( _key_map_config_helper ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -31,39 +31,27 @@ namespace CPG
 			return ret;
 		}
 
-		bool KeyViewer::init( const Input::KeyMapSp& key_map )
+		bool KeyViewer::init( const KeyMapConfigHelper& _key_map_config_helper )
 		{
 			Node::init();
 
-			struct KeyViewConfig
+			key_views.reserve( _key_map_config_helper.getContainer().size() );
+			for( const auto& k : _key_map_config_helper.getContainer() )
 			{
-				cocos2d::EventKeyboard::KeyCode key_code;
-				char* sprite_path;
-			};
-			const std::vector<KeyViewConfig> key_view_config_list( {
-				{ cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW, "arrow_u.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW, "arrow_d.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW, "arrow_l.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW, "arrow_r.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_A, "key_a.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_B, "key_b.png" }
-				,{ cocos2d::EventKeyboard::KeyCode::KEY_S, "key_s.png" }
-			} );
+				if( k.sprite_frame_name.empty() )
+					continue;
 
-			key_views.reserve( key_view_config_list.size() );
-			for( const auto& a : key_view_config_list )
-			{
-				auto arrow_sprite = Sprite::createWithSpriteFrameName( a.sprite_path );
+				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.sprite_frame_name );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				addChild( arrow_sprite );
 
-				key_views.emplace_back( key_map->getKeyIndex( a.key_code ), arrow_sprite );
+				key_views.emplace_back( k.idx, arrow_sprite );
 			}
 
 			view_size = key_views[0].sprite->getContentSize();
 			const Size content_size(
-				( key_views[0].sprite->getContentSize().width * key_view_config_list.size() )
-				+ ( view_margin * std::max( 0, static_cast<int>( key_view_config_list.size() ) - 1 ) )
+				( key_views[0].sprite->getContentSize().width * _key_map_config_helper.getContainer().size() )
+				+ ( view_margin * std::max( 0, static_cast<int>( _key_map_config_helper.getContainer().size() ) - 1 ) )
 				, view_size.height
 			);
 
@@ -73,7 +61,7 @@ namespace CPG
 
 			view_start_x = ( total_size.width * 0.5f ) - ( content_size.width * 0.5f );
 			const float a_start_h = total_size.height * 0.5f;
-			for( std::size_t a_i = 0, a_e = key_view_config_list.size(); a_i < a_e; ++a_i )
+			for( std::size_t a_i = 0, a_e = key_views.size(); a_i < a_e; ++a_i )
 			{
 				key_views[a_i].sprite->setPosition( Vec2(
 					view_start_x + ( ( view_size.width + view_margin ) * a_i )
