@@ -187,7 +187,7 @@
             <key type="filename">keys/arrow_u.png</key>
             <key type="filename">keys/key_a.png</key>
             <key type="filename">keys/key_b.png</key>
-            <key type="filename">keys/key_default.png</key>
+            <key type="filename">keys/key_free.png</key>
             <key type="filename">keys/key_s.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -247,7 +247,6 @@
             <filename>keys/arrow_u.png</filename>
             <filename>keys/key_a.png</filename>
             <filename>keys/key_b.png</filename>
-            <filename>keys/key_default.png</filename>
             <filename>keys/key_s.png</filename>
             <filename>ui/checkbox_01_bg.png</filename>
             <filename>ui/checkbox_01_cross.png</filename>
@@ -256,6 +255,7 @@
             <filename>ui/guide_01_1.png</filename>
             <filename>ui/guide_01_2.png</filename>
             <filename>ui/guide_01_3.png</filename>
+            <filename>keys/key_free.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

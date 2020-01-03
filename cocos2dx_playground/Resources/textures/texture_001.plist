@@ -199,7 +199,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>key_default.png</key>
+            <key>key_free.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -243,7 +243,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:62888a5d2a1dc1b2c43fb4c00fc63280:78bb4622f1c9901207bb53b4a44cf4fe:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:31bff0a9c2e7eeddd3519b796c01398c:f060e17f2770576ddb55cbf4c273b990:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>

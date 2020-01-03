@@ -10,6 +10,7 @@ namespace CPG
 	namespace InputTest
 	{
 		const float view_margin = 4.f;
+		const int TAG_free_key = 9999;
 
 		KeyViewer::KeyViewer() :
 			key_views()
@@ -71,6 +72,16 @@ namespace CPG
 
 			setContentSize( total_size );
 
+			// key free sprite
+			{
+				auto arrow_sprite = Sprite::createWithSpriteFrameName( "key_free.png" );
+				arrow_sprite->setTag( TAG_free_key );
+				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+				arrow_sprite->setPosition( view_start_x, a_start_h );
+				arrow_sprite->setVisible( false );
+				addChild( arrow_sprite );
+			}
+
 			return true;
 		}
 
@@ -86,6 +97,15 @@ namespace CPG
 				v.sprite->setPositionX( view_start_x + ( ( view_size.width + view_margin ) * v_i ) );
 				++v_i;
 			}
+
+			auto free_key_sprite = getChildByTag( TAG_free_key );
+			if( key_collector->hasChanged() && 0 == v_i )
+			{
+				free_key_sprite->setVisible( true );
+				free_key_sprite->setPositionX( view_start_x + ( ( view_size.width + view_margin ) * v_i ) );
+			}
+			else
+				free_key_sprite->setVisible( false );
 		}
 	}
 }
