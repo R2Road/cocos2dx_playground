@@ -36,6 +36,18 @@ namespace CPG
 		{
 			Node::init();
 
+			view_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
+			const Size content_size(
+				( view_size.width * _key_map_config_helper.getContainer().size() )
+				+ ( view_margin * std::max( 0, static_cast<int>( _key_map_config_helper.getContainer().size() ) - 1 ) )
+				, view_size.height
+			);
+
+			const Size total_margin( 3, 3 );
+			const Size total_size( content_size + total_margin + total_margin );
+			const float a_start_h = total_size.height * 0.5f;
+			view_start_x = ( total_size.width * 0.5f ) - ( content_size.width * 0.5f );
+
 			key_views.reserve( _key_map_config_helper.getContainer().size() );
 			for( const auto& k : _key_map_config_helper.getContainer() )
 			{
@@ -49,19 +61,6 @@ namespace CPG
 				key_views.emplace_back( k.idx, arrow_sprite );
 			}
 
-			view_size = key_views[0].sprite->getContentSize();
-			const Size content_size(
-				( view_size.width * _key_map_config_helper.getContainer().size() )
-				+ ( view_margin * std::max( 0, static_cast<int>( _key_map_config_helper.getContainer().size() ) - 1 ) )
-				, view_size.height
-			);
-
-			const Size total_margin( 3, 3 );
-			const Size total_size( content_size + total_margin + total_margin );
-
-
-			view_start_x = ( total_size.width * 0.5f ) - ( content_size.width * 0.5f );
-			const float a_start_h = total_size.height * 0.5f;
 			for( std::size_t a_i = 0, a_e = key_views.size(); a_i < a_e; ++a_i )
 			{
 				key_views[a_i].sprite->setPosition( Vec2(
