@@ -139,6 +139,13 @@ namespace Research
 					key_viewer_start_position.x
 					, key_viewer_start_position.y + ( key_viewer_list.front()->getContentSize().height * ( key_viewer_count - 1 ) )
 				);
+
+				// indicator
+				auto indicator = Sprite::createWithSpriteFrameName( "empty_2x2.png" );
+				indicator->setScaleX( 200.f );
+				indicator->setColor( Color3B::RED );
+				indicator->setPosition( key_viewer_start_position );
+				addChild( indicator, 0 );
 			}
 
 			return true;

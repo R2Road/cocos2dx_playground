@@ -124,6 +124,21 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>empty_2x2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{2,2}</string>
+                <key>spriteSourceSize</key>
+                <string>{2,2}</string>
+                <key>textureRect</key>
+                <string>{{94,68},{2,2}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>guide_01_1.png</key>
             <dict>
                 <key>aliases</key>
@@ -150,7 +165,7 @@
                 <key>spriteSourceSize</key>
                 <string>{64,64}</string>
                 <key>textureRect</key>
-                <string>{{94,68},{64,64}}</string>
+                <string>{{98,68},{64,64}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -180,7 +195,7 @@
                 <key>spriteSourceSize</key>
                 <string>{32,32}</string>
                 <key>textureRect</key>
-                <string>{{160,68},{32,32}}</string>
+                <string>{{164,68},{32,32}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -195,7 +210,7 @@
                 <key>spriteSourceSize</key>
                 <string>{32,32}</string>
                 <key>textureRect</key>
-                <string>{{194,68},{32,32}}</string>
+                <string>{{198,68},{32,32}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -243,7 +258,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:31bff0a9c2e7eeddd3519b796c01398c:f060e17f2770576ddb55cbf4c273b990:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:d2c078700a9e73d05180849954a4f8f4:09a1e77ee3825a7cf52b0ac1192732e8:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>
