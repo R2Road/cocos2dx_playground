@@ -49,6 +49,7 @@ namespace CPG
 			view_start_x = ( total_size.width * 0.5f ) - ( content_size.width * 0.5f );
 
 			key_views.reserve( _key_map_config_helper.getContainer().size() );
+			int a_i = 0;
 			for( const auto& k : _key_map_config_helper.getContainer() )
 			{
 				if( k.sprite_frame_name.empty() )
@@ -56,17 +57,15 @@ namespace CPG
 
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.sprite_frame_name );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-				addChild( arrow_sprite );
-
-				key_views.emplace_back( k.idx, arrow_sprite );
-			}
-
-			for( std::size_t a_i = 0, a_e = key_views.size(); a_i < a_e; ++a_i )
-			{
-				key_views[a_i].sprite->setPosition( Vec2(
+				arrow_sprite->setPosition( Vec2(
 					view_start_x + ( ( view_size.width + view_margin ) * a_i )
 					, a_start_h
 				) );
+				addChild( arrow_sprite );
+
+				key_views.emplace_back( k.idx, arrow_sprite );
+
+				++a_i;
 			}
 
 			setContentSize( total_size );
