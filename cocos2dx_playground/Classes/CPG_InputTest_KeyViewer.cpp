@@ -45,8 +45,8 @@ namespace CPG
 
 			const Size total_margin( 3, 3 );
 			const Size total_size( content_size + total_margin + total_margin );
-			const float a_start_h = total_size.height * 0.5f;
-			view_start_x = ( total_size.width * 0.5f ) - ( content_size.width * 0.5f );
+			const float view_start_y = total_size.height * 0.5f;
+			view_start_x = total_margin.width;
 
 			key_views.reserve( _key_map_config_helper.getContainer().size() );
 			int a_i = 0;
@@ -59,7 +59,7 @@ namespace CPG
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				arrow_sprite->setPosition( Vec2(
 					view_start_x + ( ( view_size.width + view_margin ) * a_i )
-					, a_start_h
+					, view_start_y
 				) );
 				addChild( arrow_sprite );
 
@@ -75,7 +75,7 @@ namespace CPG
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( "key_free.png" );
 				arrow_sprite->setTag( TAG_free_key );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-				arrow_sprite->setPosition( view_start_x, a_start_h );
+				arrow_sprite->setPosition( view_start_x, view_start_y );
 				arrow_sprite->setVisible( false );
 				addChild( arrow_sprite );
 			}
