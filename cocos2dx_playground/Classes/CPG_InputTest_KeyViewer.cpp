@@ -51,7 +51,7 @@ namespace CPG
 
 			view_size = key_views[0].sprite->getContentSize();
 			const Size content_size(
-				( key_views[0].sprite->getContentSize().width * _key_map_config_helper.getContainer().size() )
+				( view_size.width * _key_map_config_helper.getContainer().size() )
 				+ ( view_margin * std::max( 0, static_cast<int>( _key_map_config_helper.getContainer().size() ) - 1 ) )
 				, view_size.height
 			);
