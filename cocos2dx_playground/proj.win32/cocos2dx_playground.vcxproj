@@ -165,7 +165,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp" />
-    <ClCompile Include="..\Classes\Research_Input_KeyboardTestScene.cpp" />
+    <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp" />
     <ClCompile Include="..\Classes\Research_Setting.cpp" />
     <ClCompile Include="..\Classes\RootScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -187,7 +187,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h" />
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h" />
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h" />
-    <ClInclude Include="..\Classes\Research_Input_KeyboardTestScene.h" />
+    <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h" />
     <ClInclude Include="..\Classes\Research_Setting.h" />
     <ClInclude Include="..\Classes\RootScene.h" />
     <ClInclude Include="main.h" />

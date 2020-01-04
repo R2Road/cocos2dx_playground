@@ -1,4 +1,4 @@
-#include "Research_Input_KeyboardTestScene.h"
+#include "Research_Input_ConfigedKeysTestScene.h"
 
 #include <sstream>
 
