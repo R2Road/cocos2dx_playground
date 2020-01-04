@@ -24,15 +24,15 @@ namespace Research
 		const int key_viewer_count = 10;
 		const float key_viewer_margin = 4.f;
 
-		KeyboardTestScene::KeyboardTestScene() :
+		ConfigedKeysTestScene::ConfigedKeysTestScene() :
 			input_collector()
 			, key_viewer_list()
 			, key_viewer_start_position()
 		{}
 
-		Scene* KeyboardTestScene::create()
+		Scene* ConfigedKeysTestScene::create()
 		{
-			auto ret = new ( std::nothrow ) KeyboardTestScene();
+			auto ret = new ( std::nothrow ) ConfigedKeysTestScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -46,7 +46,7 @@ namespace Research
 			return ret;
 		}
 
-		bool KeyboardTestScene::init()
+		bool ConfigedKeysTestScene::init()
 		{
 			if( !Scene::init() )
 				return false;
@@ -62,7 +62,7 @@ namespace Research
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Keyboard Input Scene";
+				ss << "+ Configed Keys Test Scene";
 				ss << "\n";
 				ss << "\n";
 				for( const auto& h : key_map_config_helper.getContainer() )
@@ -92,7 +92,7 @@ namespace Research
 				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 				button->setScale9Enabled( true );
 				button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
-				button->addTouchEventListener( CC_CALLBACK_2( KeyboardTestScene::onExitButton, this ) );
+				button->addTouchEventListener( CC_CALLBACK_2( ConfigedKeysTestScene::onExitButton, this ) );
 				addChild( button, 9999 );
 				button->setTitleLabel( label );
 
@@ -151,7 +151,7 @@ namespace Research
 			return true;
 		}
 
-		void KeyboardTestScene::update( float dt )
+		void ConfigedKeysTestScene::update( float dt )
 		{
 			if( input_collector->hasChanged() )
 			{
@@ -179,15 +179,15 @@ namespace Research
 			Scene::update( dt );
 		}
 
-		void KeyboardTestScene::onExitButton( Ref* /*_sender*/, ui::Widget::TouchEventType _touch_event_type )
+		void ConfigedKeysTestScene::onExitButton( Ref* /*_sender*/, ui::Widget::TouchEventType _touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
 				return;
 
-			if( !isScheduled( schedule_selector( KeyboardTestScene::update_forExit ) ) )
-				scheduleOnce( schedule_selector( KeyboardTestScene::update_forExit ), 0.f );
+			if( !isScheduled( schedule_selector( ConfigedKeysTestScene::update_forExit ) ) )
+				scheduleOnce( schedule_selector( ConfigedKeysTestScene::update_forExit ), 0.f );
 		}
-		void KeyboardTestScene::update_forExit( float /*dt*/ )
+		void ConfigedKeysTestScene::update_forExit( float /*dt*/ )
 		{
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}

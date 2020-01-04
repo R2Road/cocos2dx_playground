@@ -22,10 +22,10 @@ namespace Research
 {
 	namespace Input
 	{
-		class KeyboardTestScene : public cocos2d::Scene
+		class ConfigedKeysTestScene : public cocos2d::Scene
 		{
 		public:
-			KeyboardTestScene();
+			ConfigedKeysTestScene();
 
 			static cocos2d::Scene* create();
 

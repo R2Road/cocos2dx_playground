@@ -41,7 +41,7 @@ Scene* RootScene::create()
 	ss << "\n";
 	ss << "[3] : Research - Key Config";
 	ss << "\n";
-	ss << "[4] : Research - Keyboard Test";
+	ss << "[4] : Research - Configed Keys Test";
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 	label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
@@ -101,7 +101,7 @@ void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ 
 	break;
 	case EventKeyboard::KeyCode::KEY_4:
 	{
-		Director::getInstance()->replaceScene( Research::Input::KeyboardTestScene::create() );
+		Director::getInstance()->replaceScene( Research::Input::ConfigedKeysTestScene::create() );
 	}
 	break;
 
