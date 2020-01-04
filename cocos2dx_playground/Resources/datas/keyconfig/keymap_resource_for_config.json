@@ -1,5 +1,5 @@
 [
-  { "name":"menu"     ,"sprite_frame":"key_a.png"     ,"desc":"esc"         }
+   { "name":"menu"    ,"sprite_frame":"key_menu.png"  ,"desc":"esc"         }
   ,{ "name":"left"    ,"sprite_frame":"arrow_l.png"   ,"desc":"left_arrow"  }
   ,{ "name":"right"   ,"sprite_frame":"arrow_r.png"   ,"desc":"right_arrow" }
   ,{ "name":"up"      ,"sprite_frame":"arrow_u.png"   ,"desc":"up_arrow"    }

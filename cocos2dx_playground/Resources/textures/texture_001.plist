@@ -229,7 +229,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>key_s.png</key>
+            <key>key_menu.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -241,6 +241,21 @@
                 <string>{32,32}</string>
                 <key>textureRect</key>
                 <string>{{36,134},{32,32}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>key_s.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{32,32}</string>
+                <key>spriteSourceSize</key>
+                <string>{32,32}</string>
+                <key>textureRect</key>
+                <string>{{70,134},{32,32}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -258,7 +273,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d2c078700a9e73d05180849954a4f8f4:8db3ce5da2dcbcd761b0870ca66bb9b9:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:2c8a481f90e7eecd60e12fb9d314dba9:c8fbe5fea182809ca82ad6bd67035cb7:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>
