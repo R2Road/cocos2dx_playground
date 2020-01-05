@@ -1,5 +1,6 @@
 [
    { "name":"menu"    ,"sprite_frame":"key_menu.png"  ,"desc":"esc"         }
+  ,{ "desc":"invalid data test" }
   ,{ "name":"left"    ,"sprite_frame":"arrow_l.png"   ,"desc":"left_arrow"  }
   ,{ "name":"right"   ,"sprite_frame":"arrow_r.png"   ,"desc":"right_arrow" }
   ,{ "name":"up"      ,"sprite_frame":"arrow_u.png"   ,"desc":"up_arrow"    }
@@ -7,6 +8,4 @@
   ,{ "name":"shot"    ,"sprite_frame":"key_a.png"     ,"desc":"attack"      }
   ,{ "name":"bomb"    ,"sprite_frame":"key_b.png"     ,"desc":"sub_weapon " }
   ,{ "name":"dash"    ,"sprite_frame":"key_s.png"     ,"desc":"dash"        }
-
-  ,{ "desc":"invalid data test" }
 ]

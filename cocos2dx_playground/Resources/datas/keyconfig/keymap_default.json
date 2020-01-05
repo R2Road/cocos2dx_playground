@@ -1,5 +1,6 @@
 [
   { "key_code":6 ,   "desc":"esc" }
+  ,{ "desc":"invalid data test" }
   ,{ "key_code":26,  "desc":"left_arrow" }
   ,{ "key_code":27,  "desc":"right_arrow" }
   ,{ "key_code":28,  "desc":"up_arrow" }
@@ -7,6 +8,4 @@
   ,{ "key_code":124, "desc":"a" }
   ,{ "key_code":125, "desc":"b" }
   ,{ "key_code":142, "desc":"s" }
-
-  ,{ "desc":"invalid data test" }
 ]
