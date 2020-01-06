@@ -12,7 +12,7 @@
 
 USING_NS_CC;
 
-RootScene::RootScene() : listener( nullptr ) {}
+RootScene::RootScene() : mKeyboardListener( nullptr ) {}
 
 Scene* RootScene::create()
 {
@@ -61,19 +61,19 @@ void RootScene::onEnter()
 {
 	Scene::onEnter();
 
-	listener = EventListenerKeyboard::create();
-	listener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
-	getEventDispatcher()->addEventListenerWithFixedPriority( listener, 1 );
+	mKeyboardListener = EventListenerKeyboard::create();
+	mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
+	getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 }
 void RootScene::onExit()
 {
-	if( listener )
-		getEventDispatcher()->removeEventListener( listener );
+	if( mKeyboardListener )
+		getEventDispatcher()->removeEventListener( mKeyboardListener );
 	Scene::onExit();
 }
 
 
-void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
+void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 {
 	switch( keycode )
 	{

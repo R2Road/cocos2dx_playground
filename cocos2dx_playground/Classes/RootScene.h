@@ -12,8 +12,8 @@ public:
     void onEnter() override;
 	void onExit() override;
     
-	void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
+	void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 private:
-	cocos2d::EventListenerKeyboard* listener;
+	cocos2d::EventListenerKeyboard* mKeyboardListener;
 };
