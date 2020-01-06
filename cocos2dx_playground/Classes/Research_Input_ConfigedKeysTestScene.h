@@ -33,14 +33,14 @@ namespace research
 			void update( float dt ) override;
 
 		private:
-			void onExitButton( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
+			void onExitButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void update_forExit( float dt );
 
 		private:
-			cpg::input::KeyCollectorSp input_collector;
-			std::list<cpg::input_test::KeyViewer*> key_viewer_list;
-			cocos2d::Vec2 key_viewer_start_position;
-			cocos2d::Vec2 key_viewer_end_position;
+			cpg::input::KeyCollectorSp mInputCollector;
+			std::list<cpg::input_test::KeyViewer*> mKeyViewerList;
+			cocos2d::Vec2 mKeyViewer_StartPosition;
+			cocos2d::Vec2 mKeyViewer_EndPosition;
 		};
 	}
 }

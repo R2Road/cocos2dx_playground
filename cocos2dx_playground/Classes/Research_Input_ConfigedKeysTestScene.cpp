@@ -25,9 +25,9 @@ namespace research
 		const float key_viewer_margin = 4.f;
 
 		ConfigedKeysTestScene::ConfigedKeysTestScene() :
-			input_collector()
-			, key_viewer_list()
-			, key_viewer_start_position()
+			mInputCollector()
+			, mKeyViewerList()
+			, mKeyViewer_StartPosition()
 		{}
 
 		Scene* ConfigedKeysTestScene::create()
@@ -112,8 +112,8 @@ namespace research
 
 				const auto key_map = cpg::input::KeyMap::create( research::Setting::getKeyMapFileName().c_str() );
 
-				input_collector = cpg::input::BasicCollector::create( key_map );
-				input_delegator->addInputCollector( input_collector );
+				mInputCollector = cpg::input::BasicCollector::create( key_map );
+				input_delegator->addInputCollector( mInputCollector );
 			}
 
 
@@ -122,29 +122,29 @@ namespace research
 			//
 			{
 				cpg::input_test::KeyViewer* key_viewer = nullptr;
-				key_viewer_start_position.set(
+				mKeyViewer_StartPosition.set(
 					origin.x + ( visibleSize.width * 0.5f )
 					, origin.y + ( visibleSize.height * 0.1f )
 				);
 				for( int i = 0; i < key_viewer_count; ++i )
 				{
 					key_viewer = cpg::input_test::KeyViewer::create( key_map_config_helper );
-					key_viewer->setPosition( key_viewer_start_position );
+					key_viewer->setPosition( mKeyViewer_StartPosition );
 					key_viewer->setVisible( false );
 					addChild( key_viewer, 1 );
 
-					key_viewer_list.push_back( key_viewer );
+					mKeyViewerList.push_back( key_viewer );
 				}
-				key_viewer_end_position.set(
-					key_viewer_start_position.x
-					, key_viewer_start_position.y + ( key_viewer_list.front()->getContentSize().height * ( key_viewer_count - 1 ) )
+				mKeyViewer_EndPosition.set(
+					mKeyViewer_StartPosition.x
+					, mKeyViewer_StartPosition.y + ( mKeyViewerList.front()->getContentSize().height * ( key_viewer_count - 1 ) )
 				);
 
 				// indicator
 				auto indicator = Sprite::createWithSpriteFrameName( "empty_2x2.png" );
 				indicator->setScaleX( 200.f );
 				indicator->setColor( Color3B::RED );
-				indicator->setPosition( key_viewer_start_position );
+				indicator->setPosition( mKeyViewer_StartPosition );
 				addChild( indicator, 0 );
 			}
 
@@ -153,25 +153,25 @@ namespace research
 
 		void ConfigedKeysTestScene::update( float dt )
 		{
-			if( input_collector->hasChanged() )
+			if( mInputCollector->hasChanged() )
 			{
-				for( auto v : key_viewer_list )
+				for( auto v : mKeyViewerList )
 				{
 					if( !v->isVisible() )
 						continue;
 
 					v->setPositionY( v->getPositionY() + v->getContentSize().height + key_viewer_margin );
-					v->setVisible( key_viewer_end_position.y > v->getPositionY() );
+					v->setVisible( mKeyViewer_EndPosition.y > v->getPositionY() );
 				}
 
-				for( auto v : key_viewer_list )
+				for( auto v : mKeyViewerList )
 				{
 					if( v->isVisible() )
 						continue;
 
 					v->setVisible( true );
-					v->setPosition( key_viewer_start_position );
-					v->setup( input_collector );
+					v->setPosition( mKeyViewer_StartPosition );
+					v->setup( mInputCollector );
 					break;
 				}
 			}
@@ -179,9 +179,9 @@ namespace research
 			Scene::update( dt );
 		}
 
-		void ConfigedKeysTestScene::onExitButton( Ref* /*_sender*/, ui::Widget::TouchEventType _touch_event_type )
+		void ConfigedKeysTestScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
-			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
 				return;
 
 			if( !isScheduled( schedule_selector( ConfigedKeysTestScene::update_forExit ) ) )
