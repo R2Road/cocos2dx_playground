@@ -12,13 +12,13 @@ namespace research
 	public:
 		static void load();
 
-		static const std::string& getKeyAllowFileName() { return instance.fileName_for_keyAllow; }
-		static const std::string& getKeyMapFileName() { return instance.fileName_for_keyMap; }
+		static const std::string& getKeyAllowFileName() { return instance.mFileName_for_KeyAllow; }
+		static const std::string& getKeyMapFileName() { return instance.mFileName_for_KeyMap; }
 
 	private:
 		static Setting instance;
 
-		std::string fileName_for_keyAllow;
-		std::string fileName_for_keyMap;
+		std::string mFileName_for_KeyAllow;
+		std::string mFileName_for_KeyMap;
 	};
 }

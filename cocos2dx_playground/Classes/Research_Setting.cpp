@@ -8,8 +8,8 @@ namespace research
 	Setting Setting::instance;
 
 	Setting::Setting() :
-		fileName_for_keyAllow( "r_k_a.json" )
-		, fileName_for_keyMap( "r_k_m.json" )
+		mFileName_for_KeyAllow( "r_k_a.json" )
+		, mFileName_for_KeyMap( "r_k_m.json" )
 	{}
 
 	void Setting::load()
@@ -33,10 +33,10 @@ namespace research
 
 		const auto key_allow_file_itr = doc.FindMember( "key_allow_file" );
 		if( doc.MemberEnd() != key_allow_file_itr )
-			instance.fileName_for_keyAllow = key_allow_file_itr->value.GetString();
+			instance.mFileName_for_KeyAllow = key_allow_file_itr->value.GetString();
 
 		const auto key_map_file_itr = doc.FindMember( "key_map_file" );
 		if( doc.MemberEnd() != key_map_file_itr )
-			instance.fileName_for_keyMap = key_map_file_itr->value.GetString();
+			instance.mFileName_for_KeyMap = key_map_file_itr->value.GetString();
 	}
 }
