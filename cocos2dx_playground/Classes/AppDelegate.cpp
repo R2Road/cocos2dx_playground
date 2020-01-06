@@ -88,7 +88,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("cocos2dx_playground", cocos2d::Rect(0, 0, my_setting.frame_resolution.width, my_setting.frame_resolution.height));
+        glview = GLViewImpl::createWithRect("cocos2dx_playground", cocos2d::Rect(0, 0, my_setting.mFrameResolution.width, my_setting.mFrameResolution.height));
 #else
         glview = GLViewImpl::create("cocos2dx_playground");
 #endif
@@ -96,28 +96,28 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     // turn on display FPS
-    director->setDisplayStats( my_setting.show_display_stats );
+    director->setDisplayStats( my_setting.mShowDisplayStats );
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
 
     // Set the design resolution
-    glview->setDesignResolutionSize( my_setting.design_resolution.width, my_setting.design_resolution.height, ResolutionPolicy::NO_BORDER);
+    glview->setDesignResolutionSize( my_setting.mDesignResolution.width, my_setting.mDesignResolution.height, ResolutionPolicy::NO_BORDER);
     auto frameSize = glview->getFrameSize();
     // if the frame's height is larger than the height of medium size.
     if (frameSize.height > mediumResolutionSize.height)
     {        
-        director->setContentScaleFactor(MIN(largeResolutionSize.height / my_setting.design_resolution.height, largeResolutionSize.width / my_setting.design_resolution.width));
+        director->setContentScaleFactor(MIN(largeResolutionSize.height / my_setting.mDesignResolution.height, largeResolutionSize.width / my_setting.mDesignResolution.width));
     }
     // if the frame's height is larger than the height of small size.
     else if (frameSize.height > smallResolutionSize.height)
     {        
-        director->setContentScaleFactor(MIN(mediumResolutionSize.height / my_setting.design_resolution.height, mediumResolutionSize.width / my_setting.design_resolution.width));
+        director->setContentScaleFactor(MIN(mediumResolutionSize.height / my_setting.mDesignResolution.height, mediumResolutionSize.width / my_setting.mDesignResolution.width));
     }
     // if the frame's height is smaller than the height of medium size.
     else
     {        
-        director->setContentScaleFactor(MIN(smallResolutionSize.height / my_setting.design_resolution.height, smallResolutionSize.width / my_setting.design_resolution.width));
+        director->setContentScaleFactor(MIN(smallResolutionSize.height / my_setting.mDesignResolution.height, smallResolutionSize.width / my_setting.mDesignResolution.width));
     }
 
     register_all_packages();
