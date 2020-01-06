@@ -54,7 +54,7 @@ namespace research
 			auto visibleSize = Director::getInstance()->getVisibleSize();
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-			cpg::InputTest::KeyMapConfigHelper key_map_config_helper;
+			cpg::input_test::KeyMapConfigHelper key_map_config_helper;
 			key_map_config_helper.load( research::Setting::getKeyMapFileName().c_str() );
 
 			//
@@ -121,14 +121,14 @@ namespace research
 			// key viewer
 			//
 			{
-				cpg::InputTest::KeyViewer* key_viewer = nullptr;
+				cpg::input_test::KeyViewer* key_viewer = nullptr;
 				key_viewer_start_position.set(
 					origin.x + ( visibleSize.width * 0.5f )
 					, origin.y + ( visibleSize.height * 0.1f )
 				);
 				for( int i = 0; i < key_viewer_count; ++i )
 				{
-					key_viewer = cpg::InputTest::KeyViewer::create( key_map_config_helper );
+					key_viewer = cpg::input_test::KeyViewer::create( key_map_config_helper );
 					key_viewer->setPosition( key_viewer_start_position );
 					key_viewer->setVisible( false );
 					addChild( key_viewer, 1 );

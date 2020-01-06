@@ -11,7 +11,7 @@ namespace cpg
 		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
 	}
 
-	namespace InputTest
+	namespace input_test
 	{
 		class KeyMapConfigHelper;
 

@@ -101,7 +101,7 @@ namespace research
 			input_delegator = cpg::input::Delegator::create( research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_delegator, 0 );
 
-			input_observer = cpg::InputTest::KeyboardInputObserver::create( research::Setting::getKeyAllowFileName().c_str() );
+			input_observer = cpg::input_test::KeyboardInputObserver::create( research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_observer, 1 );
 
 

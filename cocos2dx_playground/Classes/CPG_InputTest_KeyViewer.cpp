@@ -7,7 +7,7 @@ USING_NS_CC;
 
 namespace cpg
 {
-	namespace InputTest
+	namespace input_test
 	{
 		const float view_margin = 4.f;
 		const int TAG_free_key = 9999;

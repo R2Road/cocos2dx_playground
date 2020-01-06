@@ -7,7 +7,7 @@
 
 namespace cpg
 {
-	namespace InputTest
+	namespace input_test
 	{
 		class KeyMapConfigHelper
 		{

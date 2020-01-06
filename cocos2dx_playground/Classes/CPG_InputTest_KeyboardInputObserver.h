@@ -5,7 +5,7 @@
 
 namespace cpg
 {
-	namespace InputTest
+	namespace input_test
 	{
 		class KeyboardInputObserver : public cocos2d::Node
 		{
