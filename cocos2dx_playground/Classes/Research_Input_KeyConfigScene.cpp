@@ -196,7 +196,7 @@ namespace Research
 						int count = 0;
 						for( const auto& h : ret->keymap_config_helper.getContainer() )
 						{
-							if( EventKeyboard::KeyCode::KEY_NONE == h.keycode )
+							if( h.name.empty() || h.sprite_frame_name.empty() )
 								continue;
 
 							auto control = createKeyConfigControl( size_of_key_config_control, h.name, h.idx, h.keycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
