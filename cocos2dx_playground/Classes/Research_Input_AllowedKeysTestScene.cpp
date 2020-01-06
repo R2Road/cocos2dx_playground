@@ -22,10 +22,10 @@ namespace research
 		const float key_viewer_margin = 4.f;
 
 		AllowedKeysTestScene::AllowedKeysTestScene() :
-			input_delegator( nullptr )
-			, key_viewer( nullptr )
-			, key_string( 200, 0 )
-			, input_observer( nullptr )
+			mInputDelegator( nullptr )
+			, mKeyViewer( nullptr )
+			, mKeyStrings( 200, 0 )
+			, mInputObserver( nullptr )
 		{}
 
 		Scene* AllowedKeysTestScene::create()
@@ -98,48 +98,48 @@ namespace research
 			//
 			// input
 			//
-			input_delegator = cpg::input::Delegator::create( research::Setting::getKeyAllowFileName().c_str() );
-			addChild( input_delegator, 0 );
+			mInputDelegator = cpg::input::Delegator::create( research::Setting::getKeyAllowFileName().c_str() );
+			addChild( mInputDelegator, 0 );
 
-			input_observer = cpg::input_test::KeyboardInputObserver::create( research::Setting::getKeyAllowFileName().c_str() );
-			addChild( input_observer, 1 );
+			mInputObserver = cpg::input_test::KeyboardInputObserver::create( research::Setting::getKeyAllowFileName().c_str() );
+			addChild( mInputObserver, 1 );
 
 
 			//
 			// key viewer
 			//
-			key_viewer = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
-			key_viewer->setPosition( Vec2(
+			mKeyViewer = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+			mKeyViewer->setPosition( Vec2(
 				origin.x + ( visibleSize.width * 0.5f )
 				, origin.y + ( visibleSize.height * 0.5f )
 			) );
-			addChild( key_viewer, 9999 );
+			addChild( mKeyViewer, 9999 );
 
 			return true;
 		}
 		void AllowedKeysTestScene::update( float dt )
 		{
-			if( input_observer->inputFound() )
+			if( mInputObserver->inputFound() )
 			{
-				key_string.clear();
+				mKeyStrings.clear();
 				for( std::size_t cur = 0; cur < cpg::input::AllowedKeys::ContainerSize; ++cur )
 				{
-					if( input_delegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
+					if( mInputDelegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 					{
-						key_string += cpg::input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
-						key_string += "\n";
+						mKeyStrings += cpg::input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
+						mKeyStrings += "\n";
 					}
 				}
-				key_viewer->setString( key_string );
+				mKeyViewer->setString( mKeyStrings );
 			}
 
 			Scene::update( dt );
 		}
 
 
-		void AllowedKeysTestScene::onExitButton( Ref* /*_sender*/, ui::Widget::TouchEventType _touch_event_type )
+		void AllowedKeysTestScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
-			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
 				return;
 
 			if( !isScheduled( schedule_selector( AllowedKeysTestScene::update_forExit ) ) )

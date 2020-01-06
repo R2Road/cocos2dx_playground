@@ -33,15 +33,15 @@ namespace research
 			void update( float dt ) override;
 
 		private:
-			void onExitButton( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
+			void onExitButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void update_forExit( float dt );
 
 		private:
-			cpg::input::Delegator* input_delegator;
-			cocos2d::Label* key_viewer;
-			std::string key_string;
+			cpg::input::Delegator* mInputDelegator;
+			cocos2d::Label* mKeyViewer;
+			std::string mKeyStrings;
 
-			cpg::input_test::KeyboardInputObserver* input_observer;
+			cpg::input_test::KeyboardInputObserver* mInputObserver;
 		};
 	}
 }
