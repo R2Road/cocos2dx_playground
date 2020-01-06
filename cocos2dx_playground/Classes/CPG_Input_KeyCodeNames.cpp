@@ -11,7 +11,7 @@ namespace cpg
 {
 	namespace input
 	{
-		const char* KeyCodeNames::get( const cocos2d::EventKeyboard::KeyCode _keycode )
+		const char* KeyCodeNames::get( const cocos2d::EventKeyboard::KeyCode keycode )
 		{
 			static const std::array<std::string, AllowedKeys::ContainerSize> temp_container( {
 				"NONE"
@@ -182,8 +182,8 @@ namespace cpg
 				, "PLAY"
 			} );
 
-			if( temp_container.size() > static_cast<std::size_t>( _keycode ) )
-				return temp_container[static_cast<std::size_t>( _keycode )].c_str();
+			if( temp_container.size() > static_cast<std::size_t>( keycode ) )
+				return temp_container[static_cast<std::size_t>( keycode )].c_str();
 
 			static const char* dummy = "";
 			return dummy;
