@@ -16,26 +16,26 @@ namespace cpg
 			Delegator();
 
 		public:
-			static Delegator* create( const char* _allowed_keys_file_name );
+			static Delegator* create( const char* allowed_keys_file_name );
 
 			void onEnter() override;
-			void update( float _dt ) override;
-			void post_update( float _dt );
+			void update( float dt ) override;
+			void post_update( float dt );
 			void onExit() override;
 
 		private:
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		public:
-			inline const bool isActiveKey( const cocos2d::EventKeyboard::KeyCode _keycode ) const { return keycode_collector.isActiveKey(_keycode ); }
-			void addInputCollector( KeyCollectorSp& _new_key_collector );
+			inline const bool isActiveKey( const cocos2d::EventKeyboard::KeyCode keycode ) const { return mKeycodeCollector.isActiveKey( keycode ); }
+			void addInputCollector( KeyCollectorSp& new_key_collector );
 
 		private:
-			cocos2d::EventListenerKeyboard* keyboard_listener;
-			AllowedKeys::Container allowed_keys;
-			KeyCodeCollector keycode_collector;
-			KeyCollectorSp input_collector;
+			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			AllowedKeys::Container mAllowedKeys;
+			KeyCodeCollector mKeycodeCollector;
+			KeyCollectorSp mInputCollector;
 		};
 	}
 }
