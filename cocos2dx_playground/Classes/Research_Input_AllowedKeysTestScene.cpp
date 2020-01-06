@@ -14,7 +14,7 @@
 
 USING_NS_CC;
 
-namespace Research
+namespace research
 {
 	namespace Input
 	{
@@ -98,10 +98,10 @@ namespace Research
 			//
 			// input
 			//
-			input_delegator = cpg::input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
+			input_delegator = cpg::input::Delegator::create( research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_delegator, 0 );
 
-			input_observer = cpg::InputTest::KeyboardInputObserver::create( Research::Setting::getKeyAllowFileName().c_str() );
+			input_observer = cpg::InputTest::KeyboardInputObserver::create( research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_observer, 1 );
 
 

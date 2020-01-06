@@ -85,23 +85,23 @@ void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ 
 
 	case EventKeyboard::KeyCode::KEY_1:
 	{
-		Director::getInstance()->replaceScene( Research::Input::KeyAllowScene::create() );
+		Director::getInstance()->replaceScene( research::Input::KeyAllowScene::create() );
 	}
 	break;
 	case EventKeyboard::KeyCode::KEY_2:
 	{
-		Director::getInstance()->replaceScene( Research::Input::AllowedKeysTestScene::create() );
+		Director::getInstance()->replaceScene( research::Input::AllowedKeysTestScene::create() );
 	}
 	break;
 
 	case EventKeyboard::KeyCode::KEY_3:
 	{
-		Director::getInstance()->replaceScene( Research::Input::KeyConfigScene::create() );
+		Director::getInstance()->replaceScene( research::Input::KeyConfigScene::create() );
 	}
 	break;
 	case EventKeyboard::KeyCode::KEY_4:
 	{
-		Director::getInstance()->replaceScene( Research::Input::ConfigedKeysTestScene::create() );
+		Director::getInstance()->replaceScene( research::Input::ConfigedKeysTestScene::create() );
 	}
 	break;
 

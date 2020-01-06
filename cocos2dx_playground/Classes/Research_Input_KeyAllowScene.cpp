@@ -15,7 +15,7 @@
 
 USING_NS_CC;
 
-namespace Research
+namespace research
 {
 	namespace Input
 	{
@@ -132,7 +132,7 @@ namespace Research
 			//
 			// Load Allowed Keys
 			//
-			allowed_keys = cpg::input::AllowedKeys::load( Research::Setting::getKeyAllowFileName().c_str() );
+			allowed_keys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
 
 
 
@@ -231,7 +231,7 @@ namespace Research
 
 		void KeyAllowScene::updateForExit( float /*_dt*/ )
 		{
-			cpg::input::AllowedKeys::save( allowed_keys, Research::Setting::getKeyAllowFileName().c_str() );
+			cpg::input::AllowedKeys::save( allowed_keys, research::Setting::getKeyAllowFileName().c_str() );
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 		void KeyAllowScene::onKeyAllowControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )

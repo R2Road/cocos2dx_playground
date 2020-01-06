@@ -17,7 +17,7 @@
 
 USING_NS_CC;
 
-namespace Research
+namespace research
 {
 	namespace Input
 	{
@@ -55,7 +55,7 @@ namespace Research
 			Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 			cpg::InputTest::KeyMapConfigHelper key_map_config_helper;
-			key_map_config_helper.load( Research::Setting::getKeyMapFileName().c_str() );
+			key_map_config_helper.load( research::Setting::getKeyMapFileName().c_str() );
 
 			//
 			// summury
@@ -107,10 +107,10 @@ namespace Research
 			// input
 			//
 			{
-				auto input_delegator = cpg::input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
+				auto input_delegator = cpg::input::Delegator::create( research::Setting::getKeyAllowFileName().c_str() );
 				addChild( input_delegator, 0 );
 
-				const auto key_map = cpg::input::KeyMap::create( Research::Setting::getKeyMapFileName().c_str() );
+				const auto key_map = cpg::input::KeyMap::create( research::Setting::getKeyMapFileName().c_str() );
 
 				input_collector = cpg::input::BasicCollector::create( key_map );
 				input_delegator->addInputCollector( input_collector );

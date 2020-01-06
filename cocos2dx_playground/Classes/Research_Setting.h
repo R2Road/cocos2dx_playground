@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace Research
+namespace research
 {
 	class Setting
 	{

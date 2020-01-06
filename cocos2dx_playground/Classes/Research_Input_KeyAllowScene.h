@@ -4,7 +4,7 @@
 #include "ui/UIWidget.h"
 #include "CPG_Input_AllowedKeys.h"
 
-namespace Research
+namespace research
 {
 	namespace Input
 	{

@@ -24,7 +24,7 @@ Scene* EntryScene::create()
 
 void EntryScene::update_forLoad( float dt )
 {
-	Research::Setting::load();
+	research::Setting::load();
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( "textures/texture_001.plist", "textures/texture_001.png" );
 	Director::getInstance()->getTextureCache()->getTextureForKey( "textures/texture_001.png" )->setAliasTexParameters();

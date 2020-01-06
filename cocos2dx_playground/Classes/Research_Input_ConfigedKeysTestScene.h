@@ -18,7 +18,7 @@ namespace cpg
 	}
 }
 
-namespace Research
+namespace research
 {
 	namespace Input
 	{

@@ -6,7 +6,7 @@
 #include "CPG_Input_AllowedKeys.h"
 #include "CPG_InputTest_KeyMapConfigHelper.h"
 
-namespace Research
+namespace research
 {
 	namespace Input
 	{

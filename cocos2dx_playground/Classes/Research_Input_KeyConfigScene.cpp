@@ -13,7 +13,7 @@
 
 USING_NS_CC;
 
-namespace Research
+namespace research
 {
 	namespace Input
 	{
@@ -156,8 +156,8 @@ namespace Research
 			// key info
 			//
 			{
-				ret->allowed_keys = cpg::input::AllowedKeys::load( Research::Setting::getKeyAllowFileName().c_str() );
-				ret->keymap_config_helper.load( Research::Setting::getKeyMapFileName().c_str() );
+				ret->allowed_keys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
+				ret->keymap_config_helper.load( research::Setting::getKeyMapFileName().c_str() );
 			}
 
 			//
@@ -290,7 +290,7 @@ namespace Research
 		}
 		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
-			keymap_config_helper.save( Research::Setting::getKeyMapFileName().c_str() );
+			keymap_config_helper.save( research::Setting::getKeyMapFileName().c_str() );
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 	}

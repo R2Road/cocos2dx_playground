@@ -3,7 +3,7 @@
 #include "platform\CCFileUtils.h"
 #include "json/document.h"
 
-namespace Research
+namespace research
 {
 	Setting Setting::instance;
 
