@@ -17,13 +17,13 @@ namespace cpg
 			using KeyStatusContainer = std::bitset<31u>;
 			using KeyHistory = std::array<KeyStatusContainer, 10u>;
 
-			BasicCollector( const KeyMapSp& _key_map_container );
+			BasicCollector( const KeyMapSp& key_map_container );
 
 		public:
-			static KeyCollectorSp create( const KeyMapSp& _key_map_container );
+			static KeyCollectorSp create( const KeyMapSp& key_map_container );
 
 		public:
-			void collect( const KeyCodeCollector& _key_code_collector ) override;
+			void collect( const KeyCodeCollector& key_code_collector ) override;
 			void update_forHistory() override;
 
 			const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const override;
@@ -31,9 +31,9 @@ namespace cpg
 			const bool hasChanged() const override;
 
 		private:
-			KeyHistory key_history;
-			KeyHistory::iterator current_key_status_container;
-			KeyHistory::iterator last_key_status_container;
+			KeyHistory mKeyHistory;
+			KeyHistory::iterator mCurrent_KeyStatus_Container;
+			KeyHistory::iterator mLast_KeyStatus_Container;
 		};
 	}
 }

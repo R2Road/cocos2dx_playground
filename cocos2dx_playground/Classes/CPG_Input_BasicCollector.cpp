@@ -9,35 +9,35 @@ namespace cpg
 {
 	namespace input
 	{
-		BasicCollector::BasicCollector( const KeyMapSp& _key_map_container ) : iKeyCollector( _key_map_container )
-			, key_history()
-			, current_key_status_container()
-			, last_key_status_container()
+		BasicCollector::BasicCollector( const KeyMapSp& key_map_container ) : iKeyCollector( key_map_container )
+			, mKeyHistory()
+			, mCurrent_KeyStatus_Container()
+			, mLast_KeyStatus_Container()
 		{
-			last_key_status_container = key_history.begin();
-			current_key_status_container = last_key_status_container + 1;
+			mLast_KeyStatus_Container = mKeyHistory.begin();
+			mCurrent_KeyStatus_Container = mLast_KeyStatus_Container + 1;
 		}
 
-		KeyCollectorSp BasicCollector::create( const KeyMapSp& _key_map_container )
+		KeyCollectorSp BasicCollector::create( const KeyMapSp& key_map_container )
 		{
-			KeyCollectorSp ret( new ( std::nothrow ) BasicCollector( _key_map_container ) );
+			KeyCollectorSp ret( new ( std::nothrow ) BasicCollector( key_map_container ) );
 			return ret;
 		}
 
-		void BasicCollector::collect( const KeyCodeCollector& _key_code_collector )
+		void BasicCollector::collect( const KeyCodeCollector& key_code_collector )
 		{
 			for( const auto k : key_map_container->container )
-				( *current_key_status_container )[k.idx] = _key_code_collector.isActiveKey( k.keycode );
+				( *mCurrent_KeyStatus_Container )[k.idx] = key_code_collector.isActiveKey( k.keycode );
 		}
 		void BasicCollector::update_forHistory()
 		{
-			if( last_key_status_container->to_ulong() != current_key_status_container->to_ulong() )
+			if( mLast_KeyStatus_Container->to_ulong() != mCurrent_KeyStatus_Container->to_ulong() )
 			{
-				last_key_status_container = current_key_status_container;
-				++current_key_status_container;
-				if( key_history.end() == current_key_status_container )
-					current_key_status_container = key_history.begin();
-				*current_key_status_container = *last_key_status_container;
+				mLast_KeyStatus_Container = mCurrent_KeyStatus_Container;
+				++mCurrent_KeyStatus_Container;
+				if( mKeyHistory.end() == mCurrent_KeyStatus_Container )
+					mCurrent_KeyStatus_Container = mKeyHistory.begin();
+				*mCurrent_KeyStatus_Container = *mLast_KeyStatus_Container;
 			}
 		}
 
@@ -45,20 +45,20 @@ namespace cpg
 		{
 			for( auto& k : key_map_container->container )
 				if( keycode == k.keycode )
-					return ( *current_key_status_container )[k.idx];
+					return ( *mCurrent_KeyStatus_Container )[k.idx];
 
 			return false;
 		}
 		const bool BasicCollector::getKeyStatus( const int target_key_index ) const
 		{
-			if( 0 > target_key_index || static_cast<std::size_t>( target_key_index ) >= ( *current_key_status_container ).size() )
+			if( 0 > target_key_index || static_cast<std::size_t>( target_key_index ) >= ( *mCurrent_KeyStatus_Container ).size() )
 				return false;
 
-			return ( *current_key_status_container )[target_key_index];
+			return ( *mCurrent_KeyStatus_Container )[target_key_index];
 		}
 		const bool BasicCollector::hasChanged() const
 		{
-			return last_key_status_container->to_ulong() != current_key_status_container->to_ulong();
+			return mLast_KeyStatus_Container->to_ulong() != mCurrent_KeyStatus_Container->to_ulong();
 		}
 	}
 }
