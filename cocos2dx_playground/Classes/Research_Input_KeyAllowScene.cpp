@@ -22,20 +22,20 @@ namespace research
 		namespace
 		{
 			const int TAG_KeyAllowControl_BG = 20140416;
-			const Size calculateSizeOfKeyAllowControl( const char* _str )
+			const Size calculateSizeOfKeyAllowControl( const char* str )
 			{
 				const Size key_allow_margin( 8.f, 4.f );
-				auto temp = Label::createWithTTF( _str, "fonts/arial.ttf", 10 );
+				auto temp = Label::createWithTTF( str, "fonts/arial.ttf", 10 );
 				return Size(
 					std::ceilf( temp->getContentSize().width + ( key_allow_margin.width * 2 ) )
 					, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
 				);
 			}
-			const std::pair<int,int> calculateKeyAllowControlsRowAndColumn( const Size _view_size, const Size _control_size, const Size _control_margin )
+			const std::pair<int,int> calculateKeyAllowControlsRowAndColumn( const Size view_size, const Size control_size, const Size control_margin )
 			{
 				const auto _row_count = ldiv(
-					static_cast<int>( _view_size.height )
-					, static_cast<int>( _control_size.height + _control_margin.height )
+					static_cast<int>( view_size.height )
+					, static_cast<int>( control_size.height + control_margin.height )
 				).quot;
 
 				const auto div_result = std::ldiv( cpg::input::AllowedKeys::ContainerSize, _row_count );
@@ -46,27 +46,27 @@ namespace research
 				);
 			}
 
-			Node* createKeyAllowControl( const Size _control_size, const EventKeyboard::KeyCode _target_key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
+			Node* createKeyAllowControl( const Size control_size, const EventKeyboard::KeyCode target_key_code, const ui::Widget::ccWidgetTouchCallback& callback )
 			{
 				auto key_allow_control_root = Node::create();
 				{
-					auto key_allow_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( _target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_allow_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_1.png", ui::Widget::TextureResType::PLIST );
-					button->setTag( static_cast<int>( _target_key_code ) );
+					button->setTag( static_cast<int>( target_key_code ) );
 					button->getRendererNormal()->getTexture()->setAliasTexParameters();
 					button->getRendererClicked()->getTexture()->setAliasTexParameters();
 					button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 					button->setScale9Enabled( true );
-					button->setContentSize( _control_size );
-					button->addTouchEventListener( _callback );
+					button->setContentSize( control_size );
+					button->addTouchEventListener( callback );
 					key_allow_control_root->addChild( button, 1 );
 
 					auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 					indicator->setTag( TAG_KeyAllowControl_BG );
 					indicator->setVisible( false );
-					indicator->setContentSize( _control_size );
+					indicator->setContentSize( control_size );
 					key_allow_control_root->addChild( indicator, 0 );
 				}
 
@@ -75,9 +75,9 @@ namespace research
 		}
 
 		KeyAllowScene::KeyAllowScene() :
-			keyboard_listener( nullptr )
-			, go_exit( false )
-			, allowed_keys()
+			mKeyboardListener( nullptr )
+			, mGoExit( false )
+			, mAllowedKeys()
 		{}
 
 		Scene* KeyAllowScene::create()
@@ -132,7 +132,7 @@ namespace research
 			//
 			// Load Allowed Keys
 			//
-			allowed_keys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
+			mAllowedKeys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
 
 
 
@@ -197,7 +197,7 @@ namespace research
 					key_allow_controls_root->addChild( key_allow_control_root );
 
 					auto bg = key_allow_control_root->getChildByTag( TAG_KeyAllowControl_BG );
-					bg->setVisible( allowed_keys[cur] );
+					bg->setVisible( mAllowedKeys[cur] );
 
 					++grid_y;
 					if( row_n_column_count.second <= grid_y )
@@ -215,46 +215,46 @@ namespace research
 		{
 			Scene::onEnter();
 
-			keyboard_listener = EventListenerKeyboard::create();
-			keyboard_listener->onKeyReleased = CC_CALLBACK_2( KeyAllowScene::onKeyReleased, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
+			mKeyboardListener = EventListenerKeyboard::create();
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyAllowScene::onKeyReleased, this );
+			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
 		void KeyAllowScene::onExit()
 		{
-			if( keyboard_listener )
+			if( mKeyboardListener )
 			{
-				getEventDispatcher()->removeEventListener( keyboard_listener );
-				keyboard_listener = nullptr;
+				getEventDispatcher()->removeEventListener( mKeyboardListener );
+				mKeyboardListener = nullptr;
 			}
 			Node::onExit();
 		}
 
-		void KeyAllowScene::updateForExit( float /*_dt*/ )
+		void KeyAllowScene::updateForExit( float /*dt*/ )
 		{
-			cpg::input::AllowedKeys::save( allowed_keys, research::Setting::getKeyAllowFileName().c_str() );
+			cpg::input::AllowedKeys::save( mAllowedKeys, research::Setting::getKeyAllowFileName().c_str() );
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
-		void KeyAllowScene::onKeyAllowControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
+		void KeyAllowScene::onKeyAllowControl( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
-			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
 				return;
 
-			auto button = static_cast<ui::Button*>( _sender );
+			auto button = static_cast<ui::Button*>( sender );
 			auto bg = button->getParent()->getChildByTag( TAG_KeyAllowControl_BG );
 			bg->setVisible( !bg->isVisible() );
 
-			allowed_keys[button->getTag()] = bg->isVisible();
+			mAllowedKeys[button->getTag()] = bg->isVisible();
 		}
 
-		void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
+		void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
 				return;
 
-			if( go_exit )
+			if( mGoExit )
 				return;
 
-			go_exit = true;
+			mGoExit = true;
 			scheduleOnce( schedule_selector( KeyAllowScene::updateForExit ), 0.f );
 		}
 	}

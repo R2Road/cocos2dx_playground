@@ -20,14 +20,14 @@ namespace research
 			void onExit() override;
 
 		private:
-			void updateForExit( float _dt );
-			void onKeyAllowControl( cocos2d::Ref* _sender, cocos2d::ui::Widget::TouchEventType _touch_event_type );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
+			void updateForExit( float dt );
+			void onKeyAllowControl( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
-			cocos2d::EventListenerKeyboard* keyboard_listener;
-			bool go_exit;
-			cpg::input::AllowedKeys::Container allowed_keys;
+			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			bool mGoExit;
+			cpg::input::AllowedKeys::Container mAllowedKeys;
 		};
 	}
 }
