@@ -4,7 +4,7 @@
 
 #include "cocos2d.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{
@@ -25,7 +25,7 @@ namespace CPG
 
 			bool init( const KeyMapConfigHelper& _key_map_config_helper );
 
-			void setup( const CPG::Input::KeyCollectorSp key_collector );
+			void setup( const cpg::Input::KeyCollectorSp key_collector );
 
 		private:
 			struct KeyViewData

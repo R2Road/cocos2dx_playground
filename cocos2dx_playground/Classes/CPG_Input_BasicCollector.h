@@ -5,7 +5,7 @@
 
 #include "CPG_Input_iKeyCollector.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{

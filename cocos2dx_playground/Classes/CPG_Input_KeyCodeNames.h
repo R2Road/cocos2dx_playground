@@ -2,7 +2,7 @@
 
 #include "base/CCEventKeyboard.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{

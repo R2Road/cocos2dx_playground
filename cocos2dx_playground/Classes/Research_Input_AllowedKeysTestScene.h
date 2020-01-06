@@ -5,7 +5,7 @@
 #include "cocos2d.h"
 #include "ui/UIWidget.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{
@@ -37,11 +37,11 @@ namespace Research
 			void update_forExit( float dt );
 
 		private:
-			CPG::Input::Delegator* input_delegator;
+			cpg::Input::Delegator* input_delegator;
 			cocos2d::Label* key_viewer;
 			std::string key_string;
 
-			CPG::InputTest::KeyboardInputObserver* input_observer;
+			cpg::InputTest::KeyboardInputObserver* input_observer;
 		};
 	}
 }

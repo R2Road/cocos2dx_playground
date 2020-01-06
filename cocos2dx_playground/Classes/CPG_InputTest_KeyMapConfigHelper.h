@@ -5,7 +5,7 @@
 
 #include "cocos/base/CCEventKeyboard.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace InputTest
 	{

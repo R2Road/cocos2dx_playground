@@ -5,7 +5,7 @@
 #include "cocos2d.h"
 #include "ui/UIWidget.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{
@@ -37,8 +37,8 @@ namespace Research
 			void update_forExit( float dt );
 
 		private:
-			CPG::Input::KeyCollectorSp input_collector;
-			std::list<CPG::InputTest::KeyViewer*> key_viewer_list;
+			cpg::Input::KeyCollectorSp input_collector;
+			std::list<cpg::InputTest::KeyViewer*> key_viewer_list;
 			cocos2d::Vec2 key_viewer_start_position;
 			cocos2d::Vec2 key_viewer_end_position;
 		};

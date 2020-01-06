@@ -2,7 +2,7 @@
 
 #include "cocos/math/CCGeometry.h"
 
-namespace CPG
+namespace cpg
 {
 	class Setting
 	{

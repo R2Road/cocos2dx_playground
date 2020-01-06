@@ -4,7 +4,7 @@
 #include "CPG_Input_AllowedKeys.h"
 #include "CPG_Input_KeyCodeCollector.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{

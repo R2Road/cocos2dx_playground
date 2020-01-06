@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "CPG_Input_AllowedKeys.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace InputTest
 	{

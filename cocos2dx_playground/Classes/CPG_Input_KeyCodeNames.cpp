@@ -7,7 +7,7 @@
 
 USING_NS_CC;
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{
@@ -191,7 +191,7 @@ namespace CPG
 
 		const char* KeyCodeNames::get_longest()
 		{
-			return CPG::Input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS );
+			return cpg::Input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS );
 		}
 	}
 }

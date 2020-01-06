@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{

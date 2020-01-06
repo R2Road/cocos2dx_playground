@@ -5,7 +5,7 @@
 
 #include "cocos2d.h"
 
-namespace CPG
+namespace cpg
 {
 	namespace Input
 	{

@@ -98,10 +98,10 @@ namespace Research
 			//
 			// input
 			//
-			input_delegator = CPG::Input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
+			input_delegator = cpg::Input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_delegator, 0 );
 
-			input_observer = CPG::InputTest::KeyboardInputObserver::create( Research::Setting::getKeyAllowFileName().c_str() );
+			input_observer = cpg::InputTest::KeyboardInputObserver::create( Research::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_observer, 1 );
 
 
@@ -122,11 +122,11 @@ namespace Research
 			if( input_observer->inputFound() )
 			{
 				key_string.clear();
-				for( std::size_t cur = 0; cur < CPG::Input::AllowedKeys::ContainerSize; ++cur )
+				for( std::size_t cur = 0; cur < cpg::Input::AllowedKeys::ContainerSize; ++cur )
 				{
 					if( input_delegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 					{
-						key_string += CPG::Input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
+						key_string += cpg::Input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
 						key_string += "\n";
 					}
 				}

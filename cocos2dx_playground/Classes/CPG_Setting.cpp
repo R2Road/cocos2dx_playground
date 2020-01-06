@@ -3,7 +3,7 @@
 #include "platform\CCFileUtils.h"
 #include "json/document.h"
 
-namespace CPG
+namespace cpg
 {
 	Setting::Setting( const cocos2d::Size _frame_resolution, const cocos2d::Size _design_resolution, const bool _show_display_stats ) :
 		frame_resolution( _frame_resolution )

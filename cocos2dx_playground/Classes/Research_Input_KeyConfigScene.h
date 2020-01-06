@@ -32,8 +32,8 @@ namespace Research
 		private:
 			cocos2d::EventListenerKeyboard* keyboard_listener;
 
-			CPG::Input::AllowedKeys::Container allowed_keys;
-			CPG::InputTest::KeyMapConfigHelper keymap_config_helper;
+			cpg::Input::AllowedKeys::Container allowed_keys;
+			cpg::InputTest::KeyMapConfigHelper keymap_config_helper;
 			cocos2d::Node* current_button_node;
 		};
 	}
