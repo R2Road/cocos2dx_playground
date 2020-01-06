@@ -15,11 +15,11 @@ namespace cpg
 		class iKeyCollector
 		{
 		protected:
-			iKeyCollector( const KeyMapSp& _key_map_container );
+			iKeyCollector( const KeyMapSp& key_map_container );
 			virtual ~iKeyCollector() {}
 
 		public:
-			virtual void collect( const KeyCodeCollector& _key_code_collector ) = 0;
+			virtual void collect( const KeyCodeCollector& key_code_collector ) = 0;
 			virtual void update_forHistory() = 0;
 
 			virtual const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const = 0;
@@ -27,7 +27,7 @@ namespace cpg
 			virtual const bool hasChanged() const = 0;
 
 		protected:
-			const KeyMapSp key_map_container;
+			const KeyMapSp mKeyMapContainer;
 		};
 	}
 }

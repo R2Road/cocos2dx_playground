@@ -6,6 +6,6 @@ namespace cpg
 {
 	namespace input
 	{
-		iKeyCollector::iKeyCollector( const KeyMapSp& _key_map_container ) : key_map_container( _key_map_container ) {}
+		iKeyCollector::iKeyCollector( const KeyMapSp& _key_map_container ) : mKeyMapContainer( _key_map_container ) {}
 	}
 }
