@@ -1,5 +1,6 @@
 #include "RootScene.h"
 
+#include <new>
 #include <sstream>
 
 #include "SimpleAudioEngine.h"
