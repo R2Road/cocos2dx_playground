@@ -13,15 +13,15 @@ namespace cpg
 		const int TAG_free_key = 9999;
 
 		KeyViewer::KeyViewer() :
-			key_views()
-			, view_start_x( 0 )
-			, view_size()
+			mKeyViews()
+			, mView_StartX( 0 )
+			, mView_Size()
 		{}
 
-		KeyViewer* KeyViewer::create( const KeyMapConfigHelper& _key_map_config_helper )
+		KeyViewer* KeyViewer::create( const KeyMapConfigHelper& key_map_config_helper )
 		{
 			auto ret = new ( std::nothrow ) KeyViewer();
-			if( !ret || !ret->init( _key_map_config_helper ) )
+			if( !ret || !ret->init( key_map_config_helper ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -32,25 +32,25 @@ namespace cpg
 			return ret;
 		}
 
-		bool KeyViewer::init( const KeyMapConfigHelper& _key_map_config_helper )
+		bool KeyViewer::init( const KeyMapConfigHelper& key_map_config_helper )
 		{
 			Node::init();
 
-			view_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
+			mView_Size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
 			const Size content_size(
-				( view_size.width * _key_map_config_helper.getContainer().size() )
-				+ ( view_margin * std::max( 0, static_cast<int>( _key_map_config_helper.getContainer().size() ) - 1 ) )
-				, view_size.height
+				( mView_Size.width * key_map_config_helper.getContainer().size() )
+				+ ( view_margin * std::max( 0, static_cast<int>( key_map_config_helper.getContainer().size() ) - 1 ) )
+				, mView_Size.height
 			);
 
 			const Size total_margin( 3, 3 );
 			const Size total_size( content_size + total_margin + total_margin );
 			const float view_start_y = total_size.height * 0.5f;
-			view_start_x = total_margin.width;
+			mView_StartX = total_margin.width;
 
-			key_views.reserve( _key_map_config_helper.getContainer().size() );
+			mKeyViews.reserve( key_map_config_helper.getContainer().size() );
 			int a_i = 0;
-			for( const auto& k : _key_map_config_helper.getContainer() )
+			for( const auto& k : key_map_config_helper.getContainer() )
 			{
 				if( k.mSpriteFrameName.empty() )
 					continue;
@@ -58,12 +58,12 @@ namespace cpg
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				arrow_sprite->setPosition( Vec2(
-					view_start_x + ( ( view_size.width + view_margin ) * a_i )
+					mView_StartX + ( ( mView_Size.width + view_margin ) * a_i )
 					, view_start_y
 				) );
 				addChild( arrow_sprite );
 
-				key_views.emplace_back( k.mIdx, arrow_sprite );
+				mKeyViews.emplace_back( k.mIdx, arrow_sprite );
 
 				++a_i;
 			}
@@ -75,7 +75,7 @@ namespace cpg
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( "key_free.png" );
 				arrow_sprite->setTag( TAG_free_key );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-				arrow_sprite->setPosition( view_start_x, view_start_y );
+				arrow_sprite->setPosition( mView_StartX, view_start_y );
 				arrow_sprite->setVisible( false );
 				addChild( arrow_sprite );
 			}
@@ -86,13 +86,13 @@ namespace cpg
 		void KeyViewer::setup( const cpg::input::KeyCollectorSp key_collector )
 		{
 			int v_i = 0;
-			for( auto& v : key_views )
+			for( auto& v : mKeyViews )
 			{
-				v.sprite->setVisible( key_collector->getKeyStatus( v.key_index ) );
-				if( !v.sprite->isVisible() )
+				v.mSprite->setVisible( key_collector->getKeyStatus( v.mKeyIndex ) );
+				if( !v.mSprite->isVisible() )
 					continue;
 				
-				v.sprite->setPositionX( view_start_x + ( ( view_size.width + view_margin ) * v_i ) );
+				v.mSprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * v_i ) );
 				++v_i;
 			}
 
@@ -100,7 +100,7 @@ namespace cpg
 			if( key_collector->hasChanged() && 0 == v_i )
 			{
 				free_key_sprite->setVisible( true );
-				free_key_sprite->setPositionX( view_start_x + ( ( view_size.width + view_margin ) * v_i ) );
+				free_key_sprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * v_i ) );
 			}
 			else
 				free_key_sprite->setVisible( false );
