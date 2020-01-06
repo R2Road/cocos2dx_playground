@@ -31,7 +31,7 @@ namespace research
 				Size result_size;
 				for( const auto& h : helper.getContainer() )
 				{
-					label->setString( h.name );
+					label->setString( h.mName );
 
 					if( result_size.width < label->getContentSize().width )
 						result_size.width = label->getContentSize().width;
@@ -196,10 +196,10 @@ namespace research
 						int count = 0;
 						for( const auto& h : ret->mKeymapConfigHelper.getContainer() )
 						{
-							if( h.name.empty() || h.sprite_frame_name.empty() )
+							if( h.mName.empty() || h.mSpriteFrameName.empty() )
 								continue;
 
-							auto control = createKeyConfigControl( size_of_key_config_control, h.name, h.idx, h.keycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
+							auto control = createKeyConfigControl( size_of_key_config_control, h.mName, h.mIdx, h.mKeycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
 							control->setPosition( Vec2(
 								start_x
 								, start_y + ( ( control->getContentSize().height + inner_margin ) * count )

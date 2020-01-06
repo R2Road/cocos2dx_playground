@@ -66,7 +66,7 @@ namespace research
 				ss << "\n";
 				ss << "\n";
 				for( const auto& h : key_map_config_helper.getContainer() )
-					ss << "[ " << h.name << " : " << cpg::input::KeyCodeNames::get( h.keycode ) << " ]" << std::endl;
+					ss << "[ " << h.mName << " : " << cpg::input::KeyCodeNames::get( h.mKeycode ) << " ]" << std::endl;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );

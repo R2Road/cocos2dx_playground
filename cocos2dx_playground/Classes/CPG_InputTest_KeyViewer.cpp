@@ -52,10 +52,10 @@ namespace cpg
 			int a_i = 0;
 			for( const auto& k : _key_map_config_helper.getContainer() )
 			{
-				if( k.sprite_frame_name.empty() )
+				if( k.mSpriteFrameName.empty() )
 					continue;
 
-				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.sprite_frame_name );
+				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				arrow_sprite->setPosition( Vec2(
 					view_start_x + ( ( view_size.width + view_margin ) * a_i )
@@ -63,7 +63,7 @@ namespace cpg
 				) );
 				addChild( arrow_sprite );
 
-				key_views.emplace_back( k.idx, arrow_sprite );
+				key_views.emplace_back( k.mIdx, arrow_sprite );
 
 				++a_i;
 			}
