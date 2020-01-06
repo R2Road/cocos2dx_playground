@@ -6,7 +6,7 @@
 
 namespace cpg
 {
-	namespace Input
+	namespace input
 	{
 		class AllowedKeys
 		{

@@ -6,7 +6,7 @@
 
 namespace cpg
 {
-	namespace Input
+	namespace input
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
 		class KeyCodeCollector;

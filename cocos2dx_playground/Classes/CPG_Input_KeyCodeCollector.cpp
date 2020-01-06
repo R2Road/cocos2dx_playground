@@ -4,7 +4,7 @@ USING_NS_CC;
 
 namespace cpg
 {
-	namespace Input
+	namespace input
 	{
 		KeyCodeCollector::KeyCodeCollector() : container()
 		{}

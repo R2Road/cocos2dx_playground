@@ -23,7 +23,7 @@ namespace cpg
 				return nullptr;
 			}
 
-			ret->allowed_keys = Input::AllowedKeys::load( _allowed_keys_file_name );
+			ret->allowed_keys = input::AllowedKeys::load( _allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( 1 );
 

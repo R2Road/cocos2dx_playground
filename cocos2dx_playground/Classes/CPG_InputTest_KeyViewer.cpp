@@ -83,7 +83,7 @@ namespace cpg
 			return true;
 		}
 
-		void KeyViewer::setup( const cpg::Input::KeyCollectorSp key_collector )
+		void KeyViewer::setup( const cpg::input::KeyCollectorSp key_collector )
 		{
 			int v_i = 0;
 			for( auto& v : key_views )

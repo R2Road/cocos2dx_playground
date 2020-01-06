@@ -9,7 +9,7 @@ USING_NS_CC;
 
 namespace cpg
 {
-	namespace Input
+	namespace input
 	{
 		const char* KeyCodeNames::get( const cocos2d::EventKeyboard::KeyCode _keycode )
 		{
@@ -191,7 +191,7 @@ namespace cpg
 
 		const char* KeyCodeNames::get_longest()
 		{
-			return cpg::Input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS );
+			return cpg::input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS );
 		}
 	}
 }

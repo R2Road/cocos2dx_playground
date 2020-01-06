@@ -7,7 +7,7 @@
 
 namespace cpg
 {
-	namespace Input
+	namespace input
 	{
 		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
 	}
@@ -37,7 +37,7 @@ namespace Research
 			void update_forExit( float dt );
 
 		private:
-			cpg::Input::KeyCollectorSp input_collector;
+			cpg::input::KeyCollectorSp input_collector;
 			std::list<cpg::InputTest::KeyViewer*> key_viewer_list;
 			cocos2d::Vec2 key_viewer_start_position;
 			cocos2d::Vec2 key_viewer_end_position;

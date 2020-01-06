@@ -6,7 +6,7 @@
 
 namespace cpg
 {
-	namespace Input
+	namespace input
 	{
 		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
 

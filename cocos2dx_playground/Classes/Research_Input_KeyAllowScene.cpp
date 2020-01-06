@@ -38,7 +38,7 @@ namespace Research
 					, static_cast<int>( _control_size.height + _control_margin.height )
 				).quot;
 
-				const auto div_result = std::ldiv( cpg::Input::AllowedKeys::ContainerSize, _row_count );
+				const auto div_result = std::ldiv( cpg::input::AllowedKeys::ContainerSize, _row_count );
 
 				return std::make_pair(
 					div_result.rem > 0 ? div_result.quot + 1 : div_result.quot
@@ -50,7 +50,7 @@ namespace Research
 			{
 				auto key_allow_control_root = Node::create();
 				{
-					auto key_allow_label = Label::createWithTTF( cpg::Input::KeyCodeNames::get( _target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_allow_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( _target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_1.png", ui::Widget::TextureResType::PLIST );
@@ -132,7 +132,7 @@ namespace Research
 			//
 			// Load Allowed Keys
 			//
-			allowed_keys = cpg::Input::AllowedKeys::load( Research::Setting::getKeyAllowFileName().c_str() );
+			allowed_keys = cpg::input::AllowedKeys::load( Research::Setting::getKeyAllowFileName().c_str() );
 
 
 
@@ -148,7 +148,7 @@ namespace Research
 			key_allow_controls_root->setPosition( Vec2( origin.x, origin.y ) );
 			scroll_view->addChild( key_allow_controls_root );
 			{
-				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( cpg::Input::KeyCodeNames::get_longest() );
+				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( cpg::input::KeyCodeNames::get_longest() );
 				const Size expected_margin_of_key_allow_control( 2.f, 2.f );
 				const Size side_margin( 20.f, 20.f );
 				const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
@@ -183,7 +183,7 @@ namespace Research
 
 				int grid_x = 0;
 				int grid_y = 0;
-				for( std::size_t cur = cpg::Input::AllowedKeys::ContainerFirst; cpg::Input::AllowedKeys::ContainerSize > cur; ++cur )
+				for( std::size_t cur = cpg::input::AllowedKeys::ContainerFirst; cpg::input::AllowedKeys::ContainerSize > cur; ++cur )
 				{
 					auto key_allow_control_root = createKeyAllowControl(
 						size_of_key_allow_control
@@ -231,7 +231,7 @@ namespace Research
 
 		void KeyAllowScene::updateForExit( float /*_dt*/ )
 		{
-			cpg::Input::AllowedKeys::save( allowed_keys, Research::Setting::getKeyAllowFileName().c_str() );
+			cpg::input::AllowedKeys::save( allowed_keys, Research::Setting::getKeyAllowFileName().c_str() );
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 		void KeyAllowScene::onKeyAllowControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )

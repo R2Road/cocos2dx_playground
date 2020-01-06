@@ -66,7 +66,7 @@ namespace Research
 				ss << "\n";
 				ss << "\n";
 				for( const auto& h : key_map_config_helper.getContainer() )
-					ss << "[ " << h.name << " : " << cpg::Input::KeyCodeNames::get( h.keycode ) << " ]" << std::endl;
+					ss << "[ " << h.name << " : " << cpg::input::KeyCodeNames::get( h.keycode ) << " ]" << std::endl;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
@@ -107,12 +107,12 @@ namespace Research
 			// input
 			//
 			{
-				auto input_delegator = cpg::Input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
+				auto input_delegator = cpg::input::Delegator::create( Research::Setting::getKeyAllowFileName().c_str() );
 				addChild( input_delegator, 0 );
 
-				const auto key_map = cpg::Input::KeyMap::create( Research::Setting::getKeyMapFileName().c_str() );
+				const auto key_map = cpg::input::KeyMap::create( Research::Setting::getKeyMapFileName().c_str() );
 
-				input_collector = cpg::Input::BasicCollector::create( key_map );
+				input_collector = cpg::input::BasicCollector::create( key_map );
 				input_delegator->addInputCollector( input_collector );
 			}
 

@@ -7,7 +7,7 @@
 
 namespace cpg
 {
-	namespace Input
+	namespace input
 	{
 		class Delegator;
 	}
@@ -37,7 +37,7 @@ namespace Research
 			void update_forExit( float dt );
 
 		private:
-			cpg::Input::Delegator* input_delegator;
+			cpg::input::Delegator* input_delegator;
 			cocos2d::Label* key_viewer;
 			std::string key_string;
 

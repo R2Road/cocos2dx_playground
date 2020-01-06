@@ -40,7 +40,7 @@ namespace Research
 						result_size.height = label->getContentSize().height;
 				}
 
-				label->setString( cpg::Input::KeyCodeNames::get_longest() );
+				label->setString( cpg::input::KeyCodeNames::get_longest() );
 				if( result_size.width < label->getContentSize().width )
 					result_size.width = label->getContentSize().width;
 				if( result_size.height < label->getContentSize().height )
@@ -61,7 +61,7 @@ namespace Research
 					key_name_label->setPositionX( -_control_size.width * 0.25f );
 					root->addChild( key_name_label, 2 );
 
-					auto key_code_label = Label::createWithTTF( cpg::Input::KeyCodeNames::get( _key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( _key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_code_label->setTag( TAG_KeyCode_Label );
 					key_code_label->setPositionX( _control_size.width * 0.25f );
 					root->addChild( key_code_label, 2 );
@@ -156,7 +156,7 @@ namespace Research
 			// key info
 			//
 			{
-				ret->allowed_keys = cpg::Input::AllowedKeys::load( Research::Setting::getKeyAllowFileName().c_str() );
+				ret->allowed_keys = cpg::input::AllowedKeys::load( Research::Setting::getKeyAllowFileName().c_str() );
 				ret->keymap_config_helper.load( Research::Setting::getKeyMapFileName().c_str() );
 			}
 
@@ -276,7 +276,7 @@ namespace Research
 			keymap_config_helper.set( current_button_node->getTag(), keycode );
 
 			auto label = static_cast<Label*>( current_button_node->getParent()->getChildByTag( TAG_KeyCode_Label ) );
-			label->setString( cpg::Input::KeyCodeNames::get( keycode ) );
+			label->setString( cpg::input::KeyCodeNames::get( keycode ) );
 		}
 
 
