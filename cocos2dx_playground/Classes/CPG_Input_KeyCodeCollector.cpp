@@ -6,17 +6,17 @@ namespace cpg
 {
 	namespace input
 	{
-		KeyCodeCollector::KeyCodeCollector() : container()
+		KeyCodeCollector::KeyCodeCollector() : mContainer()
 		{}
 
 		void KeyCodeCollector::onKeyPressed( EventKeyboard::KeyCode keycode )
 		{
-			container[static_cast<std::size_t>( keycode )] = true;
+			mContainer[static_cast<std::size_t>( keycode )] = true;
 		}
 
 		void KeyCodeCollector::onKeyReleased( EventKeyboard::KeyCode keycode )
 		{
-			container[static_cast<std::size_t>( keycode )] = false;
+			mContainer[static_cast<std::size_t>( keycode )] = false;
 		}
 	}
 }
