@@ -22,14 +22,14 @@ namespace research
 			const int TAG_KeyConfigControl_BG = 20140416;
 			const int TAG_KeyCode_Label = 20160528;
 
-			const Size calculateSizeOfKeyConfigControl( cpg::InputTest::KeyMapConfigHelper& _helper )
+			const Size calculateSizeOfKeyConfigControl( cpg::InputTest::KeyMapConfigHelper& helper )
 			{
 				const Size control_side_margin( 8.f, 4.f );
 				const float inner_horizontal_margin = 10.f;
 
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
 				Size result_size;
-				for( const auto& h : _helper.getContainer() )
+				for( const auto& h : helper.getContainer() )
 				{
 					label->setString( h.name );
 
@@ -52,34 +52,34 @@ namespace research
 				);
 			}
 
-			Node* createKeyConfigControl( const Size _control_size, const std::string& _key_name, const int _key_idx, const EventKeyboard::KeyCode _key_code, const ui::Widget::ccWidgetTouchCallback& _callback )
+			Node* createKeyConfigControl( const Size control_size, const std::string& key_name, const int key_idx, const EventKeyboard::KeyCode key_code, const ui::Widget::ccWidgetTouchCallback& callback )
 			{
 				auto root = Node::create();
-				root->setContentSize( _control_size );
+				root->setContentSize( control_size );
 				{
-					auto key_name_label = Label::createWithTTF( _key_name, "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
-					key_name_label->setPositionX( -_control_size.width * 0.25f );
+					auto key_name_label = Label::createWithTTF( key_name, "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					key_name_label->setPositionX( -control_size.width * 0.25f );
 					root->addChild( key_name_label, 2 );
 
-					auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( _key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_code_label->setTag( TAG_KeyCode_Label );
-					key_code_label->setPositionX( _control_size.width * 0.25f );
+					key_code_label->setPositionX( control_size.width * 0.25f );
 					root->addChild( key_code_label, 2 );
 
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_1.png", ui::Widget::TextureResType::PLIST );
-					button->setTag( static_cast<int>( _key_idx ) );
+					button->setTag( static_cast<int>( key_idx ) );
 					button->getRendererNormal()->getTexture()->setAliasTexParameters();
 					button->getRendererClicked()->getTexture()->setAliasTexParameters();
 					button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 					button->setScale9Enabled( true );
-					button->setContentSize( _control_size );
-					button->addTouchEventListener( _callback );
+					button->setContentSize( control_size );
+					button->addTouchEventListener( callback );
 					root->addChild( button, 1 );
 
 					auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 					indicator->setTag( TAG_KeyConfigControl_BG );
 					indicator->setVisible( false );
-					indicator->setContentSize( _control_size );
+					indicator->setContentSize( control_size );
 					root->addChild( indicator, 0 );
 				}
 
@@ -90,9 +90,9 @@ namespace research
 		KeyConfigScene::KeyConfigScene() :
 			keyboard_listener( nullptr )
 
-			, allowed_keys()
-			, keymap_config_helper()
-			, current_button_node( nullptr )
+			, mAllowedKeys()
+			, mKeymapConfigHelper()
+			, mCurrentButtonNode( nullptr )
 		{}
 
 		Scene* KeyConfigScene::create()
@@ -156,20 +156,20 @@ namespace research
 			// key info
 			//
 			{
-				ret->allowed_keys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
-				ret->keymap_config_helper.load( research::Setting::getKeyMapFileName().c_str() );
+				ret->mAllowedKeys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
+				ret->mKeymapConfigHelper.load( research::Setting::getKeyMapFileName().c_str() );
 			}
 
 			//
 			// Setup Key Config Controls
 			//
 			{
-				static const Size size_of_key_config_control = calculateSizeOfKeyConfigControl( ret->keymap_config_helper );
+				static const Size size_of_key_config_control = calculateSizeOfKeyConfigControl( ret->mKeymapConfigHelper );
 				const Size side_margin( 8.f, 8.f );
 				const float inner_margin = 4.f;
 				const float total_height = (
-					( size_of_key_config_control.height * ret->keymap_config_helper.getContainer().size() )
-					+ ( inner_margin * std::max( 0, static_cast<int>( ret->keymap_config_helper.getContainer().size() ) - 1 )  )
+					( size_of_key_config_control.height * ret->mKeymapConfigHelper.getContainer().size() )
+					+ ( inner_margin * std::max( 0, static_cast<int>( ret->mKeymapConfigHelper.getContainer().size() ) - 1 )  )
 					+ ( side_margin.height * 2 )
 				);
 				const float start_x = origin.x + ( visibleSize.width * 0.5f );
@@ -194,7 +194,7 @@ namespace research
 					scroll_view->setInnerContainerSize( root_node->getContentSize() );
 					{
 						int count = 0;
-						for( const auto& h : ret->keymap_config_helper.getContainer() )
+						for( const auto& h : ret->mKeymapConfigHelper.getContainer() )
 						{
 							if( h.name.empty() || h.sprite_frame_name.empty() )
 								continue;
@@ -239,18 +239,18 @@ namespace research
 		}
 
 
-		void KeyConfigScene::onKeyConfigControl( Ref* _sender, ui::Widget::TouchEventType _touch_event_type )
+		void KeyConfigScene::onKeyConfigControl( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
-			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
 				return;
 
-			auto button_node = static_cast<Node*>( _sender );
+			auto button_node = static_cast<Node*>( sender );
 			
-			if( current_button_node )
+			if( mCurrentButtonNode )
 			{
-				if( current_button_node != button_node )
+				if( mCurrentButtonNode != button_node )
 				{
-					auto bg = current_button_node->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
+					auto bg = mCurrentButtonNode->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
 					bg->setVisible( false );
 				}
 			}
@@ -259,30 +259,30 @@ namespace research
 			button_bg->setVisible( !button_bg->isVisible() );
 
 			if( button_bg->isVisible() )
-				current_button_node = button_node;
+				mCurrentButtonNode = button_node;
 			else
-				current_button_node = nullptr;
+				mCurrentButtonNode = nullptr;
 		}
 
 
-		void KeyConfigScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
+		void KeyConfigScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( !current_button_node )
+			if( !mCurrentButtonNode )
 				return;
 
-			if( !allowed_keys[static_cast<std::size_t>( keycode )] )
+			if( !mAllowedKeys[static_cast<std::size_t>( keycode )] )
 				return;
 
-			keymap_config_helper.set( current_button_node->getTag(), keycode );
+			mKeymapConfigHelper.set( mCurrentButtonNode->getTag(), keycode );
 
-			auto label = static_cast<Label*>( current_button_node->getParent()->getChildByTag( TAG_KeyCode_Label ) );
+			auto label = static_cast<Label*>( mCurrentButtonNode->getParent()->getChildByTag( TAG_KeyCode_Label ) );
 			label->setString( cpg::input::KeyCodeNames::get( keycode ) );
 		}
 
 
-		void KeyConfigScene::onExitButton( Ref* /*_sender*/, ui::Widget::TouchEventType _touch_event_type )
+		void KeyConfigScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
-			if( ui::Widget::TouchEventType::ENDED != _touch_event_type )
+			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
 				return;
 
 			if( !isScheduled( schedule_selector( KeyConfigScene::update_forExit ) ) )
@@ -290,7 +290,7 @@ namespace research
 		}
 		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
-			keymap_config_helper.save( research::Setting::getKeyMapFileName().c_str() );
+			mKeymapConfigHelper.save( research::Setting::getKeyMapFileName().c_str() );
 			Director::getInstance()->replaceScene( RootScene::create() );
 		}
 	}
