@@ -26,7 +26,7 @@ namespace cpg
 
 		void BasicCollector::collect( const KeyCodeCollector& key_code_collector )
 		{
-			for( const auto k : mKeyMapContainer->container )
+			for( const auto k : mKeyMapContainer->mContainer )
 				( *mCurrent_KeyStatus_Container )[k.idx] = key_code_collector.isActiveKey( k.keycode );
 		}
 		void BasicCollector::update_forHistory()
@@ -43,7 +43,7 @@ namespace cpg
 
 		const bool BasicCollector::getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const
 		{
-			for( auto& k : mKeyMapContainer->container )
+			for( auto& k : mKeyMapContainer->mContainer )
 				if( keycode == k.keycode )
 					return ( *mCurrent_KeyStatus_Container )[k.idx];
 

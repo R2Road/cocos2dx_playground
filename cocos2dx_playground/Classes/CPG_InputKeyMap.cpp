@@ -14,10 +14,10 @@ namespace cpg
 		namespace
 		{
 			const char* string_key_code = "key_code";
-			const bool loadKeyMapJson( const char* _key_map_path, KeyMap::KeyMapContainer& _container )
+			const bool loadKeyMapJson( const char* key_map_path, KeyMap::KeyMapContainer& container )
 			{
 				// load json
-				const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( _key_map_path );
+				const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( key_map_path );
 				rapidjson::Document doc;
 				doc.Parse<0>( regionStr.c_str() );
 
@@ -39,7 +39,7 @@ namespace cpg
 					return false;
 				}
 
-				_container.reserve( doc.Size() );
+				container.reserve( doc.Size() );
 
 				rapidjson::Value::MemberIterator key_code_itr;
 				int key_idx = 0;
@@ -49,7 +49,7 @@ namespace cpg
 					if( key_code_itr == cur->MemberEnd() )
 						continue;
 
-					_container.emplace_back( static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() ), key_idx );
+					container.emplace_back( static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() ), key_idx );
 
 					++key_idx;
 				}
@@ -58,22 +58,22 @@ namespace cpg
 			}
 		}
 
-		KeyMap::KeyMap( KeyMapContainer&& _container ) : container( std::move( _container ) ) {}
+		KeyMap::KeyMap( KeyMapContainer&& container ) : mContainer( std::move( container ) ) {}
 
-		KeyMapSp KeyMap::create_with_json( const char* _key_map_path )
+		KeyMapSp KeyMap::create_with_json( const char* key_map_path )
 		{
 			KeyMapContainer container;
-			if( !loadKeyMapJson( _key_map_path, container ) )
+			if( !loadKeyMapJson( key_map_path, container ) )
 				return get_dummy();
 
 			KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
 			return ret;
 		}
 
-		KeyMapSp KeyMap::create( const char* _key_map_file_name )
+		KeyMapSp KeyMap::create( const char* key_map_file_name )
 		{
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( _key_map_file_name );
+			path.append( key_map_file_name );
 
 			return create_with_json( path.c_str() );
 		}
@@ -90,10 +90,10 @@ namespace cpg
 			return ret;
 		}
 
-		const int KeyMap::getKeyIndex( const cocos2d::EventKeyboard::KeyCode _key_code ) const
+		const int KeyMap::getKeyIndex( const cocos2d::EventKeyboard::KeyCode key_code ) const
 		{
-			for( const auto& k : container )
-				if( k.keycode == _key_code )
+			for( const auto& k : mContainer )
+				if( k.keycode == key_code )
 					return k.idx;
 
 			return 0;

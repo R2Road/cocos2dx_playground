@@ -16,7 +16,7 @@ namespace cpg
 		public:
 			struct KeyMapPiece
 			{
-				KeyMapPiece( const cocos2d::EventKeyboard::KeyCode _keycode, const int _idx ) : keycode( _keycode ), idx( _idx ) {}
+				KeyMapPiece( const cocos2d::EventKeyboard::KeyCode keycode, const int idx ) : keycode( keycode ), idx( idx ) {}
 
 				cocos2d::EventKeyboard::KeyCode keycode;
 				int idx;
@@ -24,18 +24,18 @@ namespace cpg
 			using KeyMapContainer = std::vector<KeyMapPiece>;
 
 		private:
-			explicit KeyMap( KeyMapContainer&& _container );
-			static KeyMapSp create_with_json( const char* _key_map_path );
+			explicit KeyMap( KeyMapContainer&& container );
+			static KeyMapSp create_with_json( const char* key_map_path );
 
 		public:
-			static KeyMapSp create( const char* _key_map_file_name );
+			static KeyMapSp create( const char* key_map_file_name );
 
 			static const KeyMapSp& get_default();
 			static const KeyMapSp& get_dummy();
 
-			const int getKeyIndex( const cocos2d::EventKeyboard::KeyCode _key_code ) const;
+			const int getKeyIndex( const cocos2d::EventKeyboard::KeyCode key_code ) const;
 
-			const KeyMapContainer container;
+			const KeyMapContainer mContainer;
 		};
 	}
 }
