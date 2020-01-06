@@ -9,11 +9,11 @@ namespace cpg
 	namespace input_test
 	{
 		KeyboardInputObserver::KeyboardInputObserver() :
-			found( false )
-			, allowed_keys()
+			mbFound( false )
+			, mAllowedKeys()
 		{}
 
-		KeyboardInputObserver* KeyboardInputObserver::create( const char* _allowed_keys_file_name )
+		KeyboardInputObserver* KeyboardInputObserver::create( const char* allowed_keys_file_name )
 		{
 			auto ret = new ( std::nothrow ) KeyboardInputObserver();
 			if( !ret || !ret->init() )
@@ -23,7 +23,7 @@ namespace cpg
 				return nullptr;
 			}
 
-			ret->allowed_keys = input::AllowedKeys::load( _allowed_keys_file_name );
+			ret->mAllowedKeys = input::AllowedKeys::load( allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( 1 );
 
@@ -35,36 +35,36 @@ namespace cpg
 		{
 			Node::onEnter();
 
-			keyboard_listener = EventListenerKeyboard::create();
-			keyboard_listener->onKeyPressed = CC_CALLBACK_2( KeyboardInputObserver::onKeyPressed, this );
-			keyboard_listener->onKeyReleased = CC_CALLBACK_2( KeyboardInputObserver::onKeyReleased, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
+			mKeyboardListener = EventListenerKeyboard::create();
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( KeyboardInputObserver::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyboardInputObserver::onKeyReleased, this );
+			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void KeyboardInputObserver::update( float _dt )
+		void KeyboardInputObserver::update( float dt )
 		{
-			found = false;
-			Node::update( _dt );
+			mbFound = false;
+			Node::update( dt );
 		}
 		void KeyboardInputObserver::onExit()
 		{
-			if( keyboard_listener )
+			if( mKeyboardListener )
 			{
-				getEventDispatcher()->removeEventListener( keyboard_listener );
-				keyboard_listener = nullptr;
+				getEventDispatcher()->removeEventListener( mKeyboardListener );
+				mKeyboardListener = nullptr;
 			}
 			Node::onExit();
 		}
 
-		void KeyboardInputObserver::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
+		void KeyboardInputObserver::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( allowed_keys[static_cast<std::size_t>( keycode )] )
-				found = true;
+			if( mAllowedKeys[static_cast<std::size_t>( keycode )] )
+				mbFound = true;
 		}
 
-		void KeyboardInputObserver::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*_event*/ )
+		void KeyboardInputObserver::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( allowed_keys[static_cast<std::size_t>( keycode )] )
-				found = true;
+			if( mAllowedKeys[static_cast<std::size_t>( keycode )] )
+				mbFound = true;
 		}
 	}
 }

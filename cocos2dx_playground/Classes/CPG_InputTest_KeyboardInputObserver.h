@@ -13,23 +13,23 @@ namespace cpg
 			KeyboardInputObserver();
 
 		public:
-			static KeyboardInputObserver* create( const char* _allowed_keys_file_name );
+			static KeyboardInputObserver* create( const char* allowed_keys_file_name );
 
 			void onEnter() override;
-			void update( float _dt ) override;
+			void update( float dt ) override;
 			void onExit() override;
 
 		private:
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*_event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		public:
-			inline const bool inputFound() const { return found; }
+			inline const bool inputFound() const { return mbFound; }
 
 		private:
-			cocos2d::EventListenerKeyboard* keyboard_listener;
-			input::AllowedKeys::Container allowed_keys;
-			bool found;
+			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			input::AllowedKeys::Container mAllowedKeys;
+			bool mbFound;
 		};
 	}
 }
