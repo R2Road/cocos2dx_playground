@@ -15,7 +15,7 @@ USING_NS_CC;
 
 namespace research
 {
-	namespace Input
+	namespace input
 	{
 		namespace
 		{

@@ -20,7 +20,7 @@ namespace cpg
 
 namespace research
 {
-	namespace Input
+	namespace input
 	{
 		class ConfigedKeysTestScene : public cocos2d::Scene
 		{

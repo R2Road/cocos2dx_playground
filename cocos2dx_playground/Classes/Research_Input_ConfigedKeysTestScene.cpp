@@ -19,7 +19,7 @@ USING_NS_CC;
 
 namespace research
 {
-	namespace Input
+	namespace input
 	{
 		const int key_viewer_count = 10;
 		const float key_viewer_margin = 4.f;

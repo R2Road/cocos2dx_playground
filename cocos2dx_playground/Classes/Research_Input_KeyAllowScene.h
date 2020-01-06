@@ -6,7 +6,7 @@
 
 namespace research
 {
-	namespace Input
+	namespace input
 	{
 		class KeyAllowScene : public cocos2d::Scene
 		{

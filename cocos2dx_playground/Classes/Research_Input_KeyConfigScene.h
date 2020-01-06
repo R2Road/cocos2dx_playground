@@ -8,7 +8,7 @@
 
 namespace research
 {
-	namespace Input
+	namespace input
 	{
 		class KeyConfigScene : public cocos2d::Scene
 		{
