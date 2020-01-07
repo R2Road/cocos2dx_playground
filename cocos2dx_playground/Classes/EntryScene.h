@@ -4,9 +4,10 @@
 
 class EntryScene : public cocos2d::Scene
 {
-public:
+private:
 	EntryScene() = default;
 
+public:
     static cocos2d::Scene* create();
 
 	void update_forLoad( float dt );
