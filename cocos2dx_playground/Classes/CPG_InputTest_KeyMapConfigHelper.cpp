@@ -57,7 +57,7 @@ namespace cpg
 
 		void KeyMapConfigHelper::set( const int key_index, const cocos2d::EventKeyboard::KeyCode new_keycode )
 		{
-			if( 0 > key_index || key_index >= mContainer.size() )
+			if( 0 > key_index || key_index >= static_cast<int>( mContainer.size() ) )
 				return;
 
 			mContainer[static_cast<std::size_t>( key_index )].mKeycode = new_keycode;
