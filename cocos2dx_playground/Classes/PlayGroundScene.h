@@ -2,10 +2,10 @@
 
 #include "cocos2d.h"
 
-class RootScene : public cocos2d::Scene
+class PlayGroundScene : public cocos2d::Scene
 {
 public:
-	RootScene();
+	PlayGroundScene();
 
     static cocos2d::Scene* create();
 

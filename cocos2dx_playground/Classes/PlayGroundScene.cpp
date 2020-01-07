@@ -7,11 +7,11 @@
 
 USING_NS_CC;
 
-RootScene::RootScene() : mKeyboardListener( nullptr ) {}
+PlayGroundScene::PlayGroundScene() : mKeyboardListener( nullptr ) {}
 
-Scene* RootScene::create()
+Scene* PlayGroundScene::create()
 {
-	auto ret = new ( std::nothrow ) RootScene();
+	auto ret = new ( std::nothrow ) PlayGroundScene();
 	if( !ret || !ret->init() )
 	{
 		delete ret;
@@ -23,7 +23,7 @@ Scene* RootScene::create()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	std::stringstream ss;
-	ss << "+ Root";
+	ss << "+ Playground";
 	ss << "\n";
 	ss << "\n";
 	ss << "[ESC] : Shutdown";
@@ -45,15 +45,15 @@ Scene* RootScene::create()
 	return ret;
 }
 
-void RootScene::onEnter()
+void PlayGroundScene::onEnter()
 {
 	Scene::onEnter();
 
 	mKeyboardListener = EventListenerKeyboard::create();
-	mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
+	mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayGroundScene::onKeyPressed, this );
 	getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 }
-void RootScene::onExit()
+void PlayGroundScene::onExit()
 {
 	assert( mKeyboardListener );
 	getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -63,7 +63,7 @@ void RootScene::onExit()
 }
 
 
-void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 {
 	switch( keycode )
 	{

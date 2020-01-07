@@ -29,5 +29,5 @@ void EntryScene::update_forLoad( float dt )
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( "textures/texture_001.plist", "textures/texture_001.png" );
 	Director::getInstance()->getTextureCache()->getTextureForKey( "textures/texture_001.png" )->setAliasTexParameters();
 
-	Director::getInstance()->replaceScene( RootScene::create() );
+	Director::getInstance()->replaceScene( PlayGroundScene::create() );
 }

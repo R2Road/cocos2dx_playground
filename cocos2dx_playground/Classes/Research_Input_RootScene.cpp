@@ -48,7 +48,7 @@ namespace research
 			ss << "+ Input Research Root";
 			ss << "\n";
 			ss << "\n";
-			ss << "[ESC] : Return to Root";
+			ss << "[ESC] : Return to Playground";
 			ss << "\n";
 			ss << "\n";
 			ss << "[1] : Key Allow";
@@ -90,7 +90,7 @@ namespace research
 
 		void RootScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( ::RootScene::create() );
+			Director::getInstance()->replaceScene( ::PlayGroundScene::create() );
 		}
 
 		void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
