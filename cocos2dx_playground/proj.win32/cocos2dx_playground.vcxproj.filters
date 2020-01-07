@@ -78,6 +78,9 @@
     <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_RootScene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -138,6 +141,9 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_RootScene.h">
       <Filter>src\scene</Filter>
     </ClInclude>
   </ItemGroup>

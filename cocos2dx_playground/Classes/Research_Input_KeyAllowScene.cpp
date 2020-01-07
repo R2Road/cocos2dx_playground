@@ -10,7 +10,7 @@
 #include "ui/UIScrollView.h"
 #include "CPG_Input_KeyCodeNames.h"
 
-#include "RootScene.h"
+#include "Research_Input_RootScene.h"
 #include "Research_Setting.h"
 
 USING_NS_CC;

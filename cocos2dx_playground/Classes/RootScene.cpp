@@ -3,13 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "SimpleAudioEngine.h"
-
-#include "Research_Input_KeyAllowScene.h"
-#include "Research_Input_AllowedKeysTestScene.h"
-
-#include "Research_Input_KeyConfigScene.h"
-#include "Research_Input_ConfigedKeysTestScene.h"
+#include "Research_Input_RootScene.h"
 
 USING_NS_CC;
 
@@ -29,20 +23,13 @@ Scene* RootScene::create()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	std::stringstream ss;
-	ss << "+ Root Scene";
+	ss << "+ Root";
 	ss << "\n";
 	ss << "\n";
 	ss << "[ESC] : Shutdown";
 	ss << "\n";
 	ss << "\n";
-	ss << "[1] : Research - Key Allow";
-	ss << "\n";
-	ss << "[2] : Research - Allowed Keys Test";
-	ss << "\n";
-	ss << "\n";
-	ss << "[3] : Research - Key Config";
-	ss << "\n";
-	ss << "[4] : Research - Configed Keys Test";
+	ss << "[1] : Input Research";
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 	label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
@@ -79,32 +66,12 @@ void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	switch( keycode )
 	{
 	case EventKeyboard::KeyCode::KEY_ESCAPE:
-	{
 		cocos2d::Director::getInstance()->end();
-	}
-	break;
+		break;
 
 	case EventKeyboard::KeyCode::KEY_1:
-	{
-		Director::getInstance()->replaceScene( research::input::KeyAllowScene::create() );
-	}
-	break;
-	case EventKeyboard::KeyCode::KEY_2:
-	{
-		Director::getInstance()->replaceScene( research::input::AllowedKeysTestScene::create() );
-	}
-	break;
-
-	case EventKeyboard::KeyCode::KEY_3:
-	{
-		Director::getInstance()->replaceScene( research::input::KeyConfigScene::create() );
-	}
-	break;
-	case EventKeyboard::KeyCode::KEY_4:
-	{
-		Director::getInstance()->replaceScene( research::input::ConfigedKeysTestScene::create() );
-	}
-	break;
+		Director::getInstance()->replaceScene( research::input::RootScene::create() );
+		break;
 
 	default:
 		CCLOG( "Key Code : %d", keycode );

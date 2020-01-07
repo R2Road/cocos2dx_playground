@@ -5,7 +5,7 @@
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "RootScene.h"
+#include "Research_Input_RootScene.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
