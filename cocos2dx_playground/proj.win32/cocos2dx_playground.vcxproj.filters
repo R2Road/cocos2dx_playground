@@ -16,6 +16,9 @@
     <Filter Include="src\input">
       <UniqueIdentifier>{38d6d0ea-b379-4bdf-8de1-4eb67b03947a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\input">
+      <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,15 +32,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Setting.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
-      <Filter>src\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
-      <Filter>src\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
-      <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CPG_Input_AllowedKeys.cpp">
       <Filter>src\input</Filter>
@@ -72,14 +66,23 @@
     <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
-      <Filter>src\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_RootScene.cpp">
-      <Filter>src\scene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\PlayGroundScene.cpp">
       <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
+      <Filter>src\scene\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
+      <Filter>src\scene\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
+      <Filter>src\scene\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
+      <Filter>src\scene\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_RootScene.cpp">
+      <Filter>src\scene\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,15 +97,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Setting.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
-      <Filter>src\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
-      <Filter>src\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
-      <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_AllowedKeys.h">
       <Filter>src\input</Filter>
@@ -137,14 +131,23 @@
     <ClInclude Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.h">
       <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
-      <Filter>src\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_RootScene.h">
-      <Filter>src\scene</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\PlayGroundScene.h">
       <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
+      <Filter>src\scene\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
+      <Filter>src\scene\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
+      <Filter>src\scene\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
+      <Filter>src\scene\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_RootScene.h">
+      <Filter>src\scene\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
