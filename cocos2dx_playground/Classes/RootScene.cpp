@@ -31,11 +31,11 @@ Scene* RootScene::create()
 	ss << "\n";
 	ss << "[1] : Input Research";
 
-	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-	label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+	label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 	label->setPosition( Vec2(
-		origin.x + visibleSize.width / 2
-		, origin.y + visibleSize.height
+		origin.x + ( visibleSize.width * 0.5f )
+		, origin.y + ( visibleSize.height * 0.5f )
 	) );
 	ret->addChild( label, 1 );
 
