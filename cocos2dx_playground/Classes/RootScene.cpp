@@ -55,8 +55,10 @@ void RootScene::onEnter()
 }
 void RootScene::onExit()
 {
-	if( mKeyboardListener )
-		getEventDispatcher()->removeEventListener( mKeyboardListener );
+	assert( mKeyboardListener );
+	getEventDispatcher()->removeEventListener( mKeyboardListener );
+	mKeyboardListener = nullptr;
+
 	Scene::onExit();
 }
 
