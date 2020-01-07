@@ -63,9 +63,6 @@
     <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserver.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\RootScene.cpp">
-      <Filter>src\scene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\EntryScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
@@ -79,6 +76,9 @@
       <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_RootScene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PlayGroundScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,9 +128,6 @@
     <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserver.h">
       <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\RootScene.h">
-      <Filter>src\scene</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\EntryScene.h">
       <Filter>src\scene</Filter>
     </ClInclude>
@@ -144,6 +141,9 @@
       <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_RootScene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayGroundScene.h">
       <Filter>src\scene</Filter>
     </ClInclude>
   </ItemGroup>
