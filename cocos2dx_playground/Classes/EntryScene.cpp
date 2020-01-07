@@ -22,7 +22,7 @@ Scene* EntryScene::create()
 	return ret;
 }
 
-void EntryScene::update_forLoad( float dt )
+void EntryScene::update_forLoad( float /*dt*/ )
 {
 	research::Setting::load();
 
