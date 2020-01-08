@@ -49,8 +49,8 @@ namespace research
 			if( !Scene::init() )
 				return false;
 
-			auto visibleSize = Director::getInstance()->getVisibleSize();
-			Vec2 origin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = Director::getInstance()->getVisibleSize();
+			const auto origin = Director::getInstance()->getVisibleOrigin();
 
 			//
 			// summury

@@ -106,7 +106,7 @@ namespace research
 			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const Vec2 origin = Director::getInstance()->getVisibleOrigin();
+			const auto origin = Director::getInstance()->getVisibleOrigin();
 
 			//
 			// summury

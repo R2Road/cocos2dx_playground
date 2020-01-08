@@ -51,8 +51,8 @@ namespace research
 			if( !Scene::init() )
 				return false;
 
-			auto visibleSize = Director::getInstance()->getVisibleSize();
-			Vec2 origin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = Director::getInstance()->getVisibleSize();
+			const auto origin = Director::getInstance()->getVisibleOrigin();
 
 			cpg::input_test::KeyMapConfigHelper key_map_config_helper;
 			key_map_config_helper.load( research::Setting::getKeyMapFileName().c_str() );
