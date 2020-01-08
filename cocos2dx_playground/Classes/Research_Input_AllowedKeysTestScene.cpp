@@ -58,6 +58,7 @@ namespace research
 			{
 				std::stringstream ss;
 				ss << "+ Allowed Keys Test Scene";
+				ss << "    [ ... ] : do input allowed keys";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
