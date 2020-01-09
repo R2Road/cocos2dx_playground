@@ -22,12 +22,14 @@ namespace cpg
 				ret = nullptr;
 				return nullptr;
 			}
+			else
+			{
+				ret->autorelease();
+			}
 
 			ret->mAllowedKeys = input::AllowedKeys::load( allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( 1 );
-
-			ret->autorelease();
 			return ret;
 		}
 

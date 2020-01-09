@@ -89,8 +89,10 @@ namespace research
 				ret = nullptr;
 				return nullptr;
 			}
-
-			ret->autorelease();
+			else
+			{
+				ret->autorelease();
+			}
 
 			return ret;
 		}

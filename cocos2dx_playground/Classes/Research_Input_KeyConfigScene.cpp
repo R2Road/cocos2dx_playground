@@ -104,6 +104,10 @@ namespace research
 				ret = nullptr;
 				return nullptr;
 			}
+			else
+			{
+				ret->autorelease();
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto origin = Director::getInstance()->getVisibleOrigin();
@@ -211,11 +215,8 @@ namespace research
 					}
 				}
 			}
-
-
-			ret->autorelease();
+			
 			ret->scheduleUpdate();
-
 			return ret;
 		}
 

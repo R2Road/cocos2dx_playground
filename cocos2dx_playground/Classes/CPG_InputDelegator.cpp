@@ -24,13 +24,15 @@ namespace cpg
 				ret = nullptr;
 				return nullptr;
 			}
+			else
+			{
+				ret->autorelease();
+			}
 
 			ret->mAllowedKeys = AllowedKeys::load( allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( -1 );
 			ret->schedule( schedule_selector( Delegator::post_update) );
-
-			ret->autorelease();
 			return ret;
 		}
 

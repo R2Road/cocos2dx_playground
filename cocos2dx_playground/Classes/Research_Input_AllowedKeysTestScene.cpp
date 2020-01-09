@@ -37,10 +37,12 @@ namespace research
 				ret = nullptr;
 				return nullptr;
 			}
+			else
+			{
+				ret->autorelease();
+			}
 
-			ret->autorelease();
 			ret->scheduleUpdate();
-
 			return ret;
 		}
 
