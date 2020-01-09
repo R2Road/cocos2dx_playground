@@ -18,6 +18,10 @@ Scene* PlayGroundScene::create()
 		ret = nullptr;
 		return nullptr;
 	}
+	else
+	{
+		ret->autorelease();
+	}
 
 	const auto visibleSize = Director::getInstance()->getVisibleSize();
 	const auto origin = Director::getInstance()->getVisibleOrigin();
@@ -38,9 +42,6 @@ Scene* PlayGroundScene::create()
 		, origin.y + ( visibleSize.height * 0.5f )
 	) );
 	ret->addChild( label, 1 );
-
-
-	ret->autorelease();
 
 	return ret;
 }

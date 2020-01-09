@@ -16,6 +16,10 @@ Scene* EntryScene::create()
 		ret = nullptr;
 		return nullptr;
 	}
+	else
+	{
+		ret->autorelease();
+	}
 
 	ret->scheduleOnce( schedule_selector( EntryScene::update_forLoad ), 0.f );
 

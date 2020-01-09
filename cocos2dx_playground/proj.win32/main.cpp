@@ -26,6 +26,10 @@
 #include "AppDelegate.h"
 #include "cocos2d.h"
 
+#if defined( DEBUG ) || defined( _DEBUG )
+	#include <vld.h>
+#endif
+
 USING_NS_CC;
 
 int WINAPI _tWinMain(HINSTANCE hInstance,

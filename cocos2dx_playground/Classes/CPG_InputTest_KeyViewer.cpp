@@ -27,8 +27,11 @@ namespace cpg
 				ret = nullptr;
 				return nullptr;
 			}
+			else
+			{
+				ret->autorelease();
+			}
 
-			ret->autorelease();
 			return ret;
 		}
 
