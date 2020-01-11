@@ -163,6 +163,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp" />
     <ClCompile Include="..\Classes\CPG_Setting.cpp" />
     <ClCompile Include="..\Classes\EntryScene.cpp" />
+    <ClCompile Include="..\Classes\Research_Animation_RootScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp" />
@@ -186,6 +187,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.h" />
     <ClInclude Include="..\Classes\CPG_Setting.h" />
     <ClInclude Include="..\Classes\EntryScene.h" />
+    <ClInclude Include="..\Classes\Research_Animation_RootScene.h" />
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h" />
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h" />
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h" />

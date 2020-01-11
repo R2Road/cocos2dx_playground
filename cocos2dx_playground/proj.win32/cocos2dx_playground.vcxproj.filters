@@ -19,6 +19,9 @@
     <Filter Include="src\scene\input">
       <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\animation">
+      <UniqueIdentifier>{21100d58-fa07-4a20-ad3b-1c9dc0025dd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,6 +87,9 @@
     <ClCompile Include="..\Classes\Research_Input_RootScene.cpp">
       <Filter>src\scene\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Animation_RootScene.cpp">
+      <Filter>src\scene\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -148,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_RootScene.h">
       <Filter>src\scene\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Animation_RootScene.h">
+      <Filter>src\scene\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

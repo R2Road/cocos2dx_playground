@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "Research_Input_RootScene.h"
+#include "Research_Animation_RootScene.h"
 
 USING_NS_CC;
 
@@ -34,6 +35,8 @@ Scene* PlayGroundScene::create()
 	ss << "\n";
 	ss << "\n";
 	ss << "[1] : Input Research";
+	ss << "\n";
+	ss << "[2] : Animation Research";
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 	label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -74,6 +77,9 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 
 	case EventKeyboard::KeyCode::KEY_1:
 		Director::getInstance()->replaceScene( research::input::RootScene::create() );
+		break;
+	case EventKeyboard::KeyCode::KEY_2:
+		Director::getInstance()->replaceScene( research::animation::RootScene::create() );
 		break;
 
 	default:
