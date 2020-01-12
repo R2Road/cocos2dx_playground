@@ -19,10 +19,10 @@ namespace research
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
+			bool mInputBlocked;
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 		};
 	}

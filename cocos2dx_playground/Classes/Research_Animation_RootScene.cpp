@@ -12,7 +12,7 @@ namespace research
 {
 	namespace animation
 	{
-		RootScene::RootScene() : mKeyboardListener( nullptr ) {}
+		RootScene::RootScene() : mInputBlocked( false ), mKeyboardListener( nullptr ) {}
 
 		Scene* RootScene::create()
 		{
@@ -89,26 +89,32 @@ namespace research
 			Node::onExit();
 		}
 
-		void RootScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( ::PlayGroundScene::create() );
-		}
-
 		void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
+			if( mInputBlocked )
+			{
+				return;
+			}
+
+			Scene* next_scene = nullptr;
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				if( !isScheduled( schedule_selector( RootScene::updateForExit ) ) )
-					scheduleOnce( schedule_selector( RootScene::updateForExit ), 0.f );
+				next_scene = PlayGroundScene::create();
 				break;
 
 			case EventKeyboard::KeyCode::KEY_1:
-				Director::getInstance()->replaceScene( BasicScene::create() );
+				next_scene = BasicScene::create();
 				break;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
+			}
+
+			if( next_scene )
+			{
+				mInputBlocked = true;
+				Director::getInstance()->replaceScene( next_scene );
 			}
 		}
 	}
