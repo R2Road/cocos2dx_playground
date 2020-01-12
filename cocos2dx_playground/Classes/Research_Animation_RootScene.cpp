@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "PlayGroundScene.h"
+#include "Research_Animation_BasicScene.h"
 
 USING_NS_CC;
 
@@ -47,6 +48,9 @@ namespace research
 				ss << "\n";
 				ss << "\n";
 				ss << "[ESC] : Return to Playground";
+				ss << "\n";
+				ss << "\n";
+				ss << "[1] : Basic";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -97,6 +101,10 @@ namespace research
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				if( !isScheduled( schedule_selector( RootScene::updateForExit ) ) )
 					scheduleOnce( schedule_selector( RootScene::updateForExit ), 0.f );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_1:
+				Director::getInstance()->replaceScene( BasicScene::create() );
 				break;
 
 			default:

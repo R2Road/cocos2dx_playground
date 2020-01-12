@@ -90,6 +90,9 @@
     <ClCompile Include="..\Classes\Research_Animation_RootScene.cpp">
       <Filter>src\scene\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Animation_BasicScene.cpp">
+      <Filter>src\scene\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -156,6 +159,9 @@
       <Filter>src\scene\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Animation_RootScene.h">
+      <Filter>src\scene\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Animation_BasicScene.h">
       <Filter>src\scene\animation</Filter>
     </ClInclude>
   </ItemGroup>
