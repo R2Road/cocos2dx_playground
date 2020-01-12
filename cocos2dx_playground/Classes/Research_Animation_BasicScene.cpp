@@ -65,6 +65,35 @@ namespace research
 				addChild( background_layer, 0 );
 			}
 
+			//
+			// Animation
+			//
+			{
+				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				animation_node->setAnchorPoint( Vec2( 0.f, 0.f ) );
+				animation_node->setScale( 2.f );
+				animation_node->setPosition( Vec2(
+					static_cast<int>( origin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
+					, static_cast<int>( origin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
+				) );
+				addChild( animation_node, 1 );
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.2f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+
+					auto animate_action = Animate::create( animation_object );
+
+					auto repeat_action = RepeatForever::create( animate_action );
+
+					animation_node->runAction( repeat_action );
+				}
+
+			}
+
 			return true;
 		}
 

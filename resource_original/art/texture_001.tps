@@ -181,6 +181,24 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">animation/actor001/actor001_run_01.png</key>
+            <key type="filename">animation/actor001/actor001_run_02.png</key>
+            <key type="filename">animation/actor001/actor001_run_03.png</key>
+            <key type="filename">animation/actor001/actor001_run_04.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,11,12,22</rect>
+                <key>scale9Paddings</key>
+                <rect>6,11,12,22</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">etc/empty_2x2.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -274,6 +292,10 @@
             <filename>keys/key_free.png</filename>
             <filename>etc/empty_2x2.png</filename>
             <filename>keys/key_menu.png</filename>
+            <filename>animation/actor001/actor001_run_01.png</filename>
+            <filename>animation/actor001/actor001_run_02.png</filename>
+            <filename>animation/actor001/actor001_run_03.png</filename>
+            <filename>animation/actor001/actor001_run_04.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
