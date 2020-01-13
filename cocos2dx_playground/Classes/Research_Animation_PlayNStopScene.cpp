@@ -74,7 +74,7 @@ namespace research
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 80, 0, 120, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 75, 0, 115, 255 ) );
 				addChild( background_layer, 0 );
 			}
 
