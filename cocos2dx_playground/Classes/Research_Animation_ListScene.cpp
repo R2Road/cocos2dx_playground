@@ -11,7 +11,25 @@ namespace
 {
 	const int TAG_AnimationNode = 20140416;
 
-	
+	struct AnimationInfo
+	{
+		research::animation::ListScene::eAnimationIndex Index = research::animation::ListScene::eAnimationIndex::none;
+		std::vector<std::string> SpriteFrameNames;
+	};
+	const std::vector<AnimationInfo> AnimationInfos = {
+		{
+			research::animation::ListScene::eAnimationIndex::idle
+			, { "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_03.png" }
+		}
+		,{
+			research::animation::ListScene::eAnimationIndex::run
+			, { "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
+		}
+		,{
+			research::animation::ListScene::eAnimationIndex::win
+			, { "actor001_win_01.png", "actor001_win_02.png" }
+		}
+	};
 }
 
 namespace research
@@ -100,58 +118,23 @@ namespace research
 			//
 			// Animation
 			//
-			mAnimationActions.reserve( 2 );
+			mAnimationActions.reserve( AnimationInfos.size() );
+			for( const auto& animation_info : AnimationInfos )
 			{
-				// ani 1
+				auto animation_object = Animation::create();
+				animation_object->setDelayPerUnit( 0.2f );
+				for( const auto& sprite_frame_name : animation_info.SpriteFrameNames )
 				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
-
-					auto animate_action = Animate::create( animation_object );
-
-					auto repeat_action = RepeatForever::create( animate_action );
-					repeat_action->setTag( static_cast<int>( eAnimationIndex::run ) );
-					repeat_action->retain();
-
-					mAnimationActions.push_back( repeat_action );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name ) );
 				}
 
-				// ani 2
-				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_idle_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_idle_02.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_idle_03.png" ) );
+				auto animate_action = Animate::create( animation_object );
 
-					auto animate_action = Animate::create( animation_object );
+				auto repeat_action = RepeatForever::create( animate_action );
+				repeat_action->setTag( static_cast<int>( animation_info.Index ) );
+				repeat_action->retain();
 
-					auto repeat_action = RepeatForever::create( animate_action );
-					repeat_action->setTag( static_cast<int>( eAnimationIndex::idle ) );
-					repeat_action->retain();
-
-					mAnimationActions.push_back( repeat_action );
-				}
-
-				// ani 3
-				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_win_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_win_02.png" ) );
-
-					auto animate_action = Animate::create( animation_object );
-
-					auto repeat_action = RepeatForever::create( animate_action );
-					repeat_action->setTag( static_cast<int>( eAnimationIndex::win ) );
-					repeat_action->retain();
-
-					mAnimationActions.push_back( repeat_action );
-				}
+				mAnimationActions.push_back( repeat_action );
 			}
 
 			return true;

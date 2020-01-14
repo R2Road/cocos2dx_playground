@@ -10,7 +10,7 @@ namespace research
 	{
 		class ListScene : public cocos2d::Scene
 		{
-		private:
+		public:
 			enum class eAnimationIndex
 			{
 				none = 0,
@@ -19,6 +19,7 @@ namespace research
 				win,
 			};
 
+		private:
 			ListScene();
 
 		public:
