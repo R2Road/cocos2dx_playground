@@ -164,6 +164,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_Setting.cpp" />
     <ClCompile Include="..\Classes\EntryScene.cpp" />
     <ClCompile Include="..\Classes\Research_Animation_BasicScene.cpp" />
+    <ClCompile Include="..\Classes\Research_Animation_ListScene.cpp" />
     <ClCompile Include="..\Classes\Research_Animation_PlayNStopScene.cpp" />
     <ClCompile Include="..\Classes\Research_Animation_RootScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp" />
@@ -190,6 +191,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_Setting.h" />
     <ClInclude Include="..\Classes\EntryScene.h" />
     <ClInclude Include="..\Classes\Research_Animation_BasicScene.h" />
+    <ClInclude Include="..\Classes\Research_Animation_ListScene.h" />
     <ClInclude Include="..\Classes\Research_Animation_PlayNStopScene.h" />
     <ClInclude Include="..\Classes\Research_Animation_RootScene.h" />
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h" />
