@@ -206,11 +206,8 @@ namespace research
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE: // Play Win
-			{
-				auto animation_node = getChildByTag( TAG_AnimationNode );
-				animation_node->stopAllActions();
-			}
-			break;
+				stopAnimation();
+				break;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
@@ -229,6 +226,11 @@ namespace research
 					animation_node->runAction( animation_action );
 				}
 			}
+		}
+		void ListScene::stopAnimation()
+		{
+			auto animation_node = getChildByTag( TAG_AnimationNode );
+			animation_node->stopAllActions();
 		}
 		cocos2d::Action* ListScene::getAnimationAction( const eAnimationIndex animation_index )
 		{

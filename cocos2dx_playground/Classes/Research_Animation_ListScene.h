@@ -33,6 +33,7 @@ namespace research
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			void playAnimation( const eAnimationIndex animation_index );
+			void stopAnimation();
 			cocos2d::Action* getAnimationAction( const eAnimationIndex animation_index );
 
 		private:
