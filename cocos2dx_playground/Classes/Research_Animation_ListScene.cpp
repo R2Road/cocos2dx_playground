@@ -217,15 +217,15 @@ namespace research
 		void ListScene::playAnimation( const eAnimationIndex animation_index )
 		{
 			auto animation_node = getChildByTag( TAG_AnimationNode );
-			if( !animation_node->getActionByTag( static_cast<int>( animation_index ) ) )
-			{
-				auto animation_action = getAnimationAction( animation_index );
-				if( animation_action )
-				{
-					animation_node->stopAllActions();
-					animation_node->runAction( animation_action );
-				}
-			}
+			if( animation_node->getActionByTag( static_cast<int>( animation_index ) ) )
+				return;
+
+			auto animation_action = getAnimationAction( animation_index );
+			if( !animation_action )
+				return;
+
+			animation_node->stopAllActions();
+			animation_node->runAction( animation_action );
 		}
 		void ListScene::stopAnimation()
 		{
