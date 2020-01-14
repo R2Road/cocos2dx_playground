@@ -96,6 +96,9 @@
     <ClCompile Include="..\Classes\Research_Animation_PlayNStopScene.cpp">
       <Filter>src\scene\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Animation_ListScene.cpp">
+      <Filter>src\scene\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -168,6 +171,9 @@
       <Filter>src\scene\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Animation_PlayNStopScene.h">
+      <Filter>src\scene\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Animation_ListScene.h">
       <Filter>src\scene\animation</Filter>
     </ClInclude>
   </ItemGroup>

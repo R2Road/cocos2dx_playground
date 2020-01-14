@@ -6,6 +6,7 @@
 #include "PlayGroundScene.h"
 #include "Research_Animation_BasicScene.h"
 #include "Research_Animation_PlayNStopScene.h"
+#include "Research_Animation_ListScene.h"
 
 USING_NS_CC;
 
@@ -54,6 +55,8 @@ namespace research
 				ss << "[1] : Basic";
 				ss << "\n";
 				ss << "[2] : Play And Stop";
+				ss << "\n";
+				ss << "[3] : List";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -111,6 +114,9 @@ namespace research
 				break;
 			case EventKeyboard::KeyCode::KEY_2:
 				next_scene = PlayNStopScene::create();
+				break;
+			case EventKeyboard::KeyCode::KEY_3:
+				next_scene = ListScene::create();
 				break;
 
 			default:
