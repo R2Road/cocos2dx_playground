@@ -194,49 +194,16 @@ namespace research
 				break;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Idle
-			{
-				auto animation_node = getChildByTag( TAG_AnimationNode );
-				if( !animation_node->getActionByTag( static_cast<int>( eAnimationIndex::idle ) ) )
-				{
-					auto animation_action = getAnimationAction( eAnimationIndex::idle );
-					if( animation_action )
-					{
-						animation_node->stopAllActions();
-						animation_node->runAction( animation_action );
-					}
-				}
-			}
-			break;
+				playAnimation( eAnimationIndex::idle );
+				break;
 
 			case EventKeyboard::KeyCode::KEY_S: // Play Run
-			{
-				auto animation_node = getChildByTag( TAG_AnimationNode );
-				if( !animation_node->getActionByTag( static_cast<int>( eAnimationIndex::run ) ) )
-				{
-					auto animation_action = getAnimationAction( eAnimationIndex::run );
-					if( animation_action )
-					{
-						animation_node->stopAllActions();
-						animation_node->runAction( animation_action );
-					}
-				}
-			}
-			break;
+				playAnimation( eAnimationIndex::run );
+				break;
 
 			case EventKeyboard::KeyCode::KEY_D: // Play Win
-			{
-				auto animation_node = getChildByTag( TAG_AnimationNode );
-				if( !animation_node->getActionByTag( static_cast<int>( eAnimationIndex::win ) ) )
-				{
-					auto animation_action = getAnimationAction( eAnimationIndex::win );
-					if( animation_action )
-					{
-						animation_node->stopAllActions();
-						animation_node->runAction( animation_action );
-					}
-				}
-			}
-			break;
+				playAnimation( eAnimationIndex::win );
+				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE: // Play Win
 			{
@@ -250,6 +217,19 @@ namespace research
 			}
 		}
 
+		void ListScene::playAnimation( const eAnimationIndex animation_index )
+		{
+			auto animation_node = getChildByTag( TAG_AnimationNode );
+			if( !animation_node->getActionByTag( static_cast<int>( animation_index ) ) )
+			{
+				auto animation_action = getAnimationAction( animation_index );
+				if( animation_action )
+				{
+					animation_node->stopAllActions();
+					animation_node->runAction( animation_action );
+				}
+			}
+		}
 		cocos2d::Action* ListScene::getAnimationAction( const eAnimationIndex animation_index )
 		{
 			for( auto a : mAnimationActions )
