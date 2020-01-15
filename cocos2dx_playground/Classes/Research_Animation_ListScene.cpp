@@ -204,8 +204,7 @@ namespace research
 		void ListScene::playAnimation( const eAnimationIndex animation_index )
 		{
 			auto animation_node = getChildByTag( TAG_AnimationNode );
-			if( animation_node->getActionByTag( static_cast<int>( animation_index ) ) )
-				return;
+			assert( animation_node );
 
 			auto animation_action = getAnimationAction( animation_index );
 			if( !animation_action )
@@ -217,6 +216,8 @@ namespace research
 		void ListScene::stopAnimation()
 		{
 			auto animation_node = getChildByTag( TAG_AnimationNode );
+			assert( animation_node );
+
 			animation_node->stopAllActions();
 		}
 		cocos2d::Action* ListScene::getAnimationAction( const eAnimationIndex animation_index )
