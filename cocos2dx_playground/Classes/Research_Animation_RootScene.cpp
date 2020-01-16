@@ -7,6 +7,7 @@
 #include "Research_Animation_BasicScene.h"
 #include "Research_Animation_PlayNStopScene.h"
 #include "Research_Animation_ListScene.h"
+#include "Research_Animation_CallbackScene.h"
 
 USING_NS_CC;
 
@@ -57,6 +58,8 @@ namespace research
 				ss << "[2] : Play And Stop";
 				ss << "\n";
 				ss << "[3] : List";
+				ss << "\n";
+				ss << "[4] : Callback";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -117,6 +120,9 @@ namespace research
 				break;
 			case EventKeyboard::KeyCode::KEY_3:
 				next_scene = ListScene::create();
+				break;
+			case EventKeyboard::KeyCode::KEY_4:
+				next_scene = CallbackScene::create();
 				break;
 
 			default:
