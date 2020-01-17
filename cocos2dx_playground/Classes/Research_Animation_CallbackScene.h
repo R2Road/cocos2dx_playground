@@ -22,8 +22,11 @@ namespace research
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
+			void AnimationEndCallback();
+
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			cocos2d::Action* mAction_Animation_Run_Sequence;
 		};
 	}
 }

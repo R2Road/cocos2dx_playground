@@ -7,11 +7,18 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const int TAG_AnimationNode = 20140416;
+
+	const int TAG_AnimationAction = 111;
+}
+
 namespace research
 {
 	namespace animation
 	{
-		CallbackScene::CallbackScene() : mKeyboardListener( nullptr ) {}
+		CallbackScene::CallbackScene() : mKeyboardListener( nullptr ), mAction_Animation_Run_Sequence( nullptr ) {}
 
 		Scene* CallbackScene::create()
 		{
@@ -47,6 +54,9 @@ namespace research
 				ss << "\n";
 				ss << "\n";
 				ss << "[ESC] : Return to Root";
+				ss << "\n";
+				ss << "\n";
+				ss << "[A] : Play Animation - Run Sequence";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -70,6 +80,7 @@ namespace research
 			//
 			{
 				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				animation_node->setTag( TAG_AnimationNode );
 				animation_node->setAnchorPoint( Vec2( 0.f, 0.f ) );
 				animation_node->setScale( 2.f );
 				animation_node->setPosition( Vec2(
@@ -87,9 +98,11 @@ namespace research
 
 					auto animate_action = Animate::create( animation_object );
 
-					auto repeat_action = RepeatForever::create( animate_action );
+					auto sequence_action = Sequence::create( animate_action, CallFunc::create( std::bind( &CallbackScene::AnimationEndCallback, this ) ), nullptr );
 
-					animation_node->runAction( repeat_action );
+					mAction_Animation_Run_Sequence = sequence_action;
+					mAction_Animation_Run_Sequence->setTag( TAG_AnimationAction );
+					mAction_Animation_Run_Sequence->retain();
 				}
 
 			}
@@ -110,6 +123,7 @@ namespace research
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
+			mAction_Animation_Run_Sequence->release();
 
 			Node::onExit();
 		}
@@ -128,9 +142,22 @@ namespace research
 					scheduleOnce( schedule_selector( CallbackScene::updateForExit ), 0.f );
 				break;
 
+			case EventKeyboard::KeyCode::KEY_A: // Play
+			{
+				auto animation_node = getChildByTag( TAG_AnimationNode );
+				if( !animation_node->getActionByTag( mAction_Animation_Run_Sequence->getTag() ) )
+					animation_node->runAction( mAction_Animation_Run_Sequence );
+			}
+			break;
+
 			default:
 				CCLOG( "Key Code : %d", keycode );
 			}
+		}
+
+		void CallbackScene::AnimationEndCallback()
+		{
+			CCLOG( "animation end", 1 );
 		}
 	}
 }
