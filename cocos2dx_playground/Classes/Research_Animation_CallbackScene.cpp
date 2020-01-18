@@ -10,6 +10,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_AnimationNode = 20140416;
+	const int TAG_AnimationStatusNode = 20160528;
 
 	const int TAG_AnimationAction = 111;
 }
@@ -81,11 +82,11 @@ namespace research
 			{
 				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setAnchorPoint( Vec2( 0.f, 0.f ) );
+				animation_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				animation_node->setScale( 2.f );
 				animation_node->setPosition( Vec2(
-					static_cast<int>( origin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
-					, static_cast<int>( origin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
+					static_cast<int>( origin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( origin.y + ( visibleSize.height * 0.5f ) )
 				) );
 				addChild( animation_node, 1 );
 				{
@@ -104,7 +105,20 @@ namespace research
 					mAction_Animation_Run_Sequence->setTag( TAG_AnimationAction );
 					mAction_Animation_Run_Sequence->retain();
 				}
+			}
 
+			//
+			// Animation Status
+			//
+			{
+				auto label = Label::createWithTTF( "Stop", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				label->setTag( TAG_AnimationStatusNode );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setPosition( Vec2(
+					static_cast<int>( origin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( origin.y + ( visibleSize.height * 0.5f ) )
+				) );
+				addChild( label, 9999 );
 			}
 
 			return true;
@@ -146,7 +160,12 @@ namespace research
 			{
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				if( !animation_node->getActionByTag( mAction_Animation_Run_Sequence->getTag() ) )
+				{
+					auto label = static_cast<Label*>( getChildByTag( TAG_AnimationStatusNode ) );
+					label->setString( "Play" );
+
 					animation_node->runAction( mAction_Animation_Run_Sequence );
+				}
 			}
 			break;
 
@@ -157,7 +176,8 @@ namespace research
 
 		void CallbackScene::AnimationEndCallback()
 		{
-			CCLOG( "animation end", 1 );
+			auto label = static_cast<Label*>( getChildByTag( TAG_AnimationStatusNode ) );
+			label->setString( "Stop" );
 		}
 	}
 }
