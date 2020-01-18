@@ -99,7 +99,7 @@ namespace research
 
 					auto animate_action = Animate::create( animation_object );
 
-					auto sequence_action = Sequence::create( animate_action, CallFunc::create( std::bind( &CallbackScene::AnimationEndCallback, this ) ), nullptr );
+					auto sequence_action = Sequence::create( CallFunc::create( std::bind( &CallbackScene::AnimationStartCallback, this ) ), animate_action, CallFunc::create( std::bind( &CallbackScene::AnimationEndCallback, this ) ), nullptr );
 
 					mAction_Animation_Run_Sequence = sequence_action;
 					mAction_Animation_Run_Sequence->setTag( TAG_AnimationAction );
@@ -111,7 +111,7 @@ namespace research
 			// Animation Status
 			//
 			{
-				auto label = Label::createWithTTF( "Stop", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 				label->setTag( TAG_AnimationStatusNode );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setPosition( Vec2(
@@ -119,6 +119,9 @@ namespace research
 					, static_cast<int>( origin.y + ( visibleSize.height * 0.5f ) )
 				) );
 				addChild( label, 9999 );
+
+				// setup string
+				AnimationEndCallback();
 			}
 
 			return true;
@@ -161,9 +164,6 @@ namespace research
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				if( !animation_node->getActionByTag( mAction_Animation_Run_Sequence->getTag() ) )
 				{
-					auto label = static_cast<Label*>( getChildByTag( TAG_AnimationStatusNode ) );
-					label->setString( "Play" );
-
 					animation_node->runAction( mAction_Animation_Run_Sequence );
 				}
 			}
@@ -174,6 +174,11 @@ namespace research
 			}
 		}
 
+		void CallbackScene::AnimationStartCallback()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_AnimationStatusNode ) );
+			label->setString( "Play" );
+		}
 		void CallbackScene::AnimationEndCallback()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_AnimationStatusNode ) );
