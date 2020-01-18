@@ -19,7 +19,7 @@ namespace research
 {
 	namespace animation
 	{
-		CallbackScene::CallbackScene() : mKeyboardListener( nullptr ), mAction_Animation_Run_Sequence( nullptr ) {}
+		CallbackScene::CallbackScene() : mKeyboardListener( nullptr ), mSequenceAction( nullptr ) {}
 
 		Scene* CallbackScene::create()
 		{
@@ -101,9 +101,9 @@ namespace research
 
 					auto sequence_action = Sequence::create( CallFunc::create( std::bind( &CallbackScene::AnimationStartCallback, this ) ), animate_action, CallFunc::create( std::bind( &CallbackScene::AnimationEndCallback, this ) ), nullptr );
 
-					mAction_Animation_Run_Sequence = sequence_action;
-					mAction_Animation_Run_Sequence->setTag( TAG_AnimationAction );
-					mAction_Animation_Run_Sequence->retain();
+					mSequenceAction = sequence_action;
+					mSequenceAction->setTag( TAG_AnimationAction );
+					mSequenceAction->retain();
 				}
 			}
 
@@ -140,7 +140,7 @@ namespace research
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-			mAction_Animation_Run_Sequence->release();
+			mSequenceAction->release();
 
 			Node::onExit();
 		}
@@ -162,9 +162,9 @@ namespace research
 			case EventKeyboard::KeyCode::KEY_A: // Play
 			{
 				auto animation_node = getChildByTag( TAG_AnimationNode );
-				if( !animation_node->getActionByTag( mAction_Animation_Run_Sequence->getTag() ) )
+				if( !animation_node->getActionByTag( mSequenceAction->getTag() ) )
 				{
-					animation_node->runAction( mAction_Animation_Run_Sequence );
+					animation_node->runAction( mSequenceAction );
 				}
 			}
 			break;
