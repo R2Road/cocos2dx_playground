@@ -57,7 +57,7 @@ namespace research
 				ss << "[ESC] : Return to Root";
 				ss << "\n";
 				ss << "\n";
-				ss << "[A] : Play Animation - Run Sequence";
+				ss << "[A] : Play Animation";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
