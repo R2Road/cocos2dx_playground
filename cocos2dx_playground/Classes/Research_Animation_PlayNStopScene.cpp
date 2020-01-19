@@ -51,13 +51,13 @@ namespace research
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Animation - Basic";
+				ss << "+ Animation - Play and Stop";
 				ss << "\n";
 				ss << "\n";
 				ss << "[ESC] : Return to Root";
 				ss << "\n";
 				ss << "\n";
-				ss << "[A] : Play Animation - Run Repeat";
+				ss << "[A] : Play Animation";
 				ss << "\n";
 				ss << "[SpaceBar] : Stop Animation";
 
