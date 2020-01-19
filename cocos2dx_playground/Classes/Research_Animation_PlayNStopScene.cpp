@@ -18,7 +18,7 @@ namespace research
 {
 	namespace animation
 	{
-		PlayNStopScene::PlayNStopScene() : mKeyboardListener( nullptr ), mAction_Animation_Run_Repeat( nullptr )
+		PlayNStopScene::PlayNStopScene() : mKeyboardListener( nullptr ), mRepeatAction( nullptr )
 		{}
 
 		Scene* PlayNStopScene::create()
@@ -108,9 +108,9 @@ namespace research
 
 				auto repeat_action = RepeatForever::create( animate_action );
 
-				mAction_Animation_Run_Repeat = repeat_action;
-				mAction_Animation_Run_Repeat->setTag( TAG_Action_Animation_Run_Repeat );
-				mAction_Animation_Run_Repeat->retain();
+				mRepeatAction = repeat_action;
+				mRepeatAction->setTag( TAG_Action_Animation_Run_Repeat );
+				mRepeatAction->retain();
 			}
 
 			return true;
@@ -129,7 +129,7 @@ namespace research
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-			mAction_Animation_Run_Repeat->release();
+			mRepeatAction->release();
 
 			Node::onExit();
 		}
@@ -152,7 +152,7 @@ namespace research
 			{
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				if( !animation_node->getActionByTag( TAG_Action_Animation_Run_Repeat ) )
-					animation_node->runAction( mAction_Animation_Run_Repeat );
+					animation_node->runAction( mRepeatAction );
 			}
 			break;
 

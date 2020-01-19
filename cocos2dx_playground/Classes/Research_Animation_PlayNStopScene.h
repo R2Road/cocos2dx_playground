@@ -24,7 +24,7 @@ namespace research
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Action* mAction_Animation_Run_Repeat;
+			cocos2d::Action* mRepeatAction;
 		};
 	}
 }
