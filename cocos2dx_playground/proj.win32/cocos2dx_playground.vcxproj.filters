@@ -102,6 +102,9 @@
     <ClCompile Include="..\Classes\Research_Animation_CallbackScene.cpp">
       <Filter>src\scene\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_BasicScene.cpp">
+      <Filter>src\scene\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Animation_CallbackScene.h">
       <Filter>src\scene\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_BasicScene.h">
+      <Filter>src\scene\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

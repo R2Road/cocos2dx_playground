@@ -4,6 +4,9 @@
 #include <sstream>
 
 #include "PlayGroundScene.h"
+
+#include "Research_Input_BasicScene.h"
+
 #include "Research_Input_KeyAllowScene.h"
 #include "Research_Input_AllowedKeysTestScene.h"
 
@@ -53,14 +56,17 @@ namespace research
 			ss << "[ESC] : Return to Playground";
 			ss << "\n";
 			ss << "\n";
-			ss << "[1] : Key Allow";
-			ss << "\n";
-			ss << "[2] : Allowed Keys Test";
+			ss << "[1] : Basic";
 			ss << "\n";
 			ss << "\n";
-			ss << "[3] : Key Config";
+			ss << "[2] : Key Allow";
 			ss << "\n";
-			ss << "[4] : Configed Keys Test";
+			ss << "[3] : Allowed Keys Test";
+			ss << "\n";
+			ss << "\n";
+			ss << "[4] : Key Config";
+			ss << "\n";
+			ss << "[5] : Configed Keys Test";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -103,17 +109,22 @@ namespace research
 				if( !isScheduled( schedule_selector( RootScene::updateForExit ) ) )
 					scheduleOnce( schedule_selector( RootScene::updateForExit ), 0.f );
 				break;
+
 			case EventKeyboard::KeyCode::KEY_1:
+				Director::getInstance()->replaceScene( research::input::BasicScene::create() );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_2:
 				Director::getInstance()->replaceScene( research::input::KeyAllowScene::create() );
 				break;
-			case EventKeyboard::KeyCode::KEY_2:
+			case EventKeyboard::KeyCode::KEY_3:
 				Director::getInstance()->replaceScene( research::input::AllowedKeysTestScene::create() );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_3:
+			case EventKeyboard::KeyCode::KEY_4:
 				Director::getInstance()->replaceScene( research::input::KeyConfigScene::create() );
 				break;
-			case EventKeyboard::KeyCode::KEY_4:
+			case EventKeyboard::KeyCode::KEY_5:
 				Director::getInstance()->replaceScene( research::input::ConfigedKeysTestScene::create() );
 				break;
 
