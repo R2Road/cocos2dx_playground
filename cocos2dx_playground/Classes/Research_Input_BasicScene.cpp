@@ -48,10 +48,10 @@ namespace research
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Key Allow Scene";
+				ss << "+ Input - Basic Scene";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[ESC] : Save & Exit";
+				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Keyboard] : Show Key Code";
