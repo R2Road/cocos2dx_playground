@@ -105,6 +105,9 @@
     <ClCompile Include="..\Classes\Research_Input_BasicScene.cpp">
       <Filter>src\scene\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyCodeViewScene.cpp">
+      <Filter>src\scene\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -186,6 +189,9 @@
       <Filter>src\scene\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_BasicScene.h">
+      <Filter>src\scene\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyCodeViewScene.h">
       <Filter>src\scene\input</Filter>
     </ClInclude>
   </ItemGroup>
