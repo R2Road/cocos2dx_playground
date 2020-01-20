@@ -15,7 +15,7 @@ namespace research
 {
 	namespace input
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ) {}
+		BasicScene::BasicScene() : mPressedKeyCount( 0 ), mKeyboardListener( nullptr ) {}
 
 		Scene* BasicScene::create()
 		{
@@ -79,6 +79,8 @@ namespace research
 					, origin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( label, 9999 );
+
+				clearKeyCodeView();
 			}
 
 			return true;
@@ -90,6 +92,7 @@ namespace research
 
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( BasicScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
 		void BasicScene::onExit()
@@ -109,6 +112,12 @@ namespace research
 			auto label = static_cast<Label*>( getChildByTag( TAG_KeyCodeViewNode ) );
 			label->setString( std::to_string( static_cast<int>( keycode ) ) );
 		}
+		void BasicScene::clearKeyCodeView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_KeyCodeViewNode ) );
+			label->setString( "Press Key" );
+		}
+
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
@@ -120,7 +129,19 @@ namespace research
 			}
 			else
 			{
+				++mPressedKeyCount;
 				updateKeyCodeView( keycode );
+			}
+		}
+		void BasicScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		{
+			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			{
+				mPressedKeyCount = std::max( 0, mPressedKeyCount - 1 );
+				if( 0 == mPressedKeyCount )
+				{
+					clearKeyCodeView();
+				}
 			}
 		}
 	}
