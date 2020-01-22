@@ -63,7 +63,9 @@ namespace research
 		bool ListScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto origin = Director::getInstance()->getVisibleOrigin();
@@ -177,7 +179,9 @@ namespace research
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				if( !isScheduled( schedule_selector( ListScene::updateForExit ) ) )
+				{
 					scheduleOnce( schedule_selector( ListScene::updateForExit ), 0.f );
+				}
 				break;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Idle
@@ -208,7 +212,9 @@ namespace research
 
 			auto animation_action = getAnimationAction( animation_index );
 			if( !animation_action )
+			{
 				return;
+			}
 
 			animation_node->stopAllActions();
 			animation_node->runAction( animation_action );
