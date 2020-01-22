@@ -145,14 +145,18 @@ namespace research
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				if( !isScheduled( schedule_selector( PlayNStopScene::updateForExit ) ) )
+				{
 					scheduleOnce( schedule_selector( PlayNStopScene::updateForExit ), 0.f );
+				}
 				break;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play
 			{
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				if( !animation_node->getActionByTag( TAG_Action_Animation_Run_Repeat ) )
+				{
 					animation_node->runAction( mRepeatAction );
+				}
 			}
 			break;
 
@@ -160,7 +164,9 @@ namespace research
 			{
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				if( animation_node->getActionByTag( TAG_Action_Animation_Run_Repeat ) )
+				{
 					animation_node->stopActionByTag( TAG_Action_Animation_Run_Repeat );
+				}
 			}
 			break;
 
