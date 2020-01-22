@@ -41,7 +41,9 @@ namespace research
 		bool PlayNStopScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto origin = Director::getInstance()->getVisibleOrigin();
