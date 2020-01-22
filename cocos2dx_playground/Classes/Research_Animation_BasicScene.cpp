@@ -121,15 +121,14 @@ namespace research
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			switch( keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
 			{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				if( !isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
-					scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
-				break;
+				return;
+			}
 
-			default:
-				CCLOG( "Key Code : %d", keycode );
+			if( !isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
+			{
+				scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
 			}
 		}
 	}
