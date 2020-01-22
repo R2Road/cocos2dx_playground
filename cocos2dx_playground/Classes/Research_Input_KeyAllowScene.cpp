@@ -223,11 +223,10 @@ namespace research
 		}
 		void KeyAllowScene::onExit()
 		{
-			if( mKeyboardListener )
-			{
-				getEventDispatcher()->removeEventListener( mKeyboardListener );
-				mKeyboardListener = nullptr;
-			}
+			assert( mKeyboardListener );
+			getEventDispatcher()->removeEventListener( mKeyboardListener );
+			mKeyboardListener = nullptr;
+
 			Node::onExit();
 		}
 
