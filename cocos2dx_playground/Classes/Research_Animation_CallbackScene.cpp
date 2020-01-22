@@ -41,7 +41,9 @@ namespace research
 		bool CallbackScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto origin = Director::getInstance()->getVisibleOrigin();
@@ -160,7 +162,9 @@ namespace research
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				if( !isScheduled( schedule_selector( CallbackScene::updateForExit ) ) )
+				{
 					scheduleOnce( schedule_selector( CallbackScene::updateForExit ), 0.f );
+				}
 				break;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play
