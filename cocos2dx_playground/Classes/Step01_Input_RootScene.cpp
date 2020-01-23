@@ -48,7 +48,7 @@ namespace step01
 			ss << "+ Input Root";
 			ss << "\n";
 			ss << "\n";
-			ss << "[ESC] : Return to Root";
+			ss << "[ESC] : Return to Step 01 Root";
 			ss << "\n";
 			ss << "\n";
 			ss << "[1] : Basic";

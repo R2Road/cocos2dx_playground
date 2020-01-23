@@ -41,9 +41,9 @@ namespace step01
 			ss << "[ESC] : Return to Playground";
 			ss << "\n";
 			ss << "\n";
-			ss << "[1] : Input Research";
+			ss << "[1] : Input";
 			ss << "\n";
-			ss << "[2] : Animation Research";
+			ss << "[2] : Animation";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );

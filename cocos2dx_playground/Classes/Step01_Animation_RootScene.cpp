@@ -49,10 +49,10 @@ namespace step01
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Animation Research Root";
+				ss << "+ Animation Root";
 				ss << "\n";
 				ss << "\n";
-				ss << "[ESC] : Return to Root";
+				ss << "[ESC] : Return to Step 01 Root";
 				ss << "\n";
 				ss << "\n";
 				ss << "[1] : Basic";
