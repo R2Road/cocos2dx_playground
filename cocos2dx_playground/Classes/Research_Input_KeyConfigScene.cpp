@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-#include "Research_Input_RootScene.h"
+#include "Step02_RootScene.h"
 #include "CPG_Input_KeyCodeNames.h"
 
 #include "ui/UIButton.h"
@@ -292,7 +292,7 @@ namespace research
 		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
 			mKeymapConfigHelper.save( research::Setting::getKeyMapFileName().c_str() );
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 	}
 }

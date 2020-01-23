@@ -10,7 +10,7 @@
 #include "ui/UIScrollView.h"
 #include "CPG_Input_KeyCodeNames.h"
 
-#include "Research_Input_RootScene.h"
+#include "Step02_RootScene.h"
 #include "Research_Setting.h"
 
 USING_NS_CC;
@@ -233,7 +233,7 @@ namespace research
 		void KeyAllowScene::updateForExit( float /*dt*/ )
 		{
 			cpg::input::AllowedKeys::save( mAllowedKeys, research::Setting::getKeyAllowFileName().c_str() );
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 		void KeyAllowScene::onKeyAllowControl( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{

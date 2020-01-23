@@ -8,12 +8,6 @@
 #include "Research_Input_BasicScene.h"
 #include "Research_Input_KeyCodeViewScene.h"
 
-#include "Research_Input_KeyAllowScene.h"
-#include "Research_Input_AllowedKeysTestScene.h"
-
-#include "Research_Input_KeyConfigScene.h"
-#include "Research_Input_ConfigedKeysTestScene.h"
-
 USING_NS_CC;
 
 namespace research
@@ -60,16 +54,6 @@ namespace research
 			ss << "[1] : Basic";
 			ss << "\n";
 			ss << "[2] : Key Code View";
-			ss << "\n";
-			ss << "\n";
-			ss << "[3] : Key Allow";
-			ss << "\n";
-			ss << "[4] : Allowed Keys Test";
-			ss << "\n";
-			ss << "\n";
-			ss << "[5] : Key Config";
-			ss << "\n";
-			ss << "[6] : Configed Keys Test";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -119,20 +103,6 @@ namespace research
 
 			case EventKeyboard::KeyCode::KEY_2:
 				Director::getInstance()->replaceScene( research::input::KeyCodeViewScene::create() );
-				break;
-
-			case EventKeyboard::KeyCode::KEY_3:
-				Director::getInstance()->replaceScene( research::input::KeyAllowScene::create() );
-				break;
-			case EventKeyboard::KeyCode::KEY_4:
-				Director::getInstance()->replaceScene( research::input::AllowedKeysTestScene::create() );
-				break;
-
-			case EventKeyboard::KeyCode::KEY_5:
-				Director::getInstance()->replaceScene( research::input::KeyConfigScene::create() );
-				break;
-			case EventKeyboard::KeyCode::KEY_6:
-				Director::getInstance()->replaceScene( research::input::ConfigedKeysTestScene::create() );
 				break;
 
 			default:

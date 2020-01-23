@@ -5,7 +5,7 @@
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "Research_Input_RootScene.h"
+#include "Step02_RootScene.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
@@ -191,7 +191,7 @@ namespace research
 		}
 		void ConfigedKeysTestScene::update_forExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 	}
 }
