@@ -1,8 +1,8 @@
-#include "Research_Input_KeyCodeViewScene.h"
+#include "Step01_Input_KeyCodeViewScene.h"
 
 #include <sstream>
 
-#include "Research_Input_RootScene.h"
+#include "Step01_Input_RootScene.h"
 
 USING_NS_CC;
 
@@ -11,7 +11,7 @@ namespace
 	const int TAG_KeyCodeViewNode = 20140416;
 }
 
-namespace research
+namespace step01
 {
 	namespace input
 	{

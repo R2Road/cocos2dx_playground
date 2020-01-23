@@ -2,16 +2,16 @@
 
 #include "cocos2d.h"
 
-namespace research
+namespace step01
 {
 	namespace input
 	{
-		class RootScene : public cocos2d::Scene
+		class BasicScene : public cocos2d::Scene
 		{
-		private:
-			RootScene();
-
 		public:
+			BasicScene();
+			~BasicScene();
+
 			static cocos2d::Scene* create();
 
 			bool init() override;

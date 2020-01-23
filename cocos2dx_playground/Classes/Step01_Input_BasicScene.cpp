@@ -1,12 +1,12 @@
-#include "Research_Input_BasicScene.h"
+#include "Step01_Input_BasicScene.h"
 
 #include <sstream>
 
-#include "Research_Input_RootScene.h"
+#include "Step01_Input_RootScene.h"
 
 USING_NS_CC;
 
-namespace research
+namespace step01
 {
 	namespace input
 	{

@@ -1,16 +1,16 @@
-#include "Research_Input_RootScene.h"
+#include "Step01_Input_RootScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "Step01_RootScene.h"
 
-#include "Research_Input_BasicScene.h"
-#include "Research_Input_KeyCodeViewScene.h"
+#include "Step01_Input_BasicScene.h"
+#include "Step01_Input_KeyCodeViewScene.h"
 
 USING_NS_CC;
 
-namespace research
+namespace step01
 {
 	namespace input
 	{
@@ -45,7 +45,7 @@ namespace research
 			// Summury
 			//
 			std::stringstream ss;
-			ss << "+ Input Research Root";
+			ss << "+ Input Root";
 			ss << "\n";
 			ss << "\n";
 			ss << "[ESC] : Return to Root";
@@ -98,11 +98,11 @@ namespace research
 				break;
 
 			case EventKeyboard::KeyCode::KEY_1:
-				Director::getInstance()->replaceScene( research::input::BasicScene::create() );
+				Director::getInstance()->replaceScene( input::BasicScene::create() );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_2:
-				Director::getInstance()->replaceScene( research::input::KeyCodeViewScene::create() );
+				Director::getInstance()->replaceScene( input::KeyCodeViewScene::create() );
 				break;
 
 			default:
