@@ -30,24 +30,37 @@ namespace step01
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
 		const auto origin = Director::getInstance()->getVisibleOrigin();
 
-		std::stringstream ss;
-		ss << "+ Step 01 : Input And Animation";
-		ss << "\n";
-		ss << "\n";
-		ss << "[ESC] : Return to Playground";
-		ss << "\n";
-		ss << "\n";
-		ss << "[1] : Input Research";
-		ss << "\n";
-		ss << "[2] : Animation Research";
+		//
+		// Summury
+		//
+		{
+			std::stringstream ss;
+			ss << "+ Step 01 : Input And Animation";
+			ss << "\n";
+			ss << "\n";
+			ss << "[ESC] : Return to Playground";
+			ss << "\n";
+			ss << "\n";
+			ss << "[1] : Input Research";
+			ss << "\n";
+			ss << "[2] : Animation Research";
 
-		auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-		label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-		label->setPosition( Vec2(
-			origin.x + ( visibleSize.width * 0.5f )
-			, origin.y + ( visibleSize.height * 0.5f )
-		) );
-		ret->addChild( label, 1 );
+			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+			label->setPosition( Vec2(
+				origin.x + ( visibleSize.width * 0.5f )
+				, origin.y + ( visibleSize.height * 0.5f )
+			) );
+			ret->addChild( label, 1 );
+		}
+
+		//
+		// Background
+		//
+		{
+			auto background_layer = LayerColor::create( Color4B( 41, 0, 61, 255 ) );
+			ret->addChild( background_layer, 0 );
+		}
 
 		return ret;
 	}
