@@ -3,7 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "PlayGroundScene.h"
+#include "Step01_RootScene.h"
 
 #include "Research_Input_BasicScene.h"
 #include "Research_Input_KeyCodeViewScene.h"
@@ -54,7 +54,7 @@ namespace research
 			ss << "+ Input Research Root";
 			ss << "\n";
 			ss << "\n";
-			ss << "[ESC] : Return to Playground";
+			ss << "[ESC] : Return to Root";
 			ss << "\n";
 			ss << "\n";
 			ss << "[1] : Basic";
@@ -101,7 +101,7 @@ namespace research
 
 		void RootScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( ::PlayGroundScene::create() );
+			Director::getInstance()->replaceScene( step01::RootScene::create() );
 		}
 
 		void RootScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

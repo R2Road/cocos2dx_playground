@@ -16,11 +16,14 @@
     <Filter Include="src\input">
       <UniqueIdentifier>{38d6d0ea-b379-4bdf-8de1-4eb67b03947a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\input">
-      <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
+    <Filter Include="src\scene\step01">
+      <UniqueIdentifier>{23d6f0e6-cda1-48d5-8cc2-def067a22a4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\animation">
+    <Filter Include="src\scene\step01\animation">
       <UniqueIdentifier>{21100d58-fa07-4a20-ad3b-1c9dc0025dd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step01\input">
+      <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,40 +76,43 @@
       <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_RootScene.cpp">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Animation_RootScene.cpp">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Animation_BasicScene.cpp">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Animation_PlayNStopScene.cpp">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Animation_ListScene.cpp">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Animation_CallbackScene.cpp">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_BasicScene.cpp">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_KeyCodeViewScene.cpp">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_RootScene.cpp">
+      <Filter>src\scene\step01</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,40 +165,43 @@
       <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_RootScene.h">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Animation_RootScene.h">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Animation_BasicScene.h">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Animation_PlayNStopScene.h">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Animation_ListScene.h">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Animation_CallbackScene.h">
-      <Filter>src\scene\animation</Filter>
+      <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_BasicScene.h">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyCodeViewScene.h">
-      <Filter>src\scene\input</Filter>
+      <Filter>src\scene\step01\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_RootScene.h">
+      <Filter>src\scene\step01</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

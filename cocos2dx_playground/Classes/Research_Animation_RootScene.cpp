@@ -3,7 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "PlayGroundScene.h"
+#include "Step01_RootScene.h"
 #include "Research_Animation_BasicScene.h"
 #include "Research_Animation_PlayNStopScene.h"
 #include "Research_Animation_ListScene.h"
@@ -52,7 +52,7 @@ namespace research
 				ss << "+ Animation Research Root";
 				ss << "\n";
 				ss << "\n";
-				ss << "[ESC] : Return to Playground";
+				ss << "[ESC] : Return to Root";
 				ss << "\n";
 				ss << "\n";
 				ss << "[1] : Basic";
@@ -111,7 +111,7 @@ namespace research
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				next_scene = PlayGroundScene::create();
+				next_scene = step01::RootScene::create();
 				break;
 
 			case EventKeyboard::KeyCode::KEY_1:
