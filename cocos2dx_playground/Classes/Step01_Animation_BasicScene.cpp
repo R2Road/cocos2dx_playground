@@ -1,13 +1,13 @@
-#include "Research_Animation_BasicScene.h"
+#include "Step01_Animation_BasicScene.h"
 
 #include <new>
 #include <sstream>
 
-#include "Research_Animation_RootScene.h"
+#include "Step01_Animation_RootScene.h"
 
 USING_NS_CC;
 
-namespace research
+namespace step01
 {
 	namespace animation
 	{

@@ -2,14 +2,14 @@
 
 #include "cocos2d.h"
 
-namespace research
+namespace step01
 {
 	namespace animation
 	{
-		class BasicScene : public cocos2d::Scene
+		class PlayNStopScene : public cocos2d::Scene
 		{
 		private:
-			BasicScene();
+			PlayNStopScene();
 
 		public:
 			static cocos2d::Scene* create();
@@ -24,6 +24,7 @@ namespace research
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			cocos2d::Action* mRepeatAction;
 		};
 	}
 }

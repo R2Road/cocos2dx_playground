@@ -1,9 +1,9 @@
-#include "Research_Animation_ListScene.h"
+#include "Step01_Animation_ListScene.h"
 
 #include <new>
 #include <sstream>
 
-#include "Research_Animation_RootScene.h"
+#include "Step01_Animation_RootScene.h"
 
 USING_NS_CC;
 
@@ -13,30 +13,30 @@ namespace
 
 	struct AnimationInfo
 	{
-		research::animation::ListScene::eAnimationIndex Index = research::animation::ListScene::eAnimationIndex::none;
+		step01::animation::ListScene::eAnimationIndex Index = step01::animation::ListScene::eAnimationIndex::none;
 		float delay = 0.f;
 		std::vector<std::string> SpriteFrameNames;
 	};
 	const std::vector<AnimationInfo> AnimationInfos = {
 		{
-			research::animation::ListScene::eAnimationIndex::idle
+			step01::animation::ListScene::eAnimationIndex::idle
 			, 0.5f
 			, { "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_03.png" }
 		}
 		,{
-			research::animation::ListScene::eAnimationIndex::run
+			step01::animation::ListScene::eAnimationIndex::run
 			, 0.2f
 			, { "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
 		}
 		,{
-			research::animation::ListScene::eAnimationIndex::win
+			step01::animation::ListScene::eAnimationIndex::win
 			, 0.1f
 			, { "actor001_win_01.png", "actor001_win_02.png" }
 		}
 	};
 }
 
-namespace research
+namespace step01
 {
 	namespace animation
 	{

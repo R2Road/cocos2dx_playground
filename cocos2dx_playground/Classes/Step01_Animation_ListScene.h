@@ -1,15 +1,26 @@
 #pragma once
 
+#include <vector>
+
 #include "cocos2d.h"
 
-namespace research
+namespace step01
 {
 	namespace animation
 	{
-		class PlayNStopScene : public cocos2d::Scene
+		class ListScene : public cocos2d::Scene
 		{
+		public:
+			enum class eAnimationIndex
+			{
+				none = 0,
+				run,
+				idle,
+				win,
+			};
+
 		private:
-			PlayNStopScene();
+			ListScene();
 
 		public:
 			static cocos2d::Scene* create();
@@ -22,9 +33,13 @@ namespace research
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
+			void playAnimation( const eAnimationIndex animation_index );
+			void stopAnimation();
+			cocos2d::Action* getAnimationAction( const eAnimationIndex animation_index );
+
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Action* mRepeatAction;
+			std::vector<cocos2d::Action*> mAnimationActions;
 		};
 	}
 }

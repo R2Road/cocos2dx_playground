@@ -5,7 +5,7 @@
 
 #include "PlayGroundScene.h"
 #include "Research_Input_RootScene.h"
-#include "Research_Animation_RootScene.h"
+#include "Step01_Animation_RootScene.h"
 
 USING_NS_CC;
 
@@ -95,7 +95,7 @@ namespace step01
 			Director::getInstance()->replaceScene( research::input::RootScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( research::animation::RootScene::create() );
+			Director::getInstance()->replaceScene( animation::RootScene::create() );
 			break;
 
 		default:

@@ -81,21 +81,6 @@
     <ClCompile Include="..\Classes\Research_Input_RootScene.cpp">
       <Filter>src\scene\step01\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Animation_RootScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Animation_BasicScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Animation_PlayNStopScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Animation_ListScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Animation_CallbackScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_BasicScene.cpp">
       <Filter>src\scene\step01\input</Filter>
     </ClCompile>
@@ -119,6 +104,21 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
       <Filter>src\scene\step02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Animation_RootScene.cpp">
+      <Filter>src\scene\step01\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Animation_PlayNStopScene.cpp">
+      <Filter>src\scene\step01\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Animation_ListScene.cpp">
+      <Filter>src\scene\step01\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Animation_CallbackScene.cpp">
+      <Filter>src\scene\step01\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Animation_BasicScene.cpp">
+      <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,21 +173,6 @@
     <ClInclude Include="..\Classes\Research_Input_RootScene.h">
       <Filter>src\scene\step01\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Animation_RootScene.h">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Animation_BasicScene.h">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Animation_PlayNStopScene.h">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Animation_ListScene.h">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Animation_CallbackScene.h">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_BasicScene.h">
       <Filter>src\scene\step01\input</Filter>
     </ClInclude>
@@ -211,6 +196,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\step02</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Animation_RootScene.h">
+      <Filter>src\scene\step01\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Animation_PlayNStopScene.h">
+      <Filter>src\scene\step01\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Animation_ListScene.h">
+      <Filter>src\scene\step01\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Animation_CallbackScene.h">
+      <Filter>src\scene\step01\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Animation_BasicScene.h">
+      <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

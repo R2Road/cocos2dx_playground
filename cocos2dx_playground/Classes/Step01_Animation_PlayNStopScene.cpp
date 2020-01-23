@@ -1,9 +1,9 @@
-#include "Research_Animation_PlayNStopScene.h"
+#include "Step01_Animation_PlayNStopScene.h"
 
 #include <new>
 #include <sstream>
 
-#include "Research_Animation_RootScene.h"
+#include "Step01_Animation_RootScene.h"
 
 USING_NS_CC;
 
@@ -14,7 +14,7 @@ namespace
 	const int TAG_Action_Animation_Run_Repeat = 111;
 }
 
-namespace research
+namespace step01
 {
 	namespace animation
 	{

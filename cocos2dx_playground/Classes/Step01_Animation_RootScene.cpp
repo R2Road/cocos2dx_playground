@@ -1,17 +1,17 @@
-#include "Research_Animation_RootScene.h"
+#include "Step01_Animation_RootScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "Step01_RootScene.h"
-#include "Research_Animation_BasicScene.h"
-#include "Research_Animation_PlayNStopScene.h"
-#include "Research_Animation_ListScene.h"
-#include "Research_Animation_CallbackScene.h"
+#include "Step01_Animation_BasicScene.h"
+#include "Step01_Animation_PlayNStopScene.h"
+#include "Step01_Animation_ListScene.h"
+#include "Step01_Animation_CallbackScene.h"
 
 USING_NS_CC;
 
-namespace research
+namespace step01
 {
 	namespace animation
 	{

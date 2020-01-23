@@ -2,14 +2,14 @@
 
 #include "cocos2d.h"
 
-namespace research
+namespace step01
 {
 	namespace animation
 	{
-		class RootScene : public cocos2d::Scene
+		class CallbackScene : public cocos2d::Scene
 		{
 		private:
-			RootScene();
+			CallbackScene();
 
 		public:
 			static cocos2d::Scene* create();
@@ -19,11 +19,15 @@ namespace research
 			void onExit() override;
 
 		private:
+			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
+			void AnimationStartCallback();
+			void AnimationEndCallback();
+
 		private:
-			bool mInputBlocked;
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			cocos2d::Action* mSequenceAction;
 		};
 	}
 }
