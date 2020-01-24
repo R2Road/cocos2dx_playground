@@ -126,6 +126,9 @@
     <ClCompile Include="..\Classes\Step01_Game_PathFinderScene.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -219,6 +222,9 @@
       <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinderScene.h">
+      <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>

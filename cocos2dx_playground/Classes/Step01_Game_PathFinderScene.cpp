@@ -5,6 +5,8 @@
 
 #include "Step01_RootScene.h"
 
+#include "Step01_Game_PathFinder_PlayScene.h"
+
 USING_NS_CC;
 
 namespace step01
@@ -98,6 +100,10 @@ namespace step01
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				if( !isScheduled( schedule_selector( PathFinderScene::updateForExit ) ) )
 					scheduleOnce( schedule_selector( PathFinderScene::updateForExit ), 0.f );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_SPACE:
+				Director::getInstance()->replaceScene( step01::game::pathfinder::PlayScene::create() );
 				break;
 
 			default:
