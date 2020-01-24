@@ -169,6 +169,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Animation_PlayNStopScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Animation_RootScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp" />
+    <ClCompile Include="..\Classes\Step01_Game_PathFinderScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Input_BasicScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Input_KeyCodeViewScene.cpp" />
@@ -201,6 +202,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Animation_PlayNStopScene.h" />
     <ClInclude Include="..\Classes\Step01_Animation_RootScene.h" />
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h" />
+    <ClInclude Include="..\Classes\Step01_Game_PathFinderScene.h" />
     <ClInclude Include="..\Classes\Step01_Input_BasicScene.h" />
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h" />
     <ClInclude Include="..\Classes\Step01_Input_KeyCodeViewScene.h" />

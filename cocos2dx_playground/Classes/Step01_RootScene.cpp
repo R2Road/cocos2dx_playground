@@ -4,8 +4,10 @@
 #include <sstream>
 
 #include "PlayGroundScene.h"
+
 #include "Step01_Input_RootScene.h"
 #include "Step01_Animation_RootScene.h"
+#include "Step01_Game_PathFinderScene.h"
 
 USING_NS_CC;
 
@@ -44,6 +46,8 @@ namespace step01
 			ss << "[1] : Input";
 			ss << "\n";
 			ss << "[2] : Animation";
+			ss << "\n";
+			ss << "[3] : " << game::PathFinderScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -96,6 +100,9 @@ namespace step01
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( animation::RootScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( game::PathFinderScene::create() );
 			break;
 
 		default:

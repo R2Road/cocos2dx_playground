@@ -28,6 +28,9 @@
     <Filter Include="src\scene\step02">
       <UniqueIdentifier>{6aade675-064c-4874-9f6b-dc07f058b9d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step01\game">
+      <UniqueIdentifier>{1d2e84c5-1a40-4da7-a5da-e86968e094bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -120,6 +123,9 @@
     <ClCompile Include="..\Classes\Step01_Input_BasicScene.cpp">
       <Filter>src\scene\step01\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Game_PathFinderScene.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -211,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Input_BasicScene.h">
       <Filter>src\scene\step01\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Game_PathFinderScene.h">
+      <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
