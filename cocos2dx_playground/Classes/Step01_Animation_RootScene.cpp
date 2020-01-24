@@ -76,7 +76,7 @@ namespace step01
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 87, 0, 127, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 41, 0, 72, 255 ) );
 				addChild( background_layer, 0 );
 			}
 

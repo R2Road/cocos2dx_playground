@@ -44,24 +44,34 @@ namespace step01
 			//
 			// Summury
 			//
-			std::stringstream ss;
-			ss << "+ Input Root";
-			ss << "\n";
-			ss << "\n";
-			ss << "[ESC] : Return to Step 01 Root";
-			ss << "\n";
-			ss << "\n";
-			ss << "[1] : Basic";
-			ss << "\n";
-			ss << "[2] : Key Code View";
+			{
+				std::stringstream ss;
+				ss << "+ Input Root";
+				ss << "\n";
+				ss << "\n";
+				ss << "[ESC] : Return to Step 01 Root";
+				ss << "\n";
+				ss << "\n";
+				ss << "[1] : Basic";
+				ss << "\n";
+				ss << "[2] : Key Code View";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-			label->setPosition( Vec2(
-				origin.x + visibleSize.width * 0.5f
-				, origin.y + visibleSize.height * 0.5f
-			) );
-			addChild( label, 9999 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setPosition( Vec2(
+					origin.x + visibleSize.width * 0.5f
+					, origin.y + visibleSize.height * 0.5f
+				) );
+				addChild( label, 9999 );
+			}
+
+			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
+				addChild( background_layer, 0 );
+			}
 
 			return true;
 		}
