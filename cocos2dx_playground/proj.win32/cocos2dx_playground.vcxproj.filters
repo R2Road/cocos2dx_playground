@@ -123,10 +123,10 @@
     <ClCompile Include="..\Classes\Step01_Input_BasicScene.cpp">
       <Filter>src\scene\step01\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_PathFinderScene.cpp">
+    <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
+    <ClCompile Include="..\Classes\Step01_Game_PathFinder_TitleScene.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,10 +221,10 @@
     <ClInclude Include="..\Classes\Step01_Input_BasicScene.h">
       <Filter>src\scene\step01\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_PathFinderScene.h">
+    <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">
+    <ClInclude Include="..\Classes\Step01_Game_PathFinder_TitleScene.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>

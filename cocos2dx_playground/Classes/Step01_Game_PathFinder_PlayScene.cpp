@@ -3,7 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "Step01_Game_PathFinderScene.h"
+#include "Step01_Game_PathFinder_TitleScene.h"
 
 USING_NS_CC;
 

@@ -12,7 +12,7 @@ namespace step01
 			PathFinderScene();
 
 		public:
-			static const char* getTitle() { return "Game : Path Finder"; }
+			static const char* getTitle() { return "Game : Path Finder - Title"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
