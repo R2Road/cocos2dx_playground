@@ -7,6 +7,8 @@
 
 #include "Step01_Game_PathFinder_PlayScene.h"
 
+#include "CPG_Setting.h"
+
 USING_NS_CC;
 
 namespace step01
@@ -66,10 +68,36 @@ namespace step01
 			//
 			{
 				auto title = Sprite::create( "textures/step01_game_pathfinder/title.png" );
-				title->setAnchorPoint( Vec2( 0.f, 0.f ) );
+				title->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				title->setScaleX( visibleSize.width / title->getContentSize().width );
 				title->setScaleY( visibleSize.height / title->getContentSize().height );
+				title->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height * 0.5f
+				) );
 				addChild( title, 0 );
+			}
+
+
+			//
+			// request input
+			//
+			{
+				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+				request_input_label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				request_input_label->setPosition(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height * 0.3f
+				);
+				addChild( request_input_label, 1 );
+
+				auto fadeOutAction = FadeOut::create( 0.8f );
+				auto fadeOutkDelay = DelayTime::create( 0.2f );
+				auto fadeInAction = FadeIn::create( 0.6f );
+				auto fadeInkDelay = DelayTime::create( 0.4f );
+				auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
+				auto blinkrepeat = RepeatForever::create( blinkSequence );
+				request_input_label->runAction( blinkrepeat );
 			}
 
 			return true;
