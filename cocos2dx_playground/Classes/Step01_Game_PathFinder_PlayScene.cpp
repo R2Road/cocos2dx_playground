@@ -82,7 +82,7 @@ namespace step01
 
 			void PlayScene::updateForExit( float /*dt*/ )
 			{
-				Director::getInstance()->replaceScene( step01::game::PathFinderScene::create() );
+				Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
 			}
 
 			void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

@@ -47,7 +47,7 @@ namespace step01
 			ss << "\n";
 			ss << "[2] : Animation";
 			ss << "\n";
-			ss << "[3] : " << game::PathFinderScene::getTitle();
+			ss << "[3] : " << game::pathfinder::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -102,7 +102,7 @@ namespace step01
 			Director::getInstance()->replaceScene( animation::RootScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( game::PathFinderScene::create() );
+			Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
 			break;
 
 		default:
