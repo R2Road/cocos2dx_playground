@@ -129,19 +129,19 @@ namespace step01
 
 			void TitleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 			{
-				switch( keycode )
+				if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 				{
-				case EventKeyboard::KeyCode::KEY_ESCAPE:
 					if( !isScheduled( schedule_selector( TitleScene::updateForExit ) ) )
+					{
 						scheduleOnce( schedule_selector( TitleScene::updateForExit ), 0.f );
-					break;
+					}
+					return;
+				}
 
-				case EventKeyboard::KeyCode::KEY_SPACE:
+				if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
+				{
 					Director::getInstance()->replaceScene( step01::game::pathfinder::PlayScene::create() );
-					break;
-
-				default:
-					CCLOG( "Key Code : %d", keycode );
+					return;
 				}
 			}
 		} // namespace pathfinder
