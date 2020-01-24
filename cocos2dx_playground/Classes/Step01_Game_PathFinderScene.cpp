@@ -50,22 +50,26 @@ namespace step01
 				ss << "\n";
 				ss << "[ESC] : Return to Step 01 Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.5f
+					visibleOrigin.x
+					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
 			}
 
 
 			//
-			// Background
+			// Title
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 41, 31, 61, 255 ) );
-				addChild( background_layer, 0 );
+				auto title = Sprite::create( "textures/step01_game_pathfinder/title.png" );
+				title->setAnchorPoint( Vec2( 0.f, 0.f ) );
+				title->setScaleX( visibleSize.width / title->getContentSize().width );
+				title->setScaleY( visibleSize.height / title->getContentSize().height );
+				addChild( title, 0 );
 			}
 
 			return true;
