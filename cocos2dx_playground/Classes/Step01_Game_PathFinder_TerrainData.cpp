@@ -8,11 +8,17 @@ namespace step01
 	{
 		namespace pathfinder
 		{
-			TerrainData::TerrainData() : container() {}
+			TerrainData::TerrainData() :
+				mWidth( 0 )
+				, mHeight( 0 )
+				, container()
+			{}
 
 			void TerrainData::load( const int width, const int height )
 			{
-				container.resize( width * height, false );
+				mWidth = width;
+				mHeight = height;
+				container.resize( mWidth * mHeight, false );
 
 				//
 				// generate dummy data
@@ -25,6 +31,15 @@ namespace step01
 				{
 					d = dist( randomEngine );
 				}
+			}
+
+			const bool TerrainData::get( const std::size_t x, const std::size_t y ) const
+			{
+				const auto target_linear_index = x + ( y * mHeight );
+				if( container.size() <= target_linear_index )
+					return false;
+
+				return container[target_linear_index];
 			}
 		} // namespace pathfinder
 	}

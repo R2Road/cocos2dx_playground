@@ -66,6 +66,30 @@ namespace step01
 				//
 				{
 					mTerrainData.load( 5, 5 );
+
+					const Size tile_size( 64.f / Director::getInstance()->getContentScaleFactor(), 64.f / Director::getInstance()->getContentScaleFactor() );
+					const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
+					auto terrain_layer = Layer::create();
+					terrain_layer->setContentSize( Size( tile_size.width * mTerrainData.getWidth(), tile_size.height * mTerrainData.getHeight() ) );
+					terrain_layer->setPosition( Vec2(
+						visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
+						, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.5f )
+					) );
+					addChild( terrain_layer );
+
+					Sprite* temp = nullptr;
+					for( int ty = 0; ty < mTerrainData.getWidth(); ++ty )
+					{
+						for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+						{
+							temp = mTerrainData.get( tx, ty )
+								? Sprite::createWithSpriteFrameName( "guide_01_1.png" )
+								: Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+							temp->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
+
+							terrain_layer->addChild( temp );
+						}
+					}
 				}
 
 				return true;
