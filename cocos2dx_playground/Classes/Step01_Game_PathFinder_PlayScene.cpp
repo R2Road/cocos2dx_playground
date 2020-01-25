@@ -2,6 +2,7 @@
 
 #include <new>
 #include <sstream>
+#include <random>
 
 #include "Step01_Game_PathFinder_TitleScene.h"
 
@@ -13,7 +14,7 @@ namespace step01
 	{
 		namespace pathfinder
 		{
-			PlayScene::PlayScene() : mKeyboardListener( nullptr ) {}
+			PlayScene::PlayScene() : mKeyboardListener( nullptr ), mTerrainData( 5, 5 ) {}
 
 			Scene* PlayScene::create()
 			{
@@ -58,6 +59,13 @@ namespace step01
 						, visibleOrigin.y + visibleSize.height
 					) );
 					addChild( label, 9999 );
+				}
+
+				//
+				// Terrain
+				//
+				{
+					mTerrainData.load();
 				}
 
 				return true;

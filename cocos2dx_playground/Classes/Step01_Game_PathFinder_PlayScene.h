@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "Step01_Game_PathFinder_TerrainData.h"
 
 namespace step01
 {
@@ -27,6 +28,7 @@ namespace step01
 
 			private:
 				cocos2d::EventListenerKeyboard* mKeyboardListener;
+				TerrainData mTerrainData;
 			};
 		} // namespace pathfinder
 	}

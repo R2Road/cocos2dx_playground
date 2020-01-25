@@ -13,6 +13,10 @@ namespace step01
 			public:
 				TerrainData( const int width, const int height );
 
+				void load();
+
+				const std::vector<bool> get() const { return container; }
+
 			private:
 				std::vector<bool> container;
 			};
