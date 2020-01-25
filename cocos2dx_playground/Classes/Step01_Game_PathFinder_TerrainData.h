@@ -11,9 +11,9 @@ namespace step01
 			class TerrainData
 			{
 			public:
-				TerrainData( const int width, const int height );
+				TerrainData();
 
-				void load();
+				void load( const int width, const int height );
 
 				const std::vector<bool> get() const { return container; }
 

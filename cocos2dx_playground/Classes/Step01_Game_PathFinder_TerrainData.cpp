@@ -8,10 +8,12 @@ namespace step01
 	{
 		namespace pathfinder
 		{
-			TerrainData::TerrainData( const int width, const int height ) : container( width * height, false ) {}
+			TerrainData::TerrainData() : container() {}
 
-			void TerrainData::load()
+			void TerrainData::load( const int width, const int height )
 			{
+				container.resize( width * height, false );
+
 				//
 				// generate dummy data
 				//

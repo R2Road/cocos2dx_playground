@@ -14,7 +14,7 @@ namespace step01
 	{
 		namespace pathfinder
 		{
-			PlayScene::PlayScene() : mKeyboardListener( nullptr ), mTerrainData( 5, 5 ) {}
+			PlayScene::PlayScene() : mKeyboardListener( nullptr ), mTerrainData() {}
 
 			Scene* PlayScene::create()
 			{
@@ -65,7 +65,7 @@ namespace step01
 				// Terrain
 				//
 				{
-					mTerrainData.load();
+					mTerrainData.load( 5, 5 );
 				}
 
 				return true;
