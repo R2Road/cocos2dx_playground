@@ -216,13 +216,13 @@ namespace step01
 		}
 		void LoadNSaveScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
-			{
-				if( !isScheduled( schedule_selector( LoadNSaveScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( LoadNSaveScene::updateForExit ), 0.f );
-				}
-			}
+			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+				return;
+
+			if( isScheduled( schedule_selector( LoadNSaveScene::updateForExit ) ) )
+				return;
+
+			scheduleOnce( schedule_selector( LoadNSaveScene::updateForExit ), 0.f );
 		}
 	}
 }
