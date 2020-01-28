@@ -138,6 +138,9 @@
     <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp">
       <Filter>src\scene\step01\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Game_MapToolScene.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h">
       <Filter>src\scene\step01\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Game_MapToolScene.h">
+      <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

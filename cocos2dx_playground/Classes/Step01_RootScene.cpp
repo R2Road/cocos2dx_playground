@@ -9,6 +9,7 @@
 #include "Step01_Animation_RootScene.h"
 #include "Step01_Json_LoadNSaveScene.h"
 
+#include "Step01_Game_MapToolScene.h"
 #include "Step01_Game_PathFinder_TitleScene.h"
 
 USING_NS_CC;
@@ -52,7 +53,9 @@ namespace step01
 			ss << "[3] : " << json::LoadNSaveScene::getTitle();
 			ss << "\n";
 			ss << "\n";
-			ss << "[4] : " << game::pathfinder::TitleScene::getTitle();
+			ss << "[4] : " << game::MapToolScene::getTitle();
+			ss << "\n";
+			ss << "[5] : " << game::pathfinder::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -112,6 +115,9 @@ namespace step01
 
 
 		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( game::MapToolScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
 			break;
 
