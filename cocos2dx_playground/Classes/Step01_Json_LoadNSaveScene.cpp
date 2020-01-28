@@ -3,6 +3,14 @@
 #include <new>
 #include <sstream>
 
+#include <fstream>
+#include <utility>
+
+#include "platform\CCFileUtils.h"
+#include "json/document.h"
+#include "json/stringbuffer.h"
+#include "json/writer.h"
+
 #include "Step01_RootScene.h"
 
 USING_NS_CC;
@@ -11,7 +19,12 @@ namespace step01
 {
 	namespace json
 	{
-		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ) {}
+		namespace
+		{
+			const char* FilePath_Step01_Json_LoadNSave = "step01_json_load_and_save.json";
+		}
+
+		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ), mDatas() {}
 		LoadNSaveScene::~LoadNSaveScene()
 		{
 			mKeyboardListener->release();
@@ -53,7 +66,7 @@ namespace step01
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
-				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath();
+				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath() << FilePath_Step01_Json_LoadNSave;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
@@ -74,6 +87,13 @@ namespace step01
 				mKeyboardListener->retain();
 			}
 
+			//
+			// Json Save And Load
+			//
+			{
+				LoadJsonFile();
+			}
+
 			return true;
 		}
 
@@ -87,6 +107,80 @@ namespace step01
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			Node::onExit();
+		}
+
+		void LoadNSaveScene::SaveJsonFile()
+		{
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( FilePath_Step01_Json_LoadNSave );
+
+			rapidjson::Document document;
+			document.SetArray();
+
+			for( const auto d : mDatas )
+			{
+				document.PushBack( d, document.GetAllocator() );
+			}
+
+			rapidjson::StringBuffer buffer;
+			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
+			document.Accept( writer );
+
+			std::ofstream fs( path, std::ios::out );
+			fs << buffer.GetString() << std::endl;
+			fs.close();
+		}
+		bool LoadNSaveScene::LoadJsonFile()
+		{
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( FilePath_Step01_Json_LoadNSave );
+
+			if( !cocos2d::FileUtils::getInstance()->isFileExist( path ) )
+			{
+				//
+				// dummy data
+				//
+				mDatas.reserve( 10 );
+				for( int i = 0; i < 10; ++i )
+				{
+					mDatas.emplace_back( i );
+				}
+
+				SaveJsonFile();
+			}
+
+			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) ) );
+			rapidjson::Document doc;
+			doc.Parse<0>( regionStr.c_str() );
+
+			if( doc.HasParseError() )
+			{
+				cocos2d::log( "json parse error" );
+				return false;
+			}
+
+			if( doc.IsNull() )
+			{
+				cocos2d::log( "json is empty" );
+				return false;
+			}
+
+			if( !doc.IsArray() )
+			{
+				cocos2d::log( "invalid data struct" );
+				return false;
+			}
+
+			mDatas.clear();
+			mDatas.reserve( doc.Size() );
+			for( rapidjson::SizeType i = 0u; i < doc.Size(); ++i )
+			{
+				const auto& value = doc[i];
+
+				mDatas.emplace_back( value.GetInt() );
+			}
+
+			return true;
 		}
 
 		void LoadNSaveScene::updateForExit( float /*dt*/ )

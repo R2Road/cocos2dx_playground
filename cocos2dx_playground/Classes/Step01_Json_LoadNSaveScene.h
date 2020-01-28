@@ -22,11 +22,15 @@ namespace step01
 			void onExit() override;
 
 		private:
+			void SaveJsonFile();
+			bool LoadJsonFile();
+
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			std::vector<int> mDatas;
 		};
 	}
 }
