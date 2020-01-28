@@ -7,7 +7,6 @@
 #include <fstream>
 #include <utility>
 
-#include "platform\CCFileUtils.h"
 #include "json/document.h"
 #include "json/stringbuffer.h"
 #include "json/writer.h"
