@@ -52,7 +52,7 @@ namespace research
 				return false;
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto origin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
 			//
 			// summury
@@ -66,8 +66,8 @@ namespace research
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					origin.x
-					, origin.y + visibleSize.height
+					visibleOrigin.x
+					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
 			}
@@ -92,8 +92,8 @@ namespace research
 				button->setTitleLabel( label );
 
 				button->setPosition( Vec2(
-					origin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
-					, origin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
+					visibleOrigin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
+					, visibleOrigin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
 				) );
 			}
 
@@ -113,8 +113,8 @@ namespace research
 			//
 			mKeyViewer = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 			mKeyViewer->setPosition( Vec2(
-				origin.x + ( visibleSize.width * 0.5f )
-				, origin.y + ( visibleSize.height * 0.5f )
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
 			addChild( mKeyViewer, 9999 );
 

@@ -32,7 +32,7 @@ namespace step02
 		}
 
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto origin = Director::getInstance()->getVisibleOrigin();
+		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
 		//
 		// Summury
@@ -57,8 +57,8 @@ namespace step02
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 			label->setPosition( Vec2(
-				origin.x + ( visibleSize.width * 0.5f )
-				, origin.y + ( visibleSize.height * 0.5f )
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
 			ret->addChild( label, 1 );
 		}

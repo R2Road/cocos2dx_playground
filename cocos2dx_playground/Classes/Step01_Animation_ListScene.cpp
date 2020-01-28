@@ -68,7 +68,7 @@ namespace step01
 			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto origin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
 			//
 			// Summury
@@ -92,8 +92,8 @@ namespace step01
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					origin.x
-					, origin.y + visibleSize.height
+					visibleOrigin.x
+					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
 			}
@@ -115,8 +115,8 @@ namespace step01
 				animation_node->setAnchorPoint( Vec2( 0.f, 0.f ) );
 				animation_node->setScale( 2.f );
 				animation_node->setPosition( Vec2(
-					static_cast<int>( origin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
-					, static_cast<int>( origin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
 				) );
 				addChild( animation_node, 1 );
 			}

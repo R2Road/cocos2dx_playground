@@ -40,7 +40,7 @@ namespace step01
 				return false;
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto origin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
 
 			//
@@ -60,8 +60,8 @@ namespace step01
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					origin.x
-					, origin.y + visibleSize.height
+					visibleOrigin.x
+					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
 			}
@@ -75,8 +75,8 @@ namespace step01
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5, 0.5 ) );
 				label->setPosition( Vec2(
-					origin.x + ( visibleSize.width * 0.5f )
-					, origin.y + ( visibleSize.height * 0.5f )
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( label, 9999 );
 

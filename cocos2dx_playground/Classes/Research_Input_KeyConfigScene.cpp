@@ -110,7 +110,7 @@ namespace research
 			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto origin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
 			//
 			// summury
@@ -126,8 +126,8 @@ namespace research
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					origin.x
-					, origin.y + visibleSize.height
+					visibleOrigin.x
+					, visibleOrigin.y + visibleSize.height
 				) );
 				ret->addChild( label, 9999 );
 			}
@@ -151,8 +151,8 @@ namespace research
 				button->setTitleLabel( label );
 
 				button->setPosition( Vec2(
-					origin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
-					, origin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
+					visibleOrigin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
+					, visibleOrigin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
 				) );
 			}
 
@@ -176,8 +176,8 @@ namespace research
 					+ ( inner_margin * std::max( 0, static_cast<int>( ret->mKeymapConfigHelper.getContainer().size() ) - 1 )  )
 					+ ( side_margin.height * 2 )
 				);
-				const float start_x = origin.x + ( visibleSize.width * 0.5f );
-				const float start_y = origin.y + side_margin.height + ( size_of_key_config_control.height * 0.5f );
+				const float start_x = visibleOrigin.x + ( visibleSize.width * 0.5f );
+				const float start_y = visibleOrigin.y + side_margin.height + ( size_of_key_config_control.height * 0.5f );
 
 				auto scroll_view = ui::ScrollView::create();
 				scroll_view->setDirection( ui::ScrollView::Direction::VERTICAL );

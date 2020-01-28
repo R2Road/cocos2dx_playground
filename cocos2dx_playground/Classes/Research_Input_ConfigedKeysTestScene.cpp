@@ -54,7 +54,7 @@ namespace research
 				return false;
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto origin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
 			cpg::input_test::KeyMapConfigHelper key_map_config_helper;
 			key_map_config_helper.load( research::Setting::getKeyMapFileName().c_str() );
@@ -74,8 +74,8 @@ namespace research
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					origin.x
-					, origin.y + visibleSize.height
+					visibleOrigin.x
+					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
 			}
@@ -99,8 +99,8 @@ namespace research
 				button->setTitleLabel( label );
 
 				button->setPosition( Vec2(
-					origin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
-					, origin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
+					visibleOrigin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
+					, visibleOrigin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
 				) );
 			}
 
@@ -125,8 +125,8 @@ namespace research
 			{
 				cpg::input_test::KeyViewer* key_viewer = nullptr;
 				mKeyViewer_StartPosition.set(
-					origin.x + ( visibleSize.width * 0.5f )
-					, origin.y + ( visibleSize.height * 0.1f )
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.1f )
 				);
 				for( int i = 0; i < key_viewer_count; ++i )
 				{

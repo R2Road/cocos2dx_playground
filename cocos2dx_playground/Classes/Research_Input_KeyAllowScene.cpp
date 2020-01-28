@@ -103,7 +103,7 @@ namespace research
 				return false;
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto origin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
 
 
@@ -124,8 +124,8 @@ namespace research
 			label->setColor( Color3B::GREEN );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
-				origin.x
-				, origin.y + visibleSize.height
+				visibleOrigin.x
+				, visibleOrigin.y + visibleSize.height
 			) );
 			addChild( label, 9999 );
 
@@ -147,7 +147,7 @@ namespace research
 			addChild( scroll_view );
 
 			auto key_allow_controls_root = Node::create();
-			key_allow_controls_root->setPosition( Vec2( origin.x, origin.y ) );
+			key_allow_controls_root->setPosition( Vec2( visibleOrigin.x, visibleOrigin.y ) );
 			scroll_view->addChild( key_allow_controls_root );
 			{
 				static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( cpg::input::KeyCodeNames::get_longest() );
@@ -170,13 +170,13 @@ namespace research
 				);
 
 				scroll_view->setInnerContainerSize( Size(
-					origin.x + ( side_margin.width * 2 ) + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * row_n_column_count.first ) - margin_of_key_allow_control
+					visibleOrigin.x + ( side_margin.width * 2 ) + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * row_n_column_count.first ) - margin_of_key_allow_control
 					, visibleSize.height
 				) );
 
 				const Vec2 start_position(
-					origin.x + side_margin.width + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * 0.5f )
-					, origin.y + side_margin.height + ( ( size_of_key_allow_control.height + margin_of_key_allow_control ) * 0.5f )
+					visibleOrigin.x + side_margin.width + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * 0.5f )
+					, visibleOrigin.y + side_margin.height + ( ( size_of_key_allow_control.height + margin_of_key_allow_control ) * 0.5f )
 				);
 				const Size spacing_of_control(
 					( size_of_key_allow_control.width + margin_of_key_allow_control )
