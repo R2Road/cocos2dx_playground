@@ -94,6 +94,26 @@ namespace step01
 				LoadJsonFile();
 			}
 
+			//
+			// Data View
+			//
+			{
+				std::stringstream ss;
+				ss << "Json Datas :";
+				for( auto i : mDatas )
+				{
+					ss << " " << i;
+				}
+
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( label, 0 );
+			}
+
 			return true;
 		}
 
