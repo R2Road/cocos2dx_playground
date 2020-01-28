@@ -67,6 +67,7 @@ namespace step01
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
+				ss << std::endl;
 				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath() << FilePath_Step01_Json_LoadNSave;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
