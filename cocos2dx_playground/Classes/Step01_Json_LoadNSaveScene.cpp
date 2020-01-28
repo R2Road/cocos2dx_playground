@@ -2,6 +2,7 @@
 
 #include <new>
 #include <sstream>
+#include <random>
 
 #include <fstream>
 #include <utility>
@@ -160,10 +161,15 @@ namespace step01
 				//
 				// dummy data
 				//
+
+				std::random_device rd;
+				std::mt19937 randomEngine( rd() );
+				std::uniform_int_distribution<> dist( 0, 9 );
+
 				mDatas.reserve( 10 );
 				for( int i = 0; i < 10; ++i )
 				{
-					mDatas.emplace_back( i );
+					mDatas.emplace_back( dist( randomEngine ) );
 				}
 
 				SaveJsonFile();
