@@ -1,5 +1,6 @@
 #include "Step01_Input_BasicScene.h"
 
+#include <new>
 #include <sstream>
 
 #include "Step01_Input_RootScene.h"
@@ -39,8 +40,7 @@ namespace step01
 				return false;
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto origin = Director::getInstance()->getVisibleOrigin();
-
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
 			//
 			// Summury
@@ -56,8 +56,8 @@ namespace step01
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
-					origin.x + ( visibleSize.width * 0.5f )
-					, origin.y + ( visibleSize.height * 0.5f )
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( label, 9999 );
 			}
@@ -93,13 +93,13 @@ namespace step01
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
-			{
-				if( !isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
-				}
-			}
+			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+				return;
+
+			if( isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
+				return;
+
+			scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
 		}
 	}
 }
