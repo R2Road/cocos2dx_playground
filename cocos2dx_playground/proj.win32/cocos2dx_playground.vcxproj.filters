@@ -31,6 +31,9 @@
     <Filter Include="src\scene\step01\game">
       <UniqueIdentifier>{1d2e84c5-1a40-4da7-a5da-e86968e094bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step01\json">
+      <UniqueIdentifier>{17a57a53-55f5-4cad-97dc-102cdbd7c1dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -132,6 +135,9 @@
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_TerrainData.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp">
+      <Filter>src\scene\step01\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -232,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_TerrainData.h">
       <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h">
+      <Filter>src\scene\step01\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
