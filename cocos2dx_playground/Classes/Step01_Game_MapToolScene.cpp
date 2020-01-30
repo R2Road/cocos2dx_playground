@@ -3,6 +3,8 @@
 #include <new>
 #include <sstream>
 
+#include "ui/UIButton.h"
+
 #include "Step01_RootScene.h"
 
 USING_NS_CC;
@@ -56,6 +58,36 @@ namespace step01
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
+			}
+
+			//
+			// Terrain
+			//
+			{
+				const int map_size_x = 5;
+				const int map_size_y = 5;
+
+				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "guide_01_1.png" )->getRect().size;
+				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
+				auto terrain_layer = Layer::create();
+				terrain_layer->setContentSize( Size( tile_size.width * map_size_x, tile_size.height * map_size_y ) );
+				terrain_layer->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.5f )
+				) );
+				addChild( terrain_layer );
+
+				ui::Button* temp = nullptr;
+				for( int ty = 0; ty < map_size_y; ++ty )
+				{
+					for( int tx = 0; tx < map_size_x; ++tx )
+					{
+						temp = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+						temp->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
+
+						terrain_layer->addChild( temp );
+					}
+				}
 			}
 
 			return true;
