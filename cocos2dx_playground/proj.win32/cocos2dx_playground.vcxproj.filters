@@ -34,6 +34,9 @@
     <Filter Include="src\scene\step01\json">
       <UniqueIdentifier>{17a57a53-55f5-4cad-97dc-102cdbd7c1dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step01\button">
+      <UniqueIdentifier>{78ebed0e-5d7e-41b2-b6aa-65f57b5c0d0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -135,8 +138,14 @@
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_TerrainData.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Game_MapToolScene.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp">
-      <Filter>src\scene\step01\input</Filter>
+      <Filter>src\scene\step01\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Button_BasicScene.cpp">
+      <Filter>src\scene\step01\button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,8 +248,14 @@
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_TerrainData.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Game_MapToolScene.h">
+      <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h">
-      <Filter>src\scene\step01\input</Filter>
+      <Filter>src\scene\step01\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Button_BasicScene.h">
+      <Filter>src\scene\step01\button</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

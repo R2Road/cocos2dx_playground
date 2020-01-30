@@ -275,6 +275,7 @@
             <key type="filename">ui/guide_01_1.png</key>
             <key type="filename">ui/guide_01_2.png</key>
             <key type="filename">ui/guide_01_3.png</key>
+            <key type="filename">ui/guide_01_4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -334,6 +335,7 @@
             <filename>animation/actor001/actor001_idle_01.png</filename>
             <filename>animation/actor001/actor001_win_01.png</filename>
             <filename>animation/actor001/actor001_win_02.png</filename>
+            <filename>ui/guide_01_4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
