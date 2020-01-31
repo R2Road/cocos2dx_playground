@@ -95,7 +95,7 @@ namespace step01
 					{
 						temp = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 						{
-							auto indicator = Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+							auto indicator = Sprite::createWithSpriteFrameName( "step01_game_tile_00.png" );
 							indicator->setTag( TAG_Indicator );
 							indicator->setVisible( false );
 							indicator->setPosition( Vec2( temp->getContentSize().width * 0.5f, temp->getContentSize().height * 0.5f ) );
