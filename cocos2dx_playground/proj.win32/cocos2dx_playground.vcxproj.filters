@@ -138,14 +138,17 @@
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_TerrainData.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_MapToolScene.cpp">
-      <Filter>src\scene\step01\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp">
       <Filter>src\scene\step01\json</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Button_BasicScene.cpp">
       <Filter>src\scene\step01\button</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp">
+      <Filter>src\scene\step01\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,14 +251,17 @@
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_TerrainData.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_MapToolScene.h">
-      <Filter>src\scene\step01\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h">
       <Filter>src\scene\step01\json</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Button_BasicScene.h">
       <Filter>src\scene\step01\button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h">
+      <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h">
+      <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

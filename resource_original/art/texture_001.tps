@@ -270,6 +270,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">step01_game_pathfinder/step01_game_tile_00.png</key>
+            <key type="filename">step01_game_pathfinder/step01_game_tile_01.png</key>
             <key type="filename">ui/checkbox_01_bg.png</key>
             <key type="filename">ui/checkbox_01_cross.png</key>
             <key type="filename">ui/guide_01_1.png</key>
@@ -336,6 +338,8 @@
             <filename>animation/actor001/actor001_win_01.png</filename>
             <filename>animation/actor001/actor001_win_02.png</filename>
             <filename>ui/guide_01_4.png</filename>
+            <filename>step01_game_pathfinder/step01_game_tile_00.png</filename>
+            <filename>step01_game_pathfinder/step01_game_tile_01.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
