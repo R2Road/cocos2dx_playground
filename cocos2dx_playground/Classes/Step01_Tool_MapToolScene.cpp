@@ -1,4 +1,4 @@
-#include "Step01_Game_MapToolScene.h"
+#include "Step01_Tool_MapToolScene.h"
 
 #include <new>
 #include <sstream>
@@ -13,7 +13,7 @@ const int TAG_Indicator = 20140416;
 
 namespace step01
 {
-	namespace game
+	namespace tool
 	{
 		MapToolScene::MapToolScene() : mKeyboardListener( nullptr ) {}
 

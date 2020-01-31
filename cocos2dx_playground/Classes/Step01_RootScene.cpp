@@ -10,7 +10,7 @@
 #include "Step01_Json_LoadNSaveScene.h"
 #include "Step01_Button_BasicScene.h"
 
-#include "Step01_Game_MapToolScene.h"
+#include "Step01_Tool_MapToolScene.h"
 #include "Step01_Game_PathFinder_TitleScene.h"
 
 USING_NS_CC;
@@ -56,7 +56,7 @@ namespace step01
 			ss << "[4] : " << step01::button::BasicScene::getTitle();
 			ss << "\n";
 			ss << "\n";
-			ss << "[5] : " << game::MapToolScene::getTitle();
+			ss << "[5] : " << tool::MapToolScene::getTitle();
 			ss << "\n";
 			ss << "[6] : " << game::pathfinder::TitleScene::getTitle();
 
@@ -121,7 +121,7 @@ namespace step01
 
 
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( game::MapToolScene::create() );
+			Director::getInstance()->replaceScene( tool::MapToolScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );

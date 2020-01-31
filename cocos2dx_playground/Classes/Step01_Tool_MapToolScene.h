@@ -5,7 +5,7 @@
 
 namespace step01
 {
-	namespace game
+	namespace tool
 	{
 		class MapToolScene : public cocos2d::Scene
 		{
@@ -13,7 +13,7 @@ namespace step01
 			MapToolScene();
 
 		public:
-			static const char* getTitle() { return "Game : Map Tool"; }
+			static const char* getTitle() { return "Tool : Map Tool"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
