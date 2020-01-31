@@ -147,6 +147,9 @@
     <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -255,6 +258,9 @@
       <Filter>src\scene\step01\button</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h">
+      <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>

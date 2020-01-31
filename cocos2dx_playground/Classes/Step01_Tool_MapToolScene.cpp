@@ -15,7 +15,10 @@ namespace step01
 {
 	namespace tool
 	{
-		MapToolScene::MapToolScene() : mKeyboardListener( nullptr ) {}
+		MapToolScene::MapToolScene() :
+			mKeyboardListener( nullptr )
+			, mTerrainData()
+		{}
 
 		Scene* MapToolScene::create()
 		{
@@ -63,16 +66,22 @@ namespace step01
 			}
 
 			//
-			// Terrain
+			// Terrain Data
 			//
 			{
 				const int map_size_x = 5;
 				const int map_size_y = 5;
+				mTerrainData.reSize( map_size_x, map_size_y );
+			}
 
+			//
+			// Terrain View
+			//
+			{
 				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "guide_01_1.png" )->getRect().size;
 				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 				auto terrain_layer = Layer::create();
-				terrain_layer->setContentSize( Size( tile_size.width * map_size_x, tile_size.height * map_size_y ) );
+				terrain_layer->setContentSize( Size( tile_size.width * mTerrainData.getWidth(), tile_size.height * mTerrainData.getHeight() ) );
 				terrain_layer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.5f )
@@ -80,9 +89,9 @@ namespace step01
 				addChild( terrain_layer );
 
 				ui::Button* temp = nullptr;
-				for( int ty = 0; ty < map_size_y; ++ty )
+				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
-					for( int tx = 0; tx < map_size_x; ++tx )
+					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 					{
 						temp = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 						{

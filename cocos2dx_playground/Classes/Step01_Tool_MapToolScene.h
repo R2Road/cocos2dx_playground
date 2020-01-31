@@ -2,6 +2,7 @@
 
 #include "cocos2d.h"
 #include "ui/UIWidget.h"
+#include "Step01_Tool_TerrainData.h"
 
 namespace step01
 {
@@ -28,6 +29,7 @@ namespace step01
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			TerrainData mTerrainData;
 		};
 	}
 }
