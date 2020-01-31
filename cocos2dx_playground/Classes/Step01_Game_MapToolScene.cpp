@@ -9,6 +9,8 @@
 
 USING_NS_CC;
 
+const int TAG_Indicator = 20140416;
+
 namespace step01
 {
 	namespace game
@@ -82,7 +84,15 @@ namespace step01
 				{
 					for( int tx = 0; tx < map_size_x; ++tx )
 					{
-						temp = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+						temp = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+						{
+							auto indicator = Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+							indicator->setTag( TAG_Indicator );
+							indicator->setVisible( false );
+							indicator->setPosition( Vec2( temp->getContentSize().width * 0.5f, temp->getContentSize().height * 0.5f ) );
+							temp->addChild( indicator );
+						}
+						temp->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onButton, this ) );
 						temp->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
 
 						terrain_layer->addChild( temp );
@@ -110,11 +120,24 @@ namespace step01
 			Node::onExit();
 		}
 
+
+		void MapToolScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			{
+				return;
+			}
+
+			auto button = static_cast<Node*>( sender );
+			auto indicator = button->getChildByTag( 20140416 );
+			indicator->setVisible( !indicator->isVisible() );
+		}
+
+
 		void MapToolScene::updateForExit( float /*dt*/ )
 		{
 			Director::getInstance()->replaceScene( step01::RootScene::create() );
 		}
-
 		void MapToolScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
