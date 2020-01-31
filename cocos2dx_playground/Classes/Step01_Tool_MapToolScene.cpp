@@ -89,15 +89,18 @@ namespace step01
 				addChild( terrain_layer );
 
 				ui::Button* temp = nullptr;
+				int linear_index = 0;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 					{
+						linear_index = tx + ( mTerrainData.getHeight() * ty );
+
 						temp = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+						temp->setTag( linear_index );
 						{
 							auto indicator = Sprite::createWithSpriteFrameName( "step01_game_tile_00.png" );
 							indicator->setTag( TAG_Indicator );
-							indicator->setVisible( false );
 							indicator->setPosition( Vec2( temp->getContentSize().width * 0.5f, temp->getContentSize().height * 0.5f ) );
 							temp->addChild( indicator );
 						}
@@ -138,8 +141,13 @@ namespace step01
 			}
 
 			auto button = static_cast<Node*>( sender );
-			auto indicator = button->getChildByTag( 20140416 );
-			indicator->setVisible( !indicator->isVisible() );
+
+			int y = button->getTag() / mTerrainData.getHeight();
+			int x = button->getTag() - ( y * mTerrainData.getWidth() );
+			mTerrainData.set( y, x, 1 );
+
+			auto indicator = static_cast<Sprite*>( button->getChildByTag( 20140416 ) );
+			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step01_game_tile_01.png" ) );
 		}
 
 
