@@ -17,16 +17,16 @@ namespace step01
 			mContainer.resize( height );
 			for( auto& r : mContainer )
 			{
-				r.resize( width, 0 );
+				r.resize( width, step01::game::terrain::eTileType::damage );
 			}
 		}
-		void TerrainData::fill( const Row::value_type tile_index )
+		void TerrainData::fill( const Row::value_type tile_type )
 		{
 			for( auto& r : mContainer )
 			{
 				for( auto& t : r )
 				{
-					t = tile_index;
+					t = tile_type;
 				}
 			}
 		}
@@ -35,17 +35,17 @@ namespace step01
 		{
 			if( mContainer.size() <= y )
 			{
-				return 0;
+				return step01::game::terrain::eTileType::damage;
 			}
 
 			if( mContainer[y].size() <= x )
 			{
-				return 0;
+				return step01::game::terrain::eTileType::damage;
 			}
 
 			return mContainer[y][x];
 		}
-		void TerrainData::set( const std::size_t x, const std::size_t y, const Row::value_type tile_index )
+		void TerrainData::set( const std::size_t x, const std::size_t y, const Row::value_type tile_type )
 		{
 			if( mContainer.size() <= y )
 			{
@@ -57,7 +57,7 @@ namespace step01
 				return;
 			}
 
-			mContainer[y][x] = tile_index;
+			mContainer[y][x] = tile_type;
 		}
 	}
 }
