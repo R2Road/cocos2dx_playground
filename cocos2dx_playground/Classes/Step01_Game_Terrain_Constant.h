@@ -12,6 +12,9 @@ namespace step01
 			{
 				damage,
 				road,
+
+				SIZE,
+				FIRST = damage,
 			};
 		} // namespace pathfinder
 	}

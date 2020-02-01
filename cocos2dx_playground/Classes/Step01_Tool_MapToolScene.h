@@ -22,6 +22,7 @@ namespace step01
 			void onExit() override;
 
 		private:
+			void onTileSelect( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 			void updateForExit( float dt );
@@ -30,6 +31,8 @@ namespace step01
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			TerrainData mTerrainData;
+			step01::game::terrain::eTileType mCurrentTileType;
+			cocos2d::Node* mButtonRootNode;
 		};
 	}
 }
