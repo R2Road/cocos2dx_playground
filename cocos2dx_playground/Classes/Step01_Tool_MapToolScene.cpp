@@ -112,6 +112,49 @@ namespace step01
 				}
 			}
 
+			//
+			// ui
+			//
+			{
+				const Size button_margin( 10.f, 4.f );
+
+				// tile select : damaged
+				{
+					auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+					button->setTag( static_cast<int>( step01::game::terrain::eTileType::damage ) );
+					button->setScale9Enabled( true );
+					{
+						auto label = Label::createWithTTF( "Damaged Tile", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+						button->setTitleLabel( label );
+
+						button->setContentSize( label->getContentSize() + button_margin + button_margin );
+					}
+					button->setPosition( Vec2(
+						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
+						, visibleOrigin.y + ( ( visibleSize.height + button->getContentSize().height ) * 0.5f )
+					) );
+					addChild( button );
+				}
+
+				// tile select : road
+				{
+					auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+					button->setTag( static_cast<int>( step01::game::terrain::eTileType::road ) );
+					button->setScale9Enabled( true );
+					{
+						auto label = Label::createWithTTF( "Road Tile", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+						button->setTitleLabel( label );
+
+						button->setContentSize( label->getContentSize() + button_margin + button_margin );
+					}
+					button->setPosition( Vec2(
+						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
+						, visibleOrigin.y + ( ( visibleSize.height - button->getContentSize().height ) * 0.5f )
+					) );
+					addChild( button );
+				}
+			}
+
 			return true;
 		}
 
