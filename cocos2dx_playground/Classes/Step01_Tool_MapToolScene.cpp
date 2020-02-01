@@ -93,6 +93,7 @@ namespace step01
 
 				ui::Button* temp = nullptr;
 				int linear_index = 0;
+				step01::game::terrain::eTileType tile_type = step01::game::terrain::eTileType::damage;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
@@ -102,7 +103,9 @@ namespace step01
 						temp = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 						temp->setTag( linear_index );
 						{
-							auto indicator = Sprite::createWithSpriteFrameName( "step01_game_tile_00.png" );
+							tile_type = mTerrainData.get( tx, ty );
+
+							auto indicator = Sprite::createWithSpriteFrameName( step01::game::terrain::TileType2TilePath( tile_type ) );
 							indicator->setTag( TAG_Indicator );
 							indicator->setPosition( Vec2( temp->getContentSize().width * 0.5f, temp->getContentSize().height * 0.5f ) );
 							temp->addChild( indicator );
