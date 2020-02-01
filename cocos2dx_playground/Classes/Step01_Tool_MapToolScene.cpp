@@ -144,7 +144,7 @@ namespace step01
 
 			int y = button->getTag() / mTerrainData.getHeight();
 			int x = button->getTag() - ( y * mTerrainData.getWidth() );
-			mTerrainData.set( y, x, 1 );
+			mTerrainData.set( y, x, step01::game::terrain::eTileType::road );
 
 			auto indicator = static_cast<Sprite*>( button->getChildByTag( 20140416 ) );
 			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step01_game_tile_01.png" ) );
