@@ -16,6 +16,8 @@ namespace step01
 				SIZE,
 				FIRST = damage,
 			};
+			 
+			const char* TileType2TilePath( const eTileType tile_type );
 		} // namespace pathfinder
 	}
 }

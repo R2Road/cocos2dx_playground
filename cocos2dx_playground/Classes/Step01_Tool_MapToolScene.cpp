@@ -235,10 +235,10 @@ namespace step01
 
 			int y = button->getTag() / mTerrainData.getHeight();
 			int x = button->getTag() - ( y * mTerrainData.getWidth() );
-			mTerrainData.set( y, x, step01::game::terrain::eTileType::road );
+			mTerrainData.set( y, x, mCurrentTileType );
 
-			auto indicator = static_cast<Sprite*>( button->getChildByTag( 20140416 ) );
-			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step01_game_tile_01.png" ) );
+			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
+			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( TileType2TilePath( mCurrentTileType ) ) );
 		}
 
 
