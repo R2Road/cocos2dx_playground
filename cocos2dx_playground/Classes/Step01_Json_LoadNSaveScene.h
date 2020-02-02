@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <vector>
+
 #include "cocos2d.h"
 
 namespace step01
@@ -30,6 +33,7 @@ namespace step01
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			std::string mJsonString;
 			std::vector<int> mDatas;
 		};
 	}

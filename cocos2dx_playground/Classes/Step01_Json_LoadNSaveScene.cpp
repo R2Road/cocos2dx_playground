@@ -96,6 +96,22 @@ namespace step01
 			}
 
 			//
+			// Json View
+			//
+			{
+				std::stringstream ss;
+				ss << "Json String : " << mJsonString;
+
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.6f )
+				) );
+				addChild( label, 0 );
+			}
+
+			//
 			// Data View
 			//
 			{
@@ -110,7 +126,7 @@ namespace step01
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.4f )
 				) );
 				addChild( label, 0 );
 			}
@@ -175,9 +191,9 @@ namespace step01
 				SaveJsonFile();
 			}
 
-			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) ) );
+			mJsonString = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) );
 			rapidjson::Document doc;
-			doc.Parse<0>( regionStr.c_str() );
+			doc.Parse<0>( mJsonString.c_str() );
 
 			if( doc.HasParseError() )
 			{
