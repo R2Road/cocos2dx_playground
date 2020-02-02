@@ -12,6 +12,10 @@ namespace step01
 			{
 				damage,
 				road,
+				gate_entrance,
+				gate_exit,
+				gate_switch_on,
+				gate_switch_off,
 
 				SIZE,
 				FIRST = damage,
