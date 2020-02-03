@@ -124,7 +124,7 @@ namespace step01
 			//
 			{
 				const std::array<std::pair<step01::game::terrain::eTileType, char*>, 5u> ButtonList = { {
-					{ step01::game::terrain::eTileType::damage, "Damaged Tile" }
+					{ step01::game::terrain::eTileType::damage, "Damage Tile" }
 					,{ step01::game::terrain::eTileType::road, "Road Tile" }
 					,{ step01::game::terrain::eTileType::entrance, "Entrance" }
 					,{ step01::game::terrain::eTileType::exit, "Exit" }
