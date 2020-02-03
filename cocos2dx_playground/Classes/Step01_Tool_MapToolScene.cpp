@@ -2,6 +2,7 @@
 
 #include <new>
 #include <sstream>
+#include <array>
 
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
@@ -122,33 +123,36 @@ namespace step01
 			// ui
 			//
 			{
+				const std::array<std::pair<step01::game::terrain::eTileType, char*>, 5u> ButtonList = { {
+					{ step01::game::terrain::eTileType::damage, "Damaged Tile" }
+					,{ step01::game::terrain::eTileType::road, "Road Tile" }
+					,{ step01::game::terrain::eTileType::gate_entrance, "Entrance" }
+					,{ step01::game::terrain::eTileType::gate_exit, "Exit" }
+					,{ step01::game::terrain::eTileType::gate_switch_on, "Switch" }
+				} };
+
 				mButtonRootNode = Node::create();
 				addChild( mButtonRootNode );
 
 				const auto tile_select_callback = CC_CALLBACK_2( MapToolScene::onTileSelect, this );
 
-				// tile select : damaged
+				int by = 0;
+				for( const auto& b : ButtonList )
 				{
-					auto button = makeMenuButton( step01::game::terrain::eTileType::damage, "Damaged Tile", tile_select_callback );
+					auto button = makeMenuButton( b.first, b.second, tile_select_callback );
 					button->setPosition( Vec2(
 						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
-						, visibleOrigin.y + ( ( visibleSize.height + button->getContentSize().height ) * 0.5f )
-					) );
-					mButtonRootNode->addChild( button );
-				}
-
-				// tile select : road
-				{
-					auto button = makeMenuButton( step01::game::terrain::eTileType::road, "Road Tile", tile_select_callback );
-					button->setPosition( Vec2(
-						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
-						, visibleOrigin.y + ( ( visibleSize.height - button->getContentSize().height ) * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.5f ) + ( button->getContentSize().height * by )
 					) );
 					mButtonRootNode->addChild( button );
 
-
-					onTileSelect( button, ui::Widget::TouchEventType::BEGAN );
+					++by;
 				}
+
+				onTileSelect(
+					mButtonRootNode->getChildByTag( static_cast<int>( step01::game::terrain::eTileType::road ) )
+					, ui::Widget::TouchEventType::BEGAN
+				);
 			}
 
 			return true;
