@@ -211,10 +211,9 @@ namespace step01
 				return;
 			}
 
-			auto button = static_cast<Node*>( sender );
-
 			// change current tile type
-			mCurrentTileType = static_cast<step01::game::terrain::eTileType>( button->getTag() );
+			auto sender_node = static_cast<Node*>( sender );
+			mCurrentTileType = static_cast<step01::game::terrain::eTileType>( sender_node->getTag() );
 
 			// setup indicator visibility
 			Node* button_node = nullptr;
