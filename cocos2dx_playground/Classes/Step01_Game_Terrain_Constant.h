@@ -24,8 +24,8 @@ namespace step01
 			struct TileData
 			{
 				eTileType TileType = eTileType::damage;
-				char* ResourcePath = "";
 				bool bToolEnable = false;
+				char* ResourcePath = "";
 				char* Name = "";
 			};
 			const TileData& TileType2TileData( const eTileType tile_type );
