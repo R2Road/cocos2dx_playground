@@ -126,6 +126,7 @@ namespace step01
 				addChild( mButtonRootNode );
 
 				const Size button_margin( 10.f, 4.f );
+				const auto tile_select_callback = CC_CALLBACK_2( MapToolScene::onTileSelect, this );
 
 				// tile select : damaged
 				{
@@ -147,7 +148,7 @@ namespace step01
 						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
 						, visibleOrigin.y + ( ( visibleSize.height + button->getContentSize().height ) * 0.5f )
 					) );
-					button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onTileSelect, this ) );
+					button->addTouchEventListener( tile_select_callback );
 					mButtonRootNode->addChild( button );
 				}
 
@@ -171,7 +172,7 @@ namespace step01
 						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
 						, visibleOrigin.y + ( ( visibleSize.height - button->getContentSize().height ) * 0.5f )
 					) );
-					button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onTileSelect, this ) );
+					button->addTouchEventListener( tile_select_callback );
 					mButtonRootNode->addChild( button );
 
 
