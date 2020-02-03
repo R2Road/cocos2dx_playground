@@ -106,7 +106,9 @@ namespace step01
 						{
 							tile_type = mTerrainData.get( tx, ty );
 
-							auto indicator = Sprite::createWithSpriteFrameName( step01::game::terrain::TileType2TilePath( tile_type ) );
+							const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( tile_type ) );
+
+							auto indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
 							indicator->setTag( TAG_Indicator );
 							indicator->setPosition( Vec2( temp->getContentSize().width * 0.5f, temp->getContentSize().height * 0.5f ) );
 							temp->addChild( indicator );
@@ -123,23 +125,25 @@ namespace step01
 			// ui
 			//
 			{
-				const std::array<std::pair<step01::game::terrain::eTileType, char*>, 5u> ButtonList = { {
-					{ step01::game::terrain::eTileType::damage, "Damage Tile" }
-					,{ step01::game::terrain::eTileType::road, "Road Tile" }
-					,{ step01::game::terrain::eTileType::entrance, "Entrance" }
-					,{ step01::game::terrain::eTileType::exit, "Exit" }
-					,{ step01::game::terrain::eTileType::magic_circle_on, "Switch" }
-				} };
-
 				mButtonRootNode = Node::create();
 				addChild( mButtonRootNode );
 
 				const auto tile_select_callback = CC_CALLBACK_2( MapToolScene::onTileSelect, this );
 
 				int by = 0;
-				for( const auto& b : ButtonList )
+				for( int cur = static_cast<int>( step01::game::terrain::eTileType::FIRST ), end = static_cast<int>( step01::game::terrain::eTileType::SIZE ); cur < end; ++cur )
 				{
-					auto button = makeMenuButton( b.first, b.second, tile_select_callback );
+					const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( cur ) );
+					if( !tile_data.bToolEnable )
+					{
+						continue;
+					}
+
+					auto button = makeMenuButton(
+						tile_data.TileType
+						, tile_data.Name
+						, tile_select_callback
+					);
 					button->setPosition( Vec2(
 						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.5f ) + ( button->getContentSize().height * by )
@@ -247,8 +251,10 @@ namespace step01
 			int x = button->getTag() - ( y * mTerrainData.getWidth() );
 			mTerrainData.set( y, x, mCurrentTileType );
 
+			const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( mCurrentTileType ) );
+
 			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
-			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( TileType2TilePath( mCurrentTileType ) ) );
+			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 		}
 
 

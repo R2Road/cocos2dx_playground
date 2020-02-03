@@ -8,28 +8,24 @@ namespace step01
 	{
 		namespace terrain
 		{
-			struct TileData
-			{
-				eTileType TileType = eTileType::damage;
-				char* ResourcePath = "";
-			};
 			const std::array<TileData, static_cast<std::size_t>( eTileType::SIZE )> TileTable = { {
-				{ eTileType::damage, "step01_game_tile_damage.png" }
-				,{ eTileType::road, "step01_game_tile_road.png" }
-				,{ eTileType::entrance, "step01_game_tile_entrance.png" }
-				,{ eTileType::exit, "step01_game_tile_exit.png" }
-				,{ eTileType::magic_circle_on, "step01_game_tile_magic_circle_01.png" }
-				,{ eTileType::magic_circle_off, "step01_game_tile_magic_circle_02.png" }
+				{ eTileType::damage, "step01_game_tile_damage.png", true, "Damage Tile" }
+				,{ eTileType::road, "step01_game_tile_road.png", true, "Road Tile" }
+				,{ eTileType::entrance, "step01_game_tile_entrance.png", true, "Entrance" }
+				,{ eTileType::exit, "step01_game_tile_exit.png", true, "Exit" }
+				,{ eTileType::magic_circle_on, "step01_game_tile_magic_circle_01.png", true, "Switch" }
+				,{ eTileType::magic_circle_off, "step01_game_tile_magic_circle_02.png", false, "" }
 			} };
 
-			const char* TileType2TilePath( const eTileType tile_type )
+			const TileData& TileType2TileData( const eTileType tile_type )
 			{
 				if( eTileType::FIRST > tile_type || eTileType::SIZE <= tile_type )
 				{
-					return TileTable[0u].ResourcePath;
+					static const TileData dummy{ eTileType::damage, "step01_game_tile_damage.png", false, "W T F" };
+					return dummy;
 				}
 
-				return TileTable[static_cast<std::size_t>( tile_type )].ResourcePath;
+				return TileTable[static_cast<std::size_t>( tile_type )];;
 			}
 		}
 	}

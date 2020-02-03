@@ -20,8 +20,15 @@ namespace step01
 				SIZE,
 				FIRST = damage,
 			};
-			 
-			const char* TileType2TilePath( const eTileType tile_type );
+
+			struct TileData
+			{
+				eTileType TileType = eTileType::damage;
+				char* ResourcePath = "";
+				bool bToolEnable = false;
+				char* Name = "";
+			};
+			const TileData& TileType2TileData( const eTileType tile_type );
 		} // namespace pathfinder
 	}
 }
