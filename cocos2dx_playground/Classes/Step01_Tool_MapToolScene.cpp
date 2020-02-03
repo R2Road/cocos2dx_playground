@@ -213,15 +213,22 @@ namespace step01
 			mCurrentTileType = static_cast<step01::game::terrain::eTileType>( button->getTag() );
 
 			// setup indicator visibility
+			Node* button_node = nullptr;
 			for( int cur = static_cast<int>( step01::game::terrain::eTileType::FIRST ), end = static_cast<int>( step01::game::terrain::eTileType::SIZE ); cur < end; ++cur )
 			{
+				button_node = mButtonRootNode->getChildByTag( cur );
+				if( !button_node )
+				{
+					continue;
+				}
+
 				if( cur == static_cast<int>( mCurrentTileType ) )
 				{
-					mButtonRootNode->getChildByTag( cur )->getChildByTag( TAG_Indicator )->setVisible( true );
+					button_node->getChildByTag( TAG_Indicator )->setVisible( true );
 				}
 				else
 				{
-					mButtonRootNode->getChildByTag( cur )->getChildByTag( TAG_Indicator )->setVisible( false );
+					button_node->getChildByTag( TAG_Indicator )->setVisible( false );
 				}
 			}
 		}
