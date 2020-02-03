@@ -270,12 +270,12 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">step01_game_pathfinder/step01_game_obj_gate_entrance.png</key>
-            <key type="filename">step01_game_pathfinder/step01_game_obj_gate_exit.png</key>
-            <key type="filename">step01_game_pathfinder/step01_game_obj_gate_switch_01.png</key>
-            <key type="filename">step01_game_pathfinder/step01_game_obj_gate_switch_02.png</key>
-            <key type="filename">step01_game_pathfinder/step01_game_tile_00.png</key>
-            <key type="filename">step01_game_pathfinder/step01_game_tile_01.png</key>
+            <key type="filename">step01_game_pathfinder/step01_game_tile_damage.png</key>
+            <key type="filename">step01_game_pathfinder/step01_game_tile_entrance.png</key>
+            <key type="filename">step01_game_pathfinder/step01_game_tile_exit.png</key>
+            <key type="filename">step01_game_pathfinder/step01_game_tile_magic_circle_01.png</key>
+            <key type="filename">step01_game_pathfinder/step01_game_tile_magic_circle_02.png</key>
+            <key type="filename">step01_game_pathfinder/step01_game_tile_road.png</key>
             <key type="filename">ui/checkbox_01_bg.png</key>
             <key type="filename">ui/checkbox_01_cross.png</key>
             <key type="filename">ui/guide_01_1.png</key>
@@ -342,12 +342,12 @@
             <filename>animation/actor001/actor001_win_01.png</filename>
             <filename>animation/actor001/actor001_win_02.png</filename>
             <filename>ui/guide_01_4.png</filename>
-            <filename>step01_game_pathfinder/step01_game_tile_00.png</filename>
-            <filename>step01_game_pathfinder/step01_game_tile_01.png</filename>
-            <filename>step01_game_pathfinder/step01_game_obj_gate_switch_01.png</filename>
-            <filename>step01_game_pathfinder/step01_game_obj_gate_switch_02.png</filename>
-            <filename>step01_game_pathfinder/step01_game_obj_gate_entrance.png</filename>
-            <filename>step01_game_pathfinder/step01_game_obj_gate_exit.png</filename>
+            <filename>step01_game_pathfinder/step01_game_tile_damage.png</filename>
+            <filename>step01_game_pathfinder/step01_game_tile_entrance.png</filename>
+            <filename>step01_game_pathfinder/step01_game_tile_exit.png</filename>
+            <filename>step01_game_pathfinder/step01_game_tile_magic_circle_01.png</filename>
+            <filename>step01_game_pathfinder/step01_game_tile_magic_circle_02.png</filename>
+            <filename>step01_game_pathfinder/step01_game_tile_road.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

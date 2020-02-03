@@ -409,7 +409,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step01_game_obj_gate_entrance.png</key>
+            <key>step01_game_tile_damage.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -424,7 +424,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step01_game_obj_gate_exit.png</key>
+            <key>step01_game_tile_entrance.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -439,7 +439,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step01_game_obj_gate_switch_01.png</key>
+            <key>step01_game_tile_exit.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -454,7 +454,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step01_game_obj_gate_switch_02.png</key>
+            <key>step01_game_tile_magic_circle_01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -469,7 +469,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step01_game_tile_00.png</key>
+            <key>step01_game_tile_magic_circle_02.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -484,7 +484,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step01_game_tile_01.png</key>
+            <key>step01_game_tile_road.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -513,7 +513,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:34616a9110157b984881c8851c4428eb:6791ffa462076a60feaec28c45013d81:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:8ce2a8ad8abbc280fc13efaea68e37f8:4e3efb5cbc150b20be082d405bb6eb56:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>

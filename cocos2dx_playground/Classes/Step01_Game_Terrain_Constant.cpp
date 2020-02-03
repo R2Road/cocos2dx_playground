@@ -8,39 +8,39 @@ namespace step01
 		{
 			const char* TileType2TilePath( const eTileType tile_type )
 			{
-				static const char* damaged_tile_path = "step01_game_tile_00.png";
-				static const char* road_tile_path = "step01_game_tile_01.png";
-				static const char* road_tile_gate_entrance = "step01_game_obj_gate_entrance.png";
-				static const char* road_tile_gate_exit = "step01_game_obj_gate_exit.png";
-				static const char* road_tile_gate_switch_on = "step01_game_obj_gate_switch_01.png";
-				static const char* road_tile_gate_switch_off = "step01_game_obj_gate_switch_02.png";
+				static const char* damage_tile_path = "step01_game_tile_damage.png";
+				static const char* road_tile_path = "step01_game_tile_road.png";
+				static const char* entrance_tile_path = "step01_game_tile_entrance.png";
+				static const char* exit_tile_path = "step01_game_tile_exit.png";
+				static const char* magic_ciecle_on_tile_path = "step01_game_tile_magic_circle_01.png";
+				static const char* magic_ciecle_off_tile_path = "step01_game_tile_magic_circle_02.png";
 
 				if( eTileType::damage == tile_type )
 				{
-					return damaged_tile_path;
+					return damage_tile_path;
 				}
 				else if( eTileType::road == tile_type )
 				{
 					return road_tile_path;
 				}
-				else if( eTileType::gate_entrance == tile_type )
+				else if( eTileType::entrance == tile_type )
 				{
-					return road_tile_gate_entrance;
+					return entrance_tile_path;
 				}
-				else if( eTileType::gate_exit == tile_type )
+				else if( eTileType::exit == tile_type )
 				{
-					return road_tile_gate_exit;
+					return exit_tile_path;
 				}
-				else if( eTileType::gate_switch_on == tile_type )
+				else if( eTileType::magic_circle_on == tile_type )
 				{
-					return road_tile_gate_switch_on;
+					return magic_ciecle_on_tile_path;
 				}
-				else if( eTileType::gate_switch_off == tile_type )
+				else if( eTileType::magic_circle_off == tile_type )
 				{
-					return road_tile_gate_switch_off;
+					return magic_ciecle_off_tile_path;
 				}
 
-				return damaged_tile_path;
+				return damage_tile_path;
 			}
 		}
 	}
