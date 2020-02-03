@@ -125,54 +125,25 @@ namespace step01
 				mButtonRootNode = Node::create();
 				addChild( mButtonRootNode );
 
-				const Size button_margin( 10.f, 4.f );
 				const auto tile_select_callback = CC_CALLBACK_2( MapToolScene::onTileSelect, this );
 
 				// tile select : damaged
 				{
-					auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-					button->setTag( static_cast<int>( step01::game::terrain::eTileType::damage ) );
-					button->setScale9Enabled( true );
-					{
-						auto label = Label::createWithTTF( "Damaged Tile", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-						button->setTitleLabel( label );
-						button->setContentSize( label->getContentSize() + button_margin + button_margin );
-
-						auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
-						indicator->setAnchorPoint( Vec2( 0.f, 0.f ) );
-						indicator->setTag( TAG_Indicator );
-						indicator->setContentSize( button->getContentSize() );
-						button->addChild( indicator );
-					}
+					auto button = makeMenuButton( step01::game::terrain::eTileType::damage, "Damaged Tile", tile_select_callback );
 					button->setPosition( Vec2(
 						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
 						, visibleOrigin.y + ( ( visibleSize.height + button->getContentSize().height ) * 0.5f )
 					) );
-					button->addTouchEventListener( tile_select_callback );
 					mButtonRootNode->addChild( button );
 				}
 
 				// tile select : road
 				{
-					auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-					button->setTag( static_cast<int>( step01::game::terrain::eTileType::road ) );
-					button->setScale9Enabled( true );
-					{
-						auto label = Label::createWithTTF( "Road Tile", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-						button->setTitleLabel( label );
-						button->setContentSize( label->getContentSize() + button_margin + button_margin );
-
-						auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
-						indicator->setAnchorPoint( Vec2( 0.f, 0.f ) );
-						indicator->setTag( TAG_Indicator );
-						indicator->setContentSize( button->getContentSize() );
-						button->addChild( indicator );
-					}
+					auto button = makeMenuButton( step01::game::terrain::eTileType::road, "Road Tile", tile_select_callback );
 					button->setPosition( Vec2(
 						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
 						, visibleOrigin.y + ( ( visibleSize.height - button->getContentSize().height ) * 0.5f )
 					) );
-					button->addTouchEventListener( tile_select_callback );
 					mButtonRootNode->addChild( button );
 
 
@@ -198,6 +169,30 @@ namespace step01
 			mKeyboardListener = nullptr;
 
 			Node::onExit();
+		}
+
+
+		Node* MapToolScene::makeMenuButton( const step01::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
+		{
+			const Size button_margin( 10.f, 4.f );
+
+			auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+			button->setTag( static_cast<int>( tile_type ) );
+			button->addTouchEventListener( callback );
+			button->setScale9Enabled( true );
+			{
+				auto label = Label::createWithTTF( button_text, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				button->setTitleLabel( label );
+				button->setContentSize( label->getContentSize() + button_margin + button_margin );
+
+				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				indicator->setAnchorPoint( Vec2( 0.f, 0.f ) );
+				indicator->setTag( TAG_Indicator );
+				indicator->setContentSize( button->getContentSize() );
+				button->addChild( indicator );
+			}
+
+			return button;
 		}
 
 
