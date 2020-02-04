@@ -12,12 +12,24 @@ namespace step01
 			{
 				damage,
 				road,
+				entrance,
+				exit,
+				magic_circle_on,
+				magic_circle_off,
 
 				SIZE,
 				FIRST = damage,
 			};
-			 
-			const char* TileType2TilePath( const eTileType tile_type );
+
+			struct TileData
+			{
+				eTileType TileType = eTileType::damage;
+				bool bToolEnable = false;
+				bool bUnique = false;
+				char* ResourcePath = "";
+				char* Name = "";
+			};
+			const TileData& TileType2TileData( const eTileType tile_type );
 		} // namespace pathfinder
 	}
 }
