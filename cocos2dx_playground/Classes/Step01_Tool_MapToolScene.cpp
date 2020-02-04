@@ -6,12 +6,14 @@
 
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
+#include "ui/UITextField.h"
 
 #include "Step01_RootScene.h"
 
 USING_NS_CC;
 
 const int TAG_Indicator = 20140416;
+const int TAG_TextField = 9999;
 
 namespace step01
 {
@@ -123,7 +125,7 @@ namespace step01
 			}
 
 			//
-			// ui
+			// ui - tile select
 			//
 			{
 				mButtonRootNode = Node::create();
@@ -158,6 +160,31 @@ namespace step01
 					mButtonRootNode->getChildByTag( static_cast<int>( step01::game::terrain::eTileType::road ) )
 					, ui::Widget::TouchEventType::BEGAN
 				);
+			}
+
+			//
+			// ui - file save
+			//
+			{
+				auto text_field = ui::TextField::create( "input file name here", "fonts/arial.ttf", 9 );
+				text_field->setTag( TAG_TextField );
+				text_field->setPlaceHolderColor( Color3B::GREEN );
+				text_field->setMaxLength( 20 );
+				text_field->setMaxLengthEnabled( true );
+				text_field->setCursorChar( 95 );
+				text_field->setCursorEnabled( true );
+				text_field->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.9f )
+				) );
+				addChild( text_field, 0 );
+
+				auto background_guide = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				background_guide->setScale9Enabled( true );
+				background_guide->setContentSize( text_field->getContentSize() + Size( 20.f, 10.f ) );
+				background_guide->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onTextFieldSupporter, this ) );
+				background_guide->setPosition( text_field->getPosition() );
+				addChild( background_guide, 1 );
 			}
 
 			return true;
@@ -276,6 +303,21 @@ namespace step01
 
 			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
 			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
+		}
+
+
+		void MapToolScene::onTextFieldSupporter( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		{
+			switch( touch_event_type )
+			{
+			case cocos2d::ui::Widget::TouchEventType::CANCELED:
+			case cocos2d::ui::Widget::TouchEventType::ENDED:
+			{
+				auto text_field = static_cast<ui::TextField*>( getChildByTag( TAG_TextField ) );
+				text_field->attachWithIME();
+			}
+			break;
+			}
 		}
 
 
