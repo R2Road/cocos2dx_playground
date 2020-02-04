@@ -64,6 +64,11 @@ namespace step01
 				addChild( label, 9999 );
 			}
 
+
+
+			const int TEXT_FIELD_MAX_LENGTH = 20;
+			const char TEXT_FIELD_CURSOR_CHAR = 95; // "_"
+
 			//
 			// Text Field : Original
 			//
@@ -78,9 +83,9 @@ namespace step01
 
 				auto ui_text_field = ui::TextField::create( "input text here~!!!!", "fonts/arial.ttf", 9 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
-				ui_text_field->setMaxLength( 20 );
+				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
 				ui_text_field->setMaxLengthEnabled( true );
-				ui_text_field->setCursorChar( 95 );
+				ui_text_field->setCursorChar( TEXT_FIELD_CURSOR_CHAR );
 				ui_text_field->setCursorEnabled( true );
 				ui_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -109,9 +114,9 @@ namespace step01
 				auto ui_text_field = ui::TextField::create( "input text here!!!!!", "fonts/arial.ttf", 9 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setTextColor( Color4B::RED );
-				ui_text_field->setMaxLength( 20 );
+				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
 				ui_text_field->setMaxLengthEnabled( true );
-				ui_text_field->setCursorChar( 95 );
+				ui_text_field->setCursorChar( TEXT_FIELD_CURSOR_CHAR );
 				ui_text_field->setCursorEnabled( true );
 				ui_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
