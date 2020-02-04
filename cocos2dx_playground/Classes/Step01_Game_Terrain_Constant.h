@@ -25,6 +25,7 @@ namespace step01
 			{
 				eTileType TileType = eTileType::damage;
 				bool bToolEnable = false;
+				bool bUnique = false;
 				char* ResourcePath = "";
 				char* Name = "";
 			};

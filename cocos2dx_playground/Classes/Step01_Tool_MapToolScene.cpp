@@ -22,6 +22,7 @@ namespace step01
 			, mTerrainData()
 			, mCurrentTileType( step01::game::terrain::eTileType::road )
 			, mButtonRootNode( nullptr )
+			, terrain_layer( nullptr )
 		{}
 
 		Scene* MapToolScene::create()
@@ -84,7 +85,7 @@ namespace step01
 			{
 				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "guide_01_1.png" )->getRect().size;
 				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
-				auto terrain_layer = Layer::create();
+				terrain_layer = Node::create();
 				terrain_layer->setContentSize( Size( tile_size.width * mTerrainData.getWidth(), tile_size.height * mTerrainData.getHeight() ) );
 				terrain_layer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
@@ -246,11 +247,32 @@ namespace step01
 
 			auto button = static_cast<Node*>( sender );
 
+			const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( mCurrentTileType ) );
+			if( tile_data.bUnique )
+			{
+				int linear_index = 0;
+				const auto& default_tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
+				{
+					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+					{
+						if( mTerrainData.get( tx, ty ) != mCurrentTileType )
+						{
+							continue;
+						}
+						
+						mTerrainData.set( tx, ty, default_tile_data.TileType );
+
+						linear_index = tx + ( mTerrainData.getHeight() * ty );
+						auto indicator = static_cast<Sprite*>( terrain_layer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
+						indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( default_tile_data.ResourcePath ) );
+					}
+				}
+			}
+
 			int y = button->getTag() / mTerrainData.getHeight();
 			int x = button->getTag() - ( y * mTerrainData.getWidth() );
-			mTerrainData.set( y, x, mCurrentTileType );
-
-			const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( mCurrentTileType ) );
+			mTerrainData.set( x, y, mCurrentTileType );
 
 			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
 			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
