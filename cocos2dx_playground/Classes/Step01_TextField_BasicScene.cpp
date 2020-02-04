@@ -68,6 +68,8 @@ namespace step01
 
 			const int TEXT_FIELD_MAX_LENGTH = 20;
 			const char TEXT_FIELD_CURSOR_CHAR = 95; // "_"
+			const std::string DUMMY_STRING( TEXT_FIELD_MAX_LENGTH, 'A' );
+			const std::string PLACE_HOLDER_STRING( "input here~!" );
 
 			//
 			// Text Field : Original
@@ -81,7 +83,7 @@ namespace step01
 				) );
 				addChild( label, 1 );
 
-				auto ui_text_field = ui::TextField::create( "input text here~!!!!", "fonts/arial.ttf", 9 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 9 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
 				ui_text_field->setMaxLengthEnabled( true );
@@ -97,6 +99,8 @@ namespace step01
 				background_guide->setContentSize( ui_text_field->getContentSize() + Size( 20.f, 10.f ) );
 				background_guide->setPosition( ui_text_field->getPosition() );
 				addChild( background_guide, 1 );
+
+				ui_text_field->setPlaceHolder( PLACE_HOLDER_STRING );
 			}
 
 			//
@@ -111,7 +115,7 @@ namespace step01
 				) );
 				addChild( label, 1 );
 
-				auto ui_text_field = ui::TextField::create( "input text here!!!!!", "fonts/arial.ttf", 9 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 9 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setTextColor( Color4B::RED );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
@@ -141,6 +145,8 @@ namespace step01
 				} );
 				background_guide->setPosition( ui_text_field->getPosition() );
 				addChild( background_guide, 1 );
+
+				ui_text_field->setPlaceHolder( PLACE_HOLDER_STRING );
 			}
 
 			return true;
