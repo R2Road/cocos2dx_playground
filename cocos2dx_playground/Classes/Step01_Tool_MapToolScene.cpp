@@ -116,7 +116,7 @@ namespace step01
 							indicator->setPosition( Vec2( temp->getContentSize().width * 0.5f, temp->getContentSize().height * 0.5f ) );
 							temp->addChild( indicator );
 						}
-						temp->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onButton, this ) );
+						temp->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onGrid, this ) );
 						temp->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
 
 						terrain_layer->addChild( temp );
@@ -283,7 +283,7 @@ namespace step01
 		}
 
 
-		void MapToolScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void MapToolScene::onGrid( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
