@@ -37,6 +37,9 @@
     <Filter Include="src\scene\step01\button">
       <UniqueIdentifier>{78ebed0e-5d7e-41b2-b6aa-65f57b5c0d0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step01\textfield">
+      <UniqueIdentifier>{5536a0a4-196d-4c90-a1fb-3b664d4b1406}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -153,6 +156,9 @@
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_TextField_BasicScene.cpp">
+      <Filter>src\scene\step01\textfield</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -268,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h">
       <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_TextField_BasicScene.h">
+      <Filter>src\scene\step01\textfield</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
