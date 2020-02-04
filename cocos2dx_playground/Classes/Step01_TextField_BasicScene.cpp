@@ -75,13 +75,13 @@ namespace step01
 			// Text Field : Original
 			//
 			{
-				auto label = Label::createWithTTF( "Text Field Original : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				label->setPosition( Vec2(
+				auto summury_for_text_field = Label::createWithTTF( "Text Field Original : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+				summury_for_text_field->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				summury_for_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.8f )
 				) );
-				addChild( label, 1 );
+				addChild( summury_for_text_field, 1 );
 
 				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 9 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
@@ -107,13 +107,13 @@ namespace step01
 			// Text Field : Suggest
 			//
 			{
-				auto label = Label::createWithTTF( "Text Field + Button Support : Suggest", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				label->setPosition( Vec2(
+				auto summury_for_text_field = Label::createWithTTF( "Text Field + Button Support : Suggest", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+				summury_for_text_field->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				summury_for_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.4f )
 				) );
-				addChild( label, 1 );
+				addChild( summury_for_text_field, 1 );
 
 				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 9 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
@@ -128,10 +128,10 @@ namespace step01
 				) );
 				addChild( ui_text_field, 0 );
 
-				auto background_guide = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-				background_guide->setScale9Enabled( true );
-				background_guide->setContentSize( ui_text_field->getContentSize() + Size( 20.f, 10.f ) );
-				background_guide->addTouchEventListener( [ui_text_field]( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
+				auto guide_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				guide_button->setScale9Enabled( true );
+				guide_button->setContentSize( ui_text_field->getContentSize() + Size( 20.f, 10.f ) );
+				guide_button->addTouchEventListener( [ui_text_field]( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 				{
 					switch( touch_event_type )
 					{
@@ -143,8 +143,8 @@ namespace step01
 					break;
 					}
 				} );
-				background_guide->setPosition( ui_text_field->getPosition() );
-				addChild( background_guide, 1 );
+				guide_button->setPosition( ui_text_field->getPosition() );
+				addChild( guide_button, 1 );
 
 				ui_text_field->setPlaceHolder( PLACE_HOLDER_STRING );
 			}
