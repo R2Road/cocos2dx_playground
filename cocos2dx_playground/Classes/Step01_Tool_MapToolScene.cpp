@@ -163,7 +163,7 @@ namespace step01
 			}
 
 			//
-			// ui - file save
+			// ui - file name input
 			//
 			{
 				const int TEXT_FIELD_MAX_LENGTH = 20;
@@ -203,6 +203,30 @@ namespace step01
 				addChild( guide_button, 1 );
 
 				ui_text_field->setPlaceHolder( PLACE_HOLDER_STRING );
+			}
+
+			//
+			// ui - file save
+			//
+			{
+				auto save_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				save_button->setScale9Enabled( true );
+				save_button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onSave, this ) );
+				save_button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.2f )
+				) );
+				addChild( save_button );
+				{
+					auto label = Label::createWithTTF( "Save", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					label->setColor( Color3B::RED );
+					label->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + visibleSize.height
+					) );
+					save_button->setTitleLabel( label );
+					save_button->setContentSize( label->getContentSize() + Size( 20.f, 10.f ) );
+				}
 			}
 
 			return true;
@@ -321,6 +345,13 @@ namespace step01
 
 			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
 			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
+		}
+
+
+		void MapToolScene::onSave( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		{
+			// do save
+			CCLOG( "do save" );
 		}
 
 
