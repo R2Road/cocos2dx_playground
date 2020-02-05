@@ -1,5 +1,12 @@
 #include "Step01_Tool_TerrainData.h"
 
+#include <fstream>
+
+#include "cocos/platform/CCFileUtils.h"
+#include "json/document.h"
+#include "json/stringbuffer.h"
+#include "json/writer.h"
+
 namespace step01
 {
 	namespace tool
@@ -58,6 +65,54 @@ namespace step01
 			}
 
 			mContainer[y][x] = tile_type;
+		}
+
+		void TerrainData::save( const char* file_name )
+		{
+			rapidjson::Document document;
+			document.SetObject();
+
+			//
+			// sizse info
+			//
+			{
+				rapidjson::Value size_info_value;
+				size_info_value.SetObject();
+
+				size_info_value.AddMember( "w", mWidth, document.GetAllocator() );
+				size_info_value.AddMember( "h", mWidth, document.GetAllocator() );
+
+				document.AddMember( "size", size_info_value, document.GetAllocator() );
+			}
+
+			//
+			// terrain info
+			//
+			{
+				rapidjson::Value terrain_info_value;
+				terrain_info_value.SetArray();
+
+				for( auto& row : mContainer )
+				{
+					for( auto& t : row )
+					{
+						terrain_info_value.PushBack( static_cast<int>( t ), document.GetAllocator() );
+					}
+				}
+
+				document.AddMember( "terrain", terrain_info_value, document.GetAllocator() );
+			}
+
+			rapidjson::StringBuffer buffer;
+			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
+			document.Accept( writer );
+
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( file_name );
+			path.append( ".stage" );
+			std::ofstream fs( path, std::ios::out );
+			fs << buffer.GetString() << std::endl;
+			fs.close();
 		}
 	}
 }

@@ -350,8 +350,15 @@ namespace step01
 
 		void MapToolScene::onSave( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{
-			// do save
-			CCLOG( "do save" );
+			auto text_field = static_cast<ui::TextField*>( getChildByTag( TAG_TextField ) );
+			if( text_field->getString().empty() )
+			{
+				CCLOG( "File Name : Empty" );
+				return;
+			}
+
+			CCLOG( "File Save" );
+			mTerrainData.save( text_field->getString().c_str() );
 		}
 
 
