@@ -229,6 +229,30 @@ namespace step01
 				}
 			}
 
+			//
+			// ui - file load
+			//
+			{
+				auto save_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				save_button->setScale9Enabled( true );
+				save_button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onLoad, this ) );
+				save_button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f ) + save_button->getContentSize().width
+					, visibleOrigin.y + ( visibleSize.height * 0.2f )
+				) );
+				addChild( save_button );
+				{
+					auto label = Label::createWithTTF( "Load", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					label->setColor( Color3B::MAGENTA );
+					label->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + visibleSize.height
+					) );
+					save_button->setTitleLabel( label );
+					save_button->setContentSize( label->getContentSize() + Size( 20.f, 10.f ) );
+				}
+			}
+
 			return true;
 		}
 
@@ -359,6 +383,18 @@ namespace step01
 
 			CCLOG( "File Save" );
 			mTerrainData.save( text_field->getString().c_str() );
+		}
+		void MapToolScene::onLoad( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		{
+			auto text_field = static_cast<ui::TextField*>( getChildByTag( TAG_TextField ) );
+			if( text_field->getString().empty() )
+			{
+				CCLOG( "File Name : Empty" );
+				return;
+			}
+
+			CCLOG( "File Load" );
+			mTerrainData.load( text_field->getString().c_str() );
 		}
 
 

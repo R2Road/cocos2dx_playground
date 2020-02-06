@@ -26,6 +26,7 @@ namespace step01
 			const Container& get() const { return mContainer; }
 
 			void save( const char* file_name );
+			bool load( const char* file_name );
 
 		private:
 			int mWidth;

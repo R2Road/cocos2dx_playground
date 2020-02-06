@@ -114,5 +114,82 @@ namespace step01
 			fs << buffer.GetString() << std::endl;
 			fs.close();
 		}
+
+		bool TerrainData::load( const char* file_name )
+		{
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( file_name );
+			path.append( ".stage" );
+
+			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) ) );
+			rapidjson::Document doc;
+			doc.Parse<0>( regionStr.c_str() );
+
+			if( doc.HasParseError() )
+			{
+				CCLOG( "json parse error" );
+				return false;
+			}
+
+			if( doc.IsNull() )
+			{
+				CCLOG( "json is empty" );
+				return false;
+			}
+
+			if( !doc.IsObject() )
+			{
+				CCLOG( "invalid data struct" );
+				return false;
+			}
+
+			rapidjson::Value::MemberIterator temp_itr;
+			const auto size_itr = doc.FindMember( "size" );
+			if( doc.MemberEnd() == size_itr )
+			{
+				CCLOG( "Size nothing" );
+				return false;
+			}
+			else
+			{
+				temp_itr = size_itr->value.FindMember( "w" );
+				if( size_itr->value.MemberEnd() == temp_itr )
+				{
+					CCLOG( "Invalid Size Value : w" );
+					return false;
+				}
+				mWidth = temp_itr->value.GetInt();
+				
+				temp_itr = size_itr->value.FindMember( "h" );
+				if( size_itr->value.MemberEnd() == temp_itr )
+				{
+					CCLOG( "Invalid Size Value : h" );
+					return false;
+				}
+				mHeight = temp_itr->value.GetInt();
+			}
+
+			const auto terrain_itr = doc.FindMember( "terrain" );
+			if( doc.MemberEnd() == terrain_itr )
+			{
+				CCLOG( "Terrain nothing" );
+				return false;
+			}
+			else
+			{
+				reSize( mWidth, mHeight );
+				int x = 0;
+				int y = 0;
+				for( rapidjson::SizeType cur = 0u, end = terrain_itr->value.Size(); cur < end; ++cur )
+				{
+					const auto& value = terrain_itr->value[cur];
+
+					y = cur / mHeight;
+					x = cur - ( y * mWidth );
+
+					set( x, y, static_cast<step01::game::terrain::eTileType>( value.GetInt() ) );
+				}
+			}
+		}
 	}
 }
