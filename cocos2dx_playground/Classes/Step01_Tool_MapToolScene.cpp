@@ -91,7 +91,7 @@ namespace step01
 				terrain_layer->setContentSize( Size( tile_size.width * mTerrainData.getWidth(), tile_size.height * mTerrainData.getHeight() ) );
 				terrain_layer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.7f )
 				) );
 				addChild( terrain_layer );
 
@@ -180,7 +180,7 @@ namespace step01
 				ui_text_field->setCursorEnabled( true );
 				ui_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.8f )
+					, visibleOrigin.y + ( visibleSize.height * 0.28f )
 				) );
 				addChild( ui_text_field, 0 );
 
@@ -213,7 +213,7 @@ namespace step01
 				save_button->setScale9Enabled( true );
 				save_button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onSave, this ) );
 				save_button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					visibleOrigin.x + ( visibleSize.width * 0.5f ) - save_button->getContentSize().width
 					, visibleOrigin.y + ( visibleSize.height * 0.2f )
 				) );
 				addChild( save_button );
