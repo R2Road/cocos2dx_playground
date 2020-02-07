@@ -27,6 +27,9 @@ namespace step01
 		private:
 			bool init() override;
 
+		public:
+			void UpdateTile( cocos2d::Ref* tile_node, const step01::game::terrain::eTileType tile_type );
+
 		private:
 			int mWidth;
 			int mHeight;

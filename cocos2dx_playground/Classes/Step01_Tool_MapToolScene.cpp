@@ -352,9 +352,7 @@ namespace step01
 			int y = button->getTag() / mTerrainData.getHeight();
 			int x = button->getTag() - ( y * mTerrainData.getWidth() );
 			mTerrainData.set( x, y, mCurrentTileType );
-
-			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
-			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
+			mTerrainViewer->UpdateTile( sender, mCurrentTileType );
 		}
 
 
