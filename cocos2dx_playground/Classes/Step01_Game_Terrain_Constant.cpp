@@ -25,7 +25,7 @@ namespace step01
 					return dummy;
 				}
 
-				return TileTable[static_cast<std::size_t>( tile_type )];;
+				return TileTable[static_cast<std::size_t>( tile_type )];
 			}
 			bool TileType2UniqueFlag( const eTileType tile_type )
 			{
