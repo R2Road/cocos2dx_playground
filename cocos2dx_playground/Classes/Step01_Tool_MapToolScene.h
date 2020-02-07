@@ -8,6 +8,7 @@ namespace step01
 {
 	namespace tool
 	{
+		class TerrainViewer;
 		class MapToolScene : public cocos2d::Scene
 		{
 		private:
@@ -37,7 +38,7 @@ namespace step01
 			TerrainData mTerrainData;
 			step01::game::terrain::eTileType mCurrentTileType;
 			cocos2d::Node* mButtonRootNode;
-			cocos2d::Node* terrain_layer;
+			TerrainViewer* terrain_layer;
 		};
 	}
 }

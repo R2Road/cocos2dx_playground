@@ -8,11 +8,12 @@
 #include "ui/UIScale9Sprite.h"
 #include "ui/UITextField.h"
 
+#include "Step01_Tool_TerrainViewer.h"
+
 #include "Step01_RootScene.h"
 
 USING_NS_CC;
 
-const int TAG_Indicator = 20140416;
 const int TAG_TextField = 9999;
 
 namespace step01
@@ -85,41 +86,26 @@ namespace step01
 			// Terrain View
 			//
 			{
-				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "guide_01_1.png" )->getRect().size;
-				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
-				terrain_layer = Node::create();
-				terrain_layer->setContentSize( Size( tile_size.width * mTerrainData.getWidth(), tile_size.height * mTerrainData.getHeight() ) );
+				terrain_layer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), CC_CALLBACK_2( MapToolScene::onGrid, this ) );
 				terrain_layer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.7f )
 				) );
 				addChild( terrain_layer );
 
-				ui::Button* temp = nullptr;
 				int linear_index = 0;
 				step01::game::terrain::eTileType tile_type = step01::game::terrain::eTileType::damage;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 					{
+						tile_type = mTerrainData.get( tx, ty );
+
+						const auto& tile_data = step01::game::terrain::TileType2TileData( tile_type );
+
 						linear_index = tx + ( mTerrainData.getHeight() * ty );
-
-						temp = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-						temp->setTag( linear_index );
-						{
-							tile_type = mTerrainData.get( tx, ty );
-
-							const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( tile_type ) );
-
-							auto indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
-							indicator->setTag( TAG_Indicator );
-							indicator->setPosition( Vec2( temp->getContentSize().width * 0.5f, temp->getContentSize().height * 0.5f ) );
-							temp->addChild( indicator );
-						}
-						temp->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onGrid, this ) );
-						temp->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
-
-						terrain_layer->addChild( temp );
+						auto indicator = static_cast<Sprite*>( terrain_layer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
+						indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 					}
 				}
 			}
