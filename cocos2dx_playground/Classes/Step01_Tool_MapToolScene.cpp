@@ -346,7 +346,7 @@ namespace step01
 
 			
 			mTerrainData.set( gx, gy, mCurrentTileType );
-			mTerrainViewer->UpdateTile( sender, mCurrentTileType );
+			mTerrainViewer->UpdateTile( gx, gy, mCurrentTileType );
 		}
 
 
