@@ -318,9 +318,9 @@ namespace step01
 			}
 
 			auto button = static_cast<Node*>( sender );
-			const int y = button->getTag() / mTerrainData.getHeight();
-			const int x = button->getTag() - ( y * mTerrainData.getWidth() );
-			if( mCurrentTileType == mTerrainData.get( x, y ) )
+			const int gy = button->getTag() / mTerrainData.getHeight();
+			const int gx = button->getTag() - ( gy * mTerrainData.getWidth() );
+			if( mCurrentTileType == mTerrainData.get( gx, gy ) )
 			{
 				return;
 			}
@@ -345,7 +345,7 @@ namespace step01
 			}
 
 			
-			mTerrainData.set( x, y, mCurrentTileType );
+			mTerrainData.set( gx, gy, mCurrentTileType );
 			mTerrainViewer->UpdateTile( sender, mCurrentTileType );
 		}
 
