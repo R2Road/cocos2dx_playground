@@ -69,37 +69,13 @@ namespace step01
 		void TerrainData::save( const char* file_name )
 		{
 			rapidjson::Document document;
-			document.SetObject();
-
-			//
-			// sizse info
-			//
+			document.SetArray();
+			for( auto& row : mContainer )
 			{
-				rapidjson::Value size_info_value;
-				size_info_value.SetObject();
-
-				size_info_value.AddMember( "w", mWidth, document.GetAllocator() );
-				size_info_value.AddMember( "h", mWidth, document.GetAllocator() );
-
-				document.AddMember( "size", size_info_value, document.GetAllocator() );
-			}
-
-			//
-			// terrain info
-			//
-			{
-				rapidjson::Value terrain_info_value;
-				terrain_info_value.SetArray();
-
-				for( auto& row : mContainer )
+				for( auto& t : row )
 				{
-					for( auto& t : row )
-					{
-						terrain_info_value.PushBack( static_cast<int>( t ), document.GetAllocator() );
-					}
+					document.PushBack( static_cast<int>( t ), document.GetAllocator() );
 				}
-
-				document.AddMember( "terrain", terrain_info_value, document.GetAllocator() );
 			}
 
 			rapidjson::StringBuffer buffer;
@@ -136,58 +112,25 @@ namespace step01
 				return false;
 			}
 
-			if( !doc.IsObject() )
+			if( !doc.IsArray() )
 			{
 				CCLOG( "invalid data struct" );
 				return false;
 			}
 
-			rapidjson::Value::MemberIterator temp_itr;
-			const auto size_itr = doc.FindMember( "size" );
-			if( doc.MemberEnd() == size_itr )
+			int x = 0;
+			int y = 0;
+			for( rapidjson::SizeType cur = 0u, end = doc.Size(); cur < end; ++cur )
 			{
-				CCLOG( "Size nothing" );
-				return false;
-			}
-			else
-			{
-				temp_itr = size_itr->value.FindMember( "w" );
-				if( size_itr->value.MemberEnd() == temp_itr )
-				{
-					CCLOG( "Invalid Size Value : w" );
-					return false;
-				}
-				mWidth = temp_itr->value.GetInt();
-				
-				temp_itr = size_itr->value.FindMember( "h" );
-				if( size_itr->value.MemberEnd() == temp_itr )
-				{
-					CCLOG( "Invalid Size Value : h" );
-					return false;
-				}
-				mHeight = temp_itr->value.GetInt();
+				const auto& value = doc[cur];
+
+				y = cur / mHeight;
+				x = cur - ( y * mWidth );
+
+				set( x, y, static_cast<step01::game::terrain::eTileType>( value.GetInt() ) );
 			}
 
-			const auto terrain_itr = doc.FindMember( "terrain" );
-			if( doc.MemberEnd() == terrain_itr )
-			{
-				CCLOG( "Terrain nothing" );
-				return false;
-			}
-			else
-			{
-				int x = 0;
-				int y = 0;
-				for( rapidjson::SizeType cur = 0u, end = terrain_itr->value.Size(); cur < end; ++cur )
-				{
-					const auto& value = terrain_itr->value[cur];
-
-					y = cur / mHeight;
-					x = cur - ( y * mWidth );
-
-					set( x, y, static_cast<step01::game::terrain::eTileType>( value.GetInt() ) );
-				}
-			}
+			return true;
 		}
 	}
 }
