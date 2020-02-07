@@ -25,7 +25,7 @@ namespace step01
 			, mTerrainData()
 			, mCurrentTileType( step01::game::terrain::eTileType::road )
 			, mButtonRootNode( nullptr )
-			, terrain_layer( nullptr )
+			, mTerrainViewer( nullptr )
 		{}
 
 		Scene* MapToolScene::create()
@@ -86,12 +86,12 @@ namespace step01
 			// Terrain View
 			//
 			{
-				terrain_layer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), CC_CALLBACK_2( MapToolScene::onGrid, this ) );
-				terrain_layer->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.7f )
+				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), CC_CALLBACK_2( MapToolScene::onGrid, this ) );
+				mTerrainViewer->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.7f )
 				) );
-				addChild( terrain_layer );
+				addChild( mTerrainViewer );
 
 				int linear_index = 0;
 				step01::game::terrain::eTileType tile_type = step01::game::terrain::eTileType::damage;
@@ -104,7 +104,7 @@ namespace step01
 						const auto& tile_data = step01::game::terrain::TileType2TileData( tile_type );
 
 						linear_index = tx + ( mTerrainData.getHeight() * ty );
-						auto indicator = static_cast<Sprite*>( terrain_layer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
+						auto indicator = static_cast<Sprite*>( mTerrainViewer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
 						indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 					}
 				}
@@ -343,7 +343,7 @@ namespace step01
 						mTerrainData.set( tx, ty, default_tile_data.TileType );
 
 						linear_index = tx + ( mTerrainData.getHeight() * ty );
-						auto indicator = static_cast<Sprite*>( terrain_layer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
+						auto indicator = static_cast<Sprite*>( mTerrainViewer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
 						indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( default_tile_data.ResourcePath ) );
 					}
 				}

@@ -38,7 +38,7 @@ namespace step01
 			TerrainData mTerrainData;
 			step01::game::terrain::eTileType mCurrentTileType;
 			cocos2d::Node* mButtonRootNode;
-			TerrainViewer* terrain_layer;
+			TerrainViewer* mTerrainViewer;
 		};
 	}
 }
