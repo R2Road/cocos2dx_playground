@@ -77,15 +77,6 @@ namespace step01
 			}
 
 			//
-			// Terrain Data
-			//
-			{
-				const int map_size_x = 5;
-				const int map_size_y = 5;
-				mTerrainData.reSize( map_size_x, map_size_y );
-			}
-
-			//
 			// Terrain View
 			//
 			{

@@ -16,7 +16,7 @@ namespace step01
 
 			TerrainData();
 
-			void reSize( const std::size_t width, const std::size_t height );
+		public:
 			void fill( const Row::value_type tile_type );
 			int getWidth() const { return mWidth; }
 			int getHeight() const { return mHeight; }

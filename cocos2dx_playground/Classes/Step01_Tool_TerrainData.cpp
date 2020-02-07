@@ -11,22 +11,21 @@ namespace step01
 {
 	namespace tool
 	{
-		TerrainData::TerrainData() :
-			mWidth( 0 )
-			, mHeight( 0 )
-			, mContainer()
-		{}
+		const int map_size_width = 5;
+		const int map_size_height = 5;
 
-		void TerrainData::reSize( const std::size_t width, const std::size_t height )
+		TerrainData::TerrainData() :
+			mWidth( map_size_width )
+			, mHeight( map_size_height )
+			, mContainer()
 		{
-			mWidth = width;
-			mHeight = height;
-			mContainer.resize( height );
+			mContainer.resize( mHeight );
 			for( auto& r : mContainer )
 			{
-				r.resize( width, step01::game::terrain::eTileType::damage );
+				r.resize( mWidth, step01::game::terrain::eTileType::damage );
 			}
 		}
+
 		void TerrainData::fill( const Row::value_type tile_type )
 		{
 			for( auto& r : mContainer )
@@ -177,7 +176,6 @@ namespace step01
 			}
 			else
 			{
-				reSize( mWidth, mHeight );
 				int x = 0;
 				int y = 0;
 				for( rapidjson::SizeType cur = 0u, end = terrain_itr->value.Size(); cur < end; ++cur )
