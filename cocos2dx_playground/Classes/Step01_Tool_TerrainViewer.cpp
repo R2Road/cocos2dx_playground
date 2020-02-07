@@ -81,9 +81,13 @@ namespace step01
 
 		void TerrainViewer::UpdateTile( Node* tile_node, const step01::game::terrain::eTileType tile_type )
 		{
-			const auto& tile_data = step01::game::terrain::TileType2TileData( tile_type );
-
 			auto indicator = static_cast<Sprite*>( tile_node->getChildByTag( TAG_Indicator ) );
+			if( !indicator )
+			{
+				return;
+			}
+
+			const auto& tile_data = step01::game::terrain::TileType2TileData( tile_type );
 			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 		}
 		void TerrainViewer::UpdateTile( const int grid_x, const int grid_y, const step01::game::terrain::eTileType tile_type )
