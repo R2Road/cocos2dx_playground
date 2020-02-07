@@ -318,6 +318,12 @@ namespace step01
 			}
 
 			auto button = static_cast<Node*>( sender );
+			const int y = button->getTag() / mTerrainData.getHeight();
+			const int x = button->getTag() - ( y * mTerrainData.getWidth() );
+			if( mCurrentTileType == mTerrainData.get( x, y ) )
+			{
+				return;
+			}
 
 			const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( mCurrentTileType ) );
 			if( tile_data.bUnique )
@@ -338,8 +344,7 @@ namespace step01
 				}
 			}
 
-			int y = button->getTag() / mTerrainData.getHeight();
-			int x = button->getTag() - ( y * mTerrainData.getWidth() );
+			
 			mTerrainData.set( x, y, mCurrentTileType );
 			mTerrainViewer->UpdateTile( sender, mCurrentTileType );
 		}
