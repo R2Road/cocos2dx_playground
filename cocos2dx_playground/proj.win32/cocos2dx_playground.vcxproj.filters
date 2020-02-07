@@ -159,6 +159,9 @@
     <ClCompile Include="..\Classes\Step01_TextField_BasicScene.cpp">
       <Filter>src\scene\step01\textfield</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_TextField_BasicScene.h">
       <Filter>src\scene\step01\textfield</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h">
+      <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

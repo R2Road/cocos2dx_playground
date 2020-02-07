@@ -8,11 +8,12 @@
 #include "ui/UIScale9Sprite.h"
 #include "ui/UITextField.h"
 
+#include "Step01_Tool_TerrainViewer.h"
+
 #include "Step01_RootScene.h"
 
 USING_NS_CC;
 
-const int TAG_Indicator = 20140416;
 const int TAG_TextField = 9999;
 
 namespace step01
@@ -24,7 +25,7 @@ namespace step01
 			, mTerrainData()
 			, mCurrentTileType( step01::game::terrain::eTileType::road )
 			, mButtonRootNode( nullptr )
-			, terrain_layer( nullptr )
+			, mTerrainViewer( nullptr )
 		{}
 
 		Scene* MapToolScene::create()
@@ -58,9 +59,12 @@ namespace step01
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << "\n";
-				ss << "\n";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[ESC] : Return to Step 01 Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath();
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
@@ -73,53 +77,22 @@ namespace step01
 			}
 
 			//
-			// Terrain Data
-			//
-			{
-				const int map_size_x = 5;
-				const int map_size_y = 5;
-				mTerrainData.reSize( map_size_x, map_size_y );
-			}
-
-			//
 			// Terrain View
 			//
 			{
-				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "guide_01_1.png" )->getRect().size;
-				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
-				terrain_layer = Node::create();
-				terrain_layer->setContentSize( Size( tile_size.width * mTerrainData.getWidth(), tile_size.height * mTerrainData.getHeight() ) );
-				terrain_layer->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.5f )
+				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), CC_CALLBACK_2( MapToolScene::onGrid, this ) );
+				mTerrainViewer->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.7f )
 				) );
-				addChild( terrain_layer );
+				addChild( mTerrainViewer );
 
-				ui::Button* temp = nullptr;
-				int linear_index = 0;
-				step01::game::terrain::eTileType tile_type = step01::game::terrain::eTileType::damage;
+				// apply terrain data
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 					{
-						linear_index = tx + ( mTerrainData.getHeight() * ty );
-
-						temp = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-						temp->setTag( linear_index );
-						{
-							tile_type = mTerrainData.get( tx, ty );
-
-							const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( tile_type ) );
-
-							auto indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
-							indicator->setTag( TAG_Indicator );
-							indicator->setPosition( Vec2( temp->getContentSize().width * 0.5f, temp->getContentSize().height * 0.5f ) );
-							temp->addChild( indicator );
-						}
-						temp->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onGrid, this ) );
-						temp->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
-
-						terrain_layer->addChild( temp );
+						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
 					}
 				}
 			}
@@ -163,7 +136,7 @@ namespace step01
 			}
 
 			//
-			// ui - file save
+			// ui - file name input
 			//
 			{
 				const int TEXT_FIELD_MAX_LENGTH = 20;
@@ -180,7 +153,7 @@ namespace step01
 				ui_text_field->setCursorEnabled( true );
 				ui_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.8f )
+					, visibleOrigin.y + ( visibleSize.height * 0.28f )
 				) );
 				addChild( ui_text_field, 0 );
 
@@ -203,6 +176,54 @@ namespace step01
 				addChild( guide_button, 1 );
 
 				ui_text_field->setPlaceHolder( PLACE_HOLDER_STRING );
+			}
+
+			//
+			// ui - file save
+			//
+			{
+				auto save_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				save_button->setScale9Enabled( true );
+				save_button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onSave, this ) );
+				save_button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f ) - save_button->getContentSize().width
+					, visibleOrigin.y + ( visibleSize.height * 0.2f )
+				) );
+				addChild( save_button );
+				{
+					auto label = Label::createWithTTF( "Save", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					label->setColor( Color3B::RED );
+					label->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + visibleSize.height
+					) );
+					save_button->setTitleLabel( label );
+					save_button->setContentSize( label->getContentSize() + Size( 20.f, 10.f ) );
+				}
+			}
+
+			//
+			// ui - file load
+			//
+			{
+				auto save_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				save_button->setScale9Enabled( true );
+				save_button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onLoad, this ) );
+				save_button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f ) + save_button->getContentSize().width
+					, visibleOrigin.y + ( visibleSize.height * 0.2f )
+				) );
+				addChild( save_button );
+				{
+					auto label = Label::createWithTTF( "Load", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					label->setColor( Color3B::MAGENTA );
+					label->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + visibleSize.height
+					) );
+					save_button->setTitleLabel( label );
+					save_button->setContentSize( label->getContentSize() + Size( 20.f, 10.f ) );
+				}
 			}
 
 			return true;
@@ -291,12 +312,16 @@ namespace step01
 			}
 
 			auto button = static_cast<Node*>( sender );
-
-			const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( mCurrentTileType ) );
-			if( tile_data.bUnique )
+			const int gy = button->getTag() / mTerrainData.getHeight();
+			const int gx = button->getTag() - ( gy * mTerrainData.getWidth() );
+			if( mCurrentTileType == mTerrainData.get( gx, gy ) )
 			{
-				int linear_index = 0;
-				const auto& default_tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+				return;
+			}
+
+			if( step01::game::terrain::TileType2UniqueFlag( mCurrentTileType ) )
+			{
+				const auto default_tile_type = step01::game::terrain::eTileType::road;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
@@ -306,21 +331,50 @@ namespace step01
 							continue;
 						}
 						
-						mTerrainData.set( tx, ty, default_tile_data.TileType );
-
-						linear_index = tx + ( mTerrainData.getHeight() * ty );
-						auto indicator = static_cast<Sprite*>( terrain_layer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
-						indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( default_tile_data.ResourcePath ) );
+						mTerrainData.set( tx, ty, default_tile_type );
+						mTerrainViewer->UpdateTile( tx, ty, default_tile_type );
 					}
 				}
 			}
 
-			int y = button->getTag() / mTerrainData.getHeight();
-			int x = button->getTag() - ( y * mTerrainData.getWidth() );
-			mTerrainData.set( x, y, mCurrentTileType );
+			
+			mTerrainData.set( gx, gy, mCurrentTileType );
+			mTerrainViewer->UpdateTile( gx, gy, mCurrentTileType );
+		}
 
-			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
-			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
+
+		void MapToolScene::onSave( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		{
+			auto text_field = static_cast<ui::TextField*>( getChildByTag( TAG_TextField ) );
+			if( text_field->getString().empty() )
+			{
+				CCLOG( "File Name : Empty" );
+				return;
+			}
+
+			CCLOG( "File Save" );
+			mTerrainData.save( text_field->getString().c_str() );
+		}
+		void MapToolScene::onLoad( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		{
+			auto text_field = static_cast<ui::TextField*>( getChildByTag( TAG_TextField ) );
+			if( text_field->getString().empty() )
+			{
+				CCLOG( "File Name : Empty" );
+				return;
+			}
+
+			CCLOG( "File Load" );
+			mTerrainData.load( text_field->getString().c_str() );
+
+			// apply terrain data
+			for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
+			{
+				for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+				{
+					mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
+				}
+			}
 		}
 
 

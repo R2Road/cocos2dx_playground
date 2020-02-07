@@ -8,6 +8,7 @@ namespace step01
 {
 	namespace tool
 	{
+		class TerrainViewer;
 		class MapToolScene : public cocos2d::Scene
 		{
 		private:
@@ -26,6 +27,9 @@ namespace step01
 			void onTileSelect( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onGrid( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
+			void onSave( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onLoad( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
@@ -34,7 +38,7 @@ namespace step01
 			TerrainData mTerrainData;
 			step01::game::terrain::eTileType mCurrentTileType;
 			cocos2d::Node* mButtonRootNode;
-			cocos2d::Node* terrain_layer;
+			TerrainViewer* mTerrainViewer;
 		};
 	}
 }

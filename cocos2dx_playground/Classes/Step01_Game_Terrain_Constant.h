@@ -30,6 +30,7 @@ namespace step01
 				char* Name = "";
 			};
 			const TileData& TileType2TileData( const eTileType tile_type );
+			bool TileType2UniqueFlag( const eTileType tile_type );
 		} // namespace pathfinder
 	}
 }
