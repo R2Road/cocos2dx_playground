@@ -27,6 +27,15 @@ namespace step01
 
 				return TileTable[static_cast<std::size_t>( tile_type )];;
 			}
+			bool TileType2UniqueFlag( const eTileType tile_type )
+			{
+				if( eTileType::FIRST > tile_type || eTileType::SIZE <= tile_type )
+				{
+					return false;
+				}
+
+				return TileTable[static_cast<std::size_t>( tile_type )].bUnique;
+			}
 		}
 	}
 }

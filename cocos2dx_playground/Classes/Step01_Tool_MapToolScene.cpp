@@ -325,8 +325,7 @@ namespace step01
 				return;
 			}
 
-			const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( mCurrentTileType ) );
-			if( tile_data.bUnique )
+			if( step01::game::terrain::TileType2UniqueFlag( mCurrentTileType ) )
 			{
 				const auto default_tile_type = step01::game::terrain::eTileType::road;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
