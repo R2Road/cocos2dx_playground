@@ -93,19 +93,12 @@ namespace step01
 				) );
 				addChild( mTerrainViewer );
 
-				int linear_index = 0;
-				step01::game::terrain::eTileType tile_type = step01::game::terrain::eTileType::damage;
+				// apply terrain data
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 					{
-						tile_type = mTerrainData.get( tx, ty );
-
-						const auto& tile_data = step01::game::terrain::TileType2TileData( tile_type );
-
-						linear_index = tx + ( mTerrainData.getHeight() * ty );
-						auto indicator = static_cast<Sprite*>( mTerrainViewer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
-						indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
+						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
 					}
 				}
 			}
@@ -329,8 +322,7 @@ namespace step01
 			const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( mCurrentTileType ) );
 			if( tile_data.bUnique )
 			{
-				int linear_index = 0;
-				const auto& default_tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+				const auto default_tile_type = step01::game::terrain::eTileType::road;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
@@ -340,11 +332,8 @@ namespace step01
 							continue;
 						}
 						
-						mTerrainData.set( tx, ty, default_tile_data.TileType );
-
-						linear_index = tx + ( mTerrainData.getHeight() * ty );
-						auto indicator = static_cast<Sprite*>( mTerrainViewer->getChildByTag( linear_index )->getChildByTag( TAG_Indicator ) );
-						indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( default_tile_data.ResourcePath ) );
+						mTerrainData.set( tx, ty, default_tile_type );
+						mTerrainViewer->UpdateTile( tx, ty, default_tile_type );
 					}
 				}
 			}

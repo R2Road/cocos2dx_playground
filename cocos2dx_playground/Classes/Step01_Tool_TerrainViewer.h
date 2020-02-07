@@ -29,6 +29,7 @@ namespace step01
 
 		public:
 			void UpdateTile( cocos2d::Ref* tile_node, const step01::game::terrain::eTileType tile_type );
+			void UpdateTile( const int grid_x, const int grid_y, const step01::game::terrain::eTileType tile_type );
 
 		private:
 			int mWidth;

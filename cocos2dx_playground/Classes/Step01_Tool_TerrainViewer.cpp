@@ -88,5 +88,17 @@ namespace step01
 			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
 			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 		}
+		void TerrainViewer::UpdateTile( const int grid_x, const int grid_y, const step01::game::terrain::eTileType tile_type )
+		{
+			const int linear_index = grid_x + ( mWidth * grid_y );
+
+			auto grid = getChildByTag( linear_index );
+			if( !grid )
+			{
+				return;
+			}
+
+			UpdateTile( grid, tile_type );
+		}
 	} // namespace tool
 }
