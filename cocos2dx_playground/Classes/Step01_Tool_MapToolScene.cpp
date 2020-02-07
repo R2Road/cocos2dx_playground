@@ -372,6 +372,15 @@ namespace step01
 
 			CCLOG( "File Load" );
 			mTerrainData.load( text_field->getString().c_str() );
+
+			// apply terrain data
+			for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
+			{
+				for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+				{
+					mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
+				}
+			}
 		}
 
 
