@@ -79,13 +79,11 @@ namespace step01
 			return true;
 		}
 
-		void TerrainViewer::UpdateTile( cocos2d::Ref* tile_node, const step01::game::terrain::eTileType tile_type )
+		void TerrainViewer::UpdateTile( Node* tile_node, const step01::game::terrain::eTileType tile_type )
 		{
-			auto button = static_cast<Node*>( tile_node );
-
 			const auto& tile_data = step01::game::terrain::TileType2TileData( tile_type );
 
-			auto indicator = static_cast<Sprite*>( button->getChildByTag( TAG_Indicator ) );
+			auto indicator = static_cast<Sprite*>( tile_node->getChildByTag( TAG_Indicator ) );
 			indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 		}
 		void TerrainViewer::UpdateTile( const int grid_x, const int grid_y, const step01::game::terrain::eTileType tile_type )
