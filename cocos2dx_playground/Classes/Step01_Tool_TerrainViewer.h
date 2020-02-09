@@ -24,7 +24,7 @@ namespace step01
 		private:
 			Node* MakeTile( const step01::game::terrain::TileData& tile_data, const int grid_x, const int grid_y ) override;
 
-			const TileSelectCallback& mTileSelectCallback;
+			const TileSelectCallback mTileSelectCallback;
 		};
 	}
 }
