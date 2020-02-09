@@ -43,12 +43,11 @@ namespace step01
 					return false;
 				}
 
-				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "guide_01_1.png" )->getRect().size;
+				const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
 				setContentSize( Size( tile_size.width * mWidth, tile_size.height * mHeight ) );
 
-				const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
 				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );;
-
 				Node* button = nullptr;
 				for( int ty = 0; ty < mHeight; ++ty )
 				{
