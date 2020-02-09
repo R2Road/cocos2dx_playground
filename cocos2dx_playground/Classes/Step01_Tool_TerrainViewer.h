@@ -9,6 +9,14 @@
 
 namespace step01
 {
+	namespace game
+	{
+		namespace terrain
+		{
+			struct TileData;
+		}
+	}
+
 	namespace tool
 	{
 		class TerrainViewer : public cocos2d::Node
@@ -25,6 +33,7 @@ namespace step01
 		private:
 			bool init() override;
 
+			Node* MakeTile( const step01::game::terrain::TileData& tile_data, const int grid_x, const int grid_y );
 			void UpdateTile( cocos2d::Node* tile_node, const step01::game::terrain::eTileType tile_type );
 
 		public:

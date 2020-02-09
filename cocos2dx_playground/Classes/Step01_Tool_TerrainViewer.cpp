@@ -54,26 +54,13 @@ namespace step01
 			const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
 			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );;
 
-			ui::Button* button = nullptr;
-			Sprite* indicator = nullptr;
-			int linear_index = 0;
+			Node* button = nullptr;
 			for( int ty = 0; ty < mHeight; ++ty )
 			{
 				for( int tx = 0; tx < mWidth; ++tx )
 				{
-					linear_index = tx + ( mHeight * ty );
-
-					button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-					button->setTag( linear_index );
-					{
-						indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
-						indicator->setTag( TAG_Indicator );
-						indicator->setPosition( Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f ) );
-						button->addChild( indicator );
-					}
-					button->addTouchEventListener( mTileSelectCallback );
+					button = MakeTile( tile_data, tx, ty );
 					button->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
-
 					addChild( button );
 				}
 			}
@@ -81,6 +68,22 @@ namespace step01
 			return true;
 		}
 
+		Node* TerrainViewer::MakeTile( const step01::game::terrain::TileData& tile_data, const int grid_x, const int grid_y )
+		{
+			const int linear_index = grid_x + ( mHeight * grid_y );
+
+			auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+			button->setTag( linear_index );
+			{
+				auto indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
+				indicator->setTag( TAG_Indicator );
+				indicator->setPosition( Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f ) );
+				button->addChild( indicator );
+			}
+			button->addTouchEventListener( mTileSelectCallback );
+
+			return button;
+		}
 		void TerrainViewer::UpdateTile( Node* tile_node, const step01::game::terrain::eTileType tile_type )
 		{
 			auto indicator = static_cast<Sprite*>( tile_node->getChildByTag( TAG_Indicator ) );
