@@ -74,10 +74,6 @@ namespace step01
 			void Viewer::UpdateTile( Node* tile_node, const step01::game::terrain::eTileType tile_type )
 			{
 				auto indicator = static_cast<Sprite*>( tile_node );
-				if( !indicator )
-				{
-					return;
-				}
 
 				const auto& tile_data = step01::game::terrain::TileType2TileData( tile_type );
 				indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
