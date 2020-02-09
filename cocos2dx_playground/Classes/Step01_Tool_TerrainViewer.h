@@ -11,8 +11,6 @@ namespace step01
 {
 	namespace tool
 	{
-		const int TAG_Indicator = 20140416;
-
 		class TerrainViewer : public cocos2d::Node
 		{
 		public:

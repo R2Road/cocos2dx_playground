@@ -13,6 +13,8 @@ namespace step01
 {
 	namespace tool
 	{
+		const int TAG_Indicator = 20140416;
+
 		TerrainViewer::TerrainViewer( const int width, const int height, const TileSelectCallback& tile_select_callback ) :
 			mWidth( width )
 			, mHeight( height )

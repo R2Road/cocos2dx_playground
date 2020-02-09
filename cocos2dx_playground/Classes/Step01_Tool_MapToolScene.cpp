@@ -15,6 +15,7 @@
 USING_NS_CC;
 
 const int TAG_TextField = 9999;
+const int TAG_Indicator = 20140416;
 
 namespace step01
 {
