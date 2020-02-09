@@ -43,9 +43,6 @@ namespace step01
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-
 			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "guide_01_1.png" )->getRect().size;
 			setContentSize( Size( tile_size.width * mWidth, tile_size.height * mHeight ) );
 
