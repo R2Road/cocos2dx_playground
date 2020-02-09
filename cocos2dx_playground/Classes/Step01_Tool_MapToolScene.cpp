@@ -15,7 +15,7 @@
 USING_NS_CC;
 
 const int TAG_TextField = 9999;
-const int TAG_Indicator = 20140416;
+const int TAG_SelectedTile_Indicator = 20140416;
 
 namespace step01
 {
@@ -263,7 +263,7 @@ namespace step01
 
 				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				indicator->setAnchorPoint( Vec2( 0.f, 0.f ) );
-				indicator->setTag( TAG_Indicator );
+				indicator->setTag( TAG_SelectedTile_Indicator );
 				indicator->setContentSize( button->getContentSize() );
 				button->addChild( indicator );
 			}
@@ -295,11 +295,11 @@ namespace step01
 
 				if( cur == static_cast<int>( mCurrentTileType ) )
 				{
-					button_node->getChildByTag( TAG_Indicator )->setVisible( true );
+					button_node->getChildByTag( TAG_SelectedTile_Indicator )->setVisible( true );
 				}
 				else
 				{
-					button_node->getChildByTag( TAG_Indicator )->setVisible( false );
+					button_node->getChildByTag( TAG_SelectedTile_Indicator )->setVisible( false );
 				}
 			}
 		}
