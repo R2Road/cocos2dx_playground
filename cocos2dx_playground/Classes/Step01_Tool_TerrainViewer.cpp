@@ -75,6 +75,8 @@ namespace step01
 			{
 				auto button = ui::Button::create( "guide_empty.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 				button->setTag( linear_index );
+				button->setScale9Enabled( true );
+				button->setContentSize( indicator->getContentSize() );
 				button->setPosition( Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f ) );
 				button->addTouchEventListener( mTileSelectCallback );
 				indicator->addChild( button );
