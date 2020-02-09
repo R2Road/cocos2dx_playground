@@ -13,8 +13,6 @@ namespace step01
 {
 	namespace tool
 	{
-		const int TAG_Indicator = 20140416;
-
 		TerrainViewer::TerrainViewer( const int width, const int height, const TileSelectCallback& tile_select_callback ) :
 			mWidth( width )
 			, mHeight( height )
@@ -72,21 +70,21 @@ namespace step01
 		{
 			const int linear_index = grid_x + ( mHeight * grid_y );
 
-			auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-			button->setTag( linear_index );
+			auto indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
+			indicator->setTag( linear_index );
 			{
-				auto indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
-				indicator->setTag( TAG_Indicator );
-				indicator->setPosition( Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f ) );
-				button->addChild( indicator );
+				auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( linear_index );
+				button->setPosition( Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f ) );
+				button->addTouchEventListener( mTileSelectCallback );
+				indicator->addChild( button );
 			}
-			button->addTouchEventListener( mTileSelectCallback );
 
-			return button;
+			return indicator;
 		}
 		void TerrainViewer::UpdateTile( Node* tile_node, const step01::game::terrain::eTileType tile_type )
 		{
-			auto indicator = static_cast<Sprite*>( tile_node->getChildByTag( TAG_Indicator ) );
+			auto indicator = static_cast<Sprite*>( tile_node );
 			if( !indicator )
 			{
 				return;
