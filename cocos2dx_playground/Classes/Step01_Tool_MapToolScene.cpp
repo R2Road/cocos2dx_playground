@@ -344,8 +344,13 @@ namespace step01
 		}
 
 
-		void MapToolScene::onSave( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		void MapToolScene::onSave( cocos2d::Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
+			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			{
+				return;
+			}
+
 			auto text_field = static_cast<ui::TextField*>( getChildByTag( TAG_TextField ) );
 			if( text_field->getString().empty() )
 			{
@@ -356,8 +361,13 @@ namespace step01
 			CCLOG( "File Save" );
 			mTerrainData.save( text_field->getString().c_str() );
 		}
-		void MapToolScene::onLoad( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		void MapToolScene::onLoad( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{
+			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			{
+				return;
+			}
+
 			auto text_field = static_cast<ui::TextField*>( getChildByTag( TAG_TextField ) );
 			if( text_field->getString().empty() )
 			{
