@@ -30,8 +30,8 @@ namespace step01
 				void UpdateTile( const int grid_x, const int grid_y, const step01::game::terrain::eTileType tile_type );
 
 			protected:
-				int mWidth;
-				int mHeight;
+				const int mWidth;
+				const int mHeight;
 			};
 		}
 	}
