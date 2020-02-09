@@ -282,6 +282,7 @@
             <key type="filename">ui/guide_01_2.png</key>
             <key type="filename">ui/guide_01_3.png</key>
             <key type="filename">ui/guide_01_4.png</key>
+            <key type="filename">ui/guide_empty.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -348,6 +349,7 @@
             <filename>step01_game_pathfinder/step01_game_tile_magic_circle_01.png</filename>
             <filename>step01_game_pathfinder/step01_game_tile_magic_circle_02.png</filename>
             <filename>step01_game_pathfinder/step01_game_tile_road.png</filename>
+            <filename>ui/guide_empty.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

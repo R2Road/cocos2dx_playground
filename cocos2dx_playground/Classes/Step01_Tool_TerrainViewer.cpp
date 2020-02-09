@@ -73,7 +73,7 @@ namespace step01
 			auto indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
 			indicator->setTag( linear_index );
 			{
-				auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_empty.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 				button->setTag( linear_index );
 				button->setPosition( Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f ) );
 				button->addTouchEventListener( mTileSelectCallback );
