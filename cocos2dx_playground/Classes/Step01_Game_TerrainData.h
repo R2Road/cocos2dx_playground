@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "Step01_Game_Terrain_Constant.h"
+
 namespace step01
 {
 	namespace game
@@ -9,20 +11,25 @@ namespace step01
 		class TerrainData
 		{
 		public:
-			TerrainData();
+			using Row = std::vector<step01::game::terrain::eTileType>;
+			using Container = std::vector<Row>;
 
-			void load( const int width, const int height );
+			TerrainData();
+			virtual ~TerrainData() = default;
+
+			void load( const char* file_name );
 
 			int getWidth() const { return mWidth; }
 			int getHeight() const { return mHeight; }
 
-			const bool get( const std::size_t x, const std::size_t y ) const;
-			const std::vector<bool> get() const { return container; }
+			Row::value_type get( const std::size_t x, const std::size_t y ) const;
+			void set( const std::size_t x, const std::size_t y, const Row::value_type tile_type );
+			const Container& get() const { return mContainer; }
 
-		private:
+		protected:
 			int mWidth;
 			int mHeight;
-			std::vector<bool> container;
+			Container mContainer;
 		};
 	} // namespace game
 }

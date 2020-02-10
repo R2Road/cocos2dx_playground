@@ -7,6 +7,11 @@ namespace step01
 {
 	namespace game
 	{
+		namespace terrain
+		{
+			class Viewer;
+		}
+
 		namespace pathfinder
 		{
 			class PlayScene : public cocos2d::Scene
@@ -29,6 +34,7 @@ namespace step01
 			private:
 				cocos2d::EventListenerKeyboard* mKeyboardListener;
 				TerrainData mTerrainData;
+				terrain::Viewer* mTerrainViewer;
 			};
 		} // namespace pathfinder
 	}

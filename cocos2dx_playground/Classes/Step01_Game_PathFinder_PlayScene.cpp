@@ -6,6 +6,8 @@
 
 #include "Step01_Game_PathFinder_TitleScene.h"
 
+#include "Step01_Game_Terrain_Viewer.h"
+
 USING_NS_CC;
 
 namespace step01
@@ -14,7 +16,7 @@ namespace step01
 	{
 		namespace pathfinder
 		{
-			PlayScene::PlayScene() : mKeyboardListener( nullptr ), mTerrainData() {}
+			PlayScene::PlayScene() : mKeyboardListener( nullptr ), mTerrainData(), mTerrainViewer( nullptr ) {}
 
 			Scene* PlayScene::create()
 			{
@@ -62,32 +64,29 @@ namespace step01
 				}
 
 				//
-				// Terrain
+				// Terrain Data
 				//
 				{
-					mTerrainData.load( 5, 5 );
+					mTerrainData.load( "" );
+				}
 
-					const Size tile_size( 64.f / Director::getInstance()->getContentScaleFactor(), 64.f / Director::getInstance()->getContentScaleFactor() );
-					const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
-					auto terrain_layer = Layer::create();
-					terrain_layer->setContentSize( Size( tile_size.width * mTerrainData.getWidth(), tile_size.height * mTerrainData.getHeight() ) );
-					terrain_layer->setPosition( Vec2(
-						visibleOrigin.x + ( ( visibleSize.width - terrain_layer->getContentSize().width ) * 0.5f )
-						, visibleOrigin.y + ( ( visibleSize.height - terrain_layer->getContentSize().height ) * 0.5f )
+				//
+				// Terrain View
+				//
+				{
+					mTerrainViewer = terrain::Viewer::create( mTerrainData.getWidth(), mTerrainData.getHeight() );
+					mTerrainViewer->setPosition( Vec2(
+						visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
+						, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.5f )
 					) );
-					addChild( terrain_layer );
+					addChild( mTerrainViewer );
 
-					Sprite* temp = nullptr;
-					for( int ty = 0; ty < mTerrainData.getWidth(); ++ty )
+					// apply terrain data
+					for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 					{
 						for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 						{
-							temp = mTerrainData.get( tx, ty )
-								? Sprite::createWithSpriteFrameName( "guide_01_1.png" )
-								: Sprite::createWithSpriteFrameName( "guide_01_2.png" );
-							temp->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
-
-							terrain_layer->addChild( temp );
+							mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
 						}
 					}
 				}
