@@ -359,7 +359,6 @@ namespace step01
 			}
 
 			CCLOG( "File Save" );
-
 			std::stringstream path;
 			path << cocos2d::FileUtils::getInstance()->getWritablePath();
 			path << text_field->getString().c_str();
@@ -382,7 +381,11 @@ namespace step01
 			}
 
 			CCLOG( "File Load" );
-			mTerrainData.load( text_field->getString().c_str() );
+			std::stringstream path;
+			path << cocos2d::FileUtils::getInstance()->getWritablePath();
+			path << text_field->getString().c_str();
+			path << ".stage";
+			mTerrainData.load( path.str().c_str() );
 
 			// apply terrain data
 			for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )

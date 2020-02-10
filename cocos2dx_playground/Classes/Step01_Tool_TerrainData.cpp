@@ -40,11 +40,7 @@ namespace step01
 
 		bool TerrainData::load( const char* file_name )
 		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( file_name );
-			path.append( ".stage" );
-
-			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) ) );
+			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( file_name ) ) );
 			rapidjson::Document doc;
 			doc.Parse<0>( regionStr.c_str() );
 
