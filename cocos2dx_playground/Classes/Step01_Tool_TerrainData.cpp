@@ -11,17 +11,6 @@ namespace step01
 {
 	namespace tool
 	{
-		void TerrainData::fill( const Row::value_type tile_type )
-		{
-			for( auto& r : mContainer )
-			{
-				for( auto& t : r )
-				{
-					t = tile_type;
-				}
-			}
-		}
-
 		void TerrainData::save( const char* file_name )
 		{
 			rapidjson::Document document;
