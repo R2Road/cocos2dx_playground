@@ -17,7 +17,8 @@ namespace step01
 			TerrainData();
 			virtual ~TerrainData() = default;
 
-			void load( const char* file_name );
+			bool load( const char* file_name );
+			bool load();
 
 			int getWidth() const { return mWidth; }
 			int getHeight() const { return mHeight; }

@@ -10,7 +10,6 @@ namespace step01
 		{
 		public:
 			void save( const char* file_name );
-			bool load( const char* file_name );
 		};
 	}
 }

@@ -2,6 +2,9 @@
 
 #include <random>
 
+#include "cocos/platform/CCFileUtils.h"
+#include "json/document.h"
+
 namespace step01
 {
 	namespace game
@@ -21,7 +24,45 @@ namespace step01
 			}
 		}
 
-		void TerrainData::load( const char* /*file_name*/ )
+		bool TerrainData::load( const char* file_name )
+		{
+			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( file_name ) ) );
+			rapidjson::Document doc;
+			doc.Parse<0>( regionStr.c_str() );
+
+			if( doc.HasParseError() )
+			{
+				CCLOG( "json parse error" );
+				return false;
+			}
+
+			if( doc.IsNull() )
+			{
+				CCLOG( "json is empty" );
+				return false;
+			}
+
+			if( !doc.IsArray() )
+			{
+				CCLOG( "invalid data struct" );
+				return false;
+			}
+
+			int x = 0;
+			int y = 0;
+			for( rapidjson::SizeType cur = 0u, end = doc.Size(); cur < end; ++cur )
+			{
+				const auto& value = doc[cur];
+
+				y = cur / mHeight;
+				x = cur - ( y * mWidth );
+
+				set( x, y, static_cast<step01::game::terrain::eTileType>( value.GetInt() ) );
+			}
+
+			return true;
+		}
+		bool TerrainData::load()
 		{
 			//
 			// generate dummy data
@@ -37,6 +78,8 @@ namespace step01
 					t = static_cast<step01::game::terrain::eTileType>( dist( randomEngine ) );
 				}
 			}
+
+			return true;
 		}
 
 		TerrainData::Row::value_type TerrainData::get( const std::size_t x, const std::size_t y ) const

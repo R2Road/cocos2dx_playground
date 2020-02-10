@@ -67,7 +67,7 @@ namespace step01
 				// Terrain Data
 				//
 				{
-					mTerrainData.load( "" );
+					mTerrainData.load();
 				}
 
 				//
