@@ -359,7 +359,13 @@ namespace step01
 			}
 
 			CCLOG( "File Save" );
-			mTerrainData.save( text_field->getString().c_str() );
+
+			std::stringstream path;
+			path << cocos2d::FileUtils::getInstance()->getWritablePath();
+			path << text_field->getString().c_str();
+			path << ".stage";
+
+			mTerrainData.save( path.str().c_str() );
 		}
 		void MapToolScene::onLoad( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{

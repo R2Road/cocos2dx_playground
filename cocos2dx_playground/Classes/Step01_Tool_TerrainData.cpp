@@ -27,10 +27,13 @@ namespace step01
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 			document.Accept( writer );
 
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( file_name );
-			path.append( ".stage" );
-			std::ofstream fs( path, std::ios::out );
+			std::ofstream fs( file_name, std::ios::out );
+			if( fs.fail() )
+			{
+				CCLOG( "Failed : Terrain Data Save" );
+				return;
+			}
+
 			fs << buffer.GetString() << std::endl;
 			fs.close();
 		}
