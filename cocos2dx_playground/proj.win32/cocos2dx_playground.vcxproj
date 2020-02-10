@@ -175,7 +175,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp" />
     <ClCompile Include="..\Classes\Step01_TextField_BasicScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp" />
-    <ClCompile Include="..\Classes\Step01_Game_PathFinder_TerrainData.cpp" />
+    <ClCompile Include="..\Classes\Step01_Game_TerrainData.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_TitleScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Input_BasicScene.cpp" />
@@ -218,7 +218,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h" />
     <ClInclude Include="..\Classes\Step01_TextField_BasicScene.h" />
     <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h" />
-    <ClInclude Include="..\Classes\Step01_Game_PathFinder_TerrainData.h" />
+    <ClInclude Include="..\Classes\Step01_Game_TerrainData.h" />
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_TitleScene.h" />
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h" />
     <ClInclude Include="..\Classes\Step01_Input_BasicScene.h" />
