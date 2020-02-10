@@ -6,41 +6,38 @@ namespace step01
 {
 	namespace game
 	{
-		namespace pathfinder
+		TerrainData::TerrainData() :
+			mWidth( 0 )
+			, mHeight( 0 )
+			, container()
+		{}
+
+		void TerrainData::load( const int width, const int height )
 		{
-			TerrainData::TerrainData() :
-				mWidth( 0 )
-				, mHeight( 0 )
-				, container()
-			{}
+			mWidth = width;
+			mHeight = height;
+			container.resize( mWidth * mHeight, false );
 
-			void TerrainData::load( const int width, const int height )
+			//
+			// generate dummy data
+			//
+			std::random_device rd;
+			std::mt19937 randomEngine( rd() );
+			std::uniform_int_distribution<> dist( 0, 1 );
+
+			for( auto& d : container )
 			{
-				mWidth = width;
-				mHeight = height;
-				container.resize( mWidth * mHeight, false );
-
-				//
-				// generate dummy data
-				//
-				std::random_device rd;
-				std::mt19937 randomEngine( rd() );
-				std::uniform_int_distribution<> dist( 0, 1 );
-
-				for( auto& d : container )
-				{
-					d = dist( randomEngine );
-				}
+				d = dist( randomEngine );
 			}
+		}
 
-			const bool TerrainData::get( const std::size_t x, const std::size_t y ) const
-			{
-				const auto target_linear_index = x + ( y * mHeight );
-				if( container.size() <= target_linear_index )
-					return false;
+		const bool TerrainData::get( const std::size_t x, const std::size_t y ) const
+		{
+			const auto target_linear_index = x + ( y * mHeight );
+			if( container.size() <= target_linear_index )
+				return false;
 
-				return container[target_linear_index];
-			}
-		} // namespace pathfinder
-	}
+			return container[target_linear_index];
+		}
+	} // namespace game
 }
