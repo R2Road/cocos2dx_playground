@@ -40,6 +40,9 @@
     <Filter Include="src\scene\step01\textfield">
       <UniqueIdentifier>{5536a0a4-196d-4c90-a1fb-3b664d4b1406}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step01\tool">
+      <UniqueIdentifier>{08dc5ddd-99c0-4d2e-9b50-9816f2ef648e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -144,26 +147,26 @@
     <ClCompile Include="..\Classes\Step01_Button_BasicScene.cpp">
       <Filter>src\scene\step01\button</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp">
-      <Filter>src\scene\step01\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp">
-      <Filter>src\scene\step01\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_TextField_BasicScene.cpp">
       <Filter>src\scene\step01\textfield</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp">
-      <Filter>src\scene\step01\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Viewer.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_TerrainData.cpp">
       <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp">
+      <Filter>src\scene\step01\tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp">
+      <Filter>src\scene\step01\tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp">
+      <Filter>src\scene\step01\tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,26 +272,26 @@
     <ClInclude Include="..\Classes\Step01_Button_BasicScene.h">
       <Filter>src\scene\step01\button</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h">
-      <Filter>src\scene\step01\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h">
-      <Filter>src\scene\step01\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_TextField_BasicScene.h">
       <Filter>src\scene\step01\textfield</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h">
-      <Filter>src\scene\step01\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Viewer.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_TerrainData.h">
       <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h">
+      <Filter>src\scene\step01\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h">
+      <Filter>src\scene\step01\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h">
+      <Filter>src\scene\step01\tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
