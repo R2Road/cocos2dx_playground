@@ -38,6 +38,7 @@ namespace step01
 				StageDataContainer mStageDataContainer;
 				TerrainData mTerrainData;
 				terrain::Viewer* mTerrainViewer;
+				std::size_t mCurrentStageIndex;
 			};
 		} // namespace pathfinder
 	}

@@ -20,6 +20,7 @@ namespace step01
 				, mStageDataContainer()
 				, mTerrainData()
 				, mTerrainViewer( nullptr )
+				, mCurrentStageIndex( 0u )
 			{}
 
 			Scene* PlayScene::create()
@@ -78,7 +79,7 @@ namespace step01
 				// Terrain Data
 				//
 				{
-					mTerrainData.load();
+					mTerrainData.load( mStageDataContainer.get( mCurrentStageIndex ).c_str() );
 				}
 
 				//
