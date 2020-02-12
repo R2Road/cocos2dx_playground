@@ -58,7 +58,7 @@ namespace step01
 					for( int tx = 0; tx < mWidth; ++tx )
 					{
 						button = MakeTile( tile_data, tx, ty );
-						button->setPosition( mPivotPosition + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) ) );
+						button->setPosition( ConvertPoint2Position( tx, ty ) );
 						addChild( button );
 					}
 				}
@@ -74,6 +74,11 @@ namespace step01
 				indicator->setTag( linear_index );
 				return indicator;
 			}
+			cocos2d::Vec2 Viewer::ConvertPoint2Position( const int tx, const int ty ) const
+			{
+				return mPivotPosition + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) );
+			}
+
 			void Viewer::UpdateTile( Node* tile_node, const step01::game::terrain::eTileType tile_type )
 			{
 				auto indicator = static_cast<Sprite*>( tile_node );

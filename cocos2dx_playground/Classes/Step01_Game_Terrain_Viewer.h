@@ -24,6 +24,8 @@ namespace step01
 				bool init() override;
 
 				virtual Node* MakeTile( const step01::game::terrain::TileData& tile_data, const int grid_x, const int grid_y );
+				cocos2d::Vec2 ConvertPoint2Position( const int tx, const int ty ) const;
+
 				void UpdateTile( cocos2d::Node* tile_node, const step01::game::terrain::eTileType tile_type );
 
 			public:
