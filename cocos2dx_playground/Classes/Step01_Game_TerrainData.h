@@ -8,6 +8,12 @@ namespace step01
 {
 	namespace game
 	{
+		struct TerrainPoint
+		{
+			int x;
+			int y;
+		};
+
 		class TerrainData
 		{
 		public:
@@ -26,6 +32,8 @@ namespace step01
 			Row::value_type get( const std::size_t x, const std::size_t y ) const;
 			void set( const std::size_t x, const std::size_t y, const Row::value_type tile_type );
 			const Container& get() const { return mContainer; }
+
+			TerrainPoint getEntrancePoint();
 
 		protected:
 			int mWidth;

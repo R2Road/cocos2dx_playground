@@ -151,6 +151,11 @@ namespace step01
 				}
 
 				updateTerrainViewer();
+
+				auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
+				const auto entrance_point = mTerrainData.getEntrancePoint();
+				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( entrance_point.x, entrance_point.y ) );
+
 				return true;
 			}
 			void PlayScene::updateTerrainViewer()

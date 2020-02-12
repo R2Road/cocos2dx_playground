@@ -110,5 +110,21 @@ namespace step01
 
 			mContainer[y][x] = tile_type;
 		}
+
+		TerrainPoint TerrainData::getEntrancePoint()
+		{
+			for( int y = 0; y < mHeight; ++y )
+			{
+				for( int x = 0; x < mWidth; ++x )
+				{
+					if( step01::game::terrain::eTileType::entrance == mContainer[y][x] )
+					{
+						return TerrainPoint{ x, y };
+					}
+				}
+			}
+
+			return TerrainPoint{ 0, 0 };
+		}
 	} // namespace game
 }

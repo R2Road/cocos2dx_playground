@@ -74,11 +74,6 @@ namespace step01
 				indicator->setTag( linear_index );
 				return indicator;
 			}
-			cocos2d::Vec2 Viewer::ConvertPoint2Position( const int tx, const int ty ) const
-			{
-				return mPivotPosition + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) );
-			}
-
 			void Viewer::UpdateTile( Node* tile_node, const step01::game::terrain::eTileType tile_type )
 			{
 				auto indicator = static_cast<Sprite*>( tile_node );
@@ -97,6 +92,11 @@ namespace step01
 				}
 
 				UpdateTile( grid, tile_type );
+			}
+
+			cocos2d::Vec2 Viewer::ConvertPoint2Position( const int tx, const int ty ) const
+			{
+				return mPivotPosition + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) );
 			}
 		}
 	} // namespace tool
