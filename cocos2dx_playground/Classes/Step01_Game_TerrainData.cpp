@@ -79,28 +79,28 @@ namespace step01
 			return true;
 		}
 
-		TerrainData::Row::value_type TerrainData::get( const std::size_t x, const std::size_t y ) const
+		TerrainData::Row::value_type TerrainData::get( const int x, const int y ) const
 		{
-			if( mContainer.size() <= y )
+			if( 0 > y || static_cast<int>( mContainer.size() ) <= y )
 			{
 				return step01::game::terrain::eTileType::damage;
 			}
 
-			if( mContainer[y].size() <= x )
+			if( 0 > x || static_cast<int>( mContainer[y].size() ) <= x )
 			{
 				return step01::game::terrain::eTileType::damage;
 			}
 
 			return mContainer[y][x];
 		}
-		void TerrainData::set( const std::size_t x, const std::size_t y, const Row::value_type tile_type )
+		void TerrainData::set( const int x, const int y, const Row::value_type tile_type )
 		{
-			if( mContainer.size() <= y )
+			if( 0 > y || static_cast<int>( mContainer.size() ) <= y )
 			{
 				return;
 			}
 
-			if( mContainer[y].size() <= x )
+			if( 0 > x || static_cast<int>( mContainer[y].size() ) <= x )
 			{
 				return;
 			}

@@ -29,8 +29,8 @@ namespace step01
 			int getWidth() const { return mWidth; }
 			int getHeight() const { return mHeight; }
 
-			Row::value_type get( const std::size_t x, const std::size_t y ) const;
-			void set( const std::size_t x, const std::size_t y, const Row::value_type tile_type );
+			Row::value_type get( const int x, const int y ) const;
+			void set( const int x, const int y, const Row::value_type tile_type );
 			const Container& get() const { return mContainer; }
 
 			TerrainPoint getPoint( const Row::value_type tile_type ) const;
