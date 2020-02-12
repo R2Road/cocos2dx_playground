@@ -124,7 +124,7 @@ namespace step01
 			Node::onExit();
 		}
 
-		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void BasicScene::onButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
