@@ -147,7 +147,7 @@ namespace step01
 
 				if( EventKeyboard::KeyCode::KEY_F1 == keycode )
 				{
-					Director::getInstance()->replaceScene( step01::game::pathfinder::ResultScene::create() );
+					Director::getInstance()->replaceScene( step01::game::pathfinder::ResultScene::create( 54321.12345f ) );
 					return;
 				}
 			}

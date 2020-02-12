@@ -2,6 +2,7 @@
 
 #include <new>
 #include <sstream>
+#include <iomanip>
 
 #include "Step01_Game_PathFinder_TitleScene.h"
 
@@ -15,10 +16,10 @@ namespace step01
 		{
 			ResultScene::ResultScene() : mKeyboardListener( nullptr ) {}
 
-			Scene* ResultScene::create()
+			Scene* ResultScene::create( const float clear_time )
 			{
 				auto ret = new ( std::nothrow ) ResultScene();
-				if( !ret || !ret->init() )
+				if( !ret || !ret->init( clear_time ) )
 				{
 					delete ret;
 					ret = nullptr;
@@ -32,7 +33,7 @@ namespace step01
 				return ret;
 			}
 
-			bool ResultScene::init()
+			bool ResultScene::init( const float clear_time )
 			{
 				if( !Scene::init() )
 					return false;
@@ -69,14 +70,30 @@ namespace step01
 				}
 
 				//
-				// Result
+				// Game Clear
 				//
 				{
-					auto label = Label::createWithTTF( "Game Clear", "fonts/arial.ttf", 20, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Game Clear", "fonts/arial.ttf", 32, Size::ZERO, TextHAlignment::CENTER );
 					label->setColor( Color3B::BLACK );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.7f )
+						, visibleOrigin.y + ( visibleSize.height * 0.65f )
+					) );
+					addChild( label, 10 );
+				}
+
+				//
+				// Result
+				//
+				{
+					char buffer[100];
+					sprintf( buffer, "Clear Time : %.2f", clear_time );
+
+					auto label = Label::createWithTTF( buffer, "fonts/arial.ttf", 32, Size::ZERO, TextHAlignment::CENTER );
+					label->setColor( Color3B::BLACK );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.35f )
 					) );
 					addChild( label, 10 );
 				}

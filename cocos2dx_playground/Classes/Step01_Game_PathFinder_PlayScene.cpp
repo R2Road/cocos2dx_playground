@@ -282,7 +282,7 @@ namespace step01
 				}
 				else
 				{
-					Director::getInstance()->replaceScene( game::pathfinder::ResultScene::create() );
+					Director::getInstance()->replaceScene( game::pathfinder::ResultScene::create( mElapsedTime ) );
 				}
 			}
 			void PlayScene::startExitProcess( const eNextSceneType next_scene_type, float wait_time )

@@ -15,9 +15,9 @@ namespace step01
 
 			public:
 				static const char* getTitle() { return "Game : Path Finder - Result"; }
-				static cocos2d::Scene* create();
+				static cocos2d::Scene* create( const float clear_time );
 
-				bool init() override;
+				bool init( const float clear_time );
 				void onEnter() override;
 				void onExit() override;
 
