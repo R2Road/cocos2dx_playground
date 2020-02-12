@@ -60,6 +60,10 @@ namespace step01
 					ss << "\n";
 					ss << "\n";
 					ss << "[ESC] : Return to Title";
+					ss << "\n";
+					ss << "\n";
+					ss << "[ARROW] : Move";
+
 
 					auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::GREEN );
