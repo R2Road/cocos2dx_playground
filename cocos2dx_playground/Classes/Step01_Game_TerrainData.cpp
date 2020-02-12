@@ -126,5 +126,20 @@ namespace step01
 
 			return TerrainPoint{ 0, 0 };
 		}
+		bool TerrainData::isExist( const Row::value_type tile_type ) const
+		{
+			for( int y = 0; y < mHeight; ++y )
+			{
+				for( int x = 0; x < mWidth; ++x )
+				{
+					if( tile_type == mContainer[y][x] )
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
 	} // namespace game
 }

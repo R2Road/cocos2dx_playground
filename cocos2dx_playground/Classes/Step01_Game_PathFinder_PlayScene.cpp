@@ -208,6 +208,13 @@ namespace step01
 					const auto exit_point = mTerrainData.getPoint( step01::game::terrain::eTileType::exit );
 					mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, step01::game::terrain::eTileType::exit );
 				}
+				else if( step01::game::terrain::eTileType::exit == tile_type )
+				{
+					if( mTerrainData.isExist( step01::game::terrain::eTileType::exit ) )
+					{
+						goNextStage();
+					}
+				}
 			}
 
 

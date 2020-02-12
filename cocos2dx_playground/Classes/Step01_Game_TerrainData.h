@@ -34,6 +34,7 @@ namespace step01
 			const Container& get() const { return mContainer; }
 
 			TerrainPoint getPoint( const Row::value_type tile_type );
+			bool isExist( const Row::value_type tile_type ) const;
 
 		protected:
 			int mWidth;
