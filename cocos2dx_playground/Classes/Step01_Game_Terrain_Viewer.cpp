@@ -18,6 +18,7 @@ namespace step01
 				mWidth( width )
 				, mHeight( height )
 				, mTileSize()
+				, mPivotPosition()
 			{}
 
 			Viewer* Viewer::create( const int width, const int height )
@@ -48,14 +49,14 @@ namespace step01
 				mTileSize = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
 				setContentSize( Size( mTileSize.width * mWidth, mTileSize.height * mHeight ) );
 
-				const Vec2 pivot_position( mTileSize.width * 0.5f, mTileSize.height * 0.5f );;
+				mPivotPosition.set( mTileSize.width * 0.5f, mTileSize.height * 0.5f );
 				Node* button = nullptr;
 				for( int ty = 0; ty < mHeight; ++ty )
 				{
 					for( int tx = 0; tx < mWidth; ++tx )
 					{
 						button = MakeTile( tile_data, tx, ty );
-						button->setPosition( pivot_position + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) ) );
+						button->setPosition( mPivotPosition + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) ) );
 						addChild( button );
 					}
 				}

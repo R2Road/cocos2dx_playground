@@ -33,6 +33,7 @@ namespace step01
 				const int mWidth;
 				const int mHeight;
 				cocos2d::Size mTileSize;
+				cocos2d::Vec2 mPivotPosition;
 			};
 		}
 	}
