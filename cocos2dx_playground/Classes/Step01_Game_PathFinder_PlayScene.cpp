@@ -158,6 +158,16 @@ namespace step01
 
 				return true;
 			}
+			bool PlayScene::goNextStage()
+			{
+				if( !loadStage( mCurrentStageIndex + 1 ) )
+				{
+					return false;
+				}
+
+				++mCurrentStageIndex;
+				return true;
+			}
 			void PlayScene::updateTerrainViewer()
 			{
 				// apply terrain data
@@ -181,10 +191,7 @@ namespace step01
 				switch( keycode )
 				{
 				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-					if( loadStage( mCurrentStageIndex + 1 ) )
-					{
-						++mCurrentStageIndex;
-					}
+					goNextStage();
 					break;
 
 				case EventKeyboard::KeyCode::KEY_ESCAPE:

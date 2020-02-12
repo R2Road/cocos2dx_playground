@@ -30,6 +30,7 @@ namespace step01
 
 			private:
 				bool loadStage( std::size_t stage_index );
+				bool goNextStage();
 				void updateTerrainViewer();
 
 				void updateForExit( float dt );
