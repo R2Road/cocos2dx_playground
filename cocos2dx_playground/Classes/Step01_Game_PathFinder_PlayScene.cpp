@@ -261,7 +261,7 @@ namespace step01
 				}
 				else if( step01::game::terrain::eTileType::exit == tile_type )
 				{
-					if( mTerrainData.isExist( step01::game::terrain::eTileType::exit ) )
+					if( !mTerrainData.isExist( step01::game::terrain::eTileType::magic_circle_on ) )
 					{
 						if( mStageDataContainer.size() == mCurrentStageIndex + 1 )
 						{
