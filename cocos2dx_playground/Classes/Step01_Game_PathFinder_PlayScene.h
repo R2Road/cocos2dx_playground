@@ -46,6 +46,7 @@ namespace step01
 				terrain::Viewer* mTerrainViewer;
 				StageDataContainer::Container::size_type mCurrentStageIndex;
 				TerrainPoint mPlayerPoint;
+				bool mbPlayerLive;
 			};
 		} // namespace pathfinder
 	}

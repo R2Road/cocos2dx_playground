@@ -24,6 +24,7 @@ namespace step01
 				, mTerrainViewer( nullptr )
 				, mCurrentStageIndex( 0u )
 				, mPlayerPoint()
+				, mbPlayerLive( true )
 			{}
 
 			Scene* PlayScene::create()
@@ -204,7 +205,11 @@ namespace step01
 				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 				const auto tile_type = mTerrainData.get( mPlayerPoint.x, mPlayerPoint.y );
-				if( step01::game::terrain::eTileType::magic_circle_on == tile_type )
+				if( step01::game::terrain::eTileType::damage == tile_type )
+				{
+					mbPlayerLive = false;
+				}
+				else if( step01::game::terrain::eTileType::magic_circle_on == tile_type )
 				{
 					mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
 					mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
@@ -236,21 +241,27 @@ namespace step01
 
 			void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 			{
+				if( mbPlayerLive )
+				{
+					switch( keycode )
+					{
+					case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+						MovePlayer( -1, 0 );
+						break;
+					case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+						MovePlayer( 1, 0 );
+						break;
+					case EventKeyboard::KeyCode::KEY_UP_ARROW:
+						MovePlayer( 0, 1 );
+						break;
+					case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+						MovePlayer( 0, -1 );
+						break;
+					}
+				}
+
 				switch( keycode )
 				{
-				case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-					MovePlayer( -1, 0 );
-					break;
-				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-					MovePlayer( 1, 0 );
-					break;
-				case EventKeyboard::KeyCode::KEY_UP_ARROW:
-					MovePlayer( 0, 1 );
-					break;
-				case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-					MovePlayer( 0, -1 );
-					break;
-
 				case EventKeyboard::KeyCode::KEY_ESCAPE:
 					if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
 						scheduleOnce( schedule_selector( PlayScene::updateForExit ), 0.f );
