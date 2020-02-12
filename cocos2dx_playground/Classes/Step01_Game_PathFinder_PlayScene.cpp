@@ -9,6 +9,8 @@
 
 USING_NS_CC;
 
+const int TAG_Player = 20140416;
+
 namespace step01
 {
 	namespace game
@@ -87,6 +89,29 @@ namespace step01
 					addChild( mTerrainViewer );
 
 					updateTerrainViewer();
+				}
+
+				//
+				// Player
+				//
+				{
+					auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+					player_node->setTag( TAG_Player );
+					mTerrainViewer->addChild( player_node, 100 );
+					{
+						auto animation_object = Animation::create();
+						animation_object->setDelayPerUnit( 0.2f );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+
+						auto animate_action = Animate::create( animation_object );
+
+						auto repeat_action = RepeatForever::create( animate_action );
+
+						player_node->runAction( repeat_action );
+					}
 				}
 
 				//
