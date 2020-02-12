@@ -14,16 +14,20 @@ namespace step01
 	{
 		namespace terrain
 		{
-			Viewer::Viewer( const int width, const int height ) :
+			Viewer::Viewer( const int width, const int height, const cocos2d::Size tile_size, const cocos2d::Vec2 pivot_position ) :
 				mWidth( width )
 				, mHeight( height )
-				, mTileSize()
-				, mPivotPosition()
+				, mTileSize( tile_size )
+				, mPivotPosition( pivot_position )
 			{}
 
 			Viewer* Viewer::create( const int width, const int height )
 			{
-				auto ret = new ( std::nothrow ) Viewer( width, height );
+				const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
+				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
+
+				auto ret = new ( std::nothrow ) Viewer( width, height, tile_size, pivot_position );
 				if( !ret || !ret->init() )
 				{
 					delete ret;
@@ -45,11 +49,9 @@ namespace step01
 					return false;
 				}
 
-				const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
-				mTileSize = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
 				setContentSize( Size( mTileSize.width * mWidth, mTileSize.height * mHeight ) );
 
-				mPivotPosition.set( mTileSize.width * 0.5f, mTileSize.height * 0.5f );
+				const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
 				Node* button = nullptr;
 				for( int ty = 0; ty < mHeight; ++ty )
 				{

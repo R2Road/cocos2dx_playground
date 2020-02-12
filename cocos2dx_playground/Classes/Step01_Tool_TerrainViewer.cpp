@@ -13,14 +13,23 @@ namespace step01
 {
 	namespace tool
 	{
-		TerrainViewer::TerrainViewer( const int width, const int height, const TileSelectCallback& tile_select_callback ) :
-			game::terrain::Viewer( width, height )
+		TerrainViewer::TerrainViewer(
+			const int width, const int height
+			, const cocos2d::Size tile_size
+			, const cocos2d::Vec2 pivot_position
+			, const TileSelectCallback& tile_select_callback
+		) :
+			game::terrain::Viewer( width, height, tile_size, pivot_position )
 			, mTileSelectCallback( tile_select_callback )
 		{}
 
 		TerrainViewer* TerrainViewer::create( const int width, const int height, const TileSelectCallback& tile_select_callback )
 		{
-			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_select_callback );
+			const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
+			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
+
+			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, pivot_position, tile_select_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
