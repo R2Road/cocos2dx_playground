@@ -154,7 +154,7 @@ namespace step01
 				updateTerrainViewer();
 
 				auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
-				mPlayerPoint = mTerrainData.getEntrancePoint();
+				mPlayerPoint = mTerrainData.getPoint( step01::game::terrain::eTileType::entrance );
 				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 				return true;
@@ -204,6 +204,9 @@ namespace step01
 				{
 					mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
 					mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
+
+					const auto exit_point = mTerrainData.getPoint( step01::game::terrain::eTileType::exit );
+					mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, step01::game::terrain::eTileType::exit );
 				}
 			}
 

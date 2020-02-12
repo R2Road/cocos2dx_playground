@@ -33,7 +33,7 @@ namespace step01
 			void set( const std::size_t x, const std::size_t y, const Row::value_type tile_type );
 			const Container& get() const { return mContainer; }
 
-			TerrainPoint getEntrancePoint();
+			TerrainPoint getPoint( const Row::value_type tile_type );
 
 		protected:
 			int mWidth;
