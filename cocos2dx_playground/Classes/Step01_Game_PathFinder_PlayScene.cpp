@@ -216,7 +216,14 @@ namespace step01
 				{
 					if( mTerrainData.isExist( step01::game::terrain::eTileType::exit ) )
 					{
-						goNextStage();
+						if( mStageDataContainer.size() == mCurrentStageIndex + 1 )
+						{
+							CCLOG( "Clear" );
+						}
+						else
+						{
+							goNextStage();
+						}
 					}
 				}
 			}
