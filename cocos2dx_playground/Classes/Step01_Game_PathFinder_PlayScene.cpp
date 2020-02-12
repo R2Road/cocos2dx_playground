@@ -172,11 +172,20 @@ namespace step01
 			void PlayScene::updateTerrainViewer()
 			{
 				// apply terrain data
+				step01::game::terrain::eTileType tile_type;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 					{
-						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
+						tile_type = mTerrainData.get( tx, ty );
+						if( step01::game::terrain::eTileType::exit == tile_type )
+						{
+							mTerrainViewer->UpdateTile( tx, ty, step01::game::terrain::eTileType::road );
+						}
+						else
+						{
+							mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
+						}
 					}
 				}
 			}
