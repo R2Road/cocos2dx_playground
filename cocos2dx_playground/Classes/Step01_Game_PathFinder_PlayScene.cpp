@@ -198,6 +198,13 @@ namespace step01
 
 				auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
 				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
+
+				const auto tile_type = mTerrainData.get( mPlayerPoint.x, mPlayerPoint.y );
+				if( step01::game::terrain::eTileType::magic_circle_on == tile_type )
+				{
+					mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
+					mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
+				}
 			}
 
 
