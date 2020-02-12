@@ -29,7 +29,7 @@ namespace step01
 				void onExit() override;
 
 			private:
-				void loadNextStage();
+				void loadStage( std::size_t stage_index );
 				void updateTerrainViewer();
 
 				void updateForExit( float dt );

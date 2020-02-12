@@ -76,13 +76,6 @@ namespace step01
 				}
 
 				//
-				// Terrain Data
-				//
-				{
-					mTerrainData.load( mStageDataContainer.get( mCurrentStageIndex ).c_str() );
-				}
-
-				//
 				// Terrain View
 				//
 				{
@@ -94,6 +87,13 @@ namespace step01
 					addChild( mTerrainViewer );
 
 					updateTerrainViewer();
+				}
+
+				//
+				// Load Stage
+				//
+				{
+					loadStage( mCurrentStageIndex );
 				}
 
 				return true;
@@ -117,11 +117,9 @@ namespace step01
 			}
 
 
-			void PlayScene::loadNextStage()
+			void PlayScene::loadStage( std::size_t stage_index )
 			{
-				++mCurrentStageIndex;
-
-				if( !mTerrainData.load( mStageDataContainer.get( mCurrentStageIndex ).c_str() ) )
+				if( !mTerrainData.load( mStageDataContainer.get( stage_index ).c_str() ) )
 				{
 					return;
 				}
@@ -152,7 +150,7 @@ namespace step01
 				{
 				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 				{
-					loadNextStage();
+					loadStage( ++mCurrentStageIndex );
 				}
 				break;
 
