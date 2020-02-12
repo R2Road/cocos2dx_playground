@@ -125,7 +125,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
