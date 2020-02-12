@@ -242,16 +242,20 @@ namespace step01
 				const auto tile_type = mTerrainData.get( mPlayerPoint.x, mPlayerPoint.y );
 				if( step01::game::terrain::eTileType::damage == tile_type )
 				{
+					// player die
 					mbPlayerLive = false;
 					getChildByTag( TAG_GameOver )->setVisible( true );
 
+					// move to title
 					startExitProcess( eNextSceneType::Title, 3.f );
 				}
 				else if( step01::game::terrain::eTileType::magic_circle_on == tile_type )
 				{
+					// convert tile data : magic_circle_on > magic_circle_off
 					mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
 					mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
 
+					// update tile view
 					const auto exit_point = mTerrainData.getPoint( step01::game::terrain::eTileType::exit );
 					mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, step01::game::terrain::eTileType::exit );
 				}
@@ -261,12 +265,13 @@ namespace step01
 					{
 						if( mStageDataContainer.size() == mCurrentStageIndex + 1 )
 						{
+							// game clear
 							mbPlayerLive = false;
-
 							startExitProcess( eNextSceneType::Result, 1.f );
 						}
 						else
 						{
+							// go next stage
 							goNextStage();
 						}
 					}
