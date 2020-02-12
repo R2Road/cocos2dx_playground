@@ -36,6 +36,8 @@ namespace step01
 				void MovePlayer( const int move_x, const int move_y );
 
 				void updateForExit( float dt );
+				void startExitProcess( float wait_time );
+
 				void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			private:

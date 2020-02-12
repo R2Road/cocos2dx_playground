@@ -235,10 +235,7 @@ namespace step01
 					mbPlayerLive = false;
 					getChildByTag( TAG_GameOver )->setVisible( true );
 
-					if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
-					{
-						scheduleOnce( schedule_selector( PlayScene::updateForExit ), 3.f );
-					}
+					startExitProcess( 3.f );
 				}
 				else if( step01::game::terrain::eTileType::magic_circle_on == tile_type )
 				{
@@ -264,10 +261,17 @@ namespace step01
 				}
 			}
 
-
+			
 			void PlayScene::updateForExit( float /*dt*/ )
 			{
 				Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
+			}
+			void PlayScene::startExitProcess( float wait_time )
+			{
+				if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
+				{
+					scheduleOnce( schedule_selector( PlayScene::updateForExit ), wait_time );
+				}
 			}
 
 			void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
@@ -294,8 +298,7 @@ namespace step01
 				switch( keycode )
 				{
 				case EventKeyboard::KeyCode::KEY_ESCAPE:
-					if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
-						scheduleOnce( schedule_selector( PlayScene::updateForExit ), 0.f );
+					startExitProcess( 0.f );
 					break;
 
 				default:
