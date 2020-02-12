@@ -10,6 +10,7 @@
 USING_NS_CC;
 
 const int TAG_Player = 20140416;
+const int TAG_GameOver = 20200209;
 
 namespace step01
 {
@@ -74,6 +75,30 @@ namespace step01
 						, visibleOrigin.y + visibleSize.height
 					) );
 					addChild( label, 9999 );
+				}
+
+				//
+				// Game Over
+				//
+				{
+					auto game_over_indicator = LayerColor::create( Color4B( 50, 50, 50, 180 ), visibleSize.width, visibleSize.height * 0.3f );
+					game_over_indicator->setTag( TAG_GameOver );
+					game_over_indicator->setVisible( false );
+					game_over_indicator->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + ( ( visibleSize.height - game_over_indicator->getContentSize().height ) * 0.5f )
+					)
+					);
+					addChild( game_over_indicator, 9998 );
+					{
+						auto label = Label::createWithTTF( "Game Over", "fonts/arial.ttf", 20, Size::ZERO, TextHAlignment::CENTER );
+						label->setColor( Color3B::RED );
+						label->setPosition( Vec2(
+							game_over_indicator->getContentSize().width * 0.5f
+							, game_over_indicator->getContentSize().height * 0.5f
+						) );
+						game_over_indicator->addChild( label );
+					}
 				}
 
 				//
@@ -208,6 +233,7 @@ namespace step01
 				if( step01::game::terrain::eTileType::damage == tile_type )
 				{
 					mbPlayerLive = false;
+					getChildByTag( TAG_GameOver )->setVisible( true );
 
 					if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
 					{
