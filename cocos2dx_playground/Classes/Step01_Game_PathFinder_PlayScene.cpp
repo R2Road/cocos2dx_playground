@@ -123,6 +123,27 @@ namespace step01
 				Node::onExit();
 			}
 
+
+			void PlayScene::loadNextStage()
+			{
+				++mCurrentStageIndex;
+
+				if( !mTerrainData.load( mStageDataContainer.get( mCurrentStageIndex ).c_str() ) )
+				{
+					return;
+				}
+
+				// apply terrain data
+				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
+				{
+					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+					{
+						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
+					}
+				}
+			}
+
+
 			void PlayScene::updateForExit( float /*dt*/ )
 			{
 				Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
@@ -132,6 +153,12 @@ namespace step01
 			{
 				switch( keycode )
 				{
+				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+				{
+					loadNextStage();
+				}
+				break;
+
 				case EventKeyboard::KeyCode::KEY_ESCAPE:
 					if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
 						scheduleOnce( schedule_selector( PlayScene::updateForExit ), 0.f );
