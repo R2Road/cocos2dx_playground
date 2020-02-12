@@ -5,7 +5,6 @@
 #include <random>
 
 #include "Step01_Game_PathFinder_TitleScene.h"
-
 #include "Step01_Game_Terrain_Viewer.h"
 
 USING_NS_CC;
@@ -16,7 +15,12 @@ namespace step01
 	{
 		namespace pathfinder
 		{
-			PlayScene::PlayScene() : mKeyboardListener( nullptr ), mTerrainData(), mTerrainViewer( nullptr ) {}
+			PlayScene::PlayScene() :
+				mKeyboardListener( nullptr )
+				, mStageDataContainer()
+				, mTerrainData()
+				, mTerrainViewer( nullptr )
+			{}
 
 			Scene* PlayScene::create()
 			{
@@ -61,6 +65,13 @@ namespace step01
 						, visibleOrigin.y + visibleSize.height
 					) );
 					addChild( label, 9999 );
+				}
+
+				//
+				// Stage Datas
+				//
+				{
+					mStageDataContainer.load();
 				}
 
 				//

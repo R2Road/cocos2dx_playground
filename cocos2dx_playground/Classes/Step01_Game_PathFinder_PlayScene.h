@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "Step01_Game_StageDataContainer.h"
 #include "Step01_Game_TerrainData.h"
 
 namespace step01
@@ -33,6 +34,8 @@ namespace step01
 
 			private:
 				cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+				StageDataContainer mStageDataContainer;
 				TerrainData mTerrainData;
 				terrain::Viewer* mTerrainViewer;
 			};

@@ -168,6 +168,9 @@
     <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp">
       <Filter>src\scene\step01\tool</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Game_StageDataContainer.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h">
       <Filter>src\scene\step01\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Game_StageDataContainer.h">
+      <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
