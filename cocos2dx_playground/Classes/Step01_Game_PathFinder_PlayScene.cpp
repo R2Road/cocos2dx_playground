@@ -93,6 +93,7 @@ namespace step01
 				// Load Stage
 				//
 				{
+					assert( mStageDataContainer.size() > mCurrentStageIndex );
 					loadStage( mCurrentStageIndex );
 				}
 

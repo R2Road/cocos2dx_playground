@@ -17,6 +17,7 @@ namespace step01
 			bool load();
 
 			const std::string& get( const std::size_t stage_index ) const;
+			const Container::size_type size() const { return mContainer.size(); }
 
 		private:
 			Container mContainer;
