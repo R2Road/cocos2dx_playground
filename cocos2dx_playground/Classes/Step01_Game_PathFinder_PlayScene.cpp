@@ -23,6 +23,7 @@ namespace step01
 				, mTerrainData()
 				, mTerrainViewer( nullptr )
 				, mCurrentStageIndex( 0u )
+				, mPlayerPoint()
 			{}
 
 			Scene* PlayScene::create()
@@ -153,8 +154,8 @@ namespace step01
 				updateTerrainViewer();
 
 				auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
-				const auto entrance_point = mTerrainData.getEntrancePoint();
-				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( entrance_point.x, entrance_point.y ) );
+				mPlayerPoint = mTerrainData.getEntrancePoint();
+				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 				return true;
 			}
@@ -181,6 +182,16 @@ namespace step01
 			}
 
 
+			void PlayScene::MovePlayer( const int move_x, const int move_y )
+			{
+				mPlayerPoint.x += move_x;
+				mPlayerPoint.y += move_y;
+
+				auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
+				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
+			}
+
+
 			void PlayScene::updateForExit( float /*dt*/ )
 			{
 				Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
@@ -190,8 +201,17 @@ namespace step01
 			{
 				switch( keycode )
 				{
+				case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+					MovePlayer( -1, 0 );
+					break;
 				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-					goNextStage();
+					MovePlayer( 1, 0 );
+					break;
+				case EventKeyboard::KeyCode::KEY_UP_ARROW:
+					MovePlayer( 0, 1 );
+					break;
+				case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+					MovePlayer( 0, -1 );
 					break;
 
 				case EventKeyboard::KeyCode::KEY_ESCAPE:

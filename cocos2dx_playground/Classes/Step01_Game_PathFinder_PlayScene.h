@@ -33,6 +33,8 @@ namespace step01
 				bool goNextStage();
 				void updateTerrainViewer();
 
+				void MovePlayer( const int move_x, const int move_y );
+
 				void updateForExit( float dt );
 				void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
@@ -43,6 +45,7 @@ namespace step01
 				TerrainData mTerrainData;
 				terrain::Viewer* mTerrainViewer;
 				StageDataContainer::Container::size_type mCurrentStageIndex;
+				TerrainPoint mPlayerPoint;
 			};
 		} // namespace pathfinder
 	}
