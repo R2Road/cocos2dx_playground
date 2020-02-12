@@ -35,6 +35,7 @@ namespace step01
 
 			TerrainPoint getPoint( const Row::value_type tile_type ) const;
 			bool isExist( const Row::value_type tile_type ) const;
+			bool isIn( const int x, const int y ) const;
 
 		protected:
 			const int mWidth;

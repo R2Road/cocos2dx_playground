@@ -81,12 +81,7 @@ namespace step01
 
 		TerrainData::Row::value_type TerrainData::get( const int x, const int y ) const
 		{
-			if( 0 > y || static_cast<int>( mContainer.size() ) <= y )
-			{
-				return step01::game::terrain::eTileType::damage;
-			}
-
-			if( 0 > x || static_cast<int>( mContainer[y].size() ) <= x )
+			if( !isIn( x, y ) )
 			{
 				return step01::game::terrain::eTileType::damage;
 			}
@@ -95,12 +90,7 @@ namespace step01
 		}
 		void TerrainData::set( const int x, const int y, const Row::value_type tile_type )
 		{
-			if( 0 > y || static_cast<int>( mContainer.size() ) <= y )
-			{
-				return;
-			}
-
-			if( 0 > x || static_cast<int>( mContainer[y].size() ) <= x )
+			if( !isIn( x, y ) )
 			{
 				return;
 			}
@@ -137,6 +127,20 @@ namespace step01
 			}
 
 			return false;
+		}
+		bool TerrainData::isIn( const int x, const int y ) const
+		{
+			if( 0 > y || static_cast<int>( mContainer.size() ) <= y )
+			{
+				return false;
+			}
+
+			if( 0 > x || static_cast<int>( mContainer[y].size() ) <= x )
+			{
+				return false;
+			}
+
+			return true;
 		}
 	} // namespace game
 }
