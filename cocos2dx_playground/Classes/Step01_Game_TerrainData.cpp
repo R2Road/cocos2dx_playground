@@ -9,12 +9,9 @@ namespace step01
 {
 	namespace game
 	{
-		const int map_size_width = 5;
-		const int map_size_height = 5;
-
 		TerrainData::TerrainData() :
-			mWidth( map_size_width )
-			, mHeight( map_size_height )
+			mWidth( 5 )
+			, mHeight( 5 )
 			, mContainer()
 		{
 			mContainer.resize( mHeight );
@@ -111,7 +108,7 @@ namespace step01
 			mContainer[y][x] = tile_type;
 		}
 
-		TerrainPoint TerrainData::getPoint( const Row::value_type tile_type )
+		TerrainPoint TerrainData::getPoint( const Row::value_type tile_type ) const
 		{
 			for( int y = 0; y < mHeight; ++y )
 			{
@@ -124,7 +121,7 @@ namespace step01
 				}
 			}
 
-			return TerrainPoint{ 0, 0 };
+			return TerrainPoint{ -1, -1 };
 		}
 		bool TerrainData::isExist( const Row::value_type tile_type ) const
 		{

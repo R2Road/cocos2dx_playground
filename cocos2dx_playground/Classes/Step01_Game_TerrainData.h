@@ -33,12 +33,12 @@ namespace step01
 			void set( const std::size_t x, const std::size_t y, const Row::value_type tile_type );
 			const Container& get() const { return mContainer; }
 
-			TerrainPoint getPoint( const Row::value_type tile_type );
+			TerrainPoint getPoint( const Row::value_type tile_type ) const;
 			bool isExist( const Row::value_type tile_type ) const;
 
 		protected:
-			int mWidth;
-			int mHeight;
+			const int mWidth;
+			const int mHeight;
 			Container mContainer;
 		};
 	} // namespace game
