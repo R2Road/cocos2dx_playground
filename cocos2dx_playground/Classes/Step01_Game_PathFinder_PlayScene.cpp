@@ -117,14 +117,15 @@ namespace step01
 			}
 
 
-			void PlayScene::loadStage( std::size_t stage_index )
+			bool PlayScene::loadStage( std::size_t stage_index )
 			{
 				if( !mTerrainData.load( mStageDataContainer.get( stage_index ).c_str() ) )
 				{
-					return;
+					return false;
 				}
 
 				updateTerrainViewer();
+				return true;
 			}
 			void PlayScene::updateTerrainViewer()
 			{
@@ -149,10 +150,11 @@ namespace step01
 				switch( keycode )
 				{
 				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-				{
-					loadStage( ++mCurrentStageIndex );
-				}
-				break;
+					if( loadStage( mCurrentStageIndex + 1 ) )
+					{
+						++mCurrentStageIndex;
+					}
+					break;
 
 				case EventKeyboard::KeyCode::KEY_ESCAPE:
 					if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
