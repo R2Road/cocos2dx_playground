@@ -208,6 +208,11 @@ namespace step01
 				if( step01::game::terrain::eTileType::damage == tile_type )
 				{
 					mbPlayerLive = false;
+
+					if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
+					{
+						scheduleOnce( schedule_selector( PlayScene::updateForExit ), 3.f );
+					}
 				}
 				else if( step01::game::terrain::eTileType::magic_circle_on == tile_type )
 				{
