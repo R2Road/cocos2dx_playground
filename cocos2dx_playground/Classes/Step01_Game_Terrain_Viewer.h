@@ -32,6 +32,7 @@ namespace step01
 			protected:
 				const int mWidth;
 				const int mHeight;
+				cocos2d::Size mTileSize;
 			};
 		}
 	}

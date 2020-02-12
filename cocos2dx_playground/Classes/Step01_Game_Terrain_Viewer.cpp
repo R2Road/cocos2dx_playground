@@ -17,6 +17,7 @@ namespace step01
 			Viewer::Viewer( const int width, const int height ) :
 				mWidth( width )
 				, mHeight( height )
+				, mTileSize()
 			{}
 
 			Viewer* Viewer::create( const int width, const int height )
@@ -44,17 +45,17 @@ namespace step01
 				}
 
 				const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
-				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
-				setContentSize( Size( tile_size.width * mWidth, tile_size.height * mHeight ) );
+				mTileSize = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
+				setContentSize( Size( mTileSize.width * mWidth, mTileSize.height * mHeight ) );
 
-				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );;
+				const Vec2 pivot_position( mTileSize.width * 0.5f, mTileSize.height * 0.5f );;
 				Node* button = nullptr;
 				for( int ty = 0; ty < mHeight; ++ty )
 				{
 					for( int tx = 0; tx < mWidth; ++tx )
 					{
 						button = MakeTile( tile_data, tx, ty );
-						button->setPosition( pivot_position + Vec2( ( tx * tile_size.width ), ( ty * tile_size.height ) ) );
+						button->setPosition( pivot_position + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) ) );
 						addChild( button );
 					}
 				}
