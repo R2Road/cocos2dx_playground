@@ -18,6 +18,12 @@ namespace step01
 			class PlayScene : public cocos2d::Scene
 			{
 			private:
+				enum class eNextSceneType
+				{
+					Title,
+					Result,
+				};
+
 				PlayScene();
 
 			public:
@@ -37,7 +43,7 @@ namespace step01
 				void MovePlayer( const int move_x, const int move_y );
 
 				void updateForExit( float dt );
-				void startExitProcess( float wait_time );
+				void startExitProcess( const eNextSceneType next_scene_type, float wait_time );
 
 				void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
@@ -51,6 +57,7 @@ namespace step01
 				TerrainPoint mPlayerPoint;
 				bool mbPlayerLive;
 				float mElapsedTime;
+				eNextSceneType mNextSceneType;
 			};
 		} // namespace pathfinder
 	}

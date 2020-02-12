@@ -5,6 +5,7 @@
 #include <random>
 
 #include "Step01_Game_PathFinder_TitleScene.h"
+#include "Step01_Game_PathFinder_ResultScene.h"
 #include "Step01_Game_Terrain_Viewer.h"
 
 USING_NS_CC;
@@ -27,6 +28,7 @@ namespace step01
 				, mPlayerPoint()
 				, mbPlayerLive( true )
 				, mElapsedTime( 0.f )
+				, mNextSceneType( eNextSceneType::Title )
 			{}
 
 			Scene* PlayScene::create()
@@ -243,7 +245,7 @@ namespace step01
 					mbPlayerLive = false;
 					getChildByTag( TAG_GameOver )->setVisible( true );
 
-					startExitProcess( 3.f );
+					startExitProcess( eNextSceneType::Title, 3.f );
 				}
 				else if( step01::game::terrain::eTileType::magic_circle_on == tile_type )
 				{
@@ -259,7 +261,9 @@ namespace step01
 					{
 						if( mStageDataContainer.size() == mCurrentStageIndex + 1 )
 						{
-							CCLOG( "Clear" );
+							mbPlayerLive = false;
+
+							startExitProcess( eNextSceneType::Result, 1.f );
 						}
 						else
 						{
@@ -272,12 +276,20 @@ namespace step01
 			
 			void PlayScene::updateForExit( float /*dt*/ )
 			{
-				Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
+				if( eNextSceneType::Title == mNextSceneType )
+				{
+					Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
+				}
+				else
+				{
+					Director::getInstance()->replaceScene( game::pathfinder::ResultScene::create() );
+				}
 			}
-			void PlayScene::startExitProcess( float wait_time )
+			void PlayScene::startExitProcess( const eNextSceneType next_scene_type, float wait_time )
 			{
 				if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
 				{
+					mNextSceneType = next_scene_type;
 					scheduleOnce( schedule_selector( PlayScene::updateForExit ), wait_time );
 				}
 			}
@@ -306,7 +318,7 @@ namespace step01
 				switch( keycode )
 				{
 				case EventKeyboard::KeyCode::KEY_ESCAPE:
-					startExitProcess( 0.f );
+					startExitProcess( eNextSceneType::Title, 0.f );
 					break;
 
 				default:
