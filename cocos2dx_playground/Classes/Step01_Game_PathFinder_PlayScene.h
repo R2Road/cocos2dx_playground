@@ -26,6 +26,7 @@ namespace step01
 
 				bool init() override;
 				void onEnter() override;
+				void update( float dt ) override;
 				void onExit() override;
 
 			private:
@@ -49,6 +50,7 @@ namespace step01
 				StageDataContainer::Container::size_type mCurrentStageIndex;
 				TerrainPoint mPlayerPoint;
 				bool mbPlayerLive;
+				float mElapsedTime;
 			};
 		} // namespace pathfinder
 	}

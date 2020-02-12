@@ -26,6 +26,7 @@ namespace step01
 				, mCurrentStageIndex( 0u )
 				, mPlayerPoint()
 				, mbPlayerLive( true )
+				, mElapsedTime( 0.f )
 			{}
 
 			Scene* PlayScene::create()
@@ -39,6 +40,7 @@ namespace step01
 				}
 				else
 				{
+					ret->scheduleUpdate();
 					ret->autorelease();
 				}
 
@@ -163,6 +165,12 @@ namespace step01
 				mKeyboardListener = EventListenerKeyboard::create();
 				mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
 				getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			}
+			void PlayScene::update( float dt )
+			{
+				mElapsedTime += dt;
+
+				Scene::update( dt );
 			}
 			void PlayScene::onExit()
 			{
