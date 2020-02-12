@@ -6,6 +6,7 @@
 #include "Step01_RootScene.h"
 
 #include "Step01_Game_PathFinder_PlayScene.h"
+#include "Step01_Game_PathFinder_ResultScene.h"
 
 #include "CPG_Setting.h"
 
@@ -141,6 +142,12 @@ namespace step01
 				if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 				{
 					Director::getInstance()->replaceScene( step01::game::pathfinder::PlayScene::create() );
+					return;
+				}
+
+				if( EventKeyboard::KeyCode::KEY_F1 == keycode )
+				{
+					Director::getInstance()->replaceScene( step01::game::pathfinder::ResultScene::create() );
 					return;
 				}
 			}

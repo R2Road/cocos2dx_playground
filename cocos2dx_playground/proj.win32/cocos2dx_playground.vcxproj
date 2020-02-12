@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Animation_RootScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Button_BasicScene.cpp" />
+    <ClCompile Include="..\Classes\Step01_Game_PathFinder_ResultScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_StageDataContainer.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Viewer.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp" />
@@ -214,6 +215,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Animation_RootScene.h" />
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h" />
     <ClInclude Include="..\Classes\Step01_Button_BasicScene.h" />
+    <ClInclude Include="..\Classes\Step01_Game_PathFinder_ResultScene.h" />
     <ClInclude Include="..\Classes\Step01_Game_StageDataContainer.h" />
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Viewer.h" />
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h" />

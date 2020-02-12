@@ -171,6 +171,9 @@
     <ClCompile Include="..\Classes\Step01_Game_StageDataContainer.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Game_PathFinder_ResultScene.cpp">
+      <Filter>src\scene\step01\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -297,6 +300,9 @@
       <Filter>src\scene\step01\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_StageDataContainer.h">
+      <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Game_PathFinder_ResultScene.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
   </ItemGroup>
