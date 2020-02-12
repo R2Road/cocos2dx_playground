@@ -93,14 +93,7 @@ namespace step01
 					) );
 					addChild( mTerrainViewer );
 
-					// apply terrain data
-					for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
-					{
-						for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
-						{
-							mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
-						}
-					}
+					updateTerrainViewer();
 				}
 
 				return true;
@@ -133,6 +126,10 @@ namespace step01
 					return;
 				}
 
+				updateTerrainViewer();
+			}
+			void PlayScene::updateTerrainViewer()
+			{
 				// apply terrain data
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
