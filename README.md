@@ -9,12 +9,12 @@ useful code for cocos2d-x 3.17.2
   - c++
 
 - editor
-  - vs 2017( version : 15.9.16 )( free )
+  - vs 2017( version : 15.9.16 )
 
 - sound
-  - sfxr( free )
-  - lmms( free )
+  - sfxr
+  - lmms
 
 - graphic
-  - paint.net( free )
+  - paint.net
   - aseprite
