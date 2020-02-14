@@ -320,14 +320,9 @@ namespace step01
 					}
 				}
 
-				switch( keycode )
+				if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 				{
-				case EventKeyboard::KeyCode::KEY_ESCAPE:
 					startExitProcess( eNextSceneType::Title, 0.f );
-					break;
-
-				default:
-					CCLOG( "Key Code : %d", keycode );
 				}
 			}
 		} // namespace pathfinder
