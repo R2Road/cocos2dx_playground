@@ -33,7 +33,10 @@ USING_NS_CC;
 
 AppDelegate::~AppDelegate() 
 {
-	experimental::AudioEngine::AudioEngine::end();
+	//
+	// has some problem... crash
+	//
+	//experimental::AudioEngine::AudioEngine::end();
 }
 
 // if you want a different context, modify the value of glContextAttrs
