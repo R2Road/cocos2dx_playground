@@ -3,6 +3,8 @@
 #include <new>
 #include <sstream>
 
+#include "audio/include/AudioEngine.h"
+
 #include "Step01_Game_PathFinder_TitleScene.h"
 #include "Step01_Game_PathFinder_ResultScene.h"
 #include "Step01_Game_Terrain_Viewer.h"
@@ -232,6 +234,8 @@ namespace step01
 
 			void PlayScene::MovePlayer( const int move_x, const int move_y )
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
+
 				mPlayerPoint.x += move_x;
 				mPlayerPoint.y += move_y;
 
