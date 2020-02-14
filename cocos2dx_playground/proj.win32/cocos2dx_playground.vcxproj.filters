@@ -43,6 +43,9 @@
     <Filter Include="src\scene\step01\tool">
       <UniqueIdentifier>{08dc5ddd-99c0-4d2e-9b50-9816f2ef648e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step01\sound">
+      <UniqueIdentifier>{6acee36b-12d4-4f2b-8cbd-46abf41ed62f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -174,6 +177,9 @@
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_ResultScene.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step01_Sound_Basic.cpp">
+      <Filter>src\scene\step01\sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -304,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_ResultScene.h">
       <Filter>src\scene\step01\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step01_Sound_Basic.h">
+      <Filter>src\scene\step01\sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

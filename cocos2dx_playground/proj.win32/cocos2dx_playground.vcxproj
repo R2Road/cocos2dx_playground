@@ -174,6 +174,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Game_StageDataContainer.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Viewer.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp" />
+    <ClCompile Include="..\Classes\Step01_Sound_Basic.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp" />
     <ClCompile Include="..\Classes\Step01_TextField_BasicScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp" />
@@ -219,6 +220,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Game_StageDataContainer.h" />
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Viewer.h" />
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h" />
+    <ClInclude Include="..\Classes\Step01_Sound_Basic.h" />
     <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h" />
     <ClInclude Include="..\Classes\Step01_TextField_BasicScene.h" />
     <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h" />
