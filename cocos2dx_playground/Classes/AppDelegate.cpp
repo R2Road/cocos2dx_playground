@@ -90,22 +90,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // Set the design resolution
     glview->setDesignResolutionSize( my_setting.mDesignResolution.width, my_setting.mDesignResolution.height, ResolutionPolicy::NO_BORDER);
-    auto frameSize = glview->getFrameSize();
-    // if the frame's height is larger than the height of medium size.
-    if (frameSize.height > mediumResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(largeResolutionSize.height / my_setting.mDesignResolution.height, largeResolutionSize.width / my_setting.mDesignResolution.width));
-    }
-    // if the frame's height is larger than the height of small size.
-    else if (frameSize.height > smallResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(mediumResolutionSize.height / my_setting.mDesignResolution.height, mediumResolutionSize.width / my_setting.mDesignResolution.width));
-    }
-    // if the frame's height is smaller than the height of medium size.
-    else
-    {        
-        director->setContentScaleFactor(MIN(smallResolutionSize.height / my_setting.mDesignResolution.height, smallResolutionSize.width / my_setting.mDesignResolution.width));
-    }
+
+	// Set Content Scale Factor
+	director->setContentScaleFactor( my_setting.mFrameResolution.height / my_setting.mDesignResolution.height );
 
     register_all_packages();
 
