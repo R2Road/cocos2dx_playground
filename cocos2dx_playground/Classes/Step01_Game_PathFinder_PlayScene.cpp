@@ -234,14 +234,26 @@ namespace step01
 
 			void PlayScene::MovePlayer( const int move_x, const int move_y )
 			{
+				//
+				// sfx
+				//
 				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
+				//
+				// move player
+				//
 				mPlayerPoint.x += move_x;
 				mPlayerPoint.y += move_y;
 
+				//
+				// move player view
+				//
 				auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
 				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
+				//
+				// check player position
+				//
 				const auto tile_type = mTerrainData.get( mPlayerPoint.x, mPlayerPoint.y );
 				if( step01::game::terrain::eTileType::damage == tile_type )
 				{
