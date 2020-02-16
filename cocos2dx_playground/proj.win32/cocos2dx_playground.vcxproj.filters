@@ -129,13 +129,7 @@
     <ClCompile Include="..\Classes\Step01_Animation_BasicScene.cpp">
       <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Input_RootScene.cpp">
-      <Filter>src\scene\step01\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Input_KeyCodeViewScene.cpp">
-      <Filter>src\scene\step01\input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Input_BasicScene.cpp">
       <Filter>src\scene\step01\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
@@ -263,13 +257,7 @@
     <ClInclude Include="..\Classes\Step01_Animation_BasicScene.h">
       <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Input_RootScene.h">
-      <Filter>src\scene\step01\input</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Step01_Input_KeyCodeViewScene.h">
-      <Filter>src\scene\step01\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Input_BasicScene.h">
       <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">

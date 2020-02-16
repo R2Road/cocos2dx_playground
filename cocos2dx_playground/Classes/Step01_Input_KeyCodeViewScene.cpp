@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-#include "Step01_Input_RootScene.h"
+#include "Step01_RootScene.h"
 
 USING_NS_CC;
 
@@ -67,6 +67,14 @@ namespace step01
 			}
 
 			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
+				addChild( background_layer, 0 );
+			}
+
+			//
 			// KeyCode View
 			//
 			{
@@ -105,7 +113,7 @@ namespace step01
 
 		void KeyCodeViewScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step01::RootScene::create() );
 		}
 		void KeyCodeViewScene::updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode )
 		{

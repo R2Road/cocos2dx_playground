@@ -5,7 +5,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "Step01_Input_RootScene.h"
+#include "Step01_Input_KeyCodeViewScene.h"
 #include "Step01_Animation_RootScene.h"
 #include "Step01_Json_LoadNSaveScene.h"
 #include "Step01_Button_BasicScene.h"
@@ -49,7 +49,7 @@ namespace step01
 			ss << "[ESC] : Return to Playground";
 			ss << "\n";
 			ss << "\n";
-			ss << "[1] : Input";
+			ss << "[1] : " << input::KeyCodeViewScene::getTitle();
 			ss << "\n";
 			ss << "[2] : Animation";
 			ss << "\n";
@@ -113,7 +113,7 @@ namespace step01
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( input::RootScene::create() );
+			Director::getInstance()->replaceScene( input::KeyCodeViewScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( animation::RootScene::create() );

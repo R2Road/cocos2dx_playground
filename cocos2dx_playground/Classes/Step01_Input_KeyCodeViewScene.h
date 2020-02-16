@@ -11,6 +11,7 @@ namespace step01
 		public:
 			KeyCodeViewScene();
 
+			static const char* getTitle() { return "Input : Keycode View"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
