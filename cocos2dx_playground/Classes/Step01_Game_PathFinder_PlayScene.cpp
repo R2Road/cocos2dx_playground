@@ -232,7 +232,7 @@ namespace step01
 			}
 
 
-			void PlayScene::MovePlayer( const int move_x, const int move_y )
+			void PlayScene::GameProcess( const int move_x, const int move_y )
 			{
 				//
 				// sfx
@@ -321,16 +321,16 @@ namespace step01
 					switch( keycode )
 					{
 					case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-						MovePlayer( -1, 0 );
+						GameProcess( -1, 0 );
 						break;
 					case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-						MovePlayer( 1, 0 );
+						GameProcess( 1, 0 );
 						break;
 					case EventKeyboard::KeyCode::KEY_UP_ARROW:
-						MovePlayer( 0, 1 );
+						GameProcess( 0, 1 );
 						break;
 					case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-						MovePlayer( 0, -1 );
+						GameProcess( 0, -1 );
 						break;
 					}
 				}

@@ -40,7 +40,7 @@ namespace step01
 				bool goNextStage();
 				void updateTerrainViewer();
 
-				void MovePlayer( const int move_x, const int move_y );
+				void GameProcess( const int move_x, const int move_y );
 
 				void updateForExit( float dt );
 				void startExitProcess( const eNextSceneType next_scene_type, float wait_time );
