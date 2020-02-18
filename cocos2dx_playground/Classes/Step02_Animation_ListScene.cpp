@@ -1,9 +1,9 @@
-#include "Step01_Animation_ListScene.h"
+#include "Step02_Animation_ListScene.h"
 
 #include <new>
 #include <sstream>
 
-#include "Step01_Animation_RootScene.h"
+#include "Step02_RootScene.h"
 
 USING_NS_CC;
 
@@ -13,30 +13,30 @@ namespace
 
 	struct AnimationInfo
 	{
-		step01::animation::ListScene::eAnimationIndex Index = step01::animation::ListScene::eAnimationIndex::none;
+		step02::animation::ListScene::eAnimationIndex Index = step02::animation::ListScene::eAnimationIndex::none;
 		float delay = 0.f;
 		std::vector<std::string> SpriteFrameNames;
 	};
 	const std::vector<AnimationInfo> AnimationInfos = {
 		{
-			step01::animation::ListScene::eAnimationIndex::idle
+			step02::animation::ListScene::eAnimationIndex::idle
 			, 0.5f
 			, { "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_03.png" }
 		}
 		,{
-			step01::animation::ListScene::eAnimationIndex::run
+			step02::animation::ListScene::eAnimationIndex::run
 			, 0.2f
 			, { "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
 		}
 		,{
-			step01::animation::ListScene::eAnimationIndex::win
+			step02::animation::ListScene::eAnimationIndex::win
 			, 0.1f
 			, { "actor001_win_01.png", "actor001_win_02.png" }
 		}
 	};
 }
 
-namespace step01
+namespace step02
 {
 	namespace animation
 	{
@@ -170,7 +170,7 @@ namespace step01
 
 		void ListScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 
 		void ListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

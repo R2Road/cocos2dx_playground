@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "PlayGroundScene.h"
+#include "Step02_Animation_ListScene.h"
 
 USING_NS_CC;
 
@@ -37,6 +38,9 @@ namespace step02
 			ss << "\n";
 			ss << "\n";
 			ss << "[ESC] : Return to Playground";
+			ss << "\n";
+			ss << "\n";
+			ss << "[1] : Animation - List";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -82,6 +86,10 @@ namespace step02
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
 			break;
 
 		default:

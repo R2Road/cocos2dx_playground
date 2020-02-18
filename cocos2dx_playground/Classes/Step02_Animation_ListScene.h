@@ -4,7 +4,7 @@
 
 #include "cocos2d.h"
 
-namespace step01
+namespace step02
 {
 	namespace animation
 	{

@@ -49,6 +49,9 @@
     <Filter Include="src\scene\step99">
       <UniqueIdentifier>{a76eefdc-f54a-43c8-b51e-7dead6c0bd9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step02\animation">
+      <UniqueIdentifier>{94f7f939-c9ab-40f0-a1d2-7d90e76ed48a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -109,9 +112,6 @@
       <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_PlayNStopScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Animation_ListScene.cpp">
       <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_CallbackScene.cpp">
@@ -180,6 +180,9 @@
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
       <Filter>src\scene\step99</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step02_Animation_ListScene.cpp">
+      <Filter>src\scene\step02\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -240,9 +243,6 @@
       <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_PlayNStopScene.h">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Animation_ListScene.h">
       <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_CallbackScene.h">
@@ -310,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\step99</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step02_Animation_ListScene.h">
+      <Filter>src\scene\step02\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
