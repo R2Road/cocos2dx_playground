@@ -1,16 +1,26 @@
 #include "Research_Input_GamePadTest.h"
 
+#include <new>
 #include <sstream>
 
 #include "PlayGroundScene.h"
 
 USING_NS_CC;
 
+namespace
+{
+	const int TAG_KeyCodeViewNode = 20140416;
+}
+
 namespace research
 {
 	namespace input
 	{
-		GamePadTestScene::GamePadTestScene() : mKeyboardListener( nullptr ) {}
+		GamePadTestScene::GamePadTestScene() :
+			mPressedKeyCount( 0 )
+			, mKeyboardListener( nullptr )
+			, mControllerListener( nullptr )
+		{}
 
 		Scene* GamePadTestScene::create()
 		{
@@ -23,6 +33,7 @@ namespace research
 			}
 			else
 			{
+				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -68,7 +79,67 @@ namespace research
 				addChild( background_layer, 0 );
 			}
 
+			//
+			// KeyCode View
+			//
+			{
+				auto label = Label::createWithTTF( "Press Key", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				label->setTag( TAG_KeyCodeViewNode );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5, 0.5 ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( label, 9999 );
+
+				clearKeyCodeView();
+			}
+
+			//
+			// GamePad
+			//
+			{
+				mControllerListener = EventListenerController::create();
+				mControllerListener->onConnected= []( Controller*, Event* )->void {
+					CCLOG( "Connected" );
+				};
+				mControllerListener->onDisconnected= []( Controller*, Event* )->void {
+					CCLOG( "Disconnected" );
+				};
+
+				mControllerListener->onKeyDown = [this]( Controller*, int code, Event* )->void {
+					++mPressedKeyCount;
+					updateKeyCodeView( code );
+				};
+
+				mControllerListener->onKeyUp = [this]( Controller*, int code, Event* )->void {
+					--mPressedKeyCount;
+					if( 0 == mPressedKeyCount )
+					{
+						clearKeyCodeView();
+					}
+				};
+				getEventDispatcher()->addEventListenerWithSceneGraphPriority( mControllerListener, this );
+
+				//
+				// Important
+				//
+				Controller::startDiscoveryController();
+			}
+
 			return true;
+		}
+
+		void GamePadTestScene::updateKeyCodeView( int keycode )
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_KeyCodeViewNode ) );
+			label->setString( std::to_string( static_cast<int>( keycode ) ) );
+		}
+		void GamePadTestScene::clearKeyCodeView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_KeyCodeViewNode ) );
+			label->setString( "Press Key" );
 		}
 
 		void GamePadTestScene::onEnter()
@@ -84,7 +155,7 @@ namespace research
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void GamePadTestScene::updateForExit( float /*dt*/ )

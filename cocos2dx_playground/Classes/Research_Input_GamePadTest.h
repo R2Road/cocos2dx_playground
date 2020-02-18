@@ -19,11 +19,16 @@ namespace research
 			void onExit() override;
 
 		private:
+			void updateKeyCodeView( int keycode );
+			void clearKeyCodeView();
+
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
+			int mPressedKeyCount;
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			cocos2d::EventListenerController* mControllerListener;
 		};
 	}
 }
