@@ -5,6 +5,8 @@
 
 #include "Step01_RootScene.h"
 #include "Step02_RootScene.h"
+
+#include "Research_Input_GamePadTest.h"
 #include "Step99_RootScene.h"
 
 USING_NS_CC;
@@ -41,6 +43,8 @@ Scene* PlayGroundScene::create()
 	ss << "\n";
 	ss << "\n";
 	ss << "\n";
+	ss << "\n";
+	ss << "[8] : " << research::input::GamePadTestScene::getTitle();
 	ss << "\n";
 	ss << "[9] : " << step99::RootScene::getTitle();
 
@@ -87,6 +91,10 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 
 	case EventKeyboard::KeyCode::KEY_2:
 		Director::getInstance()->replaceScene( step02::RootScene::create() );
+		break;
+
+	case EventKeyboard::KeyCode::KEY_8:
+		Director::getInstance()->replaceScene( research::input::GamePadTestScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_9:
