@@ -4,7 +4,7 @@
 
 #include "cocos2d.h"
 
-namespace step01
+namespace step02
 {
 	namespace animation
 	{
@@ -23,6 +23,7 @@ namespace step01
 			ListScene();
 
 		public:
+			static const char* getTitle() { return "Animation : List"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;

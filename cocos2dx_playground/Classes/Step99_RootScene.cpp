@@ -1,14 +1,19 @@
-#include "Step02_RootScene.h"
+#include "Step99_RootScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "PlayGroundScene.h"
-#include "Step02_Animation_ListScene.h"
+
+#include "Research_Input_KeyAllowScene.h"
+#include "Research_Input_AllowedKeysTestScene.h"
+
+#include "Research_Input_KeyConfigScene.h"
+#include "Research_Input_ConfigedKeysTestScene.h"
 
 USING_NS_CC;
 
-namespace step02
+namespace step99
 {
 	RootScene::RootScene() : mKeyboardListener( nullptr ) {}
 
@@ -40,7 +45,14 @@ namespace step02
 			ss << "[ESC] : Return to Playground";
 			ss << "\n";
 			ss << "\n";
-			ss << "[1] : " << step02::animation::ListScene::getTitle();
+			ss << "[1] : Key Allow";
+			ss << "\n";
+			ss << "[2] : Allowed Keys Test";
+			ss << "\n";
+			ss << "\n";
+			ss << "[3] : Key Config";
+			ss << "\n";
+			ss << "[4] : Configed Keys Test";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -89,7 +101,17 @@ namespace step02
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
+			Director::getInstance()->replaceScene( research::input::KeyAllowScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( research::input::AllowedKeysTestScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( research::input::KeyConfigScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( research::input::ConfigedKeysTestScene::create() );
 			break;
 
 		default:

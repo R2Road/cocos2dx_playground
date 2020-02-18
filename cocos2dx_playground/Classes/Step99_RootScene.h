@@ -2,14 +2,14 @@
 
 #include "cocos2d.h"
 
-namespace step02
+namespace step99
 {
 	class RootScene : public cocos2d::Scene
 	{
 	public:
 		RootScene();
 
-		static const char* getTitle() { return "Step 02 : Animation List"; }
+		static const char* getTitle() { return "Step 99 : @_@"; }
 		static cocos2d::Scene* create();
 
 		void onEnter() override;

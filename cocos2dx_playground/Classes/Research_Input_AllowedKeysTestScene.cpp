@@ -5,7 +5,7 @@
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "Step02_RootScene.h"
+#include "Step99_RootScene.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_InputTest_KeyboardInputObserver.h"
 #include "CPG_Input_KeyCodeNames.h"
@@ -150,7 +150,7 @@ namespace research
 		}
 		void AllowedKeysTestScene::update_forExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
+			Director::getInstance()->replaceScene( step99::RootScene::create() );
 		}
 	}
 }
