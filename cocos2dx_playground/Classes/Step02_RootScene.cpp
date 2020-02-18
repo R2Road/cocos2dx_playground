@@ -40,7 +40,7 @@ namespace step02
 			ss << "[ESC] : Return to Playground";
 			ss << "\n";
 			ss << "\n";
-			ss << "[1] : Animation - List";
+			ss << "[1] : " << step02::animation::ListScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );

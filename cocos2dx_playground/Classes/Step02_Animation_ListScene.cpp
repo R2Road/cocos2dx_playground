@@ -75,7 +75,7 @@ namespace step02
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Animation - List";
+				ss << "+ " << getTitle();
 				ss << "\n";
 				ss << "\n";
 				ss << "[ESC] : Return to Root";

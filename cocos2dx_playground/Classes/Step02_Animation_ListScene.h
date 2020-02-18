@@ -23,6 +23,7 @@ namespace step02
 			ListScene();
 
 		public:
+			static const char* getTitle() { return "Animation : List"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
