@@ -5,6 +5,7 @@
 
 #include "Step01_RootScene.h"
 #include "Step02_RootScene.h"
+#include "Step99_RootScene.h"
 
 USING_NS_CC;
 
@@ -37,6 +38,11 @@ Scene* PlayGroundScene::create()
 	ss << "[1] : " << step01::RootScene::getTitle();
 	ss << "\n";
 	ss << "[2] : " << step02::RootScene::getTitle();
+	ss << "\n";
+	ss << "\n";
+	ss << "\n";
+	ss << "\n";
+	ss << "[9] : " << step99::RootScene::getTitle();
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 	label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -81,6 +87,10 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 
 	case EventKeyboard::KeyCode::KEY_2:
 		Director::getInstance()->replaceScene( step02::RootScene::create() );
+		break;
+
+	case EventKeyboard::KeyCode::KEY_9:
+		Director::getInstance()->replaceScene( step99::RootScene::create() );
 		break;
 
 	default:

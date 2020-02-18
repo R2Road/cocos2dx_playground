@@ -46,6 +46,9 @@
     <Filter Include="src\scene\step01\sound">
       <UniqueIdentifier>{6acee36b-12d4-4f2b-8cbd-46abf41ed62f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step99">
+      <UniqueIdentifier>{a76eefdc-f54a-43c8-b51e-7dead6c0bd9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -100,18 +103,6 @@
       <Filter>src\scene\step01</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step02_RootScene.cpp">
-      <Filter>src\scene\step02</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
-      <Filter>src\scene\step02</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
-      <Filter>src\scene\step02</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
-      <Filter>src\scene\step02</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
       <Filter>src\scene\step02</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_RootScene.cpp">
@@ -174,6 +165,21 @@
     <ClCompile Include="..\Classes\Step01_Sound_Basic.cpp">
       <Filter>src\scene\step01\sound</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step99_RootScene.cpp">
+      <Filter>src\scene\step99</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
+      <Filter>src\scene\step99</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
+      <Filter>src\scene\step99</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
+      <Filter>src\scene\step99</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
+      <Filter>src\scene\step99</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -228,18 +234,6 @@
       <Filter>src\scene\step01</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step02_RootScene.h">
-      <Filter>src\scene\step02</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
-      <Filter>src\scene\step02</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
-      <Filter>src\scene\step02</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
-      <Filter>src\scene\step02</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\step02</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_RootScene.h">
@@ -301,6 +295,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Sound_Basic.h">
       <Filter>src\scene\step01\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step99_RootScene.h">
+      <Filter>src\scene\step99</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
+      <Filter>src\scene\step99</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
+      <Filter>src\scene\step99</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
+      <Filter>src\scene\step99</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
+      <Filter>src\scene\step99</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
