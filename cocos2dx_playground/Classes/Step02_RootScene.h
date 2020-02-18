@@ -9,7 +9,7 @@ namespace step02
 	public:
 		RootScene();
 
-		static const char* getTitle() { return "Step 02 : Key Config"; }
+		static const char* getTitle() { return "Step 02 : Animation List"; }
 		static cocos2d::Scene* create();
 
 		void onEnter() override;
