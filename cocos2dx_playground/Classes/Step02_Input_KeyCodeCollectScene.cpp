@@ -127,7 +127,7 @@ namespace step02
 		void KeyCodeCollectScene::updateKeyViewer()
 		{
 			mKeyStrings.clear();
-			for( std::size_t cur = 0; cur < cpg::input::KeyCodeContainerSize; ++cur )
+			for( auto cur = cpg::input::KeyCodeContainerFirst; cur < cpg::input::KeyCodeContainerSize; ++cur )
 			{
 				if( mKeyCodeCollector.isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 				{
