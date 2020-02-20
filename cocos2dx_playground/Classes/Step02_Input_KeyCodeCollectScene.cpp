@@ -12,7 +12,7 @@ namespace step02
 {
 	namespace input
 	{
-		KeyCodeCollectScene::KeyCodeCollectScene() : mKeyboardListener( nullptr ), mKeyCodeCollector(), mKeyViewer( nullptr )
+		KeyCodeCollectScene::KeyCodeCollectScene() : mKeyboardListener( nullptr ), mKeyCodeCollector(), mKeyStrings( 100, 0 ), mKeyViewer( nullptr )
 		{}
 
 		Scene* KeyCodeCollectScene::create()
