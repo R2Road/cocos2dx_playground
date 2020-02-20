@@ -329,6 +329,9 @@
     <ClInclude Include="..\Classes\Research_Input_GamePadTest.h">
       <Filter>src\scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\CPG_Input_KeyCodeContainer.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

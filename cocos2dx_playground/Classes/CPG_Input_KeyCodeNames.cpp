@@ -3,7 +3,7 @@
 #include <array>
 #include <string>
 
-#include "CPG_Input_AllowedKeys.h"
+#include "CPG_Input_KeyCodeContainer.h"
 
 USING_NS_CC;
 
@@ -13,7 +13,7 @@ namespace cpg
 	{
 		const char* KeyCodeNames::get( const cocos2d::EventKeyboard::KeyCode keycode )
 		{
-			static const std::array<std::string, AllowedKeys::ContainerSize> temp_container( {
+			static const std::array<std::string, KeyCodeContainerSize> temp_container( {
 				"NONE"
 				, "PAUSE"
 				, "SCROLL_LOCK"

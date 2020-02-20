@@ -3,7 +3,7 @@
 #include <bitset>
 
 #include "cocos2d.h"
-#include "CPG_Input_AllowedKeys.h"
+#include "CPG_Input_KeyCodeContainer.h"
 
 namespace cpg
 {
@@ -12,7 +12,7 @@ namespace cpg
 		class KeyCodeCollector
 		{
 		public:
-			using ContainerT = std::bitset<AllowedKeys::ContainerSize>;
+			using ContainerT = KeyCodeContainerT;
 
 			KeyCodeCollector();
 

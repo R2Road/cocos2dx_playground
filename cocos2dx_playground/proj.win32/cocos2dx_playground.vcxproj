@@ -206,6 +206,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeCollector.h" />
+    <ClInclude Include="..\Classes\CPG_Input_KeyCodeContainer.h" />
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h" />
     <ClInclude Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.h" />
     <ClInclude Include="..\Classes\CPG_Setting.h" />
