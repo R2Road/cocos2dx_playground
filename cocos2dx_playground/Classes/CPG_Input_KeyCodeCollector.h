@@ -14,7 +14,7 @@ namespace cpg
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode );
 
-			inline const bool isActiveKey( const cocos2d::EventKeyboard::KeyCode keycode ) const { return mContainer[static_cast<std::size_t>( keycode )]; }
+			bool isActiveKey( const cocos2d::EventKeyboard::KeyCode keycode ) const { return mContainer[static_cast<std::size_t>( keycode )]; }
 
 		private:
 			KeyCodeContainerT mContainer;
