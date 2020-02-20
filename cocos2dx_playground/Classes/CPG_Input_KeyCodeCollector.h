@@ -12,7 +12,7 @@ namespace cpg
 		class KeyCodeCollector
 		{
 		public:
-			using KeyCodeContainer = std::bitset<AllowedKeys::ContainerSize>;
+			using ContainerT = std::bitset<AllowedKeys::ContainerSize>;
 
 			KeyCodeCollector();
 
@@ -22,7 +22,7 @@ namespace cpg
 			inline const bool isActiveKey( const cocos2d::EventKeyboard::KeyCode keycode ) const { return mContainer[static_cast<std::size_t>( keycode )]; }
 
 		private:
-			KeyCodeContainer mContainer;
+			ContainerT mContainer;
 		};
 	}
 }
