@@ -189,6 +189,9 @@
     <ClCompile Include="..\Classes\Step02_Input_KeyCodeCollectScene.cpp">
       <Filter>src\scene\step02\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -322,6 +325,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step02_Input_KeyCodeCollectScene.h">
       <Filter>src\scene\step02\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_GamePadTest.h">
+      <Filter>src\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
