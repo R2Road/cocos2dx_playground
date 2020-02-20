@@ -113,7 +113,7 @@ namespace research
 					updateKeyCodeView( code );
 				};
 
-				mControllerListener->onKeyUp = [this]( Controller*, int code, Event* )->void {
+				mControllerListener->onKeyUp = [this]( Controller*, int, Event* )->void {
 					--mPressedKeyCount;
 					if( 0 == mPressedKeyCount )
 					{
