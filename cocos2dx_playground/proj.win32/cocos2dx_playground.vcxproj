@@ -190,6 +190,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\Step01_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp" />
+    <ClCompile Include="..\Classes\Step02_Input_KeyCodeCollectScene.cpp" />
     <ClCompile Include="..\Classes\Step02_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step99_RootScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -235,6 +236,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\Step01_RootScene.h" />
     <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h" />
+    <ClInclude Include="..\Classes\Step02_Input_KeyCodeCollectScene.h" />
     <ClInclude Include="..\Classes\Step02_RootScene.h" />
     <ClInclude Include="..\Classes\Step99_RootScene.h" />
     <ClInclude Include="main.h" />

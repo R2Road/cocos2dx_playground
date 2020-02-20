@@ -52,6 +52,9 @@
     <Filter Include="src\scene\step02\animation">
       <UniqueIdentifier>{94f7f939-c9ab-40f0-a1d2-7d90e76ed48a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step02\input">
+      <UniqueIdentifier>{1dce0bb6-9de2-4d45-a409-35a7ef25bd30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -183,6 +186,9 @@
     <ClCompile Include="..\Classes\Step02_Animation_ListScene.cpp">
       <Filter>src\scene\step02\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Step02_Input_KeyCodeCollectScene.cpp">
+      <Filter>src\scene\step02\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -313,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step02_Animation_ListScene.h">
       <Filter>src\scene\step02\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Step02_Input_KeyCodeCollectScene.h">
+      <Filter>src\scene\step02\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

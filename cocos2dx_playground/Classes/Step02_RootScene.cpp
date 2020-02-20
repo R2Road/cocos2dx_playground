@@ -5,6 +5,7 @@
 
 #include "PlayGroundScene.h"
 #include "Step02_Animation_ListScene.h"
+#include "Step02_Input_KeyCodeCollectScene.h"
 
 USING_NS_CC;
 
@@ -41,6 +42,8 @@ namespace step02
 			ss << "\n";
 			ss << "\n";
 			ss << "[1] : " << step02::animation::ListScene::getTitle();
+			ss << "\n";
+			ss << "[2] : " << step02::input::KeyCodeCollectScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -90,6 +93,10 @@ namespace step02
 
 		case EventKeyboard::KeyCode::KEY_1:
 			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( step02::input::KeyCodeCollectScene::create() );
 			break;
 
 		default:
