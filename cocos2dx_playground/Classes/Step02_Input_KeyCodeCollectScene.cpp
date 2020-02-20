@@ -3,6 +3,7 @@
 #include <new>
 #include <sstream>
 
+#include "CPG_Input_KeyCodeNames.h"
 #include "Step02_RootScene.h"
 
 USING_NS_CC;
@@ -11,7 +12,7 @@ namespace step02
 {
 	namespace input
 	{
-		KeyCodeCollectScene::KeyCodeCollectScene() : mKeyboardListener( nullptr )
+		KeyCodeCollectScene::KeyCodeCollectScene() : mKeyboardListener( nullptr ), mKeyCodeCollector(), mKeyViewer( nullptr )
 		{}
 
 		Scene* KeyCodeCollectScene::create()
@@ -68,6 +69,16 @@ namespace step02
 				addChild( background_layer, 0 );
 			}
 
+			//
+			// key viewer
+			//
+			mKeyViewer = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+			mKeyViewer->setPosition( Vec2(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+			) );
+			addChild( mKeyViewer, 9999 );
+
 			return true;
 		}
 
@@ -76,6 +87,7 @@ namespace step02
 			Scene::onEnter();
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( KeyCodeCollectScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyCodeCollectScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
 		void KeyCodeCollectScene::onExit()
@@ -100,6 +112,30 @@ namespace step02
 					scheduleOnce( schedule_selector( KeyCodeCollectScene::updateForExit ), 0.f );
 				}
 			}
+			else
+			{
+				mKeyCodeCollector.onKeyPressed( keycode );
+				updateKeyViewer();
+			}
+		}
+		void KeyCodeCollectScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		{
+			mKeyCodeCollector.onKeyReleased( keycode );
+			updateKeyViewer();
+		}
+
+		void KeyCodeCollectScene::updateKeyViewer()
+		{
+			mKeyStrings.clear();
+			for( std::size_t cur = 0; cur < cpg::input::AllowedKeys::ContainerSize; ++cur )
+			{
+				if( mKeyCodeCollector.isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
+				{
+					mKeyStrings += cpg::input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
+					mKeyStrings += "\n";
+				}
+			}
+			mKeyViewer->setString( mKeyStrings );
 		}
 	}
 }
