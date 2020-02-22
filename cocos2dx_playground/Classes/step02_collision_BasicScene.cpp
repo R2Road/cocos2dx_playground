@@ -16,7 +16,7 @@ namespace step02
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr )
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMovePivot( Vec2::ZERO )
 		{}
 
 		Scene* BasicScene::create()
@@ -84,6 +84,7 @@ namespace step02
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
+				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
 				addChild( button, 100 );
 				{
 					auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
@@ -156,6 +157,22 @@ namespace step02
 			Node::onExit();
 		}
 
+		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				mButtonMovePivot = button->getTouchBeganPosition();
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				button->setPosition( button->getPosition() + ( button->getTouchMovePosition() - mButtonMovePivot ) );
+				mButtonMovePivot = button->getTouchMovePosition();
+			}
+		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
