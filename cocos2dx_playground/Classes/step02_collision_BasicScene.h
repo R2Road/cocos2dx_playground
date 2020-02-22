@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
@@ -15,7 +13,7 @@ namespace step02
 			BasicScene();
 
 		public:
-			static const char* getTitle() { return "Collision : Basic Scene"; }
+			static const char* getTitle() { return "Collision : Basic"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
