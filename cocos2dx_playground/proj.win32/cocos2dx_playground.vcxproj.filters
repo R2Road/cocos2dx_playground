@@ -186,9 +186,6 @@
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
       <Filter>src\scene\step99</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step02_Animation_ListScene.cpp">
-      <Filter>src\scene\step02\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
@@ -197,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp">
       <Filter>src\scene\step02\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_animation_ListScene.cpp">
+      <Filter>src\scene\step02\animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,9 +326,6 @@
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\step99</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step02_Animation_ListScene.h">
-      <Filter>src\scene\step02\animation</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_GamePadTest.h">
       <Filter>src\scene</Filter>
     </ClInclude>
@@ -340,6 +337,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_collision_BasicScene.h">
       <Filter>src\scene\step02\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_animation_ListScene.h">
+      <Filter>src\scene\step02\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
