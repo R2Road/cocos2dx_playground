@@ -55,6 +55,9 @@
     <Filter Include="src\scene\step02\input">
       <UniqueIdentifier>{1dce0bb6-9de2-4d45-a409-35a7ef25bd30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step02\collision">
+      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -191,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step02_input_KeyCodeCollectScene.cpp">
       <Filter>src\scene\step02\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp">
+      <Filter>src\scene\step02\collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +337,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_input_KeyCodeCollectScene.h">
       <Filter>src\scene\step02\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_collision_BasicScene.h">
+      <Filter>src\scene\step02\collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
