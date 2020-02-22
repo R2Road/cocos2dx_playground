@@ -186,11 +186,11 @@
     <ClCompile Include="..\Classes\Step02_Animation_ListScene.cpp">
       <Filter>src\scene\step02\animation</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step02_Input_KeyCodeCollectScene.cpp">
-      <Filter>src\scene\step02\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp">
       <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_input_KeyCodeCollectScene.cpp">
+      <Filter>src\scene\step02\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,14 +323,14 @@
     <ClInclude Include="..\Classes\Step02_Animation_ListScene.h">
       <Filter>src\scene\step02\animation</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step02_Input_KeyCodeCollectScene.h">
-      <Filter>src\scene\step02\input</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_GamePadTest.h">
       <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeContainer.h">
       <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_input_KeyCodeCollectScene.h">
+      <Filter>src\scene\step02\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
