@@ -51,6 +51,9 @@ namespace step02
 				ss << "\n";
 				ss << "\n";
 				ss << "[ESC] : Return to Root";
+				ss << "\n";
+				ss << "\n";
+				ss << "[Keyboard] : Do Type";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
