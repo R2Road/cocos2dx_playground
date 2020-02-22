@@ -58,6 +58,9 @@
     <Filter Include="src\scene\step02\collision">
       <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step02\button_drag">
+      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -197,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step02_animation_ListScene.cpp">
       <Filter>src\scene\step02\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_button_DragScene.cpp">
+      <Filter>src\scene\step02\button_drag</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_animation_ListScene.h">
       <Filter>src\scene\step02\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_button_DragScene.h">
+      <Filter>src\scene\step02\button_drag</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
