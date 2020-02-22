@@ -3,6 +3,8 @@
 #include <new>
 #include <sstream>
 
+#include "ui/UIButton.h"
+
 #include "Step02_RootScene.h"
 
 USING_NS_CC;
@@ -75,26 +77,39 @@ namespace step02
 			// Player
 			//
 			{
-				auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-				player_node->setTag( TAG_Player );
-				player_node->setPosition( Vec2(
+				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( TAG_Player );
+				button->setScale9Enabled( true );
+				button->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
-				addChild( player_node, 100 );
+				addChild( button, 100 );
 				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+					player_node->setScale( 2.f );
+					button->addChild( player_node );
+					{
+						auto animation_object = Animation::create();
+						animation_object->setDelayPerUnit( 0.2f );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
-					auto animate_action = Animate::create( animation_object );
+						auto animate_action = Animate::create( animation_object );
 
-					auto repeat_action = RepeatForever::create( animate_action );
+						auto repeat_action = RepeatForever::create( animate_action );
 
-					player_node->runAction( repeat_action );
+						player_node->runAction( repeat_action );
+					}
+
+					const Size margin( 3.f, 3.f );
+					button->setContentSize( player_node->getBoundingBox().size + margin );
+					player_node->setPosition(
+						button->getContentSize().width * 0.5f
+						, button->getContentSize().height * 0.5f
+					);
 				}
 			}
 
