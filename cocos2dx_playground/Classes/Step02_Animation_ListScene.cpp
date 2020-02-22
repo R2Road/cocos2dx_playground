@@ -102,7 +102,7 @@ namespace step02
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 75, 0, 115, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
 				addChild( background_layer, 0 );
 			}
 
