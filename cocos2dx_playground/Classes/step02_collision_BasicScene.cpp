@@ -8,6 +8,7 @@
 USING_NS_CC;
 
 const int TAG_Player = 20140416;
+const int TAG_Bullet = 20200209;
 
 namespace step02
 {
@@ -78,7 +79,7 @@ namespace step02
 				player_node->setTag( TAG_Player );
 				player_node->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				addChild( player_node, 100 );
 				{
@@ -88,6 +89,31 @@ namespace step02
 					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
 					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
 					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+
+					auto animate_action = Animate::create( animation_object );
+
+					auto repeat_action = RepeatForever::create( animate_action );
+
+					player_node->runAction( repeat_action );
+				}
+			}
+
+			//
+			// Bullet
+			//
+			{
+				auto player_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+				player_node->setTag( TAG_Bullet );
+				player_node->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.7f )
+				) );
+				addChild( player_node, 100 );
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.1f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_01.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_02.png" ) );
 
 					auto animate_action = Animate::create( animation_object );
 
