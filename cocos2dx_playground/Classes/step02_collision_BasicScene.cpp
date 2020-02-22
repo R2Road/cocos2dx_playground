@@ -7,6 +7,8 @@
 
 USING_NS_CC;
 
+const int TAG_Player = 20140416;
+
 namespace step02
 {
 	namespace collision
@@ -66,6 +68,33 @@ namespace step02
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
 				addChild( background_layer, 0 );
+			}
+
+			//
+			// Player
+			//
+			{
+				auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				player_node->setTag( TAG_Player );
+				player_node->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( player_node, 100 );
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.2f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+
+					auto animate_action = Animate::create( animation_object );
+
+					auto repeat_action = RepeatForever::create( animate_action );
+
+					player_node->runAction( repeat_action );
+				}
 			}
 
 			return true;
