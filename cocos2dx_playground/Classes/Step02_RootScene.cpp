@@ -4,7 +4,10 @@
 #include <sstream>
 
 #include "PlayGroundScene.h"
-#include "Step02_Animation_ListScene.h"
+#include "step02_animation_ListScene.h"
+#include "step02_input_KeyCodeCollectScene.h"
+#include "step02_button_DragScene.h"
+#include "step02_collision_BasicScene.h"
 
 USING_NS_CC;
 
@@ -41,6 +44,12 @@ namespace step02
 			ss << "\n";
 			ss << "\n";
 			ss << "[1] : " << step02::animation::ListScene::getTitle();
+			ss << "\n";
+			ss << "[2] : " << step02::input::KeyCodeCollectScene::getTitle();
+			ss << "\n";
+			ss << "[3] : " << step02::button::DragScene::getTitle();
+			ss << "\n";
+			ss << "[4] : " << step02::collision::BasicScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -90,6 +99,18 @@ namespace step02
 
 		case EventKeyboard::KeyCode::KEY_1:
 			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( step02::input::KeyCodeCollectScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step02::button::DragScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( step02::collision::BasicScene::create() );
 			break;
 
 		default:

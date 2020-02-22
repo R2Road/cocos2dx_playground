@@ -52,6 +52,15 @@
     <Filter Include="src\scene\step02\animation">
       <UniqueIdentifier>{94f7f939-c9ab-40f0-a1d2-7d90e76ed48a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step02\input">
+      <UniqueIdentifier>{1dce0bb6-9de2-4d45-a409-35a7ef25bd30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step02\collision">
+      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step02\button_drag">
+      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -180,11 +189,20 @@
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
       <Filter>src\scene\step99</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step02_Animation_ListScene.cpp">
-      <Filter>src\scene\step02\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp">
       <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_input_KeyCodeCollectScene.cpp">
+      <Filter>src\scene\step02\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp">
+      <Filter>src\scene\step02\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_animation_ListScene.cpp">
+      <Filter>src\scene\step02\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_button_DragScene.cpp">
+      <Filter>src\scene\step02\button_drag</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -314,11 +332,23 @@
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\step99</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step02_Animation_ListScene.h">
-      <Filter>src\scene\step02\animation</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_GamePadTest.h">
       <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CPG_Input_KeyCodeContainer.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_input_KeyCodeCollectScene.h">
+      <Filter>src\scene\step02\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_collision_BasicScene.h">
+      <Filter>src\scene\step02\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_animation_ListScene.h">
+      <Filter>src\scene\step02\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_button_DragScene.h">
+      <Filter>src\scene\step02\button_drag</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

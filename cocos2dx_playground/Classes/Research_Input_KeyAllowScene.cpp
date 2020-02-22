@@ -38,7 +38,7 @@ namespace research
 					, static_cast<int>( control_size.height + control_margin.height )
 				).quot;
 
-				const auto div_result = std::ldiv( cpg::input::AllowedKeys::ContainerSize, _row_count );
+				const auto div_result = std::ldiv( cpg::input::KeyCodeContainerSize, _row_count );
 
 				return std::make_pair(
 					div_result.rem > 0 ? div_result.quot + 1 : div_result.quot
@@ -185,7 +185,7 @@ namespace research
 
 				int grid_x = 0;
 				int grid_y = 0;
-				for( std::size_t cur = cpg::input::AllowedKeys::ContainerFirst; cpg::input::AllowedKeys::ContainerSize > cur; ++cur )
+				for( std::size_t cur = cpg::input::KeyCodeContainerFirst; cpg::input::KeyCodeContainerSize > cur; ++cur )
 				{
 					auto key_allow_control_root = createKeyAllowControl(
 						size_of_key_allow_control
