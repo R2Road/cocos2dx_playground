@@ -84,6 +84,16 @@ namespace step02
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( DragScene::onButton, this ) );
 				addChild( button, 100 );
+				{
+					auto label = Label::createWithTTF( "CLICK HERE ===>>>", "fonts/arial.ttf", 9 );
+					label->setColor( Color3B::RED );
+					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+					label->setPosition(
+						-4.f
+						, button->getContentSize().height * 0.5f
+					);
+					button->addChild( label );
+				}
 			}
 
 			return true;
