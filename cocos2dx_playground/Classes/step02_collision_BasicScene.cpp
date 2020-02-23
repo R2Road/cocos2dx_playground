@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-const int TAG_Player = 20140416;
+const int TAG_Actor = 20140416;
 const int TAG_Bullet = 20200209;
 
 namespace step02
@@ -78,7 +78,7 @@ namespace step02
 			//
 			{
 				auto actor_root = Node::create();
-				actor_root->setTag( TAG_Player );
+				actor_root->setTag( TAG_Actor );
 				actor_root->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
@@ -176,7 +176,7 @@ namespace step02
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
-				auto actor_root = getChildByTag( TAG_Player );
+				auto actor_root = getChildByTag( TAG_Actor );
 
 				actor_root->setPosition( actor_root->getPosition() + ( button->getTouchMovePosition() - mButtonMovePivot ) );
 				mButtonMovePivot = button->getTouchMovePosition();
