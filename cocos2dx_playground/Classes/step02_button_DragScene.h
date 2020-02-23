@@ -28,7 +28,7 @@ namespace step02
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Vec2 mButtonMovePivot;
+			cocos2d::Vec2 mButtonMoveOffset;
 		};
 	}
 }

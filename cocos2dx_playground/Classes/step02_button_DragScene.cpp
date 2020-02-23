@@ -139,14 +139,13 @@ namespace step02
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				mButtonMovePivot = button->getTouchBeganPosition();
+				mButtonMoveOffset = button->getPosition() - button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				button->setPosition( button->getPosition() + ( button->getTouchMovePosition() - mButtonMovePivot ) );
-				mButtonMovePivot = button->getTouchMovePosition();
+				button->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
 			}
 		}
 
