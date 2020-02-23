@@ -9,6 +9,8 @@
 
 USING_NS_CC;
 
+const int TAG_Button = 20140416;
+
 namespace step02
 {
 	namespace button
@@ -55,6 +57,8 @@ namespace step02
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Mouse] : Do Click and Drag";
+				ss << std::endl;
+				ss << "[1] : Position Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -78,12 +82,37 @@ namespace step02
 			//
 			{
 				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( TAG_Button );
 				button->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( DragScene::onButton, this ) );
 				addChild( button, 100 );
+
+				// left label
+				{
+					auto label = Label::createWithTTF( "CLICK HERE ===>>>", "fonts/arial.ttf", 9 );
+					label->setColor( Color3B::RED );
+					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+					label->setPosition(
+						-4.f
+						, button->getContentSize().height * 0.5f
+					);
+					button->addChild( label );
+				}
+
+				// right label
+				{
+					auto label = Label::createWithTTF( "<<<=== ...AND DRAG", "fonts/arial.ttf", 9 );
+					label->setColor( Color3B::RED );
+					label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+					label->setPosition(
+						button->getContentSize().width + 4.f
+						, button->getContentSize().height * 0.5f
+					);
+					button->addChild( label );
+				}
 			}
 
 			return true;
@@ -110,24 +139,42 @@ namespace step02
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				mButtonMovePivot = button->getTouchBeganPosition();
+				mButtonMoveOffset = button->getPosition() - button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				button->setPosition( button->getPosition() + ( button->getTouchMovePosition() - mButtonMovePivot ) );
-				mButtonMovePivot = button->getTouchMovePosition();
+				button->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
 			}
+		}
+
+		void DragScene::updateForExit( float /*dt*/ )
+		{
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 		void DragScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				if( !isScheduled( schedule_selector( DragScene::updateForExit ) ) )
+				{
+					scheduleOnce( schedule_selector( DragScene::updateForExit ), 0.f );
+				}
 				return;
 			}
 
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
+			if( EventKeyboard::KeyCode::KEY_1 == keycode )
+			{
+				const auto visibleSize = Director::getInstance()->getVisibleSize();
+				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+
+				auto node = getChildByTag( TAG_Button );
+				node->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+			}
 		}
 	}
 }

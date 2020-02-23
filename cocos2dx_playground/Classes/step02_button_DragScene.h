@@ -22,11 +22,13 @@ namespace step02
 
 		private:
 			void onButton( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+
+			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Vec2 mButtonMovePivot;
+			cocos2d::Vec2 mButtonMoveOffset;
 		};
 	}
 }
