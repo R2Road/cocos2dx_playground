@@ -9,6 +9,8 @@
 
 USING_NS_CC;
 
+const int TAG_Button = 20140416;
+
 namespace step02
 {
 	namespace button
@@ -80,6 +82,7 @@ namespace step02
 			//
 			{
 				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( TAG_Button );
 				button->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -160,6 +163,18 @@ namespace step02
 					scheduleOnce( schedule_selector( DragScene::updateForExit ), 0.f );
 				}
 				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_1 == keycode )
+			{
+				const auto visibleSize = Director::getInstance()->getVisibleSize();
+				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+
+				auto node = getChildByTag( TAG_Button );
+				node->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
 			}
 		}
 	}
