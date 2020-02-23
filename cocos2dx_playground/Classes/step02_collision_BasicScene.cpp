@@ -74,22 +74,21 @@ namespace step02
 			}
 
 			//
-			// Player
+			// Actor
 			//
 			{
-				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-				button->setTag( TAG_Player );
-				button->setScale9Enabled( true );
-				button->setPosition( Vec2(
+				auto actor_root = Node::create();
+				actor_root->setTag( TAG_Player );
+				actor_root->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
-				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-				addChild( button, 100 );
+				addChild( actor_root, 100 );
 				{
+					// View
 					auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 					player_node->setScale( 2.f );
-					button->addChild( player_node );
+					actor_root->addChild( player_node );
 					{
 						auto animation_object = Animation::create();
 						animation_object->setDelayPerUnit( 0.2f );
@@ -105,12 +104,21 @@ namespace step02
 						player_node->runAction( repeat_action );
 					}
 
+					// Button
+					auto button = ui::Button::create( "guide_02_5.png", "guide_02_3.png", "guide_02_4.png", ui::Widget::TextureResType::PLIST );
+					button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
+					actor_root->addChild( button );
+
 					const Size margin( 3.f, 3.f );
-					button->setContentSize( player_node->getBoundingBox().size + margin );
-					player_node->setPosition(
-						button->getContentSize().width * 0.5f
-						, button->getContentSize().height * 0.5f
-					);
+					const Size pivot_size( player_node->getBoundingBox().size + margin );
+					if( pivot_size.width > pivot_size.height )
+					{
+						button->setScale( pivot_size.width / button->getContentSize().width );
+					}
+					else
+					{
+						button->setScale( pivot_size.height / button->getContentSize().width );
+					}
 				}
 			}
 
@@ -168,8 +176,9 @@ namespace step02
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
+				auto actor_root = getChildByTag( TAG_Player );
 
-				button->setPosition( button->getPosition() + ( button->getTouchMovePosition() - mButtonMovePivot ) );
+				actor_root->setPosition( actor_root->getPosition() + ( button->getTouchMovePosition() - mButtonMovePivot ) );
 				mButtonMovePivot = button->getTouchMovePosition();
 			}
 		}
