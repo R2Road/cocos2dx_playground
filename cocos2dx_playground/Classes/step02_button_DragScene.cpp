@@ -55,6 +55,8 @@ namespace step02
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Mouse] : Do Click and Drag";
+				ss << std::endl;
+				ss << "[1] : Position Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -144,14 +146,21 @@ namespace step02
 				mButtonMovePivot = button->getTouchMovePosition();
 			}
 		}
+
+		void DragScene::updateForExit( float /*dt*/ )
+		{
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
+		}
 		void DragScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				if( !isScheduled( schedule_selector( DragScene::updateForExit ) ) )
+				{
+					scheduleOnce( schedule_selector( DragScene::updateForExit ), 0.f );
+				}
 				return;
 			}
-
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 	}
 }
