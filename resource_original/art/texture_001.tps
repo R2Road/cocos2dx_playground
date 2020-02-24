@@ -304,6 +304,8 @@
             <key type="filename">ui/guide_02_3.png</key>
             <key type="filename">ui/guide_02_4.png</key>
             <key type="filename">ui/guide_02_5.png</key>
+            <key type="filename">ui/guide_02_6.png</key>
+            <key type="filename">ui/guide_02_7.png</key>
             <key type="filename">ui/guide_empty.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -380,6 +382,8 @@
             <filename>ui/guide_02_4.png</filename>
             <filename>ui/guide_02_5.png</filename>
             <filename>helper/helper_pivot.png</filename>
+            <filename>ui/guide_02_6.png</filename>
+            <filename>ui/guide_02_7.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
