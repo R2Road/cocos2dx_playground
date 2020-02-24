@@ -85,6 +85,13 @@ namespace step02
 				) );
 				addChild( actor_root, 100 );
 				{
+					// Pivot
+					{
+						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+						pivot->setScale( 4.f );
+						actor_root->addChild( pivot, 100 );
+					}
+
 					// View
 					auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 					player_node->setScale( 2.f );
@@ -126,13 +133,22 @@ namespace step02
 			// Bullet
 			//
 			{
-				auto player_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
-				player_node->setTag( TAG_Bullet );
-				player_node->setPosition( Vec2(
+				auto bullet_root_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+				bullet_root_node->setTag( TAG_Bullet );
+				bullet_root_node->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.7f )
 				) );
-				addChild( player_node, 100 );
+				addChild( bullet_root_node, 100 );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					bullet_root_node->addChild( pivot );
+				}
+
+				// Action
 				{
 					auto animation_object = Animation::create();
 					animation_object->setDelayPerUnit( 0.1f );
@@ -143,7 +159,7 @@ namespace step02
 
 					auto repeat_action = RepeatForever::create( animate_action );
 
-					player_node->runAction( repeat_action );
+					bullet_root_node->runAction( repeat_action );
 				}
 			}
 
