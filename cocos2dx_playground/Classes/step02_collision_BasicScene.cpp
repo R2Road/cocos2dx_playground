@@ -16,7 +16,7 @@ namespace step02
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMovePivot( Vec2::ZERO )
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO )
 		{}
 
 		Scene* BasicScene::create()
@@ -191,16 +191,16 @@ namespace step02
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
+				auto actor_root = getChildByTag( TAG_Actor );
 
-				mButtonMovePivot = button->getTouchBeganPosition();
+				mButtonMoveOffset = actor_root->getPosition() - button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 				auto actor_root = getChildByTag( TAG_Actor );
 
-				actor_root->setPosition( actor_root->getPosition() + ( button->getTouchMovePosition() - mButtonMovePivot ) );
-				mButtonMovePivot = button->getTouchMovePosition();
+				actor_root->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
 			}
 		}
 
