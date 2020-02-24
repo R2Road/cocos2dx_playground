@@ -55,6 +55,11 @@ namespace step02
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Mouse] : Do Click and Drag";
+				ss << std::endl;
+				ss << "[1] : Position Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -198,11 +203,32 @@ namespace step02
 				mButtonMovePivot = button->getTouchMovePosition();
 			}
 		}
+
+		void BasicScene::updateForExit( float /*dt*/ )
+		{
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
+		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step02::RootScene::create() );
+				if( !isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
+				{
+					scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
+				}
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_1 == keycode )
+			{
+				const auto visibleSize = Director::getInstance()->getVisibleSize();
+				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+
+				auto node = getChildByTag( TAG_Actor );
+				node->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.3f )
+				) );
 			}
 		}
 	}
