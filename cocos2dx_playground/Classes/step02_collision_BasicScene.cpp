@@ -5,18 +5,21 @@
 
 #include "ui/UIButton.h"
 
+#include "cpg_CollisionComponent.h"
 #include "Step02_RootScene.h"
 
 USING_NS_CC;
 
 const int TAG_Actor = 20140416;
 const int TAG_Bullet = 20200209;
+const int TAG_Distance = 888;
+const int TAG_CollisionIndicator = 999;
 
 namespace step02
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMovePivot( Vec2::ZERO )
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO )
 		{}
 
 		Scene* BasicScene::create()
@@ -55,6 +58,11 @@ namespace step02
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Mouse] : Do Click and Drag";
+				ss << std::endl;
+				ss << "[1] : Position Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -85,6 +93,11 @@ namespace step02
 				) );
 				addChild( actor_root, 100 );
 				{
+					// Pivot
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					actor_root->addChild( pivot, 100 );
+
 					// View
 					auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 					player_node->setScale( 2.f );
@@ -105,7 +118,7 @@ namespace step02
 					}
 
 					// Button
-					auto button = ui::Button::create( "guide_02_5.png", "guide_02_3.png", "guide_02_4.png", ui::Widget::TextureResType::PLIST );
+					auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
 					button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
 					actor_root->addChild( button );
 
@@ -119,6 +132,18 @@ namespace step02
 					{
 						button->setScale( pivot_size.height / button->getContentSize().width );
 					}
+
+					// Collision Indicator
+					auto collision_indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
+					collision_indicator_node->setTag( TAG_CollisionIndicator );
+					collision_indicator_node->setScale( button->getScale() );
+					collision_indicator_node->setVisible( false );
+					actor_root->addChild( collision_indicator_node, 2 );
+
+					// Collision Component
+					actor_root->addComponent( cpg::CollisionComponent::create( 
+						Vec2( player_node->getBoundingBox().size.width, player_node->getBoundingBox().size.height ).length() * 0.5f
+					) );
 				}
 			}
 
@@ -126,25 +151,58 @@ namespace step02
 			// Bullet
 			//
 			{
-				auto player_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
-				player_node->setTag( TAG_Bullet );
-				player_node->setPosition( Vec2(
+				auto bullet_root_node = Node::create();
+				bullet_root_node->setTag( TAG_Bullet );
+				bullet_root_node->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.7f )
 				) );
-				addChild( player_node, 100 );
+				addChild( bullet_root_node, 101 );
 				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.1f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_02.png" ) );
+					// Pivot
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					bullet_root_node->addChild( pivot, 100 );
 
-					auto animate_action = Animate::create( animation_object );
+					// View
+					auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+					view_node->setTag( TAG_Bullet );
+					bullet_root_node->addChild( view_node );
+					{
+						auto animation_object = Animation::create();
+						animation_object->setDelayPerUnit( 0.1f );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_01.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_02.png" ) );
 
-					auto repeat_action = RepeatForever::create( animate_action );
+						auto animate_action = Animate::create( animation_object );
 
-					player_node->runAction( repeat_action );
+						auto repeat_action = RepeatForever::create( animate_action );
+
+						view_node->runAction( repeat_action );
+					}
+
+					// Collision Component
+					bullet_root_node->addComponent( cpg::CollisionComponent::create(
+						Vec2( view_node->getBoundingBox().size.width, view_node->getBoundingBox().size.height ).length() * 0.5f
+					) );
 				}
+			}
+
+			//
+			// Distance
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				label->setTag( TAG_Distance );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, 200 );
+
+				updateDistance();
 			}
 
 			return true;
@@ -165,28 +223,62 @@ namespace step02
 			Node::onExit();
 		}
 
+		void BasicScene::updateDistance()
+		{
+			const auto bullet_node = static_cast<Label*>( getChildByTag( TAG_Bullet ) );
+			const auto actor_node = static_cast<Label*>( getChildByTag( TAG_Actor ) );
+
+			const auto distance = bullet_node->getPosition().distance( actor_node->getPosition() );
+
+			auto label = static_cast<Label*>( getChildByTag( TAG_Distance ) );
+			label->setString( StringUtils::format( "Distance : %.2f", distance ) );
+		}
+
 		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
+				auto actor_root = getChildByTag( TAG_Actor );
 
-				mButtonMovePivot = button->getTouchBeganPosition();
+				mButtonMoveOffset = actor_root->getPosition() - button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 				auto actor_root = getChildByTag( TAG_Actor );
 
-				actor_root->setPosition( actor_root->getPosition() + ( button->getTouchMovePosition() - mButtonMovePivot ) );
-				mButtonMovePivot = button->getTouchMovePosition();
+				actor_root->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
+
+				updateDistance();
 			}
+		}
+
+		void BasicScene::updateForExit( float /*dt*/ )
+		{
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step02::RootScene::create() );
+				if( !isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
+				{
+					scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
+				}
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_1 == keycode )
+			{
+				const auto visibleSize = Director::getInstance()->getVisibleSize();
+				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+
+				auto node = getChildByTag( TAG_Actor );
+				node->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.3f )
+				) );
 			}
 		}
 	}

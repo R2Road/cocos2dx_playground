@@ -61,6 +61,9 @@
     <Filter Include="src\scene\step02\button_drag">
       <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\cpg">
+      <UniqueIdentifier>{ee264d72-c524-4e05-a8c4-f49610304426}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step02_button_DragScene.cpp">
       <Filter>src\scene\step02\button_drag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_CollisionComponent.cpp">
+      <Filter>src\cpg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_button_DragScene.h">
       <Filter>src\scene\step02\button_drag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_CollisionComponent.h">
+      <Filter>src\cpg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
