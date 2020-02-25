@@ -5,6 +5,7 @@
 
 #include "ui/UIButton.h"
 
+#include "cpg_CollisionComponent.h"
 #include "Step02_RootScene.h"
 
 USING_NS_CC;
@@ -138,6 +139,11 @@ namespace step02
 					collision_indicator_node->setScale( button->getScale() );
 					collision_indicator_node->setVisible( false );
 					actor_root->addChild( collision_indicator_node, 2 );
+
+					// Collision Component
+					actor_root->addComponent( cpg::CollisionComponent::create( 
+						Vec2( player_node->getBoundingBox().size.width, player_node->getBoundingBox().size.height ).length() * 0.5f
+					) );
 				}
 			}
 
@@ -174,6 +180,11 @@ namespace step02
 
 						view_node->runAction( repeat_action );
 					}
+
+					// Collision Component
+					bullet_root_node->addComponent( cpg::CollisionComponent::create(
+						Vec2( view_node->getBoundingBox().size.width, view_node->getBoundingBox().size.height ).length() * 0.5f
+					) );
 				}
 			}
 
