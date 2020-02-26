@@ -116,26 +116,17 @@ namespace step02
 						player_node->runAction( repeat_action );
 					}
 
+					const Size margin( 3.f, 3.f );
+					const float radius = ( player_node->getBoundingBox().size.height + margin.height ) * 0.5f;
+
 					// Button
 					auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
 					button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
+					button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
 					actor_root->addChild( button );
 
-					const Size margin( 3.f, 3.f );
-					const Size pivot_size( player_node->getBoundingBox().size + margin );
-					if( pivot_size.width > pivot_size.height )
-					{
-						button->setScale( pivot_size.width / button->getContentSize().width );
-					}
-					else
-					{
-						button->setScale( pivot_size.height / button->getContentSize().width );
-					}
-
 					// Collision Component
-					actor_root->addComponent( cpg::CollisionComponent::create( 
-						Vec2( player_node->getBoundingBox().size.width, player_node->getBoundingBox().size.height ).length() * 0.5f
-					) );
+					actor_root->addComponent( cpg::CollisionComponent::create( radius ) );
 				}
 			}
 
@@ -173,10 +164,11 @@ namespace step02
 						view_node->runAction( repeat_action );
 					}
 
+					const Size margin( 0.f, 0.f );
+					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
+
 					// Collision Component
-					bullet_root_node->addComponent( cpg::CollisionComponent::create(
-						Vec2( view_node->getBoundingBox().size.width, view_node->getBoundingBox().size.height ).length() * 0.5f
-					) );
+					bullet_root_node->addComponent( cpg::CollisionComponent::create( radius ) );
 				}
 			}
 
