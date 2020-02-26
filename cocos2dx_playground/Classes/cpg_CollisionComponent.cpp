@@ -14,7 +14,7 @@ namespace cpg
 		, mLabel( nullptr )
 		, mIndicator( nullptr )
 	{
-		setName( "CPG_COLLISION" );
+		setName( GetStaticName() );
 	}
 	CollisionComponent::~CollisionComponent()
 	{

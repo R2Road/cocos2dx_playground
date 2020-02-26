@@ -16,6 +16,7 @@ namespace cpg
 		~CollisionComponent();
 
 	public:
+		static const char* GetStaticName() { return "CPG_COLLISION"; }
 		static CollisionComponent* create( const float radius );
 
 		float GetRadius() const { return mRadius; }

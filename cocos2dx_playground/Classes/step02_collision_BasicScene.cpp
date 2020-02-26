@@ -18,7 +18,7 @@ namespace step02
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO )
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO ), mCollisionList()
 		{}
 
 		Scene* BasicScene::create()
@@ -90,7 +90,6 @@ namespace step02
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
-				addChild( actor_root, 100 );
 				{
 					// Pivot
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
@@ -128,6 +127,7 @@ namespace step02
 					// Collision Component
 					actor_root->addComponent( cpg::CollisionComponent::create( radius ) );
 				}
+				addChild( actor_root, 100 );
 			}
 
 			//
@@ -140,7 +140,6 @@ namespace step02
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.7f )
 				) );
-				addChild( bullet_root_node, 101 );
 				{
 					// Pivot
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
@@ -170,6 +169,7 @@ namespace step02
 					// Collision Component
 					bullet_root_node->addComponent( cpg::CollisionComponent::create( radius ) );
 				}
+				addChild( bullet_root_node, 101 );
 			}
 
 			//
@@ -205,6 +205,39 @@ namespace step02
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 			Node::onExit();
+		}
+
+		void BasicScene::addChild( Node* child, int localZOrder, int tag )
+		{
+			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			if( target_component )
+			{
+				mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
+			}
+			Scene::addChild( child, localZOrder, tag );
+		}
+		void BasicScene::addChild( Node* child, int localZOrder, const std::string &name )
+		{
+			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			if( target_component )
+			{
+				mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
+			}
+			Scene::addChild( child, localZOrder, name );
+		}
+		void BasicScene::removeChild( Node* child, bool cleanup /* = true */ )
+		{
+			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			if( target_component )
+			{
+				mCollisionList.remove( static_cast<cpg::CollisionComponent*>( target_component ) );
+			}
+			Scene::removeChild( child, cleanup );
+		}
+		void BasicScene::removeAllChildrenWithCleanup( bool cleanup )
+		{
+			mCollisionList.clear();
+			Scene::removeAllChildrenWithCleanup( cleanup );
 		}
 
 		void BasicScene::updateDistance()
