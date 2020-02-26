@@ -54,7 +54,7 @@ namespace cpg
 		// Collision Indicator
 		auto indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
 		indicator_node->setScale( mRadius / ( indicator_node->getContentSize().width * 0.5f ) );
-		indicator_node->setVisible( true );
+		indicator_node->setVisible( false );
 		indicator_node->retain();
 		mIndicator = indicator_node;
 		
