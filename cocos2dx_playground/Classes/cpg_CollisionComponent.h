@@ -2,6 +2,7 @@
 
 #include "cocos/2d/CCComponent.h"
 #include "cocos/2d/CCLabel.h"
+#include "cocos/2d/CCSprite.h"
 #include "cocos/base/CCRefPtr.h"
 
 namespace cpg
@@ -27,5 +28,6 @@ namespace cpg
 	private:
 		const float mRadius;
 		cocos2d::RefPtr<cocos2d::Label> mLabel;
+		cocos2d::RefPtr<cocos2d::Sprite> mIndicator;
 	};
 }

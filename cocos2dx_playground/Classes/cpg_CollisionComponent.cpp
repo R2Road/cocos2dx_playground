@@ -9,13 +9,17 @@ USING_NS_CC;
 
 namespace cpg
 {
-	CollisionComponent::CollisionComponent( const float radius ) : mRadius( radius ), mLabel( nullptr )
+	CollisionComponent::CollisionComponent( const float radius ) :
+		mRadius( radius )
+		, mLabel( nullptr )
+		, mIndicator( nullptr )
 	{
 		setName( "CPG_COLLISION" );
 	}
 	CollisionComponent::~CollisionComponent()
 	{
 		mLabel->release();
+		mIndicator->release();
 	}
 
 	CollisionComponent* CollisionComponent::create( const float radius )
@@ -47,15 +51,25 @@ namespace cpg
 		mLabel->setPositionX( mRadius );
 		mLabel->retain();
 
+		// Collision Indicator
+		auto indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
+		indicator_node->setScale( mRadius / ( indicator_node->getContentSize().width * 0.5f ) );
+		indicator_node->setVisible( true );
+		indicator_node->retain();
+		mIndicator = indicator_node;
+		
+
 		return true;
 	}
 
 	void CollisionComponent::onAdd()
 	{
 		_owner->addChild( mLabel, std::numeric_limits<int>::max() );
+		_owner->addChild( mIndicator, std::numeric_limits<int>::max() - 1 );
 	}
 	void CollisionComponent::onRemove()
 	{
 		_owner->removeChild( mLabel );
+		_owner->removeChild( mIndicator );
 	}
 }

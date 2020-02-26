@@ -13,7 +13,6 @@ USING_NS_CC;
 const int TAG_Actor = 20140416;
 const int TAG_Bullet = 20200209;
 const int TAG_Distance = 888;
-const int TAG_CollisionIndicator = 999;
 
 namespace step02
 {
@@ -132,13 +131,6 @@ namespace step02
 					{
 						button->setScale( pivot_size.height / button->getContentSize().width );
 					}
-
-					// Collision Indicator
-					auto collision_indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
-					collision_indicator_node->setTag( TAG_CollisionIndicator );
-					collision_indicator_node->setScale( button->getScale() );
-					collision_indicator_node->setVisible( false );
-					actor_root->addChild( collision_indicator_node, 2 );
 
 					// Collision Component
 					actor_root->addComponent( cpg::CollisionComponent::create( 
