@@ -66,9 +66,13 @@ namespace cpg
 	{
 		_owner->addChild( mLabel, std::numeric_limits<int>::max() );
 		_owner->addChild( mIndicator, std::numeric_limits<int>::max() - 1 );
+
+		ParentT::onAdd();
 	}
 	void CollisionComponent::onRemove()
 	{
+		ParentT::onRemove();
+
 		_owner->removeChild( mLabel );
 		_owner->removeChild( mIndicator );
 	}
