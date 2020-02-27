@@ -1,4 +1,4 @@
-#include "Step02_RootScene.h"
+#include "step02_RootScene.h"
 
 #include <new>
 #include <sstream>

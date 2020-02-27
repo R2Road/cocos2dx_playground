@@ -195,7 +195,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step02_button_DragScene.cpp" />
     <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step02_input_KeyCodeCollectScene.cpp" />
-    <ClCompile Include="..\Classes\Step02_RootScene.cpp" />
+    <ClCompile Include="..\Classes\step02_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step99_RootScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -246,7 +246,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step02_button_DragScene.h" />
     <ClInclude Include="..\Classes\step02_collision_BasicScene.h" />
     <ClInclude Include="..\Classes\step02_input_KeyCodeCollectScene.h" />
-    <ClInclude Include="..\Classes\Step02_RootScene.h" />
+    <ClInclude Include="..\Classes\step02_RootScene.h" />
     <ClInclude Include="..\Classes\Step99_RootScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

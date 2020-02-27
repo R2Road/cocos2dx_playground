@@ -5,7 +5,7 @@
 
 #include "ui/UIButton.h"
 
-#include "Step02_RootScene.h"
+#include "step02_RootScene.h"
 
 USING_NS_CC;
 
