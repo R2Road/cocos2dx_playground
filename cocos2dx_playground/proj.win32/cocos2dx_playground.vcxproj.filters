@@ -210,6 +210,9 @@
     <ClCompile Include="..\Classes\step02_RootScene.cpp">
       <Filter>src\scene\step02</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step02_collision_CollectionScene.cpp">
+      <Filter>src\scene\step02\collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -358,6 +361,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_RootScene.h">
       <Filter>src\scene\step02</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_collision_CollectionScene.h">
+      <Filter>src\scene\step02\collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
