@@ -18,7 +18,7 @@ namespace step02
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO ), mCollisionList()
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO )
 		{}
 
 		Scene* BasicScene::create()
@@ -205,39 +205,6 @@ namespace step02
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 			Node::onExit();
-		}
-
-		void BasicScene::addChild( Node* child, int localZOrder, int tag )
-		{
-			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
-			if( target_component )
-			{
-				mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
-			}
-			Scene::addChild( child, localZOrder, tag );
-		}
-		void BasicScene::addChild( Node* child, int localZOrder, const std::string &name )
-		{
-			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
-			if( target_component )
-			{
-				mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
-			}
-			Scene::addChild( child, localZOrder, name );
-		}
-		void BasicScene::removeChild( Node* child, bool cleanup /* = true */ )
-		{
-			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
-			if( target_component )
-			{
-				mCollisionList.remove( static_cast<cpg::CollisionComponent*>( target_component ) );
-			}
-			Scene::removeChild( child, cleanup );
-		}
-		void BasicScene::removeAllChildrenWithCleanup( bool cleanup )
-		{
-			mCollisionList.clear();
-			Scene::removeAllChildrenWithCleanup( cleanup );
 		}
 
 		void BasicScene::updateDistance()

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <list>
-
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
@@ -27,13 +25,6 @@ namespace step02
 			void onEnter() override;
 			void onExit() override;
 
-			using cocos2d::Scene::addChild;
-			void addChild( Node* child, int localZOrder, int tag ) override;
-			void addChild( Node* child, int localZOrder, const std::string &name ) override;
-
-			void removeChild( Node* child, bool cleanup = true ) override;
-			void removeAllChildrenWithCleanup( bool cleanup ) override;
-
 		private:
 			void updateDistance();
 
@@ -45,8 +36,6 @@ namespace step02
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			cocos2d::Vec2 mButtonMoveOffset;
-
-			std::list<cpg::CollisionComponent*> mCollisionList;
 		};
 	}
 }
