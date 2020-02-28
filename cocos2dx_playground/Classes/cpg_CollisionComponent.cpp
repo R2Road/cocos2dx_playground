@@ -76,4 +76,16 @@ namespace cpg
 		_owner->removeChild( mLabel );
 		_owner->removeChild( mIndicator );
 	}
+
+	bool CollisionComponent::Check( const CollisionComponent* const other ) const
+	{
+		const float distance = _owner->getPosition().distance( other->getOwner()->getPosition() );
+		const float contact_limit_distance = mRadius + other->GetRadius();
+		
+		return distance <= contact_limit_distance;
+	}
+	void CollisionComponent::onContact( const bool contact )
+	{
+		mIndicator->setVisible( contact );
+	}
 }

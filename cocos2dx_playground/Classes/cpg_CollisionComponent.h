@@ -19,12 +19,16 @@ namespace cpg
 		static const char* GetStaticName() { return "CPG_COLLISION"; }
 		static CollisionComponent* create( const float radius );
 
-		float GetRadius() const { return mRadius; }
-
 	private:
 		bool init() override;
 		void onAdd() override;
 		void onRemove() override;
+
+	public:
+		float GetRadius() const { return mRadius; }
+
+		bool Check( const CollisionComponent* const other ) const;
+		void onContact( const bool contact );
 
 	private:
 		const float mRadius;

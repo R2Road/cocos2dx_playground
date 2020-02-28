@@ -268,6 +268,12 @@ namespace step02
 				actor_root->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
 
 				updateDistance();
+
+				auto button_node = getChildByTag( TAG_Bullet );
+
+				auto actor_collision_component = static_cast<cpg::CollisionComponent*>( actor_root->getComponent( cpg::CollisionComponent::GetStaticName() ) );
+				auto bullet_collision_component = static_cast<cpg::CollisionComponent*>( button_node->getComponent( cpg::CollisionComponent::GetStaticName() ) );
+				actor_collision_component->onContact( actor_collision_component->Check( bullet_collision_component ) );
 			}
 		}
 
