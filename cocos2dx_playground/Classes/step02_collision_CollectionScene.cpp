@@ -204,7 +204,7 @@ namespace step02
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void CollectionScene::addChild( Node* child, int localZOrder, int tag )
