@@ -38,6 +38,8 @@ namespace step02
 			void removeAllChildrenWithCleanup( bool cleanup ) override;
 
 		private:
+			void updateMoveSpeedView();
+
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );

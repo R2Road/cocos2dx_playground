@@ -15,6 +15,7 @@ USING_NS_CC;
 
 const int TAG_Actor = 20140416;
 const int TAG_Bullet = 20200209;
+const int TAG_MoveSpeed = 100;
 
 namespace step02
 {
@@ -80,6 +81,23 @@ namespace step02
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
+			}
+
+			//
+			// Move Speed View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+				label->setTag( TAG_MoveSpeed );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, 9999 );
+
+				updateMoveSpeedView();
 			}
 			
 			//
@@ -277,6 +295,12 @@ namespace step02
 			Scene::removeAllChildrenWithCleanup( cleanup );
 		}
 
+		void CollectionScene::updateMoveSpeedView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeed ) );
+			label->setString( StringUtils::format( "MoveSpeed : %d", mMoveSpeed ) );
+		}
+
 		void CollectionScene::updateForExit( float /*dt*/ )
 		{
 			Director::getInstance()->replaceScene( step02::RootScene::create() );
@@ -295,11 +319,13 @@ namespace step02
 			if( EventKeyboard::KeyCode::KEY_1 == keycode )
 			{
 				mMoveSpeed = std::min( 10, mMoveSpeed + 1 );
+				updateMoveSpeedView();
 				return;
 			}
 			if( EventKeyboard::KeyCode::KEY_2 == keycode )
 			{
 				mMoveSpeed = std::max( 1, mMoveSpeed - 1 );
+				updateMoveSpeedView();
 				return;
 			}
 
