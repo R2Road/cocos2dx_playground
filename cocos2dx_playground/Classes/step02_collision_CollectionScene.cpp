@@ -64,9 +64,7 @@ namespace step02
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Mouse] : Do Click and Drag";
-				ss << std::endl;
-				ss << "[1] : Position Reset";
+				ss << "[Arrow Key] : Move Actor";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
