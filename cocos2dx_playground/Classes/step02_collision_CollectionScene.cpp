@@ -1,5 +1,7 @@
 #include "step02_collision_CollectionScene.h"
 
+#include <cmath>
+#include <numeric>
 #include <new>
 #include <sstream>
 
@@ -35,6 +37,7 @@ namespace step02
 			}
 			else
 			{
+				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -185,6 +188,35 @@ namespace step02
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CollectionScene::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased= CC_CALLBACK_2( CollectionScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+		}
+		void CollectionScene::update( float dt )
+		{
+			Vec2 input_vec2;
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
+			{
+				input_vec2.y += 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
+			{
+				input_vec2.y -= 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
+			{
+				input_vec2.x += 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
+			{
+				input_vec2.x -= 1.f;
+			}
+
+			if( std::numeric_limits<float>::epsilon() < std::abs( input_vec2.x ) || std::numeric_limits<float>::epsilon() < std::abs( input_vec2.y ) )
+			{
+				input_vec2.normalize();
+				auto actor_root = getChildByTag( TAG_Actor );
+				actor_root->setPosition( actor_root->getPosition() + input_vec2 );
+			}
+
+			Scene::update( dt );
 		}
 		void CollectionScene::onExit()
 		{

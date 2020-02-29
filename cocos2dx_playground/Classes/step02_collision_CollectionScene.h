@@ -27,6 +27,7 @@ namespace step02
 
 			bool init() override;
 			void onEnter() override;
+			void update( float dt ) override;
 			void onExit() override;
 
 			using cocos2d::Scene::addChild;
