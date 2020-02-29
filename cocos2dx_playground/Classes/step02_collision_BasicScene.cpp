@@ -145,6 +145,15 @@ namespace step02
 						actor_root_node->addChild( label, 10000 );
 					}
 
+					// Click Indicator
+					{
+						auto label = Label::createWithTTF( "CLICK And DRAG HERE ===>>>", "fonts/arial.ttf", 9 );
+						label->setColor( Color3B::RED );
+						label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+						label->setPositionX( -radius - margin.width );
+						actor_root_node->addChild( label );
+					}
+
 					// Collision Indicator
 					{
 						auto collision_indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
