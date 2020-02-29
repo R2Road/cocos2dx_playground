@@ -125,9 +125,9 @@ namespace step02
 					actor_root->addChild( pivot, 100 );
 
 					// View
-					auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-					player_node->setScale( 2.f );
-					actor_root->addChild( player_node );
+					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+					view_node->setScale( 2.f );
+					actor_root->addChild( view_node );
 					{
 						auto animation_object = Animation::create();
 						animation_object->setDelayPerUnit( 0.2f );
@@ -140,11 +140,11 @@ namespace step02
 
 						auto repeat_action = RepeatForever::create( animate_action );
 
-						player_node->runAction( repeat_action );
+						view_node->runAction( repeat_action );
 					}
 
 					const Size margin( 3.f, 3.f );
-					const float radius = ( player_node->getBoundingBox().size.height + margin.height ) * 0.5f;
+					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Guide
 					{
