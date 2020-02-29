@@ -48,6 +48,7 @@ namespace step02
 			std::list<cpg::CollisionComponent*> mCollisionList;
 
 			cpg::input::KeyCodeCollector mKeyCodeCollector;
+			int mMoveSpeed;
 		};
 	}
 }

@@ -1,5 +1,6 @@
 #include "step02_collision_CollectionScene.h"
 
+#include <algorithm>
 #include <cmath>
 #include <numeric>
 #include <new>
@@ -23,6 +24,7 @@ namespace step02
 			mKeyboardListener( nullptr )
 			, mCollisionList()
 			, mKeyCodeCollector()
+			, mMoveSpeed( 3 )
 		{}
 
 		Scene* CollectionScene::create()
@@ -65,6 +67,11 @@ namespace step02
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Arrow Key] : Move Actor";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[1] : Speed Up";
+				ss << std::endl;
+				ss << "[2] : Speed Down";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -213,6 +220,7 @@ namespace step02
 				// Move
 				//
 				input_vec2.normalize();
+				input_vec2.scale( mMoveSpeed );
 				auto actor_root = getChildByTag( TAG_Actor );
 				actor_root->setPosition( actor_root->getPosition() + input_vec2 );
 
@@ -284,11 +292,24 @@ namespace step02
 				return;
 			}
 
+			if( EventKeyboard::KeyCode::KEY_1 == keycode )
+			{
+				mMoveSpeed = std::min( 10, mMoveSpeed + 1 );
+				return;
+			}
+			if( EventKeyboard::KeyCode::KEY_2 == keycode )
+			{
+				mMoveSpeed = std::max( 1, mMoveSpeed - 1 );
+				return;
+			}
+
 			mKeyCodeCollector.onKeyPressed( keycode );
 		}
 		void CollectionScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode
+				|| EventKeyboard::KeyCode::KEY_1 == keycode 
+				|| EventKeyboard::KeyCode::KEY_2 == keycode )
 			{
 				return;
 			}
