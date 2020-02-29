@@ -103,9 +103,11 @@ namespace step02
 				) );
 				{
 					// Pivot
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 4.f );
-					actor_root->addChild( pivot, 100 );
+					{
+						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+						pivot->setScale( 4.f );
+						actor_root->addChild( pivot, 100 );
+					}
 
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
@@ -174,9 +176,11 @@ namespace step02
 				) );
 				{
 					// Pivot
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 4.f );
-					bullet_root_node->addChild( pivot, 100 );
+					{
+						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+						pivot->setScale( 4.f );
+						bullet_root_node->addChild( pivot, 100 );
+					}
 
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
