@@ -21,7 +21,6 @@ namespace step02
 	{
 		CollectionScene::CollectionScene() :
 			mKeyboardListener( nullptr )
-			, mButtonMoveOffset( Vec2::ZERO )
 			, mCollisionList()
 			, mKeyCodeCollector()
 		{}
@@ -124,11 +123,12 @@ namespace step02
 					const Size margin( 3.f, 3.f );
 					const float radius = ( player_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
-					// Button
-					auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
-					button->addTouchEventListener( CC_CALLBACK_2( CollectionScene::onButton, this ) );
-					button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
-					actor_root->addChild( button );
+					// Guide
+					{
+						auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
+						guide->setScale( radius / ( guide->getContentSize().width * 0.5f ) );
+						actor_root->addChild( guide );
+					}
 
 					// Collision Component
 					actor_root->addComponent( cpg::CollisionComponent::create( radius ) );
@@ -269,30 +269,6 @@ namespace step02
 		{
 			mCollisionList.clear();
 			Scene::removeAllChildrenWithCleanup( cleanup );
-		}
-
-		void CollectionScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
-		{
-			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
-			{
-				auto button = static_cast<ui::Button*>( sender );
-				auto actor_root = getChildByTag( TAG_Actor );
-
-				mButtonMoveOffset = actor_root->getPosition() - button->getTouchBeganPosition();
-			}
-			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
-			{
-				auto button = static_cast<ui::Button*>( sender );
-				auto actor_root = getChildByTag( TAG_Actor );
-
-				actor_root->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
-
-				auto button_node = getChildByTag( TAG_Bullet );
-
-				auto actor_collision_component = static_cast<cpg::CollisionComponent*>( actor_root->getComponent( cpg::CollisionComponent::GetStaticName() ) );
-				auto bullet_collision_component = static_cast<cpg::CollisionComponent*>( button_node->getComponent( cpg::CollisionComponent::GetStaticName() ) );
-				actor_collision_component->onContact( actor_collision_component->Check( bullet_collision_component ) );
-			}
 		}
 
 		void CollectionScene::updateForExit( float /*dt*/ )
