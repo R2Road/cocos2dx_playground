@@ -148,13 +148,6 @@ namespace step02
 					const Size margin( 3.f, 3.f );
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
-					// Guide
-					{
-						auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
-						guide->setScale( radius / ( guide->getContentSize().width * 0.5f ) );
-						actor_root->addChild( guide );
-					}
-
 					// Collision Component
 					actor_root->addComponent( cpg::CollisionComponent::create( radius ) );
 				}

@@ -12,6 +12,7 @@ namespace cpg
 	CollisionComponent::CollisionComponent( const float radius ) :
 		mRadius( radius )
 		, mLabel( nullptr )
+		, mGuide( nullptr )
 		, mIndicator( nullptr )
 	{
 		setName( GetStaticName() );
@@ -19,6 +20,7 @@ namespace cpg
 	CollisionComponent::~CollisionComponent()
 	{
 		mLabel->release();
+		mGuide->release();
 		mIndicator->release();
 	}
 
@@ -48,10 +50,17 @@ namespace cpg
 
 		const float margin = 3.f;
 
+		// Radius View
 		mLabel = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 		mLabel->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 		mLabel->setPositionX( mRadius + margin );
 		mLabel->retain();
+
+		// Collision Indicator
+		auto guide_node = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
+		guide_node->setScale( mRadius / ( guide_node->getContentSize().width * 0.5f ) );
+		guide_node->retain();
+		mGuide = guide_node;
 
 		// Collision Indicator
 		auto indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
@@ -67,6 +76,7 @@ namespace cpg
 	void CollisionComponent::onAdd()
 	{
 		_owner->addChild( mLabel, std::numeric_limits<int>::max() );
+		_owner->addChild( mGuide, std::numeric_limits<int>::max() - 2 );
 		_owner->addChild( mIndicator, std::numeric_limits<int>::max() - 1 );
 
 		ParentT::onAdd();
@@ -76,6 +86,7 @@ namespace cpg
 		ParentT::onRemove();
 
 		_owner->removeChild( mLabel );
+		_owner->removeChild( mGuide );
 		_owner->removeChild( mIndicator );
 	}
 

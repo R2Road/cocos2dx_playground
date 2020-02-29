@@ -33,6 +33,7 @@ namespace cpg
 	private:
 		const float mRadius;
 		cocos2d::RefPtr<cocos2d::Label> mLabel;
+		cocos2d::RefPtr<cocos2d::Sprite> mGuide;
 		cocos2d::RefPtr<cocos2d::Sprite> mIndicator;
 	};
 }
