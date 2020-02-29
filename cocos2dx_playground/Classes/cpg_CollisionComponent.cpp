@@ -46,9 +46,11 @@ namespace cpg
 			return false;
 		}
 
+		const float margin = 3.f;
+
 		mLabel = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 		mLabel->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-		mLabel->setPositionX( mRadius );
+		mLabel->setPositionX( mRadius + margin );
 		mLabel->retain();
 
 		// Collision Indicator
