@@ -5,7 +5,6 @@
 
 #include "ui/UIButton.h"
 
-#include "cpg_CollisionComponent.h"
 #include "step02_RootScene.h"
 
 USING_NS_CC;
@@ -13,6 +12,18 @@ USING_NS_CC;
 const int TAG_Actor = 20140416;
 const int TAG_Bullet = 20200209;
 const int TAG_Distance = 888;
+const int TAG_CollisionIndicator = 999;
+
+class RadiusData : public cocos2d::Ref
+{
+public:
+	RadiusData( const float radius ) : mRadius( radius ) {}
+
+	float GetRadius() const { return mRadius; }
+
+private:
+	float mRadius;
+};
 
 namespace step02
 {
@@ -124,8 +135,29 @@ namespace step02
 					button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
 					actor_root->addChild( button );
 
-					// Collision Component
-					actor_root->addComponent( cpg::CollisionComponent::create( radius ) );
+					// Radius View
+					{
+						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+						label->setPositionX( radius );
+						actor_root->addChild( label, 10000 );
+					}
+
+					// Collision Indicator
+					{
+						auto collision_indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
+						collision_indicator_node->setTag( TAG_CollisionIndicator );
+						collision_indicator_node->setScale( radius / ( collision_indicator_node->getContentSize().width * 0.5f ) );
+						collision_indicator_node->setVisible( false );
+						actor_root->addChild( collision_indicator_node, 9999 );
+					}
+
+					// Radius Data
+					{
+						auto radius_data( new RadiusData( radius ) );
+						actor_root->setUserObject( radius_data );
+						radius_data->release();
+					}
 				}
 				addChild( actor_root, 100 );
 			}
@@ -166,8 +198,20 @@ namespace step02
 					const Size margin( 0.f, 0.f );
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
-					// Collision Component
-					bullet_root_node->addComponent( cpg::CollisionComponent::create( radius ) );
+					// Radius View
+					{
+						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+						label->setPositionX( radius );
+						bullet_root_node->addChild( label, 10000 );
+					}
+
+					// Radius Data
+					{
+						auto radius_data( new RadiusData( radius ) );
+						bullet_root_node->setUserObject( radius_data );
+						radius_data->release();
+					}
 				}
 				addChild( bullet_root_node, 101 );
 			}
@@ -238,9 +282,12 @@ namespace step02
 
 				auto button_node = getChildByTag( TAG_Bullet );
 
-				auto actor_collision_component = static_cast<cpg::CollisionComponent*>( actor_root->getComponent( cpg::CollisionComponent::GetStaticName() ) );
-				auto bullet_collision_component = static_cast<cpg::CollisionComponent*>( button_node->getComponent( cpg::CollisionComponent::GetStaticName() ) );
-				actor_collision_component->onContact( actor_collision_component->Check( bullet_collision_component ) );
+				const float distance = actor_root->getPosition().distance( button_node->getPosition() );
+				const auto actor_radius_data = static_cast<RadiusData*>( actor_root->getUserObject() );
+				const auto bullet_radius_data = static_cast<RadiusData*>( button_node->getUserObject() );
+				const float contact_limit_distance = actor_radius_data->GetRadius() + bullet_radius_data->GetRadius();
+
+				actor_root->getChildByTag( TAG_CollisionIndicator )->setVisible( distance <= contact_limit_distance );
 			}
 		}
 
