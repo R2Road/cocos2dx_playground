@@ -4,7 +4,7 @@
 #include <sstream>
 
 #include "Step01_RootScene.h"
-#include "Step02_RootScene.h"
+#include "step02_RootScene.h"
 
 #include "Research_Input_GamePadTest.h"
 #include "Step99_RootScene.h"

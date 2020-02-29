@@ -1,5 +1,7 @@
 #pragma once
 
+#include <list>
+
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
@@ -12,18 +14,25 @@ namespace step02
 {
 	namespace collision
 	{
-		class BasicScene : public cocos2d::Scene
+		class CollectionScene : public cocos2d::Scene
 		{
 		private:
-			BasicScene();
+			CollectionScene();
 
 		public:
-			static const char* getTitle() { return "Collision : Basic"; }
+			static const char* getTitle() { return "Collision : Collection"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
 			void onEnter() override;
 			void onExit() override;
+
+			using cocos2d::Scene::addChild;
+			void addChild( Node* child, int localZOrder, int tag ) override;
+			void addChild( Node* child, int localZOrder, const std::string &name ) override;
+
+			void removeChild( Node* child, bool cleanup = true ) override;
+			void removeAllChildrenWithCleanup( bool cleanup ) override;
 
 		private:
 			void updateDistance();
@@ -36,6 +45,8 @@ namespace step02
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			cocos2d::Vec2 mButtonMoveOffset;
+
+			std::list<cpg::CollisionComponent*> mCollisionList;
 		};
 	}
 }

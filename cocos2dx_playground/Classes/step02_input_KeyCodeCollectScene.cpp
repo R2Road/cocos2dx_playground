@@ -4,7 +4,7 @@
 #include <sstream>
 
 #include "CPG_Input_KeyCodeNames.h"
-#include "Step02_RootScene.h"
+#include "step02_RootScene.h"
 
 USING_NS_CC;
 

@@ -9,13 +9,17 @@ USING_NS_CC;
 
 namespace cpg
 {
-	CollisionComponent::CollisionComponent( const float radius ) : mRadius( radius ), mLabel( nullptr )
+	CollisionComponent::CollisionComponent( const float radius ) :
+		mRadius( radius )
+		, mLabel( nullptr )
+		, mIndicator( nullptr )
 	{
-		setName( "CPG_COLLISION" );
+		setName( GetStaticName() );
 	}
 	CollisionComponent::~CollisionComponent()
 	{
 		mLabel->release();
+		mIndicator->release();
 	}
 
 	CollisionComponent* CollisionComponent::create( const float radius )
@@ -47,15 +51,41 @@ namespace cpg
 		mLabel->setPositionX( mRadius );
 		mLabel->retain();
 
+		// Collision Indicator
+		auto indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
+		indicator_node->setScale( mRadius / ( indicator_node->getContentSize().width * 0.5f ) );
+		indicator_node->setVisible( false );
+		indicator_node->retain();
+		mIndicator = indicator_node;
+		
+
 		return true;
 	}
 
 	void CollisionComponent::onAdd()
 	{
 		_owner->addChild( mLabel, std::numeric_limits<int>::max() );
+		_owner->addChild( mIndicator, std::numeric_limits<int>::max() - 1 );
+
+		ParentT::onAdd();
 	}
 	void CollisionComponent::onRemove()
 	{
+		ParentT::onRemove();
+
 		_owner->removeChild( mLabel );
+		_owner->removeChild( mIndicator );
+	}
+
+	bool CollisionComponent::Check( const CollisionComponent* const other ) const
+	{
+		const float distance = _owner->getPosition().distance( other->getOwner()->getPosition() );
+		const float contact_limit_distance = mRadius + other->GetRadius();
+		
+		return distance <= contact_limit_distance;
+	}
+	void CollisionComponent::onContact( const bool contact )
+	{
+		mIndicator->setVisible( contact );
 	}
 }

@@ -1,10 +1,11 @@
-#include "step02_collision_BasicScene.h"
+#include "step02_collision_CollectionScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "ui/UIButton.h"
 
+#include "cpg_CollisionComponent.h"
 #include "step02_RootScene.h"
 
 USING_NS_CC;
@@ -12,29 +13,17 @@ USING_NS_CC;
 const int TAG_Actor = 20140416;
 const int TAG_Bullet = 20200209;
 const int TAG_Distance = 888;
-const int TAG_CollisionIndicator = 999;
-
-class RadiusData : public cocos2d::Ref
-{
-public:
-	RadiusData( const float radius ) : mRadius( radius ) {}
-
-	float GetRadius() const { return mRadius; }
-
-private:
-	float mRadius;
-};
 
 namespace step02
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO )
+		CollectionScene::CollectionScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO ), mCollisionList()
 		{}
 
-		Scene* BasicScene::create()
+		Scene* CollectionScene::create()
 		{
-			auto ret = new ( std::nothrow ) BasicScene();
+			auto ret = new ( std::nothrow ) CollectionScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -49,7 +38,7 @@ namespace step02
 			return ret;
 		}
 
-		bool BasicScene::init()
+		bool CollectionScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -95,24 +84,22 @@ namespace step02
 			// Actor
 			//
 			{
-				auto actor_root_node = Node::create();
-				actor_root_node->setTag( TAG_Actor );
-				actor_root_node->setPosition( Vec2(
+				auto actor_root = Node::create();
+				actor_root->setTag( TAG_Actor );
+				actor_root->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				{
 					// Pivot
-					{
-						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-						pivot->setScale( 4.f );
-						actor_root_node->addChild( pivot, 100 );
-					}
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					actor_root->addChild( pivot, 100 );
 
 					// View
-					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-					view_node->setScale( 2.f );
-					actor_root_node->addChild( view_node );
+					auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+					player_node->setScale( 2.f );
+					actor_root->addChild( player_node );
 					{
 						auto animation_object = Animation::create();
 						animation_object->setDelayPerUnit( 0.2f );
@@ -125,52 +112,22 @@ namespace step02
 
 						auto repeat_action = RepeatForever::create( animate_action );
 
-						view_node->runAction( repeat_action );
+						player_node->runAction( repeat_action );
 					}
 
 					const Size margin( 3.f, 3.f );
-					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
+					const float radius = ( player_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Button
 					auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
-					button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
+					button->addTouchEventListener( CC_CALLBACK_2( CollectionScene::onButton, this ) );
 					button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
-					actor_root_node->addChild( button );
+					actor_root->addChild( button );
 
-					// Radius View
-					{
-						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-						label->setPositionX( radius + margin.width );
-						actor_root_node->addChild( label, 10000 );
-					}
-
-					// Click Indicator
-					{
-						auto label = Label::createWithTTF( "CLICK And DRAG HERE ===>>>", "fonts/arial.ttf", 9 );
-						label->setColor( Color3B::RED );
-						label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
-						label->setPositionX( -radius - margin.width );
-						actor_root_node->addChild( label );
-					}
-
-					// Collision Indicator
-					{
-						auto collision_indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
-						collision_indicator_node->setTag( TAG_CollisionIndicator );
-						collision_indicator_node->setScale( radius / ( collision_indicator_node->getContentSize().width * 0.5f ) );
-						collision_indicator_node->setVisible( false );
-						actor_root_node->addChild( collision_indicator_node, 9999 );
-					}
-
-					// Radius Data
-					{
-						auto radius_data( new RadiusData( radius ) );
-						actor_root_node->setUserObject( radius_data );
-						radius_data->release();
-					}
+					// Collision Component
+					actor_root->addComponent( cpg::CollisionComponent::create( radius ) );
 				}
-				addChild( actor_root_node, 100 );
+				addChild( actor_root, 100 );
 			}
 
 			//
@@ -185,11 +142,9 @@ namespace step02
 				) );
 				{
 					// Pivot
-					{
-						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-						pivot->setScale( 4.f );
-						bullet_root_node->addChild( pivot, 100 );
-					}
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					bullet_root_node->addChild( pivot, 100 );
 
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
@@ -208,23 +163,11 @@ namespace step02
 						view_node->runAction( repeat_action );
 					}
 
-					const Size margin( 3.f, 3.f );
-					const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
+					const Size margin( 0.f, 0.f );
+					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
-					// Radius View
-					{
-						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-						label->setPositionX( radius + margin.width );
-						bullet_root_node->addChild( label, 10000 );
-					}
-
-					// Radius Data
-					{
-						auto radius_data( new RadiusData( radius ) );
-						bullet_root_node->setUserObject( radius_data );
-						radius_data->release();
-					}
+					// Collision Component
+					bullet_root_node->addComponent( cpg::CollisionComponent::create( radius ) );
 				}
 				addChild( bullet_root_node, 101 );
 			}
@@ -249,14 +192,14 @@ namespace step02
 			return true;
 		}
 
-		void BasicScene::onEnter()
+		void CollectionScene::onEnter()
 		{
 			Scene::onEnter();
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CollectionScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void BasicScene::onExit()
+		void CollectionScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -264,7 +207,40 @@ namespace step02
 			Scene::onExit();
 		}
 
-		void BasicScene::updateDistance()
+		void CollectionScene::addChild( Node* child, int localZOrder, int tag )
+		{
+			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			if( target_component )
+			{
+				mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
+			}
+			Scene::addChild( child, localZOrder, tag );
+		}
+		void CollectionScene::addChild( Node* child, int localZOrder, const std::string &name )
+		{
+			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			if( target_component )
+			{
+				mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
+			}
+			Scene::addChild( child, localZOrder, name );
+		}
+		void CollectionScene::removeChild( Node* child, bool cleanup /* = true */ )
+		{
+			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			if( target_component )
+			{
+				mCollisionList.remove( static_cast<cpg::CollisionComponent*>( target_component ) );
+			}
+			Scene::removeChild( child, cleanup );
+		}
+		void CollectionScene::removeAllChildrenWithCleanup( bool cleanup )
+		{
+			mCollisionList.clear();
+			Scene::removeAllChildrenWithCleanup( cleanup );
+		}
+
+		void CollectionScene::updateDistance()
 		{
 			const auto bullet_node = static_cast<Label*>( getChildByTag( TAG_Bullet ) );
 			const auto actor_node = static_cast<Label*>( getChildByTag( TAG_Actor ) );
@@ -275,7 +251,7 @@ namespace step02
 			label->setString( StringUtils::format( "Distance : %.2f", distance ) );
 		}
 
-		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void CollectionScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
@@ -293,32 +269,25 @@ namespace step02
 
 				updateDistance();
 
-				//
-				// Collision Check
-				//
 				auto button_node = getChildByTag( TAG_Bullet );
 
-				const float distance = actor_root->getPosition().distance( button_node->getPosition() );
-
-				const auto actor_radius_data = static_cast<RadiusData*>( actor_root->getUserObject() );
-				const auto bullet_radius_data = static_cast<RadiusData*>( button_node->getUserObject() );
-				const float contact_limit_distance = actor_radius_data->GetRadius() + bullet_radius_data->GetRadius();
-
-				actor_root->getChildByTag( TAG_CollisionIndicator )->setVisible( distance <= contact_limit_distance );
+				auto actor_collision_component = static_cast<cpg::CollisionComponent*>( actor_root->getComponent( cpg::CollisionComponent::GetStaticName() ) );
+				auto bullet_collision_component = static_cast<cpg::CollisionComponent*>( button_node->getComponent( cpg::CollisionComponent::GetStaticName() ) );
+				actor_collision_component->onContact( actor_collision_component->Check( bullet_collision_component ) );
 			}
 		}
 
-		void BasicScene::updateForExit( float /*dt*/ )
+		void CollectionScene::updateForExit( float /*dt*/ )
 		{
 			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
-		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void CollectionScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
+				if( !isScheduled( schedule_selector( CollectionScene::updateForExit ) ) )
 				{
-					scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
+					scheduleOnce( schedule_selector( CollectionScene::updateForExit ), 0.f );
 				}
 				return;
 			}
