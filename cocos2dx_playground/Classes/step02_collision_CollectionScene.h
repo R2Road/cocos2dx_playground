@@ -28,16 +28,16 @@ namespace step02
 			void onExit() override;
 
 			using cocos2d::Scene::addChild;
-			void addChild( Node* child, int localZOrder, int tag ) override;
-			void addChild( Node* child, int localZOrder, const std::string &name ) override;
+			void addChild( cocos2d::Node* child, int localZOrder, int tag ) override;
+			void addChild( cocos2d::Node* child, int localZOrder, const std::string &name ) override;
 
-			void removeChild( Node* child, bool cleanup = true ) override;
+			void removeChild( cocos2d::Node* child, bool cleanup = true ) override;
 			void removeAllChildrenWithCleanup( bool cleanup ) override;
 
 		private:
 			void updateDistance();
 
-			void onButton( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
