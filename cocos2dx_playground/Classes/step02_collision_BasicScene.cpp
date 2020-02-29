@@ -95,9 +95,9 @@ namespace step02
 			// Actor
 			//
 			{
-				auto actor_root = Node::create();
-				actor_root->setTag( TAG_Actor );
-				actor_root->setPosition( Vec2(
+				auto actor_root_node = Node::create();
+				actor_root_node->setTag( TAG_Actor );
+				actor_root_node->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
@@ -106,13 +106,13 @@ namespace step02
 					{
 						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 						pivot->setScale( 4.f );
-						actor_root->addChild( pivot, 100 );
+						actor_root_node->addChild( pivot, 100 );
 					}
 
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 					view_node->setScale( 2.f );
-					actor_root->addChild( view_node );
+					actor_root_node->addChild( view_node );
 					{
 						auto animation_object = Animation::create();
 						animation_object->setDelayPerUnit( 0.2f );
@@ -135,14 +135,14 @@ namespace step02
 					auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
 					button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
 					button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
-					actor_root->addChild( button );
+					actor_root_node->addChild( button );
 
 					// Radius View
 					{
 						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 						label->setPositionX( radius );
-						actor_root->addChild( label, 10000 );
+						actor_root_node->addChild( label, 10000 );
 					}
 
 					// Collision Indicator
@@ -151,17 +151,17 @@ namespace step02
 						collision_indicator_node->setTag( TAG_CollisionIndicator );
 						collision_indicator_node->setScale( radius / ( collision_indicator_node->getContentSize().width * 0.5f ) );
 						collision_indicator_node->setVisible( false );
-						actor_root->addChild( collision_indicator_node, 9999 );
+						actor_root_node->addChild( collision_indicator_node, 9999 );
 					}
 
 					// Radius Data
 					{
 						auto radius_data( new RadiusData( radius ) );
-						actor_root->setUserObject( radius_data );
+						actor_root_node->setUserObject( radius_data );
 						radius_data->release();
 					}
 				}
-				addChild( actor_root, 100 );
+				addChild( actor_root_node, 100 );
 			}
 
 			//
