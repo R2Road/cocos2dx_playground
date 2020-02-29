@@ -12,7 +12,6 @@ USING_NS_CC;
 
 const int TAG_Actor = 20140416;
 const int TAG_Bullet = 20200209;
-const int TAG_Distance = 888;
 
 namespace step02
 {
@@ -172,23 +171,6 @@ namespace step02
 				addChild( bullet_root_node, 101 );
 			}
 
-			//
-			// Distance
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-				label->setTag( TAG_Distance );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, 200 );
-
-				updateDistance();
-			}
-
 			return true;
 		}
 
@@ -240,17 +222,6 @@ namespace step02
 			Scene::removeAllChildrenWithCleanup( cleanup );
 		}
 
-		void CollectionScene::updateDistance()
-		{
-			const auto bullet_node = static_cast<Label*>( getChildByTag( TAG_Bullet ) );
-			const auto actor_node = static_cast<Label*>( getChildByTag( TAG_Actor ) );
-
-			const auto distance = bullet_node->getPosition().distance( actor_node->getPosition() );
-
-			auto label = static_cast<Label*>( getChildByTag( TAG_Distance ) );
-			label->setString( StringUtils::format( "Distance : %.2f", distance ) );
-		}
-
 		void CollectionScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
@@ -266,8 +237,6 @@ namespace step02
 				auto actor_root = getChildByTag( TAG_Actor );
 
 				actor_root->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
-
-				updateDistance();
 
 				auto button_node = getChildByTag( TAG_Bullet );
 
