@@ -132,10 +132,12 @@ namespace step02
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Button
-					auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
-					button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-					button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
-					actor_root_node->addChild( button );
+					{
+						auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
+						button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
+						button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
+						actor_root_node->addChild( button );
+					}
 
 					// Radius View
 					{
