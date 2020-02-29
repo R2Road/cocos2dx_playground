@@ -284,9 +284,13 @@ namespace step02
 
 				updateDistance();
 
+				//
+				// Collision Check
+				//
 				auto button_node = getChildByTag( TAG_Bullet );
 
 				const float distance = actor_root->getPosition().distance( button_node->getPosition() );
+
 				const auto actor_radius_data = static_cast<RadiusData*>( actor_root->getUserObject() );
 				const auto bullet_radius_data = static_cast<RadiusData*>( button_node->getUserObject() );
 				const float contact_limit_distance = actor_radius_data->GetRadius() + bullet_radius_data->GetRadius();
