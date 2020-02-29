@@ -17,7 +17,11 @@ namespace step02
 {
 	namespace collision
 	{
-		CollectionScene::CollectionScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO ), mCollisionList()
+		CollectionScene::CollectionScene() :
+			mKeyboardListener( nullptr )
+			, mButtonMoveOffset( Vec2::ZERO )
+			, mCollisionList()
+			, mKeyCodeCollector()
 		{}
 
 		Scene* CollectionScene::create()
@@ -179,6 +183,7 @@ namespace step02
 			Scene::onEnter();
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CollectionScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased= CC_CALLBACK_2( CollectionScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
 		void CollectionScene::onExit()
@@ -261,17 +266,16 @@ namespace step02
 				return;
 			}
 
-			if( EventKeyboard::KeyCode::KEY_1 == keycode )
+			mKeyCodeCollector.onKeyPressed( keycode );
+		}
+		void CollectionScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		{
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				const auto visibleSize = Director::getInstance()->getVisibleSize();
-				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-
-				auto node = getChildByTag( TAG_Actor );
-				node->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
+				return;
 			}
+
+			mKeyCodeCollector.onKeyReleased( keycode );
 		}
 	}
 }

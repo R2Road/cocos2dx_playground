@@ -5,6 +5,8 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
+#include "cpg_input_KeyCodeCollector.h"
+
 namespace cpg
 {
 	class CollisionComponent;
@@ -39,12 +41,15 @@ namespace step02
 
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			cocos2d::Vec2 mButtonMoveOffset;
 
 			std::list<cpg::CollisionComponent*> mCollisionList;
+
+			cpg::input::KeyCodeCollector mKeyCodeCollector;
 		};
 	}
 }
