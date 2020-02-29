@@ -141,7 +141,7 @@ namespace step02
 					{
 						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-						label->setPositionX( radius );
+						label->setPositionX( radius + margin.width );
 						actor_root_node->addChild( label, 10000 );
 					}
 
@@ -208,14 +208,14 @@ namespace step02
 						view_node->runAction( repeat_action );
 					}
 
-					const Size margin( 0.f, 0.f );
-					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
+					const Size margin( 3.f, 3.f );
+					const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 					// Radius View
 					{
 						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-						label->setPositionX( radius );
+						label->setPositionX( radius + margin.width );
 						bullet_root_node->addChild( label, 10000 );
 					}
 
