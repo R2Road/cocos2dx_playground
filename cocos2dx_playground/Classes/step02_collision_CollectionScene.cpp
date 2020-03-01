@@ -149,7 +149,7 @@ namespace step02
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Collision Component
-					actor_root->addComponent( cpg::CollisionComponent::create( radius ) );
+					actor_root->addComponent( cpg::CollisionComponent::create( radius, true, true, true ) );
 				}
 				addChild( actor_root, 100 );
 			}
@@ -192,7 +192,7 @@ namespace step02
 					const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 					// Collision Component
-					bullet_root_node->addComponent( cpg::CollisionComponent::create( radius ) );
+					bullet_root_node->addComponent( cpg::CollisionComponent::create( radius, true, false, false ) );
 				}
 				addChild( bullet_root_node, 101 );
 			}

@@ -16,10 +16,10 @@ namespace cpg
 
 	public:
 		static const char* GetStaticName() { return "CPG_COLLISION"; }
-		static CollisionComponent* create( const float radius );
+		static CollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 
 	private:
-		bool init() override;
+		bool init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 		void onAdd() override;
 		void onRemove() override;
 
