@@ -59,17 +59,15 @@ namespace cpg
 		mLabel->retain();
 
 		// Collision Indicator
-		auto guide_node = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
-		guide_node->setScale( mRadius / ( guide_node->getContentSize().width * 0.5f ) );
-		guide_node->retain();
-		mGuide = guide_node;
+		mGuide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
+		mGuide->setScale( mRadius / ( mGuide->getContentSize().width * 0.5f ) );
+		mGuide->retain();
 
 		// Collision Indicator
-		auto indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
-		indicator_node->setScale( mRadius / ( indicator_node->getContentSize().width * 0.5f ) );
-		indicator_node->setVisible( false );
-		indicator_node->retain();
-		mIndicator = indicator_node;
+		mIndicator = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
+		mIndicator->setScale( mRadius / ( mIndicator->getContentSize().width * 0.5f ) );
+		mIndicator->setVisible( false );
+		mIndicator->retain();
 		
 
 		return true;
