@@ -1,8 +1,7 @@
 #pragma once
 
+#include "cocos/2d/CCNode.h"
 #include "cocos/2d/CCComponent.h"
-#include "cocos/2d/CCLabel.h"
-#include "cocos/2d/CCSprite.h"
 #include "cocos/base/CCRefPtr.h"
 
 namespace cpg
@@ -32,8 +31,8 @@ namespace cpg
 
 	private:
 		const float mRadius;
-		cocos2d::RefPtr<cocos2d::Label> mLabel;
-		cocos2d::RefPtr<cocos2d::Sprite> mGuide;
-		cocos2d::RefPtr<cocos2d::Sprite> mIndicator;
+		cocos2d::RefPtr<cocos2d::Node> mLabel;
+		cocos2d::RefPtr<cocos2d::Node> mGuide;
+		cocos2d::RefPtr<cocos2d::Node> mIndicator;
 	};
 }

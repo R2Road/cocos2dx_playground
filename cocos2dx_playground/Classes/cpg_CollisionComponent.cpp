@@ -3,6 +3,8 @@
 #include <new>
 #include <numeric>
 
+#include "cocos/2d/CCLabel.h"
+#include "cocos/2d/CCSprite.h"
 #include "cocos/base/ccUTF8.h"
 
 USING_NS_CC;
