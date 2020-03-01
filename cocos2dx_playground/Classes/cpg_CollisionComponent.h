@@ -30,9 +30,17 @@ namespace cpg
 		void onContact( const bool contact );
 
 	private:
+		enum class eHelperNode
+		{
+			radius_view,
+			guide,
+			indicator,
+
+			SIZE,
+			FIRST = radius_view,
+		};
+
 		const float mRadius;
-		cocos2d::RefPtr<cocos2d::Node> mLabel;
-		cocos2d::RefPtr<cocos2d::Node> mGuide;
-		cocos2d::RefPtr<cocos2d::Node> mIndicator;
+		std::pair<cocos2d::RefPtr<cocos2d::Node>, int> mHelper[static_cast<std::size_t>( eHelperNode::SIZE )];
 	};
 }
