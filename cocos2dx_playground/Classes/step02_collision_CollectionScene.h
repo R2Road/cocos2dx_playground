@@ -38,6 +38,8 @@ namespace step02
 			void removeAllChildrenWithCleanup( bool cleanup ) override;
 
 		private:
+			void addCollision( cocos2d::Node* child );
+			void removeCollision( cocos2d::Node* child );
 			cocos2d::Node* makeBullet();
 
 			void updateMoveSpeedView();
