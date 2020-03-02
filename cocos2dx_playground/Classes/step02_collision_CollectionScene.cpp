@@ -233,15 +233,33 @@ namespace step02
 				input_vec2.scale( mMoveSpeed );
 				auto actor_root = getChildByTag( TAG_Actor );
 				actor_root->setPosition( actor_root->getPosition() + input_vec2 );
+			}
 
-				//
-				// Collision Check
-				//
-				auto button_node = getChildByTag( TAG_Bullet );
-
+			//
+			// Collision Check
+			//
+			{
+				auto actor_root = getChildByTag( TAG_Actor );
 				auto actor_collision_component = static_cast<cpg::CollisionComponent*>( actor_root->getComponent( cpg::CollisionComponent::GetStaticName() ) );
-				auto bullet_collision_component = static_cast<cpg::CollisionComponent*>( button_node->getComponent( cpg::CollisionComponent::GetStaticName() ) );
-				actor_collision_component->onContact( actor_collision_component->Check( bullet_collision_component ) );
+
+				bool contact_success = false;
+				for( const auto& c : mCollisionList )
+				{
+					if( c == actor_collision_component )
+					{
+						continue;
+					}
+
+					contact_success = actor_collision_component->Check( c );
+					if( !contact_success )
+					{
+						continue;
+					}
+
+					break;
+				}
+
+				actor_collision_component->onContact( contact_success );
 			}
 
 			Scene::update( dt );
