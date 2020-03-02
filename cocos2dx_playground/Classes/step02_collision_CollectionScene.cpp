@@ -4,6 +4,7 @@
 #include <cmath>
 #include <numeric>
 #include <new>
+#include <random>
 #include <sstream>
 
 #include "ui/UIButton.h"
@@ -158,12 +159,38 @@ namespace step02
 			// Bullet
 			//
 			{
-				auto bullet_root_node = makeBullet();
-				bullet_root_node->setPosition( Vec2(
+				const Vec2 visibleCenter(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.7f )
-				) );
-				addChild( bullet_root_node, 101 );
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				);
+				const float negative_range = ( visibleSize.height - visibleOrigin.y ) * 0.3f;
+				const float position_margin = 10.f;
+
+				std::random_device rd;
+				std::mt19937 randomEngine( rd() );
+				std::uniform_int_distribution<> distX( static_cast<int>( visibleOrigin.x + position_margin ), static_cast<int>( visibleSize.width - position_margin ) );
+				std::uniform_int_distribution<> distY( static_cast<int>( visibleOrigin.y + position_margin ), static_cast<int>( visibleSize.height - position_margin ) );
+
+				int current_bullet_count = 0;
+				Vec2 new_bullet_position;
+				while( current_bullet_count < 50 )
+				{
+					new_bullet_position.set(
+						distX( randomEngine )
+						,distY( randomEngine )
+					);
+
+					if( negative_range >= visibleCenter.distance( new_bullet_position ) )
+					{
+						continue;
+					}
+
+					auto bullet_root_node = makeBullet();
+					bullet_root_node->setPosition( visibleOrigin + new_bullet_position );
+					addChild( bullet_root_node, 101 );
+
+					++current_bullet_count;
+				}
 			}
 
 			return true;
