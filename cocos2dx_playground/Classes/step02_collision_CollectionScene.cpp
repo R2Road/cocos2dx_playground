@@ -158,42 +158,11 @@ namespace step02
 			// Bullet
 			//
 			{
-				auto bullet_root_node = Node::create();
-				bullet_root_node->setTag( TAG_Bullet );
+				auto bullet_root_node = makeBullet();
 				bullet_root_node->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.7f )
 				) );
-				{
-					// Pivot
-					{
-						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-						pivot->setScale( 4.f );
-						bullet_root_node->addChild( pivot, 100 );
-					}
-
-					// View
-					auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
-					view_node->setTag( TAG_Bullet );
-					bullet_root_node->addChild( view_node );
-					{
-						auto animation_object = Animation::create();
-						animation_object->setDelayPerUnit( 0.1f );
-						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_01.png" ) );
-						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_02.png" ) );
-
-						auto animate_action = Animate::create( animation_object );
-
-						auto repeat_action = RepeatForever::create( animate_action );
-
-						view_node->runAction( repeat_action );
-					}
-
-					const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
-
-					// Collision Component
-					bullet_root_node->addComponent( cpg::CollisionComponent::create( radius, true, false, false ) );
-				}
 				addChild( bullet_root_node, 101 );
 			}
 
@@ -289,6 +258,44 @@ namespace step02
 		{
 			mCollisionList.clear();
 			Scene::removeAllChildrenWithCleanup( cleanup );
+		}
+
+		Node* CollectionScene::makeBullet()
+		{
+			auto bullet_root_node = Node::create();
+			bullet_root_node->setTag( TAG_Bullet );
+			{
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					bullet_root_node->addChild( pivot, 100 );
+				}
+
+				// View
+				auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+				view_node->setTag( TAG_Bullet );
+				bullet_root_node->addChild( view_node );
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.1f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_01.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_02.png" ) );
+
+					auto animate_action = Animate::create( animation_object );
+
+					auto repeat_action = RepeatForever::create( animate_action );
+
+					view_node->runAction( repeat_action );
+				}
+
+				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
+
+				// Collision Component
+				bullet_root_node->addComponent( cpg::CollisionComponent::create( radius, true, false, false ) );
+			}
+
+			return bullet_root_node;
 		}
 
 		void CollectionScene::updateMoveSpeedView()

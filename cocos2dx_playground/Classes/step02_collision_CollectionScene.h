@@ -38,6 +38,8 @@ namespace step02
 			void removeAllChildrenWithCleanup( bool cleanup ) override;
 
 		private:
+			cocos2d::Node* makeBullet();
+
 			void updateMoveSpeedView();
 
 			void updateForExit( float dt );
