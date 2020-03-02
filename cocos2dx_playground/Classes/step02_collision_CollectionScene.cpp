@@ -15,7 +15,6 @@
 USING_NS_CC;
 
 const int TAG_Actor = 20140416;
-const int TAG_Bullet = 20200209;
 const int TAG_MoveSpeed = 100;
 
 namespace step02
@@ -308,7 +307,6 @@ namespace step02
 		Node* CollectionScene::makeBullet()
 		{
 			auto bullet_root_node = Node::create();
-			bullet_root_node->setTag( TAG_Bullet );
 			{
 				// Pivot
 				{
@@ -319,7 +317,6 @@ namespace step02
 
 				// View
 				auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
-				view_node->setTag( TAG_Bullet );
 				bullet_root_node->addChild( view_node );
 				{
 					auto animation_object = Animation::create();
