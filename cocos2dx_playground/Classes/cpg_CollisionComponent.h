@@ -1,8 +1,7 @@
 #pragma once
 
+#include "cocos/2d/CCNode.h"
 #include "cocos/2d/CCComponent.h"
-#include "cocos/2d/CCLabel.h"
-#include "cocos/2d/CCSprite.h"
 #include "cocos/base/CCRefPtr.h"
 
 namespace cpg
@@ -17,10 +16,10 @@ namespace cpg
 
 	public:
 		static const char* GetStaticName() { return "CPG_COLLISION"; }
-		static CollisionComponent* create( const float radius );
+		static CollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 
 	private:
-		bool init() override;
+		bool init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 		void onAdd() override;
 		void onRemove() override;
 
@@ -31,8 +30,17 @@ namespace cpg
 		void onContact( const bool contact );
 
 	private:
+		enum class eHelperNode
+		{
+			radius_view,
+			guide,
+			indicator,
+
+			SIZE,
+			FIRST = radius_view,
+		};
+
 		const float mRadius;
-		cocos2d::RefPtr<cocos2d::Label> mLabel;
-		cocos2d::RefPtr<cocos2d::Sprite> mIndicator;
+		std::pair<cocos2d::RefPtr<cocos2d::Node>, int> mHelper[static_cast<std::size_t>( eHelperNode::SIZE )];
 	};
 }

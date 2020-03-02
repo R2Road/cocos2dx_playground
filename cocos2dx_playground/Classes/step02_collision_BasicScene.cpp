@@ -132,17 +132,19 @@ namespace step02
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Button
-					auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
-					button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-					button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
-					actor_root_node->addChild( button );
+					{
+						auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
+						button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
+						button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
+						actor_root_node->addChild( button );
+					}
 
 					// Radius View
 					{
 						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 						label->setPositionX( radius + margin.width );
-						actor_root_node->addChild( label, 10000 );
+						actor_root_node->addChild( label );
 					}
 
 					// Click Indicator
@@ -160,7 +162,7 @@ namespace step02
 						collision_indicator_node->setTag( TAG_CollisionIndicator );
 						collision_indicator_node->setScale( radius / ( collision_indicator_node->getContentSize().width * 0.5f ) );
 						collision_indicator_node->setVisible( false );
-						actor_root_node->addChild( collision_indicator_node, 9999 );
+						actor_root_node->addChild( collision_indicator_node );
 					}
 
 					// Radius Data
@@ -216,7 +218,7 @@ namespace step02
 						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 						label->setPositionX( radius + margin.width );
-						bullet_root_node->addChild( label, 10000 );
+						bullet_root_node->addChild( label );
 					}
 
 					// Radius Data

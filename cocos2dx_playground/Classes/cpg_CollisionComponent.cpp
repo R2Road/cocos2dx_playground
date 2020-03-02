@@ -3,6 +3,8 @@
 #include <new>
 #include <numeric>
 
+#include "cocos/2d/CCLabel.h"
+#include "cocos/2d/CCSprite.h"
 #include "cocos/base/ccUTF8.h"
 
 USING_NS_CC;
@@ -11,21 +13,28 @@ namespace cpg
 {
 	CollisionComponent::CollisionComponent( const float radius ) :
 		mRadius( radius )
-		, mLabel( nullptr )
-		, mIndicator( nullptr )
+		, mHelper()
 	{
 		setName( GetStaticName() );
 	}
 	CollisionComponent::~CollisionComponent()
 	{
-		mLabel->release();
-		mIndicator->release();
+		for( auto h : mHelper )
+		{
+			if( !h.first )
+			{
+				continue;
+			}
+
+			h.first->release();
+			h.first.reset();
+		}
 	}
 
-	CollisionComponent* CollisionComponent::create( const float radius )
+	CollisionComponent* CollisionComponent::create( const float radius, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper )
 	{
 		auto ret = new ( std::nothrow ) CollisionComponent( radius );
-		if( !ret || !ret->init() )
+		if( !ret || !ret->init( use_radius_helper, use_guide_helper, use_indicator_helper ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -39,33 +48,68 @@ namespace cpg
 		return ret;
 	}
 
-	bool CollisionComponent::init()
+	bool CollisionComponent::init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper )
 	{
 		if( !ParentT::init() )
 		{
 			return false;
 		}
 
-		mLabel = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-		mLabel->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-		mLabel->setPositionX( mRadius );
-		mLabel->retain();
+		const float margin = 3.f;
+
+		// Radius View
+		if( use_radius_helper )
+		{
+			auto label = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+			label->setPositionX( mRadius + margin );
+			label->retain();
+
+			auto& target_node = mHelper[static_cast<std::size_t>( eHelperNode::radius_view )];
+			target_node.first = label;
+			target_node.second = std::numeric_limits<int>::max();
+		}
+
+		// Collision Guide
+		if( use_guide_helper )
+		{
+			auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
+			guide->setScale( mRadius / ( guide->getContentSize().width * 0.5f ) );
+			guide->retain();
+
+			auto& target_node = mHelper[static_cast<std::size_t>( eHelperNode::guide )];
+			target_node.first = guide;
+			target_node.second = std::numeric_limits<int>::max() - 2;
+		}
 
 		// Collision Indicator
-		auto indicator_node = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
-		indicator_node->setScale( mRadius / ( indicator_node->getContentSize().width * 0.5f ) );
-		indicator_node->setVisible( false );
-		indicator_node->retain();
-		mIndicator = indicator_node;
-		
+		if( use_indicator_helper )
+		{
+			auto indicator = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
+			indicator->setScale( mRadius / ( indicator->getContentSize().width * 0.5f ) );
+			indicator->setVisible( false );
+			indicator->retain();
+
+			auto& target_node = mHelper[static_cast<std::size_t>( eHelperNode::indicator )];
+			target_node.first = indicator;
+			target_node.second = std::numeric_limits<int>::max() - 1;
+		}
 
 		return true;
 	}
 
 	void CollisionComponent::onAdd()
 	{
-		_owner->addChild( mLabel, std::numeric_limits<int>::max() );
-		_owner->addChild( mIndicator, std::numeric_limits<int>::max() - 1 );
+		for( std::size_t i = static_cast<int>( eHelperNode::FIRST ), end = static_cast<int>( eHelperNode::SIZE ); i < end; ++i )
+		{
+			auto& helper_node = mHelper[i];
+			if( !helper_node.first )
+			{
+				continue;
+			}
+
+			_owner->addChild( helper_node.first, helper_node.second );
+		}
 
 		ParentT::onAdd();
 	}
@@ -73,8 +117,15 @@ namespace cpg
 	{
 		ParentT::onRemove();
 
-		_owner->removeChild( mLabel );
-		_owner->removeChild( mIndicator );
+		for( auto h : mHelper )
+		{
+			if( !h.first )
+			{
+				continue;
+			}
+
+			_owner->removeChild( h.first );
+		}
 	}
 
 	bool CollisionComponent::Check( const CollisionComponent* const other ) const
@@ -86,6 +137,10 @@ namespace cpg
 	}
 	void CollisionComponent::onContact( const bool contact )
 	{
-		mIndicator->setVisible( contact );
+		auto& indicator = mHelper[static_cast<std::size_t>( eHelperNode::indicator )];
+		if( indicator.first )
+		{
+			indicator.first->setVisible( contact );
+		}
 	}
 }

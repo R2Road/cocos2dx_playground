@@ -1,7 +1,7 @@
 #include "CPG_Input_BasicCollector.h"
 
 #include "CPG_InputKeyMap.h"
-#include "CPG_Input_KeyCodeCollector.h"
+#include "cpg_input_KeyCodeCollector.h"
 
 USING_NS_CC;
 

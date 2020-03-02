@@ -2,7 +2,7 @@
 
 #include "cocos2d.h"
 #include "CPG_Input_AllowedKeys.h"
-#include "CPG_Input_KeyCodeCollector.h"
+#include "cpg_input_KeyCodeCollector.h"
 
 namespace cpg
 {

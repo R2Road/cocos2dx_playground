@@ -87,9 +87,6 @@
     <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_KeyCodeCollector.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
@@ -213,6 +210,9 @@
     <ClCompile Include="..\Classes\step02_collision_CollectionScene.cpp">
       <Filter>src\scene\step02\collision</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_KeyCodeCollector.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -234,9 +234,6 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_KeyCodeCollector.h">
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h">
@@ -364,6 +361,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_collision_CollectionScene.h">
       <Filter>src\scene\step02\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_KeyCodeCollector.h">
+      <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

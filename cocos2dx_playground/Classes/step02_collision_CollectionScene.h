@@ -5,6 +5,8 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
+#include "cpg_input_KeyCodeCollector.h"
+
 namespace cpg
 {
 	class CollisionComponent;
@@ -25,28 +27,32 @@ namespace step02
 
 			bool init() override;
 			void onEnter() override;
+			void update( float dt ) override;
 			void onExit() override;
 
 			using cocos2d::Scene::addChild;
-			void addChild( Node* child, int localZOrder, int tag ) override;
-			void addChild( Node* child, int localZOrder, const std::string &name ) override;
+			void addChild( cocos2d::Node* child, int localZOrder, int tag ) override;
+			void addChild( cocos2d::Node* child, int localZOrder, const std::string &name ) override;
 
-			void removeChild( Node* child, bool cleanup = true ) override;
+			void removeChild( cocos2d::Node* child, bool cleanup = true ) override;
 			void removeAllChildrenWithCleanup( bool cleanup ) override;
 
 		private:
-			void updateDistance();
+			cocos2d::Node* makeBullet();
 
-			void onButton( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void updateMoveSpeedView();
 
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Vec2 mButtonMoveOffset;
 
 			std::list<cpg::CollisionComponent*> mCollisionList;
+
+			cpg::input::KeyCodeCollector mKeyCodeCollector;
+			int mMoveSpeed;
 		};
 	}
 }
