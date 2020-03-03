@@ -3,8 +3,6 @@
 #include <new>
 #include <sstream>
 
-#include "ui/UIButton.h"
-
 #include "step02_RootScene.h"
 
 USING_NS_CC;
