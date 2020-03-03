@@ -119,6 +119,17 @@ namespace
 			{
 				auto label = static_cast<Label*>( mOwner.getChildByTag( mTargetLabelTag ) );
 				UpdateStateStatusView( label, GetIndex(), mElapsedTime, mLimitTime );
+
+				static const float r = ( Color3B::GRAY.r - Color3B::RED.r );
+				static const float g = ( Color3B::GRAY.g - Color3B::RED.g );
+				static const float b = ( Color3B::GRAY.b - Color3B::RED.b );
+				const float color_modify_rate = mElapsedTime / mLimitTime;
+
+				label->setColor( Color3B(
+					Color3B::RED.r + static_cast<GLubyte>( r * color_modify_rate )
+					, Color3B::RED.g + static_cast<GLubyte>( g * color_modify_rate )
+					, Color3B::RED.b + static_cast<GLubyte>( b * color_modify_rate )
+				) );
 			}
 
 			SuperStateT::Update( dt );
