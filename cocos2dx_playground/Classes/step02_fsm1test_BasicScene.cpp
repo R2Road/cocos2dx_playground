@@ -14,6 +14,11 @@ namespace
 	const int TAG_Label_1 = 20140416;
 	const int TAG_Label_2 = 20160528;
 
+	void UpdateStateStatusView( Label* label, const int state_index, const float elapsed_time, const float limit_time )
+	{
+		label->setString( StringUtils::format( "State %d : %.2f / %.2f", state_index, elapsed_time, limit_time ) );
+	}
+
 	class TestState1 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
 	{
 	public:
@@ -43,7 +48,7 @@ namespace
 			else
 			{
 				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
-				label->setString( StringUtils::format( "State : %.2f / %.2f", mElapsedTime, mLimitTime ) );
+				UpdateStateStatusView( label, 1, mElapsedTime, mLimitTime );
 			}
 			SuperStateT::Update( dt );
 		}
@@ -55,7 +60,7 @@ namespace
 
 			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
 			label->setColor( Color3B::GRAY );
-			label->setString( StringUtils::format( "State : %.2f / %.2f", 0.f, mLimitTime ) );
+			UpdateStateStatusView( label, 1, 0.f, mLimitTime );
 		}
 
 	private:
@@ -92,7 +97,7 @@ namespace
 			else
 			{
 				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
-				label->setString( StringUtils::format( "State : %.2f / %.2f", mElapsedTime, mLimitTime ) );
+				UpdateStateStatusView( label, 2, mElapsedTime, mLimitTime );
 			}
 
 			SuperStateT::Update( dt );
@@ -106,7 +111,7 @@ namespace
 
 			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
 			label->setColor( Color3B::GRAY );
-			label->setString( StringUtils::format( "State : %.2f / %.2f", 0.f, mLimitTime ) );
+			UpdateStateStatusView( label, 2, 0.f, mLimitTime );
 		}
 
 	private:
