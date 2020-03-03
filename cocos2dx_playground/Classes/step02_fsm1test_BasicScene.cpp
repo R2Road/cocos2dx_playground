@@ -18,6 +18,7 @@ namespace
 	{
 	public:
 		TestState1( MyOwnerT& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
+			, mLimitTime( 2.f )
 			, mElapsedTime( 0.f )
 		{}
 
@@ -34,7 +35,7 @@ namespace
 		void Update( float dt ) override
 		{
 			mElapsedTime += dt;
-			if( 2.f < mElapsedTime )
+			if( mLimitTime < mElapsedTime )
 			{
 				TransitionRequest( 0u );
 				return;
@@ -42,7 +43,7 @@ namespace
 			else
 			{
 				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
-				label->setString( StringUtils::format( "State : %.2f / %.2f", mElapsedTime, 2.f ) );
+				label->setString( StringUtils::format( "State : %.2f / %.2f", mElapsedTime, mLimitTime ) );
 			}
 			SuperStateT::Update( dt );
 		}
@@ -54,10 +55,11 @@ namespace
 
 			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
 			label->setColor( Color3B::GRAY );
-			label->setString( StringUtils::format( "State : %.2f / %.2f", 0.f, 2.f ) );
+			label->setString( StringUtils::format( "State : %.2f / %.2f", 0.f, mLimitTime ) );
 		}
 
 	private:
+		const float mLimitTime;
 		float mElapsedTime;
 	};
 
