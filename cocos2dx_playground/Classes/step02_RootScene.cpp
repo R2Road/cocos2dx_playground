@@ -8,7 +8,10 @@
 #include "step02_animation_CallbackScene.h"
 #include "step02_input_KeyCodeCollectScene.h"
 #include "step02_button_DragScene.h"
+
 #include "step02_fsm1test_BasicScene.h"
+#include "step02_fsm1test_AnimationControlScene.h"
+
 #include "step02_collision_BasicScene.h"
 #include "step02_collision_CollectionScene.h"
 #include "step02_game_rain_of_chaos_TitleScene.h"
@@ -59,6 +62,8 @@ namespace step02
 			ss << "[5] : " << step02::animation::CallbackScene::getTitle();
 			ss << std::endl;
 			ss << "[6] : " << step02::fsm1test::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[7] : " << step02::fsm1test::AnimationControlScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[8] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
@@ -129,6 +134,9 @@ namespace step02
 			break;
 		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_7:
+			Director::getInstance()->replaceScene( step02::fsm1test::AnimationControlScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_8:
