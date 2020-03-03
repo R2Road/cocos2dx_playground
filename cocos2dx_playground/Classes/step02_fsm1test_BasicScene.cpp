@@ -11,6 +11,9 @@ USING_NS_CC;
 
 namespace
 {
+	const int TAG_Label_1 = 20140416;
+	const int TAG_Label_2 = 20160528;
+
 	class TestState1 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
 	{
 	public:
@@ -21,6 +24,9 @@ namespace
 		void Enter() override
 		{
 			mElapsedTime = 0.f;
+
+			mOwner.getChildByTag( TAG_Label_1 )->setColor( Color3B::RED );
+			mOwner.getChildByTag( TAG_Label_2 )->setColor( Color3B::GRAY );
 
 			CCLOG( "Test State 1 : Enter" );
 			SuperStateT::Enter();
@@ -57,6 +63,9 @@ namespace
 		void Enter() override
 		{
 			mElapsedTime = 0.f;
+
+			mOwner.getChildByTag( TAG_Label_1 )->setColor( Color3B::GRAY );
+			mOwner.getChildByTag( TAG_Label_2 )->setColor( Color3B::RED );
 
 			CCLOG( "Test State 2 : Enter" );
 			SuperStateT::Enter();
@@ -145,6 +154,33 @@ namespace step02
 			{
 				auto background_layer = LayerColor::create( Color4B( 5, 29, 81, 255 ) );
 				addChild( background_layer, 0 );
+			}
+
+			//
+			// View
+			//
+			{
+				{
+					auto label = Label::createWithTTF( "State 1", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					label->setTag( TAG_Label_1 );
+					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.7f )
+					) );
+					addChild( label, 1 );
+				}
+
+				{
+					auto label = Label::createWithTTF( "State 2", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					label->setTag( TAG_Label_2 );
+					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.3f )
+					) );
+					addChild( label, 1 );
+				}
 			}
 
 			//
