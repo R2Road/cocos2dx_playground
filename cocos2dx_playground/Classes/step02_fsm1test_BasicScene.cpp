@@ -39,6 +39,11 @@ namespace
 				TransitionRequest( 0u );
 				return;
 			}
+			else
+			{
+				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
+				label->setString( StringUtils::format( "State : %.2f / %.2f", mElapsedTime, 2.f ) );
+			}
 			SuperStateT::Update( dt );
 		}
 
@@ -47,7 +52,9 @@ namespace
 			SuperStateT::Exit();
 			CCLOG( "Test State 1 : Exit" );
 
-			mOwner.getChildByTag( TAG_Label_1 )->setColor( Color3B::GRAY );
+			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
+			label->setColor( Color3B::GRAY );
+			label->setString( StringUtils::format( "State : %.2f / %.2f", 0.f, 2.f ) );
 		}
 
 	private:
