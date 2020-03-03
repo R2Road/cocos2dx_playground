@@ -22,17 +22,19 @@ namespace fsm1
 				, "fsm1 : Machine : Add - Invalid Type"
 			);
 
-			auto new_state = new CustomeStateT( owner );
+			auto new_state = new CustomeStateT( owner, *this, mStateList.size() );
 			new_state->Init();
 			if( is_start )
 			{
-				mStartStateIndex = mStateList.size();
+				mStartStateIndex = new_state->GetIndex();
 			}
 
 			mStateList.emplace_back( new_state );
 
 			return *new_state;
 		}
+
+		void TransitionRequest( const std::size_t state_index );
 
 		void Enter();
 		void Update( const float dt );

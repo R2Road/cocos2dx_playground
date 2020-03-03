@@ -19,6 +19,15 @@ namespace fsm1
 		}
 	}
 
+	void Machine::TransitionRequest( const std::size_t state_index )
+	{
+		assert( mStateList.size() > state_index );
+
+		mCurrentState->Exit();
+		mCurrentState = mStateList[state_index];
+		mCurrentState->Enter();
+	}
+
 	void Machine::Enter()
 	{
 		if( !mStateList.empty() && INVALID_STATE_INDEX != mStartStateIndex )

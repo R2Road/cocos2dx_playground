@@ -14,18 +14,26 @@ namespace
 	class TestState1 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
 	{
 	public:
-		TestState1( step02::fsm1test::BasicScene& owner ) : CustomeState( owner )
+		TestState1( step02::fsm1test::BasicScene& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
+			, mElapsedTime( 0.f )
 		{}
 
 		void Enter() override
 		{
+			mElapsedTime = 0.f;
+
 			CCLOG( "Test State 1 : Enter" );
 			SuperStateT::Enter();
 		}
 
 		void Update( float dt ) override
 		{
-			CCLOG( "Test State 1 : Update" );
+			mElapsedTime += dt;
+			if( 2.f < mElapsedTime )
+			{
+				TransitionRequest( 0u );
+				return;
+			}
 			SuperStateT::Update( dt );
 		}
 
@@ -34,23 +42,35 @@ namespace
 			CCLOG( "Test State 1 : Exit" );
 			SuperStateT::Exit();
 		}
+
+	private:
+		float mElapsedTime;
 	};
 
 	class TestState2 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
 	{
 	public:
-		TestState2( step02::fsm1test::BasicScene& owner ) : CustomeState( owner )
+		TestState2( step02::fsm1test::BasicScene& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
+			, mElapsedTime( 0.f )
 		{}
 
 		void Enter() override
 		{
+			mElapsedTime = 0.f;
+
 			CCLOG( "Test State 2 : Enter" );
 			SuperStateT::Enter();
 		}
 
 		void Update( float dt ) override
 		{
-			CCLOG( "Test State 2 : Update" );
+			mElapsedTime += dt;
+			if( 2.f < mElapsedTime )
+			{
+				TransitionRequest( 0u );
+				return;
+			}
+
 			SuperStateT::Update( dt );
 		}
 
@@ -59,6 +79,9 @@ namespace
 			CCLOG( "Test State 2 : Exit" );
 			SuperStateT::Exit();
 		}
+
+	private:
+		float mElapsedTime;
 	};
 }
 
@@ -130,6 +153,9 @@ namespace step02
 			{
 				auto& test_state_1 = mFSMMachine.AddState<TestState1>( *this, false );
 				auto& test_state_2 = mFSMMachine.AddState<TestState2>( *this, true );
+
+				test_state_1.AddTransition( test_state_2.GetIndex() );
+				test_state_2.AddTransition( test_state_1.GetIndex() );
 			}
 
 			return true;
