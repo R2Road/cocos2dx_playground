@@ -11,8 +11,8 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_Label_1 = 20140416;
-	const int TAG_Label_2 = 20160528;
+	const int TAG_Label_State0 = 20140416;
+	const int TAG_Label_State1 = 20160528;
 
 	void UpdateStateStatusView( Label* label, const int state_index, const float elapsed_time, const float limit_time )
 	{
@@ -29,7 +29,7 @@ namespace
 
 		void Init() override
 		{
-			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
+			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State0 ) );
 			label->setColor( Color3B::GRAY );
 			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 			SuperStateT::Init();
@@ -39,7 +39,7 @@ namespace
 		{
 			mElapsedTime = 0.f;
 
-			mOwner.getChildByTag( TAG_Label_1 )->setColor( Color3B::RED );
+			mOwner.getChildByTag( TAG_Label_State0 )->setColor( Color3B::RED );
 
 			CCLOG( "State %d : Enter", GetIndex() );
 			SuperStateT::Enter();
@@ -55,7 +55,7 @@ namespace
 			}
 			else
 			{
-				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
+				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State0 ) );
 				UpdateStateStatusView( label, GetIndex(), mElapsedTime, mLimitTime );
 			}
 			SuperStateT::Update( dt );
@@ -66,7 +66,7 @@ namespace
 			SuperStateT::Exit();
 			CCLOG( "State %d : Exit", GetIndex() );
 
-			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
+			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State0 ) );
 			label->setColor( Color3B::GRAY );
 			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 		}
@@ -86,7 +86,7 @@ namespace
 
 		void Init() override
 		{
-			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
+			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State1 ) );
 			label->setColor( Color3B::GRAY );
 			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 			SuperStateT::Init();
@@ -96,7 +96,7 @@ namespace
 		{
 			mElapsedTime = 0.f;
 
-			mOwner.getChildByTag( TAG_Label_2 )->setColor( Color3B::RED );
+			mOwner.getChildByTag( TAG_Label_State1 )->setColor( Color3B::RED );
 
 			CCLOG( "State %d : Enter", GetIndex() );
 			SuperStateT::Enter();
@@ -112,7 +112,7 @@ namespace
 			}
 			else
 			{
-				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
+				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State1 ) );
 				UpdateStateStatusView( label, GetIndex(), mElapsedTime, mLimitTime );
 			}
 
@@ -125,7 +125,7 @@ namespace
 			SuperStateT::Exit();
 			CCLOG( "State %d : Exit", GetIndex() );
 
-			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
+			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State1 ) );
 			label->setColor( Color3B::GRAY );
 			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 		}
@@ -204,7 +204,7 @@ namespace step02
 			{
 				{
 					auto label = Label::createWithTTF( "State 1", "fonts/arial.ttf", 12 );
-					label->setTag( TAG_Label_1 );
+					label->setTag( TAG_Label_State0 );
 					label->setColor( Color3B::GRAY );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -216,7 +216,7 @@ namespace step02
 				{
 					auto label = Label::createWithTTF( "State 2", "fonts/arial.ttf", 12 );
 					label->setColor( Color3B::GRAY );
-					label->setTag( TAG_Label_2 );
+					label->setTag( TAG_Label_State1 );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.3f )
