@@ -19,19 +19,44 @@ namespace
 
 		void Enter() override
 		{
-			CCLOG( "Test State : Enter" );
+			CCLOG( "Test State 1 : Enter" );
 			SuperStateT::Enter();
 		}
 
 		void Update( float dt ) override
 		{
-			CCLOG( "Test State : Update" );
+			CCLOG( "Test State 1 : Update" );
 			SuperStateT::Update( dt );
 		}
 
 		void Exit() override
 		{
-			CCLOG( "Test State : Exit" );
+			CCLOG( "Test State 1 : Exit" );
+			SuperStateT::Exit();
+		}
+	};
+
+	class TestState2 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
+	{
+	public:
+		TestState2( step02::fsm1test::BasicScene& owner ) : CustomeState( owner )
+		{}
+
+		void Enter() override
+		{
+			CCLOG( "Test State 2 : Enter" );
+			SuperStateT::Enter();
+		}
+
+		void Update( float dt ) override
+		{
+			CCLOG( "Test State 2 : Update" );
+			SuperStateT::Update( dt );
+		}
+
+		void Exit() override
+		{
+			CCLOG( "Test State 2 : Exit" );
 			SuperStateT::Exit();
 		}
 	};
@@ -103,7 +128,8 @@ namespace step02
 			// FSM
 			//
 			{
-				auto test_state = mFSMMachine.Add<TestState1>( *this, true );
+				auto& test_state_1 = mFSMMachine.Add<TestState1>( *this, false );
+				auto& test_state_2 = mFSMMachine.Add<TestState2>( *this, true );
 			}
 
 			return true;

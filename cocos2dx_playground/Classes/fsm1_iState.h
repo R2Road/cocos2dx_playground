@@ -5,7 +5,14 @@ namespace fsm1
 	class iState
 	{
 	public:
+		iState() {}
 		virtual ~iState() {}
+
+		// none copy
+		iState( const iState& ) = delete;
+		iState( iState&& ) = delete;
+		iState& operator=( const iState& ) = delete;
+		iState& operator=( iState&& ) = delete;
 
 		virtual void Init() {}
 		virtual void Clear() {}
