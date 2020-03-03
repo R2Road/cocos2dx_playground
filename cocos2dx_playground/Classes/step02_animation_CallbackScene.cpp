@@ -1,4 +1,4 @@
-#include "Step01_Animation_CallbackScene.h"
+#include "step02_animation_CallbackScene.h"
 
 #include <new>
 #include <sstream>
@@ -15,7 +15,7 @@ namespace
 	const int TAG_AnimationAction = 111;
 }
 
-namespace step01
+namespace step02
 {
 	namespace animation
 	{

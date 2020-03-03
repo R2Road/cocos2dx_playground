@@ -5,7 +5,7 @@
 
 #include "PlayGroundScene.h"
 #include "step02_animation_ListScene.h"
-#include "Step01_Animation_CallbackScene.h"
+#include "step02_animation_CallbackScene.h"
 #include "step02_input_KeyCodeCollectScene.h"
 #include "step02_button_DragScene.h"
 #include "step02_fsm1test_BasicScene.h"
@@ -56,7 +56,7 @@ namespace step02
 			ss << std::endl;
 			ss << "[4] : " << step02::animation::ListScene::getTitle();
 			ss << std::endl;
-			ss << "[5] : " << step01::animation::CallbackScene::getTitle();
+			ss << "[5] : " << step02::animation::CallbackScene::getTitle();
 			ss << std::endl;
 			ss << "[6] : " << step02::fsm1test::BasicScene::getTitle();
 			ss << std::endl;
@@ -125,7 +125,7 @@ namespace step02
 			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step01::animation::CallbackScene::create() );
+			Director::getInstance()->replaceScene( step02::animation::CallbackScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );

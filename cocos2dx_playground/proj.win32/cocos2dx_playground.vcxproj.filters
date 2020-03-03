@@ -228,7 +228,7 @@
     <ClCompile Include="..\Classes\step02_game_rain_of_chaos_TitleScene.cpp">
       <Filter>src\scene\step02\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Animation_CallbackScene.cpp">
+    <ClCompile Include="..\Classes\step02_animation_CallbackScene.cpp">
       <Filter>src\scene\step02\animation</Filter>
     </ClCompile>
   </ItemGroup>
@@ -392,7 +392,7 @@
     <ClInclude Include="..\Classes\step02_game_rain_of_chaos_TitleScene.h">
       <Filter>src\scene\step02\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Animation_CallbackScene.h">
+    <ClInclude Include="..\Classes\step02_animation_CallbackScene.h">
       <Filter>src\scene\step02\animation</Filter>
     </ClInclude>
   </ItemGroup>

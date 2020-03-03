@@ -167,7 +167,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\fsm1_Machine.cpp" />
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp" />
     <ClCompile Include="..\Classes\Step01_Animation_BasicScene.cpp" />
-    <ClCompile Include="..\Classes\Step01_Animation_CallbackScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Animation_PlayNStopScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Animation_RootScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp" />
@@ -192,6 +191,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\Step01_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp" />
+    <ClCompile Include="..\Classes\step02_animation_CallbackScene.cpp" />
     <ClCompile Include="..\Classes\step02_animation_ListScene.cpp" />
     <ClCompile Include="..\Classes\step02_button_DragScene.cpp" />
     <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp" />
@@ -223,7 +223,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\fsm1_Machine.h" />
     <ClInclude Include="..\Classes\Research_Input_GamePadTest.h" />
     <ClInclude Include="..\Classes\Step01_Animation_BasicScene.h" />
-    <ClInclude Include="..\Classes\Step01_Animation_CallbackScene.h" />
     <ClInclude Include="..\Classes\Step01_Animation_PlayNStopScene.h" />
     <ClInclude Include="..\Classes\Step01_Animation_RootScene.h" />
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h" />
@@ -248,6 +247,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\Step01_RootScene.h" />
     <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h" />
+    <ClInclude Include="..\Classes\step02_animation_CallbackScene.h" />
     <ClInclude Include="..\Classes\step02_animation_ListScene.h" />
     <ClInclude Include="..\Classes\step02_button_DragScene.h" />
     <ClInclude Include="..\Classes\step02_collision_BasicScene.h" />
