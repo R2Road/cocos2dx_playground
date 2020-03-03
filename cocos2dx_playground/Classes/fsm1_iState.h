@@ -33,7 +33,7 @@ namespace fsm1
 		using SuperStateT = CustomeState<SubStateT, OwnerT>;
 		using MyOwnerT = OwnerT;
 
-		CustomeState( MyOwnerT& owner, Machine& machine, const std::size_t index ) : mOwner( owner ), mMachine( machine ), mIndex( index )
+		CustomeState( MyOwnerT& owner, Machine& machine, const std::size_t index ) : mIndex( index ), mOwner( owner ), mMachine( machine ), mTransitions()
 		{}
 
 		std::size_t GetIndex() const { return mIndex; }
@@ -50,10 +50,12 @@ namespace fsm1
 			mMachine.TransitionRequest( mTransitions[transition_index] );
 		}
 
+	private:
+		const int mIndex;
+
 	protected:
 		MyOwnerT& mOwner;
 		Machine& mMachine;
-		const int mIndex;
 		std::vector<std::size_t> mTransitions;
 	};
 }
