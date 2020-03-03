@@ -164,6 +164,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp" />
     <ClCompile Include="..\Classes\CPG_Setting.cpp" />
     <ClCompile Include="..\Classes\EntryScene.cpp" />
+    <ClCompile Include="..\Classes\fsm1_Machine.cpp" />
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp" />
     <ClCompile Include="..\Classes\Step01_Animation_BasicScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Animation_CallbackScene.cpp" />
@@ -195,6 +196,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step02_button_DragScene.cpp" />
     <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step02_collision_CollectionScene.cpp" />
+    <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step02_input_KeyCodeCollectScene.cpp" />
     <ClCompile Include="..\Classes\step02_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step99_RootScene.cpp" />
@@ -216,6 +218,8 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.h" />
     <ClInclude Include="..\Classes\CPG_Setting.h" />
     <ClInclude Include="..\Classes\EntryScene.h" />
+    <ClInclude Include="..\Classes\fsm1_iState.h" />
+    <ClInclude Include="..\Classes\fsm1_Machine.h" />
     <ClInclude Include="..\Classes\Research_Input_GamePadTest.h" />
     <ClInclude Include="..\Classes\Step01_Animation_BasicScene.h" />
     <ClInclude Include="..\Classes\Step01_Animation_CallbackScene.h" />
@@ -247,6 +251,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step02_button_DragScene.h" />
     <ClInclude Include="..\Classes\step02_collision_BasicScene.h" />
     <ClInclude Include="..\Classes\step02_collision_CollectionScene.h" />
+    <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h" />
     <ClInclude Include="..\Classes\step02_input_KeyCodeCollectScene.h" />
     <ClInclude Include="..\Classes\step02_RootScene.h" />
     <ClInclude Include="..\Classes\Step99_RootScene.h" />
