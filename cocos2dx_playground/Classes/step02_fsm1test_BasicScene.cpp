@@ -11,8 +11,8 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_Label_State0 = 20140416;
-	const int TAG_Label_State1 = 20160528;
+	const int TAG_Label_State_0 = 20140416;
+	const int TAG_Label_State_1 = 20160528;
 
 	void UpdateStateStatusView( Label* label, const int state_index, const float elapsed_time, const float limit_time )
 	{
@@ -210,7 +210,7 @@ namespace step02
 			{
 				{
 					auto label = Label::createWithTTF( "State 1", "fonts/arial.ttf", 12 );
-					label->setTag( TAG_Label_State0 );
+					label->setTag( TAG_Label_State_0 );
 					label->setColor( Color3B::GRAY );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -222,7 +222,7 @@ namespace step02
 				{
 					auto label = Label::createWithTTF( "State 2", "fonts/arial.ttf", 12 );
 					label->setColor( Color3B::GRAY );
-					label->setTag( TAG_Label_State1 );
+					label->setTag( TAG_Label_State_1 );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.3f )
@@ -235,13 +235,13 @@ namespace step02
 			// FSM
 			//
 			{
-				auto& test_state_1 = mFSMMachine.AddState<TestState1>( *this, false );
-				test_state_1.Setup( TAG_Label_State0 );
-				auto& test_state_2 = mFSMMachine.AddState<TestState2>( *this, true );
-				test_state_2.Setup( TAG_Label_State1 );
+				auto& test_state_0 = mFSMMachine.AddState<TestState1>( *this, false );
+				test_state_0.Setup( TAG_Label_State_0 );
+				auto& test_state_1 = mFSMMachine.AddState<TestState2>( *this, true );
+				test_state_1.Setup( TAG_Label_State_1 );
 
-				test_state_1.AddTransition( test_state_2.GetIndex() );
-				test_state_2.AddTransition( test_state_1.GetIndex() );
+				test_state_0.AddTransition( test_state_1.GetIndex() );
+				test_state_1.AddTransition( test_state_0.GetIndex() );
 			}
 
 			return true;
