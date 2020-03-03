@@ -3,10 +3,7 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-namespace cpg
-{
-	class CollisionComponent;
-}
+#include "cpg_input_KeyCodeCollector.h"
 
 namespace step02
 {
@@ -23,19 +20,23 @@ namespace step02
 
 			bool init() override;
 			void onEnter() override;
+			void update( float dt ) override;
 			void onExit() override;
 
 		private:
 			void updateDistance();
 
-			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void updateMoveSpeedView();
 
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Vec2 mButtonMoveOffset;
+			
+			cpg::input::KeyCodeCollector mKeyCodeCollector;
+			int mMoveSpeed;
 		};
 	}
 }
