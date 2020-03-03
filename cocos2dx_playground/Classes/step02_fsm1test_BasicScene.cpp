@@ -20,19 +20,19 @@ namespace
 		void Enter() override
 		{
 			CCLOG( "Test State : Enter" );
-			ParentT::Enter();
+			SuperStateT::Enter();
 		}
 
 		void Update( float dt ) override
 		{
 			CCLOG( "Test State : Update" );
-			ParentT::Update( dt );
+			SuperStateT::Update( dt );
 		}
 
 		void Exit() override
 		{
 			CCLOG( "Test State : Exit" );
-			ParentT::Exit();
+			SuperStateT::Exit();
 		}
 	};
 }

@@ -15,11 +15,11 @@ namespace fsm1
 		virtual void Exit() {}
 	};
 
-	template<typename MyStateT, typename OwnerT>
+	template<typename SubStateT, typename OwnerT>
 	class CustomeState : public iState
 	{
 	public:
-		using ParentT = CustomeState<MyStateT, OwnerT>;
+		using SuperStateT = CustomeState<SubStateT, OwnerT>;
 		using MyOwnerT = OwnerT;
 
 		CustomeState( MyOwnerT& owner ) : mOwner( owner )
