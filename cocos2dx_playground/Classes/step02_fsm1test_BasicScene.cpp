@@ -26,7 +26,6 @@ namespace
 			mElapsedTime = 0.f;
 
 			mOwner.getChildByTag( TAG_Label_1 )->setColor( Color3B::RED );
-			mOwner.getChildByTag( TAG_Label_2 )->setColor( Color3B::GRAY );
 
 			CCLOG( "Test State 1 : Enter" );
 			SuperStateT::Enter();
@@ -45,8 +44,10 @@ namespace
 
 		void Exit() override
 		{
-			CCLOG( "Test State 1 : Exit" );
 			SuperStateT::Exit();
+			CCLOG( "Test State 1 : Exit" );
+
+			mOwner.getChildByTag( TAG_Label_1 )->setColor( Color3B::GRAY );
 		}
 
 	private:
@@ -64,7 +65,6 @@ namespace
 		{
 			mElapsedTime = 0.f;
 
-			mOwner.getChildByTag( TAG_Label_1 )->setColor( Color3B::GRAY );
 			mOwner.getChildByTag( TAG_Label_2 )->setColor( Color3B::RED );
 
 			CCLOG( "Test State 2 : Enter" );
@@ -85,8 +85,11 @@ namespace
 
 		void Exit() override
 		{
-			CCLOG( "Test State 2 : Exit" );
+			
 			SuperStateT::Exit();
+			CCLOG( "Test State 2 : Exit" );
+
+			mOwner.getChildByTag( TAG_Label_2 )->setColor( Color3B::GRAY );
 		}
 
 	private:
@@ -163,6 +166,7 @@ namespace step02
 				{
 					auto label = Label::createWithTTF( "State 1", "fonts/arial.ttf", 12 );
 					label->setTag( TAG_Label_1 );
+					label->setColor( Color3B::GRAY );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.7f )
@@ -172,6 +176,7 @@ namespace step02
 
 				{
 					auto label = Label::createWithTTF( "State 2", "fonts/arial.ttf", 12 );
+					label->setColor( Color3B::GRAY );
 					label->setTag( TAG_Label_2 );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
