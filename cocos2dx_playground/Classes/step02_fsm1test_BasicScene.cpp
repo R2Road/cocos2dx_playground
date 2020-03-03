@@ -5,13 +5,43 @@
 
 #include "step02_RootScene.h"
 
+#include "fsm1_iState.h"
+
 USING_NS_CC;
+
+namespace
+{
+	class TestState : public fsm1::CustomeState<TestState, step02::fsm1test::BasicScene>
+	{
+	public:
+		TestState( step02::fsm1test::BasicScene& owner ) : CustomeState( owner )
+		{}
+
+		void Enter() override
+		{
+			CCLOG( "Test State : Enter" );
+			ParentT::Enter();
+		}
+
+		void Update( float dt ) override
+		{
+			CCLOG( "Test State : Update" );
+			ParentT::Update( dt );
+		}
+
+		void Exit() override
+		{
+			CCLOG( "Test State : Exit" );
+			ParentT::Exit();
+		}
+	};
+}
 
 namespace step02
 {
 	namespace fsm1test
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr )
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mFSMMachine()
 		{}
 
 		Scene* BasicScene::create()
@@ -25,6 +55,7 @@ namespace step02
 			}
 			else
 			{
+				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -68,6 +99,13 @@ namespace step02
 				addChild( background_layer, 0 );
 			}
 
+			//
+			// FSM
+			//
+			{
+				auto test_state = mFSMMachine.Add<TestState>( *this, true );
+			}
+
 			return true;
 		}
 
@@ -77,9 +115,18 @@ namespace step02
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+
+			mFSMMachine.Enter();
+		}
+		void BasicScene::update( float dt )
+		{
+			mFSMMachine.Update( dt );
+			Scene::update( dt );
 		}
 		void BasicScene::onExit()
 		{
+			mFSMMachine.Exit();
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;

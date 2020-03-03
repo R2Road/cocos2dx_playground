@@ -4,6 +4,8 @@
 
 #include "2d/CCScene.h"
 
+#include "fsm1_Machine.h"
+
 namespace step02
 {
 	namespace fsm1test
@@ -19,6 +21,7 @@ namespace step02
 
 			bool init() override;
 			void onEnter() override;
+			void update( float dt ) override;
 			void onExit() override;
 
 		private:
@@ -27,6 +30,8 @@ namespace step02
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			fsm1::Machine mFSMMachine;
 		};
 	}
 }
