@@ -164,7 +164,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp" />
     <ClCompile Include="..\Classes\CPG_Setting.cpp" />
     <ClCompile Include="..\Classes\EntryScene.cpp" />
-    <ClCompile Include="..\Classes\fsm1_iState.cpp" />
     <ClCompile Include="..\Classes\fsm1_Machine.cpp" />
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp" />
     <ClCompile Include="..\Classes\Step01_Animation_BasicScene.cpp" />

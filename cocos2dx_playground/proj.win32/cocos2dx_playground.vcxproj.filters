@@ -222,9 +222,6 @@
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
       <Filter>src\scene\step02\fsm1</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\fsm1_iState.cpp">
-      <Filter>src\fsm1</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
     </ClCompile>
