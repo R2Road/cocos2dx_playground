@@ -161,9 +161,8 @@ namespace step02
 			//
 			{
 				{
-					auto label = Label::createWithTTF( "State 1", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "State 1", "fonts/arial.ttf", 12 );
 					label->setTag( TAG_Label_1 );
-					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.7f )
@@ -172,9 +171,8 @@ namespace step02
 				}
 
 				{
-					auto label = Label::createWithTTF( "State 2", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "State 2", "fonts/arial.ttf", 12 );
 					label->setTag( TAG_Label_2 );
-					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.3f )
