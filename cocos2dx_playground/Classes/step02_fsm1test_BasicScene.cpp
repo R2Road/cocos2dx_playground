@@ -25,21 +25,23 @@ namespace
 		TestState1( MyOwnerT& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
 			, mLimitTime( 2.f )
 			, mElapsedTime( 0.f )
+			, mTargetLabelTag( -1 )
 		{}
 
-		void Init() override
+		void Setup( const int target_label_tag )
 		{
-			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State0 ) );
+			mTargetLabelTag = target_label_tag;
+
+			auto label = static_cast<Label*>( mOwner.getChildByTag( mTargetLabelTag ) );
 			label->setColor( Color3B::GRAY );
 			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
-			SuperStateT::Init();
 		}
 
 		void Enter() override
 		{
 			mElapsedTime = 0.f;
 
-			mOwner.getChildByTag( TAG_Label_State0 )->setColor( Color3B::RED );
+			mOwner.getChildByTag( mTargetLabelTag )->setColor( Color3B::RED );
 
 			CCLOG( "State %d : Enter", GetIndex() );
 			SuperStateT::Enter();
@@ -55,7 +57,7 @@ namespace
 			}
 			else
 			{
-				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State0 ) );
+				auto label = static_cast<Label*>( mOwner.getChildByTag( mTargetLabelTag ) );
 				UpdateStateStatusView( label, GetIndex(), mElapsedTime, mLimitTime );
 			}
 			SuperStateT::Update( dt );
@@ -66,7 +68,7 @@ namespace
 			SuperStateT::Exit();
 			CCLOG( "State %d : Exit", GetIndex() );
 
-			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State0 ) );
+			auto label = static_cast<Label*>( mOwner.getChildByTag( mTargetLabelTag ) );
 			label->setColor( Color3B::GRAY );
 			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 		}
@@ -74,6 +76,7 @@ namespace
 	private:
 		const float mLimitTime;
 		float mElapsedTime;
+		int mTargetLabelTag;
 	};
 
 	class TestState2 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
@@ -82,21 +85,23 @@ namespace
 		TestState2( MyOwnerT& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
 			, mLimitTime( 3.f )
 			, mElapsedTime( 0.f )
+			, mTargetLabelTag( -1 )
 		{}
 
-		void Init() override
+		void Setup( const int target_label_tag )
 		{
-			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State1 ) );
+			mTargetLabelTag = target_label_tag;
+
+			auto label = static_cast<Label*>( mOwner.getChildByTag( mTargetLabelTag ) );
 			label->setColor( Color3B::GRAY );
 			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
-			SuperStateT::Init();
 		}
 
 		void Enter() override
 		{
 			mElapsedTime = 0.f;
 
-			mOwner.getChildByTag( TAG_Label_State1 )->setColor( Color3B::RED );
+			mOwner.getChildByTag( mTargetLabelTag )->setColor( Color3B::RED );
 
 			CCLOG( "State %d : Enter", GetIndex() );
 			SuperStateT::Enter();
@@ -112,7 +117,7 @@ namespace
 			}
 			else
 			{
-				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State1 ) );
+				auto label = static_cast<Label*>( mOwner.getChildByTag( mTargetLabelTag ) );
 				UpdateStateStatusView( label, GetIndex(), mElapsedTime, mLimitTime );
 			}
 
@@ -125,7 +130,7 @@ namespace
 			SuperStateT::Exit();
 			CCLOG( "State %d : Exit", GetIndex() );
 
-			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_State1 ) );
+			auto label = static_cast<Label*>( mOwner.getChildByTag( mTargetLabelTag ) );
 			label->setColor( Color3B::GRAY );
 			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 		}
@@ -133,6 +138,7 @@ namespace
 	private:
 		const float mLimitTime;
 		float mElapsedTime;
+		int mTargetLabelTag;
 	};
 }
 
@@ -230,7 +236,9 @@ namespace step02
 			//
 			{
 				auto& test_state_1 = mFSMMachine.AddState<TestState1>( *this, false );
+				test_state_1.Setup( TAG_Label_State0 );
 				auto& test_state_2 = mFSMMachine.AddState<TestState2>( *this, true );
+				test_state_2.Setup( TAG_Label_State1 );
 
 				test_state_1.AddTransition( test_state_2.GetIndex() );
 				test_state_2.AddTransition( test_state_1.GetIndex() );
