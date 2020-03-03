@@ -11,10 +11,10 @@ USING_NS_CC;
 
 namespace
 {
-	class TestState : public fsm1::CustomeState<TestState, step02::fsm1test::BasicScene>
+	class TestState1 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
 	{
 	public:
-		TestState( step02::fsm1test::BasicScene& owner ) : CustomeState( owner )
+		TestState1( step02::fsm1test::BasicScene& owner ) : CustomeState( owner )
 		{}
 
 		void Enter() override
@@ -103,7 +103,7 @@ namespace step02
 			// FSM
 			//
 			{
-				auto test_state = mFSMMachine.Add<TestState>( *this, true );
+				auto test_state = mFSMMachine.Add<TestState1>( *this, true );
 			}
 
 			return true;
