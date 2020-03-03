@@ -67,6 +67,7 @@ namespace
 	{
 	public:
 		TestState2( MyOwnerT& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
+			, mLimitTime( 3.f )
 			, mElapsedTime( 0.f )
 		{}
 
@@ -83,7 +84,7 @@ namespace
 		void Update( float dt ) override
 		{
 			mElapsedTime += dt;
-			if( 2.f < mElapsedTime )
+			if( mLimitTime < mElapsedTime )
 			{
 				TransitionRequest( 0u );
 				return;
@@ -102,6 +103,7 @@ namespace
 		}
 
 	private:
+		const float mLimitTime;
 		float mElapsedTime;
 	};
 }
