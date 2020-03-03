@@ -76,17 +76,17 @@ namespace step02
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << "\n";
-				ss << "\n";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << "\n";
-				ss << "\n";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[A] : Play Animation - Idle";
-				ss << "\n";
+				ss << std::endl;
 				ss << "[S] : Play Animation - Run";
-				ss << "\n";
+				ss << std::endl;
 				ss << "[D] : Play Animation - Win";
-				ss << "\n";
+				ss << std::endl;
 				ss << "[SpaceBar] : Stop Animation";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
