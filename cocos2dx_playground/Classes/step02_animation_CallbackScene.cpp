@@ -1,9 +1,9 @@
-#include "Step01_Animation_CallbackScene.h"
+#include "step02_animation_CallbackScene.h"
 
 #include <new>
 #include <sstream>
 
-#include "Step01_Animation_RootScene.h"
+#include "Step02_RootScene.h"
 
 USING_NS_CC;
 
@@ -15,7 +15,7 @@ namespace
 	const int TAG_AnimationAction = 111;
 }
 
-namespace step01
+namespace step02
 {
 	namespace animation
 	{
@@ -153,7 +153,7 @@ namespace step01
 
 		void CallbackScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 
 		void CallbackScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

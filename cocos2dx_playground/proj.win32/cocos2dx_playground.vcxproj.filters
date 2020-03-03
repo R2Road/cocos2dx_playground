@@ -64,11 +64,14 @@
     <Filter Include="src\cpg">
       <UniqueIdentifier>{ee264d72-c524-4e05-a8c4-f49610304426}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step02\fsm1">
-      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\fsm1">
       <UniqueIdentifier>{883a7dff-b905-40e3-b5b4-65effc8c3abf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step02\fsm1test">
+      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step02\game">
+      <UniqueIdentifier>{94783662-3f8b-4bbd-bc5d-6b9ef1db809e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +127,6 @@
       <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_PlayNStopScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Animation_CallbackScene.cpp">
       <Filter>src\scene\step01\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_BasicScene.cpp">
@@ -220,10 +220,19 @@
       <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
-      <Filter>src\scene\step02\fsm1</Filter>
+      <Filter>src\scene\step02\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_game_rain_of_chaos_TitleScene.cpp">
+      <Filter>src\scene\step02\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_animation_CallbackScene.cpp">
+      <Filter>src\scene\step02\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp">
+      <Filter>src\scene\step02\fsm1test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,9 +288,6 @@
       <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_PlayNStopScene.h">
-      <Filter>src\scene\step01\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Animation_CallbackScene.h">
       <Filter>src\scene\step01\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_BasicScene.h">
@@ -378,13 +384,22 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h">
-      <Filter>src\scene\step02\fsm1</Filter>
+      <Filter>src\scene\step02\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_iState.h">
       <Filter>src\fsm1</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_Machine.h">
       <Filter>src\fsm1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_game_rain_of_chaos_TitleScene.h">
+      <Filter>src\scene\step02\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_animation_CallbackScene.h">
+      <Filter>src\scene\step02\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h">
+      <Filter>src\scene\step02\fsm1test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

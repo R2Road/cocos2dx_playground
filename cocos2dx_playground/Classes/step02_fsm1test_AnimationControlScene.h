@@ -7,15 +7,15 @@
 
 namespace step02
 {
-	namespace collision
+	namespace fsm1test
 	{
-		class BasicScene : public cocos2d::Scene
+		class AnimationControlScene : public cocos2d::Scene
 		{
 		private:
-			BasicScene();
+			AnimationControlScene();
 
 		public:
-			static const char* getTitle() { return "Collision : Basic"; }
+			static const char* getTitle() { return "FSM1 Test : Animation Control"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
@@ -24,10 +24,6 @@ namespace step02
 			void onExit() override;
 
 		private:
-			void updateDistance();
-
-			void updateMoveSpeedView();
-
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
@@ -36,7 +32,7 @@ namespace step02
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			
 			cpg::input::KeyCodeCollector mKeyCodeCollector;
-			int mMoveSpeed;
+			const int mMoveSpeed;
 		};
 	}
 }

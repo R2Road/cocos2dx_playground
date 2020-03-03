@@ -343,7 +343,7 @@ namespace step02
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				bullet_root_node->addComponent( cpg::CollisionComponent::create( radius, true, false, false ) );
+				bullet_root_node->addComponent( cpg::CollisionComponent::create( radius, false, false, false ) );
 			}
 
 			return bullet_root_node;

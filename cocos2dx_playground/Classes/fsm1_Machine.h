@@ -1,6 +1,5 @@
 #pragma once
 
-#include <memory>
 #include <vector>
 #include <type_traits>
 
@@ -14,15 +13,15 @@ namespace fsm1
 		Machine();
 		~Machine();
 
-		template<typename CustomeStateT, typename OwnerT>
-		CustomeStateT& AddState( OwnerT& owner, const bool is_start )
+		template<typename StateT, typename OwnerT>
+		StateT& AddState( OwnerT& owner, const bool is_start )
 		{
 			static_assert(
-				std::is_base_of<fsm1::iState, CustomeStateT>::value
+				std::is_base_of<fsm1::iState, StateT>::value
 				, "fsm1 : Machine : Add - Invalid Type"
 			);
 
-			auto new_state = new CustomeStateT( owner, *this, mStateList.size() );
+			auto new_state = new StateT( owner, *this, mStateList.size() );
 			new_state->Init();
 			if( is_start )
 			{

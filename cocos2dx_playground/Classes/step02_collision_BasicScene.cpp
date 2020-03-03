@@ -3,8 +3,6 @@
 #include <new>
 #include <sstream>
 
-#include "ui/UIButton.h"
-
 #include "step02_RootScene.h"
 
 USING_NS_CC;
@@ -13,6 +11,7 @@ const int TAG_Actor = 20140416;
 const int TAG_Bullet = 20200209;
 const int TAG_Distance = 888;
 const int TAG_CollisionIndicator = 999;
+const int TAG_MoveSpeed = 100;
 
 class RadiusData : public cocos2d::Ref
 {
@@ -29,7 +28,7 @@ namespace step02
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mButtonMoveOffset( Vec2::ZERO )
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mMoveSpeed( 3 )
 		{}
 
 		Scene* BasicScene::create()
@@ -43,6 +42,7 @@ namespace step02
 			}
 			else
 			{
+				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -70,9 +70,12 @@ namespace step02
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Mouse] : Do Click and Drag";
+				ss << "[Arrow Key] : Move Actor";
 				ss << std::endl;
-				ss << "[1] : Position Reset";
+				ss << std::endl;
+				ss << "[1] : Speed Up";
+				ss << std::endl;
+				ss << "[2] : Speed Down";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -131,14 +134,6 @@ namespace step02
 					const Size margin( 3.f, 3.f );
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
-					// Button
-					{
-						auto button = ui::Button::create( "guide_02_4.png", "guide_02_5.png", "guide_02_6.png", ui::Widget::TextureResType::PLIST );
-						button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-						button->setScale( radius / ( button->getContentSize().width * 0.5f ) );
-						actor_root_node->addChild( button );
-					}
-
 					// Radius View
 					{
 						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
@@ -147,13 +142,11 @@ namespace step02
 						actor_root_node->addChild( label );
 					}
 
-					// Click Indicator
+					// Collision Guide
 					{
-						auto label = Label::createWithTTF( "CLICK And DRAG HERE ===>>>", "fonts/arial.ttf", 9 );
-						label->setColor( Color3B::RED );
-						label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
-						label->setPositionX( -radius - margin.width );
-						actor_root_node->addChild( label );
+						auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
+						guide->setScale( radius / ( guide->getContentSize().width * 0.5f ) );
+						actor_root_node->addChild( guide );
 					}
 
 					// Collision Indicator
@@ -235,17 +228,34 @@ namespace step02
 			// Distance
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
 				label->setTag( TAG_Distance );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y
+				) );
+				addChild( label, 200 );
+
+				updateDistance();
+			}
+
+			//
+			// Move Speed View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				label->setTag( TAG_MoveSpeed );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 200 );
+				addChild( label, 9999 );
 
-				updateDistance();
+				updateMoveSpeedView();
 			}
 
 			return true;
@@ -256,7 +266,59 @@ namespace step02
 			Scene::onEnter();
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( BasicScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+		}
+		void BasicScene::update( float dt )
+		{
+			Vec2 input_vec2;
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
+			{
+				input_vec2.y += 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
+			{
+				input_vec2.y -= 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
+			{
+				input_vec2.x += 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
+			{
+				input_vec2.x -= 1.f;
+			}
+
+			if( std::numeric_limits<float>::epsilon() < std::abs( input_vec2.x ) || std::numeric_limits<float>::epsilon() < std::abs( input_vec2.y ) )
+			{
+				//
+				// Move
+				//
+				input_vec2.normalize();
+				input_vec2.scale( mMoveSpeed );
+				auto actor_root_node = getChildByTag( TAG_Actor );
+				actor_root_node->setPosition( actor_root_node->getPosition() + input_vec2 );
+
+				//
+				// Distance View
+				//
+				updateDistance();
+
+				//
+				// Collision Check
+				//
+				auto bullet_root_node = getChildByTag( TAG_Bullet );
+
+				const float distance = actor_root_node->getPosition().distance( bullet_root_node->getPosition() );
+
+				const auto actor_radius_data = static_cast<RadiusData*>( actor_root_node->getUserObject() );
+				const auto bullet_radius_data = static_cast<RadiusData*>( bullet_root_node->getUserObject() );
+				const float contact_limit_distance = actor_radius_data->GetRadius() + bullet_radius_data->GetRadius();
+
+				actor_root_node->getChildByTag( TAG_CollisionIndicator )->setVisible( distance <= contact_limit_distance );
+			}
+
+			Scene::update( dt );
 		}
 		void BasicScene::onExit()
 		{
@@ -277,37 +339,10 @@ namespace step02
 			label->setString( StringUtils::format( "Distance : %.2f", distance ) );
 		}
 
-		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void BasicScene::updateMoveSpeedView()
 		{
-			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
-			{
-				auto button = static_cast<ui::Button*>( sender );
-				auto actor_root = getChildByTag( TAG_Actor );
-
-				mButtonMoveOffset = actor_root->getPosition() - button->getTouchBeganPosition();
-			}
-			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
-			{
-				auto button = static_cast<ui::Button*>( sender );
-				auto actor_root = getChildByTag( TAG_Actor );
-
-				actor_root->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
-
-				updateDistance();
-
-				//
-				// Collision Check
-				//
-				auto button_node = getChildByTag( TAG_Bullet );
-
-				const float distance = actor_root->getPosition().distance( button_node->getPosition() );
-
-				const auto actor_radius_data = static_cast<RadiusData*>( actor_root->getUserObject() );
-				const auto bullet_radius_data = static_cast<RadiusData*>( button_node->getUserObject() );
-				const float contact_limit_distance = actor_radius_data->GetRadius() + bullet_radius_data->GetRadius();
-
-				actor_root->getChildByTag( TAG_CollisionIndicator )->setVisible( distance <= contact_limit_distance );
-			}
+			auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeed ) );
+			label->setString( StringUtils::format( "MoveSpeed : %d", mMoveSpeed ) );
 		}
 
 		void BasicScene::updateForExit( float /*dt*/ )
@@ -327,15 +362,29 @@ namespace step02
 
 			if( EventKeyboard::KeyCode::KEY_1 == keycode )
 			{
-				const auto visibleSize = Director::getInstance()->getVisibleSize();
-				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-
-				auto node = getChildByTag( TAG_Actor );
-				node->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
+				mMoveSpeed = std::min( 10, mMoveSpeed + 1 );
+				updateMoveSpeedView();
+				return;
 			}
+			if( EventKeyboard::KeyCode::KEY_2 == keycode )
+			{
+				mMoveSpeed = std::max( 1, mMoveSpeed - 1 );
+				updateMoveSpeedView();
+				return;
+			}
+
+			mKeyCodeCollector.onKeyPressed( keycode );
+		}
+		void BasicScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		{
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode
+				|| EventKeyboard::KeyCode::KEY_1 == keycode
+				|| EventKeyboard::KeyCode::KEY_2 == keycode )
+			{
+				return;
+			}
+
+			mKeyCodeCollector.onKeyReleased( keycode );
 		}
 	}
 }
