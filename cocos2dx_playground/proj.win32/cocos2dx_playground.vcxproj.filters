@@ -70,6 +70,9 @@
     <Filter Include="src\scene\step02\fsm1test">
       <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step02\game">
+      <UniqueIdentifier>{94783662-3f8b-4bbd-bc5d-6b9ef1db809e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -224,6 +227,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_game_rain_of_chaos_TitleScene.cpp">
+      <Filter>src\scene\step02\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_Machine.h">
       <Filter>src\fsm1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_game_rain_of_chaos_TitleScene.h">
+      <Filter>src\scene\step02\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

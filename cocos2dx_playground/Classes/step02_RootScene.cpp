@@ -10,6 +10,7 @@
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_collision_BasicScene.h"
 #include "step02_collision_CollectionScene.h"
+#include "step02_game_rain_of_chaos_TitleScene.h"
 
 USING_NS_CC;
 
@@ -58,6 +59,9 @@ namespace step02
 			ss << "[5] : " << step02::collision::BasicScene::getTitle();
 			ss << "\n";
 			ss << "[6] : " << step02::collision::CollectionScene::getTitle();
+			ss << "\n";
+			ss << "\n";
+			ss << "[7] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -127,6 +131,13 @@ namespace step02
 		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( step02::collision::CollectionScene::create() );
 			break;
+
+		case EventKeyboard::KeyCode::KEY_7:
+			Director::getInstance()->replaceScene( step02::game::rain_of_chaos::TitleScene::create() );
+			break;
+
+
+			
 
 		default:
 			CCLOG( "Key Code : %d", keycode );
