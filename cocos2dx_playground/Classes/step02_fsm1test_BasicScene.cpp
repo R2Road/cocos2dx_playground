@@ -27,6 +27,14 @@ namespace
 			, mElapsedTime( 0.f )
 		{}
 
+		void Init() override
+		{
+			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
+			label->setColor( Color3B::GRAY );
+			UpdateStateStatusView( label, 1, 0.f, mLimitTime );
+			SuperStateT::Init();
+		}
+
 		void Enter() override
 		{
 			mElapsedTime = 0.f;
@@ -75,6 +83,14 @@ namespace
 			, mLimitTime( 3.f )
 			, mElapsedTime( 0.f )
 		{}
+
+		void Init() override
+		{
+			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
+			label->setColor( Color3B::GRAY );
+			UpdateStateStatusView( label, 2, 0.f, mLimitTime );
+			SuperStateT::Init();
+		}
 
 		void Enter() override
 		{
