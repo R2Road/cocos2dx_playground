@@ -1,6 +1,6 @@
 # cocos2dx_playground
 
-useful code for cocos2d-x 3.17.2
+useful code for make game with cocos2d-x 3.17.2
 
 
 - **warning**
