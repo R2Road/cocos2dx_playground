@@ -22,7 +22,7 @@ namespace fsm1
 		virtual void Clear() {}
 
 		virtual void Enter() {}
-		virtual void Update( const float dt ) {}
+		virtual void Update( const float /*dt*/ ) {}
 		virtual void Exit() {}
 	};
 
