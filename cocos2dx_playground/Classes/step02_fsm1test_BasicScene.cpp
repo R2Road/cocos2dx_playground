@@ -31,7 +31,7 @@ namespace
 		{
 			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
 			label->setColor( Color3B::GRAY );
-			UpdateStateStatusView( label, 1, 0.f, mLimitTime );
+			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 			SuperStateT::Init();
 		}
 
@@ -41,7 +41,7 @@ namespace
 
 			mOwner.getChildByTag( TAG_Label_1 )->setColor( Color3B::RED );
 
-			CCLOG( "Test State 1 : Enter" );
+			CCLOG( "State %d : Enter", GetIndex() );
 			SuperStateT::Enter();
 		}
 
@@ -56,7 +56,7 @@ namespace
 			else
 			{
 				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
-				UpdateStateStatusView( label, 1, mElapsedTime, mLimitTime );
+				UpdateStateStatusView( label, GetIndex(), mElapsedTime, mLimitTime );
 			}
 			SuperStateT::Update( dt );
 		}
@@ -64,11 +64,11 @@ namespace
 		void Exit() override
 		{
 			SuperStateT::Exit();
-			CCLOG( "Test State 1 : Exit" );
+			CCLOG( "State %d : Exit", GetIndex() );
 
 			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_1 ) );
 			label->setColor( Color3B::GRAY );
-			UpdateStateStatusView( label, 1, 0.f, mLimitTime );
+			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 		}
 
 	private:
@@ -88,7 +88,7 @@ namespace
 		{
 			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
 			label->setColor( Color3B::GRAY );
-			UpdateStateStatusView( label, 2, 0.f, mLimitTime );
+			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 			SuperStateT::Init();
 		}
 
@@ -98,7 +98,7 @@ namespace
 
 			mOwner.getChildByTag( TAG_Label_2 )->setColor( Color3B::RED );
 
-			CCLOG( "Test State 2 : Enter" );
+			CCLOG( "State %d : Enter", GetIndex() );
 			SuperStateT::Enter();
 		}
 
@@ -113,7 +113,7 @@ namespace
 			else
 			{
 				auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
-				UpdateStateStatusView( label, 2, mElapsedTime, mLimitTime );
+				UpdateStateStatusView( label, GetIndex(), mElapsedTime, mLimitTime );
 			}
 
 			SuperStateT::Update( dt );
@@ -123,11 +123,11 @@ namespace
 		{
 			
 			SuperStateT::Exit();
-			CCLOG( "Test State 2 : Exit" );
+			CCLOG( "State %d : Exit", GetIndex() );
 
 			auto label = static_cast<Label*>( mOwner.getChildByTag( TAG_Label_2 ) );
 			label->setColor( Color3B::GRAY );
-			UpdateStateStatusView( label, 2, 0.f, mLimitTime );
+			UpdateStateStatusView( label, GetIndex(), 0.f, mLimitTime );
 		}
 
 	private:
