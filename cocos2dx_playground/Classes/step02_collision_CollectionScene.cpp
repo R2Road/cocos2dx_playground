@@ -273,35 +273,44 @@ namespace step02
 
 		void CollectionScene::addChild( Node* child, int localZOrder, int tag )
 		{
-			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
-			if( target_component )
-			{
-				mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
-			}
+			addCollision( child );
 			Scene::addChild( child, localZOrder, tag );
 		}
 		void CollectionScene::addChild( Node* child, int localZOrder, const std::string &name )
 		{
-			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
-			if( target_component )
-			{
-				mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
-			}
+			addCollision( child );
 			Scene::addChild( child, localZOrder, name );
 		}
 		void CollectionScene::removeChild( Node* child, bool cleanup /* = true */ )
 		{
-			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
-			if( target_component )
-			{
-				mCollisionList.remove( static_cast<cpg::CollisionComponent*>( target_component ) );
-			}
+			removeCollision( child );
 			Scene::removeChild( child, cleanup );
 		}
 		void CollectionScene::removeAllChildrenWithCleanup( bool cleanup )
 		{
 			mCollisionList.clear();
 			Scene::removeAllChildrenWithCleanup( cleanup );
+		}
+
+		void CollectionScene::addCollision( cocos2d::Node* child )
+		{
+			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			if( !target_component )
+			{
+				return;
+			}
+
+			mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
+		}
+		void CollectionScene::removeCollision( cocos2d::Node* child )
+		{
+			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			if( !target_component )
+			{
+				return;
+			}
+
+			mCollisionList.remove( static_cast<cpg::CollisionComponent*>( target_component ) );
 		}
 
 		Node* CollectionScene::makeBullet()

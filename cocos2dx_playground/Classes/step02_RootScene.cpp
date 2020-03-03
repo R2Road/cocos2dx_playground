@@ -7,7 +7,7 @@
 #include "step02_animation_ListScene.h"
 #include "step02_input_KeyCodeCollectScene.h"
 #include "step02_button_DragScene.h"
-
+#include "step02_fsm1test_BasicScene.h"
 #include "step02_collision_BasicScene.h"
 #include "step02_collision_CollectionScene.h"
 
@@ -51,9 +51,13 @@ namespace step02
 			ss << "\n";
 			ss << "[3] : " << step02::button::DragScene::getTitle();
 			ss << "\n";
-			ss << "[4] : " << step02::collision::BasicScene::getTitle();
 			ss << "\n";
-			ss << "[5] : " << step02::collision::CollectionScene::getTitle();
+			ss << "[4] : " << step02::fsm1test::BasicScene::getTitle();
+			ss << "\n";
+			ss << "\n";
+			ss << "[5] : " << step02::collision::BasicScene::getTitle();
+			ss << "\n";
+			ss << "[6] : " << step02::collision::CollectionScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -114,9 +118,13 @@ namespace step02
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( step02::collision::BasicScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( step02::collision::CollectionScene::create() );
 			break;
 
