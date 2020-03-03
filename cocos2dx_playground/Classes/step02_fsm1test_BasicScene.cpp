@@ -17,7 +17,7 @@ namespace
 	class TestState1 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
 	{
 	public:
-		TestState1( step02::fsm1test::BasicScene& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
+		TestState1( MyOwnerT& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
 			, mElapsedTime( 0.f )
 		{}
 
@@ -56,7 +56,7 @@ namespace
 	class TestState2 : public fsm1::CustomeState<TestState1, step02::fsm1test::BasicScene>
 	{
 	public:
-		TestState2( step02::fsm1test::BasicScene& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
+		TestState2( MyOwnerT& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
 			, mElapsedTime( 0.f )
 		{}
 
