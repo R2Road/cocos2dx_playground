@@ -64,11 +64,11 @@
     <Filter Include="src\cpg">
       <UniqueIdentifier>{ee264d72-c524-4e05-a8c4-f49610304426}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step02\fsm1">
-      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\fsm1">
       <UniqueIdentifier>{883a7dff-b905-40e3-b5b4-65effc8c3abf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step02\fsm1test">
+      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -220,7 +220,7 @@
       <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
-      <Filter>src\scene\step02\fsm1</Filter>
+      <Filter>src\scene\step02\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
@@ -378,7 +378,7 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h">
-      <Filter>src\scene\step02\fsm1</Filter>
+      <Filter>src\scene\step02\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_iState.h">
       <Filter>src\fsm1</Filter>
