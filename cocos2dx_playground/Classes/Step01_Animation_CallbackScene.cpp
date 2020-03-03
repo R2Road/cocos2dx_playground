@@ -3,7 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "Step01_Animation_RootScene.h"
+#include "Step02_RootScene.h"
 
 USING_NS_CC;
 
@@ -153,7 +153,7 @@ namespace step01
 
 		void CallbackScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step02::RootScene::create() );
 		}
 
 		void CallbackScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

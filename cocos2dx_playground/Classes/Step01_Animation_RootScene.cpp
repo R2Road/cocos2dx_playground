@@ -6,7 +6,6 @@
 #include "Step01_RootScene.h"
 #include "Step01_Animation_BasicScene.h"
 #include "Step01_Animation_PlayNStopScene.h"
-#include "Step01_Animation_CallbackScene.h"
 
 USING_NS_CC;
 
@@ -57,8 +56,6 @@ namespace step01
 				ss << "[1] : Basic";
 				ss << "\n";
 				ss << "[2] : Play And Stop";
-				ss << "\n";
-				ss << "[3] : Callback";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -116,9 +113,6 @@ namespace step01
 				break;
 			case EventKeyboard::KeyCode::KEY_2:
 				next_scene = PlayNStopScene::create();
-				break;
-			case EventKeyboard::KeyCode::KEY_3:
-				next_scene = CallbackScene::create();
 				break;
 
 			default:
