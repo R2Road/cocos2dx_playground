@@ -128,8 +128,8 @@ namespace step02
 			// FSM
 			//
 			{
-				auto& test_state_1 = mFSMMachine.Add<TestState1>( *this, false );
-				auto& test_state_2 = mFSMMachine.Add<TestState2>( *this, true );
+				auto& test_state_1 = mFSMMachine.AddState<TestState1>( *this, false );
+				auto& test_state_2 = mFSMMachine.AddState<TestState2>( *this, true );
 			}
 
 			return true;

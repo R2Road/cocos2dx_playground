@@ -15,7 +15,7 @@ namespace fsm1
 		~Machine();
 
 		template<typename CustomeStateT, typename OwnerT>
-		CustomeStateT& Add( OwnerT& owner, const bool is_start )
+		CustomeStateT& AddState( OwnerT& owner, const bool is_start )
 		{
 			static_assert(
 				std::is_base_of<fsm1::iState, CustomeStateT>::value
