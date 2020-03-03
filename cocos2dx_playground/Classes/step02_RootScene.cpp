@@ -46,22 +46,21 @@ namespace step02
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << step02::animation::ListScene::getTitle();
+			ss << "[1] : " << step02::input::KeyCodeCollectScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step02::input::KeyCodeCollectScene::getTitle();
+			ss << "[2] : " << step02::collision::BasicScene::getTitle();
 			ss << std::endl;
-			ss << "[3] : " << step02::button::DragScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[4] : " << step02::fsm1test::BasicScene::getTitle();
+			ss << "[3] : " << step02::collision::CollectionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[5] : " << step02::collision::BasicScene::getTitle();
+			ss << "[4] : " << step02::animation::ListScene::getTitle();
 			ss << std::endl;
-			ss << "[6] : " << step02::collision::CollectionScene::getTitle();
+			ss << "[5] : " << step02::fsm1test::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[7] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
+			ss << "[8] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
+			ss << std::endl;
+			ss << "[9] : " << step02::button::DragScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -110,30 +109,27 @@ namespace step02
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step02::input::KeyCodeCollectScene::create() );
 			break;
-
-		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step02::button::DragScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step02::collision::BasicScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( step02::collision::CollectionScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_7:
+		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_5:
+			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_8:
 			Director::getInstance()->replaceScene( step02::game::rain_of_chaos::TitleScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_9:
+			Director::getInstance()->replaceScene( step02::button::DragScene::create() );
 			break;
 
 
