@@ -64,9 +64,13 @@ namespace step02
 			ss << std::endl;
 			ss << "[6] : " << step02::animation::ComponentScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
 			ss << "[7] : " << step02::fsm1test::BasicScene::getTitle();
 			ss << std::endl;
 			ss << "[8] : " << step02::fsm1test::AnimationControlScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[A] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
