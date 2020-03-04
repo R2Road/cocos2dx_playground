@@ -191,6 +191,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\Step01_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp" />
+    <ClCompile Include="..\Classes\step02_animation_ComponentScene.cpp" />
     <ClCompile Include="..\Classes\step02_animation_CallbackScene.cpp" />
     <ClCompile Include="..\Classes\step02_animation_ListScene.cpp" />
     <ClCompile Include="..\Classes\step02_button_DragScene.cpp" />
@@ -248,6 +249,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\Step01_RootScene.h" />
     <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h" />
+    <ClInclude Include="..\Classes\step02_animation_ComponentScene.h" />
     <ClInclude Include="..\Classes\step02_animation_CallbackScene.h" />
     <ClInclude Include="..\Classes\step02_animation_ListScene.h" />
     <ClInclude Include="..\Classes\step02_button_DragScene.h" />

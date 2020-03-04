@@ -6,6 +6,7 @@
 #include "PlayGroundScene.h"
 #include "step02_animation_ListScene.h"
 #include "step02_animation_CallbackScene.h"
+#include "step02_animation_ComponentScene.h"
 #include "step02_input_KeyCodeCollectScene.h"
 #include "step02_button_DragScene.h"
 
@@ -61,14 +62,16 @@ namespace step02
 			ss << std::endl;
 			ss << "[5] : " << step02::animation::CallbackScene::getTitle();
 			ss << std::endl;
-			ss << "[6] : " << step02::fsm1test::BasicScene::getTitle();
+			ss << "[6] : " << step02::animation::ComponentScene::getTitle();
 			ss << std::endl;
-			ss << "[7] : " << step02::fsm1test::AnimationControlScene::getTitle();
+			ss << "[7] : " << step02::fsm1test::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[8] : " << step02::fsm1test::AnimationControlScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[8] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
+			ss << "[A] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
 			ss << std::endl;
-			ss << "[9] : " << step02::button::DragScene::getTitle();
+			ss << "[S] : " << step02::button::DragScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -133,16 +136,19 @@ namespace step02
 			Director::getInstance()->replaceScene( step02::animation::CallbackScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_6:
-			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );
+			Director::getInstance()->replaceScene( step02::animation::ComponentScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_7:
+			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_8:
 			Director::getInstance()->replaceScene( step02::fsm1test::AnimationControlScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_8:
+		case EventKeyboard::KeyCode::KEY_A:
 			Director::getInstance()->replaceScene( step02::game::rain_of_chaos::TitleScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_9:
+		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( step02::button::DragScene::create() );
 			break;
 

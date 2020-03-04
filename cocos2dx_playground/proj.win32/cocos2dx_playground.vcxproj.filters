@@ -73,6 +73,9 @@
     <Filter Include="src\scene\step02\game">
       <UniqueIdentifier>{94783662-3f8b-4bbd-bc5d-6b9ef1db809e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\animation">
+      <UniqueIdentifier>{1257b598-16f9-4be8-81d6-9e22d089a147}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -233,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp">
       <Filter>src\scene\step02\fsm1test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step02_animation_ComponentScene.cpp">
+      <Filter>src\scene\step02\animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -400,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h">
       <Filter>src\scene\step02\fsm1test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step02_animation_ComponentScene.h">
+      <Filter>src\scene\step02\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
