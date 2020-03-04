@@ -4,6 +4,7 @@
 #include "ui/UIWidget.h"
 
 #include "cpg_input_KeyCodeCollector.h"
+#include "fsm1_Machine.h"
 
 namespace step02
 {
@@ -32,7 +33,7 @@ namespace step02
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			
 			cpg::input::KeyCodeCollector mKeyCodeCollector;
-			const int mMoveSpeed;
+			fsm1::Machine mFSMMachine;
 		};
 	}
 }

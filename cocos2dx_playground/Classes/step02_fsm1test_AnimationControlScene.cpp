@@ -3,17 +3,110 @@
 #include <new>
 #include <sstream>
 
+#include "fsm1_iState.h"
 #include "step02_RootScene.h"
 
 USING_NS_CC;
 
 const int TAG_Actor = 20140416;
 
+namespace
+{
+	class IdleState : public fsm1::CustomeState<IdleState, step02::fsm1test::AnimationControlScene>
+	{
+	public:
+		IdleState( MyOwnerT& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
+			, mKeyCodeCollector( nullptr )
+		{}
+
+		void Setup( cpg::input::KeyCodeCollector* const keycode_collector )
+		{
+			mKeyCodeCollector = keycode_collector;
+		}
+
+		void Update( float dt ) override
+		{
+			if(
+				mKeyCodeCollector->isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW )
+				|| mKeyCodeCollector->isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW )
+				|| mKeyCodeCollector->isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW )
+				|| mKeyCodeCollector->isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW )
+			)
+			{
+				TransitionRequest( 0u );
+				return;
+			}
+
+			SuperStateT::Update( dt );
+		}
+
+	private:
+		cpg::input::KeyCodeCollector* mKeyCodeCollector;
+	};
+
+	class MoveState : public fsm1::CustomeState<MoveState, step02::fsm1test::AnimationControlScene>
+	{
+	public:
+		MoveState( MyOwnerT& owner, fsm1::Machine& machine, const std::size_t index ) : CustomeState( owner, machine, index )
+			, mKeyCodeCollector( nullptr )
+			, mMoveSpeed( 3 )
+		{}
+
+		void Setup( cpg::input::KeyCodeCollector* const keycode_collector )
+		{
+			mKeyCodeCollector = keycode_collector;
+		}
+
+		void Update( float dt ) override
+		{
+			Vec2 input_vec2;
+			if( mKeyCodeCollector->isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
+			{
+				input_vec2.y += 1.f;
+			}
+			if( mKeyCodeCollector->isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
+			{
+				input_vec2.y -= 1.f;
+			}
+			if( mKeyCodeCollector->isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
+			{
+				input_vec2.x += 1.f;
+			}
+			if( mKeyCodeCollector->isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
+			{
+				input_vec2.x -= 1.f;
+			}
+
+			if( std::numeric_limits<float>::epsilon() < std::abs( input_vec2.x ) || std::numeric_limits<float>::epsilon() < std::abs( input_vec2.y ) )
+			{
+				//
+				// Move
+				//
+				input_vec2.normalize();
+				input_vec2.scale( mMoveSpeed );
+				auto actor_root_node = mOwner.getChildByTag( TAG_Actor );
+				actor_root_node->setPosition( actor_root_node->getPosition() + input_vec2 );
+			}
+			else
+			{
+				TransitionRequest( 0u );
+				return;
+			}
+
+			SuperStateT::Update( dt );
+		}
+
+	private:
+		cpg::input::KeyCodeCollector* mKeyCodeCollector;
+		const int mMoveSpeed;
+	};
+}
+
 namespace step02
 {
 	namespace fsm1test
 	{
-		AnimationControlScene::AnimationControlScene() : mKeyboardListener( nullptr ), mMoveSpeed( 3 )
+		AnimationControlScene::AnimationControlScene() : mKeyboardListener( nullptr )
 		{}
 
 		Scene* AnimationControlScene::create()
@@ -107,6 +200,19 @@ namespace step02
 				addChild( actor_root_node, 100 );
 			}
 
+			//
+			// FSM
+			//
+			{
+				auto& test_state_0 = mFSMMachine.AddState<IdleState>( *this, false );
+				test_state_0.Setup( &mKeyCodeCollector );
+				auto& test_state_1 = mFSMMachine.AddState<MoveState>( *this, true );
+				test_state_1.Setup( &mKeyCodeCollector );
+
+				test_state_0.AddTransition( test_state_1.GetIndex() );
+				test_state_1.AddTransition( test_state_0.GetIndex() );
+			}
+
 			return true;
 		}
 
@@ -117,42 +223,18 @@ namespace step02
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( AnimationControlScene::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( AnimationControlScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+
+			mFSMMachine.Enter();
 		}
 		void AnimationControlScene::update( float dt )
 		{
-			Vec2 input_vec2;
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
-			{
-				input_vec2.y += 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
-			{
-				input_vec2.y -= 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
-			{
-				input_vec2.x += 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
-			{
-				input_vec2.x -= 1.f;
-			}
-
-			if( std::numeric_limits<float>::epsilon() < std::abs( input_vec2.x ) || std::numeric_limits<float>::epsilon() < std::abs( input_vec2.y ) )
-			{
-				//
-				// Move
-				//
-				input_vec2.normalize();
-				input_vec2.scale( mMoveSpeed );
-				auto actor_root_node = getChildByTag( TAG_Actor );
-				actor_root_node->setPosition( actor_root_node->getPosition() + input_vec2 );
-			}
-
+			mFSMMachine.Update( dt );
 			Scene::update( dt );
 		}
 		void AnimationControlScene::onExit()
 		{
+			mFSMMachine.Exit();
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
