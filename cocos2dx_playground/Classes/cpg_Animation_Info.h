@@ -1,5 +1,6 @@
 #pragma once
 
+#include <utility>
 #include <vector>
 
 #include "cpg_Animation_Index.h"
@@ -10,8 +11,12 @@ namespace cpg
 	{
 		struct Info
 		{
-			cpg::animation::eIndex Index = cpg::animation::eIndex::none;
-			float delay = 0.f;
+			Info( cpg::animation::eIndex index, float delay, std::vector<std::string>&& sprite_frame_names )
+				: Index( index ), delay( delay ), SpriteFrameNames( std::move( sprite_frame_names ) )
+			{}
+
+			cpg::animation::eIndex Index;
+			float delay;
 			std::vector<std::string> SpriteFrameNames;
 		};
 	}

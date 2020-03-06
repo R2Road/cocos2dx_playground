@@ -3,6 +3,7 @@
 #include <new>
 #include <sstream>
 
+#include "cpg_Animation_Info.h"
 #include "cpg_AnimationComponent.h"
 #include "step02_RootScene.h"
 
@@ -12,25 +13,19 @@ namespace
 {
 	const int TAG_AnimationNode = 20140416;
 
-	struct AnimationInfo
-	{
-		step02::animation::ComponentScene::eAnimationIndex Index = step02::animation::ComponentScene::eAnimationIndex::none;
-		float delay = 0.f;
-		std::vector<std::string> SpriteFrameNames;
-	};
-	const std::vector<AnimationInfo> AnimationInfos = {
+	const std::vector<cpg::animation::Info> AnimationInfos = {
 		{
-			step02::animation::ComponentScene::eAnimationIndex::idle
+			cpg::animation::eIndex::idle
 			, 0.5f
 			, { "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_03.png" }
 		}
 		,{
-			step02::animation::ComponentScene::eAnimationIndex::run
+			cpg::animation::eIndex::run
 			, 0.2f
 			, { "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
 		}
 		,{
-			step02::animation::ComponentScene::eAnimationIndex::win
+			cpg::animation::eIndex::win
 			, 0.1f
 			, { "actor001_win_01.png", "actor001_win_02.png" }
 		}
@@ -41,7 +36,7 @@ namespace step02
 {
 	namespace animation
 	{
-		ComponentScene::ComponentScene() : mKeyboardListener( nullptr ), mAnimationActions()
+		ComponentScene::ComponentScene() : mKeyboardListener( nullptr )
 		{}
 
 		Scene* ComponentScene::create()
@@ -121,29 +116,7 @@ namespace step02
 				) );
 				addChild( animation_node, 1 );
 
-				animation_node->addComponent( cpg::AnimationComponent::create() );
-			}
-
-			//
-			// Animation
-			//
-			mAnimationActions.reserve( AnimationInfos.size() );
-			for( const auto& animation_info : AnimationInfos )
-			{
-				auto animation_object = Animation::create();
-				animation_object->setDelayPerUnit( animation_info.delay );
-				for( const auto& sprite_frame_name : animation_info.SpriteFrameNames )
-				{
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name ) );
-				}
-
-				auto animate_action = Animate::create( animation_object );
-
-				auto repeat_action = RepeatForever::create( animate_action );
-				repeat_action->setTag( static_cast<int>( animation_info.Index ) );
-				repeat_action->retain();
-
-				mAnimationActions.push_back( repeat_action );
+				animation_node->addComponent( cpg::AnimationComponent::create( AnimationInfos ) );
 			}
 
 			return true;
@@ -162,11 +135,6 @@ namespace step02
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-			for( auto a : mAnimationActions )
-			{
-				a->release();
-			}
-			mAnimationActions.clear();
 
 			Node::onExit();
 		}
@@ -188,58 +156,34 @@ namespace step02
 				break;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Idle
-				playAnimation( eAnimationIndex::idle );
+				PlayAnimation( cpg::animation::eIndex::idle );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_S: // Play Run
-				playAnimation( eAnimationIndex::run );
+				PlayAnimation( cpg::animation::eIndex::run );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_D: // Play Win
-				playAnimation( eAnimationIndex::win );
+				PlayAnimation( cpg::animation::eIndex::win );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE: // Play Win
-				stopAnimation();
+				StopAnimation();
 				break;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
 			}
 		}
-
-		void ComponentScene::playAnimation( const eAnimationIndex animation_index )
+		void ComponentScene::PlayAnimation( const cpg::animation::eIndex animation_index )
 		{
-			auto animation_node = getChildByTag( TAG_AnimationNode );
-			assert( animation_node );
-
-			auto animation_action = getAnimationAction( animation_index );
-			if( !animation_action )
-			{
-				return;
-			}
-
-			animation_node->stopAllActions();
-			animation_node->runAction( animation_action );
+			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
+			animation_component->PlayAnimation( animation_index );
 		}
-		void ComponentScene::stopAnimation()
+		void ComponentScene::StopAnimation()
 		{
-			auto animation_node = getChildByTag( TAG_AnimationNode );
-			assert( animation_node );
-
-			animation_node->stopAllActions();
-		}
-		cocos2d::Action* ComponentScene::getAnimationAction( const eAnimationIndex animation_index )
-		{
-			for( auto a : mAnimationActions )
-			{
-				if( static_cast<int>( animation_index ) == a->getTag() )
-				{
-					return a;
-				}
-			}
-
-			return nullptr;
+			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
+			animation_component->StopAnimation();
 		}
 	}
 }
