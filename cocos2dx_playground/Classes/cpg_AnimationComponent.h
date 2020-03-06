@@ -24,6 +24,7 @@ namespace cpg
 		void StopAnimation();
 
 	private:
+		bool init( const cpg::animation::InfoContainer& animation_info_container );
 		cocos2d::Action* getAnimationAction( const cpg::animation::eIndex animation_index );
 
 	private:
