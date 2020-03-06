@@ -4,7 +4,7 @@
 
 #include "cocos/2d/CCComponent.h"
 
-#include "cpg_Animation_Info.h"
+#include "cpg_animation_InfoContainer.h"
 
 namespace cpg
 {
@@ -18,7 +18,7 @@ namespace cpg
 
 	public:
 		static const char* GetStaticName() { static const char* COMPONENT_NAME = "CPG_ANIMATION"; return COMPONENT_NAME; }
-		static AnimationComponent* create( const std::vector<cpg::animation::Info>& animation_infos );
+		static AnimationComponent* create( const cpg::animation::InfoContainer& animation_info_container );
 
 		void PlayAnimation( const cpg::animation::eIndex animation_index );
 		void StopAnimation();

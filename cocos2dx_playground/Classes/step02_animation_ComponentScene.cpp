@@ -5,32 +5,12 @@
 
 #include "cpg_Animation_Info.h"
 #include "cpg_AnimationComponent.h"
+#include "cpg_animation_InfoContainer.h"
 #include "step02_RootScene.h"
 
 USING_NS_CC;
 
-namespace
-{
-	const int TAG_AnimationNode = 20140416;
-
-	const std::vector<cpg::animation::Info> AnimationInfos = {
-		{
-			cpg::animation::eIndex::idle
-			, 0.5f
-			, { "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_03.png" }
-		}
-		,{
-			cpg::animation::eIndex::run
-			, 0.2f
-			, { "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
-		}
-		,{
-			cpg::animation::eIndex::win
-			, 0.1f
-			, { "actor001_win_01.png", "actor001_win_02.png" }
-		}
-	};
-}
+const int TAG_AnimationNode = 20140416;
 
 namespace step02
 {
@@ -116,7 +96,9 @@ namespace step02
 				) );
 				addChild( animation_node, 1 );
 
-				animation_node->addComponent( cpg::AnimationComponent::create( AnimationInfos ) );
+
+				const auto animation_info_container = cpg::animation::InfoContainer::create();
+				animation_node->addComponent( cpg::AnimationComponent::create( *animation_info_container ) );
 			}
 
 			return true;

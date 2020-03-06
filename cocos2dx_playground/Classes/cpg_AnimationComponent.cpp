@@ -24,7 +24,7 @@ namespace cpg
 	}
 
 
-	AnimationComponent* AnimationComponent::create( const std::vector<cpg::animation::Info>& animation_infos )
+	AnimationComponent* AnimationComponent::create( const cpg::animation::InfoContainer& animation_info_container )
 	{
 		auto ret = new ( std::nothrow ) AnimationComponent();
 		if( !ret || !ret->init() )
@@ -38,8 +38,8 @@ namespace cpg
 			ret->autorelease();
 		}
 
-		ret->mAnimationActions.reserve( animation_infos.size() );
-		for( const auto& animation_info : animation_infos )
+		ret->mAnimationActions.reserve( animation_info_container.Get().size() );
+		for( const auto& animation_info : animation_info_container.Get() )
 		{
 			auto animation_object = Animation::create();
 			animation_object->setDelayPerUnit( animation_info.delay );

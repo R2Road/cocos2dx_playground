@@ -165,6 +165,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp" />
     <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp" />
     <ClCompile Include="..\Classes\CPG_Setting.cpp" />
+    <ClCompile Include="..\Classes\cpg_animation_InfoContainer.cpp" />
     <ClCompile Include="..\Classes\EntryScene.cpp" />
     <ClCompile Include="..\Classes\fsm1_Machine.cpp" />
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp" />
@@ -225,6 +226,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h" />
     <ClInclude Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.h" />
     <ClInclude Include="..\Classes\CPG_Setting.h" />
+    <ClInclude Include="..\Classes\cpg_animation_InfoContainer.h" />
     <ClInclude Include="..\Classes\EntryScene.h" />
     <ClInclude Include="..\Classes\fsm1_iState.h" />
     <ClInclude Include="..\Classes\fsm1_Machine.h" />
