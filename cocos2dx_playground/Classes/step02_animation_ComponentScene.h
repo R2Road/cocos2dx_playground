@@ -10,13 +10,13 @@ namespace step02
 {
 	namespace animation
 	{
-		class ListScene : public cocos2d::Scene
+		class ComponentScene : public cocos2d::Scene
 		{
 		private:
-			ListScene();
+			ComponentScene();
 
 		public:
-			static const char* getTitle() { return "Animation : List"; }
+			static const char* getTitle() { return "Animation : Component"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
@@ -27,13 +27,11 @@ namespace step02
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
-			void playAnimation( const cpg::animation::eIndex animation_index );
-			void stopAnimation();
-			cocos2d::Action* getAnimationAction( const cpg::animation::eIndex animation_index );
+			void PlayAnimation( const cpg::animation::eIndex animation_index );
+			void StopAnimation();
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			std::vector<cocos2d::Action*> mAnimationActions;
 		};
 	}
 }

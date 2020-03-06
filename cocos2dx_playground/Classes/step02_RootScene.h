@@ -9,7 +9,7 @@ namespace step02
 	public:
 		RootScene();
 
-		static const char* getTitle() { return "Step 02 : Animation List"; }
+		static const char* getTitle() { return "Step 02 : Animation List & Collision"; }
 		static cocos2d::Scene* create();
 
 		void onEnter() override;

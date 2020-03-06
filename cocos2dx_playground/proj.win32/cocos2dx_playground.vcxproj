@@ -151,6 +151,8 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\cpg_AnimationComponent.cpp" />
+    <ClCompile Include="..\Classes\cpg_Animation_Index.cpp" />
     <ClCompile Include="..\Classes\cpg_CollisionComponent.cpp" />
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp" />
     <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp" />
@@ -163,6 +165,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp" />
     <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp" />
     <ClCompile Include="..\Classes\CPG_Setting.cpp" />
+    <ClCompile Include="..\Classes\cpg_animation_InfoContainer.cpp" />
     <ClCompile Include="..\Classes\EntryScene.cpp" />
     <ClCompile Include="..\Classes\fsm1_Machine.cpp" />
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp" />
@@ -191,6 +194,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\Step01_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp" />
+    <ClCompile Include="..\Classes\step02_animation_ComponentScene.cpp" />
     <ClCompile Include="..\Classes\step02_animation_CallbackScene.cpp" />
     <ClCompile Include="..\Classes\step02_animation_ListScene.cpp" />
     <ClCompile Include="..\Classes\step02_button_DragScene.cpp" />
@@ -206,6 +210,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\cpg_AnimationComponent.h" />
+    <ClInclude Include="..\Classes\cpg_Animation_Index.h" />
+    <ClInclude Include="..\Classes\cpg_Animation_Info.h" />
     <ClInclude Include="..\Classes\cpg_CollisionComponent.h" />
     <ClInclude Include="..\Classes\CPG_InputDelegator.h" />
     <ClInclude Include="..\Classes\CPG_InputKeyMap.h" />
@@ -219,6 +226,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h" />
     <ClInclude Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.h" />
     <ClInclude Include="..\Classes\CPG_Setting.h" />
+    <ClInclude Include="..\Classes\cpg_animation_InfoContainer.h" />
     <ClInclude Include="..\Classes\EntryScene.h" />
     <ClInclude Include="..\Classes\fsm1_iState.h" />
     <ClInclude Include="..\Classes\fsm1_Machine.h" />
@@ -248,6 +256,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\Step01_RootScene.h" />
     <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h" />
+    <ClInclude Include="..\Classes\step02_animation_ComponentScene.h" />
     <ClInclude Include="..\Classes\step02_animation_CallbackScene.h" />
     <ClInclude Include="..\Classes\step02_animation_ListScene.h" />
     <ClInclude Include="..\Classes\step02_button_DragScene.h" />
