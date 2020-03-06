@@ -4,21 +4,14 @@
 
 #include "cocos2d.h"
 
+#include "cpg_Animation_Index.h"
+
 namespace step02
 {
 	namespace animation
 	{
 		class ListScene : public cocos2d::Scene
 		{
-		public:
-			enum class eAnimationIndex
-			{
-				none = 0,
-				run,
-				idle,
-				win,
-			};
-
 		private:
 			ListScene();
 
@@ -34,9 +27,9 @@ namespace step02
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
-			void playAnimation( const eAnimationIndex animation_index );
+			void playAnimation( const cpg::animation::eIndex animation_index );
 			void stopAnimation();
-			cocos2d::Action* getAnimationAction( const eAnimationIndex animation_index );
+			cocos2d::Action* getAnimationAction( const cpg::animation::eIndex animation_index );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;

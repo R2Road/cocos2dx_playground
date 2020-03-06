@@ -243,6 +243,9 @@
     <ClCompile Include="..\Classes\cpg_AnimationComponent.cpp">
       <Filter>src\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_Animation_Index.cpp">
+      <Filter>src\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -414,6 +417,9 @@
       <Filter>src\scene\step02\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_AnimationComponent.h">
+      <Filter>src\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Animation_Index.h">
       <Filter>src\animation</Filter>
     </ClInclude>
   </ItemGroup>

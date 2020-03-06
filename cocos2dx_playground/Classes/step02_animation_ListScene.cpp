@@ -13,23 +13,23 @@ namespace
 
 	struct AnimationInfo
 	{
-		step02::animation::ListScene::eAnimationIndex Index = step02::animation::ListScene::eAnimationIndex::none;
+		cpg::animation::eIndex Index = cpg::animation::eIndex::none;
 		float delay = 0.f;
 		std::vector<std::string> SpriteFrameNames;
 	};
 	const std::vector<AnimationInfo> AnimationInfos = {
 		{
-			step02::animation::ListScene::eAnimationIndex::idle
+			cpg::animation::eIndex::idle
 			, 0.5f
 			, { "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_03.png" }
 		}
 		,{
-			step02::animation::ListScene::eAnimationIndex::run
+			cpg::animation::eIndex::run
 			, 0.2f
 			, { "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
 		}
 		,{
-			step02::animation::ListScene::eAnimationIndex::win
+			cpg::animation::eIndex::win
 			, 0.1f
 			, { "actor001_win_01.png", "actor001_win_02.png" }
 		}
@@ -185,15 +185,15 @@ namespace step02
 				break;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Idle
-				playAnimation( eAnimationIndex::idle );
+				playAnimation( cpg::animation::eIndex::idle );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_S: // Play Run
-				playAnimation( eAnimationIndex::run );
+				playAnimation( cpg::animation::eIndex::run );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_D: // Play Win
-				playAnimation( eAnimationIndex::win );
+				playAnimation( cpg::animation::eIndex::win );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE: // Play Win
@@ -205,7 +205,7 @@ namespace step02
 			}
 		}
 
-		void ListScene::playAnimation( const eAnimationIndex animation_index )
+		void ListScene::playAnimation( const cpg::animation::eIndex animation_index )
 		{
 			auto animation_node = getChildByTag( TAG_AnimationNode );
 			assert( animation_node );
@@ -226,7 +226,7 @@ namespace step02
 
 			animation_node->stopAllActions();
 		}
-		cocos2d::Action* ListScene::getAnimationAction( const eAnimationIndex animation_index )
+		cocos2d::Action* ListScene::getAnimationAction( const cpg::animation::eIndex animation_index )
 		{
 			for( auto a : mAnimationActions )
 			{
