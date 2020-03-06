@@ -211,6 +211,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\cpg_AnimationComponent.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Index.h" />
+    <ClInclude Include="..\Classes\cpg_Animation_Info.h" />
     <ClInclude Include="..\Classes\cpg_CollisionComponent.h" />
     <ClInclude Include="..\Classes\CPG_InputDelegator.h" />
     <ClInclude Include="..\Classes\CPG_InputKeyMap.h" />

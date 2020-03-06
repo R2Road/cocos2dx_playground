@@ -422,6 +422,9 @@
     <ClInclude Include="..\Classes\cpg_Animation_Index.h">
       <Filter>src\animation</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Animation_Info.h">
+      <Filter>src\animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

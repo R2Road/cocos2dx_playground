@@ -3,6 +3,8 @@
 #include <new>
 #include <sstream>
 
+#include "cpg_Animation_Info.h"
+
 #include "step02_RootScene.h"
 
 USING_NS_CC;
@@ -11,13 +13,7 @@ namespace
 {
 	const int TAG_AnimationNode = 20140416;
 
-	struct AnimationInfo
-	{
-		cpg::animation::eIndex Index = cpg::animation::eIndex::none;
-		float delay = 0.f;
-		std::vector<std::string> SpriteFrameNames;
-	};
-	const std::vector<AnimationInfo> AnimationInfos = {
+	const std::vector<cpg::animation::Info> AnimationInfos = {
 		{
 			cpg::animation::eIndex::idle
 			, 0.5f
