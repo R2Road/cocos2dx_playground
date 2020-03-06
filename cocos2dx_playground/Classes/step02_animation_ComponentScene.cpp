@@ -3,6 +3,7 @@
 #include <new>
 #include <sstream>
 
+#include "cpg_AnimationComponent.h"
 #include "step02_RootScene.h"
 
 USING_NS_CC;
@@ -119,6 +120,8 @@ namespace step02
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
 				) );
 				addChild( animation_node, 1 );
+
+				animation_node->addComponent( cpg::AnimationComponent::create() );
 			}
 
 			//

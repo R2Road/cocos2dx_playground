@@ -240,6 +240,9 @@
     <ClCompile Include="..\Classes\step02_animation_ComponentScene.cpp">
       <Filter>src\scene\step02\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_AnimationComponent.cpp">
+      <Filter>src\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -409,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_animation_ComponentScene.h">
       <Filter>src\scene\step02\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_AnimationComponent.h">
+      <Filter>src\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
