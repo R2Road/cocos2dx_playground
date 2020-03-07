@@ -27,7 +27,7 @@ namespace cpg
 	AnimationComponent* AnimationComponent::create( const cpg::animation::InfoContainer& animation_info_container )
 	{
 		auto ret = new ( std::nothrow ) AnimationComponent();
-		if( !ret || !ret->init() )
+		if( !ret || !ret->init( animation_info_container ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -36,25 +36,6 @@ namespace cpg
 		else
 		{
 			ret->autorelease();
-		}
-
-		ret->mAnimationActions.reserve( animation_info_container.Get().size() );
-		for( const auto& animation_info : animation_info_container.Get() )
-		{
-			auto animation_object = Animation::create();
-			animation_object->setDelayPerUnit( animation_info.delay );
-			for( const auto& sprite_frame_name : animation_info.SpriteFrameNames )
-			{
-				animation_object->addSpriteFrame( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name ) );
-			}
-
-			auto animate_action = Animate::create( animation_object );
-
-			auto repeat_action = RepeatForever::create( animate_action );
-			repeat_action->setTag( static_cast<int>( animation_info.Index ) );
-			repeat_action->retain();
-
-			ret->mAnimationActions.push_back( repeat_action );
 		}
 
 		return ret;
@@ -75,6 +56,33 @@ namespace cpg
 	void AnimationComponent::StopAnimation()
 	{
 		getOwner()->stopAllActions();
+	}
+
+	bool AnimationComponent::init( const cpg::animation::InfoContainer& animation_info_container )
+	{
+		if( !Component::init() )
+		{
+			return false;
+		}
+
+		mAnimationActions.reserve( animation_info_container.Get().size() );
+		for( const auto& animation_info : animation_info_container.Get() )
+		{
+			auto animation_object = Animation::create();
+			animation_object->setDelayPerUnit( animation_info.delay );
+			for( const auto& sprite_frame_name : animation_info.SpriteFrameNames )
+			{
+				animation_object->addSpriteFrame( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name ) );
+			}
+
+			auto animate_action = Animate::create( animation_object );
+
+			auto repeat_action = RepeatForever::create( animate_action );
+			repeat_action->setTag( static_cast<int>( animation_info.Index ) );
+			repeat_action->retain();
+
+			mAnimationActions.push_back( repeat_action );
+		}
 	}
 	cocos2d::Action* AnimationComponent::getAnimationAction( const cpg::animation::eIndex animation_index )
 	{
