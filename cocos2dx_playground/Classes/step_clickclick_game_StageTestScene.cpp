@@ -73,7 +73,17 @@ namespace step_clickclick
 			// Stage
 			//
 			{
+				const int stage_width = 3;
+				const int stage_height = 3;
+				const Size tile_size( 32.f, 32.f );
+				const Size margin_size( 2.f, 2.f );
+				const Size stage_size(
+					( stage_width * tile_size.width ) + ( ( stage_width - 1 ) * margin_size.width )
+					,( stage_height * tile_size.height ) + ( ( stage_height - 1 ) * margin_size.height )
+				);
+
 				auto root_node = Node::create();
+				root_node->setContentSize( stage_size );
 				root_node->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -85,6 +95,16 @@ namespace step_clickclick
 						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 						pivot->setScale( 2.f );
 						root_node->addChild( pivot, std::numeric_limits<int>::max() );
+					}
+
+					// Background Guide
+					{
+						auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), root_node->getContentSize().width, root_node->getContentSize().height );
+						pivot->setPosition( Vec2(
+							pivot->getContentSize().width * -0.5f
+							, pivot->getContentSize().height * -0.5f
+						) );
+						root_node->addChild( pivot, std::numeric_limits<int>::min() );
 					}
 				}
 			}
