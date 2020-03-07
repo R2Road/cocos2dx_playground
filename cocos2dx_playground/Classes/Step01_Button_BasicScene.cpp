@@ -68,6 +68,14 @@ namespace step01
 			}
 
 			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
+				addChild( background_layer, 0 );
+			}
+
+			//
 			// Button
 			//
 			{
@@ -79,13 +87,13 @@ namespace step01
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-				addChild( button, 0 );
+				addChild( button, 1 );
 
 				auto label = Label::createWithTTF( "Click Here ===>>>", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f , 0.f ) );
-				addChild( label, 1 );
+				addChild( label, 2 );
 			}
 
 			//
@@ -99,7 +107,7 @@ namespace step01
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.7f )
 				) );
-				addChild( label, 1 );
+				addChild( label, 2 );
 			}
 
 			

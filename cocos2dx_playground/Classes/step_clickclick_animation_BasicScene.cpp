@@ -45,9 +45,9 @@ namespace step_clickclick
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Animation - Basic";
-				ss << "\n";
-				ss << "\n";
+				ss << "+ " << getTitle();
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
