@@ -88,10 +88,10 @@ namespace step_clickclick
 			}
 
 			//
-			// Json View
+			// Input Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
