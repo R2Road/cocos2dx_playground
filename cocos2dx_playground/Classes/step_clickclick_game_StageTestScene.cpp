@@ -83,6 +83,8 @@ namespace step_clickclick
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( stage_node );
+
+				stage_node->Setup( 3, 4 );
 			}
 
 			return true;

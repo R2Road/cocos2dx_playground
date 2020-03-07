@@ -40,8 +40,8 @@ namespace step_clickclick
 				return false;
 			}
 
-			const int stage_width = 3;
-			const int stage_height = 3;
+			const int stage_width = 7;
+			const int stage_height = 7;
 			const Size tile_size( 32.f, 32.f );
 			const Size margin_size( 2.f, 2.f );
 			const Size stage_size(
@@ -72,6 +72,8 @@ namespace step_clickclick
 			{
 				for( int tx = 0; tx < stage_width; ++tx )
 				{
+					const int linear_index = tx + ( ty * stage_width );
+
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 					button->setScale9Enabled( true );
 					button->setContentSize( tile_size );
@@ -93,13 +95,32 @@ namespace step_clickclick
 					}
 
 					Pannels.emplace_back(
-						0
+						linear_index
+						, 0
 						, button
 					);
 				}
 			}
 
 			return true;
+		}
+
+		void Stage::Setup( const int width, const int height )
+		{
+			for( auto p : Pannels )
+			{
+				p.PannelNode->setVisible( false );
+			}
+
+			for( int ty = 0; ty < height; ++ty )
+			{
+				for( int tx = 0; tx < width; ++tx )
+				{
+					const int linear_index = tx + ( ty * 7 );
+
+					Pannels[linear_index].PannelNode->setVisible( true );
+				}
+			}
 		}
 	} // namespace game
 } // namespace step_clickclick
