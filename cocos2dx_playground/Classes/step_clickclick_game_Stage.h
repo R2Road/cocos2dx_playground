@@ -33,6 +33,7 @@ namespace step_clickclick
 				void IncreaseAction();
 
 				ePannelType GetType() const { return mPannelType; }
+				bool IsActive() const { return mActive; }
 				int GetCount() const { return mCount; }
 
 			private:
@@ -41,6 +42,7 @@ namespace step_clickclick
 			private:
 				int mIndex;
 				ePannelType mPannelType;
+				bool mActive;
 				int mCount;
 				cocos2d::Node* const mPannelNode;
 				cocos2d::Label* const mLabelNode;

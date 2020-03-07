@@ -37,6 +37,7 @@ namespace step_clickclick
 		Stage::Pannel::Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node ) :
 			mIndex( index )
 			, mPannelType( Stage::ePannelType::Together )
+			, mActive( false )
 			, mCount( count )
 			, mPannelNode( pannel_node )
 			, mLabelNode( label_node )
@@ -44,6 +45,7 @@ namespace step_clickclick
 
 		void Stage::Pannel::Init( const int count )
 		{
+			mActive = true;
 			mCount = count;
 			mLabelNode->setString( std::to_string( mCount ) );
 		}
@@ -69,6 +71,7 @@ namespace step_clickclick
 
 			if( 0 == mCount )
 			{
+				mActive = false;
 				mPannelNode->setVisible( false );
 			}
 		}
@@ -238,6 +241,11 @@ namespace step_clickclick
 						}
 
 						const int linear_index = tx + ( ty * mStageWidth );
+						if( !Pannels[linear_index].IsActive() )
+						{
+							continue;
+						}
+
 						if( pivot_count != Pannels[linear_index].GetCount() )
 						{
 							Pannels[linear_index].IncreaseAction();
