@@ -19,9 +19,6 @@
     <Filter Include="src\scene\step01">
       <UniqueIdentifier>{23d6f0e6-cda1-48d5-8cc2-def067a22a4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step01\animation">
-      <UniqueIdentifier>{21100d58-fa07-4a20-ad3b-1c9dc0025dd4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step01\input">
       <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
     </Filter>
@@ -82,6 +79,9 @@
     <Filter Include="src\scene\step_clickclick">
       <UniqueIdentifier>{f0a8247b-c79a-4550-845d-19e0c375ca24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_clickclick\animation">
+      <UniqueIdentifier>{21100d58-fa07-4a20-ad3b-1c9dc0025dd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -133,13 +133,13 @@
       <Filter>src\scene\step01</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_RootScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
+      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_PlayNStopScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
+      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_BasicScene.cpp">
-      <Filter>src\scene\step01\animation</Filter>
+      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Input_KeyCodeViewScene.cpp">
       <Filter>src\scene\step01\input</Filter>
@@ -309,13 +309,13 @@
       <Filter>src\scene\step01</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_RootScene.h">
-      <Filter>src\scene\step01\animation</Filter>
+      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_PlayNStopScene.h">
-      <Filter>src\scene\step01\animation</Filter>
+      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_BasicScene.h">
-      <Filter>src\scene\step01\animation</Filter>
+      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Input_KeyCodeViewScene.h">
       <Filter>src\scene\step01\input</Filter>

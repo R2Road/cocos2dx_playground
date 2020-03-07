@@ -6,7 +6,6 @@
 #include "PlayGroundScene.h"
 
 #include "Step01_Input_KeyCodeViewScene.h"
-#include "Step01_Animation_RootScene.h"
 #include "Step01_Json_LoadNSaveScene.h"
 #include "Step01_Button_BasicScene.h"
 #include "Step01_TextField_BasicScene.h"
@@ -51,20 +50,18 @@ namespace step01
 			ss << "\n";
 			ss << "[1] : " << input::KeyCodeViewScene::getTitle();
 			ss << "\n";
-			ss << "[2] : Animation";
+			ss << "[2] : " << json::LoadNSaveScene::getTitle();
 			ss << "\n";
-			ss << "[3] : " << json::LoadNSaveScene::getTitle();
+			ss << "[2] : " << step01::button::BasicScene::getTitle();
 			ss << "\n";
-			ss << "[4] : " << step01::button::BasicScene::getTitle();
+			ss << "[3] : " << step01::text_field::BasicScene::getTitle();
 			ss << "\n";
-			ss << "[5] : " << step01::text_field::BasicScene::getTitle();
-			ss << "\n";
-			ss << "[6] : " << step01::sound::BasicScene::getTitle();
+			ss << "[4] : " << step01::sound::BasicScene::getTitle();
 			ss << "\n";
 			ss << "\n";
-			ss << "[7] : " << tool::MapToolScene::getTitle();
+			ss << "[5] : " << tool::MapToolScene::getTitle();
 			ss << "\n";
-			ss << "[8] : " << game::pathfinder::TitleScene::getTitle();
+			ss << "[6] : " << game::pathfinder::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -116,26 +113,23 @@ namespace step01
 			Director::getInstance()->replaceScene( input::KeyCodeViewScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( animation::RootScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( json::LoadNSaveScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( step01::button::BasicScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step01::text_field::BasicScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( step01::sound::BasicScene::create() );
 			break;
 
 
-		case EventKeyboard::KeyCode::KEY_7:
+		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( tool::MapToolScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_8:
+		case EventKeyboard::KeyCode::KEY_7:
 			Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
 			break;
 

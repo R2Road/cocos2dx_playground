@@ -5,6 +5,8 @@
 
 #include "PlayGroundScene.h"
 
+#include "Step01_Animation_RootScene.h"
+
 USING_NS_CC;
 
 namespace step_clickclick
@@ -37,6 +39,9 @@ namespace step_clickclick
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[1] : Animation";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -82,6 +87,10 @@ namespace step_clickclick
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( step01::animation::RootScene::create() );
 			break;
 
 		default:

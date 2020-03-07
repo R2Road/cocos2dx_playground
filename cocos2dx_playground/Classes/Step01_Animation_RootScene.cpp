@@ -3,7 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "Step01_RootScene.h"
+#include "step_clickclick_RootScene.h"
 #include "Step01_Animation_BasicScene.h"
 #include "Step01_Animation_PlayNStopScene.h"
 
@@ -105,7 +105,7 @@ namespace step01
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				next_scene = step01::RootScene::create();
+				next_scene = step_clickclick::RootScene::create();
 				break;
 
 			case EventKeyboard::KeyCode::KEY_1:
