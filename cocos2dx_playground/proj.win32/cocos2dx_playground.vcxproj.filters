@@ -79,6 +79,9 @@
     <Filter Include="src\table">
       <UniqueIdentifier>{f016cb03-47a6-4a5c-b33d-9986b9dbc156}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_clickclick">
+      <UniqueIdentifier>{f0a8247b-c79a-4550-845d-19e0c375ca24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -251,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_animation_InfoContainer.cpp">
       <Filter>src\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_RootScene.cpp">
+      <Filter>src\scene\step_clickclick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +439,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_animation_InfoContainer.h">
       <Filter>src\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_RootScene.h">
+      <Filter>src\scene\step_clickclick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
