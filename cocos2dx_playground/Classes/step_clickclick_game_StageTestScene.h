@@ -2,27 +2,23 @@
 
 #include "cocos2d.h"
 
-namespace step01
+namespace step_clickclick
 {
-	namespace sound
+	namespace game
 	{
-		class BasicScene : public cocos2d::Scene
+		class StageTestScene : public cocos2d::Scene
 		{
 		private:
-			BasicScene();
+			StageTestScene();
 
 		public:
-			~BasicScene();
-
-			static const char* getTitle() { return "Sound : Basic"; }
+			static const char* getTitle() { return "Game : Stage Test"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
 			void onEnter() override;
 			void onExit() override;
 
-		private:
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:

@@ -1,15 +1,15 @@
-#include "Step01_Sound_Basic.h"
+#include "step_clickclick_sound_Basic.h"
 
 #include <new>
 #include <sstream>
 
 #include "audio/include/AudioEngine.h"
 
-#include "Step01_RootScene.h"
+#include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
 
-namespace step01
+namespace step_clickclick
 {
 	namespace sound
 	{
@@ -71,6 +71,14 @@ namespace step01
 			}
 
 			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
+				addChild( background_layer, 0 );
+			}
+
+			//
 			// Keyboard Listener
 			//
 			{
@@ -80,10 +88,10 @@ namespace step01
 			}
 
 			//
-			// Json View
+			// Input Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -110,7 +118,7 @@ namespace step01
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

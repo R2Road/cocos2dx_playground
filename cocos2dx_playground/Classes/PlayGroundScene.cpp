@@ -3,6 +3,7 @@
 #include <new>
 #include <sstream>
 
+#include "step_clickclick_RootScene.h"
 #include "Step01_RootScene.h"
 #include "step02_RootScene.h"
 
@@ -37,9 +38,11 @@ Scene* PlayGroundScene::create()
 	ss << "[ESC] : Shutdown";
 	ss << "\n";
 	ss << "\n";
-	ss << "[1] : " << step01::RootScene::getTitle();
+	ss << "[1] : " << step_clickclick::RootScene::getTitle();
 	ss << "\n";
-	ss << "[2] : " << step02::RootScene::getTitle();
+	ss << "[2] : " << step01::RootScene::getTitle();
+	ss << "\n";
+	ss << "[3] : " << step02::RootScene::getTitle();
 	ss << "\n";
 	ss << "\n";
 	ss << "\n";
@@ -86,10 +89,14 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		break;
 
 	case EventKeyboard::KeyCode::KEY_1:
-		Director::getInstance()->replaceScene( step01::RootScene::create() );
+		Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_2:
+		Director::getInstance()->replaceScene( step01::RootScene::create() );
+		break;
+
+	case EventKeyboard::KeyCode::KEY_3:
 		Director::getInstance()->replaceScene( step02::RootScene::create() );
 		break;
 

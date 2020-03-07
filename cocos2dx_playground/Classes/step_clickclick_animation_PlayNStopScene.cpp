@@ -1,9 +1,9 @@
-#include "Step01_Animation_PlayNStopScene.h"
+#include "step_clickclick_animation_PlayNStopScene.h"
 
 #include <new>
 #include <sstream>
 
-#include "Step01_Animation_RootScene.h"
+#include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
 
@@ -14,7 +14,7 @@ namespace
 	const int TAG_Action_Animation_Run_Repeat = 111;
 }
 
-namespace step01
+namespace step_clickclick
 {
 	namespace animation
 	{
@@ -53,14 +53,14 @@ namespace step01
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Animation - Play and Stop";
-				ss << "\n";
-				ss << "\n";
+				ss << "+ " << getTitle();
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << "\n";
-				ss << "\n";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[A] : Play Animation";
-				ss << "\n";
+				ss << std::endl;
 				ss << "[SpaceBar] : Stop Animation";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
@@ -76,7 +76,7 @@ namespace step01
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 75, 0, 115, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 0, 50, 20, 255 ) );
 				addChild( background_layer, 0 );
 			}
 
@@ -138,7 +138,7 @@ namespace step01
 
 		void PlayNStopScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		}
 
 		void PlayNStopScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

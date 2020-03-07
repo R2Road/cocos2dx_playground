@@ -1,11 +1,11 @@
-#include "Step01_Button_BasicScene.h"
+#include "step_clickclick_button_BasicScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "ui/UIButton.h"
 
-#include "Step01_RootScene.h"
+#include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
 
@@ -14,7 +14,7 @@ namespace
 	const int TAG_label = 20140416;
 }
 
-namespace step01
+namespace step_clickclick
 {
 	namespace button
 	{
@@ -55,7 +55,7 @@ namespace step01
 				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[ESC] : Return to Step01 Root";
+				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
@@ -65,6 +65,14 @@ namespace step01
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
+			}
+
+			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
+				addChild( background_layer, 0 );
 			}
 
 			//
@@ -79,13 +87,13 @@ namespace step01
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-				addChild( button, 0 );
+				addChild( button, 1 );
 
 				auto label = Label::createWithTTF( "Click Here ===>>>", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f , 0.f ) );
-				addChild( label, 1 );
+				addChild( label, 2 );
 			}
 
 			//
@@ -99,7 +107,7 @@ namespace step01
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.7f )
 				) );
-				addChild( label, 1 );
+				addChild( label, 2 );
 			}
 
 			
@@ -150,7 +158,7 @@ namespace step01
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
