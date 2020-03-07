@@ -23,10 +23,10 @@ namespace step_clickclick
 				void SetVisible( const bool visible );
 
 			private:
-				int Index;
-				int Count;
-				cocos2d::Node* const PannelNode;
-				cocos2d::Label* const LabelNode;
+				int mIndex;
+				int mCount;
+				cocos2d::Node* const mPannelNode;
+				cocos2d::Label* const mLabelNode;
 			};
 
 			Stage();

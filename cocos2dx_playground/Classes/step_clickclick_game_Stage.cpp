@@ -26,16 +26,16 @@ namespace step_clickclick
 
 
 		Stage::Pannel::Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node ) :
-			Index( index )
-			, Count( count )
-			, PannelNode( pannel_node )
-			, LabelNode( label_node )
+			mIndex( index )
+			, mCount( count )
+			, mPannelNode( pannel_node )
+			, mLabelNode( label_node )
 		{}
 
 		void Stage::Pannel::SetVisible( const bool visible )
 		{
-			PannelNode->setVisible( visible );
-			LabelNode->setVisible( visible );
+			mPannelNode->setVisible( visible );
+			mLabelNode->setVisible( visible );
 		}
 
 
