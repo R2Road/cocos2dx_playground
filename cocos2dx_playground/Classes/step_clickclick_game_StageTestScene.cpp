@@ -84,7 +84,7 @@ namespace step_clickclick
 				) );
 				addChild( stage_node );
 
-				stage_node->Setup( 3, 4 );
+				stage_node->Setup( 3, 5 );
 			}
 
 			return true;

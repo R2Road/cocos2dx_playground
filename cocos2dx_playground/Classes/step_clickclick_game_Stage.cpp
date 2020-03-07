@@ -14,6 +14,11 @@ namespace step_clickclick
 {
 	namespace game
 	{
+		void CheckOddNumber( const int number )
+		{
+			assert( 1 == ( number & 1 ) );
+		}
+
 		Stage::Stage() :
 			mStageWidth( 7 )
 			, mStageHeight( 7 )
@@ -22,8 +27,8 @@ namespace step_clickclick
 			//
 			// Must odd number
 			//
-			assert( 1 == ( mStageWidth & 1 ) );
-			assert( 1 == ( mStageHeight & 1 ) );
+			CheckOddNumber( mStageWidth );
+			CheckOddNumber( mStageHeight );
 		}
 
 		Stage* Stage::create()
@@ -115,6 +120,9 @@ namespace step_clickclick
 
 		void Stage::Setup( const int width, const int height )
 		{
+			CheckOddNumber( width );
+			CheckOddNumber( height );
+
 			for( auto p : Pannels )
 			{
 				p.PannelNode->setVisible( false );
