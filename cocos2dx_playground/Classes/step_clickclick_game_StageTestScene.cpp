@@ -81,6 +81,7 @@ namespace step_clickclick
 					( stage_width * tile_size.width ) + ( ( stage_width - 1 ) * margin_size.width )
 					,( stage_height * tile_size.height ) + ( ( stage_height - 1 ) * margin_size.height )
 				);
+				const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
 
 				auto root_node = Node::create();
 				root_node->setContentSize( stage_size );
@@ -100,10 +101,7 @@ namespace step_clickclick
 					// Background Guide
 					{
 						auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), root_node->getContentSize().width, root_node->getContentSize().height );
-						pivot->setPosition( Vec2(
-							pivot->getContentSize().width * -0.5f
-							, pivot->getContentSize().height * -0.5f
-						) );
+						pivot->setPosition( pivot_position );
 						root_node->addChild( pivot, std::numeric_limits<int>::min() );
 					}
 				}
