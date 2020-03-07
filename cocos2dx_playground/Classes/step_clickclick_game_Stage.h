@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "2d/CCNode.h"
+#include "ui/UIWidget.h"
 
 NS_CC_BEGIN
 	class Label;
@@ -21,6 +22,7 @@ namespace step_clickclick
 				Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node );
 
 				void SetVisible( const bool visible );
+				void Action();
 
 			private:
 				int mIndex;
@@ -37,6 +39,9 @@ namespace step_clickclick
 			bool init() override;
 
 			void Setup( const int width, const int height );
+
+		private:
+			void onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			const int mStageWidth;

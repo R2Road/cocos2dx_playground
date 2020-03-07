@@ -7,6 +7,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "base/ccMacros.h"
 #include "ui/UIButton.h"
 
 USING_NS_CC;
@@ -36,6 +37,17 @@ namespace step_clickclick
 		{
 			mPannelNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
+		}
+
+		void Stage::Pannel::Action()
+		{
+			mCount = std::max( 0, mCount - 1 );
+			mLabelNode->setString( std::to_string( mCount ) );
+
+			if( 0 == mCount )
+			{
+				mPannelNode->setVisible( false );
+			}
 		}
 
 
@@ -111,6 +123,7 @@ namespace step_clickclick
 
 					// button
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+					button->setTag( linear_index );
 					button->setScale9Enabled( true );
 					button->setContentSize( tile_size );
 					button->setPosition(
@@ -118,6 +131,7 @@ namespace step_clickclick
 						+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
 						+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
 					);
+					button->addTouchEventListener( CC_CALLBACK_2( Stage::onPannel, this ) );
 					addChild( button );
 
 					// label
@@ -132,7 +146,7 @@ namespace step_clickclick
 
 					Pannels.emplace_back(
 						linear_index
-						, 0
+						, 5
 						, button
 						, label
 					);
@@ -165,6 +179,12 @@ namespace step_clickclick
 					Pannels[linear_index].SetVisible( true );
 				}
 			}
+		}
+
+		void Stage::onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		{
+			auto button_node = static_cast<Node*>( sender );
+			Pannels[button_node->getTag()].Action();
 		}
 	} // namespace game
 } // namespace step_clickclick
