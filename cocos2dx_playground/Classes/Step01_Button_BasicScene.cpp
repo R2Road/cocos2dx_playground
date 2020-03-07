@@ -5,7 +5,7 @@
 
 #include "ui/UIButton.h"
 
-#include "Step01_RootScene.h"
+#include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
 
@@ -55,7 +55,7 @@ namespace step01
 				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[ESC] : Return to Step01 Root";
+				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
@@ -150,7 +150,7 @@ namespace step01
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

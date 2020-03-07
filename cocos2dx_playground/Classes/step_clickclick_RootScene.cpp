@@ -8,6 +8,8 @@
 #include "step_clickclick_animation_BasicScene.h"
 #include "step_clickclick_animation_PlayNStopScene.h"
 
+#include "Step01_Button_BasicScene.h"
+
 USING_NS_CC;
 
 namespace step_clickclick
@@ -45,6 +47,9 @@ namespace step_clickclick
 			ss << "[1] : " << step_clickclick::animation::BasicScene::getTitle();
 			ss << std::endl;
 			ss << "[2] : " << step_clickclick::animation::PlayNStopScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[3] : " << step01::button::BasicScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -97,6 +102,10 @@ namespace step_clickclick
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step_clickclick::animation::PlayNStopScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step01::button::BasicScene::create() );
 			break;
 
 		default:

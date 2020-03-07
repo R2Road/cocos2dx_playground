@@ -31,9 +31,6 @@
     <Filter Include="src\scene\step01\json">
       <UniqueIdentifier>{17a57a53-55f5-4cad-97dc-102cdbd7c1dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step01\button">
-      <UniqueIdentifier>{78ebed0e-5d7e-41b2-b6aa-65f57b5c0d0c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step01\textfield">
       <UniqueIdentifier>{5536a0a4-196d-4c90-a1fb-3b664d4b1406}</UniqueIdentifier>
     </Filter>
@@ -81,6 +78,9 @@
     </Filter>
     <Filter Include="src\scene\step_clickclick\animation">
       <UniqueIdentifier>{21100d58-fa07-4a20-ad3b-1c9dc0025dd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_clickclick\button">
+      <UniqueIdentifier>{78ebed0e-5d7e-41b2-b6aa-65f57b5c0d0c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +145,7 @@
       <Filter>src\scene\step01\json</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Button_BasicScene.cpp">
-      <Filter>src\scene\step01\button</Filter>
+      <Filter>src\scene\step_clickclick\button</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp">
       <Filter>src\scene\step01\game</Filter>
@@ -318,7 +318,7 @@
       <Filter>src\scene\step01\json</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Button_BasicScene.h">
-      <Filter>src\scene\step01\button</Filter>
+      <Filter>src\scene\step_clickclick\button</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h">
       <Filter>src\scene\step01\game</Filter>

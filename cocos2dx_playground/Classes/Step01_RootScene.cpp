@@ -7,7 +7,6 @@
 
 #include "Step01_Input_KeyCodeViewScene.h"
 #include "Step01_Json_LoadNSaveScene.h"
-#include "Step01_Button_BasicScene.h"
 #include "Step01_TextField_BasicScene.h"
 #include "Step01_Sound_Basic.h"
 
@@ -51,8 +50,6 @@ namespace step01
 			ss << "[1] : " << input::KeyCodeViewScene::getTitle();
 			ss << "\n";
 			ss << "[2] : " << json::LoadNSaveScene::getTitle();
-			ss << "\n";
-			ss << "[2] : " << step01::button::BasicScene::getTitle();
 			ss << "\n";
 			ss << "[3] : " << step01::text_field::BasicScene::getTitle();
 			ss << "\n";
@@ -116,20 +113,17 @@ namespace step01
 			Director::getInstance()->replaceScene( json::LoadNSaveScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step01::button::BasicScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step01::text_field::BasicScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step01::sound::BasicScene::create() );
 			break;
 
 
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( tool::MapToolScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_7:
+		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
 			break;
 
