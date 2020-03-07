@@ -1,5 +1,6 @@
 #include "step_clickclick_game_Stage.h"
 
+#include <functional>
 #include <new>
 #include <numeric>
 
@@ -22,6 +23,21 @@ namespace step_clickclick
 		{
 			assert( pivot >= number );
 		}
+
+
+		Stage::Pannel::Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node ) :
+			Index( index )
+			, Count( count )
+			, PannelNode( pannel_node )
+			, LabelNode( label_node )
+		{}
+
+		void Stage::Pannel::SetVisible( const bool visible )
+		{
+			PannelNode->setVisible( visible );
+			LabelNode->setVisible( visible );
+		}
+
 
 		Stage::Stage() :
 			mStageWidth( 7 )
@@ -93,6 +109,7 @@ namespace step_clickclick
 				{
 					const int linear_index = tx + ( ty * mStageWidth );
 
+					// button
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 					button->setScale9Enabled( true );
 					button->setContentSize( tile_size );
@@ -102,21 +119,22 @@ namespace step_clickclick
 						+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
 					);
 					addChild( button );
-					{
-						auto label = Label::createWithTTF( "5", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-						label->setColor( Color3B::RED );
-						label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-						button->addChild( label );
-						label->setPosition( Vec2(
-							label->getParent()->getContentSize().width * 0.5f
-							, label->getParent()->getContentSize().height * 0.5f
-						) );
-					}
+
+					// label
+					auto label = Label::createWithTTF( "5", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					label->setColor( Color3B::RED );
+					label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+					label->setPosition(
+						button->getPosition()
+						//+ Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f )
+					);
+					addChild( label, 1 );
 
 					Pannels.emplace_back(
 						linear_index
 						, 0
 						, button
+						, label
 					);
 				}
 			}
@@ -133,7 +151,7 @@ namespace step_clickclick
 
 			for( auto p : Pannels )
 			{
-				p.PannelNode->setVisible( false );
+				p.SetVisible( false );
 			}
 
 			const int current_pivot_x = mCenterX - ( width / 2 );
@@ -144,7 +162,7 @@ namespace step_clickclick
 				{
 					const int linear_index = tx + ( ty * mStageWidth );
 
-					Pannels[linear_index].PannelNode->setVisible( true );
+					Pannels[linear_index].SetVisible( true );
 				}
 			}
 		}

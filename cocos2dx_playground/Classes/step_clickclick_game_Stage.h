@@ -4,6 +4,10 @@
 
 #include "2d/CCNode.h"
 
+NS_CC_BEGIN
+	class Label;
+NS_CC_END
+
 namespace step_clickclick
 {
 	namespace game
@@ -11,13 +15,18 @@ namespace step_clickclick
 		class Stage : public cocos2d::Node
 		{
 		private:
-			struct Pannel
+			class Pannel
 			{
-				Pannel( const int index, const int count, cocos2d::Node* const pannel_node ) : Index( index ), Count( count ), PannelNode( pannel_node ) {}
+			public:
+				Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node );
 
+				void SetVisible( const bool visible );
+
+			private:
 				int Index;
 				int Count;
 				cocos2d::Node* const PannelNode;
+				cocos2d::Label* const LabelNode;
 			};
 
 			Stage();
