@@ -182,8 +182,13 @@ namespace step_clickclick
 			}
 		}
 
-		void Stage::onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		void Stage::onPannel( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
+			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			{
+				return;
+			}
+
 			auto button_node = static_cast<Node*>( sender );
 
 			if( ePannelType::Single == Pannels[button_node->getTag()].GetType() )
