@@ -8,6 +8,8 @@
 
 #include "step_clickclick_RootScene.h"
 
+#include "step_clickclick_game_Stage.h"
+
 USING_NS_CC;
 
 namespace step_clickclick
@@ -75,66 +77,12 @@ namespace step_clickclick
 			// Stage
 			//
 			{
-				const int stage_width = 3;
-				const int stage_height = 3;
-				const Size tile_size( 32.f, 32.f );
-				const Size margin_size( 2.f, 2.f );
-				const Size stage_size(
-					( stage_width * tile_size.width ) + ( ( stage_width - 1 ) * margin_size.width )
-					,( stage_height * tile_size.height ) + ( ( stage_height - 1 ) * margin_size.height )
-				);
-				const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
-
-				auto root_node = Node::create();
-				root_node->setContentSize( stage_size );
-				root_node->setPosition( Vec2(
+				auto stage_node = step_clickclick::game::Stage::create();
+				stage_node->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				addChild( root_node );
-				{
-					// Pivot
-					{
-						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-						pivot->setScale( 2.f );
-						root_node->addChild( pivot, std::numeric_limits<int>::max() );
-					}
-
-					// Background Guide
-					{
-						auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), root_node->getContentSize().width, root_node->getContentSize().height );
-						pivot->setPosition( pivot_position 
-);
-						root_node->addChild( pivot, std::numeric_limits<int>::min() );
-					}
-
-					// Buttons
-					for( int ty = 0; ty < stage_height; ++ty )
-					{
-						for( int tx = 0; tx < stage_width; ++tx )
-						{
-							auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-							button->setScale9Enabled( true );
-							button->setContentSize( tile_size );
-							button->setPosition(
-								pivot_position
-								+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
-								+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
-							);
-							root_node->addChild( button );
-							{
-								auto label = Label::createWithTTF( "5", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-								label->setColor( Color3B::RED );
-								label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-								button->addChild( label );
-								label->setPosition( Vec2(
-									label->getParent()->getContentSize().width * 0.5f
-									, label->getParent()->getContentSize().height * 0.5f
-								) );
-							}
-						}
-					}
-				}
+				addChild( stage_node );
 			}
 
 			return true;
