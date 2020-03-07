@@ -12,6 +12,8 @@
 
 #include "step_clickclick_button_BasicScene.h"
 
+#include "step_clickclick_game_StageTestScene.h"
+
 USING_NS_CC;
 
 namespace step_clickclick
@@ -55,6 +57,9 @@ namespace step_clickclick
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[4] : " << step_clickclick::button::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[5] : " << step_clickclick::game::StageTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -115,6 +120,10 @@ namespace step_clickclick
 
 		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_clickclick::button::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_5:
+			Director::getInstance()->replaceScene( step_clickclick::game::StageTestScene::create() );
 			break;
 
 		default:
