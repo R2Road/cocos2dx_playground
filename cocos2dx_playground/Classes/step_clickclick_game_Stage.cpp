@@ -18,6 +18,10 @@ namespace step_clickclick
 		{
 			assert( 1 == ( number & 1 ) );
 		}
+		void CheckSize( const int pivot, const int number )
+		{
+			assert( pivot >= number );
+		}
 
 		Stage::Stage() :
 			mStageWidth( 7 )
@@ -124,6 +128,8 @@ namespace step_clickclick
 		{
 			CheckOddNumber( width );
 			CheckOddNumber( height );
+			CheckSize( mStageWidth, width );
+			CheckSize( mStageHeight, height );
 
 			for( auto p : Pannels )
 			{
