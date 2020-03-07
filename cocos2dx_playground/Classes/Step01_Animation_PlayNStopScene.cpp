@@ -3,7 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "Step01_Animation_RootScene.h"
+#include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
 
@@ -76,7 +76,7 @@ namespace step01
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 75, 0, 115, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 0, 50, 20, 255 ) );
 				addChild( background_layer, 0 );
 			}
 
@@ -138,7 +138,7 @@ namespace step01
 
 		void PlayNStopScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		}
 
 		void PlayNStopScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

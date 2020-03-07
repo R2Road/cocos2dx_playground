@@ -12,6 +12,7 @@ namespace step01
 			BasicScene();
 
 		public:
+			static const char* getTitle() { return "Animation : Basic"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;

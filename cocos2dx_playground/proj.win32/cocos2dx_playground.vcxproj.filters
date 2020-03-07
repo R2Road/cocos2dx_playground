@@ -132,9 +132,6 @@
     <ClCompile Include="..\Classes\Step01_RootScene.cpp">
       <Filter>src\scene\step01</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Animation_RootScene.cpp">
-      <Filter>src\scene\step_clickclick\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Animation_PlayNStopScene.cpp">
       <Filter>src\scene\step_clickclick\animation</Filter>
     </ClCompile>
@@ -307,9 +304,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_RootScene.h">
       <Filter>src\scene\step01</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Animation_RootScene.h">
-      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Animation_PlayNStopScene.h">
       <Filter>src\scene\step_clickclick\animation</Filter>

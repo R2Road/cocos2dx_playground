@@ -5,7 +5,8 @@
 
 #include "PlayGroundScene.h"
 
-#include "Step01_Animation_RootScene.h"
+#include "Step01_Animation_BasicScene.h"
+#include "Step01_Animation_PlayNStopScene.h"
 
 USING_NS_CC;
 
@@ -41,7 +42,9 @@ namespace step_clickclick
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : Animation";
+			ss << "[1] : " << step01::animation::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << step01::animation::PlayNStopScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -90,7 +93,10 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step01::animation::RootScene::create() );
+			Director::getInstance()->replaceScene( step01::animation::BasicScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( step01::animation::PlayNStopScene::create() );
 			break;
 
 		default:
