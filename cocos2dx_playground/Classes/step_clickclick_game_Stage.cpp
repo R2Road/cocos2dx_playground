@@ -14,7 +14,11 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		Stage::Stage() : Pannels() {}
+		Stage::Stage() :
+			mStageWidth( 7 )
+			, mStageHeight( 7 )
+			, Pannels()
+		{}
 
 		Stage* Stage::create()
 		{
@@ -40,13 +44,11 @@ namespace step_clickclick
 				return false;
 			}
 
-			const int stage_width = 7;
-			const int stage_height = 7;
 			const Size tile_size( 32.f, 32.f );
 			const Size margin_size( 2.f, 2.f );
 			const Size stage_size(
-				( stage_width * tile_size.width ) + ( ( stage_width - 1 ) * margin_size.width )
-				,( stage_height * tile_size.height ) + ( ( stage_height - 1 ) * margin_size.height )
+				( mStageWidth * tile_size.width ) + ( ( mStageWidth - 1 ) * margin_size.width )
+				,( mStageHeight * tile_size.height ) + ( ( mStageHeight - 1 ) * margin_size.height )
 			);
 			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
 
@@ -68,11 +70,11 @@ namespace step_clickclick
 			}
 
 			// Buttons
-			for( int ty = 0; ty < stage_height; ++ty )
+			for( int ty = 0; ty < mStageHeight; ++ty )
 			{
-				for( int tx = 0; tx < stage_width; ++tx )
+				for( int tx = 0; tx < mStageWidth; ++tx )
 				{
-					const int linear_index = tx + ( ty * stage_width );
+					const int linear_index = tx + ( ty * mStageWidth );
 
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 					button->setScale9Enabled( true );
@@ -116,7 +118,7 @@ namespace step_clickclick
 			{
 				for( int tx = 0; tx < width; ++tx )
 				{
-					const int linear_index = tx + ( ty * 7 );
+					const int linear_index = tx + ( ty * mStageWidth );
 
 					Pannels[linear_index].PannelNode->setVisible( true );
 				}
