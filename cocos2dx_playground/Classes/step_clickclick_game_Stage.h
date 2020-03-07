@@ -19,6 +19,7 @@ namespace step_clickclick
 			enum class ePannelType
 			{
 				Single,
+				Together,
 			};
 
 			class Pannel
@@ -30,6 +31,7 @@ namespace step_clickclick
 				void Action();
 
 				ePannelType GetType() const { return mPannelType; }
+				int GetCount() const { return mCount; }
 
 			private:
 				int mIndex;

@@ -28,7 +28,7 @@ namespace step_clickclick
 
 		Stage::Pannel::Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node ) :
 			mIndex( index )
-			, mPannelType( Stage::ePannelType::Single )
+			, mPannelType( Stage::ePannelType::Together )
 			, mCount( count )
 			, mPannelNode( pannel_node )
 			, mLabelNode( label_node )
@@ -189,6 +189,35 @@ namespace step_clickclick
 			if( ePannelType::Single == Pannels[button_node->getTag()].GetType() )
 			{
 				Pannels[button_node->getTag()].Action();
+			}
+			else if( ePannelType::Together == Pannels[button_node->getTag()].GetType() )
+			{
+				const int pivot_count = Pannels[button_node->getTag()].GetCount();
+
+				const int button_y = button_node->getTag() / mStageWidth;
+				const int button_x = button_node->getTag() - ( button_y * mStageWidth );
+
+				const int current_pivot_x = button_x - 1;
+				const int current_pivot_y = button_y - 1;
+				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				{
+					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					{
+						if( 0 > tx || mStageWidth <= tx
+							|| 0 > ty || mStageHeight <= ty )
+						{
+							continue;
+						}
+
+						const int linear_index = tx + ( ty * mStageWidth );
+						if( pivot_count != Pannels[linear_index].GetCount() )
+						{
+							continue;
+						}
+
+						Pannels[linear_index].Action();
+					}
+				}
 			}
 		}
 	} // namespace game
