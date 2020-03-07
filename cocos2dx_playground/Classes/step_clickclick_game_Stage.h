@@ -32,6 +32,8 @@ namespace step_clickclick
 		private:
 			const int mStageWidth;
 			const int mStageHeight;
+			const int mCenterX;
+			const int mCenterY;
 			std::vector<Pannel> Pannels;
 		};
 	}

@@ -22,6 +22,8 @@ namespace step_clickclick
 		Stage::Stage() :
 			mStageWidth( 7 )
 			, mStageHeight( 7 )
+			, mCenterX( mStageWidth / 2 )
+			, mCenterY( mStageWidth / 2 )
 			, Pannels()
 		{
 			//
@@ -128,9 +130,11 @@ namespace step_clickclick
 				p.PannelNode->setVisible( false );
 			}
 
-			for( int ty = 0; ty < height; ++ty )
+			const int current_pivot_x = mCenterX - ( width / 2 );
+			const int current_pivot_y = mCenterY - ( height / 2 );
+			for( int ty = current_pivot_y; ty < current_pivot_y + height; ++ty )
 			{
-				for( int tx = 0; tx < width; ++tx )
+				for( int tx = current_pivot_x; tx < current_pivot_x + width; ++tx )
 				{
 					const int linear_index = tx + ( ty * mStageWidth );
 
