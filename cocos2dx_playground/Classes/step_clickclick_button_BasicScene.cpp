@@ -1,4 +1,4 @@
-#include "Step01_Button_BasicScene.h"
+#include "step_clickclick_button_BasicScene.h"
 
 #include <new>
 #include <sstream>
@@ -14,7 +14,7 @@ namespace
 	const int TAG_label = 20140416;
 }
 
-namespace step01
+namespace step_clickclick
 {
 	namespace button
 	{

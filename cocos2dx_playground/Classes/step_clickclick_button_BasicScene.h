@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "ui/UIWidget.h"
 
-namespace step01
+namespace step_clickclick
 {
 	namespace button
 	{

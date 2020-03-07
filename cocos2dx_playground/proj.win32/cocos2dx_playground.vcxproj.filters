@@ -144,9 +144,6 @@
     <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp">
       <Filter>src\scene\step01\json</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Button_BasicScene.cpp">
-      <Filter>src\scene\step_clickclick\button</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
@@ -255,6 +252,9 @@
     <ClCompile Include="..\Classes\step_clickclick_animation_BasicScene.cpp">
       <Filter>src\scene\step_clickclick\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_button_BasicScene.cpp">
+      <Filter>src\scene\step_clickclick\button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -316,9 +316,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h">
       <Filter>src\scene\step01\json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Button_BasicScene.h">
-      <Filter>src\scene\step_clickclick\button</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h">
       <Filter>src\scene\step01\game</Filter>
@@ -436,6 +433,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_animation_BasicScene.h">
       <Filter>src\scene\step_clickclick\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_button_BasicScene.h">
+      <Filter>src\scene\step_clickclick\button</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
