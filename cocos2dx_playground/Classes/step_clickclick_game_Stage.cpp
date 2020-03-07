@@ -56,6 +56,15 @@ namespace step_clickclick
 		void Stage::Pannel::DecreaseAction()
 		{
 			mCount = std::max( 0, mCount - 1 );
+			Action();
+		}
+		void Stage::Pannel::IncreaseAction()
+		{
+			mCount = std::min( 100, mCount + 1 );
+			Action();
+		}
+		void Stage::Pannel::Action()
+		{
 			mLabelNode->setString( std::to_string( mCount ) );
 
 			if( 0 == mCount )
@@ -231,10 +240,12 @@ namespace step_clickclick
 						const int linear_index = tx + ( ty * mStageWidth );
 						if( pivot_count != Pannels[linear_index].GetCount() )
 						{
-							continue;
+							Pannels[linear_index].IncreaseAction();
 						}
-
-						Pannels[linear_index].DecreaseAction();
+						else
+						{
+							Pannels[linear_index].DecreaseAction();
+						}
 					}
 				}
 			}

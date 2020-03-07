@@ -30,9 +30,13 @@ namespace step_clickclick
 				void Init( const int count );
 				void SetVisible( const bool visible );
 				void DecreaseAction();
+				void IncreaseAction();
 
 				ePannelType GetType() const { return mPannelType; }
 				int GetCount() const { return mCount; }
+
+			private:
+				void Action();
 
 			private:
 				int mIndex;
