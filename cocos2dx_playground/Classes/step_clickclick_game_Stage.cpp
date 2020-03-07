@@ -164,7 +164,7 @@ namespace step_clickclick
 			CheckSize( mStageWidth, width );
 			CheckSize( mStageHeight, height );
 
-			for( auto p : Pannels )
+			for( auto& p : Pannels )
 			{
 				p.SetVisible( false );
 			}
