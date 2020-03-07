@@ -171,9 +171,6 @@
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_ResultScene.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Sound_Basic.cpp">
-      <Filter>src\scene\step_clickclick\sound</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step99_RootScene.cpp">
       <Filter>src\scene\step99</Filter>
     </ClCompile>
@@ -254,6 +251,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_button_BasicScene.cpp">
       <Filter>src\scene\step_clickclick\button</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_sound_Basic.cpp">
+      <Filter>src\scene\step_clickclick\sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -344,9 +344,6 @@
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_ResultScene.h">
       <Filter>src\scene\step01\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Sound_Basic.h">
-      <Filter>src\scene\step_clickclick\sound</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Step99_RootScene.h">
       <Filter>src\scene\step99</Filter>
     </ClInclude>
@@ -436,6 +433,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_button_BasicScene.h">
       <Filter>src\scene\step_clickclick\button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_sound_Basic.h">
+      <Filter>src\scene\step_clickclick\sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

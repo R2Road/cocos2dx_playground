@@ -1,4 +1,4 @@
-#include "Step01_Sound_Basic.h"
+#include "step_clickclick_sound_Basic.h"
 
 #include <new>
 #include <sstream>
@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_clickclick
 {
 	namespace sound
 	{

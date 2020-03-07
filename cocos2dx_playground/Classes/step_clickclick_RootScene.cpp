@@ -8,7 +8,7 @@
 #include "step_clickclick_animation_BasicScene.h"
 #include "step_clickclick_animation_PlayNStopScene.h"
 
-#include "Step01_Sound_Basic.h"
+#include "step_clickclick_sound_Basic.h"
 
 #include "step_clickclick_button_BasicScene.h"
 
@@ -51,7 +51,7 @@ namespace step_clickclick
 			ss << "[2] : " << step_clickclick::animation::PlayNStopScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[3] : " << step01::sound::BasicScene::getTitle();
+			ss << "[3] : " << step_clickclick::sound::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[4] : " << step_clickclick::button::BasicScene::getTitle();
@@ -110,7 +110,7 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step01::sound::BasicScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::sound::BasicScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
