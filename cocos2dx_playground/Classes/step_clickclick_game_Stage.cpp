@@ -3,6 +3,7 @@
 #include <functional>
 #include <new>
 #include <numeric>
+#include <random>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -24,6 +25,13 @@ namespace step_clickclick
 		{
 			assert( pivot >= number );
 		}
+		int GetRandomInt( int min, int max )
+		{
+			static std::random_device rd;
+			static std::mt19937 randomEngine( rd() );
+			static std::uniform_int_distribution<> dist( min, max );
+			return dist( randomEngine );
+		}
 
 
 		Stage::Pannel::Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node ) :
@@ -34,6 +42,11 @@ namespace step_clickclick
 			, mLabelNode( label_node )
 		{}
 
+		void Stage::Pannel::Init( const int count )
+		{
+			mCount = count;
+			mLabelNode->setString( std::to_string( mCount ) );
+		}
 		void Stage::Pannel::SetVisible( const bool visible )
 		{
 			mPannelNode->setVisible( visible );
@@ -136,7 +149,7 @@ namespace step_clickclick
 					addChild( button );
 
 					// label
-					auto label = Label::createWithTTF( "5", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "0", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::RED );
 					label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 					label->setPosition(
@@ -147,7 +160,7 @@ namespace step_clickclick
 
 					Pannels.emplace_back(
 						linear_index
-						, 5
+						, 0
 						, button
 						, label
 					);
@@ -177,6 +190,7 @@ namespace step_clickclick
 				{
 					const int linear_index = tx + ( ty * mStageWidth );
 
+					Pannels[linear_index].Init( GetRandomInt( 3, 9 ) );
 					Pannels[linear_index].SetVisible( true );
 				}
 			}
