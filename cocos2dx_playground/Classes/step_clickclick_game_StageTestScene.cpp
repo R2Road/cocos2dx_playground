@@ -2,6 +2,7 @@
 
 #include <new>
 #include <sstream>
+#include <numeric>
 
 #include "step_clickclick_RootScene.h"
 
@@ -66,6 +67,26 @@ namespace step_clickclick
 			{
 				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
 				addChild( background_layer, 0 );
+			}
+
+			//
+			// Stage
+			//
+			{
+				auto root_node = Node::create();
+				root_node->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( root_node );
+				{
+					// Pivot
+					{
+						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+						pivot->setScale( 2.f );
+						root_node->addChild( pivot, std::numeric_limits<int>::max() );
+					}
+				}
 			}
 
 			return true;
