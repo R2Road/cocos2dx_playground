@@ -53,7 +53,7 @@ namespace step_clickclick
 			mLabelNode->setVisible( visible );
 		}
 
-		void Stage::Pannel::Action()
+		void Stage::Pannel::DecreaseAction()
 		{
 			mCount = std::max( 0, mCount - 1 );
 			mLabelNode->setString( std::to_string( mCount ) );
@@ -207,7 +207,7 @@ namespace step_clickclick
 
 			if( ePannelType::Single == Pannels[button_node->getTag()].GetType() )
 			{
-				Pannels[button_node->getTag()].Action();
+				Pannels[button_node->getTag()].DecreaseAction();
 			}
 			else if( ePannelType::Together == Pannels[button_node->getTag()].GetType() )
 			{
@@ -234,7 +234,7 @@ namespace step_clickclick
 							continue;
 						}
 
-						Pannels[linear_index].Action();
+						Pannels[linear_index].DecreaseAction();
 					}
 				}
 			}
