@@ -4,6 +4,8 @@
 #include <sstream>
 #include <numeric>
 
+#include "ui/UIButton.h"
+
 #include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
@@ -101,8 +103,26 @@ namespace step_clickclick
 					// Background Guide
 					{
 						auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), root_node->getContentSize().width, root_node->getContentSize().height );
-						pivot->setPosition( pivot_position );
+						pivot->setPosition( pivot_position 
+);
 						root_node->addChild( pivot, std::numeric_limits<int>::min() );
+					}
+
+					// Buttons
+					for( int ty = 0; ty < stage_height; ++ty )
+					{
+						for( int tx = 0; tx < stage_width; ++tx )
+						{
+							auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+							button->setScale9Enabled( true );
+							button->setContentSize( tile_size );
+							button->setPosition(
+								pivot_position
+								+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
+								+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
+							);
+							root_node->addChild( button );
+						}
 					}
 				}
 			}
