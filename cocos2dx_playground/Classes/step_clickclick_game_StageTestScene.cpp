@@ -122,6 +122,16 @@ namespace step_clickclick
 								+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
 							);
 							root_node->addChild( button );
+							{
+								auto label = Label::createWithTTF( "5", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+								label->setColor( Color3B::RED );
+								label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+								button->addChild( label );
+								label->setPosition( Vec2(
+									label->getParent()->getContentSize().width * 0.5f
+									, label->getParent()->getContentSize().height * 0.5f
+								) );
+							}
 						}
 					}
 				}
