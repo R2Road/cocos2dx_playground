@@ -1,4 +1,4 @@
-#include "Step01_Animation_BasicScene.h"
+#include "step_clickclick_animation_BasicScene.h"
 
 #include <new>
 #include <sstream>
@@ -7,7 +7,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_clickclick
 {
 	namespace animation
 	{

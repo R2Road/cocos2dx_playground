@@ -1,4 +1,4 @@
-#include "Step01_Animation_PlayNStopScene.h"
+#include "step_clickclick_animation_PlayNStopScene.h"
 
 #include <new>
 #include <sstream>
@@ -14,7 +14,7 @@ namespace
 	const int TAG_Action_Animation_Run_Repeat = 111;
 }
 
-namespace step01
+namespace step_clickclick
 {
 	namespace animation
 	{

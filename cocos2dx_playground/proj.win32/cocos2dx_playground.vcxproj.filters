@@ -132,12 +132,6 @@
     <ClCompile Include="..\Classes\Step01_RootScene.cpp">
       <Filter>src\scene\step01</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Animation_PlayNStopScene.cpp">
-      <Filter>src\scene\step_clickclick\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Animation_BasicScene.cpp">
-      <Filter>src\scene\step_clickclick\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Input_KeyCodeViewScene.cpp">
       <Filter>src\scene\step01\input</Filter>
     </ClCompile>
@@ -255,6 +249,12 @@
     <ClCompile Include="..\Classes\step_clickclick_RootScene.cpp">
       <Filter>src\scene\step_clickclick</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_animation_PlayNStopScene.cpp">
+      <Filter>src\scene\step_clickclick\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_animation_BasicScene.cpp">
+      <Filter>src\scene\step_clickclick\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -304,12 +304,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_RootScene.h">
       <Filter>src\scene\step01</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Animation_PlayNStopScene.h">
-      <Filter>src\scene\step_clickclick\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Animation_BasicScene.h">
-      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Input_KeyCodeViewScene.h">
       <Filter>src\scene\step01\input</Filter>
@@ -436,6 +430,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_RootScene.h">
       <Filter>src\scene\step_clickclick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_animation_PlayNStopScene.h">
+      <Filter>src\scene\step_clickclick\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_animation_BasicScene.h">
+      <Filter>src\scene\step_clickclick\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
