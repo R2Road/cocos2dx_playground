@@ -16,6 +16,11 @@ namespace step_clickclick
 		class Stage : public cocos2d::Node
 		{
 		private:
+			enum class ePannelType
+			{
+				Single,
+			};
+
 			class Pannel
 			{
 			public:
@@ -24,8 +29,11 @@ namespace step_clickclick
 				void SetVisible( const bool visible );
 				void Action();
 
+				ePannelType GetType() const { return mPannelType; }
+
 			private:
 				int mIndex;
+				ePannelType mPannelType;
 				int mCount;
 				cocos2d::Node* const mPannelNode;
 				cocos2d::Label* const mLabelNode;

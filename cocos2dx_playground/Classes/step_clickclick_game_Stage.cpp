@@ -28,6 +28,7 @@ namespace step_clickclick
 
 		Stage::Pannel::Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node ) :
 			mIndex( index )
+			, mPannelType( Stage::ePannelType::Single )
 			, mCount( count )
 			, mPannelNode( pannel_node )
 			, mLabelNode( label_node )
@@ -184,7 +185,11 @@ namespace step_clickclick
 		void Stage::onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{
 			auto button_node = static_cast<Node*>( sender );
-			Pannels[button_node->getTag()].Action();
+
+			if( ePannelType::Single == Pannels[button_node->getTag()].GetType() )
+			{
+				Pannels[button_node->getTag()].Action();
+			}
 		}
 	} // namespace game
 } // namespace step_clickclick
