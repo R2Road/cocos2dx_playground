@@ -18,7 +18,13 @@ namespace step_clickclick
 			mStageWidth( 7 )
 			, mStageHeight( 7 )
 			, Pannels()
-		{}
+		{
+			//
+			// Must odd number
+			//
+			assert( 1 == ( mStageWidth & 1 ) );
+			assert( 1 == ( mStageHeight & 1 ) );
+		}
 
 		Stage* Stage::create()
 		{
