@@ -14,6 +14,8 @@ namespace step_clickclick
 {
 	namespace game
 	{
+		Stage::Stage() : Pannels() {}
+
 		Stage* Stage::create()
 		{
 			auto ret = new ( std::nothrow ) Stage();
@@ -89,6 +91,11 @@ namespace step_clickclick
 							, label->getParent()->getContentSize().height * 0.5f
 						) );
 					}
+
+					Pannels.emplace_back(
+						0
+						, button
+					);
 				}
 			}
 
