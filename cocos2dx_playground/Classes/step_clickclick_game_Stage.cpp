@@ -77,7 +77,7 @@ namespace step_clickclick
 			if( 0 == mCount )
 			{
 				mActive = false;
-				mPannelNode->setVisible( false );
+				SetVisible( false );
 			}
 		}
 
