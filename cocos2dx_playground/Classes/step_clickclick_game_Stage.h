@@ -22,6 +22,7 @@ namespace step_clickclick
 			{
 				Single,
 				Together,
+				Different,
 			};
 
 			class Pannel
@@ -33,6 +34,7 @@ namespace step_clickclick
 				void SetVisible( const bool visible );
 				void DecreaseAction();
 				void IncreaseAction();
+				void DieAction();
 
 				ePannelType GetType() const { return mPannelType; }
 				bool IsActive() const { return mActive; }

@@ -36,7 +36,7 @@ namespace step_clickclick
 
 		Stage::Pannel::Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node ) :
 			mIndex( index )
-			, mPannelType( Stage::ePannelType::Together )
+			, mPannelType( Stage::ePannelType::Different )
 			, mActive( false )
 			, mCount( count )
 			, mPannelNode( pannel_node )
@@ -63,6 +63,11 @@ namespace step_clickclick
 		void Stage::Pannel::IncreaseAction()
 		{
 			mCount = std::min( 100, mCount + 1 );
+			Action();
+		}
+		void Stage::Pannel::DieAction()
+		{
+			mCount = 0;
 			Action();
 		}
 		void Stage::Pannel::Action()
@@ -252,6 +257,40 @@ namespace step_clickclick
 						else
 						{
 							Pannels[linear_index].DecreaseAction();
+						}
+					}
+				}
+			}
+			else if( ePannelType::Different == Pannels[button_node->getTag()].GetType() )
+			{
+				const int pivot_count = Pannels[button_node->getTag()].GetCount();
+				const auto point_index = mGridIndexConverter.To_Point( button_node->getTag() );
+
+				const int current_pivot_x = point_index.x - 1;
+				const int current_pivot_y = point_index.y - 1;
+				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				{
+					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					{
+						if( 0 > tx || mStageWidth <= tx
+							|| 0 > ty || mStageHeight <= ty )
+						{
+							continue;
+						}
+
+						const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
+						if( !Pannels[linear_index].IsActive() )
+						{
+							continue;
+						}
+
+						if( linear_index != button_node->getTag() && pivot_count == Pannels[linear_index].GetCount() )
+						{
+							Pannels[linear_index].IncreaseAction();
+						}
+						else
+						{
+							Pannels[linear_index].DieAction();
 						}
 					}
 				}
