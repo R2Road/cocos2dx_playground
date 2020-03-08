@@ -30,7 +30,7 @@ namespace step_clickclick
 			public:
 				Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node );
 
-				void Init( const int count );
+				void Init( ePannelType type, const int count );
 				void SetVisible( const bool visible );
 				void DecreaseAction();
 				void IncreaseAction();

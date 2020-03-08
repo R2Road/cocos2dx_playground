@@ -43,8 +43,9 @@ namespace step_clickclick
 			, mLabelNode( label_node )
 		{}
 
-		void Stage::Pannel::Init( const int count )
+		void Stage::Pannel::Init( ePannelType type, const int count )
 		{
+			mPannelType = type;
 			mActive = true;
 			mCount = count;
 			mLabelNode->setString( std::to_string( mCount ) );
@@ -200,15 +201,33 @@ namespace step_clickclick
 				p.SetVisible( false );
 			}
 
+			const int pannel_count = width * height;
+			const int together_count = pannel_count * 0.3f;
+			const int different_count = pannel_count * 0.2f;
+			std::vector<ePannelType> pannel_type_list( width * height, ePannelType::Single );
+			auto cur = pannel_type_list.begin();
+			for( int i = 0; i < together_count; ++i )
+			{
+				*cur = ePannelType::Together;
+				++cur;
+			}
+			for( int i = 0; i < different_count; ++i )
+			{
+				*cur = ePannelType::Different;
+				++cur;
+			}
+
 			const int current_pivot_x = mCenterX - ( width / 2 );
 			const int current_pivot_y = mCenterY - ( height / 2 );
+			auto t_type = pannel_type_list.begin();
 			for( int ty = current_pivot_y; ty < current_pivot_y + height; ++ty )
 			{
 				for( int tx = current_pivot_x; tx < current_pivot_x + width; ++tx )
 				{
 					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					Pannels[linear_index].Init( GetRandomInt( 3, 9 ) );
+					Pannels[linear_index].Init( *t_type, GetRandomInt( 3, 9 ) );
+					++t_type;
 					Pannels[linear_index].SetVisible( true );
 				}
 			}
