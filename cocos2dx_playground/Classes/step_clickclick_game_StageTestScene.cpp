@@ -20,7 +20,7 @@ namespace step_clickclick
 		StageTestScene::StageTestScene() :
 			mKeyboardListener( nullptr )
 			, mStage( nullptr )
-			, mStageViewNode( nullptr )
+			, mStageView( nullptr )
 			, mGridIndexConverter( 7, 7 )
 		{}
 
@@ -97,17 +97,17 @@ namespace step_clickclick
 			// StageView
 			//
 			{
-				mStageViewNode = step_clickclick::game::StageView::create(
+				mStageView = step_clickclick::game::StageView::create(
 					stage_width, stage_height
 					, std::bind( &StageTestScene::onGameProcess, this, std::placeholders::_1 )
 				);
-				mStageViewNode->setPosition( Vec2(
+				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				addChild( mStageViewNode );
+				addChild( mStageView );
 
-				mStageViewNode->Setup( *mStage );
+				mStageView->Setup( *mStage );
 			}
 
 			return true;
@@ -140,7 +140,7 @@ namespace step_clickclick
 			if( ePannelType::Single == pannel_data.GetType() )
 			{
 				mStage->DecreasePannelLife( pannel_data.GetIndex() );
-				mStageViewNode->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetLife() );
+				mStageView->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetLife() );
 			}
 			else if( ePannelType::Together == pannel_data.GetType() )
 			{
@@ -179,7 +179,7 @@ namespace step_clickclick
 							mStage->DecreasePannelLife( target_pannel_data.GetIndex() );
 						}
 
-						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
+						mStageView->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
 					}
 				}
 			}
@@ -215,7 +215,7 @@ namespace step_clickclick
 							mStage->DiePannelLife( target_pannel_data.GetIndex() );
 						}
 
-						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
+						mStageView->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
 					}
 				}
 			}
@@ -232,7 +232,7 @@ namespace step_clickclick
 
 			case EventKeyboard::KeyCode::KEY_1:
 				mStage->Setup( 5, 5 );
-				mStageViewNode->Setup( *mStage );
+				mStageView->Setup( *mStage );
 				break;
 
 			default:
