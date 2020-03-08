@@ -2,9 +2,6 @@
 
 #include <vector>
 
-#include "2d/CCNode.h"
-#include "ui/UIWidget.h"
-
 #include "cpg_GridIndexConverter.h"
 #include "step_clickclick_game_Constant.h"
 
@@ -12,7 +9,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class Stage : public cocos2d::Node
+		class Stage
 		{
 		public:
 			class Pannel
@@ -43,7 +40,7 @@ namespace step_clickclick
 		public:
 			static Stage* create( const int width, const int height );
 
-			bool init() override;
+			bool init();
 
 			void Setup( const int width, const int height );
 

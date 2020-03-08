@@ -90,12 +90,6 @@ namespace step_clickclick
 			//
 			{
 				mStageNode = step_clickclick::game::Stage::create( stage_width, stage_height );
-				mStageNode->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
-				addChild( mStageNode );
-
 				mStageNode->Setup( 5, 5 );
 			}
 

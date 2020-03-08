@@ -1,12 +1,9 @@
 #include "step_clickclick_game_Stage.h"
 
+#include <cassert>
 #include <chrono>
-#include <functional>
 #include <new>
-#include <numeric>
 #include <random>
-
-USING_NS_CC;
 
 namespace step_clickclick
 {
@@ -87,22 +84,12 @@ namespace step_clickclick
 				ret = nullptr;
 				return nullptr;
 			}
-			else
-			{
-				ret->autorelease();
-			}
 
 			return ret;
 		}
 
 		bool Stage::init()
 		{
-			if( !Node::init() )
-			{
-				return false;
-			}
-
-			// Buttons
 			for( int ty = 0; ty < mStageHeight; ++ty )
 			{
 				for( int tx = 0; tx < mStageWidth; ++tx )
