@@ -16,7 +16,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ) {}
+		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ), mStageNode( nullptr ) {}
 
 		Scene* StageTestScene::create()
 		{
@@ -54,6 +54,9 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[1] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
@@ -77,14 +80,14 @@ namespace step_clickclick
 			// Stage
 			//
 			{
-				auto stage_node = step_clickclick::game::Stage::create();
-				stage_node->setPosition( Vec2(
+				mStageNode = step_clickclick::game::Stage::create();
+				mStageNode->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				addChild( stage_node );
+				addChild( mStageNode );
 
-				stage_node->Setup( 3, 5 );
+				mStageNode->Setup( 5, 5 );
 			}
 
 			return true;
@@ -114,6 +117,10 @@ namespace step_clickclick
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_1:
+				mStageNode->Setup( 5, 5 );
 				break;
 
 			default:

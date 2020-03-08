@@ -6,6 +6,9 @@ namespace step_clickclick
 {
 	namespace game
 	{
+
+		class Stage;
+
 		class StageTestScene : public cocos2d::Scene
 		{
 		private:
@@ -23,6 +26,7 @@ namespace step_clickclick
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			Stage* mStageNode;
 		};
 	}
 }
