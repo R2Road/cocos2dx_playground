@@ -195,7 +195,7 @@ namespace step_clickclick
 					addChild( view_node, 1 );
 
 					// label
-					auto label = Label::createWithTTF( "0", "fonts/arial.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "0", "fonts/arial.ttf", 9 );
 					label->getFontAtlas()->setAliasTexParameters();
 					label->setColor( Color3B::WHITE );
 					label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
