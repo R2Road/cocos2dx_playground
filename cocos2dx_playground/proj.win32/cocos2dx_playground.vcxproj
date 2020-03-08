@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_AnimationComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp" />
     <ClCompile Include="..\Classes\cpg_CollisionComponent.cpp" />
+    <ClCompile Include="..\Classes\cpg_GridIndexConverter.cpp" />
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp" />
     <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp" />
     <ClCompile Include="..\Classes\CPG_InputTest_KeyViewer.cpp" />
@@ -216,6 +217,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_Animation_Index.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Info.h" />
     <ClInclude Include="..\Classes\cpg_CollisionComponent.h" />
+    <ClInclude Include="..\Classes\cpg_GridIndexConverter.h" />
     <ClInclude Include="..\Classes\CPG_InputDelegator.h" />
     <ClInclude Include="..\Classes\CPG_InputKeyMap.h" />
     <ClInclude Include="..\Classes\CPG_InputTest_KeyViewer.h" />

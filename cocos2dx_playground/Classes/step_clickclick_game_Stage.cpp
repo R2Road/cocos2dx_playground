@@ -82,6 +82,7 @@ namespace step_clickclick
 			, mStageHeight( 7 )
 			, mCenterX( mStageWidth / 2 )
 			, mCenterY( mStageWidth / 2 )
+			, mGridIndexConverter( mStageWidth, mStageHeight )
 			, Pannels()
 		{
 			//
@@ -145,7 +146,7 @@ namespace step_clickclick
 			{
 				for( int tx = 0; tx < mStageWidth; ++tx )
 				{
-					const int linear_index = tx + ( ty * mStageWidth );
+					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
 					// button
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
@@ -200,7 +201,7 @@ namespace step_clickclick
 			{
 				for( int tx = current_pivot_x; tx < current_pivot_x + width; ++tx )
 				{
-					const int linear_index = tx + ( ty * mStageWidth );
+					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
 					Pannels[linear_index].Init( GetRandomInt( 3, 9 ) );
 					Pannels[linear_index].SetVisible( true );
@@ -224,12 +225,10 @@ namespace step_clickclick
 			else if( ePannelType::Together == Pannels[button_node->getTag()].GetType() )
 			{
 				const int pivot_count = Pannels[button_node->getTag()].GetCount();
+				const auto point_index = mGridIndexConverter.To_Point( button_node->getTag() );
 
-				const int button_y = button_node->getTag() / mStageWidth;
-				const int button_x = button_node->getTag() - ( button_y * mStageWidth );
-
-				const int current_pivot_x = button_x - 1;
-				const int current_pivot_y = button_y - 1;
+				const int current_pivot_x = point_index.x - 1;
+				const int current_pivot_y = point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
@@ -240,7 +239,7 @@ namespace step_clickclick
 							continue;
 						}
 
-						const int linear_index = tx + ( ty * mStageWidth );
+						const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 						if( !Pannels[linear_index].IsActive() )
 						{
 							continue;

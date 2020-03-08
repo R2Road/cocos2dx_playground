@@ -5,6 +5,8 @@
 #include "2d/CCNode.h"
 #include "ui/UIWidget.h"
 
+#include "cpg_GridIndexConverter.h"
+
 NS_CC_BEGIN
 	class Label;
 NS_CC_END
@@ -65,6 +67,7 @@ namespace step_clickclick
 			const int mStageHeight;
 			const int mCenterX;
 			const int mCenterY;
+			const cpg::GridIndexConverter mGridIndexConverter;
 			std::vector<Pannel> Pannels;
 		};
 	}

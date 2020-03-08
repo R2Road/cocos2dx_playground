@@ -264,6 +264,9 @@
     <ClCompile Include="..\Classes\step_clickclick_game_Stage.cpp">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_GridIndexConverter.cpp">
+      <Filter>src\cpg</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -451,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_Stage.h">
       <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_GridIndexConverter.h">
+      <Filter>src\cpg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
