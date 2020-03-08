@@ -77,31 +77,10 @@ namespace step_clickclick
 			}
 
 			//
-			// Button
-			//
-			{
-				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-				button->setScale9Enabled( true );
-				button->setContentSize( Size( 50.f, 50.f ) );
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
-				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-				addChild( button, 1 );
-
-				auto label = Label::createWithTTF( "Click Here ===>>>", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
-				label->setColor( Color3B::RED );
-				label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
-				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f , 0.f ) );
-				addChild( label, 2 );
-			}
-
-			//
 			// Button Status View
 			//
 			{
-				auto label = Label::createWithTTF( "Release", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 				label->setTag( TAG_ButtonStatus );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
@@ -123,6 +102,29 @@ namespace step_clickclick
 					, visibleOrigin.y + ( visibleSize.height * 0.6f )
 				) );
 				addChild( label, 2 );
+			}
+
+			//
+			// Button
+			//
+			{
+				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setScale9Enabled( true );
+				button->setContentSize( Size( 50.f, 50.f ) );
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.3f )
+				) );
+				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
+				addChild( button, 1 );
+
+				auto label = Label::createWithTTF( "Click Here ===>>>", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				label->setColor( Color3B::RED );
+				label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f, 0.f ) );
+				addChild( label, 2 );
+
+				onButton( button, cocos2d::ui::Widget::TouchEventType::ENDED );
 			}
 
 			
