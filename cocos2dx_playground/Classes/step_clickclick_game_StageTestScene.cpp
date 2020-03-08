@@ -3,10 +3,8 @@
 #include <functional>
 #include <new>
 #include <sstream>
-#include <numeric>
 
 #include "audio/include/AudioEngine.h"
-#include "ui/UIButton.h"
 
 #include "step_clickclick_RootScene.h"
 

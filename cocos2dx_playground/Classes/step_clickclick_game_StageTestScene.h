@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 #include "cpg_GridIndexConverter.h"
 
@@ -8,7 +8,6 @@ namespace step_clickclick
 {
 	namespace game
 	{
-
 		class Stage;
 		class StageView;
 
