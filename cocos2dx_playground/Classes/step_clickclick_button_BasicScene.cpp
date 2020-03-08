@@ -11,7 +11,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_label = 20140416;
+	const int TAG_ButtonStatus = 20140416;
 }
 
 namespace step_clickclick
@@ -101,7 +101,7 @@ namespace step_clickclick
 			//
 			{
 				auto label = Label::createWithTTF( "Release", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
-				label->setTag( TAG_label );
+				label->setTag( TAG_ButtonStatus );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -136,22 +136,22 @@ namespace step_clickclick
 		{
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_label ) );
+				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
 				label->setString( "Press" );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_label ) );
+				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
 				label->setString( "Move" );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_label ) );
+				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
 				label->setString( "Release" );
 			}
 			else if( ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_label ) );
+				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
 				label->setString( "Release( Cancel )" );
 			}
 		}
