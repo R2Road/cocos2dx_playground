@@ -17,11 +17,17 @@ namespace step_clickclick
 {
 	namespace game
 	{
+		namespace
+		{
+			const int stage_width = 7;
+			const int stage_height = 7;
+		}
+
 		StageTestScene::StageTestScene() :
 			mKeyboardListener( nullptr )
 			, mStage( nullptr )
 			, mStageView( nullptr )
-			, mGridIndexConverter( 7, 7 )
+			, mGridIndexConverter( stage_width, stage_height )
 		{}
 
 		Scene* StageTestScene::create()
@@ -81,9 +87,6 @@ namespace step_clickclick
 				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
 				addChild( background_layer, 0 );
 			}
-
-			const int stage_width = 7;
-			const int stage_height = 7;
 
 			//
 			// Stage
