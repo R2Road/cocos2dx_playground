@@ -37,14 +37,11 @@ namespace step_clickclick
 		}
 
 
-		Stage::Pannel::Pannel( const int index, const int count, Node* const pannel_node, cocos2d::Sprite* const view_node, Label* const label_node ) :
+		Stage::Pannel::Pannel( const int index, const int count ) :
 			mIndex( index )
 			, mPannelType( Stage::ePannelType::Different )
 			, mActive( false )
 			, mCount( count )
-			, mPannelNode( pannel_node )
-			, mViewNode( view_node )
-			, mLabelNode( label_node )
 		{}
 
 		void Stage::Pannel::Init( ePannelType type, const int count )
@@ -52,10 +49,36 @@ namespace step_clickclick
 			mPannelType = type;
 			mActive = true;
 			mCount = count;
-			mLabelNode->setString( std::to_string( mCount ) );
+		}
+		void Stage::Pannel::DecreaseAction()
+		{
+			mCount = std::max( 0, mCount - 1 );
+			mActive = ( 0 < mCount );
+		}
+		void Stage::Pannel::IncreaseAction()
+		{
+			mCount = std::min( 100, mCount + 1 );
+			mActive = ( 0 < mCount );
+		}
+		void Stage::Pannel::DieAction()
+		{
+			mCount = 0;
+			mActive = false;
+		}
+
+
+
+		Stage::PannelView::PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node ) :
+			mPannelNode( pannel_node )
+			, mViewNode( view_node )
+			, mLabelNode( label_node )
+		{}
+		void Stage::PannelView::Init( ePannelType type, const int life )
+		{
+			mLabelNode->setString( std::to_string( life ) );
 
 			SpriteFrame* view_frame = nullptr;
-			switch( mPannelType )
+			switch( type )
 			{
 			case ePannelType::Single:
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_single.png" );
@@ -71,38 +94,24 @@ namespace step_clickclick
 			}
 			mViewNode->setSpriteFrame( view_frame );
 		}
-		void Stage::Pannel::SetVisible( const bool visible )
+		void Stage::PannelView::SetVisible( const bool visible )
 		{
 			mPannelNode->setVisible( visible );
 			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}
-
-		void Stage::Pannel::DecreaseAction()
+		void Stage::PannelView::Update( const int life )
 		{
-			mCount = std::max( 0, mCount - 1 );
-			Action();
-		}
-		void Stage::Pannel::IncreaseAction()
-		{
-			mCount = std::min( 100, mCount + 1 );
-			Action();
-		}
-		void Stage::Pannel::DieAction()
-		{
-			mCount = 0;
-			Action();
-		}
-		void Stage::Pannel::Action()
-		{
-			mLabelNode->setString( std::to_string( mCount ) );
-
-			if( 0 == mCount )
+			if( 0 == life )
 			{
-				mActive = false;
 				SetVisible( false );
 			}
+			else
+			{
+				mLabelNode->setString( std::to_string( life ) );
+			}
 		}
+
 
 
 		Stage::Stage() :
@@ -112,6 +121,7 @@ namespace step_clickclick
 			, mCenterY( mStageWidth / 2 )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
 			, Pannels()
+			, PannelViews()
 		{
 			//
 			// Must odd number
@@ -176,6 +186,11 @@ namespace step_clickclick
 				{
 					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
+					Pannels.emplace_back(
+						linear_index
+						, 0
+					);
+
 					// button
 					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 					button->setTag( linear_index );
@@ -203,10 +218,8 @@ namespace step_clickclick
 					label->setPosition( button->getPosition() );
 					addChild( label, 2 );
 
-					Pannels.emplace_back(
-						linear_index
-						, 0
-						, button
+					PannelViews.emplace_back(
+						button
 						, view_node
 						, label
 					);
@@ -224,6 +237,10 @@ namespace step_clickclick
 			CheckSize( mStageHeight, height );
 
 			for( auto& p : Pannels )
+			{
+				p.DieAction();
+			}
+			for( auto& p : PannelViews )
 			{
 				p.SetVisible( false );
 			}
@@ -258,8 +275,10 @@ namespace step_clickclick
 					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
 					Pannels[linear_index].Init( *t_type, GetRandomInt( 3, 9 ) );
+					PannelViews[linear_index].Init( Pannels[linear_index].GetType(), Pannels[linear_index].GetCount() );
+					PannelViews[linear_index].SetVisible( true );
+
 					++t_type;
-					Pannels[linear_index].SetVisible( true );
 				}
 			}
 		}
@@ -278,6 +297,7 @@ namespace step_clickclick
 			if( ePannelType::Single == Pannels[button_node->getTag()].GetType() )
 			{
 				Pannels[button_node->getTag()].DecreaseAction();
+				PannelViews[button_node->getTag()].Update( Pannels[button_node->getTag()].GetCount() );
 			}
 			else if( ePannelType::Together == Pannels[button_node->getTag()].GetType() )
 			{
@@ -315,6 +335,8 @@ namespace step_clickclick
 						{
 							Pannels[linear_index].DecreaseAction();
 						}
+
+						PannelViews[linear_index].Update( Pannels[linear_index].GetCount() );
 					}
 				}
 			}
@@ -349,6 +371,8 @@ namespace step_clickclick
 						{
 							Pannels[linear_index].DieAction();
 						}
+
+						PannelViews[linear_index].Update( Pannels[linear_index].GetCount() );
 					}
 				}
 			}

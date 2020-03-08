@@ -29,10 +29,9 @@ namespace step_clickclick
 			class Pannel
 			{
 			public:
-				Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node );
+				Pannel( const int index, const int count );
 
 				void Init( ePannelType type, const int count );
-				void SetVisible( const bool visible );
 				void DecreaseAction();
 				void IncreaseAction();
 				void DieAction();
@@ -42,13 +41,22 @@ namespace step_clickclick
 				int GetCount() const { return mCount; }
 
 			private:
-				void Action();
-
-			private:
 				int mIndex;
 				ePannelType mPannelType;
 				bool mActive;
 				int mCount;
+			};
+
+			class PannelView
+			{
+			public:
+				PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node );
+
+				void Init( ePannelType type, const int life );
+				void SetVisible( const bool visible );
+				void Update( const int life );
+
+			private:
 				cocos2d::Node* const mPannelNode;
 				cocos2d::Sprite* const mViewNode;
 				cocos2d::Label* const mLabelNode;
@@ -73,6 +81,7 @@ namespace step_clickclick
 			const int mCenterY;
 			const cpg::GridIndexConverter mGridIndexConverter;
 			std::vector<Pannel> Pannels;
+			std::vector<PannelView> PannelViews;
 		};
 	}
 }
