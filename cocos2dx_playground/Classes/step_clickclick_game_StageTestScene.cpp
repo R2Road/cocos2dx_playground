@@ -19,7 +19,7 @@ namespace step_clickclick
 	{
 		StageTestScene::StageTestScene() :
 			mKeyboardListener( nullptr )
-			, mStageNode( nullptr )
+			, mStage( nullptr )
 			, mStageViewNode( nullptr )
 			, mGridIndexConverter( 7, 7 )
 		{}
@@ -89,8 +89,8 @@ namespace step_clickclick
 			// Stage
 			//
 			{
-				mStageNode = step_clickclick::game::Stage::create( stage_width, stage_height );
-				mStageNode->Setup( 5, 5 );
+				mStage = step_clickclick::game::Stage::create( stage_width, stage_height );
+				mStage->Setup( 5, 5 );
 			}
 
 			//
@@ -107,7 +107,7 @@ namespace step_clickclick
 				) );
 				addChild( mStageViewNode );
 
-				mStageViewNode->Setup( *mStageNode );
+				mStageViewNode->Setup( *mStage );
 			}
 
 			return true;
@@ -135,11 +135,11 @@ namespace step_clickclick
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
-			const auto& pannel_data = mStageNode->GetPannelData( pannel_linear_index );
+			const auto& pannel_data = mStage->GetPannelData( pannel_linear_index );
 
 			if( ePannelType::Single == pannel_data.GetType() )
 			{
-				mStageNode->DecreasePannelLife( pannel_data.GetIndex() );
+				mStage->DecreasePannelLife( pannel_data.GetIndex() );
 				mStageViewNode->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetLife() );
 			}
 			else if( ePannelType::Together == pannel_data.GetType() )
@@ -153,13 +153,13 @@ namespace step_clickclick
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
 					{
-						if( 0 > tx || mStageNode->GetWidth() <= tx
-							|| 0 > ty || mStageNode->GetHeight() <= ty )
+						if( 0 > tx || mStage->GetWidth() <= tx
+							|| 0 > ty || mStage->GetHeight() <= ty )
 						{
 							continue;
 						}
 
-						const auto& target_pannel_data = mStageNode->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
+						const auto& target_pannel_data = mStage->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
 						if( !target_pannel_data.IsActive() )
 						{
 							continue;
@@ -172,11 +172,11 @@ namespace step_clickclick
 
 						if( pivot_count != target_pannel_data.GetLife() )
 						{
-							mStageNode->IncreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
 						}
 						else
 						{
-							mStageNode->DecreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->DecreasePannelLife( target_pannel_data.GetIndex() );
 						}
 
 						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
@@ -194,13 +194,13 @@ namespace step_clickclick
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
 					{
-						if( 0 > tx || mStageNode->GetWidth() <= tx
-							|| 0 > ty || mStageNode->GetHeight() <= ty )
+						if( 0 > tx || mStage->GetWidth() <= tx
+							|| 0 > ty || mStage->GetHeight() <= ty )
 						{
 							continue;
 						}
 
-						const auto& target_pannel_data = mStageNode->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
+						const auto& target_pannel_data = mStage->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
 						if( !target_pannel_data.IsActive() )
 						{
 							continue;
@@ -208,11 +208,11 @@ namespace step_clickclick
 
 						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetLife() )
 						{
-							mStageNode->IncreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
 						}
 						else
 						{
-							mStageNode->DiePannelLife( target_pannel_data.GetIndex() );
+							mStage->DiePannelLife( target_pannel_data.GetIndex() );
 						}
 
 						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
@@ -231,8 +231,8 @@ namespace step_clickclick
 				break;
 
 			case EventKeyboard::KeyCode::KEY_1:
-				mStageNode->Setup( 5, 5 );
-				mStageViewNode->Setup( *mStageNode );
+				mStage->Setup( 5, 5 );
+				mStageViewNode->Setup( *mStage );
 				break;
 
 			default:

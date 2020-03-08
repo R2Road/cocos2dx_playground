@@ -30,7 +30,7 @@ namespace step_clickclick
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			Stage* mStageNode;
+			Stage* mStage;
 			StageView* mStageViewNode;
 			const cpg::GridIndexConverter mGridIndexConverter;
 		};
