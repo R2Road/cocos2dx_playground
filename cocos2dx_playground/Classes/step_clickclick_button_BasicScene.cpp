@@ -80,7 +80,7 @@ namespace step_clickclick
 			// Button Status View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
 				label->setTag( TAG_ButtonStatus );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
@@ -94,7 +94,7 @@ namespace step_clickclick
 			// Touch Info View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
 				label->setTag( TAG_TouchPosition );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
