@@ -37,9 +37,11 @@ namespace step_clickclick
 				int mLife;
 			};
 
-			Stage();
+		private:
+			Stage( const int width, const int height );
 
-			static Stage* create();
+		public:
+			static Stage* create( const int width, const int height );
 
 			bool init() override;
 

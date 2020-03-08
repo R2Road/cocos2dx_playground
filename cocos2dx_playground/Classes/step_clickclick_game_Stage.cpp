@@ -63,9 +63,9 @@ namespace step_clickclick
 
 
 
-		Stage::Stage() :
-			mStageWidth( 7 )
-			, mStageHeight( 7 )
+		Stage::Stage( const int width, const int height ) :
+			mStageWidth( width )
+			, mStageHeight( height )
 			, mCenterX( mStageWidth / 2 )
 			, mCenterY( mStageWidth / 2 )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
@@ -78,9 +78,9 @@ namespace step_clickclick
 			CheckOddNumber( mStageHeight );
 		}
 
-		Stage* Stage::create()
+		Stage* Stage::create( const int width, const int height )
 		{
-			auto ret = new ( std::nothrow ) Stage();
+			auto ret = new ( std::nothrow ) Stage( width, height );
 			if( !ret || !ret->init() )
 			{
 				delete ret;

@@ -41,10 +41,10 @@ namespace step_clickclick
 				cocos2d::Label* const mLabelNode;
 			};
 
-			StageView( const OnPannelCallback& on_pannel_callback );
+			StageView( const int width, const int height, const OnPannelCallback& on_pannel_callback );
 
 		public:
-			static StageView* create( const OnPannelCallback& on_pannel_callback );
+			static StageView* create( const int width, const int height, const OnPannelCallback& on_pannel_callback );
 
 			bool init() override;
 			void Setup( const Stage& stage_data );

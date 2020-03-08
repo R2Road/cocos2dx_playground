@@ -73,9 +73,9 @@ namespace step_clickclick
 
 
 
-		StageView::StageView( const OnPannelCallback& on_pannel_callback ) :
-			mStageWidth( 7 )
-			, mStageHeight( 7 )
+		StageView::StageView( const int width, const int height, const OnPannelCallback& on_pannel_callback ) :
+			mStageWidth( width )
+			, mStageHeight( height )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
 			, PannelViews()
 			, mOnPannelCallback( on_pannel_callback )
@@ -87,9 +87,9 @@ namespace step_clickclick
 			CheckOddNumber( mStageHeight );
 		}
 
-		StageView* StageView::create( const OnPannelCallback& on_pannel_callback )
+		StageView* StageView::create( const int width, const int height, const OnPannelCallback& on_pannel_callback )
 		{
-			auto ret = new ( std::nothrow ) StageView( on_pannel_callback );
+			auto ret = new ( std::nothrow ) StageView( width, height, on_pannel_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;

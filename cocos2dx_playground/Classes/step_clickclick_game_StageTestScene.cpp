@@ -84,11 +84,14 @@ namespace step_clickclick
 				addChild( background_layer, 0 );
 			}
 
+			const int stage_width = 7;
+			const int stage_height = 7;
+
 			//
 			// Stage
 			//
 			{
-				mStageNode = step_clickclick::game::Stage::create();
+				mStageNode = step_clickclick::game::Stage::create( stage_width, stage_height );
 				mStageNode->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -102,7 +105,10 @@ namespace step_clickclick
 			// StageView
 			//
 			{
-				mStageViewNode = step_clickclick::game::StageView::create( std::bind( &StageTestScene::onGameProcess, this, std::placeholders::_1 ) );
+				mStageViewNode = step_clickclick::game::StageView::create(
+					stage_width, stage_height
+					, std::bind( &StageTestScene::onGameProcess, this, std::placeholders::_1 )
+				);
 				mStageViewNode->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
