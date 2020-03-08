@@ -32,32 +32,32 @@ namespace step_clickclick
 		}
 
 
-		Stage::Pannel::Pannel( const int index, const int count ) :
+		Stage::Pannel::Pannel( const int index, const int life ) :
 			mIndex( index )
 			, mPannelType( ePannelType::Different )
 			, mActive( false )
-			, mCount( count )
+			, mLife( life )
 		{}
 
-		void Stage::Pannel::Init( ePannelType type, const int count )
+		void Stage::Pannel::Init( ePannelType type, const int life )
 		{
 			mPannelType = type;
 			mActive = true;
-			mCount = count;
+			mLife = life;
 		}
 		void Stage::Pannel::DecreaseAction()
 		{
-			mCount = std::max( 0, mCount - 1 );
-			mActive = ( 0 < mCount );
+			mLife = std::max( 0, mLife - 1 );
+			mActive = ( 0 < mLife );
 		}
 		void Stage::Pannel::IncreaseAction()
 		{
-			mCount = std::min( 100, mCount + 1 );
-			mActive = ( 0 < mCount );
+			mLife = std::min( 100, mLife + 1 );
+			mActive = ( 0 < mLife );
 		}
 		void Stage::Pannel::DieAction()
 		{
-			mCount = 0;
+			mLife = 0;
 			mActive = false;
 		}
 

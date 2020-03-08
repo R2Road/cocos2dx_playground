@@ -142,11 +142,11 @@ namespace step_clickclick
 			if( ePannelType::Single == pannel_data.GetType() )
 			{
 				mStageNode->DecreasePannelLife( pannel_data.GetIndex() );
-				mStageViewNode->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetCount() );
+				mStageViewNode->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetLife() );
 			}
 			else if( ePannelType::Together == pannel_data.GetType() )
 			{
-				const int pivot_count = pannel_data.GetCount();
+				const int pivot_count = pannel_data.GetLife();
 				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
 
 				const int current_pivot_x = point_index.x - 1;
@@ -167,12 +167,12 @@ namespace step_clickclick
 							continue;
 						}
 
-						if( ePannelType::Together == target_pannel_data.GetType() && pivot_count != target_pannel_data.GetCount() )
+						if( ePannelType::Together == target_pannel_data.GetType() && pivot_count != target_pannel_data.GetLife() )
 						{
 							continue;
 						}
 
-						if( pivot_count != target_pannel_data.GetCount() )
+						if( pivot_count != target_pannel_data.GetLife() )
 						{
 							mStageNode->IncreasePannelLife( target_pannel_data.GetIndex() );
 						}
@@ -181,13 +181,13 @@ namespace step_clickclick
 							mStageNode->DecreasePannelLife( target_pannel_data.GetIndex() );
 						}
 
-						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetCount() );
+						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
 					}
 				}
 			}
 			else if( ePannelType::Different == pannel_data.GetType() )
 			{
-				const int pivot_count = pannel_data.GetCount();
+				const int pivot_count = pannel_data.GetLife();
 				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
 
 				const int current_pivot_x = point_index.x - 1;
@@ -208,7 +208,7 @@ namespace step_clickclick
 							continue;
 						}
 
-						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetCount() )
+						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetLife() )
 						{
 							mStageNode->IncreasePannelLife( target_pannel_data.GetIndex() );
 						}
@@ -217,7 +217,7 @@ namespace step_clickclick
 							mStageNode->DiePannelLife( target_pannel_data.GetIndex() );
 						}
 
-						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetCount() );
+						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
 					}
 				}
 			}

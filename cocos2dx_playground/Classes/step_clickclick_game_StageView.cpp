@@ -199,7 +199,7 @@ namespace step_clickclick
 					continue;
 				}
 
-				PannelViews[p.GetIndex()].Init( p.GetType(), p.GetCount() );
+				PannelViews[p.GetIndex()].Init( p.GetType(), p.GetLife() );
 				PannelViews[p.GetIndex()].SetVisible( true );
 			}
 		}

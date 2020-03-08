@@ -18,9 +18,9 @@ namespace step_clickclick
 			class Pannel
 			{
 			public:
-				Pannel( const int index, const int count );
+				Pannel( const int index, const int life );
 
-				void Init( ePannelType type, const int count );
+				void Init( ePannelType type, const int life );
 				void DecreaseAction();
 				void IncreaseAction();
 				void DieAction();
@@ -28,13 +28,13 @@ namespace step_clickclick
 				int GetIndex() const { return mIndex; }
 				ePannelType GetType() const { return mPannelType; }
 				bool IsActive() const { return mActive; }
-				int GetCount() const { return mCount; }
+				int GetLife() const { return mLife; }
 
 			private:
 				int mIndex;
 				ePannelType mPannelType;
 				bool mActive;
-				int mCount;
+				int mLife;
 			};
 
 			Stage();
