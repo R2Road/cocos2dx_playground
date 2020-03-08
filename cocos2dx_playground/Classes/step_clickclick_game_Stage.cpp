@@ -10,6 +10,7 @@
 #include "2d/CCSprite.h"
 #include "base/ccMacros.h"
 #include "ui/UIButton.h"
+#include "2d/CCSpriteFrameCache.h"
 
 USING_NS_CC;
 
@@ -34,12 +35,13 @@ namespace step_clickclick
 		}
 
 
-		Stage::Pannel::Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node ) :
+		Stage::Pannel::Pannel( const int index, const int count, Node* const pannel_node, cocos2d::Sprite* const view_node, Label* const label_node ) :
 			mIndex( index )
 			, mPannelType( Stage::ePannelType::Different )
 			, mActive( false )
 			, mCount( count )
 			, mPannelNode( pannel_node )
+			, mViewNode( view_node )
 			, mLabelNode( label_node )
 		{}
 
@@ -49,10 +51,28 @@ namespace step_clickclick
 			mActive = true;
 			mCount = count;
 			mLabelNode->setString( std::to_string( mCount ) );
+
+			SpriteFrame* view_frame = nullptr;
+			switch( mPannelType )
+			{
+			case ePannelType::Single:
+				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_single.png" );
+				break;
+			case ePannelType::Together:
+				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_together.png" );
+				break;
+			case ePannelType::Different:
+				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_different.png" );
+				break;
+			default:
+				assert( false );
+			}
+			mViewNode->setSpriteFrame( view_frame );
 		}
 		void Stage::Pannel::SetVisible( const bool visible )
 		{
 			mPannelNode->setVisible( visible );
+			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}
 
@@ -167,20 +187,25 @@ namespace step_clickclick
 					button->addTouchEventListener( CC_CALLBACK_2( Stage::onPannel, this ) );
 					addChild( button );
 
+					// view
+					auto view_node = Sprite::create();
+					view_node->setScale( 2.f );
+					view_node->setPosition( button->getPosition() );
+					addChild( view_node, 1 );
+
 					// label
-					auto label = Label::createWithTTF( "0", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-					label->setColor( Color3B::RED );
+					auto label = Label::createWithTTF( "0", "fonts/arial.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
+					label->getFontAtlas()->setAliasTexParameters();
+					label->setColor( Color3B::WHITE );
 					label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-					label->setPosition(
-						button->getPosition()
-						//+ Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f )
-					);
-					addChild( label, 1 );
+					label->setPosition( button->getPosition() );
+					addChild( label, 2 );
 
 					Pannels.emplace_back(
 						linear_index
 						, 0
 						, button
+						, view_node
 						, label
 					);
 				}

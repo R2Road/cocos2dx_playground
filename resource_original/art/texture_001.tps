@@ -273,6 +273,9 @@
             <key type="filename">keys/key_free.png</key>
             <key type="filename">keys/key_menu.png</key>
             <key type="filename">keys/key_s.png</key>
+            <key type="filename">step_clickclick/step_clickclick_pannel_different.png</key>
+            <key type="filename">step_clickclick/step_clickclick_pannel_single.png</key>
+            <key type="filename">step_clickclick/step_clickclick_pannel_together.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -384,6 +387,9 @@
             <filename>helper/helper_pivot.png</filename>
             <filename>ui/guide_02_6.png</filename>
             <filename>ui/guide_02_7.png</filename>
+            <filename>step_clickclick/step_clickclick_pannel_different.png</filename>
+            <filename>step_clickclick/step_clickclick_pannel_single.png</filename>
+            <filename>step_clickclick/step_clickclick_pannel_together.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
