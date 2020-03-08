@@ -39,7 +39,7 @@ namespace step_clickclick
 
 		Stage::Pannel::Pannel( const int index, const int count ) :
 			mIndex( index )
-			, mPannelType( Stage::ePannelType::Different )
+			, mPannelType( ePannelType::Different )
 			, mActive( false )
 			, mCount( count )
 		{}

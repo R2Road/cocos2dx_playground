@@ -6,6 +6,7 @@
 #include "ui/UIWidget.h"
 
 #include "cpg_GridIndexConverter.h"
+#include "step_clickclick_game_Constant.h"
 
 NS_CC_BEGIN
 	class Label;
@@ -19,13 +20,6 @@ namespace step_clickclick
 		class Stage : public cocos2d::Node
 		{
 		private:
-			enum class ePannelType
-			{
-				Single,
-				Together,
-				Different,
-			};
-
 			class Pannel
 			{
 			public:

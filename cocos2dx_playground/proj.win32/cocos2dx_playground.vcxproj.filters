@@ -464,6 +464,9 @@
     <ClInclude Include="..\Classes\step_clickclick_game_TitleScene.h">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_Constant.h">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
