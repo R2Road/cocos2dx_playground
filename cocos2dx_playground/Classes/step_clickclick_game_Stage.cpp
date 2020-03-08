@@ -1,5 +1,6 @@
 #include "step_clickclick_game_Stage.h"
 
+#include <chrono>
 #include <functional>
 #include <new>
 #include <numeric>
@@ -241,6 +242,10 @@ namespace step_clickclick
 				*cur = ePannelType::Different;
 				++cur;
 			}
+			const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+			std::default_random_engine random_engine( seed );
+			shuffle( pannel_type_list.begin(), pannel_type_list.end(), random_engine );
+			shuffle( pannel_type_list.begin(), pannel_type_list.end(), random_engine );
 
 			const int current_pivot_x = mCenterX - ( width / 2 );
 			const int current_pivot_y = mCenterY - ( height / 2 );
