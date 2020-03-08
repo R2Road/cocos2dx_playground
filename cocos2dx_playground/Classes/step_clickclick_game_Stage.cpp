@@ -299,6 +299,11 @@ namespace step_clickclick
 							continue;
 						}
 
+						if( ePannelType::Together == Pannels[linear_index].GetType() && pivot_count != Pannels[linear_index].GetCount() )
+						{
+							continue;
+						}
+
 						if( pivot_count != Pannels[linear_index].GetCount() )
 						{
 							Pannels[linear_index].IncreaseAction();
