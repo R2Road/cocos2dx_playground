@@ -25,7 +25,7 @@ namespace step_clickclick
 
 		StageTestScene::StageTestScene() :
 			mKeyboardListener( nullptr )
-			, mStage( nullptr )
+			, mStage()
 			, mStageView( nullptr )
 			, mGridIndexConverter( stage_width, stage_height )
 		{}

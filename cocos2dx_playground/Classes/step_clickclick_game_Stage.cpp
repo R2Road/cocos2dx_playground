@@ -75,13 +75,12 @@ namespace step_clickclick
 			CheckOddNumber( mStageHeight );
 		}
 
-		Stage* Stage::create( const int width, const int height )
+		StageUp Stage::create( const int width, const int height )
 		{
-			auto ret = new ( std::nothrow ) Stage( width, height );
+			StageUp ret( new ( std::nothrow ) Stage( width, height ) );
 			if( !ret || !ret->init() )
 			{
-				delete ret;
-				ret = nullptr;
+				ret.reset();
 				return nullptr;
 			}
 

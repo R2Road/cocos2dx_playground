@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include "cpg_GridIndexConverter.h"
@@ -9,6 +10,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
+		using StageUp = std::unique_ptr<class Stage>;
 		class Stage
 		{
 		public:
@@ -38,7 +40,7 @@ namespace step_clickclick
 			Stage( const int width, const int height );
 
 		public:
-			static Stage* create( const int width, const int height );
+			static StageUp create( const int width, const int height );
 
 			bool init();
 

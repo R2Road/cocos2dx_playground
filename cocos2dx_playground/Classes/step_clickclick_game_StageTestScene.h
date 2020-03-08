@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "2d/CCScene.h"
 
 #include "cpg_GridIndexConverter.h"
@@ -8,7 +10,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class Stage;
+		using StageUp = std::unique_ptr<class Stage>;
 		class StageView;
 
 		class StageTestScene : public cocos2d::Scene
@@ -30,7 +32,7 @@ namespace step_clickclick
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			Stage* mStage;
+			StageUp mStage;
 			StageView* mStageView;
 			const cpg::GridIndexConverter mGridIndexConverter;
 		};
