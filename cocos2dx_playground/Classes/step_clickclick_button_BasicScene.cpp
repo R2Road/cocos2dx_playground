@@ -12,6 +12,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_ButtonStatus = 20140416;
+	const int TAG_TouchPosition = 20160528;
 }
 
 namespace step_clickclick
@@ -110,6 +111,20 @@ namespace step_clickclick
 				addChild( label, 2 );
 			}
 
+			//
+			// Touch Info View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				label->setTag( TAG_TouchPosition );
+				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.6f )
+				) );
+				addChild( label, 2 );
+			}
+
 			
 
 			return true;
@@ -132,28 +147,41 @@ namespace step_clickclick
 			Node::onExit();
 		}
 
-		void BasicScene::onButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
+			auto button = static_cast<ui::Button*>( sender );
+
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
 				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
 				label->setString( "Press" );
+
+				updateView_TouchPosition( button->getTouchBeganPosition() );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
 				label->setString( "Move" );
+
+				updateView_TouchPosition( button->getTouchMovePosition() );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
 				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
 				label->setString( "Release" );
+
+				updateView_TouchPosition( button->getTouchEndPosition() );
 			}
 			else if( ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
 				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
 				label->setString( "Release( Cancel )" );
 			}
+		}
+		void BasicScene::updateView_TouchPosition( const cocos2d::Vec2 touch_position )
+		{
+			auto touch_position_label = static_cast<Label*>( getChildByTag( TAG_TouchPosition ) );
+			touch_position_label->setString( StringUtils::format( "x : %f, y : %f", touch_position.x, touch_position.y ) );
 		}
 
 		void BasicScene::updateForExit( float /*dt*/ )
