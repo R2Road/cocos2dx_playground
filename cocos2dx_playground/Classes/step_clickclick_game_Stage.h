@@ -8,18 +8,13 @@
 #include "cpg_GridIndexConverter.h"
 #include "step_clickclick_game_Constant.h"
 
-NS_CC_BEGIN
-	class Label;
-	class Sprite;
-NS_CC_END
-
 namespace step_clickclick
 {
 	namespace game
 	{
 		class Stage : public cocos2d::Node
 		{
-		private:
+		public:
 			class Pannel
 			{
 			public:
@@ -30,6 +25,7 @@ namespace step_clickclick
 				void IncreaseAction();
 				void DieAction();
 
+				int GetIndex() const { return mIndex; }
 				ePannelType GetType() const { return mPannelType; }
 				bool IsActive() const { return mActive; }
 				int GetCount() const { return mCount; }
@@ -41,32 +37,21 @@ namespace step_clickclick
 				int mCount;
 			};
 
-			class PannelView
-			{
-			public:
-				PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node );
-
-				void Init( ePannelType type, const int life );
-				void SetVisible( const bool visible );
-				void Update( const int life );
-
-			private:
-				cocos2d::Node* const mPannelNode;
-				cocos2d::Sprite* const mViewNode;
-				cocos2d::Label* const mLabelNode;
-			};
-
 			Stage();
 
-		public:
 			static Stage* create();
 
 			bool init() override;
 
 			void Setup( const int width, const int height );
 
-		private:
-			void onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			int GetWidth() const { return mStageWidth; }
+			int GetHeight() const { return mStageHeight; }
+			const std::vector<Pannel>& GetPannelDatas() const { return Pannels; }
+			const Pannel& GetPannelData( const int linear_index ) const;
+			void IncreasePannelLife( const int linear_index );
+			void DecreasePannelLife( const int linear_index );
+			void DiePannelLife( const int linear_index );
 
 		private:
 			const int mStageWidth;
@@ -75,7 +60,6 @@ namespace step_clickclick
 			const int mCenterY;
 			const cpg::GridIndexConverter mGridIndexConverter;
 			std::vector<Pannel> Pannels;
-			std::vector<PannelView> PannelViews;
 		};
 	}
 }

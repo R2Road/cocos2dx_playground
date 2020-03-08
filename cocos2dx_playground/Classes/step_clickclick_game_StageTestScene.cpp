@@ -1,14 +1,17 @@
 #include "step_clickclick_game_StageTestScene.h"
 
+#include <functional>
 #include <new>
 #include <sstream>
 #include <numeric>
 
+#include "audio/include/AudioEngine.h"
 #include "ui/UIButton.h"
 
 #include "step_clickclick_RootScene.h"
 
 #include "step_clickclick_game_Stage.h"
+#include "step_clickclick_game_StageView.h"
 
 USING_NS_CC;
 
@@ -16,7 +19,12 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ), mStageNode( nullptr ) {}
+		StageTestScene::StageTestScene() :
+			mKeyboardListener( nullptr )
+			, mStageNode( nullptr )
+			, mStageViewNode( nullptr )
+			, mGridIndexConverter( 7, 7 )
+		{}
 
 		Scene* StageTestScene::create()
 		{
@@ -90,6 +98,20 @@ namespace step_clickclick
 				mStageNode->Setup( 5, 5 );
 			}
 
+			//
+			// StageView
+			//
+			{
+				mStageViewNode = step_clickclick::game::StageView::create( std::bind( &StageTestScene::onGameProcess, this, std::placeholders::_1 ) );
+				mStageViewNode->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( mStageViewNode );
+
+				mStageViewNode->Setup( *mStageNode );
+			}
+
 			return true;
 		}
 
@@ -111,6 +133,97 @@ namespace step_clickclick
 		}
 
 
+		void StageTestScene::onGameProcess( const int pannel_linear_index )
+		{
+			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
+
+			const auto& pannel_data = mStageNode->GetPannelData( pannel_linear_index );
+
+			if( ePannelType::Single == pannel_data.GetType() )
+			{
+				mStageNode->DecreasePannelLife( pannel_data.GetIndex() );
+				mStageViewNode->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetCount() );
+			}
+			else if( ePannelType::Together == pannel_data.GetType() )
+			{
+				const int pivot_count = pannel_data.GetCount();
+				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
+
+				const int current_pivot_x = point_index.x - 1;
+				const int current_pivot_y = point_index.y - 1;
+				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				{
+					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					{
+						if( 0 > tx || mStageNode->GetWidth() <= tx
+							|| 0 > ty || mStageNode->GetHeight() <= ty )
+						{
+							continue;
+						}
+
+						const auto& target_pannel_data = mStageNode->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
+						if( !target_pannel_data.IsActive() )
+						{
+							continue;
+						}
+
+						if( ePannelType::Together == target_pannel_data.GetType() && pivot_count != target_pannel_data.GetCount() )
+						{
+							continue;
+						}
+
+						if( pivot_count != target_pannel_data.GetCount() )
+						{
+							mStageNode->IncreasePannelLife( target_pannel_data.GetIndex() );
+						}
+						else
+						{
+							mStageNode->DecreasePannelLife( target_pannel_data.GetIndex() );
+						}
+
+						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetCount() );
+					}
+				}
+			}
+			else if( ePannelType::Different == pannel_data.GetType() )
+			{
+				const int pivot_count = pannel_data.GetCount();
+				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
+
+				const int current_pivot_x = point_index.x - 1;
+				const int current_pivot_y = point_index.y - 1;
+				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				{
+					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					{
+						if( 0 > tx || mStageNode->GetWidth() <= tx
+							|| 0 > ty || mStageNode->GetHeight() <= ty )
+						{
+							continue;
+						}
+
+						const auto& target_pannel_data = mStageNode->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
+						if( !target_pannel_data.IsActive() )
+						{
+							continue;
+						}
+
+						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetCount() )
+						{
+							mStageNode->IncreasePannelLife( target_pannel_data.GetIndex() );
+						}
+						else
+						{
+							mStageNode->DiePannelLife( target_pannel_data.GetIndex() );
+						}
+
+						mStageViewNode->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetCount() );
+					}
+				}
+			}
+		}
+
+
 		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
@@ -121,6 +234,7 @@ namespace step_clickclick
 
 			case EventKeyboard::KeyCode::KEY_1:
 				mStageNode->Setup( 5, 5 );
+				mStageViewNode->Setup( *mStageNode );
 				break;
 
 			default:

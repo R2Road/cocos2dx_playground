@@ -6,34 +6,29 @@
 #include <numeric>
 #include <random>
 
-#include "audio/include/AudioEngine.h"
-#include "2d/CCLabel.h"
-#include "2d/CCLayer.h"
-#include "2d/CCSprite.h"
-#include "base/ccMacros.h"
-#include "ui/UIButton.h"
-#include "2d/CCSpriteFrameCache.h"
-
 USING_NS_CC;
 
 namespace step_clickclick
 {
 	namespace game
 	{
-		void CheckOddNumber( const int number )
+		namespace
 		{
-			assert( 1 == ( number & 1 ) );
-		}
-		void CheckSize( const int pivot, const int number )
-		{
-			assert( pivot >= number );
-		}
-		int GetRandomInt( int min, int max )
-		{
-			static std::random_device rd;
-			static std::mt19937 randomEngine( rd() );
-			static std::uniform_int_distribution<> dist( min, max );
-			return dist( randomEngine );
+			void CheckOddNumber( const int number )
+			{
+				assert( 1 == ( number & 1 ) );
+			}
+			void CheckSize( const int pivot, const int number )
+			{
+				assert( pivot >= number );
+			}
+			int GetRandomInt( int min, int max )
+			{
+				static std::random_device rd;
+				static std::mt19937 randomEngine( rd() );
+				static std::uniform_int_distribution<> dist( min, max );
+				return dist( randomEngine );
+			}
 		}
 
 
@@ -68,52 +63,6 @@ namespace step_clickclick
 
 
 
-		Stage::PannelView::PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node ) :
-			mPannelNode( pannel_node )
-			, mViewNode( view_node )
-			, mLabelNode( label_node )
-		{}
-		void Stage::PannelView::Init( ePannelType type, const int life )
-		{
-			mLabelNode->setString( std::to_string( life ) );
-
-			SpriteFrame* view_frame = nullptr;
-			switch( type )
-			{
-			case ePannelType::Single:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_single.png" );
-				break;
-			case ePannelType::Together:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_together.png" );
-				break;
-			case ePannelType::Different:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_different.png" );
-				break;
-			default:
-				assert( false );
-			}
-			mViewNode->setSpriteFrame( view_frame );
-		}
-		void Stage::PannelView::SetVisible( const bool visible )
-		{
-			mPannelNode->setVisible( visible );
-			mViewNode->setVisible( visible );
-			mLabelNode->setVisible( visible );
-		}
-		void Stage::PannelView::Update( const int life )
-		{
-			if( 0 == life )
-			{
-				SetVisible( false );
-			}
-			else
-			{
-				mLabelNode->setString( std::to_string( life ) );
-			}
-		}
-
-
-
 		Stage::Stage() :
 			mStageWidth( 7 )
 			, mStageHeight( 7 )
@@ -121,7 +70,6 @@ namespace step_clickclick
 			, mCenterY( mStageWidth / 2 )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
 			, Pannels()
-			, PannelViews()
 		{
 			//
 			// Must odd number
@@ -154,31 +102,6 @@ namespace step_clickclick
 				return false;
 			}
 
-			const Size tile_size( 32.f, 32.f );
-			const Size margin_size( 2.f, 2.f );
-			const Size stage_size(
-				( mStageWidth * tile_size.width ) + ( ( mStageWidth - 1 ) * margin_size.width )
-				,( mStageHeight * tile_size.height ) + ( ( mStageHeight - 1 ) * margin_size.height )
-			);
-			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
-
-			setContentSize( stage_size );
-
-			// Pivot
-			{
-				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-				pivot->setScale( 2.f );
-				addChild( pivot, std::numeric_limits<int>::max() );
-			}
-
-			// Background Guide
-			{
-				auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-				pivot->setPosition( pivot_position 
-);
-				addChild( pivot, std::numeric_limits<int>::min() );
-			}
-
 			// Buttons
 			for( int ty = 0; ty < mStageHeight; ++ty )
 			{
@@ -189,39 +112,6 @@ namespace step_clickclick
 					Pannels.emplace_back(
 						linear_index
 						, 0
-					);
-
-					// button
-					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-					button->setTag( linear_index );
-					button->setScale9Enabled( true );
-					button->setContentSize( tile_size );
-					button->setPosition(
-						pivot_position
-						+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
-						+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
-					);
-					button->addTouchEventListener( CC_CALLBACK_2( Stage::onPannel, this ) );
-					addChild( button );
-
-					// view
-					auto view_node = Sprite::create();
-					view_node->setScale( 2.f );
-					view_node->setPosition( button->getPosition() );
-					addChild( view_node, 1 );
-
-					// label
-					auto label = Label::createWithTTF( "0", "fonts/arial.ttf", 9 );
-					label->getFontAtlas()->setAliasTexParameters();
-					label->setColor( Color3B::WHITE );
-					label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-					label->setPosition( button->getPosition() );
-					addChild( label, 2 );
-
-					PannelViews.emplace_back(
-						button
-						, view_node
-						, label
 					);
 				}
 			}
@@ -239,10 +129,6 @@ namespace step_clickclick
 			for( auto& p : Pannels )
 			{
 				p.DieAction();
-			}
-			for( auto& p : PannelViews )
-			{
-				p.SetVisible( false );
 			}
 
 			const int pannel_count = width * height;
@@ -275,107 +161,47 @@ namespace step_clickclick
 					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
 					Pannels[linear_index].Init( *t_type, GetRandomInt( 3, 9 ) );
-					PannelViews[linear_index].Init( Pannels[linear_index].GetType(), Pannels[linear_index].GetCount() );
-					PannelViews[linear_index].SetVisible( true );
-
 					++t_type;
 				}
 			}
 		}
 
-		void Stage::onPannel( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		const Stage::Pannel& Stage::GetPannelData( const int linear_index ) const
 		{
-			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
+			{
+				static const Pannel dummy( -1, 0 );
+				return dummy;
+			}
+
+			return Pannels[linear_index];
+		}
+		void Stage::IncreasePannelLife( const int linear_index )
+		{
+			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
 			{
 				return;
 			}
 
-			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
-
-			auto button_node = static_cast<Node*>( sender );
-
-			if( ePannelType::Single == Pannels[button_node->getTag()].GetType() )
+			Pannels[linear_index].IncreaseAction();
+		}
+		void Stage::DecreasePannelLife( const int linear_index )
+		{
+			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
 			{
-				Pannels[button_node->getTag()].DecreaseAction();
-				PannelViews[button_node->getTag()].Update( Pannels[button_node->getTag()].GetCount() );
+				return;
 			}
-			else if( ePannelType::Together == Pannels[button_node->getTag()].GetType() )
+
+			Pannels[linear_index].DecreaseAction();
+		}
+		void Stage::DiePannelLife( const int linear_index )
+		{
+			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
 			{
-				const int pivot_count = Pannels[button_node->getTag()].GetCount();
-				const auto point_index = mGridIndexConverter.To_Point( button_node->getTag() );
-
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
-				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
-				{
-					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
-					{
-						if( 0 > tx || mStageWidth <= tx
-							|| 0 > ty || mStageHeight <= ty )
-						{
-							continue;
-						}
-
-						const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
-						if( !Pannels[linear_index].IsActive() )
-						{
-							continue;
-						}
-
-						if( ePannelType::Together == Pannels[linear_index].GetType() && pivot_count != Pannels[linear_index].GetCount() )
-						{
-							continue;
-						}
-
-						if( pivot_count != Pannels[linear_index].GetCount() )
-						{
-							Pannels[linear_index].IncreaseAction();
-						}
-						else
-						{
-							Pannels[linear_index].DecreaseAction();
-						}
-
-						PannelViews[linear_index].Update( Pannels[linear_index].GetCount() );
-					}
-				}
+				return;
 			}
-			else if( ePannelType::Different == Pannels[button_node->getTag()].GetType() )
-			{
-				const int pivot_count = Pannels[button_node->getTag()].GetCount();
-				const auto point_index = mGridIndexConverter.To_Point( button_node->getTag() );
 
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
-				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
-				{
-					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
-					{
-						if( 0 > tx || mStageWidth <= tx
-							|| 0 > ty || mStageHeight <= ty )
-						{
-							continue;
-						}
-
-						const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
-						if( !Pannels[linear_index].IsActive() )
-						{
-							continue;
-						}
-
-						if( linear_index != button_node->getTag() && pivot_count == Pannels[linear_index].GetCount() )
-						{
-							Pannels[linear_index].IncreaseAction();
-						}
-						else
-						{
-							Pannels[linear_index].DieAction();
-						}
-
-						PannelViews[linear_index].Update( Pannels[linear_index].GetCount() );
-					}
-				}
-			}
+			Pannels[linear_index].DieAction();
 		}
 	} // namespace game
 } // namespace step_clickclick
