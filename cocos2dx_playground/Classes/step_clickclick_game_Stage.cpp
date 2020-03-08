@@ -126,39 +126,50 @@ namespace step_clickclick
 			CheckSize( mStageWidth, width );
 			CheckSize( mStageHeight, height );
 
+			//
+			// Clear
+			//
 			for( auto& p : Pannels )
 			{
 				p.DieAction();
 			}
 
-			const int pannel_count = width * height;
-			const int together_count = pannel_count * 0.3f;
-			const int different_count = pannel_count * 0.2f;
-			std::vector<ePannelType> pannel_type_list( width * height, ePannelType::Single );
-			auto cur = pannel_type_list.begin();
-			for( int i = 0; i < together_count; ++i )
+			std::vector<ePannelType> pannel_type_list;
 			{
-				*cur = ePannelType::Together;
-				++cur;
+				const int pannel_count = width * height;
+				pannel_type_list.resize( pannel_count, ePannelType::Single );
+
+				// init
+				const int together_count = pannel_count * 0.3f;
+				const int different_count = pannel_count * 0.2f;
+				auto cur = pannel_type_list.begin();
+				for( int i = 0; i < together_count; ++i )
+				{
+					*cur = ePannelType::Together;
+					++cur;
+				}
+				for( int i = 0; i < different_count; ++i )
+				{
+					*cur = ePannelType::Different;
+					++cur;
+				}
+
+				// shuffle
+				const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+				std::default_random_engine random_engine( seed );
+				shuffle( pannel_type_list.begin(), pannel_type_list.end(), random_engine );
+				shuffle( pannel_type_list.begin(), pannel_type_list.end(), random_engine );
 			}
-			for( int i = 0; i < different_count; ++i )
-			{
-				*cur = ePannelType::Different;
-				++cur;
-			}
-			const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-			std::default_random_engine random_engine( seed );
-			shuffle( pannel_type_list.begin(), pannel_type_list.end(), random_engine );
-			shuffle( pannel_type_list.begin(), pannel_type_list.end(), random_engine );
 
 			const int current_pivot_x = mCenterX - ( width / 2 );
 			const int current_pivot_y = mCenterY - ( height / 2 );
-			auto t_type = pannel_type_list.begin();
+			auto t_type = pannel_type_list.cbegin();
+			int linear_index = 0;
 			for( int ty = current_pivot_y; ty < current_pivot_y + height; ++ty )
 			{
 				for( int tx = current_pivot_x; tx < current_pivot_x + width; ++tx )
 				{
-					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
+					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
 					Pannels[linear_index].Init( *t_type, GetRandomInt( 3, 9 ) );
 					++t_type;
