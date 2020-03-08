@@ -153,30 +153,28 @@ namespace step_clickclick
 
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
-				label->setString( "Press" );
-
+				updateView_ButtonStatus( "Press" );
 				updateView_TouchPosition( button->getTouchBeganPosition() );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
-				label->setString( "Move" );
-
+				updateView_ButtonStatus( "Move" );
 				updateView_TouchPosition( button->getTouchMovePosition() );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
-				label->setString( "Release" );
-
+				updateView_ButtonStatus( "Release" );
 				updateView_TouchPosition( button->getTouchEndPosition() );
 			}
 			else if( ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
-				label->setString( "Release( Cancel )" );
+				updateView_ButtonStatus( "Release( Cancel )" );
 			}
+		}
+		void BasicScene::updateView_ButtonStatus( const char* status_string )
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
+			label->setString( status_string );
 		}
 		void BasicScene::updateView_TouchPosition( const cocos2d::Vec2 touch_position )
 		{
