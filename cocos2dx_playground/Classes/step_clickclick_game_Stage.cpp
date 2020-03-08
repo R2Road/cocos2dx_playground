@@ -6,6 +6,7 @@
 #include <numeric>
 #include <random>
 
+#include "audio/include/AudioEngine.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
@@ -269,6 +270,8 @@ namespace step_clickclick
 			{
 				return;
 			}
+
+			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
 			auto button_node = static_cast<Node*>( sender );
 
