@@ -83,6 +83,8 @@ namespace cpg
 
 			mAnimationActions.push_back( repeat_action );
 		}
+
+		return true;
 	}
 	cocos2d::Action* AnimationComponent::getAnimationAction( const cpg::animation::eIndex animation_index )
 	{
