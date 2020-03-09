@@ -68,6 +68,8 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
+				ss << "[Mouse] : Click";
+				ss << std::endl;
 				ss << "[1] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
