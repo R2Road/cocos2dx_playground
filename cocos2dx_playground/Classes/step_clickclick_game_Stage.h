@@ -1,70 +1,65 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
-#include "2d/CCNode.h"
-#include "ui/UIWidget.h"
-
-NS_CC_BEGIN
-	class Label;
-NS_CC_END
+#include "cpg_GridIndexConverter.h"
+#include "step_clickclick_game_Constant.h"
 
 namespace step_clickclick
 {
 	namespace game
 	{
-		class Stage : public cocos2d::Node
+		using StageUp = std::unique_ptr<class Stage>;
+		class Stage
 		{
-		private:
-			enum class ePannelType
-			{
-				Single,
-				Together,
-			};
-
+		public:
 			class Pannel
 			{
 			public:
-				Pannel( const int index, const int count, cocos2d::Node* const pannel_node, cocos2d::Label* const label_node );
+				Pannel( const int index, const int life );
 
-				void Init( const int count );
-				void SetVisible( const bool visible );
+				void Init( ePannelType type, const int life );
 				void DecreaseAction();
 				void IncreaseAction();
+				void DieAction();
 
+				int GetIndex() const { return mIndex; }
 				ePannelType GetType() const { return mPannelType; }
 				bool IsActive() const { return mActive; }
-				int GetCount() const { return mCount; }
-
-			private:
-				void Action();
+				int GetLife() const { return mLife; }
 
 			private:
 				int mIndex;
 				ePannelType mPannelType;
 				bool mActive;
-				int mCount;
-				cocos2d::Node* const mPannelNode;
-				cocos2d::Label* const mLabelNode;
+				int mLife;
 			};
 
-			Stage();
+		private:
+			Stage( const int width, const int height );
 
 		public:
-			static Stage* create();
+			static StageUp create( const int width, const int height );
 
-			bool init() override;
+			bool init();
 
 			void Setup( const int width, const int height );
 
-		private:
-			void onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			int GetWidth() const { return mStageWidth; }
+			int GetHeight() const { return mStageHeight; }
+			const std::vector<Pannel>& GetPannelDatas() const { return Pannels; }
+			const Pannel& GetPannelData( const int linear_index ) const;
+			void IncreasePannelLife( const int linear_index );
+			void DecreasePannelLife( const int linear_index );
+			void DiePannelLife( const int linear_index );
 
 		private:
 			const int mStageWidth;
 			const int mStageHeight;
 			const int mCenterX;
 			const int mCenterY;
+			const cpg::GridIndexConverter mGridIndexConverter;
 			std::vector<Pannel> Pannels;
 		};
 	}

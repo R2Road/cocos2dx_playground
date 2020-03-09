@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_AnimationComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp" />
     <ClCompile Include="..\Classes\cpg_CollisionComponent.cpp" />
+    <ClCompile Include="..\Classes\cpg_GridIndexConverter.cpp" />
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp" />
     <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp" />
     <ClCompile Include="..\Classes\CPG_InputTest_KeyViewer.cpp" />
@@ -169,6 +170,8 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\EntryScene.cpp" />
     <ClCompile Include="..\Classes\fsm1_Machine.cpp" />
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp" />
+    <ClCompile Include="..\Classes\step_clickclick_game_StageView.cpp" />
+    <ClCompile Include="..\Classes\step_clickclick_game_TitleScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_animation_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_animation_PlayNStopScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp" />
@@ -216,6 +219,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_Animation_Index.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Info.h" />
     <ClInclude Include="..\Classes\cpg_CollisionComponent.h" />
+    <ClInclude Include="..\Classes\cpg_GridIndexConverter.h" />
     <ClInclude Include="..\Classes\CPG_InputDelegator.h" />
     <ClInclude Include="..\Classes\CPG_InputKeyMap.h" />
     <ClInclude Include="..\Classes\CPG_InputTest_KeyViewer.h" />
@@ -233,6 +237,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\fsm1_iState.h" />
     <ClInclude Include="..\Classes\fsm1_Machine.h" />
     <ClInclude Include="..\Classes\Research_Input_GamePadTest.h" />
+    <ClInclude Include="..\Classes\step_clickclick_game_Constant.h" />
+    <ClInclude Include="..\Classes\step_clickclick_game_StageView.h" />
+    <ClInclude Include="..\Classes\step_clickclick_game_TitleScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_animation_BasicScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_animation_PlayNStopScene.h" />
     <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h" />
