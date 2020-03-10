@@ -40,6 +40,8 @@ namespace step_clickclick
 			const cpg::GridIndexConverter mGridIndexConverter;
 
 			int mScore;
+			int mCurrentStageWidth;
+			int mCurrentStageHeight;
 
 			struct NextStepData
 			{

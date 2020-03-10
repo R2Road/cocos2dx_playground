@@ -40,6 +40,8 @@ namespace step_clickclick
 			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
 
 			, mScore( 0 )
+			, mCurrentStageWidth( 3 )
+			, mCurrentStageHeight( 3 )
 			, mNextStepData()
 		{}
 
@@ -106,7 +108,7 @@ namespace step_clickclick
 			//
 			{
 				mStage = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
-				mStage->Setup( 5, 5 );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 			}
 
 			//
@@ -366,7 +368,16 @@ namespace step_clickclick
 				label->setString( "Stage Clear" );
 				label->setVisible( true );
 
-				++mNextStepData.step;
+				mCurrentStageWidth += 2;
+				mCurrentStageHeight += 2;
+				if( MAX_STAGE_WIDTH >= mCurrentStageWidth )
+				{
+					++mNextStepData.step;
+				}
+				else
+				{
+					mNextStepData.step = 7;
+				}
 			}
 			break;
 			case 1: // show label - count
@@ -397,7 +408,7 @@ namespace step_clickclick
 			case 3: // hide label
 				getChildByTag( TAG_ClearView )->setVisible( false );
 				getChildByTag( TAG_CountView )->setVisible( false );
-				mStage->Setup( 7, 7 );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
 				++mNextStepData.step;
 				break;
@@ -406,6 +417,12 @@ namespace step_clickclick
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 				mNextStepData.step = 0;
 				break;
+
+			case 7:
+				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
+				Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
+				break;
+
 			default:
 				assert( false );
 			}
