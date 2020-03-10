@@ -28,6 +28,7 @@ namespace step_clickclick
 
 		private:
 			void onGameProcess( const int pannel_linear_index );
+			void updateScoreView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
@@ -35,6 +36,8 @@ namespace step_clickclick
 			StageUp mStage;
 			StageView* mStageView;
 			const cpg::GridIndexConverter mGridIndexConverter;
+
+			int mScore;
 		};
 	}
 }

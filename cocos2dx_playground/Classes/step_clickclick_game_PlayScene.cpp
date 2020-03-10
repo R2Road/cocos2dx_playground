@@ -10,6 +10,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "step_clickclick_game_TitleScene.h"
 
@@ -24,6 +25,8 @@ namespace step_clickclick
 	{
 		namespace
 		{
+			const int TAG_ScoreView = 20140416;
+
 			const int stage_width = 7;
 			const int stage_height = 7;
 		}
@@ -33,6 +36,8 @@ namespace step_clickclick
 			, mStage()
 			, mStageView( nullptr )
 			, mGridIndexConverter( stage_width, stage_height )
+
+			, mScore( 0 )
 		{}
 
 		Scene* PlayScene::create()
@@ -118,6 +123,23 @@ namespace step_clickclick
 				mStageView->Setup( *mStage );
 			}
 
+			//
+			// Score View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				label->setTag( TAG_ScoreView );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, 9999 );
+
+				updateScoreView();
+			}
+
 			return true;
 		}
 
@@ -186,11 +208,15 @@ namespace step_clickclick
 				last_life = pannel_data.GetLife();
 				if( has_neighbor )
 				{
+					++mScore;
+
 					mStage->DecreasePannelLife( pannel_data.GetIndex() );
 					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
 				}
 				else
 				{
+					mScore += pannel_data.GetLife();
+
 					mStage->DiePannel( pannel_data.GetIndex() );
 					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
 				}
@@ -230,6 +256,7 @@ namespace step_clickclick
 						}
 						else
 						{
+							++mScore;
 							mStage->DecreasePannelLife( target_pannel_data.GetIndex() );
 						}
 
@@ -267,6 +294,7 @@ namespace step_clickclick
 						}
 						else
 						{
+							mScore += target_pannel_data.GetLife();
 							mStage->DiePannel( target_pannel_data.GetIndex() );
 						}
 
@@ -274,8 +302,15 @@ namespace step_clickclick
 					}
 				}
 			}
+
+			updateScoreView();
 		}
 
+		void PlayScene::updateScoreView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
+			label->setString( StringUtils::format( "Score : %4d", mScore ) );
+		}
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
