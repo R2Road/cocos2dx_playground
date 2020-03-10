@@ -250,7 +250,7 @@ namespace step_clickclick
 				}
 				else
 				{
-					mScore += pannel_data.GetLife();
+					mScore = std::max( 0, mScore - pannel_data.GetLife() );
 
 					mStage->DiePannel( pannel_data.GetIndex() );
 					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
