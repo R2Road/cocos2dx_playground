@@ -191,7 +191,7 @@ namespace step_clickclick
 
 			Pannels[linear_index].DecreaseAction();
 		}
-		void Stage::DiePannelLife( const int linear_index )
+		void Stage::DiePannel( const int linear_index )
 		{
 			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
 			{

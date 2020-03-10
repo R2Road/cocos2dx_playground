@@ -220,7 +220,7 @@ namespace step_clickclick
 						}
 						else
 						{
-							mStage->DiePannelLife( target_pannel_data.GetIndex() );
+							mStage->DiePannel( target_pannel_data.GetIndex() );
 						}
 
 						mStageView->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );

@@ -203,7 +203,7 @@ namespace step_clickclick
 				mStage->DecreasePannelLife( pannel_linear_index );
 				break;
 			case eTestActionType::Die:
-				mStage->DiePannelLife( pannel_linear_index );
+				mStage->DiePannel( pannel_linear_index );
 				break;
 			default:
 				assert( false );
