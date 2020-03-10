@@ -42,7 +42,7 @@ namespace step_clickclick
 			case ePannelType::Single:
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_single.png" );
 				break;
-			case ePannelType::Together:
+			case ePannelType::Same:
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_together.png" );
 				break;
 			case ePannelType::Different:

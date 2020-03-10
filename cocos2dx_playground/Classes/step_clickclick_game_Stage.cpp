@@ -131,7 +131,7 @@ namespace step_clickclick
 				auto cur = pannel_type_list.begin();
 				for( int i = 0; i < together_count; ++i )
 				{
-					*cur = ePannelType::Together;
+					*cur = ePannelType::Same;
 					++cur;
 				}
 				for( int i = 0; i < different_count; ++i )

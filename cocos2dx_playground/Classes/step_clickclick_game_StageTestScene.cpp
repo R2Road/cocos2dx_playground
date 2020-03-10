@@ -269,8 +269,8 @@ namespace step_clickclick
 			case ePannelType::Single:
 				label->setString( "Pannel Type : Single" );
 				break;
-			case ePannelType::Together:
-				label->setString( "Pannel Type : Together" );
+			case ePannelType::Same:
+				label->setString( "Pannel Type : Same" );
 				break;
 			case ePannelType::Different:
 				label->setString( "Pannel Type : Different" );

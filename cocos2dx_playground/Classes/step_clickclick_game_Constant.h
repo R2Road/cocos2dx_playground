@@ -7,7 +7,7 @@ namespace step_clickclick
 		enum class ePannelType
 		{
 			Single,
-			Together,
+			Same,
 			Different,
 		};
 	}

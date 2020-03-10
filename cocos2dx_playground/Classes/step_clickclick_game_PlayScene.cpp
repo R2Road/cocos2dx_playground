@@ -150,7 +150,7 @@ namespace step_clickclick
 				mStage->DecreasePannelLife( pannel_data.GetIndex() );
 				mStageView->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetLife() );
 			}
-			else if( ePannelType::Together == pannel_data.GetType() )
+			else if( ePannelType::Same == pannel_data.GetType() )
 			{
 				const int pivot_count = pannel_data.GetLife();
 				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
@@ -173,7 +173,7 @@ namespace step_clickclick
 							continue;
 						}
 
-						if( ePannelType::Together == target_pannel_data.GetType() && pivot_count != target_pannel_data.GetLife() )
+						if( ePannelType::Same == target_pannel_data.GetType() && pivot_count != target_pannel_data.GetLife() )
 						{
 							continue;
 						}
