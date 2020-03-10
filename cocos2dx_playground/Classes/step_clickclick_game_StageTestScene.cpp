@@ -30,6 +30,7 @@ namespace step_clickclick
 			const int stage_height = 7;
 
 			const int TAG_TestActionView = 20140416;
+			const int TAG_SelectedPannelTypeView = 20160528;
 		}
 
 		StageTestScene::StageTestScene() :
@@ -150,6 +151,21 @@ namespace step_clickclick
 				updateTestAction( mTestActionType );
 			}
 
+			//
+			// Selected Pannel Type View
+			//
+			{
+				auto label = Label::createWithTTF( "Pannel Type : -", "fonts/arial.ttf", 14 );
+				label->setTag( TAG_SelectedPannelTypeView );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y
+				) );
+				addChild( label, 9999 );
+			}
+
 			return true;
 		}
 
@@ -176,6 +192,7 @@ namespace step_clickclick
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
 			const auto& target_pannel_data = mStage->GetPannelData( pannel_linear_index );
+			updateSelectedPannelTypeView( target_pannel_data.GetType() );
 
 			switch( mTestActionType )
 			{
@@ -239,6 +256,24 @@ namespace step_clickclick
 				break;
 			case eTestActionType::Die:
 				label->setString( "Test Action : Die" );
+				break;
+			default:
+				assert( false );
+			}
+		}
+		void StageTestScene::updateSelectedPannelTypeView( const ePannelType pannel_type )
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedPannelTypeView ) );
+			switch( pannel_type )
+			{
+			case ePannelType::Single:
+				label->setString( "Pannel Type : Single" );
+				break;
+			case ePannelType::Together:
+				label->setString( "Pannel Type : Together" );
+				break;
+			case ePannelType::Different:
+				label->setString( "Pannel Type : Different" );
 				break;
 			default:
 				assert( false );
