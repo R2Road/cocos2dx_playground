@@ -3,6 +3,7 @@
 #include <new>
 #include <sstream>
 
+#include "step_clickclick_game_PlayScene.h"
 #include "step_clickclick_RootScene.h"
 
 #include "CPG_Setting.h"
@@ -132,6 +133,12 @@ namespace step_clickclick
 				{
 					scheduleOnce( schedule_selector( TitleScene::updateForExit ), 0.f );
 				}
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
+			{
+				Director::getInstance()->replaceScene( step_clickclick::game::PlayScene::create() );
 				return;
 			}
 		}
