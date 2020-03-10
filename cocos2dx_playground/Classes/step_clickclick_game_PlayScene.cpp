@@ -29,15 +29,15 @@ namespace step_clickclick
 			const int TAG_ClearView = 20160528;
 			const int TAG_CountView = 9999;
 
-			const int stage_width = 7;
-			const int stage_height = 7;
+			const int MAX_STAGE_WIDTH = 7;
+			const int MAX_STAGE_HEIGHT = 7;
 		}
 
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
 			, mStage()
 			, mStageView( nullptr )
-			, mGridIndexConverter( stage_width, stage_height )
+			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
 
 			, mScore( 0 )
 			, mNextStepData()
@@ -105,7 +105,7 @@ namespace step_clickclick
 			// Stage
 			//
 			{
-				mStage = step_clickclick::game::Stage::create( stage_width, stage_height );
+				mStage = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
 				mStage->Setup( 5, 5 );
 			}
 
@@ -114,7 +114,7 @@ namespace step_clickclick
 			//
 			{
 				mStageView = step_clickclick::game::StageView::create(
-					stage_width, stage_height
+					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &PlayScene::onGameProcess, this, std::placeholders::_1 )
 				);
 				mStageView->setPosition( Vec2(

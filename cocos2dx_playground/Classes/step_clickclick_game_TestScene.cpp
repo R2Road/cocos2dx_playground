@@ -26,8 +26,8 @@ namespace step_clickclick
 	{
 		namespace
 		{
-			const int stage_width = 7;
-			const int stage_height = 7;
+			const int MAX_STAGE_WIDTH = 7;
+			const int MAX_STAGE_HEIGHT = 7;
 
 			const int TAG_TestActionView = 20140416;
 			const int TAG_SelectedPannelTypeView = 20160528;
@@ -37,7 +37,7 @@ namespace step_clickclick
 			mKeyboardListener( nullptr )
 			, mStage()
 			, mStageView( nullptr )
-			, mGridIndexConverter( stage_width, stage_height )
+			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
 
 			, mTestActionType( eTestActionType::Increase )
 		{}
@@ -113,7 +113,7 @@ namespace step_clickclick
 			// Stage
 			//
 			{
-				mStage = step_clickclick::game::Stage::create( stage_width, stage_height );
+				mStage = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
 				mStage->Setup( 5, 5 );
 			}
 
@@ -122,7 +122,7 @@ namespace step_clickclick
 			//
 			{
 				mStageView = step_clickclick::game::StageView::create(
-					stage_width, stage_height
+					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &TestScene::onGameProcess, this, std::placeholders::_1 )
 				);
 				mStageView->setPosition( Vec2(
