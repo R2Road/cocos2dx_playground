@@ -201,7 +201,7 @@ namespace step_clickclick
 
 		void PlayScene::onGameProcess( const int pannel_linear_index )
 		{
-			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
+			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.5f );
 
 			const auto& pannel_data = mStage->GetPannelData( pannel_linear_index );
 			int last_life = 0;
