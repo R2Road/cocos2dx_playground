@@ -4,6 +4,8 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCActionInterval.h"
+#include "2d/CCAnimation.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
@@ -62,15 +64,48 @@ namespace step_clickclick
 			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}
-		void StageView::PannelView::Update( const int life )
+		void StageView::PannelView::Update( const int last_life, const int current_life )
 		{
-			if( 0 == life )
+			if( 0 == current_life )
 			{
 				SetVisible( false );
 			}
 			else
 			{
-				mLabelNode->setString( std::to_string( life ) );
+				mLabelNode->setString( std::to_string( current_life ) );
+
+				if( last_life < current_life )
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.1f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase1.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase2.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase3.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase4.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase5.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
+
+					auto animate_action = Animate::create( animation_object );
+
+					mIncreaseEffectNode->stopAllActions();
+					mIncreaseEffectNode->runAction( animate_action );
+				}
+				else
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.1f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease1.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease2.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease3.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease4.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease5.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
+
+					auto animate_action = Animate::create( animation_object );
+
+					mIncreaseEffectNode->stopAllActions();
+					mIncreaseEffectNode->runAction( animate_action );
+				}
 			}
 		}
 
@@ -219,9 +254,9 @@ namespace step_clickclick
 			}
 		}
 
-		void StageView::UpdatePannel( const int linear_index, const int life )
+		void StageView::UpdatePannel( const int linear_index, const int last_life, const int current_life )
 		{
-			PannelViews[linear_index].Update( life );
+			PannelViews[linear_index].Update( last_life, current_life );
 		}
 
 		void StageView::onPannel( Ref* sender, ui::Widget::TouchEventType touch_event_type )

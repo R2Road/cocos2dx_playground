@@ -35,7 +35,7 @@ namespace step_clickclick
 
 				void Init( ePannelType type, const int life );
 				void SetVisible( const bool visible );
-				void Update( const int life );
+				void Update( const int last_life, const int current_life );
 
 			private:
 				cocos2d::Node* const mPannelNode;
@@ -52,7 +52,7 @@ namespace step_clickclick
 
 			bool init() override;
 			void Setup( const Stage& stage_data );
-			void UpdatePannel( const int linear_index, const int life );
+			void UpdatePannel( const int linear_index, const int last_life, const int current_life );
 
 		private:
 			void onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );

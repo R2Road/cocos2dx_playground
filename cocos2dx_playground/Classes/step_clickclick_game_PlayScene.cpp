@@ -144,11 +144,14 @@ namespace step_clickclick
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
 			const auto& pannel_data = mStage->GetPannelData( pannel_linear_index );
+			int last_life = 0;
 
 			if( ePannelType::Single == pannel_data.GetType() )
 			{
+				last_life = pannel_data.GetLife();
+
 				mStage->DecreasePannelLife( pannel_data.GetIndex() );
-				mStageView->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetLife() );
+				mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
 			}
 			else if( ePannelType::Same == pannel_data.GetType() )
 			{
@@ -178,6 +181,7 @@ namespace step_clickclick
 							continue;
 						}
 
+						last_life = target_pannel_data.GetLife();
 						if( pivot_count != target_pannel_data.GetLife() )
 						{
 							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
@@ -187,7 +191,7 @@ namespace step_clickclick
 							mStage->DecreasePannelLife( target_pannel_data.GetIndex() );
 						}
 
-						mStageView->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
+						mStageView->UpdatePannel( target_pannel_data.GetIndex(), last_life, target_pannel_data.GetLife() );
 					}
 				}
 			}
@@ -214,6 +218,7 @@ namespace step_clickclick
 							continue;
 						}
 
+						last_life = target_pannel_data.GetLife();
 						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetLife() )
 						{
 							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
@@ -223,7 +228,7 @@ namespace step_clickclick
 							mStage->DiePannel( target_pannel_data.GetIndex() );
 						}
 
-						mStageView->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
+						mStageView->UpdatePannel( target_pannel_data.GetIndex(), last_life, target_pannel_data.GetLife() );
 					}
 				}
 			}

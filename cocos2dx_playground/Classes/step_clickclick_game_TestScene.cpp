@@ -194,6 +194,7 @@ namespace step_clickclick
 			const auto& target_pannel_data = mStage->GetPannelData( pannel_linear_index );
 			updateSelectedPannelTypeView( target_pannel_data.GetType() );
 
+			const int last_life = target_pannel_data.GetLife();
 			switch( mTestActionType )
 			{
 			case eTestActionType::Increase:
@@ -209,7 +210,7 @@ namespace step_clickclick
 				assert( false );
 			}
 
-			mStageView->UpdatePannel( pannel_linear_index, target_pannel_data.GetLife() );
+			mStageView->UpdatePannel( pannel_linear_index, last_life, target_pannel_data.GetLife() );
 		}
 
 
