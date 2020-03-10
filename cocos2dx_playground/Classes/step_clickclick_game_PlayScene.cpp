@@ -30,8 +30,8 @@ namespace step_clickclick
 			const int TAG_ClearView = 20160528;
 			const int TAG_CountView = 9999;
 
-			const int MAX_STAGE_WIDTH = 7;
-			const int MAX_STAGE_HEIGHT = 7;
+			const int MAX_STAGE_WIDTH = 9;
+			const int MAX_STAGE_HEIGHT = 9;
 		}
 
 		PlayScene::PlayScene() :
