@@ -3,6 +3,14 @@
 #include <new>
 #include <sstream>
 
+#include "2d/CCActionInterval.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
+
 #include "step_clickclick_game_PlayScene.h"
 #include "step_clickclick_RootScene.h"
 
