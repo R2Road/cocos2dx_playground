@@ -291,7 +291,7 @@ namespace step_clickclick
 						}
 						else
 						{
-							++mScore;
+							mScore += 2;
 							mStage->DecreasePannelLife( target_pannel_data.GetIndex() );
 						}
 
