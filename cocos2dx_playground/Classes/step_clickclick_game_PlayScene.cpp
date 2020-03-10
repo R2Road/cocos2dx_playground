@@ -89,7 +89,7 @@ namespace step_clickclick
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
+				auto background_layer = LayerColor::create( Color4B::BLACK );
 				addChild( background_layer, 0 );
 			}
 
