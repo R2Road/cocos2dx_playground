@@ -31,16 +31,19 @@ namespace step_clickclick
 
 		StageView::PannelView::PannelView(
 			cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
-			, cocos2d::Sprite* const increase_effect_node, cocos2d::Action* const increase_effect_action
-			, cocos2d::Sprite* const decrease_effect_node, cocos2d::Action* const decrease_effect_action
+			, cocos2d::Sprite* const effect_node
+			, cocos2d::Action* const increase_effect_action
+			, cocos2d::Action* const decrease_effect_action
+			, cocos2d::Action* const die_effect_action
+			
 		) :
 			mPannelNode( pannel_node )
 			, mViewNode( view_node )
 			, mLabelNode( label_node )
-			, mIncreaseEffectNode( increase_effect_node )
+			, mEffectNode( effect_node )
 			, mIncreaseEffectAction( increase_effect_action )
-			, mDecreaseEffectNode( decrease_effect_node )
 			, mDecreaseEffectAction( decrease_effect_action )
+			, mDieEffectAction( die_effect_action )
 		{}
 		void StageView::PannelView::Init( ePannelType type, const int life )
 		{
@@ -74,6 +77,8 @@ namespace step_clickclick
 			if( 0 == current_life )
 			{
 				SetVisible( false );
+				mEffectNode->stopAllActions();
+				mEffectNode->runAction( mDieEffectAction );
 			}
 			else
 			{
@@ -81,13 +86,13 @@ namespace step_clickclick
 
 				if( last_life < current_life )
 				{
-					mIncreaseEffectNode->stopAllActions();
-					mIncreaseEffectNode->runAction( mIncreaseEffectAction );
+					mEffectNode->stopAllActions();
+					mEffectNode->runAction( mIncreaseEffectAction );
 				}
 				else
 				{
-					mIncreaseEffectNode->stopAllActions();
-					mIncreaseEffectNode->runAction( mDecreaseEffectAction );
+					mEffectNode->stopAllActions();
+					mEffectNode->runAction( mDecreaseEffectAction );
 				}
 			}
 		}
@@ -191,11 +196,11 @@ namespace step_clickclick
 					label->setPosition( button->getPosition() );
 					addChild( label, 2 );
 
-					// increase effect
-					auto increase_effect_node = Sprite::create();
-					increase_effect_node->setScale( 2.f );
-					increase_effect_node->setPosition( button->getPosition() );
-					addChild( increase_effect_node, 3 );
+					// effect
+					auto effect_node = Sprite::create();
+					effect_node->setScale( 2.f );
+					effect_node->setPosition( button->getPosition() );
+					addChild( effect_node, 3 );
 
 					// increase animation action
 					auto increase_animation_object = Animation::create();
@@ -209,12 +214,6 @@ namespace step_clickclick
 					auto increase_animate_action = Animate::create( increase_animation_object );
 					increase_animate_action->retain();
 
-					// decrease effect
-					auto decrease_effect_node = Sprite::create();
-					decrease_effect_node->setScale( 2.f );
-					decrease_effect_node->setPosition( button->getPosition() );
-					addChild( decrease_effect_node, 3 );
-
 					// decrease animation action
 					auto decrease_animation_object = Animation::create();
 					decrease_animation_object->setDelayPerUnit( 0.07f );
@@ -227,14 +226,25 @@ namespace step_clickclick
 					auto decrease_animate_action = Animate::create( decrease_animation_object );
 					decrease_animate_action->retain();
 
+					// die animation action
+					auto die_animation_object = Animation::create();
+					die_animation_object->setDelayPerUnit( 0.07f );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die1.png" ) );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die2.png" ) );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die3.png" ) );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die4.png" ) );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
+					auto die_animate_action = Animate::create( die_animation_object );
+					die_animate_action->retain();
+
 					PannelViews.emplace_back(
 						button
 						, view_node
 						, label
-						, increase_effect_node
+						, effect_node
 						, increase_animate_action
-						, decrease_effect_node
 						, decrease_animate_action
+						, die_animate_action
 					);
 				}
 			}

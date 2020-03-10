@@ -32,8 +32,10 @@ namespace step_clickclick
 			public:
 				PannelView(
 					cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
-					, cocos2d::Sprite* const increase_effect_node, cocos2d::Action* const increase_effect_action
-					, cocos2d::Sprite* const decrease_effect_node, cocos2d::Action* const decrease_effect_action
+					, cocos2d::Sprite* const effect_node
+					, cocos2d::Action* const increase_effect_action
+					, cocos2d::Action* const decrease_effect_action
+					, cocos2d::Action* const die_effect_action
 				);
 
 				void Init( ePannelType type, const int life );
@@ -44,10 +46,10 @@ namespace step_clickclick
 				cocos2d::Node* const mPannelNode;
 				cocos2d::Sprite* const mViewNode;
 				cocos2d::Label* const mLabelNode;
-				cocos2d::Sprite* const mIncreaseEffectNode;
+				cocos2d::Sprite* const mEffectNode;
 				cocos2d::Action* const mIncreaseEffectAction;
-				cocos2d::Sprite* const mDecreaseEffectNode;
 				cocos2d::Action* const mDecreaseEffectAction;
+				cocos2d::Action* const mDieEffectAction;
 			};
 
 			StageView( const int width, const int height, const OnPannelCallback& on_pannel_callback );
