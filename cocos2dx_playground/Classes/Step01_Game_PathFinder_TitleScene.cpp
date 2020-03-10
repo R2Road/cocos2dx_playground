@@ -51,8 +51,8 @@ namespace step01
 				{
 					std::stringstream ss;
 					ss << "+ " << getTitle();
-					ss << "\n";
-					ss << "\n";
+					ss << std::endl;
+					ss << std::endl;
 					ss << "[ESC] : Return to Step 01 Root";
 
 					auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
