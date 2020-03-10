@@ -12,7 +12,7 @@
 
 #include "step_clickclick_button_BasicScene.h"
 
-#include "step_clickclick_game_StageTestScene.h"
+#include "step_clickclick_game_TestScene.h"
 #include "step_clickclick_game_TitleScene.h"
 
 USING_NS_CC;
@@ -60,7 +60,7 @@ namespace step_clickclick
 			ss << "[4] : " << step_clickclick::button::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[5] : " << step_clickclick::game::StageTestScene::getTitle();
+			ss << "[5] : " << step_clickclick::game::TestScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[6] : " << step_clickclick::game::TitleScene::getTitle();
@@ -127,7 +127,7 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step_clickclick::game::StageTestScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::game::TestScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );

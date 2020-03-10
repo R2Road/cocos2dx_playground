@@ -1,4 +1,4 @@
-#include "step_clickclick_game_StageTestScene.h"
+#include "step_clickclick_game_TestScene.h"
 
 #include <cassert>
 #include <functional>
@@ -33,7 +33,7 @@ namespace step_clickclick
 			const int TAG_SelectedPannelTypeView = 20160528;
 		}
 
-		StageTestScene::StageTestScene() :
+		TestScene::TestScene() :
 			mKeyboardListener( nullptr )
 			, mStage()
 			, mStageView( nullptr )
@@ -42,9 +42,9 @@ namespace step_clickclick
 			, mTestActionType( eTestActionType::Increase )
 		{}
 
-		Scene* StageTestScene::create()
+		Scene* TestScene::create()
 		{
-			auto ret = new ( std::nothrow ) StageTestScene();
+			auto ret = new ( std::nothrow ) TestScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -59,7 +59,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool StageTestScene::init()
+		bool TestScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -123,7 +123,7 @@ namespace step_clickclick
 			{
 				mStageView = step_clickclick::game::StageView::create(
 					stage_width, stage_height
-					, std::bind( &StageTestScene::onGameProcess, this, std::placeholders::_1 )
+					, std::bind( &TestScene::onGameProcess, this, std::placeholders::_1 )
 				);
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -169,15 +169,15 @@ namespace step_clickclick
 			return true;
 		}
 
-		void StageTestScene::onEnter()
+		void TestScene::onEnter()
 		{
 			Scene::onEnter();
 
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TestScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void StageTestScene::onExit()
+		void TestScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -187,7 +187,7 @@ namespace step_clickclick
 		}
 
 
-		void StageTestScene::onGameProcess( const int pannel_linear_index )
+		void TestScene::onGameProcess( const int pannel_linear_index )
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
@@ -213,7 +213,7 @@ namespace step_clickclick
 		}
 
 
-		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void TestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
@@ -241,7 +241,7 @@ namespace step_clickclick
 			}
 		}
 
-		void StageTestScene::updateTestAction( const eTestActionType test_action_type )
+		void TestScene::updateTestAction( const eTestActionType test_action_type )
 		{
 			mTestActionType = test_action_type;
 
@@ -261,7 +261,7 @@ namespace step_clickclick
 				assert( false );
 			}
 		}
-		void StageTestScene::updateSelectedPannelTypeView( const ePannelType pannel_type )
+		void TestScene::updateSelectedPannelTypeView( const ePannelType pannel_type )
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedPannelTypeView ) );
 			switch( pannel_type )

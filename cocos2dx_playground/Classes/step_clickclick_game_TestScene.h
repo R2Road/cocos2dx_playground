@@ -14,7 +14,7 @@ namespace step_clickclick
 		using StageUp = std::unique_ptr<class Stage>;
 		class StageView;
 
-		class StageTestScene : public cocos2d::Scene
+		class TestScene : public cocos2d::Scene
 		{
 		private:
 			enum class eTestActionType
@@ -24,10 +24,10 @@ namespace step_clickclick
 				Die,
 			};
 
-			StageTestScene();
+			TestScene();
 
 		public:
-			static const char* getTitle() { return "Game : Stage Test"; }
+			static const char* getTitle() { return "Game : Test"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
