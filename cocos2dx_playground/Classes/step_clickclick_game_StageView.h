@@ -12,6 +12,7 @@
 NS_CC_BEGIN
 	class Label;
 	class Sprite;
+	class Action;
 NS_CC_END
 
 namespace step_clickclick
@@ -29,7 +30,8 @@ namespace step_clickclick
 			class PannelView
 			{
 			public:
-				PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node );
+				PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
+					, cocos2d::Sprite* const increase_effect_node, cocos2d::Sprite* const decrease_effect_node );
 
 				void Init( ePannelType type, const int life );
 				void SetVisible( const bool visible );
@@ -39,6 +41,8 @@ namespace step_clickclick
 				cocos2d::Node* const mPannelNode;
 				cocos2d::Sprite* const mViewNode;
 				cocos2d::Label* const mLabelNode;
+				cocos2d::Sprite* const mIncreaseEffectNode;
+				cocos2d::Sprite* const mDecreaseEffectNode;
 			};
 
 			StageView( const int width, const int height, const OnPannelCallback& on_pannel_callback );

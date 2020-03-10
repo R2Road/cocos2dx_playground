@@ -27,10 +27,13 @@ namespace step_clickclick
 			}
 		}
 
-		StageView::PannelView::PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node ) :
+		StageView::PannelView::PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
+			, cocos2d::Sprite* const increase_effect_node, cocos2d::Sprite* const decrease_effect_node ) :
 			mPannelNode( pannel_node )
 			, mViewNode( view_node )
 			, mLabelNode( label_node )
+			, mIncreaseEffectNode( increase_effect_node )
+			, mDecreaseEffectNode( decrease_effect_node )
 		{}
 		void StageView::PannelView::Init( ePannelType type, const int life )
 		{
@@ -131,8 +134,7 @@ namespace step_clickclick
 			// Background Guide
 			{
 				auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-				pivot->setPosition( pivot_position 
-);
+				pivot->setPosition( pivot_position );
 				addChild( pivot, std::numeric_limits<int>::min() );
 			}
 
@@ -171,10 +173,23 @@ namespace step_clickclick
 					label->setPosition( button->getPosition() );
 					addChild( label, 2 );
 
+					// effect
+					auto increase_effect_node = Sprite::create();
+					increase_effect_node->setScale( 2.f );
+					increase_effect_node->setPosition( button->getPosition() );
+					addChild( increase_effect_node, 3 );
+
+					auto decrease_effect_node = Sprite::create();
+					decrease_effect_node->setScale( 2.f );
+					decrease_effect_node->setPosition( button->getPosition() );
+					addChild( decrease_effect_node, 3 );
+
 					PannelViews.emplace_back(
 						button
 						, view_node
 						, label
+						, increase_effect_node
+						, decrease_effect_node
 					);
 				}
 			}
