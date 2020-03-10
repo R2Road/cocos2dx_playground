@@ -171,6 +171,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\fsm1_Machine.cpp" />
     <ClCompile Include="..\Classes\Research_Input_GamePadTest.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_PlayScene.cpp" />
+    <ClCompile Include="..\Classes\step_clickclick_game_ResultScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_StageView.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_TitleScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_animation_BasicScene.cpp" />
@@ -240,6 +241,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Research_Input_GamePadTest.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_Constant.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_PlayScene.h" />
+    <ClInclude Include="..\Classes\step_clickclick_game_ResultScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_StageView.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_TitleScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_animation_BasicScene.h" />

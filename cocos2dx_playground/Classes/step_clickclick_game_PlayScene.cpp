@@ -13,6 +13,7 @@
 #include "base/ccUTF8.h"
 
 #include "step_clickclick_game_TitleScene.h"
+#include "step_clickclick_game_ResultScene.h"
 
 #include "step_clickclick_game_Stage.h"
 #include "step_clickclick_game_StageView.h"
@@ -420,7 +421,7 @@ namespace step_clickclick
 
 			case 7:
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
-				Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
+				Director::getInstance()->replaceScene( step_clickclick::game::ResultScene::create( mScore ) );
 				break;
 
 			default:
