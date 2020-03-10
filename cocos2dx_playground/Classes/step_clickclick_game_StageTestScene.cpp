@@ -1,5 +1,6 @@
 #include "step_clickclick_game_StageTestScene.h"
 
+#include <cassert>
 #include <functional>
 #include <new>
 #include <sstream>
@@ -10,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "step_clickclick_RootScene.h"
 
@@ -26,6 +28,8 @@ namespace step_clickclick
 		{
 			const int stage_width = 7;
 			const int stage_height = 7;
+
+			const int TAG_TestActionView = 20140416;
 		}
 
 		StageTestScene::StageTestScene() :
@@ -33,6 +37,8 @@ namespace step_clickclick
 			, mStage()
 			, mStageView( nullptr )
 			, mGridIndexConverter( stage_width, stage_height )
+
+			, mTestActionType( eTestActionType::Increase )
 		{}
 
 		Scene* StageTestScene::create()
@@ -76,9 +82,16 @@ namespace step_clickclick
 				ss << "[Mouse] : Click";
 				ss << std::endl;
 				ss << "[F1] : Reset";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[1] : Test Action : Increase";
+				ss << std::endl;
+				ss << "[2] : Test Action : Decrease";
+				ss << std::endl;
+				ss << "[3] : Test Action : Die";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
+				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -120,6 +133,23 @@ namespace step_clickclick
 				mStageView->Setup( *mStage );
 			}
 
+			//
+			// Test Action
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 14 );
+				label->setTag( TAG_TestActionView );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, 9999 );
+
+				updateTestAction( mTestActionType );
+			}
+
 			return true;
 		}
 
@@ -145,90 +175,24 @@ namespace step_clickclick
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
-			const auto& pannel_data = mStage->GetPannelData( pannel_linear_index );
+			const auto& target_pannel_data = mStage->GetPannelData( pannel_linear_index );
 
-			if( ePannelType::Single == pannel_data.GetType() )
+			switch( mTestActionType )
 			{
-				mStage->DecreasePannelLife( pannel_data.GetIndex() );
-				mStageView->UpdatePannel( pannel_data.GetIndex(), pannel_data.GetLife() );
+			case eTestActionType::Increase:
+				mStage->IncreasePannelLife( pannel_linear_index );
+				break;
+			case eTestActionType::Decrease:
+				mStage->DecreasePannelLife( pannel_linear_index );
+				break;
+			case eTestActionType::Die:
+				mStage->DiePannelLife( pannel_linear_index );
+				break;
+			default:
+				assert( false );
 			}
-			else if( ePannelType::Together == pannel_data.GetType() )
-			{
-				const int pivot_count = pannel_data.GetLife();
-				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
 
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
-				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
-				{
-					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
-					{
-						if( 0 > tx || mStage->GetWidth() <= tx
-							|| 0 > ty || mStage->GetHeight() <= ty )
-						{
-							continue;
-						}
-
-						const auto& target_pannel_data = mStage->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
-						if( !target_pannel_data.IsActive() )
-						{
-							continue;
-						}
-
-						if( ePannelType::Together == target_pannel_data.GetType() && pivot_count != target_pannel_data.GetLife() )
-						{
-							continue;
-						}
-
-						if( pivot_count != target_pannel_data.GetLife() )
-						{
-							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
-						}
-						else
-						{
-							mStage->DecreasePannelLife( target_pannel_data.GetIndex() );
-						}
-
-						mStageView->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
-					}
-				}
-			}
-			else if( ePannelType::Different == pannel_data.GetType() )
-			{
-				const int pivot_count = pannel_data.GetLife();
-				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
-
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
-				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
-				{
-					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
-					{
-						if( 0 > tx || mStage->GetWidth() <= tx
-							|| 0 > ty || mStage->GetHeight() <= ty )
-						{
-							continue;
-						}
-
-						const auto& target_pannel_data = mStage->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
-						if( !target_pannel_data.IsActive() )
-						{
-							continue;
-						}
-
-						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetLife() )
-						{
-							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
-						}
-						else
-						{
-							mStage->DiePannelLife( target_pannel_data.GetIndex() );
-						}
-
-						mStageView->UpdatePannel( target_pannel_data.GetIndex(), target_pannel_data.GetLife() );
-					}
-				}
-			}
+			mStageView->UpdatePannel( pannel_linear_index, target_pannel_data.GetLife() );
 		}
 
 
@@ -245,8 +209,39 @@ namespace step_clickclick
 				mStageView->Setup( *mStage );
 				break;
 
+			case EventKeyboard::KeyCode::KEY_1:
+				updateTestAction( eTestActionType::Increase );
+				break;
+			case EventKeyboard::KeyCode::KEY_2:
+				updateTestAction( eTestActionType::Decrease );
+				break;
+			case EventKeyboard::KeyCode::KEY_3:
+				updateTestAction( eTestActionType::Die );
+				break;
+
 			default:
 				CCLOG( "Key Code : %d", keycode );
+			}
+		}
+
+		void StageTestScene::updateTestAction( const eTestActionType test_action_type )
+		{
+			mTestActionType = test_action_type;
+
+			auto label = static_cast<Label*>( getChildByTag( TAG_TestActionView ) );
+			switch( mTestActionType )
+			{
+			case eTestActionType::Increase:
+				label->setString( "Test Action : Increase" );
+				break;
+			case eTestActionType::Decrease:
+				label->setString( "Test Action : Decrease" );
+				break;
+			case eTestActionType::Die:
+				label->setString( "Test Action : Die" );
+				break;
+			default:
+				assert( false );
 			}
 		}
 	} // namespace game
