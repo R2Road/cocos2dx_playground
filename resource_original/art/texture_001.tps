@@ -273,6 +273,16 @@
             <key type="filename">keys/key_free.png</key>
             <key type="filename">keys/key_menu.png</key>
             <key type="filename">keys/key_s.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_decrease1.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_decrease2.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_decrease3.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_decrease4.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_decrease5.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_increase1.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_increase2.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_increase3.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_increase4.png</key>
+            <key type="filename">step_clickclick/step_clickclick_effect_increase5.png</key>
             <key type="filename">step_clickclick/step_clickclick_pannel_different.png</key>
             <key type="filename">step_clickclick/step_clickclick_pannel_single.png</key>
             <key type="filename">step_clickclick/step_clickclick_pannel_together.png</key>
@@ -390,6 +400,16 @@
             <filename>step_clickclick/step_clickclick_pannel_different.png</filename>
             <filename>step_clickclick/step_clickclick_pannel_single.png</filename>
             <filename>step_clickclick/step_clickclick_pannel_together.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_decrease1.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_decrease2.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_decrease3.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_decrease4.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_decrease5.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_increase2.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_increase3.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_increase4.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_increase5.png</filename>
+            <filename>step_clickclick/step_clickclick_effect_increase1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
