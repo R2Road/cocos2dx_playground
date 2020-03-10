@@ -27,6 +27,7 @@ namespace step_clickclick
 		{
 			const int TAG_ScoreView = 20140416;
 			const int TAG_ClearView = 20160528;
+			const int TAG_CountView = 9999;
 
 			const int stage_width = 7;
 			const int stage_height = 7;
@@ -151,7 +152,23 @@ namespace step_clickclick
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.5f
+					, visibleOrigin.y + visibleSize.height * 0.6f
+				) );
+				addChild( label, 9999 );
+
+				updateScoreView();
+			}
+
+			//
+			// Count View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
+				label->setTag( TAG_CountView );
+				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height * 0.4f
 				) );
 				addChild( label, 9999 );
 
@@ -352,20 +369,34 @@ namespace step_clickclick
 				++mNextStepData.step;
 			}
 			break;
-			case 1: // wait
+			case 1: // show label - count
+			{
+				auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
+				label->setString( std::to_string( mNextStepData.LimitTime ) );
+				label->setVisible( true );
+
+				++mNextStepData.step;
+			}
+			break;
+			case 2: // wait
 				mNextStepData.elapsedTime += dt;
-				if( 3.f < mNextStepData.elapsedTime )
+				if( mNextStepData.LimitTime < mNextStepData.elapsedTime )
 				{
 					mNextStepData.elapsedTime = 0.f;
+					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
+					label->setString( "0" );
 
 					++mNextStepData.step;
 				}
+				else
+				{
+					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
+					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime - mNextStepData.elapsedTime ) );
+				}
 				break;
-			case 2: // hide label
+			case 3: // hide label
 				getChildByTag( TAG_ClearView )->setVisible( false );
-				++mNextStepData.step;
-				break;
-			case 3: // reset
+				getChildByTag( TAG_CountView )->setVisible( false );
 				mStage->Setup( 7, 7 );
 				mStageView->Setup( *mStage );
 				++mNextStepData.step;
@@ -376,7 +407,7 @@ namespace step_clickclick
 				mNextStepData.step = 0;
 				break;
 			default:
-				assert( true );
+				assert( false );
 			}
 		}
 

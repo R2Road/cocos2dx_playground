@@ -45,6 +45,7 @@ namespace step_clickclick
 			{
 				int step = 0;
 				float elapsedTime = 0.f;
+				const float LimitTime = 3.f;
 			};
 			NextStepData mNextStepData;
 		};
