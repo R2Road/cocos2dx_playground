@@ -329,7 +329,7 @@ namespace step_clickclick
 						}
 						else
 						{
-							mScore += target_pannel_data.GetLife();
+							mScore += ( target_pannel_data.GetLife() * 2 );
 							mStage->DiePannel( target_pannel_data.GetIndex() );
 						}
 
