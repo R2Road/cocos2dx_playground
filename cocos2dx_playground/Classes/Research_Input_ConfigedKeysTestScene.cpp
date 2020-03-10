@@ -143,7 +143,7 @@ namespace research
 				);
 
 				// indicator
-				auto indicator = Sprite::createWithSpriteFrameName( "empty_2x2.png" );
+				auto indicator = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				indicator->setScaleX( 200.f );
 				indicator->setColor( Color3B::RED );
 				indicator->setPosition( mKeyViewer_StartPosition );

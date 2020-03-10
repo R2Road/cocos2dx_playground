@@ -249,6 +249,7 @@
                 <false/>
             </struct>
             <key type="filename">etc/empty_2x2.png</key>
+            <key type="filename">etc/white_2x2.png</key>
             <key type="filename">helper/helper_pivot.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -410,6 +411,7 @@
             <filename>step_clickclick/step_clickclick_effect_increase4.png</filename>
             <filename>step_clickclick/step_clickclick_effect_increase5.png</filename>
             <filename>step_clickclick/step_clickclick_effect_increase1.png</filename>
+            <filename>etc/white_2x2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
