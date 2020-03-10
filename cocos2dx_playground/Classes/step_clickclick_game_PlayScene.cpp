@@ -148,10 +148,52 @@ namespace step_clickclick
 
 			if( ePannelType::Single == pannel_data.GetType() )
 			{
-				last_life = pannel_data.GetLife();
+				bool has_neighbor = false;
+				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
+				const int current_pivot_x = point_index.x - 1;
+				const int current_pivot_y = point_index.y - 1;
+				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				{
+					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					{
+						if( 0 > tx || mStage->GetWidth() <= tx
+							|| 0 > ty || mStage->GetHeight() <= ty )
+						{
+							continue;
+						}
 
-				mStage->DecreasePannelLife( pannel_data.GetIndex() );
-				mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
+						if( tx != point_index.x && ty != point_index.y )
+						{
+							continue;
+						}
+
+						const auto& target_pannel_data = mStage->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
+						if( pannel_linear_index == target_pannel_data.GetIndex() )
+						{
+							continue;
+						}
+
+						if( !target_pannel_data.IsActive() )
+						{
+							continue;
+						}
+
+						has_neighbor = true;
+						break;
+					}
+				}
+
+				last_life = pannel_data.GetLife();
+				if( has_neighbor )
+				{
+					mStage->DecreasePannelLife( pannel_data.GetIndex() );
+					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
+				}
+				else
+				{
+					mStage->DiePannel( pannel_data.GetIndex() );
+					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
+				}
 			}
 			else if( ePannelType::Same == pannel_data.GetType() )
 			{
