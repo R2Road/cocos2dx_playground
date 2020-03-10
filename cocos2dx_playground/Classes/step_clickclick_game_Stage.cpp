@@ -200,5 +200,20 @@ namespace step_clickclick
 
 			Pannels[linear_index].DieAction();
 		}
+
+		bool Stage::HasActivePannel() const
+		{
+			for( const auto p : Pannels )
+			{
+				if( !p.IsActive() )
+				{
+					continue;
+				}
+
+				return true;
+			}
+
+			return false;
+		}
 	} // namespace game
 } // namespace step_clickclick

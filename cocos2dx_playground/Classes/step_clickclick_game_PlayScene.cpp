@@ -26,6 +26,7 @@ namespace step_clickclick
 		namespace
 		{
 			const int TAG_ScoreView = 20140416;
+			const int TAG_ClearView = 20160528;
 
 			const int stage_width = 7;
 			const int stage_height = 7;
@@ -38,6 +39,7 @@ namespace step_clickclick
 			, mGridIndexConverter( stage_width, stage_height )
 
 			, mScore( 0 )
+			, mNextStepData()
 		{}
 
 		Scene* PlayScene::create()
@@ -134,6 +136,22 @@ namespace step_clickclick
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, 9999 );
+
+				updateScoreView();
+			}
+
+			//
+			// Clear View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
+				label->setTag( TAG_ClearView );
+				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
 				addChild( label, 9999 );
 
@@ -304,12 +322,62 @@ namespace step_clickclick
 			}
 
 			updateScoreView();
+
+			//
+			// Game Over
+			//
+			if( !mStage->HasActivePannel() )
+			{
+				mStageView->setVisible( false );
+				schedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
+			}
 		}
 
 		void PlayScene::updateScoreView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
 			label->setString( StringUtils::format( "Score : %4d", mScore ) );
+		}
+
+		void PlayScene::updateForNextStep( float dt )
+		{
+			switch( mNextStepData.step )
+			{
+			case 0: // show label - clear
+			{
+				auto label = static_cast<Label*>( getChildByTag( TAG_ClearView ) );
+				label->setString( "Stage Clear" );
+				label->setVisible( true );
+
+				++mNextStepData.step;
+			}
+			break;
+			case 1: // wait
+				mNextStepData.elapsedTime += dt;
+				if( 3.f < mNextStepData.elapsedTime )
+				{
+					mNextStepData.elapsedTime = 0.f;
+
+					++mNextStepData.step;
+				}
+				break;
+			case 2: // hide label
+				getChildByTag( TAG_ClearView )->setVisible( false );
+				++mNextStepData.step;
+				break;
+			case 3: // reset
+				mStage->Setup( 7, 7 );
+				mStageView->Setup( *mStage );
+				++mNextStepData.step;
+				break;
+			case 4: // restart
+				mStageView->setVisible( true );
+				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
+				mNextStepData.step = 0;
+				break;
+			default:
+				assert( true );
+			}
 		}
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
