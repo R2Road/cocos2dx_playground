@@ -57,10 +57,8 @@ namespace step_clickclick
 				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << "[F1] : Result Scene Test";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 7, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(

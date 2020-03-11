@@ -46,10 +46,9 @@ namespace step_clickclick
 				std::stringstream ss;
 				ss << "+ " << getTitle();
 				ss << std::endl;
-				ss << std::endl;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
 				label->setColor( Color3B::BLACK );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(

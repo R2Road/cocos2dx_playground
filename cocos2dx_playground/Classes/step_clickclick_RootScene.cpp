@@ -62,7 +62,6 @@ namespace step_clickclick
 			ss << std::endl;
 			ss << "[5] : " << step_clickclick::game::TestScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
 			ss << "[6] : " << step_clickclick::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
