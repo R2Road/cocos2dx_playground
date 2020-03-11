@@ -116,7 +116,7 @@ namespace step_clickclick
 				) );
 				addChild( sprite, 0 );
 
-				auto label = Label::createWithTTF( ":   Same Number Decrease\n   Different Number Increase", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( ":   3 X 3\n   Same Number Decrease\n   Different Number Increase", "fonts/arial.ttf", 14 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				label->setPosition( sprite->getPosition() + Vec2( sprite->getBoundingBox().size.width + 6.f, 0.f ) );
@@ -136,7 +136,7 @@ namespace step_clickclick
 				) );
 				addChild( sprite, 0 );
 
-				auto label = Label::createWithTTF( ":   Different Number Die\n   Same Number Increase", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( ":   3 X 3\n   Different Number Die\n   Same Number Increase", "fonts/arial.ttf", 14 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				label->setPosition( sprite->getPosition() + Vec2( sprite->getBoundingBox().size.width + 6.f, 0.f ) );
