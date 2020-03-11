@@ -148,18 +148,18 @@ namespace step_clickclick
 			setContentSize( stage_size );
 
 			// Pivot
-			{
-				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-				pivot->setScale( 2.f );
-				addChild( pivot, std::numeric_limits<int>::max() );
-			}
+			//{
+			//	auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+			//	pivot->setScale( 2.f );
+			//	addChild( pivot, std::numeric_limits<int>::max() );
+			//}
 
 			// Background Guide
-			{
-				auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-				pivot->setPosition( pivot_position );
-				addChild( pivot, std::numeric_limits<int>::min() );
-			}
+			//{
+			//	auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
+			//	pivot->setPosition( pivot_position );
+			//	addChild( pivot, std::numeric_limits<int>::min() );
+			//}
 
 			// Buttons
 			int linear_index = 0;
