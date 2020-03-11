@@ -1,20 +1,23 @@
-#include "Step01_RootScene.h"
+#include "step_clickclick_RootScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "PlayGroundScene.h"
 
-#include "Step01_Input_KeyCodeViewScene.h"
-#include "Step01_Json_LoadNSaveScene.h"
-#include "Step01_TextField_BasicScene.h"
+#include "step_clickclick_animation_BasicScene.h"
+#include "step_clickclick_animation_PlayNStopScene.h"
 
-#include "Step01_Tool_MapToolScene.h"
-#include "Step01_Game_PathFinder_TitleScene.h"
+#include "step_clickclick_sound_Basic.h"
+
+#include "step_clickclick_button_BasicScene.h"
+
+#include "step_clickclick_game_TestScene.h"
+#include "step_clickclick_game_TitleScene.h"
 
 USING_NS_CC;
 
-namespace step01
+namespace step_clickclick
 {
 	RootScene::RootScene() : mKeyboardListener( nullptr ) {}
 
@@ -40,23 +43,26 @@ namespace step01
 		//
 		{
 			std::stringstream ss;
-			ss << "+ Step 01 : Input And Animation";
-			ss << "\n";
-			ss << "\n";
+			ss << "+ " << getTitle();
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
-			ss << "\n";
-			ss << "\n";
-			ss << "[1] : " << input::KeyCodeViewScene::getTitle();
-			ss << "\n";
-			ss << "[2] : " << json::LoadNSaveScene::getTitle();
-			ss << "\n";
-			ss << "[3] : " << step01::text_field::BasicScene::getTitle();
-			ss << "\n";
-			ss << "\n";
-			ss << "[4] : " << tool::MapToolScene::getTitle();
-			ss << "\n";
-			ss << "\n";
-			ss << "[5] : " << game::pathfinder::TitleScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[1] : " << step_clickclick::animation::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << step_clickclick::animation::PlayNStopScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[3] : " << step_clickclick::sound::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[4] : " << step_clickclick::button::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[5] : " << step_clickclick::game::TestScene::getTitle();
+			ss << std::endl;
+			ss << "[6] : " << step_clickclick::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -71,7 +77,7 @@ namespace step01
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 41, 0, 61, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
 			ret->addChild( background_layer, 0 );
 		}
 
@@ -84,7 +90,7 @@ namespace step01
 
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
-		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
 	void RootScene::onExit()
 	{
@@ -105,21 +111,25 @@ namespace step01
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( input::KeyCodeViewScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::animation::BasicScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( json::LoadNSaveScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step01::text_field::BasicScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::animation::PlayNStopScene::create() );
 			break;
 
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step_clickclick::sound::BasicScene::create() );
+			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( tool::MapToolScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::button::BasicScene::create() );
 			break;
+
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::game::TestScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_6:
+			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
 			break;
 
 		default:

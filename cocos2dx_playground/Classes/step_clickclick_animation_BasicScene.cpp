@@ -1,13 +1,23 @@
-#include "Step01_Animation_BasicScene.h"
+#include "step_clickclick_animation_BasicScene.h"
 
 #include <new>
 #include <sstream>
 
-#include "Step01_Animation_RootScene.h"
+#include "2d/CCActionInterval.h"
+#include "2d/CCAnimation.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
+
+#include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
 
-namespace step01
+namespace step_clickclick
 {
 	namespace animation
 	{
@@ -45,9 +55,9 @@ namespace step01
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Animation - Basic";
-				ss << "\n";
-				ss << "\n";
+				ss << "+ " << getTitle();
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
@@ -63,7 +73,7 @@ namespace step01
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 80, 0, 120, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 0, 55, 25, 255 ) );
 				addChild( background_layer, 0 );
 			}
 
@@ -118,7 +128,7 @@ namespace step01
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		}
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

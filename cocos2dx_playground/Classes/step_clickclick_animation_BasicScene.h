@@ -1,17 +1,18 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
-namespace step01
+namespace step_clickclick
 {
 	namespace animation
 	{
-		class PlayNStopScene : public cocos2d::Scene
+		class BasicScene : public cocos2d::Scene
 		{
 		private:
-			PlayNStopScene();
+			BasicScene();
 
 		public:
+			static const char* getTitle() { return "Animation : Basic"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
@@ -24,7 +25,6 @@ namespace step01
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Action* mRepeatAction;
 		};
 	}
 }

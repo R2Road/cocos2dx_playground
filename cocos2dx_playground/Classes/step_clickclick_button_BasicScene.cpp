@@ -1,20 +1,27 @@
-#include "Step01_Button_BasicScene.h"
+#include "step_clickclick_button_BasicScene.h"
 
 #include <new>
 #include <sstream>
 
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 #include "ui/UIButton.h"
 
-#include "Step01_RootScene.h"
+#include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
 
 namespace
 {
-	const int TAG_label = 20140416;
+	const int TAG_ButtonStatus = 20140416;
+	const int TAG_TouchPosition = 20160528;
 }
 
-namespace step01
+namespace step_clickclick
 {
 	namespace button
 	{
@@ -55,16 +62,52 @@ namespace step01
 				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[ESC] : Return to Step01 Root";
+				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
+				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
+			}
+
+			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
+				addChild( background_layer, 0 );
+			}
+
+			//
+			// Button Status View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+				label->setTag( TAG_ButtonStatus );
+				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.7f )
+				) );
+				addChild( label, 2 );
+			}
+
+			//
+			// Touch Info View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+				label->setTag( TAG_TouchPosition );
+				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.6f )
+				) );
+				addChild( label, 2 );
 			}
 
 			//
@@ -79,27 +122,15 @@ namespace step01
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-				addChild( button, 0 );
+				addChild( button, 1 );
 
 				auto label = Label::createWithTTF( "Click Here ===>>>", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
-				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f , 0.f ) );
-				addChild( label, 1 );
-			}
+				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f, 0.f ) );
+				addChild( label, 2 );
 
-			//
-			// Button Status View
-			//
-			{
-				auto label = Label::createWithTTF( "Release", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
-				label->setTag( TAG_label );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.7f )
-				) );
-				addChild( label, 1 );
+				onButton( button, cocos2d::ui::Widget::TouchEventType::ENDED );
 			}
 
 			
@@ -124,33 +155,44 @@ namespace step01
 			Node::onExit();
 		}
 
-		void BasicScene::onButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
+			auto button = static_cast<ui::Button*>( sender );
+
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_label ) );
-				label->setString( "Press" );
+				updateView_ButtonStatus( "Press" );
+				updateView_TouchPosition( button->getTouchBeganPosition() );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_label ) );
-				label->setString( "Move" );
+				updateView_ButtonStatus( "Move" );
+				updateView_TouchPosition( button->getTouchMovePosition() );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_label ) );
-				label->setString( "Release" );
+				updateView_ButtonStatus( "Release" );
+				updateView_TouchPosition( button->getTouchEndPosition() );
 			}
 			else if( ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_label ) );
-				label->setString( "Release( Cancel )" );
+				updateView_ButtonStatus( "Release( Cancel )" );
 			}
+		}
+		void BasicScene::updateView_ButtonStatus( const char* status_string )
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
+			label->setString( status_string );
+		}
+		void BasicScene::updateView_TouchPosition( const cocos2d::Vec2 touch_position )
+		{
+			auto touch_position_label = static_cast<Label*>( getChildByTag( TAG_TouchPosition ) );
+			touch_position_label->setString( StringUtils::format( "x : %f, y : %f", touch_position.x, touch_position.y ) );
 		}
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

@@ -1,7 +1,13 @@
 # cocos2dx_playground
 
-useful code for cocos2d-x 3.17.2
+useful code for make game with cocos2d-x 3.17.2
 
+
+- **warning**
+  - This repository is not included "cocos2d-x engine" code
+  - Please, Make cocos2d-x clean project from "cocos new"
+  - ...and Copy and Paste "cocos2d" folder
+  
 - engine
   - cocos2d-x 3.17.2
 

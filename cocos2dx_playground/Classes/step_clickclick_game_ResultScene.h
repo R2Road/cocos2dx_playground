@@ -2,22 +2,20 @@
 
 #include "cocos2d.h"
 
-namespace step01
+namespace step_clickclick
 {
-	namespace sound
+	namespace game
 	{
-		class BasicScene : public cocos2d::Scene
+		class ResultScene : public cocos2d::Scene
 		{
 		private:
-			BasicScene();
+			ResultScene();
 
 		public:
-			~BasicScene();
+			static const char* getTitle() { return "Game : Path Finder - Result"; }
+			static cocos2d::Scene* create( const int clear_score );
 
-			static const char* getTitle() { return "Sound : Basic"; }
-			static cocos2d::Scene* create();
-
-			bool init() override;
+			bool init( const int clear_score );
 			void onEnter() override;
 			void onExit() override;
 

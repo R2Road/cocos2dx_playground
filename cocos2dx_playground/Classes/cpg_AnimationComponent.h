@@ -6,6 +6,10 @@
 
 #include "cpg_animation_InfoContainer.h"
 
+NS_CC_BEGIN
+	class Action;
+NS_CC_END
+
 namespace cpg
 {
 	class AnimationComponent : public cocos2d::Component
