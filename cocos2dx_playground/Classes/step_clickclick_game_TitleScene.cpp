@@ -11,7 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_clickclick_game_PlayScene.h"
+#include "step_clickclick_game_ExplainScene.h"
 #include "step_clickclick_game_ResultScene.h"
 #include "step_clickclick_RootScene.h"
 
@@ -150,7 +150,7 @@ namespace step_clickclick
 
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_clickclick::game::PlayScene::create() );
+				Director::getInstance()->replaceScene( step_clickclick::game::ExplainScene::create() );
 				return;
 			}
 

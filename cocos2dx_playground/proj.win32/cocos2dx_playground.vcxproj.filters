@@ -279,6 +279,9 @@
     <ClCompile Include="..\Classes\step_clickclick_game_ResultScene.cpp">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_ExplainScene.cpp">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -483,6 +486,9 @@
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_ResultScene.h">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_ExplainScene.h">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClInclude>
   </ItemGroup>

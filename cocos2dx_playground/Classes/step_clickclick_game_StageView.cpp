@@ -170,7 +170,7 @@ namespace step_clickclick
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
 					// button
-					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+					auto button = ui::Button::create( "guide_empty.png", "guide_empty.png", "guide_empty.png", ui::Widget::TextureResType::PLIST );
 					button->setTag( linear_index );
 					button->setScale9Enabled( true );
 					button->setContentSize( tile_size );
