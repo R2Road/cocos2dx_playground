@@ -327,6 +327,9 @@ namespace step_clickclick
 						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetLife() )
 						{
 							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
 						}
 						else
 						{
