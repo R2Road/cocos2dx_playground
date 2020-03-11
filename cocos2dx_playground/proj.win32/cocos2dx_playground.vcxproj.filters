@@ -258,9 +258,6 @@
     <ClCompile Include="..\Classes\step_clickclick_sound_Basic.cpp">
       <Filter>src\scene\step_clickclick\sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_StageTestScene.cpp">
-      <Filter>src\scene\step_clickclick\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_Stage.cpp">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClCompile>
@@ -271,6 +268,18 @@
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_StageView.cpp">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_PlayScene.cpp">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_TestScene.cpp">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_ResultScene.cpp">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_ExplainScene.cpp">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -455,9 +464,6 @@
     <ClInclude Include="..\Classes\step_clickclick_sound_Basic.h">
       <Filter>src\scene\step_clickclick\sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_StageTestScene.h">
-      <Filter>src\scene\step_clickclick\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_Stage.h">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClInclude>
@@ -471,6 +477,18 @@
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_StageView.h">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_PlayScene.h">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_TestScene.h">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_ResultScene.h">
+      <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_ExplainScene.h">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClInclude>
   </ItemGroup>

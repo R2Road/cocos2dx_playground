@@ -131,7 +131,7 @@ namespace step_clickclick
 				auto cur = pannel_type_list.begin();
 				for( int i = 0; i < together_count; ++i )
 				{
-					*cur = ePannelType::Together;
+					*cur = ePannelType::Same;
 					++cur;
 				}
 				for( int i = 0; i < different_count; ++i )
@@ -191,7 +191,7 @@ namespace step_clickclick
 
 			Pannels[linear_index].DecreaseAction();
 		}
-		void Stage::DiePannelLife( const int linear_index )
+		void Stage::DiePannel( const int linear_index )
 		{
 			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
 			{
@@ -199,6 +199,21 @@ namespace step_clickclick
 			}
 
 			Pannels[linear_index].DieAction();
+		}
+
+		bool Stage::HasActivePannel() const
+		{
+			for( const auto p : Pannels )
+			{
+				if( !p.IsActive() )
+				{
+					continue;
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 	} // namespace game
 } // namespace step_clickclick

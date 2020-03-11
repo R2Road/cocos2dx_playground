@@ -3,6 +3,16 @@
 #include <new>
 #include <sstream>
 
+#include "2d/CCActionInterval.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
+
+#include "step_clickclick_game_ExplainScene.h"
+#include "step_clickclick_game_ResultScene.h"
 #include "step_clickclick_RootScene.h"
 
 #include "CPG_Setting.h"
@@ -46,12 +56,13 @@ namespace step_clickclick
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << "\n";
-				ss << "\n";
+				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << "[F1] : Result Scene Test";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
+				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -132,6 +143,18 @@ namespace step_clickclick
 				{
 					scheduleOnce( schedule_selector( TitleScene::updateForExit ), 0.f );
 				}
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
+			{
+				Director::getInstance()->replaceScene( step_clickclick::game::ExplainScene::create() );
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
+			{
+				Director::getInstance()->replaceScene( step_clickclick::game::ResultScene::create( 10101010 ) );
 				return;
 			}
 		}

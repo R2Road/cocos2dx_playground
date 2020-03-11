@@ -52,7 +52,9 @@ namespace step_clickclick
 			const Pannel& GetPannelData( const int linear_index ) const;
 			void IncreasePannelLife( const int linear_index );
 			void DecreasePannelLife( const int linear_index );
-			void DiePannelLife( const int linear_index );
+			void DiePannel( const int linear_index );
+
+			bool HasActivePannel() const;
 
 		private:
 			const int mStageWidth;

@@ -4,6 +4,8 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCActionInterval.h"
+#include "2d/CCAnimation.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
@@ -27,10 +29,21 @@ namespace step_clickclick
 			}
 		}
 
-		StageView::PannelView::PannelView( cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node ) :
+		StageView::PannelView::PannelView(
+			cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
+			, cocos2d::Sprite* const effect_node
+			, cocos2d::Action* const increase_effect_action
+			, cocos2d::Action* const decrease_effect_action
+			, cocos2d::Action* const die_effect_action
+			
+		) :
 			mPannelNode( pannel_node )
 			, mViewNode( view_node )
 			, mLabelNode( label_node )
+			, mEffectNode( effect_node )
+			, mIncreaseEffectAction( increase_effect_action )
+			, mDecreaseEffectAction( decrease_effect_action )
+			, mDieEffectAction( die_effect_action )
 		{}
 		void StageView::PannelView::Init( ePannelType type, const int life )
 		{
@@ -42,7 +55,7 @@ namespace step_clickclick
 			case ePannelType::Single:
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_single.png" );
 				break;
-			case ePannelType::Together:
+			case ePannelType::Same:
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_together.png" );
 				break;
 			case ePannelType::Different:
@@ -59,15 +72,28 @@ namespace step_clickclick
 			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}
-		void StageView::PannelView::Update( const int life )
+		void StageView::PannelView::Update( const int last_life, const int current_life )
 		{
-			if( 0 == life )
+			if( 0 == current_life )
 			{
 				SetVisible( false );
+				mEffectNode->stopAllActions();
+				mEffectNode->runAction( mDieEffectAction );
 			}
 			else
 			{
-				mLabelNode->setString( std::to_string( life ) );
+				mLabelNode->setString( std::to_string( current_life ) );
+
+				if( last_life < current_life )
+				{
+					mEffectNode->stopAllActions();
+					mEffectNode->runAction( mIncreaseEffectAction );
+				}
+				else
+				{
+					mEffectNode->stopAllActions();
+					mEffectNode->runAction( mDecreaseEffectAction );
+				}
 			}
 		}
 
@@ -122,19 +148,18 @@ namespace step_clickclick
 			setContentSize( stage_size );
 
 			// Pivot
-			{
-				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-				pivot->setScale( 2.f );
-				addChild( pivot, std::numeric_limits<int>::max() );
-			}
+			//{
+			//	auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+			//	pivot->setScale( 2.f );
+			//	addChild( pivot, std::numeric_limits<int>::max() );
+			//}
 
 			// Background Guide
-			{
-				auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-				pivot->setPosition( pivot_position 
-);
-				addChild( pivot, std::numeric_limits<int>::min() );
-			}
+			//{
+			//	auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
+			//	pivot->setPosition( pivot_position );
+			//	addChild( pivot, std::numeric_limits<int>::min() );
+			//}
 
 			// Buttons
 			int linear_index = 0;
@@ -145,7 +170,7 @@ namespace step_clickclick
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
 					// button
-					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+					auto button = ui::Button::create( "guide_empty.png", "guide_empty.png", "guide_empty.png", ui::Widget::TextureResType::PLIST );
 					button->setTag( linear_index );
 					button->setScale9Enabled( true );
 					button->setContentSize( tile_size );
@@ -171,10 +196,55 @@ namespace step_clickclick
 					label->setPosition( button->getPosition() );
 					addChild( label, 2 );
 
+					// effect
+					auto effect_node = Sprite::create();
+					effect_node->setScale( 2.f );
+					effect_node->setPosition( button->getPosition() );
+					addChild( effect_node, 3 );
+
+					// increase animation action
+					auto increase_animation_object = Animation::create();
+					increase_animation_object->setDelayPerUnit( 0.07f );
+					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase1.png" ) );
+					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase2.png" ) );
+					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase3.png" ) );
+					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase4.png" ) );
+					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase5.png" ) );
+					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
+					auto increase_animate_action = Animate::create( increase_animation_object );
+					increase_animate_action->retain();
+
+					// decrease animation action
+					auto decrease_animation_object = Animation::create();
+					decrease_animation_object->setDelayPerUnit( 0.07f );
+					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease1.png" ) );
+					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease2.png" ) );
+					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease3.png" ) );
+					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease4.png" ) );
+					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease5.png" ) );
+					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
+					auto decrease_animate_action = Animate::create( decrease_animation_object );
+					decrease_animate_action->retain();
+
+					// die animation action
+					auto die_animation_object = Animation::create();
+					die_animation_object->setDelayPerUnit( 0.07f );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die1.png" ) );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die2.png" ) );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die3.png" ) );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die4.png" ) );
+					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
+					auto die_animate_action = Animate::create( die_animation_object );
+					die_animate_action->retain();
+
 					PannelViews.emplace_back(
 						button
 						, view_node
 						, label
+						, effect_node
+						, increase_animate_action
+						, decrease_animate_action
+						, die_animate_action
 					);
 				}
 			}
@@ -204,9 +274,9 @@ namespace step_clickclick
 			}
 		}
 
-		void StageView::UpdatePannel( const int linear_index, const int life )
+		void StageView::UpdatePannel( const int linear_index, const int last_life, const int current_life )
 		{
-			PannelViews[linear_index].Update( life );
+			PannelViews[linear_index].Update( last_life, current_life );
 		}
 
 		void StageView::onPannel( Ref* sender, ui::Widget::TouchEventType touch_event_type )
