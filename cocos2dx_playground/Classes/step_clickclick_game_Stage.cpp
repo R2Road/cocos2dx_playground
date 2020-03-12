@@ -11,10 +11,8 @@ namespace step_clickclick
 	{
 		namespace
 		{
-			void CheckOddNumber( const int number )
-			{
-				assert( 1 == ( number & 1 ) );
-			}
+			#define CHECK_ODD_NUMBER( number ) ( assert( 1 == ( ( number ) & 1 ) ) )
+
 			void CheckSize( const int pivot, const int number )
 			{
 				assert( pivot >= number );
@@ -72,8 +70,8 @@ namespace step_clickclick
 			//
 			// Must odd number
 			//
-			CheckOddNumber( mStageWidth );
-			CheckOddNumber( mStageHeight );
+			CHECK_ODD_NUMBER( mStageWidth );
+			CHECK_ODD_NUMBER( mStageHeight );
 		}
 
 		StageUp Stage::create( const int width, const int height )
@@ -108,8 +106,8 @@ namespace step_clickclick
 
 		void Stage::Setup( const int width, const int height )
 		{
-			CheckOddNumber( width );
-			CheckOddNumber( height );
+			CHECK_ODD_NUMBER( width );
+			CHECK_ODD_NUMBER( height );
 			CheckSize( mStageWidth, width );
 			CheckSize( mStageHeight, height );
 
