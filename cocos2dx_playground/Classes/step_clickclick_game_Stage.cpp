@@ -177,20 +177,13 @@ namespace step_clickclick
 		}
 		void Stage::IncreaseBlockLife( const int linear_index )
 		{
-			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
-			{
-				return;
-			}
+			assert( 0 <= linear_index && static_cast<int>( mBlocks.size() ) > linear_index );
 
 			mBlocks[linear_index].IncreaseAction();
 		}
 		void Stage::DecreaseBlockLife( const int linear_index )
 		{
-			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
-			{
-				return;
-			}
-
+			assert( 0 <= linear_index && static_cast<int>( mBlocks.size() ) > linear_index );
 			assert( mBlocks[linear_index].IsActive() );
 
 			mBlocks[linear_index].DecreaseAction();
@@ -201,11 +194,7 @@ namespace step_clickclick
 		}
 		void Stage::DieBlock( const int linear_index )
 		{
-			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
-			{
-				return;
-			}
-
+			assert( 0 <= linear_index && static_cast<int>( mBlocks.size() ) > linear_index );
 			assert( mBlocks[linear_index].IsActive() );
 
 			mBlocks[linear_index].DieAction();
