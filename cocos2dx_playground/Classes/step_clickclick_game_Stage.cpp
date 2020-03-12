@@ -12,11 +12,8 @@ namespace step_clickclick
 		namespace
 		{
 			#define CHECK_ODD_NUMBER( number ) ( assert( 1 == ( ( number ) & 1 ) ) )
+			#define CHECK_SIZE( pivot, number ) ( assert( pivot >= number ) )
 
-			void CheckSize( const int pivot, const int number )
-			{
-				assert( pivot >= number );
-			}
 			int GetRandomInt( int min, int max )
 			{
 				static std::random_device rd;
@@ -108,8 +105,8 @@ namespace step_clickclick
 		{
 			CHECK_ODD_NUMBER( width );
 			CHECK_ODD_NUMBER( height );
-			CheckSize( mStageWidth, width );
-			CheckSize( mStageHeight, height );
+			CHECK_SIZE( mStageWidth, width );
+			CHECK_SIZE( mStageHeight, height );
 
 			mActiveBlockCount = width * height;
 
