@@ -54,7 +54,7 @@ namespace step_clickclick
 			void DecreaseBlockLife( const int linear_index );
 			void DieBlock( const int linear_index );
 
-			bool HasActiveBlock() const;
+			bool HasActiveBlock() const { return 0 != mActiveBlockCount; }
 
 		private:
 			const int mStageWidth;
@@ -63,6 +63,7 @@ namespace step_clickclick
 			const int mCenterY;
 			const cpg::GridIndexConverter mGridIndexConverter;
 			std::vector<Block> mBlocks;
+			int mActiveBlockCount;
 		};
 	}
 }

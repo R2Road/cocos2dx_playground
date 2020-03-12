@@ -67,6 +67,7 @@ namespace step_clickclick
 			, mCenterY( mStageWidth / 2 )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
 			, mBlocks()
+			, mActiveBlockCount( 0 )
 		{
 			//
 			// Must odd number
@@ -112,6 +113,8 @@ namespace step_clickclick
 			CheckSize( mStageWidth, width );
 			CheckSize( mStageHeight, height );
 
+			mActiveBlockCount = width * height;
+
 			//
 			// Clear
 			//
@@ -122,12 +125,11 @@ namespace step_clickclick
 
 			std::vector<eBlockType> block_type_list;
 			{
-				const int block_count = width * height;
-				block_type_list.resize( block_count, eBlockType::Single );
+				block_type_list.resize( mActiveBlockCount, eBlockType::Single );
 
 				// init
-				const int together_count = block_count * 0.3f;
-				const int different_count = block_count * 0.2f;
+				const int together_count = mActiveBlockCount * 0.3f;
+				const int different_count = mActiveBlockCount * 0.2f;
 				auto cur = block_type_list.begin();
 				for( int i = 0; i < together_count; ++i )
 				{
@@ -189,7 +191,13 @@ namespace step_clickclick
 				return;
 			}
 
+			assert( mBlocks[linear_index].IsActive() );
+
 			mBlocks[linear_index].DecreaseAction();
+			if( 0 == mBlocks[linear_index].GetLife() )
+			{
+				--mActiveBlockCount;
+			}
 		}
 		void Stage::DieBlock( const int linear_index )
 		{
@@ -198,22 +206,10 @@ namespace step_clickclick
 				return;
 			}
 
+			assert( mBlocks[linear_index].IsActive() );
+
 			mBlocks[linear_index].DieAction();
-		}
-
-		bool Stage::HasActiveBlock() const
-		{
-			for( const auto p : mBlocks )
-			{
-				if( !p.IsActive() )
-				{
-					continue;
-				}
-
-				return true;
-			}
-
-			return false;
+			--mActiveBlockCount;
 		}
 	} // namespace game
 } // namespace step_clickclick
