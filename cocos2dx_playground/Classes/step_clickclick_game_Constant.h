@@ -4,7 +4,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		enum class ePannelType
+		enum class eBlockType
 		{
 			Single,
 			Same,

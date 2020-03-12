@@ -29,30 +29,30 @@ namespace step_clickclick
 		}
 
 
-		Stage::Pannel::Pannel( const int index, const int life ) :
+		Stage::Block::Block( const int index, const int life ) :
 			mIndex( index )
-			, mPannelType( ePannelType::Different )
+			, mBlockType( eBlockType::Different )
 			, mActive( false )
 			, mLife( life )
 		{}
 
-		void Stage::Pannel::Init( ePannelType type, const int life )
+		void Stage::Block::Init( eBlockType type, const int life )
 		{
-			mPannelType = type;
+			mBlockType = type;
 			mActive = true;
 			mLife = life;
 		}
-		void Stage::Pannel::DecreaseAction()
+		void Stage::Block::DecreaseAction()
 		{
 			mLife = std::max( 0, mLife - 1 );
 			mActive = ( 0 < mLife );
 		}
-		void Stage::Pannel::IncreaseAction()
+		void Stage::Block::IncreaseAction()
 		{
 			mLife = std::min( 100, mLife + 1 );
 			mActive = ( 0 < mLife );
 		}
-		void Stage::Pannel::DieAction()
+		void Stage::Block::DieAction()
 		{
 			mLife = 0;
 			mActive = false;
@@ -66,7 +66,7 @@ namespace step_clickclick
 			, mCenterX( mStageWidth / 2 )
 			, mCenterY( mStageWidth / 2 )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
-			, Pannels()
+			, mBlocks()
 		{
 			//
 			// Must odd number
@@ -95,7 +95,7 @@ namespace step_clickclick
 				{
 					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					Pannels.emplace_back(
+					mBlocks.emplace_back(
 						linear_index
 						, 0
 					);
@@ -115,41 +115,41 @@ namespace step_clickclick
 			//
 			// Clear
 			//
-			for( auto& p : Pannels )
+			for( auto& p : mBlocks )
 			{
 				p.DieAction();
 			}
 
-			std::vector<ePannelType> pannel_type_list;
+			std::vector<eBlockType> block_type_list;
 			{
-				const int pannel_count = width * height;
-				pannel_type_list.resize( pannel_count, ePannelType::Single );
+				const int block_count = width * height;
+				block_type_list.resize( block_count, eBlockType::Single );
 
 				// init
-				const int together_count = pannel_count * 0.3f;
-				const int different_count = pannel_count * 0.2f;
-				auto cur = pannel_type_list.begin();
+				const int together_count = block_count * 0.3f;
+				const int different_count = block_count * 0.2f;
+				auto cur = block_type_list.begin();
 				for( int i = 0; i < together_count; ++i )
 				{
-					*cur = ePannelType::Same;
+					*cur = eBlockType::Same;
 					++cur;
 				}
 				for( int i = 0; i < different_count; ++i )
 				{
-					*cur = ePannelType::Different;
+					*cur = eBlockType::Different;
 					++cur;
 				}
 
 				// shuffle
 				const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 				std::default_random_engine random_engine( seed );
-				shuffle( pannel_type_list.begin(), pannel_type_list.end(), random_engine );
-				shuffle( pannel_type_list.begin(), pannel_type_list.end(), random_engine );
+				shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
+				shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
 			}
 
 			const int current_pivot_x = mCenterX - ( width / 2 );
 			const int current_pivot_y = mCenterY - ( height / 2 );
-			auto t_type = pannel_type_list.cbegin();
+			auto t_type = block_type_list.cbegin();
 			int linear_index = 0;
 			for( int ty = current_pivot_y; ty < current_pivot_y + height; ++ty )
 			{
@@ -157,53 +157,53 @@ namespace step_clickclick
 				{
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					Pannels[linear_index].Init( *t_type, GetRandomInt( 3, 9 ) );
+					mBlocks[linear_index].Init( *t_type, GetRandomInt( 3, 9 ) );
 					++t_type;
 				}
 			}
 		}
 
-		const Stage::Pannel& Stage::GetPannelData( const int linear_index ) const
+		const Stage::Block& Stage::GetBlockData( const int linear_index ) const
 		{
-			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
+			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
 			{
-				static const Pannel dummy( -1, 0 );
+				static const Block dummy( -1, 0 );
 				return dummy;
 			}
 
-			return Pannels[linear_index];
+			return mBlocks[linear_index];
 		}
-		void Stage::IncreasePannelLife( const int linear_index )
+		void Stage::IncreaseBlockLife( const int linear_index )
 		{
-			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
+			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
 			{
 				return;
 			}
 
-			Pannels[linear_index].IncreaseAction();
+			mBlocks[linear_index].IncreaseAction();
 		}
-		void Stage::DecreasePannelLife( const int linear_index )
+		void Stage::DecreaseBlockLife( const int linear_index )
 		{
-			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
+			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
 			{
 				return;
 			}
 
-			Pannels[linear_index].DecreaseAction();
+			mBlocks[linear_index].DecreaseAction();
 		}
-		void Stage::DiePannel( const int linear_index )
+		void Stage::DieBlock( const int linear_index )
 		{
-			if( 0 > linear_index || static_cast<int>( Pannels.size() ) <= linear_index )
+			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
 			{
 				return;
 			}
 
-			Pannels[linear_index].DieAction();
+			mBlocks[linear_index].DieAction();
 		}
 
-		bool Stage::HasActivePannel() const
+		bool Stage::HasActiveBlock() const
 		{
-			for( const auto p : Pannels )
+			for( const auto p : mBlocks )
 			{
 				if( !p.IsActive() )
 				{

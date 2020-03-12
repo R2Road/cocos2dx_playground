@@ -38,7 +38,7 @@ namespace step_clickclick
 					, cocos2d::Action* const die_effect_action
 				);
 
-				void Init( ePannelType type, const int life );
+				void Init( eBlockType type, const int life );
 				void SetVisible( const bool visible );
 				void Update( const int last_life, const int current_life );
 

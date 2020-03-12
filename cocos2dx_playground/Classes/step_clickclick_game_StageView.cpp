@@ -45,20 +45,20 @@ namespace step_clickclick
 			, mDecreaseEffectAction( decrease_effect_action )
 			, mDieEffectAction( die_effect_action )
 		{}
-		void StageView::PannelView::Init( ePannelType type, const int life )
+		void StageView::PannelView::Init( eBlockType type, const int life )
 		{
 			mLabelNode->setString( std::to_string( life ) );
 
 			SpriteFrame* view_frame = nullptr;
 			switch( type )
 			{
-			case ePannelType::Single:
+			case eBlockType::Single:
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_single.png" );
 				break;
-			case ePannelType::Same:
+			case eBlockType::Same:
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_together.png" );
 				break;
-			case ePannelType::Different:
+			case eBlockType::Different:
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_different.png" );
 				break;
 			default:
@@ -262,7 +262,7 @@ namespace step_clickclick
 				p.SetVisible( false );
 			}
 
-			for( const auto& p : stage_data.GetPannelDatas() )
+			for( const auto& p : stage_data.GetBlockDatas() )
 			{
 				if( !p.IsActive() )
 				{

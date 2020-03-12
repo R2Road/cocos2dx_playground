@@ -191,20 +191,20 @@ namespace step_clickclick
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
-			const auto& target_pannel_data = mStage->GetPannelData( pannel_linear_index );
+			const auto& target_pannel_data = mStage->GetBlockData( pannel_linear_index );
 			updateSelectedPannelTypeView( target_pannel_data.GetType() );
 
 			const int last_life = target_pannel_data.GetLife();
 			switch( mTestActionType )
 			{
 			case eTestActionType::Increase:
-				mStage->IncreasePannelLife( pannel_linear_index );
+				mStage->IncreaseBlockLife( pannel_linear_index );
 				break;
 			case eTestActionType::Decrease:
-				mStage->DecreasePannelLife( pannel_linear_index );
+				mStage->DecreaseBlockLife( pannel_linear_index );
 				break;
 			case eTestActionType::Die:
-				mStage->DiePannel( pannel_linear_index );
+				mStage->DieBlock( pannel_linear_index );
 				break;
 			default:
 				assert( false );
@@ -262,18 +262,18 @@ namespace step_clickclick
 				assert( false );
 			}
 		}
-		void TestScene::updateSelectedPannelTypeView( const ePannelType pannel_type )
+		void TestScene::updateSelectedPannelTypeView( const eBlockType pannel_type )
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedPannelTypeView ) );
 			switch( pannel_type )
 			{
-			case ePannelType::Single:
+			case eBlockType::Single:
 				label->setString( "Pannel Type : Single" );
 				break;
-			case ePannelType::Same:
+			case eBlockType::Same:
 				label->setString( "Pannel Type : Same" );
 				break;
-			case ePannelType::Different:
+			case eBlockType::Different:
 				label->setString( "Pannel Type : Different" );
 				break;
 			default:
