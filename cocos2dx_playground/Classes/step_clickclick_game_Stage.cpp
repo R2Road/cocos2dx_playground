@@ -13,6 +13,7 @@ namespace step_clickclick
 		{
 			#define CHECK_ODD_NUMBER( number ) ( assert( 1 == ( ( number ) & 1 ) ) )
 			#define CHECK_SIZE( pivot, number ) ( assert( pivot >= number ) )
+			#define CHECK_LINEAR_INDEX( min_index, max_index, defendant ) ( assert( min_index <= defendant && max_index > defendant ) )
 
 			int GetRandomInt( int min, int max )
 			{
@@ -172,13 +173,13 @@ namespace step_clickclick
 		}
 		void Stage::IncreaseBlockLife( const int linear_index )
 		{
-			assert( 0 <= linear_index && static_cast<int>( mBlocks.size() ) > linear_index );
+			CHECK_LINEAR_INDEX( 0, static_cast<int>( mBlocks.size() ), linear_index );
 
 			mBlocks[linear_index].IncreaseAction();
 		}
 		void Stage::DecreaseBlockLife( const int linear_index )
 		{
-			assert( 0 <= linear_index && static_cast<int>( mBlocks.size() ) > linear_index );
+			CHECK_LINEAR_INDEX( 0, static_cast<int>( mBlocks.size() ), linear_index );
 			assert( mBlocks[linear_index].IsActive() );
 
 			mBlocks[linear_index].DecreaseAction();
@@ -189,7 +190,7 @@ namespace step_clickclick
 		}
 		void Stage::DieBlock( const int linear_index )
 		{
-			assert( 0 <= linear_index && static_cast<int>( mBlocks.size() ) > linear_index );
+			CHECK_LINEAR_INDEX( 0, static_cast<int>( mBlocks.size() ), linear_index );
 			assert( mBlocks[linear_index].IsActive() );
 
 			mBlocks[linear_index].DieAction();
