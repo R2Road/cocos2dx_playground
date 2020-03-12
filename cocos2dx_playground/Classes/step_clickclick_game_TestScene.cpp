@@ -31,6 +31,7 @@ namespace step_clickclick
 
 			const int TAG_TestActionView = 20140416;
 			const int TAG_SelectedPannelTypeView = 20160528;
+			const int TAG_ActiveBlockCountView = 9999;
 		}
 
 		TestScene::TestScene() :
@@ -166,6 +167,23 @@ namespace step_clickclick
 				addChild( label, 9999 );
 			}
 
+			//
+			// Active Block Count View
+			//
+			{
+				auto label = Label::createWithTTF( "Block", "fonts/arial.ttf", 14 );
+				label->setTag( TAG_ActiveBlockCountView );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height * 0.1f
+				) );
+				addChild( label, 9999 );
+
+				updateActiveBlockCountView( mStage->GetActiveBlockCount() );
+			}
+
 			return true;
 		}
 
@@ -211,6 +229,7 @@ namespace step_clickclick
 			}
 
 			mStageView->UpdatePannel( pannel_linear_index, last_life, target_pannel_data.GetLife() );
+			updateActiveBlockCountView( mStage->GetActiveBlockCount() );
 		}
 
 
@@ -225,6 +244,7 @@ namespace step_clickclick
 			case EventKeyboard::KeyCode::KEY_F1:
 				mStage->Setup( 5, 5 );
 				mStageView->Setup( *mStage );
+				updateActiveBlockCountView( mStage->GetActiveBlockCount() );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_1:
@@ -279,6 +299,11 @@ namespace step_clickclick
 			default:
 				assert( false );
 			}
+		}
+		void TestScene::updateActiveBlockCountView( const int count )
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_ActiveBlockCountView ) );
+			label->setString( StringUtils::format( "Remain Block Count : %d", count ) );
 		}
 	} // namespace game
 } // namespace step_clickclick

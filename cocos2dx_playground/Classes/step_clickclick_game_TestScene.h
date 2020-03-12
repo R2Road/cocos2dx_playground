@@ -40,6 +40,7 @@ namespace step_clickclick
 
 			void updateTestAction( const eTestActionType test_action_type );
 			void updateSelectedPannelTypeView( const eBlockType pannel_type );
+			void updateActiveBlockCountView( const int count );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;

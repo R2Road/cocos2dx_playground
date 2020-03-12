@@ -54,6 +54,7 @@ namespace step_clickclick
 			void DecreaseBlockLife( const int linear_index );
 			void DieBlock( const int linear_index );
 
+			int GetActiveBlockCount() const { return mActiveBlockCount; }
 			bool HasActiveBlock() const { return 0 != mActiveBlockCount; }
 
 		private:
