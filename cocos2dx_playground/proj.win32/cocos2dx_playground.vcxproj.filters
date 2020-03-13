@@ -88,6 +88,9 @@
     <Filter Include="src\scene\step_typetype\input">
       <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_typetype\sprite">
+      <UniqueIdentifier>{893084e8-aead-4aca-bcff-f00e3ce8f14e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -287,6 +290,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_input_KeyCodeViewScene.cpp">
       <Filter>src\scene\step_typetype\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_sprite_BasicScene.cpp">
+      <Filter>src\scene\step_typetype\sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_input_KeyCodeViewScene.h">
       <Filter>src\scene\step_typetype\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_sprite_BasicScene.h">
+      <Filter>src\scene\step_typetype\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
