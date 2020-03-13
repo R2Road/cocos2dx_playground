@@ -85,6 +85,9 @@
     <Filter Include="src\scene\step_clickclick\game">
       <UniqueIdentifier>{652a0772-9c10-4690-b125-871cae8fc31f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_typetype">
+      <UniqueIdentifier>{fc6cb230-d1f4-433c-8a14-1e6e1776c59e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -281,6 +284,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_ExplainScene.cpp">
       <Filter>src\scene\step_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_RootScene.cpp">
+      <Filter>src\scene\step_typetype</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +496,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_ExplainScene.h">
       <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_RootScene.h">
+      <Filter>src\scene\step_typetype</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
