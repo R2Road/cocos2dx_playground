@@ -294,6 +294,9 @@
     <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp">
       <Filter>src\scene\step_typetype\sprite</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp">
+      <Filter>src\scene\step_typetype\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -508,6 +511,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h">
       <Filter>src\scene\step_typetype\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h">
+      <Filter>src\scene\step_typetype\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
