@@ -10,7 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_clickclick_RootScene.h"
+#include "step_typetype_RootScene.h"
 
 USING_NS_CC;
 
@@ -79,7 +79,7 @@ namespace step_clickclick
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
 				addChild( background_layer, 0 );
 			}
 
@@ -123,7 +123,7 @@ namespace step_clickclick
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

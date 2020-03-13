@@ -7,6 +7,9 @@
 
 #include "step_typetype_sprite_TextureTypeScene.h"
 #include "step_typetype_sprite_AnchorPointScene.h"
+
+#include "step_clickclick_sound_Basic.h"
+
 #include "step_typetype_input_KeyCodeViewScene.h"
 
 USING_NS_CC;
@@ -48,7 +51,10 @@ namespace step_typetype
 			ss << "[2] " << step_typetype::sprite::AnchorPointScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[3] " << step_typetype::input::KeyCodeViewScene::getTitle();
+			ss << "[3] " << step_clickclick::sound::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[4] " << step_typetype::input::KeyCodeViewScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -103,6 +109,10 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step_clickclick::sound::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
 			break;
 

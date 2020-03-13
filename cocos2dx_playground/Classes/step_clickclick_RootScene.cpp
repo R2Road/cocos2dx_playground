@@ -8,8 +8,6 @@
 #include "step_clickclick_animation_BasicScene.h"
 #include "step_clickclick_animation_PlayNStopScene.h"
 
-#include "step_clickclick_sound_Basic.h"
-
 #include "step_clickclick_button_BasicScene.h"
 
 #include "step_clickclick_game_TestScene.h"
@@ -54,15 +52,12 @@ namespace step_clickclick
 			ss << "[2] : " << step_clickclick::animation::PlayNStopScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[3] : " << step_clickclick::sound::BasicScene::getTitle();
+			ss << "[3] : " << step_clickclick::button::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_clickclick::button::BasicScene::getTitle();
+			ss << "[4] : " << step_clickclick::game::TestScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
-			ss << "[5] : " << step_clickclick::game::TestScene::getTitle();
-			ss << std::endl;
-			ss << "[6] : " << step_clickclick::game::TitleScene::getTitle();
+			ss << "[5] : " << step_clickclick::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -118,17 +113,13 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_clickclick::sound::BasicScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_clickclick::button::BasicScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_clickclick::game::TestScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
 			break;
 
