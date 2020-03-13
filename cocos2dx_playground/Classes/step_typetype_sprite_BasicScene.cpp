@@ -55,10 +55,9 @@ namespace step_typetype
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
+					visibleOrigin.x + ( label->getContentSize().width * 0.5f )
+					, visibleOrigin.y + visibleSize.height - ( label->getContentSize().height * 0.5f )
 				) );
 				addChild( label, 9999 );
 			}
@@ -79,17 +78,16 @@ namespace step_typetype
 				sprite->getTexture()->setAntiAliasTexParameters();
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.3f
-					, visibleOrigin.y + visibleSize.height * 0.5f
+					visibleOrigin.x + ( visibleSize.width * 0.3f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( sprite );
 
 				auto label = Label::createWithTTF( "Normal Texture\nSet Antialias", "fonts/arial.ttf", 9 );
 				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					sprite->getPositionX()
-					, visibleOrigin.y + visibleSize.height * 0.3f
+					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				addChild( label );
 			}
@@ -102,17 +100,16 @@ namespace step_typetype
 				sprite->getTexture()->setAliasTexParameters();
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.5f
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( sprite );
 
 				auto label = Label::createWithTTF( "Normal Texture\nSet Alias ", "fonts/arial.ttf", 9 );
 				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					sprite->getPositionX()
-					, visibleOrigin.y + visibleSize.height * 0.3f
+					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				addChild( label );
 			}
@@ -127,17 +124,16 @@ namespace step_typetype
 				auto sprite = Sprite::createWithSpriteFrameName( "step_typetype_dummy_02.png" );
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.7f
+					visibleOrigin.x + ( visibleSize.width * 0.7f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
 				addChild( sprite );
 
 				auto label = Label::createWithTTF( "PList Texture\nSet Alias ", "fonts/arial.ttf", 9 );
 				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					sprite->getPositionX()
-					, visibleOrigin.y + visibleSize.height * 0.3f
+					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				addChild( label );
 			}
