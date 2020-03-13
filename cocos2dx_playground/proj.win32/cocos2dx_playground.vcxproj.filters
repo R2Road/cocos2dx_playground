@@ -19,9 +19,6 @@
     <Filter Include="src\scene\step01">
       <UniqueIdentifier>{23d6f0e6-cda1-48d5-8cc2-def067a22a4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step01\input">
-      <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step02">
       <UniqueIdentifier>{6aade675-064c-4874-9f6b-dc07f058b9d4}</UniqueIdentifier>
     </Filter>
@@ -88,6 +85,9 @@
     <Filter Include="src\scene\step_typetype">
       <UniqueIdentifier>{fc6cb230-d1f4-433c-8a14-1e6e1776c59e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_typetype\input">
+      <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -139,7 +139,7 @@
       <Filter>src\scene\step01</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Input_KeyCodeViewScene.cpp">
-      <Filter>src\scene\step01\input</Filter>
+      <Filter>src\scene\step_typetype\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
       <Filter>src\scene\step01\game</Filter>
@@ -339,7 +339,7 @@
       <Filter>src\scene\step01</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Input_KeyCodeViewScene.h">
-      <Filter>src\scene\step01\input</Filter>
+      <Filter>src\scene\step_typetype\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">
       <Filter>src\scene\step01\game</Filter>

@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-#include "Step01_RootScene.h"
+#include "step_typetype_RootScene.h"
 
 USING_NS_CC;
 
@@ -113,7 +113,7 @@ namespace step01
 
 		void KeyCodeViewScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step01::RootScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
 		}
 		void KeyCodeViewScene::updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode )
 		{
