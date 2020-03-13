@@ -138,9 +138,6 @@
     <ClCompile Include="..\Classes\Step01_RootScene.cpp">
       <Filter>src\scene\step01</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Input_KeyCodeViewScene.cpp">
-      <Filter>src\scene\step_typetype\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
       <Filter>src\scene\step01\game</Filter>
     </ClCompile>
@@ -288,6 +285,9 @@
     <ClCompile Include="..\Classes\step_typetype_RootScene.cpp">
       <Filter>src\scene\step_typetype</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_input_KeyCodeViewScene.cpp">
+      <Filter>src\scene\step_typetype\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -337,9 +337,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_RootScene.h">
       <Filter>src\scene\step01</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Input_KeyCodeViewScene.h">
-      <Filter>src\scene\step_typetype\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">
       <Filter>src\scene\step01\game</Filter>
@@ -499,6 +496,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_RootScene.h">
       <Filter>src\scene\step_typetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_input_KeyCodeViewScene.h">
+      <Filter>src\scene\step_typetype\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "Step01_Input_KeyCodeViewScene.h"
+#include "step_typetype_input_KeyCodeViewScene.h"
 
 USING_NS_CC;
 
@@ -41,7 +41,7 @@ namespace step_typetype
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] " << step01::input::KeyCodeViewScene::getTitle();
+			ss << "[1] " << step_typetype::input::KeyCodeViewScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -90,7 +90,7 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step01::input::KeyCodeViewScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
 			break;
 
 		default:

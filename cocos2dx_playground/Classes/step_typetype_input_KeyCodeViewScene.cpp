@@ -1,4 +1,4 @@
-#include "Step01_Input_KeyCodeViewScene.h"
+#include "step_typetype_input_KeyCodeViewScene.h"
 
 #include <sstream>
 
@@ -11,7 +11,7 @@ namespace
 	const int TAG_KeyCodeViewNode = 20140416;
 }
 
-namespace step01
+namespace step_typetype
 {
 	namespace input
 	{
