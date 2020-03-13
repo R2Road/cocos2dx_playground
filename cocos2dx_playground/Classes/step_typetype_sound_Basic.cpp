@@ -1,4 +1,4 @@
-#include "step_clickclick_sound_Basic.h"
+#include "step_typetype_sound_Basic.h"
 
 #include <new>
 #include <sstream>
@@ -14,7 +14,7 @@
 
 USING_NS_CC;
 
-namespace step_clickclick
+namespace step_typetype
 {
 	namespace sound
 	{

@@ -8,7 +8,7 @@
 #include "step_typetype_sprite_TextureTypeScene.h"
 #include "step_typetype_sprite_AnchorPointScene.h"
 
-#include "step_clickclick_sound_Basic.h"
+#include "step_typetype_sound_Basic.h"
 
 #include "step_typetype_input_KeyCodeViewScene.h"
 
@@ -51,10 +51,10 @@ namespace step_typetype
 			ss << "[2] " << step_typetype::sprite::AnchorPointScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[3] " << step_clickclick::sound::BasicScene::getTitle();
+			ss << "[3] " << step_typetype::input::KeyCodeViewScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] " << step_typetype::input::KeyCodeViewScene::getTitle();
+			ss << "[4] " << step_typetype::sound::BasicScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -109,11 +109,11 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_clickclick::sound::BasicScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::sound::BasicScene::create() );
 			break;
 
 		default:

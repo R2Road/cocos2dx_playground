@@ -2,7 +2,7 @@
 
 #include "2d/CCScene.h"
 
-namespace step_clickclick
+namespace step_typetype
 {
 	namespace sound
 	{
