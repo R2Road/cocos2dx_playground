@@ -70,8 +70,8 @@ namespace step_typetype
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
-				addChild( background_layer, 0 );
+				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
+				addChild( background_layer, -1 );
 			}
 
 			//

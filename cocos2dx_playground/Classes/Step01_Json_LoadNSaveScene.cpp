@@ -80,6 +80,14 @@ namespace step01
 			}
 
 			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
+				addChild( background_layer, -1 );
+			}
+
+			//
 			// Keyboard Listener
 			//
 			{

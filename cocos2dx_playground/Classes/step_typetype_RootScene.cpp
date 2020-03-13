@@ -57,7 +57,7 @@ namespace step_typetype
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 99, 1, 0, 255 ) );
-			ret->addChild( background_layer, 0 );
+			ret->addChild( background_layer, -1 );
 		}
 
 		return ret;
