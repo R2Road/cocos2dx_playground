@@ -48,7 +48,7 @@ namespace step_typetype
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Input - Key Code View";
+				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
