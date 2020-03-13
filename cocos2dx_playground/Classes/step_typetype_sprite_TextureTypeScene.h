@@ -6,12 +6,12 @@ namespace step_typetype
 {
 	namespace sprite
 	{
-		class BasicScene : public cocos2d::Scene
+		class TextureTypeScene : public cocos2d::Scene
 		{
 		public:
-			BasicScene();
+			TextureTypeScene();
 
-			static const char* getTitle() { return "Sprite : Basic"; }
+			static const char* getTitle() { return "Sprite : Texture Type"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;

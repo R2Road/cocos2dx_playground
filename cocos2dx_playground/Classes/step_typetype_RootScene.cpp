@@ -5,7 +5,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "step_typetype_sprite_BasicScene.h"
+#include "step_typetype_sprite_TextureTypeScene.h"
 #include "step_typetype_input_KeyCodeViewScene.h"
 
 USING_NS_CC;
@@ -42,7 +42,7 @@ namespace step_typetype
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] " << step_typetype::sprite::BasicScene::getTitle();
+			ss << "[1] " << step_typetype::sprite::TextureTypeScene::getTitle();
 			ss << std::endl;
 			ss << "[2] " << step_typetype::input::KeyCodeViewScene::getTitle();
 
@@ -92,7 +92,7 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step_typetype::sprite::BasicScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::sprite::TextureTypeScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step_typetype::input::KeyCodeViewScene::create() );

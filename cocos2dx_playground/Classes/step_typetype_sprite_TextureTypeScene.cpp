@@ -1,4 +1,4 @@
-#include "step_typetype_sprite_BasicScene.h"
+#include "step_typetype_sprite_TextureTypeScene.h"
 
 #include <sstream>
 
@@ -16,11 +16,11 @@ namespace step_typetype
 {
 	namespace sprite
 	{
-		BasicScene::BasicScene() : mPressedKeyCount( 0 ), mKeyboardListener( nullptr ) {}
+		TextureTypeScene::TextureTypeScene() : mPressedKeyCount( 0 ), mKeyboardListener( nullptr ) {}
 
-		Scene* BasicScene::create()
+		Scene* TextureTypeScene::create()
 		{
-			auto ret = new ( std::nothrow ) BasicScene();
+			auto ret = new ( std::nothrow ) TextureTypeScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -35,7 +35,7 @@ namespace step_typetype
 			return ret;
 		}
 
-		bool BasicScene::init()
+		bool TextureTypeScene::init()
 		{
 			if( !Scene::init() )
 				return false;
@@ -49,7 +49,7 @@ namespace step_typetype
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Input - Key Code View";
+				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
@@ -141,15 +141,15 @@ namespace step_typetype
 			return true;
 		}
 
-		void BasicScene::onEnter()
+		void TextureTypeScene::onEnter()
 		{
 			Scene::onEnter();
 
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TextureTypeScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void BasicScene::onExit()
+		void TextureTypeScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -160,23 +160,23 @@ namespace step_typetype
 			Node::onExit();
 		}
 
-		void BasicScene::updateForExit( float /*dt*/ )
+		void TextureTypeScene::updateForExit( float /*dt*/ )
 		{
 			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
 		}
-		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void TextureTypeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
 			{
 				return;
 			}
 
-			if( isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
+			if( isScheduled( schedule_selector( TextureTypeScene::updateForExit ) ) )
 			{
 				return;
 			}
 
-			scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
+			scheduleOnce( schedule_selector( TextureTypeScene::updateForExit ), 0.f );
 		}
 	}
 }

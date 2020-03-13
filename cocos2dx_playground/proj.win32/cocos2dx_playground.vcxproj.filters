@@ -291,7 +291,7 @@
     <ClCompile Include="..\Classes\step_typetype_input_KeyCodeViewScene.cpp">
       <Filter>src\scene\step_typetype\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_sprite_BasicScene.cpp">
+    <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp">
       <Filter>src\scene\step_typetype\sprite</Filter>
     </ClCompile>
   </ItemGroup>
@@ -506,7 +506,7 @@
     <ClInclude Include="..\Classes\step_typetype_input_KeyCodeViewScene.h">
       <Filter>src\scene\step_typetype\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_sprite_BasicScene.h">
+    <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h">
       <Filter>src\scene\step_typetype\sprite</Filter>
     </ClInclude>
   </ItemGroup>
