@@ -209,9 +209,9 @@ namespace step_clickclick
 			if( eBlockType::Single == block_data.GetType() )
 			{
 				bool has_neighbor = false;
-				const auto point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
+				const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
@@ -222,7 +222,7 @@ namespace step_clickclick
 							continue;
 						}
 
-						if( tx != point_index.x && ty != point_index.y )
+						if( tx != block_point_index.x && ty != block_point_index.y )
 						{
 							continue;
 						}
@@ -262,10 +262,10 @@ namespace step_clickclick
 			else if( eBlockType::Same == block_data.GetType() )
 			{
 				const int pivot_count = block_data.GetLife();
-				const auto point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
+				const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
@@ -305,10 +305,10 @@ namespace step_clickclick
 			else if( eBlockType::Different == block_data.GetType() )
 			{
 				const int pivot_count = block_data.GetLife();
-				const auto point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
+				const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
