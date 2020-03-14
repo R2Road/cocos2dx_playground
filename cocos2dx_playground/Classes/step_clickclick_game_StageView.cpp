@@ -23,10 +23,11 @@ namespace step_clickclick
 	{
 		namespace
 		{
-			void CheckOddNumber( const int number )
-			{
-				assert( 1 == ( number & 1 ) );
-			}
+#if defined( DEBUG ) || defined( _DEBUG )
+		#define CHECK_ODD_NUMBER( number ) ( assert( 1 == ( ( number ) & 1 ) ) )
+#else
+		#define CHECK_ODD_NUMBER( number )
+#endif
 		}
 
 		StageView::BlockView::BlockView(
@@ -109,8 +110,8 @@ namespace step_clickclick
 			//
 			// Must odd number
 			//
-			CheckOddNumber( mStageWidth );
-			CheckOddNumber( mStageHeight );
+			CHECK_ODD_NUMBER( mStageWidth );
+			CHECK_ODD_NUMBER( mStageHeight );
 		}
 
 		StageView* StageView::create( const int width, const int height, const OnBlockCallback& on_block_callback )
