@@ -62,7 +62,7 @@ namespace step_clickclick
 			void UpdateBlock( const int linear_index, const int last_life, const int current_life );
 
 		private:
-			void onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onBlock( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			const int mStageWidth;

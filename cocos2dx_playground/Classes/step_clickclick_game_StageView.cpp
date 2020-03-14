@@ -179,7 +179,7 @@ namespace step_clickclick
 						+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
 						+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
 					);
-					button->addTouchEventListener( CC_CALLBACK_2( StageView::onPannel, this ) );
+					button->addTouchEventListener( CC_CALLBACK_2( StageView::onBlock, this ) );
 					addChild( button );
 
 					// view
@@ -279,7 +279,7 @@ namespace step_clickclick
 			PannelViews[linear_index].Update( last_life, current_life );
 		}
 
-		void StageView::onPannel( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void StageView::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
