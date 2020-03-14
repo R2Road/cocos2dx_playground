@@ -206,30 +206,30 @@ namespace step_clickclick
 		}
 
 
-		void TestScene::onGameProcess( const int pannel_linear_index )
+		void TestScene::onGameProcess( const int block_linear_index )
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
-			const auto& target_pannel_data = mStage->GetBlockData( pannel_linear_index );
-			updateSelectedBlockTypeView( target_pannel_data.GetType() );
+			const auto& target_block_data = mStage->GetBlockData( block_linear_index );
+			updateSelectedBlockTypeView( target_block_data.GetType() );
 
-			const int last_life = target_pannel_data.GetLife();
+			const int last_life = target_block_data.GetLife();
 			switch( mTestActionType )
 			{
 			case eTestActionType::Increase:
-				mStage->IncreaseBlockLife( pannel_linear_index );
+				mStage->IncreaseBlockLife( block_linear_index );
 				break;
 			case eTestActionType::Decrease:
-				mStage->DecreaseBlockLife( pannel_linear_index );
+				mStage->DecreaseBlockLife( block_linear_index );
 				break;
 			case eTestActionType::Die:
-				mStage->DieBlock( pannel_linear_index );
+				mStage->DieBlock( block_linear_index );
 				break;
 			default:
 				assert( false );
 			}
 
-			mStageView->UpdateBlock( pannel_linear_index, last_life, target_pannel_data.GetLife() );
+			mStageView->UpdateBlock( block_linear_index, last_life, target_block_data.GetLife() );
 			updateActiveBlockCountView( mStage->GetActiveBlockCount() );
 		}
 
