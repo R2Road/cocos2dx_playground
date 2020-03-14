@@ -347,7 +347,7 @@ namespace step_clickclick
 			updateScoreView();
 
 			//
-			// Game Over
+			// Stage Clear
 			//
 			if( !mStage->HasActiveBlock() )
 			{
