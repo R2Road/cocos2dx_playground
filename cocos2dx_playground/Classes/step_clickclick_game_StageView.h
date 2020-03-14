@@ -52,10 +52,10 @@ namespace step_clickclick
 				cocos2d::Action* const mDieEffectAction;
 			};
 
-			StageView( const int width, const int height, const OnPannelCallback& on_pannel_callback );
+			StageView( const int width, const int height, const OnPannelCallback& on_block_callback );
 
 		public:
-			static StageView* create( const int width, const int height, const OnPannelCallback& on_pannel_callback );
+			static StageView* create( const int width, const int height, const OnPannelCallback& on_block_callback );
 
 			bool init() override;
 			void Setup( const Stage& stage_data );
@@ -70,7 +70,7 @@ namespace step_clickclick
 			const cpg::GridIndexConverter mGridIndexConverter;
 			std::vector<PannelView> PannelViews;
 
-			const OnPannelCallback mOnPannelCallback;
+			const OnPannelCallback mOnBlockCallback;
 		};
 	}
 }

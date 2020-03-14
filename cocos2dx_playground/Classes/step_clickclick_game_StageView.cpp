@@ -99,12 +99,12 @@ namespace step_clickclick
 
 
 
-		StageView::StageView( const int width, const int height, const OnPannelCallback& on_pannel_callback ) :
+		StageView::StageView( const int width, const int height, const OnPannelCallback& on_block_callback ) :
 			mStageWidth( width )
 			, mStageHeight( height )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
 			, PannelViews()
-			, mOnPannelCallback( on_pannel_callback )
+			, mOnBlockCallback( on_block_callback )
 		{
 			//
 			// Must odd number
@@ -113,9 +113,9 @@ namespace step_clickclick
 			CheckOddNumber( mStageHeight );
 		}
 
-		StageView* StageView::create( const int width, const int height, const OnPannelCallback& on_pannel_callback )
+		StageView* StageView::create( const int width, const int height, const OnPannelCallback& on_block_callback )
 		{
-			auto ret = new ( std::nothrow ) StageView( width, height, on_pannel_callback );
+			auto ret = new ( std::nothrow ) StageView( width, height, on_block_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -287,7 +287,7 @@ namespace step_clickclick
 			}
 
 			auto button_node = static_cast<Node*>( sender );
-			mOnPannelCallback( button_node->getTag() );
+			mOnBlockCallback( button_node->getTag() );
 		}
 	} // namespace game
 } // namespace step_clickclick
