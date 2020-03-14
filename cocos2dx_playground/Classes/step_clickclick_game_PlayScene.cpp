@@ -362,7 +362,7 @@ namespace step_clickclick
 
 		void PlayScene::updateForNextStep( float dt )
 		{
-			switch( mNextStepData.step )
+			switch( mNextStepData.Step )
 			{
 			case 0: // show label - clear
 			{
@@ -374,11 +374,11 @@ namespace step_clickclick
 				mCurrentStageHeight += 2;
 				if( MAX_STAGE_WIDTH >= mCurrentStageWidth )
 				{
-					++mNextStepData.step;
+					++mNextStepData.Step;
 				}
 				else
 				{
-					mNextStepData.step = 7;
+					mNextStepData.Step = 7;
 				}
 			}
 			break;
@@ -388,7 +388,7 @@ namespace step_clickclick
 				label->setString( std::to_string( mNextStepData.LimitTime ) );
 				label->setVisible( true );
 
-				++mNextStepData.step;
+				++mNextStepData.Step;
 			}
 			break;
 			case 2: // wait
@@ -399,7 +399,7 @@ namespace step_clickclick
 					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
 					label->setString( "0" );
 
-					++mNextStepData.step;
+					++mNextStepData.Step;
 				}
 				else
 				{
@@ -412,12 +412,12 @@ namespace step_clickclick
 				getChildByTag( TAG_CountView )->setVisible( false );
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
-				++mNextStepData.step;
+				++mNextStepData.Step;
 				break;
 			case 4: // restart
 				mStageView->setVisible( true );
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
-				mNextStepData.step = 0;
+				mNextStepData.Step = 0;
 				break;
 
 			case 7:
