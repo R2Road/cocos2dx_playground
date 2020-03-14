@@ -199,11 +199,11 @@ namespace step_clickclick
 		}
 
 
-		void PlayScene::onGameProcess( const int pannel_linear_index )
+		void PlayScene::onGameProcess( const int block_linear_index )
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.5f );
 
-			const auto& block_data = mStage->GetBlockData( pannel_linear_index );
+			const auto& block_data = mStage->GetBlockData( block_linear_index );
 			const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 			int last_life = 0;
 
@@ -228,7 +228,7 @@ namespace step_clickclick
 						}
 
 						const auto& target_block_data = mStage->GetBlockData( tx, ty );
-						if( pannel_linear_index == target_block_data.GetIndex() )
+						if( block_linear_index == target_block_data.GetIndex() )
 						{
 							continue;
 						}

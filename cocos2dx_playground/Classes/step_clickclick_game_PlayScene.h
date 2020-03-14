@@ -25,7 +25,7 @@ namespace step_clickclick
 			void onExit() override;
 
 		private:
-			void onGameProcess( const int pannel_linear_index );
+			void onGameProcess( const int block_linear_index );
 			void updateScoreView();
 			void updateCountView( const float count );
 			void updateForNextStep( float dt );
