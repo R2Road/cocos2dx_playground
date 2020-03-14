@@ -24,7 +24,7 @@ namespace step_clickclick
 		class StageView : public cocos2d::Node
 		{
 		public:
-			using OnPannelCallback = std::function<void( int )>;
+			using OnBlockCallback = std::function<void( int )>;
 
 		private:
 			class PannelView
@@ -52,10 +52,10 @@ namespace step_clickclick
 				cocos2d::Action* const mDieEffectAction;
 			};
 
-			StageView( const int width, const int height, const OnPannelCallback& on_block_callback );
+			StageView( const int width, const int height, const OnBlockCallback& on_block_callback );
 
 		public:
-			static StageView* create( const int width, const int height, const OnPannelCallback& on_block_callback );
+			static StageView* create( const int width, const int height, const OnBlockCallback& on_block_callback );
 
 			bool init() override;
 			void Setup( const Stage& stage_data );
@@ -70,7 +70,7 @@ namespace step_clickclick
 			const cpg::GridIndexConverter mGridIndexConverter;
 			std::vector<PannelView> PannelViews;
 
-			const OnPannelCallback mOnBlockCallback;
+			const OnBlockCallback mOnBlockCallback;
 		};
 	}
 }
