@@ -30,14 +30,14 @@ namespace step_clickclick
 		}
 
 		StageView::BlockView::BlockView(
-			cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
+			cocos2d::Node* const button_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
 			, cocos2d::Sprite* const effect_node
 			, cocos2d::Action* const increase_effect_action
 			, cocos2d::Action* const decrease_effect_action
 			, cocos2d::Action* const die_effect_action
 			
 		) :
-			mPannelNode( pannel_node )
+			mButtonNode( button_node )
 			, mViewNode( view_node )
 			, mLabelNode( label_node )
 			, mEffectNode( effect_node )
@@ -68,7 +68,7 @@ namespace step_clickclick
 		}
 		void StageView::BlockView::SetVisible( const bool visible )
 		{
-			mPannelNode->setVisible( visible );
+			mButtonNode->setVisible( visible );
 			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}

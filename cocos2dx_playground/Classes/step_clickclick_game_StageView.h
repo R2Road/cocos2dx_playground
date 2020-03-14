@@ -31,7 +31,7 @@ namespace step_clickclick
 			{
 			public:
 				BlockView(
-					cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
+					cocos2d::Node* const button_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
 					, cocos2d::Sprite* const effect_node
 					, cocos2d::Action* const increase_effect_action
 					, cocos2d::Action* const decrease_effect_action
@@ -43,7 +43,7 @@ namespace step_clickclick
 				void Update( const int last_life, const int current_life );
 
 			private:
-				cocos2d::Node* const mPannelNode;
+				cocos2d::Node* const mButtonNode;
 				cocos2d::Sprite* const mViewNode;
 				cocos2d::Label* const mLabelNode;
 				cocos2d::Sprite* const mEffectNode;
