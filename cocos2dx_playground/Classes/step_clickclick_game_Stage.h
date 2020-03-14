@@ -14,24 +14,24 @@ namespace step_clickclick
 		class Stage
 		{
 		public:
-			class Pannel
+			class Block
 			{
 			public:
-				Pannel( const int index, const int life );
+				Block( const int index, const int life );
 
-				void Init( ePannelType type, const int life );
+				void Init( eBlockType type, const int life );
 				void DecreaseAction();
 				void IncreaseAction();
 				void DieAction();
 
 				int GetIndex() const { return mIndex; }
-				ePannelType GetType() const { return mPannelType; }
+				eBlockType GetType() const { return mBlockType; }
 				bool IsActive() const { return mActive; }
 				int GetLife() const { return mLife; }
 
 			private:
 				int mIndex;
-				ePannelType mPannelType;
+				eBlockType mBlockType;
 				bool mActive;
 				int mLife;
 			};
@@ -48,13 +48,20 @@ namespace step_clickclick
 
 			int GetWidth() const { return mStageWidth; }
 			int GetHeight() const { return mStageHeight; }
-			const std::vector<Pannel>& GetPannelDatas() const { return Pannels; }
-			const Pannel& GetPannelData( const int linear_index ) const;
-			void IncreasePannelLife( const int linear_index );
-			void DecreasePannelLife( const int linear_index );
-			void DiePannel( const int linear_index );
+			const std::vector<Block>& GetBlockDatas() const { return mBlocks; }
+			const Block& GetBlockData( const int x, const int y ) const;
+			const Block& GetBlockData( const int linear_index ) const;
+			void IncreaseBlockLife( const int linear_index );
+			void DecreaseBlockLife( const int linear_index );
+			void DieBlock( const int linear_index );
 
-			bool HasActivePannel() const;
+			int GetActiveBlockCount() const { return mActiveBlockCount; }
+			bool HasActiveBlock() const { return 0 != mActiveBlockCount; }
+
+			cpg::GridIndexConverter::Point ConvertLinearIndex2PointIndex( const int linear_index ) const
+			{
+				return mGridIndexConverter.To_Point( linear_index );
+			}
 
 		private:
 			const int mStageWidth;
@@ -62,7 +69,8 @@ namespace step_clickclick
 			const int mCenterX;
 			const int mCenterY;
 			const cpg::GridIndexConverter mGridIndexConverter;
-			std::vector<Pannel> Pannels;
+			std::vector<Block> mBlocks;
+			int mActiveBlockCount;
 		};
 	}
 }

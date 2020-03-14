@@ -38,7 +38,6 @@ namespace step_clickclick
 			mKeyboardListener( nullptr )
 			, mStage()
 			, mStageView( nullptr )
-			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
 
 			, mScore( 0 )
 			, mCurrentStageWidth( 3 )
@@ -117,6 +116,7 @@ namespace step_clickclick
 				mStageView = step_clickclick::game::StageView::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &PlayScene::onGameProcess, this, std::placeholders::_1 )
+					, StageViewConfig{ false, false }
 				);
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -151,6 +151,7 @@ namespace step_clickclick
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
 				label->setTag( TAG_ClearView );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setVisible( false );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.6f
@@ -167,13 +168,14 @@ namespace step_clickclick
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
 				label->setTag( TAG_CountView );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setVisible( false );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.4f
 				) );
 				addChild( label, 9999 );
 
-				updateScoreView();
+				updateCountView( mNextStepData.LimitTime_forCount );
 			}
 
 			return true;
@@ -197,19 +199,19 @@ namespace step_clickclick
 		}
 
 
-		void PlayScene::onGameProcess( const int pannel_linear_index )
+		void PlayScene::onGameProcess( const int block_linear_index )
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.5f );
 
-			const auto& pannel_data = mStage->GetPannelData( pannel_linear_index );
+			const auto& block_data = mStage->GetBlockData( block_linear_index );
+			const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 			int last_life = 0;
 
-			if( ePannelType::Single == pannel_data.GetType() )
+			if( eBlockType::Single == block_data.GetType() )
 			{
 				bool has_neighbor = false;
-				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
@@ -220,18 +222,18 @@ namespace step_clickclick
 							continue;
 						}
 
-						if( tx != point_index.x && ty != point_index.y )
+						if( tx != block_point_index.x && ty != block_point_index.y )
 						{
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
-						if( pannel_linear_index == target_pannel_data.GetIndex() )
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( block_linear_index == target_block_data.GetIndex() )
 						{
 							continue;
 						}
 
-						if( !target_pannel_data.IsActive() )
+						if( !target_block_data.IsActive() )
 						{
 							continue;
 						}
@@ -241,29 +243,28 @@ namespace step_clickclick
 					}
 				}
 
-				last_life = pannel_data.GetLife();
+				last_life = block_data.GetLife();
 				if( has_neighbor )
 				{
 					++mScore;
 
-					mStage->DecreasePannelLife( pannel_data.GetIndex() );
-					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
+					mStage->DecreaseBlockLife( block_data.GetIndex() );
+					mStageView->UpdateBlock( block_data.GetIndex(), last_life, block_data.GetLife() );
 				}
 				else
 				{
-					mScore = std::max( 0, mScore - pannel_data.GetLife() );
+					mScore = std::max( 0, mScore - block_data.GetLife() );
 
-					mStage->DiePannel( pannel_data.GetIndex() );
-					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
+					mStage->DieBlock( block_data.GetIndex() );
+					mStageView->UpdateBlock( block_data.GetIndex(), last_life, block_data.GetLife() );
 				}
 			}
-			else if( ePannelType::Same == pannel_data.GetType() )
+			else if( eBlockType::Same == block_data.GetType() )
 			{
-				const int pivot_count = pannel_data.GetLife();
-				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
+				const int pivot_count = block_data.GetLife();
 
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
@@ -274,39 +275,38 @@ namespace step_clickclick
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
-						if( !target_pannel_data.IsActive() )
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( !target_block_data.IsActive() )
 						{
 							continue;
 						}
 
-						if( ePannelType::Same == target_pannel_data.GetType() && pivot_count != target_pannel_data.GetLife() )
+						if( eBlockType::Same == target_block_data.GetType() && pivot_count != target_block_data.GetLife() )
 						{
 							continue;
 						}
 
-						last_life = target_pannel_data.GetLife();
-						if( pivot_count != target_pannel_data.GetLife() )
+						last_life = target_block_data.GetLife();
+						if( pivot_count != target_block_data.GetLife() )
 						{
-							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
 						}
 						else
 						{
 							mScore += 3;
-							mStage->DecreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->DecreaseBlockLife( target_block_data.GetIndex() );
 						}
 
-						mStageView->UpdatePannel( target_pannel_data.GetIndex(), last_life, target_pannel_data.GetLife() );
+						mStageView->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
 			}
-			else if( ePannelType::Different == pannel_data.GetType() )
+			else if( eBlockType::Different == block_data.GetType() )
 			{
-				const int pivot_count = pannel_data.GetLife();
-				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
+				const int pivot_count = block_data.GetLife();
 
-				const int current_pivot_x = point_index.x - 1;
-				const int current_pivot_y = point_index.y - 1;
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
@@ -317,27 +317,27 @@ namespace step_clickclick
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetPannelData( mGridIndexConverter.To_Linear( tx, ty ) );
-						if( !target_pannel_data.IsActive() )
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( !target_block_data.IsActive() )
 						{
 							continue;
 						}
 
-						last_life = target_pannel_data.GetLife();
-						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetLife() )
+						last_life = target_block_data.GetLife();
+						if( target_block_data.GetIndex() != block_data.GetIndex() && pivot_count == target_block_data.GetLife() )
 						{
-							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
-							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
-							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
-							mStage->IncreasePannelLife( target_pannel_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
 						}
 						else
 						{
-							mScore += target_pannel_data.GetLife();
-							mStage->DiePannel( target_pannel_data.GetIndex() );
+							mScore += target_block_data.GetLife();
+							mStage->DieBlock( target_block_data.GetIndex() );
 						}
 
-						mStageView->UpdatePannel( target_pannel_data.GetIndex(), last_life, target_pannel_data.GetLife() );
+						mStageView->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
 			}
@@ -345,11 +345,10 @@ namespace step_clickclick
 			updateScoreView();
 
 			//
-			// Game Over
+			// Stage Clear
 			//
-			if( !mStage->HasActivePannel() )
+			if( !mStage->HasActiveBlock() )
 			{
-				mStageView->setVisible( false );
 				schedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 			}
 		}
@@ -359,68 +358,76 @@ namespace step_clickclick
 			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
 			label->setString( StringUtils::format( "Score : %4d", mScore ) );
 		}
+		void PlayScene::updateCountView( const float count )
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
+			label->setString( StringUtils::format( "%.1f", count ) );
+		}
 
 		void PlayScene::updateForNextStep( float dt )
 		{
-			switch( mNextStepData.step )
+			switch( mNextStepData.Step )
 			{
-			case 0: // show label - clear
+			case NextStepData::eStep::wait_for_entry:
+				mNextStepData.ElapsedTime_forEntry += dt;
+				if( mNextStepData.LimitTime_forEntry < mNextStepData.ElapsedTime_forEntry )
+				{
+					mStageView->setVisible( false );
+					mNextStepData.ElapsedTime_forEntry = 0.f;
+
+					++mNextStepData.Step;
+				}
+				break;
+			case NextStepData::eStep::show_clear_indicator:
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_ClearView ) );
-				label->setString( "Stage Clear" );
-				label->setVisible( true );
+				auto clear_view_label = static_cast<Label*>( getChildByTag( TAG_ClearView ) );
+				clear_view_label->setString( "Stage Clear" );
+				clear_view_label->setVisible( true );
+
+				auto count_view_label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
+				count_view_label->setVisible( true );
+				updateCountView( mNextStepData.LimitTime_forCount );
 
 				mCurrentStageWidth += 2;
 				mCurrentStageHeight += 2;
 				if( MAX_STAGE_WIDTH >= mCurrentStageWidth )
 				{
-					++mNextStepData.step;
+					++mNextStepData.Step;
 				}
 				else
 				{
-					mNextStepData.step = 7;
+					mNextStepData.Step = NextStepData::eStep::game_clear;
 				}
 			}
 			break;
-			case 1: // show label - count
-			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-				label->setString( std::to_string( mNextStepData.LimitTime ) );
-				label->setVisible( true );
-
-				++mNextStepData.step;
-			}
-			break;
-			case 2: // wait
-				mNextStepData.elapsedTime += dt;
-				if( mNextStepData.LimitTime < mNextStepData.elapsedTime )
+			case NextStepData::eStep::wait_for_count:
+				mNextStepData.ElapsedTime_forCount += dt;
+				if( mNextStepData.LimitTime_forCount < mNextStepData.ElapsedTime_forCount )
 				{
-					mNextStepData.elapsedTime = 0.f;
-					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-					label->setString( "0" );
+					mNextStepData.ElapsedTime_forCount = 0.f;
+					updateCountView( 0.f );
 
-					++mNextStepData.step;
+					++mNextStepData.Step;
 				}
 				else
 				{
-					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime - mNextStepData.elapsedTime ) );
+					updateCountView( mNextStepData.LimitTime_forCount - mNextStepData.ElapsedTime_forCount );
 				}
 				break;
-			case 3: // hide label
+			case NextStepData::eStep::hide_clear_indicator:
 				getChildByTag( TAG_ClearView )->setVisible( false );
 				getChildByTag( TAG_CountView )->setVisible( false );
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
-				++mNextStepData.step;
+				++mNextStepData.Step;
 				break;
-			case 4: // restart
+			case NextStepData::eStep::reset:
 				mStageView->setVisible( true );
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
-				mNextStepData.step = 0;
+				mNextStepData.Step = NextStepData::eStep::wait_for_entry;
 				break;
 
-			case 7:
+			case NextStepData::eStep::game_clear:
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 				Director::getInstance()->replaceScene( step_clickclick::game::ResultScene::create( mScore ) );
 				break;
@@ -432,15 +439,12 @@ namespace step_clickclick
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			switch( keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
 			{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
-				break;
-
-			default:
-				CCLOG( "Key Code : %d", keycode );
+				return;
 			}
+
+			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
 		}
 	} // namespace game
 } // namespace step_clickclick

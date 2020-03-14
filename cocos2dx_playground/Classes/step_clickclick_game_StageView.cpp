@@ -23,21 +23,22 @@ namespace step_clickclick
 	{
 		namespace
 		{
-			void CheckOddNumber( const int number )
-			{
-				assert( 1 == ( number & 1 ) );
-			}
+#if defined( DEBUG ) || defined( _DEBUG )
+		#define CHECK_ODD_NUMBER( number ) ( assert( 1 == ( ( number ) & 1 ) ) )
+#else
+		#define CHECK_ODD_NUMBER( number )
+#endif
 		}
 
-		StageView::PannelView::PannelView(
-			cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
+		StageView::BlockView::BlockView(
+			cocos2d::Node* const button_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
 			, cocos2d::Sprite* const effect_node
 			, cocos2d::Action* const increase_effect_action
 			, cocos2d::Action* const decrease_effect_action
 			, cocos2d::Action* const die_effect_action
 			
 		) :
-			mPannelNode( pannel_node )
+			mButtonNode( button_node )
 			, mViewNode( view_node )
 			, mLabelNode( label_node )
 			, mEffectNode( effect_node )
@@ -45,34 +46,34 @@ namespace step_clickclick
 			, mDecreaseEffectAction( decrease_effect_action )
 			, mDieEffectAction( die_effect_action )
 		{}
-		void StageView::PannelView::Init( ePannelType type, const int life )
+		void StageView::BlockView::Init( eBlockType type, const int life )
 		{
 			mLabelNode->setString( std::to_string( life ) );
 
 			SpriteFrame* view_frame = nullptr;
 			switch( type )
 			{
-			case ePannelType::Single:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_single.png" );
+			case eBlockType::Single:
+				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_block_single.png" );
 				break;
-			case ePannelType::Same:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_together.png" );
+			case eBlockType::Same:
+				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_block_together.png" );
 				break;
-			case ePannelType::Different:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_pannel_different.png" );
+			case eBlockType::Different:
+				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_block_different.png" );
 				break;
 			default:
 				assert( false );
 			}
 			mViewNode->setSpriteFrame( view_frame );
 		}
-		void StageView::PannelView::SetVisible( const bool visible )
+		void StageView::BlockView::SetVisible( const bool visible )
 		{
-			mPannelNode->setVisible( visible );
+			mButtonNode->setVisible( visible );
 			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}
-		void StageView::PannelView::Update( const int last_life, const int current_life )
+		void StageView::BlockView::Update( const int last_life, const int current_life )
 		{
 			if( 0 == current_life )
 			{
@@ -99,24 +100,24 @@ namespace step_clickclick
 
 
 
-		StageView::StageView( const int width, const int height, const OnPannelCallback& on_pannel_callback ) :
+		StageView::StageView( const int width, const int height, const OnBlockCallback& on_block_callback ) :
 			mStageWidth( width )
 			, mStageHeight( height )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
-			, PannelViews()
-			, mOnPannelCallback( on_pannel_callback )
+			, mBlockViews()
+			, mOnBlockCallback( on_block_callback )
 		{
 			//
 			// Must odd number
 			//
-			CheckOddNumber( mStageWidth );
-			CheckOddNumber( mStageHeight );
+			CHECK_ODD_NUMBER( mStageWidth );
+			CHECK_ODD_NUMBER( mStageHeight );
 		}
 
-		StageView* StageView::create( const int width, const int height, const OnPannelCallback& on_pannel_callback )
+		StageView* StageView::create( const int width, const int height, const OnBlockCallback& on_block_callback, const StageViewConfig config )
 		{
-			auto ret = new ( std::nothrow ) StageView( width, height, on_pannel_callback );
-			if( !ret || !ret->init() )
+			auto ret = new ( std::nothrow ) StageView( width, height, on_block_callback );
+			if( !ret || !ret->init( config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -130,7 +131,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool StageView::init()
+		bool StageView::init( const StageViewConfig config )
 		{
 			if( !Node::init() )
 			{
@@ -147,19 +148,19 @@ namespace step_clickclick
 
 			setContentSize( stage_size );
 
-			// Pivot
-			//{
-			//	auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-			//	pivot->setScale( 2.f );
-			//	addChild( pivot, std::numeric_limits<int>::max() );
-			//}
+			if( config.bShowPivot )
+			{
+				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+				pivot->setScale( 2.f );
+				addChild( pivot, std::numeric_limits<int>::max() );
+			}
 
-			// Background Guide
-			//{
-			//	auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-			//	pivot->setPosition( pivot_position );
-			//	addChild( pivot, std::numeric_limits<int>::min() );
-			//}
+			if( config.bShowBackgroundGuide )
+			{
+				auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
+				pivot->setPosition( pivot_position );
+				addChild( pivot, std::numeric_limits<int>::min() );
+			}
 
 			// Buttons
 			int linear_index = 0;
@@ -179,7 +180,7 @@ namespace step_clickclick
 						+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
 						+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
 					);
-					button->addTouchEventListener( CC_CALLBACK_2( StageView::onPannel, this ) );
+					button->addTouchEventListener( CC_CALLBACK_2( StageView::onBlock, this ) );
 					addChild( button );
 
 					// view
@@ -237,7 +238,7 @@ namespace step_clickclick
 					auto die_animate_action = Animate::create( die_animation_object );
 					die_animate_action->retain();
 
-					PannelViews.emplace_back(
+					mBlockViews.emplace_back(
 						button
 						, view_node
 						, label
@@ -257,29 +258,29 @@ namespace step_clickclick
 			assert( mStageWidth == stage_data.GetWidth() );
 			assert( mStageHeight == stage_data.GetHeight() );
 
-			for( auto& p : PannelViews )
+			for( auto& b : mBlockViews )
 			{
-				p.SetVisible( false );
+				b.SetVisible( false );
 			}
 
-			for( const auto& p : stage_data.GetPannelDatas() )
+			for( const auto& b : stage_data.GetBlockDatas() )
 			{
-				if( !p.IsActive() )
+				if( !b.IsActive() )
 				{
 					continue;
 				}
 
-				PannelViews[p.GetIndex()].Init( p.GetType(), p.GetLife() );
-				PannelViews[p.GetIndex()].SetVisible( true );
+				mBlockViews[b.GetIndex()].Init( b.GetType(), b.GetLife() );
+				mBlockViews[b.GetIndex()].SetVisible( true );
 			}
 		}
 
-		void StageView::UpdatePannel( const int linear_index, const int last_life, const int current_life )
+		void StageView::UpdateBlock( const int linear_index, const int last_life, const int current_life )
 		{
-			PannelViews[linear_index].Update( last_life, current_life );
+			mBlockViews[linear_index].Update( last_life, current_life );
 		}
 
-		void StageView::onPannel( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void StageView::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
@@ -287,7 +288,7 @@ namespace step_clickclick
 			}
 
 			auto button_node = static_cast<Node*>( sender );
-			mOnPannelCallback( button_node->getTag() );
+			mOnBlockCallback( button_node->getTag() );
 		}
 	} // namespace game
 } // namespace step_clickclick

@@ -21,29 +21,35 @@ namespace step_clickclick
 	{
 		class Stage;
 
+		struct StageViewConfig
+		{
+			bool bShowPivot = false;
+			bool bShowBackgroundGuide = false;
+		};
+
 		class StageView : public cocos2d::Node
 		{
 		public:
-			using OnPannelCallback = std::function<void( int )>;
+			using OnBlockCallback = std::function<void( int )>;
 
 		private:
-			class PannelView
+			class BlockView
 			{
 			public:
-				PannelView(
-					cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
+				BlockView(
+					cocos2d::Node* const button_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
 					, cocos2d::Sprite* const effect_node
 					, cocos2d::Action* const increase_effect_action
 					, cocos2d::Action* const decrease_effect_action
 					, cocos2d::Action* const die_effect_action
 				);
 
-				void Init( ePannelType type, const int life );
+				void Init( eBlockType type, const int life );
 				void SetVisible( const bool visible );
 				void Update( const int last_life, const int current_life );
 
 			private:
-				cocos2d::Node* const mPannelNode;
+				cocos2d::Node* const mButtonNode;
 				cocos2d::Sprite* const mViewNode;
 				cocos2d::Label* const mLabelNode;
 				cocos2d::Sprite* const mEffectNode;
@@ -52,25 +58,25 @@ namespace step_clickclick
 				cocos2d::Action* const mDieEffectAction;
 			};
 
-			StageView( const int width, const int height, const OnPannelCallback& on_pannel_callback );
+			StageView( const int width, const int height, const OnBlockCallback& on_block_callback );
 
 		public:
-			static StageView* create( const int width, const int height, const OnPannelCallback& on_pannel_callback );
+			static StageView* create( const int width, const int height, const OnBlockCallback& on_block_callback, const StageViewConfig config = StageViewConfig() );
 
-			bool init() override;
+			bool init( const StageViewConfig config );
 			void Setup( const Stage& stage_data );
-			void UpdatePannel( const int linear_index, const int last_life, const int current_life );
+			void UpdateBlock( const int linear_index, const int last_life, const int current_life );
 
 		private:
-			void onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onBlock( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			const int mStageWidth;
 			const int mStageHeight;
 			const cpg::GridIndexConverter mGridIndexConverter;
-			std::vector<PannelView> PannelViews;
+			std::vector<BlockView> mBlockViews;
 
-			const OnPannelCallback mOnPannelCallback;
+			const OnBlockCallback mOnBlockCallback;
 		};
 	}
 }
