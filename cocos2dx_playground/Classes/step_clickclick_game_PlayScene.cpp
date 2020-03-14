@@ -394,7 +394,7 @@ namespace step_clickclick
 			case 2: // show label - count
 			{
 				auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-				label->setString( std::to_string( mNextStepData.LimitTime ) );
+				label->setString( std::to_string( mNextStepData.LimitTime_forCount ) );
 				label->setVisible( true );
 
 				++mNextStepData.Step;
@@ -402,7 +402,7 @@ namespace step_clickclick
 			break;
 			case 3: // wait
 				mNextStepData.ElapsedTime_forCount += dt;
-				if( mNextStepData.LimitTime < mNextStepData.ElapsedTime_forCount )
+				if( mNextStepData.LimitTime_forCount < mNextStepData.ElapsedTime_forCount )
 				{
 					mNextStepData.ElapsedTime_forCount = 0.f;
 					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
@@ -413,7 +413,7 @@ namespace step_clickclick
 				else
 				{
 					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime - mNextStepData.ElapsedTime_forCount ) );
+					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime_forCount - mNextStepData.ElapsedTime_forCount ) );
 				}
 				break;
 			case 4: // hide label

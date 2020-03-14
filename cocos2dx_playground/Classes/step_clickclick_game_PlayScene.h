@@ -49,7 +49,7 @@ namespace step_clickclick
 				float ElapsedTime_forEntry = 0.f;
 				const float LimitTime_forEntry = 0.6;
 				float ElapsedTime_forCount = 0.f;
-				const float LimitTime = 3.f;
+				const float LimitTime_forCount = 3.f;
 			};
 			NextStepData mNextStepData;
 		};
