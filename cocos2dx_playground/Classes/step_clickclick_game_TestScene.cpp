@@ -30,7 +30,7 @@ namespace step_clickclick
 			const int MAX_STAGE_HEIGHT = 7;
 
 			const int TAG_TestActionView = 20140416;
-			const int TAG_SelectedPannelTypeView = 20160528;
+			const int TAG_SelectedBlockTypeView = 20160528;
 			const int TAG_ActiveBlockCountView = 9999;
 		}
 
@@ -125,6 +125,7 @@ namespace step_clickclick
 				mStageView = step_clickclick::game::StageView::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &TestScene::onGameProcess, this, std::placeholders::_1 )
+					, StageViewConfig{ true, true }
 				);
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -153,11 +154,11 @@ namespace step_clickclick
 			}
 
 			//
-			// Selected Pannel Type View
+			// Selected Block Type View
 			//
 			{
-				auto label = Label::createWithTTF( "Pannel Type : -", "fonts/arial.ttf", 14 );
-				label->setTag( TAG_SelectedPannelTypeView );
+				auto label = Label::createWithTTF( "Block Type : -", "fonts/arial.ttf", 14 );
+				label->setTag( TAG_SelectedBlockTypeView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setPosition( Vec2(
@@ -205,30 +206,30 @@ namespace step_clickclick
 		}
 
 
-		void TestScene::onGameProcess( const int pannel_linear_index )
+		void TestScene::onGameProcess( const int block_linear_index )
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 
-			const auto& target_pannel_data = mStage->GetBlockData( pannel_linear_index );
-			updateSelectedPannelTypeView( target_pannel_data.GetType() );
+			const auto& target_block_data = mStage->GetBlockData( block_linear_index );
+			updateSelectedBlockTypeView( target_block_data.GetType() );
 
-			const int last_life = target_pannel_data.GetLife();
+			const int last_life = target_block_data.GetLife();
 			switch( mTestActionType )
 			{
 			case eTestActionType::Increase:
-				mStage->IncreaseBlockLife( pannel_linear_index );
+				mStage->IncreaseBlockLife( block_linear_index );
 				break;
 			case eTestActionType::Decrease:
-				mStage->DecreaseBlockLife( pannel_linear_index );
+				mStage->DecreaseBlockLife( block_linear_index );
 				break;
 			case eTestActionType::Die:
-				mStage->DieBlock( pannel_linear_index );
+				mStage->DieBlock( block_linear_index );
 				break;
 			default:
 				assert( false );
 			}
 
-			mStageView->UpdatePannel( pannel_linear_index, last_life, target_pannel_data.GetLife() );
+			mStageView->UpdateBlock( block_linear_index, last_life, target_block_data.GetLife() );
 			updateActiveBlockCountView( mStage->GetActiveBlockCount() );
 		}
 
@@ -282,19 +283,19 @@ namespace step_clickclick
 				assert( false );
 			}
 		}
-		void TestScene::updateSelectedPannelTypeView( const eBlockType pannel_type )
+		void TestScene::updateSelectedBlockTypeView( const eBlockType block_type )
 		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedPannelTypeView ) );
-			switch( pannel_type )
+			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedBlockTypeView ) );
+			switch( block_type )
 			{
 			case eBlockType::Single:
-				label->setString( "Pannel Type : Single" );
+				label->setString( "Block Type : Single" );
 				break;
 			case eBlockType::Same:
-				label->setString( "Pannel Type : Same" );
+				label->setString( "Block Type : Same" );
 				break;
 			case eBlockType::Different:
-				label->setString( "Pannel Type : Different" );
+				label->setString( "Block Type : Different" );
 				break;
 			default:
 				assert( false );

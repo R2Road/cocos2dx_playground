@@ -87,7 +87,7 @@ namespace step_clickclick
 			// Single Explain
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_pannel_single.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_single.png" );
 				sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
@@ -107,7 +107,7 @@ namespace step_clickclick
 			// Together Explain
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_pannel_together.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_together.png" );
 				sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
@@ -127,7 +127,7 @@ namespace step_clickclick
 			// Different Explain
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_pannel_different.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_different.png" );
 				sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(

@@ -168,6 +168,10 @@ namespace step_clickclick
 			}
 		}
 
+		const Stage::Block& Stage::GetBlockData( const int x, const int y ) const
+		{
+			return GetBlockData( mGridIndexConverter.To_Linear( x, y )	 );
+		}
 		const Stage::Block& Stage::GetBlockData( const int linear_index ) const
 		{
 			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )

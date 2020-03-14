@@ -35,11 +35,11 @@ namespace step_clickclick
 			void onExit() override;
 
 		private:
-			void onGameProcess( const int pannel_linear_index );
+			void onGameProcess( const int block_linear_index );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			void updateTestAction( const eTestActionType test_action_type );
-			void updateSelectedPannelTypeView( const eBlockType pannel_type );
+			void updateSelectedBlockTypeView( const eBlockType block_type );
 			void updateActiveBlockCountView( const int count );
 
 		private:
