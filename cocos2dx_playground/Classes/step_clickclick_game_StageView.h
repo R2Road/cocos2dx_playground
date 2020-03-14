@@ -27,10 +27,10 @@ namespace step_clickclick
 			using OnBlockCallback = std::function<void( int )>;
 
 		private:
-			class PannelView
+			class BlockView
 			{
 			public:
-				PannelView(
+				BlockView(
 					cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
 					, cocos2d::Sprite* const effect_node
 					, cocos2d::Action* const increase_effect_action
@@ -68,7 +68,7 @@ namespace step_clickclick
 			const int mStageWidth;
 			const int mStageHeight;
 			const cpg::GridIndexConverter mGridIndexConverter;
-			std::vector<PannelView> PannelViews;
+			std::vector<BlockView> mBlockViews;
 
 			const OnBlockCallback mOnBlockCallback;
 		};

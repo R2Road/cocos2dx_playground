@@ -29,7 +29,7 @@ namespace step_clickclick
 			}
 		}
 
-		StageView::PannelView::PannelView(
+		StageView::BlockView::BlockView(
 			cocos2d::Node* const pannel_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
 			, cocos2d::Sprite* const effect_node
 			, cocos2d::Action* const increase_effect_action
@@ -45,7 +45,7 @@ namespace step_clickclick
 			, mDecreaseEffectAction( decrease_effect_action )
 			, mDieEffectAction( die_effect_action )
 		{}
-		void StageView::PannelView::Init( eBlockType type, const int life )
+		void StageView::BlockView::Init( eBlockType type, const int life )
 		{
 			mLabelNode->setString( std::to_string( life ) );
 
@@ -66,13 +66,13 @@ namespace step_clickclick
 			}
 			mViewNode->setSpriteFrame( view_frame );
 		}
-		void StageView::PannelView::SetVisible( const bool visible )
+		void StageView::BlockView::SetVisible( const bool visible )
 		{
 			mPannelNode->setVisible( visible );
 			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}
-		void StageView::PannelView::Update( const int last_life, const int current_life )
+		void StageView::BlockView::Update( const int last_life, const int current_life )
 		{
 			if( 0 == current_life )
 			{
@@ -103,7 +103,7 @@ namespace step_clickclick
 			mStageWidth( width )
 			, mStageHeight( height )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
-			, PannelViews()
+			, mBlockViews()
 			, mOnBlockCallback( on_block_callback )
 		{
 			//
@@ -237,7 +237,7 @@ namespace step_clickclick
 					auto die_animate_action = Animate::create( die_animation_object );
 					die_animate_action->retain();
 
-					PannelViews.emplace_back(
+					mBlockViews.emplace_back(
 						button
 						, view_node
 						, label
@@ -257,7 +257,7 @@ namespace step_clickclick
 			assert( mStageWidth == stage_data.GetWidth() );
 			assert( mStageHeight == stage_data.GetHeight() );
 
-			for( auto& p : PannelViews )
+			for( auto& p : mBlockViews )
 			{
 				p.SetVisible( false );
 			}
@@ -269,14 +269,14 @@ namespace step_clickclick
 					continue;
 				}
 
-				PannelViews[p.GetIndex()].Init( p.GetType(), p.GetLife() );
-				PannelViews[p.GetIndex()].SetVisible( true );
+				mBlockViews[p.GetIndex()].Init( p.GetType(), p.GetLife() );
+				mBlockViews[p.GetIndex()].SetVisible( true );
 			}
 		}
 
 		void StageView::UpdateBlock( const int linear_index, const int last_life, const int current_life )
 		{
-			PannelViews[linear_index].Update( last_life, current_life );
+			mBlockViews[linear_index].Update( last_life, current_life );
 		}
 
 		void StageView::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
