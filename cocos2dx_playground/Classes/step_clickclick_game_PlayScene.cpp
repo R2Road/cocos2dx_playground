@@ -204,12 +204,12 @@ namespace step_clickclick
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.5f );
 
 			const auto& block_data = mStage->GetBlockData( pannel_linear_index );
+			const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 			int last_life = 0;
 
 			if( eBlockType::Single == block_data.GetType() )
 			{
 				bool has_neighbor = false;
-				const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 				const int current_pivot_x = block_point_index.x - 1;
 				const int current_pivot_y = block_point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
@@ -262,7 +262,6 @@ namespace step_clickclick
 			else if( eBlockType::Same == block_data.GetType() )
 			{
 				const int pivot_count = block_data.GetLife();
-				const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 
 				const int current_pivot_x = block_point_index.x - 1;
 				const int current_pivot_y = block_point_index.y - 1;
@@ -305,7 +304,6 @@ namespace step_clickclick
 			else if( eBlockType::Different == block_data.GetType() )
 			{
 				const int pivot_count = block_data.GetLife();
-				const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 
 				const int current_pivot_x = block_point_index.x - 1;
 				const int current_pivot_y = block_point_index.y - 1;
