@@ -172,6 +172,8 @@ namespace step_clickclick
 					, visibleOrigin.y + visibleSize.height * 0.4f
 				) );
 				addChild( label, 9999 );
+
+				updateCountView( mNextStepData.LimitTime_forCount );
 			}
 
 			return true;
@@ -356,6 +358,11 @@ namespace step_clickclick
 			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
 			label->setString( StringUtils::format( "Score : %4d", mScore ) );
 		}
+		void PlayScene::updateCountView( const float count )
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
+			label->setString( StringUtils::format( "%.1f", count ) );
+		}
 
 		void PlayScene::updateForNextStep( float dt )
 		{
@@ -378,8 +385,8 @@ namespace step_clickclick
 				clear_view_label->setVisible( true );
 
 				auto count_view_label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-				count_view_label->setString( std::to_string( mNextStepData.LimitTime_forCount ) );
 				count_view_label->setVisible( true );
+				updateCountView( mNextStepData.LimitTime_forCount );
 
 				mCurrentStageWidth += 2;
 				mCurrentStageHeight += 2;
@@ -398,15 +405,13 @@ namespace step_clickclick
 				if( mNextStepData.LimitTime_forCount < mNextStepData.ElapsedTime_forCount )
 				{
 					mNextStepData.ElapsedTime_forCount = 0.f;
-					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-					label->setString( "0" );
+					updateCountView( 0.f );
 
 					++mNextStepData.Step;
 				}
 				else
 				{
-					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime_forCount - mNextStepData.ElapsedTime_forCount ) );
+					updateCountView( mNextStepData.LimitTime_forCount - mNextStepData.ElapsedTime_forCount );
 				}
 				break;
 			case NextStepData::eStep::hide_clear_indicator:
