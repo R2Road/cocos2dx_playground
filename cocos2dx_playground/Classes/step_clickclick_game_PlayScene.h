@@ -4,8 +4,6 @@
 
 #include "2d/CCScene.h"
 
-#include "cpg_GridIndexConverter.h"
-
 namespace step_clickclick
 {
 	namespace game
@@ -38,7 +36,6 @@ namespace step_clickclick
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			StageUp mStage;
 			StageView* mStageView;
-			const cpg::GridIndexConverter mGridIndexConverter;
 
 			int mScore;
 			int mCurrentStageWidth;

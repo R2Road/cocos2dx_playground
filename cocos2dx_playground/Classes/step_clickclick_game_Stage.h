@@ -58,6 +58,11 @@ namespace step_clickclick
 			int GetActiveBlockCount() const { return mActiveBlockCount; }
 			bool HasActiveBlock() const { return 0 != mActiveBlockCount; }
 
+			cpg::GridIndexConverter::Point ConvertLinearIndex2PointIndex( const int linear_index ) const
+			{
+				return mGridIndexConverter.To_Point( linear_index );
+			}
+
 		private:
 			const int mStageWidth;
 			const int mStageHeight;

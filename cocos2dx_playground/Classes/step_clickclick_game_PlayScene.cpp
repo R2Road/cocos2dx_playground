@@ -38,7 +38,6 @@ namespace step_clickclick
 			mKeyboardListener( nullptr )
 			, mStage()
 			, mStageView( nullptr )
-			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
 
 			, mScore( 0 )
 			, mCurrentStageWidth( 3 )
@@ -210,7 +209,7 @@ namespace step_clickclick
 			if( eBlockType::Single == block_data.GetType() )
 			{
 				bool has_neighbor = false;
-				const auto point_index = mGridIndexConverter.To_Point( block_data.GetIndex() );
+				const auto point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 				const int current_pivot_x = point_index.x - 1;
 				const int current_pivot_y = point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
@@ -263,7 +262,7 @@ namespace step_clickclick
 			else if( eBlockType::Same == block_data.GetType() )
 			{
 				const int pivot_count = block_data.GetLife();
-				const auto point_index = mGridIndexConverter.To_Point( block_data.GetIndex() );
+				const auto point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 
 				const int current_pivot_x = point_index.x - 1;
 				const int current_pivot_y = point_index.y - 1;
@@ -306,7 +305,7 @@ namespace step_clickclick
 			else if( eBlockType::Different == block_data.GetType() )
 			{
 				const int pivot_count = block_data.GetLife();
-				const auto point_index = mGridIndexConverter.To_Point( block_data.GetIndex() );
+				const auto point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 
 				const int current_pivot_x = point_index.x - 1;
 				const int current_pivot_y = point_index.y - 1;
