@@ -441,15 +441,12 @@ namespace step_clickclick
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			switch( keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
 			{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
-				break;
-
-			default:
-				CCLOG( "Key Code : %d", keycode );
+				return;
 			}
+
+			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
 		}
 	} // namespace game
 } // namespace step_clickclick
