@@ -257,20 +257,20 @@ namespace step_clickclick
 			assert( mStageWidth == stage_data.GetWidth() );
 			assert( mStageHeight == stage_data.GetHeight() );
 
-			for( auto& p : mBlockViews )
+			for( auto& b : mBlockViews )
 			{
-				p.SetVisible( false );
+				b.SetVisible( false );
 			}
 
-			for( const auto& p : stage_data.GetBlockDatas() )
+			for( const auto& b : stage_data.GetBlockDatas() )
 			{
-				if( !p.IsActive() )
+				if( !b.IsActive() )
 				{
 					continue;
 				}
 
-				mBlockViews[p.GetIndex()].Init( p.GetType(), p.GetLife() );
-				mBlockViews[p.GetIndex()].SetVisible( true );
+				mBlockViews[b.GetIndex()].Init( b.GetType(), b.GetLife() );
+				mBlockViews[b.GetIndex()].SetVisible( true );
 			}
 		}
 
