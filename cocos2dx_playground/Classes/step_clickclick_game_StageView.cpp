@@ -274,7 +274,7 @@ namespace step_clickclick
 			}
 		}
 
-		void StageView::UpdatePannel( const int linear_index, const int last_life, const int current_life )
+		void StageView::UpdateBlock( const int linear_index, const int last_life, const int current_life )
 		{
 			PannelViews[linear_index].Update( last_life, current_life );
 		}

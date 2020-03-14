@@ -228,7 +228,7 @@ namespace step_clickclick
 				assert( false );
 			}
 
-			mStageView->UpdatePannel( pannel_linear_index, last_life, target_pannel_data.GetLife() );
+			mStageView->UpdateBlock( pannel_linear_index, last_life, target_pannel_data.GetLife() );
 			updateActiveBlockCountView( mStage->GetActiveBlockCount() );
 		}
 

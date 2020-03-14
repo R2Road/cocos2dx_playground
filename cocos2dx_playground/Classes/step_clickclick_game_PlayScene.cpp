@@ -249,14 +249,14 @@ namespace step_clickclick
 					++mScore;
 
 					mStage->DecreaseBlockLife( block_data.GetIndex() );
-					mStageView->UpdatePannel( block_data.GetIndex(), last_life, block_data.GetLife() );
+					mStageView->UpdateBlock( block_data.GetIndex(), last_life, block_data.GetLife() );
 				}
 				else
 				{
 					mScore = std::max( 0, mScore - block_data.GetLife() );
 
 					mStage->DieBlock( block_data.GetIndex() );
-					mStageView->UpdatePannel( block_data.GetIndex(), last_life, block_data.GetLife() );
+					mStageView->UpdateBlock( block_data.GetIndex(), last_life, block_data.GetLife() );
 				}
 			}
 			else if( eBlockType::Same == block_data.GetType() )
@@ -298,7 +298,7 @@ namespace step_clickclick
 							mStage->DecreaseBlockLife( target_block_data.GetIndex() );
 						}
 
-						mStageView->UpdatePannel( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						mStageView->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
 			}
@@ -339,7 +339,7 @@ namespace step_clickclick
 							mStage->DieBlock( target_block_data.GetIndex() );
 						}
 
-						mStageView->UpdatePannel( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						mStageView->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
 			}

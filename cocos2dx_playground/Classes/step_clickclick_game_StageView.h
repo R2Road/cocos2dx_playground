@@ -59,7 +59,7 @@ namespace step_clickclick
 
 			bool init() override;
 			void Setup( const Stage& stage_data );
-			void UpdatePannel( const int linear_index, const int last_life, const int current_life );
+			void UpdateBlock( const int linear_index, const int last_life, const int current_life );
 
 		private:
 			void onPannel( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
