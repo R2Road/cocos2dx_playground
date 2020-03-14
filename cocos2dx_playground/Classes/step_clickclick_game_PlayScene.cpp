@@ -349,7 +349,6 @@ namespace step_clickclick
 			//
 			if( !mStage->HasActiveBlock() )
 			{
-				mStageView->setVisible( false );
 				schedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 			}
 		}
@@ -364,7 +363,17 @@ namespace step_clickclick
 		{
 			switch( mNextStepData.Step )
 			{
-			case 0: // show label - clear
+			case 0: // wait for entry
+				mNextStepData.ElapsedTime_forEntry += dt;
+				if( mNextStepData.LimitTime_forEntry < mNextStepData.ElapsedTime_forEntry )
+				{
+					mStageView->setVisible( false );
+					mNextStepData.ElapsedTime_forEntry = 0.f;
+
+					++mNextStepData.Step;
+				}
+				break;
+			case 1: // show label - clear
 			{
 				auto label = static_cast<Label*>( getChildByTag( TAG_ClearView ) );
 				label->setString( "Stage Clear" );
@@ -382,7 +391,7 @@ namespace step_clickclick
 				}
 			}
 			break;
-			case 1: // show label - count
+			case 2: // show label - count
 			{
 				auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
 				label->setString( std::to_string( mNextStepData.LimitTime ) );
@@ -391,7 +400,7 @@ namespace step_clickclick
 				++mNextStepData.Step;
 			}
 			break;
-			case 2: // wait
+			case 3: // wait
 				mNextStepData.ElapsedTime_forCount += dt;
 				if( mNextStepData.LimitTime < mNextStepData.ElapsedTime_forCount )
 				{
@@ -407,14 +416,14 @@ namespace step_clickclick
 					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime - mNextStepData.ElapsedTime_forCount ) );
 				}
 				break;
-			case 3: // hide label
+			case 4: // hide label
 				getChildByTag( TAG_ClearView )->setVisible( false );
 				getChildByTag( TAG_CountView )->setVisible( false );
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
 				++mNextStepData.Step;
 				break;
-			case 4: // restart
+			case 5: // restart
 				mStageView->setVisible( true );
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 				mNextStepData.Step = 0;

@@ -46,6 +46,8 @@ namespace step_clickclick
 			struct NextStepData
 			{
 				int Step = 0;
+				float ElapsedTime_forEntry = 0.f;
+				const float LimitTime_forEntry = 0.6;
 				float ElapsedTime_forCount = 0.f;
 				const float LimitTime = 3.f;
 			};
