@@ -57,7 +57,7 @@ namespace step_clickclick
 
 				int Step = eStep::wait_for_entry;
 				float ElapsedTime_forEntry = 0.f;
-				const float LimitTime_forEntry = 0.6;
+				const float LimitTime_forEntry = 0.6f;
 				float ElapsedTime_forCount = 0.f;
 				const float LimitTime_forCount = 3.f;
 			};
