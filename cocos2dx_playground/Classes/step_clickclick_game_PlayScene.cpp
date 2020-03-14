@@ -392,10 +392,10 @@ namespace step_clickclick
 			}
 			break;
 			case 2: // wait
-				mNextStepData.elapsedTime += dt;
-				if( mNextStepData.LimitTime < mNextStepData.elapsedTime )
+				mNextStepData.ElapsedTime_forCount += dt;
+				if( mNextStepData.LimitTime < mNextStepData.ElapsedTime_forCount )
 				{
-					mNextStepData.elapsedTime = 0.f;
+					mNextStepData.ElapsedTime_forCount = 0.f;
 					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
 					label->setString( "0" );
 
@@ -404,7 +404,7 @@ namespace step_clickclick
 				else
 				{
 					auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime - mNextStepData.elapsedTime ) );
+					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime - mNextStepData.ElapsedTime_forCount ) );
 				}
 				break;
 			case 3: // hide label
