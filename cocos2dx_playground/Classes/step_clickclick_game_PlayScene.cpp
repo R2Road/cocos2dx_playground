@@ -203,13 +203,13 @@ namespace step_clickclick
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.5f );
 
-			const auto& pannel_data = mStage->GetBlockData( pannel_linear_index );
+			const auto& block_data = mStage->GetBlockData( pannel_linear_index );
 			int last_life = 0;
 
-			if( eBlockType::Single == pannel_data.GetType() )
+			if( eBlockType::Single == block_data.GetType() )
 			{
 				bool has_neighbor = false;
-				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
+				const auto point_index = mGridIndexConverter.To_Point( block_data.GetIndex() );
 				const int current_pivot_x = point_index.x - 1;
 				const int current_pivot_y = point_index.y - 1;
 				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
@@ -227,13 +227,13 @@ namespace step_clickclick
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetBlockData( tx, ty );
-						if( pannel_linear_index == target_pannel_data.GetIndex() )
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( pannel_linear_index == target_block_data.GetIndex() )
 						{
 							continue;
 						}
 
-						if( !target_pannel_data.IsActive() )
+						if( !target_block_data.IsActive() )
 						{
 							continue;
 						}
@@ -243,26 +243,26 @@ namespace step_clickclick
 					}
 				}
 
-				last_life = pannel_data.GetLife();
+				last_life = block_data.GetLife();
 				if( has_neighbor )
 				{
 					++mScore;
 
-					mStage->DecreaseBlockLife( pannel_data.GetIndex() );
-					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
+					mStage->DecreaseBlockLife( block_data.GetIndex() );
+					mStageView->UpdatePannel( block_data.GetIndex(), last_life, block_data.GetLife() );
 				}
 				else
 				{
-					mScore = std::max( 0, mScore - pannel_data.GetLife() );
+					mScore = std::max( 0, mScore - block_data.GetLife() );
 
-					mStage->DieBlock( pannel_data.GetIndex() );
-					mStageView->UpdatePannel( pannel_data.GetIndex(), last_life, pannel_data.GetLife() );
+					mStage->DieBlock( block_data.GetIndex() );
+					mStageView->UpdatePannel( block_data.GetIndex(), last_life, block_data.GetLife() );
 				}
 			}
-			else if( eBlockType::Same == pannel_data.GetType() )
+			else if( eBlockType::Same == block_data.GetType() )
 			{
-				const int pivot_count = pannel_data.GetLife();
-				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
+				const int pivot_count = block_data.GetLife();
+				const auto point_index = mGridIndexConverter.To_Point( block_data.GetIndex() );
 
 				const int current_pivot_x = point_index.x - 1;
 				const int current_pivot_y = point_index.y - 1;
@@ -276,36 +276,36 @@ namespace step_clickclick
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetBlockData( tx, ty );
-						if( !target_pannel_data.IsActive() )
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( !target_block_data.IsActive() )
 						{
 							continue;
 						}
 
-						if( eBlockType::Same == target_pannel_data.GetType() && pivot_count != target_pannel_data.GetLife() )
+						if( eBlockType::Same == target_block_data.GetType() && pivot_count != target_block_data.GetLife() )
 						{
 							continue;
 						}
 
-						last_life = target_pannel_data.GetLife();
-						if( pivot_count != target_pannel_data.GetLife() )
+						last_life = target_block_data.GetLife();
+						if( pivot_count != target_block_data.GetLife() )
 						{
-							mStage->IncreaseBlockLife( target_pannel_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
 						}
 						else
 						{
 							mScore += 3;
-							mStage->DecreaseBlockLife( target_pannel_data.GetIndex() );
+							mStage->DecreaseBlockLife( target_block_data.GetIndex() );
 						}
 
-						mStageView->UpdatePannel( target_pannel_data.GetIndex(), last_life, target_pannel_data.GetLife() );
+						mStageView->UpdatePannel( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
 			}
-			else if( eBlockType::Different == pannel_data.GetType() )
+			else if( eBlockType::Different == block_data.GetType() )
 			{
-				const int pivot_count = pannel_data.GetLife();
-				const auto point_index = mGridIndexConverter.To_Point( pannel_data.GetIndex() );
+				const int pivot_count = block_data.GetLife();
+				const auto point_index = mGridIndexConverter.To_Point( block_data.GetIndex() );
 
 				const int current_pivot_x = point_index.x - 1;
 				const int current_pivot_y = point_index.y - 1;
@@ -319,27 +319,27 @@ namespace step_clickclick
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetBlockData( tx, ty );
-						if( !target_pannel_data.IsActive() )
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( !target_block_data.IsActive() )
 						{
 							continue;
 						}
 
-						last_life = target_pannel_data.GetLife();
-						if( target_pannel_data.GetIndex() != pannel_data.GetIndex() && pivot_count == target_pannel_data.GetLife() )
+						last_life = target_block_data.GetLife();
+						if( target_block_data.GetIndex() != block_data.GetIndex() && pivot_count == target_block_data.GetLife() )
 						{
-							mStage->IncreaseBlockLife( target_pannel_data.GetIndex() );
-							mStage->IncreaseBlockLife( target_pannel_data.GetIndex() );
-							mStage->IncreaseBlockLife( target_pannel_data.GetIndex() );
-							mStage->IncreaseBlockLife( target_pannel_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
 						}
 						else
 						{
-							mScore += target_pannel_data.GetLife();
-							mStage->DieBlock( target_pannel_data.GetIndex() );
+							mScore += target_block_data.GetLife();
+							mStage->DieBlock( target_block_data.GetIndex() );
 						}
 
-						mStageView->UpdatePannel( target_pannel_data.GetIndex(), last_life, target_pannel_data.GetLife() );
+						mStageView->UpdatePannel( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
 			}
