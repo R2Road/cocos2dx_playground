@@ -151,6 +151,7 @@ namespace step_clickclick
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
 				label->setTag( TAG_ClearView );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setVisible( false );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.6f
@@ -167,6 +168,7 @@ namespace step_clickclick
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
 				label->setTag( TAG_CountView );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				label->setVisible( false );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.4f
