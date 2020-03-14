@@ -227,7 +227,7 @@ namespace step_clickclick
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetBlockData( mGridIndexConverter.To_Linear( tx, ty ) );
+						const auto& target_pannel_data = mStage->GetBlockData( tx, ty );
 						if( pannel_linear_index == target_pannel_data.GetIndex() )
 						{
 							continue;
@@ -276,7 +276,7 @@ namespace step_clickclick
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetBlockData( mGridIndexConverter.To_Linear( tx, ty ) );
+						const auto& target_pannel_data = mStage->GetBlockData( tx, ty );
 						if( !target_pannel_data.IsActive() )
 						{
 							continue;
@@ -319,7 +319,7 @@ namespace step_clickclick
 							continue;
 						}
 
-						const auto& target_pannel_data = mStage->GetBlockData( mGridIndexConverter.To_Linear( tx, ty ) );
+						const auto& target_pannel_data = mStage->GetBlockData( tx, ty );
 						if( !target_pannel_data.IsActive() )
 						{
 							continue;

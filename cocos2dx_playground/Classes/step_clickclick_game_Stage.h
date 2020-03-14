@@ -49,6 +49,7 @@ namespace step_clickclick
 			int GetWidth() const { return mStageWidth; }
 			int GetHeight() const { return mStageHeight; }
 			const std::vector<Block>& GetBlockDatas() const { return mBlocks; }
+			const Block& GetBlockData( const int x, const int y ) const;
 			const Block& GetBlockData( const int linear_index ) const;
 			void IncreaseBlockLife( const int linear_index );
 			void DecreaseBlockLife( const int linear_index );
