@@ -172,8 +172,6 @@ namespace step_clickclick
 					, visibleOrigin.y + visibleSize.height * 0.4f
 				) );
 				addChild( label, 9999 );
-
-				updateScoreView();
 			}
 
 			return true;
