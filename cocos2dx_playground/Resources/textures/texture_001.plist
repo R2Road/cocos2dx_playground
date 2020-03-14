@@ -664,7 +664,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_decrease1.png</key>
+            <key>step_clickclick_block_different.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -679,7 +679,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_decrease2.png</key>
+            <key>step_clickclick_block_single.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -694,7 +694,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_decrease3.png</key>
+            <key>step_clickclick_block_together.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -709,7 +709,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_decrease4.png</key>
+            <key>step_clickclick_effect_decrease1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -724,7 +724,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_decrease5.png</key>
+            <key>step_clickclick_effect_decrease2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -739,7 +739,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_die1.png</key>
+            <key>step_clickclick_effect_decrease3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -754,7 +754,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_die2.png</key>
+            <key>step_clickclick_effect_decrease4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -769,7 +769,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_die3.png</key>
+            <key>step_clickclick_effect_decrease5.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -784,7 +784,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_die4.png</key>
+            <key>step_clickclick_effect_die1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -799,7 +799,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_increase1.png</key>
+            <key>step_clickclick_effect_die2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -814,7 +814,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_increase2.png</key>
+            <key>step_clickclick_effect_die3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -829,7 +829,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_increase3.png</key>
+            <key>step_clickclick_effect_die4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -844,7 +844,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_increase4.png</key>
+            <key>step_clickclick_effect_increase1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -859,7 +859,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_effect_increase5.png</key>
+            <key>step_clickclick_effect_increase2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -874,7 +874,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_pannel_different.png</key>
+            <key>step_clickclick_effect_increase3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -889,7 +889,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_pannel_single.png</key>
+            <key>step_clickclick_effect_increase4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -904,7 +904,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_clickclick_pannel_together.png</key>
+            <key>step_clickclick_effect_increase5.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -948,7 +948,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b09c84e3440a860c926e15d721ac8862:bffee2f3b10ef68502e1414cecaa8ead:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:4826379745ec692bace032a7473bb8d4:201a893ad9ecbcb7199f94a2c183cf71:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>
