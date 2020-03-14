@@ -45,7 +45,17 @@ namespace step_clickclick
 
 			struct NextStepData
 			{
-				int Step = 0;
+				enum eStep
+				{
+					wait_for_entry,
+					show_clear_indicator,
+					wait_for_count,
+					hide_clear_indicator,
+					reset,
+					game_clear,
+				};
+
+				int Step = eStep::wait_for_entry;
 				float ElapsedTime_forEntry = 0.f;
 				const float LimitTime_forEntry = 0.6;
 				float ElapsedTime_forCount = 0.f;

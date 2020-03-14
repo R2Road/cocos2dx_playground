@@ -363,7 +363,7 @@ namespace step_clickclick
 		{
 			switch( mNextStepData.Step )
 			{
-			case 0: // wait for entry
+			case NextStepData::eStep::wait_for_entry:
 				mNextStepData.ElapsedTime_forEntry += dt;
 				if( mNextStepData.LimitTime_forEntry < mNextStepData.ElapsedTime_forEntry )
 				{
@@ -373,11 +373,15 @@ namespace step_clickclick
 					++mNextStepData.Step;
 				}
 				break;
-			case 1: // show label - clear
+			case NextStepData::eStep::show_clear_indicator:
 			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_ClearView ) );
-				label->setString( "Stage Clear" );
-				label->setVisible( true );
+				auto clear_view_label = static_cast<Label*>( getChildByTag( TAG_ClearView ) );
+				clear_view_label->setString( "Stage Clear" );
+				clear_view_label->setVisible( true );
+
+				auto count_view_label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
+				count_view_label->setString( std::to_string( mNextStepData.LimitTime_forCount ) );
+				count_view_label->setVisible( true );
 
 				mCurrentStageWidth += 2;
 				mCurrentStageHeight += 2;
@@ -387,20 +391,11 @@ namespace step_clickclick
 				}
 				else
 				{
-					mNextStepData.Step = 7;
+					mNextStepData.Step = NextStepData::eStep::game_clear;
 				}
 			}
 			break;
-			case 2: // show label - count
-			{
-				auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-				label->setString( std::to_string( mNextStepData.LimitTime_forCount ) );
-				label->setVisible( true );
-
-				++mNextStepData.Step;
-			}
-			break;
-			case 3: // wait
+			case NextStepData::eStep::wait_for_count:
 				mNextStepData.ElapsedTime_forCount += dt;
 				if( mNextStepData.LimitTime_forCount < mNextStepData.ElapsedTime_forCount )
 				{
@@ -416,20 +411,20 @@ namespace step_clickclick
 					label->setString( StringUtils::format( "%.1f", mNextStepData.LimitTime_forCount - mNextStepData.ElapsedTime_forCount ) );
 				}
 				break;
-			case 4: // hide label
+			case NextStepData::eStep::hide_clear_indicator:
 				getChildByTag( TAG_ClearView )->setVisible( false );
 				getChildByTag( TAG_CountView )->setVisible( false );
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
 				++mNextStepData.Step;
 				break;
-			case 5: // restart
+			case NextStepData::eStep::reset:
 				mStageView->setVisible( true );
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
-				mNextStepData.Step = 0;
+				mNextStepData.Step = NextStepData::eStep::wait_for_entry;
 				break;
 
-			case 7:
+			case NextStepData::eStep::game_clear:
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 				Director::getInstance()->replaceScene( step_clickclick::game::ResultScene::create( mScore ) );
 				break;
