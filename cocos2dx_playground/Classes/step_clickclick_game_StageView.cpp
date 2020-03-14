@@ -114,10 +114,10 @@ namespace step_clickclick
 			CHECK_ODD_NUMBER( mStageHeight );
 		}
 
-		StageView* StageView::create( const int width, const int height, const OnBlockCallback& on_block_callback )
+		StageView* StageView::create( const int width, const int height, const OnBlockCallback& on_block_callback, const StageViewConfig config )
 		{
 			auto ret = new ( std::nothrow ) StageView( width, height, on_block_callback );
-			if( !ret || !ret->init() )
+			if( !ret || !ret->init( config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -131,7 +131,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool StageView::init()
+		bool StageView::init( const StageViewConfig config )
 		{
 			if( !Node::init() )
 			{
@@ -148,19 +148,19 @@ namespace step_clickclick
 
 			setContentSize( stage_size );
 
-			// Pivot
-			//{
-			//	auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-			//	pivot->setScale( 2.f );
-			//	addChild( pivot, std::numeric_limits<int>::max() );
-			//}
+			if( config.bShowPivot )
+			{
+				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+				pivot->setScale( 2.f );
+				addChild( pivot, std::numeric_limits<int>::max() );
+			}
 
-			// Background Guide
-			//{
-			//	auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-			//	pivot->setPosition( pivot_position );
-			//	addChild( pivot, std::numeric_limits<int>::min() );
-			//}
+			if( config.bShowBackgroundGuide )
+			{
+				auto pivot = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
+				pivot->setPosition( pivot_position );
+				addChild( pivot, std::numeric_limits<int>::min() );
+			}
 
 			// Buttons
 			int linear_index = 0;

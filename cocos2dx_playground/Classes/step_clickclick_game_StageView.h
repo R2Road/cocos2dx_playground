@@ -21,6 +21,12 @@ namespace step_clickclick
 	{
 		class Stage;
 
+		struct StageViewConfig
+		{
+			bool bShowPivot = false;
+			bool bShowBackgroundGuide = false;
+		};
+
 		class StageView : public cocos2d::Node
 		{
 		public:
@@ -55,9 +61,9 @@ namespace step_clickclick
 			StageView( const int width, const int height, const OnBlockCallback& on_block_callback );
 
 		public:
-			static StageView* create( const int width, const int height, const OnBlockCallback& on_block_callback );
+			static StageView* create( const int width, const int height, const OnBlockCallback& on_block_callback, const StageViewConfig config = StageViewConfig() );
 
-			bool init() override;
+			bool init( const StageViewConfig config );
 			void Setup( const Stage& stage_data );
 			void UpdateBlock( const int linear_index, const int last_life, const int current_life );
 
