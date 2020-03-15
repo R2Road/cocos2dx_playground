@@ -27,6 +27,7 @@ namespace step_typetype
 	{
 		StageView::StageView( const std::size_t max_length ) :
 			mLetters( max_length, nullptr )
+			, mIndicator( nullptr )
 		{}
 
 		StageView* StageView::create( const std::size_t max_length, const StageViewConfig config )
@@ -104,6 +105,16 @@ namespace step_typetype
 				addChild( letter );
 			}
 
+			//
+			// Indicator
+			//
+			{
+				mIndicator = Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				mIndicator->setContentSize( Size( 12.f, 12.f ) );
+				mIndicator->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				addChild( mIndicator );
+			}
+
 			return true;
 		}
 
@@ -134,7 +145,7 @@ namespace step_typetype
 			);
 
 			//
-			// Setup
+			// Setup Letters
 			//
 			for( std::size_t i = 0; i < stage.GetLength(); ++i )
 			{
@@ -147,6 +158,14 @@ namespace step_typetype
 				mLetters[i]->setColor( Color3B::WHITE );
 				mLetters[i]->setVisible( true );
 			}
+
+			//
+			// Setup Indicator
+			//
+			{
+				mIndicator->setPosition( mLetters[0u]->getPosition() );
+				mIndicator->setVisible( true );
+			}
 		}
 		void StageView::RequestLetterDie( const std::size_t target_pos )
 		{
@@ -154,6 +173,16 @@ namespace step_typetype
 
 			mLetters[target_pos]->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 			mLetters[target_pos]->setColor( Color3B( 100u, 100u, 100u ) );
+
+			const auto indicator_pos = target_pos + 1u;
+			if( mLetters.size() > indicator_pos && mLetters[indicator_pos]->isVisible() )
+			{
+				mIndicator->setPosition( mLetters[indicator_pos]->getPosition() );
+			}
+			else
+			{
+				mIndicator->setVisible( false );
+			}
 		}
 	}
 }

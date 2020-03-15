@@ -6,6 +6,7 @@
 
 NS_CC_BEGIN
 	class Label;
+	class Sprite;
 NS_CC_END
 
 namespace step_typetype
@@ -37,6 +38,7 @@ namespace step_typetype
 
 		private:
 			ContainerT mLetters;
+			cocos2d::Sprite* mIndicator;
 		};
 	}
 }
