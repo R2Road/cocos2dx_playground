@@ -53,37 +53,50 @@ namespace step_typetype
 				return false;
 			}
 
-			const Size stage_size(
-				margin_size.width
-				+ ( mLetters.size() * letter_size.width )
-				+ margin_size.width
-				, margin_size.height
-				+ letter_size.height
-			);
-			setContentSize( stage_size );
-
-			if( config.bShowPivot )
+			//
+			// Content Size
+			//
 			{
-				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-				pivot->setScale( 2.f );
-				addChild( pivot, std::numeric_limits<int>::max() );
+				const Size node_size(
+					margin_size.width
+					+ ( mLetters.size() * letter_size.width )
+					+ margin_size.width
+					, margin_size.height
+					+ letter_size.height
+				);
+				setContentSize( node_size );
 			}
 
-			if( config.bShowBackgroundGuide )
+			//
+			// Config Setup
+			//
 			{
-				auto background = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-				background->setPosition( Vec2(
-					-getContentSize().width * 0.5f
-					, -getContentSize().height * 0.5f
-				) );
-				addChild( background, std::numeric_limits<int>::min() );
+				if( config.bShowPivot )
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 					pivot->setScale( 2.f );
-					background->addChild( pivot );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				if( config.bShowBackgroundGuide )
+				{
+					auto background = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
+					background->setPosition( Vec2(
+						-getContentSize().width * 0.5f
+						, -getContentSize().height * 0.5f
+					) );
+					addChild( background, std::numeric_limits<int>::min() );
+					{
+						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+						pivot->setScale( 2.f );
+						background->addChild( pivot );
+					}
 				}
 			}
 
+			//
+			// Letters
+			//
 			for( auto& letter : mLetters )
 			{
 				letter = Label::createWithTTF( "A", "fonts/arial.ttf", 10 );
