@@ -15,6 +15,7 @@ namespace step_typetype
 
 			void Reset( const std::size_t length );
 
+			std::size_t GetLength() const { return mLength; }
 			std::size_t GetIndicator_Current() const { return mIndicator_Current; }
 			std::size_t GetIndicator_End() const { return mIndicator_End; }
 			char GetLetter( const std::size_t target_pos ) const;
@@ -25,6 +26,7 @@ namespace step_typetype
 		private:
 			const char mLetter_Min;
 			const char mLetter_Max;
+			std::size_t mLength;
 			ContainerT mLetters;
 
 			std::size_t mIndicator_Current;

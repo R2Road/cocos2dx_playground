@@ -18,14 +18,16 @@ namespace step_typetype
 
 		void Stage::Reset( const std::size_t length )
 		{
+			mLength = std::min( std::max( 1u, length ), mLetters.capacity() );
+
 			mIndicator_Current = 0;
-			mIndicator_End = std::min( std::max( 1u, length ), mLetters.capacity() );
+			mIndicator_End = mLength;
 
 			std::random_device rd;
 			std::mt19937 randomEngine( rd() );
 			std::uniform_int_distribution<> dist( mLetter_Min, mLetter_Max );
 
-			for( std::size_t i = 0; i < mIndicator_End; ++i )
+			for( std::size_t i = 0; i < mLength; ++i )
 			{
 				mLetters[i] = static_cast<char>( dist( randomEngine ) );
 			}

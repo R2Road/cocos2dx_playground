@@ -103,14 +103,14 @@ namespace step_typetype
 
 		void StageView::Reset( const Stage& stage )
 		{
-			assert( stage.GetIndicator_End() <= mLetters.size() );
+			assert( stage.GetLength() <= mLetters.size() );
 
 			for( auto l : mLetters )
 			{
 				l->setVisible( false );
 			}
 
-			for( auto i = stage.GetIndicator_Current(); i < stage.GetIndicator_End(); ++i )
+			for( std::size_t i = 0; i < stage.GetLength(); ++i )
 			{
 				mLetters[i]->setString( StringUtils::format( "%c", stage.GetLetter( i ) ) );
 				mLetters[i]->setVisible( true );
