@@ -117,8 +117,9 @@ namespace step_typetype
 			// Stage View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
 				label->setTag( TAG_StageView );
+				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
