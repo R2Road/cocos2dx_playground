@@ -3,6 +3,7 @@
 #include <new>
 #include <sstream>
 
+#include "step_typetype_RootScene.h"
 #include "step_clickclick_RootScene.h"
 #include "Step01_RootScene.h"
 #include "step02_RootScene.h"
@@ -38,11 +39,13 @@ Scene* PlayGroundScene::create()
 	ss << "[ESC] : Shutdown";
 	ss << "\n";
 	ss << "\n";
-	ss << "[1] : " << step_clickclick::RootScene::getTitle();
+	ss << "[1] : " << step_typetype::RootScene::getTitle();
 	ss << "\n";
-	ss << "[2] : " << step01::RootScene::getTitle();
+	ss << "[2] : " << step_clickclick::RootScene::getTitle();
 	ss << "\n";
-	ss << "[3] : " << step02::RootScene::getTitle();
+	ss << "[3] : " << step01::RootScene::getTitle();
+	ss << "\n";
+	ss << "[4] : " << step02::RootScene::getTitle();
 	ss << "\n";
 	ss << "\n";
 	ss << "\n";
@@ -52,7 +55,6 @@ Scene* PlayGroundScene::create()
 	ss << "[9] : " << step99::RootScene::getTitle();
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-	label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 	label->setPosition( Vec2(
 		visibleOrigin.x + ( visibleSize.width * 0.5f )
 		, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -89,14 +91,15 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		break;
 
 	case EventKeyboard::KeyCode::KEY_1:
+		Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+		break;
+	case EventKeyboard::KeyCode::KEY_2:
 		Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		break;
-
-	case EventKeyboard::KeyCode::KEY_2:
+	case EventKeyboard::KeyCode::KEY_3:
 		Director::getInstance()->replaceScene( step01::RootScene::create() );
 		break;
-
-	case EventKeyboard::KeyCode::KEY_3:
+	case EventKeyboard::KeyCode::KEY_4:
 		Director::getInstance()->replaceScene( step02::RootScene::create() );
 		break;
 

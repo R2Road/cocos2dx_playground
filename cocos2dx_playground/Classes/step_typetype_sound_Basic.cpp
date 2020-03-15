@@ -1,4 +1,4 @@
-#include "step_clickclick_sound_Basic.h"
+#include "step_typetype_sound_Basic.h"
 
 #include <new>
 #include <sstream>
@@ -10,11 +10,11 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_clickclick_RootScene.h"
+#include "step_typetype_RootScene.h"
 
 USING_NS_CC;
 
-namespace step_clickclick
+namespace step_typetype
 {
 	namespace sound
 	{
@@ -66,7 +66,6 @@ namespace step_clickclick
 				ss << "[SPACE BAR] : Play Sound";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -79,7 +78,7 @@ namespace step_clickclick
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
 				addChild( background_layer, 0 );
 			}
 
@@ -96,8 +95,8 @@ namespace step_clickclick
 			// Input Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 12 );
+				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -121,27 +120,17 @@ namespace step_clickclick
 			Node::onExit();
 		}
 
-		void BasicScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
-		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 			}
 
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
-				{
-					return;
-				}
-				else
-				{
-					scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+				return;
 			}
 		}
 	}

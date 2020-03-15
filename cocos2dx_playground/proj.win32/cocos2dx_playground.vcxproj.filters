@@ -19,9 +19,6 @@
     <Filter Include="src\scene\step01">
       <UniqueIdentifier>{23d6f0e6-cda1-48d5-8cc2-def067a22a4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step01\input">
-      <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step02">
       <UniqueIdentifier>{6aade675-064c-4874-9f6b-dc07f058b9d4}</UniqueIdentifier>
     </Filter>
@@ -79,11 +76,23 @@
     <Filter Include="src\scene\step_clickclick\button">
       <UniqueIdentifier>{78ebed0e-5d7e-41b2-b6aa-65f57b5c0d0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_clickclick\sound">
-      <UniqueIdentifier>{6acee36b-12d4-4f2b-8cbd-46abf41ed62f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_clickclick\game">
       <UniqueIdentifier>{652a0772-9c10-4690-b125-871cae8fc31f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_typetype">
+      <UniqueIdentifier>{fc6cb230-d1f4-433c-8a14-1e6e1776c59e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_typetype\input">
+      <UniqueIdentifier>{3d342e76-ee38-4112-8c52-ccf6a4052275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_typetype\sprite">
+      <UniqueIdentifier>{893084e8-aead-4aca-bcff-f00e3ce8f14e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_typetype\sound">
+      <UniqueIdentifier>{6acee36b-12d4-4f2b-8cbd-46abf41ed62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_typetype\game">
+      <UniqueIdentifier>{78547db5-83f7-49ce-b454-8b4e73e9bee5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -134,9 +143,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_RootScene.cpp">
       <Filter>src\scene\step01</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Input_KeyCodeViewScene.cpp">
-      <Filter>src\scene\step01\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
       <Filter>src\scene\step01\game</Filter>
@@ -255,9 +261,6 @@
     <ClCompile Include="..\Classes\step_clickclick_button_BasicScene.cpp">
       <Filter>src\scene\step_clickclick\button</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_sound_Basic.cpp">
-      <Filter>src\scene\step_clickclick\sound</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_Stage.cpp">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClCompile>
@@ -281,6 +284,39 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_ExplainScene.cpp">
       <Filter>src\scene\step_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_RootScene.cpp">
+      <Filter>src\scene\step_typetype</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_input_KeyCodeViewScene.cpp">
+      <Filter>src\scene\step_typetype\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp">
+      <Filter>src\scene\step_typetype\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp">
+      <Filter>src\scene\step_typetype\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_sound_Basic.cpp">
+      <Filter>src\scene\step_typetype\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_StageTestScene.cpp">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_StageView.cpp">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_TitleScene.cpp">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_PlayScene.cpp">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_ResultScene.cpp">
+      <Filter>src\scene\step_typetype\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,9 +367,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_RootScene.h">
       <Filter>src\scene\step01</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Input_KeyCodeViewScene.h">
-      <Filter>src\scene\step01\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">
       <Filter>src\scene\step01\game</Filter>
@@ -461,9 +494,6 @@
     <ClInclude Include="..\Classes\step_clickclick_button_BasicScene.h">
       <Filter>src\scene\step_clickclick\button</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_sound_Basic.h">
-      <Filter>src\scene\step_clickclick\sound</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_Stage.h">
       <Filter>src\scene\step_clickclick\game</Filter>
     </ClInclude>
@@ -490,6 +520,39 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_ExplainScene.h">
       <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_RootScene.h">
+      <Filter>src\scene\step_typetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_input_KeyCodeViewScene.h">
+      <Filter>src\scene\step_typetype\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h">
+      <Filter>src\scene\step_typetype\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h">
+      <Filter>src\scene\step_typetype\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_sound_Basic.h">
+      <Filter>src\scene\step_typetype\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_StageTestScene.h">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_Stage.h">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_StageView.h">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_TitleScene.h">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_ResultScene.h">
+      <Filter>src\scene\step_typetype\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

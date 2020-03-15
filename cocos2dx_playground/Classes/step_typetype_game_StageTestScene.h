@@ -2,19 +2,21 @@
 
 #include "2d/CCScene.h"
 
-namespace step_clickclick
+#include "step_typetype_game_Stage.h"
+
+namespace step_typetype
 {
-	namespace sound
+	namespace game
 	{
-		class BasicScene : public cocos2d::Scene
+		class StageView;
+
+		class StageTestScene : public cocos2d::Scene	
 		{
 		private:
-			BasicScene();
+			StageTestScene();
 
 		public:
-			~BasicScene();
-
-			static const char* getTitle() { return "Sound : Basic"; }
+			static const char* getTitle() { return "Game : Stage Test"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
@@ -22,11 +24,16 @@ namespace step_clickclick
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
+			void updateStageLengthView();
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			std::size_t mCurrentStageLength;
+			Stage mStage;
+			StageView* mStageView;
 		};
 	}
 }

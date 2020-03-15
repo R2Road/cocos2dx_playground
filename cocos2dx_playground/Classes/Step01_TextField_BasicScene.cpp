@@ -64,6 +64,14 @@ namespace step01
 				addChild( label, 9999 );
 			}
 
+			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
+				addChild( background_layer, -1 );
+			}
+
 
 
 			const int TEXT_FIELD_MAX_LENGTH = 20;

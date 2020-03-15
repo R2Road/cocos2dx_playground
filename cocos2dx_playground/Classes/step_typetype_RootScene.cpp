@@ -1,21 +1,23 @@
-#include "step_clickclick_RootScene.h"
+#include "step_typetype_RootScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "PlayGroundScene.h"
 
-#include "step_clickclick_animation_BasicScene.h"
-#include "step_clickclick_animation_PlayNStopScene.h"
+#include "step_typetype_sprite_TextureTypeScene.h"
+#include "step_typetype_sprite_AnchorPointScene.h"
 
-#include "step_clickclick_button_BasicScene.h"
+#include "step_typetype_sound_Basic.h"
 
-#include "step_clickclick_game_TestScene.h"
-#include "step_clickclick_game_TitleScene.h"
+#include "step_typetype_input_KeyCodeViewScene.h"
+
+#include "step_typetype_game_StageTestScene.h"
+#include "step_typetype_game_TitleScene.h"
 
 USING_NS_CC;
 
-namespace step_clickclick
+namespace step_typetype
 {
 	RootScene::RootScene() : mKeyboardListener( nullptr ) {}
 
@@ -47,20 +49,22 @@ namespace step_clickclick
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << step_clickclick::animation::BasicScene::getTitle();
+			ss << "[1] " << step_typetype::sprite::TextureTypeScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step_clickclick::animation::PlayNStopScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[3] : " << step_clickclick::button::BasicScene::getTitle();
+			ss << "[2] " << step_typetype::sprite::AnchorPointScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_clickclick::game::TestScene::getTitle();
+			ss << "[3] " << step_typetype::input::KeyCodeViewScene::getTitle();
 			ss << std::endl;
-			ss << "[5] : " << step_clickclick::game::TitleScene::getTitle();
+			ss << std::endl;
+			ss << "[4] " << step_typetype::sound::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[5] " << step_typetype::game::StageTestScene::getTitle();
+			ss << std::endl;
+			ss << "[6] " << step_typetype::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -72,8 +76,8 @@ namespace step_clickclick
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
-			ret->addChild( background_layer, 0 );
+			auto background_layer = LayerColor::create( Color4B( 99, 1, 0, 255 ) );
+			ret->addChild( background_layer, -1 );
 		}
 
 		return ret;
@@ -106,21 +110,25 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step_clickclick::animation::BasicScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::sprite::TextureTypeScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step_clickclick::animation::PlayNStopScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::sprite::AnchorPointScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_clickclick::button::BasicScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step_clickclick::game::TestScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::sound::BasicScene::create() );
 			break;
+
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::game::StageTestScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_6:
+			Director::getInstance()->replaceScene( step_typetype::game::TitleScene::create() );
 			break;
 
 		default:

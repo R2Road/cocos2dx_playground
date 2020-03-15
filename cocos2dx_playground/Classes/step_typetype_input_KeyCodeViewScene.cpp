@@ -1,8 +1,8 @@
-#include "Step01_Input_KeyCodeViewScene.h"
+#include "step_typetype_input_KeyCodeViewScene.h"
 
 #include <sstream>
 
-#include "Step01_RootScene.h"
+#include "step_typetype_RootScene.h"
 
 USING_NS_CC;
 
@@ -11,7 +11,7 @@ namespace
 	const int TAG_KeyCodeViewNode = 20140416;
 }
 
-namespace step01
+namespace step_typetype
 {
 	namespace input
 	{
@@ -48,7 +48,7 @@ namespace step01
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Input - Key Code View";
+				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
@@ -57,7 +57,6 @@ namespace step01
 				ss << "[Keyboard] : Show Key Code";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -70,18 +69,17 @@ namespace step01
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
-				addChild( background_layer, 0 );
+				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
+				addChild( background_layer, -1 );
 			}
 
 			//
 			// KeyCode View
 			//
 			{
-				auto label = Label::createWithTTF( "Press Key", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Press Key", "fonts/arial.ttf", 12 );
 				label->setTag( TAG_KeyCodeViewNode );
 				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5, 0.5 ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -113,7 +111,7 @@ namespace step01
 
 		void KeyCodeViewScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step01::RootScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
 		}
 		void KeyCodeViewScene::updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode )
 		{
