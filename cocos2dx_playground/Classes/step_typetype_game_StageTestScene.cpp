@@ -94,6 +94,14 @@ namespace step_typetype
 			}
 
 			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
+				addChild( background_layer, -1 );
+			}
+
+			//
 			// Stage Length View
 			//
 			{
@@ -108,14 +116,6 @@ namespace step_typetype
 				addChild( label, 9999 );
 
 				updateStageLengthView();
-			}
-
-			//
-			// Background
-			//
-			{
-				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
-				addChild( background_layer, -1 );
 			}
 
 			//
