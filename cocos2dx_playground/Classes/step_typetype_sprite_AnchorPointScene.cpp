@@ -180,23 +180,13 @@ namespace step_typetype
 			Node::onExit();
 		}
 
-		void AnchorPointScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
-		}
 		void AnchorPointScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
 				return;
 			}
-
-			if( isScheduled( schedule_selector( AnchorPointScene::updateForExit ) ) )
-			{
-				return;
-			}
-
-			scheduleOnce( schedule_selector( AnchorPointScene::updateForExit ), 0.f );
 		}
 	}
 }

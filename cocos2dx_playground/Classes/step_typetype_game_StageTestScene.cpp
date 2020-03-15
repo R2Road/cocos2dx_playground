@@ -160,20 +160,13 @@ namespace step_typetype
 			label->setString( StringUtils::format( "Stage Length : %d", mCurrentStageLength ) );
 		}
 
-		void StageTestScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
-		}
 		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				if( !isScheduled( schedule_selector( StageTestScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( StageTestScene::updateForExit ), 0.f );
-				}
-				break;
+				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+				return;
 
 			case EventKeyboard::KeyCode::KEY_1: // increase stage size + reset
 				{

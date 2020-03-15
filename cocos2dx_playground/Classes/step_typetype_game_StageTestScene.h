@@ -26,7 +26,6 @@ namespace step_typetype
 		private:
 			void updateStageLengthView();
 
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:

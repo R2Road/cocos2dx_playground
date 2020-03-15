@@ -160,23 +160,13 @@ namespace step_typetype
 			Node::onExit();
 		}
 
-		void TextureTypeScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
-		}
 		void TextureTypeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
 				return;
 			}
-
-			if( isScheduled( schedule_selector( TextureTypeScene::updateForExit ) ) )
-			{
-				return;
-			}
-
-			scheduleOnce( schedule_selector( TextureTypeScene::updateForExit ), 0.f );
 		}
 	}
 }

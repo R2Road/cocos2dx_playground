@@ -120,10 +120,6 @@ namespace step_typetype
 			Node::onExit();
 		}
 
-		void BasicScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
-		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
@@ -133,14 +129,8 @@ namespace step_typetype
 
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
-				{
-					return;
-				}
-				else
-				{
-					scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+				return;
 			}
 		}
 	}
