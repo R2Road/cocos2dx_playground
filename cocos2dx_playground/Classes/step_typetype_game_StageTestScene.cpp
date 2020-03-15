@@ -9,6 +9,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "step_typetype_RootScene.h"
 
@@ -16,7 +17,8 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_StageView = 20140416;
+	const int TAG_StageLengthView = 20140416;
+	const int TAG_StageView = 20160528;
 }
 
 namespace step_typetype
@@ -87,6 +89,23 @@ namespace step_typetype
 			}
 
 			//
+			// Stage Length View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
+				label->setTag( TAG_StageLengthView );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, 9999 );
+
+				updateStageLengthView();
+			}
+
+			//
 			// Background
 			//
 			{
@@ -131,6 +150,11 @@ namespace step_typetype
 			Node::onExit();
 		}
 
+		void StageTestScene::updateStageLengthView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_StageLengthView ) );
+			label->setString( StringUtils::format( "Stage Length : %d", mCurrentStageLength ) );
+		}
 		void StageTestScene::updateStage()
 		{
 			std::stringstream ss;
@@ -164,6 +188,8 @@ namespace step_typetype
 			if( EventKeyboard::KeyCode::KEY_1 == keycode )
 			{
 				++mCurrentStageLength;
+				updateStageLengthView();
+
 				mStage.Reset( mCurrentStageLength );
 				updateStage();
 			}
@@ -174,6 +200,8 @@ namespace step_typetype
 					? mCurrentStageLength - 1
 					: 0
 				);
+				updateStageLengthView();
+
 				mStage.Reset( mCurrentStageLength );
 				updateStage();
 			}

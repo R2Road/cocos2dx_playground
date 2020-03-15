@@ -22,6 +22,7 @@ namespace step_typetype
 			void onExit() override;
 
 		private:
+			void updateStageLengthView();
 			void updateStage();
 
 			void updateForExit( float dt );
