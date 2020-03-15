@@ -55,8 +55,6 @@ namespace step_clickclick
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << "[F1] : Result Scene Test";
