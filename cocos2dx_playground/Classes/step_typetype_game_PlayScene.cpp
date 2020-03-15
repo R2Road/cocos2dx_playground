@@ -65,22 +65,7 @@ namespace step_typetype
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[1] : Increase Stage Size And Reset";
-				ss << std::endl;
-				ss << "[2] : Decrease Stage Size And Reset";
-				ss << std::endl;
-				ss << "[R] : Stage Reset";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[P] : Auto Play Once : Success";
-				ss << std::endl;
-				ss << "[O] : Auto Play Once : Failed";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -141,67 +126,34 @@ namespace step_typetype
 		}
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			switch( keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
 				{
 					scheduleOnce( schedule_selector( PlayScene::updateForExit ), 0.f );
-				}
-				break;
-
-			case EventKeyboard::KeyCode::KEY_1: // increase stage size + reset
-				{
-					++mCurrentStageLength;
-
-					mStage.Reset( mCurrentStageLength );
-					mStageView->Reset( mStage );
-				}
-				break;
-			case EventKeyboard::KeyCode::KEY_2: // decrease stage size + reset
-				{
-					mCurrentStageLength = (
-						mCurrentStageLength > 0
-						? mCurrentStageLength - 1
-						: 0
-					);
-
-					mStage.Reset( mCurrentStageLength );
-					mStageView->Reset( mStage );
-				}
-				break;
-				
-			case EventKeyboard::KeyCode::KEY_R: // stage reset
-				{
-					mStage.Reset( mCurrentStageLength );
-					mStageView->Reset( mStage );
-				}
-				break;
-
-			case EventKeyboard::KeyCode::KEY_O: // auto play once : failed
-				if( !mStage.IsGameClear() )
-				{
-					const auto target_letter_pos = mStage.GetIndicator_Current();
-					const auto target_letter = mStage.GetLetter( target_letter_pos ) + 1;
-					mStage.RequestRemoveLetter( target_letter );
-
-					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
 					return;
 				}
-				break;
-			case EventKeyboard::KeyCode::KEY_P: // auto play once : success
-				if( !mStage.IsGameClear() )
-				{
-					const auto target_letter_pos = mStage.GetIndicator_Current();
-					const auto target_letter = mStage.GetLetter( target_letter_pos );
-					mStage.RequestRemoveLetter( target_letter );
+			}
 
+			if( EventKeyboard::KeyCode::KEY_A <= keycode && EventKeyboard::KeyCode::KEY_Z >= keycode )
+			{
+				static const char offset = static_cast<char>( EventKeyboard::KeyCode::KEY_A ) - 65; // 65 == 'A'
+
+				const auto target_letter_code = static_cast<char>( keycode ) - offset;
+				const auto target_letter_pos = mStage.GetIndicator_Current();
+				if( mStage.RequestRemoveLetter( target_letter_code ) )
+				{
 					mStageView->RequestLetterDie( target_letter_pos );
-
 					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
-					return;
 				}
-				break;
+				else
+				{
+					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+				}
+			}
+			else
+			{
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
 			}
 		}
 	}
