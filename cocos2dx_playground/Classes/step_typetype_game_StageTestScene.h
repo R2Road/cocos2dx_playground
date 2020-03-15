@@ -2,6 +2,8 @@
 
 #include "2d/CCScene.h"
 
+#include "step_typetype_game_Stage.h"
+
 namespace step_typetype
 {
 	namespace game
@@ -20,11 +22,16 @@ namespace step_typetype
 			void onExit() override;
 
 		private:
+			void updateStage();
+
 			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			std::size_t mCurrentStageLength;
+			Stage mStage;
 		};
 	}
 }

@@ -14,11 +14,20 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const int TAG_StageView = 20140416;
+}
+
 namespace step_typetype
 {
 	namespace game
 	{
-		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ) {}
+		StageTestScene::StageTestScene() :
+			mCurrentStageLength( 1 )
+			, mStage( 10 )
+			, mKeyboardListener( nullptr )
+		{}
 
 		Scene* StageTestScene::create()
 		{
@@ -75,6 +84,21 @@ namespace step_typetype
 				addChild( background_layer, 0 );
 			}
 
+			//
+			// Stage View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+				label->setTag( TAG_StageView );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( label, 9999 );
+			}
+
+			updateStage();
+
 			return true;
 		}
 
@@ -96,6 +120,20 @@ namespace step_typetype
 			Node::onExit();
 		}
 
+		void StageTestScene::updateStage()
+		{
+			mStage.Reset( mCurrentStageLength );
+
+			std::stringstream ss;
+			for( std::size_t i = 0; i < mStage.GetIndicator_End(); ++i )
+			{
+				ss << mStage.GetLetter( i );
+			}
+
+			auto label = static_cast<Label*>( getChildByTag( TAG_StageView ) );
+			label->setString( ss.str() );
+		}
+
 		void StageTestScene::updateForExit( float /*dt*/ )
 		{
 			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
@@ -112,6 +150,24 @@ namespace step_typetype
 				{
 					scheduleOnce( schedule_selector( StageTestScene::updateForExit ), 0.f );
 				}
+			}
+
+			if( EventKeyboard::KeyCode::KEY_1 == keycode )
+			{
+				++mCurrentStageLength;
+			}
+			if( EventKeyboard::KeyCode::KEY_2 == keycode )
+			{
+				mCurrentStageLength = (
+					mCurrentStageLength > 0
+					? mCurrentStageLength - 1
+					: 0
+				);
+			}
+
+			if( EventKeyboard::KeyCode::KEY_R == keycode )
+			{
+				updateStage();
 			}
 		}
 	}
