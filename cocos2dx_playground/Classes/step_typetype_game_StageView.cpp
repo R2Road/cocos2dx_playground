@@ -87,6 +87,8 @@ namespace step_typetype
 						, -getContentSize().height * 0.5f
 					) );
 					addChild( background, std::numeric_limits<int>::min() );
+
+					if( config.bShowPivot )
 					{
 						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 						pivot->setScale( 2.f );
