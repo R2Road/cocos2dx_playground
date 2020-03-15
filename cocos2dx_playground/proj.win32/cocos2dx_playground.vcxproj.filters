@@ -91,6 +91,9 @@
     <Filter Include="src\scene\step_typetype\sound">
       <UniqueIdentifier>{6acee36b-12d4-4f2b-8cbd-46abf41ed62f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_typetype\game">
+      <UniqueIdentifier>{78547db5-83f7-49ce-b454-8b4e73e9bee5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -296,6 +299,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_sound_Basic.cpp">
       <Filter>src\scene\step_typetype\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_StageTestScene.cpp">
+      <Filter>src\scene\step_typetype\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -514,6 +520,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sound_Basic.h">
       <Filter>src\scene\step_typetype\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_StageTestScene.h">
+      <Filter>src\scene\step_typetype\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
