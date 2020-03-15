@@ -34,7 +34,7 @@ namespace step_clickclick
 			const int TAG_ActiveBlockCountView = 9999;
 		}
 
-		TestScene::TestScene() :
+		StageTestScene::StageTestScene() :
 			mKeyboardListener( nullptr )
 			, mStage()
 			, mStageView( nullptr )
@@ -43,9 +43,9 @@ namespace step_clickclick
 			, mTestActionType( eTestActionType::Increase )
 		{}
 
-		Scene* TestScene::create()
+		Scene* StageTestScene::create()
 		{
-			auto ret = new ( std::nothrow ) TestScene();
+			auto ret = new ( std::nothrow ) StageTestScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -60,7 +60,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool TestScene::init()
+		bool StageTestScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -124,7 +124,7 @@ namespace step_clickclick
 			{
 				mStageView = step_clickclick::game::StageView::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
-					, std::bind( &TestScene::onGameProcess, this, std::placeholders::_1 )
+					, std::bind( &StageTestScene::onGameProcess, this, std::placeholders::_1 )
 					, StageViewConfig{ true, true }
 				);
 				mStageView->setPosition( Vec2(
@@ -188,15 +188,15 @@ namespace step_clickclick
 			return true;
 		}
 
-		void TestScene::onEnter()
+		void StageTestScene::onEnter()
 		{
 			Scene::onEnter();
 
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageTestScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void TestScene::onExit()
+		void StageTestScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -206,7 +206,7 @@ namespace step_clickclick
 		}
 
 
-		void TestScene::onGameProcess( const int block_linear_index )
+		void StageTestScene::onGameProcess( const int block_linear_index )
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 
@@ -234,7 +234,7 @@ namespace step_clickclick
 		}
 
 
-		void TestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
@@ -263,7 +263,7 @@ namespace step_clickclick
 			}
 		}
 
-		void TestScene::updateTestAction( const eTestActionType test_action_type )
+		void StageTestScene::updateTestAction( const eTestActionType test_action_type )
 		{
 			mTestActionType = test_action_type;
 
@@ -283,7 +283,7 @@ namespace step_clickclick
 				assert( false );
 			}
 		}
-		void TestScene::updateSelectedBlockTypeView( const eBlockType block_type )
+		void StageTestScene::updateSelectedBlockTypeView( const eBlockType block_type )
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedBlockTypeView ) );
 			switch( block_type )
@@ -301,7 +301,7 @@ namespace step_clickclick
 				assert( false );
 			}
 		}
-		void TestScene::updateActiveBlockCountView( const int count )
+		void StageTestScene::updateActiveBlockCountView( const int count )
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_ActiveBlockCountView ) );
 			label->setString( StringUtils::format( "Remain Block Count : %d", count ) );
