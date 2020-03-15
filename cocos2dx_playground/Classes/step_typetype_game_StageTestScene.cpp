@@ -144,6 +144,7 @@ namespace step_typetype
 			}
 
 			mStage.Reset( mCurrentStageLength );
+			mStageView->Reset( mStage );
 			updateStage();
 
 			return true;
@@ -208,6 +209,7 @@ namespace step_typetype
 				updateStageLengthView();
 
 				mStage.Reset( mCurrentStageLength );
+				mStageView->Reset( mStage );
 				updateStage();
 			}
 			if( EventKeyboard::KeyCode::KEY_2 == keycode )
@@ -220,12 +222,14 @@ namespace step_typetype
 				updateStageLengthView();
 
 				mStage.Reset( mCurrentStageLength );
+				mStageView->Reset( mStage );
 				updateStage();
 			}
 
 			if( EventKeyboard::KeyCode::KEY_R == keycode )
 			{
 				mStage.Reset( mCurrentStageLength );
+				mStageView->Reset( mStage );
 				updateStage();
 				return;
 			}

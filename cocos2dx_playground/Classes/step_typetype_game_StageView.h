@@ -32,6 +32,8 @@ namespace step_typetype
 
 			bool init( const StageViewConfig config );
 
+			void Reset( const Stage& stage );
+
 		private:
 			ContainerT mLetters;
 		};

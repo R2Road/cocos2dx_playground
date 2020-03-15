@@ -1,12 +1,16 @@
 #include "step_typetype_game_StageView.h"
 
+#include <algorithm>
 #include <new>
 #include <numeric>
+#include <string>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "base/ccUTF8.h"
 
+#include "step_typetype_game_Stage.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -95,6 +99,22 @@ namespace step_typetype
 			}
 
 			return true;
+		}
+
+		void StageView::Reset( const Stage& stage )
+		{
+			assert( stage.GetIndicator_End() <= mLetters.size() );
+
+			for( auto l : mLetters )
+			{
+				l->setVisible( false );
+			}
+
+			for( auto i = stage.GetIndicator_Current(); i < stage.GetIndicator_End(); ++i )
+			{
+				mLetters[i]->setString( StringUtils::format( "%c", stage.GetLetter( i ) ) );
+				mLetters[i]->setVisible( true );
+			}
 		}
 	}
 }
