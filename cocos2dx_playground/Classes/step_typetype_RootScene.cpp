@@ -13,6 +13,7 @@
 #include "step_typetype_input_KeyCodeViewScene.h"
 
 #include "step_typetype_game_StageTestScene.h"
+#include "step_typetype_game_TitleScene.h"
 
 USING_NS_CC;
 
@@ -60,6 +61,8 @@ namespace step_typetype
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[5] " << step_typetype::game::StageTestScene::getTitle();
+			ss << std::endl;
+			ss << "[6] " << step_typetype::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -123,6 +126,9 @@ namespace step_typetype
 
 		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( step_typetype::game::StageTestScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_6:
+			Director::getInstance()->replaceScene( step_typetype::game::TitleScene::create() );
 			break;
 
 		default:
