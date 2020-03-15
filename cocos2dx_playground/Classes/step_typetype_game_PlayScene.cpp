@@ -18,6 +18,7 @@ USING_NS_CC;
 
 namespace
 {
+	const int TAG_NextStageIndicator = 20140416;
 	const int STAGE_MAX_LENGTH = 20;
 }
 
@@ -96,6 +97,21 @@ namespace step_typetype
 				addChild( mStageView );
 			}
 
+			//
+			// Next Stage Indicator
+			//
+			{
+				auto label = Label::createWithTTF( "ENTER", "fonts/arial.ttf", 9 );
+				label->setTag( TAG_NextStageIndicator );
+				label->setColor( Color3B::GREEN );
+				label->setVisible( false );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( label, 9999 );
+			}
+
 			mStage.Reset( mCurrentStageLength );
 			mStageView->Reset( mStage );
 
@@ -135,25 +151,38 @@ namespace step_typetype
 				}
 			}
 
-			if( EventKeyboard::KeyCode::KEY_A <= keycode && EventKeyboard::KeyCode::KEY_Z >= keycode )
+			if( !mStage.IsGameClear() )
 			{
-				static const char offset = static_cast<char>( EventKeyboard::KeyCode::KEY_A ) - 65; // 65 == 'A'
+				if( EventKeyboard::KeyCode::KEY_A <= keycode && EventKeyboard::KeyCode::KEY_Z >= keycode )
+				{
+					static const char offset = static_cast<char>( EventKeyboard::KeyCode::KEY_A ) - 65; // 65 == 'A'
 
-				const auto target_letter_code = static_cast<char>( keycode ) - offset;
-				const auto target_letter_pos = mStage.GetIndicator_Current();
-				if( mStage.RequestLetterDie( target_letter_code ) )
-				{
-					mStageView->RequestLetterDie( target_letter_pos );
-					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
-				}
-				else
-				{
-					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+					const auto target_letter_code = static_cast<char>( keycode ) - offset;
+					const auto target_letter_pos = mStage.GetIndicator_Current();
+					if( mStage.RequestLetterDie( target_letter_code ) )
+					{
+						mStageView->RequestLetterDie( target_letter_pos );
+						experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
+
+						if( mStage.IsGameClear() )
+						{
+							getChildByTag( TAG_NextStageIndicator )->setVisible( true );
+						}
+					}
+					else
+					{
+						experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+					}
 				}
 			}
-			else
+			else if( EventKeyboard::KeyCode::KEY_ENTER == keycode )
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+				++mCurrentStageLength;
+				mStage.Reset( mCurrentStageLength );
+				mStageView->Reset( mStage );
+
+				getChildByTag( TAG_NextStageIndicator )->setVisible( false );
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 			}
 		}
 	}
