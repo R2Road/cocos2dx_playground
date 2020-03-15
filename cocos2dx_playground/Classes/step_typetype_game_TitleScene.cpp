@@ -12,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "step_typetype_RootScene.h"
+#include "step_typetype_game_PlayScene.h"
 
 USING_NS_CC;
 
@@ -51,8 +52,6 @@ namespace step_typetype
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
@@ -124,19 +123,17 @@ namespace step_typetype
 			Node::onExit();
 		}
 
-		void TitleScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
-		}
-
 		void TitleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( TitleScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( TitleScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
+			{
+				Director::getInstance()->replaceScene( step_typetype::game::PlayScene::create() );
 				return;
 			}
 		}

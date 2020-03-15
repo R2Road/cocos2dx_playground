@@ -312,6 +312,9 @@
     <ClCompile Include="..\Classes\step_typetype_game_TitleScene.cpp">
       <Filter>src\scene\step_typetype\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_PlayScene.cpp">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -540,6 +543,9 @@
       <Filter>src\scene\step_typetype\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_TitleScene.h">
+      <Filter>src\scene\step_typetype\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h">
       <Filter>src\scene\step_typetype\game</Filter>
     </ClInclude>
   </ItemGroup>

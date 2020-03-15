@@ -185,6 +185,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_Stage.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_TestScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_PlayScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_StageTestScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_StageView.cpp" />
@@ -263,6 +264,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_Stage.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_TestScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_Stage.h" />
     <ClInclude Include="..\Classes\step_typetype_game_StageTestScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_StageView.h" />
