@@ -186,6 +186,7 @@ namespace step_typetype
 			else if( EventKeyboard::KeyCode::KEY_ENTER == keycode )
 			{
 				mCurrentStageLength += 2;
+				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.2f );
 
 				if( mCurrentStageLength < mStage.GetLength_MAX() ) // go next stage
 				{
@@ -193,7 +194,6 @@ namespace step_typetype
 					mStageView->Reset( mStage );
 
 					getChildByTag( TAG_NextStageIndicator )->setVisible( false );
-					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 				}
 				else // game clear
 				{
