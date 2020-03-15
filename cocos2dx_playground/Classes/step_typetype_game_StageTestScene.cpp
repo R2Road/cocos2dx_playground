@@ -187,11 +187,14 @@ namespace step_typetype
 
 			if( EventKeyboard::KeyCode::KEY_P == keycode )
 			{
-				const auto target_letter = mStage.GetLetter( mStage.GetIndicator_Current() );
-				mStage.RequestRemoveLetter( target_letter );
+				if( !mStage.IsGameClear() )
+				{
+					const auto target_letter = mStage.GetLetter( mStage.GetIndicator_Current() );
+					mStage.RequestRemoveLetter( target_letter );
 
-				updateStage();
-				return;
+					updateStage();
+					return;
+				}
 			}
 		}
 	}
