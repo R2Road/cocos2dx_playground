@@ -212,7 +212,7 @@ namespace step_typetype
 
 					mStageView->RequestLetterDie( target_letter_pos );
 
-					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
+					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.5f );
 					return;
 				}
 				break;
