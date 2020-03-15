@@ -84,25 +84,11 @@ namespace step_typetype
 				}
 			}
 
-			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
-
-			const Vec2 letter_pivot_position(
-				pivot_position
-				+ Vec2( margin_size.width, margin_size.height )
-				+ Vec2( ( letter_size.width * 0.5f ), 0.f )
-			);
-			int letter_index = 0;
 			for( auto& letter : mLetters )
 			{
 				letter = Label::createWithTTF( "A", "fonts/arial.ttf", 10 );
 				letter->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				letter->setPosition(
-					letter_pivot_position
-					+ Vec2( ( letter_index * letter_size.width ), 0.f )
-				);
 				addChild( letter );
-
-				++letter_index;
 			}
 
 			return true;
@@ -112,14 +98,38 @@ namespace step_typetype
 		{
 			assert( stage.GetLength() <= mLetters.size() );
 
+			//
+			// Hide All
+			//
 			for( auto l : mLetters )
 			{
 				l->setVisible( false );
 			}
 
+			const Size stage_size(
+				margin_size.width
+				+ ( stage.GetLength() * letter_size.width )
+				+ margin_size.width
+				, margin_size.height
+				+ letter_size.height
+			);
+			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
+			const Vec2 letter_pivot_position(
+				pivot_position
+				+ Vec2( margin_size.width, margin_size.height )
+				+ Vec2( ( letter_size.width * 0.5f ), 0.f )
+			);
+
+			//
+			// Setup
+			//
 			for( std::size_t i = 0; i < stage.GetLength(); ++i )
 			{
 				mLetters[i]->setString( StringUtils::format( "%c", stage.GetLetter( i ) ) );
+				mLetters[i]->setPosition(
+					letter_pivot_position
+					+ Vec2( ( i * letter_size.width ), 0.f )
+				);
 				mLetters[i]->setVisible( true );
 			}
 		}
