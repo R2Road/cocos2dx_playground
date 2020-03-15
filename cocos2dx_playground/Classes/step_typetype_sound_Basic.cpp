@@ -128,7 +128,7 @@ namespace step_typetype
 		{
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 			}
 
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )

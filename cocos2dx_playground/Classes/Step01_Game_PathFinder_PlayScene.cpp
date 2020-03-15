@@ -237,7 +237,7 @@ namespace step01
 				//
 				// sfx
 				//
-				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 
 				//
 				// move player
