@@ -175,7 +175,7 @@ namespace step_typetype
 				}
 				break;
 
-			case EventKeyboard::KeyCode::KEY_1:
+			case EventKeyboard::KeyCode::KEY_1: // increase stage size + reset
 				{
 					++mCurrentStageLength;
 					updateStageLengthView();
@@ -184,7 +184,7 @@ namespace step_typetype
 					mStageView->Reset( mStage );
 				}
 				break;
-			case EventKeyboard::KeyCode::KEY_2:
+			case EventKeyboard::KeyCode::KEY_2: // decrease stage size + reset
 				{
 					mCurrentStageLength = (
 						mCurrentStageLength > 0
@@ -198,14 +198,14 @@ namespace step_typetype
 				}
 				break;
 				
-			case EventKeyboard::KeyCode::KEY_R:
+			case EventKeyboard::KeyCode::KEY_R: // stage reset
 				{
 					mStage.Reset( mCurrentStageLength );
 					mStageView->Reset( mStage );
 				}
 				break;
 
-			case EventKeyboard::KeyCode::KEY_O:
+			case EventKeyboard::KeyCode::KEY_O: // auto play once : failed
 				if( !mStage.IsGameClear() )
 				{
 					const auto target_letter_pos = mStage.GetIndicator_Current();
@@ -216,7 +216,7 @@ namespace step_typetype
 					return;
 				}
 				break;
-			case EventKeyboard::KeyCode::KEY_P:
+			case EventKeyboard::KeyCode::KEY_P: // auto play once : success
 				if( !mStage.IsGameClear() )
 				{
 					const auto target_letter_pos = mStage.GetIndicator_Current();
