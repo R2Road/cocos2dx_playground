@@ -73,7 +73,6 @@ namespace step_clickclick
 			{
 				auto label = Label::createWithTTF( "Chanllenge to Remove All Blocks", "fonts/arial.ttf", 18 );
 				label->setColor( Color3B::WHITE );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.86f
@@ -86,7 +85,6 @@ namespace step_clickclick
 			//
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_single.png" );
-				sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.3f
@@ -106,7 +104,6 @@ namespace step_clickclick
 			//
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_together.png" );
-				sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.3f
@@ -126,7 +123,6 @@ namespace step_clickclick
 			//
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_different.png" );
-				sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.3f
@@ -147,7 +143,6 @@ namespace step_clickclick
 			//
 			{
 				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 14 );
-				request_input_label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				request_input_label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.18f
