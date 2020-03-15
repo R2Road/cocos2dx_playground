@@ -97,6 +97,7 @@ namespace step_typetype
 				addChild( label, 9999 );
 			}
 
+			mStage.Reset( mCurrentStageLength );
 			updateStage();
 
 			return true;
@@ -122,8 +123,6 @@ namespace step_typetype
 
 		void StageTestScene::updateStage()
 		{
-			mStage.Reset( mCurrentStageLength );
-
 			std::stringstream ss;
 			for( std::size_t i = 0; i < mStage.GetIndicator_End(); ++i )
 			{
@@ -167,7 +166,9 @@ namespace step_typetype
 
 			if( EventKeyboard::KeyCode::KEY_R == keycode )
 			{
+				mStage.Reset( mCurrentStageLength );
 				updateStage();
+				return;
 			}
 		}
 	}
