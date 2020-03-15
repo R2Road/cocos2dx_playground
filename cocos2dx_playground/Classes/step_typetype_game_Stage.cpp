@@ -37,5 +37,17 @@ namespace step_typetype
 
 			return mLetters[target_pos];
 		}
+
+		bool Stage::RequestRemoveLetter( const char letter )
+		{
+			if( letter != mLetters[mIndicator_Current] )
+			{
+				return false;
+			}
+
+			++mIndicator_Current;
+
+			return true;
+		}
 	}
 }

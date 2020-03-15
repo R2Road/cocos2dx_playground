@@ -124,7 +124,7 @@ namespace step_typetype
 		void StageTestScene::updateStage()
 		{
 			std::stringstream ss;
-			for( std::size_t i = 0; i < mStage.GetIndicator_End(); ++i )
+			for( std::size_t i = mStage.GetIndicator_Current(); i < mStage.GetIndicator_End(); ++i )
 			{
 				ss << mStage.GetLetter( i );
 			}
@@ -167,6 +167,15 @@ namespace step_typetype
 			if( EventKeyboard::KeyCode::KEY_R == keycode )
 			{
 				mStage.Reset( mCurrentStageLength );
+				updateStage();
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_P == keycode )
+			{
+				const auto target_letter = mStage.GetLetter( mStage.GetIndicator_Current() );
+				mStage.RequestRemoveLetter( target_letter );
+
 				updateStage();
 				return;
 			}
