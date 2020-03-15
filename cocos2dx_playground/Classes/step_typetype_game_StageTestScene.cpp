@@ -26,8 +26,8 @@ namespace step_typetype
 	namespace game
 	{
 		StageTestScene::StageTestScene() :
-			mCurrentStageLength( 1 )
-			, mStage( 10 )
+			mCurrentStageLength( 4 )
+			, mStage( 20 )
 			, mKeyboardListener( nullptr )
 		{}
 
