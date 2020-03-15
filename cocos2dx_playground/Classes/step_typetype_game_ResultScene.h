@@ -2,26 +2,21 @@
 
 #include "2d/CCScene.h"
 
-#include "step_typetype_game_Stage.h"
-
 namespace step_typetype
 {
 	namespace game
 	{
-		class StageView;
-
-		class PlayScene : public cocos2d::Scene	
+		class ResultScene : public cocos2d::Scene
 		{
 		private:
-			PlayScene();
+			ResultScene();
 
 		public:
-			static const char* getTitle() { return "Game : Play"; }
-			static cocos2d::Scene* create();
+			static const char* getTitle() { return "Game : Result"; }
+			static cocos2d::Scene* create( const double clear_time );
 
-			bool init() override;
+			bool init( const double clear_time );
 			void onEnter() override;
-			void update( float dt ) override;
 			void onExit() override;
 
 		private:
@@ -30,11 +25,6 @@ namespace step_typetype
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-			std::size_t mCurrentStageLength;
-			Stage mStage;
-			StageView* mStageView;
-			double mElapsedTime;
 		};
 	}
 }

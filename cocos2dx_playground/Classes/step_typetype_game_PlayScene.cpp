@@ -11,6 +11,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "step_typetype_game_ResultScene.h"
 #include "step_typetype_game_StageView.h"
 #include "step_typetype_game_TitleScene.h"
 
@@ -31,6 +32,7 @@ namespace step_typetype
 			, mCurrentStageLength( 4 )
 			, mStage( STAGE_MAX_LENGTH )
 			, mStageView( nullptr )
+			, mElapsedTime( 0 )
 		{}
 
 		Scene* PlayScene::create()
@@ -44,6 +46,7 @@ namespace step_typetype
 			}
 			else
 			{
+				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -127,6 +130,11 @@ namespace step_typetype
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
+		void PlayScene::update( float dt )
+		{
+			mElapsedTime += dt;
+			Scene::update( dt );
+		}
 		void PlayScene::onExit()
 		{
 			assert( mKeyboardListener );
@@ -177,7 +185,7 @@ namespace step_typetype
 			}
 			else if( EventKeyboard::KeyCode::KEY_ENTER == keycode )
 			{
-				++mCurrentStageLength;
+				mCurrentStageLength += 2;
 
 				if( mCurrentStageLength < mStage.GetLength_MAX() ) // go next stage
 				{
@@ -189,7 +197,7 @@ namespace step_typetype
 				}
 				else // game clear
 				{
-					// do some thing
+					Director::getInstance()->replaceScene( step_typetype::game::ResultScene::create( mElapsedTime ) );
 				}
 			}
 		}
