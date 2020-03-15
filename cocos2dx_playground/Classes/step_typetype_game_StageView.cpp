@@ -15,6 +15,12 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const Size letter_size( 12.f, 12.f );
+	const Size margin_size( 2.f, 2.f );
+}
+
 namespace step_typetype
 {
 	namespace game
@@ -47,8 +53,6 @@ namespace step_typetype
 				return false;
 			}
 
-			const Size letter_size( 12.f, 12.f );
-			const Size margin_size( 2.f, 2.f );
 			const Size stage_size(
 				margin_size.width
 				+ ( mLetters.size() * letter_size.width )
@@ -56,8 +60,6 @@ namespace step_typetype
 				, margin_size.height
 				+ letter_size.height
 			);
-			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
-
 			setContentSize( stage_size );
 
 			if( config.bShowPivot )
@@ -70,7 +72,10 @@ namespace step_typetype
 			if( config.bShowBackgroundGuide )
 			{
 				auto background = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-				background->setPosition( pivot_position );
+				background->setPosition( Vec2(
+					-getContentSize().width * 0.5f
+					, -getContentSize().height * 0.5f
+				) );
 				addChild( background, std::numeric_limits<int>::min() );
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
@@ -78,6 +83,8 @@ namespace step_typetype
 					background->addChild( pivot );
 				}
 			}
+
+			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
 
 			const Vec2 letter_pivot_position(
 				pivot_position
