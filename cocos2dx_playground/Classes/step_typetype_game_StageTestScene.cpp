@@ -80,7 +80,9 @@ namespace step_typetype
 				ss << "[R] : Stage Reset";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[P] : Auto Play Once";
+				ss << "[P] : Auto Play Once : Success";
+				ss << std::endl;
+				ss << "[O] : Auto Play Once : Failed";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -203,6 +205,17 @@ namespace step_typetype
 				}
 				break;
 
+			case EventKeyboard::KeyCode::KEY_O:
+				if( !mStage.IsGameClear() )
+				{
+					const auto target_letter_pos = mStage.GetIndicator_Current();
+					const auto target_letter = mStage.GetLetter( target_letter_pos ) + 1;
+					mStage.RequestRemoveLetter( target_letter );
+
+					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+					return;
+				}
+				break;
 			case EventKeyboard::KeyCode::KEY_P:
 				if( !mStage.IsGameClear() )
 				{
