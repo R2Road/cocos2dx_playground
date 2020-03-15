@@ -222,6 +222,8 @@ namespace step_typetype
 					mStage.RequestRemoveLetter( target_letter );
 
 					updateStage();
+
+					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 					return;
 				}
 			}
