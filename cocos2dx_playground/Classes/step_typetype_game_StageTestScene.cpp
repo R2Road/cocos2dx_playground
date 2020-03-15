@@ -206,7 +206,7 @@ namespace step_typetype
 				break;
 
 			case EventKeyboard::KeyCode::KEY_O: // auto play once : failed
-				if( !mStage.IsGameClear() )
+				if( !mStage.IsStageClear() )
 				{
 					const auto target_letter_pos = mStage.GetIndicator_Current();
 					const auto target_letter = mStage.GetLetter( target_letter_pos ) + 1;
@@ -217,7 +217,7 @@ namespace step_typetype
 				}
 				break;
 			case EventKeyboard::KeyCode::KEY_P: // auto play once : success
-				if( !mStage.IsGameClear() )
+				if( !mStage.IsStageClear() )
 				{
 					const auto target_letter_pos = mStage.GetIndicator_Current();
 					const auto target_letter = mStage.GetLetter( target_letter_pos );

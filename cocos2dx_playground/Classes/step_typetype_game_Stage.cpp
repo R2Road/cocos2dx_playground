@@ -52,7 +52,7 @@ namespace step_typetype
 			return true;
 		}
 
-		bool Stage::IsGameClear() const
+		bool Stage::IsStageClear() const
 		{
 			return mIndicator_End <= mIndicator_Current;
 		}

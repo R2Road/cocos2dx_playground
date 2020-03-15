@@ -151,7 +151,7 @@ namespace step_typetype
 				}
 			}
 
-			if( !mStage.IsGameClear() )
+			if( !mStage.IsStageClear() )
 			{
 				if( EventKeyboard::KeyCode::KEY_A <= keycode && EventKeyboard::KeyCode::KEY_Z >= keycode )
 				{
@@ -164,7 +164,7 @@ namespace step_typetype
 						mStageView->RequestLetterDie( target_letter_pos );
 						experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 
-						if( mStage.IsGameClear() )
+						if( mStage.IsStageClear() )
 						{
 							getChildByTag( TAG_NextStageIndicator )->setVisible( true );
 						}

@@ -22,7 +22,7 @@ namespace step_typetype
 			char GetLetter( const std::size_t target_pos ) const;
 			bool RequestLetterDie( const char letter );
 
-			bool IsGameClear() const;
+			bool IsStageClear() const;
 
 		private:
 			const char mLetter_Min;
