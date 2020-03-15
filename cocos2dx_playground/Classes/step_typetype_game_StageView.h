@@ -33,6 +33,7 @@ namespace step_typetype
 			bool init( const StageViewConfig config );
 
 			void Reset( const Stage& stage );
+			void RequestLetterDie( const std::size_t target_pos );
 
 		private:
 			ContainerT mLetters;

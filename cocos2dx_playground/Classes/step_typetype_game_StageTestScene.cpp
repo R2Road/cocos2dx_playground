@@ -238,9 +238,11 @@ namespace step_typetype
 			{
 				if( !mStage.IsGameClear() )
 				{
-					const auto target_letter = mStage.GetLetter( mStage.GetIndicator_Current() );
+					const auto target_letter_pos = mStage.GetIndicator_Current();
+					const auto target_letter = mStage.GetLetter( target_letter_pos );
 					mStage.RequestRemoveLetter( target_letter );
 
+					mStageView->RequestLetterDie( target_letter_pos );
 					updateStage();
 
 					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );

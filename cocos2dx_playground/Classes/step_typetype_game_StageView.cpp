@@ -139,12 +139,17 @@ namespace step_typetype
 			for( std::size_t i = 0; i < stage.GetLength(); ++i )
 			{
 				mLetters[i]->setString( StringUtils::format( "%c", stage.GetLetter( i ) ) );
+				mLetters[i]->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				mLetters[i]->setPosition(
 					letter_pivot_position
 					+ Vec2( ( i * letter_size.width ), 0.f )
 				);
 				mLetters[i]->setVisible( true );
 			}
+		}
+		void StageView::RequestLetterDie( const std::size_t target_pos )
+		{
+			mLetters[target_pos]->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 		}
 	}
 }
