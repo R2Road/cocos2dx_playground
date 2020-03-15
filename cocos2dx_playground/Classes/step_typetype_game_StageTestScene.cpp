@@ -19,7 +19,6 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_StageLengthView = 20140416;
-	const int TAG_StageView = 20160528;
 
 	const int STAGE_MAX_LENGTH = 20;
 }
@@ -121,20 +120,6 @@ namespace step_typetype
 			// Stage View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
-				label->setTag( TAG_StageView );
-				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.8f )
-				) );
-				addChild( label, 9999 );
-			}
-
-			//
-			// Stage View
-			//
-			{
 				mStageView = StageView::create( STAGE_MAX_LENGTH, StageViewConfig{ true, true } );
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -145,7 +130,6 @@ namespace step_typetype
 
 			mStage.Reset( mCurrentStageLength );
 			mStageView->Reset( mStage );
-			updateStage();
 
 			return true;
 		}
@@ -173,17 +157,6 @@ namespace step_typetype
 			auto label = static_cast<Label*>( getChildByTag( TAG_StageLengthView ) );
 			label->setString( StringUtils::format( "Stage Length : %d", mCurrentStageLength ) );
 		}
-		void StageTestScene::updateStage()
-		{
-			std::stringstream ss;
-			for( std::size_t i = mStage.GetIndicator_Current(); i < mStage.GetIndicator_End(); ++i )
-			{
-				ss << mStage.GetLetter( i );
-			}
-
-			auto label = static_cast<Label*>( getChildByTag( TAG_StageView ) );
-			label->setString( ss.str() );
-		}
 
 		void StageTestScene::updateForExit( float /*dt*/ )
 		{
@@ -210,7 +183,6 @@ namespace step_typetype
 
 				mStage.Reset( mCurrentStageLength );
 				mStageView->Reset( mStage );
-				updateStage();
 			}
 			if( EventKeyboard::KeyCode::KEY_2 == keycode )
 			{
@@ -223,14 +195,12 @@ namespace step_typetype
 
 				mStage.Reset( mCurrentStageLength );
 				mStageView->Reset( mStage );
-				updateStage();
 			}
 
 			if( EventKeyboard::KeyCode::KEY_R == keycode )
 			{
 				mStage.Reset( mCurrentStageLength );
 				mStageView->Reset( mStage );
-				updateStage();
 				return;
 			}
 
@@ -243,7 +213,6 @@ namespace step_typetype
 					mStage.RequestRemoveLetter( target_letter );
 
 					mStageView->RequestLetterDie( target_letter_pos );
-					updateStage();
 
 					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 					return;
