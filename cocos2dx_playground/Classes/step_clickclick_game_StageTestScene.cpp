@@ -140,12 +140,12 @@ namespace step_clickclick
 			// Test Action
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
 				label->setTag( TAG_TestActionView );
 				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
+					visibleOrigin.x + visibleSize.width
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, 9999 );
@@ -157,7 +157,7 @@ namespace step_clickclick
 			// Selected Block Type View
 			//
 			{
-				auto label = Label::createWithTTF( "Block Type : -", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( "Block Type : -", "fonts/arial.ttf", 10 );
 				label->setTag( TAG_SelectedBlockTypeView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
@@ -172,7 +172,7 @@ namespace step_clickclick
 			// Active Block Count View
 			//
 			{
-				auto label = Label::createWithTTF( "Block", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( "Block", "fonts/arial.ttf", 10 );
 				label->setTag( TAG_ActiveBlockCountView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
