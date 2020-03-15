@@ -66,7 +66,6 @@ namespace step_typetype
 				ss << "[SPACE BAR] : Play Sound";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -96,8 +95,8 @@ namespace step_typetype
 			// Input Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 12 );
+				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )

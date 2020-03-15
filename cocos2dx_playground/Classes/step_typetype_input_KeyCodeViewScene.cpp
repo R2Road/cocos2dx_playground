@@ -57,7 +57,6 @@ namespace step_typetype
 				ss << "[Keyboard] : Show Key Code";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -78,10 +77,9 @@ namespace step_typetype
 			// KeyCode View
 			//
 			{
-				auto label = Label::createWithTTF( "Press Key", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Press Key", "fonts/arial.ttf", 12 );
 				label->setTag( TAG_KeyCodeViewNode );
 				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5, 0.5 ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
