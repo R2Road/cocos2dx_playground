@@ -164,48 +164,46 @@ namespace step_typetype
 		}
 		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
+			switch( keycode )
 			{
-				if( isScheduled( schedule_selector( StageTestScene::updateForExit ) ) )
-				{
-					return;
-				}
-				else
+			case EventKeyboard::KeyCode::KEY_ESCAPE:
+				if( !isScheduled( schedule_selector( StageTestScene::updateForExit ) ) )
 				{
 					scheduleOnce( schedule_selector( StageTestScene::updateForExit ), 0.f );
 				}
-			}
+				break;
 
-			if( EventKeyboard::KeyCode::KEY_1 == keycode )
-			{
-				++mCurrentStageLength;
-				updateStageLengthView();
+			case EventKeyboard::KeyCode::KEY_1:
+				{
+					++mCurrentStageLength;
+					updateStageLengthView();
 
-				mStage.Reset( mCurrentStageLength );
-				mStageView->Reset( mStage );
-			}
-			if( EventKeyboard::KeyCode::KEY_2 == keycode )
-			{
-				mCurrentStageLength = (
-					mCurrentStageLength > 0
-					? mCurrentStageLength - 1
-					: 0
-				);
-				updateStageLengthView();
+					mStage.Reset( mCurrentStageLength );
+					mStageView->Reset( mStage );
+				}
+				break;
+			case EventKeyboard::KeyCode::KEY_2:
+				{
+					mCurrentStageLength = (
+						mCurrentStageLength > 0
+						? mCurrentStageLength - 1
+						: 0
+						);
+					updateStageLengthView();
 
-				mStage.Reset( mCurrentStageLength );
-				mStageView->Reset( mStage );
-			}
+					mStage.Reset( mCurrentStageLength );
+					mStageView->Reset( mStage );
+				}
+				break;
+				
+			case EventKeyboard::KeyCode::KEY_R:
+				{
+					mStage.Reset( mCurrentStageLength );
+					mStageView->Reset( mStage );
+				}
+				break;
 
-			if( EventKeyboard::KeyCode::KEY_R == keycode )
-			{
-				mStage.Reset( mCurrentStageLength );
-				mStageView->Reset( mStage );
-				return;
-			}
-
-			if( EventKeyboard::KeyCode::KEY_P == keycode )
-			{
+			case EventKeyboard::KeyCode::KEY_P:
 				if( !mStage.IsGameClear() )
 				{
 					const auto target_letter_pos = mStage.GetIndicator_Current();
@@ -217,6 +215,7 @@ namespace step_typetype
 					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg" );
 					return;
 				}
+				break;
 			}
 		}
 	}
