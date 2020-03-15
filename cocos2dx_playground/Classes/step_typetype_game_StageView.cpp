@@ -144,12 +144,14 @@ namespace step_typetype
 					letter_pivot_position
 					+ Vec2( ( i * letter_size.width ), 0.f )
 				);
+				mLetters[i]->setColor( Color3B::WHITE );
 				mLetters[i]->setVisible( true );
 			}
 		}
 		void StageView::RequestLetterDie( const std::size_t target_pos )
 		{
 			mLetters[target_pos]->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+			mLetters[target_pos]->setColor( Color3B( 100u, 100u, 100u ) );
 		}
 	}
 }
