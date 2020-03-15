@@ -150,6 +150,8 @@ namespace step_typetype
 		}
 		void StageView::RequestLetterDie( const std::size_t target_pos )
 		{
+			assert( mLetters.size() > target_pos );
+
 			mLetters[target_pos]->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 			mLetters[target_pos]->setColor( Color3B( 100u, 100u, 100u ) );
 		}
