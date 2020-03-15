@@ -11,6 +11,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "step_typetype_game_StageView.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -19,6 +20,8 @@ namespace
 {
 	const int TAG_StageLengthView = 20140416;
 	const int TAG_StageView = 20160528;
+
+	const int STAGE_MAX_LENGTH = 20;
 }
 
 namespace step_typetype
@@ -26,9 +29,10 @@ namespace step_typetype
 	namespace game
 	{
 		StageTestScene::StageTestScene() :
-			mCurrentStageLength( 4 )
-			, mStage( 20 )
-			, mKeyboardListener( nullptr )
+			mKeyboardListener( nullptr )
+			, mCurrentStageLength( 4 )
+			, mStage( STAGE_MAX_LENGTH )
+			, mStageView( nullptr )
 		{}
 
 		Scene* StageTestScene::create()
@@ -110,7 +114,7 @@ namespace step_typetype
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -122,9 +126,21 @@ namespace step_typetype
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.8f )
 				) );
 				addChild( label, 9999 );
+			}
+
+			//
+			// Stage View
+			//
+			{
+				mStageView = StageView::create( STAGE_MAX_LENGTH, StageViewConfig{ true, true } );
+				mStageView->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( mStageView );
 			}
 
 			mStage.Reset( mCurrentStageLength );

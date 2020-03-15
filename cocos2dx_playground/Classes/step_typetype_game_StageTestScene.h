@@ -8,7 +8,9 @@ namespace step_typetype
 {
 	namespace game
 	{
-		class StageTestScene : public cocos2d::Scene
+		class StageView;
+
+		class StageTestScene : public cocos2d::Scene	
 		{
 		private:
 			StageTestScene();
@@ -33,6 +35,7 @@ namespace step_typetype
 
 			std::size_t mCurrentStageLength;
 			Stage mStage;
+			StageView* mStageView;
 		};
 	}
 }
