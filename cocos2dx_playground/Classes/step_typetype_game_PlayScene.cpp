@@ -141,7 +141,7 @@ namespace step_typetype
 
 				const auto target_letter_code = static_cast<char>( keycode ) - offset;
 				const auto target_letter_pos = mStage.GetIndicator_Current();
-				if( mStage.RequestRemoveLetter( target_letter_code ) )
+				if( mStage.RequestLetterDie( target_letter_code ) )
 				{
 					mStageView->RequestLetterDie( target_letter_pos );
 					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );

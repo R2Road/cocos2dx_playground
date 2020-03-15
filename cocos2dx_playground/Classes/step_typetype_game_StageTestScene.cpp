@@ -210,7 +210,7 @@ namespace step_typetype
 				{
 					const auto target_letter_pos = mStage.GetIndicator_Current();
 					const auto target_letter = mStage.GetLetter( target_letter_pos ) + 1;
-					mStage.RequestRemoveLetter( target_letter );
+					mStage.RequestLetterDie( target_letter );
 
 					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
 					return;
@@ -221,7 +221,7 @@ namespace step_typetype
 				{
 					const auto target_letter_pos = mStage.GetIndicator_Current();
 					const auto target_letter = mStage.GetLetter( target_letter_pos );
-					mStage.RequestRemoveLetter( target_letter );
+					mStage.RequestLetterDie( target_letter );
 
 					mStageView->RequestLetterDie( target_letter_pos );
 

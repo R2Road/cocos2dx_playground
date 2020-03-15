@@ -40,7 +40,7 @@ namespace step_typetype
 			return mLetters[target_pos];
 		}
 
-		bool Stage::RequestRemoveLetter( const char letter )
+		bool Stage::RequestLetterDie( const char letter )
 		{
 			if( letter != mLetters[mIndicator_Current] )
 			{

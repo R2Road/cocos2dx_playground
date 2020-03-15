@@ -19,7 +19,7 @@ namespace step_typetype
 			std::size_t GetIndicator_Current() const { return mIndicator_Current; }
 			std::size_t GetIndicator_End() const { return mIndicator_End; }
 			char GetLetter( const std::size_t target_pos ) const;
-			bool RequestRemoveLetter( const char letter );
+			bool RequestLetterDie( const char letter );
 
 			bool IsGameClear() const;
 
