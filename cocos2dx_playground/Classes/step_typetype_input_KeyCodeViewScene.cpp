@@ -109,10 +109,6 @@ namespace step_typetype
 			Node::onExit();
 		}
 
-		void KeyCodeViewScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
-		}
 		void KeyCodeViewScene::updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode )
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_KeyCodeViewNode ) );
@@ -128,10 +124,8 @@ namespace step_typetype
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( KeyCodeViewScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( KeyCodeViewScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+				return;
 			}
 			else
 			{

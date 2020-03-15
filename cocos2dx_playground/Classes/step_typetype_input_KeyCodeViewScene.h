@@ -19,7 +19,6 @@ namespace step_typetype
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
 			void updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode );
 			void clearKeyCodeView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
