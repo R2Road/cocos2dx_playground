@@ -66,6 +66,16 @@ namespace step_typetype
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[1] : Increase Stage Size And Reset";
+				ss << std::endl;
+				ss << "[2] : Decrease Stage Size And Reset";
+				ss << std::endl;
+				ss << "[R] : Stage Reset";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[P] : Auto Play Once";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -154,6 +164,8 @@ namespace step_typetype
 			if( EventKeyboard::KeyCode::KEY_1 == keycode )
 			{
 				++mCurrentStageLength;
+				mStage.Reset( mCurrentStageLength );
+				updateStage();
 			}
 			if( EventKeyboard::KeyCode::KEY_2 == keycode )
 			{
@@ -162,6 +174,8 @@ namespace step_typetype
 					? mCurrentStageLength - 1
 					: 0
 				);
+				mStage.Reset( mCurrentStageLength );
+				updateStage();
 			}
 
 			if( EventKeyboard::KeyCode::KEY_R == keycode )
