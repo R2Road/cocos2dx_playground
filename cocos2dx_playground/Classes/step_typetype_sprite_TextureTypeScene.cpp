@@ -1,5 +1,7 @@
 #include "step_typetype_sprite_TextureTypeScene.h"
 
+#include <new>
+#include <numeric>
 #include <sstream>
 
 #include "step_typetype_RootScene.h"
@@ -59,7 +61,7 @@ namespace step_typetype
 					visibleOrigin.x + ( label->getContentSize().width * 0.5f )
 					, visibleOrigin.y + visibleSize.height - ( label->getContentSize().height * 0.5f )
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//

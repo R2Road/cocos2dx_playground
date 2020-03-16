@@ -1,6 +1,7 @@
 #include "step_typetype_sound_Basic.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "audio/include/AudioEngine.h"
@@ -71,7 +72,7 @@ namespace step_typetype
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -79,7 +80,7 @@ namespace step_typetype
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//

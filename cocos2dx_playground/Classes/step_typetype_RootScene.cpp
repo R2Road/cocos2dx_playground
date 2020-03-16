@@ -69,7 +69,7 @@ namespace step_typetype
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, 1 );
+			ret->addChild( label );
 		}
 
 		//
