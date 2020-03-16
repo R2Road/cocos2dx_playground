@@ -1,6 +1,7 @@
 #include "step_typetype_game_TitleScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
@@ -61,7 +62,7 @@ namespace step_typetype
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 

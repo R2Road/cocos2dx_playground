@@ -1,8 +1,8 @@
 #include "step_typetype_game_PlayScene.h"
 
 #include <new>
-#include <sstream>
 #include <numeric>
+#include <sstream>
 
 #include "audio/include/AudioEngine.h"
 #include "2d/CCLabel.h"

@@ -1,6 +1,7 @@
 #include "step_typetype_game_StageTestScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "audio/include/AudioEngine.h"
@@ -90,7 +91,7 @@ namespace step_typetype
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -113,7 +114,7 @@ namespace step_typetype
 					visibleOrigin.x + visibleSize.width
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 
 				updateStageLengthView();
 			}
