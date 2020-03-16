@@ -193,7 +193,7 @@ namespace step_typetype
 					if( mStage.RequestLetterDie( target_letter_code ) )
 					{
 						mStageView->RequestLetterDie( target_letter_pos );
-						experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
+						experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 
 						if( mStage.IsStageClear() )
 						{
@@ -202,14 +202,14 @@ namespace step_typetype
 					}
 					else
 					{
-						experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+						experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 					}
 				}
 			}
 			else if( EventKeyboard::KeyCode::KEY_ENTER == keycode )
 			{
 				mCurrentStageLength += 2;
-				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.2f );
+				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
 
 				if( mCurrentStageLength < mStage.GetLength_MAX() ) // go next stage
 				{
