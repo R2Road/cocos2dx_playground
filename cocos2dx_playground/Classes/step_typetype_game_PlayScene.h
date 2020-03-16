@@ -35,6 +35,7 @@ namespace step_typetype
 			Stage mStage;
 			StageView* mStageView;
 			double mElapsedTime;
+			int mAudioID_forBGM;
 		};
 	}
 }

@@ -33,6 +33,7 @@ namespace step_typetype
 			, mStage( STAGE_MAX_LENGTH )
 			, mStageView( nullptr )
 			, mElapsedTime( 0 )
+			, mAudioID_forBGM( -1 )
 		{}
 
 		Scene* PlayScene::create()
@@ -125,6 +126,8 @@ namespace step_typetype
 		{
 			Scene::onEnter();
 
+			mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/EmpySpace.ogg", true, 0.1f );
+
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
@@ -137,6 +140,8 @@ namespace step_typetype
 		}
 		void PlayScene::onExit()
 		{
+			experimental::AudioEngine::stop( mAudioID_forBGM );
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
