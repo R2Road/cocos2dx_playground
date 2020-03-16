@@ -90,6 +90,23 @@ namespace step_typetype
 			}
 
 			//
+			// BGM License
+			//
+			{
+				auto label = Label::createWithTTF(
+					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0"
+					, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER
+				);
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, 9999 );
+			}
+
+			//
 			// Stage View
 			//
 			{
