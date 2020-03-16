@@ -2,6 +2,7 @@
 
 #include <new>
 #include <sstream>
+#include <numeric>
 
 #include "audio/include/AudioEngine.h"
 #include "2d/CCLabel.h"
@@ -78,7 +79,7 @@ namespace step_typetype
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -103,7 +104,7 @@ namespace step_typetype
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -130,7 +131,7 @@ namespace step_typetype
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				addChild( label, 9999 );
+				addChild( label, 1 );
 			}
 
 			mStage.Reset( mCurrentStageLength );
