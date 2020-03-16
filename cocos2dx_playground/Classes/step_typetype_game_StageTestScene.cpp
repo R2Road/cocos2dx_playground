@@ -206,7 +206,7 @@ namespace step_typetype
 					const auto target_letter = mStage.GetLetter( target_letter_pos ) + 1;
 					mStage.RequestLetterDie( target_letter );
 
-					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 					return;
 				}
 				break;
@@ -219,7 +219,7 @@ namespace step_typetype
 
 					mStageView->RequestLetterDie( target_letter_pos );
 
-					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
+					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 					return;
 				}
 				break;
