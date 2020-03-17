@@ -3,6 +3,7 @@
 #include <cassert>
 #include <functional>
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "audio/include/AudioEngine.h"
@@ -99,7 +100,7 @@ namespace step_clickclick
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -107,7 +108,7 @@ namespace step_clickclick
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -148,7 +149,7 @@ namespace step_clickclick
 					visibleOrigin.x + visibleSize.width
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 
 				updateTestAction( mTestActionType );
 			}
@@ -165,7 +166,7 @@ namespace step_clickclick
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -180,7 +181,7 @@ namespace step_clickclick
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.1f
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 
 				updateActiveBlockCountView( mStage->GetActiveBlockCount() );
 			}
@@ -272,13 +273,13 @@ namespace step_clickclick
 			switch( mTestActionType )
 			{
 			case eTestActionType::Increase:
-				label->setString( "Test Action : Increase" );
+				label->setString( "Current Test Action : Increase" );
 				break;
 			case eTestActionType::Decrease:
-				label->setString( "Test Action : Decrease" );
+				label->setString( "Current Test Action : Decrease" );
 				break;
 			case eTestActionType::Die:
-				label->setString( "Test Action : Die" );
+				label->setString( "Current Test Action : Die" );
 				break;
 			default:
 				assert( false );
