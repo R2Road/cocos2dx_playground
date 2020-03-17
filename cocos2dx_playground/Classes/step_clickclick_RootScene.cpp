@@ -1,6 +1,7 @@
 #include "step_clickclick_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "PlayGroundScene.h"
@@ -65,7 +66,7 @@ namespace step_clickclick
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, 1 );
+			ret->addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -73,7 +74,7 @@ namespace step_clickclick
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
-			ret->addChild( background_layer, 0 );
+			ret->addChild( background_layer, -1 );
 		}
 
 		return ret;
