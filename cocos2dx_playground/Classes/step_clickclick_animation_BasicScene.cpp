@@ -1,6 +1,7 @@
 #include "step_clickclick_animation_BasicScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
@@ -66,7 +67,7 @@ namespace step_clickclick
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -74,7 +75,7 @@ namespace step_clickclick
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 0, 55, 25, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -88,7 +89,7 @@ namespace step_clickclick
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
 				) );
-				addChild( animation_node, 1 );
+				addChild( animation_node, 0 );
 				{
 					auto animation_object = Animation::create();
 					animation_object->setDelayPerUnit( 0.2f );
@@ -113,6 +114,7 @@ namespace step_clickclick
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
