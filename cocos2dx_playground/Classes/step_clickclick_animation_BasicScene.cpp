@@ -126,21 +126,12 @@ namespace step_clickclick
 			Node::onExit();
 		}
 
-		void BasicScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
-		}
-
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 				return;
-			}
-
-			if( !isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
-			{
-				scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
 			}
 		}
 	}

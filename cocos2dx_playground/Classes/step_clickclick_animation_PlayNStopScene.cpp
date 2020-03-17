@@ -146,21 +146,13 @@ namespace step_clickclick
 			Node::onExit();
 		}
 
-		void PlayNStopScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
-		}
-
 		void PlayNStopScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				if( !isScheduled( schedule_selector( PlayNStopScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( PlayNStopScene::updateForExit ), 0.f );
-				}
-				break;
+				Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
+				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play
 			{
