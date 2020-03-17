@@ -1,6 +1,7 @@
 #include "step_clickclick_game_TitleScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
@@ -14,8 +15,6 @@
 #include "step_clickclick_game_ExplainScene.h"
 #include "step_clickclick_game_ResultScene.h"
 #include "step_clickclick_RootScene.h"
-
-#include "CPG_Setting.h"
 
 USING_NS_CC;
 
@@ -66,7 +65,7 @@ namespace step_clickclick
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 
@@ -92,7 +91,6 @@ namespace step_clickclick
 			//
 			{
 				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 14 );
-				request_input_label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				request_input_label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.18f
