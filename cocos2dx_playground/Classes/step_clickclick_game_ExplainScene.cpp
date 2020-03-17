@@ -15,8 +15,6 @@
 #include "step_clickclick_game_PlayScene.h"
 #include "step_clickclick_game_TitleScene.h"
 
-#include "CPG_Setting.h"
-
 USING_NS_CC;
 
 namespace step_clickclick
