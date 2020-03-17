@@ -111,19 +111,11 @@ namespace step_clickclick
 			Node::onExit();
 		}
 
-		void ResultScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
-		}
-
 		void ResultScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( ResultScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( ResultScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
 				return;
 			}
 		}
