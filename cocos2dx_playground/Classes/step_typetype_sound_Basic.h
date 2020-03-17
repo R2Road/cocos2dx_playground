@@ -12,8 +12,6 @@ namespace step_typetype
 			BasicScene();
 
 		public:
-			~BasicScene();
-
 			static const char* getTitle() { return "Sound : Basic"; }
 			static cocos2d::Scene* create();
 

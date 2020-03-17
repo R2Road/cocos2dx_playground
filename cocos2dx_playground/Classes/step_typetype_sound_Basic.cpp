@@ -20,10 +20,6 @@ namespace step_typetype
 	namespace sound
 	{
 		BasicScene::BasicScene() : mKeyboardListener( nullptr ) {}
-		BasicScene::~BasicScene()
-		{
-			mKeyboardListener->release();
-		}
 
 		Scene* BasicScene::create()
 		{
@@ -84,15 +80,6 @@ namespace step_typetype
 			}
 
 			//
-			// Keyboard Listener
-			//
-			{
-				mKeyboardListener = EventListenerKeyboard::create();
-				mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
-				mKeyboardListener->retain();
-			}
-
-			//
 			// Input Indicator
 			//
 			{
@@ -111,13 +98,18 @@ namespace step_typetype
 		void BasicScene::onEnter()
 		{
 			Scene::onEnter();
-			assert( mKeyboardListener );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			
+			assert( !mKeyboardListener );
+			mKeyboardListener = EventListenerKeyboard::create();
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void BasicScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
+			mKeyboardListener = nullptr;
+
 			Node::onExit();
 		}
 

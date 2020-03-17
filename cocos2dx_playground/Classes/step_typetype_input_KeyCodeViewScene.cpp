@@ -101,7 +101,7 @@ namespace step_typetype
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( KeyCodeViewScene::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyCodeViewScene::onKeyReleased, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void KeyCodeViewScene::onExit()
 		{
