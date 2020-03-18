@@ -169,14 +169,14 @@ namespace step01
 				mDatas.emplace_back( dist( randomEngine ) );
 			}
 
-			saveJsonFile( json_path );
+			saveJsonFile( json_path, mDatas );
 		}
-		void LoadNSaveScene::saveJsonFile( const char* json_path )
+		void LoadNSaveScene::saveJsonFile( const char* json_path, const ContainerT& datas )
 		{
 			rapidjson::Document document;
 			document.SetArray();
 
-			for( const auto d : mDatas )
+			for( const auto d : datas )
 			{
 				document.PushBack( d, document.GetAllocator() );
 			}

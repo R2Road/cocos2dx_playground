@@ -12,6 +12,8 @@ namespace step01
 		class LoadNSaveScene : public cocos2d::Scene
 		{
 		private:
+			using ContainerT = std::vector<int>;
+
 			LoadNSaveScene();
 
 		public:
@@ -24,7 +26,7 @@ namespace step01
 
 		private:
 			void makeDummyJsonFile( const char* json_path );
-			void saveJsonFile( const char* json_path );
+			void saveJsonFile( const char* json_path, const ContainerT& datas );
 			bool loadJsonFile( const char* json_path );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
@@ -32,7 +34,7 @@ namespace step01
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			std::string mJsonString;
-			std::vector<int> mDatas;
+			ContainerT mDatas;
 		};
 	}
 }
