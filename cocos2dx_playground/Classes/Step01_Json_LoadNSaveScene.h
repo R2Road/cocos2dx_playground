@@ -27,7 +27,7 @@ namespace step01
 		private:
 			void makeDummyJsonFile( const char* json_path ) const;
 			void saveJsonFile( const char* json_path, const ContainerT& datas ) const;
-			bool loadJsonFile( const char* json_path, std::string& json_string, ContainerT& datas );
+			bool loadJsonFile( const char* json_path, std::string& out_json_string, ContainerT& out_json_datas );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
