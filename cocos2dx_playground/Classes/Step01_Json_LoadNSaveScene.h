@@ -33,8 +33,6 @@ namespace step01
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			std::string mJsonString;
-			ContainerT mJsonDatas;
 		};
 	}
 }

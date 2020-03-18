@@ -26,7 +26,7 @@ namespace step01
 			const char* FilePath_Step01_Json_LoadNSave = "step01_json_load_and_save.json";
 		}
 
-		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ), mJsonString(), mJsonDatas() {}
+		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ) {}
 
 		Scene* LoadNSaveScene::create()
 		{
@@ -89,12 +89,14 @@ namespace step01
 			//
 			// Json Save And Load
 			//
+			std::string json_string;
+			ContainerT json_datas;
 			{
 				std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 				path.append( FilePath_Step01_Json_LoadNSave );
 
 				makeDummyJsonFile( path.c_str() );
-				loadJsonFile( path.c_str(), mJsonString, mJsonDatas );
+				loadJsonFile( path.c_str(), json_string, json_datas );
 			}
 
 			//
@@ -102,7 +104,7 @@ namespace step01
 			//
 			{
 				auto label = Label::createWithTTF(
-					StringUtils::format( "Json String : %s", mJsonString.c_str() )
+					StringUtils::format( "Json String : %s", json_string.c_str() )
 					, "fonts/arial.ttf"
 					, 9
 				);
@@ -120,7 +122,7 @@ namespace step01
 			{
 				std::stringstream ss;
 				ss << "Json Datas :";
-				for( auto i : mJsonDatas )
+				for( auto i : json_datas )
 				{
 					ss << " " << i;
 				}
