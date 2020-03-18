@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 namespace step01
 {
@@ -15,8 +15,6 @@ namespace step01
 			LoadNSaveScene();
 
 		public:
-			~LoadNSaveScene();
-
 			static const char* getTitle() { return "Json : Load And Save"; }
 			static cocos2d::Scene* create();
 
@@ -28,7 +26,6 @@ namespace step01
 			void SaveJsonFile();
 			bool LoadJsonFile();
 
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:

@@ -1,11 +1,13 @@
 #include "Step01_Json_LoadNSaveScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 #include <random>
-
 #include <fstream>
 #include <utility>
+
+#include "base/ccUTF8.h"
 
 #include "json/document.h"
 #include "json/stringbuffer.h"
@@ -24,11 +26,7 @@ namespace step01
 			const char* FilePath_Step01_Json_LoadNSave = "step01_json_load_and_save.json";
 		}
 
-		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ), mDatas() {}
-		LoadNSaveScene::~LoadNSaveScene()
-		{
-			mKeyboardListener->release();
-		}
+		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ), mJsonString(), mDatas() {}
 
 		Scene* LoadNSaveScene::create()
 		{
@@ -76,7 +74,7 @@ namespace step01
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -85,15 +83,6 @@ namespace step01
 			{
 				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
 				addChild( background_layer, -1 );
-			}
-
-			//
-			// Keyboard Listener
-			//
-			{
-				mKeyboardListener = EventListenerKeyboard::create();
-				mKeyboardListener->onKeyPressed = CC_CALLBACK_2( LoadNSaveScene::onKeyPressed, this );
-				mKeyboardListener->retain();
 			}
 
 			//
@@ -107,11 +96,11 @@ namespace step01
 			// Json View
 			//
 			{
-				std::stringstream ss;
-				ss << "Json String : " << mJsonString;
-
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto label = Label::createWithTTF(
+					StringUtils::format( "Json String : %s", mJsonString.c_str() )
+					, "fonts/arial.ttf"
+					, 9
+				);
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.6f )
@@ -130,8 +119,7 @@ namespace step01
 					ss << " " << i;
 				}
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9 );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.4f )
@@ -145,12 +133,18 @@ namespace step01
 		void LoadNSaveScene::onEnter()
 		{
 			Scene::onEnter();
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+
+			assert( !mKeyboardListener );
+			mKeyboardListener = EventListenerKeyboard::create();
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( LoadNSaveScene::onKeyPressed, this );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void LoadNSaveScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
+			mKeyboardListener = nullptr;
+
 			Node::onExit();
 		}
 
@@ -233,19 +227,13 @@ namespace step01
 			return true;
 		}
 
-		void LoadNSaveScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( RootScene::create() );
-		}
 		void LoadNSaveScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
+			{
+				Director::getInstance()->replaceScene( RootScene::create() );
 				return;
-
-			if( isScheduled( schedule_selector( LoadNSaveScene::updateForExit ) ) )
-				return;
-
-			scheduleOnce( schedule_selector( LoadNSaveScene::updateForExit ), 0.f );
+			}
 		}
 	}
 }
