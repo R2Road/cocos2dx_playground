@@ -152,7 +152,7 @@ namespace step01
 			Node::onExit();
 		}
 
-		void LoadNSaveScene::makeDummyJsonFile( const char* json_path )
+		void LoadNSaveScene::makeDummyJsonFile( const char* json_path ) const
 		{
 			if( cocos2d::FileUtils::getInstance()->isFileExist( json_path ) )
 			{
@@ -172,7 +172,7 @@ namespace step01
 
 			saveJsonFile( json_path, datas );
 		}
-		void LoadNSaveScene::saveJsonFile( const char* json_path, const ContainerT& datas )
+		void LoadNSaveScene::saveJsonFile( const char* json_path, const ContainerT& datas ) const
 		{
 			rapidjson::Document document;
 			document.SetArray();

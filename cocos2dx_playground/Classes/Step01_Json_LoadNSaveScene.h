@@ -25,8 +25,8 @@ namespace step01
 			void onExit() override;
 
 		private:
-			void makeDummyJsonFile( const char* json_path );
-			void saveJsonFile( const char* json_path, const ContainerT& datas );
+			void makeDummyJsonFile( const char* json_path ) const;
+			void saveJsonFile( const char* json_path, const ContainerT& datas ) const;
 			bool loadJsonFile( const char* json_path );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
