@@ -26,7 +26,7 @@ namespace step01
 			const char* FilePath_Step01_Json_LoadNSave = "step01_json_load_and_save.json";
 		}
 
-		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ), mJsonString(), mDatas() {}
+		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ), mJsonString(), mJsonDatas() {}
 
 		Scene* LoadNSaveScene::create()
 		{
@@ -93,7 +93,7 @@ namespace step01
 				path.append( FilePath_Step01_Json_LoadNSave );
 
 				makeDummyJsonFile( path.c_str() );
-				loadJsonFile( path.c_str(), mJsonString, mDatas );
+				loadJsonFile( path.c_str(), mJsonString, mJsonDatas );
 			}
 
 			//
@@ -118,7 +118,7 @@ namespace step01
 			{
 				std::stringstream ss;
 				ss << "Json Datas :";
-				for( auto i : mDatas )
+				for( auto i : mJsonDatas )
 				{
 					ss << " " << i;
 				}
