@@ -1,6 +1,7 @@
 #include "step_rain_of_chaos_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "PlayGroundScene.h"
@@ -78,12 +79,11 @@ namespace step_rain_of_chaos
 			ss << "[S] : " << step02::button::DragScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, 1 );
+			ret->addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -91,7 +91,7 @@ namespace step_rain_of_chaos
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 0, 9, 61, 255 ) );
-			ret->addChild( background_layer, 0 );
+			ret->addChild( background_layer, -1 );
 		}
 
 		return ret;
@@ -101,6 +101,7 @@ namespace step_rain_of_chaos
 	{
 		Scene::onEnter();
 
+		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -155,9 +156,6 @@ namespace step_rain_of_chaos
 		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( step02::button::DragScene::create() );
 			break;
-
-
-			
 
 		default:
 			CCLOG( "Key Code : %d", keycode );
