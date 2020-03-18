@@ -93,7 +93,7 @@ namespace step01
 				path.append( FilePath_Step01_Json_LoadNSave );
 
 				makeDummyJsonFile( path.c_str() );
-				loadJsonFile( path.c_str() );
+				loadJsonFile( path.c_str(), mJsonString, mDatas );
 			}
 
 			//
@@ -190,12 +190,12 @@ namespace step01
 			fs << buffer.GetString() << std::endl;
 			fs.close();
 		}
-		bool LoadNSaveScene::loadJsonFile( const char* json_path )
+		bool LoadNSaveScene::loadJsonFile( const char* json_path, std::string& json_string, ContainerT& datas )
 		{
-			mJsonString = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( json_path ) );
+			json_string = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( json_path ) );
 
 			rapidjson::Document doc;
-			doc.Parse<0>( mJsonString.c_str() );
+			doc.Parse<0>( json_string.c_str() );
 
 			if( doc.HasParseError() )
 			{
@@ -215,13 +215,13 @@ namespace step01
 				return false;
 			}
 
-			mDatas.clear();
-			mDatas.reserve( doc.Size() );
+			datas.clear();
+			datas.reserve( doc.Size() );
 			for( rapidjson::SizeType i = 0u; i < doc.Size(); ++i )
 			{
 				const auto& value = doc[i];
 
-				mDatas.emplace_back( value.GetInt() );
+				datas.emplace_back( value.GetInt() );
 			}
 
 			return true;
