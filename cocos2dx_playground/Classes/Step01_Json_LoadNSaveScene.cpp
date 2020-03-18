@@ -89,7 +89,7 @@ namespace step01
 			// Json Save And Load
 			//
 			{
-				LoadJsonFile();
+				loadJsonFile();
 			}
 
 			//
@@ -148,7 +148,7 @@ namespace step01
 			Node::onExit();
 		}
 
-		void LoadNSaveScene::SaveJsonFile()
+		void LoadNSaveScene::saveJsonFile()
 		{
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 			path.append( FilePath_Step01_Json_LoadNSave );
@@ -169,7 +169,7 @@ namespace step01
 			fs << buffer.GetString() << std::endl;
 			fs.close();
 		}
-		bool LoadNSaveScene::LoadJsonFile()
+		bool LoadNSaveScene::loadJsonFile()
 		{
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 			path.append( FilePath_Step01_Json_LoadNSave );
@@ -190,7 +190,7 @@ namespace step01
 					mDatas.emplace_back( dist( randomEngine ) );
 				}
 
-				SaveJsonFile();
+				saveJsonFile();
 			}
 
 			mJsonString = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) );

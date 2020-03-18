@@ -23,8 +23,8 @@ namespace step01
 			void onExit() override;
 
 		private:
-			void SaveJsonFile();
-			bool LoadJsonFile();
+			void saveJsonFile();
+			bool loadJsonFile();
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
