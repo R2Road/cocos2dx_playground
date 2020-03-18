@@ -97,7 +97,7 @@ namespace step01
 			}
 
 			//
-			// Json View
+			// Json String View
 			//
 			{
 				auto label = Label::createWithTTF(
@@ -113,7 +113,7 @@ namespace step01
 			}
 
 			//
-			// Data View
+			// Json Data View
 			//
 			{
 				std::stringstream ss;
