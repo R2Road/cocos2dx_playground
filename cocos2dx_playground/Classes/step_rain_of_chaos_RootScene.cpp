@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include "PlayGroundScene.h"
-#include "step02_animation_ListScene.h"
+#include "step_rain_of_chaos_animation_ListScene.h"
 #include "step_rain_of_chaos_animation_CallbackScene.h"
 #include "step02_animation_ComponentScene.h"
 #include "step02_input_KeyCodeCollectScene.h"
@@ -59,7 +59,7 @@ namespace step_rain_of_chaos
 			ss << "[3] : " << step02::collision::CollectionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step02::animation::ListScene::getTitle();
+			ss << "[4] : " << step_rain_of_chaos::animation::ListScene::getTitle();
 			ss << std::endl;
 			ss << "[5] : " << step_rain_of_chaos::animation::CallbackScene::getTitle();
 			ss << std::endl;
@@ -135,7 +135,7 @@ namespace step_rain_of_chaos
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::animation::ListScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::animation::CallbackScene::create() );

@@ -6,7 +6,7 @@
 
 #include "cpg_Animation_Index.h"
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace animation
 	{

@@ -1,4 +1,4 @@
-#include "step02_animation_ListScene.h"
+#include "step_rain_of_chaos_animation_ListScene.h"
 
 #include <new>
 #include <sstream>
@@ -32,7 +32,7 @@ namespace
 	};
 }
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace animation
 	{
