@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 #include "cpg_Animation_Index.h"
 
@@ -24,7 +24,6 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			void PlayAnimation( const cpg::animation::eIndex animation_index );
