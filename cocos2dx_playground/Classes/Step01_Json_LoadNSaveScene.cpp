@@ -163,13 +163,14 @@ namespace step01
 			std::mt19937 randomEngine( rd() );
 			std::uniform_int_distribution<> dist( 0, 9 );
 
-			mDatas.reserve( 10 );
+			ContainerT datas;
+			datas.reserve( 10 );
 			for( int i = 0; i < 10; ++i )
 			{
-				mDatas.emplace_back( dist( randomEngine ) );
+				datas.emplace_back( dist( randomEngine ) );
 			}
 
-			saveJsonFile( json_path, mDatas );
+			saveJsonFile( json_path, datas );
 		}
 		void LoadNSaveScene::saveJsonFile( const char* json_path, const ContainerT& datas )
 		{
