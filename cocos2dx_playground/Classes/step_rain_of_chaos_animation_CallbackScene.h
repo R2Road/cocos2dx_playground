@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 namespace step_rain_of_chaos
 {
@@ -20,7 +20,6 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			void AnimationStartCallback();

@@ -1,7 +1,19 @@
 #include "step_rain_of_chaos_animation_CallbackScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
+
+#include "2d/CCActionInstant.h"
+#include "2d/CCActionInterval.h"
+#include "2d/CCAnimation.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
 
 #include "step_rain_of_chaos_RootScene.h"
 
@@ -53,12 +65,12 @@ namespace step_rain_of_chaos
 			//
 			{
 				std::stringstream ss;
-				ss << "+ Animation - Callback";
-				ss << "\n";
-				ss << "\n";
+				ss << "+ " << getTitle();
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << "\n";
-				ss << "\n";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[A] : Play Animation";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
@@ -67,7 +79,7 @@ namespace step_rain_of_chaos
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -75,7 +87,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 70, 0, 110, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -90,7 +102,7 @@ namespace step_rain_of_chaos
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
 				) );
-				addChild( animation_node, 1 );
+				addChild( animation_node );
 				{
 					auto animation_object = Animation::create();
 					animation_object->setDelayPerUnit( 0.2f );
@@ -117,14 +129,15 @@ namespace step_rain_of_chaos
 			// Animation Status
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
 				label->setTag( TAG_AnimationStatusNode );
+				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setPosition( Vec2(
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 
 				// setup string
 				AnimationEndCallback();
@@ -137,6 +150,7 @@ namespace step_rain_of_chaos
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CallbackScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -146,14 +160,10 @@ namespace step_rain_of_chaos
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
+
 			mSequenceAction->release();
 
 			Node::onExit();
-		}
-
-		void CallbackScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 		}
 
 		void CallbackScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
@@ -161,11 +171,8 @@ namespace step_rain_of_chaos
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				if( !isScheduled( schedule_selector( CallbackScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( CallbackScene::updateForExit ), 0.f );
-				}
-				break;
+				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play
 			{
