@@ -1,4 +1,4 @@
-#include "step02_animation_ComponentScene.h"
+#include "step_rain_of_chaos_animation_ComponentScene.h"
 
 #include <new>
 #include <sstream>
@@ -12,7 +12,7 @@ USING_NS_CC;
 
 const int TAG_AnimationNode = 20140416;
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace animation
 	{
