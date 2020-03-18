@@ -19,9 +19,6 @@
     <Filter Include="src\scene\step01">
       <UniqueIdentifier>{23d6f0e6-cda1-48d5-8cc2-def067a22a4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step02">
-      <UniqueIdentifier>{6aade675-064c-4874-9f6b-dc07f058b9d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step01\game">
       <UniqueIdentifier>{1d2e84c5-1a40-4da7-a5da-e86968e094bf}</UniqueIdentifier>
     </Filter>
@@ -37,29 +34,11 @@
     <Filter Include="src\scene\step99">
       <UniqueIdentifier>{a76eefdc-f54a-43c8-b51e-7dead6c0bd9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step02\animation">
-      <UniqueIdentifier>{94f7f939-c9ab-40f0-a1d2-7d90e76ed48a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step02\input">
-      <UniqueIdentifier>{1dce0bb6-9de2-4d45-a409-35a7ef25bd30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step02\collision">
-      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step02\button_drag">
-      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\cpg">
       <UniqueIdentifier>{ee264d72-c524-4e05-a8c4-f49610304426}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\fsm1">
       <UniqueIdentifier>{883a7dff-b905-40e3-b5b4-65effc8c3abf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step02\fsm1test">
-      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step02\game">
-      <UniqueIdentifier>{94783662-3f8b-4bbd-bc5d-6b9ef1db809e}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\animation">
       <UniqueIdentifier>{1257b598-16f9-4be8-81d6-9e22d089a147}</UniqueIdentifier>
@@ -93,6 +72,27 @@
     </Filter>
     <Filter Include="src\scene\step_typetype\game">
       <UniqueIdentifier>{78547db5-83f7-49ce-b454-8b4e73e9bee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_rain_of_chaos">
+      <UniqueIdentifier>{6aade675-064c-4874-9f6b-dc07f058b9d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_rain_of_chaos\animation">
+      <UniqueIdentifier>{94f7f939-c9ab-40f0-a1d2-7d90e76ed48a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_rain_of_chaos\input">
+      <UniqueIdentifier>{1dce0bb6-9de2-4d45-a409-35a7ef25bd30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_rain_of_chaos\collision">
+      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_rain_of_chaos\button_drag">
+      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_rain_of_chaos\fsm1test">
+      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_rain_of_chaos\game">
+      <UniqueIdentifier>{94783662-3f8b-4bbd-bc5d-6b9ef1db809e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -199,46 +199,43 @@
       <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_input_KeyCodeCollectScene.cpp">
-      <Filter>src\scene\step02\input</Filter>
+      <Filter>src\scene\step_rain_of_chaos\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp">
-      <Filter>src\scene\step02\collision</Filter>
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_animation_ListScene.cpp">
-      <Filter>src\scene\step02\animation</Filter>
+      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_button_DragScene.cpp">
-      <Filter>src\scene\step02\button_drag</Filter>
+      <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_CollisionComponent.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step02_RootScene.cpp">
-      <Filter>src\scene\step02</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step02_collision_CollectionScene.cpp">
-      <Filter>src\scene\step02\collision</Filter>
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_input_KeyCodeCollector.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
-      <Filter>src\scene\step02\fsm1test</Filter>
+      <Filter>src\scene\step_rain_of_chaos\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_game_rain_of_chaos_TitleScene.cpp">
-      <Filter>src\scene\step02\game</Filter>
+      <Filter>src\scene\step_rain_of_chaos\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_animation_CallbackScene.cpp">
-      <Filter>src\scene\step02\animation</Filter>
+      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp">
-      <Filter>src\scene\step02\fsm1test</Filter>
+      <Filter>src\scene\step_rain_of_chaos\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_animation_ComponentScene.cpp">
-      <Filter>src\scene\step02\animation</Filter>
+      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_AnimationComponent.cpp">
       <Filter>src\animation</Filter>
@@ -317,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_StageTestScene.cpp">
       <Filter>src\scene\step_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_RootScene.cpp">
+      <Filter>src\scene\step_rain_of_chaos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -426,31 +426,28 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_input_KeyCodeCollectScene.h">
-      <Filter>src\scene\step02\input</Filter>
+      <Filter>src\scene\step_rain_of_chaos\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_collision_BasicScene.h">
-      <Filter>src\scene\step02\collision</Filter>
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_animation_ListScene.h">
-      <Filter>src\scene\step02\animation</Filter>
+      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_button_DragScene.h">
-      <Filter>src\scene\step02\button_drag</Filter>
+      <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_CollisionComponent.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step02_RootScene.h">
-      <Filter>src\scene\step02</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step02_collision_CollectionScene.h">
-      <Filter>src\scene\step02\collision</Filter>
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyCodeCollector.h">
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h">
-      <Filter>src\scene\step02\fsm1test</Filter>
+      <Filter>src\scene\step_rain_of_chaos\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_iState.h">
       <Filter>src\fsm1</Filter>
@@ -459,16 +456,16 @@
       <Filter>src\fsm1</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_game_rain_of_chaos_TitleScene.h">
-      <Filter>src\scene\step02\game</Filter>
+      <Filter>src\scene\step_rain_of_chaos\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_animation_CallbackScene.h">
-      <Filter>src\scene\step02\animation</Filter>
+      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h">
-      <Filter>src\scene\step02\fsm1test</Filter>
+      <Filter>src\scene\step_rain_of_chaos\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_animation_ComponentScene.h">
-      <Filter>src\scene\step02\animation</Filter>
+      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_AnimationComponent.h">
       <Filter>src\animation</Filter>
@@ -553,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_StageTestScene.h">
       <Filter>src\scene\step_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_RootScene.h">
+      <Filter>src\scene\step_rain_of_chaos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

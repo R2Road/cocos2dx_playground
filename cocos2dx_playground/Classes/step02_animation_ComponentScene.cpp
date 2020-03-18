@@ -6,7 +6,7 @@
 #include "cpg_Animation_Info.h"
 #include "cpg_AnimationComponent.h"
 #include "cpg_animation_InfoContainer.h"
-#include "step02_RootScene.h"
+#include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
 
@@ -123,7 +123,7 @@ namespace step02
 
 		void ComponentScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 		}
 
 		void ComponentScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

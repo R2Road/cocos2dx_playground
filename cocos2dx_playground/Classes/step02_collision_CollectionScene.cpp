@@ -10,7 +10,7 @@
 #include "ui/UIButton.h"
 
 #include "cpg_CollisionComponent.h"
-#include "step02_RootScene.h"
+#include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
 
@@ -357,7 +357,7 @@ namespace step02
 
 		void CollectionScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 		}
 		void CollectionScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

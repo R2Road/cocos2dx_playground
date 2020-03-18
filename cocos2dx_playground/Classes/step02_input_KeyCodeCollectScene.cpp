@@ -4,7 +4,7 @@
 #include <sstream>
 
 #include "CPG_Input_KeyCodeNames.h"
-#include "step02_RootScene.h"
+#include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
 
@@ -103,7 +103,7 @@ namespace step02
 
 		void KeyCodeCollectScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 		}
 
 		void KeyCodeCollectScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

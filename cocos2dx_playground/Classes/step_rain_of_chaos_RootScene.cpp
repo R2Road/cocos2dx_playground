@@ -1,4 +1,4 @@
-#include "step02_RootScene.h"
+#include "step_rain_of_chaos_RootScene.h"
 
 #include <new>
 #include <sstream>
@@ -19,7 +19,7 @@
 
 USING_NS_CC;
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	RootScene::RootScene() : mKeyboardListener( nullptr ) {}
 

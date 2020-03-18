@@ -3,7 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "step02_RootScene.h"
+#include "step_rain_of_chaos_RootScene.h"
 
 #include "fsm1_iState.h"
 
@@ -284,7 +284,7 @@ namespace step02
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 		}
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
