@@ -2,7 +2,7 @@
 
 #include "cocos2d.h"
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace animation
 	{

@@ -228,9 +228,6 @@
     <ClCompile Include="..\Classes\step02_game_rain_of_chaos_TitleScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step02_animation_CallbackScene.cpp">
-      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\fsm1test</Filter>
     </ClCompile>
@@ -317,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_RootScene.cpp">
       <Filter>src\scene\step_rain_of_chaos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_animation_CallbackScene.cpp">
+      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -458,9 +458,6 @@
     <ClInclude Include="..\Classes\step02_game_rain_of_chaos_TitleScene.h">
       <Filter>src\scene\step_rain_of_chaos\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step02_animation_CallbackScene.h">
-      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h">
       <Filter>src\scene\step_rain_of_chaos\fsm1test</Filter>
     </ClInclude>
@@ -553,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_RootScene.h">
       <Filter>src\scene\step_rain_of_chaos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_animation_CallbackScene.h">
+      <Filter>src\scene\step_rain_of_chaos\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

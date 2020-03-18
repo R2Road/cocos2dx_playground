@@ -1,4 +1,4 @@
-#include "step02_animation_CallbackScene.h"
+#include "step_rain_of_chaos_animation_CallbackScene.h"
 
 #include <new>
 #include <sstream>
@@ -15,7 +15,7 @@ namespace
 	const int TAG_AnimationAction = 111;
 }
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace animation
 	{
