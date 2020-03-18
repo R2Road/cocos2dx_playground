@@ -23,6 +23,7 @@ namespace step01
 			void onExit() override;
 
 		private:
+			void makeDummyJsonFile();
 			void saveJsonFile();
 			bool loadJsonFile();
 

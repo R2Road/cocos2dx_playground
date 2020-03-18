@@ -89,6 +89,7 @@ namespace step01
 			// Json Save And Load
 			//
 			{
+				makeDummyJsonFile();
 				loadJsonFile();
 			}
 
@@ -148,6 +149,28 @@ namespace step01
 			Node::onExit();
 		}
 
+		void LoadNSaveScene::makeDummyJsonFile()
+		{
+			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+			path.append( FilePath_Step01_Json_LoadNSave );
+
+			if( cocos2d::FileUtils::getInstance()->isFileExist( path ) )
+			{
+				return;
+			}
+
+			std::random_device rd;
+			std::mt19937 randomEngine( rd() );
+			std::uniform_int_distribution<> dist( 0, 9 );
+
+			mDatas.reserve( 10 );
+			for( int i = 0; i < 10; ++i )
+			{
+				mDatas.emplace_back( dist( randomEngine ) );
+			}
+
+			saveJsonFile();
+		}
 		void LoadNSaveScene::saveJsonFile()
 		{
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
@@ -173,25 +196,6 @@ namespace step01
 		{
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 			path.append( FilePath_Step01_Json_LoadNSave );
-
-			if( !cocos2d::FileUtils::getInstance()->isFileExist( path ) )
-			{
-				//
-				// dummy data
-				//
-
-				std::random_device rd;
-				std::mt19937 randomEngine( rd() );
-				std::uniform_int_distribution<> dist( 0, 9 );
-
-				mDatas.reserve( 10 );
-				for( int i = 0; i < 10; ++i )
-				{
-					mDatas.emplace_back( dist( randomEngine ) );
-				}
-
-				saveJsonFile();
-			}
 
 			mJsonString = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) );
 			rapidjson::Document doc;
