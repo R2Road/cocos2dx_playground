@@ -177,12 +177,12 @@ namespace step01
 
 			saveJsonFile( json_path, datas );
 		}
-		void LoadNSaveScene::saveJsonFile( const char* json_path, const ContainerT& datas ) const
+		void LoadNSaveScene::saveJsonFile( const char* json_path, const ContainerT& json_datas ) const
 		{
 			rapidjson::Document document;
 			document.SetArray();
 
-			for( const auto d : datas )
+			for( const auto d : json_datas )
 			{
 				document.PushBack( d, document.GetAllocator() );
 			}
