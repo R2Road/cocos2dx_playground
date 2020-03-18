@@ -89,8 +89,11 @@ namespace step01
 			// Json Save And Load
 			//
 			{
-				makeDummyJsonFile();
-				loadJsonFile();
+				std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+				path.append( FilePath_Step01_Json_LoadNSave );
+
+				makeDummyJsonFile( path.c_str() );
+				loadJsonFile( path.c_str() );
 			}
 
 			//
@@ -149,12 +152,9 @@ namespace step01
 			Node::onExit();
 		}
 
-		void LoadNSaveScene::makeDummyJsonFile()
+		void LoadNSaveScene::makeDummyJsonFile( const char* json_path )
 		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( FilePath_Step01_Json_LoadNSave );
-
-			if( cocos2d::FileUtils::getInstance()->isFileExist( path ) )
+			if( cocos2d::FileUtils::getInstance()->isFileExist( json_path ) )
 			{
 				return;
 			}
@@ -169,13 +169,10 @@ namespace step01
 				mDatas.emplace_back( dist( randomEngine ) );
 			}
 
-			saveJsonFile();
+			saveJsonFile( json_path );
 		}
-		void LoadNSaveScene::saveJsonFile()
+		void LoadNSaveScene::saveJsonFile( const char* json_path )
 		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( FilePath_Step01_Json_LoadNSave );
-
 			rapidjson::Document document;
 			document.SetArray();
 
@@ -188,16 +185,14 @@ namespace step01
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 			document.Accept( writer );
 
-			std::ofstream fs( path, std::ios::out );
+			std::ofstream fs( json_path, std::ios::out );
 			fs << buffer.GetString() << std::endl;
 			fs.close();
 		}
-		bool LoadNSaveScene::loadJsonFile()
+		bool LoadNSaveScene::loadJsonFile( const char* json_path )
 		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( FilePath_Step01_Json_LoadNSave );
+			mJsonString = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( json_path ) );
 
-			mJsonString = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) );
 			rapidjson::Document doc;
 			doc.Parse<0>( mJsonString.c_str() );
 
