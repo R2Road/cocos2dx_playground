@@ -1,6 +1,7 @@
 #include "step_clickclick_game_TitleScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
@@ -14,8 +15,6 @@
 #include "step_clickclick_game_ExplainScene.h"
 #include "step_clickclick_game_ResultScene.h"
 #include "step_clickclick_RootScene.h"
-
-#include "CPG_Setting.h"
 
 USING_NS_CC;
 
@@ -55,8 +54,6 @@ namespace step_clickclick
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << "[F1] : Result Scene Test";
@@ -68,7 +65,7 @@ namespace step_clickclick
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 
@@ -94,7 +91,6 @@ namespace step_clickclick
 			//
 			{
 				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 14 );
-				request_input_label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				request_input_label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.18f
@@ -117,9 +113,10 @@ namespace step_clickclick
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TitleScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void TitleScene::onExit()
 		{
@@ -130,19 +127,11 @@ namespace step_clickclick
 			Node::onExit();
 		}
 
-		void TitleScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
-		}
-
 		void TitleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( TitleScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( TitleScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 				return;
 			}
 

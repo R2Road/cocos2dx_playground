@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCLabel.h"
@@ -77,8 +78,6 @@ namespace step_clickclick
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << "[Mouse] : Click";
@@ -90,7 +89,7 @@ namespace step_clickclick
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -98,7 +97,7 @@ namespace step_clickclick
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B::BLACK );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -139,7 +138,7 @@ namespace step_clickclick
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 
 				updateScoreView();
 			}
@@ -150,13 +149,12 @@ namespace step_clickclick
 			{
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
 				label->setTag( TAG_ClearView );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setVisible( false );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.6f
 				) );
-				addChild( label, 9999 );
+				addChild( label, 1 );
 
 				updateScoreView();
 			}
@@ -167,13 +165,12 @@ namespace step_clickclick
 			{
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
 				label->setTag( TAG_CountView );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				label->setVisible( false );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.4f
 				) );
-				addChild( label, 9999 );
+				addChild( label, 1 );
 
 				updateCountView( mNextStepData.LimitTime_forCount );
 			}
@@ -185,6 +182,7 @@ namespace step_clickclick
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
@@ -201,7 +199,7 @@ namespace step_clickclick
 
 		void PlayScene::onGameProcess( const int block_linear_index )
 		{
-			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.5f );
+			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 
 			const auto& block_data = mStage->GetBlockData( block_linear_index );
 			const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );

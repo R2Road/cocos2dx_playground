@@ -5,7 +5,6 @@
 
 #include "PlayGroundScene.h"
 
-#include "Step01_Input_KeyCodeViewScene.h"
 #include "Step01_Json_LoadNSaveScene.h"
 #include "Step01_TextField_BasicScene.h"
 
@@ -46,17 +45,15 @@ namespace step01
 			ss << "[ESC] : Return to Playground";
 			ss << "\n";
 			ss << "\n";
-			ss << "[1] : " << input::KeyCodeViewScene::getTitle();
+			ss << "[1] : " << json::LoadNSaveScene::getTitle();
 			ss << "\n";
-			ss << "[2] : " << json::LoadNSaveScene::getTitle();
-			ss << "\n";
-			ss << "[3] : " << step01::text_field::BasicScene::getTitle();
+			ss << "[2] : " << step01::text_field::BasicScene::getTitle();
 			ss << "\n";
 			ss << "\n";
-			ss << "[4] : " << tool::MapToolScene::getTitle();
+			ss << "[3] : " << tool::MapToolScene::getTitle();
 			ss << "\n";
 			ss << "\n";
-			ss << "[5] : " << game::pathfinder::TitleScene::getTitle();
+			ss << "[4] : " << game::pathfinder::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -105,20 +102,17 @@ namespace step01
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( input::KeyCodeViewScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( json::LoadNSaveScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_3:
+		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step01::text_field::BasicScene::create() );
 			break;
 
 
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( tool::MapToolScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
 			break;
 

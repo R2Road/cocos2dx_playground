@@ -1,11 +1,13 @@
 #include "Step01_Json_LoadNSaveScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 #include <random>
-
 #include <fstream>
 #include <utility>
+
+#include "base/ccUTF8.h"
 
 #include "json/document.h"
 #include "json/stringbuffer.h"
@@ -24,11 +26,7 @@ namespace step01
 			const char* FilePath_Step01_Json_LoadNSave = "step01_json_load_and_save.json";
 		}
 
-		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ), mDatas() {}
-		LoadNSaveScene::~LoadNSaveScene()
-		{
-			mKeyboardListener->release();
-		}
+		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ) {}
 
 		Scene* LoadNSaveScene::create()
 		{
@@ -50,7 +48,9 @@ namespace step01
 		bool LoadNSaveScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
@@ -70,40 +70,45 @@ namespace step01
 				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath() << FilePath_Step01_Json_LoadNSave;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
-			// Keyboard Listener
+			// Background
 			//
 			{
-				mKeyboardListener = EventListenerKeyboard::create();
-				mKeyboardListener->onKeyPressed = CC_CALLBACK_2( LoadNSaveScene::onKeyPressed, this );
-				mKeyboardListener->retain();
+				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
+				addChild( background_layer, -1 );
 			}
 
 			//
 			// Json Save And Load
 			//
+			std::string json_string;
+			ContainerT json_datas;
 			{
-				LoadJsonFile();
+				std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+				path.append( FilePath_Step01_Json_LoadNSave );
+
+				makeDummyJsonFile( path.c_str() );
+				loadJsonFile( path.c_str(), json_string, json_datas );
 			}
 
 			//
-			// Json View
+			// Json String View
 			//
 			{
-				std::stringstream ss;
-				ss << "Json String : " << mJsonString;
-
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto label = Label::createWithTTF(
+					StringUtils::format( "Json String : %s", json_string.c_str() )
+					, "fonts/arial.ttf"
+					, 9
+				);
+				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.6f )
@@ -112,18 +117,18 @@ namespace step01
 			}
 
 			//
-			// Data View
+			// Json Data View
 			//
 			{
 				std::stringstream ss;
 				ss << "Json Datas :";
-				for( auto i : mDatas )
+				for( auto i : json_datas )
 				{
 					ss << " " << i;
 				}
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9 );
+				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.4f )
@@ -137,24 +142,47 @@ namespace step01
 		void LoadNSaveScene::onEnter()
 		{
 			Scene::onEnter();
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+
+			assert( !mKeyboardListener );
+			mKeyboardListener = EventListenerKeyboard::create();
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( LoadNSaveScene::onKeyPressed, this );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void LoadNSaveScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
+			mKeyboardListener = nullptr;
+
 			Node::onExit();
 		}
 
-		void LoadNSaveScene::SaveJsonFile()
+		void LoadNSaveScene::makeDummyJsonFile( const char* json_path ) const
 		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( FilePath_Step01_Json_LoadNSave );
+			if( cocos2d::FileUtils::getInstance()->isFileExist( json_path ) )
+			{
+				return;
+			}
 
+			std::random_device rd;
+			std::mt19937 randomEngine( rd() );
+			std::uniform_int_distribution<> dist( 0, 9 );
+
+			ContainerT datas;
+			datas.reserve( 10 );
+			for( int i = 0; i < 10; ++i )
+			{
+				datas.emplace_back( dist( randomEngine ) );
+			}
+
+			saveJsonFile( json_path, datas );
+		}
+		void LoadNSaveScene::saveJsonFile( const char* json_path, const ContainerT& json_datas ) const
+		{
 			rapidjson::Document document;
 			document.SetArray();
 
-			for( const auto d : mDatas )
+			for( const auto d : json_datas )
 			{
 				document.PushBack( d, document.GetAllocator() );
 			}
@@ -163,37 +191,16 @@ namespace step01
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 			document.Accept( writer );
 
-			std::ofstream fs( path, std::ios::out );
+			std::ofstream fs( json_path, std::ios::out );
 			fs << buffer.GetString() << std::endl;
 			fs.close();
 		}
-		bool LoadNSaveScene::LoadJsonFile()
+		bool LoadNSaveScene::loadJsonFile( const char* json_path, std::string& out_json_string, ContainerT& out_json_datas )
 		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( FilePath_Step01_Json_LoadNSave );
+			out_json_string = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( json_path ) );
 
-			if( !cocos2d::FileUtils::getInstance()->isFileExist( path ) )
-			{
-				//
-				// dummy data
-				//
-
-				std::random_device rd;
-				std::mt19937 randomEngine( rd() );
-				std::uniform_int_distribution<> dist( 0, 9 );
-
-				mDatas.reserve( 10 );
-				for( int i = 0; i < 10; ++i )
-				{
-					mDatas.emplace_back( dist( randomEngine ) );
-				}
-
-				SaveJsonFile();
-			}
-
-			mJsonString = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) );
 			rapidjson::Document doc;
-			doc.Parse<0>( mJsonString.c_str() );
+			doc.Parse<0>( out_json_string.c_str() );
 
 			if( doc.HasParseError() )
 			{
@@ -213,31 +220,25 @@ namespace step01
 				return false;
 			}
 
-			mDatas.clear();
-			mDatas.reserve( doc.Size() );
+			out_json_datas.clear();
+			out_json_datas.reserve( doc.Size() );
 			for( rapidjson::SizeType i = 0u; i < doc.Size(); ++i )
 			{
 				const auto& value = doc[i];
 
-				mDatas.emplace_back( value.GetInt() );
+				out_json_datas.emplace_back( value.GetInt() );
 			}
 
 			return true;
 		}
 
-		void LoadNSaveScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( RootScene::create() );
-		}
 		void LoadNSaveScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
+			{
+				Director::getInstance()->replaceScene( RootScene::create() );
 				return;
-
-			if( isScheduled( schedule_selector( LoadNSaveScene::updateForExit ) ) )
-				return;
-
-			scheduleOnce( schedule_selector( LoadNSaveScene::updateForExit ), 0.f );
+			}
 		}
 	}
 }

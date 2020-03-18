@@ -1,6 +1,7 @@
 #include "step_clickclick_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "PlayGroundScene.h"
@@ -8,11 +9,9 @@
 #include "step_clickclick_animation_BasicScene.h"
 #include "step_clickclick_animation_PlayNStopScene.h"
 
-#include "step_clickclick_sound_Basic.h"
-
 #include "step_clickclick_button_BasicScene.h"
 
-#include "step_clickclick_game_TestScene.h"
+#include "step_clickclick_game_StageTestScene.h"
 #include "step_clickclick_game_TitleScene.h"
 
 USING_NS_CC;
@@ -54,15 +53,12 @@ namespace step_clickclick
 			ss << "[2] : " << step_clickclick::animation::PlayNStopScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[3] : " << step_clickclick::sound::BasicScene::getTitle();
+			ss << "[3] : " << step_clickclick::button::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_clickclick::button::BasicScene::getTitle();
+			ss << "[4] : " << step_clickclick::game::StageTestScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
-			ss << "[5] : " << step_clickclick::game::TestScene::getTitle();
-			ss << std::endl;
-			ss << "[6] : " << step_clickclick::game::TitleScene::getTitle();
+			ss << "[5] : " << step_clickclick::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -70,7 +66,7 @@ namespace step_clickclick
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, 1 );
+			ret->addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -78,7 +74,7 @@ namespace step_clickclick
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
-			ret->addChild( background_layer, 0 );
+			ret->addChild( background_layer, -1 );
 		}
 
 		return ret;
@@ -88,6 +84,7 @@ namespace step_clickclick
 	{
 		Scene::onEnter();
 
+		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
@@ -118,17 +115,13 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_clickclick::sound::BasicScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_clickclick::button::BasicScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step_clickclick::game::TestScene::create() );
+		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( step_clickclick::game::StageTestScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
 			break;
 

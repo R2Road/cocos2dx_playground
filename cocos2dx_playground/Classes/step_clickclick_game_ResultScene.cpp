@@ -1,8 +1,8 @@
 #include "step_clickclick_game_ResultScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
-#include <iomanip>
 
 #include "step_clickclick_game_TitleScene.h"
 
@@ -44,8 +44,6 @@ namespace step_clickclick
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
 				ss << "[ESC] : Return to Title";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
@@ -55,7 +53,7 @@ namespace step_clickclick
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -63,20 +61,20 @@ namespace step_clickclick
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B::WHITE );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
 			// Game Clear
 			//
 			{
-				auto label = Label::createWithTTF( "Game Clear", "fonts/arial.ttf", 32, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Game Clear", "fonts/arial.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.65f )
 				) );
-				addChild( label, 10 );
+				addChild( label );
 			}
 
 			//
@@ -89,7 +87,7 @@ namespace step_clickclick
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.35f )
 				) );
-				addChild( label, 10 );
+				addChild( label );
 			}
 
 			return true;
@@ -99,9 +97,10 @@ namespace step_clickclick
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ResultScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void ResultScene::onExit()
 		{
@@ -112,19 +111,11 @@ namespace step_clickclick
 			Node::onExit();
 		}
 
-		void ResultScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
-		}
-
 		void ResultScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( ResultScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( ResultScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
 				return;
 			}
 		}

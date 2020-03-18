@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 namespace step01
 {
@@ -12,11 +12,11 @@ namespace step01
 		class LoadNSaveScene : public cocos2d::Scene
 		{
 		private:
+			using ContainerT = std::vector<int>;
+
 			LoadNSaveScene();
 
 		public:
-			~LoadNSaveScene();
-
 			static const char* getTitle() { return "Json : Load And Save"; }
 			static cocos2d::Scene* create();
 
@@ -25,16 +25,14 @@ namespace step01
 			void onExit() override;
 
 		private:
-			void SaveJsonFile();
-			bool LoadJsonFile();
+			void makeDummyJsonFile( const char* json_path ) const;
+			void saveJsonFile( const char* json_path, const ContainerT& json_datas ) const;
+			bool loadJsonFile( const char* json_path, std::string& out_json_string, ContainerT& out_json_datas );
 
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			std::string mJsonString;
-			std::vector<int> mDatas;
 		};
 	}
 }

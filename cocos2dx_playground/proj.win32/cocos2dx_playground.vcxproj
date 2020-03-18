@@ -184,8 +184,14 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Viewer.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_Stage.cpp" />
-    <ClCompile Include="..\Classes\step_clickclick_game_TestScene.cpp" />
-    <ClCompile Include="..\Classes\step_clickclick_sound_Basic.cpp" />
+    <ClCompile Include="..\Classes\step_clickclick_game_StageTestScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_PlayScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_ResultScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_StageTestScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_StageView.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_TitleScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_sound_Basic.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp" />
     <ClCompile Include="..\Classes\Step01_TextField_BasicScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp" />
@@ -193,7 +199,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_TitleScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp" />
-    <ClCompile Include="..\Classes\Step01_Input_KeyCodeViewScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_input_KeyCodeViewScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp" />
     <ClCompile Include="..\Classes\Research_Setting.cpp" />
@@ -214,6 +220,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step02_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step99_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_RootScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_RootScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -255,8 +264,14 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Viewer.h" />
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_Stage.h" />
-    <ClInclude Include="..\Classes\step_clickclick_game_TestScene.h" />
-    <ClInclude Include="..\Classes\step_clickclick_sound_Basic.h" />
+    <ClInclude Include="..\Classes\step_clickclick_game_StageTestScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_ResultScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_Stage.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_StageTestScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_StageView.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_TitleScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_sound_Basic.h" />
     <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h" />
     <ClInclude Include="..\Classes\Step01_TextField_BasicScene.h" />
     <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h" />
@@ -264,7 +279,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_TitleScene.h" />
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h" />
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h" />
-    <ClInclude Include="..\Classes\Step01_Input_KeyCodeViewScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_input_KeyCodeViewScene.h" />
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h" />
     <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h" />
     <ClInclude Include="..\Classes\Research_Setting.h" />
@@ -285,6 +300,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step02_RootScene.h" />
     <ClInclude Include="..\Classes\Step99_RootScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_RootScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_RootScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

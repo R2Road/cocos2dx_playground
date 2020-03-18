@@ -1,6 +1,7 @@
 #include "step_clickclick_animation_PlayNStopScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
@@ -79,7 +80,7 @@ namespace step_clickclick
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -87,7 +88,7 @@ namespace step_clickclick
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 0, 50, 20, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -102,7 +103,7 @@ namespace step_clickclick
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
 				) );
-				addChild( animation_node, 1 );
+				addChild( animation_node, 0 );
 			}
 
 			//
@@ -132,9 +133,10 @@ namespace step_clickclick
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayNStopScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void PlayNStopScene::onExit()
 		{
@@ -146,21 +148,13 @@ namespace step_clickclick
 			Node::onExit();
 		}
 
-		void PlayNStopScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
-		}
-
 		void PlayNStopScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				if( !isScheduled( schedule_selector( PlayNStopScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( PlayNStopScene::updateForExit ), 0.f );
-				}
-				break;
+				Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
+				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play
 			{
