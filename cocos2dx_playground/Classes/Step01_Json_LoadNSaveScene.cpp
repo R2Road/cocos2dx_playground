@@ -68,7 +68,6 @@ namespace step01
 				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath() << FilePath_Step01_Json_LoadNSave;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -105,6 +104,7 @@ namespace step01
 					, "fonts/arial.ttf"
 					, 9
 				);
+				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.6f )
@@ -124,6 +124,7 @@ namespace step01
 				}
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9 );
+				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.4f )
