@@ -1,7 +1,18 @@
 #include "step_rain_of_chaos_animation_ListScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
+
+#include "2d/CCActionInterval.h"
+#include "2d/CCAnimation.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
 
 #include "cpg_Animation_Info.h"
 
@@ -91,7 +102,7 @@ namespace step_rain_of_chaos
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -99,7 +110,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -114,7 +125,7 @@ namespace step_rain_of_chaos
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
 				) );
-				addChild( animation_node, 1 );
+				addChild( animation_node, 0 );
 			}
 
 			//
@@ -146,6 +157,7 @@ namespace step_rain_of_chaos
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ListScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -155,6 +167,7 @@ namespace step_rain_of_chaos
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
+
 			for( auto a : mAnimationActions )
 			{
 				a->release();
@@ -164,21 +177,13 @@ namespace step_rain_of_chaos
 			Node::onExit();
 		}
 
-		void ListScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
-		}
-
 		void ListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				if( !isScheduled( schedule_selector( ListScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( ListScene::updateForExit ), 0.f );
-				}
-				break;
+				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Idle
 				playAnimation( cpg::animation::eIndex::idle );
@@ -192,7 +197,7 @@ namespace step_rain_of_chaos
 				playAnimation( cpg::animation::eIndex::win );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_SPACE: // Play Win
+			case EventKeyboard::KeyCode::KEY_SPACE: // Stop
 				stopAnimation();
 				break;
 
@@ -222,7 +227,7 @@ namespace step_rain_of_chaos
 
 			animation_node->stopAllActions();
 		}
-		cocos2d::Action* ListScene::getAnimationAction( const cpg::animation::eIndex animation_index )
+		cocos2d::Action* ListScene::getAnimationAction( const cpg::animation::eIndex animation_index ) const
 		{
 			for( auto a : mAnimationActions )
 			{
