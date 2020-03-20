@@ -10,7 +10,7 @@
 
 #include "Step01_Tool_TerrainViewer.h"
 
-#include "Step01_RootScene.h"
+#include "step_pathfinder_RootScene.h"
 
 USING_NS_CC;
 
@@ -400,7 +400,7 @@ namespace step01
 
 		void MapToolScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step01::RootScene::create() );
+			Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
 		}
 		void MapToolScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

@@ -3,7 +3,7 @@
 #include <new>
 #include <sstream>
 
-#include "Step01_RootScene.h"
+#include "step_pathfinder_RootScene.h"
 
 #include "Step01_Game_PathFinder_PlayScene.h"
 #include "Step01_Game_PathFinder_ResultScene.h"
@@ -125,7 +125,7 @@ namespace step01
 
 			void TitleScene::updateForExit( float /*dt*/ )
 			{
-				Director::getInstance()->replaceScene( step01::RootScene::create() );
+				Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
 			}
 
 			void TitleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

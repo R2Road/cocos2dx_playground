@@ -5,7 +5,7 @@
 
 #include "step_typetype_RootScene.h"
 #include "step_clickclick_RootScene.h"
-#include "Step01_RootScene.h"
+#include "step_pathfinder_RootScene.h"
 #include "step_rain_of_chaos_RootScene.h"
 
 #include "Research_Input_GamePadTest.h"
@@ -43,7 +43,7 @@ Scene* PlayGroundScene::create()
 	ss << "\n";
 	ss << "[2] : " << step_clickclick::RootScene::getTitle();
 	ss << "\n";
-	ss << "[3] : " << step01::RootScene::getTitle();
+	ss << "[3] : " << step_pathfinder::RootScene::getTitle();
 	ss << "\n";
 	ss << "[4] : " << step_rain_of_chaos::RootScene::getTitle();
 	ss << "\n";
@@ -97,7 +97,7 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_3:
-		Director::getInstance()->replaceScene( step01::RootScene::create() );
+		Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_4:
 		Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );

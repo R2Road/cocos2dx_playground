@@ -1,4 +1,4 @@
-#include "Step01_RootScene.h"
+#include "step_pathfinder_RootScene.h"
 
 #include <new>
 #include <sstream>
@@ -13,7 +13,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_pathfinder
 {
 	RootScene::RootScene() : mKeyboardListener( nullptr ) {}
 
@@ -39,7 +39,7 @@ namespace step01
 		//
 		{
 			std::stringstream ss;
-			ss << "+ Step 01 : Input And Animation";
+			ss << "+ " << getTitle();
 			ss << "\n";
 			ss << "\n";
 			ss << "[ESC] : Return to Playground";
@@ -50,10 +50,10 @@ namespace step01
 			ss << "[2] : " << step01::text_field::BasicScene::getTitle();
 			ss << "\n";
 			ss << "\n";
-			ss << "[3] : " << tool::MapToolScene::getTitle();
+			ss << "[3] : " << step01::tool::MapToolScene::getTitle();
 			ss << "\n";
 			ss << "\n";
-			ss << "[4] : " << game::pathfinder::TitleScene::getTitle();
+			ss << "[4] : " << step01::game::pathfinder::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -110,10 +110,10 @@ namespace step01
 
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( tool::MapToolScene::create() );
+			Director::getInstance()->replaceScene( step01::tool::MapToolScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( game::pathfinder::TitleScene::create() );
+			Director::getInstance()->replaceScene( step01::game::pathfinder::TitleScene::create() );
 			break;
 
 		default:

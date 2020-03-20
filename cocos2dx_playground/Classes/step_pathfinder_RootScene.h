@@ -2,14 +2,14 @@
 
 #include "cocos2d.h"
 
-namespace step01
+namespace step_pathfinder
 {
 	class RootScene : public cocos2d::Scene
 	{
 	public:
 		RootScene();
 
-		static const char* getTitle() { return "Step 01 : Input & Animation"; }
+		static const char* getTitle() { return "Step : Path Finder"; }
 		static cocos2d::Scene* create();
 
 		void onEnter() override;

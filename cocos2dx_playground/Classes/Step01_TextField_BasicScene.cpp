@@ -7,7 +7,7 @@
 #include "ui/UITextField.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "Step01_RootScene.h"
+#include "step_pathfinder_RootScene.h"
 
 USING_NS_CC;
 
@@ -180,7 +180,7 @@ namespace step01
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

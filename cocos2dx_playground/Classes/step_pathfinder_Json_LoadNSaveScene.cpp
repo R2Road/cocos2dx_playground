@@ -13,7 +13,7 @@
 #include "json/stringbuffer.h"
 #include "json/writer.h"
 
-#include "Step01_RootScene.h"
+#include "step_pathfinder_RootScene.h"
 
 USING_NS_CC;
 
@@ -236,7 +236,7 @@ namespace step_pathfinder
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step01::RootScene::create() );
+				Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
 				return;
 			}
 		}
