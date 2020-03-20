@@ -7,6 +7,12 @@
 #include <fstream>
 #include <utility>
 
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "base/CCDirector.h"
+#include "base/CCEventDispatcher.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "platform/CCFileUtils.h"
 #include "base/ccUTF8.h"
 
 #include "json/document.h"
