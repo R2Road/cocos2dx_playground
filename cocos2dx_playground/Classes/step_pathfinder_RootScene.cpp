@@ -1,6 +1,7 @@
 #include "step_pathfinder_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "PlayGroundScene.h"
@@ -40,19 +41,19 @@ namespace step_pathfinder
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << "\n";
-			ss << "\n";
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
-			ss << "\n";
-			ss << "\n";
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[1] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
-			ss << "\n";
+			ss << std::endl;
 			ss << "[2] : " << step01::text_field::BasicScene::getTitle();
-			ss << "\n";
-			ss << "\n";
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[3] : " << step01::tool::MapToolScene::getTitle();
-			ss << "\n";
-			ss << "\n";
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[4] : " << step01::game::pathfinder::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
@@ -61,7 +62,7 @@ namespace step_pathfinder
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, 1 );
+			ret->addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -69,7 +70,7 @@ namespace step_pathfinder
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 41, 0, 61, 255 ) );
-			ret->addChild( background_layer, 0 );
+			ret->addChild( background_layer, -1 );
 		}
 
 		return ret;
