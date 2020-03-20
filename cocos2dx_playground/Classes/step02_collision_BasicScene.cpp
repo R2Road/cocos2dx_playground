@@ -3,7 +3,18 @@
 #include <new>
 #include <sstream>
 
-#include "step02_RootScene.h"
+#include "2d/CCActionInterval.h"
+#include "2d/CCAnimation.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
+
+#include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
 
@@ -347,7 +358,7 @@ namespace step02
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

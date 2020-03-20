@@ -1,17 +1,26 @@
-#include "step02_button_DragScene.h"
+#include "step_rain_of_chaos_button_DragScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "ui/UIButton.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
 
-#include "step02_RootScene.h"
+#include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
 
-const int TAG_Button = 20140416;
+namespace
+{
+	const int TAG_Button = 20140416;
+}
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace button
 	{
@@ -66,7 +75,7 @@ namespace step02
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -74,7 +83,7 @@ namespace step02
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -88,7 +97,7 @@ namespace step02
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( DragScene::onButton, this ) );
-				addChild( button, 100 );
+				addChild( button );
 
 				// left label
 				{
@@ -121,6 +130,8 @@ namespace step02
 		void DragScene::onEnter()
 		{
 			Scene::onEnter();
+
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( DragScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -130,6 +141,7 @@ namespace step02
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
+
 			Node::onExit();
 		}
 
@@ -149,18 +161,11 @@ namespace step02
 			}
 		}
 
-		void DragScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step02::RootScene::create() );
-		}
 		void DragScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( DragScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( DragScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 				return;
 			}
 

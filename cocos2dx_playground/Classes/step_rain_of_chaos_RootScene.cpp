@@ -1,14 +1,18 @@
-#include "step02_RootScene.h"
+#include "step_rain_of_chaos_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "PlayGroundScene.h"
-#include "step02_animation_ListScene.h"
-#include "step02_animation_CallbackScene.h"
-#include "step02_animation_ComponentScene.h"
+
+#include "step_rain_of_chaos_animation_ListScene.h"
+#include "step_rain_of_chaos_animation_CallbackScene.h"
+#include "step_rain_of_chaos_animation_ComponentScene.h"
+
 #include "step02_input_KeyCodeCollectScene.h"
-#include "step02_button_DragScene.h"
+
+#include "step_rain_of_chaos_button_DragScene.h"
 
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
@@ -19,7 +23,7 @@
 
 USING_NS_CC;
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	RootScene::RootScene() : mKeyboardListener( nullptr ) {}
 
@@ -58,11 +62,11 @@ namespace step02
 			ss << "[3] : " << step02::collision::CollectionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step02::animation::ListScene::getTitle();
+			ss << "[4] : " << step_rain_of_chaos::animation::ListScene::getTitle();
 			ss << std::endl;
-			ss << "[5] : " << step02::animation::CallbackScene::getTitle();
+			ss << "[5] : " << step_rain_of_chaos::animation::CallbackScene::getTitle();
 			ss << std::endl;
-			ss << "[6] : " << step02::animation::ComponentScene::getTitle();
+			ss << "[6] : " << step_rain_of_chaos::animation::ComponentScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[7] : " << step02::fsm1test::BasicScene::getTitle();
@@ -75,15 +79,14 @@ namespace step02
 			ss << std::endl;
 			ss << "[A] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
 			ss << std::endl;
-			ss << "[S] : " << step02::button::DragScene::getTitle();
+			ss << "[S] : " << step_rain_of_chaos::button::DragScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, 1 );
+			ret->addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -91,7 +94,7 @@ namespace step02
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 0, 9, 61, 255 ) );
-			ret->addChild( background_layer, 0 );
+			ret->addChild( background_layer, -1 );
 		}
 
 		return ret;
@@ -101,6 +104,7 @@ namespace step02
 	{
 		Scene::onEnter();
 
+		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -134,13 +138,13 @@ namespace step02
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step02::animation::ListScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::animation::ListScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step02::animation::CallbackScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::animation::CallbackScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_6:
-			Director::getInstance()->replaceScene( step02::animation::ComponentScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::animation::ComponentScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_7:
 			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );
@@ -153,11 +157,8 @@ namespace step02
 			Director::getInstance()->replaceScene( step02::game::rain_of_chaos::TitleScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( step02::button::DragScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::button::DragScene::create() );
 			break;
-
-
-			
 
 		default:
 			CCLOG( "Key Code : %d", keycode );

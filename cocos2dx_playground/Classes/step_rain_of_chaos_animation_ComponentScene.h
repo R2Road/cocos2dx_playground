@@ -1,18 +1,22 @@
 #pragma once
 
-#include "cocos2d.h"
+#include <vector>
 
-namespace step02
+#include "2d/CCScene.h"
+
+#include "cpg_Animation_Index.h"
+
+namespace step_rain_of_chaos
 {
 	namespace animation
 	{
-		class CallbackScene : public cocos2d::Scene
+		class ComponentScene : public cocos2d::Scene
 		{
 		private:
-			CallbackScene();
+			ComponentScene();
 
 		public:
-			static const char* getTitle() { return "Animation : Callback"; }
+			static const char* getTitle() { return "Animation : Component"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
@@ -20,15 +24,13 @@ namespace step02
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
-			void AnimationStartCallback();
-			void AnimationEndCallback();
+			void PlayAnimation( const cpg::animation::eIndex animation_index );
+			void StopAnimation();
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Action* mSequenceAction;
 		};
 	}
 }

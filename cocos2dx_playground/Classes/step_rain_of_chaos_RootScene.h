@@ -1,15 +1,15 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	class RootScene : public cocos2d::Scene
 	{
 	public:
 		RootScene();
 
-		static const char* getTitle() { return "Step 02 : Animation List & Collision"; }
+		static const char* getTitle() { return "Step : Rain of Chaos"; }
 		static cocos2d::Scene* create();
 
 		void onEnter() override;

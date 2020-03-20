@@ -2,11 +2,11 @@
 
 #include <vector>
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 #include "cpg_Animation_Index.h"
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace animation
 	{
@@ -24,12 +24,11 @@ namespace step02
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			void playAnimation( const cpg::animation::eIndex animation_index );
 			void stopAnimation();
-			cocos2d::Action* getAnimationAction( const cpg::animation::eIndex animation_index );
+			cocos2d::Action* getAnimationAction( const cpg::animation::eIndex animation_index ) const;
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
