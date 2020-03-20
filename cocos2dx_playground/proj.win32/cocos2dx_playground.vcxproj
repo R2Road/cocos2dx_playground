@@ -185,6 +185,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_Stage.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_StageTestScene.cpp" />
+    <ClCompile Include="..\Classes\step_pathfinder_json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_PlayScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_ResultScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp" />
@@ -204,7 +205,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp" />
     <ClCompile Include="..\Classes\Research_Setting.cpp" />
     <ClCompile Include="..\Classes\PlayGroundScene.cpp" />
-    <ClCompile Include="..\Classes\step_pathfinder_Json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.cpp" />
@@ -265,6 +265,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_Stage.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_StageTestScene.h" />
+    <ClInclude Include="..\Classes\step_pathfinder_json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_ResultScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_Stage.h" />
@@ -284,7 +285,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h" />
     <ClInclude Include="..\Classes\Research_Setting.h" />
     <ClInclude Include="..\Classes\PlayGroundScene.h" />
-    <ClInclude Include="..\Classes\step_pathfinder_Json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_RootScene.h" />
     <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.h" />

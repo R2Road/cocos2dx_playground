@@ -309,14 +309,14 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_pathfinder_Json_LoadNSaveScene.cpp">
-      <Filter>src\scene\step_pathfinder\json</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_RootScene.cpp">
       <Filter>src\scene\step_pathfinder</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_textField_BasicScene.cpp">
       <Filter>src\scene\step_pathfinder\textfield</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_json_LoadNSaveScene.cpp">
+      <Filter>src\scene\step_pathfinder\json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -545,14 +545,14 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h">
       <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_pathfinder_Json_LoadNSaveScene.h">
-      <Filter>src\scene\step_pathfinder\json</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_RootScene.h">
       <Filter>src\scene\step_pathfinder</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_textField_BasicScene.h">
       <Filter>src\scene\step_pathfinder\textfield</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_json_LoadNSaveScene.h">
+      <Filter>src\scene\step_pathfinder\json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
