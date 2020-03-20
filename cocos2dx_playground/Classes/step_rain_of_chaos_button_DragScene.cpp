@@ -1,6 +1,7 @@
 #include "step_rain_of_chaos_button_DragScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "ui/UIButton.h"
@@ -14,7 +15,10 @@
 
 USING_NS_CC;
 
-const int TAG_Button = 20140416;
+namespace
+{
+	const int TAG_Button = 20140416;
+}
 
 namespace step_rain_of_chaos
 {
@@ -71,7 +75,7 @@ namespace step_rain_of_chaos
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -79,7 +83,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -93,7 +97,7 @@ namespace step_rain_of_chaos
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( DragScene::onButton, this ) );
-				addChild( button, 100 );
+				addChild( button );
 
 				// left label
 				{
@@ -126,6 +130,8 @@ namespace step_rain_of_chaos
 		void DragScene::onEnter()
 		{
 			Scene::onEnter();
+
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( DragScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -135,6 +141,7 @@ namespace step_rain_of_chaos
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
+
 			Node::onExit();
 		}
 
@@ -154,18 +161,11 @@ namespace step_rain_of_chaos
 			}
 		}
 
-		void DragScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
-		}
 		void DragScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( DragScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( DragScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 				return;
 			}
 
