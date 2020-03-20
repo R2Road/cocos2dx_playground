@@ -1,4 +1,4 @@
-#include "Step01_TextField_BasicScene.h"
+#include "step_pathfinder_textField_BasicScene.h"
 
 #include <new>
 #include <sstream>
@@ -11,7 +11,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace text_field
 	{

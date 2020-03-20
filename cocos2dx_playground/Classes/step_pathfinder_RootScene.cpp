@@ -7,7 +7,7 @@
 #include "PlayGroundScene.h"
 
 #include "step_pathfinder_Json_LoadNSaveScene.h"
-#include "Step01_TextField_BasicScene.h"
+#include "step_pathfinder_textField_BasicScene.h"
 
 #include "Step01_Tool_MapToolScene.h"
 #include "Step01_Game_PathFinder_TitleScene.h"
@@ -48,7 +48,7 @@ namespace step_pathfinder
 			ss << std::endl;
 			ss << "[1] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step01::text_field::BasicScene::getTitle();
+			ss << "[2] : " << step_pathfinder::text_field::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[3] : " << step01::tool::MapToolScene::getTitle();
@@ -106,7 +106,7 @@ namespace step_pathfinder
 			Director::getInstance()->replaceScene( step_pathfinder::json::LoadNSaveScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step01::text_field::BasicScene::create() );
+			Director::getInstance()->replaceScene( step_pathfinder::text_field::BasicScene::create() );
 			break;
 
 

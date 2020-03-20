@@ -150,9 +150,6 @@
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp">
       <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_TextField_BasicScene.cpp">
-      <Filter>src\scene\step_pathfinder\textfield</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Viewer.cpp">
       <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
@@ -318,6 +315,9 @@
     <ClCompile Include="..\Classes\step_pathfinder_RootScene.cpp">
       <Filter>src\scene\step_pathfinder</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_textField_BasicScene.cpp">
+      <Filter>src\scene\step_pathfinder\textfield</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -373,9 +373,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h">
       <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_TextField_BasicScene.h">
-      <Filter>src\scene\step_pathfinder\textfield</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Viewer.h">
       <Filter>src\scene\step_pathfinder\game</Filter>
@@ -553,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_RootScene.h">
       <Filter>src\scene\step_pathfinder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_textField_BasicScene.h">
+      <Filter>src\scene\step_pathfinder\textfield</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
