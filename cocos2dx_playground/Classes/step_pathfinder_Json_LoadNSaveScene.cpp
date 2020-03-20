@@ -1,4 +1,4 @@
-#include "Step01_Json_LoadNSaveScene.h"
+#include "step_pathfinder_Json_LoadNSaveScene.h"
 
 #include <new>
 #include <numeric>
@@ -17,7 +17,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace json
 	{
@@ -236,7 +236,7 @@ namespace step01
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( RootScene::create() );
+				Director::getInstance()->replaceScene( step01::RootScene::create() );
 				return;
 			}
 		}

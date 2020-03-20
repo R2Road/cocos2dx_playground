@@ -5,7 +5,7 @@
 
 #include "2d/CCScene.h"
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace json
 	{

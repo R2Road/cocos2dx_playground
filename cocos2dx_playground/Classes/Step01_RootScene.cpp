@@ -5,7 +5,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "Step01_Json_LoadNSaveScene.h"
+#include "step_pathfinder_Json_LoadNSaveScene.h"
 #include "Step01_TextField_BasicScene.h"
 
 #include "Step01_Tool_MapToolScene.h"
@@ -45,7 +45,7 @@ namespace step01
 			ss << "[ESC] : Return to Playground";
 			ss << "\n";
 			ss << "\n";
-			ss << "[1] : " << json::LoadNSaveScene::getTitle();
+			ss << "[1] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
 			ss << "\n";
 			ss << "[2] : " << step01::text_field::BasicScene::getTitle();
 			ss << "\n";
@@ -102,7 +102,7 @@ namespace step01
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( json::LoadNSaveScene::create() );
+			Director::getInstance()->replaceScene( step_pathfinder::json::LoadNSaveScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step01::text_field::BasicScene::create() );

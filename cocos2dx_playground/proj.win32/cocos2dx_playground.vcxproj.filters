@@ -16,21 +16,6 @@
     <Filter Include="src\input">
       <UniqueIdentifier>{38d6d0ea-b379-4bdf-8de1-4eb67b03947a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step01">
-      <UniqueIdentifier>{23d6f0e6-cda1-48d5-8cc2-def067a22a4b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step01\game">
-      <UniqueIdentifier>{1d2e84c5-1a40-4da7-a5da-e86968e094bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step01\json">
-      <UniqueIdentifier>{17a57a53-55f5-4cad-97dc-102cdbd7c1dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step01\textfield">
-      <UniqueIdentifier>{5536a0a4-196d-4c90-a1fb-3b664d4b1406}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step01\tool">
-      <UniqueIdentifier>{08dc5ddd-99c0-4d2e-9b50-9816f2ef648e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step99">
       <UniqueIdentifier>{a76eefdc-f54a-43c8-b51e-7dead6c0bd9d}</UniqueIdentifier>
     </Filter>
@@ -94,6 +79,21 @@
     <Filter Include="src\scene\step_rain_of_chaos\game">
       <UniqueIdentifier>{94783662-3f8b-4bbd-bc5d-6b9ef1db809e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_pathfinder">
+      <UniqueIdentifier>{23d6f0e6-cda1-48d5-8cc2-def067a22a4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_pathfinder\game">
+      <UniqueIdentifier>{1d2e84c5-1a40-4da7-a5da-e86968e094bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_pathfinder\json">
+      <UniqueIdentifier>{17a57a53-55f5-4cad-97dc-102cdbd7c1dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_pathfinder\textfield">
+      <UniqueIdentifier>{5536a0a4-196d-4c90-a1fb-3b664d4b1406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_pathfinder\tool">
+      <UniqueIdentifier>{08dc5ddd-99c0-4d2e-9b50-9816f2ef648e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -142,43 +142,40 @@
       <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_RootScene.cpp">
-      <Filter>src\scene\step01</Filter>
+      <Filter>src\scene\step_pathfinder</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_TitleScene.cpp">
-      <Filter>src\scene\step01\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Json_LoadNSaveScene.cpp">
-      <Filter>src\scene\step01\json</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_TextField_BasicScene.cpp">
-      <Filter>src\scene\step01\textfield</Filter>
+      <Filter>src\scene\step_pathfinder\textfield</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_Terrain_Viewer.cpp">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_TerrainData.cpp">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp">
-      <Filter>src\scene\step01\tool</Filter>
+      <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp">
-      <Filter>src\scene\step01\tool</Filter>
+      <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp">
-      <Filter>src\scene\step01\tool</Filter>
+      <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_StageDataContainer.cpp">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Game_PathFinder_ResultScene.cpp">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step99_RootScene.cpp">
       <Filter>src\scene\step99</Filter>
@@ -318,6 +315,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_Json_LoadNSaveScene.cpp">
+      <Filter>src\scene\step_pathfinder\json</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -366,43 +366,40 @@
       <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_RootScene.h">
-      <Filter>src\scene\step01</Filter>
+      <Filter>src\scene\step_pathfinder</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_TitleScene.h">
-      <Filter>src\scene\step01\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Json_LoadNSaveScene.h">
-      <Filter>src\scene\step01\json</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_TextField_BasicScene.h">
-      <Filter>src\scene\step01\textfield</Filter>
+      <Filter>src\scene\step_pathfinder\textfield</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_Terrain_Viewer.h">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_TerrainData.h">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h">
-      <Filter>src\scene\step01\tool</Filter>
+      <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h">
-      <Filter>src\scene\step01\tool</Filter>
+      <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h">
-      <Filter>src\scene\step01\tool</Filter>
+      <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_StageDataContainer.h">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Game_PathFinder_ResultScene.h">
-      <Filter>src\scene\step01\game</Filter>
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step99_RootScene.h">
       <Filter>src\scene\step99</Filter>
@@ -553,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h">
       <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_Json_LoadNSaveScene.h">
+      <Filter>src\scene\step_pathfinder\json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
