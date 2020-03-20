@@ -1,8 +1,13 @@
 #include "step_pathfinder_textField_BasicScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
+#include "2d/CCLayer.h"
+#include "base/CCDirector.h"
+#include "base/CCEventDispatcher.h"
+#include "base/CCEventListenerKeyboard.h"
 #include "ui/UIButton.h"
 #include "ui/UITextField.h"
 #include "ui/UIScale9Sprite.h"
@@ -61,7 +66,7 @@ namespace step_pathfinder
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -164,6 +169,7 @@ namespace step_pathfinder
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -178,23 +184,13 @@ namespace step_pathfinder
 		}
 
 
-		void BasicScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
-		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
 				return;
 			}
-
-			if( isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
-			{
-				return;
-			}
-
-			scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
 		}
 	}
 }
