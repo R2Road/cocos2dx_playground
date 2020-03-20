@@ -1,4 +1,4 @@
-#include "step02_button_DragScene.h"
+#include "step_rain_of_chaos_button_DragScene.h"
 
 #include <new>
 #include <sstream>
@@ -16,7 +16,7 @@ USING_NS_CC;
 
 const int TAG_Button = 20140416;
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace button
 	{

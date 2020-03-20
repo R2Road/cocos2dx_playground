@@ -3,7 +3,7 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace button
 	{

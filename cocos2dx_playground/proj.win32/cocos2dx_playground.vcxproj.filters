@@ -204,9 +204,6 @@
     <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step02_button_DragScene.cpp">
-      <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\cpg_CollisionComponent.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
@@ -317,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp">
+      <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -430,9 +430,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_collision_BasicScene.h">
       <Filter>src\scene\step_rain_of_chaos\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step02_button_DragScene.h">
-      <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_CollisionComponent.h">
       <Filter>src\cpg</Filter>
@@ -553,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.h">
       <Filter>src\scene\step_rain_of_chaos\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h">
+      <Filter>src\scene\step_rain_of_chaos\button_drag</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

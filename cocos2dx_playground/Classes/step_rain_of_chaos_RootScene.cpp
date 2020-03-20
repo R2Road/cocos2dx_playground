@@ -12,7 +12,7 @@
 
 #include "step02_input_KeyCodeCollectScene.h"
 
-#include "step02_button_DragScene.h"
+#include "step_rain_of_chaos_button_DragScene.h"
 
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
@@ -79,7 +79,7 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << "[A] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
 			ss << std::endl;
-			ss << "[S] : " << step02::button::DragScene::getTitle();
+			ss << "[S] : " << step_rain_of_chaos::button::DragScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -157,7 +157,7 @@ namespace step_rain_of_chaos
 			Director::getInstance()->replaceScene( step02::game::rain_of_chaos::TitleScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( step02::button::DragScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::button::DragScene::create() );
 			break;
 
 		default:

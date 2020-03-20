@@ -210,7 +210,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_animation_CallbackScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_animation_ListScene.cpp" />
-    <ClCompile Include="..\Classes\step02_button_DragScene.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp" />
     <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step02_collision_CollectionScene.cpp" />
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp" />
@@ -290,7 +290,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_animation_CallbackScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_animation_ListScene.h" />
-    <ClInclude Include="..\Classes\step02_button_DragScene.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h" />
     <ClInclude Include="..\Classes\step02_collision_BasicScene.h" />
     <ClInclude Include="..\Classes\step02_collision_CollectionScene.h" />
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h" />
