@@ -6,28 +6,25 @@ namespace step_pathfinder
 {
 	namespace game
 	{
-		namespace pathfinder
+		class ResultScene : public cocos2d::Scene
 		{
-			class ResultScene : public cocos2d::Scene
-			{
-			private:
-				ResultScene();
+		private:
+			ResultScene();
 
-			public:
-				static const char* getTitle() { return "Game : Path Finder - Result"; }
-				static cocos2d::Scene* create( const float clear_time );
+		public:
+			static const char* getTitle() { return "Game : Path Finder - Result"; }
+			static cocos2d::Scene* create( const float clear_time );
 
-				bool init( const float clear_time );
-				void onEnter() override;
-				void onExit() override;
+			bool init( const float clear_time );
+			void onEnter() override;
+			void onExit() override;
 
-			private:
-				void updateForExit( float dt );
-				void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+		private:
+			void updateForExit( float dt );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
-			private:
-				cocos2d::EventListenerKeyboard* mKeyboardListener;
-			};
-		} // namespace pathfinder
+		private:
+			cocos2d::EventListenerKeyboard* mKeyboardListener;
+		};
 	}
 }
