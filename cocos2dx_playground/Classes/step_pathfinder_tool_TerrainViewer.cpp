@@ -2,7 +2,7 @@
 
 #include <new>
 
-#include "cocos2d.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "ui/UIButton.h"
 
 #include "step_pathfinder_tool_TerrainData.h"
