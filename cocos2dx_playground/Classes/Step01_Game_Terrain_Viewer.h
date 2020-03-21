@@ -4,7 +4,7 @@
 
 #include "Step01_Game_Terrain_Constant.h"
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{
@@ -23,11 +23,11 @@ namespace step01
 			protected:
 				bool init() override;
 
-				virtual Node* MakeTile( const step01::game::terrain::TileData& tile_data, const int grid_x, const int grid_y );
-				void UpdateTile( cocos2d::Node* tile_node, const step01::game::terrain::eTileType tile_type );
+				virtual Node* MakeTile( const step_pathfinder::game::terrain::TileData& tile_data, const int grid_x, const int grid_y );
+				void UpdateTile( cocos2d::Node* tile_node, const step_pathfinder::game::terrain::eTileType tile_type );
 
 			public:
-				void UpdateTile( const int grid_x, const int grid_y, const step01::game::terrain::eTileType tile_type );
+				void UpdateTile( const int grid_x, const int grid_y, const step_pathfinder::game::terrain::eTileType tile_type );
 				cocos2d::Vec2 ConvertPoint2Position( const int tx, const int ty ) const;
 
 			protected:

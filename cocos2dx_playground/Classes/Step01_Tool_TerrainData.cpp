@@ -7,7 +7,7 @@
 #include "json/stringbuffer.h"
 #include "json/writer.h"
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace tool
 	{

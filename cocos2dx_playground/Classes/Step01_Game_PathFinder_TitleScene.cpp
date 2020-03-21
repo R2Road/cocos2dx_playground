@@ -12,7 +12,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{
@@ -141,13 +141,13 @@ namespace step01
 
 				if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 				{
-					Director::getInstance()->replaceScene( step01::game::pathfinder::PlayScene::create() );
+					Director::getInstance()->replaceScene( step_pathfinder::game::pathfinder::PlayScene::create() );
 					return;
 				}
 
 				if( EventKeyboard::KeyCode::KEY_F1 == keycode )
 				{
-					Director::getInstance()->replaceScene( step01::game::pathfinder::ResultScene::create( 54321.12345f ) );
+					Director::getInstance()->replaceScene( step_pathfinder::game::pathfinder::ResultScene::create( 54321.12345f ) );
 					return;
 				}
 			}

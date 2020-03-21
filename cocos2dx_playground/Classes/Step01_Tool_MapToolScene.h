@@ -5,7 +5,7 @@
 
 #include "Step01_Tool_TerrainData.h"
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace tool
 	{
@@ -24,7 +24,7 @@ namespace step01
 			void onExit() override;
 
 		private:
-			Node* makeMenuButton( const step01::game::terrain::eTileType tile_type, const char* button_text, const cocos2d::ui::Widget::ccWidgetTouchCallback& callback );
+			Node* makeMenuButton( const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const cocos2d::ui::Widget::ccWidgetTouchCallback& callback );
 			void onTileSelect( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onGrid( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
@@ -36,7 +36,7 @@ namespace step01
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			TerrainData mTerrainData;
-			step01::game::terrain::eTileType mCurrentTileType;
+			step_pathfinder::game::terrain::eTileType mCurrentTileType;
 			cocos2d::Node* mButtonRootNode;
 			TerrainViewer* mTerrainViewer;
 		};

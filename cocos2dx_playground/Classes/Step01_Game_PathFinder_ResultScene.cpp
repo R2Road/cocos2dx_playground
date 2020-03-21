@@ -8,7 +8,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{
@@ -120,7 +120,7 @@ namespace step01
 
 			void ResultScene::updateForExit( float /*dt*/ )
 			{
-				Director::getInstance()->replaceScene( step01::game::pathfinder::TitleScene::create() );
+				Director::getInstance()->replaceScene( step_pathfinder::game::pathfinder::TitleScene::create() );
 			}
 
 			void ResultScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

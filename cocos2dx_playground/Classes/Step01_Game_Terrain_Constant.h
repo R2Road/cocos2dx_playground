@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{

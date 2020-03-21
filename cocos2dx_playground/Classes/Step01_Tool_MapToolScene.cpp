@@ -21,14 +21,14 @@ USING_NS_CC;
 const int TAG_TextField = 9999;
 const int TAG_SelectedTile_Indicator = 20140416;
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace tool
 	{
 		MapToolScene::MapToolScene() :
 			mKeyboardListener( nullptr )
 			, mTerrainData()
-			, mCurrentTileType( step01::game::terrain::eTileType::road )
+			, mCurrentTileType( step_pathfinder::game::terrain::eTileType::road )
 			, mButtonRootNode( nullptr )
 			, mTerrainViewer( nullptr )
 		{}
@@ -112,9 +112,9 @@ namespace step01
 				const auto tile_select_callback = CC_CALLBACK_2( MapToolScene::onTileSelect, this );
 
 				int by = 0;
-				for( int cur = static_cast<int>( step01::game::terrain::eTileType::FIRST ), end = static_cast<int>( step01::game::terrain::eTileType::SIZE ); cur < end; ++cur )
+				for( int cur = static_cast<int>( step_pathfinder::game::terrain::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::terrain::eTileType::SIZE ); cur < end; ++cur )
 				{
-					const auto& tile_data = step01::game::terrain::TileType2TileData( static_cast<step01::game::terrain::eTileType>( cur ) );
+					const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( static_cast<step_pathfinder::game::terrain::eTileType>( cur ) );
 					if( !tile_data.bToolEnable )
 					{
 						continue;
@@ -135,7 +135,7 @@ namespace step01
 				}
 
 				onTileSelect(
-					mButtonRootNode->getChildByTag( static_cast<int>( step01::game::terrain::eTileType::road ) )
+					mButtonRootNode->getChildByTag( static_cast<int>( step_pathfinder::game::terrain::eTileType::road ) )
 					, ui::Widget::TouchEventType::BEGAN
 				);
 			}
@@ -253,7 +253,7 @@ namespace step01
 		}
 
 
-		Node* MapToolScene::makeMenuButton( const step01::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
+		Node* MapToolScene::makeMenuButton( const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
 		{
 			const Size button_margin( 10.f, 4.f );
 
@@ -286,11 +286,11 @@ namespace step01
 
 			// change current tile type
 			auto sender_node = static_cast<Node*>( sender );
-			mCurrentTileType = static_cast<step01::game::terrain::eTileType>( sender_node->getTag() );
+			mCurrentTileType = static_cast<step_pathfinder::game::terrain::eTileType>( sender_node->getTag() );
 
 			// setup indicator visibility
 			Node* button_node = nullptr;
-			for( int cur = static_cast<int>( step01::game::terrain::eTileType::FIRST ), end = static_cast<int>( step01::game::terrain::eTileType::SIZE ); cur < end; ++cur )
+			for( int cur = static_cast<int>( step_pathfinder::game::terrain::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::terrain::eTileType::SIZE ); cur < end; ++cur )
 			{
 				button_node = mButtonRootNode->getChildByTag( cur );
 				if( !button_node )
@@ -325,9 +325,9 @@ namespace step01
 				return;
 			}
 
-			if( step01::game::terrain::TileType2UniqueFlag( mCurrentTileType ) )
+			if( step_pathfinder::game::terrain::TileType2UniqueFlag( mCurrentTileType ) )
 			{
-				const auto default_tile_type = step01::game::terrain::eTileType::road;
+				const auto default_tile_type = step_pathfinder::game::terrain::eTileType::road;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )

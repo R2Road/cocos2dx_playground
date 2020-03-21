@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace tool
 	{
@@ -25,7 +25,7 @@ namespace step01
 
 		TerrainViewer* TerrainViewer::create( const int width, const int height, const TileSelectCallback& tile_select_callback )
 		{
-			const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+			const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( step_pathfinder::game::terrain::eTileType::road );
 			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
 			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 
@@ -44,7 +44,7 @@ namespace step01
 			return ret;
 		}
 
-		Node* TerrainViewer::MakeTile( const step01::game::terrain::TileData& tile_data, const int grid_x, const int grid_y )
+		Node* TerrainViewer::MakeTile( const step_pathfinder::game::terrain::TileData& tile_data, const int grid_x, const int grid_y )
 		{
 			auto tile_node = game::terrain::Viewer::MakeTile( tile_data, grid_x, grid_y );
 			{

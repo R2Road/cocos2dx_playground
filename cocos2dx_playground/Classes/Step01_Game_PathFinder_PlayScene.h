@@ -4,7 +4,7 @@
 #include "Step01_Game_StageDataContainer.h"
 #include "Step01_Game_TerrainData.h"
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{

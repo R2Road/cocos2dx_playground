@@ -8,7 +8,7 @@
 
 USING_NS_CC;
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{
@@ -23,7 +23,7 @@ namespace step01
 
 			Viewer* Viewer::create( const int width, const int height )
 			{
-				const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+				const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( step_pathfinder::game::terrain::eTileType::road );
 				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
 				const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 
@@ -51,7 +51,7 @@ namespace step01
 
 				setContentSize( Size( mTileSize.width * mWidth, mTileSize.height * mHeight ) );
 
-				const auto& tile_data = step01::game::terrain::TileType2TileData( step01::game::terrain::eTileType::road );
+				const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( step_pathfinder::game::terrain::eTileType::road );
 				Node* button = nullptr;
 				for( int ty = 0; ty < mHeight; ++ty )
 				{
@@ -66,7 +66,7 @@ namespace step01
 				return true;
 			}
 
-			Node* Viewer::MakeTile( const step01::game::terrain::TileData& tile_data, const int grid_x, const int grid_y )
+			Node* Viewer::MakeTile( const step_pathfinder::game::terrain::TileData& tile_data, const int grid_x, const int grid_y )
 			{
 				const int linear_index = grid_x + ( mHeight * grid_y );
 
@@ -74,14 +74,14 @@ namespace step01
 				indicator->setTag( linear_index );
 				return indicator;
 			}
-			void Viewer::UpdateTile( Node* tile_node, const step01::game::terrain::eTileType tile_type )
+			void Viewer::UpdateTile( Node* tile_node, const step_pathfinder::game::terrain::eTileType tile_type )
 			{
 				auto indicator = static_cast<Sprite*>( tile_node );
 
-				const auto& tile_data = step01::game::terrain::TileType2TileData( tile_type );
+				const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( tile_type );
 				indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 			}
-			void Viewer::UpdateTile( const int grid_x, const int grid_y, const step01::game::terrain::eTileType tile_type )
+			void Viewer::UpdateTile( const int grid_x, const int grid_y, const step_pathfinder::game::terrain::eTileType tile_type )
 			{
 				const int linear_index = grid_x + ( mWidth * grid_y );
 

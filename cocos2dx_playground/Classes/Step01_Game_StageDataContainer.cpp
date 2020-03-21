@@ -3,7 +3,7 @@
 #include "cocos/platform/CCFileUtils.h"
 #include "json/document.h"
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{

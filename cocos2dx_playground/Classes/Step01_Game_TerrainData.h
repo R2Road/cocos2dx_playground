@@ -4,7 +4,7 @@
 
 #include "Step01_Game_Terrain_Constant.h"
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{
@@ -17,7 +17,7 @@ namespace step01
 		class TerrainData
 		{
 		public:
-			using Row = std::vector<step01::game::terrain::eTileType>;
+			using Row = std::vector<step_pathfinder::game::terrain::eTileType>;
 			using Container = std::vector<Row>;
 
 			TerrainData();

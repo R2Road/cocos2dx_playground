@@ -51,10 +51,10 @@ namespace step_pathfinder
 			ss << "[2] : " << step_pathfinder::text_field::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[3] : " << step01::tool::MapToolScene::getTitle();
+			ss << "[3] : " << step_pathfinder::tool::MapToolScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step01::game::pathfinder::TitleScene::getTitle();
+			ss << "[4] : " << step_pathfinder::game::pathfinder::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -111,10 +111,10 @@ namespace step_pathfinder
 
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step01::tool::MapToolScene::create() );
+			Director::getInstance()->replaceScene( step_pathfinder::tool::MapToolScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step01::game::pathfinder::TitleScene::create() );
+			Director::getInstance()->replaceScene( step_pathfinder::game::pathfinder::TitleScene::create() );
 			break;
 
 		default:

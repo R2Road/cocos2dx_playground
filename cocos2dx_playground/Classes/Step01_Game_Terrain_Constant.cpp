@@ -2,7 +2,7 @@
 
 #include <array>
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{

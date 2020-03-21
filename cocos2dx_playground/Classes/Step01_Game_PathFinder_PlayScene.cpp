@@ -14,7 +14,7 @@ USING_NS_CC;
 const int TAG_Player = 20140416;
 const int TAG_GameOver = 20200209;
 
-namespace step01
+namespace step_pathfinder
 {
 	namespace game
 	{
@@ -195,7 +195,7 @@ namespace step01
 				updateTerrainViewer();
 
 				auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
-				mPlayerPoint = mTerrainData.getPoint( step01::game::terrain::eTileType::entrance );
+				mPlayerPoint = mTerrainData.getPoint( step_pathfinder::game::terrain::eTileType::entrance );
 				player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 				return true;
@@ -213,15 +213,15 @@ namespace step01
 			void PlayScene::updateTerrainViewer()
 			{
 				// apply terrain data
-				step01::game::terrain::eTileType tile_type;
+				step_pathfinder::game::terrain::eTileType tile_type;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 					{
 						tile_type = mTerrainData.get( tx, ty );
-						if( step01::game::terrain::eTileType::exit == tile_type )
+						if( step_pathfinder::game::terrain::eTileType::exit == tile_type )
 						{
-							mTerrainViewer->UpdateTile( tx, ty, step01::game::terrain::eTileType::road );
+							mTerrainViewer->UpdateTile( tx, ty, step_pathfinder::game::terrain::eTileType::road );
 						}
 						else
 						{
@@ -255,7 +255,7 @@ namespace step01
 				// check player position
 				//
 				const auto tile_type = mTerrainData.get( mPlayerPoint.x, mPlayerPoint.y );
-				if( step01::game::terrain::eTileType::damage == tile_type )
+				if( step_pathfinder::game::terrain::eTileType::damage == tile_type )
 				{
 					// player die
 					mbPlayerLive = false;
@@ -264,19 +264,19 @@ namespace step01
 					// move to title
 					startExitProcess( eNextSceneType::Title, 3.f );
 				}
-				else if( step01::game::terrain::eTileType::magic_circle_on == tile_type )
+				else if( step_pathfinder::game::terrain::eTileType::magic_circle_on == tile_type )
 				{
 					// convert tile data : magic_circle_on > magic_circle_off
-					mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
-					mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, step01::game::terrain::eTileType::magic_circle_off );
+					mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, step_pathfinder::game::terrain::eTileType::magic_circle_off );
+					mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, step_pathfinder::game::terrain::eTileType::magic_circle_off );
 
 					// update tile view
-					const auto exit_point = mTerrainData.getPoint( step01::game::terrain::eTileType::exit );
-					mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, step01::game::terrain::eTileType::exit );
+					const auto exit_point = mTerrainData.getPoint( step_pathfinder::game::terrain::eTileType::exit );
+					mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, step_pathfinder::game::terrain::eTileType::exit );
 				}
-				else if( step01::game::terrain::eTileType::exit == tile_type )
+				else if( step_pathfinder::game::terrain::eTileType::exit == tile_type )
 				{
-					if( !mTerrainData.isExist( step01::game::terrain::eTileType::magic_circle_on ) )
+					if( !mTerrainData.isExist( step_pathfinder::game::terrain::eTileType::magic_circle_on ) )
 					{
 						if( mStageDataContainer.size() == mCurrentStageIndex + 1 )
 						{
