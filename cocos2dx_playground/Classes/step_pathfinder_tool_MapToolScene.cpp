@@ -65,14 +65,11 @@ namespace step_pathfinder
 				std::stringstream ss;
 				ss << "+ " << getTitle();
 				ss << std::endl;
-				ss << std::endl;
 				ss << "[ESC] : Return to Step 01 Root";
-				ss << std::endl;
 				ss << std::endl;
 				ss << "<File Path : Save n Load> : " << cocos2d::FileUtils::getInstance()->getWritablePath();
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
