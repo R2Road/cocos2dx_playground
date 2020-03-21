@@ -1,4 +1,4 @@
-#include "Step01_Tool_MapToolScene.h"
+#include "step_pathfinder_tool_MapToolScene.h"
 
 #include <new>
 #include <numeric>
@@ -12,7 +12,7 @@
 #include "ui/UIScale9Sprite.h"
 #include "ui/UITextField.h"
 
-#include "Step01_Tool_TerrainViewer.h"
+#include "step_pathfinder_tool_TerrainViewer.h"
 
 #include "step_pathfinder_RootScene.h"
 

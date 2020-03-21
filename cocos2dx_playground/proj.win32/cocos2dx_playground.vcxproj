@@ -193,9 +193,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_typetype_game_StageView.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_TitleScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_sound_Basic.cpp" />
-    <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp" />
+    <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainViewer.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_textField_BasicScene.cpp" />
-    <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp" />
+    <ClCompile Include="..\Classes\step_pathfinder_tool_MapToolScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_game_TerrainData.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_game_TitleScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_game_PlayScene.cpp" />
@@ -206,7 +206,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Research_Setting.cpp" />
     <ClCompile Include="..\Classes\PlayGroundScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_RootScene.cpp" />
-    <ClCompile Include="..\Classes\Step01_Tool_TerrainData.cpp" />
+    <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainData.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_animation_CallbackScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_animation_ListScene.cpp" />
@@ -273,9 +273,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_typetype_game_StageView.h" />
     <ClInclude Include="..\Classes\step_typetype_game_TitleScene.h" />
     <ClInclude Include="..\Classes\step_typetype_sound_Basic.h" />
-    <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h" />
+    <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainViewer.h" />
     <ClInclude Include="..\Classes\step_pathfinder_textField_BasicScene.h" />
-    <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h" />
+    <ClInclude Include="..\Classes\step_pathfinder_tool_MapToolScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_game_TerrainData.h" />
     <ClInclude Include="..\Classes\step_pathfinder_game_TitleScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_game_PlayScene.h" />
@@ -286,7 +286,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Research_Setting.h" />
     <ClInclude Include="..\Classes\PlayGroundScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_RootScene.h" />
-    <ClInclude Include="..\Classes\Step01_Tool_TerrainData.h" />
+    <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainData.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_animation_CallbackScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_animation_ListScene.h" />

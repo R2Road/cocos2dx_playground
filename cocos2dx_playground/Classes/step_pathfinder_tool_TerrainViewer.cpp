@@ -1,11 +1,11 @@
-#include "Step01_Tool_TerrainViewer.h"
+#include "step_pathfinder_tool_TerrainViewer.h"
 
 #include <new>
 
 #include "cocos2d.h"
 #include "ui/UIButton.h"
 
-#include "Step01_Tool_TerrainData.h"
+#include "step_pathfinder_tool_TerrainData.h"
 
 USING_NS_CC;
 
