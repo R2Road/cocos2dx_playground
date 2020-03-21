@@ -60,7 +60,6 @@ namespace step_pathfinder
 				ss << "[ESC] : Return to Step01 Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -88,8 +87,7 @@ namespace step_pathfinder
 			// Text Field : Original
 			//
 			{
-				auto summury_for_text_field = Label::createWithTTF( "Text Field Original : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-				summury_for_text_field->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto summury_for_text_field = Label::createWithTTF( "Text Field Original : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", "fonts/arial.ttf", 12 );
 				summury_for_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.8f )
@@ -120,8 +118,7 @@ namespace step_pathfinder
 			// Text Field : Suggest
 			//
 			{
-				auto summury_for_text_field = Label::createWithTTF( "Text Field + Button Support : Suggest", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-				summury_for_text_field->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto summury_for_text_field = Label::createWithTTF( "Text Field + Button Support : Suggest", "fonts/arial.ttf", 12 );
 				summury_for_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.4f )
