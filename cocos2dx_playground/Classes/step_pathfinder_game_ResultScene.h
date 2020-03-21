@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 namespace step_pathfinder
 {
@@ -12,7 +12,7 @@ namespace step_pathfinder
 			ResultScene();
 
 		public:
-			static const char* getTitle() { return "Game : Path Finder - Result"; }
+			static const char* getTitle() { return "Game : Result"; }
 			static cocos2d::Scene* create( const float clear_time );
 
 			bool init( const float clear_time );
@@ -20,7 +20,6 @@ namespace step_pathfinder
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:

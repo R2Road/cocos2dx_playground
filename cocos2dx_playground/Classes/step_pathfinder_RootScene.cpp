@@ -80,6 +80,7 @@ namespace step_pathfinder
 	{
 		Scene::onEnter();
 
+		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
