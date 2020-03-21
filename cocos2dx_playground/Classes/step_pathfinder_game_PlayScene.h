@@ -1,8 +1,8 @@
 #pragma once
 
 #include "cocos2d.h"
-#include "Step01_Game_StageDataContainer.h"
-#include "Step01_Game_TerrainData.h"
+#include "step_pathfinder_game_StageDataContainer.h"
+#include "step_pathfinder_game_TerrainData.h"
 
 namespace step_pathfinder
 {

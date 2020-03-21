@@ -10,7 +10,7 @@
 #include "step_pathfinder_textField_BasicScene.h"
 
 #include "Step01_Tool_MapToolScene.h"
-#include "Step01_Game_PathFinder_TitleScene.h"
+#include "step_pathfinder_game_TitleScene.h"
 
 USING_NS_CC;
 

@@ -1,12 +1,12 @@
-#include "Step01_Game_PathFinder_TitleScene.h"
+#include "step_pathfinder_game_TitleScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "step_pathfinder_RootScene.h"
 
-#include "Step01_Game_PathFinder_PlayScene.h"
-#include "Step01_Game_PathFinder_ResultScene.h"
+#include "step_pathfinder_game_PlayScene.h"
+#include "step_pathfinder_game_ResultScene.h"
 
 #include "CPG_Setting.h"
 

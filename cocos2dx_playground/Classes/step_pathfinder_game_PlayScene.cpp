@@ -1,13 +1,13 @@
-#include "Step01_Game_PathFinder_PlayScene.h"
+#include "step_pathfinder_game_PlayScene.h"
 
 #include <new>
 #include <sstream>
 
 #include "audio/include/AudioEngine.h"
 
-#include "Step01_Game_PathFinder_TitleScene.h"
-#include "Step01_Game_PathFinder_ResultScene.h"
-#include "Step01_Game_Terrain_Viewer.h"
+#include "step_pathfinder_game_TitleScene.h"
+#include "step_pathfinder_game_ResultScene.h"
+#include "step_pathfinder_game_terrain_Viewer.h"
 
 USING_NS_CC;
 

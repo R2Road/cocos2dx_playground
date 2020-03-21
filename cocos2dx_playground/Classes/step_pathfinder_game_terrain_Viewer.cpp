@@ -1,10 +1,10 @@
-#include "Step01_Game_Terrain_Viewer.h"
+#include "step_pathfinder_game_terrain_Viewer.h"
 
 #include <new>
 
 #include "cocos2d.h"
 
-#include "Step01_Tool_TerrainData.h"
+#include "step_pathfinder_game_TerrainData.h"
 
 USING_NS_CC;
 

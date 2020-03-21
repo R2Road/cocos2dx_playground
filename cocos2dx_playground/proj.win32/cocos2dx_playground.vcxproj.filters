@@ -141,21 +141,6 @@
     <ClCompile Include="..\Classes\PlayGroundScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_PathFinder_PlayScene.cpp">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_PathFinder_TitleScene.cpp">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_Terrain_Constant.cpp">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_Terrain_Viewer.cpp">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_TerrainData.cpp">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Step01_Tool_MapToolScene.cpp">
       <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClCompile>
@@ -164,12 +149,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Step01_Tool_TerrainViewer.cpp">
       <Filter>src\scene\step_pathfinder\tool</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_StageDataContainer.cpp">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Step01_Game_PathFinder_ResultScene.cpp">
-      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Step99_RootScene.cpp">
       <Filter>src\scene\step99</Filter>
@@ -318,6 +297,27 @@
     <ClCompile Include="..\Classes\step_pathfinder_json_LoadNSaveScene.cpp">
       <Filter>src\scene\step_pathfinder\json</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_StageDataContainer.cpp">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_TerrainData.cpp">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_terrain_Constant.cpp">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_terrain_Viewer.cpp">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_PlayScene.cpp">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_ResultScene.cpp">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_TitleScene.cpp">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -365,21 +365,6 @@
     <ClInclude Include="..\Classes\PlayGroundScene.h">
       <Filter>src\scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_PathFinder_PlayScene.h">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_PathFinder_TitleScene.h">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_Terrain_Constant.h">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_Terrain_Viewer.h">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_TerrainData.h">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Step01_Tool_MapToolScene.h">
       <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClInclude>
@@ -388,12 +373,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Step01_Tool_TerrainViewer.h">
       <Filter>src\scene\step_pathfinder\tool</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_StageDataContainer.h">
-      <Filter>src\scene\step_pathfinder\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Step01_Game_PathFinder_ResultScene.h">
-      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step99_RootScene.h">
       <Filter>src\scene\step99</Filter>
@@ -553,6 +532,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_json_LoadNSaveScene.h">
       <Filter>src\scene\step_pathfinder\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_StageDataContainer.h">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_TerrainData.h">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_terrain_Constant.h">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_terrain_Viewer.h">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_PlayScene.h">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_ResultScene.h">
+      <Filter>src\scene\step_pathfinder\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_TitleScene.h">
+      <Filter>src\scene\step_pathfinder\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
