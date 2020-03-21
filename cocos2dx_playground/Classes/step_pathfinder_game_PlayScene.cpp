@@ -1,9 +1,18 @@
 #include "step_pathfinder_game_PlayScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
+#include "2d/CCActionInterval.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "audio/include/AudioEngine.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
 
 #include "step_pathfinder_game_TitleScene.h"
 #include "step_pathfinder_game_ResultScene.h"
@@ -51,7 +60,9 @@ namespace step_pathfinder
 		bool PlayScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
@@ -62,22 +73,21 @@ namespace step_pathfinder
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << "\n";
-				ss << "\n";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[ESC] : Return to Title";
-				ss << "\n";
-				ss << "\n";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[ARROW] : Move";
 
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -92,9 +102,9 @@ namespace step_pathfinder
 					, visibleOrigin.y + ( ( visibleSize.height - game_over_indicator->getContentSize().height ) * 0.5f )
 				)
 				);
-				addChild( game_over_indicator, 9998 );
+				addChild( game_over_indicator, std::numeric_limits<int>::max() - 1 );
 				{
-					auto label = Label::createWithTTF( "Game Over", "fonts/arial.ttf", 20, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Game Over", "fonts/arial.ttf", 20 );
 					label->setColor( Color3B::RED );
 					label->setPosition( Vec2(
 						game_over_indicator->getContentSize().width * 0.5f

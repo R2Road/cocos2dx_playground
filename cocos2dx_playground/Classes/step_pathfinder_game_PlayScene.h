@@ -1,6 +1,7 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
+
 #include "step_pathfinder_game_StageDataContainer.h"
 #include "step_pathfinder_game_TerrainData.h"
 
@@ -25,7 +26,7 @@ namespace step_pathfinder
 			PlayScene();
 
 		public:
-			static const char* getTitle() { return "Game : Path Finder - Play Scene"; }
+			static const char* getTitle() { return "Game : Play Scene"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
