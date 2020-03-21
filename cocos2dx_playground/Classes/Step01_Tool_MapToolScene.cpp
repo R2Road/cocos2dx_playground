@@ -1,9 +1,13 @@
 #include "Step01_Tool_MapToolScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
-#include <array>
 
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
+#include "platform/CCFileUtils.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 #include "ui/UITextField.h"
@@ -74,7 +78,7 @@ namespace step01
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -234,9 +238,10 @@ namespace step01
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( MapToolScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void MapToolScene::onExit()
 		{
@@ -398,23 +403,13 @@ namespace step01
 		}
 
 
-		void MapToolScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
-		}
 		void MapToolScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
 				return;
 			}
-
-			if( isScheduled( schedule_selector( MapToolScene::updateForExit ) ) )
-			{
-				return;
-			}
-
-			scheduleOnce( schedule_selector( MapToolScene::updateForExit ), 0.f );
 		}
 	} // namespace game
 }

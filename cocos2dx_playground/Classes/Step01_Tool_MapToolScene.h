@@ -1,7 +1,8 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 #include "ui/UIWidget.h"
+
 #include "Step01_Tool_TerrainData.h"
 
 namespace step01
@@ -15,7 +16,7 @@ namespace step01
 			MapToolScene();
 
 		public:
-			static const char* getTitle() { return "Tool : Map Tool"; }
+			static const char* getTitle() { return "Tool : Map"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
@@ -30,7 +31,6 @@ namespace step01
 			void onSave( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onLoad( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
