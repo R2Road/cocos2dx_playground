@@ -27,7 +27,7 @@ namespace step_pathfinder
 			static TerrainViewer* create( const int width, const int height, const TileSelectCallback& tile_select_callback );
 
 		private:
-			Node* MakeTile( const step_pathfinder::game::terrain::TileData& tile_data, const int grid_x, const int grid_y ) override;
+			cocos2d::Node* MakeTile( const step_pathfinder::game::terrain::TileData& tile_data, const int grid_x, const int grid_y ) override;
 
 			const TileSelectCallback mTileSelectCallback;
 		};

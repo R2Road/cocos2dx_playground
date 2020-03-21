@@ -23,7 +23,7 @@ namespace step_pathfinder
 			protected:
 				bool init() override;
 
-				virtual Node* MakeTile( const step_pathfinder::game::terrain::TileData& tile_data, const int grid_x, const int grid_y );
+				virtual cocos2d::Node* MakeTile( const step_pathfinder::game::terrain::TileData& tile_data, const int grid_x, const int grid_y );
 				void UpdateTile( cocos2d::Node* tile_node, const step_pathfinder::game::terrain::eTileType tile_type );
 
 			public:
