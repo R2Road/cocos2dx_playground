@@ -2,6 +2,8 @@
 
 #include <array>
 
+#include "2d/CCLabel.h"
+
 namespace step_pathfinder
 {
 	namespace game
@@ -35,6 +37,25 @@ namespace step_pathfinder
 				}
 
 				return TileTable[static_cast<std::size_t>( tile_type )].bUnique;
+			}
+
+			cocos2d::Size GetMaxMenuSize()
+			{
+				auto label = cocos2d::Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+
+				const cocos2d::Size button_margin( 10.f, 4.f );
+				cocos2d::Size max_size;
+				for( const auto& t : TileTable )
+				{
+					label->setString( t.Name );
+
+					max_size.width = max_size.width < label->getContentSize().width ? label->getContentSize().width : max_size.width;
+					max_size.height = max_size.height < label->getContentSize().height ? label->getContentSize().height : max_size.height;
+				}
+
+				max_size = button_margin + max_size + button_margin;
+
+				return max_size;
 			}
 		}
 	}

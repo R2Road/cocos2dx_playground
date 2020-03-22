@@ -24,7 +24,7 @@ namespace step_pathfinder
 			void onExit() override;
 
 		private:
-			Node* makeMenuButton( const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const cocos2d::ui::Widget::ccWidgetTouchCallback& callback );
+			Node* makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const cocos2d::ui::Widget::ccWidgetTouchCallback& callback );
 			void onTileSelect( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onGrid( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 

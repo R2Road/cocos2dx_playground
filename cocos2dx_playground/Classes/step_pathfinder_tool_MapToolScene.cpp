@@ -107,6 +107,7 @@ namespace step_pathfinder
 				addChild( mButtonRootNode );
 
 				const auto tile_select_callback = CC_CALLBACK_2( MapToolScene::onTileSelect, this );
+				const auto max_menu_size = step_pathfinder::game::terrain::GetMaxMenuSize();
 
 				int by = 0;
 				for( int cur = static_cast<int>( step_pathfinder::game::terrain::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::terrain::eTileType::SIZE ); cur < end; ++cur )
@@ -118,7 +119,8 @@ namespace step_pathfinder
 					}
 
 					auto button = makeMenuButton(
-						tile_data.TileType
+						max_menu_size
+						, tile_data.TileType
 						, tile_data.Name
 						, tile_select_callback
 					);
@@ -250,18 +252,16 @@ namespace step_pathfinder
 		}
 
 
-		Node* MapToolScene::makeMenuButton( const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
+		Node* MapToolScene::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
 		{
-			const Size button_margin( 10.f, 4.f );
-
 			auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( tile_type ) );
 			button->addTouchEventListener( callback );
 			button->setScale9Enabled( true );
+			button->setContentSize( menu_size );
 			{
 				auto label = Label::createWithTTF( button_text, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				button->setTitleLabel( label );
-				button->setContentSize( label->getContentSize() + button_margin + button_margin );
 
 				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				indicator->setAnchorPoint( Vec2( 0.f, 0.f ) );

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "math/CCGeometry.h"
+
 namespace step_pathfinder
 {
 	namespace game
@@ -29,6 +31,7 @@ namespace step_pathfinder
 			};
 			const TileData& TileType2TileData( const eTileType tile_type );
 			bool TileType2UniqueFlag( const eTileType tile_type );
+			cocos2d::Size GetMaxMenuSize();
 		} // namespace pathfinder
 	}
 }
