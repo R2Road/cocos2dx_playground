@@ -2,11 +2,10 @@
 
 #include <new>
 
+#include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "base/CCDirector.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
-#include "ui/UITextField.h"
 
 USING_NS_CC;
 
@@ -45,14 +44,15 @@ namespace step_pathfinder
 			}
 
 			const auto menu_size = step_pathfinder::game::terrain::GetMaxMenuSize();
-			const auto select_callback = CC_CALLBACK_2( TileSelectNode::onSelect, this );
 
 			//
 			// Menu
 			//
 			int menu_index = 0;
 			{
+				const auto select_callback = CC_CALLBACK_2( TileSelectNode::onSelect, this );
 				Vec2 pivot_position( menu_size.width * 0.5f, menu_size.height * 0.5f );
+
 				for( int cur = static_cast<int>( step_pathfinder::game::terrain::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::terrain::eTileType::SIZE ); cur < end; ++cur )
 				{
 					const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( static_cast<step_pathfinder::game::terrain::eTileType>( cur ) );

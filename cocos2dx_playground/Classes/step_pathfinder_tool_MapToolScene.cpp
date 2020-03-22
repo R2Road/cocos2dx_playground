@@ -9,7 +9,6 @@
 #include "base/CCEventDispatcher.h"
 #include "platform/CCFileUtils.h"
 #include "ui/UIButton.h"
-#include "ui/UIScale9Sprite.h"
 #include "ui/UITextField.h"
 
 #include "step_pathfinder_tool_TerrainViewer.h"
@@ -19,8 +18,7 @@
 
 USING_NS_CC;
 
-const int TAG_TextField = 9999;
-const int TAG_Indicator = 20140416;
+const int TAG_TextField = 20140416;
 
 namespace step_pathfinder
 {
@@ -53,7 +51,9 @@ namespace step_pathfinder
 		bool MapToolScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
@@ -65,7 +65,7 @@ namespace step_pathfinder
 				std::stringstream ss;
 				ss << "+ " << getTitle();
 				ss << std::endl;
-				ss << "[ESC] : Return to Step 01 Root";
+				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << "<File Path : Save n Load> : " << cocos2d::FileUtils::getInstance()->getWritablePath();
 
