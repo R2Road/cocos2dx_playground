@@ -326,7 +326,7 @@ namespace step_clickclick
 			}
 			else if( eBlockType::Different == block_data.GetType() )
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
+				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 
 				const int pivot_count = block_data.GetLife();
 
