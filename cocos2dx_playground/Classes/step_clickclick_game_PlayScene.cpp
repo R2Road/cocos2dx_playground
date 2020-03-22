@@ -222,14 +222,14 @@ namespace step_clickclick
 
 		void PlayScene::onGameProcess( const int block_linear_index )
 		{
-			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
-
 			const auto& block_data = mStage->GetBlockData( block_linear_index );
 			const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
 			int last_life = 0;
 
 			if( eBlockType::Single == block_data.GetType() )
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+
 				bool has_neighbor = false;
 				const int current_pivot_x = block_point_index.x - 1;
 				const int current_pivot_y = block_point_index.y - 1;
@@ -282,6 +282,8 @@ namespace step_clickclick
 			}
 			else if( eBlockType::Same == block_data.GetType() )
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
+
 				const int pivot_count = block_data.GetLife();
 
 				const int current_pivot_x = block_point_index.x - 1;
@@ -324,6 +326,8 @@ namespace step_clickclick
 			}
 			else if( eBlockType::Different == block_data.GetType() )
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
+
 				const int pivot_count = block_data.GetLife();
 
 				const int current_pivot_x = block_point_index.x - 1;
@@ -370,6 +374,7 @@ namespace step_clickclick
 			//
 			if( !mStage->HasActiveBlock() )
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
 				schedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 			}
 		}
