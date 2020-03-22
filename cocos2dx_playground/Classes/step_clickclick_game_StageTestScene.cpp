@@ -210,7 +210,7 @@ namespace step_clickclick
 
 		void StageTestScene::onGameProcess( const int block_linear_index )
 		{
-			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
+			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 
 			const auto& target_block_data = mStage->GetBlockData( block_linear_index );
 			updateSelectedBlockTypeView( target_block_data.GetType() );
