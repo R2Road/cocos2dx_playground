@@ -25,8 +25,6 @@ namespace step_typetype
 			bool IsStageClear() const;
 
 		private:
-			const char mLetter_Min;
-			const char mLetter_Max;
 			std::size_t mLength;
 			ContainerT mLetters;
 

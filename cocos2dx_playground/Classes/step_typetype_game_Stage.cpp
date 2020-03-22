@@ -9,9 +9,7 @@ namespace step_typetype
 	namespace game
 	{
 		Stage::Stage( const std::size_t max_length ) : 
-			mLetter_Min( 65 ) // 'A'
-			, mLetter_Max( 90 ) // 'Z'
-			, mLetters( max_length, mLetter_Min )
+			mLetters( max_length, 'A' )
 			, mIndicator_Current( 0 )
 			, mIndicator_End( 1 )
 		{}
@@ -23,13 +21,32 @@ namespace step_typetype
 			mIndicator_Current = 0;
 			mIndicator_End = mLength;
 
+			const std::vector<char> LeftHand = {
+				'Q', 'W', 'E', 'R', 'T'
+				, 'A', 'S', 'D', 'F', 'G'
+				, 'Z', 'X', 'C', 'V'
+			};
+			const std::vector<char> RightHand = {
+				'U', 'I', 'O', 'P', 'Y'
+				, 'H', 'J', 'K', 'L'
+				, 'B', 'N', 'M',
+			};
+
 			std::random_device rd;
 			std::mt19937 randomEngine( rd() );
-			std::uniform_int_distribution<> dist( mLetter_Min, mLetter_Max );
+			std::uniform_int_distribution<> left_dist( 0, LeftHand.size() - 1 );
+			std::uniform_int_distribution<> right_dist( 0, RightHand.size() - 1 );
 
 			for( std::size_t i = 0; i < mLength; ++i )
 			{
-				mLetters[i] = static_cast<char>( dist( randomEngine ) );
+				if( 1 == i % 2 ) // odd number
+				{
+					mLetters[i] = static_cast<char>( LeftHand[left_dist( randomEngine )] );
+				}
+				else
+				{
+					mLetters[i] = static_cast<char>( RightHand[right_dist( randomEngine )] );
+				}
 			}
 		}
 
