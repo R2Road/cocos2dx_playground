@@ -318,6 +318,9 @@
     <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainViewer.cpp">
       <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.cpp">
+      <Filter>src\scene\step_pathfinder\tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -552,6 +555,9 @@
       <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainViewer.h">
+      <Filter>src\scene\step_pathfinder\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.h">
       <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClInclude>
   </ItemGroup>

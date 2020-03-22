@@ -13,13 +13,14 @@
 #include "ui/UITextField.h"
 
 #include "step_pathfinder_tool_TerrainViewer.h"
+#include "step_pathfinder_tool_ui_TileSelectNode.h"
 
 #include "step_pathfinder_RootScene.h"
 
 USING_NS_CC;
 
 const int TAG_TextField = 9999;
-const int TAG_SelectedTile_Indicator = 20140416;
+const int TAG_Indicator = 20140416;
 
 namespace step_pathfinder
 {
@@ -29,7 +30,6 @@ namespace step_pathfinder
 			mKeyboardListener( nullptr )
 			, mTerrainData()
 			, mCurrentTileType( step_pathfinder::game::terrain::eTileType::road )
-			, mButtonRootNode( nullptr )
 			, mTerrainViewer( nullptr )
 		{}
 
@@ -103,52 +103,13 @@ namespace step_pathfinder
 			// ui - tile select
 			//
 			{
-				mButtonRootNode = Node::create();
-				addChild( mButtonRootNode );
-
-				const auto tile_select_callback = CC_CALLBACK_2( MapToolScene::onTileSelect, this );
-				const auto max_menu_size = step_pathfinder::game::terrain::GetMaxMenuSize();
-
-				int by = 0;
-				for( int cur = static_cast<int>( step_pathfinder::game::terrain::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::terrain::eTileType::SIZE ); cur < end; ++cur )
-				{
-					const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( static_cast<step_pathfinder::game::terrain::eTileType>( cur ) );
-					if( !tile_data.bToolEnable )
-					{
-						continue;
-					}
-
-					auto button = makeMenuButton(
-						max_menu_size
-						, tile_data.TileType
-						, tile_data.Name
-						, tile_select_callback
-					);
-					button->setPosition( Vec2(
-						visibleOrigin.x + ( button->getContentSize().width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.5f ) + ( button->getContentSize().height * by )
-					) );
-					mButtonRootNode->addChild( button );
-
-					++by;
-				}
-
-				//
-				// Indicator
-				//
-				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
-				indicator->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				indicator->setTag( TAG_SelectedTile_Indicator );
-				indicator->setContentSize( max_menu_size );
-				mButtonRootNode->addChild( indicator );
-
-				//
-				// Start Setup
-				//
-				onTileSelect(
-					mButtonRootNode->getChildByTag( static_cast<int>( step_pathfinder::game::terrain::eTileType::road ) )
-					, ui::Widget::TouchEventType::BEGAN
+				auto tile_select_node = tool_ui::TileSelectNode::create( std::bind( &MapToolScene::onTileSelect, this, std::placeholders::_1 ) );
+				tile_select_node->setPositionY(
+					visibleOrigin.y
+					+ ( visibleSize.height * 0.5f )
+					- ( tile_select_node->getContentSize().height * 0.5f )
 				);
+				addChild( tile_select_node );
 			}
 
 			//
@@ -280,21 +241,9 @@ namespace step_pathfinder
 		}
 
 
-		void MapToolScene::onTileSelect( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void MapToolScene::onTileSelect( const step_pathfinder::game::terrain::eTileType new_tile_type )
 		{
-			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
-			{
-				return;
-			}
-
-			// change current tile type
-			auto sender_node = static_cast<Node*>( sender );
-			mCurrentTileType = static_cast<step_pathfinder::game::terrain::eTileType>( sender_node->getTag() );
-
-			// setup indicator visibility
-			auto indicator_node = mButtonRootNode->getChildByTag( TAG_SelectedTile_Indicator );
-			indicator_node->setPosition( sender_node->getPosition() );
-			indicator_node->setVisible( true );
+			mCurrentTileType = new_tile_type;
 		}
 
 
