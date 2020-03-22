@@ -110,9 +110,9 @@ namespace step_pathfinder
 			//
 			{
 				auto label = Label::createWithTTF(
-					StringUtils::format( "Json String : %s", json_string.c_str() )
+					StringUtils::format( "Json File Content : %s", json_string.c_str() )
 					, "fonts/arial.ttf"
-					, 9
+					, 14
 				);
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
@@ -133,7 +133,7 @@ namespace step_pathfinder
 					ss << " " << i;
 				}
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 14 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
