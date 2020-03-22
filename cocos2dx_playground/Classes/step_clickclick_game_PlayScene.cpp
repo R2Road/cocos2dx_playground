@@ -228,7 +228,7 @@ namespace step_clickclick
 
 			if( eBlockType::Single == block_data.GetType() )
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.2f );
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 
 				bool has_neighbor = false;
 				const int current_pivot_x = block_point_index.x - 1;
@@ -282,7 +282,7 @@ namespace step_clickclick
 			}
 			else if( eBlockType::Same == block_data.GetType() )
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 
 				const int pivot_count = block_data.GetLife();
 
