@@ -95,7 +95,7 @@ namespace step_typetype
 			//
 			{
 				auto label = Label::createWithTTF(
-					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0"
+					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
 					, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER
 				);
 				label->setColor( Color3B::GREEN );
