@@ -34,6 +34,8 @@ namespace step_clickclick
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			int mAudioID_forBGM;
+
 			StageUp mStage;
 			StageView* mStageView;
 

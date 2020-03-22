@@ -37,6 +37,8 @@ namespace step_clickclick
 
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
+			, mAudioID_forBGM( -1 )
+
 			, mStage()
 			, mStageView( nullptr )
 
@@ -101,6 +103,23 @@ namespace step_clickclick
 			}
 
 			//
+			// BGM License
+			//
+			{
+				auto label = Label::createWithTTF(
+					"BGM : Somewhere in the Elevator\nAuthor : Peachtea@You're Perfect Studio\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
+					, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::RIGHT
+				);
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Stage
 			//
 			{
@@ -132,7 +151,7 @@ namespace step_clickclick
 			{
 				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
 				label->setTag( TAG_ScoreView );
-				label->setColor( Color3B::GREEN );
+				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
@@ -182,6 +201,8 @@ namespace step_clickclick
 		{
 			Scene::onEnter();
 
+			mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
+
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
@@ -189,6 +210,8 @@ namespace step_clickclick
 		}
 		void PlayScene::onExit()
 		{
+			experimental::AudioEngine::stop( mAudioID_forBGM );
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
