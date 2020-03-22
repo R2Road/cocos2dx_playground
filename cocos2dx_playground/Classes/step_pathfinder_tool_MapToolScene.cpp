@@ -133,6 +133,18 @@ namespace step_pathfinder
 					++by;
 				}
 
+				//
+				// Indicator
+				//
+				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				indicator->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				indicator->setTag( TAG_SelectedTile_Indicator );
+				indicator->setContentSize( max_menu_size );
+				mButtonRootNode->addChild( indicator );
+
+				//
+				// Start Setup
+				//
 				onTileSelect(
 					mButtonRootNode->getChildByTag( static_cast<int>( step_pathfinder::game::terrain::eTileType::road ) )
 					, ui::Widget::TouchEventType::BEGAN
@@ -262,12 +274,6 @@ namespace step_pathfinder
 			{
 				auto label = Label::createWithTTF( button_text, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				button->setTitleLabel( label );
-
-				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
-				indicator->setAnchorPoint( Vec2( 0.f, 0.f ) );
-				indicator->setTag( TAG_SelectedTile_Indicator );
-				indicator->setContentSize( button->getContentSize() );
-				button->addChild( indicator );
 			}
 
 			return button;
@@ -286,24 +292,9 @@ namespace step_pathfinder
 			mCurrentTileType = static_cast<step_pathfinder::game::terrain::eTileType>( sender_node->getTag() );
 
 			// setup indicator visibility
-			Node* button_node = nullptr;
-			for( int cur = static_cast<int>( step_pathfinder::game::terrain::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::terrain::eTileType::SIZE ); cur < end; ++cur )
-			{
-				button_node = mButtonRootNode->getChildByTag( cur );
-				if( !button_node )
-				{
-					continue;
-				}
-
-				if( cur == static_cast<int>( mCurrentTileType ) )
-				{
-					button_node->getChildByTag( TAG_SelectedTile_Indicator )->setVisible( true );
-				}
-				else
-				{
-					button_node->getChildByTag( TAG_SelectedTile_Indicator )->setVisible( false );
-				}
-			}
+			auto indicator_node = mButtonRootNode->getChildByTag( TAG_SelectedTile_Indicator );
+			indicator_node->setPosition( sender_node->getPosition() );
+			indicator_node->setVisible( true );
 		}
 
 
