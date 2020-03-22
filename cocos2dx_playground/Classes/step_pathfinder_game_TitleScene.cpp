@@ -56,10 +56,9 @@ namespace step_pathfinder
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
+				ss << "[ESC] : Return to Root";
 				ss << std::endl;
-				ss << std::endl;
-				ss << "[ESC] : Return to Step 01 Root";
+				ss << "[F1] : Result Scene Test";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
