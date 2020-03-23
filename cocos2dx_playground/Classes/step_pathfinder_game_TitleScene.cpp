@@ -74,7 +74,7 @@ namespace step_pathfinder
 			// Title
 			//
 			{
-				auto title = Sprite::create( "textures/step_pathfinder/title.png" );
+				auto title = Sprite::create( "textures/step_pathfinder/step_pathfinder_title.png" );
 				title->setScaleX( visibleSize.width / title->getContentSize().width );
 				title->setScaleY( visibleSize.height / title->getContentSize().height );
 				title->setPosition( Vec2(
