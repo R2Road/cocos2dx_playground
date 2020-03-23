@@ -11,7 +11,7 @@ namespace step_pathfinder
 
 		bool StageDataContainer::load()
 		{
-			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( "datas/step01/game.json" ) ) );
+			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( "datas/step_pathfinder/game.json" ) ) );
 			rapidjson::Document doc;
 			doc.Parse<0>( regionStr.c_str() );
 
