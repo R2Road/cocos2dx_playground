@@ -20,8 +20,11 @@
 
 USING_NS_CC;
 
-const int TAG_Player = 20140416;
-const int TAG_GameOver = 20200209;
+namespace
+{
+	const int TAG_Player = 20140416;
+	const int TAG_GameOver = 20200209;
+}
 
 namespace step_pathfinder
 {
@@ -169,6 +172,7 @@ namespace step_pathfinder
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
