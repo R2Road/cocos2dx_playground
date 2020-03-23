@@ -250,11 +250,6 @@ namespace step_pathfinder
 		void PlayScene::GameProcess( const int move_x, const int move_y )
 		{
 			//
-			// sfx
-			//
-			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
-
-			//
 			// move player
 			//
 			mPlayerPoint.x += move_x;
@@ -272,6 +267,8 @@ namespace step_pathfinder
 			const auto tile_type = mTerrainData.get( mPlayerPoint.x, mPlayerPoint.y );
 			if( step_pathfinder::game::terrain::eTileType::damage == tile_type )
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
+
 				// player die
 				mbPlayerLive = false;
 				getChildByTag( TAG_GameOver )->setVisible( true );
@@ -281,6 +278,8 @@ namespace step_pathfinder
 			}
 			else if( step_pathfinder::game::terrain::eTileType::magic_circle_on == tile_type )
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
+
 				// convert tile data : magic_circle_on > magic_circle_off
 				mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, step_pathfinder::game::terrain::eTileType::magic_circle_off );
 				mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, step_pathfinder::game::terrain::eTileType::magic_circle_off );
@@ -293,6 +292,8 @@ namespace step_pathfinder
 			{
 				if( !mTerrainData.isExist( step_pathfinder::game::terrain::eTileType::magic_circle_on ) )
 				{
+					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
+
 					if( mStageDataContainer.size() == mCurrentStageIndex + 1 )
 					{
 						// game clear
@@ -305,6 +306,10 @@ namespace step_pathfinder
 						goNextStage();
 					}
 				}
+			}
+			else
+			{
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
 			}
 		}
 
