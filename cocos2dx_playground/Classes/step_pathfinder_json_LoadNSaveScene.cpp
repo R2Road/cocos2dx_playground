@@ -23,15 +23,15 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const char* FilePath_Step_Pathfinder_Json_LoadNSave = "step_pathfinder_json_load_and_save.json";
+}
+
 namespace step_pathfinder
 {
 	namespace json
 	{
-		namespace
-		{
-			const char* FilePath_Step01_Json_LoadNSave = "step01_json_load_and_save.json";
-		}
-
 		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ) {}
 
 		Scene* LoadNSaveScene::create()
@@ -73,7 +73,7 @@ namespace step_pathfinder
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath() << FilePath_Step01_Json_LoadNSave;
+				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath() << FilePath_Step_Pathfinder_Json_LoadNSave;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -99,7 +99,7 @@ namespace step_pathfinder
 			ContainerT json_datas;
 			{
 				std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-				path.append( FilePath_Step01_Json_LoadNSave );
+				path.append( FilePath_Step_Pathfinder_Json_LoadNSave );
 
 				makeDummyJsonFile( path.c_str() );
 				loadJsonFile( path.c_str(), json_string, json_datas );
