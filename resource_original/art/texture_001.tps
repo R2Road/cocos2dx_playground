@@ -305,12 +305,12 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">step_pathfinder/step01_game_tile_damage.png</key>
-            <key type="filename">step_pathfinder/step01_game_tile_entrance.png</key>
-            <key type="filename">step_pathfinder/step01_game_tile_exit.png</key>
-            <key type="filename">step_pathfinder/step01_game_tile_magic_circle_01.png</key>
-            <key type="filename">step_pathfinder/step01_game_tile_magic_circle_02.png</key>
-            <key type="filename">step_pathfinder/step01_game_tile_road.png</key>
+            <key type="filename">step_pathfinder/step_pathfinder_tile_damage.png</key>
+            <key type="filename">step_pathfinder/step_pathfinder_tile_entrance.png</key>
+            <key type="filename">step_pathfinder/step_pathfinder_tile_exit.png</key>
+            <key type="filename">step_pathfinder/step_pathfinder_tile_magic_circle_01.png</key>
+            <key type="filename">step_pathfinder/step_pathfinder_tile_magic_circle_02.png</key>
+            <key type="filename">step_pathfinder/step_pathfinder_tile_road.png</key>
             <key type="filename">ui/checkbox_01_bg.png</key>
             <key type="filename">ui/checkbox_01_cross.png</key>
             <key type="filename">ui/guide_01_1.png</key>
@@ -414,12 +414,12 @@
             <filename>step_clickclick/step_clickclick_block_different.png</filename>
             <filename>step_clickclick/step_clickclick_block_single.png</filename>
             <filename>step_clickclick/step_clickclick_block_together.png</filename>
-            <filename>step_pathfinder/step01_game_tile_damage.png</filename>
-            <filename>step_pathfinder/step01_game_tile_entrance.png</filename>
-            <filename>step_pathfinder/step01_game_tile_exit.png</filename>
-            <filename>step_pathfinder/step01_game_tile_magic_circle_01.png</filename>
-            <filename>step_pathfinder/step01_game_tile_magic_circle_02.png</filename>
-            <filename>step_pathfinder/step01_game_tile_road.png</filename>
+            <filename>step_pathfinder/step_pathfinder_tile_damage.png</filename>
+            <filename>step_pathfinder/step_pathfinder_tile_entrance.png</filename>
+            <filename>step_pathfinder/step_pathfinder_tile_exit.png</filename>
+            <filename>step_pathfinder/step_pathfinder_tile_magic_circle_01.png</filename>
+            <filename>step_pathfinder/step_pathfinder_tile_magic_circle_02.png</filename>
+            <filename>step_pathfinder/step_pathfinder_tile_road.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
