@@ -32,6 +32,8 @@ namespace step_pathfinder
 	{
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
+			, mAudioID_forBGM( -1 )
+
 			, mStageDataContainer()
 			, mTerrainData()
 			, mTerrainViewer( nullptr )
@@ -172,6 +174,8 @@ namespace step_pathfinder
 		{
 			Scene::onEnter();
 
+			mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/EmpySpace.ogg", true, 0.1f );
+
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
@@ -185,6 +189,9 @@ namespace step_pathfinder
 		}
 		void PlayScene::onExit()
 		{
+			experimental::AudioEngine::stop( mAudioID_forBGM );
+			mAudioID_forBGM = -1;
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;

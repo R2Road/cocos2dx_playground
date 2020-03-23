@@ -48,6 +48,7 @@ namespace step_pathfinder
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			int mAudioID_forBGM;
 
 			StageDataContainer mStageDataContainer;
 			TerrainData mTerrainData;
