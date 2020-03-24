@@ -4,6 +4,13 @@
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "base/CCDirector.h"
+#include "base/ccUTF8.h"
+#include "base/CCEventDispatcher.h"
+#include "base/CCEventListenerKeyboard.h"
+
 #include "step_clickclick_game_TitleScene.h"
 
 USING_NS_CC;
@@ -34,7 +41,9 @@ namespace step_clickclick
 		bool ResultScene::init( const int clear_score )
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
