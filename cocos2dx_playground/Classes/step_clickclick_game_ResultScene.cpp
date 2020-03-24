@@ -81,7 +81,7 @@ namespace step_clickclick
 			// Result
 			//
 			{
-				auto label = Label::createWithTTF( StringUtils::format( "Clear Time : %d", clear_score ), "fonts/arial.ttf", 32 );
+				auto label = Label::createWithTTF( StringUtils::format( "Clear Score : %d", clear_score ), "fonts/arial.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
