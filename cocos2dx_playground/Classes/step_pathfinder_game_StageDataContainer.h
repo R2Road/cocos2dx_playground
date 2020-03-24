@@ -14,10 +14,10 @@ namespace step_pathfinder
 
 			StageDataContainer();
 
-			bool load();
+			bool Load();
 
-			const std::string& get( const std::size_t stage_index ) const;
-			const Container::size_type size() const { return mContainer.size(); }
+			const std::string& Get( const std::size_t stage_index ) const;
+			const Container::size_type Size() const { return mContainer.size(); }
 
 		private:
 			Container mContainer;

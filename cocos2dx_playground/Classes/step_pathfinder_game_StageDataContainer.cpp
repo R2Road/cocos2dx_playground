@@ -9,7 +9,7 @@ namespace step_pathfinder
 	{
 		StageDataContainer::StageDataContainer() : mContainer() {}
 
-		bool StageDataContainer::load()
+		bool StageDataContainer::Load()
 		{
 			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( "datas/step_pathfinder/game.json" ) ) );
 			rapidjson::Document doc;
@@ -42,7 +42,7 @@ namespace step_pathfinder
 			return true;
 		}
 
-		const std::string& StageDataContainer::get( const std::size_t  stage_index ) const
+		const std::string& StageDataContainer::Get( const std::size_t  stage_index ) const
 		{
 			if( mContainer.size() <= stage_index )
 			{

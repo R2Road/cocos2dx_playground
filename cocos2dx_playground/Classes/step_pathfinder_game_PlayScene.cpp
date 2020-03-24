@@ -136,7 +136,7 @@ namespace step_pathfinder
 			// Stage Datas
 			//
 			{
-				mStageDataContainer.load();
+				mStageDataContainer.Load();
 			}
 
 			//
@@ -180,7 +180,7 @@ namespace step_pathfinder
 			// Load Stage
 			//
 			{
-				assert( mStageDataContainer.size() > mCurrentStageIndex );
+				assert( mStageDataContainer.Size() > mCurrentStageIndex );
 				loadStage( mCurrentStageIndex );
 			}
 
@@ -219,7 +219,7 @@ namespace step_pathfinder
 
 		bool PlayScene::loadStage( std::size_t stage_index )
 		{
-			if( !mTerrainData.load( mStageDataContainer.get( stage_index ).c_str() ) )
+			if( !mTerrainData.load( mStageDataContainer.Get( stage_index ).c_str() ) )
 			{
 				return false;
 			}
@@ -311,7 +311,7 @@ namespace step_pathfinder
 				{
 					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
 
-					if( mStageDataContainer.size() == mCurrentStageIndex + 1 )
+					if( mStageDataContainer.Size() == mCurrentStageIndex + 1 )
 					{
 						// game clear
 						mbPlayerLive = false;
