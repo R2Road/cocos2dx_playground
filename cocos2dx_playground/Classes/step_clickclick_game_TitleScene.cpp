@@ -77,7 +77,6 @@ namespace step_clickclick
 			{
 				auto title = Sprite::create( "textures/step_clickclick/step_clickclick_title.png" );
 				title->getTexture()->setAliasTexParameters();
-				title->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				title->setScaleX( visibleSize.width / title->getContentSize().width );
 				title->setScaleY( visibleSize.height / title->getContentSize().height );
 				title->setPosition( Vec2(
