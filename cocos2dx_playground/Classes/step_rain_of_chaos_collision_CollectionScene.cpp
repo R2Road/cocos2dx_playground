@@ -207,6 +207,8 @@ namespace step_rain_of_chaos
 		void CollectionScene::onEnter()
 		{
 			Scene::onEnter();
+
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CollectionScene::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased= CC_CALLBACK_2( CollectionScene::onKeyReleased, this );
@@ -277,6 +279,7 @@ namespace step_rain_of_chaos
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
+
 			Scene::onExit();
 		}
 
