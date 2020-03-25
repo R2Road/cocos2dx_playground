@@ -162,14 +162,8 @@
     <ClCompile Include="..\Classes\step02_input_KeyCodeCollectScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step02_collision_BasicScene.cpp">
-      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\cpg_CollisionComponent.cpp">
       <Filter>src\cpg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step02_collision_CollectionScene.cpp">
-      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_input_KeyCodeCollector.cpp">
       <Filter>src\input</Filter>
@@ -321,6 +315,12 @@
     <ClCompile Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.cpp">
       <Filter>src\scene\step_pathfinder\tool</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.cpp">
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_collision_BasicScene.cpp">
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -392,14 +392,8 @@
     <ClInclude Include="..\Classes\step02_input_KeyCodeCollectScene.h">
       <Filter>src\scene\step_rain_of_chaos\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step02_collision_BasicScene.h">
-      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\cpg_CollisionComponent.h">
       <Filter>src\cpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step02_collision_CollectionScene.h">
-      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyCodeCollector.h">
       <Filter>src\input</Filter>
@@ -559,6 +553,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.h">
       <Filter>src\scene\step_pathfinder\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.h">
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_collision_BasicScene.h">
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

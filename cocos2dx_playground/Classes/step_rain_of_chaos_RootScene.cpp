@@ -17,8 +17,8 @@
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
 
-#include "step02_collision_BasicScene.h"
-#include "step02_collision_CollectionScene.h"
+#include "step_rain_of_chaos_collision_BasicScene.h"
+#include "step_rain_of_chaos_collision_CollectionScene.h"
 #include "step02_game_rain_of_chaos_TitleScene.h"
 
 USING_NS_CC;
