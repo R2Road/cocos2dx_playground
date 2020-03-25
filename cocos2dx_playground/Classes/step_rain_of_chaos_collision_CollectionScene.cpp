@@ -18,7 +18,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "cpg_CollisionComponent.h"
+#include "step_rain_of_chaos_CollisionComponent.h"
 #include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
@@ -158,7 +158,7 @@ namespace step_rain_of_chaos
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Collision Component
-					actor_root->addComponent( cpg::CollisionComponent::create( radius, true, true, true ) );
+					actor_root->addComponent( CollisionComponent::create( radius, true, true, true ) );
 				}
 				addChild( actor_root, 100 );
 			}
@@ -248,7 +248,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto actor_root = getChildByTag( TAG_Actor );
-				auto actor_collision_component = static_cast<cpg::CollisionComponent*>( actor_root->getComponent( cpg::CollisionComponent::GetStaticName() ) );
+				auto actor_collision_component = static_cast<CollisionComponent*>( actor_root->getComponent( CollisionComponent::GetStaticName() ) );
 
 				bool contact_success = false;
 				for( const auto& c : mCollisionList )
@@ -303,23 +303,23 @@ namespace step_rain_of_chaos
 
 		void CollectionScene::addCollision( cocos2d::Node* child )
 		{
-			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			auto target_component = child->getComponent( CollisionComponent::GetStaticName() );
 			if( !target_component )
 			{
 				return;
 			}
 
-			mCollisionList.push_back( static_cast<cpg::CollisionComponent*>( target_component ) );
+			mCollisionList.push_back( static_cast<CollisionComponent*>( target_component ) );
 		}
 		void CollectionScene::removeCollision( cocos2d::Node* child )
 		{
-			auto target_component = child->getComponent( cpg::CollisionComponent::GetStaticName() );
+			auto target_component = child->getComponent( CollisionComponent::GetStaticName() );
 			if( !target_component )
 			{
 				return;
 			}
 
-			mCollisionList.remove( static_cast<cpg::CollisionComponent*>( target_component ) );
+			mCollisionList.remove( static_cast<CollisionComponent*>( target_component ) );
 		}
 
 		Node* CollectionScene::makeBullet()
@@ -352,7 +352,7 @@ namespace step_rain_of_chaos
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				bullet_root_node->addComponent( cpg::CollisionComponent::create( radius, false, false, false ) );
+				bullet_root_node->addComponent( CollisionComponent::create( radius, false, false, false ) );
 			}
 
 			return bullet_root_node;

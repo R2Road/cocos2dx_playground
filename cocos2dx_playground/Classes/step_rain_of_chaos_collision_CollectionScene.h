@@ -7,13 +7,10 @@
 
 #include "cpg_input_KeyCodeCollector.h"
 
-namespace cpg
-{
-	class CollisionComponent;
-}
-
 namespace step_rain_of_chaos
 {
+	class CollisionComponent;
+
 	namespace collision
 	{
 		class CollectionScene : public cocos2d::Scene
@@ -51,7 +48,7 @@ namespace step_rain_of_chaos
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			std::list<cpg::CollisionComponent*> mCollisionList;
+			std::list<CollisionComponent*> mCollisionList;
 
 			cpg::input::KeyCodeCollector mKeyCodeCollector;
 			int mMoveSpeed;

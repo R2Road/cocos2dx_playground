@@ -4,7 +4,7 @@
 #include "cocos/2d/CCComponent.h"
 #include "cocos/base/CCRefPtr.h"
 
-namespace cpg
+namespace step_rain_of_chaos
 {
 	class CollisionComponent : public cocos2d::Component
 	{

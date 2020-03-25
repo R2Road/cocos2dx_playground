@@ -1,4 +1,4 @@
-#include "cpg_CollisionComponent.h"
+#include "step_rain_of_chaos_CollisionComponent.h"
 
 #include <new>
 #include <numeric>
@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-namespace cpg
+namespace step_rain_of_chaos
 {
 	CollisionComponent::CollisionComponent( const float radius ) :
 		mRadius( radius )

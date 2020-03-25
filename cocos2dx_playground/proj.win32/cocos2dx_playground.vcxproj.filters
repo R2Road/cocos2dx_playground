@@ -162,9 +162,6 @@
     <ClCompile Include="..\Classes\step02_input_KeyCodeCollectScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpg_CollisionComponent.cpp">
-      <Filter>src\cpg</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\cpg_input_KeyCodeCollector.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
@@ -321,6 +318,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_collision_BasicScene.cpp">
       <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionComponent.cpp">
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -391,9 +391,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step02_input_KeyCodeCollectScene.h">
       <Filter>src\scene\step_rain_of_chaos\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\cpg_CollisionComponent.h">
-      <Filter>src\cpg</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyCodeCollector.h">
       <Filter>src\input</Filter>
@@ -558,6 +555,9 @@
       <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_collision_BasicScene.h">
+      <Filter>src\scene\step_rain_of_chaos\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionComponent.h">
       <Filter>src\scene\step_rain_of_chaos\collision</Filter>
     </ClInclude>
   </ItemGroup>
