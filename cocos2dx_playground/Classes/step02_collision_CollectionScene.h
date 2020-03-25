@@ -12,7 +12,7 @@ namespace cpg
 	class CollisionComponent;
 }
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace collision
 	{

@@ -26,7 +26,7 @@ USING_NS_CC;
 const int TAG_Actor = 20140416;
 const int TAG_MoveSpeed = 100;
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace collision
 	{

@@ -35,7 +35,7 @@ private:
 	float mRadius;
 };
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace collision
 	{

@@ -57,9 +57,9 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << "[1] : " << step02::input::KeyCodeCollectScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step02::collision::BasicScene::getTitle();
+			ss << "[2] : " << step_rain_of_chaos::collision::BasicScene::getTitle();
 			ss << std::endl;
-			ss << "[3] : " << step02::collision::CollectionScene::getTitle();
+			ss << "[3] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[4] : " << step_rain_of_chaos::animation::ListScene::getTitle();
@@ -131,10 +131,10 @@ namespace step_rain_of_chaos
 			Director::getInstance()->replaceScene( step02::input::KeyCodeCollectScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step02::collision::BasicScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::BasicScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step02::collision::CollectionScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
