@@ -9,6 +9,7 @@ public:
 
     static cocos2d::Scene* create();
 
+	bool init() override;
     void onEnter() override;
 	void onExit() override;
     
