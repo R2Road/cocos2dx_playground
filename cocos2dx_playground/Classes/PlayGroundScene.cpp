@@ -34,24 +34,24 @@ Scene* PlayGroundScene::create()
 
 	std::stringstream ss;
 	ss << "+ Playground";
-	ss << "\n";
-	ss << "\n";
+	ss << std::endl;
+	ss << std::endl;
 	ss << "[ESC] : Shutdown";
-	ss << "\n";
-	ss << "\n";
+	ss << std::endl;
+	ss << std::endl;
 	ss << "[1] : " << step_typetype::RootScene::getTitle();
-	ss << "\n";
+	ss << std::endl;
 	ss << "[2] : " << step_clickclick::RootScene::getTitle();
-	ss << "\n";
+	ss << std::endl;
 	ss << "[3] : " << step_pathfinder::RootScene::getTitle();
-	ss << "\n";
+	ss << std::endl;
 	ss << "[4] : " << step_rain_of_chaos::RootScene::getTitle();
-	ss << "\n";
-	ss << "\n";
-	ss << "\n";
-	ss << "\n";
+	ss << std::endl;
+	ss << std::endl;
+	ss << std::endl;
+	ss << std::endl;
 	ss << "[8] : " << research::input::GamePadTestScene::getTitle();
-	ss << "\n";
+	ss << std::endl;
 	ss << "[9] : " << step99::RootScene::getTitle();
 
 	auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
