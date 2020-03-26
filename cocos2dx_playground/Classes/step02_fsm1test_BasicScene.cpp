@@ -10,7 +10,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_defender_RootScene.h"
 
 #include "fsm1_iState.h"
 
@@ -291,7 +291,7 @@ namespace step02
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+			Director::getInstance()->replaceScene( step_defender::RootScene::create() );
 		}
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

@@ -14,7 +14,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "fsm1_iState.h"
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_defender_RootScene.h"
 
 USING_NS_CC;
 
@@ -253,7 +253,7 @@ namespace step02
 
 		void AnimationControlScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+			Director::getInstance()->replaceScene( step_defender::RootScene::create() );
 		}
 		void AnimationControlScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

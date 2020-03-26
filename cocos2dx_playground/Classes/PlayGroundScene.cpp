@@ -7,6 +7,7 @@
 #include "step_clickclick_RootScene.h"
 #include "step_pathfinder_RootScene.h"
 #include "step_rain_of_chaos_RootScene.h"
+#include "step_defender_RootScene.h"
 
 #include "Research_Input_GamePadTest.h"
 #include "Step99_RootScene.h"
@@ -61,6 +62,7 @@ bool PlayGroundScene::init()
 		ss << std::endl;
 		ss << "[4] : " << step_rain_of_chaos::RootScene::getTitle();
 		ss << std::endl;
+		ss << "[5] : " << step_defender::RootScene::getTitle();
 		ss << std::endl;
 		ss << std::endl;
 		ss << std::endl;
@@ -117,6 +119,9 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		break;
 	case EventKeyboard::KeyCode::KEY_4:
 		Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+		break;
+	case EventKeyboard::KeyCode::KEY_5:
+		Director::getInstance()->replaceScene( step_defender::RootScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_8:

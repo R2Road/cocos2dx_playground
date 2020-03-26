@@ -85,14 +85,17 @@
     <Filter Include="src\scene\step_04_rain_of_chaos\collision">
       <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_04_rain_of_chaos\button_drag">
-      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step_04_rain_of_chaos\fsm1test">
-      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_04_rain_of_chaos\game">
       <UniqueIdentifier>{94783662-3f8b-4bbd-bc5d-6b9ef1db809e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_05_defender">
+      <UniqueIdentifier>{84570fc2-9a45-4872-87ef-69d866b1c100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_05_defender\fsm1test">
+      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_05_defender\button_drag">
+      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +169,7 @@
       <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
-      <Filter>src\scene\step_04_rain_of_chaos\fsm1test</Filter>
+      <Filter>src\scene\step_05_defender\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
@@ -175,7 +178,7 @@
       <Filter>src\scene\step_04_rain_of_chaos\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp">
-      <Filter>src\scene\step_04_rain_of_chaos\fsm1test</Filter>
+      <Filter>src\scene\step_05_defender\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_AnimationComponent.cpp">
       <Filter>src\animation</Filter>
@@ -268,7 +271,7 @@
       <Filter>src\scene\step_04_rain_of_chaos\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp">
-      <Filter>src\scene\step_04_rain_of_chaos\button_drag</Filter>
+      <Filter>src\scene\step_05_defender\button_drag</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_RootScene.cpp">
       <Filter>src\scene\step_03_pathfinder</Filter>
@@ -320,6 +323,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionComponent.cpp">
       <Filter>src\scene\step_04_rain_of_chaos\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_RootScene.cpp">
+      <Filter>src\scene\step_05_defender</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -396,7 +402,7 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h">
-      <Filter>src\scene\step_04_rain_of_chaos\fsm1test</Filter>
+      <Filter>src\scene\step_05_defender\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_iState.h">
       <Filter>src\fsm1</Filter>
@@ -408,7 +414,7 @@
       <Filter>src\scene\step_04_rain_of_chaos\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h">
-      <Filter>src\scene\step_04_rain_of_chaos\fsm1test</Filter>
+      <Filter>src\scene\step_05_defender\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_AnimationComponent.h">
       <Filter>src\animation</Filter>
@@ -507,7 +513,7 @@
       <Filter>src\scene\step_04_rain_of_chaos\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h">
-      <Filter>src\scene\step_04_rain_of_chaos\button_drag</Filter>
+      <Filter>src\scene\step_05_defender\button_drag</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_RootScene.h">
       <Filter>src\scene\step_03_pathfinder</Filter>
@@ -559,6 +565,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionComponent.h">
       <Filter>src\scene\step_04_rain_of_chaos\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_RootScene.h">
+      <Filter>src\scene\step_05_defender</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
