@@ -52,6 +52,7 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << "[1] : " << step02::input::KeyCodeCollectScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
 			ss << "[2] : " << step_rain_of_chaos::collision::BasicScene::getTitle();
 			ss << std::endl;
 			ss << "[3] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
