@@ -26,7 +26,7 @@ namespace step_rain_of_chaos
 	{
 		CollectionScene::CollectionScene() :
 			mKeyboardListener( nullptr )
-			, mCollisionList()
+			, mCollisionCollection()
 		{}
 
 		Scene* CollectionScene::create()
@@ -172,7 +172,7 @@ namespace step_rain_of_chaos
 		}
 		void CollectionScene::removeAllChildrenWithCleanup( bool cleanup )
 		{
-			mCollisionList.clear();
+			mCollisionCollection.Clear();
 			Scene::removeAllChildrenWithCleanup( cleanup );
 		}
 
@@ -184,7 +184,7 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			mCollisionList.push_back( static_cast<CollisionComponent*>( target_component ) );
+			mCollisionCollection.Add( static_cast<CollisionComponent*>( target_component ) );
 		}
 		void CollectionScene::removeCollision( cocos2d::Node* child )
 		{
@@ -194,7 +194,7 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			mCollisionList.remove( static_cast<CollisionComponent*>( target_component ) );
+			mCollisionCollection.Remove( static_cast<CollisionComponent*>( target_component ) );
 		}
 
 		Node* CollectionScene::makeBullet()

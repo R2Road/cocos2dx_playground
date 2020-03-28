@@ -1,14 +1,12 @@
 #pragma once
 
-#include <list>
-
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
+#include "step_rain_of_chaos_CollisionCollection.h"
+
 namespace step_rain_of_chaos
 {
-	class CollisionComponent;
-
 	namespace collision
 	{
 		class CollectionScene : public cocos2d::Scene
@@ -42,7 +40,7 @@ namespace step_rain_of_chaos
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			std::list<CollisionComponent*> mCollisionList;
+			CollisionCollection mCollisionCollection;
 		};
 	}
 }
