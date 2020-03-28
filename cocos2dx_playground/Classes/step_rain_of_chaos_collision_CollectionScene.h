@@ -5,8 +5,6 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-#include "cpg_input_KeyCodeCollector.h"
-
 namespace step_rain_of_chaos
 {
 	class CollisionComponent;
@@ -39,19 +37,12 @@ namespace step_rain_of_chaos
 			void removeCollision( cocos2d::Node* child );
 			cocos2d::Node* makeBullet();
 
-			void updateMoveSpeedView();
-
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			std::list<CollisionComponent*> mCollisionList;
-
-			cpg::input::KeyCodeCollector mKeyCodeCollector;
-			int mMoveSpeed;
 		};
 	}
 }

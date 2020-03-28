@@ -7,12 +7,9 @@
 #include <random>
 #include <sstream>
 
-#include "2d/CCActionInterval.h"
-#include "2d/CCAnimation.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -23,9 +20,6 @@
 
 USING_NS_CC;
 
-const int TAG_Actor = 20140416;
-const int TAG_MoveSpeed = 100;
-
 namespace step_rain_of_chaos
 {
 	namespace collision
@@ -33,8 +27,6 @@ namespace step_rain_of_chaos
 		CollectionScene::CollectionScene() :
 			mKeyboardListener( nullptr )
 			, mCollisionList()
-			, mKeyCodeCollector()
-			, mMoveSpeed( 3 )
 		{}
 
 		Scene* CollectionScene::create()
@@ -91,76 +83,13 @@ namespace step_rain_of_chaos
 				) );
 				addChild( label, 9999 );
 			}
-
-			//
-			// Move Speed View
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
-				label->setTag( TAG_MoveSpeed );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, 9999 );
-
-				updateMoveSpeedView();
-			}
 			
 			//
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 15, 49, 131, 255 ) );
 				addChild( background_layer, 0 );
-			}
-
-			//
-			// Actor
-			//
-			{
-				auto actor_root = Node::create();
-				actor_root->setTag( TAG_Actor );
-				actor_root->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
-				{
-					// Pivot
-					{
-						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-						pivot->setScale( 4.f );
-						actor_root->addChild( pivot, 100 );
-					}
-
-					// View
-					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-					view_node->setScale( 2.f );
-					actor_root->addChild( view_node );
-					{
-						auto animation_object = Animation::create();
-						animation_object->setDelayPerUnit( 0.2f );
-						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
-
-						auto animate_action = Animate::create( animation_object );
-
-						auto repeat_action = RepeatForever::create( animate_action );
-
-						view_node->runAction( repeat_action );
-					}
-
-					const Size margin( 3.f, 3.f );
-					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
-
-					// Collision Component
-					actor_root->addComponent( CollisionComponent::create( radius, true, true, true ) );
-				}
-				addChild( actor_root, 100 );
 			}
 
 			//
@@ -211,67 +140,10 @@ namespace step_rain_of_chaos
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CollectionScene::onKeyPressed, this );
-			mKeyboardListener->onKeyReleased= CC_CALLBACK_2( CollectionScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
 		void CollectionScene::update( float dt )
 		{
-			Vec2 input_vec2;
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
-			{
-				input_vec2.y += 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
-			{
-				input_vec2.y -= 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
-			{
-				input_vec2.x += 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
-			{
-				input_vec2.x -= 1.f;
-			}
-
-			if( std::numeric_limits<float>::epsilon() < std::abs( input_vec2.x ) || std::numeric_limits<float>::epsilon() < std::abs( input_vec2.y ) )
-			{
-				//
-				// Move
-				//
-				input_vec2.normalize();
-				input_vec2.scale( mMoveSpeed );
-				auto actor_root = getChildByTag( TAG_Actor );
-				actor_root->setPosition( actor_root->getPosition() + input_vec2 );
-			}
-
-			//
-			// Collision Check
-			//
-			{
-				auto actor_root = getChildByTag( TAG_Actor );
-				auto actor_collision_component = static_cast<CollisionComponent*>( actor_root->getComponent( CollisionComponent::GetStaticName() ) );
-
-				bool contact_success = false;
-				for( const auto& c : mCollisionList )
-				{
-					if( c == actor_collision_component )
-					{
-						continue;
-					}
-
-					contact_success = actor_collision_component->Check( c );
-					if( !contact_success )
-					{
-						continue;
-					}
-
-					break;
-				}
-
-				actor_collision_component->onContact( contact_success );
-			}
-
 			Scene::update( dt );
 		}
 		void CollectionScene::onExit()
@@ -339,18 +211,6 @@ namespace step_rain_of_chaos
 				// View
 				auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
 				bullet_root_node->addChild( view_node );
-				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.1f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_02.png" ) );
-
-					auto animate_action = Animate::create( animation_object );
-
-					auto repeat_action = RepeatForever::create( animate_action );
-
-					view_node->runAction( repeat_action );
-				}
 
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
@@ -361,52 +221,13 @@ namespace step_rain_of_chaos
 			return bullet_root_node;
 		}
 
-		void CollectionScene::updateMoveSpeedView()
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeed ) );
-			label->setString( StringUtils::format( "MoveSpeed : %d", mMoveSpeed ) );
-		}
-
-		void CollectionScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
-		}
 		void CollectionScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( CollectionScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( CollectionScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 				return;
 			}
-
-			if( EventKeyboard::KeyCode::KEY_1 == keycode )
-			{
-				mMoveSpeed = std::min( 10, mMoveSpeed + 1 );
-				updateMoveSpeedView();
-				return;
-			}
-			if( EventKeyboard::KeyCode::KEY_2 == keycode )
-			{
-				mMoveSpeed = std::max( 1, mMoveSpeed - 1 );
-				updateMoveSpeedView();
-				return;
-			}
-
-			mKeyCodeCollector.onKeyPressed( keycode );
-		}
-		void CollectionScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
-		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode
-				|| EventKeyboard::KeyCode::KEY_1 == keycode 
-				|| EventKeyboard::KeyCode::KEY_2 == keycode )
-			{
-				return;
-			}
-
-			mKeyCodeCollector.onKeyReleased( keycode );
 		}
 	}
 }
