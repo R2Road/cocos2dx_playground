@@ -327,6 +327,9 @@
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp">
       <Filter>src\scene\step_05_defender</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_collision_ComponentScene.cpp">
+      <Filter>src\scene\step_04_rain_of_chaos\collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -568,6 +571,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_RootScene.h">
       <Filter>src\scene\step_05_defender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_collision_ComponentScene.h">
+      <Filter>src\scene\step_04_rain_of_chaos\collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

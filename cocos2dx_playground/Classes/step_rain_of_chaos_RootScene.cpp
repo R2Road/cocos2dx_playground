@@ -6,14 +6,16 @@
 
 #include "PlayGroundScene.h"
 
+#include "step02_input_KeyCodeCollectScene.h"
+
 #include "step_rain_of_chaos_animation_ListScene.h"
 #include "step_rain_of_chaos_animation_CallbackScene.h"
 #include "step_rain_of_chaos_animation_ComponentScene.h"
 
-#include "step02_input_KeyCodeCollectScene.h"
-
 #include "step_rain_of_chaos_collision_BasicScene.h"
+#include "step_rain_of_chaos_collision_ComponentScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
+
 #include "step02_game_rain_of_chaos_TitleScene.h"
 
 USING_NS_CC;
@@ -55,14 +57,16 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << "[2] : " << step_rain_of_chaos::collision::BasicScene::getTitle();
 			ss << std::endl;
-			ss << "[3] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
+			ss << "[3] : " << step_rain_of_chaos::collision::ComponentScene::getTitle();
+			ss << std::endl;
+			ss << "[4] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_rain_of_chaos::animation::ListScene::getTitle();
+			ss << "[5] : " << step_rain_of_chaos::animation::ListScene::getTitle();
 			ss << std::endl;
-			ss << "[5] : " << step_rain_of_chaos::animation::CallbackScene::getTitle();
+			ss << "[6] : " << step_rain_of_chaos::animation::CallbackScene::getTitle();
 			ss << std::endl;
-			ss << "[6] : " << step_rain_of_chaos::animation::ComponentScene::getTitle();
+			ss << "[7] : " << step_rain_of_chaos::animation::ComponentScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -119,20 +123,24 @@ namespace step_rain_of_chaos
 		case EventKeyboard::KeyCode::KEY_1:
 			Director::getInstance()->replaceScene( step02::input::KeyCodeCollectScene::create() );
 			break;
+
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::BasicScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::ComponentScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::animation::ListScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::animation::CallbackScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_7:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::animation::ComponentScene::create() );
 			break;
 
