@@ -20,21 +20,24 @@
 
 USING_NS_CC;
 
-const int TAG_Actor = 20140416;
-const int TAG_Bullet = 20200209;
-const int TAG_Distance = 888;
-const int TAG_CollisionIndicator = 999;
-
-class RadiusData : public cocos2d::Ref
+namespace
 {
-public:
-	RadiusData( const float radius ) : mRadius( radius ) {}
+	const int TAG_Actor = 20140416;
+	const int TAG_Bullet = 20200209;
+	const int TAG_Distance = 888;
+	const int TAG_CollisionIndicator = 999;
 
-	float GetRadius() const { return mRadius; }
+	class RadiusData : public cocos2d::Ref
+	{
+	public:
+		RadiusData( const float radius ) : mRadius( radius ) {}
 
-private:
-	float mRadius;
-};
+		float GetRadius() const { return mRadius; }
+
+	private:
+		float mRadius;
+	};
+}
 
 namespace step_mole
 {

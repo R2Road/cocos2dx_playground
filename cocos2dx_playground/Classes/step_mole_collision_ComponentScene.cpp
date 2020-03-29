@@ -23,7 +23,10 @@
 
 USING_NS_CC;
 
-const int TAG_Actor = 20140416;
+namespace
+{
+	const int TAG_Actor = 20140416;
+}
 
 namespace step_mole
 {
