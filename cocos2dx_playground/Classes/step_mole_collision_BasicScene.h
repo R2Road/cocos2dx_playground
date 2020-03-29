@@ -3,8 +3,6 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-#include "cpg_input_KeyCodeCollector.h"
-
 namespace step_mole
 {
 	namespace collision
@@ -20,23 +18,17 @@ namespace step_mole
 
 			bool init() override;
 			void onEnter() override;
-			void update( float dt ) override;
 			void onExit() override;
 
 		private:
+			void collisionCheck();
 			void updateDistance();
 
-			void updateMoveSpeedView();
-
-			void updateForExit( float dt );
+			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			
-			cpg::input::KeyCodeCollector mKeyCodeCollector;
-			int mMoveSpeed;
 		};
 	}
 }
