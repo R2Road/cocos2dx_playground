@@ -16,7 +16,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 #include "ui/UIButton.h"
 
 #include "step_mole_CollisionComponent.h"
@@ -61,6 +60,7 @@ namespace step_mole
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const Size visibleMargin( 4.f, 4.f );
 
 			//
 			// Summury
@@ -73,20 +73,15 @@ namespace step_mole
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow Key] : Move Actor";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[1] : Speed Up";
-				ss << std::endl;
-				ss << "[2] : Speed Down";
+				ss << "[Mouse] : Push and Drag";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
+					visibleOrigin.x + visibleMargin.width
+					, visibleOrigin.y + visibleSize.height - visibleMargin.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -94,7 +89,7 @@ namespace step_mole
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
 			}
 
 			//
@@ -341,18 +336,11 @@ namespace step_mole
 			collisionCheck();
 		}
 
-		void ComponentScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_mole::RootScene::create() );
-		}
 		void ComponentScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( ComponentScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( ComponentScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 			}
 		}
