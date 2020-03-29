@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_collision_BasicScene.h"
+#include "step_mole_collision_BasicScene.h"
 
 #include <new>
 #include <sstream>
@@ -14,7 +14,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
@@ -35,7 +35,7 @@ private:
 	float mRadius;
 };
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	namespace collision
 	{
@@ -358,7 +358,7 @@ namespace step_rain_of_chaos
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+			Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

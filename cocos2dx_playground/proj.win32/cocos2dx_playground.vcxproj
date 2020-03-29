@@ -156,7 +156,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionCollection.cpp" />
-    <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionComponent.cpp" />
+    <ClCompile Include="..\Classes\step_mole_CollisionComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_GridIndexConverter.cpp" />
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp" />
     <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp" />
@@ -190,7 +190,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_clickclick_game_StageTestScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.cpp" />
-    <ClCompile Include="..\Classes\step_rain_of_chaos_collision_ComponentScene.cpp" />
+    <ClCompile Include="..\Classes\step_mole_collision_ComponentScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_PlayScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_ResultScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp" />
@@ -216,7 +216,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_mole_animation_CallbackScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_animation_ListScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp" />
-    <ClCompile Include="..\Classes\step_rain_of_chaos_collision_BasicScene.cpp" />
+    <ClCompile Include="..\Classes\step_mole_collision_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.cpp" />
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp" />
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp" />
@@ -238,7 +238,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_defender_RootScene.h" />
     <ClInclude Include="..\Classes\step_mole_RootScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionCollection.h" />
-    <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionComponent.h" />
+    <ClInclude Include="..\Classes\step_mole_CollisionComponent.h" />
     <ClInclude Include="..\Classes\cpg_GridIndexConverter.h" />
     <ClInclude Include="..\Classes\CPG_InputDelegator.h" />
     <ClInclude Include="..\Classes\CPG_InputKeyMap.h" />
@@ -275,7 +275,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_clickclick_game_StageTestScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.h" />
-    <ClInclude Include="..\Classes\step_rain_of_chaos_collision_ComponentScene.h" />
+    <ClInclude Include="..\Classes\step_mole_collision_ComponentScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_ResultScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_Stage.h" />
@@ -301,7 +301,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_mole_animation_CallbackScene.h" />
     <ClInclude Include="..\Classes\step_mole_animation_ListScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h" />
-    <ClInclude Include="..\Classes\step_rain_of_chaos_collision_BasicScene.h" />
+    <ClInclude Include="..\Classes\step_mole_collision_BasicScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.h" />
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h" />
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h" />

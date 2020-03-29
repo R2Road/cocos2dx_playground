@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_collision_ComponentScene.h"
+#include "step_mole_collision_ComponentScene.h"
 
 #include <algorithm>
 #include <cmath>
@@ -18,15 +18,15 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "step_rain_of_chaos_CollisionComponent.h"
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_mole_CollisionComponent.h"
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
 const int TAG_Actor = 20140416;
 const int TAG_MoveSpeed = 100;
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	namespace collision
 	{
@@ -369,7 +369,7 @@ namespace step_rain_of_chaos
 
 		void ComponentScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+			Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 		}
 		void ComponentScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

@@ -8,6 +8,9 @@
 #include "step_mole_animation_CallbackScene.h"
 #include "step_mole_animation_ComponentScene.h"
 
+#include "step_mole_collision_BasicScene.h"
+#include "step_mole_collision_ComponentScene.h"
+
 #include "PlayGroundScene.h"
 
 USING_NS_CC;
@@ -49,6 +52,11 @@ namespace step_mole
 			ss << "[2] : " << step_mole::animation::CallbackScene::getTitle();
 			ss << std::endl;
 			ss << "[3] : " << step_mole::animation::ComponentScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[4] : " << step_mole::collision::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[5] : " << step_mole::collision::ComponentScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -104,6 +112,13 @@ namespace step_mole
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( step_mole::animation::ComponentScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( step_mole::collision::BasicScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_5:
+			Director::getInstance()->replaceScene( step_mole::collision::ComponentScene::create() );
 			break;
 
 		default:

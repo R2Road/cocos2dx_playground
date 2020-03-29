@@ -5,7 +5,7 @@
 
 #include "cpg_input_KeyCodeCollector.h"
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	namespace collision
 	{

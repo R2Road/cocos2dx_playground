@@ -8,8 +8,6 @@
 
 #include "step02_input_KeyCodeCollectScene.h"
 
-#include "step_rain_of_chaos_collision_BasicScene.h"
-#include "step_rain_of_chaos_collision_ComponentScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
 #include "step02_game_rain_of_chaos_TitleScene.h"
@@ -51,11 +49,7 @@ namespace step_rain_of_chaos
 			ss << "[1] : " << step02::input::KeyCodeCollectScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[2] : " << step_rain_of_chaos::collision::BasicScene::getTitle();
-			ss << std::endl;
-			ss << "[3] : " << step_rain_of_chaos::collision::ComponentScene::getTitle();
-			ss << std::endl;
-			ss << "[4] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
+			ss << "[2] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -114,12 +108,6 @@ namespace step_rain_of_chaos
 			break;
 
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::BasicScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::ComponentScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
 			break;
 
