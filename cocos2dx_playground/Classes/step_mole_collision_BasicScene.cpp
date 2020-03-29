@@ -1,6 +1,7 @@
 #include "step_mole_collision_BasicScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
@@ -67,6 +68,7 @@ namespace step_mole
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const Size visibleMargin( 4.f, 4.f );
 
 			//
 			// Summury
@@ -77,14 +79,17 @@ namespace step_mole
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Mouse] : Push and Drag";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
+					visibleOrigin.x + visibleMargin.width
+					, visibleOrigin.y + visibleSize.height - visibleMargin.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -92,7 +97,22 @@ namespace step_mole
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
+			}
+
+			//
+			// Distance
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				label->setTag( TAG_Distance );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + visibleMargin.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -102,12 +122,13 @@ namespace step_mole
 				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->setContentSize( visibleSize );
+				button->setOpacity( 150u );
 				button->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-				addChild( button, 0 );
+				addChild( button );
 			}
 
 			//
@@ -240,22 +261,7 @@ namespace step_mole
 				addChild( bullet_root_node, 101 );
 			}
 
-			//
-			// Distance
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
-				label->setTag( TAG_Distance );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y
-				) );
-				addChild( label, 200 );
-
-				updateDistance();
-			}
+			updateDistance();
 
 			return true;
 		}
@@ -263,6 +269,8 @@ namespace step_mole
 		void BasicScene::onEnter()
 		{
 			Scene::onEnter();
+
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
