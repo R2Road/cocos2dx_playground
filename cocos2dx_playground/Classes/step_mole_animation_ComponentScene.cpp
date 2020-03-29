@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_animation_ComponentScene.h"
+#include "step_mole_animation_ComponentScene.h"
 
 #include <new>
 #include <numeric>
@@ -14,13 +14,14 @@
 #include "cpg_Animation_Info.h"
 #include "cpg_AnimationComponent.h"
 #include "cpg_animation_InfoContainer.h"
-#include "step_rain_of_chaos_RootScene.h"
+
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
 const int TAG_AnimationNode = 20140416;
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	namespace animation
 	{
@@ -135,7 +136,7 @@ namespace step_rain_of_chaos
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Idle

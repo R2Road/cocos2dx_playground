@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_animation_CallbackScene.h"
+#include "step_mole_animation_CallbackScene.h"
 
 #include <new>
 #include <numeric>
@@ -15,7 +15,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
@@ -27,7 +27,7 @@ namespace
 	const int TAG_AnimationAction = 111;
 }
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	namespace animation
 	{
@@ -171,7 +171,7 @@ namespace step_rain_of_chaos
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play

@@ -4,6 +4,10 @@
 #include <numeric>
 #include <sstream>
 
+#include "step_mole_animation_ListScene.h"
+#include "step_mole_animation_CallbackScene.h"
+#include "step_mole_animation_ComponentScene.h"
+
 #include "PlayGroundScene.h"
 
 USING_NS_CC;
@@ -38,6 +42,13 @@ namespace step_mole
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[1] : " << step_mole::animation::ListScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << step_mole::animation::CallbackScene::getTitle();
+			ss << std::endl;
+			ss << "[3] : " << step_mole::animation::ComponentScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -83,6 +94,16 @@ namespace step_mole
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( step_mole::animation::ListScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( step_mole::animation::CallbackScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step_mole::animation::ComponentScene::create() );
 			break;
 
 		default:

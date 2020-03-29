@@ -91,17 +91,14 @@
     <Filter Include="src\scene\step_05_rain_of_chaos\input">
       <UniqueIdentifier>{1dce0bb6-9de2-4d45-a409-35a7ef25bd30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_05_rain_of_chaos\collision">
-      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step_05_rain_of_chaos\collision\collision">
-      <UniqueIdentifier>{f1c7d6ac-93cf-4083-96bc-bf7d17c2de5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step_05_rain_of_chaos\collision\animation">
-      <UniqueIdentifier>{94f7f939-c9ab-40f0-a1d2-7d90e76ed48a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_05_rain_of_chaos\game">
       <UniqueIdentifier>{94783662-3f8b-4bbd-bc5d-6b9ef1db809e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_04_mole\animation">
+      <UniqueIdentifier>{94f7f939-c9ab-40f0-a1d2-7d90e76ed48a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_05_rain_of_chaos\collision">
+      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -267,15 +264,6 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_RootScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_animation_CallbackScene.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\collision\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_animation_ListScene.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\collision\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\collision\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp">
       <Filter>src\scene\step_05_defender\button_drag</Filter>
     </ClCompile>
@@ -341,6 +329,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_RootScene.cpp">
       <Filter>src\scene\step_04_mole</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_animation_ListScene.cpp">
+      <Filter>src\scene\step_04_mole\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_animation_ComponentScene.cpp">
+      <Filter>src\scene\step_04_mole\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_animation_CallbackScene.cpp">
+      <Filter>src\scene\step_04_mole\animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -518,15 +515,6 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_RootScene.h">
       <Filter>src\scene\step_05_rain_of_chaos</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_animation_CallbackScene.h">
-      <Filter>src\scene\step_05_rain_of_chaos\collision\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_animation_ListScene.h">
-      <Filter>src\scene\step_05_rain_of_chaos\collision\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_animation_ComponentScene.h">
-      <Filter>src\scene\step_05_rain_of_chaos\collision\animation</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h">
       <Filter>src\scene\step_05_defender\button_drag</Filter>
     </ClInclude>
@@ -592,6 +580,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_RootScene.h">
       <Filter>src\scene\step_04_mole</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_animation_ListScene.h">
+      <Filter>src\scene\step_04_mole\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_animation_ComponentScene.h">
+      <Filter>src\scene\step_04_mole\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_animation_CallbackScene.h">
+      <Filter>src\scene\step_04_mole\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

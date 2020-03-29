@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_animation_ListScene.h"
+#include "step_mole_animation_ListScene.h"
 
 #include <new>
 #include <numeric>
@@ -16,7 +16,7 @@
 
 #include "cpg_Animation_Info.h"
 
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
@@ -43,7 +43,7 @@ namespace
 	};
 }
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	namespace animation
 	{
@@ -182,7 +182,7 @@ namespace step_rain_of_chaos
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Idle
