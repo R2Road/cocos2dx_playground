@@ -14,6 +14,7 @@
 #include "cpg_AnimationComponent.h"
 #include "cpg_animation_InfoContainer.h"
 
+#include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_ObjectComponent.h"
 
 #include "step_mole_RootScene.h"
@@ -117,6 +118,7 @@ namespace step_mole
 					view_node->setTag( TAG_ViewNode );
 					view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					view_node->setScale( 2.f );
+					view_node->setPositionY( -18.f );
 					object_node->addChild( view_node );
 
 					// Animation Component
@@ -124,6 +126,11 @@ namespace step_mole
 						const auto animation_info_container = cpg::animation::InfoContainer::create();
 						view_node->addComponent( cpg::AnimationComponent::create( *animation_info_container ) );
 					}
+				}
+
+				// Collision Component
+				{
+					object_node->addComponent( CircleCollisionComponent::create( 30.f, true, true, true ) );
 				}
 
 				// Object Component
