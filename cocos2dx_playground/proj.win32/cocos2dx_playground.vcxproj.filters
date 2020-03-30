@@ -342,9 +342,6 @@
     <ClCompile Include="..\Classes\step_mole_collision_BasicScene.cpp">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_CollisionComponent.cpp">
-      <Filter>src\scene\step_04_mole\circle_collision</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_StageTestScene.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
@@ -353,6 +350,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_ObjectComponent.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_CircleCollisionComponent.cpp">
+      <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -602,9 +602,6 @@
     <ClInclude Include="..\Classes\step_mole_collision_ComponentScene.h">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_CollisionComponent.h">
-      <Filter>src\scene\step_04_mole\circle_collision</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_StageTestScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
@@ -613,6 +610,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_ObjectComponent.h">
       <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_CircleCollisionComponent.h">
+      <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "step_mole_CollisionComponent.h"
+#include "step_mole_CircleCollisionComponent.h"
 #include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;

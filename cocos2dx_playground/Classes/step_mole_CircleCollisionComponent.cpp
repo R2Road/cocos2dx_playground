@@ -1,4 +1,4 @@
-#include "step_mole_CollisionComponent.h"
+#include "step_mole_CircleCollisionComponent.h"
 
 #include <new>
 #include <numeric>

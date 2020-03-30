@@ -15,7 +15,7 @@ namespace step_mole
 		~CollisionComponent();
 
 	public:
-		static const char* GetStaticName() { return "CPG_COLLISION"; }
+		static const char* GetStaticName() { return "MOLE_CIRCLECOLLISION"; }
 		static CollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 
 	private:
