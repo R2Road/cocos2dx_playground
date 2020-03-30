@@ -7,7 +7,7 @@
 
 namespace step_mole
 {
-	class CollisionComponent;
+	class CircleCollisionComponent;
 
 	namespace collision
 	{
@@ -43,7 +43,7 @@ namespace step_mole
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			std::list<CollisionComponent*> mCollisionList;
+			std::list<CircleCollisionComponent*> mCollisionList;
 		};
 	}
 }

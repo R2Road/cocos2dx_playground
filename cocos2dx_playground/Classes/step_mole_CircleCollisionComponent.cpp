@@ -11,13 +11,13 @@ USING_NS_CC;
 
 namespace step_mole
 {
-	CollisionComponent::CollisionComponent( const float radius ) :
+	CircleCollisionComponent::CircleCollisionComponent( const float radius ) :
 		mRadius( radius )
 		, mHelper()
 	{
 		setName( GetStaticName() );
 	}
-	CollisionComponent::~CollisionComponent()
+	CircleCollisionComponent::~CircleCollisionComponent()
 	{
 		for( auto h : mHelper )
 		{
@@ -31,9 +31,9 @@ namespace step_mole
 		}
 	}
 
-	CollisionComponent* CollisionComponent::create( const float radius, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper )
+	CircleCollisionComponent* CircleCollisionComponent::create( const float radius, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper )
 	{
-		auto ret = new ( std::nothrow ) CollisionComponent( radius );
+		auto ret = new ( std::nothrow ) CircleCollisionComponent( radius );
 		if( !ret || !ret->init( use_radius_helper, use_guide_helper, use_indicator_helper ) )
 		{
 			delete ret;
@@ -48,7 +48,7 @@ namespace step_mole
 		return ret;
 	}
 
-	bool CollisionComponent::init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper )
+	bool CircleCollisionComponent::init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper )
 	{
 		if( !ParentT::init() )
 		{
@@ -98,7 +98,7 @@ namespace step_mole
 		return true;
 	}
 
-	void CollisionComponent::onAdd()
+	void CircleCollisionComponent::onAdd()
 	{
 		for( std::size_t i = static_cast<int>( eHelperNode::FIRST ), end = static_cast<int>( eHelperNode::SIZE ); i < end; ++i )
 		{
@@ -113,7 +113,7 @@ namespace step_mole
 
 		ParentT::onAdd();
 	}
-	void CollisionComponent::onRemove()
+	void CircleCollisionComponent::onRemove()
 	{
 		ParentT::onRemove();
 
@@ -128,14 +128,14 @@ namespace step_mole
 		}
 	}
 
-	bool CollisionComponent::Check( const CollisionComponent* const other ) const
+	bool CircleCollisionComponent::Check( const CircleCollisionComponent* const other ) const
 	{
 		const float distance = _owner->getPosition().distance( other->getOwner()->getPosition() );
 		const float contact_limit_distance = mRadius + other->GetRadius();
 		
 		return distance <= contact_limit_distance;
 	}
-	void CollisionComponent::onContact( const bool contact )
+	void CircleCollisionComponent::onContact( const bool contact )
 	{
 		auto& indicator = mHelper[static_cast<std::size_t>( eHelperNode::indicator )];
 		if( indicator.first )

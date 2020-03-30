@@ -152,7 +152,7 @@ namespace step_mole
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Collision Component
-					actor_root->addComponent( CollisionComponent::create( radius, true, true, true ) );
+					actor_root->addComponent( CircleCollisionComponent::create( radius, true, true, true ) );
 				}
 				addChild( actor_root, 100 );
 			}
@@ -238,23 +238,23 @@ namespace step_mole
 		}
 		void ComponentScene::addCollision( cocos2d::Node* child )
 		{
-			auto target_component = child->getComponent( CollisionComponent::GetStaticName() );
+			auto target_component = child->getComponent( CircleCollisionComponent::GetStaticName() );
 			if( !target_component )
 			{
 				return;
 			}
 
-			mCollisionList.push_back( static_cast<CollisionComponent*>( target_component ) );
+			mCollisionList.push_back( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 		void ComponentScene::removeCollision( cocos2d::Node* child )
 		{
-			auto target_component = child->getComponent( CollisionComponent::GetStaticName() );
+			auto target_component = child->getComponent( CircleCollisionComponent::GetStaticName() );
 			if( !target_component )
 			{
 				return;
 			}
 
-			mCollisionList.remove( static_cast<CollisionComponent*>( target_component ) );
+			mCollisionList.remove( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 
 		Node* ComponentScene::makeBullet()
@@ -287,7 +287,7 @@ namespace step_mole
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				bullet_root_node->addComponent( CollisionComponent::create( radius, false, false, false ) );
+				bullet_root_node->addComponent( CircleCollisionComponent::create( radius, false, false, false ) );
 			}
 
 			return bullet_root_node;
@@ -296,7 +296,7 @@ namespace step_mole
 		void ComponentScene::collisionCheck()
 		{
 			auto actor_root = getChildByTag( TAG_Actor );
-			auto actor_collision_component = static_cast<CollisionComponent*>( actor_root->getComponent( CollisionComponent::GetStaticName() ) );
+			auto actor_collision_component = static_cast<CircleCollisionComponent*>( actor_root->getComponent( CircleCollisionComponent::GetStaticName() ) );
 
 			bool contact_success = false;
 			for( const auto& c : mCollisionList )

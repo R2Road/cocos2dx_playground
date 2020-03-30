@@ -6,17 +6,17 @@
 
 namespace step_mole
 {
-	class CollisionComponent : public cocos2d::Component
+	class CircleCollisionComponent : public cocos2d::Component
 	{
 	private:
 		using ParentT = cocos2d::Component;
 
-		CollisionComponent( const float radius );
-		~CollisionComponent();
+		CircleCollisionComponent( const float radius );
+		~CircleCollisionComponent();
 
 	public:
 		static const char* GetStaticName() { return "MOLE_CIRCLECOLLISION"; }
-		static CollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
+		static CircleCollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 
 	private:
 		bool init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
@@ -26,7 +26,7 @@ namespace step_mole
 	public:
 		float GetRadius() const { return mRadius; }
 
-		bool Check( const CollisionComponent* const other ) const;
+		bool Check( const CircleCollisionComponent* const other ) const;
 		void onContact( const bool contact );
 
 	private:
