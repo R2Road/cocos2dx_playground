@@ -51,7 +51,7 @@ namespace cpg
 			return;
 		}
 
-		getOwner()->stopAllActions();
+		StopAnimation();
 
 		auto repeat_action = RepeatForever::create( animation_action );
 		repeat_action->setTag( static_cast<int>( animation_index ) );
@@ -66,7 +66,7 @@ namespace cpg
 			return;
 		}
 
-		getOwner()->stopAllActions();
+		StopAnimation();
 
 		mAnimationCallback = animation_callback;
 
