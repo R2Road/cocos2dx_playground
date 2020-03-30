@@ -47,7 +47,7 @@ namespace cpg
 		auto animation_action = getAnimationAction( animation_index );
 		if( !animation_action )
 		{
-			cocos2d::log( "" );
+			CCLOG( "Failed : Animation Index Not Found %d : ", static_cast<int>( animation_index ) );
 			return;
 		}
 
@@ -62,7 +62,7 @@ namespace cpg
 		auto animation_action = getAnimationAction( animation_index );
 		if( !animation_action )
 		{
-			cocos2d::log( "" );
+			CCLOG( "Failed : Animation Index Not Found %d : ", static_cast<int>( animation_index ) );
 			return;
 		}
 
