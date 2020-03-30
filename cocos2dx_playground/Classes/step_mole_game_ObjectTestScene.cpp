@@ -11,9 +11,20 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_AnimationComponent.h"
+#include "cpg_animation_InfoContainer.h"
+
+#include "step_mole_ObjectComponent.h"
+
 #include "step_mole_RootScene.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const int TAG_ObjectNode = 20140416;
+	const int TAG_ViewNode = 100;
+}
 
 namespace step_mole
 {
@@ -58,6 +69,11 @@ namespace step_mole
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[1] : Start Action";
+				ss << std::endl;
+				ss << "[2] : End Action";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -74,6 +90,50 @@ namespace step_mole
 			{
 				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
 				addChild( background_layer, -1 );
+			}
+
+			//
+			// Object Node
+			//
+			{
+				auto object_node = Node::create();
+				object_node->setTag( TAG_ObjectNode );
+				object_node->setPosition( Vec2(
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+				) );
+				addChild( object_node, 0 );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					object_node->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// View
+				{
+					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+					view_node->setTag( TAG_ViewNode );
+					view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					view_node->setScale( 2.f );
+					object_node->addChild( view_node );
+
+					// Animation Component
+					{
+						const auto animation_info_container = cpg::animation::InfoContainer::create();
+						view_node->addComponent( cpg::AnimationComponent::create( *animation_info_container ) );
+					}
+				}
+
+				// Object Component
+				{
+					auto animation_component = static_cast<cpg::AnimationComponent*> (object_node->getChildByTag( TAG_ViewNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
+					auto object_component = step_mole::ObjectComponent::create( animation_component );
+					object_node->addComponent( object_component );
+
+					object_component->setEnabled( true );
+				}
 			}
 
 			return true;
@@ -104,6 +164,22 @@ namespace step_mole
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
+
+			case EventKeyboard::KeyCode::KEY_1:
+			{
+				auto object_node = getChildByTag( TAG_ObjectNode );
+				auto animation_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
+				animation_component->setEnabled( true );
+			}
+			return;
+
+			case EventKeyboard::KeyCode::KEY_2:
+			{
+				auto object_node = getChildByTag( TAG_ObjectNode );
+				auto animation_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
+				animation_component->setEnabled( false );
+			}
+			return;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );

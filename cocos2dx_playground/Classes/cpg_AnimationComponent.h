@@ -37,10 +37,8 @@ namespace cpg
 	private:
 		bool init( const cpg::animation::InfoContainer& animation_info_container );
 		cocos2d::Animate* getAnimationAction( const cpg::animation::eIndex animation_index );
-		void AnimationEndCallback();
 
 	private:
 		std::vector<std::pair<cpg::animation::eIndex, cocos2d::Animate*>> mAnimationActions;
-		AnimationCallback mAnimationCallback;
 	};
 }

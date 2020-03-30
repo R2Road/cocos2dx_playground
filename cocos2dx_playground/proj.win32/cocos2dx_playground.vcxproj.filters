@@ -351,6 +351,9 @@
     <ClCompile Include="..\Classes\step_mole_game_ObjectTestScene.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_ObjectComponent.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -606,6 +609,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_ObjectTestScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_ObjectComponent.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>

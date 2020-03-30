@@ -11,7 +11,7 @@ USING_NS_CC;
 
 namespace cpg
 {
-	AnimationComponent::AnimationComponent() : mAnimationActions(), mAnimationCallback()
+	AnimationComponent::AnimationComponent() : mAnimationActions()
 	{
 		setName( GetStaticName() );
 	}
@@ -68,15 +68,12 @@ namespace cpg
 
 		StopAnimation();
 
-		mAnimationCallback = animation_callback;
-
-		auto sequence_action = Sequence::create( animation_action, CallFunc::create( std::bind( &AnimationComponent::AnimationEndCallback, this ) ), nullptr );
+		auto sequence_action = Sequence::create( animation_action, CallFunc::create( animation_callback ), nullptr );
 		sequence_action->setTag( static_cast<int>( animation_index ) );
 		getOwner()->runAction( sequence_action );
 	}
 	void AnimationComponent::StopAnimation()
 	{
-		mAnimationCallback = nullptr;
 		getOwner()->stopAllActions();
 	}
 
@@ -116,13 +113,5 @@ namespace cpg
 		}
 
 		return nullptr;
-	}
-	void AnimationComponent::AnimationEndCallback()
-	{
-		if( mAnimationCallback )
-		{
-			mAnimationCallback();
-			mAnimationCallback = nullptr;
-		}
 	}
 }
