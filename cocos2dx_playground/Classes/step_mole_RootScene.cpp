@@ -11,6 +11,7 @@
 #include "step_mole_collision_BasicScene.h"
 #include "step_mole_collision_ComponentScene.h"
 
+#include "step_mole_game_ObjectTestScene.h"
 #include "step_mole_game_StageTestScene.h"
 
 #include "PlayGroundScene.h"
@@ -64,7 +65,9 @@ namespace step_mole
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << step_mole::game::StageTestScene::getTitle();
+			ss << "[A] : " << step_mole::game::ObjectTestScene::getTitle();
+			ss << std::endl;
+			ss << "[S] : " << step_mole::game::StageTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -130,6 +133,9 @@ namespace step_mole
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
+			Director::getInstance()->replaceScene( step_mole::game::ObjectTestScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( step_mole::game::StageTestScene::create() );
 			break;
 
