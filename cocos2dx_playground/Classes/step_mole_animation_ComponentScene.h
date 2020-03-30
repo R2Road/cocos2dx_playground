@@ -27,6 +27,7 @@ namespace step_mole
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			void PlayAnimation( const cpg::animation::eIndex animation_index );
+			void PlayAnimationWithCallback();
 			void StopAnimation();
 
 		private:

@@ -2,6 +2,7 @@
 
 #include <new>
 
+#include "cocos/2d/CCActionInstant.h"
 #include "cocos/2d/CCActionInterval.h"
 #include "cocos/2d/CCAnimation.h"
 #include "cocos/2d/CCSpriteFrameCache.h"
@@ -10,7 +11,7 @@ USING_NS_CC;
 
 namespace cpg
 {
-	AnimationComponent::AnimationComponent()
+	AnimationComponent::AnimationComponent() : mAnimationActions(), mAnimationCallback()
 	{
 		setName( GetStaticName() );
 	}
@@ -18,7 +19,7 @@ namespace cpg
 	{
 		for( auto a : mAnimationActions )
 		{
-			a->release();
+			a.second->release();
 		}
 		mAnimationActions.clear();
 	}
@@ -51,10 +52,31 @@ namespace cpg
 		}
 
 		getOwner()->stopAllActions();
-		getOwner()->runAction( animation_action );
+
+		auto repeat_action = RepeatForever::create( animation_action );
+		repeat_action->setTag( static_cast<int>( animation_index ) );
+		getOwner()->runAction( repeat_action );
+	}
+	void AnimationComponent::PlayAnimationWithCallback( const cpg::animation::eIndex animation_index, const AnimationCallback animation_callback )
+	{
+		auto animation_action = getAnimationAction( animation_index );
+		if( !animation_action )
+		{
+			cocos2d::log( "" );
+			return;
+		}
+
+		getOwner()->stopAllActions();
+
+		mAnimationCallback = animation_callback;
+
+		auto sequence_action = Sequence::create( animation_action, CallFunc::create( std::bind( &AnimationComponent::AnimationEndCallback, this ) ), nullptr );
+		sequence_action->setTag( static_cast<int>( animation_index ) );
+		getOwner()->runAction( sequence_action );
 	}
 	void AnimationComponent::StopAnimation()
 	{
+		mAnimationCallback = nullptr;
 		getOwner()->stopAllActions();
 	}
 
@@ -75,27 +97,32 @@ namespace cpg
 				animation_object->addSpriteFrame( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name ) );
 			}
 
-			auto animate_action = Animate::create( animation_object );
+			auto animate_action = Animate::create( animation_object );			
+			animate_action->retain();
 
-			auto repeat_action = RepeatForever::create( animate_action );
-			repeat_action->setTag( static_cast<int>( animation_info.Index ) );
-			repeat_action->retain();
-
-			mAnimationActions.push_back( repeat_action );
+			mAnimationActions.emplace_back( animation_info.Index, animate_action );
 		}
 
 		return true;
 	}
-	cocos2d::Action* AnimationComponent::getAnimationAction( const cpg::animation::eIndex animation_index )
+	Animate* AnimationComponent::getAnimationAction( const cpg::animation::eIndex animation_index )
 	{
 		for( auto a : mAnimationActions )
 		{
-			if( static_cast<int>( animation_index ) == a->getTag() )
+			if( animation_index == a.first )
 			{
-				return a;
+				return a.second;
 			}
 		}
 
 		return nullptr;
+	}
+	void AnimationComponent::AnimationEndCallback()
+	{
+		if( mAnimationCallback )
+		{
+			mAnimationCallback();
+			mAnimationCallback = nullptr;
+		}
 	}
 }

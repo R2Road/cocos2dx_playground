@@ -72,6 +72,10 @@ namespace step_mole
 				ss << std::endl;
 				ss << "[D] : Play Animation - Win";
 				ss << std::endl;
+				ss << std::endl;
+				ss << "[Q] : Play Animation With Callback";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[SpaceBar] : Stop Animation";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
@@ -151,7 +155,11 @@ namespace step_mole
 				PlayAnimation( cpg::animation::eIndex::win );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_SPACE: // Play Win
+			case EventKeyboard::KeyCode::KEY_Q: // Play With Callback
+				PlayAnimationWithCallback();
+				break;
+
+			case EventKeyboard::KeyCode::KEY_SPACE: // Stop
 				StopAnimation();
 				break;
 
@@ -163,6 +171,17 @@ namespace step_mole
 		{
 			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimation( animation_index );
+		}
+		void ComponentScene::PlayAnimationWithCallback()
+		{
+			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
+			animation_component->PlayAnimationWithCallback(
+				cpg::animation::eIndex::run
+				, [animation_component]()
+				{
+					animation_component->PlayAnimation( cpg::animation::eIndex::win );
+				}
+			);
 		}
 		void ComponentScene::StopAnimation()
 		{
