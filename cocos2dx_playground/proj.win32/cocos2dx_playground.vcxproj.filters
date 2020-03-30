@@ -103,6 +103,9 @@
     <Filter Include="src\scene\step_04_mole\circle_collision">
       <UniqueIdentifier>{84b3c0ef-8638-4a3c-b4a4-73fae4e2d165}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_04_mole\game">
+      <UniqueIdentifier>{de456931-1693-478e-bac2-60f1c96d0614}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -341,6 +344,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_CollisionComponent.cpp">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_StageTestScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -592,6 +598,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_CollisionComponent.h">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_StageTestScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
