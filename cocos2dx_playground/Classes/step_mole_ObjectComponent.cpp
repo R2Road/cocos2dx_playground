@@ -15,7 +15,7 @@ USING_NS_CC;
 namespace step_mole
 {
 	ObjectComponent::ObjectComponent( cpg::AnimationComponent* const animation_component ) :
-		mLastState( eState::Wakeup )
+		mLastState( eState::Hide )
 		, mAnimationComponent( animation_component )
 	{
 		setName( GetStaticName() );
@@ -47,19 +47,15 @@ namespace step_mole
 
 		return true;
 	}
-	void ObjectComponent::setEnabled( bool enabled )
-	{
-		if( enabled )
-		{
-			ChangeState( eState::Wakeup );
-		}
-		else
-		{
-			mAnimationComponent->StopAnimation();
-		}
 
-		_owner->setVisible( enabled );
-		ParentT::setEnabled( enabled );
+	void ObjectComponent::ProcessStart()
+	{
+		_owner->setVisible( true );
+		ChangeState( eState::Wakeup );
+	}
+	void ObjectComponent::ProcessDamage()
+	{
+		ChangeState( eState::Damaged );
 	}
 
 	void ObjectComponent::ChangeState( const eState next_state )
@@ -80,7 +76,7 @@ namespace step_mole
 
 		case eState::Sleep:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::idle, std::bind( &ObjectComponent::ChangeState, this, eState::Hide ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::run, std::bind( &ObjectComponent::ChangeState, this, eState::Hide ) );
 		}
 		break;
 
@@ -92,7 +88,8 @@ namespace step_mole
 
 		case eState::Hide:
 		{
-			setEnabled( false );
+			mAnimationComponent->StopAnimation();
+			_owner->setVisible( false );
 		}
 		break;
 

@@ -34,7 +34,9 @@ namespace step_mole
 		static ObjectComponent* create( cpg::AnimationComponent* const animation_component );
 
 		bool init() override;
-		void setEnabled( bool enabled ) override;
+
+		void ProcessStart();
+		void ProcessDamage();
 
 	private:
 		void ChangeState( const eState next_state );

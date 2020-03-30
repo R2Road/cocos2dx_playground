@@ -138,8 +138,6 @@ namespace step_mole
 					auto animation_component = static_cast<cpg::AnimationComponent*> (object_node->getChildByTag( TAG_ViewNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
 					auto object_component = step_mole::ObjectComponent::create( animation_component );
 					object_node->addComponent( object_component );
-
-					object_component->setEnabled( true );
 				}
 			}
 
@@ -176,7 +174,7 @@ namespace step_mole
 			{
 				auto object_node = getChildByTag( TAG_ObjectNode );
 				auto animation_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
-				animation_component->setEnabled( true );
+				animation_component->ProcessStart();
 			}
 			return;
 
@@ -184,7 +182,7 @@ namespace step_mole
 			{
 				auto object_node = getChildByTag( TAG_ObjectNode );
 				auto animation_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
-				animation_component->setEnabled( false );
+				animation_component->ProcessDamage();
 			}
 			return;
 
