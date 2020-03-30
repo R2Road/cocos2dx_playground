@@ -18,9 +18,10 @@ namespace cpg
 		using ParentT = cocos2d::Component;
 
 		AnimationComponent();
-		~AnimationComponent();
 
 	public:
+		~AnimationComponent();
+
 		static const char* GetStaticName() { static const char* COMPONENT_NAME = "CPG_ANIMATION"; return COMPONENT_NAME; }
 		static AnimationComponent* create( const cpg::animation::InfoContainer& animation_info_container );
 
