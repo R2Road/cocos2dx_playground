@@ -60,6 +60,16 @@ namespace step_mole
 
 	void ObjectComponent::ChangeState( const eState next_state )
 	{
+		if( !_owner->isVisible() )
+		{
+			return;
+		}
+
+		if( next_state == mLastState )
+		{
+			return;
+		}
+
 		switch( next_state )
 		{
 		case eState::Wakeup:
