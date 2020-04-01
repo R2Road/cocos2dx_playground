@@ -12,8 +12,8 @@
 #include "base/CCEventDispatcher.h"
 
 #include "cpg_AnimationComponent.h"
-#include "cpg_animation_InfoContainer.h"
 
+#include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_ObjectComponent.h"
 
@@ -123,8 +123,7 @@ namespace step_mole
 
 					// Animation Component
 					{
-						const auto animation_info_container = cpg::animation::InfoContainer::create();
-						view_node->addComponent( cpg::AnimationComponent::create( animation_info_container->Get() ) );
+						view_node->addComponent( cpg::AnimationComponent::create( step_mole::animation::GetInfoContainer() ) );
 					}
 				}
 

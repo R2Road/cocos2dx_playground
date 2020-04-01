@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_AnimationComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp" />
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp" />
+    <ClCompile Include="..\Classes\step_mole_animation_InfoContainer.cpp" />
     <ClCompile Include="..\Classes\step_mole_game_ObjectTestScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_game_StageTestScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_ObjectComponent.cpp" />
@@ -239,6 +240,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_Animation_Index.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Info.h" />
     <ClInclude Include="..\Classes\step_defender_RootScene.h" />
+    <ClInclude Include="..\Classes\step_mole_animation_InfoContainer.h" />
     <ClInclude Include="..\Classes\step_mole_game_ObjectTestScene.h" />
     <ClInclude Include="..\Classes\step_mole_game_StageTestScene.h" />
     <ClInclude Include="..\Classes\step_mole_ObjectComponent.h" />
