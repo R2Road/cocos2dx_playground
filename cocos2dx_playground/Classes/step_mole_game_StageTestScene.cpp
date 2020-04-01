@@ -10,6 +10,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "ui/UIButton.h"
 
 #include "step_mole_RootScene.h"
 
@@ -76,6 +77,23 @@ namespace step_mole
 				addChild( background_layer, -1 );
 			}
 
+			//
+			// Stage
+			//
+			{
+				const Size StageSize( 300, 200 );
+
+				auto click_area = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				click_area->setScale9Enabled( true );
+				click_area->setContentSize( StageSize );
+				click_area->addTouchEventListener( CC_CALLBACK_2( StageTestScene::onStageClick, this ) );
+				click_area->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height * 0.5f
+				) );
+				addChild( click_area );
+			}
+
 			return true;
 		}
 
@@ -95,6 +113,11 @@ namespace step_mole
 			mKeyboardListener = nullptr;
 
 			Node::onExit();
+		}
+
+		void StageTestScene::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
+		{
+			CCLOG( "On Stage Click" );
 		}
 
 		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
