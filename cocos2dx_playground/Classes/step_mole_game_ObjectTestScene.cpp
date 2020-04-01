@@ -124,7 +124,7 @@ namespace step_mole
 					// Animation Component
 					{
 						const auto animation_info_container = cpg::animation::InfoContainer::create();
-						view_node->addComponent( cpg::AnimationComponent::create( *animation_info_container ) );
+						view_node->addComponent( cpg::AnimationComponent::create( animation_info_container->Get() ) );
 					}
 				}
 

@@ -25,7 +25,7 @@ namespace cpg
 	}
 
 
-	AnimationComponent* AnimationComponent::create( const cpg::animation::InfoContainer& animation_info_container )
+	AnimationComponent* AnimationComponent::create( const cpg::animation::ContainerT& animation_info_container )
 	{
 		auto ret = new ( std::nothrow ) AnimationComponent();
 		if( !ret || !ret->init( animation_info_container ) )
@@ -77,15 +77,15 @@ namespace cpg
 		getOwner()->stopAllActions();
 	}
 
-	bool AnimationComponent::init( const cpg::animation::InfoContainer& animation_info_container )
+	bool AnimationComponent::init( const cpg::animation::ContainerT& animation_info_container )
 	{
 		if( !Component::init() )
 		{
 			return false;
 		}
 
-		mAnimationActions.reserve( animation_info_container.Get().size() );
-		for( const auto& animation_info : animation_info_container.Get() )
+		mAnimationActions.reserve( animation_info_container.size() );
+		for( const auto& animation_info : animation_info_container )
 		{
 			auto animation_object = Animation::create();
 			animation_object->setDelayPerUnit( animation_info.delay );
