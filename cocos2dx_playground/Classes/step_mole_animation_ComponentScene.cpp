@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_animation_ComponentScene.h"
+#include "step_mole_animation_ComponentScene.h"
 
 #include <new>
 #include <numeric>
@@ -13,14 +13,16 @@
 
 #include "cpg_Animation_Info.h"
 #include "cpg_AnimationComponent.h"
-#include "cpg_animation_InfoContainer.h"
-#include "step_rain_of_chaos_RootScene.h"
+
+#include "step_mole_animation_InfoContainer.h"
+
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
 const int TAG_AnimationNode = 20140416;
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	namespace animation
 	{
@@ -71,6 +73,10 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[D] : Play Animation - Win";
 				ss << std::endl;
+				ss << std::endl;
+				ss << "[Q] : Play Animation With Callback";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[SpaceBar] : Stop Animation";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
@@ -105,8 +111,7 @@ namespace step_rain_of_chaos
 				addChild( animation_node, 0 );
 
 
-				const auto animation_info_container = cpg::animation::InfoContainer::create();
-				animation_node->addComponent( cpg::AnimationComponent::create( *animation_info_container ) );
+				animation_node->addComponent( cpg::AnimationComponent::create( step_mole::animation::GetInfoContainer() ) );
 			}
 
 			return true;
@@ -135,7 +140,7 @@ namespace step_rain_of_chaos
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Idle
@@ -150,7 +155,11 @@ namespace step_rain_of_chaos
 				PlayAnimation( cpg::animation::eIndex::win );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_SPACE: // Play Win
+			case EventKeyboard::KeyCode::KEY_Q: // Play With Callback
+				PlayAnimationWithCallback();
+				break;
+
+			case EventKeyboard::KeyCode::KEY_SPACE: // Stop
 				StopAnimation();
 				break;
 
@@ -162,6 +171,17 @@ namespace step_rain_of_chaos
 		{
 			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimation( animation_index );
+		}
+		void ComponentScene::PlayAnimationWithCallback()
+		{
+			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
+			animation_component->PlayAnimationWithCallback(
+				cpg::animation::eIndex::run
+				, [animation_component]()
+				{
+					animation_component->PlayAnimation( cpg::animation::eIndex::win );
+				}
+			);
 		}
 		void ComponentScene::StopAnimation()
 		{

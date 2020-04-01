@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_collision_ComponentScene.h"
+#include "step_mole_collision_ComponentScene.h"
 
 #include <algorithm>
 #include <cmath>
@@ -16,25 +16,25 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
+#include "ui/UIButton.h"
 
-#include "step_rain_of_chaos_CollisionComponent.h"
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_mole_CircleCollisionComponent.h"
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
-const int TAG_Actor = 20140416;
-const int TAG_MoveSpeed = 100;
+namespace
+{
+	const int TAG_Actor = 20140416;
+}
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	namespace collision
 	{
 		ComponentScene::ComponentScene() :
 			mKeyboardListener( nullptr )
 			, mCollisionList()
-			, mKeyCodeCollector()
-			, mMoveSpeed( 3 )
 		{}
 
 		Scene* ComponentScene::create()
@@ -48,7 +48,6 @@ namespace step_rain_of_chaos
 			}
 			else
 			{
-				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -64,6 +63,7 @@ namespace step_rain_of_chaos
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const Size visibleMargin( 4.f, 4.f );
 
 			//
 			// Summury
@@ -76,37 +76,15 @@ namespace step_rain_of_chaos
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow Key] : Move Actor";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[1] : Speed Up";
-				ss << std::endl;
-				ss << "[2] : Speed Down";
+				ss << "[Mouse] : Push and Drag";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
+					visibleOrigin.x + visibleMargin.width
+					, visibleOrigin.y + visibleSize.height - visibleMargin.height
 				) );
-				addChild( label, 9999 );
-			}
-
-			//
-			// Move Speed View
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
-				label->setTag( TAG_MoveSpeed );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, 9999 );
-
-				updateMoveSpeedView();
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -114,7 +92,23 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
+			}
+
+			//
+			// Touch Pannel
+			//
+			{
+				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setScale9Enabled( true );
+				button->setContentSize( visibleSize );
+				button->setOpacity( 150u );
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				button->addTouchEventListener( CC_CALLBACK_2( ComponentScene::onButton, this ) );
+				addChild( button );
 			}
 
 			//
@@ -158,7 +152,7 @@ namespace step_rain_of_chaos
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Collision Component
-					actor_root->addComponent( CollisionComponent::create( radius, true, true, true ) );
+					actor_root->addComponent( CircleCollisionComponent::create( radius, true, true, true ) );
 				}
 				addChild( actor_root, 100 );
 			}
@@ -211,68 +205,7 @@ namespace step_rain_of_chaos
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ComponentScene::onKeyPressed, this );
-			mKeyboardListener->onKeyReleased= CC_CALLBACK_2( ComponentScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
-		}
-		void ComponentScene::update( float dt )
-		{
-			Vec2 input_vec2;
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
-			{
-				input_vec2.y += 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
-			{
-				input_vec2.y -= 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
-			{
-				input_vec2.x += 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
-			{
-				input_vec2.x -= 1.f;
-			}
-
-			if( std::numeric_limits<float>::epsilon() < std::abs( input_vec2.x ) || std::numeric_limits<float>::epsilon() < std::abs( input_vec2.y ) )
-			{
-				//
-				// Move
-				//
-				input_vec2.normalize();
-				input_vec2.scale( mMoveSpeed );
-				auto actor_root = getChildByTag( TAG_Actor );
-				actor_root->setPosition( actor_root->getPosition() + input_vec2 );
-			}
-
-			//
-			// Collision Check
-			//
-			{
-				auto actor_root = getChildByTag( TAG_Actor );
-				auto actor_collision_component = static_cast<CollisionComponent*>( actor_root->getComponent( CollisionComponent::GetStaticName() ) );
-
-				bool contact_success = false;
-				for( const auto& c : mCollisionList )
-				{
-					if( c == actor_collision_component )
-					{
-						continue;
-					}
-
-					contact_success = actor_collision_component->Check( c );
-					if( !contact_success )
-					{
-						continue;
-					}
-
-					break;
-				}
-
-				actor_collision_component->onContact( contact_success );
-			}
-
-			Scene::update( dt );
 		}
 		void ComponentScene::onExit()
 		{
@@ -303,26 +236,25 @@ namespace step_rain_of_chaos
 			mCollisionList.clear();
 			Scene::removeAllChildrenWithCleanup( cleanup );
 		}
-
 		void ComponentScene::addCollision( cocos2d::Node* child )
 		{
-			auto target_component = child->getComponent( CollisionComponent::GetStaticName() );
+			auto target_component = child->getComponent( CircleCollisionComponent::GetStaticName() );
 			if( !target_component )
 			{
 				return;
 			}
 
-			mCollisionList.push_back( static_cast<CollisionComponent*>( target_component ) );
+			mCollisionList.push_back( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 		void ComponentScene::removeCollision( cocos2d::Node* child )
 		{
-			auto target_component = child->getComponent( CollisionComponent::GetStaticName() );
+			auto target_component = child->getComponent( CircleCollisionComponent::GetStaticName() );
 			if( !target_component )
 			{
 				return;
 			}
 
-			mCollisionList.remove( static_cast<CollisionComponent*>( target_component ) );
+			mCollisionList.remove( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 
 		Node* ComponentScene::makeBullet()
@@ -355,58 +287,65 @@ namespace step_rain_of_chaos
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				bullet_root_node->addComponent( CollisionComponent::create( radius, false, false, false ) );
+				bullet_root_node->addComponent( CircleCollisionComponent::create( radius, false, false, false ) );
 			}
 
 			return bullet_root_node;
 		}
 
-		void ComponentScene::updateMoveSpeedView()
+		void ComponentScene::collisionCheck()
 		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeed ) );
-			label->setString( StringUtils::format( "MoveSpeed : %d", mMoveSpeed ) );
+			auto actor_root = getChildByTag( TAG_Actor );
+			auto actor_collision_component = static_cast<CircleCollisionComponent*>( actor_root->getComponent( CircleCollisionComponent::GetStaticName() ) );
+
+			bool contact_success = false;
+			for( const auto& c : mCollisionList )
+			{
+				if( c == actor_collision_component )
+				{
+					continue;
+				}
+
+				contact_success = actor_collision_component->Check( c );
+				if( !contact_success )
+				{
+					continue;
+				}
+
+				break;
+			}
+
+			actor_collision_component->onContact( contact_success );
+		}
+		void ComponentScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			auto button = static_cast<ui::Button*>( sender );
+
+			const auto actor_node = static_cast<Label*>( getChildByTag( TAG_Actor ) );
+
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				actor_node->setPosition( button->getTouchBeganPosition() );
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				actor_node->setPosition( button->getTouchMovePosition() );
+			}
+			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
+			{
+				actor_node->setPosition( button->getTouchEndPosition() );
+			}
+
+			collisionCheck();
 		}
 
-		void ComponentScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
-		}
 		void ComponentScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( ComponentScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( ComponentScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 			}
-
-			if( EventKeyboard::KeyCode::KEY_1 == keycode )
-			{
-				mMoveSpeed = std::min( 10, mMoveSpeed + 1 );
-				updateMoveSpeedView();
-				return;
-			}
-			if( EventKeyboard::KeyCode::KEY_2 == keycode )
-			{
-				mMoveSpeed = std::max( 1, mMoveSpeed - 1 );
-				updateMoveSpeedView();
-				return;
-			}
-
-			mKeyCodeCollector.onKeyPressed( keycode );
-		}
-		void ComponentScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
-		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode
-				|| EventKeyboard::KeyCode::KEY_1 == keycode 
-				|| EventKeyboard::KeyCode::KEY_2 == keycode )
-			{
-				return;
-			}
-
-			mKeyCodeCollector.onKeyReleased( keycode );
 		}
 	}
 }

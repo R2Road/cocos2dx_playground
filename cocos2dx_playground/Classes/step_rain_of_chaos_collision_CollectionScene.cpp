@@ -15,7 +15,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "step_rain_of_chaos_CollisionComponent.h"
+#include "step_mole_CircleCollisionComponent.h"
 #include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
@@ -178,23 +178,23 @@ namespace step_rain_of_chaos
 
 		void CollectionScene::addCollision( cocos2d::Node* child )
 		{
-			auto target_component = child->getComponent( CollisionComponent::GetStaticName() );
+			auto target_component = child->getComponent( step_mole::CircleCollisionComponent::GetStaticName() );
 			if( !target_component )
 			{
 				return;
 			}
 
-			mCollisionCollection.Add( static_cast<CollisionComponent*>( target_component ) );
+			mCollisionCollection.Add( static_cast<step_mole::CircleCollisionComponent*>( target_component ) );
 		}
 		void CollectionScene::removeCollision( cocos2d::Node* child )
 		{
-			auto target_component = child->getComponent( CollisionComponent::GetStaticName() );
+			auto target_component = child->getComponent( step_mole::CircleCollisionComponent::GetStaticName() );
 			if( !target_component )
 			{
 				return;
 			}
 
-			mCollisionCollection.Remove( static_cast<CollisionComponent*>( target_component ) );
+			mCollisionCollection.Remove( static_cast<step_mole::CircleCollisionComponent*>( target_component ) );
 		}
 
 		Node* CollectionScene::makeBullet()
@@ -215,7 +215,7 @@ namespace step_rain_of_chaos
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				bullet_root_node->addComponent( CollisionComponent::create( radius, false, false, false ) );
+				bullet_root_node->addComponent( step_mole::CircleCollisionComponent::create( radius, false, false, false ) );
 			}
 
 			return bullet_root_node;

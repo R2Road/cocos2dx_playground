@@ -2,17 +2,17 @@
 
 #include "2d/CCScene.h"
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
-	namespace animation
+	namespace game
 	{
-		class CallbackScene : public cocos2d::Scene
+		class ObjectTestScene : public cocos2d::Scene
 		{
 		private:
-			CallbackScene();
+			ObjectTestScene();
 
 		public:
-			static const char* getTitle() { return "Animation : Callback"; }
+			static const char* getTitle() { return "Game : Object Test"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
@@ -22,12 +22,8 @@ namespace step_rain_of_chaos
 		private:
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
-			void AnimationStartCallback();
-			void AnimationEndCallback();
-
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Action* mSequenceAction;
 		};
 	}
 }

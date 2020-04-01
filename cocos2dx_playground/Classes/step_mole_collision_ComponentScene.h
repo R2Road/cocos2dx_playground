@@ -5,11 +5,9 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-#include "cpg_input_KeyCodeCollector.h"
-
-namespace step_rain_of_chaos
+namespace step_mole
 {
-	class CollisionComponent;
+	class CircleCollisionComponent;
 
 	namespace collision
 	{
@@ -24,13 +22,11 @@ namespace step_rain_of_chaos
 
 			bool init() override;
 			void onEnter() override;
-			void update( float dt ) override;
 			void onExit() override;
 
 			using cocos2d::Scene::addChild;
 			void addChild( cocos2d::Node* child, int localZOrder, int tag ) override;
 			void addChild( cocos2d::Node* child, int localZOrder, const std::string &name ) override;
-
 			void removeChild( cocos2d::Node* child, bool cleanup = true ) override;
 			void removeAllChildrenWithCleanup( bool cleanup ) override;
 
@@ -39,19 +35,15 @@ namespace step_rain_of_chaos
 			void removeCollision( cocos2d::Node* child );
 			cocos2d::Node* makeBullet();
 
-			void updateMoveSpeedView();
+			void collisionCheck();
+			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			std::list<CollisionComponent*> mCollisionList;
-
-			cpg::input::KeyCodeCollector mKeyCodeCollector;
-			int mMoveSpeed;
+			std::list<CircleCollisionComponent*> mCollisionList;
 		};
 	}
 }

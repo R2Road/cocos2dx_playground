@@ -4,19 +4,19 @@
 #include "cocos/2d/CCComponent.h"
 #include "cocos/base/CCRefPtr.h"
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
-	class CollisionComponent : public cocos2d::Component
+	class CircleCollisionComponent : public cocos2d::Component
 	{
 	private:
 		using ParentT = cocos2d::Component;
 
-		CollisionComponent( const float radius );
-		~CollisionComponent();
+		CircleCollisionComponent( const float radius );
+		~CircleCollisionComponent();
 
 	public:
-		static const char* GetStaticName() { return "CPG_COLLISION"; }
-		static CollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
+		static const char* GetStaticName() { return "MOLE_CIRCLECOLLISION"; }
+		static CircleCollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 
 	private:
 		bool init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
@@ -26,7 +26,7 @@ namespace step_rain_of_chaos
 	public:
 		float GetRadius() const { return mRadius; }
 
-		bool Check( const CollisionComponent* const other ) const;
+		bool Check( const CircleCollisionComponent* const other ) const;
 		void onContact( const bool contact );
 
 	private:

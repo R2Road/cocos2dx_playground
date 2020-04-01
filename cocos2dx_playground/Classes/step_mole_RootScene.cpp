@@ -1,20 +1,24 @@
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_mole_RootScene.h"
 
 #include <new>
 #include <numeric>
 #include <sstream>
 
+#include "step_mole_animation_ListScene.h"
+#include "step_mole_animation_CallbackScene.h"
+#include "step_mole_animation_ComponentScene.h"
+
+#include "step_mole_collision_BasicScene.h"
+#include "step_mole_collision_ComponentScene.h"
+
+#include "step_mole_game_ObjectTestScene.h"
+#include "step_mole_game_StageTestScene.h"
+
 #include "PlayGroundScene.h"
-
-#include "step02_input_KeyCodeCollectScene.h"
-
-#include "step_rain_of_chaos_collision_CollectionScene.h"
-
-#include "step02_game_rain_of_chaos_TitleScene.h"
 
 USING_NS_CC;
 
-namespace step_rain_of_chaos
+namespace step_mole
 {
 	RootScene::RootScene() : mKeyboardListener( nullptr ) {}
 
@@ -46,16 +50,24 @@ namespace step_rain_of_chaos
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << step02::input::KeyCodeCollectScene::getTitle();
+			ss << "[1] : " << step_mole::animation::ListScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << step_mole::animation::CallbackScene::getTitle();
+			ss << std::endl;
+			ss << "[3] : " << step_mole::animation::ComponentScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[2] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
+			ss << "[4] : " << step_mole::collision::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[5] : " << step_mole::collision::ComponentScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
+			ss << "[A] : " << step_mole::game::ObjectTestScene::getTitle();
+			ss << std::endl;
+			ss << "[S] : " << step_mole::game::StageTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -104,15 +116,27 @@ namespace step_rain_of_chaos
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step02::input::KeyCodeCollectScene::create() );
+			Director::getInstance()->replaceScene( step_mole::animation::ListScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( step_mole::animation::CallbackScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step_mole::animation::ComponentScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
+		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( step_mole::collision::BasicScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_5:
+			Director::getInstance()->replaceScene( step_mole::collision::ComponentScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step02::game::rain_of_chaos::TitleScene::create() );
+			Director::getInstance()->replaceScene( step_mole::game::ObjectTestScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_S:
+			Director::getInstance()->replaceScene( step_mole::game::StageTestScene::create() );
 			break;
 
 		default:

@@ -1,6 +1,7 @@
-#include "step_rain_of_chaos_collision_BasicScene.h"
+#include "step_mole_collision_BasicScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
@@ -13,34 +14,36 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
+#include "ui/UIButton.h"
 
-#include "step_rain_of_chaos_RootScene.h"
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
-const int TAG_Actor = 20140416;
-const int TAG_Bullet = 20200209;
-const int TAG_Distance = 888;
-const int TAG_CollisionIndicator = 999;
-const int TAG_MoveSpeed = 100;
-
-class RadiusData : public cocos2d::Ref
+namespace
 {
-public:
-	RadiusData( const float radius ) : mRadius( radius ) {}
+	const int TAG_Actor = 20140416;
+	const int TAG_Bullet = 20200209;
+	const int TAG_Distance = 888;
+	const int TAG_CollisionIndicator = 999;
 
-	float GetRadius() const { return mRadius; }
+	class RadiusData : public cocos2d::Ref
+	{
+	public:
+		RadiusData( const float radius ) : mRadius( radius ) {}
 
-private:
-	float mRadius;
-};
+		float GetRadius() const { return mRadius; }
 
-namespace step_rain_of_chaos
+	private:
+		float mRadius;
+	};
+}
+
+namespace step_mole
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mMoveSpeed( 3 )
-		{}
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ) {}
 
 		Scene* BasicScene::create()
 		{
@@ -53,7 +56,6 @@ namespace step_rain_of_chaos
 			}
 			else
 			{
-				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -69,6 +71,7 @@ namespace step_rain_of_chaos
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const Size visibleMargin( 4.f, 4.f );
 
 			//
 			// Summury
@@ -81,20 +84,15 @@ namespace step_rain_of_chaos
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow Key] : Move Actor";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[1] : Speed Up";
-				ss << std::endl;
-				ss << "[2] : Speed Down";
+				ss << "[Mouse] : Push and Drag";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
+					visibleOrigin.x + visibleMargin.width
+					, visibleOrigin.y + visibleSize.height - visibleMargin.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -102,7 +100,38 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, -1 );
+			}
+
+			//
+			// Distance
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				label->setTag( TAG_Distance );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + visibleMargin.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Touch Pannel
+			//
+			{
+				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setScale9Enabled( true );
+				button->setContentSize( visibleSize );
+				button->setOpacity( 150u );
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
+				addChild( button );
 			}
 
 			//
@@ -235,39 +264,7 @@ namespace step_rain_of_chaos
 				addChild( bullet_root_node, 101 );
 			}
 
-			//
-			// Distance
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
-				label->setTag( TAG_Distance );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y
-				) );
-				addChild( label, 200 );
-
-				updateDistance();
-			}
-
-			//
-			// Move Speed View
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
-				label->setTag( TAG_MoveSpeed );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, 9999 );
-
-				updateMoveSpeedView();
-			}
+			updateDistance();
 
 			return true;
 		}
@@ -275,61 +272,11 @@ namespace step_rain_of_chaos
 		void BasicScene::onEnter()
 		{
 			Scene::onEnter();
+
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
-			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( BasicScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
-		}
-		void BasicScene::update( float dt )
-		{
-			Vec2 input_vec2;
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
-			{
-				input_vec2.y += 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
-			{
-				input_vec2.y -= 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
-			{
-				input_vec2.x += 1.f;
-			}
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
-			{
-				input_vec2.x -= 1.f;
-			}
-
-			if( std::numeric_limits<float>::epsilon() < std::abs( input_vec2.x ) || std::numeric_limits<float>::epsilon() < std::abs( input_vec2.y ) )
-			{
-				//
-				// Move
-				//
-				input_vec2.normalize();
-				input_vec2.scale( mMoveSpeed );
-				auto actor_root_node = getChildByTag( TAG_Actor );
-				actor_root_node->setPosition( actor_root_node->getPosition() + input_vec2 );
-
-				//
-				// Distance View
-				//
-				updateDistance();
-
-				//
-				// Collision Check
-				//
-				auto bullet_root_node = getChildByTag( TAG_Bullet );
-
-				const float distance = actor_root_node->getPosition().distance( bullet_root_node->getPosition() );
-
-				const auto actor_radius_data = static_cast<RadiusData*>( actor_root_node->getUserObject() );
-				const auto bullet_radius_data = static_cast<RadiusData*>( bullet_root_node->getUserObject() );
-				const float contact_limit_distance = actor_radius_data->GetRadius() + bullet_radius_data->GetRadius();
-
-				actor_root_node->getChildByTag( TAG_CollisionIndicator )->setVisible( distance <= contact_limit_distance );
-			}
-
-			Scene::update( dt );
 		}
 		void BasicScene::onExit()
 		{
@@ -339,6 +286,19 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
+		void BasicScene::collisionCheck()
+		{
+			auto actor_node = static_cast<Label*>( getChildByTag( TAG_Actor ) );
+			const auto bullet_root_node = getChildByTag( TAG_Bullet );
+
+			const float distance = actor_node->getPosition().distance( bullet_root_node->getPosition() );
+
+			const auto actor_radius_data = static_cast<RadiusData*>( actor_node->getUserObject() );
+			const auto bullet_radius_data = static_cast<RadiusData*>( bullet_root_node->getUserObject() );
+			const float contact_limit_distance = actor_radius_data->GetRadius() + bullet_radius_data->GetRadius();
+
+			actor_node->getChildByTag( TAG_CollisionIndicator )->setVisible( distance <= contact_limit_distance );
+		}
 		void BasicScene::updateDistance()
 		{
 			const auto bullet_node = static_cast<Label*>( getChildByTag( TAG_Bullet ) );
@@ -350,52 +310,36 @@ namespace step_rain_of_chaos
 			label->setString( StringUtils::format( "Distance : %.2f", distance ) );
 		}
 
-		void BasicScene::updateMoveSpeedView()
+		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeed ) );
-			label->setString( StringUtils::format( "MoveSpeed : %d", mMoveSpeed ) );
+			auto button = static_cast<ui::Button*>( sender );
+
+			const auto actor_node = static_cast<Label*>( getChildByTag( TAG_Actor ) );
+
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				actor_node->setPosition( button->getTouchBeganPosition() );
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				actor_node->setPosition( button->getTouchMovePosition() );
+			}
+			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
+			{
+				actor_node->setPosition( button->getTouchEndPosition() );
+			}
+
+			collisionCheck();
+			updateDistance();
 		}
 
-		void BasicScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
-		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
-				}
+				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 			}
-
-			if( EventKeyboard::KeyCode::KEY_1 == keycode )
-			{
-				mMoveSpeed = std::min( 10, mMoveSpeed + 1 );
-				updateMoveSpeedView();
-				return;
-			}
-			if( EventKeyboard::KeyCode::KEY_2 == keycode )
-			{
-				mMoveSpeed = std::max( 1, mMoveSpeed - 1 );
-				updateMoveSpeedView();
-				return;
-			}
-
-			mKeyCodeCollector.onKeyPressed( keycode );
-		}
-		void BasicScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
-		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode
-				|| EventKeyboard::KeyCode::KEY_1 == keycode
-				|| EventKeyboard::KeyCode::KEY_2 == keycode )
-			{
-				return;
-			}
-
-			mKeyCodeCollector.onKeyReleased( keycode );
 		}
 	}
 }

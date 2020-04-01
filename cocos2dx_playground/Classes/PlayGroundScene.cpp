@@ -6,6 +6,7 @@
 #include "step_typetype_RootScene.h"
 #include "step_clickclick_RootScene.h"
 #include "step_pathfinder_RootScene.h"
+#include "step_mole_RootScene.h"
 #include "step_rain_of_chaos_RootScene.h"
 #include "step_defender_RootScene.h"
 
@@ -60,9 +61,11 @@ bool PlayGroundScene::init()
 		ss << std::endl;
 		ss << "[3] : " << step_pathfinder::RootScene::getTitle();
 		ss << std::endl;
-		ss << "[4] : " << step_rain_of_chaos::RootScene::getTitle();
+		ss << "[4] : " << step_mole::RootScene::getTitle();
 		ss << std::endl;
-		ss << "[5] : " << step_defender::RootScene::getTitle();
+		ss << "[5] : " << step_rain_of_chaos::RootScene::getTitle();
+		ss << std::endl;
+		ss << "[6] : " << step_defender::RootScene::getTitle();
 		ss << std::endl;
 		ss << std::endl;
 		ss << std::endl;
@@ -118,9 +121,12 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_4:
-		Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+		Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_5:
+		Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+		break;
+	case EventKeyboard::KeyCode::KEY_6:
 		Director::getInstance()->replaceScene( step_defender::RootScene::create() );
 		break;
 
