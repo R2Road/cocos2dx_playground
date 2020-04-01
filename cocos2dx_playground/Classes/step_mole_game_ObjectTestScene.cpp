@@ -99,6 +99,7 @@ namespace step_mole
 			{
 				auto object_node = Node::create();
 				object_node->setTag( TAG_ObjectNode );
+				object_node->setVisible( false );
 				object_node->setPosition( Vec2(
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
