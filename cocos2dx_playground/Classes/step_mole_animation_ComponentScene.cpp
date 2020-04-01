@@ -13,7 +13,8 @@
 
 #include "cpg_Animation_Info.h"
 #include "cpg_AnimationComponent.h"
-#include "cpg_animation_InfoContainer.h"
+
+#include "step_mole_animation_InfoContainer.h"
 
 #include "step_mole_RootScene.h"
 
@@ -110,8 +111,7 @@ namespace step_mole
 				addChild( animation_node, 0 );
 
 
-				const auto animation_info_container = cpg::animation::InfoContainer::create();
-				animation_node->addComponent( cpg::AnimationComponent::create( animation_info_container->Get() ) );
+				animation_node->addComponent( cpg::AnimationComponent::create( step_mole::animation::GetInfoContainer() ) );
 			}
 
 			return true;
