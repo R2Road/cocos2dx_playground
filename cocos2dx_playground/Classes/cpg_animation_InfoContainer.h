@@ -9,13 +9,12 @@ namespace cpg
 {
 	namespace animation
 	{
-		using InfoContainerUp = std::unique_ptr<class InfoContainer>;
+		using ContainerT = std::vector<cpg::animation::Info>;
 
+		using InfoContainerUp = std::unique_ptr<class InfoContainer>;
 		class InfoContainer
 		{
 		private:
-			using ContainerT = std::vector<cpg::animation::Info>;
-
 			InfoContainer();
 
 		public:
