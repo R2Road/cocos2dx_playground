@@ -90,6 +90,13 @@ namespace step_mole
 				) );
 				addChild( root_node );
 
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					root_node->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
 				// Click Area
 				{
 					auto click_area = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
