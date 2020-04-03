@@ -7,9 +7,10 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
-#include "base/CCEventDispatcher.h"
+#include "base/CCEventDispatcher.h""
 #include "ui/UIButton.h"
 
 #include "step_mole_RootScene.h"
@@ -119,6 +120,36 @@ namespace step_mole
 				{
 					auto background_layer = LayerColor::create( Color4B( 255, 0, 255, 150 ), root_node->getContentSize().width, root_node->getContentSize().height );
 					root_node->addChild( background_layer, -1 );
+				}
+
+				//
+				// Stage View
+				//
+				{
+					auto stage_view_node = Node::create();
+					stage_view_node->setPosition( StageMargin.width, StageMargin.height );
+					root_node->addChild( stage_view_node );
+					{
+						auto tile_sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
+						CCASSERT( tile_sprite_frame, "Sprite Frame Not Found" );
+
+						const auto block_scale = BlockSize.height / tile_sprite_frame->getRect().size.height;
+
+						for( int by = 0; StageConfig.BlockCount_Vercital > by; ++by )
+						{
+							for( int bx = 0; StageConfig.BlockCount_Horizontal> bx; ++bx )
+							{
+								auto block_sprite = Sprite::createWithSpriteFrame( tile_sprite_frame );
+								block_sprite->setAnchorPoint( Vec2::ZERO );
+								block_sprite->setScale( block_scale );
+								block_sprite->setPosition(
+									bx * block_sprite->getBoundingBox().size.width
+									, by * block_sprite->getBoundingBox().size.height
+								);
+								stage_view_node->addChild( block_sprite, 1 );
+							}
+						}
+					}
 				}
 
 				// Click Area
