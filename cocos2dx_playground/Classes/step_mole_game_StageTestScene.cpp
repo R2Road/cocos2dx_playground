@@ -117,7 +117,7 @@ namespace step_mole
 				// Background
 				//
 				{
-					auto background_layer = LayerColor::create( Color4B::MAGENTA, root_node->getContentSize().width, root_node->getContentSize().height );
+					auto background_layer = LayerColor::create( Color4B( 255, 0, 255, 150 ), root_node->getContentSize().width, root_node->getContentSize().height );
 					root_node->addChild( background_layer, -1 );
 				}
 
