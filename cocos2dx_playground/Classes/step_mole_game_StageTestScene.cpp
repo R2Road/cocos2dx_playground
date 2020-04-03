@@ -81,12 +81,28 @@ namespace step_mole
 			// Stage
 			//
 			{
-				const Size StageSize( 300, 200 );
+				const Size BlockSize( 30.f, 30.f );
+				struct
+				{
+					const int BlockCount_Horizontal = 8;
+					const int BlockCount_Vercital = 6;
+				} StageConfig;
+				const Size StageSize(
+					BlockSize.width * StageConfig.BlockCount_Horizontal
+					, BlockSize.width * StageConfig.BlockCount_Vercital
+				);
+				const Size StageMargin( 4.f, 4.f );
+				const Size TotalSize(
+					StageMargin
+					+ StageSize
+					+ StageMargin
+				);
 
 				auto root_node = Node::create();
+				root_node->setContentSize( TotalSize );
 				root_node->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.5f
+					visibleOrigin.x + ( ( visibleSize.width - TotalSize.width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - TotalSize.height ) * 0.5f )
 				) );
 				addChild( root_node );
 
@@ -97,12 +113,24 @@ namespace step_mole
 					root_node->addChild( pivot, std::numeric_limits<int>::max() );
 				}
 
+				//
+				// Background
+				//
+				{
+					auto background_layer = LayerColor::create( Color4B::MAGENTA, root_node->getContentSize().width, root_node->getContentSize().height );
+					root_node->addChild( background_layer, -1 );
+				}
+
 				// Click Area
 				{
 					auto click_area = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 					click_area->setScale9Enabled( true );
 					click_area->setContentSize( StageSize );
 					click_area->addTouchEventListener( CC_CALLBACK_2( StageTestScene::onStageClick, this ) );
+					click_area->setPosition( Vec2(
+						TotalSize.width * 0.5f
+						, TotalSize.height * 0.5f
+					) );
 					root_node->addChild( click_area );
 				}
 			}
