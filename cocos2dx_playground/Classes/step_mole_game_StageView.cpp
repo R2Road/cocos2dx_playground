@@ -75,61 +75,60 @@ namespace step_mole
 				addChild( background_guide, -1 );
 			}
 
+			auto content_root_node = Node::create();
+			content_root_node->setPosition( StageMargin.width, StageMargin.height );
+			addChild( content_root_node );
+
 			//
-			// Stage View
+			// Terrain View
 			//
 			{
-				auto content_root_node = Node::create();
-				content_root_node->setPosition( StageMargin.width, StageMargin.height );
-				addChild( content_root_node );
+				auto tile_sprite_frame_0 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
+				auto tile_sprite_frame_1 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" );
+				CCASSERT( tile_sprite_frame_0, "Sprite Frame Not Found" );
+
+				const auto block_scale = mStageConfig.BlockSize.height / tile_sprite_frame_0->getRect().size.height;
+
+				bool first_tile_indicator = true;
+				bool current_tile_indicator = true;
+				for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
 				{
-					auto tile_sprite_frame_0 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
-					auto tile_sprite_frame_1 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" );
-					CCASSERT( tile_sprite_frame_0, "Sprite Frame Not Found" );
+					current_tile_indicator = first_tile_indicator;
 
-					const auto block_scale = mStageConfig.BlockSize.height / tile_sprite_frame_0->getRect().size.height;
-
-					bool first_tile_indicator = true;
-					bool current_tile_indicator = true;
-					for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
+					for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
 					{
-						current_tile_indicator = first_tile_indicator;
+						auto block_sprite = Sprite::createWithSpriteFrame( current_tile_indicator ? tile_sprite_frame_0 : tile_sprite_frame_1 );
+						block_sprite->setAnchorPoint( Vec2::ZERO );
+						block_sprite->setScale( block_scale );
+						block_sprite->setPosition(
+							bx * mStageConfig.BlockSize.width
+							, by * mStageConfig.BlockSize.height
+						);
+						content_root_node->addChild( block_sprite );
 
-						for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
-						{
-							auto block_sprite = Sprite::createWithSpriteFrame( current_tile_indicator ? tile_sprite_frame_0 : tile_sprite_frame_1 );
-							block_sprite->setAnchorPoint( Vec2::ZERO );
-							block_sprite->setScale( block_scale );
-							block_sprite->setPosition(
-								bx * block_sprite->getBoundingBox().size.width
-								, by * block_sprite->getBoundingBox().size.height
-							);
-							content_root_node->addChild( block_sprite );
-
-							current_tile_indicator = !current_tile_indicator;
-						}
-
-						first_tile_indicator = !first_tile_indicator;
+						current_tile_indicator = !current_tile_indicator;
 					}
+
+					first_tile_indicator = !first_tile_indicator;
 				}
+			}
 
-				//
-				// Objects
-				//
+			//
+			// Objects
+			//
+			{
+				const Vec2 offset( mStageConfig.BlockSize.width * 0.5f, mStageConfig.BlockSize.height * 0.5f );
+
+				for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
 				{
-					const Vec2 offset( mStageConfig.BlockSize.width *0.5f, mStageConfig.BlockSize.height *0.5f );
-
-					for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
+					for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
 					{
-						for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
-						{
-							auto block_sprite = Sprite::createWithSpriteFrameName( "actor001_idle_01.png" );
-							block_sprite->setPosition(
-								offset
-								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
-							);
-							content_root_node->addChild( block_sprite, 1 );
-						}
+						auto block_sprite = Sprite::createWithSpriteFrameName( "actor001_idle_01.png" );
+						block_sprite->setPosition(
+							offset
+							+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
+						);
+						content_root_node->addChild( block_sprite, 1 );
 					}
 				}
 			}
@@ -157,4 +156,4 @@ namespace step_mole
 			CCLOG( "On Stage Click" );
 		}
 	} // namespace game
-} // namespace step_clickclick
+} // namespace step_mole
