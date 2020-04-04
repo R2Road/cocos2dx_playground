@@ -82,7 +82,7 @@ namespace step_mole
 			// Stage View
 			//
 			{
-				auto stage_view = step_mole::game::StageView::create( 8, 6, step_mole::game::StageViewConfig{ true, true } );
+				auto stage_view = step_mole::game::StageView::create( StageConfig{ 8, 6 }, StageViewConfig{ true, true } );
 				stage_view->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - stage_view->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - stage_view->getContentSize().height ) * 0.5f )

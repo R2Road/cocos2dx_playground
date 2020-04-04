@@ -17,14 +17,13 @@ namespace step_mole
 {
 	namespace game
 	{
-		StageView::StageView( const int block_count_horizontal, const int block_count_vertical ) :
-			mBlockCount_Horizontal( block_count_horizontal )
-			, mBlockCount_Vertical( block_count_vertical )
+		StageView::StageView( const StageConfig stage_config ) :
+			mStageConfig( stage_config )
 		{}
 
-		StageView* StageView::create( const int block_count_horizontal, const int block_count_vertical, const StageViewConfig config )
+		StageView* StageView::create( const StageConfig stage_config, const StageViewConfig config )
 		{
-			auto ret = new ( std::nothrow ) StageView( block_count_horizontal, block_count_vertical );
+			auto ret = new ( std::nothrow ) StageView( stage_config );
 			if( !ret || !ret->init( config ) )
 			{
 				delete ret;
@@ -47,14 +46,9 @@ namespace step_mole
 			}
 
 			const Size BlockSize( 30.f, 30.f );
-			struct
-			{
-				const int BlockCount_Horizontal = 8;
-				const int BlockCount_Vercital = 6;
-			} StageConfig;
 			const Size StageSize(
-				BlockSize.width * StageConfig.BlockCount_Horizontal
-				, BlockSize.width * StageConfig.BlockCount_Vercital
+				BlockSize.width * mStageConfig.BlockCount_Horizontal
+				, BlockSize.width * mStageConfig.BlockCount_Vercital
 			);
 			const Size StageMargin( 4.f, 4.f );
 			const Size TotalSize(
@@ -98,11 +92,11 @@ namespace step_mole
 
 					bool first_tile_indicator = true;
 					bool current_tile_indicator = true;
-					for( int by = 0; StageConfig.BlockCount_Vercital > by; ++by )
+					for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
 					{
 						current_tile_indicator = first_tile_indicator;
 
-						for( int bx = 0; StageConfig.BlockCount_Horizontal > bx; ++bx )
+						for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
 						{
 							auto block_sprite = Sprite::createWithSpriteFrame( current_tile_indicator ? tile_sprite_frame_0 : tile_sprite_frame_1 );
 							block_sprite->setAnchorPoint( Vec2::ZERO );

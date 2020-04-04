@@ -7,6 +7,12 @@ namespace step_mole
 {
 	namespace game
 	{
+		struct StageConfig
+		{
+			const int BlockCount_Horizontal = 8;
+			const int BlockCount_Vercital = 6;
+		};
+
 		struct StageViewConfig
 		{
 			bool bShowPivot = false;
@@ -16,10 +22,10 @@ namespace step_mole
 		class StageView : public cocos2d::Node
 		{
 		private:
-			StageView( const int block_count_horizontal, const int block_count_vertical );
+			StageView( const StageConfig stage_config );
 
 		public:
-			static StageView* create( const int block_count_horizontal, const int block_count_vertical, const StageViewConfig config = StageViewConfig() );
+			static StageView* create( const StageConfig stage_config, const StageViewConfig config = StageViewConfig() );
 
 			bool init( const StageViewConfig config );
 
@@ -27,8 +33,7 @@ namespace step_mole
 			void onStageClick( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
-			const int mBlockCount_Horizontal;
-			const int mBlockCount_Vertical;
+			const StageConfig mStageConfig;
 		};
 	}
 }
