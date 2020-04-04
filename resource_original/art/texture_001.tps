@@ -306,6 +306,7 @@
                 <false/>
             </struct>
             <key type="filename">step_mole/step_mole_tile_0.png</key>
+            <key type="filename">step_mole/step_mole_tile_1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -436,6 +437,7 @@
             <filename>step_pathfinder/step_pathfinder_tile_magic_circle_02.png</filename>
             <filename>step_pathfinder/step_pathfinder_tile_road.png</filename>
             <filename>step_mole/step_mole_tile_0.png</filename>
+            <filename>step_mole/step_mole_tile_1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
