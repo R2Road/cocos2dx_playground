@@ -104,7 +104,7 @@ namespace step_mole
 								bx * block_sprite->getBoundingBox().size.width
 								, by * block_sprite->getBoundingBox().size.height
 							);
-							stage_view_node->addChild( block_sprite, 1 );
+							stage_view_node->addChild( block_sprite );
 
 							current_tile_indicator = !current_tile_indicator;
 						}
@@ -112,9 +112,31 @@ namespace step_mole
 						first_tile_indicator = !first_tile_indicator;
 					}
 				}
+
+				//
+				// Objects
+				//
+				{
+					const Vec2 offset( mStageConfig.BlockSize.width *0.5f, mStageConfig.BlockSize.height *0.5f );
+
+					for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
+					{
+						for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
+						{
+							auto block_sprite = Sprite::createWithSpriteFrameName( "actor001_idle_01.png" );
+							block_sprite->setPosition(
+								offset
+								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
+							);
+							stage_view_node->addChild( block_sprite, 1 );
+						}
+					}
+				}
 			}
 
+			//
 			// Click Area
+			//
 			{
 				auto click_area = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 				click_area->setScale9Enabled( true );
