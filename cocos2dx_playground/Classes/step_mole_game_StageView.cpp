@@ -45,10 +45,9 @@ namespace step_mole
 				return false;
 			}
 
-			const Size BlockSize( 30.f, 30.f );
 			const Size StageSize(
-				BlockSize.width * mStageConfig.BlockCount_Horizontal
-				, BlockSize.width * mStageConfig.BlockCount_Vercital
+				mStageConfig.BlockSize.width * mStageConfig.BlockCount_Horizontal
+				, mStageConfig.BlockSize.width * mStageConfig.BlockCount_Vercital
 			);
 			const Size StageMargin( 4.f, 4.f );
 			const Size TotalSize(
@@ -88,7 +87,7 @@ namespace step_mole
 					auto tile_sprite_frame_1 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" );
 					CCASSERT( tile_sprite_frame_0, "Sprite Frame Not Found" );
 
-					const auto block_scale = BlockSize.height / tile_sprite_frame_0->getRect().size.height;
+					const auto block_scale = mStageConfig.BlockSize.height / tile_sprite_frame_0->getRect().size.height;
 
 					bool first_tile_indicator = true;
 					bool current_tile_indicator = true;

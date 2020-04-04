@@ -2,6 +2,7 @@
 
 #include "2d/CCNode.h"
 #include "ui/UIWidget.h"
+#include "math/CCGeometry.h"
 
 namespace step_mole
 {
@@ -11,6 +12,7 @@ namespace step_mole
 		{
 			const int BlockCount_Horizontal = 8;
 			const int BlockCount_Vercital = 6;
+			const cocos2d::Size BlockSize = cocos2d::Size( 30.f, 30.f );
 		};
 
 		struct StageViewConfig
