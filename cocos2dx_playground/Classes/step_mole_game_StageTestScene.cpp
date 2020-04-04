@@ -130,16 +130,21 @@ namespace step_mole
 					stage_view_node->setPosition( StageMargin.width, StageMargin.height );
 					root_node->addChild( stage_view_node );
 					{
-						auto tile_sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
-						CCASSERT( tile_sprite_frame, "Sprite Frame Not Found" );
+						auto tile_sprite_frame_0 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
+						auto tile_sprite_frame_1 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" );
+						CCASSERT( tile_sprite_frame_0, "Sprite Frame Not Found" );
 
-						const auto block_scale = BlockSize.height / tile_sprite_frame->getRect().size.height;
+						const auto block_scale = BlockSize.height / tile_sprite_frame_0->getRect().size.height;
 
+						bool first_tile_indicator = true;
+						bool current_tile_indicator = true;
 						for( int by = 0; StageConfig.BlockCount_Vercital > by; ++by )
 						{
+							current_tile_indicator = first_tile_indicator;
+
 							for( int bx = 0; StageConfig.BlockCount_Horizontal> bx; ++bx )
 							{
-								auto block_sprite = Sprite::createWithSpriteFrame( tile_sprite_frame );
+								auto block_sprite = Sprite::createWithSpriteFrame( current_tile_indicator ? tile_sprite_frame_0 : tile_sprite_frame_1 );
 								block_sprite->setAnchorPoint( Vec2::ZERO );
 								block_sprite->setScale( block_scale );
 								block_sprite->setPosition(
@@ -147,7 +152,11 @@ namespace step_mole
 									, by * block_sprite->getBoundingBox().size.height
 								);
 								stage_view_node->addChild( block_sprite, 1 );
+
+								current_tile_indicator = !current_tile_indicator;
 							}
+
+							first_tile_indicator = !first_tile_indicator;
 						}
 					}
 				}
