@@ -7,12 +7,12 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
-#include "base/CCEventDispatcher.h""
+#include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
+#include "step_mole_game_StageView.h"
 #include "step_mole_RootScene.h"
 
 USING_NS_CC;
@@ -79,100 +79,15 @@ namespace step_mole
 			}
 
 			//
-			// Stage
+			// Stage View
 			//
 			{
-				const Size BlockSize( 30.f, 30.f );
-				struct
-				{
-					const int BlockCount_Horizontal = 8;
-					const int BlockCount_Vercital = 6;
-				} StageConfig;
-				const Size StageSize(
-					BlockSize.width * StageConfig.BlockCount_Horizontal
-					, BlockSize.width * StageConfig.BlockCount_Vercital
-				);
-				const Size StageMargin( 4.f, 4.f );
-				const Size TotalSize(
-					StageMargin
-					+ StageSize
-					+ StageMargin
-				);
-
-				auto root_node = Node::create();
-				root_node->setContentSize( TotalSize );
-				root_node->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - TotalSize.width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - TotalSize.height ) * 0.5f )
+				auto stage_view = step_mole::game::StageView::create( 8, 6, step_mole::game::StageViewConfig{ true, true } );
+				stage_view->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - stage_view->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - stage_view->getContentSize().height ) * 0.5f )
 				) );
-				addChild( root_node );
-
-				// Pivot
-				{
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 4.f );
-					root_node->addChild( pivot, std::numeric_limits<int>::max() );
-				}
-
-				//
-				// Background
-				//
-				{
-					auto background_layer = LayerColor::create( Color4B( 255, 0, 255, 150 ), root_node->getContentSize().width, root_node->getContentSize().height );
-					root_node->addChild( background_layer, -1 );
-				}
-
-				//
-				// Stage View
-				//
-				{
-					auto stage_view_node = Node::create();
-					stage_view_node->setPosition( StageMargin.width, StageMargin.height );
-					root_node->addChild( stage_view_node );
-					{
-						auto tile_sprite_frame_0 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
-						auto tile_sprite_frame_1 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" );
-						CCASSERT( tile_sprite_frame_0, "Sprite Frame Not Found" );
-
-						const auto block_scale = BlockSize.height / tile_sprite_frame_0->getRect().size.height;
-
-						bool first_tile_indicator = true;
-						bool current_tile_indicator = true;
-						for( int by = 0; StageConfig.BlockCount_Vercital > by; ++by )
-						{
-							current_tile_indicator = first_tile_indicator;
-
-							for( int bx = 0; StageConfig.BlockCount_Horizontal> bx; ++bx )
-							{
-								auto block_sprite = Sprite::createWithSpriteFrame( current_tile_indicator ? tile_sprite_frame_0 : tile_sprite_frame_1 );
-								block_sprite->setAnchorPoint( Vec2::ZERO );
-								block_sprite->setScale( block_scale );
-								block_sprite->setPosition(
-									bx * block_sprite->getBoundingBox().size.width
-									, by * block_sprite->getBoundingBox().size.height
-								);
-								stage_view_node->addChild( block_sprite, 1 );
-
-								current_tile_indicator = !current_tile_indicator;
-							}
-
-							first_tile_indicator = !first_tile_indicator;
-						}
-					}
-				}
-
-				// Click Area
-				{
-					auto click_area = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-					click_area->setScale9Enabled( true );
-					click_area->setContentSize( StageSize );
-					click_area->addTouchEventListener( CC_CALLBACK_2( StageTestScene::onStageClick, this ) );
-					click_area->setPosition( Vec2(
-						TotalSize.width * 0.5f
-						, TotalSize.height * 0.5f
-					) );
-					root_node->addChild( click_area );
-				}
+				addChild( stage_view );
 			}
 
 			return true;
@@ -196,10 +111,6 @@ namespace step_mole
 			Node::onExit();
 		}
 
-		void StageTestScene::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
-		{
-			CCLOG( "On Stage Click" );
-		}
 
 		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
