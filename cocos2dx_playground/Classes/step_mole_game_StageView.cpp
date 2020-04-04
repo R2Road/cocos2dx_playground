@@ -79,9 +79,9 @@ namespace step_mole
 			// Stage View
 			//
 			{
-				auto stage_view_node = Node::create();
-				stage_view_node->setPosition( StageMargin.width, StageMargin.height );
-				addChild( stage_view_node );
+				auto content_root_node = Node::create();
+				content_root_node->setPosition( StageMargin.width, StageMargin.height );
+				addChild( content_root_node );
 				{
 					auto tile_sprite_frame_0 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
 					auto tile_sprite_frame_1 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" );
@@ -104,7 +104,7 @@ namespace step_mole
 								bx * block_sprite->getBoundingBox().size.width
 								, by * block_sprite->getBoundingBox().size.height
 							);
-							stage_view_node->addChild( block_sprite );
+							content_root_node->addChild( block_sprite );
 
 							current_tile_indicator = !current_tile_indicator;
 						}
@@ -128,7 +128,7 @@ namespace step_mole
 								offset
 								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
 							);
-							stage_view_node->addChild( block_sprite, 1 );
+							content_root_node->addChild( block_sprite, 1 );
 						}
 					}
 				}
