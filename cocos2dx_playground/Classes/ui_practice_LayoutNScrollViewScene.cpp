@@ -144,10 +144,9 @@ namespace ui_practice
 				, ( ListInnerMargin.height + ButtonSize.height + ListInnerMargin.height ) * VisibleButtonCount
 			);
 
-			const int TotalButtonCount = 20;
 			const Size ListTotalSize(
 				ListInnerMargin.width + ButtonSize.width + ListInnerMargin.width
-				, ( ListInnerMargin.height + ButtonSize.height + ListInnerMargin.height ) * TotalButtonCount
+				, ( ListInnerMargin.height + ButtonSize.height + ListInnerMargin.height ) * STRING_COUNT
 			);
 
 			const Size RootMargin( 2, 2 );
