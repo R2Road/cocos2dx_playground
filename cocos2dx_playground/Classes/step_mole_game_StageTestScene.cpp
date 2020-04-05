@@ -10,7 +10,9 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "ui/UIButton.h"
 
+#include "step_mole_game_StageView.h"
 #include "step_mole_RootScene.h"
 
 USING_NS_CC;
@@ -76,6 +78,18 @@ namespace step_mole
 				addChild( background_layer, -1 );
 			}
 
+			//
+			// Stage View
+			//
+			{
+				auto stage_view = step_mole::game::StageView::create( StageConfig{ 8, 6, Size( 30.f, 30.f ) }, StageViewConfig{ true, true } );
+				stage_view->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - stage_view->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - stage_view->getContentSize().height ) * 0.5f )
+				) );
+				addChild( stage_view );
+			}
+
 			return true;
 		}
 
@@ -96,6 +110,7 @@ namespace step_mole
 
 			Node::onExit();
 		}
+
 
 		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

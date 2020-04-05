@@ -357,6 +357,9 @@
     <ClCompile Include="..\Classes\step_mole_animation_InfoContainer.cpp">
       <Filter>src\scene\step_04_mole\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_StageView.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -619,6 +622,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_animation_InfoContainer.h">
       <Filter>src\scene\step_04_mole\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_StageView.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
