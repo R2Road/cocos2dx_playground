@@ -366,6 +366,9 @@
     <ClCompile Include="..\Classes\ui_practice_RootScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_LayoutNScrollViewScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -633,6 +636,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_RootScene.h">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_LayoutNScrollViewScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>
