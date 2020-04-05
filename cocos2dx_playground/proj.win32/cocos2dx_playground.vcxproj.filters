@@ -106,6 +106,9 @@
     <Filter Include="src\scene\step_04_mole\game">
       <UniqueIdentifier>{de456931-1693-478e-bac2-60f1c96d0614}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\ui_practice">
+      <UniqueIdentifier>{d23c00b4-61c2-48d8-b5fd-0485e16a4b61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -359,6 +362,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_StageView.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_RootScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -625,6 +631,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_StageView.h">
       <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_RootScene.h">
+      <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
