@@ -63,6 +63,7 @@ namespace step_mole
 			auto label = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 			label->setPositionX( mRadius + margin );
+			label->setVisible( false );
 			label->retain();
 
 			auto& target_node = mHelper[static_cast<std::size_t>( eHelperNode::radius_view )];
@@ -75,6 +76,7 @@ namespace step_mole
 		{
 			auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
 			guide->setScale( mRadius / ( guide->getContentSize().width * 0.5f ) );
+			guide->setVisible( false );
 			guide->retain();
 
 			auto& target_node = mHelper[static_cast<std::size_t>( eHelperNode::guide )];
@@ -95,7 +97,43 @@ namespace step_mole
 			target_node.second = std::numeric_limits<int>::max() - 1;
 		}
 
+		setEnabled( true );
+
 		return true;
+	}
+
+	void CircleCollisionComponent::setEnabled( bool enabled )
+	{
+		if( enabled )
+		{
+			for( std::size_t i = static_cast<int>( eHelperNode::FIRST ), end = static_cast<int>( eHelperNode::SIZE ); i < end; ++i )
+			{
+				auto& h = mHelper[i];
+				if( h.first )
+				{
+					if( static_cast<std::size_t>( eHelperNode::indicator ) == i )
+					{
+						h.first->setVisible( false );
+					}
+					else
+					{
+						h.first->setVisible( true );
+					}
+				}
+			}
+		}
+		else
+		{
+			for( auto h : mHelper )
+			{
+				if( h.first )
+				{
+					h.first->setVisible( enabled );
+				}
+			}
+		}
+
+		Component::setEnabled( enabled );
 	}
 
 	void CircleCollisionComponent::onAdd()

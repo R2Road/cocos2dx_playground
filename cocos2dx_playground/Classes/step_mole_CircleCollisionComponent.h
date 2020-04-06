@@ -18,6 +18,8 @@ namespace step_mole
 		static const char* GetStaticName() { return "MOLE_CIRCLECOLLISION"; }
 		static CircleCollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 
+		void setEnabled( bool enabled ) override;
+
 	private:
 		bool init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
 		void onAdd() override;
