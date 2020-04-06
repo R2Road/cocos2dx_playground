@@ -136,7 +136,9 @@ namespace step_mole
 				// Object Component
 				{
 					auto animation_component = static_cast<cpg::AnimationComponent*> (object_node->getChildByTag( TAG_ViewNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
-					auto object_component = step_mole::ObjectComponent::create( animation_component );
+					auto circle_collision_component = object_node->getComponent( CircleCollisionComponent::GetStaticName() );
+
+					auto object_component = step_mole::ObjectComponent::create( animation_component, circle_collision_component );
 					object_node->addComponent( object_component );
 				}
 			}

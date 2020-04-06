@@ -27,11 +27,17 @@ namespace step_mole
 			Hide,
 		};
 
-		ObjectComponent( cpg::AnimationComponent* const animation_component );
+		ObjectComponent(
+			cpg::AnimationComponent* const animation_component
+			, cocos2d::Component* const circle_collision_component
+		);
 
 	public:
 		static const char* GetStaticName() { return "MOLE_OBJECT"; }
-		static ObjectComponent* create( cpg::AnimationComponent* const animation_component );
+		static ObjectComponent* create(
+			cpg::AnimationComponent* const animation_component
+			, cocos2d::Component* const circle_collision_component
+		);
 
 		bool init() override;
 
@@ -44,5 +50,6 @@ namespace step_mole
 	private:
 		eState mLastState;
 		cpg::AnimationComponent* const mAnimationComponent;
+		cocos2d::Component* const mCircleCollisionComponent;
 	};
 }

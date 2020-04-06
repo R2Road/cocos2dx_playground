@@ -14,16 +14,23 @@ USING_NS_CC;
 
 namespace step_mole
 {
-	ObjectComponent::ObjectComponent( cpg::AnimationComponent* const animation_component ) :
+	ObjectComponent::ObjectComponent(
+		cpg::AnimationComponent* const animation_component
+		, cocos2d::Component* const circle_collision_component
+	) :
 		mLastState( eState::Hide )
 		, mAnimationComponent( animation_component )
+		, mCircleCollisionComponent( circle_collision_component )
 	{
 		setName( GetStaticName() );
 	}
 
-	ObjectComponent* ObjectComponent::create( cpg::AnimationComponent* const animation_component )
+	ObjectComponent* ObjectComponent::create(
+		cpg::AnimationComponent* const animation_component
+		, cocos2d::Component* const circle_collision_component
+	)
 	{
-		auto ret = new ( std::nothrow ) ObjectComponent( animation_component );
+		auto ret = new ( std::nothrow ) ObjectComponent( animation_component, circle_collision_component );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -74,6 +81,7 @@ namespace step_mole
 		{
 		case eState::Wakeup:
 		{
+			mCircleCollisionComponent->setEnabled( true );
 			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::run, std::bind( &ObjectComponent::ChangeState, this, eState::Action ) );
 		}
 		break;
@@ -92,6 +100,7 @@ namespace step_mole
 
 		case eState::Damaged:
 		{
+			mCircleCollisionComponent->setEnabled( false );
 			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::idle, std::bind( &ObjectComponent::ChangeState, this, eState::Hide ) );
 		}
 		break;
