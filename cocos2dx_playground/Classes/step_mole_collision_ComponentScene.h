@@ -33,7 +33,7 @@ namespace step_mole
 		private:
 			void addCollision( cocos2d::Node* child );
 			void removeCollision( cocos2d::Node* child );
-			cocos2d::Node* makeBullet();
+			cocos2d::Node* makeBullet( const bool collision_enable );
 
 			void collisionCheck();
 			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );

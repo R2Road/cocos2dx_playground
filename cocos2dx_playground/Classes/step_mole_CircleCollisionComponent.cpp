@@ -168,6 +168,11 @@ namespace step_mole
 
 	bool CircleCollisionComponent::Check( const CircleCollisionComponent* const other ) const
 	{
+		if( !isEnabled() || !other->isEnabled() )
+		{
+			return false;
+		}
+
 		const float distance = _owner->getPosition().distance( other->getOwner()->getPosition() );
 		const float contact_limit_distance = mRadius + other->GetRadius();
 		
