@@ -35,7 +35,7 @@ namespace
 		float GetRadius() const { return mRadius; }
 
 	private:
-		float mRadius;
+		const float mRadius;
 	};
 }
 
@@ -149,7 +149,7 @@ namespace step_mole
 					{
 						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 						pivot->setScale( 4.f );
-						actor_root_node->addChild( pivot, 100 );
+						actor_root_node->addChild( pivot, std::numeric_limits<int>::max() );
 					}
 
 					// View
@@ -223,7 +223,7 @@ namespace step_mole
 					{
 						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 						pivot->setScale( 4.f );
-						bullet_root_node->addChild( pivot, 100 );
+						bullet_root_node->addChild( pivot, std::numeric_limits<int>::max() );
 					}
 
 					// View
