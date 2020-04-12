@@ -12,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
+#include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_game_StageView.h"
 #include "step_mole_RootScene.h"
 
@@ -99,7 +100,11 @@ namespace step_mole
 			// Stage View
 			//
 			{
-				mStageView = step_mole::game::StageView::create( STAGE_CONFIG, StageViewConfig{ true, true } );
+				mStageView = step_mole::game::StageView::create(
+					STAGE_CONFIG
+					, StageViewConfig{ true, true }
+					, CircleCollisionComponentConfig{ true, true, true }
+				);
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mStageView->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mStageView->getContentSize().height ) * 0.5f )

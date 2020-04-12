@@ -26,10 +26,14 @@ namespace step_mole
 			, mObjectComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 		{}
 
-		StageView* StageView::create( const StageConfig stage_config, const StageViewConfig config )
+		StageView* StageView::create(
+			const StageConfig stage_config
+			, const StageViewConfig config
+			, const CircleCollisionComponentConfig& circle_collision_component_config
+		)
 		{
 			auto ret = new ( std::nothrow ) StageView( stage_config );
-			if( !ret || !ret->init( config ) )
+			if( !ret || !ret->init( config, circle_collision_component_config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -43,7 +47,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageView::init( const StageViewConfig config )
+		bool StageView::init( const StageViewConfig config, const CircleCollisionComponentConfig& circle_collision_component_config )
 		{
 			if( !Node::init() )
 			{
@@ -142,6 +146,7 @@ namespace step_mole
 								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
 							)
 							, dist( randomEngine )
+							, circle_collision_component_config
 						);
 						content_root_node->addChild( object_node, 1 );
 
@@ -168,7 +173,12 @@ namespace step_mole
 			return true;
 		}
 
-		Node* StageView::MakeObject( const int object_tag, const cocos2d::Vec2 object_position, const int defalut_view_type )
+		Node* StageView::MakeObject(
+			const int object_tag
+			, const cocos2d::Vec2 object_position
+			, const int defalut_view_type
+			, const CircleCollisionComponentConfig& circle_collision_component_config
+		)
 		{
 			auto object_node = Node::create();
 			object_node->setTag( object_tag );
@@ -193,7 +203,7 @@ namespace step_mole
 				view_node->addComponent( animation_component );
 
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, CircleCollisionComponentConfig{ true, true, true } );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, circle_collision_component_config );
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component
