@@ -132,34 +132,23 @@ namespace step_mole
 				}
 
 				// View
-				{
-					auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
-					view_node->setTag( TAG_ViewNode );
-					view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-					view_node->setScale( 2.f );
-					view_node->setPositionY( -18.f );
-					object_node->addChild( view_node );
+				auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
+				view_node->setTag( TAG_ViewNode );
+				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				view_node->setScale( 2.f );
+				view_node->setPositionY( -18.f );
+				object_node->addChild( view_node );
 
-					// Animation Component
-					{
-						view_node->addComponent( cpg::AnimationComponent::create( step_mole::animation::GetInfoContainer() ) );
-					}
-				}
+				// Animation Component
+				auto animation_component = cpg::AnimationComponent::create( step_mole::animation::GetInfoContainer() );
+				view_node->addComponent( animation_component );
 
 				// Collision Component
-				{
-					auto circle_collision_component = CircleCollisionComponent::create( 30.f, true, true, true );
-					object_node->addComponent( circle_collision_component );
-				}
+				auto circle_collision_component = CircleCollisionComponent::create( 30.f, true, true, true );
+				object_node->addComponent( circle_collision_component );
 
 				// Object Component
-				{
-					auto animation_component = static_cast<cpg::AnimationComponent*> (object_node->getChildByTag( TAG_ViewNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
-					auto circle_collision_component = object_node->getComponent( CircleCollisionComponent::GetStaticName() );
-
-					auto object_component = step_mole::ObjectComponent::create( animation_component, circle_collision_component );
-					object_node->addComponent( object_component );
-				}
+				object_node->addComponent( step_mole::ObjectComponent::create( animation_component, circle_collision_component ) );
 			}
 
 			return true;
