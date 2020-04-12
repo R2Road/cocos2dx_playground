@@ -52,6 +52,8 @@ namespace step_mole
 			return false;
 		}
 
+		mCircleCollisionComponent->setEnabled( false );
+
 		return true;
 	}
 	void ObjectComponent::onAdd()
@@ -62,7 +64,6 @@ namespace step_mole
 
 	void ObjectComponent::ProcessStart()
 	{
-		_owner->setVisible( true );
 		ChangeState( eState::Wakeup );
 	}
 	void ObjectComponent::ProcessDamage()

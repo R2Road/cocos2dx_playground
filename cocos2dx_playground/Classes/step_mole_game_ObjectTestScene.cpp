@@ -130,7 +130,6 @@ namespace step_mole
 				// Collision Component
 				{
 					auto circle_collision_component = CircleCollisionComponent::create( 30.f, true, true, true );
-					circle_collision_component->setEnabled( false );
 					object_node->addComponent( circle_collision_component );
 				}
 
