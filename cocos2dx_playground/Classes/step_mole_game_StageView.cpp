@@ -12,6 +12,7 @@
 #include "step_mole_AnimationComponent.h"
 #include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
+#include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_ObjectComponent.h"
 
 USING_NS_CC;
@@ -192,7 +193,7 @@ namespace step_mole
 				view_node->addComponent( animation_component );
 
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, true, true, true );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, CircleCollisionComponentConfig{ true, true, true } );
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component

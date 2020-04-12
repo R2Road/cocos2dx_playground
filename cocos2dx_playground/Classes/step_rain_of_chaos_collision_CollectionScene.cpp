@@ -16,6 +16,7 @@
 #include "base/ccUTF8.h"
 
 #include "step_mole_CircleCollisionComponent.h"
+#include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
@@ -215,7 +216,7 @@ namespace step_rain_of_chaos
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				bullet_root_node->addComponent( step_mole::CircleCollisionComponent::create( radius, false, false, false ) );
+				bullet_root_node->addComponent( step_mole::CircleCollisionComponent::create( radius, step_mole::CircleCollisionComponentConfig{ false, false, false } ) );
 			}
 
 			return bullet_root_node;
