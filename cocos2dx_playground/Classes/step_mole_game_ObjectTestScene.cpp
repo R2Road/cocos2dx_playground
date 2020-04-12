@@ -12,7 +12,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "cpg_AnimationComponent.h"
+#include "step_mole_AnimationComponent.h"
 
 #include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"

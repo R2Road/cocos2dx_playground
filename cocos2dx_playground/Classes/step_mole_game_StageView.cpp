@@ -9,7 +9,7 @@
 #include "2d/CCSpriteFrameCache.h"
 #include "ui/UIButton.h"
 
-#include "cpg_AnimationComponent.h"
+#include "step_mole_AnimationComponent.h"
 #include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_ObjectComponent.h"

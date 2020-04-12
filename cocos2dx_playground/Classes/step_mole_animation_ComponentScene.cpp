@@ -12,7 +12,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "cpg_Animation_Info.h"
-#include "cpg_AnimationComponent.h"
+#include "step_mole_AnimationComponent.h"
 
 #include "step_mole_animation_InfoContainer.h"
 
