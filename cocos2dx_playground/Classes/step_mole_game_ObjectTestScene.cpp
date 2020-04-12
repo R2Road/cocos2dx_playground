@@ -10,6 +10,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "cpg_AnimationComponent.h"
 
@@ -24,14 +25,15 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_ObjectNode = 20140416;
-	const int TAG_ViewNode = 100;
+	const int TAG_LifeTimeNode = 100;
+	const int TAG_ViewNode = 200;
 }
 
 namespace step_mole
 {
 	namespace game
 	{
-		ObjectTestScene::ObjectTestScene() : mKeyboardListener( nullptr )
+		ObjectTestScene::ObjectTestScene() : mKeyboardListener( nullptr ), mCurrentLifeTime( 3 )
 		{}
 
 		Scene* ObjectTestScene::create()
@@ -91,6 +93,23 @@ namespace step_mole
 			{
 				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
 				addChild( background_layer, -1 );
+			}
+
+			//
+			// Current Life Time
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				label->setTag( TAG_LifeTimeNode );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateLifeTimeView();
 			}
 
 			//
@@ -164,6 +183,12 @@ namespace step_mole
 			Node::onExit();
 		}
 
+		void ObjectTestScene::updateLifeTimeView()
+		{
+			auto life_time_node = static_cast<Label*>( getChildByTag( TAG_LifeTimeNode ) );
+			life_time_node->setString( StringUtils::format( "Life Time : %d", mCurrentLifeTime ) );
+		}
+
 		void ObjectTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
@@ -176,7 +201,7 @@ namespace step_mole
 			{
 				auto object_node = getChildByTag( TAG_ObjectNode );
 				auto animation_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
-				animation_component->ProcessStart( 3.f );
+				animation_component->ProcessStart( mCurrentLifeTime );
 			}
 			return;
 
@@ -187,6 +212,16 @@ namespace step_mole
 				animation_component->ProcessDamage();
 			}
 			return;
+
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+				mCurrentLifeTime += 1;
+				updateLifeTimeView();
+				return;
+
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+				mCurrentLifeTime = std::max( 1, mCurrentLifeTime - 1 );
+				updateLifeTimeView();
+				return;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
