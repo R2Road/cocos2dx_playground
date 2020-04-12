@@ -28,12 +28,12 @@ namespace step_mole
 
 		StageView* StageView::create(
 			const StageConfig stage_config
-			, const StageViewConfig config
+			, const StageViewConfig stage_view_config
 			, const CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
 			auto ret = new ( std::nothrow ) StageView( stage_config );
-			if( !ret || !ret->init( config, circle_collision_component_config ) )
+			if( !ret || !ret->init( stage_view_config, circle_collision_component_config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -47,7 +47,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageView::init( const StageViewConfig config, const CircleCollisionComponentConfig& circle_collision_component_config )
+		bool StageView::init( const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
 		{
 			if( !Node::init() )
 			{
@@ -68,7 +68,7 @@ namespace step_mole
 			setContentSize( TotalSize );
 
 			// Pivot
-			if( config.bShowPivot )
+			if( stage_view_config.bShowPivot )
 			{
 				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 				pivot->setScale( 4.f );
@@ -78,7 +78,7 @@ namespace step_mole
 			//
 			// Background
 			//
-			if( config.bShowBackgroundGuide )
+			if( stage_view_config.bShowBackgroundGuide )
 			{
 				auto background_guide = LayerColor::create( Color4B( 255, 0, 255, 150 ), getContentSize().width, getContentSize().height );
 				addChild( background_guide, -1 );
