@@ -22,6 +22,7 @@ namespace step_mole
 	{
 		StageView::StageView( const StageConfig stage_config ) :
 			mStageConfig( stage_config )
+			, mObjectComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 		{}
 
 		StageView* StageView::create( const StageConfig stage_config, const StageViewConfig config )
@@ -125,13 +126,16 @@ namespace step_mole
 				std::uniform_int_distribution<> dist( 0, 1 );
 
 				const Vec2 offset( mStageConfig.BlockSize.width * 0.5f, mStageConfig.BlockSize.height * 0.5f );
+				std::size_t object_linear_index = 0;
 
 				for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
 				{
 					for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
 					{
+						object_linear_index = bx + ( mStageConfig.BlockCount_Vercital * by );
+
 						auto object_node = MakeObject(
-							bx + ( mStageConfig.BlockCount_Vercital * by )
+							object_linear_index
 							, Vec2(
 								offset
 								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
@@ -139,6 +143,8 @@ namespace step_mole
 							, dist( randomEngine )
 						);
 						content_root_node->addChild( object_node, 1 );
+
+						mObjectComponentList[object_linear_index] = static_cast<ObjectComponent*>( object_node->getComponent( ObjectComponent::GetStaticName() ) );
 					}
 				}
 			}

@@ -1,11 +1,15 @@
 #pragma once
 
+#include <vector>
+
 #include "2d/CCNode.h"
 #include "ui/UIWidget.h"
 #include "math/CCGeometry.h"
 
 namespace step_mole
 {
+	class ObjectComponent;
+
 	namespace game
 	{
 		struct StageConfig
@@ -37,6 +41,8 @@ namespace step_mole
 
 		private:
 			const StageConfig mStageConfig;
+
+			std::vector<ObjectComponent*> mObjectComponentList;
 		};
 	}
 }
