@@ -12,7 +12,7 @@ NS_CC_BEGIN
 	class Animate;
 NS_CC_END
 
-namespace cpg
+namespace step_mole
 {
 	class AnimationComponent : public cocos2d::Component
 	{

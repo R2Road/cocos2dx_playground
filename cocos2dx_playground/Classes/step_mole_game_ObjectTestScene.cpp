@@ -140,11 +140,11 @@ namespace step_mole
 				object_node->addChild( view_node );
 
 				// Animation Component
-				auto animation_component = cpg::AnimationComponent::create( step_mole::animation::GetInfoContainer() );
+				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetInfoContainer() );
 				view_node->addComponent( animation_component );
 
 				// Collision Component
-				auto circle_collision_component = CircleCollisionComponent::create( 30.f, true, true, true );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, true, true, true );
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component

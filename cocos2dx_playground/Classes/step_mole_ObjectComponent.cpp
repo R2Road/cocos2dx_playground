@@ -15,8 +15,8 @@ USING_NS_CC;
 namespace step_mole
 {
 	ObjectComponent::ObjectComponent(
-		cpg::AnimationComponent* const animation_component
-		, cocos2d::Component* const circle_collision_component
+		AnimationComponent* const animation_component
+		, Component* const circle_collision_component
 	) :
 		mLastState( eState::Damaged_2 )
 		, mAnimationComponent( animation_component )
@@ -27,8 +27,8 @@ namespace step_mole
 	}
 
 	ObjectComponent* ObjectComponent::create(
-		cpg::AnimationComponent* const animation_component
-		, cocos2d::Component* const circle_collision_component
+		AnimationComponent* const animation_component
+		, Component* const circle_collision_component
 	)
 	{
 		auto ret = new ( std::nothrow ) ObjectComponent( animation_component, circle_collision_component );

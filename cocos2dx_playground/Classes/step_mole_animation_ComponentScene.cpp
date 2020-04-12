@@ -113,7 +113,7 @@ namespace step_mole
 				addChild( animation_node, 0 );
 
 
-				animation_node->addComponent( cpg::AnimationComponent::create( step_mole::animation::GetInfoContainer() ) );
+				animation_node->addComponent( step_mole::AnimationComponent::create( step_mole::animation::GetInfoContainer() ) );
 			}
 
 			return true;
@@ -175,12 +175,12 @@ namespace step_mole
 		}
 		void ComponentScene::PlayAnimation( const cpg::animation::eIndex animation_index )
 		{
-			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
+			auto animation_component = static_cast<step_mole::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimation( animation_index );
 		}
 		void ComponentScene::PlayAnimationWithCallback()
 		{
-			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
+			auto animation_component = static_cast<step_mole::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimationWithCallback(
 				cpg::animation::eIndex::damaged_1
 				, [animation_component]()
@@ -191,7 +191,7 @@ namespace step_mole
 		}
 		void ComponentScene::StopAnimation()
 		{
-			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
+			auto animation_component = static_cast<step_mole::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
 			animation_component->StopAnimation();
 		}
 	}

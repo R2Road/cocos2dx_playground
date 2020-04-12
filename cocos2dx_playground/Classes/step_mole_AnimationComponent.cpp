@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-namespace cpg
+namespace step_mole
 {
 	AnimationComponent::AnimationComponent() : mAnimationActions()
 	{

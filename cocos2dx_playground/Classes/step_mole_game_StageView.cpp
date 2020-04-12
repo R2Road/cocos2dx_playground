@@ -182,7 +182,7 @@ namespace step_mole
 				object_node->addChild( view_node );
 				
 				// Animation Component
-				cpg::AnimationComponent* animation_component = cpg::AnimationComponent::create( step_mole::animation::GetInfoContainer() );
+				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetInfoContainer() );
 				view_node->addComponent( animation_component );
 
 				// Collision Component

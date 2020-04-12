@@ -4,13 +4,10 @@
 #include "cocos/2d/CCComponent.h"
 #include "cocos/base/CCRefPtr.h"
 
-namespace cpg
-{
-	class AnimationComponent;
-}
-
 namespace step_mole
 {
+	class AnimationComponent;
+
 	class ObjectComponent : public cocos2d::Component
 	{
 	private:
@@ -29,14 +26,14 @@ namespace step_mole
 		};
 
 		ObjectComponent(
-			cpg::AnimationComponent* const animation_component
+			AnimationComponent* const animation_component
 			, cocos2d::Component* const circle_collision_component
 		);
 
 	public:
 		static const char* GetStaticName() { return "MOLE_OBJECT"; }
 		static ObjectComponent* create(
-			cpg::AnimationComponent* const animation_component
+			AnimationComponent* const animation_component
 			, cocos2d::Component* const circle_collision_component
 		);
 
@@ -51,7 +48,7 @@ namespace step_mole
 
 	private:
 		eState mLastState;
-		cpg::AnimationComponent* const mAnimationComponent;
+		AnimationComponent* const mAnimationComponent;
 		cocos2d::Component* const mCircleCollisionComponent;
 
 		float mActionTime;
