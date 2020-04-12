@@ -21,7 +21,7 @@ namespace step_mole
 {
 	namespace game
 	{
-		StageTestScene::StageTestScene() : mKeyboardListener( nullptr )
+		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ), mStageView( nullptr )
 		{}
 
 		Scene* StageTestScene::create()
@@ -82,12 +82,12 @@ namespace step_mole
 			// Stage View
 			//
 			{
-				auto stage_view = step_mole::game::StageView::create( StageConfig{ 8, 6, Size( 40.f, 40.f ) }, StageViewConfig{ true, true } );
-				stage_view->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - stage_view->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - stage_view->getContentSize().height ) * 0.5f )
+				mStageView = step_mole::game::StageView::create( StageConfig{ 8, 6, Size( 40.f, 40.f ) }, StageViewConfig{ true, true } );
+				mStageView->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - mStageView->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - mStageView->getContentSize().height ) * 0.5f )
 				) );
-				addChild( stage_view );
+				addChild( mStageView );
 			}
 
 			return true;
