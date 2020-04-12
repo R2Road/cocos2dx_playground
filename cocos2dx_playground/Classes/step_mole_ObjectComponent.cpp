@@ -18,7 +18,7 @@ namespace step_mole
 		cpg::AnimationComponent* const animation_component
 		, cocos2d::Component* const circle_collision_component
 	) :
-		mLastState( eState::Hide )
+		mLastState( eState::Damaged_2 )
 		, mAnimationComponent( animation_component )
 		, mCircleCollisionComponent( circle_collision_component )
 	{
@@ -54,6 +54,11 @@ namespace step_mole
 
 		return true;
 	}
+	void ObjectComponent::onAdd()
+	{
+		ParentT::onAdd();
+		ChangeState( eState::Wait );
+	}
 
 	void ObjectComponent::ProcessStart()
 	{
@@ -62,7 +67,7 @@ namespace step_mole
 	}
 	void ObjectComponent::ProcessDamage()
 	{
-		ChangeState( eState::Damaged );
+		ChangeState( eState::Damaged_1 );
 	}
 
 	void ObjectComponent::ChangeState( const eState next_state )
@@ -79,36 +84,41 @@ namespace step_mole
 
 		switch( next_state )
 		{
+		case eState::Wait:
+		{
+			mCircleCollisionComponent->setEnabled( false );
+			mAnimationComponent->PlayAnimation( cpg::animation::eIndex::wait );
+		}
+		break;
+
 		case eState::Wakeup:
 		{
 			mCircleCollisionComponent->setEnabled( true );
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::run, std::bind( &ObjectComponent::ChangeState, this, eState::Action ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::wakeup, std::bind( &ObjectComponent::ChangeState, this, eState::Action ) );
 		}
 		break;
 
 		case eState::Action:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::win, std::bind( &ObjectComponent::ChangeState, this, eState::Sleep ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::idle, std::bind( &ObjectComponent::ChangeState, this, eState::Sleep ) );
 		}
 		break;
 
 		case eState::Sleep:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::run, std::bind( &ObjectComponent::ChangeState, this, eState::Hide ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::sleep, std::bind( &ObjectComponent::ChangeState, this, eState::Wait ) );
 		}
 		break;
 
-		case eState::Damaged:
+		case eState::Damaged_1:
 		{
 			mCircleCollisionComponent->setEnabled( false );
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::idle, std::bind( &ObjectComponent::ChangeState, this, eState::Hide ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_1, std::bind( &ObjectComponent::ChangeState, this, eState::Damaged_2 ) );
 		}
 		break;
-
-		case eState::Hide:
+		case eState::Damaged_2:
 		{
-			mAnimationComponent->StopAnimation();
-			_owner->setVisible( false );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_2, std::bind( &ObjectComponent::ChangeState, this, eState::Wait ) );
 		}
 		break;
 

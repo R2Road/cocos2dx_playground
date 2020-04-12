@@ -18,13 +18,14 @@ namespace step_mole
 
 		enum class eState
 		{
+			Wait,
+
 			Wakeup,
 			Action,
 			Sleep,
 			
-			Damaged,
-
-			Hide,
+			Damaged_1,
+			Damaged_2,
 		};
 
 		ObjectComponent(
@@ -40,6 +41,7 @@ namespace step_mole
 		);
 
 		bool init() override;
+		void onAdd() override;
 
 		void ProcessStart();
 		void ProcessDamage();

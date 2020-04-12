@@ -99,7 +99,6 @@ namespace step_mole
 			{
 				auto object_node = Node::create();
 				object_node->setTag( TAG_ObjectNode );
-				object_node->setVisible( false );
 				object_node->setPosition( Vec2(
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
@@ -115,7 +114,7 @@ namespace step_mole
 
 				// View
 				{
-					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+					auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
 					view_node->setTag( TAG_ViewNode );
 					view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					view_node->setScale( 2.f );
