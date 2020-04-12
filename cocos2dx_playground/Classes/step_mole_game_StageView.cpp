@@ -120,6 +120,10 @@ namespace step_mole
 			// Objects
 			//
 			{
+				std::random_device rd;
+				std::mt19937 randomEngine( rd() );
+				std::uniform_int_distribution<> dist( 0, 1 );
+
 				const Vec2 offset( mStageConfig.BlockSize.width * 0.5f, mStageConfig.BlockSize.height * 0.5f );
 
 				for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
@@ -132,6 +136,7 @@ namespace step_mole
 								offset
 								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
 							)
+							, dist( randomEngine )
 						);
 						content_root_node->addChild( object_node, 1 );
 					}
@@ -156,7 +161,7 @@ namespace step_mole
 			return true;
 		}
 
-		Node* StageView::MakeObject( const int object_tag, const cocos2d::Vec2 object_position )
+		Node* StageView::MakeObject( const int object_tag, const cocos2d::Vec2 object_position, const int defalut_view_type )
 		{
 			auto object_node = Node::create();
 			object_node->setTag( object_tag );
@@ -170,7 +175,7 @@ namespace step_mole
 				}
 
 				// View
-				auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
+				auto view_node = Sprite::createWithSpriteFrameName( 0 == defalut_view_type ? "step_mole_target_wait_0.png" : "step_mole_target_wait_1.png" );
 				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				view_node->setScale( 2.f );
 				view_node->setPositionY( -18.f );
