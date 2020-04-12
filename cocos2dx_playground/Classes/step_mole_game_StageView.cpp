@@ -206,5 +206,12 @@ namespace step_mole
 		{
 			CCLOG( "On Stage Click" );
 		}
+
+		void StageView::RequestAction( const std::size_t object_index, const float life_time )
+		{
+			CCASSERT( object_index < mObjectComponentList.size(), "Invalid Object Index" );
+
+			mObjectComponentList[object_index]->ProcessStart( life_time );
+		}
 	} // namespace game
 } // namespace step_mole

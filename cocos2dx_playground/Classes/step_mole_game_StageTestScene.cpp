@@ -17,6 +17,20 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 6, Size( 40.f, 40.f ) };
+
+	const std::size_t GetRandomObjectIndex()
+	{
+		static std::random_device rd;
+		static std::mt19937 randomEngine( rd() );
+		static std::uniform_int_distribution<> dist( 0, std::max( 0, ( STAGE_CONFIG.BlockCount_Vercital * STAGE_CONFIG.BlockCount_Horizontal ) - 1 ) );
+
+		return dist( randomEngine );
+	}
+}
+
 namespace step_mole
 {
 	namespace game
@@ -60,6 +74,9 @@ namespace step_mole
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[A] : Random Start";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -82,7 +99,7 @@ namespace step_mole
 			// Stage View
 			//
 			{
-				mStageView = step_mole::game::StageView::create( StageConfig{ 8, 6, Size( 40.f, 40.f ) }, StageViewConfig{ true, true } );
+				mStageView = step_mole::game::StageView::create( STAGE_CONFIG, StageViewConfig{ true, true } );
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mStageView->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mStageView->getContentSize().height ) * 0.5f )
@@ -118,6 +135,10 @@ namespace step_mole
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				return;
+
+			case EventKeyboard::KeyCode::KEY_A:
+				mStageView->RequestAction( GetRandomObjectIndex(), 3.f );
 				return;
 
 			default:

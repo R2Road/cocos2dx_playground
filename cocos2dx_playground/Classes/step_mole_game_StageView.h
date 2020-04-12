@@ -39,6 +39,9 @@ namespace step_mole
 			cocos2d::Node* MakeObject( const int object_tag, const cocos2d::Vec2 object_position, const int defalut_view_type );
 			void onStageClick( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
+		public:
+			void RequestAction( const std::size_t object_index, const float life_time );
+
 		private:
 			const StageConfig mStageConfig;
 
