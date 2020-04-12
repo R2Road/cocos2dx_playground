@@ -59,7 +59,19 @@ namespace step_mole
 	void ObjectComponent::onAdd()
 	{
 		ParentT::onAdd();
-		ChangeState( eState::Wait );
+
+		std::random_device rd;
+		std::mt19937 randomEngine( rd() );
+		std::uniform_real_distribution<> dist( 0, 0.5f );
+
+		_owner->scheduleOnce(
+			[this]( float dt )
+			{
+				ChangeState( eState::Wait );
+			}
+			, dist( randomEngine )
+			, "change_state"
+		);
 	}
 
 	void ObjectComponent::ProcessStart()
