@@ -132,7 +132,7 @@ namespace step_mole
 				{
 					for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
 					{
-						object_linear_index = bx + ( mStageConfig.BlockCount_Vercital * by );
+						object_linear_index = bx + ( mStageConfig.BlockCount_Horizontal * by );
 
 						auto object_node = MakeObject(
 							object_linear_index
