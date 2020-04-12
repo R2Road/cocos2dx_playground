@@ -1,4 +1,4 @@
-#include "cpg_AnimationComponent.h"
+#include "step_mole_AnimationComponent.h"
 
 #include <new>
 
@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-namespace cpg
+namespace step_mole
 {
 	AnimationComponent::AnimationComponent() : mAnimationActions()
 	{

@@ -305,6 +305,34 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">step_mole/step_mole_target_dmgd1_0.png</key>
+            <key type="filename">step_mole/step_mole_target_dmgd1_1.png</key>
+            <key type="filename">step_mole/step_mole_target_dmgd1_2.png</key>
+            <key type="filename">step_mole/step_mole_target_dmgd2_0.png</key>
+            <key type="filename">step_mole/step_mole_target_dmgd2_1.png</key>
+            <key type="filename">step_mole/step_mole_target_dmgd2_2.png</key>
+            <key type="filename">step_mole/step_mole_target_dmgd2_3.png</key>
+            <key type="filename">step_mole/step_mole_target_dmgd2_4.png</key>
+            <key type="filename">step_mole/step_mole_target_idl_0.png</key>
+            <key type="filename">step_mole/step_mole_target_idl_1.png</key>
+            <key type="filename">step_mole/step_mole_target_idl_2.png</key>
+            <key type="filename">step_mole/step_mole_target_idl_3.png</key>
+            <key type="filename">step_mole/step_mole_target_idl_4.png</key>
+            <key type="filename">step_mole/step_mole_target_idl_5.png</key>
+            <key type="filename">step_mole/step_mole_target_idl_6.png</key>
+            <key type="filename">step_mole/step_mole_target_idl_7.png</key>
+            <key type="filename">step_mole/step_mole_target_slp_0.png</key>
+            <key type="filename">step_mole/step_mole_target_slp_1.png</key>
+            <key type="filename">step_mole/step_mole_target_slp_2.png</key>
+            <key type="filename">step_mole/step_mole_target_slp_3.png</key>
+            <key type="filename">step_mole/step_mole_target_slp_4.png</key>
+            <key type="filename">step_mole/step_mole_target_wait_0.png</key>
+            <key type="filename">step_mole/step_mole_target_wait_1.png</key>
+            <key type="filename">step_mole/step_mole_target_wkup_0.png</key>
+            <key type="filename">step_mole/step_mole_target_wkup_1.png</key>
+            <key type="filename">step_mole/step_mole_target_wkup_2.png</key>
+            <key type="filename">step_mole/step_mole_target_wkup_3.png</key>
+            <key type="filename">step_mole/step_mole_target_wkup_4.png</key>
             <key type="filename">step_mole/step_mole_tile_0.png</key>
             <key type="filename">step_mole/step_mole_tile_1.png</key>
             <struct type="IndividualSpriteSettings">
@@ -438,6 +466,34 @@
             <filename>step_pathfinder/step_pathfinder_tile_road.png</filename>
             <filename>step_mole/step_mole_tile_0.png</filename>
             <filename>step_mole/step_mole_tile_1.png</filename>
+            <filename>step_mole/step_mole_target_wkup_4.png</filename>
+            <filename>step_mole/step_mole_target_dmgd1_0.png</filename>
+            <filename>step_mole/step_mole_target_dmgd1_1.png</filename>
+            <filename>step_mole/step_mole_target_dmgd1_2.png</filename>
+            <filename>step_mole/step_mole_target_dmgd2_0.png</filename>
+            <filename>step_mole/step_mole_target_dmgd2_1.png</filename>
+            <filename>step_mole/step_mole_target_dmgd2_2.png</filename>
+            <filename>step_mole/step_mole_target_dmgd2_3.png</filename>
+            <filename>step_mole/step_mole_target_dmgd2_4.png</filename>
+            <filename>step_mole/step_mole_target_idl_0.png</filename>
+            <filename>step_mole/step_mole_target_idl_1.png</filename>
+            <filename>step_mole/step_mole_target_idl_2.png</filename>
+            <filename>step_mole/step_mole_target_idl_3.png</filename>
+            <filename>step_mole/step_mole_target_idl_4.png</filename>
+            <filename>step_mole/step_mole_target_idl_5.png</filename>
+            <filename>step_mole/step_mole_target_idl_6.png</filename>
+            <filename>step_mole/step_mole_target_idl_7.png</filename>
+            <filename>step_mole/step_mole_target_slp_0.png</filename>
+            <filename>step_mole/step_mole_target_slp_1.png</filename>
+            <filename>step_mole/step_mole_target_slp_2.png</filename>
+            <filename>step_mole/step_mole_target_slp_3.png</filename>
+            <filename>step_mole/step_mole_target_slp_4.png</filename>
+            <filename>step_mole/step_mole_target_wait_0.png</filename>
+            <filename>step_mole/step_mole_target_wait_1.png</filename>
+            <filename>step_mole/step_mole_target_wkup_0.png</filename>
+            <filename>step_mole/step_mole_target_wkup_1.png</filename>
+            <filename>step_mole/step_mole_target_wkup_2.png</filename>
+            <filename>step_mole/step_mole_target_wkup_3.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

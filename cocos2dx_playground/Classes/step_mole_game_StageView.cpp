@@ -9,7 +9,10 @@
 #include "2d/CCSpriteFrameCache.h"
 #include "ui/UIButton.h"
 
-#include "step_clickclick_game_Stage.h"
+#include "step_mole_AnimationComponent.h"
+#include "step_mole_animation_InfoContainer.h"
+#include "step_mole_CircleCollisionComponent.h"
+#include "step_mole_ObjectComponent.h"
 
 USING_NS_CC;
 
@@ -117,18 +120,25 @@ namespace step_mole
 			// Objects
 			//
 			{
+				std::random_device rd;
+				std::mt19937 randomEngine( rd() );
+				std::uniform_int_distribution<> dist( 0, 1 );
+
 				const Vec2 offset( mStageConfig.BlockSize.width * 0.5f, mStageConfig.BlockSize.height * 0.5f );
 
 				for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
 				{
 					for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
 					{
-						auto block_sprite = Sprite::createWithSpriteFrameName( "actor001_idle_01.png" );
-						block_sprite->setPosition(
-							offset
-							+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
+						auto object_node = MakeObject(
+							bx + ( mStageConfig.BlockCount_Vercital * by )
+							, Vec2(
+								offset
+								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
+							)
+							, dist( randomEngine )
 						);
-						content_root_node->addChild( block_sprite, 1 );
+						content_root_node->addChild( object_node, 1 );
 					}
 				}
 			}
@@ -151,6 +161,41 @@ namespace step_mole
 			return true;
 		}
 
+		Node* StageView::MakeObject( const int object_tag, const cocos2d::Vec2 object_position, const int defalut_view_type )
+		{
+			auto object_node = Node::create();
+			object_node->setTag( object_tag );
+			object_node->setPosition( object_position );
+			{
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					object_node->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// View
+				auto view_node = Sprite::createWithSpriteFrameName( 0 == defalut_view_type ? "step_mole_target_wait_0.png" : "step_mole_target_wait_1.png" );
+				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				view_node->setScale( 2.f );
+				view_node->setPositionY( -18.f );
+				object_node->addChild( view_node );
+				
+				// Animation Component
+				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetInfoContainer() );
+				view_node->addComponent( animation_component );
+
+				// Collision Component
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, true, true, true );
+				object_node->addComponent( circle_collision_component );
+
+				// Object Component
+				object_node->addComponent( step_mole::ObjectComponent::create( animation_component, circle_collision_component ) );
+
+			}
+
+			return object_node;
+		}
 		void StageView::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
 		{
 			CCLOG( "On Stage Click" );

@@ -175,6 +175,7 @@ namespace step_mole
 
 				int current_bullet_count = 0;
 				Vec2 new_bullet_position;
+				bool collision_enable = true;
 				while( current_bullet_count < 50 )
 				{
 					new_bullet_position.set(
@@ -187,10 +188,11 @@ namespace step_mole
 						continue;
 					}
 
-					auto bullet_root_node = makeBullet();
+					auto bullet_root_node = makeBullet( collision_enable );
 					bullet_root_node->setPosition( visibleOrigin + new_bullet_position );
 					addChild( bullet_root_node, 101 );
 
+					collision_enable = !collision_enable;
 					++current_bullet_count;
 				}
 			}
@@ -257,7 +259,7 @@ namespace step_mole
 			mCollisionList.remove( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 
-		Node* ComponentScene::makeBullet()
+		Node* ComponentScene::makeBullet( const bool collision_enable )
 		{
 			auto bullet_root_node = Node::create();
 			{
@@ -270,6 +272,7 @@ namespace step_mole
 
 				// View
 				auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+				view_node->setColor( collision_enable ? Color3B::WHITE : Color3B( 90, 90, 90 ) );
 				bullet_root_node->addChild( view_node );
 				{
 					auto animation_object = Animation::create();
@@ -287,7 +290,9 @@ namespace step_mole
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				bullet_root_node->addComponent( CircleCollisionComponent::create( radius, false, false, false ) );
+				auto circle_collision_component = CircleCollisionComponent::create( radius, false, false, false );
+				circle_collision_component->setEnabled( collision_enable );
+				bullet_root_node->addComponent( circle_collision_component );
 			}
 
 			return bullet_root_node;

@@ -8,22 +8,30 @@
 #include "2d/CCSpriteFrameCache.h"
 #include "base/ccMacros.h"
 
-#include "cpg_AnimationComponent.h"
+#include "step_mole_AnimationComponent.h"
 
 USING_NS_CC;
 
 namespace step_mole
 {
-	ObjectComponent::ObjectComponent( cpg::AnimationComponent* const animation_component ) :
-		mLastState( eState::Hide )
+	ObjectComponent::ObjectComponent(
+		AnimationComponent* const animation_component
+		, Component* const circle_collision_component
+	) :
+		mLastState( eState::Damaged_2 )
 		, mAnimationComponent( animation_component )
+		, mCircleCollisionComponent( circle_collision_component )
+		, mActionTime( 0.f )
 	{
 		setName( GetStaticName() );
 	}
 
-	ObjectComponent* ObjectComponent::create( cpg::AnimationComponent* const animation_component )
+	ObjectComponent* ObjectComponent::create(
+		AnimationComponent* const animation_component
+		, Component* const circle_collision_component
+	)
 	{
-		auto ret = new ( std::nothrow ) ObjectComponent( animation_component );
+		auto ret = new ( std::nothrow ) ObjectComponent( animation_component, circle_collision_component );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -45,17 +53,36 @@ namespace step_mole
 			return false;
 		}
 
+		mCircleCollisionComponent->setEnabled( false );
+
 		return true;
 	}
-
-	void ObjectComponent::ProcessStart()
+	void ObjectComponent::onAdd()
 	{
-		_owner->setVisible( true );
+		ParentT::onAdd();
+
+		std::random_device rd;
+		std::mt19937 randomEngine( rd() );
+		std::uniform_real_distribution<> dist( 0, 0.5f );
+
+		_owner->scheduleOnce(
+			[this]( float dt )
+			{
+				ChangeState( eState::Wait );
+			}
+			, dist( randomEngine )
+			, "change_state"
+		);
+	}
+
+	void ObjectComponent::ProcessStart( const float action_time )
+	{
+		mActionTime = action_time;
 		ChangeState( eState::Wakeup );
 	}
 	void ObjectComponent::ProcessDamage()
 	{
-		ChangeState( eState::Damaged );
+		ChangeState( eState::Damaged_1 );
 	}
 
 	void ObjectComponent::ChangeState( const eState next_state )
@@ -72,34 +99,51 @@ namespace step_mole
 
 		switch( next_state )
 		{
+		case eState::Wait:
+		{
+			mCircleCollisionComponent->setEnabled( false );
+			mAnimationComponent->PlayAnimation( cpg::animation::eIndex::wait );
+		}
+		break;
+
 		case eState::Wakeup:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::run, std::bind( &ObjectComponent::ChangeState, this, eState::Action ) );
+			mCircleCollisionComponent->setEnabled( true );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::wakeup, std::bind( &ObjectComponent::ChangeState, this, eState::Action ) );
 		}
 		break;
 
 		case eState::Action:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::win, std::bind( &ObjectComponent::ChangeState, this, eState::Sleep ) );
+			mAnimationComponent->PlayAnimation( cpg::animation::eIndex::idle );
+			_owner->scheduleOnce(
+				[this]( float dt )
+				{
+					ChangeState( eState::Sleep );
+				}
+				, mActionTime
+				, "change_state"
+			);
 		}
 		break;
 
 		case eState::Sleep:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::run, std::bind( &ObjectComponent::ChangeState, this, eState::Hide ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::sleep, std::bind( &ObjectComponent::ChangeState, this, eState::Wait ) );
 		}
 		break;
 
-		case eState::Damaged:
+		case eState::Damaged_1:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::idle, std::bind( &ObjectComponent::ChangeState, this, eState::Hide ) );
+			_owner->unschedule( "change_state" );
+
+			mCircleCollisionComponent->setEnabled( false );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_1, std::bind( &ObjectComponent::ChangeState, this, eState::Damaged_2 ) );
 		}
 		break;
-
-		case eState::Hide:
+		case eState::Damaged_2:
 		{
-			mAnimationComponent->StopAnimation();
-			_owner->setVisible( false );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_2, std::bind( &ObjectComponent::ChangeState, this, eState::Wait ) );
 		}
 		break;
 
