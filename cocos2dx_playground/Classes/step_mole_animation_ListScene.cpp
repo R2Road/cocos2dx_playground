@@ -26,19 +26,21 @@ namespace
 
 	const std::vector<cpg::animation::Info> AnimationInfos = {
 		{
+			cpg::animation::eIndex::wakeup
+			, 0.06f
+			, std::vector<std::string>{ "step_mole_target_wkup_0.png", "step_mole_target_wkup_1.png", "step_mole_target_wkup_2.png", "step_mole_target_wkup_3.png", "step_mole_target_wkup_4.png" }
+		}
+
+		, {
 			cpg::animation::eIndex::idle
-			, 0.5f
-			, { "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_03.png" }
+			, 0.06f
+			, std::vector<std::string>{ "step_mole_target_idl_0.png", "step_mole_target_idl_1.png", "step_mole_target_idl_2.png", "step_mole_target_idl_3.png", "step_mole_target_idl_4.png", "step_mole_target_idl_5.png", "step_mole_target_idl_6.png", "step_mole_target_idl_7.png" }
 		}
-		,{
-			cpg::animation::eIndex::run
-			, 0.2f
-			, { "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
-		}
-		,{
-			cpg::animation::eIndex::win
+
+		, {
+			cpg::animation::eIndex::sleep
 			, 0.1f
-			, { "actor001_win_01.png", "actor001_win_02.png" }
+			, std::vector<std::string>{ "step_mole_target_slp_0.png", "step_mole_target_slp_1.png", "step_mole_target_slp_2.png", "step_mole_target_slp_3.png", "step_mole_target_slp_4.png" }
 		}
 	};
 }
@@ -88,11 +90,11 @@ namespace step_mole
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Play Animation - Idle";
+				ss << "[A] : Play Animation - Wakeup";
 				ss << std::endl;
-				ss << "[S] : Play Animation - Run";
+				ss << "[S] : Play Animation - Idle";
 				ss << std::endl;
-				ss << "[D] : Play Animation - Win";
+				ss << "[D] : Play Animation - Sleep";
 				ss << std::endl;
 				ss << "[SpaceBar] : Stop Animation";
 
@@ -117,7 +119,7 @@ namespace step_mole
 			// Animation Node
 			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				auto animation_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
 				animation_node->setTag( TAG_AnimationNode );
 				animation_node->setAnchorPoint( Vec2( 0.f, 0.f ) );
 				animation_node->setScale( 2.f );
@@ -185,16 +187,16 @@ namespace step_mole
 				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 
-			case EventKeyboard::KeyCode::KEY_A: // Play Idle
+			case EventKeyboard::KeyCode::KEY_A:
+				playAnimation( cpg::animation::eIndex::wakeup );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_S:
 				playAnimation( cpg::animation::eIndex::idle );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_S: // Play Run
-				playAnimation( cpg::animation::eIndex::run );
-				break;
-
-			case EventKeyboard::KeyCode::KEY_D: // Play Win
-				playAnimation( cpg::animation::eIndex::win );
+			case EventKeyboard::KeyCode::KEY_D:
+				playAnimation( cpg::animation::eIndex::sleep );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE: // Stop

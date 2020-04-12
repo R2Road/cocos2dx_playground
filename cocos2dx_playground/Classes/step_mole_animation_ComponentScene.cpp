@@ -67,11 +67,13 @@ namespace step_mole
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Play Animation - Idle";
+				ss << "[A] : Play Animation - Wait";
 				ss << std::endl;
-				ss << "[S] : Play Animation - Run";
+				ss << "[S] : Play Animation - Wakeup";
 				ss << std::endl;
-				ss << "[D] : Play Animation - Win";
+				ss << "[D] : Play Animation - Idle";
+				ss << std::endl;
+				ss << "[F] : Play Animation - Sleep";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Q] : Play Animation With Callback";
@@ -100,7 +102,7 @@ namespace step_mole
 			// Animation Node
 			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				auto animation_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
 				animation_node->setTag( TAG_AnimationNode );
 				animation_node->setAnchorPoint( Vec2( 0.f, 0.f ) );
 				animation_node->setScale( 2.f );
@@ -143,16 +145,20 @@ namespace step_mole
 				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 
-			case EventKeyboard::KeyCode::KEY_A: // Play Idle
+			case EventKeyboard::KeyCode::KEY_A:
+				PlayAnimation( cpg::animation::eIndex::wait );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_S:
+				PlayAnimation( cpg::animation::eIndex::wakeup );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_D:
 				PlayAnimation( cpg::animation::eIndex::idle );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_S: // Play Run
-				PlayAnimation( cpg::animation::eIndex::run );
-				break;
-
-			case EventKeyboard::KeyCode::KEY_D: // Play Win
-				PlayAnimation( cpg::animation::eIndex::win );
+			case EventKeyboard::KeyCode::KEY_F:
+				PlayAnimation( cpg::animation::eIndex::sleep );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_Q: // Play With Callback
@@ -176,10 +182,10 @@ namespace step_mole
 		{
 			auto animation_component = static_cast<cpg::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( cpg::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimationWithCallback(
-				cpg::animation::eIndex::run
+				cpg::animation::eIndex::damaged_1
 				, [animation_component]()
 				{
-					animation_component->PlayAnimation( cpg::animation::eIndex::win );
+					animation_component->PlayAnimation( cpg::animation::eIndex::damaged_2 );
 				}
 			);
 		}
