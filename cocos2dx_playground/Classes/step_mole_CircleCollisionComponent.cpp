@@ -60,7 +60,7 @@ namespace step_mole
 		const float margin = 3.f;
 
 		// Radius View
-		if( config.use_radius_helper )
+		if( config.bUseRadiusHelper )
 		{
 			auto label = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
@@ -74,7 +74,7 @@ namespace step_mole
 		}
 
 		// Collision Guide
-		if( config.use_guide_helper )
+		if( config.bUseGuideHelper )
 		{
 			auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
 			guide->setScale( mRadius / ( guide->getContentSize().width * 0.5f ) );
@@ -87,7 +87,7 @@ namespace step_mole
 		}
 
 		// Collision Indicator
-		if( config.use_indicator_helper )
+		if( config.bUseIndicatorHelper )
 		{
 			auto indicator = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
 			indicator->setScale( mRadius / ( indicator->getContentSize().width * 0.5f ) );
