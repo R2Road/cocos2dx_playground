@@ -21,6 +21,7 @@ namespace step_mole
 		mLastState( eState::Damaged_2 )
 		, mAnimationComponent( animation_component )
 		, mCircleCollisionComponent( circle_collision_component )
+		, mActionTime( 0.f )
 	{
 		setName( GetStaticName() );
 	}
@@ -74,8 +75,9 @@ namespace step_mole
 		);
 	}
 
-	void ObjectComponent::ProcessStart()
+	void ObjectComponent::ProcessStart( const float action_time )
 	{
+		mActionTime = action_time;
 		ChangeState( eState::Wakeup );
 	}
 	void ObjectComponent::ProcessDamage()
@@ -113,7 +115,15 @@ namespace step_mole
 
 		case eState::Action:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::idle, std::bind( &ObjectComponent::ChangeState, this, eState::Sleep ) );
+			mAnimationComponent->PlayAnimation( cpg::animation::eIndex::idle );
+			_owner->scheduleOnce(
+				[this]( float dt )
+				{
+					ChangeState( eState::Sleep );
+				}
+				, mActionTime
+				, "change_state"
+			);
 		}
 		break;
 
@@ -125,6 +135,8 @@ namespace step_mole
 
 		case eState::Damaged_1:
 		{
+			_owner->unschedule( "change_state" );
+
 			mCircleCollisionComponent->setEnabled( false );
 			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_1, std::bind( &ObjectComponent::ChangeState, this, eState::Damaged_2 ) );
 		}

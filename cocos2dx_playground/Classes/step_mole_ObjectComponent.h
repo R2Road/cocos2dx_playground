@@ -43,7 +43,7 @@ namespace step_mole
 		bool init() override;
 		void onAdd() override;
 
-		void ProcessStart();
+		void ProcessStart( const float action_time );
 		void ProcessDamage();
 
 	private:
@@ -53,5 +53,7 @@ namespace step_mole
 		eState mLastState;
 		cpg::AnimationComponent* const mAnimationComponent;
 		cocos2d::Component* const mCircleCollisionComponent;
+
+		float mActionTime;
 	};
 }

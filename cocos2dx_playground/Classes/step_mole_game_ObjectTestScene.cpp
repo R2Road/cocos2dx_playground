@@ -176,7 +176,7 @@ namespace step_mole
 			{
 				auto object_node = getChildByTag( TAG_ObjectNode );
 				auto animation_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
-				animation_component->ProcessStart();
+				animation_component->ProcessStart( 3.f );
 			}
 			return;
 
