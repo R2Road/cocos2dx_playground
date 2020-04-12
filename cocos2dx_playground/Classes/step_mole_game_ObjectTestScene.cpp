@@ -74,9 +74,9 @@ namespace step_mole
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Process Start( visible-on > ani > ani > ani > visible-off )";
+				ss << "[1] : Object - Process Start";
 				ss << std::endl;
-				ss << "[2] : Process End( ani > visible-off ) : Possible when Actor is Visible";
+				ss << "[2] : Object - Kill";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
