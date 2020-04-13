@@ -183,7 +183,7 @@ namespace ui_practice
 						button->setScale9Enabled( true );
 						button->setContentSize( ButtonSize );
 						button->setPositionX( RootSize.width * 0.5f );
-						button->addTouchEventListener( CC_CALLBACK_2( LayoutNScrollViewScene::onTileSheetButton, this ) );
+						button->addTouchEventListener( CC_CALLBACK_2( LayoutNScrollViewScene::onDummyButton, this ) );
 
 						// Label
 						{
@@ -236,7 +236,7 @@ namespace ui_practice
 		Node::onExit();
 	}
 
-	void LayoutNScrollViewScene::onTileSheetButton( Ref* sender, ui::Widget::TouchEventType touchEventType )
+	void LayoutNScrollViewScene::onDummyButton( Ref* sender, ui::Widget::TouchEventType touchEventType )
 	{
 		if( cocos2d::ui::Widget::TouchEventType::BEGAN == touchEventType )
 		{

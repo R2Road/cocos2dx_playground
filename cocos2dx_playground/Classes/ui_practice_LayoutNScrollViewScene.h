@@ -18,7 +18,7 @@ namespace ui_practice
 		void onExit() override;
 
 	private:
-		void onTileSheetButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touchEventType );
+		void onDummyButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touchEventType );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
