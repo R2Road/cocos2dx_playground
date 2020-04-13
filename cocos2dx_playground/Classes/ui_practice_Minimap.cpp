@@ -1,4 +1,4 @@
-#include "ui_practice_UIAndCamera.h"
+#include "ui_practice_Minimap.h"
 
 #include <new>
 #include <numeric>
@@ -7,25 +7,32 @@
 #include "2d/CCCamera.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "renderer/CCFrameBuffer.h"
 
 #include "ui_practice_RootScene.h"
 
 USING_NS_CC;
 
+namespace
+{
+	const int TAG_CaptureCamera = 20140416;
+}
+
 namespace ui_practice
 {
-	UIAndCamera::UIAndCamera() :
+	Minimap::Minimap() :
 		mKeyboardListener( nullptr )
 		, mCurrentPressedCount( 0 )
 		, mCameraMoveVec2()
 	{}
 
-	Scene* UIAndCamera::create()
+	Scene* Minimap::create()
 	{
-		auto ret = new ( std::nothrow ) UIAndCamera();
+		auto ret = new ( std::nothrow ) Minimap();
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -41,7 +48,7 @@ namespace ui_practice
 		return ret;
 	}
 
-	bool UIAndCamera::init()
+	bool Minimap::init()
 	{
 		if( !Scene::init() )
 		{
@@ -77,7 +84,7 @@ namespace ui_practice
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 150 ) );
 			addChild( background_layer, -1 );
 		}
 
@@ -89,61 +96,93 @@ namespace ui_practice
 			{
 				auto label = Label::createWithTTF( "Just Label", "fonts/arial.ttf", 9 );
 				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.25f )
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( label );
 			}
 
-			// Label with UI Camera
+			// Capture Game View
+			{
+				const auto capture_view_size = visibleSize;
+
+				// capture camera
+				auto capture_camera = Camera::createOrthographic(
+					capture_view_size.width, capture_view_size.height
+					, 1, 1000
+				);
+				capture_camera->setTag( TAG_CaptureCamera );
+				capture_camera->setCameraFlag( CameraFlag::DEFAULT );
+				capture_camera->setDepth( 1 ); // important - CameraFlag::DEFAULT is 0, user defined camera is -1 by default
+				capture_camera->setPositionZ( 1 );
+				capture_camera->lookAt( Vec3( 0, 0, 0 ), Vec3( 0, 1, 0 ) );
+				addChild( capture_camera );
+				{
+					// frame buffer
+					auto frame_buffer = experimental::FrameBuffer::create( 1, capture_view_size.width, capture_view_size.height );
+					{
+						frame_buffer->setClearColor( Color4F::RED );
+						capture_camera->setFrameBufferObject( frame_buffer );
+					}
+
+					// render target
+					{
+						auto render_target_normal = experimental::RenderTarget::create( capture_view_size.width, capture_view_size.height );
+						render_target_normal->getTexture()->setAliasTexParameters();
+						frame_buffer->attachRenderTarget( render_target_normal );
+					}
+
+					//stencil
+					{
+						auto render_target_depth_stencil = experimental::RenderTargetDepthStencil::create( capture_view_size.width, capture_view_size.height );
+						frame_buffer->attachDepthStencilTarget( render_target_depth_stencil );
+					}
+
+					// view
+					{
+						Texture2D* texture = frame_buffer->getRenderTarget()->getTexture();
+						auto sprite = Sprite::createWithTexture( texture );
+						sprite->setAnchorPoint( Vec2::ONE );
+						sprite->setScale( 0.5f );
+						sprite->setCameraMask( static_cast<unsigned short>( CameraFlag::USER1 ) );
+						sprite->setFlippedY( true );
+						sprite->setPosition( Vec2(
+							visibleOrigin.x + visibleSize.width
+							, visibleOrigin.y + visibleSize.height
+						) );
+						addChild( sprite );
+					}
+				}
+			}
+
+			// UI Camera
 			{
 				auto ui_camera = Camera::createOrthographic(
-					Director::getInstance()->getWinSize().width
-					, Director::getInstance()->getWinSize().height
-					, 1
-					, 1000
+					visibleSize.width, visibleSize.height
+					, 1, 1000
 				);
-				{
-					ui_camera->setCameraFlag( CameraFlag::USER1 );
-					ui_camera->setDepth( 1 ); // important - CameraFlag::DEFAULT is 0, user defined camera is -1 by default
-					ui_camera->setPositionZ( 1 );
-					ui_camera->lookAt( Vec3( 0, 0, 0 ), Vec3( 0, 1, 0 ) );
-					addChild( ui_camera );
-				}
-
-				auto layer = LayerColor::create( Color4B( 0, 0, 255, 150 ), visibleSize.width * 0.5f, visibleSize.height );
-				layer->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y
-				) );
-				addChild( layer );
-				{
-					auto label = Label::createWithTTF( "Label with UI Camera", "fonts/arial.ttf", 9 );
-					label->setColor( Color3B::GREEN );
-					label->setPosition( Vec2(
-						layer->getContentSize().width * 0.5f
-						, layer->getContentSize().height * 0.5f
-					) );
-					layer->addChild( label );
-				}
-				layer->setCameraMask( static_cast<unsigned short>( CameraFlag::USER1 ), true ); // important
+				ui_camera->setCameraFlag( CameraFlag::USER1 );
+				ui_camera->setDepth( 2 );
+				ui_camera->setPositionZ( 1 );
+				ui_camera->lookAt( Vec3( 0, 0, 0 ), Vec3( 0, 1, 0 ) );
+				addChild( ui_camera );
 			}
 		}
 
 		return true;
 	}
 
-	void UIAndCamera::onEnter()
+	void Minimap::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( UIAndCamera::onKeyPressed, this );
-		mKeyboardListener->onKeyReleased = CC_CALLBACK_2( UIAndCamera::onKeyReleased, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( Minimap::onKeyPressed, this );
+		mKeyboardListener->onKeyReleased = CC_CALLBACK_2( Minimap::onKeyReleased, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void UIAndCamera::onExit()
+	void Minimap::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -152,7 +191,7 @@ namespace ui_practice
 		Node::onExit();
 	}
 
-	void UIAndCamera::update( float dt )
+	void Minimap::update( float dt )
 	{
 		if( 0 < mCurrentPressedCount )
 		{
@@ -162,13 +201,21 @@ namespace ui_practice
 				const auto temp = mCameraMoveVec2 * 5.f;
 
 				getDefaultCamera()->setPosition3D( getDefaultCamera()->getPosition3D() + Vec3( -temp.x, -temp.y, 0 ) );
+				for( auto c : getCameras() )
+				{
+					if( TAG_CaptureCamera == c->getTag() )
+					{
+						c->setPosition3D( c->getPosition3D() + Vec3( -temp.x, -temp.y, 0 ) );
+						break;
+					}
+				}
 			}
 		}
 
 		Scene::update( dt );
 	}
 
-	void UIAndCamera::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void Minimap::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{
@@ -197,7 +244,7 @@ namespace ui_practice
 
 		++mCurrentPressedCount;
 	}
-	void UIAndCamera::onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event )
+	void Minimap::onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ )
 	{
 		if( 0 == mCurrentPressedCount )
 		{

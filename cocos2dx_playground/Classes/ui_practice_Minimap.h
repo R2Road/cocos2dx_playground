@@ -5,10 +5,10 @@
 
 namespace ui_practice
 {
-	class UIAndCamera : public cocos2d::Scene
+	class Minimap : public cocos2d::Scene
 	{
 	private:
-		UIAndCamera();
+		Minimap();
 
 	public:
 		static const char* getTitle() { return "UI And Camera"; }
