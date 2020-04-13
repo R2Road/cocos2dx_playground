@@ -7,6 +7,8 @@
 #include "cocos/2d/CCSprite.h"
 #include "cocos/base/ccUTF8.h"
 
+#include "step_mole_CircleCollisionComponentConfig.h"
+
 USING_NS_CC;
 
 namespace step_mole
@@ -31,10 +33,10 @@ namespace step_mole
 		}
 	}
 
-	CircleCollisionComponent* CircleCollisionComponent::create( const float radius, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper )
+	CircleCollisionComponent* CircleCollisionComponent::create( const float radius, const CircleCollisionComponentConfig& config )
 	{
 		auto ret = new ( std::nothrow ) CircleCollisionComponent( radius );
-		if( !ret || !ret->init( use_radius_helper, use_guide_helper, use_indicator_helper ) )
+		if( !ret || !ret->init( config ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -48,7 +50,7 @@ namespace step_mole
 		return ret;
 	}
 
-	bool CircleCollisionComponent::init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper )
+	bool CircleCollisionComponent::init( const CircleCollisionComponentConfig& config )
 	{
 		if( !ParentT::init() )
 		{
@@ -58,7 +60,7 @@ namespace step_mole
 		const float margin = 3.f;
 
 		// Radius View
-		if( use_radius_helper )
+		if( config.bUseRadiusHelper )
 		{
 			auto label = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
@@ -72,7 +74,7 @@ namespace step_mole
 		}
 
 		// Collision Guide
-		if( use_guide_helper )
+		if( config.bUseGuideHelper )
 		{
 			auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
 			guide->setScale( mRadius / ( guide->getContentSize().width * 0.5f ) );
@@ -85,7 +87,7 @@ namespace step_mole
 		}
 
 		// Collision Indicator
-		if( use_indicator_helper )
+		if( config.bUseIndicatorHelper )
 		{
 			auto indicator = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
 			indicator->setScale( mRadius / ( indicator->getContentSize().width * 0.5f ) );

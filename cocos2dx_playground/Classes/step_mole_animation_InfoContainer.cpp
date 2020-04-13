@@ -28,7 +28,7 @@ namespace step_mole
 				, {
 					cpg::animation::eIndex::sleep
 					, 0.1f
-					, std::vector<std::string>{ "step_mole_target_slp_0.png", "step_mole_target_slp_1.png", "step_mole_target_slp_2.png", "step_mole_target_slp_3.png", "step_mole_target_slp_4.png" }
+					, std::vector<std::string>{ "step_mole_target_slp_0.png", "step_mole_target_slp_1.png", "step_mole_target_slp_2.png", "step_mole_target_slp_3.png", "step_mole_target_slp_4.png", "step_mole_target_slp_5.png" }
 				}
 
 				, {
@@ -40,7 +40,7 @@ namespace step_mole
 				, {
 					cpg::animation::eIndex::damaged_2
 					, 0.06f
-					, std::vector<std::string>{ "step_mole_target_dmgd2_0.png", "step_mole_target_dmgd2_1.png", "step_mole_target_dmgd2_2.png", "step_mole_target_dmgd2_3.png", "step_mole_target_dmgd2_4.png" }
+					, std::vector<std::string>{ "step_mole_target_dmgd2_0.png", "step_mole_target_dmgd2_1.png", "step_mole_target_dmgd2_2.png", "step_mole_target_dmgd2_3.png", "step_mole_target_dmgd2_4.png", "step_mole_target_dmgd2_5.png" }
 				}
 			};
 

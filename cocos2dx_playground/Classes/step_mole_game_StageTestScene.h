@@ -7,6 +7,8 @@ namespace step_mole
 {
 	namespace game
 	{
+		class StageView;
+
 		class StageTestScene : public cocos2d::Scene
 		{
 		private:
@@ -25,6 +27,7 @@ namespace step_mole
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			StageView* mStageView;
 		};
 	}
 }

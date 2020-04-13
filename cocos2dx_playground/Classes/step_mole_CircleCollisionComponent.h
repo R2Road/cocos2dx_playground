@@ -6,6 +6,8 @@
 
 namespace step_mole
 {
+	struct CircleCollisionComponentConfig;
+
 	class CircleCollisionComponent : public cocos2d::Component
 	{
 	private:
@@ -16,12 +18,12 @@ namespace step_mole
 
 	public:
 		static const char* GetStaticName() { return "MOLE_CIRCLECOLLISION"; }
-		static CircleCollisionComponent* create( const float radiuss, const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
+		static CircleCollisionComponent* create( const float radiuss, const CircleCollisionComponentConfig& config );
 
 		void setEnabled( bool enabled ) override;
 
 	private:
-		bool init( const bool use_radius_helper, const bool use_guide_helper, const bool use_indicator_helper );
+		bool init( const CircleCollisionComponentConfig& config );
 		void onAdd() override;
 		void onRemove() override;
 

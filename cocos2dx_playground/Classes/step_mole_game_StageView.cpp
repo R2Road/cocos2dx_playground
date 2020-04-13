@@ -12,6 +12,7 @@
 #include "step_mole_AnimationComponent.h"
 #include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
+#include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_ObjectComponent.h"
 
 USING_NS_CC;
@@ -22,12 +23,17 @@ namespace step_mole
 	{
 		StageView::StageView( const StageConfig stage_config ) :
 			mStageConfig( stage_config )
+			, mObjectComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 		{}
 
-		StageView* StageView::create( const StageConfig stage_config, const StageViewConfig config )
+		StageView* StageView::create(
+			const StageConfig stage_config
+			, const StageViewConfig stage_view_config
+			, const CircleCollisionComponentConfig& circle_collision_component_config
+		)
 		{
 			auto ret = new ( std::nothrow ) StageView( stage_config );
-			if( !ret || !ret->init( config ) )
+			if( !ret || !ret->init( stage_view_config, circle_collision_component_config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -41,7 +47,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageView::init( const StageViewConfig config )
+		bool StageView::init( const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
 		{
 			if( !Node::init() )
 			{
@@ -62,7 +68,7 @@ namespace step_mole
 			setContentSize( TotalSize );
 
 			// Pivot
-			if( config.bShowPivot )
+			if( stage_view_config.bShowPivot )
 			{
 				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 				pivot->setScale( 4.f );
@@ -72,7 +78,7 @@ namespace step_mole
 			//
 			// Background
 			//
-			if( config.bShowBackgroundGuide )
+			if( stage_view_config.bShowBackgroundGuide )
 			{
 				auto background_guide = LayerColor::create( Color4B( 255, 0, 255, 150 ), getContentSize().width, getContentSize().height );
 				addChild( background_guide, -1 );
@@ -125,20 +131,26 @@ namespace step_mole
 				std::uniform_int_distribution<> dist( 0, 1 );
 
 				const Vec2 offset( mStageConfig.BlockSize.width * 0.5f, mStageConfig.BlockSize.height * 0.5f );
+				std::size_t object_linear_index = 0;
 
 				for( int by = 0; mStageConfig.BlockCount_Vercital > by; ++by )
 				{
 					for( int bx = 0; mStageConfig.BlockCount_Horizontal > bx; ++bx )
 					{
+						object_linear_index = bx + ( mStageConfig.BlockCount_Horizontal * by );
+
 						auto object_node = MakeObject(
-							bx + ( mStageConfig.BlockCount_Vercital * by )
+							object_linear_index
 							, Vec2(
 								offset
 								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
 							)
 							, dist( randomEngine )
+							, circle_collision_component_config
 						);
 						content_root_node->addChild( object_node, 1 );
+
+						mObjectComponentList[object_linear_index] = static_cast<ObjectComponent*>( object_node->getComponent( ObjectComponent::GetStaticName() ) );
 					}
 				}
 			}
@@ -161,7 +173,12 @@ namespace step_mole
 			return true;
 		}
 
-		Node* StageView::MakeObject( const int object_tag, const cocos2d::Vec2 object_position, const int defalut_view_type )
+		Node* StageView::MakeObject(
+			const int object_tag
+			, const cocos2d::Vec2 object_position
+			, const int defalut_view_type
+			, const CircleCollisionComponentConfig& circle_collision_component_config
+		)
 		{
 			auto object_node = Node::create();
 			object_node->setTag( object_tag );
@@ -186,7 +203,7 @@ namespace step_mole
 				view_node->addComponent( animation_component );
 
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, true, true, true );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, circle_collision_component_config );
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component
@@ -199,6 +216,13 @@ namespace step_mole
 		void StageView::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
 		{
 			CCLOG( "On Stage Click" );
+		}
+
+		void StageView::RequestAction( const std::size_t object_index, const float life_time )
+		{
+			CCASSERT( object_index < mObjectComponentList.size(), "Invalid Object Index" );
+
+			mObjectComponentList[object_index]->ProcessStart( life_time );
 		}
 	} // namespace game
 } // namespace step_mole

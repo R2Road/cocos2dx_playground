@@ -19,6 +19,7 @@
 #include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponent.h"
+#include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_RootScene.h"
 
 USING_NS_CC;
@@ -152,7 +153,7 @@ namespace step_mole
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Collision Component
-					actor_root->addComponent( CircleCollisionComponent::create( radius, true, true, true ) );
+					actor_root->addComponent( CircleCollisionComponent::create( radius, CircleCollisionComponentConfig{ true, true, true } ) );
 				}
 				addChild( actor_root, 100 );
 			}
@@ -290,7 +291,7 @@ namespace step_mole
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				auto circle_collision_component = CircleCollisionComponent::create( radius, false, false, false );
+				auto circle_collision_component = CircleCollisionComponent::create( radius, CircleCollisionComponentConfig{ false, false, false } );
 				circle_collision_component->setEnabled( collision_enable );
 				bullet_root_node->addComponent( circle_collision_component );
 			}
