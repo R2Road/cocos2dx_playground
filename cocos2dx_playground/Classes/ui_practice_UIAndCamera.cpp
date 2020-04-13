@@ -10,10 +10,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "ui/UIButton.h"
-#include "ui/UILayoutParameter.h"
-#include "ui/UIScrollView.h"
-#include "2d/CCSprite.h"
 
 #include "ui_practice_RootScene.h"
 
