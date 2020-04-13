@@ -1,7 +1,5 @@
 #pragma once
 
-#include <bitset>
-
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
@@ -10,16 +8,6 @@ namespace ui_practice
 	class UIAndCamera : public cocos2d::Scene
 	{
 	private:
-		enum class eArrow
-		{
-			Up
-			, Down
-			, Right
-			, Left
-
-			, SIZE
-			, FIRST = Up,
-		};
 		UIAndCamera();
 
 	public:
@@ -35,11 +23,9 @@ namespace ui_practice
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 		void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
-		void setArrowFlag( const eArrow target_arrow, const bool bStatus );
-
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-		std::bitset<4u> mArrowFlags;
+		int mCurrentPressedCount;
+		cocos2d::Vec2 mCameraMoveVec2;
 	};
 }

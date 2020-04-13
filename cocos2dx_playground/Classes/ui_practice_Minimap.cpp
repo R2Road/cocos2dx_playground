@@ -24,7 +24,11 @@ namespace
 
 namespace ui_practice
 {
-	Minimap::Minimap() : mKeyboardListener( nullptr ), mArrowFlags( 0ull ) {}
+	Minimap::Minimap() :
+		mKeyboardListener( nullptr )
+		, mCurrentPressedCount( 0 )
+		, mCameraMoveVec2()
+	{}
 
 	Scene* Minimap::create()
 	{
@@ -116,8 +120,10 @@ namespace ui_practice
 				{
 					// frame buffer
 					auto frame_buffer = experimental::FrameBuffer::create( 1, capture_view_size.width, capture_view_size.height );
-					frame_buffer->setClearColor( Color4F::RED );
-					capture_camera->setFrameBufferObject( frame_buffer );
+					{
+						frame_buffer->setClearColor( Color4F::RED );
+						capture_camera->setFrameBufferObject( frame_buffer );
+					}
 
 					// render target
 					{
@@ -187,36 +193,13 @@ namespace ui_practice
 
 	void Minimap::update( float dt )
 	{
-		if( 0 < mArrowFlags.to_ulong() )
+		if( 0 < mCurrentPressedCount )
 		{
-			Vec2 temp;
-			for( auto cur = static_cast<std::size_t>( eArrow::FIRST ), end = static_cast<std::size_t>( eArrow::SIZE ); end > cur; ++cur )
+			if( 0.f < std::abs( mCameraMoveVec2.x ) || 0.f < std::abs( mCameraMoveVec2.y ) )
 			{
-				if( !mArrowFlags[cur] )
-				{
-					continue;
-				}
+				CCLOG( "x : %.2f, y : %.2f", mCameraMoveVec2.x, mCameraMoveVec2.y );
+				const auto temp = mCameraMoveVec2 * 5.f;
 
-				switch( static_cast<eArrow>( cur ) )
-				{
-				case eArrow::Up:
-					temp.y += 1.f;
-					break;
-				case eArrow::Down:
-					temp.y -= 1.f;
-					break;
-				case eArrow::Right:
-					temp.x += 1.f;
-					break;
-				case eArrow::Left:
-					temp.x -= 1.f;
-					break;
-				}
-			}
-
-			if( 0.f < std::abs( temp.x ) || 0.f < std::abs( temp.y ) )
-			{
-				temp.scale( 5.f );
 				getDefaultCamera()->setPosition3D( getDefaultCamera()->getPosition3D() + Vec3( -temp.x, -temp.y, 0 ) );
 				for( auto c : getCameras() )
 				{
@@ -243,46 +226,50 @@ namespace ui_practice
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
-			setArrowFlag( eArrow::Up, true );
+			mCameraMoveVec2.y += 1.f;
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-			setArrowFlag( eArrow::Down, true );
+			mCameraMoveVec2.y -= 1.f;
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			setArrowFlag( eArrow::Right, true );
+			mCameraMoveVec2.x += 1.f;
 			break;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-			setArrowFlag( eArrow::Left, true );
+			mCameraMoveVec2.x -= 1.f;
 			break;
 
 		default:
 			return;
 		}
+
+		++mCurrentPressedCount;
 	}
-	void Minimap::onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event )
+	void Minimap::onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ )
 	{
+		if( 0 == mCurrentPressedCount )
+		{
+			return;
+		}
+
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
-			setArrowFlag( eArrow::Up, false );
+			mCameraMoveVec2.y -= 1.f;
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-			setArrowFlag( eArrow::Down, false );
+			mCameraMoveVec2.y += 1.f;
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			setArrowFlag( eArrow::Right, false );
+			mCameraMoveVec2.x -= 1.f;
 			break;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-			setArrowFlag( eArrow::Left, false );
+			mCameraMoveVec2.x += 1.f;
 			break;
 
 		default:
 			return;
 		}
-	}
 
-	void Minimap::setArrowFlag( const eArrow target_arrow, const bool bStatus )
-	{
-		mArrowFlags[static_cast<std::size_t>( target_arrow )] = bStatus;
+		--mCurrentPressedCount;
 	}
 }
