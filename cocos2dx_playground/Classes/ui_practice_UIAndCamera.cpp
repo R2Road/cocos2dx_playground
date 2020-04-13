@@ -107,10 +107,10 @@ namespace ui_practice
 					addChild( ui_camera );
 				}
 
-				auto layer = LayerColor::create( Color4B::BLUE, 120, 50 );
+				auto layer = LayerColor::create( Color4B( 0, 0, 255, 150 ), visibleSize.width * 0.5f, visibleSize.height );
 				layer->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.75f ) - ( layer->getContentSize().width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( layer->getContentSize().height * 0.5f )
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y
 				) );
 				addChild( layer );
 				{
@@ -179,6 +179,7 @@ namespace ui_practice
 
 			if( 0.f < std::abs( temp.x ) || 0.f < std::abs( temp.y ) )
 			{
+				temp.scale( 5.f );
 				getDefaultCamera()->setPosition3D( getDefaultCamera()->getPosition3D() + Vec3( -temp.x, -temp.y, 0 ) );
 			}
 		}
