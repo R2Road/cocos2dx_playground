@@ -5,6 +5,7 @@
 
 #include "PlayGroundScene.h"
 
+#include "ui_practice_UIAndCamera.h"
 #include "ui_practice_LayoutNScrollViewScene.h"
 
 USING_NS_CC;
@@ -41,7 +42,9 @@ namespace ui_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << ui_practice::LayoutNScrollViewScene::getTitle();
+			ss << "[1] : " << ui_practice::UIAndCamera::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << ui_practice::LayoutNScrollViewScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -90,6 +93,9 @@ namespace ui_practice
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( ui_practice::UIAndCamera::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
 			break;
 

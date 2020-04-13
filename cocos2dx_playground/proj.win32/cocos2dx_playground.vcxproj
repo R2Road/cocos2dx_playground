@@ -234,6 +234,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_LayoutNScrollViewScene.cpp" />
+    <ClCompile Include="..\Classes\ui_practice_UIAndCamera.cpp" />
     <ClCompile Include="..\Classes\ui_practice_RootScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -327,6 +328,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h" />
     <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h" />
     <ClInclude Include="..\Classes\ui_practice_LayoutNScrollViewScene.h" />
+    <ClInclude Include="..\Classes\ui_practice_UIAndCamera.h" />
     <ClInclude Include="..\Classes\ui_practice_RootScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

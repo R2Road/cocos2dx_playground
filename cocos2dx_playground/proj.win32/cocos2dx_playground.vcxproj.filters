@@ -369,6 +369,9 @@
     <ClCompile Include="..\Classes\step_mole_AnimationComponent.cpp">
       <Filter>src\scene\step_04_mole\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_UIAndCamera.cpp">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -643,6 +646,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponentConfig.h">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_UIAndCamera.h">
+      <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
