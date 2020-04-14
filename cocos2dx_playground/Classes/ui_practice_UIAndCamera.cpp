@@ -98,8 +98,8 @@ namespace ui_practice
 			// Label with UI Camera
 			{
 				auto ui_camera = Camera::createOrthographic(
-					Director::getInstance()->getWinSize().width
-					, Director::getInstance()->getWinSize().height
+					visibleSize.width
+					, visibleSize.height
 					, 1
 					, 1000
 				);
