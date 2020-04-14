@@ -23,9 +23,12 @@ namespace ui_practice
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 		void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
+		void updateMoveSpeedLabel();
+
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 		int mCurrentPressedCount;
 		cocos2d::Vec2 mCameraMoveVec2;
+		int mCameraMoveSpeed;
 	};
 }

@@ -11,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 #include "renderer/CCFrameBuffer.h"
 
 #include "ui_practice_RootScene.h"
@@ -20,6 +21,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_CaptureCamera = 20140416;
+	const int TAG_MoveSpeedLabel = 20140417;
 }
 
 namespace ui_practice
@@ -28,6 +30,7 @@ namespace ui_practice
 		mKeyboardListener( nullptr )
 		, mCurrentPressedCount( 0 )
 		, mCameraMoveVec2()
+		, mCameraMoveSpeed( 5 )
 	{}
 
 	Scene* Minimap::create()
@@ -70,6 +73,10 @@ namespace ui_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[Arrow Key] : Move Default Camera";
+			ss << std::endl;
+			ss << "[1] : Increase Camera Speed";
+			ss << std::endl;
+			ss << "[2] : Decrease Camera Speed";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -86,6 +93,24 @@ namespace ui_practice
 		{
 			auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 150 ) );
 			addChild( background_layer, -1 );
+		}
+
+		//
+		// Move Speed
+		//
+		{
+			auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+			label->setTag( TAG_MoveSpeedLabel );
+			label->setAnchorPoint( Vec2( 1.f, 0.f ) );
+			label->setColor( Color3B::GREEN );
+			label->setCameraMask( static_cast<unsigned short>( CameraFlag::USER1 ) );
+			label->setPosition( Vec2(
+				visibleOrigin.x + visibleSize.width
+				, visibleOrigin.y
+			) );
+			addChild( label, std::numeric_limits<int>::max() );
+
+			updateMoveSpeedLabel();
 		}
 
 		//
@@ -198,7 +223,7 @@ namespace ui_practice
 			if( 0.f < std::abs( mCameraMoveVec2.x ) || 0.f < std::abs( mCameraMoveVec2.y ) )
 			{
 				CCLOG( "x : %.2f, y : %.2f", mCameraMoveVec2.x, mCameraMoveVec2.y );
-				const auto temp = mCameraMoveVec2 * 5.f;
+				const auto temp = mCameraMoveVec2 * mCameraMoveSpeed;
 
 				getDefaultCamera()->setPosition3D( getDefaultCamera()->getPosition3D() + Vec3( -temp.x, -temp.y, 0 ) );
 				for( auto c : getCameras() )
@@ -221,6 +246,17 @@ namespace ui_practice
 		{
 			Director::getInstance()->replaceScene( RootScene::create() );
 			return;
+		}
+
+		if( EventKeyboard::KeyCode::KEY_1 == keycode )
+		{
+			++mCameraMoveSpeed;
+			updateMoveSpeedLabel();
+		}
+		else if( EventKeyboard::KeyCode::KEY_2 == keycode )
+		{
+			mCameraMoveSpeed = std::max( 1, mCameraMoveSpeed - 1 );
+			updateMoveSpeedLabel();
 		}
 
 		switch( keycode )
@@ -271,5 +307,11 @@ namespace ui_practice
 		}
 
 		--mCurrentPressedCount;
+	}
+
+	void Minimap::updateMoveSpeedLabel()
+	{
+		auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeedLabel ) );
+		label->setString( StringUtils::format( "Move Speed : %d", mCameraMoveSpeed ) );
 	}
 }
