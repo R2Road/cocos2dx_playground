@@ -43,9 +43,9 @@ namespace ui_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << ui_practice::UIAndCamera::getTitle();
+			ss << "[1] : " << ui_practice::LayoutNScrollViewScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << ui_practice::LayoutNScrollViewScene::getTitle();
+			ss << "[2] : " << ui_practice::UIAndCamera::getTitle();
 			ss << std::endl;
 			ss << "[3] : " << ui_practice::Minimap::getTitle();
 
@@ -96,10 +96,10 @@ namespace ui_practice
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( ui_practice::UIAndCamera::create() );
+			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
+			Director::getInstance()->replaceScene( ui_practice::UIAndCamera::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( ui_practice::Minimap::create() );
