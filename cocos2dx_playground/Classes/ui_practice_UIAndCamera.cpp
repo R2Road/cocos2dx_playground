@@ -197,7 +197,7 @@ namespace ui_practice
 
 		++mCurrentPressedCount;
 	}
-	void UIAndCamera::onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event )
+	void UIAndCamera::onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ )
 	{
 		if( 0 == mCurrentPressedCount )
 		{
