@@ -11,7 +11,7 @@ namespace ui_practice
 		Minimap();
 
 	public:
-		static const char* getTitle() { return "UI And Camera"; }
+		static const char* getTitle() { return "Minimap"; }
 		static cocos2d::Scene* create();
 
 		bool init() override;
