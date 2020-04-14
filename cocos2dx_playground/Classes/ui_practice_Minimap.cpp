@@ -129,7 +129,7 @@ namespace ui_practice
 
 			// Capture Game View
 			{
-				const auto capture_view_size = visibleSize;
+				const auto capture_view_size = visibleSize * 1.4f;
 
 				// capture camera
 				auto capture_camera = Camera::createOrthographic(
@@ -139,8 +139,12 @@ namespace ui_practice
 				capture_camera->setTag( TAG_CaptureCamera );
 				capture_camera->setCameraFlag( CameraFlag::DEFAULT );
 				capture_camera->setDepth( 1 ); // important - CameraFlag::DEFAULT is 0, user defined camera is -1 by default
-				capture_camera->setPositionZ( 1 );
-				capture_camera->lookAt( Vec3( 0, 0, 0 ), Vec3( 0, 1, 0 ) );
+				capture_camera->lookAt( Vec3( 0, 0, 0 ), Vec3( 0, 1, 0 ) ); // look at first before setPosition3D
+				capture_camera->setPosition3D( Vec3(
+					-( capture_view_size.width - visibleSize.width ) * 0.5f
+					, -( capture_view_size.height - visibleSize.height ) * 0.5f
+					, 1
+				) );
 				addChild( capture_camera );
 				{
 					// frame buffer
@@ -231,6 +235,7 @@ namespace ui_practice
 					if( TAG_CaptureCamera == c->getTag() )
 					{
 						c->setPosition3D( c->getPosition3D() + Vec3( -temp.x, -temp.y, 0 ) );
+						CCLOG( "X : %.2f, Y : %.2f, Z : %.2f", c->getPosition3D().x, c->getPosition3D().y, c->getPosition3D().z );
 						break;
 					}
 				}

@@ -106,8 +106,8 @@ namespace ui_practice
 				{
 					ui_camera->setCameraFlag( CameraFlag::USER1 );
 					ui_camera->setDepth( 1 ); // important - CameraFlag::DEFAULT is 0, user defined camera is -1 by default
-					ui_camera->setPositionZ( 1 );
 					ui_camera->lookAt( Vec3( 0, 0, 0 ), Vec3( 0, 1, 0 ) );
+					ui_camera->setPositionZ( 1 );
 					addChild( ui_camera );
 				}
 
