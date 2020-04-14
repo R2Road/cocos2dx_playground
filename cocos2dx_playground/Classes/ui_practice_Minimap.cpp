@@ -72,7 +72,7 @@ namespace ui_practice
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[Arrow Key] : Move Default Camera";
+			ss << "[Arrow Key] : Move Camera - Default/Capture";
 			ss << std::endl;
 			ss << "[1] : Increase Camera Speed";
 			ss << std::endl;
