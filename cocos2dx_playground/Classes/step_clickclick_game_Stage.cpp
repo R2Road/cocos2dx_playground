@@ -1,5 +1,6 @@
 #include "step_clickclick_game_Stage.h"
 
+#include <algorithm>
 #include <cassert>
 #include <chrono>
 #include <new>
@@ -148,8 +149,8 @@ namespace step_clickclick
 				// shuffle
 				const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 				std::default_random_engine random_engine( seed );
-				shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
-				shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
+				std::shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
+				std::shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
 			}
 
 			const int current_pivot_x = mCenterX - ( width / 2 );
