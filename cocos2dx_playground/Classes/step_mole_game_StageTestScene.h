@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
@@ -7,6 +9,7 @@ namespace step_mole
 {
 	namespace game
 	{
+		using TargetManagerUp = std::unique_ptr<class TargetManager>;
 		class StageView;
 
 		class StageTestScene : public cocos2d::Scene
@@ -27,6 +30,8 @@ namespace step_mole
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			TargetManagerUp mTargetManager;
 			StageView* mStageView;
 		};
 	}
