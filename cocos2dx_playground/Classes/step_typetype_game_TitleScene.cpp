@@ -43,7 +43,9 @@ namespace step_typetype
 		bool TitleScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
@@ -72,7 +74,6 @@ namespace step_typetype
 			{
 				auto title = Sprite::create( "textures/step_typetype/step_typetype_title.png" );
 				title->getTexture()->setAliasTexParameters();
-				title->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				title->setScaleX( visibleSize.width / title->getContentSize().width );
 				title->setScaleY( visibleSize.height / title->getContentSize().height );
 				title->setPosition( Vec2(
@@ -88,7 +89,6 @@ namespace step_typetype
 			//
 			{
 				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 14 );
-				request_input_label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				request_input_label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.23f

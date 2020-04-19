@@ -72,7 +72,6 @@ namespace step_mole
 			//
 			{
 				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 14 );
-				request_input_label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				request_input_label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.23f
