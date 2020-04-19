@@ -65,5 +65,10 @@ namespace step_mole
 			mRestTarget.push_front( target_index );
 			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
 		}
+
+		void TargetManager::Update()
+		{
+			mIdleTarget.splice( mIdleTarget.end(), mRestTarget );
+		}
 	}
 }
