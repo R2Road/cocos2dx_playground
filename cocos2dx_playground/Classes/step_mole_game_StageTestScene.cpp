@@ -157,7 +157,7 @@ namespace step_mole
 				const auto target_index = mTargetManager->GetIdleTarget();
 				if( -1 != target_index )
 				{
-					mStageView->RequestAction( GetRandomObjectIndex(), 3.f );
+					mStageView->RequestAction( target_index, 3.f );
 				}
 
 				return;
