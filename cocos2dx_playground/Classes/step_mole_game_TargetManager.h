@@ -26,11 +26,12 @@ namespace step_mole
 
 		private:
 			bool Init( const StageConfig& stage_config );
+			void Shuffle( ContainerT& target_container );
 
 		public:
 			int GetIdleTarget();
 			void ComeHomeTarget( const int target_index );
-			void Update();
+			void Refill();
 
 		private:
 			ContainerT mIdleTarget;

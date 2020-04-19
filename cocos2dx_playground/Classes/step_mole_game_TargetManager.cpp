@@ -34,16 +34,22 @@ namespace step_mole
 			mIdleTarget.resize( target_count, -1 );
 			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......
 
+			
+			Shuffle( mIdleTarget );
+
+			return true;
+		}
+
+		void TargetManager::Shuffle( ContainerT& target_container )
+		{
 			//
 			// shuffle for list : from cplusplus.com
 			// ...mm not good.
 			//
-			std::vector<ValueT> temp_vector( mIdleTarget.begin(), mIdleTarget.end() );
-			std::shuffle( temp_vector.begin(), temp_vector.end(), std::mt19937{ std::random_device{}() } );
+			std::vector<ValueT> temp_vector( target_container.begin(), target_container.end() );
+			std::shuffle( temp_vector.begin(), temp_vector.end(), std::mt19937{ std::random_device{}( ) } );
 			ContainerT shuffled_list{ temp_vector.begin(), temp_vector.end() };
-			mIdleTarget.swap( shuffled_list );
-
-			return true;
+			target_container.swap( shuffled_list );
 		}
 
 		int TargetManager::GetIdleTarget()
@@ -52,7 +58,11 @@ namespace step_mole
 
 			if( mIdleTarget.empty() )
 			{
-				return ret;
+				Refill();
+				if( mIdleTarget.empty() )
+				{
+					return ret;
+				}
 			}
 
 			ret = ( *mIdleTarget.begin() );
@@ -66,9 +76,11 @@ namespace step_mole
 			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
 		}
 
-		void TargetManager::Update()
+		void TargetManager::Refill()
 		{
+			Shuffle( mRestTarget );
 			mIdleTarget.splice( mIdleTarget.end(), mRestTarget );
+			CCLOG( "Refill" );
 		}
 	}
 }

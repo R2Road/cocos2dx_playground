@@ -133,17 +133,9 @@ namespace step_mole
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageTestScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
-
-			TargetManager* const target_manager = mTargetManager.get();
-			schedule(
-				[target_manager]( float ) { target_manager->Update(); }
-				, "Target_Manager_Update"
-			);
 		}
 		void StageTestScene::onExit()
 		{
-			unschedule( "Target_Manager_Update" );
-
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
