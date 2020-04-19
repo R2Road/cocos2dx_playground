@@ -4,6 +4,8 @@
 #include <list>
 #include <memory>
 
+#include "step_mole_game_StageConfig.h"
+
 namespace step_mole
 {
 	namespace game
@@ -20,10 +22,10 @@ namespace step_mole
 			TargetManager();
 
 		public:
-			static TargetManagerUp create( const int width, const int height );
+			static TargetManagerUp create( const StageConfig& stage_config );
 
 		private:
-			bool Init( const int width, const int height );
+			bool Init( const StageConfig& stage_config );
 
 		public:
 			int GetIdleTarget();
