@@ -5,6 +5,9 @@
 #include <random>
 #include <vector>
 
+#include "base/CCConsole.h"
+#include "platform/CCPlatformMacros.h"
+
 namespace step_mole
 {
 	namespace game
@@ -55,6 +58,12 @@ namespace step_mole
 			ret = ( *mIdleTarget.begin() );
 			mIdleTarget.pop_front();
 			return ret;
+		}
+
+		void TargetManager::ComeHomeTarget( const int target_index )
+		{
+			mRestTarget.push_front( target_index );
+			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
 		}
 	}
 }

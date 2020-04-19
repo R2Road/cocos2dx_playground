@@ -154,7 +154,7 @@ namespace step_mole
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component
-				object_node->addComponent( step_mole::ObjectComponent::create( animation_component, circle_collision_component ) );
+				object_node->addComponent( step_mole::ObjectComponent::create( animation_component, circle_collision_component, nullptr ) );
 			}
 
 			return true;

@@ -27,9 +27,11 @@ namespace step_mole
 
 		public:
 			int GetIdleTarget();
+			void ComeHomeTarget( const int target_index );
 
 		private:
 			ContainerT mIdleTarget;
+			ContainerT mRestTarget;
 		};
 	}
 }

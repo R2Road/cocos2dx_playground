@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 #include "cocos/2d/CCNode.h"
 #include "cocos/2d/CCComponent.h"
 #include "cocos/base/CCRefPtr.h"
@@ -12,6 +14,7 @@ namespace step_mole
 	{
 	private:
 		using ParentT = cocos2d::Component;
+		using ProcessExitCallback = std::function<void( int )>;
 
 		enum class eState
 		{
@@ -23,11 +26,14 @@ namespace step_mole
 			
 			Damaged_1,
 			Damaged_2,
+
+			Exit,
 		};
 
 		ObjectComponent(
 			AnimationComponent* const animation_component
 			, cocos2d::Component* const circle_collision_component
+			, const ProcessExitCallback& process_end_callback
 		);
 
 	public:
@@ -35,6 +41,7 @@ namespace step_mole
 		static ObjectComponent* create(
 			AnimationComponent* const animation_component
 			, cocos2d::Component* const circle_collision_component
+			, const ProcessExitCallback& process_end_callback
 		);
 
 		bool init() override;
@@ -50,6 +57,7 @@ namespace step_mole
 		eState mLastState;
 		AnimationComponent* const mAnimationComponent;
 		cocos2d::Component* const mCircleCollisionComponent;
+		const ProcessExitCallback mProcessEndCallback;
 
 		float mActionTime;
 	};

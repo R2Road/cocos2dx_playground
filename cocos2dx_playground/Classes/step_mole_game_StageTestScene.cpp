@@ -111,6 +111,7 @@ namespace step_mole
 			{
 				mStageView = step_mole::game::StageView::create(
 					STAGE_CONFIG
+					, std::bind( &TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
 					, StageViewConfig{ true, true }
 					, CircleCollisionComponentConfig{ true, true, true }
 				);

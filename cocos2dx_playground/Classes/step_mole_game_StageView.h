@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <vector>
 
 #include "2d/CCNode.h"
@@ -29,23 +30,28 @@ namespace step_mole
 
 		class StageView : public cocos2d::Node
 		{
+		public:
+			using TargetProcessExitCallback = std::function<void( int )>;
+
 		private:
 			StageView( const StageConfig stage_config );
 
 		public:
 			static StageView* create(
 				const StageConfig stage_config
+				, const TargetProcessExitCallback& target_rest_callback
 				, const StageViewConfig stage_view_config
 				, const CircleCollisionComponentConfig& circle_collision_component_config
 			);
 
 		private:
-			bool init( const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config );
+			bool init( const TargetProcessExitCallback& target_rest_callback, const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config );
 
 			cocos2d::Node* MakeObject(
 				const int object_tag
 				, const cocos2d::Vec2 object_position
 				, const int defalut_view_type
+				, const TargetProcessExitCallback& target_rest_callback
 				, const CircleCollisionComponentConfig& circle_collision_component_config
 			);
 			void onStageClick( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type );
