@@ -249,6 +249,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_mole_animation_InfoContainer.h" />
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponentConfig.h" />
     <ClInclude Include="..\Classes\step_mole_game_ObjectTestScene.h" />
+    <ClInclude Include="..\Classes\step_mole_game_StageConfig.h" />
     <ClInclude Include="..\Classes\step_mole_game_StageTestScene.h" />
     <ClInclude Include="..\Classes\step_mole_game_StageView.h" />
     <ClInclude Include="..\Classes\step_mole_ObjectComponent.h" />

@@ -662,6 +662,9 @@
     <ClInclude Include="..\Classes\step_mole_game_TargetManager.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_StageConfig.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
