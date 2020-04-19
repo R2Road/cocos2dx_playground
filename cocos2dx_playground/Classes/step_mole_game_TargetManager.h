@@ -26,7 +26,7 @@ namespace step_mole
 			bool Init( const int width, const int height );
 
 		public:
-			int GetTargetIndex();
+			int GetIdleTarget();
 
 		private:
 			ContainerT mIdleTarget;

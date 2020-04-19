@@ -153,7 +153,7 @@ namespace step_mole
 
 			case EventKeyboard::KeyCode::KEY_A:
 			{
-				const auto target_index = mTargetManager->GetTargetIndex();
+				const auto target_index = mTargetManager->GetIdleTarget();
 				if( -1 != target_index )
 				{
 					mStageView->RequestAction( GetRandomObjectIndex(), 3.f );

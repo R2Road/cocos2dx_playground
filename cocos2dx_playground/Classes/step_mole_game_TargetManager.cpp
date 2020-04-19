@@ -43,7 +43,7 @@ namespace step_mole
 			return true;
 		}
 
-		int TargetManager::GetTargetIndex()
+		int TargetManager::GetIdleTarget()
 		{
 			int ret = -1;
 
