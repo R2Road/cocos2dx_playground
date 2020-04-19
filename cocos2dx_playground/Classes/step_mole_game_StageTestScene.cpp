@@ -102,7 +102,7 @@ namespace step_mole
 			// Target Manager
 			//
 			{
-				mTargetManager = TargetManager::create( STAGE_CONFIG.BlockCount_Horizontal, STAGE_CONFIG.BlockCount_Horizontal );
+				mTargetManager = TargetManager::create( STAGE_CONFIG.BlockCount_Horizontal, STAGE_CONFIG.BlockCount_Vercital );
 			}
 
 			//
