@@ -1,6 +1,5 @@
 #include "step_mole_game_StageView.h"
 
-#include <functional>
 #include <new>
 #include <numeric>
 
@@ -28,12 +27,13 @@ namespace step_mole
 
 		StageView* StageView::create(
 			const StageConfig stage_config
+			, const TargetProcessExitCallback& target_rest_callback
 			, const StageViewConfig stage_view_config
 			, const CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
 			auto ret = new ( std::nothrow ) StageView( stage_config );
-			if( !ret || !ret->init( stage_view_config, circle_collision_component_config ) )
+			if( !ret || !ret->init( target_rest_callback, stage_view_config, circle_collision_component_config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -47,7 +47,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageView::init( const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
+		bool StageView::init( const TargetProcessExitCallback& target_rest_callback, const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
 		{
 			if( !Node::init() )
 			{
@@ -146,6 +146,7 @@ namespace step_mole
 								+ Vec2( bx * mStageConfig.BlockSize.width, by * mStageConfig.BlockSize.height )
 							)
 							, dist( randomEngine )
+							, target_rest_callback
 							, circle_collision_component_config
 						);
 						content_root_node->addChild( object_node, 1 );
@@ -177,6 +178,7 @@ namespace step_mole
 			const int object_tag
 			, const cocos2d::Vec2 object_position
 			, const int defalut_view_type
+			, const TargetProcessExitCallback& target_rest_callback
 			, const CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
@@ -207,7 +209,7 @@ namespace step_mole
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component
-				object_node->addComponent( step_mole::ObjectComponent::create( animation_component, circle_collision_component ) );
+				object_node->addComponent( step_mole::ObjectComponent::create( animation_component, circle_collision_component, target_rest_callback ) );
 
 			}
 

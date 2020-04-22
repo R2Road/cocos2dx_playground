@@ -14,6 +14,8 @@
 #include "step_mole_game_ObjectTestScene.h"
 #include "step_mole_game_StageTestScene.h"
 
+#include "step_mole_game_TitleScene.h"
+
 #include "PlayGroundScene.h"
 
 USING_NS_CC;
@@ -68,6 +70,12 @@ namespace step_mole
 			ss << "[A] : " << step_mole::game::ObjectTestScene::getTitle();
 			ss << std::endl;
 			ss << "[S] : " << step_mole::game::StageTestScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[SPACE] : " << step_mole::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -137,6 +145,10 @@ namespace step_mole
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( step_mole::game::StageTestScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_SPACE:
+			Director::getInstance()->replaceScene( step_mole::game::TitleScene::create() );
 			break;
 
 		default:

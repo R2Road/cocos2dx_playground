@@ -375,6 +375,12 @@
     <ClCompile Include="..\Classes\ui_practice_Minimap.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_TargetManager.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_TitleScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -626,9 +632,6 @@
     <ClInclude Include="..\Classes\step_mole_game_ObjectTestScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_ObjectComponent.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponent.h">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClInclude>
@@ -655,6 +658,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_Minimap.h">
       <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_ObjectComponent.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_TargetManager.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_StageConfig.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_TitleScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -78,6 +78,11 @@ namespace step_mole
 				ss << "[1] : Object - Process Start";
 				ss << std::endl;
 				ss << "[2] : Object - Kill";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow Key - Up] : Life Time - Increase";
+				ss << std::endl;
+				ss << "[Arrow Key - Down] : Life Time - Decrease";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -149,7 +154,7 @@ namespace step_mole
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component
-				object_node->addComponent( step_mole::ObjectComponent::create( animation_component, circle_collision_component ) );
+				object_node->addComponent( step_mole::ObjectComponent::create( animation_component, circle_collision_component, nullptr ) );
 			}
 
 			return true;

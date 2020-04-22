@@ -14,6 +14,8 @@
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_game_StageView.h"
+#include "step_mole_game_TargetManager.h"
+
 #include "step_mole_RootScene.h"
 
 USING_NS_CC;
@@ -36,7 +38,7 @@ namespace step_mole
 {
 	namespace game
 	{
-		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ), mStageView( nullptr )
+		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ), mTargetManager(), mStageView( nullptr )
 		{}
 
 		Scene* StageTestScene::create()
@@ -97,11 +99,19 @@ namespace step_mole
 			}
 
 			//
+			// Target Manager
+			//
+			{
+				mTargetManager = TargetManager::create( STAGE_CONFIG );
+			}
+
+			//
 			// Stage View
 			//
 			{
 				mStageView = step_mole::game::StageView::create(
 					STAGE_CONFIG
+					, std::bind( &TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
 					, StageViewConfig{ true, true }
 					, CircleCollisionComponentConfig{ true, true, true }
 				);
@@ -143,8 +153,15 @@ namespace step_mole
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
-				mStageView->RequestAction( GetRandomObjectIndex(), 3.f );
+			{
+				const auto target_index = mTargetManager->GetIdleTarget();
+				if( -1 != target_index )
+				{
+					mStageView->RequestAction( target_index, 3.f );
+				}
+
 				return;
+			}
 
 			default:
 				CCLOG( "Key Code : %d", keycode );

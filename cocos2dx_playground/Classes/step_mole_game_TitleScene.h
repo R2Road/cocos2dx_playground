@@ -1,24 +1,18 @@
 #pragma once
 
-#include <memory>
-
 #include "2d/CCScene.h"
-#include "ui/UIWidget.h"
 
 namespace step_mole
 {
 	namespace game
 	{
-		using TargetManagerUp = std::unique_ptr<class TargetManager>;
-		class StageView;
-
-		class StageTestScene : public cocos2d::Scene
+		class TitleScene : public cocos2d::Scene
 		{
 		private:
-			StageTestScene();
+			TitleScene();
 
 		public:
-			static const char* getTitle() { return "Game : Stage Test"; }
+			static const char* getTitle() { return "Game : Mole"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;
@@ -30,9 +24,6 @@ namespace step_mole
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-			TargetManagerUp mTargetManager;
-			StageView* mStageView;
 		};
 	}
 }

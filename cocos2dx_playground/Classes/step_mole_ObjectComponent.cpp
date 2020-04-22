@@ -17,10 +17,13 @@ namespace step_mole
 	ObjectComponent::ObjectComponent(
 		AnimationComponent* const animation_component
 		, Component* const circle_collision_component
+		, const ProcessExitCallback& process_end_callback
 	) :
 		mLastState( eState::Damaged_2 )
 		, mAnimationComponent( animation_component )
 		, mCircleCollisionComponent( circle_collision_component )
+		, mProcessEndCallback( process_end_callback )
+
 		, mActionTime( 0.f )
 	{
 		setName( GetStaticName() );
@@ -29,9 +32,10 @@ namespace step_mole
 	ObjectComponent* ObjectComponent::create(
 		AnimationComponent* const animation_component
 		, Component* const circle_collision_component
+		, const ProcessExitCallback& process_end_callback
 	)
 	{
-		auto ret = new ( std::nothrow ) ObjectComponent( animation_component, circle_collision_component );
+		auto ret = new ( std::nothrow ) ObjectComponent( animation_component, circle_collision_component, process_end_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -129,7 +133,7 @@ namespace step_mole
 
 		case eState::Sleep:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::sleep, std::bind( &ObjectComponent::ChangeState, this, eState::Wait ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::sleep, std::bind( &ObjectComponent::ChangeState, this, eState::Exit ) );
 		}
 		break;
 
@@ -143,7 +147,17 @@ namespace step_mole
 		break;
 		case eState::Damaged_2:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_2, std::bind( &ObjectComponent::ChangeState, this, eState::Wait ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_2, std::bind( &ObjectComponent::ChangeState, this, eState::Exit ) );
+		}
+		break;
+
+		case eState::Exit:
+		{
+			ChangeState( eState::Wait );
+			if( mProcessEndCallback )
+			{
+				mProcessEndCallback( _owner->getTag() );
+			}
 		}
 		break;
 

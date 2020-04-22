@@ -1,4 +1,4 @@
-#include "step_typetype_game_TitleScene.h"
+#include "step_mole_game_TitleScene.h"
 
 #include <new>
 #include <numeric>
@@ -12,12 +12,11 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_typetype_RootScene.h"
-#include "step_typetype_game_PlayScene.h"
+#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
-namespace step_typetype
+namespace step_mole
 {
 	namespace game
 	{
@@ -69,22 +68,6 @@ namespace step_typetype
 
 
 			//
-			// Title
-			//
-			{
-				auto title = Sprite::create( "textures/step_typetype/step_typetype_title.png" );
-				title->getTexture()->setAliasTexParameters();
-				title->setScaleX( visibleSize.width / title->getContentSize().width );
-				title->setScaleY( visibleSize.height / title->getContentSize().height );
-				title->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
-				addChild( title, 0 );
-			}
-
-
-			//
 			// request input
 			//
 			{
@@ -129,13 +112,7 @@ namespace step_typetype
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
-				return;
-			}
-
-			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
-			{
-				Director::getInstance()->replaceScene( step_typetype::game::PlayScene::create() );
+				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
 				return;
 			}
 		}
