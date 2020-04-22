@@ -401,6 +401,68 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">ui/ui_track_ball_0.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,3,3</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,3,3</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">ui/ui_track_ball_1.png</key>
+            <key type="filename">ui/ui_track_ball_2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,4,4</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,4,4</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">ui/ui_track_bar_01_0.png</key>
+            <key type="filename">ui/ui_track_bar_01_1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>16,2,32,4</rect>
+                <key>scale9Paddings</key>
+                <rect>16,2,32,4</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">ui/ui_track_bar_bg_0.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>17,2,34,4</rect>
+                <key>scale9Paddings</key>
+                <rect>17,2,34,4</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>
@@ -498,6 +560,12 @@
             <filename>step_mole/step_mole_target_wkup_3.png</filename>
             <filename>step_mole/step_mole_target_dmgd2_5.png</filename>
             <filename>step_mole/step_mole_target_slp_5.png</filename>
+            <filename>ui/ui_track_ball_0.png</filename>
+            <filename>ui/ui_track_ball_1.png</filename>
+            <filename>ui/ui_track_ball_2.png</filename>
+            <filename>ui/ui_track_bar_bg_0.png</filename>
+            <filename>ui/ui_track_bar_01_0.png</filename>
+            <filename>ui/ui_track_bar_01_1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

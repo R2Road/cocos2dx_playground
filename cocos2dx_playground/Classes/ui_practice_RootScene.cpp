@@ -8,6 +8,7 @@
 #include "ui_practice_UIAndCamera.h"
 #include "ui_practice_LayoutNScrollViewScene.h"
 #include "ui_practice_Minimap.h"
+#include "ui_practice_SliderScene.h"
 
 USING_NS_CC;
 
@@ -48,6 +49,8 @@ namespace ui_practice
 			ss << "[2] : " << ui_practice::UIAndCamera::getTitle();
 			ss << std::endl;
 			ss << "[3] : " << ui_practice::Minimap::getTitle();
+			ss << std::endl;
+			ss << "[4] : " << ui_practice::SliderScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -103,6 +106,9 @@ namespace ui_practice
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( ui_practice::Minimap::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( ui_practice::SliderScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:

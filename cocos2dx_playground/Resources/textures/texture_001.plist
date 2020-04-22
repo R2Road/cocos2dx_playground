@@ -1399,6 +1399,96 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>ui_track_ball_0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{8,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{494,250},{8,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>ui_track_ball_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{8,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{2,316},{8,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>ui_track_ball_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{8,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{12,316},{8,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>ui_track_bar_01_0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{44,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{44,8}</string>
+                <key>textureRect</key>
+                <string>{{22,316},{44,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>ui_track_bar_01_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{44,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{44,8}</string>
+                <key>textureRect</key>
+                <string>{{68,316},{44,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>ui_track_bar_bg_0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{48,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{48,8}</string>
+                <key>textureRect</key>
+                <string>{{114,316},{48,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>white_2x2.png</key>
             <dict>
                 <key>aliases</key>
@@ -1410,7 +1500,7 @@
                 <key>spriteSourceSize</key>
                 <string>{2,2}</string>
                 <key>textureRect</key>
-                <string>{{494,250},{2,2}}</string>
+                <string>{{164,316},{2,2}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -1428,7 +1518,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:071984d92fed26bfec0081fab7d4ac10:a56f9539b5c670dff139e036df7df698:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:cd3b3473c637ca5c371b3f61fe5656fe:2c7df976616244fafdc825988d3ed4fa:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>

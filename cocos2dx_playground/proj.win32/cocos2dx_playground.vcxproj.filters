@@ -109,6 +109,9 @@
     <Filter Include="src\scene\ui_practice">
       <UniqueIdentifier>{d23c00b4-61c2-48d8-b5fd-0485e16a4b61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\helper">
+      <UniqueIdentifier>{f0f60ebf-350b-429e-8246-a99ab7948bc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -380,6 +383,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_TitleScene.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_SliderScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -670,6 +676,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_TitleScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\helper_SceneMover.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_SliderScene.h">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\helper_BackToThePreviousScene.h">
+      <Filter>src\helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
