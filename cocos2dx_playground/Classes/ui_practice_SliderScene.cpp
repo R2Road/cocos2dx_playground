@@ -11,6 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "ui/UISlider.h"
+#include "base/ccUTF8.h"
 
 USING_NS_CC;
 
@@ -140,31 +141,47 @@ namespace ui_practice
 			) );
 			addChild( root_node );
 			{
-				//
+				// Percent
+				auto percent_label = Label::createWithTTF( "slider : 0", "fonts/arial.ttf", 9 );
+				percent_label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				percent_label->setColor( Color3B::ORANGE );
+				percent_label->setPosition( root_node->getPosition() + Vec2( 0.f, 20.f ) );
+				addChild( percent_label );
+
 				// Slider
-				//
-				auto slider = ui::Slider::create();
-				slider->setScale( Content_Scale );
-				slider->loadBarTexture( "ui_track_bar_01_0.png", ui::Widget::TextureResType::PLIST );
-				slider->loadProgressBarTexture( "ui_track_bar_01_1.png", ui::Widget::TextureResType::PLIST );
-				slider->loadSlidBallTextureNormal( "ui_track_ball_0.png", ui::Widget::TextureResType::PLIST );
-				slider->loadSlidBallTexturePressed( "ui_track_ball_1.png", ui::Widget::TextureResType::PLIST );
-				slider->loadSlidBallTextureDisabled( "ui_track_ball_2.png", ui::Widget::TextureResType::PLIST );
-				root_node->addChild( slider );
+				{
+					auto slider = ui::Slider::create();
+					slider->setScale( Content_Scale );
+					slider->loadBarTexture( "ui_track_bar_01_0.png", ui::Widget::TextureResType::PLIST );
+					slider->loadProgressBarTexture( "ui_track_bar_01_1.png", ui::Widget::TextureResType::PLIST );
+					slider->loadSlidBallTextureNormal( "ui_track_ball_0.png", ui::Widget::TextureResType::PLIST );
+					slider->loadSlidBallTexturePressed( "ui_track_ball_1.png", ui::Widget::TextureResType::PLIST );
+					slider->loadSlidBallTextureDisabled( "ui_track_ball_2.png", ui::Widget::TextureResType::PLIST );
+					slider->addEventListener( [slider, percent_label]( Ref*, ui::Slider::EventType ) {
+						percent_label->setString( StringUtils::format(
+							"slider : %d"
+							, slider->getPercent()
+						) );
+					} );
+					root_node->addChild( slider );
+				}
 
-				//
 				// Background
-				//
-				auto background_sprite = Sprite::createWithSpriteFrameName( "ui_track_bar_bg_0.png" );
-				background_sprite->setScale( Content_Scale );
-				root_node->addChild( background_sprite, -1 );
-			}
+				{
+					auto background_sprite = Sprite::createWithSpriteFrameName( "ui_track_bar_bg_0.png" );
+					background_sprite->setScale( Content_Scale );
+					root_node->addChild( background_sprite, -1 );
+				}
 
-			auto label = Label::createWithTTF( "Slider : + @", "fonts/arial.ttf", 9 );
-			label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-			label->setColor( Color3B::GREEN );
-			label->setPosition( root_node->getPosition() - Vec2( 0.f, 20.f ) );
-			addChild( label );
+				// Explain
+				{
+					auto label = Label::createWithTTF( "Slider : + @", "fonts/arial.ttf", 9 );
+					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition( root_node->getPosition() - Vec2( 0.f, 20.f ) );
+					addChild( label );
+				}
+			}
 		}
 
 		return true;
