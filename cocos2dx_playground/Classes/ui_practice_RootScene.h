@@ -10,7 +10,7 @@ namespace ui_practice
 		RootScene();
 
 	public:
-		static const char* getTitle() { return "UI Practice : Root"; }
+		static const char* getTitle() { return "UI Practice"; }
 		static cocos2d::Scene* create();
 
 		void onEnter() override;
