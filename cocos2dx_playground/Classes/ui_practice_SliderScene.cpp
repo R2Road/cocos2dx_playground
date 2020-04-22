@@ -159,7 +159,12 @@ namespace ui_practice
 					slider->loadSlidBallTextureNormal( "ui_track_ball_0.png", ui::Widget::TextureResType::PLIST );
 					slider->loadSlidBallTexturePressed( "ui_track_ball_1.png", ui::Widget::TextureResType::PLIST );
 					slider->loadSlidBallTextureDisabled( "ui_track_ball_2.png", ui::Widget::TextureResType::PLIST );
-					slider->addEventListener( [slider, percent_label]( Ref*, ui::Slider::EventType ) {
+					slider->addEventListener( [slider, percent_label]( Ref*, ui::Slider::EventType event_type ) {
+						if( ui::Slider::EventType::ON_PERCENTAGE_CHANGED != event_type )
+						{
+							return;
+						}
+
 						percent_label->setString( StringUtils::format(
 							"slider : %d"
 							, slider->getPercent()
