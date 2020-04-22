@@ -123,6 +123,8 @@ namespace ui_practice
 			) );
 			addChild( slider );
 
+			slider->setPercent( 10 );
+
 			auto label = Label::createWithTTF( "Slider : With Scale9Enable\n\n ...mm Not Good", "fonts/arial.ttf", 9 );
 			label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 			label->setColor( Color3B::GREEN );
