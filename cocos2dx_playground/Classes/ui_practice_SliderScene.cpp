@@ -10,8 +10,8 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "ui/UISlider.h"
 #include "base/ccUTF8.h"
+#include "ui/UISlider.h"
 
 USING_NS_CC;
 
