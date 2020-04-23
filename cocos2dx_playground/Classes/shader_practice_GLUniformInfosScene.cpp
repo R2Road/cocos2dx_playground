@@ -3,6 +3,7 @@
 #include <new>
 #include <numeric>
 #include <sstream>
+#include <string>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "platform/CCFileUtils.h"
 #include "renderer/CCGLProgram.h"
@@ -107,6 +109,8 @@ namespace shader_practice
 				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
 				view_node->setGLProgramState( gl_program_state );
 
+				gl_program_state->setUniformTexture( "u_texture2D", view_node->getTexture() );
+
 				//
 				// Load GL Uniform List
 				//
@@ -123,9 +127,12 @@ namespace shader_practice
 
 			int i = 0;
 			Label* label = nullptr;
+			std::string str;
 			for( const auto& u : uniform_list.GetContainer() )
 			{
-				label = Label::createWithTTF( u.Name, FontPath, 9 );
+				str = StringUtils::format( "Name : %-20s Type : %s( %d )", u.Name.c_str(), GLenum2String( u.Type ), u.Type );
+
+				label = Label::createWithTTF( str, FontPath, 9 );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(

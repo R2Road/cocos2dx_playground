@@ -70,4 +70,32 @@ namespace shader_practice
 			CCLOG( "Error linking shader program: '%s'\n", ErrorLog );
 		}
 	}
+
+	const char* GLenum2String( const GLenum gl_enum )
+	{
+		if( GL_FLOAT == gl_enum )
+		{
+			return "Float";
+		}
+
+		if( GL_FLOAT_VEC2 == gl_enum )
+		{
+			return "Vec4";
+		}
+		if( GL_FLOAT_VEC3 == gl_enum )
+		{
+			return "Vec4";
+		}
+		if( GL_FLOAT_VEC4 == gl_enum )
+		{
+			return "Vec4";
+		}
+
+		if( GL_SAMPLER_2D == gl_enum )
+		{
+			return "Sampler2D";
+		}
+
+		return "o_o";
+	}
 }

@@ -27,4 +27,6 @@ namespace shader_practice
 	private:
 		ContainerT mContainer;
 	};
+
+	const char* GLenum2String( const GLenum gl_enum );
 }
