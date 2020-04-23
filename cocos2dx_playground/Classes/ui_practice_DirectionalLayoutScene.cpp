@@ -6,19 +6,20 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 #include "ui/UILayoutParameter.h"
 #include "ui/UIScrollView.h"
-#include "2d/CCSprite.h"
 
 USING_NS_CC;
 
 namespace
 {
 	const char* FontPath = "fonts/arial.ttf";
+	const int FontSize = 9;
 }
 
 namespace ui_practice
@@ -65,7 +66,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), FontPath, FontSize, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -104,7 +105,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 3\n", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 3\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -127,7 +128,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\n", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -150,7 +151,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\nClipping", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -181,7 +182,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nVisible : 4\nContent : 3", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nVisible : 4\nContent : 3", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -204,7 +205,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nVisible : 4\nContent : 6", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nVisible : 4\nContent : 6", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -227,7 +228,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nVisible : 4\nContent : 6\nClipping", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nVisible : 4\nContent : 6\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -313,7 +314,7 @@ namespace ui_practice
 
 			// Title
 			{
-				auto label = Label::createWithTTF( std::to_string( i + 1 ), "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( std::to_string( i + 1 ), FontPath, FontSize );
 				button->setTitleLabel( label );
 			}
 
@@ -380,7 +381,7 @@ namespace ui_practice
 
 			// Title
 			{
-				auto label = Label::createWithTTF( std::to_string( i + 1 ), "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( std::to_string( i + 1 ), FontPath, FontSize );
 				button->setTitleLabel( label );
 			}
 
