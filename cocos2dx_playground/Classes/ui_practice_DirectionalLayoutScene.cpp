@@ -81,13 +81,14 @@ namespace ui_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
+		const int VisibleCount = 4;
+		const Size ButtonSize( 18, 18 );
+		const Size ButtonMargin( 1, 1 );
+
 		//
 		// Practice : Vertical
 		//
 		{
-			const int VisibleCount = 4;
-			const Size ButtonSize( 18, 18 );
-			const Size ButtonMargin( 1, 1 );
 			const Vec2 LayoutStartPosition( visibleSize.width * 0.15f, visibleSize.height * 0.45f );
 			const float LayoutSpacing = visibleSize.width * 0.12f;
 
@@ -165,9 +166,6 @@ namespace ui_practice
 		// Practice : Horizontal
 		//
 		{
-			const int VisibleCount = 4;
-			const Size ButtonSize( 18, 18 );
-			const Size ButtonMargin( 1, 1 );
 			const Vec2 LayoutStartPosition( visibleSize.width * 0.72f, visibleSize.height * 0.1f );
 			const float LayoutSpacing = visibleSize.width * 0.2f;
 
