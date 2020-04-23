@@ -194,7 +194,6 @@ namespace ui_practice
 						// Align
 						{
 							auto param = ui::LinearLayoutParameter::create();
-							param->setGravity( ui::LinearLayoutParameter::LinearGravity::TOP );
 							auto margin = ui::Margin( ListInnerMargin.width, ListInnerMargin.height, ListInnerMargin.width, ListInnerMargin.height );
 							param->setMargin( margin );
 
