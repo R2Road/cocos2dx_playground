@@ -10,6 +10,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "PlayGroundScene.h"
+#include "shader_practice_GLUniformListScene.h"
 
 USING_NS_CC;
 
@@ -44,6 +45,9 @@ namespace shader_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[1] : " << shader_practice::GLUniformListScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -90,6 +94,10 @@ namespace shader_practice
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			Director::getInstance()->replaceScene( PlayGroundScene::create() );
 			return;
+
+		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( shader_practice::GLUniformListScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
 
 		default:
 			CCLOG( "Key Code : %d", keycode );

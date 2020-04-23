@@ -151,6 +151,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\shader_practice_GLUniformListScene.cpp" />
     <ClCompile Include="..\Classes\shader_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_AnimationComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp" />
@@ -249,6 +250,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\helper_BackToThePreviousScene.h" />
     <ClInclude Include="..\Classes\helper_SceneMover.h" />
+    <ClInclude Include="..\Classes\shader_practice_GLUniformListScene.h" />
     <ClInclude Include="..\Classes\shader_practice_RootScene.h" />
     <ClInclude Include="..\Classes\step_mole_AnimationComponent.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Index.h" />
