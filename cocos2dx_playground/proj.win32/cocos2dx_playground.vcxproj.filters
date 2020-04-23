@@ -390,6 +390,9 @@
     <ClCompile Include="..\Classes\ui_practice_DirectionalLayoutScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_RelativeLayoutScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -690,6 +693,9 @@
       <Filter>src\helper</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_DirectionalLayoutScene.h">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_RelativeLayoutScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>

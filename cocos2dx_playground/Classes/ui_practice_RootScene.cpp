@@ -6,6 +6,7 @@
 #include "PlayGroundScene.h"
 
 #include "ui_practice_DirectionalLayoutScene.h"
+#include "ui_practice_RelativeLayoutScene.h"
 #include "ui_practice_LayoutNScrollViewScene.h"
 #include "ui_practice_UIAndCamera.h"
 #include "ui_practice_Minimap.h"
@@ -47,21 +48,23 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[1] : " << ui_practice::DirectionalLayoutScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << ui_practice::LayoutNScrollViewScene::getTitle();
+			ss << "[2] : " << ui_practice::RelativeLayoutScene::getTitle();
+			ss << std::endl;
+			ss << "[3] : " << ui_practice::LayoutNScrollViewScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[3] : " << ui_practice::UIAndCamera::getTitle();
+			ss << "[4] : " << ui_practice::UIAndCamera::getTitle();
 			ss << std::endl;
-			ss << "[4] : " << ui_practice::Minimap::getTitle();
+			ss << "[5] : " << ui_practice::Minimap::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[5] : " << ui_practice::SliderScene::getTitle();
+			ss << "[6] : " << ui_practice::SliderScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -113,15 +116,21 @@ namespace ui_practice
 			Director::getInstance()->replaceScene( ui_practice::DirectionalLayoutScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( ui_practice::RelativeLayoutScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_3:
+
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( ui_practice::UIAndCamera::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( ui_practice::Minimap::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+
+		case EventKeyboard::KeyCode::KEY_6:
 			Director::getInstance()->replaceScene( ui_practice::SliderScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
