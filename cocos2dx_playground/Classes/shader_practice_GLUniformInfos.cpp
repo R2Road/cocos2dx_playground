@@ -80,11 +80,11 @@ namespace shader_practice
 
 		if( GL_FLOAT_VEC2 == gl_enum )
 		{
-			return "Vec4";
+			return "Vec2";
 		}
 		if( GL_FLOAT_VEC3 == gl_enum )
 		{
-			return "Vec4";
+			return "Vec3";
 		}
 		if( GL_FLOAT_VEC4 == gl_enum )
 		{
@@ -94,6 +94,11 @@ namespace shader_practice
 		if( GL_SAMPLER_2D == gl_enum )
 		{
 			return "Sampler2D";
+		}
+
+		if( GL_INT == gl_enum )
+		{
+			return "Int";
 		}
 
 		return "o_o";
