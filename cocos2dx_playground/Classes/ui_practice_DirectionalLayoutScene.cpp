@@ -312,7 +312,7 @@ namespace ui_practice
 
 			// Title
 			{
-				auto label = Label::createWithTTF( std::to_string( i ), "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( std::to_string( i + 1 ), "fonts/arial.ttf", 9 );
 				button->setTitleLabel( label );
 			}
 
@@ -379,7 +379,7 @@ namespace ui_practice
 
 			// Title
 			{
-				auto label = Label::createWithTTF( std::to_string( i ), "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( std::to_string( i + 1 ), "fonts/arial.ttf", 9 );
 				button->setTitleLabel( label );
 			}
 
