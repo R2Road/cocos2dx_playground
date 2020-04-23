@@ -293,7 +293,7 @@ namespace ui_practice
 		}
 
 		// Content
-		for( int i = 0; button_count > i; ++i )
+		for( int i = 1; button_count >= i; ++i )
 		{
 			auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( i );
@@ -314,7 +314,7 @@ namespace ui_practice
 
 			// Title
 			{
-				auto label = Label::createWithTTF( std::to_string( i + 1 ), FontPath, FontSize );
+				auto label = Label::createWithTTF( std::to_string( i ), FontPath, FontSize );
 				button->setTitleLabel( label );
 			}
 
@@ -360,7 +360,7 @@ namespace ui_practice
 		}
 
 		// Content
-		for( int i = 0; button_count > i; ++i )
+		for( int i = 1; button_count >= i; ++i )
 		{
 			auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( i );
@@ -381,7 +381,7 @@ namespace ui_practice
 
 			// Title
 			{
-				auto label = Label::createWithTTF( std::to_string( i + 1 ), FontPath, FontSize );
+				auto label = Label::createWithTTF( std::to_string( i ), FontPath, FontSize );
 				button->setTitleLabel( label );
 			}
 
