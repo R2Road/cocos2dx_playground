@@ -86,8 +86,10 @@ namespace shader_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
+		GLUniformList uniform_list;
+
 		//
-		// Practice
+		// Practice : View + Custome Shader
 		//
 		{
 			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
@@ -105,8 +107,33 @@ namespace shader_practice
 				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
 				view_node->setGLProgramState( gl_program_state );
 
-				GLUniformList uniform_list;
+				//
+				// Load GL Uniform List
+				//
 				uniform_list.Load( gl_program->getProgram() );
+			}
+		}
+
+		//
+		// Practice : Uniform List
+		//
+		{
+			const Vec2 spacing( 0.f, 40.f );
+
+			int i = 0;
+			Label* label = nullptr;
+			for( const auto& u : uniform_list.GetContainer() )
+			{
+				label = Label::createWithTTF( u.first, FontPath, 9 );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					Vec2( visibleOrigin.x + visibleSize.width, visibleOrigin.y + visibleSize.height )
+					- ( spacing * i )
+				);
+				addChild( label );
+
+				++i;
 			}
 		}
 
