@@ -27,14 +27,14 @@ namespace
 
 namespace shader_practice
 {
-	GLUniformListScene::GLUniformListScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	GLUniformInfosScene::GLUniformInfosScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 	{}
 
-	Scene* GLUniformListScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* GLUniformInfosScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) GLUniformListScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) GLUniformInfosScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -49,7 +49,7 @@ namespace shader_practice
 		return ret;
 	}
 
-	bool GLUniformListScene::init()
+	bool GLUniformInfosScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -86,7 +86,7 @@ namespace shader_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		GLUniformList uniform_list;
+		GLUniformInfos uniform_list;
 
 		//
 		// Practice : View + Custome Shader
@@ -142,16 +142,16 @@ namespace shader_practice
 		return true;
 	}
 
-	void GLUniformListScene::onEnter()
+	void GLUniformInfosScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( GLUniformListScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( GLUniformInfosScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void GLUniformListScene::onExit()
+	void GLUniformInfosScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -161,7 +161,7 @@ namespace shader_practice
 	}
 
 
-	void GLUniformListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void GLUniformInfosScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{

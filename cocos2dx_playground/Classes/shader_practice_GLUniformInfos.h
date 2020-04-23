@@ -7,18 +7,18 @@
 
 namespace shader_practice
 {
-	class GLUniformList
+	class GLUniformInfos
 	{
 	public:
-		struct GLUniformInfo
+		struct Info
 		{
-			GLUniformInfo( const char* name, GLenum type ) : Name( name ), Type( type ) {}
+			Info( const char* name, GLenum type ) : Name( name ), Type( type ) {}
 
 			std::string Name;
 			GLenum Type;
 		};
 
-		using ContainerT = std::vector<GLUniformInfo>;
+		using ContainerT = std::vector<Info>;
 
 		void Load( const GLuint program_index );
 

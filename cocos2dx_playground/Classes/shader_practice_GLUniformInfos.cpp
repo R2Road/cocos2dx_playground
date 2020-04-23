@@ -12,7 +12,7 @@ namespace shader_practice
 	// 1. Copy from cocos2d::GLProgram::parseUniforms
 	// 2. ...And Modify
 	//
-	void GLUniformList::Load( const GLuint program_index )
+	void GLUniformInfos::Load( const GLuint program_index )
 	{
 		mContainer.clear();
 

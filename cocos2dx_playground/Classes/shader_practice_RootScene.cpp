@@ -47,7 +47,7 @@ namespace shader_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << shader_practice::GLUniformListScene::getTitle();
+			ss << "[1] : " << shader_practice::GLUniformInfosScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -96,7 +96,7 @@ namespace shader_practice
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( shader_practice::GLUniformListScene::create( helper::CreateSceneMover<RootScene>() ) );
+			Director::getInstance()->replaceScene( shader_practice::GLUniformInfosScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
