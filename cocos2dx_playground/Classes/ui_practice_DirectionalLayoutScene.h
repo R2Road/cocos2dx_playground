@@ -4,15 +4,17 @@
 #include "math/CCGeometry.h"
 #include "ui/UIWidget.h"
 
+#include "helper_BackToThePreviousScene.h"
+
 namespace ui_practice
 {
-	class DirectionalLayoutScene : public cocos2d::Scene
+	class DirectionalLayoutScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 	{
 	public:
-		DirectionalLayoutScene();
+		DirectionalLayoutScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		static const char* getTitle() { return "Directional Layout"; }
-		static cocos2d::Scene* create();
+		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		bool init() override;
 		void onEnter() override;

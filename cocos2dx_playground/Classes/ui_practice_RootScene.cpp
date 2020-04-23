@@ -113,7 +113,7 @@ namespace ui_practice
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( ui_practice::DirectionalLayoutScene::create() );
+			Director::getInstance()->replaceScene( ui_practice::DirectionalLayoutScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( ui_practice::RelativeLayoutScene::create( helper::CreateSceneMover<RootScene>() ) );

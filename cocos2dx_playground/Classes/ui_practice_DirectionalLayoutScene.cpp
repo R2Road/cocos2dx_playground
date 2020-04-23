@@ -14,8 +14,6 @@
 #include "ui/UIScrollView.h"
 #include "2d/CCSprite.h"
 
-#include "ui_practice_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -25,11 +23,14 @@ namespace
 
 namespace ui_practice
 {
-	DirectionalLayoutScene::DirectionalLayoutScene() : mKeyboardListener( nullptr ) {}
+	DirectionalLayoutScene::DirectionalLayoutScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+		, mKeyboardListener( nullptr )
+	{}
 
-	Scene* DirectionalLayoutScene::create()
+	Scene* DirectionalLayoutScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) DirectionalLayoutScene();
+		auto ret = new ( std::nothrow ) DirectionalLayoutScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -414,7 +415,7 @@ namespace ui_practice
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			helper::BackToThePreviousScene::MoveBack();
 			return;
 		}
 	}
