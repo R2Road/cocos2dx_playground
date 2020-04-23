@@ -49,9 +49,17 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[2] : " << ui_practice::LayoutNScrollViewScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[3] : " << ui_practice::UIAndCamera::getTitle();
 			ss << std::endl;
 			ss << "[4] : " << ui_practice::Minimap::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
 			ss << std::endl;
 			ss << "[5] : " << ui_practice::SliderScene::getTitle();
 
