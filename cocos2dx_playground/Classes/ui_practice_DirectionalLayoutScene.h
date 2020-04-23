@@ -6,12 +6,12 @@
 
 namespace ui_practice
 {
-	class LayoutScene : public cocos2d::Scene
+	class DirectionalLayoutScene : public cocos2d::Scene
 	{
 	public:
-		LayoutScene();
+		DirectionalLayoutScene();
 
-		static const char* getTitle() { return "Layout"; }
+		static const char* getTitle() { return "Directional Layout"; }
 		static cocos2d::Scene* create();
 
 		bool init() override;

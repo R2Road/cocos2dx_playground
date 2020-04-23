@@ -387,7 +387,7 @@
     <ClCompile Include="..\Classes\ui_practice_SliderScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_practice_LayoutScene.cpp">
+    <ClCompile Include="..\Classes\ui_practice_DirectionalLayoutScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -689,7 +689,7 @@
     <ClInclude Include="..\Classes\helper_BackToThePreviousScene.h">
       <Filter>src\helper</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_practice_LayoutScene.h">
+    <ClInclude Include="..\Classes\ui_practice_DirectionalLayoutScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>

@@ -236,7 +236,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_LayoutNScrollViewScene.cpp" />
-    <ClCompile Include="..\Classes\ui_practice_LayoutScene.cpp" />
+    <ClCompile Include="..\Classes\ui_practice_DirectionalLayoutScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_Minimap.cpp" />
     <ClCompile Include="..\Classes\ui_practice_SliderScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_UIAndCamera.cpp" />
@@ -338,7 +338,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h" />
     <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h" />
     <ClInclude Include="..\Classes\ui_practice_LayoutNScrollViewScene.h" />
-    <ClInclude Include="..\Classes\ui_practice_LayoutScene.h" />
+    <ClInclude Include="..\Classes\ui_practice_DirectionalLayoutScene.h" />
     <ClInclude Include="..\Classes\ui_practice_Minimap.h" />
     <ClInclude Include="..\Classes\ui_practice_SliderScene.h" />
     <ClInclude Include="..\Classes\ui_practice_UIAndCamera.h" />

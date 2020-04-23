@@ -1,4 +1,4 @@
-#include "ui_practice_LayoutScene.h"
+#include "ui_practice_DirectionalLayoutScene.h"
 
 #include <new>
 #include <numeric>
@@ -25,11 +25,11 @@ namespace
 
 namespace ui_practice
 {
-	LayoutScene::LayoutScene() : mKeyboardListener( nullptr ) {}
+	DirectionalLayoutScene::DirectionalLayoutScene() : mKeyboardListener( nullptr ) {}
 
-	Scene* LayoutScene::create()
+	Scene* DirectionalLayoutScene::create()
 	{
-		auto ret = new ( std::nothrow ) LayoutScene();
+		auto ret = new ( std::nothrow ) DirectionalLayoutScene();
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -44,7 +44,7 @@ namespace ui_practice
 		return ret;
 	}
 
-	bool LayoutScene::init()
+	bool DirectionalLayoutScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -244,16 +244,16 @@ namespace ui_practice
 		return true;
 	}
 
-	void LayoutScene::onEnter()
+	void DirectionalLayoutScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( LayoutScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( DirectionalLayoutScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void LayoutScene::onExit()
+	void DirectionalLayoutScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -263,7 +263,7 @@ namespace ui_practice
 	}
 
 
-	Node* LayoutScene::MakeLayoutVertical(
+	Node* DirectionalLayoutScene::MakeLayoutVertical(
 		const int button_visible_count
 		, const int button_count
 		, const Size button_size
@@ -299,7 +299,7 @@ namespace ui_practice
 			button->setTag( i );
 			button->setScale9Enabled( true );
 			button->setContentSize( button_size );
-			button->addTouchEventListener( CC_CALLBACK_2( LayoutScene::onDummyButton, this ) );
+			button->addTouchEventListener( CC_CALLBACK_2( DirectionalLayoutScene::onDummyButton, this ) );
 
 			// Align
 			{
@@ -330,7 +330,7 @@ namespace ui_practice
 		return layout_node;
 	}
 
-	Node* LayoutScene::MakeLayoutHorizontal(
+	Node* DirectionalLayoutScene::MakeLayoutHorizontal(
 		const int button_visible_count
 		, const int button_count
 		, const Size button_size
@@ -366,7 +366,7 @@ namespace ui_practice
 			button->setTag( i );
 			button->setScale9Enabled( true );
 			button->setContentSize( button_size );
-			button->addTouchEventListener( CC_CALLBACK_2( LayoutScene::onDummyButton, this ) );
+			button->addTouchEventListener( CC_CALLBACK_2( DirectionalLayoutScene::onDummyButton, this ) );
 
 			// Align
 			{
@@ -398,7 +398,7 @@ namespace ui_practice
 	}
 
 
-	void LayoutScene::onDummyButton( Ref* sender, ui::Widget::TouchEventType touchEventType )
+	void DirectionalLayoutScene::onDummyButton( Ref* sender, ui::Widget::TouchEventType touchEventType )
 	{
 		if( cocos2d::ui::Widget::TouchEventType::BEGAN == touchEventType )
 		{
@@ -412,7 +412,7 @@ namespace ui_practice
 		}
 	}
 
-	void LayoutScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void DirectionalLayoutScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{

@@ -5,7 +5,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "ui_practice_LayoutScene.h"
+#include "ui_practice_DirectionalLayoutScene.h"
 #include "ui_practice_LayoutNScrollViewScene.h"
 #include "ui_practice_UIAndCamera.h"
 #include "ui_practice_Minimap.h"
@@ -45,7 +45,7 @@ namespace ui_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << ui_practice::LayoutScene::getTitle();
+			ss << "[1] : " << ui_practice::DirectionalLayoutScene::getTitle();
 			ss << std::endl;
 			ss << "[2] : " << ui_practice::LayoutNScrollViewScene::getTitle();
 			ss << std::endl;
@@ -102,7 +102,7 @@ namespace ui_practice
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( ui_practice::LayoutScene::create() );
+			Director::getInstance()->replaceScene( ui_practice::DirectionalLayoutScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
