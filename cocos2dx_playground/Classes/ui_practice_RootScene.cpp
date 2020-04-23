@@ -5,8 +5,9 @@
 
 #include "PlayGroundScene.h"
 
-#include "ui_practice_UIAndCamera.h"
+#include "ui_practice_LayoutScene.h"
 #include "ui_practice_LayoutNScrollViewScene.h"
+#include "ui_practice_UIAndCamera.h"
 #include "ui_practice_Minimap.h"
 #include "ui_practice_SliderScene.h"
 
@@ -44,13 +45,15 @@ namespace ui_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << ui_practice::LayoutNScrollViewScene::getTitle();
+			ss << "[1] : " << ui_practice::LayoutScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << ui_practice::UIAndCamera::getTitle();
+			ss << "[2] : " << ui_practice::LayoutNScrollViewScene::getTitle();
 			ss << std::endl;
-			ss << "[3] : " << ui_practice::Minimap::getTitle();
+			ss << "[3] : " << ui_practice::UIAndCamera::getTitle();
 			ss << std::endl;
-			ss << "[4] : " << ui_practice::SliderScene::getTitle();
+			ss << "[4] : " << ui_practice::Minimap::getTitle();
+			ss << std::endl;
+			ss << "[5] : " << ui_practice::SliderScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -99,15 +102,18 @@ namespace ui_practice
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
+			Director::getInstance()->replaceScene( ui_practice::LayoutScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( ui_practice::UIAndCamera::create() );
+			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( ui_practice::Minimap::create() );
+			Director::getInstance()->replaceScene( ui_practice::UIAndCamera::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
+			Director::getInstance()->replaceScene( ui_practice::Minimap::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( ui_practice::SliderScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
