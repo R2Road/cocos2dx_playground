@@ -12,5 +12,5 @@ uniform float u_lightsize;
 
 void main()
 {
-    gl_FragColor = v_fragmentColor * texture2D(CC_Texture0, v_texCoord);
+    gl_FragColor = mix( v_fragmentColor * texture2D(CC_Texture0, v_texCoord), u_additiveColor, 0.5 );
 }

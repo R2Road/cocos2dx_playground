@@ -402,6 +402,9 @@
     <ClCompile Include="..\Classes\shader_practice_GLUniformListScene.cpp">
       <Filter>src\scene\shader_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\shader_practice_GLUniformList.cpp">
+      <Filter>src\scene\shader_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -711,6 +714,9 @@
       <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\shader_practice_GLUniformListScene.h">
+      <Filter>src\scene\shader_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\shader_practice_GLUniformList.h">
       <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
   </ItemGroup>

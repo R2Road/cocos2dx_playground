@@ -16,6 +16,8 @@
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/ccShader_PositionTextureColor_noMVP.vert"
 
+#include "shader_practice_GLUniformList.h"
+
 USING_NS_CC;
 
 namespace
@@ -102,6 +104,9 @@ namespace shader_practice
 
 				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
 				view_node->setGLProgramState( gl_program_state );
+
+				GLUniformList uniform_list;
+				uniform_list.Load( gl_program->getProgram() );
 			}
 		}
 
