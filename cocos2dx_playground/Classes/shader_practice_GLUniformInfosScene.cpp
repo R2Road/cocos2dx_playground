@@ -1,4 +1,4 @@
-#include "shader_practice_GLUniformListScene.h"
+#include "shader_practice_GLUniformInfosScene.h"
 
 #include <new>
 #include <numeric>
@@ -16,7 +16,7 @@
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/ccShader_PositionTextureColor_noMVP.vert"
 
-#include "shader_practice_GLUniformList.h"
+#include "shader_practice_GLUniformInfos.h"
 
 USING_NS_CC;
 

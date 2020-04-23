@@ -10,7 +10,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "PlayGroundScene.h"
-#include "shader_practice_GLUniformListScene.h"
+#include "shader_practice_GLUniformInfosScene.h"
 
 USING_NS_CC;
 

@@ -399,10 +399,10 @@
     <ClCompile Include="..\Classes\shader_practice_RootScene.cpp">
       <Filter>src\scene\shader_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\shader_practice_GLUniformListScene.cpp">
+    <ClCompile Include="..\Classes\shader_practice_GLUniformInfos.cpp">
       <Filter>src\scene\shader_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\shader_practice_GLUniformList.cpp">
+    <ClCompile Include="..\Classes\shader_practice_GLUniformInfosScene.cpp">
       <Filter>src\scene\shader_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -713,10 +713,10 @@
     <ClInclude Include="..\Classes\shader_practice_RootScene.h">
       <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\shader_practice_GLUniformListScene.h">
+    <ClInclude Include="..\Classes\shader_practice_GLUniformInfos.h">
       <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\shader_practice_GLUniformList.h">
+    <ClInclude Include="..\Classes\shader_practice_GLUniformInfosScene.h">
       <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
   </ItemGroup>

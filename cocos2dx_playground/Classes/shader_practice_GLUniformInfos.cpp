@@ -1,4 +1,4 @@
-#include "shader_practice_GLUniformList.h"
+#include "shader_practice_GLUniformInfos.h"
 
 #include <cassert>
 
