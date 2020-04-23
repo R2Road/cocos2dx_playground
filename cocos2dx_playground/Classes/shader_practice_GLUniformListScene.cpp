@@ -118,18 +118,20 @@ namespace shader_practice
 		// Practice : Uniform List
 		//
 		{
-			const Vec2 spacing( 0.f, 40.f );
+			const Vec2 margin( -2.f, -2.f );
+			const Vec2 spacing( 0.f, -40.f );
 
 			int i = 0;
 			Label* label = nullptr;
 			for( const auto& u : uniform_list.GetContainer() )
 			{
-				label = Label::createWithTTF( u.first, FontPath, 9 );
+				label = Label::createWithTTF( u.Name, FontPath, 9 );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					Vec2( visibleOrigin.x + visibleSize.width, visibleOrigin.y + visibleSize.height )
-					- ( spacing * i )
+					+ margin
+					+ ( spacing * i )
 				);
 				addChild( label );
 

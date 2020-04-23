@@ -58,7 +58,7 @@ namespace shader_practice
 						}
 						assert( __gl_error_code == GL_NO_ERROR );
 
-						mContainer[std::string( uniform_name )] = uniform_type;
+						mContainer.emplace_back( uniform_name, uniform_type );
 					}
 				}
 			}

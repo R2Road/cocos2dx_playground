@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
+#include <vector>
 
 #include "platform/CCGL.h"
 
@@ -10,7 +10,15 @@ namespace shader_practice
 	class GLUniformList
 	{
 	public:
-		using ContainerT = std::unordered_map<std::string, GLenum>;
+		struct GLUniformInfo
+		{
+			GLUniformInfo( const char* name, GLenum type ) : Name( name ), Type( type ) {}
+
+			std::string Name;
+			GLenum Type;
+		};
+
+		using ContainerT = std::vector<GLUniformInfo>;
 
 		void Load( const GLuint program_index );
 
