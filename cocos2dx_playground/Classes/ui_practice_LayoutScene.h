@@ -27,6 +27,14 @@ namespace ui_practice
 			, const bool clipping_enable
 		);
 
+		Node* MakeLayoutHorizontal(
+			const int button_visible_count
+			, const int button_count
+			, const cocos2d::Size button_size
+			, const cocos2d::Size button_margin
+			, const bool clipping_enable
+		);
+
 		void onDummyButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touchEventType );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
