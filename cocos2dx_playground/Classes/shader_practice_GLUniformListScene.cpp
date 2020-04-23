@@ -6,9 +6,15 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+
+#include "platform/CCFileUtils.h"
+#include "renderer/CCGLProgram.h"
+#include "renderer/CCGLProgramCache.h"
+#include "renderer/ccShader_PositionTextureColor_noMVP.vert"
 
 USING_NS_CC;
 
@@ -82,6 +88,21 @@ namespace shader_practice
 		// Practice
 		//
 		{
+			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
+			view_node->getTexture()->setAliasTexParameters();
+			view_node->setPosition(
+				visibleOrigin.x + visibleSize.width * 0.5f
+				, visibleOrigin.y + visibleSize.height * 0.5f
+			);
+			view_node->setScale( 4.f );
+			addChild( view_node );
+			{
+				auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( "shaders/gl_uniform_list.fsh" ) );
+				auto gl_program = cocos2d::GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
+
+				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
+				view_node->setGLProgramState( gl_program_state );
+			}
 		}
 
 		return true;
