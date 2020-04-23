@@ -112,6 +112,9 @@
     <Filter Include="src\helper">
       <UniqueIdentifier>{f0f60ebf-350b-429e-8246-a99ab7948bc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\shader_practice">
+      <UniqueIdentifier>{aab23b7f-1a81-4107-bd0e-df1a9434da75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -392,6 +395,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_RelativeLayoutScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\shader_practice_RootScene.cpp">
+      <Filter>src\scene\shader_practice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -697,6 +703,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_RelativeLayoutScene.h">
       <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\shader_practice_RootScene.h">
+      <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

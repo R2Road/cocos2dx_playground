@@ -11,6 +11,7 @@
 #include "step_defender_RootScene.h"
 
 #include "ui_practice_RootScene.h"
+#include "shader_practice_RootScene.h"
 
 #include "Research_Input_GamePadTest.h"
 #include "Step99_RootScene.h"
@@ -75,13 +76,15 @@ bool PlayGroundScene::init()
 		ss << std::endl;
 		ss << "[7] : " << ui_practice::RootScene::getTitle();
 		ss << std::endl;
+		ss << "[8] : " << shader_practice::RootScene::getTitle();
+		ss << std::endl;
 		ss << std::endl;
 		ss << "=============================";
 		ss << std::endl;
 		ss << std::endl;
-		ss << "[8] : " << research::input::GamePadTestScene::getTitle();
+		ss << "[A] : " << research::input::GamePadTestScene::getTitle();
 		ss << std::endl;
-		ss << "[9] : " << step99::RootScene::getTitle();
+		ss << "[S] : " << step99::RootScene::getTitle();
 
 		auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 		label->setPosition( Vec2(
@@ -145,10 +148,14 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		break;
 
 	case EventKeyboard::KeyCode::KEY_8:
+		Director::getInstance()->replaceScene( shader_practice::RootScene::create() );
+		break;
+
+	case EventKeyboard::KeyCode::KEY_A:
 		Director::getInstance()->replaceScene( research::input::GamePadTestScene::create() );
 		break;
 
-	case EventKeyboard::KeyCode::KEY_9:
+	case EventKeyboard::KeyCode::KEY_S:
 		Director::getInstance()->replaceScene( step99::RootScene::create() );
 		break;
 
