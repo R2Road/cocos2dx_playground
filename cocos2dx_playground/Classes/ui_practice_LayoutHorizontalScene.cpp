@@ -91,8 +91,8 @@ namespace ui_practice
 		// Practice : Horizontal Basic
 		//
 		{
-			const Vec2 LayoutStartPosition( visibleSize.width * 0.18f, visibleSize.height * 0.1f );
-			const float LayoutSpacing = visibleSize.height * 0.3f;
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.18f, visibleSize.height * 0.7f );
+			const float LayoutSpacing = -visibleSize.height * 0.3f;
 
 			// content = VisibleCount x 1
 			{
@@ -298,10 +298,10 @@ namespace ui_practice
 		// Practice : Horizontal and Flip
 		//
 		{
-			const Vec2 LayoutStartPosition( visibleSize.width * 0.62f, visibleSize.height * 0.18f );
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.623f, visibleSize.height * 0.18f );
 			const float LayoutSpacing = visibleSize.width * 0.20f;
 
-			// Flip
+			// Flip X
 			{
 				auto layout_node = MakeLayoutHorizontal( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, true );
 				layout_node->setPosition( Vec2(
@@ -320,7 +320,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nFlip\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -332,7 +332,7 @@ namespace ui_practice
 				}
 			}
 
-			// Flip : Over Eat
+			// Flip X : Over Eat
 			{
 				auto layout_node = MakeLayoutHorizontal( 3, 4, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, true );
 				layout_node->setPosition( Vec2(
@@ -351,7 +351,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nFlip\nOver Eat", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\nOver Eat", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -363,7 +363,7 @@ namespace ui_practice
 				}
 			}
 
-			// Flip : Over Eat + Clipping
+			// Flip X : Over Eat + Clipping
 			{
 				auto layout_node = MakeLayoutHorizontal( 3, 4, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, true, true );
 				layout_node->setPosition( Vec2(
@@ -382,7 +382,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nFlip\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
