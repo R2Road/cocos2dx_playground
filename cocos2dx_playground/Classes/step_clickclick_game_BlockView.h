@@ -25,9 +25,9 @@ namespace step_clickclick
 				, cocos2d::Action* const die_effect_action
 			);
 
-			void Init( eBlockType type, const int life );
+			void Reset( eBlockType type, const int life );
 			void SetVisible( const bool visible );
-			void Update( const int last_life, const int current_life );
+			void UpdateLife( const int last_life, const int current_life );
 
 		private:
 			cocos2d::Node* const mButtonNode;

@@ -35,7 +35,7 @@ namespace step_clickclick
 			, mDecreaseEffectAction( decrease_effect_action )
 			, mDieEffectAction( die_effect_action )
 		{}
-		void BlockView::Init( eBlockType type, const int life )
+		void BlockView::Reset( eBlockType type, const int life )
 		{
 			mLabelNode->setString( std::to_string( life ) );
 
@@ -62,7 +62,7 @@ namespace step_clickclick
 			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}
-		void BlockView::Update( const int last_life, const int current_life )
+		void BlockView::UpdateLife( const int last_life, const int current_life )
 		{
 			if( 0 == current_life )
 			{

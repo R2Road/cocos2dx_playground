@@ -200,14 +200,14 @@ namespace step_clickclick
 					continue;
 				}
 
-				mBlockViews[b.GetIndex()].Init( b.GetType(), b.GetLife() );
+				mBlockViews[b.GetIndex()].Reset( b.GetType(), b.GetLife() );
 				mBlockViews[b.GetIndex()].SetVisible( true );
 			}
 		}
 
 		void StageView::UpdateBlock( const int linear_index, const int last_life, const int current_life )
 		{
-			mBlockViews[linear_index].Update( last_life, current_life );
+			mBlockViews[linear_index].UpdateLife( last_life, current_life );
 		}
 
 		void StageView::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
