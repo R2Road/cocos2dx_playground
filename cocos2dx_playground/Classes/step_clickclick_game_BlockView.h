@@ -25,6 +25,8 @@ namespace step_clickclick
 			BlockView( const OnBlockCallback& on_block_callback );
 
 		public:
+			~BlockView();
+
 			static BlockView* create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback );
 
 			bool init( const int linear_index, const cocos2d::Size block_size );

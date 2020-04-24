@@ -29,6 +29,13 @@ namespace step_clickclick
 			, mOnBlockCallback( on_block_callback )
 		{}
 
+		BlockView::~BlockView()
+		{
+			CC_SAFE_RELEASE_NULL( mIncreaseEffectAction );
+			CC_SAFE_RELEASE_NULL( mDecreaseEffectAction );
+			CC_SAFE_RELEASE_NULL( mDieEffectAction );
+		}
+
 		BlockView* BlockView::create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback )
 		{
 			auto ret = new ( std::nothrow ) BlockView( on_block_callback );
