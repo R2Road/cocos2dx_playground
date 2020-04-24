@@ -326,7 +326,7 @@ namespace step_pathfinder
 			}
 			else
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.2f );
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 			}
 		}
 
