@@ -155,6 +155,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\shader_practice_GLUniformInfos.cpp" />
     <ClCompile Include="..\Classes\shader_practice_GLUniformInfosScene.cpp" />
     <ClCompile Include="..\Classes\shader_practice_RootScene.cpp" />
+    <ClCompile Include="..\Classes\shader_practice_SimpleTestScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_AnimationComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp" />
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp" />
@@ -257,6 +258,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\shader_practice_GLUniformInfos.h" />
     <ClInclude Include="..\Classes\shader_practice_GLUniformInfosScene.h" />
     <ClInclude Include="..\Classes\shader_practice_RootScene.h" />
+    <ClInclude Include="..\Classes\shader_practice_SimpleTestScene.h" />
     <ClInclude Include="..\Classes\step_mole_AnimationComponent.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Index.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Info.h" />

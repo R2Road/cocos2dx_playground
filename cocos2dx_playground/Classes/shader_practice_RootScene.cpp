@@ -12,6 +12,7 @@
 #include "PlayGroundScene.h"
 #include "shader_practice_BasicScene.h"
 #include "shader_practice_GLUniformInfosScene.h"
+#include "shader_practice_SimpleTestScene.h"
 
 USING_NS_CC;
 
@@ -51,6 +52,8 @@ namespace shader_practice
 			ss << "[1] : " << shader_practice::BasicScene::getTitle();
 			ss << std::endl;
 			ss << "[2] : " << shader_practice::GLUniformInfosScene::getTitle();
+			ss << std::endl;
+			ss << "[3] : " << shader_practice::SimpleTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -103,6 +106,9 @@ namespace shader_practice
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( shader_practice::GLUniformInfosScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( shader_practice::SimpleTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
