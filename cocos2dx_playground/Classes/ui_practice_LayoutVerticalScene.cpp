@@ -195,7 +195,7 @@ namespace ui_practice
 		// - Go and Read : LinearVerticalLayoutManager::doLayout(LayoutProtocol* layout)
 		//
 		{
-			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.7f );
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.65f );
 			const float LayoutSpacing = visibleSize.width * 0.15f;
 
 			// Gravity Left
@@ -300,7 +300,7 @@ namespace ui_practice
 		// Practice : Vertical and Flip
 		//
 		{
-			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.2f );
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.15f );
 			const float LayoutSpacing = visibleSize.width * 0.15f;
 
 			// Default
