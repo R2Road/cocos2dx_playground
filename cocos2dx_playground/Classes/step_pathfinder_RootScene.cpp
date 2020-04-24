@@ -51,10 +51,16 @@ namespace step_pathfinder
 			ss << "[2] : " << step_pathfinder::text_field::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[3] : " << step_pathfinder::tool::MapToolScene::getTitle();
+			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_pathfinder::game::TitleScene::getTitle();
+			ss << "[A] : " << step_pathfinder::tool::MapToolScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[SPACE] : " << step_pathfinder::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -110,11 +116,11 @@ namespace step_pathfinder
 			Director::getInstance()->replaceScene( step_pathfinder::text_field::BasicScene::create() );
 			break;
 
-
-		case EventKeyboard::KeyCode::KEY_3:
+		case EventKeyboard::KeyCode::KEY_A:
 			Director::getInstance()->replaceScene( step_pathfinder::tool::MapToolScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_4:
+
+		case EventKeyboard::KeyCode::KEY_SPACE:
 			Director::getInstance()->replaceScene( step_pathfinder::game::TitleScene::create() );
 			break;
 
