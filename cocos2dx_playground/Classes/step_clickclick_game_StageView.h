@@ -8,7 +8,6 @@
 
 #include "cpg_GridIndexConverter.h"
 #include "step_clickclick_game_Constant.h"
-#include "step_clickclick_game_BlockView.h"
 
 NS_CC_BEGIN
 	class Label;
@@ -20,6 +19,8 @@ namespace step_clickclick
 {
 	namespace game
 	{
+		class BlockView;
+
 		class Stage;
 
 		struct StageViewConfig
@@ -50,7 +51,7 @@ namespace step_clickclick
 			const int mStageWidth;
 			const int mStageHeight;
 			const cpg::GridIndexConverter mGridIndexConverter;
-			std::vector<BlockView> mBlockViews;
+			std::vector<BlockView*> mBlockViews;
 
 			const OnBlockCallback mOnBlockCallback;
 		};

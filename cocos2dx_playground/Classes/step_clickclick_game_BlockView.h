@@ -1,6 +1,8 @@
 #pragma once
 
 #include "2d/CCNode.h"
+#include "ui/UIWidget.h"
+#include "math/CCGeometry.h"
 
 #include "step_clickclick_game_Constant.h"
 
@@ -14,29 +16,36 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class BlockView
+		class BlockView : public cocos2d::Node
 		{
 		public:
-			BlockView(
-				cocos2d::Node* const button_node, cocos2d::Sprite* const view_node, cocos2d::Label* const label_node
-				, cocos2d::Sprite* const effect_node
-				, cocos2d::Action* const increase_effect_action
-				, cocos2d::Action* const decrease_effect_action
-				, cocos2d::Action* const die_effect_action
-			);
+			using OnBlockCallback = std::function<void( int )>;
+
+		private:
+			BlockView( const OnBlockCallback& on_block_callback );
+
+		public:
+			static BlockView* create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback );
+
+			bool init( const int linear_index, const cocos2d::Size block_size );
 
 			void Reset( eBlockType type, const int life );
 			void SetVisible( const bool visible );
 			void UpdateLife( const int last_life, const int current_life );
 
 		private:
-			cocos2d::Node* const mButtonNode;
-			cocos2d::Sprite* const mViewNode;
-			cocos2d::Label* const mLabelNode;
-			cocos2d::Sprite* const mEffectNode;
-			cocos2d::Action* const mIncreaseEffectAction;
-			cocos2d::Action* const mDecreaseEffectAction;
-			cocos2d::Action* const mDieEffectAction;
+			void onBlock( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+
+		private:
+			cocos2d::Node* mButtonNode;
+			cocos2d::Sprite* mViewNode;
+			cocos2d::Label* mLabelNode;
+			cocos2d::Sprite* mEffectNode;
+			cocos2d::Action* mIncreaseEffectAction;
+			cocos2d::Action* mDecreaseEffectAction;
+			cocos2d::Action* mDieEffectAction;
+
+			const OnBlockCallback mOnBlockCallback;
 		};
 	}
 }

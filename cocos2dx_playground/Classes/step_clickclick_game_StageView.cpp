@@ -13,6 +13,7 @@
 #include "ui/UIButton.h"
 #include "2d/CCSpriteFrameCache.h"
 
+#include "step_clickclick_game_BlockView.h"
 #include "step_clickclick_game_Stage.h"
 
 USING_NS_CC;
@@ -100,83 +101,15 @@ namespace step_clickclick
 				{
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					// button
-					auto button = ui::Button::create( "guide_empty.png", "guide_empty.png", "guide_empty.png", ui::Widget::TextureResType::PLIST );
-					button->setTag( linear_index );
-					button->setScale9Enabled( true );
-					button->setContentSize( tile_size );
-					button->setPosition(
+					auto block_view = BlockView::create( linear_index, tile_size, mOnBlockCallback );
+					block_view->setPosition(
 						pivot_position
 						+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
 						+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
 					);
-					button->addTouchEventListener( CC_CALLBACK_2( StageView::onBlock, this ) );
-					addChild( button );
+					addChild( block_view );
 
-					// view
-					auto view_node = Sprite::create();
-					view_node->setScale( 2.f );
-					view_node->setPosition( button->getPosition() );
-					addChild( view_node, 1 );
-
-					// label
-					auto label = Label::createWithTTF( "0", "fonts/arial.ttf", 9 );
-					label->getFontAtlas()->setAliasTexParameters();
-					label->setColor( Color3B::WHITE );
-					label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-					label->setPosition( button->getPosition() );
-					addChild( label, 2 );
-
-					// effect
-					auto effect_node = Sprite::create();
-					effect_node->setScale( 2.f );
-					effect_node->setPosition( button->getPosition() );
-					addChild( effect_node, 3 );
-
-					// increase animation action
-					auto increase_animation_object = Animation::create();
-					increase_animation_object->setDelayPerUnit( 0.07f );
-					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase1.png" ) );
-					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase2.png" ) );
-					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase3.png" ) );
-					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase4.png" ) );
-					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase5.png" ) );
-					increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
-					auto increase_animate_action = Animate::create( increase_animation_object );
-					increase_animate_action->retain();
-
-					// decrease animation action
-					auto decrease_animation_object = Animation::create();
-					decrease_animation_object->setDelayPerUnit( 0.07f );
-					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease1.png" ) );
-					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease2.png" ) );
-					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease3.png" ) );
-					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease4.png" ) );
-					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease5.png" ) );
-					decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
-					auto decrease_animate_action = Animate::create( decrease_animation_object );
-					decrease_animate_action->retain();
-
-					// die animation action
-					auto die_animation_object = Animation::create();
-					die_animation_object->setDelayPerUnit( 0.07f );
-					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die1.png" ) );
-					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die2.png" ) );
-					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die3.png" ) );
-					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die4.png" ) );
-					die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
-					auto die_animate_action = Animate::create( die_animation_object );
-					die_animate_action->retain();
-
-					mBlockViews.emplace_back(
-						button
-						, view_node
-						, label
-						, effect_node
-						, increase_animate_action
-						, decrease_animate_action
-						, die_animate_action
-					);
+					mBlockViews.emplace_back( block_view );
 				}
 			}
 
@@ -190,7 +123,7 @@ namespace step_clickclick
 
 			for( auto& b : mBlockViews )
 			{
-				b.SetVisible( false );
+				b->SetVisible( false );
 			}
 
 			for( const auto& b : stage_data.GetBlockDatas() )
@@ -200,14 +133,14 @@ namespace step_clickclick
 					continue;
 				}
 
-				mBlockViews[b.GetIndex()].Reset( b.GetType(), b.GetLife() );
-				mBlockViews[b.GetIndex()].SetVisible( true );
+				mBlockViews[b.GetIndex()]->Reset( b.GetType(), b.GetLife() );
+				mBlockViews[b.GetIndex()]->SetVisible( true );
 			}
 		}
 
 		void StageView::UpdateBlock( const int linear_index, const int last_life, const int current_life )
 		{
-			mBlockViews[linear_index].UpdateLife( last_life, current_life );
+			mBlockViews[linear_index]->UpdateLife( last_life, current_life );
 		}
 
 		void StageView::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
