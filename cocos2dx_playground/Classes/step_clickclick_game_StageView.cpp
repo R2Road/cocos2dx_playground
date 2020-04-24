@@ -4,14 +4,8 @@
 #include <new>
 #include <numeric>
 
-#include "2d/CCActionInterval.h"
-#include "2d/CCAnimation.h"
-#include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "base/ccMacros.h"
-#include "ui/UIButton.h"
-#include "2d/CCSpriteFrameCache.h"
 
 #include "step_clickclick_game_BlockView.h"
 #include "step_clickclick_game_Stage.h"
@@ -31,12 +25,11 @@ namespace step_clickclick
 #endif
 		}
 
-		StageView::StageView( const int width, const int height, const OnBlockCallback& on_block_callback ) :
+		StageView::StageView( const int width, const int height ) :
 			mStageWidth( width )
 			, mStageHeight( height )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
 			, mBlockViews()
-			, mOnBlockCallback( on_block_callback )
 		{
 			//
 			// Must odd number
@@ -47,8 +40,8 @@ namespace step_clickclick
 
 		StageView* StageView::create( const int width, const int height, const OnBlockCallback& on_block_callback, const StageViewConfig config )
 		{
-			auto ret = new ( std::nothrow ) StageView( width, height, on_block_callback );
-			if( !ret || !ret->init( config ) )
+			auto ret = new ( std::nothrow ) StageView( width, height );
+			if( !ret || !ret->init( config, on_block_callback ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -62,7 +55,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool StageView::init( const StageViewConfig config )
+		bool StageView::init( const StageViewConfig config, const OnBlockCallback& on_block_callback )
 		{
 			if( !Node::init() )
 			{
@@ -95,13 +88,14 @@ namespace step_clickclick
 
 			// Buttons
 			int linear_index = 0;
+			BlockView* block_view = nullptr;
 			for( int ty = 0; ty < mStageHeight; ++ty )
 			{
 				for( int tx = 0; tx < mStageWidth; ++tx )
 				{
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					auto block_view = BlockView::create( linear_index, tile_size, mOnBlockCallback );
+					block_view = BlockView::create( linear_index, tile_size, on_block_callback );
 					block_view->setPosition(
 						pivot_position
 						+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
@@ -141,17 +135,6 @@ namespace step_clickclick
 		void StageView::UpdateBlock( const int linear_index, const int last_life, const int current_life )
 		{
 			mBlockViews[linear_index]->UpdateLife( last_life, current_life );
-		}
-
-		void StageView::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
-		{
-			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
-			{
-				return;
-			}
-
-			auto button_node = static_cast<Node*>( sender );
-			mOnBlockCallback( button_node->getTag() );
 		}
 	} // namespace game
 } // namespace step_clickclick

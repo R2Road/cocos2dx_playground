@@ -4,10 +4,8 @@
 #include <vector>
 
 #include "2d/CCNode.h"
-#include "ui/UIWidget.h"
 
 #include "cpg_GridIndexConverter.h"
-#include "step_clickclick_game_Constant.h"
 
 NS_CC_BEGIN
 	class Label;
@@ -35,25 +33,21 @@ namespace step_clickclick
 			using OnBlockCallback = std::function<void( int )>;
 
 		private:
-			StageView( const int width, const int height, const OnBlockCallback& on_block_callback );
+			StageView( const int width, const int height );
 
 		public:
 			static StageView* create( const int width, const int height, const OnBlockCallback& on_block_callback, const StageViewConfig config = StageViewConfig() );
 
-			bool init( const StageViewConfig config );
+			bool init( const StageViewConfig config, const OnBlockCallback& on_block_callback );
+
 			void Setup( const Stage& stage_data );
 			void UpdateBlock( const int linear_index, const int last_life, const int current_life );
-
-		private:
-			void onBlock( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			const int mStageWidth;
 			const int mStageHeight;
 			const cpg::GridIndexConverter mGridIndexConverter;
 			std::vector<BlockView*> mBlockViews;
-
-			const OnBlockCallback mOnBlockCallback;
 		};
 	}
 }
