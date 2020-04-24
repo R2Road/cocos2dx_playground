@@ -78,12 +78,13 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[2] : Decrease Stage Size And Reset";
 				ss << std::endl;
-				ss << "[R] : Stage Reset";
-				ss << std::endl;
 				ss << std::endl;
 				ss << "[P] : Auto Play Once : Success";
 				ss << std::endl;
 				ss << "[O] : Auto Play Once : Failed";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[R] : Stage Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
