@@ -419,7 +419,7 @@ namespace ui_practice
 
 	Node* LayoutHorizontalScene::MakeLayoutHorizontal(
 		const int button_visible_count
-		, const int button_count
+		, const int button_content_count
 		, const Size button_size
 		, const Size button_margin
 		, const ui::LinearLayoutParameter::LinearGravity vertical_gravity
@@ -450,7 +450,7 @@ namespace ui_practice
 		}
 
 		// Content
-		for( int i = 1; button_count >= i; ++i )
+		for( int i = 1; button_content_count >= i; ++i )
 		{
 			auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( i );

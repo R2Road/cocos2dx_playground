@@ -24,7 +24,7 @@ namespace ui_practice
 	private:
 		Node* MakeLayoutHorizontal(
 			const int button_visible_count
-			, const int button_count
+			, const int button_content_count
 			, const cocos2d::Size button_size
 			, const cocos2d::Size button_margin
 			, const cocos2d::ui::LinearLayoutParameter::LinearGravity vertical_gravity
