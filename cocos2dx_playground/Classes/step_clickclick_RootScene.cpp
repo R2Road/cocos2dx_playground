@@ -56,9 +56,16 @@ namespace step_clickclick
 			ss << "[3] : " << step_clickclick::button::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_clickclick::game::StageTestScene::getTitle();
+			ss << "=============================";
 			ss << std::endl;
-			ss << "[5] : " << step_clickclick::game::TitleScene::getTitle();
+			ss << std::endl;
+			ss << "[A] : " << step_clickclick::game::StageTestScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[SPACE] : " << step_clickclick::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -118,10 +125,11 @@ namespace step_clickclick
 			Director::getInstance()->replaceScene( step_clickclick::button::BasicScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_A:
 			Director::getInstance()->replaceScene( step_clickclick::game::StageTestScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+
+		case EventKeyboard::KeyCode::KEY_SPACE:
 			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
 			break;
 
