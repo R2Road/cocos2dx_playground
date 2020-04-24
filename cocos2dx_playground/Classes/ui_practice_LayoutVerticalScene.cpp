@@ -197,6 +197,7 @@ namespace ui_practice
 		{
 			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.65f );
 			const float LayoutSpacing = visibleSize.width * 0.15f;
+			const Vec2 LabelOffset( 0, 24 );
 
 			// Gravity Left
 			{
@@ -224,7 +225,7 @@ namespace ui_practice
 					label->setPosition(
 						layout_node->getPosition()
 						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
-						+ Vec2( 0.f, 20.f )
+						+ LabelOffset
 					);
 					addChild( label, std::numeric_limits<int>::max() );
 				}
@@ -256,7 +257,7 @@ namespace ui_practice
 					label->setPosition(
 						layout_node->getPosition()
 						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
-						+ Vec2( 0.f, 20.f )
+						+ LabelOffset
 					);
 					addChild( label, std::numeric_limits<int>::max() );
 				}
@@ -288,7 +289,7 @@ namespace ui_practice
 					label->setPosition(
 						layout_node->getPosition()
 						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
-						+ Vec2( 0.f, 20.f )
+						+ LabelOffset
 					);
 					addChild( label, std::numeric_limits<int>::max() );
 				}
@@ -302,13 +303,14 @@ namespace ui_practice
 		{
 			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.15f );
 			const float LayoutSpacing = visibleSize.width * 0.15f;
+			const Vec2 LabelOffset( 0, 24 );
 
-			// Default
+			// Flip
 			{
-				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, false );
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, true );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 0 ) - ( layout_node->getContentSize().width * 0.5f )
-					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
+					, visibleOrigin.y + LayoutStartPosition.y + ( layout_node->getContentSize().height * 0.5f )
 				) );
 				addChild( layout_node );
 
@@ -322,21 +324,21 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nDefault", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nFlip\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
 						layout_node->getPosition()
-						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
-						+ Vec2( 0.f, 20.f )
+						+ Vec2( layout_node->getContentSize().width * 0.5f, 0.f )
+						+ LabelOffset
 					);
 					addChild( label, std::numeric_limits<int>::max() );
 				}
 			}
 
-			// Flip
+			// Flip : Over Eat
 			{
-				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, true );
+				auto layout_node = MakeLayoutVertical( 3, 4, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, true );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 1 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y + ( layout_node->getContentSize().height * 0.5f )
@@ -353,13 +355,44 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nFlip", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nFlip\nOver Eat", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
 						layout_node->getPosition()
 						+ Vec2( layout_node->getContentSize().width * 0.5f, 0.f )
-						+ Vec2( 0.f, 20.f )
+						+ LabelOffset
+					);
+					addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+
+			// Flip : Over Eat + Clipping
+			{
+				auto layout_node = MakeLayoutVertical( 3, 4, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, true, true );
+				layout_node->setPosition( Vec2(
+					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 2 ) - ( layout_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + LayoutStartPosition.y + ( layout_node->getContentSize().height * 0.5f )
+				) );
+				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// Explain
+				{
+					auto label = Label::createWithTTF( "Vertical\n\nFlip\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition(
+						layout_node->getPosition()
+						+ Vec2( layout_node->getContentSize().width * 0.5f, 0.f )
+						+ LabelOffset
 					);
 					addChild( label, std::numeric_limits<int>::max() );
 				}
