@@ -24,3 +24,18 @@ useful code for make game with cocos2d-x 3.17.2
 - graphic
   - paint.net
   - aseprite
+  
+  
+# Contents
+
+- step
+  - typetype
+  - clickclick
+  - path finder
+  - mole( in progress )
+  - rain of chaos( to do )
+  - defender( to do )
+  
+- ui practice
+
+- shader practice
