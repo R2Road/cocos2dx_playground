@@ -103,7 +103,7 @@ namespace shader_practice
 			view_node->setScale( 4.f );
 			addChild( view_node );
 			{
-				auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( "shaders/gl_uniform_list.fsh" ) );
+				auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( "shaders/gl_uniform_infos_test.fsh" ) );
 				auto gl_program = cocos2d::GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
 
 				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
