@@ -405,6 +405,9 @@
     <ClCompile Include="..\Classes\shader_practice_GLUniformInfosScene.cpp">
       <Filter>src\scene\shader_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_LayoutVerticalScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -718,6 +721,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\shader_practice_GLUniformInfosScene.h">
       <Filter>src\scene\shader_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_LayoutVerticalScene.h">
+      <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
