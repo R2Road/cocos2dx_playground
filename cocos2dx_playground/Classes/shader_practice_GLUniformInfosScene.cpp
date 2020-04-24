@@ -146,23 +146,37 @@ namespace shader_practice
 		// Practice : Uniform List
 		//
 		{
-			const Vec2 margin( -2.f, 2.f );
-			const Vec2 spacing( 0.f, 40.f );
+			const Vec2 Margin( -2.f, 2.f );
+			const Vec2 Spacing( 0.f, 20.f );
+			const Vec2 NamePivotPosition( visibleOrigin.x + visibleSize.width * 0.4f, visibleOrigin.y );
+			const Vec2 TypePivotPosition( visibleOrigin.x + visibleSize.width * 0.7f, visibleOrigin.y );
 
 			int i = 0;
 			Label* label = nullptr;
 			std::string str;
 			for( const auto& u : uniform_list.GetContainer() )
 			{
-				str = StringUtils::format( "Name : %-20s Type : %s( %d )", u.Name.c_str(), GLenum2String( u.Type ), u.Type );
+				str = StringUtils::format( "Name : %-20s", u.Name.c_str() );
 
 				label = Label::createWithTTF( str, FontPath, 9 );
-				label->setAnchorPoint( Vec2( 1.f, 0.f ) );
+				label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
-					Vec2( visibleOrigin.x + visibleSize.width, visibleOrigin.y )
-					+ margin
-					+ ( spacing * i )
+					NamePivotPosition
+					+ Margin
+					+ ( Spacing * i )
+				);
+				addChild( label );
+
+				str = StringUtils::format( "Type : %s( %d )", GLenum2String( u.Type ), u.Type );
+
+				label = Label::createWithTTF( str, FontPath, 9 );
+				label->setAnchorPoint( Vec2( 0.f, 0.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					TypePivotPosition
+					+ Margin
+					+ ( Spacing * i )
 				);
 				addChild( label );
 
