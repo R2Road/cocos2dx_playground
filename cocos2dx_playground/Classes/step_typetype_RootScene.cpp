@@ -60,9 +60,16 @@ namespace step_typetype
 			ss << "[4] " << step_typetype::sound::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[5] " << step_typetype::game::StageTestScene::getTitle();
+			ss << "=============================";
 			ss << std::endl;
-			ss << "[6] " << step_typetype::game::TitleScene::getTitle();
+			ss << std::endl;
+			ss << "[A] " << step_typetype::game::StageTestScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[SPACE] " << step_typetype::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -125,10 +132,11 @@ namespace step_typetype
 			Director::getInstance()->replaceScene( step_typetype::sound::BasicScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_A:
 			Director::getInstance()->replaceScene( step_typetype::game::StageTestScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_6:
+
+		case EventKeyboard::KeyCode::KEY_SPACE:
 			Director::getInstance()->replaceScene( step_typetype::game::TitleScene::create() );
 			break;
 
