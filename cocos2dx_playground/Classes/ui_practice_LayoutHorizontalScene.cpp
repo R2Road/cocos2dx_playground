@@ -320,7 +320,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\n\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -351,7 +351,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\nOver Eat", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\nOver Eat\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -382,7 +382,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Horizontal\n\nFlip X\nOver Eat\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(

@@ -195,8 +195,8 @@ namespace ui_practice
 		// - Go and Read : LinearVerticalLayoutManager::doLayout(LayoutProtocol* layout)
 		//
 		{
-			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.65f );
-			const float LayoutSpacing = visibleSize.width * 0.15f;
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.69f );
+			const float LayoutSpacing = visibleSize.width * 0.14f;
 			const Vec2 LabelOffset( 0, 24 );
 
 			// Gravity Left
@@ -301,11 +301,11 @@ namespace ui_practice
 		// Practice : Vertical and Flip
 		//
 		{
-			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.15f );
-			const float LayoutSpacing = visibleSize.width * 0.15f;
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.14f );
+			const float LayoutSpacing = visibleSize.width * 0.14f;
 			const Vec2 LabelOffset( 0, 24 );
 
-			// Flip
+			// Flip Y
 			{
 				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, true );
 				layout_node->setPosition( Vec2(
@@ -324,7 +324,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nFlip\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\n\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -336,7 +336,7 @@ namespace ui_practice
 				}
 			}
 
-			// Flip : Over Eat
+			// Flip Y : Over Eat
 			{
 				auto layout_node = MakeLayoutVertical( 3, 4, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, true );
 				layout_node->setPosition( Vec2(
@@ -355,7 +355,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nFlip\nOver Eat", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\nOver Eat\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -367,7 +367,7 @@ namespace ui_practice
 				}
 			}
 
-			// Flip : Over Eat + Clipping
+			// Flip Y : Over Eat + Clipping
 			{
 				auto layout_node = MakeLayoutVertical( 3, 4, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, true, true );
 				layout_node->setPosition( Vec2(
@@ -386,7 +386,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nFlip\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\nOver Eat\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
