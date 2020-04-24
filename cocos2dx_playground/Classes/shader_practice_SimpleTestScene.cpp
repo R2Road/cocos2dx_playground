@@ -12,6 +12,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
+#include "ui/UISlider.h"
 
 #include "platform/CCFileUtils.h"
 #include "renderer/CCGLProgram.h"
@@ -25,8 +26,120 @@ USING_NS_CC;
 namespace
 {
 	const char* FontPath = "fonts/arial.ttf";
-
 	const char* CustomeShaderPath = "shaders/shader_practice_SimpleTestScene.fsh";
+
+	class UniformHelperNode : public Node
+	{
+	public:
+		using SliderChangeCallback = std::function<void( float )>;
+
+	private:
+		UniformHelperNode() {}
+
+	public:
+		static UniformHelperNode* create( const shader_practice::GLUniformInfos::Info& info, const float start_value, const SliderChangeCallback& slider_change_callback )
+		{
+			auto ret = new ( std::nothrow ) UniformHelperNode();
+			if( !ret || !ret->init( info, start_value, slider_change_callback ) )
+			{
+				delete ret;
+				ret = nullptr;
+				return nullptr;
+			}
+			else
+			{
+				ret->autorelease();
+			}
+
+			return ret;
+		}
+
+		bool init( const shader_practice::GLUniformInfos::Info& info, const float start_value, const SliderChangeCallback& slider_change_callback )
+		{
+			if( !Node::init() )
+			{
+				return false;
+			}
+
+			setContentSize( Size( 180.f, 80.f ) );
+			const float Content_Scale( 4.f );
+			const Vec2 CenterPosition( getContentSize() * 0.5f );
+			const int StartPercent( static_cast<int>( start_value * 100.f ) );
+
+			//
+			// Pivot
+			//
+			{
+				auto pivot_indicator = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+				pivot_indicator->setScale( Content_Scale );
+				addChild( pivot_indicator );
+			}
+
+			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 100, 100, 100, 150 ), getContentSize().width, getContentSize().height );
+				addChild( background_layer, -1 );
+			}
+
+			//
+			// Title
+			//
+			{
+				auto label = Label::createWithTTF( info.Name, "fonts/arial.ttf", 9 );
+				label->setColor( Color3B::ORANGE );
+				label->setPosition(
+					CenterPosition
+					+ Vec2( 0.f, 15.f )
+				);
+				addChild( label );
+			}
+
+			//
+			// Percent
+			//
+			auto percent_label = Label::createWithTTF( std::to_string( StartPercent ), "fonts/arial.ttf", 9 );
+			percent_label->setColor( Color3B::GREEN );
+			percent_label->setPosition( CenterPosition );
+			addChild( percent_label, 1 );
+
+			//
+			// Slider
+			//
+			auto slider = ui::Slider::create();
+			slider->setScale( Content_Scale );
+			slider->loadBarTexture( "ui_track_bar_01_0.png", ui::Widget::TextureResType::PLIST );
+			slider->loadProgressBarTexture( "ui_track_bar_01_1.png", ui::Widget::TextureResType::PLIST );
+			slider->loadSlidBallTextureNormal( "ui_track_ball_0.png", ui::Widget::TextureResType::PLIST );
+			slider->loadSlidBallTexturePressed( "ui_track_ball_1.png", ui::Widget::TextureResType::PLIST );
+			slider->loadSlidBallTextureDisabled( "ui_track_ball_2.png", ui::Widget::TextureResType::PLIST );
+			slider->setPercent( StartPercent );
+			slider->setPosition(
+				CenterPosition
+				- Vec2( 0.f, 15.f )
+			);
+			slider->addEventListener( [slider, percent_label, slider_change_callback]( Ref*, ui::Slider::EventType event_type )
+			{
+				if( ui::Slider::EventType::ON_PERCENTAGE_CHANGED != event_type )
+				{
+					return;
+				}
+
+				percent_label->setString( std::to_string( slider->getPercent() ) );
+
+				slider_change_callback( 0.01f * slider->getPercent() );
+			} );
+			addChild( slider );
+			{
+				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+				pivot->setPosition( slider->getPosition() );
+				addChild( pivot, std::numeric_limits<int>::max() );
+			}
+
+			return true;
+		}
+	};
 }
 
 namespace shader_practice
@@ -113,16 +226,17 @@ namespace shader_practice
 		}
 
 		GLUniformInfos uniform_list;
+		const float start_value = 0.5f;
 
 		//
 		// Practice : View + Custome Shader
 		//
+		auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
 		{
-			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
 			view_node->getTexture()->setAliasTexParameters();
 			view_node->setPosition(
 				visibleOrigin.x + visibleSize.width * 0.5f
-				, visibleOrigin.y + visibleSize.height * 0.5f
+				, visibleOrigin.y + visibleSize.height * 0.6f
 			);
 			view_node->setScale( 4.f );
 			addChild( view_node );
@@ -133,13 +247,33 @@ namespace shader_practice
 				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
 				view_node->setGLProgramState( gl_program_state );
 
-				gl_program_state->setUniformFloat( "u_testColor", 0.5f );
+				gl_program_state->setUniformFloat( "u_testColor", start_value );
 
 				//
 				// Load GL Uniform List
 				//
 				uniform_list.Load( gl_program->getProgram() );
 			}
+		}
+
+		//
+		// Controller
+		//
+		{
+			const auto& target_uniform = *uniform_list.GetContainer().begin();
+			auto uniform_helper_node = UniformHelperNode::create(
+				target_uniform
+				, start_value
+				, [target_uniform, view_node]( float new_value )
+				{
+					view_node->getGLProgramState()->setUniformFloat( target_uniform.Location, new_value );
+				}
+			);
+			uniform_helper_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( uniform_helper_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height * 0.1f
+			);
+			addChild( uniform_helper_node );
 		}
 
 		return true;
