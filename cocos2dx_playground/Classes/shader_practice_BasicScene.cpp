@@ -11,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "platform/CCFileUtils.h"
 #include "renderer/CCGLProgram.h"
@@ -23,6 +24,8 @@ namespace
 {
 	const char* FontPath = "fonts/arial.ttf";
 	const int FontSize = 9;
+
+	const char* CustomeShaderPath = "shaders/shader_practice_BasicScene.fsh";
 }
 
 namespace shader_practice
@@ -86,7 +89,27 @@ namespace shader_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
+		//
+		// Custome Shader Path
+		//
+		{
+			auto label_1 = Label::createWithTTF( CustomeShaderPath, FontPath, 10, Size::ZERO, TextHAlignment::LEFT );
+			label_1->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			label_1->setColor( Color3B::GREEN );
+			label_1->setPosition( Vec2(
+				visibleOrigin.x + visibleSize.width
+				, visibleOrigin.y + visibleSize.height
+			) );
+			addChild( label_1, std::numeric_limits<int>::max() );
 
+			auto label_2 = Label::createWithTTF( "Custome Shader Path : ", FontPath, 10, Size::ZERO, TextHAlignment::LEFT );
+			label_2->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			label_2->setPosition(
+				label_1->getPosition()
+				- Vec2( label_1->getContentSize().width, 0.f )
+			);
+			addChild( label_2, std::numeric_limits<int>::max() );
+		}
 
 		// Default
 		{
@@ -121,7 +144,7 @@ namespace shader_practice
 			//
 			// Load
 			//
-			auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( "shaders/shader_practice_BasicScene.fsh" ) );
+			auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
 			auto gl_program = cocos2d::GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
 
 			//
