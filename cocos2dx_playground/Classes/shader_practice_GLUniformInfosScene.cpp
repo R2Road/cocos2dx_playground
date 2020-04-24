@@ -25,6 +25,8 @@ USING_NS_CC;
 namespace
 {
 	const char* FontPath = "fonts/arial.ttf";
+
+	const char* CustomeShaderPath = "shaders/gl_uniform_infos_test.fsh";
 }
 
 namespace shader_practice
@@ -88,6 +90,28 @@ namespace shader_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
+		//
+		// Custome Shader Path
+		//
+		{
+			auto label_1 = Label::createWithTTF( CustomeShaderPath, FontPath, 10, Size::ZERO, TextHAlignment::LEFT );
+			label_1->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			label_1->setColor( Color3B::GREEN );
+			label_1->setPosition( Vec2(
+				visibleOrigin.x + visibleSize.width
+				, visibleOrigin.y + visibleSize.height
+			) );
+			addChild( label_1, std::numeric_limits<int>::max() );
+
+			auto label_2 = Label::createWithTTF( "Custome Shader Path : ", FontPath, 10, Size::ZERO, TextHAlignment::LEFT );
+			label_2->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			label_2->setPosition(
+				label_1->getPosition()
+				- Vec2( label_1->getContentSize().width, 0.f )
+			);
+			addChild( label_2, std::numeric_limits<int>::max() );
+		}
+
 		GLUniformInfos uniform_list;
 
 		//
@@ -103,7 +127,7 @@ namespace shader_practice
 			view_node->setScale( 4.f );
 			addChild( view_node );
 			{
-				auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( "shaders/gl_uniform_infos_test.fsh" ) );
+				auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
 				auto gl_program = cocos2d::GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
 
 				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
@@ -122,8 +146,8 @@ namespace shader_practice
 		// Practice : Uniform List
 		//
 		{
-			const Vec2 margin( -2.f, -2.f );
-			const Vec2 spacing( 0.f, -40.f );
+			const Vec2 margin( -2.f, 2.f );
+			const Vec2 spacing( 0.f, 40.f );
 
 			int i = 0;
 			Label* label = nullptr;
@@ -133,10 +157,10 @@ namespace shader_practice
 				str = StringUtils::format( "Name : %-20s Type : %s( %d )", u.Name.c_str(), GLenum2String( u.Type ), u.Type );
 
 				label = Label::createWithTTF( str, FontPath, 9 );
-				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setAnchorPoint( Vec2( 1.f, 0.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
-					Vec2( visibleOrigin.x + visibleSize.width, visibleOrigin.y + visibleSize.height )
+					Vec2( visibleOrigin.x + visibleSize.width, visibleOrigin.y )
 					+ margin
 					+ ( spacing * i )
 				);
