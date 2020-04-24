@@ -49,7 +49,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[1] : " << ui_practice::LayoutVerticalScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << ui_practice::DirectionalLayoutScene::getTitle();
+			ss << "[2] : " << ui_practice::LayoutHorizontalScene::getTitle();
 			ss << std::endl;
 			ss << "[3] : " << ui_practice::RelativeLayoutScene::getTitle();
 			ss << std::endl;
@@ -119,7 +119,7 @@ namespace ui_practice
 			Director::getInstance()->replaceScene( ui_practice::LayoutVerticalScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( ui_practice::DirectionalLayoutScene::create( helper::CreateSceneMover<RootScene>() ) );
+			Director::getInstance()->replaceScene( ui_practice::LayoutHorizontalScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( ui_practice::RelativeLayoutScene::create( helper::CreateSceneMover<RootScene>() ) );

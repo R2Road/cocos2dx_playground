@@ -8,10 +8,10 @@
 
 namespace ui_practice
 {
-	class DirectionalLayoutScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+	class LayoutHorizontalScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 	{
 	public:
-		DirectionalLayoutScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		LayoutHorizontalScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		static const char* getTitle() { return "Layout - Horizontal"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
