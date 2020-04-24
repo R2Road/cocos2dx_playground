@@ -414,6 +414,9 @@
     <ClCompile Include="..\Classes\shader_practice_SimpleTestScene.cpp">
       <Filter>src\scene\shader_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_BlockView.cpp">
+      <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -736,6 +739,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\shader_practice_SimpleTestScene.h">
       <Filter>src\scene\shader_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_BlockView.h">
+      <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
