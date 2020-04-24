@@ -21,14 +21,6 @@ namespace ui_practice
 		void onExit() override;
 
 	private:
-		Node* MakeLayoutVertical(
-			const int button_visible_count
-			, const int button_count
-			, const cocos2d::Size button_size
-			, const cocos2d::Size button_margin
-			, const bool clipping_enable
-		);
-
 		Node* MakeLayoutHorizontal(
 			const int button_visible_count
 			, const int button_count
