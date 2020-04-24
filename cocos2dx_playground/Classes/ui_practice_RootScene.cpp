@@ -6,7 +6,7 @@
 #include "PlayGroundScene.h"
 
 #include "ui_practice_LayoutVerticalScene.h"
-#include "ui_practice_DirectionalLayoutScene.h"
+#include "ui_practice_LayoutHorizontalScene.h"
 #include "ui_practice_RelativeLayoutScene.h"
 #include "ui_practice_LayoutNScrollViewScene.h"
 #include "ui_practice_UIAndCamera.h"

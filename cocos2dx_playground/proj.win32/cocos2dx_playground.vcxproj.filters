@@ -390,9 +390,6 @@
     <ClCompile Include="..\Classes\ui_practice_SliderScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_practice_DirectionalLayoutScene.cpp">
-      <Filter>src\scene\ui_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_RelativeLayoutScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
@@ -406,6 +403,9 @@
       <Filter>src\scene\shader_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_LayoutVerticalScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_LayoutHorizontalScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -707,9 +707,6 @@
     <ClInclude Include="..\Classes\helper_BackToThePreviousScene.h">
       <Filter>src\helper</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_practice_DirectionalLayoutScene.h">
-      <Filter>src\scene\ui_practice</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_RelativeLayoutScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
@@ -723,6 +720,9 @@
       <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_LayoutVerticalScene.h">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_LayoutHorizontalScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>
