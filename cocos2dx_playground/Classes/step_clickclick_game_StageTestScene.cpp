@@ -82,16 +82,17 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Mouse] : Click";
-				ss << std::endl;
 				ss << "[F1] : Reset";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Test Action : Increase";
+				ss << "[1] : Test Action Change : Increase";
 				ss << std::endl;
-				ss << "[2] : Test Action : Decrease";
+				ss << "[2] : Test Action Change : Decrease";
 				ss << std::endl;
-				ss << "[3] : Test Action : Die";
+				ss << "[3] : Test Action Change : Die";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Mouse] : Click : Play Test Action";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
