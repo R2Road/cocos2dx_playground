@@ -29,6 +29,7 @@ namespace ui_practice
 			, const cocos2d::Size button_margin
 			, const cocos2d::ui::LinearLayoutParameter::LinearGravity horizontal_gravity
 			, const bool clipping_enable
+			, const bool flip
 		);
 
 		void onDummyButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touchEventType );

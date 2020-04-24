@@ -96,12 +96,20 @@ namespace ui_practice
 
 			// content = VisibleCount x 1
 			{
-				auto layout_node = MakeLayoutVertical( VisibleCount, 3, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false );
+				auto layout_node = MakeLayoutVertical( VisibleCount, 3, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, false );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 0 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
 				) );
 				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
 
 				// Explain
 				{
@@ -119,12 +127,20 @@ namespace ui_practice
 
 			// content = VisibleCount x 1.5
 			{
-				auto layout_node = MakeLayoutVertical( VisibleCount, 6, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false );
+				auto layout_node = MakeLayoutVertical( VisibleCount, 6, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, false );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 1 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
 				) );
 				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
 
 				// Explain
 				{
@@ -142,12 +158,20 @@ namespace ui_practice
 
 			// content = VisibleCount x 1.5, Clipping
 			{
-				auto layout_node = MakeLayoutVertical( VisibleCount, 6, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, true );
+				auto layout_node = MakeLayoutVertical( VisibleCount, 6, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, true, false );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 2 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
 				) );
 				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
 
 				// Explain
 				{
@@ -176,13 +200,21 @@ namespace ui_practice
 
 			// Gravity Left
 			{
-				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::LEFT, false );
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::LEFT, false, false );
 				layout_node->setContentSize( Size( layout_node->getContentSize().width * 2, layout_node->getContentSize().height ) );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 0 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
 				) );
 				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
 
 				// Explain
 				{
@@ -200,13 +232,21 @@ namespace ui_practice
 
 			// Gravity Center
 			{
-				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::CENTER_HORIZONTAL, false );
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::CENTER_HORIZONTAL, false, false );
 				layout_node->setContentSize( Size( layout_node->getContentSize().width * 2, layout_node->getContentSize().height ) );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 1 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
 				) );
 				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
 
 				// Explain
 				{
@@ -224,13 +264,21 @@ namespace ui_practice
 
 			// Gravity Right
 			{
-				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::RIGHT, true );
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::RIGHT, true, false );
 				layout_node->setContentSize( Size( layout_node->getContentSize().width * 2, layout_node->getContentSize().height ) );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 2 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
 				) );
 				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
 
 				// Explain
 				{
@@ -240,6 +288,77 @@ namespace ui_practice
 					label->setPosition(
 						layout_node->getPosition()
 						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
+						+ Vec2( 0.f, 20.f )
+					);
+					addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+		}
+
+
+		//
+		// Practice : Vertical and Flip
+		//
+		{
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.2f );
+			const float LayoutSpacing = visibleSize.width * 0.15f;
+
+			// Default
+			{
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, false );
+				layout_node->setPosition( Vec2(
+					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 0 ) - ( layout_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
+				) );
+				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// Explain
+				{
+					auto label = Label::createWithTTF( "Vertical\n\nDefault", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition(
+						layout_node->getPosition()
+						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
+						+ Vec2( 0.f, 20.f )
+					);
+					addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+
+			// Flip
+			{
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false, true );
+				layout_node->setPosition( Vec2(
+					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 1 ) - ( layout_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + LayoutStartPosition.y + ( layout_node->getContentSize().height * 0.5f )
+				) );
+				addChild( layout_node );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( layout_node->getPosition() );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// Explain
+				{
+					auto label = Label::createWithTTF( "Vertical\n\nFlip", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition(
+						layout_node->getPosition()
+						+ Vec2( layout_node->getContentSize().width * 0.5f, 0.f )
 						+ Vec2( 0.f, 20.f )
 					);
 					addChild( label, std::numeric_limits<int>::max() );
@@ -277,6 +396,7 @@ namespace ui_practice
 		, const Size button_margin
 		, const ui::LinearLayoutParameter::LinearGravity horizontal_gravity
 		, const bool clipping_enable
+		, const bool flip
 	)
 	{
 		const Size LayoutSize(
@@ -291,14 +411,7 @@ namespace ui_practice
 		layout_node->setBackGroundColor( Color3B::BLUE );
 		layout_node->setBackGroundColorOpacity( 150u );
 		layout_node->setBackGroundColorType( cocos2d::ui::Layout::BackGroundColorType::SOLID );
-
-		// Pivot
-		{
-			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-			pivot->setScale( 4.f );
-			pivot->setPosition( layout_node->getPosition() );
-			addChild( pivot, std::numeric_limits<int>::max() );
-		}
+		layout_node->setFlippedY( flip );
 
 		// Content
 		for( int i = 1; button_content_count >= i; ++i )
@@ -325,6 +438,7 @@ namespace ui_practice
 			// Title
 			{
 				auto label = Label::createWithTTF( std::to_string( i ), FontPath, FontSize );
+				label->setScaleY( label->getScaleY() * ( flip ? -1 : 1 ) );
 				button->setTitleLabel( label );
 			}
 
