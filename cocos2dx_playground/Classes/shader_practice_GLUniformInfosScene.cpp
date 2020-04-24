@@ -16,7 +16,7 @@
 #include "platform/CCFileUtils.h"
 #include "renderer/CCGLProgram.h"
 #include "renderer/CCGLProgramCache.h"
-#include "renderer/ccShader_PositionTextureColor_noMVP.vert"
+#include "renderer/ccShaders.h"
 
 #include "shader_practice_GLUniformInfos.h"
 

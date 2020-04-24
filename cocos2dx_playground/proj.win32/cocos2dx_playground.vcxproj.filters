@@ -408,6 +408,9 @@
     <ClCompile Include="..\Classes\ui_practice_LayoutHorizontalScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\shader_practice_BasicScene.cpp">
+      <Filter>src\scene\shader_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -724,6 +727,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_LayoutHorizontalScene.h">
       <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\shader_practice_BasicScene.h">
+      <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

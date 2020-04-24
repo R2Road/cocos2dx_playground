@@ -10,6 +10,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "PlayGroundScene.h"
+#include "shader_practice_BasicScene.h"
 #include "shader_practice_GLUniformInfosScene.h"
 
 USING_NS_CC;
@@ -47,7 +48,9 @@ namespace shader_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << shader_practice::GLUniformInfosScene::getTitle();
+			ss << "[1] : " << shader_practice::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << shader_practice::GLUniformInfosScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -96,6 +99,9 @@ namespace shader_practice
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( shader_practice::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( shader_practice::GLUniformInfosScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
