@@ -3,6 +3,7 @@
 #include "2d/CCScene.h"
 #include "math/CCGeometry.h"
 #include "ui/UIWidget.h"
+#include "ui/UILayoutParameter.h"
 
 #include "helper_BackToThePreviousScene.h"
 
@@ -23,9 +24,10 @@ namespace ui_practice
 	private:
 		Node* MakeLayoutVertical(
 			const int button_visible_count
-			, const int button_count
+			, const int button_content_count
 			, const cocos2d::Size button_size
 			, const cocos2d::Size button_margin
+			, const cocos2d::ui::LinearLayoutParameter::LinearGravity horizontal_gravity
 			, const bool clipping_enable
 		);
 

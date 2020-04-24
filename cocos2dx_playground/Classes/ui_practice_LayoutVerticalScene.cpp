@@ -88,15 +88,15 @@ namespace ui_practice
 		const Size ButtonMargin( 1, 1 );
 
 		//
-		// Practice : Vertical
+		// Practice : Vertical Basic
 		//
 		{
-			const Vec2 LayoutStartPosition( visibleSize.width * 0.15f, visibleSize.height * 0.45f );
-			const float LayoutSpacing = visibleSize.width * 0.12f;
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.1f, visibleSize.height * 0.45f );
+			const float LayoutSpacing = visibleSize.width * 0.15f;
 
 			// content = VisibleCount x 1
 			{
-				auto layout_node = MakeLayoutVertical( VisibleCount, 3, ButtonSize, ButtonMargin, false );
+				auto layout_node = MakeLayoutVertical( VisibleCount, 3, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 0 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
@@ -119,7 +119,7 @@ namespace ui_practice
 
 			// content = VisibleCount x 1.5
 			{
-				auto layout_node = MakeLayoutVertical( VisibleCount, 6, ButtonSize, ButtonMargin, false );
+				auto layout_node = MakeLayoutVertical( VisibleCount, 6, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, false );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 1 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
@@ -142,7 +142,7 @@ namespace ui_practice
 
 			// content = VisibleCount x 1.5, Clipping
 			{
-				auto layout_node = MakeLayoutVertical( VisibleCount, 6, ButtonSize, ButtonMargin, true );
+				auto layout_node = MakeLayoutVertical( VisibleCount, 6, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::NONE, true );
 				layout_node->setPosition( Vec2(
 					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 2 ) - ( layout_node->getContentSize().width * 0.5f )
 					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
@@ -152,6 +152,89 @@ namespace ui_practice
 				// Explain
 				{
 					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition(
+						layout_node->getPosition()
+						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
+						+ Vec2( 0.f, 20.f )
+					);
+					addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+		}
+
+
+		//
+		// Practice : Vertical + Gravity
+		//
+		// - Go and Read : LinearVerticalLayoutManager::doLayout(LayoutProtocol* layout)
+		//
+		{
+			const Vec2 LayoutStartPosition( visibleSize.width * 0.6f, visibleSize.height * 0.7f );
+			const float LayoutSpacing = visibleSize.width * 0.15f;
+
+			// Gravity Left
+			{
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::LEFT, false );
+				layout_node->setContentSize( Size( layout_node->getContentSize().width * 2, layout_node->getContentSize().height ) );
+				layout_node->setPosition( Vec2(
+					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 0 ) - ( layout_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
+				) );
+				addChild( layout_node );
+
+				// Explain
+				{
+					auto label = Label::createWithTTF( "Vertical\n\nGravity : Left", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition(
+						layout_node->getPosition()
+						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
+						+ Vec2( 0.f, 20.f )
+					);
+					addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+
+			// Gravity Center
+			{
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::CENTER_HORIZONTAL, false );
+				layout_node->setContentSize( Size( layout_node->getContentSize().width * 2, layout_node->getContentSize().height ) );
+				layout_node->setPosition( Vec2(
+					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 1 ) - ( layout_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
+				) );
+				addChild( layout_node );
+
+				// Explain
+				{
+					auto label = Label::createWithTTF( "Vertical\n\nGravity : Center", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition(
+						layout_node->getPosition()
+						+ Vec2( layout_node->getContentSize().width * 0.5f, layout_node->getContentSize().height )
+						+ Vec2( 0.f, 20.f )
+					);
+					addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+
+			// Gravity Right
+			{
+				auto layout_node = MakeLayoutVertical( 3, 2, ButtonSize, ButtonMargin, ui::LinearLayoutParameter::LinearGravity::RIGHT, true );
+				layout_node->setContentSize( Size( layout_node->getContentSize().width * 2, layout_node->getContentSize().height ) );
+				layout_node->setPosition( Vec2(
+					visibleOrigin.x + LayoutStartPosition.x + ( LayoutSpacing * 2 ) - ( layout_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + LayoutStartPosition.y - ( layout_node->getContentSize().height * 0.5f )
+				) );
+				addChild( layout_node );
+
+				// Explain
+				{
+					auto label = Label::createWithTTF( "Vertical\n\nGravity : Right", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -189,9 +272,10 @@ namespace ui_practice
 
 	Node* LayoutVerticalScene::MakeLayoutVertical(
 		const int button_visible_count
-		, const int button_count
+		, const int button_content_count
 		, const Size button_size
 		, const Size button_margin
+		, const ui::LinearLayoutParameter::LinearGravity horizontal_gravity
 		, const bool clipping_enable
 	)
 	{
@@ -217,7 +301,7 @@ namespace ui_practice
 		}
 
 		// Content
-		for( int i = 1; button_count >= i; ++i )
+		for( int i = 1; button_content_count >= i; ++i )
 		{
 			auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( i );
@@ -229,6 +313,8 @@ namespace ui_practice
 			{
 				auto param = ui::LinearLayoutParameter::create();
 				{
+					param->setGravity( horizontal_gravity );
+
 					auto margin = ui::Margin( button_margin.width, button_margin.height, button_margin.width, button_margin.height );
 					param->setMargin( margin );
 				}
