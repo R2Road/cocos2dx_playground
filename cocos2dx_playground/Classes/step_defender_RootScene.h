@@ -9,7 +9,7 @@ namespace step_defender
 	public:
 		RootScene();
 
-		static const char* getTitle() { return "Step : Defender"; }
+		static const char* getTitle() { return "Step : Defender( To Do )"; }
 		static cocos2d::Scene* create();
 
 		bool init() override;

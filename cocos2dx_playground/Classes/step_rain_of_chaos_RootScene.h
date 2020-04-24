@@ -9,7 +9,7 @@ namespace step_rain_of_chaos
 	public:
 		RootScene();
 
-		static const char* getTitle() { return "Step : Rain of Chaos"; }
+		static const char* getTitle() { return "Step : Rain of Chaos( To Do )"; }
 		static cocos2d::Scene* create();
 
 		void onEnter() override;

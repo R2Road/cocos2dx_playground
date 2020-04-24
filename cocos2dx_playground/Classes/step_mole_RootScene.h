@@ -9,7 +9,7 @@ namespace step_mole
 	public:
 		RootScene();
 
-		static const char* getTitle() { return "Step : Mole"; }
+		static const char* getTitle() { return "Step : Mole( In Progress )"; }
 		static cocos2d::Scene* create();
 
 		void onEnter() override;
