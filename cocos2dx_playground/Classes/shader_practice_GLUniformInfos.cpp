@@ -35,6 +35,7 @@ namespace shader_practice
 		}
 
 		GLint uniform_size; /**Number of data type in attribute.*/
+		GLint uniform_location;
 		GLenum uniform_type; /**Data type of the attribute.*/
 		GLchar* uniform_name = (GLchar*)alloca( active_uniform_max_length + 1 );
 		for( int i = 0; i < active_uniform_count; ++i )
@@ -62,6 +63,8 @@ namespace shader_practice
 				}
 			}
 
+			uniform_location = glGetUniformLocation( program_index, uniform_name );
+
 			GLenum __gl_error_code = glGetError();
 			if( __gl_error_code != GL_NO_ERROR )
 			{
@@ -69,7 +72,7 @@ namespace shader_practice
 			}
 			assert( __gl_error_code == GL_NO_ERROR );
 
-			mContainer.emplace_back( uniform_name, uniform_type );
+			mContainer.emplace_back( uniform_name, uniform_type, uniform_location );
 		}
 	}
 

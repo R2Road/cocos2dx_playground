@@ -148,8 +148,9 @@ namespace shader_practice
 		{
 			const Vec2 Margin( -2.f, 2.f );
 			const Vec2 Spacing( 0.f, 20.f );
-			const Vec2 NamePivotPosition( visibleOrigin.x + visibleSize.width * 0.4f, visibleOrigin.y );
-			const Vec2 TypePivotPosition( visibleOrigin.x + visibleSize.width * 0.7f, visibleOrigin.y );
+			const Vec2 NamePivotPosition( visibleOrigin.x + visibleSize.width * 0.25f, visibleOrigin.y );
+			const Vec2 TypePivotPosition( visibleOrigin.x + visibleSize.width * 0.55f, visibleOrigin.y );
+			const Vec2 LocationPivotPosition( visibleOrigin.x + visibleSize.width * 0.85f, visibleOrigin.y );
 
 			int i = 0;
 			Label* label = nullptr;
@@ -157,7 +158,6 @@ namespace shader_practice
 			for( const auto& u : uniform_list.GetContainer() )
 			{
 				str = StringUtils::format( "Name : %-20s", u.Name.c_str() );
-
 				label = Label::createWithTTF( str, FontPath, 9 );
 				label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 				label->setColor( Color3B::GREEN );
@@ -169,12 +169,22 @@ namespace shader_practice
 				addChild( label );
 
 				str = StringUtils::format( "Type : %s( %d )", GLenum2String( u.Type ), u.Type );
-
 				label = Label::createWithTTF( str, FontPath, 9 );
 				label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					TypePivotPosition
+					+ Margin
+					+ ( Spacing * i )
+				);
+				addChild( label );
+
+				str = StringUtils::format( "Location : %d", u.Location );
+				label = Label::createWithTTF( str, FontPath, 9 );
+				label->setAnchorPoint( Vec2( 0.f, 0.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					LocationPivotPosition
 					+ Margin
 					+ ( Spacing * i )
 				);

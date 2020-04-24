@@ -12,10 +12,11 @@ namespace shader_practice
 	public:
 		struct Info
 		{
-			Info( const char* name, GLenum type ) : Name( name ), Type( type ) {}
+			Info( const char* name, const GLenum type, const GLint location ) : Name( name ), Type( type ), Location( location ) {}
 
 			std::string Name;
 			GLenum Type;
+			GLint Location;
 		};
 
 		using ContainerT = std::vector<Info>;
