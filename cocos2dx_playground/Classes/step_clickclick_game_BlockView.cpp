@@ -5,11 +5,10 @@
 #include "2d/CCActionInterval.h"
 #include "2d/CCAnimation.h"
 #include "2d/CCLabel.h"
-#include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "base/ccMacros.h"
 #include "ui/UIButton.h"
-#include "2d/CCSpriteFrameCache.h"
 
 #include "step_clickclick_game_Stage.h"
 
@@ -138,7 +137,7 @@ namespace step_clickclick
 				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_block_different.png" );
 				break;
 			default:
-				assert( false );
+				CCASSERT( false, "Invalid Block Type" );
 			}
 			mViewNode->setSpriteFrame( view_frame );
 		}
