@@ -145,7 +145,7 @@ namespace step_clickclick
 				for( int i = 0; 3 > i; ++i, ++block_type )
 				{
 					mBlockContainer.emplace_back( i, 10 );
-					mBlockContainer[i].Init( static_cast<eBlockType>( block_type ), 10 );
+					mBlockContainer[i].Reset( static_cast<eBlockType>( block_type ), 10 );
 				}
 			}
 
@@ -251,7 +251,7 @@ namespace step_clickclick
 			{
 				for( auto& b : mBlockContainer )
 				{
-					b.Init( b.GetType(), 10 );
+					b.Reset( b.GetType(), 10 );
 
 					auto block_view = static_cast<BlockView*>( getChildByTag( b.GetIndex() ) );
 					block_view->Reset( b.GetType(), b.GetLife() );

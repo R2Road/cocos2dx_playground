@@ -131,7 +131,7 @@ namespace step_clickclick
 				{
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					mBlocks[linear_index].Init( *t_type, GetRandomInt( 3, 9 ) );
+					mBlocks[linear_index].Reset( *t_type, GetRandomInt( 3, 9 ) );
 					++t_type;
 				}
 			}
