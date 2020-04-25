@@ -32,38 +32,6 @@ namespace step_clickclick
 			}
 		}
 
-
-		Stage::Block::Block( const int index, const int life ) :
-			mIndex( index )
-			, mBlockType( eBlockType::Different )
-			, mActive( false )
-			, mLife( life )
-		{}
-
-		void Stage::Block::Init( eBlockType type, const int life )
-		{
-			mBlockType = type;
-			mActive = true;
-			mLife = life;
-		}
-		void Stage::Block::DecreaseAction()
-		{
-			mLife = std::max( 0, mLife - 1 );
-			mActive = ( 0 < mLife );
-		}
-		void Stage::Block::IncreaseAction()
-		{
-			mLife = std::min( 100, mLife + 1 );
-			mActive = ( 0 < mLife );
-		}
-		void Stage::Block::DieAction()
-		{
-			mLife = 0;
-			mActive = false;
-		}
-
-
-
 		Stage::Stage( const int width, const int height ) :
 			mStageWidth( width )
 			, mStageHeight( height )
@@ -169,11 +137,11 @@ namespace step_clickclick
 			}
 		}
 
-		const Stage::Block& Stage::GetBlockData( const int x, const int y ) const
+		const Block& Stage::GetBlockData( const int x, const int y ) const
 		{
 			return GetBlockData( mGridIndexConverter.To_Linear( x, y )	 );
 		}
-		const Stage::Block& Stage::GetBlockData( const int linear_index ) const
+		const Block& Stage::GetBlockData( const int linear_index ) const
 		{
 			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
 			{
