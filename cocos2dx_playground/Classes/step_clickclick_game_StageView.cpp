@@ -62,15 +62,15 @@ namespace step_clickclick
 				return false;
 			}
 
-			const Size tile_size( 32.f, 32.f );
-			const Size margin_size( 2.f, 2.f );
-			const Size stage_size(
-				( mStageWidth * tile_size.width ) + ( ( mStageWidth - 1 ) * margin_size.width )
-				,( mStageHeight * tile_size.height ) + ( ( mStageHeight - 1 ) * margin_size.height )
+			const Size BlockSize( 32.f, 32.f );
+			const Size MarginSize( 2.f, 2.f );
+			const Size StageSize(
+				( mStageWidth * BlockSize.width ) + ( ( mStageWidth - 1 ) * MarginSize.width )
+				,( mStageHeight * BlockSize.height ) + ( ( mStageHeight - 1 ) * MarginSize.height )
 			);
-			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
+			const Vec2 pivot_position( StageSize.width * -0.5f, StageSize.height * -0.5f );
 
-			setContentSize( stage_size );
+			setContentSize( StageSize );
 
 			if( config.bShowPivot )
 			{
@@ -95,11 +95,11 @@ namespace step_clickclick
 				{
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					block_view = BlockView::create( linear_index, tile_size, on_block_callback );
+					block_view = BlockView::create( linear_index, BlockSize, on_block_callback );
 					block_view->setPosition(
 						pivot_position
-						+ Vec2( tile_size.width * 0.5f, tile_size.height * 0.5f )
-						+ Vec2( tx * ( tile_size.width + margin_size.width ), ty * ( tile_size.height + margin_size.height ) )
+						+ Vec2( BlockSize.width * 0.5f, BlockSize.height * 0.5f )
+						+ Vec2( tx * ( BlockSize.width + MarginSize.width ), ty * ( BlockSize.height + MarginSize.height ) )
 					);
 					addChild( block_view );
 
