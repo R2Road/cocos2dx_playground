@@ -11,7 +11,9 @@
 
 #include "step_clickclick_button_BasicScene.h"
 
+#include "step_clickclick_game_BlockTestScene.h"
 #include "step_clickclick_game_StageTestScene.h"
+
 #include "step_clickclick_game_TitleScene.h"
 
 USING_NS_CC;
@@ -59,7 +61,9 @@ namespace step_clickclick
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << step_clickclick::game::StageTestScene::getTitle();
+			ss << "[A] : " << step_clickclick::game::BlockTestScene::getTitle();
+			ss << std::endl;
+			ss << "[S] : " << step_clickclick::game::StageTestScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -126,6 +130,9 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
+			Director::getInstance()->replaceScene( step_clickclick::game::BlockTestScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( step_clickclick::game::StageTestScene::create() );
 			break;
 
