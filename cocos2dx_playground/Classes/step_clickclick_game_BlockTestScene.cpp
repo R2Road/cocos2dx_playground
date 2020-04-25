@@ -26,6 +26,7 @@ namespace
 	const int TAG_SelectedBlockTypeView = 20160528;
 
 	const Size BlockSize( 32.f, 32.f );
+	const int BlockCount = 3;
 }
 
 namespace step_clickclick
@@ -35,6 +36,8 @@ namespace step_clickclick
 		BlockTestScene::BlockTestScene() :
 			mKeyboardListener( nullptr )
 			, mTestActionType( eTestActionType::Increase )
+			, mBlockContainer()
+			, mBlockViewContainer()
 		{}
 
 		Scene* BlockTestScene::create()
@@ -75,9 +78,6 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[F1] : Reset";
-				ss << std::endl;
-				ss << std::endl;
 				ss << "[1] : Test Action Change : Increase";
 				ss << std::endl;
 				ss << "[2] : Test Action Change : Decrease";
@@ -86,6 +86,9 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Mouse] : Click : Play Test Action";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[F1] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
@@ -142,7 +145,7 @@ namespace step_clickclick
 			//
 			{
 				int block_type = static_cast<int>( eBlockType::Single );
-				for( int i = 0; 3 > i; ++i, ++block_type )
+				for( int i = 0; BlockCount > i; ++i, ++block_type )
 				{
 					mBlockContainer.emplace_back( i );
 					mBlockContainer[i].Reset( static_cast<eBlockType>( block_type ), 10 );
@@ -163,21 +166,24 @@ namespace step_clickclick
 				);
 
 				BlockView* block_view = nullptr;
-				int i = 0;
-				for( const auto& b : mBlockContainer )
+				for( int i = 0; BlockCount > i; ++i )
 				{
-					block_view = BlockView::create( b.GetIndex(), BlockSize, std::bind( &BlockTestScene::onGameProcess, this, std::placeholders::_1 ) );
-					block_view->setTag( b.GetIndex() );
-					block_view->Reset( b.GetType(), b.GetLife() );
+					block_view = BlockView::create( i, BlockSize, std::bind( &BlockTestScene::onGameProcess, this, std::placeholders::_1 ) );
+					block_view->setTag( i );
 					block_view->setPosition(
 						BlockStartPosition
 						+ ( BlockSpacing * i )
 					);
 					addChild( block_view );
 
-					++i;
+					mBlockViewContainer.emplace_back( block_view );
 				}
 			}
+
+			//
+			// Setup
+			//
+			ResetBlockContainer();
 
 			return true;
 		}
@@ -248,17 +254,8 @@ namespace step_clickclick
 				break;
 
 			case EventKeyboard::KeyCode::KEY_F1:
-			{
-				for( auto& b : mBlockContainer )
-				{
-					b.Reset( b.GetType(), 10 );
-
-					auto block_view = static_cast<BlockView*>( getChildByTag( b.GetIndex() ) );
-					block_view->Reset( b.GetType(), b.GetLife() );
-					block_view->SetVisible( true );
-				}
-			}
-			break;
+				ResetBlockContainer();
+				break;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
@@ -301,6 +298,19 @@ namespace step_clickclick
 				break;
 			default:
 				assert( false );
+			}
+		}
+
+		void BlockTestScene::ResetBlockContainer()
+		{
+			for( int i = 0; BlockCount > i; ++i )
+			{
+				auto& target_block = mBlockContainer[i];
+				target_block.Reset( target_block.GetType(), 10 );
+
+				auto block_view = mBlockViewContainer[i];
+				block_view->Reset( target_block.GetType(), target_block.GetLife() );
+				block_view->SetVisible( true );
 			}
 		}
 	} // namespace game

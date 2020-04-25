@@ -13,7 +13,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class StageView;
+		class BlockView;
 
 		class BlockTestScene : public cocos2d::Scene
 		{
@@ -42,11 +42,14 @@ namespace step_clickclick
 			void updateTestAction( const eTestActionType test_action_type );
 			void updateSelectedBlockTypeView( const eBlockType block_type );
 
+			void ResetBlockContainer();
+
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			eTestActionType mTestActionType;
 
 			std::vector<Block> mBlockContainer;
+			std::vector<BlockView*> mBlockViewContainer;
 		};
 	}
 }
