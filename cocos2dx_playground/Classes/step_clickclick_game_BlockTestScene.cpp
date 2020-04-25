@@ -144,7 +144,7 @@ namespace step_clickclick
 				int block_type = static_cast<int>( eBlockType::Single );
 				for( int i = 0; 3 > i; ++i, ++block_type )
 				{
-					mBlockContainer.emplace_back( i, 10 );
+					mBlockContainer.emplace_back( i );
 					mBlockContainer[i].Reset( static_cast<eBlockType>( block_type ), 10 );
 				}
 			}

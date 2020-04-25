@@ -68,10 +68,7 @@ namespace step_clickclick
 				{
 					const int linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					mBlocks.emplace_back(
-						linear_index
-						, 0
-					);
+					mBlocks.emplace_back( linear_index );
 				}
 			}
 
@@ -145,7 +142,7 @@ namespace step_clickclick
 		{
 			if( 0 > linear_index || static_cast<int>( mBlocks.size() ) <= linear_index )
 			{
-				static const Block dummy( -1, 0 );
+				static const Block dummy( -1 );
 				return dummy;
 			}
 

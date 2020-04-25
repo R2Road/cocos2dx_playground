@@ -6,11 +6,11 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		Block::Block( const int index, const int life ) :
+		Block::Block( const int index ) :
 			mIndex( index )
 			, mBlockType( eBlockType::Different )
 			, mActive( false )
-			, mLife( life )
+			, mLife( 0 )
 		{}
 
 		void Block::Reset( eBlockType type, const int life )

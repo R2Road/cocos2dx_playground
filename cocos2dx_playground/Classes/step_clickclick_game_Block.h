@@ -9,7 +9,7 @@ namespace step_clickclick
 		class Block
 		{
 		public:
-			Block( const int index, const int life );
+			Block( const int index );
 
 			void Reset( eBlockType type, const int life );
 
