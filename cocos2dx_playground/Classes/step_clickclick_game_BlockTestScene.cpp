@@ -141,6 +141,18 @@ namespace step_clickclick
 			// Block
 			//
 			{
+				int block_type = static_cast<int>( eBlockType::Single );
+				for( int i = 0; 3 > i; ++i, ++block_type )
+				{
+					mBlockContainer.emplace_back( i, 10 );
+					mBlockContainer[i].Init( static_cast<eBlockType>( block_type ), 10 );
+				}
+			}
+
+			//
+			// Block View
+			//
+			{
 				const Vec2 BlockStartPosition(
 					visibleOrigin.x + visibleSize.width * 0.3f
 					, visibleOrigin.y + visibleSize.height * 0.5f
@@ -151,17 +163,19 @@ namespace step_clickclick
 				);
 
 				BlockView* block_view = nullptr;
-				int block_type = static_cast<int>( eBlockType::Single );
-				for( int i = 0; 3 > i; ++i, ++block_type )
+				int i = 0;
+				for( const auto& b : mBlockContainer )
 				{
-					block_view = BlockView::create( i, BlockSize, std::bind( &BlockTestScene::onGameProcess, this, std::placeholders::_1 ) );
-					block_view->setTag( i );
-					block_view->Reset( static_cast<eBlockType>( block_type ), 10 );
+					block_view = BlockView::create( b.GetIndex(), BlockSize, std::bind( &BlockTestScene::onGameProcess, this, std::placeholders::_1 ) );
+					block_view->setTag( b.GetIndex() );
+					block_view->Reset( b.GetType(), b.GetLife() );
 					block_view->setPosition(
 						BlockStartPosition
 						+ ( BlockSpacing * i )
 					);
 					addChild( block_view );
+
+					++i;
 				}
 			}
 
@@ -191,21 +205,27 @@ namespace step_clickclick
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 
-			auto block_view = static_cast<BlockView*>( getChildByTag( block_linear_index ) );
+			auto& target_block_data = mBlockContainer[block_linear_index];
+			updateSelectedBlockTypeView( target_block_data.GetType() );
+
+			const int last_life = target_block_data.GetLife();
 			switch( mTestActionType )
 			{
 			case eTestActionType::Increase:
-				block_view->UpdateLife( 9, 10 );
+				target_block_data.IncreaseAction();
 				break;
 			case eTestActionType::Decrease:
-				block_view->UpdateLife( 3, 2 );
+				target_block_data.DecreaseAction();
 				break;
 			case eTestActionType::Die:
-				block_view->UpdateLife( 10, 0 );
+				target_block_data.DieAction();
 				break;
 			default:
 				assert( false );
 			}
+
+			auto block_view = static_cast<BlockView*>( getChildByTag( block_linear_index ) );
+			block_view->UpdateLife( last_life, target_block_data.GetLife() );
 		}
 
 
@@ -229,7 +249,14 @@ namespace step_clickclick
 
 			case EventKeyboard::KeyCode::KEY_F1:
 			{
+				for( auto& b : mBlockContainer )
+				{
+					b.Init( b.GetType(), 10 );
 
+					auto block_view = static_cast<BlockView*>( getChildByTag( b.GetIndex() ) );
+					block_view->Reset( b.GetType(), b.GetLife() );
+					block_view->SetVisible( true );
+				}
 			}
 			break;
 

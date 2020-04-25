@@ -1,11 +1,13 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "2d/CCScene.h"
 
-#include "cpg_GridIndexConverter.h"
 #include "step_clickclick_game_Constant.h"
+#include "step_clickclick_game_Block.h"
+
 
 namespace step_clickclick
 {
@@ -43,6 +45,8 @@ namespace step_clickclick
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			eTestActionType mTestActionType;
+
+			std::vector<Block> mBlockContainer;
 		};
 	}
 }
