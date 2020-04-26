@@ -423,6 +423,9 @@
     <ClCompile Include="..\Classes\step_clickclick_game_Block.cpp">
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_MouseCursorScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -754,6 +757,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_Block.h">
       <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_MouseCursorScene.h">
+      <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

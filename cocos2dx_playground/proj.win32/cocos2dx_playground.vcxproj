@@ -247,6 +247,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\ui_practice_LayoutHorizontalScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_LayoutVerticalScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_Minimap.cpp" />
+    <ClCompile Include="..\Classes\ui_practice_MouseCursorScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_RelativeLayoutScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_SliderScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_UIAndCamera.cpp" />
@@ -359,6 +360,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\ui_practice_LayoutHorizontalScene.h" />
     <ClInclude Include="..\Classes\ui_practice_LayoutVerticalScene.h" />
     <ClInclude Include="..\Classes\ui_practice_Minimap.h" />
+    <ClInclude Include="..\Classes\ui_practice_MouseCursorScene.h" />
     <ClInclude Include="..\Classes\ui_practice_RelativeLayoutScene.h" />
     <ClInclude Include="..\Classes\ui_practice_SliderScene.h" />
     <ClInclude Include="..\Classes\ui_practice_UIAndCamera.h" />
