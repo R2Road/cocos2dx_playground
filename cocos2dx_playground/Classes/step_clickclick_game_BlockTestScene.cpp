@@ -12,7 +12,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 
 #include "step_clickclick_RootScene.h"
 
@@ -85,7 +84,7 @@ namespace step_clickclick
 				ss << "[3] : Test Action Change : Die";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Mouse] : Click : Play Test Action";
+				ss << "[Mouse] : Block Click : Play Test Action";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[F1] : Reset";
@@ -112,12 +111,12 @@ namespace step_clickclick
 			// Test Action
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
 				label->setTag( TAG_TestActionView );
 				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
+					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
@@ -129,7 +128,7 @@ namespace step_clickclick
 			// Selected Block Type View
 			//
 			{
-				auto label = Label::createWithTTF( "Block Type : -", "fonts/arial.ttf", 10 );
+				auto label = Label::createWithTTF( "Block Type : -", "fonts/arial.ttf", 12 );
 				label->setTag( TAG_SelectedBlockTypeView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
