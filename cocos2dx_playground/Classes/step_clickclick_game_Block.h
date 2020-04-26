@@ -13,9 +13,9 @@ namespace step_clickclick
 
 			void Reset( eBlockType type, const int life );
 
-			void DecreaseAction();
-			void IncreaseAction();
-			void DieAction();
+			void DecreaseLife();
+			void IncreaseLife();
+			void Die();
 
 			int GetIndex() const { return mIndex; }
 			eBlockType GetType() const { return mBlockType; }

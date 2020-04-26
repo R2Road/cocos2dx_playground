@@ -19,17 +19,17 @@ namespace step_clickclick
 			mActive = true;
 			mLife = life;
 		}
-		void Block::DecreaseAction()
+		void Block::DecreaseLife()
 		{
 			mLife = std::max( 0, mLife - 1 );
 			mActive = ( 0 < mLife );
 		}
-		void Block::IncreaseAction()
+		void Block::IncreaseLife()
 		{
 			mLife = std::min( 100, mLife + 1 );
 			mActive = ( 0 < mLife );
 		}
-		void Block::DieAction()
+		void Block::Die()
 		{
 			mLife = 0;
 			mActive = false;

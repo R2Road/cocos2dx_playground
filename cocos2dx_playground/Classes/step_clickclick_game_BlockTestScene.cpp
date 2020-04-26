@@ -218,13 +218,13 @@ namespace step_clickclick
 			switch( mTestActionType )
 			{
 			case eTestActionType::Increase:
-				target_block_data.IncreaseAction();
+				target_block_data.IncreaseLife();
 				break;
 			case eTestActionType::Decrease:
-				target_block_data.DecreaseAction();
+				target_block_data.DecreaseLife();
 				break;
 			case eTestActionType::Die:
-				target_block_data.DieAction();
+				target_block_data.Die();
 				break;
 			default:
 				assert( false );

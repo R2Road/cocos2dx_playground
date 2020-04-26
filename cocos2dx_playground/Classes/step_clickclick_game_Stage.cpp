@@ -89,7 +89,7 @@ namespace step_clickclick
 			//
 			for( auto& p : mBlocks )
 			{
-				p.DieAction();
+				p.Die();
 			}
 
 			std::vector<eBlockType> block_type_list;
@@ -152,14 +152,14 @@ namespace step_clickclick
 		{
 			CHECK_LINEAR_INDEX( 0, static_cast<int>( mBlocks.size() ), linear_index );
 
-			mBlocks[linear_index].IncreaseAction();
+			mBlocks[linear_index].IncreaseLife();
 		}
 		void Stage::DecreaseBlockLife( const int linear_index )
 		{
 			CHECK_LINEAR_INDEX( 0, static_cast<int>( mBlocks.size() ), linear_index );
 			assert( mBlocks[linear_index].IsActive() );
 
-			mBlocks[linear_index].DecreaseAction();
+			mBlocks[linear_index].DecreaseLife();
 			if( 0 == mBlocks[linear_index].GetLife() )
 			{
 				--mActiveBlockCount;
@@ -170,7 +170,7 @@ namespace step_clickclick
 			CHECK_LINEAR_INDEX( 0, static_cast<int>( mBlocks.size() ), linear_index );
 			assert( mBlocks[linear_index].IsActive() );
 
-			mBlocks[linear_index].DieAction();
+			mBlocks[linear_index].Die();
 			--mActiveBlockCount;
 		}
 	} // namespace game
