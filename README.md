@@ -1,6 +1,8 @@
 # cocos2dx_playground
 
-useful code for make game with cocos2d-x 3.17.2
+## 개괄 | Overview
+- 한국어 : cocos2d-x 3.17.2를 사용해 입문자에게 적당히 유용하고, 도전해 볼 만한 것 들을 만듭니다.
+- English : useful code for make game with cocos2d-x 3.17.2
 
 ## 작업환경 | Environment
 - engine
@@ -20,7 +22,7 @@ useful code for make game with cocos2d-x 3.17.2
   - paint.net
   - aseprite
 
-## warning
+## 주의사항 | warning
 - **한국어**
   - 이 저장소에는 cocos2d-x 엔진 코드가 포함되어 있지 않습니다.
   - "cocos new" 명령어를 사용해서 cocos2d-x 새 프로젝트를 만드세요.
@@ -35,7 +37,7 @@ useful code for make game with cocos2d-x 3.17.2
 </img>
   
   
-# Contents
+# 목차 | Contents
 
 - step
   - typetype
