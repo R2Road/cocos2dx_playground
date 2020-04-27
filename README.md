@@ -1,7 +1,7 @@
 # cocos2dx_playground
 
 
-## 주의사항 | warning
+## 주의사항 | arning
 - **한국어**
   - 이 저장소에는 cocos2d-x 엔진 코드가 포함되어 있지 않습니다.
   - "cocos new" 명령어를 사용해서 cocos2d-x 새 프로젝트를 만드세요.
@@ -40,8 +40,7 @@
   - aseprite
   
   
-# 목차 | Contents
-
+## 목차 | Contents
 - step
   - typetype
   - clickclick
