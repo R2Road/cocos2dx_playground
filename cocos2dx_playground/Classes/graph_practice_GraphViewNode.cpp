@@ -13,10 +13,11 @@ USING_NS_CC;
 namespace graph_practice
 {
 	GraphViewNode::GraphViewNode( const EvaluatorFunc& evaluator_func ) :
-		mIndicatorNode( nullptr )
+		mEvaluatorFunc( evaluator_func )
+		, mIndicatorNode( nullptr )
 		, mIndicatorXNode( nullptr )
 		, mIndicatorBridgeNode( nullptr )
-		, mEvaluatorFunc( evaluator_func ) {}
+	{}
 
 	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height, const EvaluatorFunc& evaluator_func )
 	{
