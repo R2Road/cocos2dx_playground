@@ -115,6 +115,9 @@
     <Filter Include="src\scene\shader_practice">
       <UniqueIdentifier>{aab23b7f-1a81-4107-bd0e-df1a9434da75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\graph_practice">
+      <UniqueIdentifier>{53d3a3c9-4b69-4d16-b417-d595e660fe2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -425,6 +428,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_MouseCursorScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\graph_practice_RootScene.cpp">
+      <Filter>src\scene\graph_practice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -760,6 +766,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_MouseCursorScene.h">
       <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\graph_practice_RootScene.h">
+      <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

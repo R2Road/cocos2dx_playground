@@ -12,6 +12,7 @@
 
 #include "ui_practice_RootScene.h"
 #include "shader_practice_RootScene.h"
+#include "graph_practice_RootScene.h"
 
 #include "Research_Input_GamePadTest.h"
 #include "Step99_RootScene.h"
@@ -74,9 +75,11 @@ bool PlayGroundScene::init()
 		ss << "=============================";
 		ss << std::endl;
 		ss << std::endl;
-		ss << "[7] : " << ui_practice::RootScene::getTitle();
+		ss << "[Q] : " << ui_practice::RootScene::getTitle();
 		ss << std::endl;
-		ss << "[8] : " << shader_practice::RootScene::getTitle();
+		ss << "[W] : " << shader_practice::RootScene::getTitle();
+		ss << std::endl;
+		ss << "[E] : " << graph_practice::RootScene::getTitle();
 		ss << std::endl;
 		ss << std::endl;
 		ss << "=============================";
@@ -143,12 +146,14 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		Director::getInstance()->replaceScene( step_defender::RootScene::create() );
 		break;
 
-	case EventKeyboard::KeyCode::KEY_7:
+	case EventKeyboard::KeyCode::KEY_Q:
 		Director::getInstance()->replaceScene( ui_practice::RootScene::create() );
 		break;
-
-	case EventKeyboard::KeyCode::KEY_8:
+	case EventKeyboard::KeyCode::KEY_W:
 		Director::getInstance()->replaceScene( shader_practice::RootScene::create() );
+		break;
+	case EventKeyboard::KeyCode::KEY_E:
+		Director::getInstance()->replaceScene( graph_practice::RootScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_A:
