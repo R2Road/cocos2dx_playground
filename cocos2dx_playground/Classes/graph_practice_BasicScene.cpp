@@ -3,17 +3,12 @@
 #include <new>
 #include <numeric>
 #include <sstream>
-#include <string>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCSprite.h"
-#include "2d/CCTweenFunction.h"
-#include "ui/UIScale9Sprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 
 #include "graph_practice_GraphViewNode.h"
 
@@ -21,9 +16,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/arial.ttf";
-	const int FontSize = 9;
-	const int TAG_CurrentValueIndicator = 20140416;
+	const int TAG_GraphViewNode = 20140416;
 }
 
 namespace graph_practice
@@ -32,11 +25,6 @@ namespace graph_practice
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 		, mElapsedTime( 0.f )
-
-		, mGraphViewNode_1( nullptr )
-		, mGraphViewNode_2( nullptr )
-		, mGraphViewNode_3( nullptr )
-		, mGraphViewNode_4( nullptr )
 	{}
 
 	Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -78,7 +66,7 @@ namespace graph_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -95,56 +83,17 @@ namespace graph_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		
-		const float StartRate = 0.15;
-		const float Spacing = ( 1.0 - ( StartRate * 2 ) ) / 3;
-
 		//
-		// Practice 1
+		// Practice
 		//
 		{
-			mGraphViewNode_1 = GraphViewNode::create( "None", 100, 100 );
-			mGraphViewNode_1->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 0 ) ) ) - ( mGraphViewNode_1->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_1->getContentSize().height * 0.5f )
+			auto graph_view_node = GraphViewNode::create( "Pivot", 100, 100 );
+			graph_view_node->setTag( TAG_GraphViewNode );
+			graph_view_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( graph_view_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height * 0.5f - ( graph_view_node->getContentSize().height * 0.5f )
 			);
-			addChild( mGraphViewNode_1 );
-		}
-
-		//
-		// Practice 2
-		//
-		{
-			mGraphViewNode_2 = GraphViewNode::create( "quadratic In", 100, 100 );
-			mGraphViewNode_2->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 1 ) ) ) - ( mGraphViewNode_2->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_2->getContentSize().height * 0.5f )
-			);
-			addChild( mGraphViewNode_2 );
-		}
-
-		//
-		// Practice 3
-		//
-		{
-			mGraphViewNode_3 = GraphViewNode::create( "quadratic Out", 100, 100 );
-			mGraphViewNode_3->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 2 ) ) ) - ( mGraphViewNode_3->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_3->getContentSize().height * 0.5f )
-			);
-			addChild( mGraphViewNode_3 );
-		}
-
-		//
-		// Practice 4
-		//
-		{
-			mGraphViewNode_4 = GraphViewNode::create( "quadratic In Out", 100, 100 );
-			mGraphViewNode_4->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 3 ) ) ) - ( mGraphViewNode_4->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_4->getContentSize().height * 0.5f )
-			);
-			addChild( mGraphViewNode_4 );
+			addChild( graph_view_node );
 		}
 
 		return true;
@@ -175,10 +124,7 @@ namespace graph_practice
 			mElapsedTime = 0.f;
 		}
 
-		mGraphViewNode_1->UpdateView( mElapsedTime, mElapsedTime );
-		mGraphViewNode_2->UpdateView( mElapsedTime, tweenfunc::quadraticIn( mElapsedTime ) );
-		mGraphViewNode_3->UpdateView( mElapsedTime, tweenfunc::quadraticOut( mElapsedTime ) );
-		mGraphViewNode_4->UpdateView( mElapsedTime, tweenfunc::quadraticInOut( mElapsedTime ) );
+		static_cast<GraphViewNode*>( getChildByTag( TAG_GraphViewNode ) )->UpdateView( mElapsedTime, mElapsedTime );
 
 		Node::update( dt );
 	}
