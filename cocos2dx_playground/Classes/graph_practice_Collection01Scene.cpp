@@ -247,14 +247,14 @@ namespace graph_practice
 		if( !mbPause )
 		{
 			mElapsedTime += ( dt * mTimeScale );
-			if( 1.f < mElapsedTime )
+			if( 1.1f < mElapsedTime )
 			{
 				mElapsedTime = 0.f;
 			}
 
 			for( auto g : mGraphViewNodeContainer )
 			{
-				g->UpdateView( mElapsedTime );
+				g->UpdateView( std::min( 1.f, mElapsedTime ) );
 			}
 		}
 
