@@ -90,7 +90,7 @@ namespace graph_practice
 		
 		const float StartRateX = 0.15;
 		const float SpacingX = ( 1.0 - ( StartRateX * 2 ) ) / 3;
-		const float StartRateY = 0.3;
+		const float StartRateY = 0.25;
 		const float SpacingY = 0.5;
 
 		//
@@ -100,7 +100,7 @@ namespace graph_practice
 			auto graph_view_node = GraphViewNode::create( "Linear", 100, 100, []( float g_x )->float { return g_x; } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -114,7 +114,7 @@ namespace graph_practice
 			auto graph_view_node = GraphViewNode::create( "quadratic In", 100, 100, []( float g_x )->float { return tweenfunc::quadraticIn( g_x ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -128,7 +128,7 @@ namespace graph_practice
 			auto graph_view_node = GraphViewNode::create( "quadratic Out", 100, 100, []( float g_x )->float { return tweenfunc::quadraticOut( g_x ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -142,7 +142,51 @@ namespace graph_practice
 			auto graph_view_node = GraphViewNode::create( "quadratic In Out", 100, 100, []( float g_x )->float { return tweenfunc::quadraticInOut( g_x ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+			);
+			addChild( graph_view_node );
+
+			mGraphViewNodeContainer.push_back( graph_view_node );
+		}
+
+
+
+		//
+		// Practice 5
+		//
+		{
+			auto graph_view_node = GraphViewNode::create( "sineEase In", 100, 100, []( float g_x )->float { return tweenfunc::sineEaseIn( g_x ); } );
+			graph_view_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+			);
+			addChild( graph_view_node );
+
+			mGraphViewNodeContainer.push_back( graph_view_node );
+		}
+
+		//
+		// Practice 6
+		//
+		{
+			auto graph_view_node = GraphViewNode::create( "sineEase Out", 100, 100, []( float g_x )->float { return tweenfunc::sineEaseOut( g_x ); } );
+			graph_view_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+			);
+			addChild( graph_view_node );
+
+			mGraphViewNodeContainer.push_back( graph_view_node );
+		}
+
+		//
+		// Practice 7
+		//
+		{
+			auto graph_view_node = GraphViewNode::create( "sineEase In Out", 100, 100, []( float g_x )->float { return tweenfunc::sineEaseInOut( g_x ); } );
+			graph_view_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
