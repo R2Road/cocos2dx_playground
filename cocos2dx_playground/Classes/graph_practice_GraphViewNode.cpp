@@ -82,14 +82,14 @@ namespace graph_practice
 				x_view->setScale9Enabled( true );
 				x_view->setAnchorPoint( Vec2::ANCHOR_BOTTOM_LEFT );
 				x_view->setContentSize( Size( getContentSize().width, 2.f ) );
-				x_view->setColor( Color3B::BLUE );
+				x_view->setColor( Color3B::GRAY );
 				view_node->addChild( x_view );
 
 				auto y_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				y_view->setScale9Enabled( true );
 				y_view->setAnchorPoint( Vec2::ANCHOR_BOTTOM_RIGHT );
 				y_view->setContentSize( Size( 2.f, getContentSize().height ) );
-				y_view->setColor( Color3B::BLUE );
+				y_view->setColor( Color3B::GRAY );
 				view_node->addChild( y_view );
 			}
 		}
