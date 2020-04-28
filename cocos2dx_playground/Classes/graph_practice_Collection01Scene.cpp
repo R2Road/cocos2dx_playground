@@ -11,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "graph_practice_GraphViewNode.h"
 
@@ -19,6 +20,7 @@ USING_NS_CC;
 namespace
 {
 	const char* FontPath = "fonts/arial.ttf";
+	const int TAG_TileScaleView = 20140416;
 }
 
 namespace graph_practice
@@ -26,6 +28,8 @@ namespace graph_practice
 	Collection01Scene::Collection01Scene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+
+		, mTimeScale( 1.f )
 		, mElapsedTime( 0.f )
 
 		, mGraphViewNodeContainer()
@@ -77,6 +81,23 @@ namespace graph_practice
 				, visibleOrigin.y + visibleSize.height
 			) );
 			addChild( label, std::numeric_limits<int>::max() );
+		}
+
+		//
+		// Time Scale
+		//
+		{
+			auto label = Label::createWithTTF( "", FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+			label->setTag( TAG_TileScaleView );
+			label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			label->setColor( Color3B::GREEN );
+			label->setPosition( Vec2(
+				visibleOrigin.x + visibleSize.width
+				, visibleOrigin.y + visibleSize.height
+			) );
+			addChild( label, std::numeric_limits<int>::max() );
+
+			UpdateTimeScaleView();
 		}
 
 		//
@@ -217,7 +238,7 @@ namespace graph_practice
 	}
 	void Collection01Scene::update( float dt )
 	{
-		mElapsedTime += dt;
+		mElapsedTime += ( dt * mTimeScale );
 		if( 1.f < mElapsedTime )
 		{
 			mElapsedTime = 0.f;
@@ -232,12 +253,29 @@ namespace graph_practice
 	}
 
 
+	void Collection01Scene::UpdateTimeScaleView()
+	{
+		static_cast<Label*>( getChildByTag( TAG_TileScaleView ) )->setString( StringUtils::format( "Time Scale : %.2f", mTimeScale ) );;
+	}
+
+
 	void Collection01Scene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{
 			helper::BackToThePreviousScene::MoveBack();
 			return;
+		}
+
+		if( EventKeyboard::KeyCode::KEY_UP_ARROW == keycode )
+		{
+			mTimeScale = std::min( 10.f, mTimeScale + 0.1f );
+			UpdateTimeScaleView();
+		}
+		if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == keycode )
+		{
+			mTimeScale = std::max( 0.1f, mTimeScale - 0.1f );
+			UpdateTimeScaleView();
 		}
 	}
 }

@@ -24,10 +24,14 @@ namespace graph_practice
 		void update( float dt ) override;
 
 	private:
+		void UpdateTimeScaleView();
+
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+		float mTimeScale;
 		float mElapsedTime;
 
 		std::vector<GraphViewNode*> mGraphViewNodeContainer;
