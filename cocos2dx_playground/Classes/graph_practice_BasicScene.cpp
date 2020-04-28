@@ -35,6 +35,8 @@ namespace graph_practice
 
 		, mGraphViewNode_1( nullptr )
 		, mGraphViewNode_2( nullptr )
+		, mGraphViewNode_3( nullptr )
+		, mGraphViewNode_4( nullptr )
 	{}
 
 	Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -94,13 +96,16 @@ namespace graph_practice
 		}
 
 		
+		const float StartRate = 0.15;
+		const float Spacing = ( 1.0 - ( StartRate * 2 ) ) / 3;
+
 		//
 		// Practice 1
 		//
 		{
 			mGraphViewNode_1 = GraphViewNode::create( 100, 100 );
 			mGraphViewNode_1->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.15f ) - ( mGraphViewNode_1->getContentSize().width * 0.5f )
+				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 0 ) ) ) - ( mGraphViewNode_1->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_1->getContentSize().height * 0.5f )
 			);
 			addChild( mGraphViewNode_1 );
@@ -112,10 +117,34 @@ namespace graph_practice
 		{
 			mGraphViewNode_2 = GraphViewNode::create( 100, 100 );
 			mGraphViewNode_2->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.4f ) - ( mGraphViewNode_2->getContentSize().width * 0.5f )
+				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 1 ) ) ) - ( mGraphViewNode_2->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_2->getContentSize().height * 0.5f )
 			);
 			addChild( mGraphViewNode_2 );
+		}
+
+		//
+		// Practice 3
+		//
+		{
+			mGraphViewNode_3 = GraphViewNode::create( 100, 100 );
+			mGraphViewNode_3->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 2 ) ) ) - ( mGraphViewNode_3->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_3->getContentSize().height * 0.5f )
+			);
+			addChild( mGraphViewNode_3 );
+		}
+
+		//
+		// Practice 4
+		//
+		{
+			mGraphViewNode_4 = GraphViewNode::create( 100, 100 );
+			mGraphViewNode_4->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 3 ) ) ) - ( mGraphViewNode_4->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_4->getContentSize().height * 0.5f )
+			);
+			addChild( mGraphViewNode_4 );
 		}
 
 		return true;
@@ -147,7 +176,9 @@ namespace graph_practice
 		}
 
 		mGraphViewNode_1->UpdateView( mElapsedTime, mElapsedTime );
-		mGraphViewNode_2->UpdateView( mElapsedTime, tweenfunc::quadraticInOut( mElapsedTime ) );
+		mGraphViewNode_2->UpdateView( mElapsedTime, tweenfunc::quadraticIn( mElapsedTime ) );
+		mGraphViewNode_3->UpdateView( mElapsedTime, tweenfunc::quadraticOut( mElapsedTime ) );
+		mGraphViewNode_4->UpdateView( mElapsedTime, tweenfunc::quadraticInOut( mElapsedTime ) );
 
 		Node::update( dt );
 	}

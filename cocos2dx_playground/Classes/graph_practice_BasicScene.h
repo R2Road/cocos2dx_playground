@@ -30,5 +30,7 @@ namespace graph_practice
 
 		GraphViewNode* mGraphViewNode_1;
 		GraphViewNode* mGraphViewNode_2;
+		GraphViewNode* mGraphViewNode_3;
+		GraphViewNode* mGraphViewNode_4;
 	};
 }
