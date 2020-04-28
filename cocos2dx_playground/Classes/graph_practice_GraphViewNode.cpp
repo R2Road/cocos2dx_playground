@@ -70,8 +70,36 @@ namespace graph_practice
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 100, 100, 100, 150 ), getContentSize().width, getContentSize().height );
-				view_node->addChild( background_layer, -2 );
+				auto background = LayerColor::create( Color4B( 100, 100, 100, 150 ), getContentSize().width, getContentSize().height );
+				view_node->addChild( background, -1 );
+			}
+
+			//
+			// Guide
+			//
+			{
+				const float Spacing = width * 0.1f;
+				for( int i = 1; 10 > i; ++i )
+				{
+					auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
+					guide_view->setScale9Enabled( true );
+					guide_view->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					guide_view->setContentSize( Size( 2.f, getContentSize().height ) );
+					guide_view->setColor( Color3B( 100u, 100u, 100u ) );
+					guide_view->setPositionX( Spacing * i );
+					view_node->addChild( guide_view, -2 );
+				}
+
+				for( int i = 1; 10 > i; ++i )
+				{
+					auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
+					guide_view->setScale9Enabled( true );
+					guide_view->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
+					guide_view->setContentSize( Size( getContentSize().height, 2.f ) );
+					guide_view->setColor( Color3B( 100u, 100u, 100u ) );
+					guide_view->setPositionY( Spacing * i );
+					view_node->addChild( guide_view, -2 );
+				}
 			}
 
 			//
