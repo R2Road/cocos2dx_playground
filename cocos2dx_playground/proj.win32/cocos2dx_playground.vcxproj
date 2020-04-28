@@ -152,6 +152,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\graph_practice_BasicScene.cpp" />
+    <ClCompile Include="..\Classes\graph_practice_Collection01Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_GraphViewNode.cpp" />
     <ClCompile Include="..\Classes\graph_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\shader_practice_BasicScene.cpp" />
@@ -260,6 +261,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\graph_practice_BasicScene.h" />
+    <ClInclude Include="..\Classes\graph_practice_Collection01Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_GraphViewNode.h" />
     <ClInclude Include="..\Classes\graph_practice_RootScene.h" />
     <ClInclude Include="..\Classes\helper_BackToThePreviousScene.h" />
