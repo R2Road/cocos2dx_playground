@@ -13,6 +13,7 @@
 
 #include "graph_practice_BasicScene.h"
 #include "graph_practice_Collection01Scene.h"
+#include "graph_practice_Collection02Scene.h"
 
 USING_NS_CC;
 
@@ -52,6 +53,8 @@ namespace graph_practice
 			ss << "[1] : " << graph_practice::BasicScene::getTitle();
 			ss << std::endl;
 			ss << "[2] : " << graph_practice::Collection01Scene::getTitle();
+			ss << std::endl;
+			ss << "[3] : " << graph_practice::Collection02Scene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -104,6 +107,9 @@ namespace graph_practice
 			return;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( graph_practice::Collection01Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			return;
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( graph_practice::Collection02Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		default:
