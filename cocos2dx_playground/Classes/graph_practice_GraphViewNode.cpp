@@ -5,6 +5,7 @@
 
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "2d/CCLabel.h"
 #include "ui/UIScale9Sprite.h"
 
 USING_NS_CC;
@@ -13,10 +14,10 @@ namespace graph_practice
 {
 	GraphViewNode::GraphViewNode() : mViewNode( nullptr ) {}
 
-	GraphViewNode* GraphViewNode::create( const int width, const int height )
+	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height )
 	{
 		auto ret = new ( std::nothrow ) GraphViewNode();
-		if( !ret || !ret->init( width, height ) )
+		if( !ret || !ret->init( title, width, height ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -30,7 +31,7 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool GraphViewNode::init( const int width, const int height )
+	bool GraphViewNode::init( const char* title, const int width, const int height )
 	{
 		if( !Node::init() )
 		{
@@ -38,6 +39,18 @@ namespace graph_practice
 		}
 
 		setContentSize( Size( width, height ) );
+
+		//
+		// Title
+		//
+		{
+			auto label = Label::createWithTTF( title, "fonts/arial.ttf", 9 );
+			label->setPosition( Vec2(
+				getContentSize().width * 0.5f
+				, -label->getContentSize().height
+			) );
+			addChild( label, std::numeric_limits<int>::max() );
+		}
 
 		//
 		// Graph View

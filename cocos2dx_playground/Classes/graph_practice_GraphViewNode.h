@@ -10,10 +10,10 @@ namespace graph_practice
 		GraphViewNode();
 
 	public:
-		static GraphViewNode* create( const int width, const int height );
+		static GraphViewNode* create( const char* title, const int width, const int height );
 
 	private:
-		bool init( const int width, const int height );
+		bool init( const char* title, const int width, const int height );
 
 	public:
 		void UpdateView( const float g_x, const float g_y );

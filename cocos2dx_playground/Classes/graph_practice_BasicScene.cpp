@@ -103,7 +103,7 @@ namespace graph_practice
 		// Practice 1
 		//
 		{
-			mGraphViewNode_1 = GraphViewNode::create( 100, 100 );
+			mGraphViewNode_1 = GraphViewNode::create( "None", 100, 100 );
 			mGraphViewNode_1->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 0 ) ) ) - ( mGraphViewNode_1->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_1->getContentSize().height * 0.5f )
@@ -115,7 +115,7 @@ namespace graph_practice
 		// Practice 2
 		//
 		{
-			mGraphViewNode_2 = GraphViewNode::create( 100, 100 );
+			mGraphViewNode_2 = GraphViewNode::create( "quadratic In", 100, 100 );
 			mGraphViewNode_2->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 1 ) ) ) - ( mGraphViewNode_2->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_2->getContentSize().height * 0.5f )
@@ -127,7 +127,7 @@ namespace graph_practice
 		// Practice 3
 		//
 		{
-			mGraphViewNode_3 = GraphViewNode::create( 100, 100 );
+			mGraphViewNode_3 = GraphViewNode::create( "quadratic Out", 100, 100 );
 			mGraphViewNode_3->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 2 ) ) ) - ( mGraphViewNode_3->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_3->getContentSize().height * 0.5f )
@@ -139,7 +139,7 @@ namespace graph_practice
 		// Practice 4
 		//
 		{
-			mGraphViewNode_4 = GraphViewNode::create( 100, 100 );
+			mGraphViewNode_4 = GraphViewNode::create( "quadratic In Out", 100, 100 );
 			mGraphViewNode_4->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRate + ( Spacing * 3 ) ) ) - ( mGraphViewNode_4->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_4->getContentSize().height * 0.5f )
