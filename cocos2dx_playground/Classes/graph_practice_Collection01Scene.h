@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "2d/CCScene.h"
 
 #include "helper_BackToThePreviousScene.h"
@@ -28,9 +30,6 @@ namespace graph_practice
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 		float mElapsedTime;
 
-		GraphViewNode* mGraphViewNode_1;
-		GraphViewNode* mGraphViewNode_2;
-		GraphViewNode* mGraphViewNode_3;
-		GraphViewNode* mGraphViewNode_4;
+		std::vector<GraphViewNode*> mGraphViewNodeContainer;
 	};
 }

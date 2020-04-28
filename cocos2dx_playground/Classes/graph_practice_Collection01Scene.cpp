@@ -28,10 +28,7 @@ namespace graph_practice
 		, mKeyboardListener( nullptr )
 		, mElapsedTime( 0.f )
 
-		, mGraphViewNode_1( nullptr )
-		, mGraphViewNode_2( nullptr )
-		, mGraphViewNode_3( nullptr )
-		, mGraphViewNode_4( nullptr )
+		, mGraphViewNodeContainer()
 	{}
 
 	Scene* Collection01Scene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -100,48 +97,56 @@ namespace graph_practice
 		// Practice 1
 		//
 		{
-			mGraphViewNode_1 = GraphViewNode::create( "Linear", 100, 100, []( float g_x )->float { return g_x; } );
-			mGraphViewNode_1->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 0 ) ) ) - ( mGraphViewNode_1->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_1->getContentSize().height * 0.5f )
+			auto graph_view_node = GraphViewNode::create( "Linear", 100, 100, []( float g_x )->float { return g_x; } );
+			graph_view_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
 			);
-			addChild( mGraphViewNode_1 );
+			addChild( graph_view_node );
+
+			mGraphViewNodeContainer.push_back( graph_view_node );
 		}
 
 		//
 		// Practice 2
 		//
 		{
-			mGraphViewNode_2 = GraphViewNode::create( "quadratic In", 100, 100, []( float g_x )->float { return tweenfunc::quadraticIn( g_x ); } );
-			mGraphViewNode_2->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( mGraphViewNode_2->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_2->getContentSize().height * 0.5f )
+			auto graph_view_node = GraphViewNode::create( "quadratic In", 100, 100, []( float g_x )->float { return tweenfunc::quadraticIn( g_x ); } );
+			graph_view_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
 			);
-			addChild( mGraphViewNode_2 );
+			addChild( graph_view_node );
+
+			mGraphViewNodeContainer.push_back( graph_view_node );
 		}
 
 		//
 		// Practice 3
 		//
 		{
-			mGraphViewNode_3 = GraphViewNode::create( "quadratic Out", 100, 100, []( float g_x )->float { return tweenfunc::quadraticOut( g_x ); } );
-			mGraphViewNode_3->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( mGraphViewNode_3->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_3->getContentSize().height * 0.5f )
+			auto graph_view_node = GraphViewNode::create( "quadratic Out", 100, 100, []( float g_x )->float { return tweenfunc::quadraticOut( g_x ); } );
+			graph_view_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
 			);
-			addChild( mGraphViewNode_3 );
+			addChild( graph_view_node );
+
+			mGraphViewNodeContainer.push_back( graph_view_node );
 		}
 
 		//
 		// Practice 4
 		//
 		{
-			mGraphViewNode_4 = GraphViewNode::create( "quadratic In Out", 100, 100, []( float g_x )->float { return tweenfunc::quadraticInOut( g_x ); } );
-			mGraphViewNode_4->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( mGraphViewNode_4->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_4->getContentSize().height * 0.5f )
+			auto graph_view_node = GraphViewNode::create( "quadratic In Out", 100, 100, []( float g_x )->float { return tweenfunc::quadraticInOut( g_x ); } );
+			graph_view_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
 			);
-			addChild( mGraphViewNode_4 );
+			addChild( graph_view_node );
+
+			mGraphViewNodeContainer.push_back( graph_view_node );
 		}
 
 		return true;
@@ -172,10 +177,10 @@ namespace graph_practice
 			mElapsedTime = 0.f;
 		}
 
-		mGraphViewNode_1->UpdateView( mElapsedTime );
-		mGraphViewNode_2->UpdateView( mElapsedTime );
-		mGraphViewNode_3->UpdateView( mElapsedTime );
-		mGraphViewNode_4->UpdateView( mElapsedTime );
+		for( auto g : mGraphViewNodeContainer )
+		{
+			g->UpdateView( mElapsedTime );
+		}
 
 		Node::update( dt );
 	}
