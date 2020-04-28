@@ -12,7 +12,7 @@ USING_NS_CC;
 
 namespace graph_practice
 {
-	GraphViewNode::GraphViewNode( const EvaluatorFunc& evaluator_func ) : mViewNode( nullptr ), mEvaluatorFunc( evaluator_func ) {}
+	GraphViewNode::GraphViewNode( const EvaluatorFunc& evaluator_func ) : mIndicatorNode( nullptr ), mEvaluatorFunc( evaluator_func ) {}
 
 	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height, const EvaluatorFunc& evaluator_func )
 	{
@@ -126,9 +126,9 @@ namespace graph_practice
 		// Current Value Indicator
 		//
 		{
-			mViewNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-			mViewNode->setScale( 4.f );
-			addChild( mViewNode );
+			mIndicatorNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+			mIndicatorNode->setScale( 4.f );
+			addChild( mIndicatorNode );
 		}
 
 		return true;
@@ -138,9 +138,9 @@ namespace graph_practice
 	{
 		const auto g_y = mEvaluatorFunc( g_x );
 
-		mViewNode->setPosition(
-			mViewNode->getParent()->getContentSize().width * g_x
-			, mViewNode->getParent()->getContentSize().height * g_y
+		mIndicatorNode->setPosition(
+			mIndicatorNode->getParent()->getContentSize().width * g_x
+			, mIndicatorNode->getParent()->getContentSize().height * g_y
 		);
 	}
 }

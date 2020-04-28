@@ -27,7 +27,7 @@ namespace graph_practice
 		void UpdateView( const float g_x );
 
 	private:
-		cocos2d::Node* mViewNode;
+		cocos2d::Node* mIndicatorNode;
 		const EvaluatorFunc mEvaluatorFunc;
 	};
 }
