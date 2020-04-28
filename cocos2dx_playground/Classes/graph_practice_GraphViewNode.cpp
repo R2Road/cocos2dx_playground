@@ -1,5 +1,6 @@
 #include "graph_practice_GraphViewNode.h"
 
+#include <algorithm>
 #include <new>
 #include <numeric>
 
@@ -17,6 +18,7 @@ namespace graph_practice
 		, mIndicatorNode( nullptr )
 		, mIndicatorXNode( nullptr )
 		, mIndicatorBridgeNode( nullptr )
+		, mIndicatorYNode( nullptr )
 	{}
 
 	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height, const EvaluatorFunc& evaluator_func )
@@ -43,7 +45,7 @@ namespace graph_practice
 			return false;
 		}
 
-		setContentSize( Size( width, height ) );
+		setContentSize( Size( std::max( 50, width ), std::max( 50, height ) ) );
 
 		// Pivot
 		{
@@ -51,6 +53,8 @@ namespace graph_practice
 			pivot->setScale( 2.f );
 			addChild( pivot, std::numeric_limits<int>::max() );
 		}
+
+		const int HeaderSize = 10;
 
 		int ViewNodeSize = 0;
 		int ViewNodeY = 0;
@@ -67,8 +71,8 @@ namespace graph_practice
 
 			ViewNodeY = static_cast<int>( label->getContentSize().height ) + ViewNodeMargin;
 
-			ViewNodeSize = height - ViewNodeY;
-			ViewNodeSize = width < ViewNodeSize ? width : ViewNodeSize;
+			ViewNodeSize = getContentSize().height - ViewNodeY - ( HeaderSize + ViewNodeMargin );
+			ViewNodeSize = getContentSize().width < ViewNodeSize ? getContentSize().width : ViewNodeSize;
 		}
 
 		//
@@ -165,6 +169,12 @@ namespace graph_practice
 				mIndicatorBridgeNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				mIndicatorBridgeNode->setOpacity( 80u );
 				view_node->addChild( mIndicatorBridgeNode, 1 );
+
+				mIndicatorYNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				mIndicatorYNode->setScale( 6.f );
+				mIndicatorYNode->setColor( Color3B( 73, 179, 255 ) );
+				mIndicatorYNode->setPositionY( view_node->getContentSize().height + ViewNodeMargin + ( HeaderSize * 0.5f ) );
+				view_node->addChild( mIndicatorYNode, 1 );
 			}
 		}
 
@@ -184,5 +194,7 @@ namespace graph_practice
 
 		mIndicatorBridgeNode->setContentSize( Size(1.f, mIndicatorNode->getPositionY() ) );
 		mIndicatorBridgeNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
+
+		mIndicatorYNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_y );
 	}
 }

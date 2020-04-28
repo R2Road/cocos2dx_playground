@@ -88,8 +88,8 @@ namespace graph_practice
 		}
 
 		
-		const int GraphWidth = 90;
-		const int GraphHeight = 90;
+		const int GraphWidth = 110;
+		const int GraphHeight = 110;
 		const float StartRateX = 0.15;
 		const float SpacingX = ( 1.0 - ( StartRateX * 2 ) ) / 3;
 		const float StartRateY = 0.25;
