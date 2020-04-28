@@ -45,16 +45,30 @@ namespace graph_practice
 
 		setContentSize( Size( width, height ) );
 
+		// Pivot
+		{
+			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+			pivot->setScale( 2.f );
+			addChild( pivot, std::numeric_limits<int>::max() );
+		}
+
+		int ViewNodeSize = 0;
+		int ViewNodeY = 0;
+		const int ViewNodeMargin = 4;
+
 		//
 		// Title
 		//
 		{
 			auto label = Label::createWithTTF( title, "fonts/arial.ttf", 9 );
-			label->setPosition( Vec2(
-				getContentSize().width * 0.5f
-				, -label->getContentSize().height
-			) );
+			label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+			label->setPositionX( getContentSize().width * 0.5f );
 			addChild( label, std::numeric_limits<int>::max() );
+
+			ViewNodeY = static_cast<int>( label->getContentSize().height ) + ViewNodeMargin;
+
+			ViewNodeSize = height - ViewNodeY;
+			ViewNodeSize = width < ViewNodeSize ? width : ViewNodeSize;
 		}
 
 		//
@@ -62,21 +76,18 @@ namespace graph_practice
 		//
 		{
 			auto view_node = Node::create();
-			view_node->setContentSize( Size( width, height ) );
+			view_node->setContentSize( Size( ViewNodeSize, ViewNodeSize ) );
+			view_node->setPosition(
+				( getContentSize().width * 0.5f ) - ( view_node->getContentSize().width * 0.5f )
+				, ViewNodeY
+			);
 			addChild( view_node );
-
-			// Pivot
-			{
-				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-				pivot->setScale( 2.f );
-				view_node->addChild( pivot, std::numeric_limits<int>::max() );
-			}
 
 			//
 			// Background
 			//
 			{
-				auto background = LayerColor::create( Color4B( 44u, 44u, 44u, 255u ), getContentSize().width, getContentSize().height );
+				auto background = LayerColor::create( Color4B( 44u, 44u, 44u, 255u ), view_node->getContentSize().width, view_node->getContentSize().height );
 				view_node->addChild( background, -2 );
 			}
 
@@ -85,13 +96,13 @@ namespace graph_practice
 			//
 			{
 				const Color3B GuideColor( 55u, 55u, 55u );
-				const float Spacing = width * 0.1f;
+				const float Spacing = ViewNodeSize * 0.1f;
 				for( int i = 1; 10 > i; ++i )
 				{
 					auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 					guide_view->setScale9Enabled( true );
 					guide_view->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-					guide_view->setContentSize( Size( 2.f, getContentSize().height ) );
+					guide_view->setContentSize( Size( 2.f, view_node->getContentSize().height ) );
 					guide_view->setColor( GuideColor );
 					guide_view->setPositionX( Spacing * i );
 					view_node->addChild( guide_view, -1 );
@@ -102,7 +113,7 @@ namespace graph_practice
 					auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 					guide_view->setScale9Enabled( true );
 					guide_view->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
-					guide_view->setContentSize( Size( getContentSize().height, 2.f ) );
+					guide_view->setContentSize( Size( view_node->getContentSize().height, 2.f ) );
 					guide_view->setColor( GuideColor );
 					guide_view->setPositionY( Spacing * i );
 					view_node->addChild( guide_view, -1 );
@@ -116,21 +127,21 @@ namespace graph_practice
 				auto x_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				x_view->setScale9Enabled( true );
 				x_view->setAnchorPoint( Vec2::ANCHOR_TOP_LEFT );
-				x_view->setContentSize( Size( getContentSize().width, 2.f ) );
+				x_view->setContentSize( Size( view_node->getContentSize().width, 2.f ) );
 				x_view->setColor( Color3B::GRAY );
 				view_node->addChild( x_view );
 
 				auto y_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				y_view->setScale9Enabled( true );
 				y_view->setAnchorPoint( Vec2::ANCHOR_BOTTOM_RIGHT );
-				y_view->setContentSize( Size( 2.f, getContentSize().height ) );
+				y_view->setContentSize( Size( 2.f, view_node->getContentSize().height ) );
 				y_view->setColor( Color3B::GRAY );
 				view_node->addChild( y_view );
 
 				auto diagonal_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				diagonal_view->setScale9Enabled( true );
 				diagonal_view->setAnchorPoint( Vec2( 0.5f, 0.0f ) );
-				diagonal_view->setContentSize( Size( 2.f, sqrt( pow( getContentSize().width, 2 ) + pow( getContentSize().height, 2 ) ) ) );
+				diagonal_view->setContentSize( Size( 2.f, sqrt( pow( view_node->getContentSize().width, 2 ) + pow( view_node->getContentSize().height, 2 ) ) ) );
 				diagonal_view->setColor( Color3B::GRAY );
 				diagonal_view->setRotation( 45.f );
 				view_node->addChild( diagonal_view );
