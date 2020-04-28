@@ -100,7 +100,7 @@ namespace graph_practice
 		// Practice 1
 		//
 		{
-			mGraphViewNode_1 = GraphViewNode::create( "Pivot", 100, 100, []( float g_x )->float { return g_x; } );
+			mGraphViewNode_1 = GraphViewNode::create( "Linear", 100, 100, []( float g_x )->float { return g_x; } );
 			mGraphViewNode_1->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 0 ) ) ) - ( mGraphViewNode_1->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_1->getContentSize().height * 0.5f )
