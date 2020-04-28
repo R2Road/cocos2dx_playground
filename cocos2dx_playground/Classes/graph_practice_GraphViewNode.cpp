@@ -12,7 +12,11 @@ USING_NS_CC;
 
 namespace graph_practice
 {
-	GraphViewNode::GraphViewNode( const EvaluatorFunc& evaluator_func ) : mIndicatorNode( nullptr ), mEvaluatorFunc( evaluator_func ) {}
+	GraphViewNode::GraphViewNode( const EvaluatorFunc& evaluator_func ) :
+		mIndicatorNode( nullptr )
+		, mIndicatorXNode( nullptr )
+		, mIndicatorBridgeNode( nullptr )
+		, mEvaluatorFunc( evaluator_func ) {}
 
 	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height, const EvaluatorFunc& evaluator_func )
 	{
@@ -70,14 +74,15 @@ namespace graph_practice
 			// Background
 			//
 			{
-				auto background = LayerColor::create( Color4B( 100, 100, 100, 150 ), getContentSize().width, getContentSize().height );
-				view_node->addChild( background, -1 );
+				auto background = LayerColor::create( Color4B( 44u, 44u, 44u, 255u ), getContentSize().width, getContentSize().height );
+				view_node->addChild( background, -2 );
 			}
 
 			//
 			// Guide
 			//
 			{
+				const Color3B GuideColor( 55u, 55u, 55u );
 				const float Spacing = width * 0.1f;
 				for( int i = 1; 10 > i; ++i )
 				{
@@ -85,9 +90,9 @@ namespace graph_practice
 					guide_view->setScale9Enabled( true );
 					guide_view->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					guide_view->setContentSize( Size( 2.f, getContentSize().height ) );
-					guide_view->setColor( Color3B( 100u, 100u, 100u ) );
+					guide_view->setColor( GuideColor );
 					guide_view->setPositionX( Spacing * i );
-					view_node->addChild( guide_view, -2 );
+					view_node->addChild( guide_view, -1 );
 				}
 
 				for( int i = 1; 10 > i; ++i )
@@ -96,9 +101,9 @@ namespace graph_practice
 					guide_view->setScale9Enabled( true );
 					guide_view->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
 					guide_view->setContentSize( Size( getContentSize().height, 2.f ) );
-					guide_view->setColor( Color3B( 100u, 100u, 100u ) );
+					guide_view->setColor( GuideColor );
 					guide_view->setPositionY( Spacing * i );
-					view_node->addChild( guide_view, -2 );
+					view_node->addChild( guide_view, -1 );
 				}
 			}
 
@@ -127,8 +132,19 @@ namespace graph_practice
 		//
 		{
 			mIndicatorNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-			mIndicatorNode->setScale( 4.f );
-			addChild( mIndicatorNode );
+			mIndicatorNode->setScale( 6.f );
+			mIndicatorNode->setColor( Color3B( 73, 179, 255 ) );
+			addChild( mIndicatorNode, 2 );
+
+			mIndicatorXNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+			mIndicatorXNode->setScale( 6.f );
+			mIndicatorXNode->setColor( Color3B::RED );
+			addChild( mIndicatorXNode, 1 );
+
+			mIndicatorBridgeNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+			mIndicatorBridgeNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+			mIndicatorBridgeNode->setOpacity( 80u );
+			addChild( mIndicatorBridgeNode, 0 );
 		}
 
 		return true;
@@ -142,5 +158,10 @@ namespace graph_practice
 			mIndicatorNode->getParent()->getContentSize().width * g_x
 			, mIndicatorNode->getParent()->getContentSize().height * g_y
 		);
+
+		mIndicatorXNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
+
+		mIndicatorBridgeNode->setContentSize( Size(1.f, mIndicatorNode->getPositionY() ) );
+		mIndicatorBridgeNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
 	}
 }

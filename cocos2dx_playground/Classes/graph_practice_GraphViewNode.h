@@ -28,6 +28,8 @@ namespace graph_practice
 
 	private:
 		cocos2d::Node* mIndicatorNode;
+		cocos2d::Node* mIndicatorXNode;
+		cocos2d::Node* mIndicatorBridgeNode;
 		const EvaluatorFunc mEvaluatorFunc;
 	};
 }
