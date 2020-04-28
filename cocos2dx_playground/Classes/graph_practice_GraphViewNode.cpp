@@ -18,7 +18,7 @@ namespace graph_practice
 		, mIndicatorNode( nullptr )
 		, mIndicatorXNode( nullptr )
 		, mIndicatorBridgeNode( nullptr )
-		, mIndicatorYNode( nullptr )
+		, mIndicatorY2Node( nullptr )
 	{}
 
 	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height, const EvaluatorFunc& evaluator_func )
@@ -170,11 +170,11 @@ namespace graph_practice
 				mIndicatorBridgeNode->setOpacity( 80u );
 				view_node->addChild( mIndicatorBridgeNode, 1 );
 
-				mIndicatorYNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-				mIndicatorYNode->setScale( 6.f );
-				mIndicatorYNode->setColor( Color3B( 73, 179, 255 ) );
-				mIndicatorYNode->setPositionY( view_node->getContentSize().height + ViewNodeMargin + ( HeaderSize * 0.5f ) );
-				view_node->addChild( mIndicatorYNode, 1 );
+				mIndicatorY2Node = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				mIndicatorY2Node->setScale( 6.f );
+				mIndicatorY2Node->setColor( Color3B( 73, 179, 255 ) );
+				mIndicatorY2Node->setPositionY( view_node->getContentSize().height + ViewNodeMargin + ( HeaderSize * 0.5f ) );
+				view_node->addChild( mIndicatorY2Node, 1 );
 			}
 		}
 
@@ -195,6 +195,6 @@ namespace graph_practice
 		mIndicatorBridgeNode->setContentSize( Size(1.f, mIndicatorNode->getPositionY() ) );
 		mIndicatorBridgeNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
 
-		mIndicatorYNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_y );
+		mIndicatorY2Node->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_y );
 	}
 }
