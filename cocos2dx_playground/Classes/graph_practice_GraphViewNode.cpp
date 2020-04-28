@@ -124,6 +124,14 @@ namespace graph_practice
 				y_view->setContentSize( Size( 2.f, getContentSize().height ) );
 				y_view->setColor( Color3B::GRAY );
 				view_node->addChild( y_view );
+
+				auto diagonal_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				diagonal_view->setScale9Enabled( true );
+				diagonal_view->setAnchorPoint( Vec2( 0.5f, 0.0f ) );
+				diagonal_view->setContentSize( Size( 2.f, sqrt( pow( getContentSize().width, 2 ) + pow( getContentSize().height, 2 ) ) ) );
+				diagonal_view->setColor( Color3B::GRAY );
+				diagonal_view->setRotation( 45.f );
+				view_node->addChild( diagonal_view );
 			}
 		}
 
