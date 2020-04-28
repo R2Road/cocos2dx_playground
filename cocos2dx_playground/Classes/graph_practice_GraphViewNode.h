@@ -30,7 +30,9 @@ namespace graph_practice
 		const EvaluatorFunc mEvaluatorFunc;
 		cocos2d::Node* mIndicatorNode;
 		cocos2d::Node* mIndicatorXNode;
-		cocos2d::Node* mIndicatorBridgeNode;
+		cocos2d::Node* mIndicatorYNode;
+		cocos2d::Node* mIndicatorBridgeXNode;
+		cocos2d::Node* mIndicatorBridgeYNode;
 		cocos2d::Node* mIndicatorY2Node;
 	};
 }

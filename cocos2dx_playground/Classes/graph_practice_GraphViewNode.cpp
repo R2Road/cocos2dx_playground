@@ -17,7 +17,9 @@ namespace graph_practice
 		mEvaluatorFunc( evaluator_func )
 		, mIndicatorNode( nullptr )
 		, mIndicatorXNode( nullptr )
-		, mIndicatorBridgeNode( nullptr )
+		, mIndicatorYNode( nullptr )
+		, mIndicatorBridgeXNode( nullptr )
+		, mIndicatorBridgeYNode( nullptr )
 		, mIndicatorY2Node( nullptr )
 	{}
 
@@ -165,10 +167,20 @@ namespace graph_practice
 				mIndicatorXNode->setColor( Color3B::RED );
 				view_node->addChild( mIndicatorXNode, 2 );
 
-				mIndicatorBridgeNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-				mIndicatorBridgeNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				mIndicatorBridgeNode->setOpacity( 80u );
-				view_node->addChild( mIndicatorBridgeNode, 1 );
+				mIndicatorYNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				mIndicatorYNode->setScale( 6.f );
+				mIndicatorYNode->setColor( Color3B::RED );
+				view_node->addChild( mIndicatorYNode, 2 );
+
+				mIndicatorBridgeXNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				mIndicatorBridgeXNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				mIndicatorBridgeXNode->setOpacity( 80u );
+				view_node->addChild( mIndicatorBridgeXNode, 1 );
+
+				mIndicatorBridgeYNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				mIndicatorBridgeYNode->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
+				mIndicatorBridgeYNode->setOpacity( 80u );
+				view_node->addChild( mIndicatorBridgeYNode, 1 );
 
 				mIndicatorY2Node = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorY2Node->setScale( 6.f );
@@ -191,9 +203,13 @@ namespace graph_practice
 		);
 
 		mIndicatorXNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
+		mIndicatorYNode->setPositionY( mIndicatorNode->getParent()->getContentSize().height * g_y );
 
-		mIndicatorBridgeNode->setContentSize( Size(1.f, mIndicatorNode->getPositionY() ) );
-		mIndicatorBridgeNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
+		mIndicatorBridgeXNode->setContentSize( Size(1.f, mIndicatorNode->getPositionY() ) );
+		mIndicatorBridgeXNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
+
+		mIndicatorBridgeYNode->setContentSize( Size( mIndicatorNode->getPositionX(), 1.f ) );
+		mIndicatorBridgeYNode->setPositionY( mIndicatorNode->getParent()->getContentSize().height * g_y );
 
 		mIndicatorY2Node->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_y );
 	}
