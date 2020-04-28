@@ -62,6 +62,7 @@ namespace graph_practice
 		//
 		{
 			auto view_node = Node::create();
+			view_node->setContentSize( Size( width, height ) );
 			addChild( view_node );
 
 			// Pivot
@@ -134,26 +135,26 @@ namespace graph_practice
 				diagonal_view->setRotation( 45.f );
 				view_node->addChild( diagonal_view );
 			}
-		}
 
-		//
-		// Current Value Indicator
-		//
-		{
-			mIndicatorNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-			mIndicatorNode->setScale( 6.f );
-			mIndicatorNode->setColor( Color3B( 73, 179, 255 ) );
-			addChild( mIndicatorNode, 2 );
+			//
+			// Current Value Indicator
+			//
+			{
+				mIndicatorNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				mIndicatorNode->setScale( 6.f );
+				mIndicatorNode->setColor( Color3B( 73, 179, 255 ) );
+				view_node->addChild( mIndicatorNode, 3 );
 
-			mIndicatorXNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-			mIndicatorXNode->setScale( 6.f );
-			mIndicatorXNode->setColor( Color3B::RED );
-			addChild( mIndicatorXNode, 1 );
+				mIndicatorXNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				mIndicatorXNode->setScale( 6.f );
+				mIndicatorXNode->setColor( Color3B::RED );
+				view_node->addChild( mIndicatorXNode, 2 );
 
-			mIndicatorBridgeNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-			mIndicatorBridgeNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-			mIndicatorBridgeNode->setOpacity( 80u );
-			addChild( mIndicatorBridgeNode, 0 );
+				mIndicatorBridgeNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				mIndicatorBridgeNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				mIndicatorBridgeNode->setOpacity( 80u );
+				view_node->addChild( mIndicatorBridgeNode, 1 );
+			}
 		}
 
 		return true;
