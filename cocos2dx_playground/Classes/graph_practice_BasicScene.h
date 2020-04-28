@@ -6,6 +6,8 @@
 
 namespace graph_practice
 {
+	class GraphViewNode;
+
 	class BasicScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 	{
 	public:
@@ -26,6 +28,7 @@ namespace graph_practice
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 		float mElapsedTime;
 
-		cocos2d::Node* mGraphNode;
+		GraphViewNode* mGraphViewNode_1;
+		GraphViewNode* mGraphViewNode_2;
 	};
 }

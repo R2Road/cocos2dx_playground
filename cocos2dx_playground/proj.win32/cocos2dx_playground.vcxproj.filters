@@ -435,6 +435,9 @@
     <ClCompile Include="..\Classes\graph_practice_BasicScene.cpp">
       <Filter>src\scene\graph_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\graph_practice_GraphViewNode.cpp">
+      <Filter>src\scene\graph_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -774,6 +777,9 @@
       <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\graph_practice_BasicScene.h">
+      <Filter>src\scene\graph_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\graph_practice_GraphViewNode.h">
       <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
   </ItemGroup>

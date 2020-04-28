@@ -15,6 +15,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "graph_practice_GraphViewNode.h"
+
 USING_NS_CC;
 
 namespace
@@ -30,6 +32,9 @@ namespace graph_practice
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 		, mElapsedTime( 0.f )
+
+		, mGraphViewNode_1( nullptr )
+		, mGraphViewNode_2( nullptr )
 	{}
 
 	Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -88,69 +93,29 @@ namespace graph_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
+		
 		//
-		// Practice
+		// Practice 1
 		//
 		{
-			auto root_node = Node::create();
-			root_node->setContentSize( Size( 100.f, 100.f ) );
-			root_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.2 ) - ( root_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * 0.5f - ( root_node->getContentSize().height * 0.5f )
+			mGraphViewNode_1 = GraphViewNode::create( 100, 100 );
+			mGraphViewNode_1->setPosition(
+				visibleOrigin.x + ( visibleSize.width * 0.15f ) - ( mGraphViewNode_1->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_1->getContentSize().height * 0.5f )
 			);
-			addChild( root_node );
+			addChild( mGraphViewNode_1 );
+		}
 
-			//
-			// Graph View
-			//
-			{
-				auto view_node = Node::create();
-				root_node->addChild( view_node );
-
-				// Pivot
-				{
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 4.f );
-					view_node->addChild( pivot, std::numeric_limits<int>::max() );
-				}
-
-				//
-				// Background
-				//
-				{
-					auto background_layer = LayerColor::create( Color4B( 100, 100, 100, 150 ), root_node->getContentSize().width, root_node->getContentSize().height );
-					view_node->addChild( background_layer, -2 );
-				}
-
-				//
-				// x, y
-				//
-				{
-					auto x_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-					x_view->setScale9Enabled( true );
-					x_view->setAnchorPoint( Vec2::ANCHOR_BOTTOM_LEFT );
-					x_view->setContentSize( Size( root_node->getContentSize().width, 2.f ) );
-					x_view->setColor( Color3B::BLUE );
-					view_node->addChild( x_view );
-
-					auto y_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-					y_view->setScale9Enabled( true );
-					y_view->setAnchorPoint( Vec2::ANCHOR_BOTTOM_RIGHT );
-					y_view->setContentSize( Size( 2.f, root_node->getContentSize().height ) );
-					y_view->setColor( Color3B::BLUE );
-					view_node->addChild( y_view );
-				}
-			}
-
-			//
-			// Current Value Indicator
-			//
-			{
-				mGraphNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-				mGraphNode->setTag( TAG_CurrentValueIndicator );
-				mGraphNode->setScale( 4.f );
-				root_node->addChild( mGraphNode );
-			}
+		//
+		// Practice 2
+		//
+		{
+			mGraphViewNode_2 = GraphViewNode::create( 100, 100 );
+			mGraphViewNode_2->setPosition(
+				visibleOrigin.x + ( visibleSize.width * 0.4f ) - ( mGraphViewNode_2->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphViewNode_2->getContentSize().height * 0.5f )
+			);
+			addChild( mGraphViewNode_2 );
 		}
 
 		return true;
@@ -181,10 +146,8 @@ namespace graph_practice
 			mElapsedTime = 0.f;
 		}
 
-		mGraphNode->setPosition(
-			mGraphNode->getParent()->getContentSize().width * mElapsedTime
-			, mGraphNode->getParent()->getContentSize().height * mElapsedTime
-		);
+		mGraphViewNode_1->UpdateView( mElapsedTime, mElapsedTime );
+		mGraphViewNode_2->UpdateView( mElapsedTime, tweenfunc::quadraticInOut( mElapsedTime ) );
 
 		Node::update( dt );
 	}
