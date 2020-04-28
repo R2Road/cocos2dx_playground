@@ -100,7 +100,7 @@ namespace graph_practice
 		// Practice 1
 		//
 		{
-			mGraphViewNode_1 = GraphViewNode::create( "Pivot", 100, 100 );
+			mGraphViewNode_1 = GraphViewNode::create( "Pivot", 100, 100, []( float g_x )->float { return g_x; } );
 			mGraphViewNode_1->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 0 ) ) ) - ( mGraphViewNode_1->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_1->getContentSize().height * 0.5f )
@@ -112,7 +112,7 @@ namespace graph_practice
 		// Practice 2
 		//
 		{
-			mGraphViewNode_2 = GraphViewNode::create( "quadratic In", 100, 100 );
+			mGraphViewNode_2 = GraphViewNode::create( "quadratic In", 100, 100, []( float g_x )->float { return tweenfunc::quadraticIn( g_x ); } );
 			mGraphViewNode_2->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( mGraphViewNode_2->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_2->getContentSize().height * 0.5f )
@@ -124,7 +124,7 @@ namespace graph_practice
 		// Practice 3
 		//
 		{
-			mGraphViewNode_3 = GraphViewNode::create( "quadratic Out", 100, 100 );
+			mGraphViewNode_3 = GraphViewNode::create( "quadratic Out", 100, 100, []( float g_x )->float { return tweenfunc::quadraticOut( g_x ); } );
 			mGraphViewNode_3->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( mGraphViewNode_3->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_3->getContentSize().height * 0.5f )
@@ -136,7 +136,7 @@ namespace graph_practice
 		// Practice 4
 		//
 		{
-			mGraphViewNode_4 = GraphViewNode::create( "quadratic In Out", 100, 100 );
+			mGraphViewNode_4 = GraphViewNode::create( "quadratic In Out", 100, 100, []( float g_x )->float { return tweenfunc::quadraticInOut( g_x ); } );
 			mGraphViewNode_4->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( mGraphViewNode_4->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height * StartRateY - ( mGraphViewNode_4->getContentSize().height * 0.5f )
@@ -172,10 +172,10 @@ namespace graph_practice
 			mElapsedTime = 0.f;
 		}
 
-		mGraphViewNode_1->UpdateView( mElapsedTime, mElapsedTime );
-		mGraphViewNode_2->UpdateView( mElapsedTime, tweenfunc::quadraticIn( mElapsedTime ) );
-		mGraphViewNode_3->UpdateView( mElapsedTime, tweenfunc::quadraticOut( mElapsedTime ) );
-		mGraphViewNode_4->UpdateView( mElapsedTime, tweenfunc::quadraticInOut( mElapsedTime ) );
+		mGraphViewNode_1->UpdateView( mElapsedTime );
+		mGraphViewNode_2->UpdateView( mElapsedTime );
+		mGraphViewNode_3->UpdateView( mElapsedTime );
+		mGraphViewNode_4->UpdateView( mElapsedTime );
 
 		Node::update( dt );
 	}

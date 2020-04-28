@@ -12,11 +12,11 @@ USING_NS_CC;
 
 namespace graph_practice
 {
-	GraphViewNode::GraphViewNode() : mViewNode( nullptr ) {}
+	GraphViewNode::GraphViewNode( const EvaluatorFunc& evaluator_func ) : mViewNode( nullptr ), mEvaluatorFunc( evaluator_func ) {}
 
-	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height )
+	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height, const EvaluatorFunc& evaluator_func )
 	{
-		auto ret = new ( std::nothrow ) GraphViewNode();
+		auto ret = new ( std::nothrow ) GraphViewNode( evaluator_func );
 		if( !ret || !ret->init( title, width, height ) )
 		{
 			delete ret;
@@ -106,8 +106,10 @@ namespace graph_practice
 		return true;
 	}
 
-	void GraphViewNode::UpdateView( const float g_x, const float g_y )
+	void GraphViewNode::UpdateView( const float g_x )
 	{
+		const auto g_y = mEvaluatorFunc( g_x );
+
 		mViewNode->setPosition(
 			mViewNode->getParent()->getContentSize().width * g_x
 			, mViewNode->getParent()->getContentSize().height * g_y

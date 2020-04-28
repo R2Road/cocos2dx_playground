@@ -87,7 +87,7 @@ namespace graph_practice
 		// Practice
 		//
 		{
-			auto graph_view_node = GraphViewNode::create( "Pivot", 100, 100 );
+			auto graph_view_node = GraphViewNode::create( "Pivot", 100, 100, []( float g_x )->float { return g_x; } );
 			graph_view_node->setTag( TAG_GraphViewNode );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( graph_view_node->getContentSize().width * 0.5f )
@@ -124,7 +124,7 @@ namespace graph_practice
 			mElapsedTime = 0.f;
 		}
 
-		static_cast<GraphViewNode*>( getChildByTag( TAG_GraphViewNode ) )->UpdateView( mElapsedTime, mElapsedTime );
+		static_cast<GraphViewNode*>( getChildByTag( TAG_GraphViewNode ) )->UpdateView( mElapsedTime );
 
 		Node::update( dt );
 	}
