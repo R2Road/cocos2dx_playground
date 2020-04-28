@@ -31,6 +31,7 @@ namespace graph_practice
 
 		, mTimeScale( 1.f )
 		, mElapsedTime( 0.f )
+		, mbPause( false )
 
 		, mGraphViewNodeContainer()
 	{}
@@ -73,6 +74,11 @@ namespace graph_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Arrow Up/Down] : Time Scale";
+			ss << std::endl;
+			ss << "[Space] : Pause/Resume";
 
 			auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -238,15 +244,18 @@ namespace graph_practice
 	}
 	void Collection01Scene::update( float dt )
 	{
-		mElapsedTime += ( dt * mTimeScale );
-		if( 1.f < mElapsedTime )
+		if( !mbPause )
 		{
-			mElapsedTime = 0.f;
-		}
+			mElapsedTime += ( dt * mTimeScale );
+			if( 1.f < mElapsedTime )
+			{
+				mElapsedTime = 0.f;
+			}
 
-		for( auto g : mGraphViewNodeContainer )
-		{
-			g->UpdateView( mElapsedTime );
+			for( auto g : mGraphViewNodeContainer )
+			{
+				g->UpdateView( mElapsedTime );
+			}
 		}
 
 		Node::update( dt );
@@ -276,6 +285,10 @@ namespace graph_practice
 		{
 			mTimeScale = std::max( 0.1f, mTimeScale - 0.1f );
 			UpdateTimeScaleView();
+		}
+		if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
+		{
+			mbPause = !mbPause;
 		}
 	}
 }

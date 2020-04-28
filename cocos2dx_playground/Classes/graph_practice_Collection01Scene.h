@@ -33,6 +33,7 @@ namespace graph_practice
 
 		float mTimeScale;
 		float mElapsedTime;
+		bool mbPause;
 
 		std::vector<GraphViewNode*> mGraphViewNodeContainer;
 	};
