@@ -62,7 +62,7 @@ namespace graph_practice
 			// Pivot
 			{
 				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-				pivot->setScale( 4.f );
+				pivot->setScale( 2.f );
 				view_node->addChild( pivot, std::numeric_limits<int>::max() );
 			}
 
@@ -108,7 +108,7 @@ namespace graph_practice
 			{
 				auto x_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				x_view->setScale9Enabled( true );
-				x_view->setAnchorPoint( Vec2::ANCHOR_BOTTOM_LEFT );
+				x_view->setAnchorPoint( Vec2::ANCHOR_TOP_LEFT );
 				x_view->setContentSize( Size( getContentSize().width, 2.f ) );
 				x_view->setColor( Color3B::GRAY );
 				view_node->addChild( x_view );
