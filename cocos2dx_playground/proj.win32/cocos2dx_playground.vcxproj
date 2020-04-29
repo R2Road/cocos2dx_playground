@@ -157,6 +157,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\graph_practice_Collection03Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection04Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection05Scene.cpp" />
+    <ClCompile Include="..\Classes\graph_practice_Collection06Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_GraphViewNode.cpp" />
     <ClCompile Include="..\Classes\graph_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\shader_practice_BasicScene.cpp" />
@@ -270,6 +271,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\graph_practice_Collection03Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection04Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection05Scene.h" />
+    <ClInclude Include="..\Classes\graph_practice_Collection06Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_GraphViewNode.h" />
     <ClInclude Include="..\Classes\graph_practice_RootScene.h" />
     <ClInclude Include="..\Classes\helper_BackToThePreviousScene.h" />
