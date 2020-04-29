@@ -67,7 +67,7 @@ namespace shader_practice
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 99, 1, 0, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 51, 25, 73, 255 ) );
 			ret->addChild( background_layer, -1 );
 		}
 

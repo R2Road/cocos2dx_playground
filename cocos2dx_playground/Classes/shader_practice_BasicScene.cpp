@@ -85,7 +85,7 @@ namespace shader_practice
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 37, 18, 53, 255 ) );
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
