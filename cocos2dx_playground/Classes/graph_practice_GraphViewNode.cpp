@@ -7,6 +7,9 @@
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "2d/CCLabel.h"
+#include "2d/CCSpriteBatchNode.h"
+#include "base/CCDirector.h"
+#include "renderer/CCTextureCache.h"
 #include "ui/UIScale9Sprite.h"
 
 USING_NS_CC;
@@ -154,39 +157,65 @@ namespace graph_practice
 			}
 
 			//
+			//
+			//
+			{
+				auto batch_node = SpriteBatchNode::createWithTexture( Director::getInstance()->getTextureCache()->getTextureForKey( "textures/texture_001.png" ), 100u );
+				view_node->addChild( batch_node, 1 );
+				{
+					auto shadow_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
+					shadow_view->setColor( Color3B::GREEN );
+					float g_x = 0.f;
+					float g_y = 0.f;
+					for( int i = 0; 100 > i; ++i )
+					{
+						g_x = 0.01f * i;
+						g_y = mEvaluatorFunc( g_x );
+
+						shadow_view->setPosition(
+							view_node->getContentSize().width * g_x
+							, view_node->getContentSize().height * g_y
+						);
+
+						batch_node->insertQuadFromSprite( shadow_view, i );
+					}
+				}
+			}
+
+			//
 			// Current Value Indicator
 			//
 			{
 				mIndicatorNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorNode->setScale( 6.f );
 				mIndicatorNode->setColor( Color3B( 73, 179, 255 ) );
-				view_node->addChild( mIndicatorNode, 3 );
+				view_node->addChild( mIndicatorNode, 4 );
 
 				mIndicatorXNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorXNode->setScale( 6.f );
 				mIndicatorXNode->setColor( Color3B::RED );
-				view_node->addChild( mIndicatorXNode, 2 );
+				view_node->addChild( mIndicatorXNode, 3 );
 
 				mIndicatorYNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorYNode->setScale( 6.f );
 				mIndicatorYNode->setColor( Color3B::RED );
-				view_node->addChild( mIndicatorYNode, 2 );
+				view_node->addChild( mIndicatorYNode, 3 );
 
 				mIndicatorBridgeXNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorBridgeXNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				mIndicatorBridgeXNode->setOpacity( 80u );
-				view_node->addChild( mIndicatorBridgeXNode, 1 );
+				view_node->addChild( mIndicatorBridgeXNode, 2 );
 
 				mIndicatorBridgeYNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorBridgeYNode->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
 				mIndicatorBridgeYNode->setOpacity( 80u );
-				view_node->addChild( mIndicatorBridgeYNode, 1 );
+				view_node->addChild( mIndicatorBridgeYNode, 2 );
 
 				mIndicatorY2Node = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorY2Node->setScale( 6.f );
 				mIndicatorY2Node->setColor( Color3B( 73, 179, 255 ) );
 				mIndicatorY2Node->setPositionY( view_node->getContentSize().height + ViewNodeMargin + ( HeaderSize * 0.5f ) );
-				view_node->addChild( mIndicatorY2Node, 1 );
+				view_node->addChild( mIndicatorY2Node, 2 );
 			}
 		}
 
