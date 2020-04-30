@@ -77,6 +77,25 @@ namespace input_practice
 		}
 
 		//
+		// Explain
+		//
+		{
+			std::stringstream ss;
+			ss << "+ Test Environment";
+			ss << std::endl;
+			ss << "Win10 + Xbox Game Controller";
+
+			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
+			label->setColor( Color3B::GREEN );
+			label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			label->setPosition( Vec2(
+				visibleOrigin.x + visibleSize.width
+				, visibleOrigin.y + visibleSize.height
+			) );
+			addChild( label, std::numeric_limits<int>::max() );
+		}
+
+		//
 		// Background
 		//
 		{
