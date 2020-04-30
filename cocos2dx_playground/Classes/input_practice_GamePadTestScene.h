@@ -1,34 +1,40 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
-namespace research
+#include "helper_BackToThePreviousScene.h"
+
+NS_CC_BEGIN
+	class EventListenerController;
+NS_CC_END
+
+namespace input_practice
 {
-	namespace input
+	class GamePadTestScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 	{
-		class GamePadTestScene : public cocos2d::Scene
-		{
-		public:
-			GamePadTestScene();
+	public:
+		GamePadTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
-			static const char* getTitle() { return "Input : GamePad Test"; }
-			static cocos2d::Scene* create();
+		static const char* getTitle() { return "GamePad Test"; }
+		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
-			bool init() override;
-			void onEnter() override;
-			void onExit() override;
+	private:
+		bool init() override;
 
-		private:
-			void updateKeyCodeView( int keycode );
-			void clearKeyCodeView();
+	public:
+		void onEnter() override;
+		void onExit() override;
 
-			void updateForExit( float dt );
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+	private:
+		void updateKeyCodeView( const int keycode );
+		void clearKeyCodeView();
 
-		private:
-			int mPressedKeyCount;
-			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::EventListenerController* mControllerListener;
-		};
-	}
+		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+
+	private:
+		cocos2d::EventListenerKeyboard* mKeyboardListener;
+		cocos2d::EventListenerController* mControllerListener;
+
+		int mPressedKeyCount;
+	};
 }

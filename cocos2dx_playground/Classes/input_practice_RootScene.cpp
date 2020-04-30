@@ -48,7 +48,7 @@ namespace input_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << research::input::GamePadTestScene::getTitle();
+			ss << "[1] : " << input_practice::GamePadTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -97,7 +97,7 @@ namespace input_practice
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( research::input::GamePadTestScene::create() );
+			Director::getInstance()->replaceScene( input_practice::GamePadTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		default:
