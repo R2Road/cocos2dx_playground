@@ -67,7 +67,6 @@ namespace input_practice
 			ss << "[ESC] : Return to Root";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-			label->setColor( Color3B::GREEN );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
