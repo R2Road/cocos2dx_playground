@@ -118,6 +118,9 @@
     <Filter Include="src\scene\graph_practice">
       <UniqueIdentifier>{53d3a3c9-4b69-4d16-b417-d595e660fe2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\input_practice">
+      <UniqueIdentifier>{b7b92ed2-b123-4560-b0c3-c4c2e6a46b7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -455,6 +458,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\graph_practice_Collection06Scene.cpp">
       <Filter>src\scene\graph_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\input_practice_RootScene.cpp">
+      <Filter>src\scene\input_practice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -817,6 +823,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\graph_practice_Collection06Scene.h">
       <Filter>src\scene\graph_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\input_practice_RootScene.h">
+      <Filter>src\scene\input_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

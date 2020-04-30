@@ -13,6 +13,7 @@
 #include "ui_practice_RootScene.h"
 #include "shader_practice_RootScene.h"
 #include "graph_practice_RootScene.h"
+#include "input_practice_RootScene.h"
 
 #include "Research_Input_GamePadTest.h"
 #include "Step99_RootScene.h"
@@ -80,6 +81,8 @@ bool PlayGroundScene::init()
 		ss << "[W] : " << shader_practice::RootScene::getTitle();
 		ss << std::endl;
 		ss << "[E] : " << graph_practice::RootScene::getTitle();
+		ss << std::endl;
+		ss << "[R] : " << input_practice::RootScene::getTitle();
 		ss << std::endl;
 		ss << std::endl;
 		ss << "=============================";
@@ -154,6 +157,9 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		break;
 	case EventKeyboard::KeyCode::KEY_E:
 		Director::getInstance()->replaceScene( graph_practice::RootScene::create() );
+		break;
+	case EventKeyboard::KeyCode::KEY_R:
+		Director::getInstance()->replaceScene( input_practice::RootScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_A:
