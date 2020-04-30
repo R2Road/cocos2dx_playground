@@ -50,9 +50,20 @@
   - defender( to do )
   
 - ui practice
-  - ...
+  - Mouse Cursor
+  - Layout Vertical
+  - Layout Horizontal
+  - Layout Relative
+  - ScrollView
+  - UI and Camera
+  - Minimap
+  - Slider
 
 - shader practice
   - Basic
   - GL Uniform List
   - Simple Test
+
+- graph practice
+  - Basic
+  - Collection 01 - 06
