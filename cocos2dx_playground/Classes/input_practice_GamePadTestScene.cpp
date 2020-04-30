@@ -1,9 +1,9 @@
-#include "Research_Input_GamePadTest.h"
+#include "input_practice_GamePadTestScene.h"
 
 #include <new>
 #include <sstream>
 
-#include "PlayGroundScene.h"
+#include "input_practice_RootScene.h"
 
 USING_NS_CC;
 
@@ -160,7 +160,7 @@ namespace research
 
 		void GamePadTestScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			Director::getInstance()->replaceScene( input_practice::RootScene::create() );
 		}
 		void GamePadTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

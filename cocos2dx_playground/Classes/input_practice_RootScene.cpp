@@ -11,6 +11,8 @@
 
 #include "PlayGroundScene.h"
 
+#include "input_practice_GamePadTestScene.h"
+
 USING_NS_CC;
 
 namespace input_practice
@@ -44,6 +46,9 @@ namespace input_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[1] : " << research::input::GamePadTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -89,6 +94,10 @@ namespace input_practice
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			return;
+
+		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( research::input::GamePadTestScene::create() );
 			return;
 
 		default:

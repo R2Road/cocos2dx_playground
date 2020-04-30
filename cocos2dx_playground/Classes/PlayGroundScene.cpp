@@ -15,7 +15,6 @@
 #include "graph_practice_RootScene.h"
 #include "input_practice_RootScene.h"
 
-#include "Research_Input_GamePadTest.h"
 #include "Step99_RootScene.h"
 
 USING_NS_CC;
@@ -88,8 +87,6 @@ bool PlayGroundScene::init()
 		ss << "=============================";
 		ss << std::endl;
 		ss << std::endl;
-		ss << "[A] : " << research::input::GamePadTestScene::getTitle();
-		ss << std::endl;
 		ss << "[S] : " << step99::RootScene::getTitle();
 
 		auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
@@ -160,10 +157,6 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		break;
 	case EventKeyboard::KeyCode::KEY_R:
 		Director::getInstance()->replaceScene( input_practice::RootScene::create() );
-		break;
-
-	case EventKeyboard::KeyCode::KEY_A:
-		Director::getInstance()->replaceScene( research::input::GamePadTestScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_S:
