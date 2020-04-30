@@ -129,9 +129,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Setting.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Research_Setting.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -462,15 +459,15 @@
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_Setting.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Setting.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Setting.h">
@@ -826,6 +823,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
       <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Setting.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

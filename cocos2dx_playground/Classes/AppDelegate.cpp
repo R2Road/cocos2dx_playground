@@ -27,7 +27,7 @@
 #include "audio/include/AudioEngine.h"
 
 #include "EntryScene.h"
-#include "CPG_Setting.h"
+#include "cpg_Setting.h"
 
 USING_NS_CC;
 
