@@ -5,7 +5,6 @@
 #include "2d/CCScene.h"
 
 #include "cpg_GridIndexConverter.h"
-#include "step_clickclick_game_Constant.h"
 
 namespace step_clickclick
 {
