@@ -169,7 +169,7 @@ namespace step_clickclick
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
 
-				updateScoreView( mStage->GetActiveBlockCount() );
+				updateScoreView();
 			}
 
 			return true;
@@ -197,7 +197,7 @@ namespace step_clickclick
 		void StageTestScene::onGameProcess( const int block_linear_index )
 		{
 			Processor::Do( mStage.get(), mStageView, block_linear_index, &mScore );
-			updateScoreView( mScore );
+			updateScoreView();
 		}
 
 
@@ -225,7 +225,7 @@ namespace step_clickclick
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
 				mScore = 0;
-				updateScoreView( mScore );
+				updateScoreView();
 				break;
 
 			case EventKeyboard::KeyCode::KEY_2: // Decrease
@@ -244,14 +244,14 @@ namespace step_clickclick
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
 				mScore = 0;
-				updateScoreView( mScore );
+				updateScoreView();
 				break;
 
 			case EventKeyboard::KeyCode::KEY_R: // Reset
 				mStage->Setup( 5, 5 );
 				mStageView->Setup( *mStage );
 				mScore = 0;
-				updateScoreView( mScore );
+				updateScoreView();
 				break;
 
 			default:
@@ -265,10 +265,10 @@ namespace step_clickclick
 			label->setString( StringUtils::format( "Stage Size    X : %d, Y : %d", mCurrentStageWidth, mCurrentStageHeight ) );
 		}
 
-		void StageTestScene::updateScoreView( const int count )
+		void StageTestScene::updateScoreView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
-			label->setString( StringUtils::format( "Score : %d", count ) );
+			label->setString( StringUtils::format( "Score : %d", mScore ) );
 		}
 	} // namespace game
 } // namespace step_clickclick

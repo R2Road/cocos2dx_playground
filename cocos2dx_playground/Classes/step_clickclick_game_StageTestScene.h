@@ -32,7 +32,7 @@ namespace step_clickclick
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			void updateStageSizeView();
-			void updateScoreView( const int count );
+			void updateScoreView();
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
