@@ -11,6 +11,12 @@ namespace step_typetype
 	class ScheduleScene : public cocos2d::Scene
 	{
 	private:
+		struct ScheduleView
+		{
+			cocos2d::Label* ViewLabel = nullptr;
+			float Elapsedtime = 0.f;
+		};
+
 		ScheduleScene();
 
 	public:
@@ -28,19 +34,15 @@ namespace step_typetype
 
 	private:
 		void CustomeUpdate( float dt );
-		void updateLabel( cocos2d::Label* const label, const float elapsed_time );
+		void updateLabel( ScheduleView& schedule_view );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		cocos2d::Label* mLabel_forUpdate;
-		cocos2d::Label* mLabel_forCustomeUpdate;
-		cocos2d::Label* mLabel_forLambda;
-
-		float mElapsedTime_forUpdate;
-		float mElapsedTime_forCustomeUpdate;
-		float mElapsedTime_forLambda;
+		ScheduleView mScheduleView_forUpdate;
+		ScheduleView mScheduleView_forCustomeUpdate;
+		ScheduleView mScheduleView_forLambda;
 	};
 }
