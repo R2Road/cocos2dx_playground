@@ -6,6 +6,8 @@
 
 #include "PlayGroundScene.h"
 
+#include "step_pathfinder_PathScene.h"
+
 #include "step_pathfinder_json_LoadNSaveScene.h"
 #include "step_pathfinder_textField_BasicScene.h"
 
@@ -46,9 +48,12 @@ namespace step_pathfinder
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
+			ss << "[1] : " << step_pathfinder::PathScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step_pathfinder::text_field::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
+			ss << std::endl;
+			ss << "[3] : " << step_pathfinder::text_field::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -110,9 +115,13 @@ namespace step_pathfinder
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( step_pathfinder::PathScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step_pathfinder::json::LoadNSaveScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_2:
+		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( step_pathfinder::text_field::BasicScene::create() );
 			break;
 

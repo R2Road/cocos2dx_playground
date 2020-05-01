@@ -124,6 +124,9 @@
     <Filter Include="src\scene\step_01_typetype\schedule">
       <UniqueIdentifier>{1b06a25e-d26f-467c-a642-275307a09d47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_03_pathfinder\fileutil">
+      <UniqueIdentifier>{a33986f3-ae92-43ef-a9f0-affd99cecdcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -470,6 +473,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_Processor.cpp">
       <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_PathScene.cpp">
+      <Filter>src\scene\step_03_pathfinder\fileutil</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -841,6 +847,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_Processor.h">
       <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_PathScene.h">
+      <Filter>src\scene\step_03_pathfinder\fileutil</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
