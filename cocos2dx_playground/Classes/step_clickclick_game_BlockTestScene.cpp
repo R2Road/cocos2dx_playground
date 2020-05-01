@@ -87,7 +87,7 @@ namespace step_clickclick
 				ss << "[Mouse] : Block Click : Play Test Action";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[F1] : Reset";
+				ss << "[R] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
@@ -252,7 +252,7 @@ namespace step_clickclick
 				updateTestAction( eTestActionType::Die );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_F1:
+			case EventKeyboard::KeyCode::KEY_R:
 				ResetBlockContainer();
 				break;
 
