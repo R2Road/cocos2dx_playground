@@ -248,7 +248,7 @@ namespace step_clickclick
 				break;
 
 			case EventKeyboard::KeyCode::KEY_R: // Reset
-				mStage->Setup( 5, 5 );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
 				mScore = 0;
 				updateScoreView();
