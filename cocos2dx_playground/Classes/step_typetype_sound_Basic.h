@@ -24,6 +24,7 @@ namespace step_typetype
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			int mAudioID_forBGM;
 		};
 	}
 }

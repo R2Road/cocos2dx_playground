@@ -19,7 +19,7 @@ namespace step_typetype
 {
 	namespace sound
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ) {}
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mAudioID_forBGM( -1 ) {}
 
 		Scene* BasicScene::create()
 		{
@@ -60,7 +60,7 @@ namespace step_typetype
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[SPACE BAR] : Play Sound";
+				ss << "[SPACE BAR] : Play FX";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -76,14 +76,31 @@ namespace step_typetype
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// BGM License
+			//
+			{
+				auto label = Label::createWithTTF(
+					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
+					, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::RIGHT
+				);
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
 			// Input Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "Press Space Bar", "fonts/arial.ttf", 12 );
+				auto label = Label::createWithTTF( "Press Space Bar : Play FX", "fonts/arial.ttf", 12 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -98,6 +115,8 @@ namespace step_typetype
 		void BasicScene::onEnter()
 		{
 			Scene::onEnter();
+
+			mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/EmpySpace.ogg", true, 0.1f );
 			
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
@@ -106,6 +125,8 @@ namespace step_typetype
 		}
 		void BasicScene::onExit()
 		{
+			experimental::AudioEngine::stop( mAudioID_forBGM );
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
