@@ -468,6 +468,9 @@
     <ClCompile Include="..\Classes\step_typetype_sound_BasicScene.cpp">
       <Filter>src\scene\step_01_typetype\sound</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_Processor.cpp">
+      <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -835,6 +838,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sound_BasicScene.h">
       <Filter>src\scene\step_01_typetype\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_Processor.h">
+      <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
