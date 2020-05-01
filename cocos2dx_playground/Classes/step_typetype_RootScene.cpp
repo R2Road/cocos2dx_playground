@@ -8,9 +8,11 @@
 #include "step_typetype_sprite_TextureTypeScene.h"
 #include "step_typetype_sprite_AnchorPointScene.h"
 
+#include "step_typetype_input_KeyCodeViewScene.h"
+
 #include "step_typetype_sound_Basic.h"
 
-#include "step_typetype_input_KeyCodeViewScene.h"
+#include "step_typetype_ScheduleScene.h"
 
 #include "step_typetype_game_StageTestScene.h"
 #include "step_typetype_game_TitleScene.h"
@@ -58,6 +60,9 @@ namespace step_typetype
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[4] " << step_typetype::sound::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[5] " << step_typetype::ScheduleScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -130,6 +135,10 @@ namespace step_typetype
 
 		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_typetype::sound::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_5:
+			Director::getInstance()->replaceScene( step_typetype::ScheduleScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:

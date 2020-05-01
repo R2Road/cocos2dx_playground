@@ -121,6 +121,9 @@
     <Filter Include="src\scene\input_practice">
       <UniqueIdentifier>{b7b92ed2-b123-4560-b0c3-c4c2e6a46b7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_01_typetype\schedule">
+      <UniqueIdentifier>{1b06a25e-d26f-467c-a642-275307a09d47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -461,6 +464,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_Setting.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_ScheduleScene.cpp">
+      <Filter>src\scene\step_01_typetype\schedule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -826,6 +832,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Setting.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_ScheduleScene.h">
+      <Filter>src\scene\step_01_typetype\schedule</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
