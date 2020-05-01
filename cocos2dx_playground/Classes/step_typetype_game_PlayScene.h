@@ -25,7 +25,6 @@ namespace step_typetype
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:

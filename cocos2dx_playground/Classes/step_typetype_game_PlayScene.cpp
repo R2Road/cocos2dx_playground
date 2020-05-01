@@ -167,19 +167,12 @@ namespace step_typetype
 			Node::onExit();
 		}
 
-		void PlayScene::updateForExit( float /*dt*/ )
-		{
-			Director::getInstance()->replaceScene( step_typetype::game::TitleScene::create() );
-		}
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				if( !isScheduled( schedule_selector( PlayScene::updateForExit ) ) )
-				{
-					scheduleOnce( schedule_selector( PlayScene::updateForExit ), 0.f );
-					return;
-				}
+				Director::getInstance()->replaceScene( step_typetype::game::TitleScene::create() );
+				return;
 			}
 
 			if( !mStage.IsStageClear() )
