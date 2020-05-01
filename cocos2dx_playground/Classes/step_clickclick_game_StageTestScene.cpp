@@ -30,7 +30,7 @@ namespace step_clickclick
 			const int MAX_STAGE_WIDTH = 7;
 			const int MAX_STAGE_HEIGHT = 7;
 
-			const int TAG_ActiveBlockCountView = 9999;
+			const int TAG_ScoreView = 9999;
 		}
 
 		StageTestScene::StageTestScene() :
@@ -137,20 +137,20 @@ namespace step_clickclick
 			}
 
 			//
-			// Active Block Count View
+			// Score View
 			//
 			{
-				auto label = Label::createWithTTF( "Block", "fonts/arial.ttf", 10 );
-				label->setTag( TAG_ActiveBlockCountView );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
+				label->setTag( TAG_ScoreView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.1f
+					, visibleOrigin.y + 4.f
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
 
-				updateActiveBlockCountView( mStage->GetActiveBlockCount() );
+				updateScoreView( mStage->GetActiveBlockCount() );
 			}
 
 			return true;
@@ -322,7 +322,7 @@ namespace step_clickclick
 				}
 			}
 
-			updateActiveBlockCountView( mScore );
+			updateScoreView( mScore );
 		}
 
 
@@ -349,7 +349,7 @@ namespace step_clickclick
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
 				mScore = 0;
-				updateActiveBlockCountView( mScore );
+				updateScoreView( mScore );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_2: // Increase
@@ -367,14 +367,14 @@ namespace step_clickclick
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
 				mScore = 0;
-				updateActiveBlockCountView( mScore );
+				updateScoreView( mScore );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_R:
 				mStage->Setup( 5, 5 );
 				mStageView->Setup( *mStage );
 				mScore = 0;
-				updateActiveBlockCountView( mScore );
+				updateScoreView( mScore );
 				break;
 
 			default:
@@ -382,10 +382,10 @@ namespace step_clickclick
 			}
 		}
 
-		void StageTestScene::updateActiveBlockCountView( const int count )
+		void StageTestScene::updateScoreView( const int count )
 		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_ActiveBlockCountView ) );
-			label->setString( StringUtils::format( "Remain Block Count : %d", count ) );
+			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
+			label->setString( StringUtils::format( "Score : %d", count ) );
 		}
 	} // namespace game
 } // namespace step_clickclick

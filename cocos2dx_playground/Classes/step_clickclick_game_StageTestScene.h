@@ -31,7 +31,7 @@ namespace step_clickclick
 			void onGameProcess( const int block_linear_index );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
-			void updateActiveBlockCountView( const int count );
+			void updateScoreView( const int count );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
