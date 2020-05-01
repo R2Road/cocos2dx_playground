@@ -10,7 +10,6 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "platform/CCFileUtils.h"
-#include "base/ccUTF8.h"
 
 USING_NS_CC;
 
