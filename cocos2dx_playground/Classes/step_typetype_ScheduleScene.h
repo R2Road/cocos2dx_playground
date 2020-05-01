@@ -28,6 +28,7 @@ namespace step_typetype
 
 	private:
 		void CustomeUpdate( float dt );
+		void updateLabel( cocos2d::Label* const label, const float elapsed_time );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 

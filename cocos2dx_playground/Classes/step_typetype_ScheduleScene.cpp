@@ -76,7 +76,7 @@ namespace step_typetype
 			ss << std::endl;
 			ss << "[2] : Unschedule Custome Update";
 			ss << std::endl;
-			ss << "[3] : Unschedule Lambda";
+			ss << "[3] : Unschedule Lambda Update";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -96,20 +96,27 @@ namespace step_typetype
 		}
 
 		//
-		// Label
+		// Label - Update
 		//
 		{
-			// Update
-			mLabel_forUpdate = Label::createWithTTF( "0.00", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			mLabel_forUpdate = Label::createWithTTF( "", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+			mLabel_forUpdate->setName( "Update" );
 			mLabel_forUpdate->setColor( Color3B::GREEN );
 			mLabel_forUpdate->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.3f )
+				visibleOrigin.x + ( visibleSize.width * 0.25f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			);
 			addChild( mLabel_forUpdate );
 
-			// Custome Update
-			mLabel_forCustomeUpdate = Label::createWithTTF( "0.00", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			updateLabel( mLabel_forUpdate, mElapsedTime_forUpdate );
+		}
+
+		//
+		// Label - Custome Update
+		//
+		{
+			mLabel_forCustomeUpdate = Label::createWithTTF( "", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+			mLabel_forCustomeUpdate->setName( "Custome Update" );
 			mLabel_forCustomeUpdate->setColor( Color3B::GREEN );
 			mLabel_forCustomeUpdate->setPosition(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -117,14 +124,23 @@ namespace step_typetype
 			);
 			addChild( mLabel_forCustomeUpdate );
 
-			// Lambda Update
-			mLabel_forLambda = Label::createWithTTF( "0.00", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			updateLabel( mLabel_forCustomeUpdate, mElapsedTime_forCustomeUpdate );
+		}
+
+		//
+		// Label - Lambda Update
+		//
+		{
+			mLabel_forLambda = Label::createWithTTF( "", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+			mLabel_forLambda->setName( "Lambda Update" );
 			mLabel_forLambda->setColor( Color3B::GREEN );
 			mLabel_forLambda->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.7f )
+				visibleOrigin.x + ( visibleSize.width * 0.75f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			);
 			addChild( mLabel_forLambda );
+
+			updateLabel( mLabel_forLambda, mElapsedTime_forLambda );
 		}
 
 		//
@@ -146,7 +162,7 @@ namespace step_typetype
 					{
 						mElapsedTime_forLambda = 0.f;
 					}
-					mLabel_forLambda->setString( StringUtils::format( "%.2f", mElapsedTime_forLambda ) );
+					updateLabel( mLabel_forLambda, mElapsedTime_forLambda );
 				}
 				, 1.f
 				, "Update for Lambda"
@@ -180,7 +196,7 @@ namespace step_typetype
 		{
 			mElapsedTime_forUpdate = 0.f;
 		}
-		mLabel_forUpdate->setString( StringUtils::format( "%.2f", mElapsedTime_forUpdate ) );
+		updateLabel( mLabel_forUpdate, mElapsedTime_forUpdate );
 
 		Node::update( dt );
 	}
@@ -191,7 +207,12 @@ namespace step_typetype
 		{
 			mElapsedTime_forCustomeUpdate = 0.f;
 		}
-		mLabel_forCustomeUpdate->setString( StringUtils::format( "%.2f", mElapsedTime_forCustomeUpdate ) );
+		updateLabel( mLabel_forCustomeUpdate, mElapsedTime_forCustomeUpdate );
+	}
+
+	void ScheduleScene::updateLabel( cocos2d::Label* const label, const float elapsed_time )
+	{
+		label->setString( StringUtils::format( "%s\n%.2f", label->getName().c_str(), elapsed_time ) );
 	}
 
 	void ScheduleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
