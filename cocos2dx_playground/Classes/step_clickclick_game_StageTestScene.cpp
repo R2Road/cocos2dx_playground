@@ -30,8 +30,6 @@ namespace step_clickclick
 			const int MAX_STAGE_WIDTH = 7;
 			const int MAX_STAGE_HEIGHT = 7;
 
-			const int TAG_TestActionView = 20140416;
-			const int TAG_SelectedBlockTypeView = 20160528;
 			const int TAG_ActiveBlockCountView = 9999;
 		}
 
@@ -40,8 +38,7 @@ namespace step_clickclick
 			, mStage()
 			, mStageView( nullptr )
 			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
-
-			, mTestActionType( eTestActionType::Increase )
+			, mScore( 0 )
 		{}
 
 		Scene* StageTestScene::create()
@@ -82,17 +79,10 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[F1] : Reset";
+				ss << "[Mouse] : Click : Play";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Test Action Change : Increase";
-				ss << std::endl;
-				ss << "[2] : Test Action Change : Decrease";
-				ss << std::endl;
-				ss << "[3] : Test Action Change : Die";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[Mouse] : Click : Play Test Action";
+				ss << "[R] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
@@ -139,38 +129,6 @@ namespace step_clickclick
 			}
 
 			//
-			// Test Action
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
-				label->setTag( TAG_TestActionView );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, std::numeric_limits<int>::max() );
-
-				updateTestAction( mTestActionType );
-			}
-
-			//
-			// Selected Block Type View
-			//
-			{
-				auto label = Label::createWithTTF( "Block Type : -", "fonts/arial.ttf", 10 );
-				label->setTag( TAG_SelectedBlockTypeView );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y
-				) );
-				addChild( label, std::numeric_limits<int>::max() );
-			}
-
-			//
 			// Active Block Count View
 			//
 			{
@@ -211,29 +169,152 @@ namespace step_clickclick
 
 		void StageTestScene::onGameProcess( const int block_linear_index )
 		{
-			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
+			const auto& block_data = mStage->GetBlockData( block_linear_index );
+			const auto block_point_index = mStage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
+			int last_life = 0;
 
-			const auto& target_block_data = mStage->GetBlockData( block_linear_index );
-			updateSelectedBlockTypeView( target_block_data.GetType() );
-
-			const int last_life = target_block_data.GetLife();
-			switch( mTestActionType )
+			if( eBlockType::Single == block_data.GetType() )
 			{
-			case eTestActionType::Increase:
-				mStage->IncreaseBlockLife( block_linear_index );
-				break;
-			case eTestActionType::Decrease:
-				mStage->DecreaseBlockLife( block_linear_index );
-				break;
-			case eTestActionType::Die:
-				mStage->DieBlock( block_linear_index );
-				break;
-			default:
-				assert( false );
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
+
+				bool has_neighbor = false;
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
+				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				{
+					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					{
+						if( 0 > tx || mStage->GetWidth() <= tx
+							|| 0 > ty || mStage->GetHeight() <= ty )
+						{
+							continue;
+						}
+
+						if( tx != block_point_index.x && ty != block_point_index.y )
+						{
+							continue;
+						}
+
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( block_linear_index == target_block_data.GetIndex() )
+						{
+							continue;
+						}
+
+						if( !target_block_data.IsActive() )
+						{
+							continue;
+						}
+
+						has_neighbor = true;
+						break;
+					}
+				}
+
+				last_life = block_data.GetLife();
+				if( has_neighbor )
+				{
+					++mScore;
+
+					mStage->DecreaseBlockLife( block_data.GetIndex() );
+					mStageView->UpdateBlock( block_data.GetIndex(), last_life, block_data.GetLife() );
+				}
+				else
+				{
+					mScore = std::max( 0, mScore - block_data.GetLife() );
+
+					mStage->DieBlock( block_data.GetIndex() );
+					mStageView->UpdateBlock( block_data.GetIndex(), last_life, block_data.GetLife() );
+				}
+			}
+			else if( eBlockType::Same == block_data.GetType() )
+			{
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
+
+				const int pivot_count = block_data.GetLife();
+
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
+				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				{
+					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					{
+						if( 0 > tx || mStage->GetWidth() <= tx
+							|| 0 > ty || mStage->GetHeight() <= ty )
+						{
+							continue;
+						}
+
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( !target_block_data.IsActive() )
+						{
+							continue;
+						}
+
+						if( eBlockType::Same == target_block_data.GetType() && pivot_count != target_block_data.GetLife() )
+						{
+							continue;
+						}
+
+						last_life = target_block_data.GetLife();
+						if( pivot_count != target_block_data.GetLife() )
+						{
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+						}
+						else
+						{
+							mScore += 3;
+							mStage->DecreaseBlockLife( target_block_data.GetIndex() );
+						}
+
+						mStageView->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+					}
+				}
+			}
+			else if( eBlockType::Different == block_data.GetType() )
+			{
+				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
+
+				const int pivot_count = block_data.GetLife();
+
+				const int current_pivot_x = block_point_index.x - 1;
+				const int current_pivot_y = block_point_index.y - 1;
+				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				{
+					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					{
+						if( 0 > tx || mStage->GetWidth() <= tx
+							|| 0 > ty || mStage->GetHeight() <= ty )
+						{
+							continue;
+						}
+
+						const auto& target_block_data = mStage->GetBlockData( tx, ty );
+						if( !target_block_data.IsActive() )
+						{
+							continue;
+						}
+
+						last_life = target_block_data.GetLife();
+						if( target_block_data.GetIndex() != block_data.GetIndex() && pivot_count == target_block_data.GetLife() )
+						{
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+							mStage->IncreaseBlockLife( target_block_data.GetIndex() );
+						}
+						else
+						{
+							mScore += target_block_data.GetLife();
+							mStage->DieBlock( target_block_data.GetIndex() );
+						}
+
+						mStageView->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+					}
+				}
 			}
 
-			mStageView->UpdateBlock( block_linear_index, last_life, target_block_data.GetLife() );
-			updateActiveBlockCountView( mStage->GetActiveBlockCount() );
+			updateActiveBlockCountView( mScore );
 		}
 
 
@@ -243,22 +324,13 @@ namespace step_clickclick
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
-				break;
+				return;
 
-			case EventKeyboard::KeyCode::KEY_F1:
+			case EventKeyboard::KeyCode::KEY_R:
 				mStage->Setup( 5, 5 );
 				mStageView->Setup( *mStage );
-				updateActiveBlockCountView( mStage->GetActiveBlockCount() );
-				break;
-
-			case EventKeyboard::KeyCode::KEY_1:
-				updateTestAction( eTestActionType::Increase );
-				break;
-			case EventKeyboard::KeyCode::KEY_2:
-				updateTestAction( eTestActionType::Decrease );
-				break;
-			case EventKeyboard::KeyCode::KEY_3:
-				updateTestAction( eTestActionType::Die );
+				mScore = 0;
+				updateActiveBlockCountView( mScore );
 				break;
 
 			default:
@@ -266,44 +338,6 @@ namespace step_clickclick
 			}
 		}
 
-		void StageTestScene::updateTestAction( const eTestActionType test_action_type )
-		{
-			mTestActionType = test_action_type;
-
-			auto label = static_cast<Label*>( getChildByTag( TAG_TestActionView ) );
-			switch( mTestActionType )
-			{
-			case eTestActionType::Increase:
-				label->setString( "Current Test Action : Increase" );
-				break;
-			case eTestActionType::Decrease:
-				label->setString( "Current Test Action : Decrease" );
-				break;
-			case eTestActionType::Die:
-				label->setString( "Current Test Action : Die" );
-				break;
-			default:
-				assert( false );
-			}
-		}
-		void StageTestScene::updateSelectedBlockTypeView( const eBlockType block_type )
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedBlockTypeView ) );
-			switch( block_type )
-			{
-			case eBlockType::Single:
-				label->setString( "Block Type : Single" );
-				break;
-			case eBlockType::Same:
-				label->setString( "Block Type : Same" );
-				break;
-			case eBlockType::Different:
-				label->setString( "Block Type : Different" );
-				break;
-			default:
-				assert( false );
-			}
-		}
 		void StageTestScene::updateActiveBlockCountView( const int count )
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_ActiveBlockCountView ) );
