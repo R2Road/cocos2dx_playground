@@ -209,7 +209,7 @@ namespace step_clickclick
 				updateScoreView( mScore );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_2: // Increase
+			case EventKeyboard::KeyCode::KEY_2: // Decrease
 				mCurrentStageWidth = (
 					3 <= mCurrentStageWidth - 2
 					? mCurrentStageWidth - 2
@@ -227,7 +227,7 @@ namespace step_clickclick
 				updateScoreView( mScore );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_R:
+			case EventKeyboard::KeyCode::KEY_R: // Reset
 				mStage->Setup( 5, 5 );
 				mStageView->Setup( *mStage );
 				mScore = 0;
