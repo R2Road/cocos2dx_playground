@@ -264,7 +264,7 @@ namespace graph_practice
 
 	void Collection04Scene::UpdateTimeScaleView()
 	{
-		static_cast<Label*>( getChildByTag( TAG_TileScaleView ) )->setString( StringUtils::format( "Time Scale : %.2f", mTimeScale ) );;
+		static_cast<Label*>( getChildByTag( TAG_TileScaleView ) )->setString( StringUtils::format( "Time Scale : %.2f", mTimeScale ) );
 	}
 
 
