@@ -213,6 +213,12 @@ namespace step_typetype
 
 	void ScheduleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
+		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
+		{
+			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+			return;
+		}
+
 		if( EventKeyboard::KeyCode::KEY_F1 == keycode )
 		{
 			unscheduleAllCallbacks();
@@ -235,12 +241,6 @@ namespace step_typetype
 			{
 				unschedule( "Update for Lambda" );
 			}
-		}
-
-		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
-		{
-			Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
-			return;
 		}
 	}
 }
