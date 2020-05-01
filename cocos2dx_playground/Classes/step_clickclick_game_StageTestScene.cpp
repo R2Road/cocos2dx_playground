@@ -31,6 +31,7 @@ namespace step_clickclick
 			const int MAX_STAGE_WIDTH = 7;
 			const int MAX_STAGE_HEIGHT = 7;
 
+			const int TAG_StageSizeView = 20140416;
 			const int TAG_ScoreView = 9999;
 		}
 
@@ -109,6 +110,23 @@ namespace step_clickclick
 			{
 				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
 				addChild( background_layer, -1 );
+			}
+
+			//
+			// Stage Length View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 10 );
+				label->setTag( TAG_StageSizeView );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateStageSizeView();
 			}
 
 			//
@@ -202,6 +220,7 @@ namespace step_clickclick
 					? mCurrentStageHeight + 2
 					: MAX_STAGE_HEIGHT
 				);
+				updateStageSizeView();
 
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
@@ -220,6 +239,7 @@ namespace step_clickclick
 					? mCurrentStageHeight - 2
 					: 3
 				);
+				updateStageSizeView();
 
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 				mStageView->Setup( *mStage );
@@ -237,6 +257,12 @@ namespace step_clickclick
 			default:
 				CCLOG( "Key Code : %d", keycode );
 			}
+		}
+
+		void StageTestScene::updateStageSizeView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_StageSizeView ) );
+			label->setString( StringUtils::format( "Stage Size    X : %d, Y : %d", mCurrentStageWidth, mCurrentStageHeight ) );
 		}
 
 		void StageTestScene::updateScoreView( const int count )
