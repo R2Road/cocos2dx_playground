@@ -38,7 +38,10 @@ namespace step_clickclick
 			, mStage()
 			, mStageView( nullptr )
 			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
+
 			, mScore( 0 )
+			, mCurrentStageWidth( 3 )
+			, mCurrentStageHeight( 3 )
 		{}
 
 		Scene* StageTestScene::create()
@@ -79,6 +82,11 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
+				ss << "[1] : Increase Stage Size And Reset";
+				ss << std::endl;
+				ss << "[2] : Decrease Stage Size And Reset";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[Mouse] : Click : Play";
 				ss << std::endl;
 				ss << std::endl;
@@ -107,7 +115,7 @@ namespace step_clickclick
 			//
 			{
 				mStage = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
-				mStage->Setup( 5, 5 );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
 			}
 
 			//
@@ -325,6 +333,42 @@ namespace step_clickclick
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 				return;
+
+			case EventKeyboard::KeyCode::KEY_1: // Increase
+				mCurrentStageWidth = (
+					MAX_STAGE_WIDTH >= mCurrentStageWidth + 2
+					? mCurrentStageWidth + 2
+					: MAX_STAGE_WIDTH
+				);
+				mCurrentStageHeight = (
+					MAX_STAGE_WIDTH >= mCurrentStageHeight + 2
+					? mCurrentStageHeight + 2
+					: MAX_STAGE_HEIGHT
+				);
+
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				mStageView->Setup( *mStage );
+				mScore = 0;
+				updateActiveBlockCountView( mScore );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_2: // Increase
+				mCurrentStageWidth = (
+					3 <= mCurrentStageWidth - 2
+					? mCurrentStageWidth - 2
+					: 3
+				);
+				mCurrentStageHeight = (
+					3 <= mCurrentStageHeight - 2
+					? mCurrentStageHeight - 2
+					: 3
+				);
+
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				mStageView->Setup( *mStage );
+				mScore = 0;
+				updateActiveBlockCountView( mScore );
+				break;
 
 			case EventKeyboard::KeyCode::KEY_R:
 				mStage->Setup( 5, 5 );
