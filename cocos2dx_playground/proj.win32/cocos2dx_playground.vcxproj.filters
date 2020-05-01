@@ -252,9 +252,6 @@
     <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_sound_Basic.cpp">
-      <Filter>src\scene\step_01_typetype\sound</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_game_StageTestScene.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
@@ -468,6 +465,9 @@
     <ClCompile Include="..\Classes\step_typetype_ScheduleScene.cpp">
       <Filter>src\scene\step_01_typetype\schedule</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_sound_BasicScene.cpp">
+      <Filter>src\scene\step_01_typetype\sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -607,9 +607,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_sound_Basic.h">
-      <Filter>src\scene\step_01_typetype\sound</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_StageTestScene.h">
       <Filter>src\scene\step_01_typetype\game</Filter>
@@ -835,6 +832,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_ScheduleScene.h">
       <Filter>src\scene\step_01_typetype\schedule</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_sound_BasicScene.h">
+      <Filter>src\scene\step_01_typetype\sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

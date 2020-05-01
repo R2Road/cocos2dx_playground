@@ -10,7 +10,7 @@
 
 #include "step_typetype_input_KeyCodeViewScene.h"
 
-#include "step_typetype_sound_Basic.h"
+#include "step_typetype_sound_BasicScene.h"
 
 #include "step_typetype_ScheduleScene.h"
 
