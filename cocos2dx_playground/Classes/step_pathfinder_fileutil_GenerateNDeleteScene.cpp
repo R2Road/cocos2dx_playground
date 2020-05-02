@@ -99,24 +99,24 @@ namespace step_pathfinder
 
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Target Path>", FontPath, 9 );
+					auto label = Label::createWithTTF( "<Target Path>", FontPath, 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.7f
+						, visibleOrigin.y + visibleSize.height * 0.8f
 					) );
 					addChild( label );
 				}
 
 				// Path
 				{
-					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), FontPath, 9 );
+					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), FontPath, 10 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.7f
+						, visibleOrigin.y + visibleSize.height * 0.8f
 					) );
 					addChild( label );
 				}
@@ -128,23 +128,23 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<File Name>", FontPath, 9 );
+					auto label = Label::createWithTTF( "<File Name>", FontPath, 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.5f
+						, visibleOrigin.y + visibleSize.height * 0.6f
 					) );
 					addChild( label );
 				}
 
 				// Name
 				{
-					auto label = Label::createWithTTF( FilePath_for_Generate_N_Delete, FontPath, 9 );
+					auto label = Label::createWithTTF( FilePath_for_Generate_N_Delete, FontPath, 14 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.5f
+						, visibleOrigin.y + visibleSize.height * 0.6f
 					) );
 					addChild( label );
 				}
@@ -156,24 +156,24 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<File Status>", FontPath, 9 );
+					auto label = Label::createWithTTF( "<File Status>", FontPath, 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width * 0.6f
-						, visibleOrigin.y + visibleSize.height * 0.5f
+						visibleOrigin.x + visibleSize.width * 0.1f
+						, visibleOrigin.y + visibleSize.height * 0.4f
 					) );
 					addChild( label );
 				}
 
 				// Status
 				{
-					auto label = Label::createWithTTF( "", FontPath, 9 );
+					auto label = Label::createWithTTF( "", FontPath, 14 );
 					label->setTag( TAG_FileStatus );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::RED );
 					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width * 0.6f
-						, visibleOrigin.y + visibleSize.height * 0.5f
+						visibleOrigin.x + visibleSize.width * 0.1f
+						, visibleOrigin.y + visibleSize.height * 0.4f
 					) );
 					addChild( label );
 				}
@@ -196,7 +196,7 @@ namespace step_pathfinder
 				) );
 				addChild( button );
 				{
-					auto label = Label::createWithTTF( "Generate", FontPath, 9 );
+					auto label = Label::createWithTTF( "Generate", FontPath, 12 );
 					button->setTitleLabel( label );
 
 					button->setContentSize( label->getContentSize() + ButtonMargin + ButtonMargin );
@@ -216,7 +216,7 @@ namespace step_pathfinder
 				) );
 				addChild( button );
 				{
-					auto label = Label::createWithTTF( "Delete", FontPath, 9 );
+					auto label = Label::createWithTTF( "Delete", FontPath, 12 );
 					button->setTitleLabel( label );
 
 					button->setContentSize( label->getContentSize() + ButtonMargin + ButtonMargin );
