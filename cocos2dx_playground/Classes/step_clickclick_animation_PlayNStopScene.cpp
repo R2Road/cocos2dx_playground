@@ -36,6 +36,12 @@ namespace step_clickclick
 			, mRepeatAction( nullptr )
 		{}
 
+		PlayNStopScene::~PlayNStopScene()
+		{
+			mNormalAction->release();
+			mRepeatAction->release();
+		}
+
 		Scene* PlayNStopScene::create()
 		{
 			auto ret = new ( std::nothrow ) PlayNStopScene();
@@ -156,9 +162,6 @@ namespace step_clickclick
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-
-			mNormalAction->release();
-			mRepeatAction->release();
 
 			Node::onExit();
 		}
