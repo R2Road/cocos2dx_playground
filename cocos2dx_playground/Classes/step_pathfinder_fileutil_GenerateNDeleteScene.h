@@ -26,6 +26,7 @@ namespace step_pathfinder
 		private:
 			void updateFileStatus();
 
+			void onOpenFolderButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onGenerateButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onDeleteButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
