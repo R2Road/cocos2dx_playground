@@ -1,6 +1,7 @@
 #pragma once
 
 #include <codecvt>
+#include <cstring>
 #include <locale>
 #include <string>
 
@@ -24,14 +25,10 @@ namespace helper
 	void Win32DirectoryOpen( const char* utf8_path )
 	{
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 )
-		std::wstring temp;
-		if( temp.empty() )
-		{
-			const std::string writable_path( utf8_path );
+		const auto utf8_path_length = strlen( utf8_path );
 
-			std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
-			temp = conv.from_bytes( writable_path.c_str(), writable_path.c_str() + writable_path.length() - 1 );
-		}
+		std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+		const std::wstring temp = conv.from_bytes( utf8_path, utf8_path + utf8_path_length ); // nrvo?
 
 		ShellExecute( NULL, L"open", temp.c_str(), NULL, NULL, SW_SHOWNORMAL );
 #endif
