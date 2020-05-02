@@ -90,32 +90,59 @@ namespace step_pathfinder
 			}
 
 			//
-			// Json Data Path View
+			// Target Path
 			//
 			{
+				const float MAX_LINE_WIDTH = visibleSize.width * 0.8f;
+
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Json File Path>", "fonts/arial.ttf", 14 );
+					auto label = Label::createWithTTF( "<Target Path>", "fonts/arial.ttf", 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.7f )
+						, visibleOrigin.y + ( visibleSize.height * 0.8f )
 					) );
 					addChild( label );
 				}
 
 				// Path
 				{
-					auto label = Label::createWithTTF(
-						StringUtils::format( "%s%s", FileUtils::getInstance()->getWritablePath().c_str(), FilePath_Step_Pathfinder_Json_LoadNSave )
-						, "fonts/arial.ttf"
-						, 9
-					);
+					auto label = Label::createWithTTF( FileUtils::getInstance()->getWritablePath().c_str(), "fonts/arial.ttf", 10 );
+					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setMaxLineWidth( MAX_LINE_WIDTH );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.8f )
+					) );
+					addChild( label );
+				}
+			}
+
+			//
+			// File Name
+			//
+			{
+				// Title
+				{
+					auto label = Label::createWithTTF( "<File Name>", "fonts/arial.ttf", 14 );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.6f )
+					) );
+					addChild( label );
+				}
+
+				// Name
+				{
+					auto label = Label::createWithTTF( FilePath_Step_Pathfinder_Json_LoadNSave, "fonts/arial.ttf", 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.7f )
+						, visibleOrigin.y + ( visibleSize.height * 0.6f )
 					) );
 					addChild( label );
 				}
@@ -144,7 +171,7 @@ namespace step_pathfinder
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.4f )
 					) );
 					addChild( label );
 				}
@@ -156,9 +183,9 @@ namespace step_pathfinder
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.4f )
 					) );
-					addChild( label, 0 );
+					addChild( label );
 				}
 			}
 
@@ -172,7 +199,7 @@ namespace step_pathfinder
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.3f )
+						, visibleOrigin.y + ( visibleSize.height * 0.2f )
 					) );
 					addChild( label );
 				}
@@ -190,9 +217,9 @@ namespace step_pathfinder
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.3f )
+						, visibleOrigin.y + ( visibleSize.height * 0.2f )
 					) );
-					addChild( label, 0 );
+					addChild( label );
 				}
 			}
 
