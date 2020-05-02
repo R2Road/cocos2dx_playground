@@ -71,9 +71,6 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "<Json File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath() << FilePath_Step_Pathfinder_Json_LoadNSave;
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -93,6 +90,38 @@ namespace step_pathfinder
 			}
 
 			//
+			// Json Data Path View
+			//
+			{
+				// Title
+				{
+					auto label = Label::createWithTTF( "<Json File Path>", "fonts/arial.ttf", 14 );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.7f )
+					) );
+					addChild( label );
+				}
+
+				// Path
+				{
+					auto label = Label::createWithTTF(
+						StringUtils::format( "%s%s", FileUtils::getInstance()->getWritablePath().c_str(), FilePath_Step_Pathfinder_Json_LoadNSave )
+						, "fonts/arial.ttf"
+						, 9
+					);
+					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.7f )
+					) );
+					addChild( label );
+				}
+			}
+
+			//
 			// Json Save And Load
 			//
 			std::string json_string;
@@ -106,40 +135,65 @@ namespace step_pathfinder
 			}
 
 			//
-			// Json String View
+			// Json File Content String View
 			//
 			{
-				auto label = Label::createWithTTF(
-					StringUtils::format( "Json File Content : %s", json_string.c_str() )
-					, "fonts/arial.ttf"
-					, 14
-				);
-				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.6f )
-				) );
-				addChild( label, 0 );
+				// Title
+				{
+					auto label = Label::createWithTTF( "<Json File Content String>", "fonts/arial.ttf", 14 );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.5f )
+					) );
+					addChild( label );
+				}
+
+				// Content
+				{
+					auto label = Label::createWithTTF( json_string.c_str(), "fonts/arial.ttf", 14 );
+					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.5f )
+					) );
+					addChild( label, 0 );
+				}
 			}
 
 			//
-			// Json Data View
+			// Parsed Json Data View
 			//
 			{
-				std::stringstream ss;
-				ss << "Json Datas :";
-				for( auto i : json_datas )
+				// Title
 				{
-					ss << " " << i;
+					auto label = Label::createWithTTF( "<Parsed Json Data>", "fonts/arial.ttf", 14 );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.3f )
+					) );
+					addChild( label );
 				}
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 14 );
-				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.4f )
-				) );
-				addChild( label, 0 );
+				// Path
+				{
+					std::stringstream ss;
+					for( auto i : json_datas )
+					{
+						ss << "   " << i;
+					}
+
+					auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 14 );
+					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.3f )
+					) );
+					addChild( label, 0 );
+				}
 			}
 
 			return true;
