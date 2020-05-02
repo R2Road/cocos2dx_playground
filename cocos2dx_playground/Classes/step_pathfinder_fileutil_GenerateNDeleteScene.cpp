@@ -1,16 +1,10 @@
 #include "step_pathfinder_fileutil_GenerateNDeleteScene.h"
 
-#include <codecvt>
-#include <locale>
 #include <new>
 #include <numeric>
 #include <sstream>
 #include <string>
 #include <utility>
-
-#if ( CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 )
-#include "shellapi.h"
-#endif
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -20,6 +14,8 @@
 #include "base/ccUTF8.h"
 #include "platform/CCFileUtils.h"
 #include "ui/UIButton.h"
+
+#include "helper_Win32DirectoryOpen.h"
 
 USING_NS_CC;
 
@@ -115,27 +111,28 @@ namespace step_pathfinder
 					) );
 					addChild( label );
 
-#if ( CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 )
 					// Open Folder
-					auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-					button->setScale9Enabled( true );
-					button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onOpenFolderButton, this ) );
-					addChild( button );
+					if( helper::isEnableWin32DirectoryOpen() )
 					{
-						auto title_label = Label::createWithTTF( "Open Folder", FontPath, 12 );
-						button->setTitleLabel( title_label );
+						auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+						button->setScale9Enabled( true );
+						button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onOpenFolderButton, this ) );
+						addChild( button );
+						{
+							auto title_label = Label::createWithTTF( "Open Folder", FontPath, 12 );
+							button->setTitleLabel( title_label );
 
-						button->setContentSize( title_label->getContentSize() + Size( 10.f, 4.f ) + Size( 10.f, 4.f ) );
+							button->setContentSize( title_label->getContentSize() + Size( 10.f, 4.f ) + Size( 10.f, 4.f ) );
+						}
+
+						button->setPosition(
+							label->getPosition()
+							+ Vec2(
+								label->getContentSize().width + 4.f + ( button->getContentSize().width * 0.5f )
+								, button->getContentSize().height * 0.5f
+							)
+						);
 					}
-
-					button->setPosition(
-						label->getPosition()
-						+ Vec2(
-							label->getContentSize().width + 4.f + ( button->getContentSize().width * 0.5f )
-							, button->getContentSize().height * 0.5f
-						)
-					);
-#endif
 				}
 
 				// Path
@@ -290,23 +287,12 @@ namespace step_pathfinder
 
 		void GenerateNDeleteScene::onOpenFolderButton( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{
-#if ( CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 )
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
 				return;
 			}
 
-			static std::wstring temp;
-			if( temp.empty() )
-			{
-				const std::string writable_path = std::move( FileUtils::getInstance()->getWritablePath() );
-
-				std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
-				temp = conv.from_bytes( writable_path.c_str(), writable_path.c_str() + writable_path.length() - 1 );
-			}
-
-			ShellExecute( NULL, L"open", temp.c_str(), NULL, NULL, SW_SHOWNORMAL );
-#endif
+			helper::Win32DirectoryOpen( FileUtils::getInstance()->getWritablePath().c_str() );
 		}
 
 		void GenerateNDeleteScene::onGenerateButton( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )

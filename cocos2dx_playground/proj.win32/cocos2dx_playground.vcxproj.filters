@@ -857,6 +857,9 @@
     <ClInclude Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.h">
       <Filter>src\scene\step_03_pathfinder\fileutil</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\helper_Win32DirectoryOpen.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
