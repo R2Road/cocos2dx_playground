@@ -1,6 +1,9 @@
 #pragma once
 
+#include <string>
+
 #include "2d/CCScene.h"
+#include "ui/UIWidget.h"
 
 #include "helper_BackToThePreviousScene.h"
 
@@ -21,12 +24,17 @@ namespace step_pathfinder
 			void onExit() override;
 
 		private:
+			bool isExistFile() const;
 			void updateFileStatus();
+
+			void onGenerateButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onDeleteButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			std::string mFileFullPath;
 		};
 	}
 }

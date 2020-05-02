@@ -10,6 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "platform/CCFileUtils.h"
+#include "ui/UIButton.h"
 
 USING_NS_CC;
 
@@ -84,6 +85,10 @@ namespace step_pathfinder
 				auto background_layer = LayerColor::create( Color4B( 41, 0, 61, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
+
+
+			mFileFullPath = std::move( FileUtils::getInstance()->getWritablePath() );
+			mFileFullPath.append( FilePath_for_Generate_N_Delete );
 
 			//
 			// Target Path
@@ -175,6 +180,48 @@ namespace step_pathfinder
 				updateFileStatus();
 			}
 
+			const Size ButtonMargin( 20.f, 12.f );
+
+			//
+			// Generate
+			//
+			{
+				auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setScale9Enabled( true );
+				button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onGenerateButton, this ) );
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.3f )
+					, visibleOrigin.y + ( visibleSize.height * 0.2f )
+				) );
+				addChild( button );
+				{
+					auto label = Label::createWithTTF( "Generate", FontPath, 9 );
+					button->setTitleLabel( label );
+
+					button->setContentSize( label->getContentSize() + ButtonMargin + ButtonMargin );
+				}
+			}
+
+			//
+			// Delete
+			//
+			{
+				auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setScale9Enabled( true );
+				button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onDeleteButton, this ) );
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.7f )
+					, visibleOrigin.y + ( visibleSize.height * 0.2f )
+				) );
+				addChild( button );
+				{
+					auto label = Label::createWithTTF( "Delete", FontPath, 9 );
+					button->setTitleLabel( label );
+
+					button->setContentSize( label->getContentSize() + ButtonMargin + ButtonMargin );
+				}
+			}
+
 			return true;
 		}
 
@@ -196,14 +243,15 @@ namespace step_pathfinder
 			Node::onExit();
 		}
 
+		bool GenerateNDeleteScene::isExistFile() const
+		{
+			return FileUtils::getInstance()->isFileExist( mFileFullPath );
+		}
 		void GenerateNDeleteScene::updateFileStatus()
 		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( FilePath_for_Generate_N_Delete );
-
 			auto label = static_cast<Label*>( getChildByTag( TAG_FileStatus ) );
 
-			if( cocos2d::FileUtils::getInstance()->isFileExist( path ) )
+			if( isExistFile() )
 			{
 				label->setString( "Exist" );
 			}
@@ -211,6 +259,39 @@ namespace step_pathfinder
 			{
 				label->setString( "Nothing" );
 			}
+		}
+
+		void GenerateNDeleteScene::onGenerateButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			{
+				return;
+			}
+
+			if( isExistFile() )
+			{
+				return;
+			}
+
+			FileUtils::getInstance()->writeStringToFile( mFileFullPath, mFileFullPath );
+
+			updateFileStatus();
+		}
+		void GenerateNDeleteScene::onDeleteButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			{
+				return;
+			}
+
+			if( !isExistFile() )
+			{
+				return;
+			}
+
+			FileUtils::getInstance()->removeFile( mFileFullPath );
+
+			updateFileStatus();
 		}
 
 		void GenerateNDeleteScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
