@@ -3,6 +3,7 @@
 #include <new>
 #include <numeric>
 #include <sstream>
+#include <utility>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -27,14 +28,18 @@ namespace step_pathfinder
 {
 	namespace fileutil
 	{
-		GenerateNDeleteScene::GenerateNDeleteScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		GenerateNDeleteScene::GenerateNDeleteScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback, std::string&& file_full_path ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mFileFullPath( std::move( file_full_path ) )
 		{}
 
 		Scene* GenerateNDeleteScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) GenerateNDeleteScene( back_to_the_previous_scene_callback );
+			auto file_full_path = std::move( FileUtils::getInstance()->getWritablePath() );
+			file_full_path.append( FilePath_for_Generate_N_Delete );
+
+			auto ret = new ( std::nothrow ) GenerateNDeleteScene( back_to_the_previous_scene_callback, std::move( file_full_path ) );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -85,10 +90,6 @@ namespace step_pathfinder
 				auto background_layer = LayerColor::create( Color4B( 41, 0, 61, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
-
-
-			mFileFullPath = std::move( FileUtils::getInstance()->getWritablePath() );
-			mFileFullPath.append( FilePath_for_Generate_N_Delete );
 
 			//
 			// Target Path

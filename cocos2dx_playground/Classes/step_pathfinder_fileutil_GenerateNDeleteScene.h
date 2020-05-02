@@ -14,7 +14,7 @@ namespace step_pathfinder
 		class GenerateNDeleteScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 		{
 		public:
-			GenerateNDeleteScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			GenerateNDeleteScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback, std::string&& file_full_path );
 
 			static const char* getTitle() { return "FileUtil : Generate N Delete"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
@@ -34,7 +34,7 @@ namespace step_pathfinder
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			std::string mFileFullPath;
+			const std::string mFileFullPath;
 		};
 	}
 }
