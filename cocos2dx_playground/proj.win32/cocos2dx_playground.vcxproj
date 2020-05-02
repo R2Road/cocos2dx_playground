@@ -161,6 +161,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\graph_practice_Collection06Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_GraphViewNode.cpp" />
     <ClCompile Include="..\Classes\graph_practice_RootScene.cpp" />
+    <ClCompile Include="..\Classes\helper_Win32DirectoryOpen.cpp" />
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp" />
     <ClCompile Include="..\Classes\input_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\shader_practice_BasicScene.cpp" />

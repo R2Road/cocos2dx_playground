@@ -480,6 +480,9 @@
     <ClCompile Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.cpp">
       <Filter>src\scene\step_03_pathfinder\fileutil</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\helper_Win32DirectoryOpen.cpp">
+      <Filter>src\helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
