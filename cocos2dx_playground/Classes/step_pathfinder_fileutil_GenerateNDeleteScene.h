@@ -24,7 +24,6 @@ namespace step_pathfinder
 			void onExit() override;
 
 		private:
-			bool isExistFile() const;
 			void updateFileStatus();
 
 			void onGenerateButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );

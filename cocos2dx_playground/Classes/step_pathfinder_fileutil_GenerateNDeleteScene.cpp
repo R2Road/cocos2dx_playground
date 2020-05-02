@@ -244,15 +244,11 @@ namespace step_pathfinder
 			Node::onExit();
 		}
 
-		bool GenerateNDeleteScene::isExistFile() const
-		{
-			return FileUtils::getInstance()->isFileExist( mFileFullPath );
-		}
 		void GenerateNDeleteScene::updateFileStatus()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_FileStatus ) );
 
-			if( isExistFile() )
+			if( FileUtils::getInstance()->isFileExist( mFileFullPath ) )
 			{
 				label->setString( "Exist" );
 			}
@@ -269,7 +265,7 @@ namespace step_pathfinder
 				return;
 			}
 
-			if( isExistFile() )
+			if( FileUtils::getInstance()->isFileExist( mFileFullPath ) )
 			{
 				return;
 			}
@@ -285,7 +281,7 @@ namespace step_pathfinder
 				return;
 			}
 
-			if( !isExistFile() )
+			if( !FileUtils::getInstance()->isFileExist( mFileFullPath ) )
 			{
 				return;
 			}
