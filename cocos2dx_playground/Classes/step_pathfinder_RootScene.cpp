@@ -48,7 +48,7 @@ namespace step_pathfinder
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << step_pathfinder::PathScene::getTitle();
+			ss << "[1] : " << step_pathfinder::fileutil::PathScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[2] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
@@ -115,7 +115,7 @@ namespace step_pathfinder
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step_pathfinder::PathScene::create( helper::CreateSceneMover<RootScene>() ) );
+			Director::getInstance()->replaceScene( step_pathfinder::fileutil::PathScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_2:
