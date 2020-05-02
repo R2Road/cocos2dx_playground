@@ -262,7 +262,7 @@ namespace step_pathfinder
 			}
 		}
 
-		void GenerateNDeleteScene::onGenerateButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		void GenerateNDeleteScene::onGenerateButton( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
@@ -278,7 +278,7 @@ namespace step_pathfinder
 
 			updateFileStatus();
 		}
-		void GenerateNDeleteScene::onDeleteButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		void GenerateNDeleteScene::onDeleteButton( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
