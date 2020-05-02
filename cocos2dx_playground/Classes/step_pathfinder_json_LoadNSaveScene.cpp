@@ -12,13 +12,15 @@
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
-#include "platform/CCFileUtils.h"
 #include "base/ccUTF8.h"
+#include "platform/CCFileUtils.h"
+#include "ui/UIButton.h"
 
 #include "json/document.h"
 #include "json/stringbuffer.h"
 #include "json/writer.h"
 
+#include "helper_Win32DirectoryOpen.h"
 #include "step_pathfinder_RootScene.h"
 
 USING_NS_CC;
@@ -98,12 +100,42 @@ namespace step_pathfinder
 				// Title
 				{
 					auto label = Label::createWithTTF( "<Target Path>", "fonts/arial.ttf", 14 );
-					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setAnchorPoint( Vec2( 1.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.8f )
 					) );
 					addChild( label );
+
+					// Open Folder
+					if( helper::isEnableWin32DirectoryOpen() )
+					{
+						auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+						button->setScale9Enabled( true );
+						button->addTouchEventListener( []( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type ) {
+							if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+							{
+								return;
+							}
+
+							helper::Win32DirectoryOpen( FileUtils::getInstance()->getWritablePath().c_str() );
+						} );
+						addChild( button );
+						{
+							auto title_label = Label::createWithTTF( "Open Folder", "fonts/arial.ttf", 12 );
+							button->setTitleLabel( title_label );
+
+							button->setContentSize( title_label->getContentSize() + Size( 10.f, 4.f ) + Size( 10.f, 4.f ) );
+						}
+
+						button->setPosition(
+							label->getPosition()
+							+ Vec2(
+								button->getContentSize().width * 0.5f
+								, button->getContentSize().height * 0.5f
+							)
+						);
+					}
 				}
 
 				// Path
