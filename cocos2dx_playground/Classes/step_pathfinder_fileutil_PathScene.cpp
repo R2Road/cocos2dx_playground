@@ -89,7 +89,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Writable Path : for Save Various Data>", FontPath, 9 );
+					auto label = Label::createWithTTF( "<Writable Path : for Save Various Data>", FontPath, 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -100,7 +100,7 @@ namespace step_pathfinder
 
 				// Path
 				{
-					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), FontPath, 9 );
+					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), FontPath, 10 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
@@ -118,7 +118,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Default Resource Root Path : Copied Resources>", FontPath, 9 );
+					auto label = Label::createWithTTF( "<Default Resource Root Path : Copied Resources>", FontPath, 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -129,7 +129,7 @@ namespace step_pathfinder
 
 				// Path
 				{
-					auto label = Label::createWithTTF( FileUtils::getInstance()->getDefaultResourceRootPath().c_str(), FontPath, 9 );
+					auto label = Label::createWithTTF( FileUtils::getInstance()->getDefaultResourceRootPath().c_str(), FontPath, 10 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
 					label->setColor( Color3B::GREEN );
@@ -147,7 +147,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Your Resource Path : for Tool>", FontPath, 9 );
+					auto label = Label::createWithTTF( "<Your Resource Path : for Tool>", FontPath, 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -187,7 +187,7 @@ namespace step_pathfinder
 						}
 					}
 
-					auto label = Label::createWithTTF( source_path.c_str(), FontPath, 9 );
+					auto label = Label::createWithTTF( source_path.c_str(), FontPath, 10 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
 					label->setColor( Color3B::GREEN );
