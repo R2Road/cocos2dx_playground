@@ -147,7 +147,7 @@ namespace step_typetype
 			scheduleUpdate();
 
 			// Call - void CustomeUpdate( float dt );
-			schedule( schedule_selector( ScheduleScene::CustomeUpdate ), 0.5f );
+			schedule( schedule_selector( ScheduleScene::CustomeUpdate ), 0.1f );
 
 			// Call - Lambda
 			schedule(
@@ -160,7 +160,7 @@ namespace step_typetype
 					}
 					updateLabel( mScheduleView_forLambda );
 				}
-				, 1.f
+				, 0.5f
 				, "Update for Lambda"
 			);
 		}
