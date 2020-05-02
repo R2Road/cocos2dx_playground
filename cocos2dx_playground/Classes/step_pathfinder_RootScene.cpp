@@ -56,6 +56,7 @@ namespace step_pathfinder
 			ss << std::endl;
 			ss << "[3] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
 			ss << "[4] : " << step_pathfinder::text_field::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
