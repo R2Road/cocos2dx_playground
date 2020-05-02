@@ -116,7 +116,14 @@ namespace step_pathfinder
 					{
 						auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 						button->setScale9Enabled( true );
-						button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onOpenFolderButton, this ) );
+						button->addTouchEventListener( []( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type ) {
+							if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+							{
+								return;
+							}
+
+							helper::Win32DirectoryOpen( FileUtils::getInstance()->getWritablePath().c_str() );
+						} );
 						addChild( button );
 						{
 							auto title_label = Label::createWithTTF( "Open Folder", FontPath, 12 );
@@ -283,16 +290,6 @@ namespace step_pathfinder
 			{
 				label->setString( "Nothing" );
 			}
-		}
-
-		void GenerateNDeleteScene::onOpenFolderButton( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
-		{
-			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
-			{
-				return;
-			}
-
-			helper::Win32DirectoryOpen( FileUtils::getInstance()->getWritablePath().c_str() );
 		}
 
 		void GenerateNDeleteScene::onGenerateButton( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
