@@ -8,12 +8,12 @@ namespace step_pathfinder
 {
 	namespace fileutil
 	{
-		class PathScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class GenerateNDeleteScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 		{
 		public:
-			PathScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			GenerateNDeleteScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
-			static const char* getTitle() { return "FileUtil : Path"; }
+			static const char* getTitle() { return "FileUtil : Generate N Delete"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
@@ -21,6 +21,8 @@ namespace step_pathfinder
 			void onExit() override;
 
 		private:
+			void updateFileStatus();
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:

@@ -184,6 +184,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_mole_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_game_TargetManager.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_fileutil_PathScene.cpp" />
+    <ClCompile Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionCollection.cpp" />
     <ClCompile Include="..\Classes\step_mole_CircleCollisionComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_GridIndexConverter.cpp" />
@@ -307,6 +308,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_mole_RootScene.h" />
     <ClInclude Include="..\Classes\step_mole_game_TargetManager.h" />
     <ClInclude Include="..\Classes\step_pathfinder_fileutil_PathScene.h" />
+    <ClInclude Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionCollection.h" />
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponent.h" />
     <ClInclude Include="..\Classes\cpg_GridIndexConverter.h" />

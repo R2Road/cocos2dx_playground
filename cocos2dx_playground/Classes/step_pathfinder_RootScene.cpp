@@ -7,6 +7,7 @@
 #include "PlayGroundScene.h"
 
 #include "step_pathfinder_fileutil_PathScene.h"
+#include "step_pathfinder_fileutil_GenerateNDeleteScene.h"
 
 #include "step_pathfinder_json_LoadNSaveScene.h"
 #include "step_pathfinder_textField_BasicScene.h"
@@ -50,10 +51,12 @@ namespace step_pathfinder
 			ss << std::endl;
 			ss << "[1] : " << step_pathfinder::fileutil::PathScene::getTitle();
 			ss << std::endl;
+			ss << "[2] : " << step_pathfinder::fileutil::GenerateNDeleteScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
 			ss << std::endl;
-			ss << "[3] : " << step_pathfinder::text_field::BasicScene::getTitle();
+			ss << "[3] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
+			ss << std::endl;
+			ss << "[4] : " << step_pathfinder::text_field::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -117,11 +120,14 @@ namespace step_pathfinder
 		case EventKeyboard::KeyCode::KEY_1:
 			Director::getInstance()->replaceScene( step_pathfinder::fileutil::PathScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-
 		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( step_pathfinder::fileutil::GenerateNDeleteScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_3:
 			Director::getInstance()->replaceScene( step_pathfinder::json::LoadNSaveScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_3:
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_pathfinder::text_field::BasicScene::create() );
 			break;
 
