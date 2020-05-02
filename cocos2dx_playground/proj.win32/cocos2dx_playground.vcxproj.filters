@@ -474,7 +474,7 @@
     <ClCompile Include="..\Classes\step_clickclick_game_Processor.cpp">
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_pathfinder_PathScene.cpp">
+    <ClCompile Include="..\Classes\step_pathfinder_fileutil_PathScene.cpp">
       <Filter>src\scene\step_03_pathfinder\fileutil</Filter>
     </ClCompile>
   </ItemGroup>
@@ -848,7 +848,7 @@
     <ClInclude Include="..\Classes\step_clickclick_game_Processor.h">
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_pathfinder_PathScene.h">
+    <ClInclude Include="..\Classes\step_pathfinder_fileutil_PathScene.h">
       <Filter>src\scene\step_03_pathfinder\fileutil</Filter>
     </ClInclude>
   </ItemGroup>

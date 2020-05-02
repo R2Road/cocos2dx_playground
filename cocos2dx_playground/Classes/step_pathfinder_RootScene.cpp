@@ -6,7 +6,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "step_pathfinder_PathScene.h"
+#include "step_pathfinder_fileutil_PathScene.h"
 
 #include "step_pathfinder_json_LoadNSaveScene.h"
 #include "step_pathfinder_textField_BasicScene.h"
