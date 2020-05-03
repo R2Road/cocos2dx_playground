@@ -152,7 +152,7 @@ namespace step_pathfinder
 				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.7f )
+					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.6f )
 				) );
 				addChild( mTerrainViewer );
 
@@ -179,6 +179,9 @@ namespace step_pathfinder
 				addChild( tile_select_node );
 			}
 
+
+			const Size BUTTON_MARGIN( 20.f, 10.f );
+
 			//
 			// ui - file name input
 			//
@@ -188,7 +191,7 @@ namespace step_pathfinder
 				const std::string DUMMY_STRING( TEXT_FIELD_MAX_LENGTH, 'A' );
 				const std::string PLACE_HOLDER_STRING( "input file name here~!" );
 
-				auto ui_text_field = ui::TextField::create( DUMMY_STRING, FontPath, 9 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, FontPath, 12 );
 				ui_text_field->setTag( TAG_TextField );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
@@ -197,13 +200,13 @@ namespace step_pathfinder
 				ui_text_field->setCursorEnabled( true );
 				ui_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.28f )
+					, visibleOrigin.y + ( visibleSize.height * 0.2f )
 				) );
 				addChild( ui_text_field, 0 );
 
 				auto guide_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 				guide_button->setScale9Enabled( true );
-				guide_button->setContentSize( ui_text_field->getContentSize() + Size( 20.f, 10.f ) );
+				guide_button->setContentSize( ui_text_field->getContentSize() + BUTTON_MARGIN + BUTTON_MARGIN );
 				guide_button->addTouchEventListener( [ui_text_field]( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 				{
 					switch( touch_event_type )
@@ -226,48 +229,44 @@ namespace step_pathfinder
 			// ui - file save
 			//
 			{
-				auto save_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-				save_button->setScale9Enabled( true );
-				save_button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onSave, this ) );
-				save_button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f ) - save_button->getContentSize().width
-					, visibleOrigin.y + ( visibleSize.height * 0.2f )
-				) );
-				addChild( save_button );
+				auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setScale9Enabled( true );
+				button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onSave, this ) );
+				addChild( button );
 				{
-					auto label = Label::createWithTTF( "Save", FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "Save", FontPath, 12, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::RED );
-					label->setPosition( Vec2(
-						visibleOrigin.x
-						, visibleOrigin.y + visibleSize.height
-					) );
-					save_button->setTitleLabel( label );
-					save_button->setContentSize( label->getContentSize() + Size( 20.f, 10.f ) );
+					button->setTitleLabel( label );
+
+					button->setContentSize( label->getContentSize() + BUTTON_MARGIN + BUTTON_MARGIN );
 				}
+
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.4f )
+					, visibleOrigin.y + ( visibleSize.height * 0.08f )
+				) );
 			}
 
 			//
 			// ui - file load
 			//
 			{
-				auto save_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
-				save_button->setScale9Enabled( true );
-				save_button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onLoad, this ) );
-				save_button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f ) + save_button->getContentSize().width
-					, visibleOrigin.y + ( visibleSize.height * 0.2f )
-				) );
-				addChild( save_button );
+				auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				button->setScale9Enabled( true );
+				button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onLoad, this ) );
+				addChild( button );
 				{
-					auto label = Label::createWithTTF( "Load", FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "Load", FontPath, 12, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::MAGENTA );
-					label->setPosition( Vec2(
-						visibleOrigin.x
-						, visibleOrigin.y + visibleSize.height
-					) );
-					save_button->setTitleLabel( label );
-					save_button->setContentSize( label->getContentSize() + Size( 20.f, 10.f ) );
+					button->setTitleLabel( label );
+
+					button->setContentSize( label->getContentSize() + BUTTON_MARGIN + BUTTON_MARGIN );
 				}
+
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.6f )
+					, visibleOrigin.y + ( visibleSize.height * 0.08f )
+				) );
 			}
 
 			return true;
