@@ -1,4 +1,4 @@
-#include "step_pathfinder_tool_MapToolScene.h"
+#include "step_pathfinder_tool_TerrainToolScene.h"
 
 #include <new>
 #include <numeric>
