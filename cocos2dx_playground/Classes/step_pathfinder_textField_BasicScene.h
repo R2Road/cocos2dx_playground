@@ -1,7 +1,6 @@
 #pragma once
 
 #include "2d/CCScene.h"
-#include "ui/UIWidget.h"
 
 namespace step_pathfinder
 {
