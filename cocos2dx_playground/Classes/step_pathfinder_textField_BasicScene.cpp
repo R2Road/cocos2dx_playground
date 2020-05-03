@@ -87,14 +87,14 @@ namespace step_pathfinder
 			// Text Field : Original
 			//
 			{
-				auto summury_for_text_field = Label::createWithTTF( "Text Field Original : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", "fonts/arial.ttf", 12 );
+				auto summury_for_text_field = Label::createWithTTF( "Text Field Only : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", "fonts/arial.ttf", 12 );
 				summury_for_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.8f )
 				) );
 				addChild( summury_for_text_field, 1 );
 
-				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 9 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 12 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
 				ui_text_field->setMaxLengthEnabled( true );
@@ -125,7 +125,7 @@ namespace step_pathfinder
 				) );
 				addChild( summury_for_text_field, 1 );
 
-				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 9 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 12 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setTextColor( Color4B::RED );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
