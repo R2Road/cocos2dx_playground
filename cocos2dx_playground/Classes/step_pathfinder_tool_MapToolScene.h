@@ -10,13 +10,14 @@ namespace step_pathfinder
 	namespace tool
 	{
 		class TerrainViewer;
-		class MapToolScene : public cocos2d::Scene
+
+		class TerrainToolScene : public cocos2d::Scene
 		{
 		private:
-			MapToolScene();
+			TerrainToolScene();
 
 		public:
-			static const char* getTitle() { return "Tool : Map"; }
+			static const char* getTitle() { return "Tool : Terrain"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;

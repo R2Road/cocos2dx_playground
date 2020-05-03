@@ -63,7 +63,7 @@ namespace step_pathfinder
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << step_pathfinder::tool::MapToolScene::getTitle();
+			ss << "[A] : " << step_pathfinder::tool::TerrainToolScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -133,7 +133,7 @@ namespace step_pathfinder
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_pathfinder::tool::MapToolScene::create() );
+			Director::getInstance()->replaceScene( step_pathfinder::tool::TerrainToolScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:

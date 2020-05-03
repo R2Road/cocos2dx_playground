@@ -24,16 +24,16 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		MapToolScene::MapToolScene() :
+		TerrainToolScene::TerrainToolScene() :
 			mKeyboardListener( nullptr )
 			, mTerrainData()
 			, mCurrentTileType( step_pathfinder::game::terrain::eTileType::road )
 			, mTerrainViewer( nullptr )
 		{}
 
-		Scene* MapToolScene::create()
+		Scene* TerrainToolScene::create()
 		{
-			auto ret = new ( std::nothrow ) MapToolScene();
+			auto ret = new ( std::nothrow ) TerrainToolScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -48,7 +48,7 @@ namespace step_pathfinder
 			return ret;
 		}
 
-		bool MapToolScene::init()
+		bool TerrainToolScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -82,7 +82,7 @@ namespace step_pathfinder
 			// Terrain View
 			//
 			{
-				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), CC_CALLBACK_2( MapToolScene::onGrid, this ) );
+				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.7f )
@@ -103,7 +103,7 @@ namespace step_pathfinder
 			// ui - tile select
 			//
 			{
-				auto tile_select_node = tool_ui::TileSelectNode::create( std::bind( &MapToolScene::onTileSelect, this, std::placeholders::_1 ) );
+				auto tile_select_node = tool_ui::TileSelectNode::create( std::bind( &TerrainToolScene::onTileSelect, this, std::placeholders::_1 ) );
 				tile_select_node->setPositionY(
 					visibleOrigin.y
 					+ ( visibleSize.height * 0.5f )
@@ -161,7 +161,7 @@ namespace step_pathfinder
 			{
 				auto save_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 				save_button->setScale9Enabled( true );
-				save_button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onSave, this ) );
+				save_button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onSave, this ) );
 				save_button->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f ) - save_button->getContentSize().width
 					, visibleOrigin.y + ( visibleSize.height * 0.2f )
@@ -185,7 +185,7 @@ namespace step_pathfinder
 			{
 				auto save_button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 				save_button->setScale9Enabled( true );
-				save_button->addTouchEventListener( CC_CALLBACK_2( MapToolScene::onLoad, this ) );
+				save_button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onLoad, this ) );
 				save_button->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f ) + save_button->getContentSize().width
 					, visibleOrigin.y + ( visibleSize.height * 0.2f )
@@ -206,16 +206,16 @@ namespace step_pathfinder
 			return true;
 		}
 
-		void MapToolScene::onEnter()
+		void TerrainToolScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( MapToolScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TerrainToolScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void MapToolScene::onExit()
+		void TerrainToolScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -225,7 +225,7 @@ namespace step_pathfinder
 		}
 
 
-		Node* MapToolScene::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
+		Node* TerrainToolScene::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
 		{
 			auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( tile_type ) );
@@ -241,13 +241,13 @@ namespace step_pathfinder
 		}
 
 
-		void MapToolScene::onTileSelect( const step_pathfinder::game::terrain::eTileType new_tile_type )
+		void TerrainToolScene::onTileSelect( const step_pathfinder::game::terrain::eTileType new_tile_type )
 		{
 			mCurrentTileType = new_tile_type;
 		}
 
 
-		void MapToolScene::onGrid( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void TerrainToolScene::onGrid( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
@@ -286,7 +286,7 @@ namespace step_pathfinder
 		}
 
 
-		void MapToolScene::onSave( cocos2d::Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+		void TerrainToolScene::onSave( cocos2d::Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
@@ -308,7 +308,7 @@ namespace step_pathfinder
 
 			mTerrainData.save( path.str().c_str() );
 		}
-		void MapToolScene::onLoad( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
+		void TerrainToolScene::onLoad( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{
@@ -340,7 +340,7 @@ namespace step_pathfinder
 		}
 
 
-		void MapToolScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void TerrainToolScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
