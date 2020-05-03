@@ -16,9 +16,16 @@
 
 #include "step_pathfinder_RootScene.h"
 
+#include "helper_Win32DirectoryOpen.h"
+
 USING_NS_CC;
 
-const int TAG_TextField = 20140416;
+namespace
+{
+	const char* FontPath = "fonts/arial.ttf";
+
+	const int TAG_TextField = 20140416;
+}
 
 namespace step_pathfinder
 {
@@ -65,17 +72,77 @@ namespace step_pathfinder
 				std::stringstream ss;
 				ss << "+ " << getTitle();
 				ss << std::endl;
-				ss << "[ESC] : Return to Root";
 				ss << std::endl;
-				ss << "<File Path : Save n Load> : " << cocos2d::FileUtils::getInstance()->getWritablePath();
+				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Target Path
+			//
+			{
+				const float MAX_LINE_WIDTH = visibleSize.width * 0.8f;
+
+				// Title
+				{
+					auto label = Label::createWithTTF( "<Target Path>", FontPath, 14 );
+					label->setAnchorPoint( Vec2( 1.f, 0.f ) );
+					label->setPosition( Vec2(
+						visibleOrigin.x + visibleSize.width - 4.f
+						, visibleOrigin.y + visibleSize.height * 0.93f
+					) );
+					addChild( label );
+
+					// Open Folder
+					if( helper::isEnableWin32DirectoryOpen() )
+					{
+						auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+						button->setScale9Enabled( true );
+						button->addTouchEventListener( []( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type ) {
+							if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+							{
+								return;
+							}
+
+							helper::Win32DirectoryOpen( FileUtils::getInstance()->getWritablePath().c_str() );
+						} );
+						addChild( button );
+						{
+							auto title_label = Label::createWithTTF( "Open Folder", FontPath, 10 );
+							button->setTitleLabel( title_label );
+
+							button->setContentSize( title_label->getContentSize() + Size( 10.f, 4.f ) + Size( 10.f, 4.f ) );
+						}
+
+						button->setPosition(
+							label->getPosition()
+							+ Vec2(
+								-label->getContentSize().width - 4.f - ( button->getContentSize().width * 0.5f )
+								, button->getContentSize().height * 0.5f
+							)
+						);
+					}
+				}
+
+				// Path
+				{
+					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), FontPath, 10 );
+					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setMaxLineWidth( MAX_LINE_WIDTH );
+					label->setPosition( Vec2(
+						visibleOrigin.x + visibleSize.width - 4.f
+						, visibleOrigin.y + visibleSize.height * 0.93f
+					) );
+					addChild( label );
+				}
 			}
 
 			//
@@ -121,7 +188,7 @@ namespace step_pathfinder
 				const std::string DUMMY_STRING( TEXT_FIELD_MAX_LENGTH, 'A' );
 				const std::string PLACE_HOLDER_STRING( "input file name here~!" );
 
-				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/arial.ttf", 9 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, FontPath, 9 );
 				ui_text_field->setTag( TAG_TextField );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
@@ -168,7 +235,7 @@ namespace step_pathfinder
 				) );
 				addChild( save_button );
 				{
-					auto label = Label::createWithTTF( "Save", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "Save", FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::RED );
 					label->setPosition( Vec2(
 						visibleOrigin.x
@@ -192,7 +259,7 @@ namespace step_pathfinder
 				) );
 				addChild( save_button );
 				{
-					auto label = Label::createWithTTF( "Load", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "Load", FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::MAGENTA );
 					label->setPosition( Vec2(
 						visibleOrigin.x
@@ -233,7 +300,7 @@ namespace step_pathfinder
 			button->setScale9Enabled( true );
 			button->setContentSize( menu_size );
 			{
-				auto label = Label::createWithTTF( button_text, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( button_text, FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
 				button->setTitleLabel( label );
 			}
 
