@@ -33,7 +33,7 @@ namespace step_typetype
 		void update( float dt ) override;
 
 	private:
-		void CustomeUpdate( float dt );
+		void customeUpdate( float dt );
 		void updateLabel( ScheduleView& schedule_view );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );

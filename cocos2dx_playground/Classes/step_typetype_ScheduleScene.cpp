@@ -146,8 +146,8 @@ namespace step_typetype
 			// Call - void update( float dt ) override;
 			scheduleUpdate();
 
-			// Call - void CustomeUpdate( float dt );
-			schedule( schedule_selector( ScheduleScene::CustomeUpdate ), 0.1f );
+			// Call - void customeUpdate( float dt );
+			schedule( schedule_selector( ScheduleScene::customeUpdate ), 0.1f );
 
 			// Call - Lambda
 			schedule(
@@ -196,7 +196,7 @@ namespace step_typetype
 
 		Node::update( dt );
 	}
-	void ScheduleScene::CustomeUpdate( float dt )
+	void ScheduleScene::customeUpdate( float dt )
 	{
 		mScheduleView_forCustomeUpdate.Elapsedtime += dt;
 		if( 10.f < mScheduleView_forCustomeUpdate.Elapsedtime )
@@ -230,9 +230,9 @@ namespace step_typetype
 		}
 		if( EventKeyboard::KeyCode::KEY_2 == keycode )
 		{
-			if( isScheduled( schedule_selector( ScheduleScene::CustomeUpdate ) ) )
+			if( isScheduled( schedule_selector( ScheduleScene::customeUpdate ) ) )
 			{
-				unschedule( schedule_selector( ScheduleScene::CustomeUpdate ) );
+				unschedule( schedule_selector( ScheduleScene::customeUpdate ) );
 			}
 		}
 		if( EventKeyboard::KeyCode::KEY_3 == keycode )
