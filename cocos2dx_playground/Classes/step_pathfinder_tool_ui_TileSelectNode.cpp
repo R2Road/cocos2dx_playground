@@ -81,7 +81,7 @@ namespace step_pathfinder
 			// Indicator
 			//
 			{
-				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
 				indicator->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				indicator->setTag( TAG_Indicator );
 				indicator->setContentSize( menu_size );

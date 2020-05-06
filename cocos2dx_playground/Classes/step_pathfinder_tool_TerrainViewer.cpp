@@ -49,7 +49,7 @@ namespace step_pathfinder
 		{
 			auto tile_node = game::terrain::Viewer::MakeTile( tile_data, grid_x, grid_y );
 			{
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setTag( tile_node->getTag() );
 				button->setScale9Enabled( true );
 				button->setContentSize( tile_node->getContentSize() );

@@ -363,6 +363,7 @@
             <key type="filename">ui/guide_01_1.png</key>
             <key type="filename">ui/guide_01_2.png</key>
             <key type="filename">ui/guide_01_3.png</key>
+            <key type="filename">ui/guide_01_4.png</key>
             <key type="filename">ui/guide_02_1.png</key>
             <key type="filename">ui/guide_02_2.png</key>
             <key type="filename">ui/guide_02_3.png</key>
@@ -566,6 +567,7 @@
             <filename>ui/guide_01_3.png</filename>
             <filename>ui/guide_01_0.png</filename>
             <filename>ui/guide_01_1.png</filename>
+            <filename>ui/guide_01_4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
