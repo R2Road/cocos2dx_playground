@@ -114,7 +114,7 @@ namespace step_pathfinder
 					// Open Folder
 					if( helper::isEnableWin32DirectoryOpen() )
 					{
-						auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+						auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 						button->setScale9Enabled( true );
 						button->addTouchEventListener( []( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type ) {
 							if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
@@ -221,7 +221,7 @@ namespace step_pathfinder
 			// Generate
 			//
 			{
-				auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onGenerateButton, this ) );
 				button->setPosition( Vec2(
@@ -241,7 +241,7 @@ namespace step_pathfinder
 			// Delete
 			//
 			{
-				auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onDeleteButton, this ) );
 				button->setPosition( Vec2(

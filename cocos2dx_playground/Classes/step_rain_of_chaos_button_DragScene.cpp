@@ -90,7 +90,7 @@ namespace step_rain_of_chaos
 			// Button
 			//
 			{
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setTag( TAG_Button );
 				button->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )

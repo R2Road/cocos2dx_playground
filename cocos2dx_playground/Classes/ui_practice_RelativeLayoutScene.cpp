@@ -115,7 +115,7 @@ namespace ui_practice
 			const int end = static_cast<int>( ui::RelativeLayoutParameter::RelativeAlign::PARENT_RIGHT_BOTTOM );
 			for( ; end >= cur; ++cur )
 			{
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setTag( cur );
 				button->setScale9Enabled( true );
 				button->setContentSize( ButtonSize );

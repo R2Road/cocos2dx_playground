@@ -108,7 +108,7 @@ namespace step_pathfinder
 				) );
 				addChild( ui_text_field, 0 );
 
-				auto background_guide = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				auto background_guide = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 				background_guide->setContentSize( ui_text_field->getContentSize() + Size( 20.f, 10.f ) );
 				background_guide->setPosition( ui_text_field->getPosition() );
 				addChild( background_guide, 1 );
@@ -140,7 +140,7 @@ namespace step_pathfinder
 				) );
 				addChild( ui_text_field, 0 );
 
-				auto guide_button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto guide_button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				guide_button->setScale9Enabled( true );
 				guide_button->setContentSize( ui_text_field->getContentSize() + Size( 20.f, 10.f ) );
 				guide_button->addTouchEventListener( [ui_text_field]( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )

@@ -178,7 +178,7 @@ namespace ui_practice
 					int i = 0;
 					for( const auto s : STRINGs )
 					{
-						auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+						auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 						button->setTag( i );
 						button->setScale9Enabled( true );
 						button->setContentSize( ButtonSize );

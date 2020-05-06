@@ -103,7 +103,7 @@ namespace step_pathfinder
 					// Open Folder
 					if( helper::isEnableWin32DirectoryOpen() )
 					{
-						auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+						auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 						button->setScale9Enabled( true );
 						button->addTouchEventListener( []( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type ) {
 							if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
@@ -204,7 +204,7 @@ namespace step_pathfinder
 				) );
 				addChild( ui_text_field, 0 );
 
-				auto guide_button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto guide_button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				guide_button->setScale9Enabled( true );
 				guide_button->setContentSize( ui_text_field->getContentSize() + BUTTON_MARGIN + BUTTON_MARGIN );
 				guide_button->addTouchEventListener( [ui_text_field]( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
@@ -229,7 +229,7 @@ namespace step_pathfinder
 			// ui - file save
 			//
 			{
-				auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onSave, this ) );
 				addChild( button );
@@ -251,7 +251,7 @@ namespace step_pathfinder
 			// ui - file load
 			//
 			{
-				auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onLoad, this ) );
 				addChild( button );
@@ -293,7 +293,7 @@ namespace step_pathfinder
 
 		Node* TerrainToolScene::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
 		{
-			auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+			auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( tile_type ) );
 			button->addTouchEventListener( callback );
 			button->setScale9Enabled( true );

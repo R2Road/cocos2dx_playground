@@ -160,7 +160,7 @@ namespace step_mole
 			// Click Area
 			//
 			{
-				auto click_area = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto click_area = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				click_area->setScale9Enabled( true );
 				click_area->setContentSize( StageSize );
 				click_area->addTouchEventListener( CC_CALLBACK_2( StageView::onStageClick, this ) );

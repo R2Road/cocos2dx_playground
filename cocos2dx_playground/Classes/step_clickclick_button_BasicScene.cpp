@@ -117,7 +117,7 @@ namespace step_clickclick
 			// Button
 			//
 			{
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->setContentSize( Size( 50.f, 50.f ) );
 				button->setPosition( Vec2(

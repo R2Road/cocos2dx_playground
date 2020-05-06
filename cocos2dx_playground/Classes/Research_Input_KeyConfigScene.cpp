@@ -76,7 +76,7 @@ namespace research
 					button->addTouchEventListener( callback );
 					root->addChild( button, 1 );
 
-					auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+					auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 					indicator->setTag( TAG_KeyConfigControl_BG );
 					indicator->setVisible( false );
 					indicator->setContentSize( control_size );

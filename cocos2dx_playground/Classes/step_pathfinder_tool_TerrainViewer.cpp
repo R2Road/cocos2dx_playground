@@ -4,6 +4,7 @@
 
 #include "2d/CCSpriteFrameCache.h"
 #include "ui/UIButton.h"
+#include "ui/UIScale9Sprite.h"
 
 #include "step_pathfinder_tool_TerrainData.h"
 
@@ -48,10 +49,11 @@ namespace step_pathfinder
 		{
 			auto tile_node = game::terrain::Viewer::MakeTile( tile_data, grid_x, grid_y );
 			{
-				auto button = ui::Button::create( "guide_empty.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setTag( tile_node->getTag() );
 				button->setScale9Enabled( true );
 				button->setContentSize( tile_node->getContentSize() );
+				button->getRendererNormal()->setOpacity( 100u );
 				button->setPosition( Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f ) );
 				button->addTouchEventListener( mTileSelectCallback );
 				tile_node->addChild( button );

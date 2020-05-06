@@ -81,7 +81,7 @@ namespace step_pathfinder
 			// Indicator
 			//
 			{
-				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				indicator->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				indicator->setTag( TAG_Indicator );
 				indicator->setContentSize( menu_size );
@@ -118,7 +118,7 @@ namespace step_pathfinder
 
 		Node* TileSelectNode::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback ) const
 		{
-			auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
+			auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( tile_type ) );
 			button->addTouchEventListener( callback );
 			button->setScale9Enabled( true );
