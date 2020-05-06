@@ -111,7 +111,7 @@ namespace step_typetype
 			// Indicator
 			//
 			{
-				mIndicator = Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				mIndicator = Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 				mIndicator->setContentSize( Size( 12.f, 12.f ) );
 				mIndicator->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				addChild( mIndicator );

@@ -66,7 +66,7 @@ namespace research
 					key_code_label->setPositionX( control_size.width * 0.25f );
 					root->addChild( key_code_label, 2 );
 
-					auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_1.png", ui::Widget::TextureResType::PLIST );
+					auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
 					button->setTag( static_cast<int>( key_idx ) );
 					button->getRendererNormal()->getTexture()->setAliasTexParameters();
 					button->getRendererClicked()->getTexture()->setAliasTexParameters();
@@ -76,7 +76,7 @@ namespace research
 					button->addTouchEventListener( callback );
 					root->addChild( button, 1 );
 
-					auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+					auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 					indicator->setTag( TAG_KeyConfigControl_BG );
 					indicator->setVisible( false );
 					indicator->setContentSize( control_size );
@@ -139,7 +139,7 @@ namespace research
 				auto label = Label::createWithTTF( "Save & Exit", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 
-				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_1.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
 				button->setColor( Color3B::GREEN );
 				button->getRendererNormal()->getTexture()->setAliasTexParameters();
 				button->getRendererClicked()->getTexture()->setAliasTexParameters();

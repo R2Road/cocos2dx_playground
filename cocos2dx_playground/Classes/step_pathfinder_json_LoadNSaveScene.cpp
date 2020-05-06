@@ -110,7 +110,7 @@ namespace step_pathfinder
 					// Open Folder
 					if( helper::isEnableWin32DirectoryOpen() )
 					{
-						auto button = ui::Button::create( "guide_01_4.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+						auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
 						button->setScale9Enabled( true );
 						button->addTouchEventListener( []( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type ) {
 							if( ui::Widget::TouchEventType::BEGAN != touch_event_type )

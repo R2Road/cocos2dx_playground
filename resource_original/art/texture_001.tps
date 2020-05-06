@@ -359,10 +359,10 @@
             <key type="filename">step_pathfinder/step_pathfinder_tile_road.png</key>
             <key type="filename">ui/checkbox_01_bg.png</key>
             <key type="filename">ui/checkbox_01_cross.png</key>
+            <key type="filename">ui/guide_01_0.png</key>
             <key type="filename">ui/guide_01_1.png</key>
             <key type="filename">ui/guide_01_2.png</key>
             <key type="filename">ui/guide_01_3.png</key>
-            <key type="filename">ui/guide_01_4.png</key>
             <key type="filename">ui/guide_02_1.png</key>
             <key type="filename">ui/guide_02_2.png</key>
             <key type="filename">ui/guide_02_3.png</key>
@@ -477,9 +477,6 @@
             <filename>ui/checkbox_01_cross.png</filename>
             <filename>ui/checkbox_cross.png</filename>
             <filename>ui/checkbox_normal.png</filename>
-            <filename>ui/guide_01_1.png</filename>
-            <filename>ui/guide_01_2.png</filename>
-            <filename>ui/guide_01_3.png</filename>
             <filename>keys/key_free.png</filename>
             <filename>etc/empty_2x2.png</filename>
             <filename>keys/key_menu.png</filename>
@@ -492,7 +489,6 @@
             <filename>animation/actor001/actor001_idle_01.png</filename>
             <filename>animation/actor001/actor001_win_01.png</filename>
             <filename>animation/actor001/actor001_win_02.png</filename>
-            <filename>ui/guide_01_4.png</filename>
             <filename>ui/guide_empty.png</filename>
             <filename>bullet/bullet001_01.png</filename>
             <filename>bullet/bullet001_02.png</filename>
@@ -566,6 +562,10 @@
             <filename>ui/ui_track_bar_bg_0.png</filename>
             <filename>ui/ui_track_bar_01_0.png</filename>
             <filename>ui/ui_track_bar_01_1.png</filename>
+            <filename>ui/guide_01_2.png</filename>
+            <filename>ui/guide_01_3.png</filename>
+            <filename>ui/guide_01_0.png</filename>
+            <filename>ui/guide_01_1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

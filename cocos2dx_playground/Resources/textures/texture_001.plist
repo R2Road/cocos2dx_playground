@@ -304,7 +304,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>guide_01_1.png</key>
+            <key>guide_01_0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -319,7 +319,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>guide_01_2.png</key>
+            <key>guide_01_1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -334,7 +334,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>guide_01_3.png</key>
+            <key>guide_01_2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -349,7 +349,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>guide_01_4.png</key>
+            <key>guide_01_3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1518,7 +1518,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:cd3b3473c637ca5c371b3f61fe5656fe:2c7df976616244fafdc825988d3ed4fa:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:a18781acd2cbe591fcd69506e6e1687a:2c7df976616244fafdc825988d3ed4fa:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>

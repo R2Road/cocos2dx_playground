@@ -99,7 +99,7 @@ namespace step_typetype
 					pivot_indicator->setScale( 2.f );
 					root_node->addChild( pivot_indicator, 100 );
 
-					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 					sprite->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					root_node->addChild( sprite );
 
@@ -125,7 +125,7 @@ namespace step_typetype
 					pivot_indicator->setScale( 2.f );
 					root_node->addChild( pivot_indicator, 100 );
 
-					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 					sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 					root_node->addChild( sprite );
 
@@ -151,7 +151,7 @@ namespace step_typetype
 					pivot_indicator->setScale( 2.f );
 					root_node->addChild( pivot_indicator, 100 );
 
-					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 					sprite->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					root_node->addChild( sprite );
 

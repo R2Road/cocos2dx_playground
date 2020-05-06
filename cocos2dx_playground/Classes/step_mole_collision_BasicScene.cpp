@@ -122,7 +122,7 @@ namespace step_mole
 			// Touch Pannel
 			//
 			{
-				auto button = ui::Button::create( "guide_01_1.png", "guide_01_2.png", "guide_01_4.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->setContentSize( visibleSize );
 				button->setOpacity( 150u );
