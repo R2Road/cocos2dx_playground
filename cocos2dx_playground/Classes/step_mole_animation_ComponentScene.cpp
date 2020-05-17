@@ -185,7 +185,7 @@ namespace step_mole
 				cpg::animation::eIndex::damaged_1
 				, [animation_component]()
 				{
-					animation_component->PlayAnimation( cpg::animation::eIndex::damaged_2 );
+					animation_component->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_2, []() {} );
 				}
 			);
 		}
