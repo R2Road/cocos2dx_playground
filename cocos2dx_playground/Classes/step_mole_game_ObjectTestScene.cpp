@@ -105,7 +105,7 @@ namespace step_mole
 			// Current Life Time
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setTag( TAG_LifeTimeNode );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
