@@ -8,6 +8,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -64,6 +65,54 @@ namespace step_mole
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+
+			//
+			// Title
+			//
+			{
+				auto title = Sprite::create( "textures/step_mole/step_mole_title.png" );
+				title->getTexture()->setAliasTexParameters();
+				title->setScaleX( visibleSize.width / title->getContentSize().width );
+				title->setScaleY( visibleSize.height / title->getContentSize().height );
+				title->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height * 0.5f
+				) );
+				addChild( title, 0 );
+			}
+
+
+			//
+			// Animation Node
+			//
+			{
+				auto animation_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
+				animation_node->setScale( 2.f );
+				animation_node->setPosition( Vec2(
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.39f ) )
+				) );
+				addChild( animation_node, 0 );
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.06f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_idl_0.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_idl_1.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_idl_2.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_idl_3.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_idl_4.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_idl_5.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_idl_6.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_idl_7.png" ) );
+
+					auto animate_action = Animate::create( animation_object );
+
+
+					auto repeat_action = RepeatForever::create( animate_action );
+					animation_node->runAction( repeat_action );
+				}
 			}
 
 
