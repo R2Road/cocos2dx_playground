@@ -30,6 +30,7 @@ namespace step_mole
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			int mAudioID_forBGM;
 
 			TargetManagerUp mTargetManager;
 			StageView* mStageView;

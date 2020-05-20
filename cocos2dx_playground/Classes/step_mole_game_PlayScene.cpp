@@ -7,6 +7,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "audio/include/AudioEngine.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -38,7 +39,12 @@ namespace step_mole
 {
 	namespace game
 	{
-		PlayScene::PlayScene() : mKeyboardListener( nullptr ), mTargetManager(), mStageView( nullptr )
+		PlayScene::PlayScene() :
+			mKeyboardListener( nullptr )
+			, mAudioID_forBGM( -1 )
+			
+			, mTargetManager()
+			, mStageView( nullptr )
 		{}
 
 		Scene* PlayScene::create()
@@ -89,6 +95,23 @@ namespace step_mole
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
 			}
+
+			//
+			// BGM License
+			//
+			{
+				auto label = Label::createWithTTF(
+					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
+					, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::RIGHT
+				);
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
 			
 			//
 			// Background
@@ -129,6 +152,8 @@ namespace step_mole
 		{
 			Scene::onEnter();
 
+			mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/EmpySpace.ogg", true, 0.1f );
+
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
@@ -136,6 +161,9 @@ namespace step_mole
 		}
 		void PlayScene::onExit()
 		{
+			experimental::AudioEngine::stop( mAudioID_forBGM );
+			mAudioID_forBGM = -1;
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
