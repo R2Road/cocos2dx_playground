@@ -79,13 +79,7 @@ namespace step_mole
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[A] : Random Start";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
