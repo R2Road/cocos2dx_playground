@@ -216,7 +216,7 @@ namespace step_rain_of_chaos
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				bullet_root_node->addComponent( step_mole::CircleCollisionComponent::create( radius, step_mole::CircleCollisionComponentConfig{ false, false, false } ) );
+				bullet_root_node->addComponent( step_mole::CircleCollisionComponent::create( radius, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ false, false, false } ) );
 			}
 
 			return bullet_root_node;

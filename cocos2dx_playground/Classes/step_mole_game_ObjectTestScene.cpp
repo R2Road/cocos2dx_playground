@@ -150,7 +150,7 @@ namespace step_mole
 				view_node->addComponent( animation_component );
 
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, CircleCollisionComponentConfig{ true, true, true } );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, Vec2::ZERO, CircleCollisionComponentConfig{ true, true, true } );
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component

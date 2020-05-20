@@ -13,12 +13,12 @@ namespace step_mole
 	private:
 		using ParentT = cocos2d::Component;
 
-		CircleCollisionComponent( const float radius );
+		CircleCollisionComponent( const float radius, const cocos2d::Vec2 offset );
 		~CircleCollisionComponent();
 
 	public:
 		static const char* GetStaticName() { return "MOLE_CIRCLECOLLISION"; }
-		static CircleCollisionComponent* create( const float radiuss, const CircleCollisionComponentConfig& config );
+		static CircleCollisionComponent* create( const float radiuss, const cocos2d::Vec2 offset, const CircleCollisionComponentConfig& config );
 
 		void setEnabled( bool enabled ) override;
 
@@ -45,6 +45,7 @@ namespace step_mole
 		};
 
 		const float mRadius;
+		const cocos2d::Vec2 mOffset;
 		std::pair<cocos2d::RefPtr<cocos2d::Node>, int> mHelper[static_cast<std::size_t>( eHelperNode::SIZE )];
 	};
 }

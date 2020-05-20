@@ -13,8 +13,9 @@ USING_NS_CC;
 
 namespace step_mole
 {
-	CircleCollisionComponent::CircleCollisionComponent( const float radius ) :
+	CircleCollisionComponent::CircleCollisionComponent( const float radius, const cocos2d::Vec2 offset ) :
 		mRadius( radius )
+		, mOffset( offset )
 		, mHelper()
 	{
 		setName( GetStaticName() );
@@ -33,9 +34,9 @@ namespace step_mole
 		}
 	}
 
-	CircleCollisionComponent* CircleCollisionComponent::create( const float radius, const CircleCollisionComponentConfig& config )
+	CircleCollisionComponent* CircleCollisionComponent::create( const float radius, const cocos2d::Vec2 offset, const CircleCollisionComponentConfig& config )
 	{
-		auto ret = new ( std::nothrow ) CircleCollisionComponent( radius );
+		auto ret = new ( std::nothrow ) CircleCollisionComponent( radius, offset );
 		if( !ret || !ret->init( config ) )
 		{
 			delete ret;
@@ -78,6 +79,7 @@ namespace step_mole
 		{
 			auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
 			guide->setScale( mRadius / ( guide->getContentSize().width * 0.5f ) );
+			guide->setPosition( mOffset );
 			guide->setVisible( false );
 			guide->retain();
 
@@ -91,6 +93,7 @@ namespace step_mole
 		{
 			auto indicator = Sprite::createWithSpriteFrameName( "guide_02_7.png" );
 			indicator->setScale( mRadius / ( indicator->getContentSize().width * 0.5f ) );
+			indicator->setPosition( mOffset );
 			indicator->setVisible( false );
 			indicator->retain();
 
@@ -175,7 +178,7 @@ namespace step_mole
 			return false;
 		}
 
-		const float distance = _owner->getPosition().distance( other->getOwner()->getPosition() );
+		const float distance = _owner->getPosition().distance( other->getOwner()->getPosition() + mOffset );
 		const float contact_limit_distance = mRadius + other->GetRadius();
 		
 		return distance <= contact_limit_distance;

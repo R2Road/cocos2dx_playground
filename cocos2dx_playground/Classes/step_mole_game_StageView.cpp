@@ -205,7 +205,7 @@ namespace step_mole
 				view_node->addComponent( animation_component );
 
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, circle_collision_component_config );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 16.f, Vec2( 0.f, -4.f ), circle_collision_component_config );
 				object_node->addComponent( circle_collision_component );
 
 				// Object Component
