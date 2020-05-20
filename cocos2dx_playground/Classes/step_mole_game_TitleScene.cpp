@@ -14,6 +14,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "step_mole_RootScene.h"
+#include "step_mole_game_PlayScene.h"
 
 USING_NS_CC;
 
@@ -162,6 +163,12 @@ namespace step_mole
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
 				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
+			{
+				Director::getInstance()->replaceScene( step_mole::game::PlayScene::create() );
 				return;
 			}
 		}
