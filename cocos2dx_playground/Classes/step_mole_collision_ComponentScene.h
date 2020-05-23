@@ -24,15 +24,7 @@ namespace step_mole
 			void onEnter() override;
 			void onExit() override;
 
-			using cocos2d::Scene::addChild;
-			void addChild( cocos2d::Node* child, int localZOrder, int tag ) override;
-			void addChild( cocos2d::Node* child, int localZOrder, const std::string &name ) override;
-			void removeChild( cocos2d::Node* child, bool cleanup = true ) override;
-			void removeAllChildrenWithCleanup( bool cleanup ) override;
-
 		private:
-			void addCollision( cocos2d::Node* child );
-			void removeCollision( cocos2d::Node* child );
 			cocos2d::Node* makeBullet( const bool collision_enable );
 
 			void collisionCheck();

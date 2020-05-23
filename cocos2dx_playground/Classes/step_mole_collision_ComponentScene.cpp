@@ -193,6 +193,10 @@ namespace step_mole
 					bullet_root_node->setPosition( visibleOrigin + new_bullet_position );
 					addChild( bullet_root_node, 101 );
 
+					mCollisionComponentList.push_back( static_cast<CircleCollisionComponent*>(
+						bullet_root_node->getComponent( CircleCollisionComponent::GetStaticName() )
+					) );
+
 					collision_enable = !collision_enable;
 					++current_bullet_count;
 				}
@@ -217,47 +221,6 @@ namespace step_mole
 			mKeyboardListener = nullptr;
 
 			Scene::onExit();
-		}
-
-		void ComponentScene::addChild( Node* child, int localZOrder, int tag )
-		{
-			addCollision( child );
-			Scene::addChild( child, localZOrder, tag );
-		}
-		void ComponentScene::addChild( Node* child, int localZOrder, const std::string &name )
-		{
-			addCollision( child );
-			Scene::addChild( child, localZOrder, name );
-		}
-		void ComponentScene::removeChild( Node* child, bool cleanup /* = true */ )
-		{
-			removeCollision( child );
-			Scene::removeChild( child, cleanup );
-		}
-		void ComponentScene::removeAllChildrenWithCleanup( bool cleanup )
-		{
-			mCollisionComponentList.clear();
-			Scene::removeAllChildrenWithCleanup( cleanup );
-		}
-		void ComponentScene::addCollision( cocos2d::Node* child )
-		{
-			auto target_component = child->getComponent( CircleCollisionComponent::GetStaticName() );
-			if( !target_component )
-			{
-				return;
-			}
-
-			mCollisionComponentList.push_back( static_cast<CircleCollisionComponent*>( target_component ) );
-		}
-		void ComponentScene::removeCollision( cocos2d::Node* child )
-		{
-			auto target_component = child->getComponent( CircleCollisionComponent::GetStaticName() );
-			if( !target_component )
-			{
-				return;
-			}
-
-			mCollisionComponentList.remove( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 
 		Node* ComponentScene::makeBullet( const bool collision_enable )
