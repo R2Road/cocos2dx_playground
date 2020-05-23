@@ -23,6 +23,7 @@ namespace step_mole
 		StageView::StageView( const StageConfig stage_config ) :
 			mStageConfig( stage_config )
 			, mObjectComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
+			, mCollisionComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 		{}
 
 		StageView* StageView::create(
@@ -152,6 +153,7 @@ namespace step_mole
 						content_root_node->addChild( object_node, 1 );
 
 						mObjectComponentList[object_linear_index] = static_cast<ObjectComponent*>( object_node->getComponent( ObjectComponent::GetStaticName() ) );
+						mCollisionComponentList[object_linear_index] = static_cast<CircleCollisionComponent*>( object_node->getComponent( CircleCollisionComponent::GetStaticName() ) );
 					}
 				}
 			}

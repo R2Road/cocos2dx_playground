@@ -12,6 +12,7 @@
 namespace step_mole
 {
 	class ObjectComponent;
+	class CircleCollisionComponent;
 
 	struct CircleCollisionComponentConfig;
 
@@ -58,6 +59,7 @@ namespace step_mole
 			const StageConfig mStageConfig;
 
 			std::vector<ObjectComponent*> mObjectComponentList;
+			std::vector<CircleCollisionComponent*> mCollisionComponentList;
 		};
 	}
 }
