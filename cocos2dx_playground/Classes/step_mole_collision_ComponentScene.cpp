@@ -291,7 +291,7 @@ namespace step_mole
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				auto circle_collision_component = CircleCollisionComponent::create( radius, Vec2::ZERO, CircleCollisionComponentConfig{ false, false, false } );
+				auto circle_collision_component = CircleCollisionComponent::create( radius, Vec2::ZERO, CircleCollisionComponentConfig{ true, true, true} );
 				circle_collision_component->setEnabled( collision_enable );
 				bullet_root_node->addComponent( circle_collision_component );
 			}
@@ -312,13 +312,10 @@ namespace step_mole
 					continue;
 				}
 
-				contact_success = actor_collision_component->Check( c );
-				if( !contact_success )
-				{
-					continue;
-				}
-
-				break;
+				auto temp_contact_success = actor_collision_component->Check( c );
+				c->onContact( temp_contact_success );
+				
+				contact_success = actor_collision_component || temp_contact_success;
 			}
 
 			actor_collision_component->onContact( contact_success );
