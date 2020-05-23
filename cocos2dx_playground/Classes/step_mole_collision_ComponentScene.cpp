@@ -35,7 +35,7 @@ namespace step_mole
 	{
 		ComponentScene::ComponentScene() :
 			mKeyboardListener( nullptr )
-			, mCollisionList()
+			, mCollisionComponentList()
 		{}
 
 		Scene* ComponentScene::create()
@@ -236,7 +236,7 @@ namespace step_mole
 		}
 		void ComponentScene::removeAllChildrenWithCleanup( bool cleanup )
 		{
-			mCollisionList.clear();
+			mCollisionComponentList.clear();
 			Scene::removeAllChildrenWithCleanup( cleanup );
 		}
 		void ComponentScene::addCollision( cocos2d::Node* child )
@@ -247,7 +247,7 @@ namespace step_mole
 				return;
 			}
 
-			mCollisionList.push_back( static_cast<CircleCollisionComponent*>( target_component ) );
+			mCollisionComponentList.push_back( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 		void ComponentScene::removeCollision( cocos2d::Node* child )
 		{
@@ -257,7 +257,7 @@ namespace step_mole
 				return;
 			}
 
-			mCollisionList.remove( static_cast<CircleCollisionComponent*>( target_component ) );
+			mCollisionComponentList.remove( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 
 		Node* ComponentScene::makeBullet( const bool collision_enable )
@@ -305,7 +305,7 @@ namespace step_mole
 			auto actor_collision_component = static_cast<CircleCollisionComponent*>( actor_root->getComponent( CircleCollisionComponent::GetStaticName() ) );
 
 			bool contact_success = false;
-			for( const auto& c : mCollisionList )
+			for( const auto& c : mCollisionComponentList )
 			{
 				if( c == actor_collision_component )
 				{

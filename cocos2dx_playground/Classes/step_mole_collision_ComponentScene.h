@@ -43,7 +43,7 @@ namespace step_mole
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			std::list<CircleCollisionComponent*> mCollisionList;
+			std::list<CircleCollisionComponent*> mCollisionComponentList;
 		};
 	}
 }
