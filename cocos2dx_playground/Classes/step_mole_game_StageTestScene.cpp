@@ -23,15 +23,6 @@ USING_NS_CC;
 namespace
 {
 	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 6, Size( 40.f, 40.f ) };
-
-	const std::size_t GetRandomObjectIndex()
-	{
-		static std::random_device rd;
-		static std::mt19937 randomEngine( rd() );
-		static std::uniform_int_distribution<> dist( 0, std::max( 0, ( STAGE_CONFIG.BlockCount_Vercital * STAGE_CONFIG.BlockCount_Horizontal ) - 1 ) );
-
-		return dist( randomEngine );
-	}
 }
 
 namespace step_mole
