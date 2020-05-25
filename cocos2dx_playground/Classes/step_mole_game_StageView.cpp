@@ -20,20 +20,20 @@ namespace step_mole
 {
 	namespace game
 	{
-		StageView::StageView( const StageConfig stage_config ) :
+		StageNode::StageNode( const StageConfig stage_config ) :
 			mStageConfig( stage_config )
 			, mObjectComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 			, mCollisionComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 		{}
 
-		StageView* StageView::create(
+		StageNode* StageNode::create(
 			const StageConfig stage_config
 			, const TargetProcessExitCallback& target_rest_callback
-			, const StageViewConfig stage_view_config
+			, const StageNodeConfig stage_view_config
 			, const CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
-			auto ret = new ( std::nothrow ) StageView( stage_config );
+			auto ret = new ( std::nothrow ) StageNode( stage_config );
 			if( !ret || !ret->init( target_rest_callback, stage_view_config, circle_collision_component_config ) )
 			{
 				delete ret;
@@ -48,7 +48,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageView::init( const TargetProcessExitCallback& target_rest_callback, const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
+		bool StageNode::init( const TargetProcessExitCallback& target_rest_callback, const StageNodeConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
 		{
 			if( !Node::init() )
 			{
@@ -157,7 +157,7 @@ namespace step_mole
 				auto click_area = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				click_area->setScale9Enabled( true );
 				click_area->setContentSize( StageSize );
-				click_area->addTouchEventListener( CC_CALLBACK_2( StageView::onStageClick, this ) );
+				click_area->addTouchEventListener( CC_CALLBACK_2( StageNode::onStageClick, this ) );
 				click_area->setPosition( Vec2(
 					StageSize.width * 0.5f
 					, StageSize.height * 0.5f
@@ -168,7 +168,7 @@ namespace step_mole
 			return true;
 		}
 
-		Node* StageView::MakeObject(
+		Node* StageNode::MakeObject(
 			const int object_tag
 			, const cocos2d::Vec2 object_position
 			, const int defalut_view_type
@@ -209,12 +209,12 @@ namespace step_mole
 
 			return object_node;
 		}
-		void StageView::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
+		void StageNode::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
 		{
 			CCLOG( "On Stage Click" );
 		}
 
-		void StageView::RequestAction( const std::size_t object_index, const float life_time )
+		void StageNode::RequestAction( const std::size_t object_index, const float life_time )
 		{
 			CCASSERT( object_index < mObjectComponentList.size(), "Invalid Object Index" );
 

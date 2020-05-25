@@ -18,30 +18,30 @@ namespace step_mole
 
 	namespace game
 	{
-		struct StageViewConfig
+		struct StageNodeConfig
 		{
 			bool bShowPivot = false;
 			bool bShowBackgroundGuide = false;
 		};
 
-		class StageView : public cocos2d::Node
+		class StageNode : public cocos2d::Node
 		{
 		public:
 			using TargetProcessExitCallback = std::function<void( int )>;
 
 		private:
-			StageView( const StageConfig stage_config );
+			StageNode( const StageConfig stage_config );
 
 		public:
-			static StageView* create(
+			static StageNode* create(
 				const StageConfig stage_config
 				, const TargetProcessExitCallback& target_rest_callback
-				, const StageViewConfig stage_view_config
+				, const StageNodeConfig stage_view_config
 				, const CircleCollisionComponentConfig& circle_collision_component_config
 			);
 
 		private:
-			bool init( const TargetProcessExitCallback& target_rest_callback, const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config );
+			bool init( const TargetProcessExitCallback& target_rest_callback, const StageNodeConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config );
 
 			cocos2d::Node* MakeObject(
 				const int object_tag

@@ -10,7 +10,7 @@ namespace step_mole
 	namespace game
 	{
 		using TargetManagerUp = std::unique_ptr<class TargetManager>;
-		class StageView;
+		class StageNode;
 
 		class StageTestScene : public cocos2d::Scene
 		{
@@ -32,7 +32,7 @@ namespace step_mole
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			TargetManagerUp mTargetManager;
-			StageView* mStageView;
+			StageNode* mStageNode;
 		};
 	}
 }

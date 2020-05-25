@@ -34,7 +34,7 @@ namespace step_mole
 		HitTestScene::HitTestScene() :
 			mKeyboardListener( nullptr )
 			, mTargetManager()
-			, mStageView( nullptr )
+			, mStageNode( nullptr )
 
 			, mCurrentSpawnTargetCount( 1 )
 		{}
@@ -121,20 +121,20 @@ namespace step_mole
 			}
 
 			//
-			// Stage View
+			// Stage Node
 			//
 			{
-				mStageView = step_mole::game::StageView::create(
+				mStageNode = step_mole::game::StageNode::create(
 					STAGE_CONFIG
 					, std::bind( &game::TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
-					, game::StageViewConfig{ true, true }
+					, game::StageNodeConfig{ true, true }
 					, CircleCollisionComponentConfig{ true, true, true }
 				);
-				mStageView->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - mStageView->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - mStageView->getContentSize().height ) * 0.5f )
+				mStageNode->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - mStageNode->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - mStageNode->getContentSize().height ) * 0.5f )
 				) );
-				addChild( mStageView );
+				addChild( mStageNode );
 			}
 
 			return true;
@@ -183,7 +183,7 @@ namespace step_mole
 						break;
 					}
 
-					mStageView->RequestAction( target_index, 3.f );
+					mStageNode->RequestAction( target_index, 3.f );
 				}
 
 				return;
