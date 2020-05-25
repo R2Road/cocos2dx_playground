@@ -10,7 +10,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_game_StageView.h"
