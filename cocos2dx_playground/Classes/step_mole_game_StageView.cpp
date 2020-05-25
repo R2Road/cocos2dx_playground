@@ -75,7 +75,7 @@ namespace step_mole
 			if( stage_view_config.bShowBackgroundGuide )
 			{
 				auto background_guide = LayerColor::create( Color4B( 255, 0, 255, 150 ), getContentSize().width, getContentSize().height );
-				addChild( background_guide, -1 );
+				addChild( background_guide, std::numeric_limits<int>::min() );
 			}
 
 			auto content_root_node = Node::create();
