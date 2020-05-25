@@ -278,7 +278,7 @@ namespace step_mole
 				auto temp_contact_success = actor_collision_component->Check( c );
 				c->onContact( temp_contact_success );
 				
-				contact_success = actor_collision_component || temp_contact_success;
+				contact_success = contact_success | temp_contact_success;
 			}
 
 			actor_collision_component->onContact( contact_success );
