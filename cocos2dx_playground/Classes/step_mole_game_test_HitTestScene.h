@@ -5,6 +5,8 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
+#include "helper_BackToThePreviousScene.h"
+
 namespace step_mole
 {
 	namespace game
@@ -15,14 +17,14 @@ namespace step_mole
 
 	namespace game_test
 	{
-		class HitTestScene : public cocos2d::Scene
+		class HitTestScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 		{
 		private:
-			HitTestScene();
+			HitTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
 			static const char* getTitle() { return "Game Test : Hit Test"; }
-			static cocos2d::Scene* create();
+			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
 			void onEnter() override;

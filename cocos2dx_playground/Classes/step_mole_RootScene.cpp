@@ -4,6 +4,8 @@
 #include <numeric>
 #include <sstream>
 
+#include "helper_SceneMover.h"
+
 #include "step_mole_animation_ListScene.h"
 #include "step_mole_animation_CallbackScene.h"
 #include "step_mole_animation_ComponentScene.h"
@@ -150,7 +152,7 @@ namespace step_mole
 			Director::getInstance()->replaceScene( step_mole::game::StageTestScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_D:
-			Director::getInstance()->replaceScene( step_mole::game_test::HitTestScene::create() );
+			Director::getInstance()->replaceScene( step_mole::game_test::HitTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
