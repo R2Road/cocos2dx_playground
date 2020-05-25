@@ -363,9 +363,6 @@
     <ClCompile Include="..\Classes\step_mole_animation_InfoContainer.cpp">
       <Filter>src\scene\step_04_mole\animation</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_StageView.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_RootScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
@@ -487,6 +484,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_test_HitTestScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_StageNode.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -734,9 +734,6 @@
     <ClInclude Include="..\Classes\step_mole_animation_InfoContainer.h">
       <Filter>src\scene\step_04_mole\animation</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_StageView.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_RootScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
@@ -873,6 +870,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_test_HitTestScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_StageNode.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>

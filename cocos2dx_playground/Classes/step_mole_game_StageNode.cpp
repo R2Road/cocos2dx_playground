@@ -1,4 +1,4 @@
-#include "step_mole_game_StageView.h"
+#include "step_mole_game_StageNode.h"
 
 #include <new>
 #include <numeric>

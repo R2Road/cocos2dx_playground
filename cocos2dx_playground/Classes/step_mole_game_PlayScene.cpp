@@ -14,7 +14,7 @@
 #include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_mole_game_StageView.h"
+#include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
 
 #include "step_mole_game_TitleScene.h"
