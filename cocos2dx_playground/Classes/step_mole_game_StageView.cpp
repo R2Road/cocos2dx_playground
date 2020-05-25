@@ -59,14 +59,7 @@ namespace step_mole
 				mStageConfig.BlockSize.width * mStageConfig.BlockCount_Horizontal
 				, mStageConfig.BlockSize.width * mStageConfig.BlockCount_Vercital
 			);
-			const Size StageMargin( 4.f, 4.f );
-			const Size TotalSize(
-				StageMargin
-				+ StageSize
-				+ StageMargin
-			);
-
-			setContentSize( TotalSize );
+			setContentSize( StageSize );
 
 			// Pivot
 			if( stage_view_config.bShowPivot )
@@ -86,7 +79,6 @@ namespace step_mole
 			}
 
 			auto content_root_node = Node::create();
-			content_root_node->setPosition( StageMargin.width, StageMargin.height );
 			addChild( content_root_node );
 
 			//
@@ -167,8 +159,8 @@ namespace step_mole
 				click_area->setContentSize( StageSize );
 				click_area->addTouchEventListener( CC_CALLBACK_2( StageView::onStageClick, this ) );
 				click_area->setPosition( Vec2(
-					TotalSize.width * 0.5f
-					, TotalSize.height * 0.5f
+					StageSize.width * 0.5f
+					, StageSize.height * 0.5f
 				) );
 				addChild( click_area );
 			}
