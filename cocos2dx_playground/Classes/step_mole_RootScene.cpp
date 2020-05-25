@@ -13,6 +13,7 @@
 
 #include "step_mole_game_ObjectTestScene.h"
 #include "step_mole_game_StageTestScene.h"
+#include "step_mole_game_test_HitTestScene.h"
 
 #include "step_mole_game_TitleScene.h"
 
@@ -70,6 +71,8 @@ namespace step_mole
 			ss << "[A] : " << step_mole::game::ObjectTestScene::getTitle();
 			ss << std::endl;
 			ss << "[S] : " << step_mole::game::StageTestScene::getTitle();
+			ss << std::endl;
+			ss << "[D] : " << step_mole::game_test::HitTestScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -145,6 +148,9 @@ namespace step_mole
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( step_mole::game::StageTestScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_D:
+			Director::getInstance()->replaceScene( step_mole::game_test::HitTestScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
