@@ -15,6 +15,7 @@
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
+#include "step_mole_game_HittingNode.h"
 
 #include "step_mole_RootScene.h"
 
@@ -135,6 +136,24 @@ namespace step_mole
 					, visibleOrigin.y + ( ( visibleSize.height - mStageNode->getContentSize().height ) * 0.5f )
 				) );
 				addChild( mStageNode );
+			}
+
+			//
+			// Hitting Node
+			//
+			{
+				auto hitting_node = step_mole::game::HittingNode::create(
+					STAGE_CONFIG
+					, game::HittingNodeConfig{ true, true }
+					, []( const int x, const int y ) {
+						CCLOG( "Test %d, %d", x, y );
+					}
+				);
+				hitting_node->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - hitting_node->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - hitting_node->getContentSize().height ) * 0.5f )
+				) );
+				addChild( hitting_node );
 			}
 
 			return true;
