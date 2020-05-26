@@ -150,21 +150,6 @@ namespace step_mole
 				}
 			}
 
-			//
-			// Click Area
-			//
-			{
-				auto click_area = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-				click_area->setScale9Enabled( true );
-				click_area->setContentSize( StageSize );
-				click_area->addTouchEventListener( CC_CALLBACK_2( StageNode::onStageClick, this ) );
-				click_area->setPosition( Vec2(
-					StageSize.width * 0.5f
-					, StageSize.height * 0.5f
-				) );
-				addChild( click_area );
-			}
-
 			return true;
 		}
 
@@ -208,10 +193,6 @@ namespace step_mole
 			}
 
 			return object_node;
-		}
-		void StageNode::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
-		{
-			CCLOG( "On Stage Click" );
 		}
 
 		void StageNode::RequestAction( const std::size_t object_index, const float life_time )
