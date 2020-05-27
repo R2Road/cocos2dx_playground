@@ -11,11 +11,14 @@ namespace step_mole
 	{
 		using TargetManagerUp = std::unique_ptr<class TargetManager>;
 		class StageNode;
+	}
 
-		class StageTestScene : public cocos2d::Scene
+	namespace game_test
+	{
+		class RandomSpawnScene : public cocos2d::Scene
 		{
 		private:
-			StageTestScene();
+			RandomSpawnScene();
 
 		public:
 			static const char* getTitle() { return "Game Test : Random Spawn"; }
@@ -31,8 +34,8 @@ namespace step_mole
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			TargetManagerUp mTargetManager;
-			StageNode* mStageNode;
+			game::TargetManagerUp mTargetManager;
+			game::StageNode* mStageNode;
 		};
 	}
 }

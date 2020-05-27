@@ -73,7 +73,7 @@ namespace step_mole
 			ss << std::endl;
 			ss << "[A] : " << step_mole::game::ObjectTestScene::getTitle();
 			ss << std::endl;
-			ss << "[S] : " << step_mole::game::StageTestScene::getTitle();
+			ss << "[S] : " << step_mole::game_test::RandomSpawnScene::getTitle();
 			ss << std::endl;
 			ss << "[D] : " << step_mole::game_test::GroupSpawnScene::getTitle();
 			ss << std::endl;
@@ -152,7 +152,7 @@ namespace step_mole
 			Director::getInstance()->replaceScene( step_mole::game::ObjectTestScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( step_mole::game::StageTestScene::create() );
+			Director::getInstance()->replaceScene( step_mole::game_test::RandomSpawnScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_D:
 			Director::getInstance()->replaceScene( step_mole::game_test::GroupSpawnScene::create( helper::CreateSceneMover<RootScene>() ) );

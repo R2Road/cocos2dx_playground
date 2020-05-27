@@ -26,14 +26,14 @@ namespace
 
 namespace step_mole
 {
-	namespace game
+	namespace game_test
 	{
-		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ), mTargetManager(), mStageNode( nullptr )
+		RandomSpawnScene::RandomSpawnScene() : mKeyboardListener( nullptr ), mTargetManager(), mStageNode( nullptr )
 		{}
 
-		Scene* StageTestScene::create()
+		Scene* RandomSpawnScene::create()
 		{
-			auto ret = new ( std::nothrow ) StageTestScene();
+			auto ret = new ( std::nothrow ) RandomSpawnScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -48,7 +48,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageTestScene::init()
+		bool RandomSpawnScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -92,7 +92,7 @@ namespace step_mole
 			// Target Manager
 			//
 			{
-				mTargetManager = TargetManager::create( STAGE_CONFIG );
+				mTargetManager = game::TargetManager::create( STAGE_CONFIG );
 			}
 
 			//
@@ -101,8 +101,8 @@ namespace step_mole
 			{
 				mStageNode = step_mole::game::StageNode::create(
 					STAGE_CONFIG
-					, std::bind( &TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
-					, StageNodeConfig{ true, true }
+					, std::bind( &game::TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
+					, game::StageNodeConfig{ true, true }
 					, CircleCollisionComponentConfig{ true, true, true }
 				);
 				mStageNode->setPosition( Vec2(
@@ -115,16 +115,16 @@ namespace step_mole
 			return true;
 		}
 
-		void StageTestScene::onEnter()
+		void RandomSpawnScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RandomSpawnScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void StageTestScene::onExit()
+		void RandomSpawnScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -134,7 +134,7 @@ namespace step_mole
 		}
 
 
-		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void RandomSpawnScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
