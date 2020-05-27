@@ -31,7 +31,6 @@ namespace step_mole
 			void onExit() override;
 
 		private:
-			void updateSpawnTargetCountView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
