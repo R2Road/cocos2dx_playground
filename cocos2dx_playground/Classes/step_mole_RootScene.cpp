@@ -152,7 +152,7 @@ namespace step_mole
 			Director::getInstance()->replaceScene( step_mole::game::ObjectTestScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( step_mole::game_test::RandomSpawnScene::create() );
+			Director::getInstance()->replaceScene( step_mole::game_test::RandomSpawnScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_D:
 			Director::getInstance()->replaceScene( step_mole::game_test::GroupSpawnScene::create( helper::CreateSceneMover<RootScene>() ) );

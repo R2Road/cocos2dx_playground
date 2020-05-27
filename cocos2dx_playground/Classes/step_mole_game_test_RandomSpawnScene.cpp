@@ -15,8 +15,6 @@
 #include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
 
-#include "step_mole_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -28,12 +26,16 @@ namespace step_mole
 {
 	namespace game_test
 	{
-		RandomSpawnScene::RandomSpawnScene() : mKeyboardListener( nullptr ), mTargetManager(), mStageNode( nullptr )
+		RandomSpawnScene::RandomSpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
+			, mTargetManager()
+			, mStageNode( nullptr )
 		{}
 
-		Scene* RandomSpawnScene::create()
+		Scene* RandomSpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) RandomSpawnScene();
+			auto ret = new ( std::nothrow ) RandomSpawnScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -139,7 +141,7 @@ namespace step_mole
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
