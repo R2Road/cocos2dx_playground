@@ -178,7 +178,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_animation_InfoContainer.cpp" />
     <ClCompile Include="..\Classes\step_mole_game_HittingNode.cpp" />
-    <ClCompile Include="..\Classes\step_mole_game_ObjectTestScene.cpp" />
+    <ClCompile Include="..\Classes\step_mole_game_test_ObjectActionScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_game_PlayScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_game_test_RandomSpawnScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_game_StageNode.cpp" />
@@ -306,7 +306,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_mole_animation_InfoContainer.h" />
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponentConfig.h" />
     <ClInclude Include="..\Classes\step_mole_game_HittingNode.h" />
-    <ClInclude Include="..\Classes\step_mole_game_ObjectTestScene.h" />
+    <ClInclude Include="..\Classes\step_mole_game_test_ObjectActionScene.h" />
     <ClInclude Include="..\Classes\step_mole_game_PlayScene.h" />
     <ClInclude Include="..\Classes\step_mole_game_StageConfig.h" />
     <ClInclude Include="..\Classes\step_mole_game_test_RandomSpawnScene.h" />

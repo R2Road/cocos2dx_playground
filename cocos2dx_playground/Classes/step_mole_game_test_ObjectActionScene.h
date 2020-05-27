@@ -12,7 +12,7 @@ namespace step_mole
 			ObjectTestScene();
 
 		public:
-			static const char* getTitle() { return "Game : Object Test"; }
+			static const char* getTitle() { return "Game Test : Object Action"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;

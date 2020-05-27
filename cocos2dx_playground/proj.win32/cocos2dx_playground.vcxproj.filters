@@ -348,9 +348,6 @@
     <ClCompile Include="..\Classes\step_mole_collision_BasicScene.cpp">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_ObjectTestScene.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_ObjectComponent.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
@@ -493,6 +490,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_test_RandomSpawnScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_ObjectActionScene.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -728,9 +728,6 @@
     <ClInclude Include="..\Classes\step_mole_collision_ComponentScene.h">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_ObjectTestScene.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponent.h">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClInclude>
@@ -885,6 +882,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_test_RandomSpawnScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_ObjectActionScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>
