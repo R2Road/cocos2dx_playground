@@ -19,8 +19,6 @@
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_ObjectComponent.h"
 
-#include "step_mole_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -34,12 +32,15 @@ namespace step_mole
 {
 	namespace game_test
 	{
-		ObjectActionScene::ObjectActionScene() : mKeyboardListener( nullptr ), mCurrentLifeTime( 3 )
+		ObjectActionScene::ObjectActionScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
+			, mCurrentLifeTime( 3 )
 		{}
 
-		Scene* ObjectActionScene::create()
+		Scene* ObjectActionScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) ObjectActionScene();
+			auto ret = new ( std::nothrow ) ObjectActionScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -189,7 +190,7 @@ namespace step_mole
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 
 			case EventKeyboard::KeyCode::KEY_1:
