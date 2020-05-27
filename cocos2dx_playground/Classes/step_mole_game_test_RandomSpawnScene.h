@@ -18,7 +18,7 @@ namespace step_mole
 			StageTestScene();
 
 		public:
-			static const char* getTitle() { return "Game : Stage Test"; }
+			static const char* getTitle() { return "Game Test : Random Spawn"; }
 			static cocos2d::Scene* create();
 
 			bool init() override;

@@ -1,4 +1,4 @@
-#include "step_mole_game_StageTestScene.h"
+#include "step_mole_game_test_RandomSpawnScene.h"
 
 #include <new>
 #include <numeric>
@@ -69,7 +69,7 @@ namespace step_mole
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Random Start";
+				ss << "[A] : Random Spawn";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
