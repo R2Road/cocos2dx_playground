@@ -4,12 +4,12 @@
 
 namespace step_mole
 {
-	namespace game
+	namespace game_test
 	{
-		class ObjectTestScene : public cocos2d::Scene
+		class ObjectActionScene : public cocos2d::Scene
 		{
 		private:
-			ObjectTestScene();
+			ObjectActionScene();
 
 		public:
 			static const char* getTitle() { return "Game Test : Object Action"; }

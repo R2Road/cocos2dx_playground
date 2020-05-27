@@ -32,14 +32,14 @@ namespace
 
 namespace step_mole
 {
-	namespace game
+	namespace game_test
 	{
-		ObjectTestScene::ObjectTestScene() : mKeyboardListener( nullptr ), mCurrentLifeTime( 3 )
+		ObjectActionScene::ObjectActionScene() : mKeyboardListener( nullptr ), mCurrentLifeTime( 3 )
 		{}
 
-		Scene* ObjectTestScene::create()
+		Scene* ObjectActionScene::create()
 		{
-			auto ret = new ( std::nothrow ) ObjectTestScene();
+			auto ret = new ( std::nothrow ) ObjectActionScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -54,7 +54,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool ObjectTestScene::init()
+		bool ObjectActionScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -160,16 +160,16 @@ namespace step_mole
 			return true;
 		}
 
-		void ObjectTestScene::onEnter()
+		void ObjectActionScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ObjectTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ObjectActionScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void ObjectTestScene::onExit()
+		void ObjectActionScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -178,13 +178,13 @@ namespace step_mole
 			Node::onExit();
 		}
 
-		void ObjectTestScene::updateLifeTimeView()
+		void ObjectActionScene::updateLifeTimeView()
 		{
 			auto life_time_node = static_cast<Label*>( getChildByTag( TAG_LifeTimeNode ) );
 			life_time_node->setString( StringUtils::format( "Life Time : %d", mCurrentLifeTime ) );
 		}
 
-		void ObjectTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void ObjectActionScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
