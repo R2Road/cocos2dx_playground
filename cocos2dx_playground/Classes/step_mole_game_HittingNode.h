@@ -31,7 +31,7 @@ namespace step_mole
 		private:
 			bool init( const StageConfig stage_config, const HittingNodeConfig hitting_node_config );
 
-			void onStageClick( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onStageClick( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			const HittingCallback mHittingCallback;

@@ -85,10 +85,17 @@ namespace step_mole
 			return true;
 		}
 
-		void HittingNode::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
+		void HittingNode::onStageClick( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
+			auto button = static_cast<ui::Button*>( sender );
+
+			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			{
+				return;
+			}
+
 			CCLOG( "On Stage Click" );
-			mHittingCallback( 0, 0 );
+			mHittingCallback( static_cast<int>( button->getTouchBeganPosition().x ), static_cast<int>( button->getTouchBeganPosition().y ) );
 		}
 	} // namespace game
 } // namespace step_mole
