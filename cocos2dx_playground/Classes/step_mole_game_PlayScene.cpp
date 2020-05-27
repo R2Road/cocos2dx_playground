@@ -14,7 +14,7 @@
 #include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_mole_game_StageView.h"
+#include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
 
 #include "step_mole_game_TitleScene.h"
@@ -126,10 +126,10 @@ namespace step_mole
 			// Stage View
 			//
 			{
-				mStageView = step_mole::game::StageView::create(
+				mStageView = step_mole::game::StageNode::create(
 					STAGE_CONFIG
 					, std::bind( &TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
-					, StageViewConfig{ true, true }
+					, StageNodeConfig{ true, true }
 					, CircleCollisionComponentConfig{ true, true, true }
 				);
 				mStageView->setPosition( Vec2(

@@ -4,6 +4,8 @@
 #include <numeric>
 #include <sstream>
 
+#include "helper_SceneMover.h"
+
 #include "step_mole_animation_ListScene.h"
 #include "step_mole_animation_CallbackScene.h"
 #include "step_mole_animation_ComponentScene.h"
@@ -11,8 +13,10 @@
 #include "step_mole_collision_BasicScene.h"
 #include "step_mole_collision_ComponentScene.h"
 
-#include "step_mole_game_ObjectTestScene.h"
-#include "step_mole_game_StageTestScene.h"
+#include "step_mole_game_test_ObjectActionScene.h"
+#include "step_mole_game_test_RandomSpawnScene.h"
+#include "step_mole_game_test_GroupSpawnScene.h"
+#include "step_mole_game_test_HitTestScene.h"
 
 #include "step_mole_game_TitleScene.h"
 
@@ -67,9 +71,13 @@ namespace step_mole
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << step_mole::game::ObjectTestScene::getTitle();
+			ss << "[A] : " << step_mole::game_test::ObjectActionScene::getTitle();
 			ss << std::endl;
-			ss << "[S] : " << step_mole::game::StageTestScene::getTitle();
+			ss << "[S] : " << step_mole::game_test::RandomSpawnScene::getTitle();
+			ss << std::endl;
+			ss << "[D] : " << step_mole::game_test::GroupSpawnScene::getTitle();
+			ss << std::endl;
+			ss << "[F] : " << step_mole::game_test::HitTestScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -141,10 +149,16 @@ namespace step_mole
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_mole::game::ObjectTestScene::create() );
+			Director::getInstance()->replaceScene( step_mole::game_test::ObjectActionScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( step_mole::game::StageTestScene::create() );
+			Director::getInstance()->replaceScene( step_mole::game_test::RandomSpawnScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_D:
+			Director::getInstance()->replaceScene( step_mole::game_test::GroupSpawnScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_F:
+			Director::getInstance()->replaceScene( step_mole::game_test::HitTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:

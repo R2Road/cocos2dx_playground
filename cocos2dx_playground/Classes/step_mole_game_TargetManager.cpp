@@ -78,9 +78,15 @@ namespace step_mole
 
 		void TargetManager::Refill()
 		{
+			if( mRestTarget.empty() )
+			{
+				CCLOG( "Refill Impossible" );
+				return;
+			}
+
 			Shuffle( mRestTarget );
 			mIdleTarget.splice( mIdleTarget.end(), mRestTarget );
-			CCLOG( "Refill" );
+			CCLOG( "Refill Successes" );
 		}
 	}
 }

@@ -1,4 +1,4 @@
-#include "step_mole_game_StageView.h"
+#include "step_mole_game_StageNode.h"
 
 #include <new>
 #include <numeric>
@@ -20,19 +20,20 @@ namespace step_mole
 {
 	namespace game
 	{
-		StageView::StageView( const StageConfig stage_config ) :
+		StageNode::StageNode( const StageConfig stage_config ) :
 			mStageConfig( stage_config )
 			, mObjectComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
+			, mCollisionComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 		{}
 
-		StageView* StageView::create(
+		StageNode* StageNode::create(
 			const StageConfig stage_config
 			, const TargetProcessExitCallback& target_rest_callback
-			, const StageViewConfig stage_view_config
+			, const StageNodeConfig stage_view_config
 			, const CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
-			auto ret = new ( std::nothrow ) StageView( stage_config );
+			auto ret = new ( std::nothrow ) StageNode( stage_config );
 			if( !ret || !ret->init( target_rest_callback, stage_view_config, circle_collision_component_config ) )
 			{
 				delete ret;
@@ -47,7 +48,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageView::init( const TargetProcessExitCallback& target_rest_callback, const StageViewConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
+		bool StageNode::init( const TargetProcessExitCallback& target_rest_callback, const StageNodeConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
 		{
 			if( !Node::init() )
 			{
@@ -58,14 +59,7 @@ namespace step_mole
 				mStageConfig.BlockSize.width * mStageConfig.BlockCount_Horizontal
 				, mStageConfig.BlockSize.width * mStageConfig.BlockCount_Vercital
 			);
-			const Size StageMargin( 4.f, 4.f );
-			const Size TotalSize(
-				StageMargin
-				+ StageSize
-				+ StageMargin
-			);
-
-			setContentSize( TotalSize );
+			setContentSize( StageSize );
 
 			// Pivot
 			if( stage_view_config.bShowPivot )
@@ -81,11 +75,10 @@ namespace step_mole
 			if( stage_view_config.bShowBackgroundGuide )
 			{
 				auto background_guide = LayerColor::create( Color4B( 255, 0, 255, 150 ), getContentSize().width, getContentSize().height );
-				addChild( background_guide, -1 );
+				addChild( background_guide, std::numeric_limits<int>::min() );
 			}
 
 			auto content_root_node = Node::create();
-			content_root_node->setPosition( StageMargin.width, StageMargin.height );
 			addChild( content_root_node );
 
 			//
@@ -152,29 +145,15 @@ namespace step_mole
 						content_root_node->addChild( object_node, 1 );
 
 						mObjectComponentList[object_linear_index] = static_cast<ObjectComponent*>( object_node->getComponent( ObjectComponent::GetStaticName() ) );
+						mCollisionComponentList[object_linear_index] = static_cast<CircleCollisionComponent*>( object_node->getComponent( CircleCollisionComponent::GetStaticName() ) );
 					}
 				}
-			}
-
-			//
-			// Click Area
-			//
-			{
-				auto click_area = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-				click_area->setScale9Enabled( true );
-				click_area->setContentSize( StageSize );
-				click_area->addTouchEventListener( CC_CALLBACK_2( StageView::onStageClick, this ) );
-				click_area->setPosition( Vec2(
-					TotalSize.width * 0.5f
-					, TotalSize.height * 0.5f
-				) );
-				addChild( click_area );
 			}
 
 			return true;
 		}
 
-		Node* StageView::MakeObject(
+		Node* StageNode::MakeObject(
 			const int object_tag
 			, const cocos2d::Vec2 object_position
 			, const int defalut_view_type
@@ -215,12 +194,8 @@ namespace step_mole
 
 			return object_node;
 		}
-		void StageView::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
-		{
-			CCLOG( "On Stage Click" );
-		}
 
-		void StageView::RequestAction( const std::size_t object_index, const float life_time )
+		void StageNode::RequestAction( const std::size_t object_index, const float life_time )
 		{
 			CCASSERT( object_index < mObjectComponentList.size(), "Invalid Object Index" );
 

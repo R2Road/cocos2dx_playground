@@ -10,7 +10,7 @@ namespace step_mole
 	namespace game
 	{
 		using TargetManagerUp = std::unique_ptr<class TargetManager>;
-		class StageView;
+		class StageNode;
 
 		class PlayScene : public cocos2d::Scene
 		{
@@ -33,7 +33,7 @@ namespace step_mole
 			int mAudioID_forBGM;
 
 			TargetManagerUp mTargetManager;
-			StageView* mStageView;
+			StageNode* mStageView;
 		};
 	}
 }

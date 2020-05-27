@@ -1,4 +1,4 @@
-#include "step_mole_game_StageTestScene.h"
+#include "step_mole_game_test_RandomSpawnScene.h"
 
 #include <new>
 #include <numeric>
@@ -10,40 +10,32 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_mole_game_StageView.h"
+#include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
-
-#include "step_mole_RootScene.h"
 
 USING_NS_CC;
 
 namespace
 {
 	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 6, Size( 40.f, 40.f ) };
-
-	const std::size_t GetRandomObjectIndex()
-	{
-		static std::random_device rd;
-		static std::mt19937 randomEngine( rd() );
-		static std::uniform_int_distribution<> dist( 0, std::max( 0, ( STAGE_CONFIG.BlockCount_Vercital * STAGE_CONFIG.BlockCount_Horizontal ) - 1 ) );
-
-		return dist( randomEngine );
-	}
 }
 
 namespace step_mole
 {
-	namespace game
+	namespace game_test
 	{
-		StageTestScene::StageTestScene() : mKeyboardListener( nullptr ), mTargetManager(), mStageView( nullptr )
+		RandomSpawnScene::RandomSpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
+			, mTargetManager()
+			, mStageNode( nullptr )
 		{}
 
-		Scene* StageTestScene::create()
+		Scene* RandomSpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) StageTestScene();
+			auto ret = new ( std::nothrow ) RandomSpawnScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -58,7 +50,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageTestScene::init()
+		bool RandomSpawnScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -79,7 +71,7 @@ namespace step_mole
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Random Start";
+				ss << "[A] : Random Spawn";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -102,39 +94,39 @@ namespace step_mole
 			// Target Manager
 			//
 			{
-				mTargetManager = TargetManager::create( STAGE_CONFIG );
+				mTargetManager = game::TargetManager::create( STAGE_CONFIG );
 			}
 
 			//
-			// Stage View
+			// Stage Node
 			//
 			{
-				mStageView = step_mole::game::StageView::create(
+				mStageNode = step_mole::game::StageNode::create(
 					STAGE_CONFIG
-					, std::bind( &TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
-					, StageViewConfig{ true, true }
+					, std::bind( &game::TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
+					, game::StageNodeConfig{ true, true }
 					, CircleCollisionComponentConfig{ true, true, true }
 				);
-				mStageView->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - mStageView->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - mStageView->getContentSize().height ) * 0.5f )
+				mStageNode->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - mStageNode->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - mStageNode->getContentSize().height ) * 0.5f )
 				) );
-				addChild( mStageView );
+				addChild( mStageNode );
 			}
 
 			return true;
 		}
 
-		void StageTestScene::onEnter()
+		void RandomSpawnScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RandomSpawnScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void StageTestScene::onExit()
+		void RandomSpawnScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -144,12 +136,12 @@ namespace step_mole
 		}
 
 
-		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void RandomSpawnScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
@@ -157,7 +149,7 @@ namespace step_mole
 				const auto target_index = mTargetManager->GetIdleTarget();
 				if( -1 != target_index )
 				{
-					mStageView->RequestAction( target_index, 3.f );
+					mStageNode->RequestAction( target_index, 3.f );
 				}
 
 				return;

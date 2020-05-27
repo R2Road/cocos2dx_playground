@@ -35,7 +35,7 @@ namespace step_mole
 	{
 		ComponentScene::ComponentScene() :
 			mKeyboardListener( nullptr )
-			, mCollisionList()
+			, mCollisionComponentList()
 		{}
 
 		Scene* ComponentScene::create()
@@ -193,6 +193,10 @@ namespace step_mole
 					bullet_root_node->setPosition( visibleOrigin + new_bullet_position );
 					addChild( bullet_root_node, 101 );
 
+					mCollisionComponentList.push_back( static_cast<CircleCollisionComponent*>(
+						bullet_root_node->getComponent( CircleCollisionComponent::GetStaticName() )
+					) );
+
 					collision_enable = !collision_enable;
 					++current_bullet_count;
 				}
@@ -217,47 +221,6 @@ namespace step_mole
 			mKeyboardListener = nullptr;
 
 			Scene::onExit();
-		}
-
-		void ComponentScene::addChild( Node* child, int localZOrder, int tag )
-		{
-			addCollision( child );
-			Scene::addChild( child, localZOrder, tag );
-		}
-		void ComponentScene::addChild( Node* child, int localZOrder, const std::string &name )
-		{
-			addCollision( child );
-			Scene::addChild( child, localZOrder, name );
-		}
-		void ComponentScene::removeChild( Node* child, bool cleanup /* = true */ )
-		{
-			removeCollision( child );
-			Scene::removeChild( child, cleanup );
-		}
-		void ComponentScene::removeAllChildrenWithCleanup( bool cleanup )
-		{
-			mCollisionList.clear();
-			Scene::removeAllChildrenWithCleanup( cleanup );
-		}
-		void ComponentScene::addCollision( cocos2d::Node* child )
-		{
-			auto target_component = child->getComponent( CircleCollisionComponent::GetStaticName() );
-			if( !target_component )
-			{
-				return;
-			}
-
-			mCollisionList.push_back( static_cast<CircleCollisionComponent*>( target_component ) );
-		}
-		void ComponentScene::removeCollision( cocos2d::Node* child )
-		{
-			auto target_component = child->getComponent( CircleCollisionComponent::GetStaticName() );
-			if( !target_component )
-			{
-				return;
-			}
-
-			mCollisionList.remove( static_cast<CircleCollisionComponent*>( target_component ) );
 		}
 
 		Node* ComponentScene::makeBullet( const bool collision_enable )
@@ -291,7 +254,7 @@ namespace step_mole
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				auto circle_collision_component = CircleCollisionComponent::create( radius, Vec2::ZERO, CircleCollisionComponentConfig{ false, false, false } );
+				auto circle_collision_component = CircleCollisionComponent::create( radius, Vec2::ZERO, CircleCollisionComponentConfig{ true, true, true} );
 				circle_collision_component->setEnabled( collision_enable );
 				bullet_root_node->addComponent( circle_collision_component );
 			}
@@ -305,20 +268,17 @@ namespace step_mole
 			auto actor_collision_component = static_cast<CircleCollisionComponent*>( actor_root->getComponent( CircleCollisionComponent::GetStaticName() ) );
 
 			bool contact_success = false;
-			for( const auto& c : mCollisionList )
+			for( const auto& c : mCollisionComponentList )
 			{
 				if( c == actor_collision_component )
 				{
 					continue;
 				}
 
-				contact_success = actor_collision_component->Check( c );
-				if( !contact_success )
-				{
-					continue;
-				}
-
-				break;
+				auto temp_contact_success = actor_collision_component->Check( c );
+				c->onContact( temp_contact_success );
+				
+				contact_success = contact_success | temp_contact_success;
 			}
 
 			actor_collision_component->onContact( contact_success );

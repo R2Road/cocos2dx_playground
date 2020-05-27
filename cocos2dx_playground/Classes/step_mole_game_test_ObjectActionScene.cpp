@@ -1,4 +1,4 @@
-#include "step_mole_game_ObjectTestScene.h"
+#include "step_mole_game_test_ObjectActionScene.h"
 
 #include <new>
 #include <numeric>
@@ -19,8 +19,6 @@
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_ObjectComponent.h"
 
-#include "step_mole_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -32,14 +30,17 @@ namespace
 
 namespace step_mole
 {
-	namespace game
+	namespace game_test
 	{
-		ObjectTestScene::ObjectTestScene() : mKeyboardListener( nullptr ), mCurrentLifeTime( 3 )
+		ObjectActionScene::ObjectActionScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
+			, mCurrentLifeTime( 3 )
 		{}
 
-		Scene* ObjectTestScene::create()
+		Scene* ObjectActionScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) ObjectTestScene();
+			auto ret = new ( std::nothrow ) ObjectActionScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -54,7 +55,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool ObjectTestScene::init()
+		bool ObjectActionScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -160,16 +161,16 @@ namespace step_mole
 			return true;
 		}
 
-		void ObjectTestScene::onEnter()
+		void ObjectActionScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ObjectTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ObjectActionScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void ObjectTestScene::onExit()
+		void ObjectActionScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -178,18 +179,18 @@ namespace step_mole
 			Node::onExit();
 		}
 
-		void ObjectTestScene::updateLifeTimeView()
+		void ObjectActionScene::updateLifeTimeView()
 		{
 			auto life_time_node = static_cast<Label*>( getChildByTag( TAG_LifeTimeNode ) );
 			life_time_node->setString( StringUtils::format( "Life Time : %d", mCurrentLifeTime ) );
 		}
 
-		void ObjectTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void ObjectActionScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 
 			case EventKeyboard::KeyCode::KEY_1:

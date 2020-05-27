@@ -348,12 +348,6 @@
     <ClCompile Include="..\Classes\step_mole_collision_BasicScene.cpp">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_StageTestScene.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_ObjectTestScene.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_ObjectComponent.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
@@ -362,9 +356,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_animation_InfoContainer.cpp">
       <Filter>src\scene\step_04_mole\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_StageView.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_RootScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
@@ -484,6 +475,24 @@
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_PlayScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_HitTestScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_StageNode.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_HittingNode.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_GroupSpawnScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_RandomSpawnScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_ObjectActionScene.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -719,20 +728,11 @@
     <ClInclude Include="..\Classes\step_mole_collision_ComponentScene.h">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_StageTestScene.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_ObjectTestScene.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponent.h">
       <Filter>src\scene\step_04_mole\circle_collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_animation_InfoContainer.h">
       <Filter>src\scene\step_04_mole\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_StageView.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_RootScene.h">
       <Filter>src\scene\ui_practice</Filter>
@@ -867,6 +867,24 @@
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_PlayScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_HitTestScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_StageNode.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_HittingNode.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_GroupSpawnScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_RandomSpawnScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_ObjectActionScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>
