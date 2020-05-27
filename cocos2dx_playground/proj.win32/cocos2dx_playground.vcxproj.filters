@@ -492,6 +492,9 @@
     <ClCompile Include="..\Classes\step_mole_game_HittingNode.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_GroupSpawnScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -879,6 +882,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_HittingNode.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_GroupSpawnScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>
