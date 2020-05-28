@@ -36,7 +36,7 @@ namespace step_mole
 			, mTargetManager()
 			, mStageNode( nullptr )
 
-			, mCurrentSpawnTargetCount( 1 )
+			, mCurrentSpawnTargetCount( 3 )
 		{}
 
 		Scene* GroupSpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
