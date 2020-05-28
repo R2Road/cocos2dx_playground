@@ -5,7 +5,6 @@
 
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "ui/UIButton.h"
 
 #include "step_mole_AnimationComponent.h"
