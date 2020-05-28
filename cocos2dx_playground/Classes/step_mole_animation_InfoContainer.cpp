@@ -4,7 +4,7 @@ namespace step_mole
 {
 	namespace animation
 	{
-		const cpg::animation::ContainerT& GetInfoContainer()
+		const cpg::animation::ContainerT& GetObjectInfoContainer()
 		{
 			static const cpg::animation::ContainerT animation_container = {
 				{

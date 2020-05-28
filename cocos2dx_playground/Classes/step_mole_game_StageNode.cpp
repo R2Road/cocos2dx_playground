@@ -180,7 +180,7 @@ namespace step_mole
 				object_node->addChild( view_node );
 				
 				// Animation Component
-				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetInfoContainer() );
+				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() );
 				view_node->addComponent( animation_component );
 
 				// Collision Component
