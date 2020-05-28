@@ -26,10 +26,10 @@ namespace step_mole
 			HittingNode( const HittingCallback& hitting_callback );
 
 		public:
-			static HittingNode* create( const StageConfig stage_config, const HittingNodeConfig hitting_node_config, const HittingCallback& hitting_callback );
+			static HittingNode* create( const StageConfig& stage_config, const HittingNodeConfig& hitting_node_config, const HittingCallback& hitting_callback );
 
 		private:
-			bool init( const StageConfig stage_config, const HittingNodeConfig hitting_node_config );
+			bool init( const StageConfig& stage_config, const HittingNodeConfig& hitting_node_config );
 
 			void onStageClick( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 

@@ -25,8 +25,8 @@ namespace step_mole
 		HittingNode::HittingNode( const HittingCallback& hitting_callback ) : mHittingCallback( hitting_callback ){}
 
 		HittingNode* HittingNode::create(
-			const StageConfig stage_config
-			, const HittingNodeConfig hitting_node_config
+			const StageConfig& stage_config
+			, const HittingNodeConfig& hitting_node_config
 			, const HittingCallback& hitting_callback
 		)
 		{
@@ -45,7 +45,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool HittingNode::init( const StageConfig stage_config, const HittingNodeConfig hitting_node_config )
+		bool HittingNode::init( const StageConfig& stage_config, const HittingNodeConfig& hitting_node_config )
 		{
 			if( !Node::init() )
 			{
