@@ -17,13 +17,13 @@ namespace step_mole
 
 	namespace game_test
 	{
-		class HitTestScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class HittingNodeScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 		{
 		private:
-			HitTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			HittingNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Game Test : Hit Test"; }
+			static const char* getTitle() { return "Game Test : Hitting Node"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
