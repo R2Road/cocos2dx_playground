@@ -1,4 +1,4 @@
-#include "step_mole_game_test_HitTestScene.h"
+#include "step_mole_game_test_HittingNodeScene.h"
 
 #include <algorithm>
 #include <new>

@@ -477,9 +477,6 @@
     <ClCompile Include="..\Classes\step_mole_game_PlayScene.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_test_HitTestScene.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_StageNode.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
@@ -493,6 +490,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_test_ObjectActionScene.cpp">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_HittingNodeScene.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -869,9 +869,6 @@
     <ClInclude Include="..\Classes\step_mole_game_PlayScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_test_HitTestScene.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_StageNode.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
@@ -885,6 +882,9 @@
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_test_ObjectActionScene.h">
+      <Filter>src\scene\step_04_mole\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_HittingNodeScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
   </ItemGroup>

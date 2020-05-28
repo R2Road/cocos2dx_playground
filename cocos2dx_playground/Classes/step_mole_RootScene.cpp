@@ -16,7 +16,7 @@
 #include "step_mole_game_test_ObjectActionScene.h"
 #include "step_mole_game_test_RandomSpawnScene.h"
 #include "step_mole_game_test_GroupSpawnScene.h"
-#include "step_mole_game_test_HitTestScene.h"
+#include "step_mole_game_test_HittingNodeScene.h"
 
 #include "step_mole_game_TitleScene.h"
 
