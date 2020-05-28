@@ -30,6 +30,8 @@ namespace step_mole
 			, const HittingCallback& hitting_callback
 		)
 		{
+			CCASSERT( hitting_callback, "Failed : HittingNode : Callback is Null" );
+
 			auto ret = new ( std::nothrow ) HittingNode( hitting_callback );
 			if( !ret || !ret->init( stage_config, hitting_node_config ) )
 			{
