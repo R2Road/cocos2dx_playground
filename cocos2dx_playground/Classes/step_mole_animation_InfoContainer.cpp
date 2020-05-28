@@ -46,5 +46,18 @@ namespace step_mole
 
 			return animation_container;
 		}
+
+		const cpg::animation::ContainerT& GetEffectInfoContainer()
+		{
+			static const cpg::animation::ContainerT animation_container = {
+				{
+					cpg::animation::eIndex::damaged_2
+					, 0.06f
+					, std::vector<std::string>{ "step_mole_target_dmgd2_0.png", "step_mole_target_dmgd2_1.png", "step_mole_target_dmgd2_2.png", "step_mole_target_dmgd2_3.png", "step_mole_target_dmgd2_4.png", "step_mole_target_dmgd2_5.png" }
+				}
+			};
+
+			return animation_container;
+		}
 	}
 }

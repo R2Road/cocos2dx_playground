@@ -8,7 +8,15 @@
 #include "2d/CCSpriteFrameCache.h"
 #include "ui/UIButton.h"
 
+#include "step_mole_AnimationComponent.h"
+#include "step_mole_animation_InfoContainer.h"
+
 USING_NS_CC;
+
+namespace
+{
+	const int TAG_EffectNode = 20140416;
+}
 
 namespace step_mole
 {
@@ -82,6 +90,19 @@ namespace step_mole
 				addChild( click_area );
 			}
 
+			//
+			// Effect Node
+			//
+			{
+				auto effect_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
+				effect_node->setTag( TAG_EffectNode );
+				effect_node->setScale( 2.f );
+				effect_node->setVisible( false );
+				addChild( effect_node, 1 );
+
+				effect_node->addComponent( step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() ) );
+			}
+
 			return true;
 		}
 
@@ -94,7 +115,26 @@ namespace step_mole
 				return;
 			}
 
-			CCLOG( "On Stage Click" );
+			//
+			// Show Effect
+			//
+			auto effect_node = getChildByTag( TAG_EffectNode );
+			effect_node->setVisible( true );
+			effect_node->setPosition( this->convertToNodeSpace( button->getTouchBeganPosition() ) );
+			{
+				auto animation_component = static_cast<step_mole::AnimationComponent*>( getChildByTag( TAG_EffectNode )->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
+				animation_component->PlayAnimationWithCallback(
+					cpg::animation::eIndex::damaged_2
+					, [effect_node]()
+					{
+						effect_node->setVisible( false );
+					}
+				);
+			}
+
+			//
+			// Callback
+			//
 			mHittingCallback( static_cast<int>( button->getTouchBeganPosition().x ), static_cast<int>( button->getTouchBeganPosition().y ) );
 		}
 	} // namespace game
