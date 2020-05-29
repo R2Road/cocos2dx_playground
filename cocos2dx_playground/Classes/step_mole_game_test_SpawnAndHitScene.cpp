@@ -1,4 +1,4 @@
-#include "step_mole_game_test_GroupSpawnScene.h"
+#include "step_mole_game_test_SpawnAndHitScene.h"
 
 #include <algorithm>
 #include <new>

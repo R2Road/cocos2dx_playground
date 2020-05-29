@@ -23,7 +23,7 @@ namespace step_mole
 			GroupSpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Game Test : Group Spawn"; }
+			static const char* getTitle() { return "Game Test : Spawn And Hit"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
