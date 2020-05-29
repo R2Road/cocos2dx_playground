@@ -1,4 +1,4 @@
-#include "step_mole_game_test_RandomSpawnScene.h"
+#include "step_mole_game_test_SpawnScene.h"
 
 #include <new>
 #include <numeric>
