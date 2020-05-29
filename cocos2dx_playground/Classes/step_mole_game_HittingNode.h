@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <array>
 
 #include "2d/CCNode.h"
 #include "ui/UIWidget.h"
@@ -9,6 +10,8 @@
 
 namespace step_mole
 {
+	class AnimationComponent;
+
 	namespace game
 	{
 		struct HittingNodeConfig
@@ -31,10 +34,15 @@ namespace step_mole
 		private:
 			bool init( const StageConfig& stage_config, const HittingNodeConfig& hitting_node_config );
 
+			AnimationComponent* getEffectAnimationComponent();
 			void onStageClick( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			const HittingCallback mHittingCallback;
+
+			enum { CachedEffectCount = 3 };
+			std::array<AnimationComponent*, CachedEffectCount> mEffectAnimationComponents;
+			std::array<AnimationComponent*, CachedEffectCount>::iterator mEffectAnimationComponentIndicator;
 		};
 	}
 }
