@@ -29,7 +29,7 @@ namespace step_mole
 {
 	namespace game_test
 	{
-		RandomSpawnScene::RandomSpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		SpawnScene::SpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTargetManager()
@@ -38,9 +38,9 @@ namespace step_mole
 			, mCurrentSpawnTargetCount( 3 )
 		{}
 
-		Scene* RandomSpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* SpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) RandomSpawnScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) SpawnScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -55,7 +55,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool RandomSpawnScene::init()
+		bool SpawnScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -76,7 +76,7 @@ namespace step_mole
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Random Spawn";
+				ss << "[A] : Do Spawn";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -139,16 +139,16 @@ namespace step_mole
 			return true;
 		}
 
-		void RandomSpawnScene::onEnter()
+		void SpawnScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RandomSpawnScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( SpawnScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void RandomSpawnScene::onExit()
+		void SpawnScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -158,13 +158,13 @@ namespace step_mole
 		}
 
 
-		void RandomSpawnScene::updateSpawnTargetCountView()
+		void SpawnScene::updateSpawnTargetCountView()
 		{
 			auto group_spawn_count_node = static_cast<Label*>( getChildByTag( TAG_GroupSpawnCountNode ) );
 			group_spawn_count_node->setString( StringUtils::format( "Group Spawn Count : %d", mCurrentSpawnTargetCount ) );
 		}
 
-		void RandomSpawnScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void SpawnScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{

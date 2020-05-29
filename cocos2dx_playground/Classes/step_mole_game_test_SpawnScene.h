@@ -17,10 +17,10 @@ namespace step_mole
 
 	namespace game_test
 	{
-		class RandomSpawnScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class SpawnScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 		{
 		private:
-			RandomSpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			SpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
 			static const char* getTitle() { return "Game Test : Spawn"; }
