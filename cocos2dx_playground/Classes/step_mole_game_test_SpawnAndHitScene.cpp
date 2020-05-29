@@ -30,7 +30,7 @@ namespace step_mole
 {
 	namespace game_test
 	{
-		GroupSpawnScene::GroupSpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		SpawnAndHitScene::SpawnAndHitScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTargetManager()
@@ -39,9 +39,9 @@ namespace step_mole
 			, mCurrentSpawnTargetCount( 3 )
 		{}
 
-		Scene* GroupSpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* SpawnAndHitScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) GroupSpawnScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) SpawnAndHitScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -56,7 +56,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool GroupSpawnScene::init()
+		bool SpawnAndHitScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -140,16 +140,16 @@ namespace step_mole
 			return true;
 		}
 
-		void GroupSpawnScene::onEnter()
+		void SpawnAndHitScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( GroupSpawnScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( SpawnAndHitScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void GroupSpawnScene::onExit()
+		void SpawnAndHitScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -158,13 +158,13 @@ namespace step_mole
 			Node::onExit();
 		}
 
-		void GroupSpawnScene::updateSpawnTargetCountView()
+		void SpawnAndHitScene::updateSpawnTargetCountView()
 		{
 			auto group_spawn_count_node = static_cast<Label*>( getChildByTag( TAG_GroupSpawnCountNode ) );
 			group_spawn_count_node->setString( StringUtils::format( "Group Spawn Count : %d", mCurrentSpawnTargetCount ) );
 		}
 
-		void GroupSpawnScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void SpawnAndHitScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
