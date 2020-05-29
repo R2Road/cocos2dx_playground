@@ -10,6 +10,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_game_StageNode.h"
@@ -20,6 +21,8 @@ USING_NS_CC;
 namespace
 {
 	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 6, Size( 40.f, 40.f ) };
+
+	const int TAG_GroupSpawnCountNode = 20140416;
 }
 
 namespace step_mole
@@ -31,6 +34,8 @@ namespace step_mole
 			, mKeyboardListener( nullptr )
 			, mTargetManager()
 			, mStageNode( nullptr )
+
+			, mCurrentSpawnTargetCount( 3 )
 		{}
 
 		Scene* RandomSpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -91,6 +96,23 @@ namespace step_mole
 			}
 
 			//
+			// Spawn Target Count
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				label->setTag( TAG_GroupSpawnCountNode );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateSpawnTargetCountView();
+			}
+
+			//
 			// Target Manager
 			//
 			{
@@ -136,6 +158,12 @@ namespace step_mole
 		}
 
 
+		void RandomSpawnScene::updateSpawnTargetCountView()
+		{
+			auto group_spawn_count_node = static_cast<Label*>( getChildByTag( TAG_GroupSpawnCountNode ) );
+			group_spawn_count_node->setString( StringUtils::format( "Group Spawn Count : %d", mCurrentSpawnTargetCount ) );
+		}
+
 		void RandomSpawnScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
@@ -146,14 +174,30 @@ namespace step_mole
 
 			case EventKeyboard::KeyCode::KEY_A:
 			{
-				const auto target_index = mTargetManager->GetIdleTarget();
-				if( -1 != target_index )
+				int target_index = -1;
+				for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
 				{
+					target_index = mTargetManager->GetIdleTarget();
+					if( -1 == target_index )
+					{
+						break;
+					}
+
 					mStageNode->RequestAction( target_index, 3.f );
 				}
 
 				return;
 			}
+
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+				mCurrentSpawnTargetCount += 1;
+				updateSpawnTargetCountView();
+				return;
+
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+				mCurrentSpawnTargetCount = std::max( 1, mCurrentSpawnTargetCount - 1 );
+				updateSpawnTargetCountView();
+				return;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
