@@ -21,7 +21,7 @@ USING_NS_CC;
 
 namespace
 {
-	const step_mole::game::StageConfig STAGE_CONFIG{ 3, 3, Size( 40.f, 40.f ) };
+	const step_mole::game::StageConfig STAGE_CONFIG{ 5, 4, Size( 40.f, 40.f ) };
 
 	const int TAG_GroupSpawnCountNode = 20140416;
 }
