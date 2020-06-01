@@ -185,12 +185,12 @@ namespace step_mole
 			Node::onExit();
 		}
 
-		void SpawnAndHitScene::updateForSpawnProcessStart( const float dt )
+		void SpawnAndHitScene::updateForSpawnProcessStart( const float /*dt*/ )
 		{
 			CCLOG( "Start - SpawnAndHitScene::updateForSpawn" );
 			schedule( SEL_SCHEDULE( &SpawnAndHitScene::updateForSpawn ), 2.f );
 		}
-		void SpawnAndHitScene::updateForSpawn( const float dt )
+		void SpawnAndHitScene::updateForSpawn( const float /*dt*/ )
 		{
 			int target_index = -1;
 			for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
