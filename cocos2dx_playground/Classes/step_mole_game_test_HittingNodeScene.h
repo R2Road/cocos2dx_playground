@@ -17,13 +17,13 @@ namespace step_mole
 
 	namespace game_test
 	{
-		class GroupSpawnScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class HittingNodeScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 		{
 		private:
-			GroupSpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			HittingNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Game Test : Group Spawn"; }
+			static const char* getTitle() { return "Game Test : Hitting Node"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
@@ -31,7 +31,6 @@ namespace step_mole
 			void onExit() override;
 
 		private:
-			void updateSpawnTargetCountView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:

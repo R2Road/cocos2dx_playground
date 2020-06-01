@@ -5,8 +5,10 @@
 
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "ui/UIButton.h"
+
+#include "step_mole_AnimationComponent.h"
+#include "step_mole_animation_InfoContainer.h"
 
 USING_NS_CC;
 
@@ -14,14 +16,22 @@ namespace step_mole
 {
 	namespace game
 	{
-		HittingNode::HittingNode( const HittingCallback& hitting_callback ) : mHittingCallback( hitting_callback ){}
+		HittingNode::HittingNode( const HittingCallback& hitting_callback ) :
+			mHittingCallback( hitting_callback )
+			, mEffectAnimationComponents()
+			, mEffectAnimationComponentIndicator( mEffectAnimationComponents.begin() )
+		{
+			mEffectAnimationComponents.fill( nullptr );
+		}
 
 		HittingNode* HittingNode::create(
-			const StageConfig stage_config
-			, const HittingNodeConfig hitting_node_config
+			const StageConfig& stage_config
+			, const HittingNodeConfig& hitting_node_config
 			, const HittingCallback& hitting_callback
 		)
 		{
+			CCASSERT( hitting_callback, "Failed : HittingNode : Callback is Null" );
+
 			auto ret = new ( std::nothrow ) HittingNode( hitting_callback );
 			if( !ret || !ret->init( stage_config, hitting_node_config ) )
 			{
@@ -37,7 +47,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool HittingNode::init( const StageConfig stage_config, const HittingNodeConfig hitting_node_config )
+		bool HittingNode::init( const StageConfig& stage_config, const HittingNodeConfig& hitting_node_config )
 		{
 			if( !Node::init() )
 			{
@@ -82,13 +92,64 @@ namespace step_mole
 				addChild( click_area );
 			}
 
+			//
+			// Effect Node
+			//
+			for( auto cur = mEffectAnimationComponents.begin(), end = mEffectAnimationComponents.end(); end != cur; ++cur )
+			{
+				auto effect_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
+				effect_node->setScale( 2.f );
+				effect_node->setVisible( false );
+				addChild( effect_node, 1 );
+
+				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() );
+				effect_node->addComponent( animation_component );
+
+				*cur = animation_component;
+			}
+
 			return true;
 		}
 
-		void HittingNode::onStageClick( Ref* /*sender*/, ui::Widget::TouchEventType /*touch_event_type*/ )
+		AnimationComponent* HittingNode::getEffectAnimationComponent()
 		{
-			CCLOG( "On Stage Click" );
-			mHittingCallback( 0, 0 );
+			++mEffectAnimationComponentIndicator;
+			if( mEffectAnimationComponents.end() == mEffectAnimationComponentIndicator )
+			{
+				mEffectAnimationComponentIndicator = mEffectAnimationComponents.begin();
+			}
+
+			return *mEffectAnimationComponentIndicator;
+		}
+		void HittingNode::onStageClick( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			auto button = static_cast<ui::Button*>( sender );
+
+			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			{
+				return;
+			}
+
+			//
+			// Show Effect
+			//
+			auto effect_animation_component = getEffectAnimationComponent();
+			effect_animation_component->getOwner()->setVisible( true );
+			effect_animation_component->getOwner()->setPosition( this->convertToNodeSpace( button->getTouchBeganPosition() ) );
+			{
+				effect_animation_component->PlayAnimationWithCallback(
+					cpg::animation::eIndex::damaged_2
+					, [effect_animation_component]()
+					{
+						effect_animation_component->getOwner()->setVisible( false );
+					}
+				);
+			}
+
+			//
+			// Callback
+			//
+			mHittingCallback( static_cast<int>( button->getTouchBeganPosition().x ), static_cast<int>( button->getTouchBeganPosition().y ) );
 		}
 	} // namespace game
 } // namespace step_mole

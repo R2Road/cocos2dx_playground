@@ -1,12 +1,12 @@
-#include "step_mole_game_test_GroupSpawnScene.h"
+#include "step_mole_game_test_SpawnScene.h"
 
-#include <algorithm>
 #include <new>
 #include <numeric>
 #include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -15,13 +15,12 @@
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
-#include "step_mole_game_HittingNode.h"
 
 USING_NS_CC;
 
 namespace
 {
-	const step_mole::game::StageConfig STAGE_CONFIG{ 3, 3, Size( 40.f, 40.f ) };
+	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 4, Size( 40.f, 40.f ) };
 
 	const int TAG_GroupSpawnCountNode = 20140416;
 }
@@ -30,18 +29,18 @@ namespace step_mole
 {
 	namespace game_test
 	{
-		GroupSpawnScene::GroupSpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		SpawnScene::SpawnScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTargetManager()
 			, mStageNode( nullptr )
 
-			, mCurrentSpawnTargetCount( 1 )
+			, mCurrentSpawnTargetCount( 3 )
 		{}
 
-		Scene* GroupSpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* SpawnScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) GroupSpawnScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) SpawnScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -56,7 +55,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool GroupSpawnScene::init()
+		bool SpawnScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -77,7 +76,12 @@ namespace step_mole
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Group Spawn";
+				ss << "[A] : Do Spawn";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow Up] : Increase Spawn Count";
+				ss << std::endl;
+				ss << "[Arrow Down] : Decrease Spawn Count";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -140,16 +144,16 @@ namespace step_mole
 			return true;
 		}
 
-		void GroupSpawnScene::onEnter()
+		void SpawnScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( GroupSpawnScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( SpawnScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void GroupSpawnScene::onExit()
+		void SpawnScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -158,13 +162,14 @@ namespace step_mole
 			Node::onExit();
 		}
 
-		void GroupSpawnScene::updateSpawnTargetCountView()
+
+		void SpawnScene::updateSpawnTargetCountView()
 		{
 			auto group_spawn_count_node = static_cast<Label*>( getChildByTag( TAG_GroupSpawnCountNode ) );
 			group_spawn_count_node->setString( StringUtils::format( "Group Spawn Count : %d", mCurrentSpawnTargetCount ) );
 		}
 
-		void GroupSpawnScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void SpawnScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
@@ -185,8 +190,9 @@ namespace step_mole
 
 					mStageNode->RequestAction( target_index, 3.f );
 				}
+
+				return;
 			}
-			return;
 
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
 				mCurrentSpawnTargetCount += 1;

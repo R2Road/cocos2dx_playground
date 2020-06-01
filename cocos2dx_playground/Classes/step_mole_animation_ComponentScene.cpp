@@ -113,7 +113,7 @@ namespace step_mole
 				addChild( animation_node, 0 );
 
 
-				animation_node->addComponent( step_mole::AnimationComponent::create( step_mole::animation::GetInfoContainer() ) );
+				animation_node->addComponent( step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() ) );
 			}
 
 			return true;

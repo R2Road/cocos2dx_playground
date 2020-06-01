@@ -1,4 +1,4 @@
-#include "step_mole_game_test_HitTestScene.h"
+#include "step_mole_game_test_HittingNodeScene.h"
 
 #include <algorithm>
 #include <new>
@@ -28,7 +28,7 @@ namespace step_mole
 {
 	namespace game_test
 	{
-		HitTestScene::HitTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		HittingNodeScene::HittingNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTargetManager()
@@ -37,9 +37,9 @@ namespace step_mole
 			, mCurrentSpawnTargetCount( 1 )
 		{}
 
-		Scene* HitTestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* HittingNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) HitTestScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) HittingNodeScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -54,7 +54,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool HitTestScene::init()
+		bool HittingNodeScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -112,16 +112,16 @@ namespace step_mole
 			return true;
 		}
 
-		void HitTestScene::onEnter()
+		void HittingNodeScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( HitTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( HittingNodeScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 		}
-		void HitTestScene::onExit()
+		void HittingNodeScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -130,7 +130,7 @@ namespace step_mole
 			Node::onExit();
 		}
 
-		void HitTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void HittingNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
