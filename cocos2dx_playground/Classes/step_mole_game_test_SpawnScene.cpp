@@ -20,7 +20,7 @@ USING_NS_CC;
 
 namespace
 {
-	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 6, Size( 40.f, 40.f ) };
+	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 4, Size( 40.f, 40.f ) };
 
 	const int TAG_GroupSpawnCountNode = 20140416;
 }
@@ -77,6 +77,11 @@ namespace step_mole
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[A] : Do Spawn";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow Up] : Increase Spawn Count";
+				ss << std::endl;
+				ss << "[Arrow Down] : Decrease Spawn Count";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
