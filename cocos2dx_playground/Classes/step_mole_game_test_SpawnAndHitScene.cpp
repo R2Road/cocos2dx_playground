@@ -75,9 +75,6 @@ namespace step_mole
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[A] : Group Spawn";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -137,6 +134,13 @@ namespace step_mole
 				addChild( mStageNode );
 			}
 
+			//
+			// Process Start
+			//
+			{
+				scheduleOnce( SEL_SCHEDULE( &SpawnAndHitScene::updateForSpawnProcessStart ), 1.f );
+			}
+
 			return true;
 		}
 
@@ -158,6 +162,26 @@ namespace step_mole
 			Node::onExit();
 		}
 
+		void SpawnAndHitScene::updateForSpawnProcessStart( const float dt )
+		{
+			CCLOG( "Start - SpawnAndHitScene::updateForSpawn" );
+			schedule( SEL_SCHEDULE( &SpawnAndHitScene::updateForSpawn ), 2.f );
+		}
+		void SpawnAndHitScene::updateForSpawn( const float dt )
+		{
+			int target_index = -1;
+			for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
+			{
+				target_index = mTargetManager->GetIdleTarget();
+				if( -1 == target_index )
+				{
+					break;
+				}
+
+				mStageNode->RequestAction( target_index, 2.f );
+			}
+		}
+
 		void SpawnAndHitScene::updateSpawnTargetCountView()
 		{
 			auto group_spawn_count_node = static_cast<Label*>( getChildByTag( TAG_GroupSpawnCountNode ) );
@@ -171,22 +195,6 @@ namespace step_mole
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				helper::BackToThePreviousScene::MoveBack();
 				return;
-
-			case EventKeyboard::KeyCode::KEY_A:
-			{
-				int target_index = -1;
-				for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
-				{
-					target_index = mTargetManager->GetIdleTarget();
-					if( -1 == target_index )
-					{
-						break;
-					}
-
-					mStageNode->RequestAction( target_index, 3.f );
-				}
-			}
-			return;
 
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
 				mCurrentSpawnTargetCount += 1;
