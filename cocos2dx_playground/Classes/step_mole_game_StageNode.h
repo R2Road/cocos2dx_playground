@@ -59,6 +59,7 @@ namespace step_mole
 
 			std::vector<ObjectComponent*> mObjectComponentList;
 			std::vector<CircleCollisionComponent*> mCollisionComponentList;
+			CircleCollisionComponent* mBulletCollisionComponent;
 		};
 	}
 }

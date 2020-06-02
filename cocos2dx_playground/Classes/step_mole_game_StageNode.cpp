@@ -24,6 +24,7 @@ namespace step_mole
 			mStageConfig( stage_config )
 			, mObjectComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 			, mCollisionComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
+			, mBulletCollisionComponent( nullptr )
 		{}
 
 		StageNode* StageNode::create(
@@ -150,6 +151,25 @@ namespace step_mole
 				}
 			}
 
+			//
+			// Bullet
+			//
+			{
+				auto bullet_node = Node::create();
+				addChild( bullet_node, 2 );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					bullet_node->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// Collision Component
+				mBulletCollisionComponent = step_mole::CircleCollisionComponent::create( 16.f, Vec2::ZERO, { true, true, true } );
+				bullet_node->addComponent( mBulletCollisionComponent );
+			}
+
 			return true;
 		}
 
@@ -205,7 +225,7 @@ namespace step_mole
 		void StageNode::RequestAttack( const int world_x, const int world_y )
 		{
 			const auto temp = convertToNodeSpace( Vec2( world_x, world_y ) );
-			CCLOG( "Test %d, %d", (int)temp.x, (int)temp.y );
+			mBulletCollisionComponent->getOwner()->setPosition( temp );
 		}
 	} // namespace game
 } // namespace step_mole
