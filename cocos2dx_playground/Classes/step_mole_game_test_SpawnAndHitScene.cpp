@@ -146,9 +146,7 @@ namespace step_mole
 				auto hitting_node = step_mole::game::HittingNode::create(
 					STAGE_CONFIG
 					, game::HittingNodeConfig{ false, false }
-					, []( const int x, const int y ) {
-						CCLOG( "Test %d, %d", x, y );
-					}
+					, std::bind( &SpawnAndHitScene::attackProcess, this, std::placeholders::_1, std::placeholders::_2 )
 				);
 				hitting_node->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - hitting_node->getContentSize().width ) * 0.5f )
@@ -203,6 +201,10 @@ namespace step_mole
 
 				mStageNode->RequestAction( target_index, 2.f );
 			}
+		}
+		void SpawnAndHitScene::attackProcess( const int world_x, const int world_y )
+		{
+			CCLOG( "Test %d, %d", world_x, world_y );
 		}
 
 		void SpawnAndHitScene::updateSpawnTargetCountView()

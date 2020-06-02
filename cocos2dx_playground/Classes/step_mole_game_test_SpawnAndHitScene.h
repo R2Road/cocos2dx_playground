@@ -33,6 +33,8 @@ namespace step_mole
 		private:
 			void updateForSpawnProcessStart( const float dt );
 			void updateForSpawn( const float dt );
+			void attackProcess( const int world_x, const int world_y );
+
 			void updateSpawnTargetCountView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
