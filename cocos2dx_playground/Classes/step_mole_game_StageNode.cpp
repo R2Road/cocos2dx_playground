@@ -201,5 +201,11 @@ namespace step_mole
 
 			mObjectComponentList[object_index]->ProcessStart( life_time );
 		}
+
+		void StageNode::RequestAttack( const int world_x, const int world_y )
+		{
+			const auto temp = convertToNodeSpace( Vec2( world_x, world_y ) );
+			CCLOG( "Test %d, %d", (int)temp.x, (int)temp.y );
+		}
 	} // namespace game
 } // namespace step_mole

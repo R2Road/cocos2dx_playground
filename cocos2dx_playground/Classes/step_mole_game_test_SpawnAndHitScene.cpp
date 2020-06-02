@@ -204,7 +204,7 @@ namespace step_mole
 		}
 		void SpawnAndHitScene::attackProcess( const int world_x, const int world_y )
 		{
-			CCLOG( "Test %d, %d", world_x, world_y );
+			mStageNode->RequestAttack( world_x, world_y );
 		}
 
 		void SpawnAndHitScene::updateSpawnTargetCountView()

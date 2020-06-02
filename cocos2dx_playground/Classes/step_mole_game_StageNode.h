@@ -52,6 +52,7 @@ namespace step_mole
 
 		public:
 			void RequestAction( const std::size_t object_index, const float life_time );
+			void RequestAttack( const int world_x, const int world_y );
 
 		private:
 			const StageConfig mStageConfig;
