@@ -226,6 +226,19 @@ namespace step_mole
 		{
 			const auto temp = convertToNodeSpace( Vec2( world_x, world_y ) );
 			mBulletCollisionComponent->getOwner()->setPosition( temp );
+
+			bool contact_success = false;
+			for( std::size_t cur = 0; mCollisionComponentList.size() > cur; ++cur )
+			{
+				const auto c = mCollisionComponentList[cur];
+
+				auto temp_contact_success = mBulletCollisionComponent->Check( c );
+				if( temp_contact_success )
+				{
+					c->onContact( temp_contact_success );
+					mObjectComponentList[cur]->ProcessDamage();
+				}
+			}
 		}
 	} // namespace game
 } // namespace step_mole
