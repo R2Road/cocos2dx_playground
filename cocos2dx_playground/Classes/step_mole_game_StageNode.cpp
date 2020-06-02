@@ -78,13 +78,13 @@ namespace step_mole
 				addChild( background_guide, std::numeric_limits<int>::min() );
 			}
 
-			auto content_root_node = Node::create();
-			addChild( content_root_node );
-
 			//
 			// Terrain View
 			//
 			{
+				auto terrain_view_node = Node::create();
+				addChild( terrain_view_node, 0 );
+
 				auto tile_sprite_frame_0 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
 				auto tile_sprite_frame_1 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" );
 				CCASSERT( tile_sprite_frame_0, "Sprite Frame Not Found" );
@@ -106,7 +106,7 @@ namespace step_mole
 							bx * mStageConfig.BlockSize.width
 							, by * mStageConfig.BlockSize.height
 						);
-						content_root_node->addChild( block_sprite );
+						terrain_view_node->addChild( block_sprite );
 
 						current_tile_indicator = !current_tile_indicator;
 					}
@@ -142,7 +142,7 @@ namespace step_mole
 							, target_rest_callback
 							, circle_collision_component_config
 						);
-						content_root_node->addChild( object_node, 1 );
+						addChild( object_node, 1 );
 
 						mObjectComponentList[object_linear_index] = static_cast<ObjectComponent*>( object_node->getComponent( ObjectComponent::GetStaticName() ) );
 						mCollisionComponentList[object_linear_index] = static_cast<CircleCollisionComponent*>( object_node->getComponent( CircleCollisionComponent::GetStaticName() ) );
