@@ -24,6 +24,7 @@ namespace step_mole
 			mStageConfig( stage_config )
 			, mObjectComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
 			, mCollisionComponentList( stage_config.BlockCount_Vercital * stage_config.BlockCount_Horizontal, nullptr )
+			, mBulletCollisionComponent( nullptr )
 		{}
 
 		StageNode* StageNode::create(
@@ -78,13 +79,13 @@ namespace step_mole
 				addChild( background_guide, std::numeric_limits<int>::min() );
 			}
 
-			auto content_root_node = Node::create();
-			addChild( content_root_node );
-
 			//
 			// Terrain View
 			//
 			{
+				auto terrain_view_node = Node::create();
+				addChild( terrain_view_node, 0 );
+
 				auto tile_sprite_frame_0 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" );
 				auto tile_sprite_frame_1 = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" );
 				CCASSERT( tile_sprite_frame_0, "Sprite Frame Not Found" );
@@ -106,7 +107,7 @@ namespace step_mole
 							bx * mStageConfig.BlockSize.width
 							, by * mStageConfig.BlockSize.height
 						);
-						content_root_node->addChild( block_sprite );
+						terrain_view_node->addChild( block_sprite );
 
 						current_tile_indicator = !current_tile_indicator;
 					}
@@ -142,12 +143,31 @@ namespace step_mole
 							, target_rest_callback
 							, circle_collision_component_config
 						);
-						content_root_node->addChild( object_node, 1 );
+						addChild( object_node, 1 );
 
 						mObjectComponentList[object_linear_index] = static_cast<ObjectComponent*>( object_node->getComponent( ObjectComponent::GetStaticName() ) );
 						mCollisionComponentList[object_linear_index] = static_cast<CircleCollisionComponent*>( object_node->getComponent( CircleCollisionComponent::GetStaticName() ) );
 					}
 				}
+			}
+
+			//
+			// Bullet
+			//
+			{
+				auto bullet_node = Node::create();
+				addChild( bullet_node, 2 );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					bullet_node->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// Collision Component
+				mBulletCollisionComponent = step_mole::CircleCollisionComponent::create( 16.f, Vec2::ZERO, { true, true, true } );
+				bullet_node->addComponent( mBulletCollisionComponent );
 			}
 
 			return true;
@@ -200,6 +220,30 @@ namespace step_mole
 			CCASSERT( object_index < mObjectComponentList.size(), "Invalid Object Index" );
 
 			mObjectComponentList[object_index]->ProcessStart( life_time );
+		}
+
+		bool StageNode::RequestAttack( const int world_x, const int world_y )
+		{
+			const auto temp = convertToNodeSpace( Vec2( world_x, world_y ) );
+			mBulletCollisionComponent->getOwner()->setPosition( temp );
+
+			bool total_collision_result = false;
+			bool single_collision_result = false;
+			for( std::size_t cur = 0; mCollisionComponentList.size() > cur; ++cur )
+			{
+				const auto c = mCollisionComponentList[cur];
+
+				single_collision_result = mBulletCollisionComponent->Check( c );
+				if( single_collision_result )
+				{
+					c->onContact( single_collision_result );
+					mObjectComponentList[cur]->ProcessDamage();
+				}
+
+				total_collision_result |= single_collision_result;
+			}
+
+			return total_collision_result;
 		}
 	} // namespace game
 } // namespace step_mole

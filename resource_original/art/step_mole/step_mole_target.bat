@@ -1,3 +1,8 @@
+cls
+
+set aseprite_file_name=%~n0.aseprite
+set png_file_name=%~n0.png
+
 call ../asepriteExporter_PNG_LayerMerge_Title_Tag_TagFrame.bat^
- "step_mole_target.aseprite"^
- step_mole_target.png
+ %aseprite_file_name%^
+ %png_file_name%
