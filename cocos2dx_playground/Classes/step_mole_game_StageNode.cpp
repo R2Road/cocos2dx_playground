@@ -222,23 +222,28 @@ namespace step_mole
 			mObjectComponentList[object_index]->ProcessStart( life_time );
 		}
 
-		void StageNode::RequestAttack( const int world_x, const int world_y )
+		bool StageNode::RequestAttack( const int world_x, const int world_y )
 		{
 			const auto temp = convertToNodeSpace( Vec2( world_x, world_y ) );
 			mBulletCollisionComponent->getOwner()->setPosition( temp );
 
-			bool contact_success = false;
+			bool total_collision_result = false;
+			bool single_collision_result = false;
 			for( std::size_t cur = 0; mCollisionComponentList.size() > cur; ++cur )
 			{
 				const auto c = mCollisionComponentList[cur];
 
-				auto temp_contact_success = mBulletCollisionComponent->Check( c );
-				if( temp_contact_success )
+				single_collision_result = mBulletCollisionComponent->Check( c );
+				if( single_collision_result )
 				{
-					c->onContact( temp_contact_success );
+					c->onContact( single_collision_result );
 					mObjectComponentList[cur]->ProcessDamage();
 				}
+
+				total_collision_result |= single_collision_result;
 			}
+
+			return total_collision_result;
 		}
 	} // namespace game
 } // namespace step_mole
