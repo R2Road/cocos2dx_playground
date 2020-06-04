@@ -208,6 +208,7 @@ namespace step_mole
 					break;
 				}
 
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 				mStageView->RequestAction( target_index, 2.f );
 			}
 		}
@@ -215,10 +216,12 @@ namespace step_mole
 		{
 			if( mStageView->RequestAttack( world_x, world_y ) )
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				CCLOG( "success" );
 			}
 			else // miss callback
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				CCLOG( "miss" );
 			}
 		}
