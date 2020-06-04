@@ -26,6 +26,10 @@ namespace step_mole
 			void onExit() override;
 
 		private:
+			void updateForSpawnProcessStart( const float dt );
+			void updateForSpawn( const float dt );
+			void attackProcess( const int world_x, const int world_y );
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
@@ -34,6 +38,8 @@ namespace step_mole
 
 			TargetManagerUp mTargetManager;
 			StageNode* mStageView;
+
+			int mCurrentSpawnTargetCount;
 		};
 	}
 }

@@ -14,6 +14,7 @@
 #include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
+#include "step_mole_game_HittingNode.h"
 #include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
 
@@ -45,6 +46,8 @@ namespace step_mole
 			
 			, mTargetManager()
 			, mStageView( nullptr )
+
+			, mCurrentSpawnTargetCount( 1 )
 		{}
 
 		Scene* PlayScene::create()
@@ -139,6 +142,29 @@ namespace step_mole
 				addChild( mStageView );
 			}
 
+			//
+			// Hitting Node
+			//
+			{
+				auto hitting_node = step_mole::game::HittingNode::create(
+					STAGE_CONFIG
+					, game::HittingNodeConfig{ false, false }
+					, std::bind( &PlayScene::attackProcess, this, std::placeholders::_1, std::placeholders::_2 )
+				);
+				hitting_node->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - hitting_node->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - hitting_node->getContentSize().height ) * 0.5f )
+				) );
+				addChild( hitting_node );
+			}
+
+			//
+			// Process Start
+			//
+			{
+				scheduleOnce( SEL_SCHEDULE( &PlayScene::updateForSpawnProcessStart ), 1.f );
+			}
+
 			return true;
 		}
 
@@ -163,6 +189,38 @@ namespace step_mole
 			mKeyboardListener = nullptr;
 
 			Node::onExit();
+		}
+
+
+		void PlayScene::updateForSpawnProcessStart( const float /*dt*/ )
+		{
+			CCLOG( "Start - PlayScene::updateForSpawn" );
+			schedule( SEL_SCHEDULE( &PlayScene::updateForSpawn ), 2.f );
+		}
+		void PlayScene::updateForSpawn( const float /*dt*/ )
+		{
+			int target_index = -1;
+			for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
+			{
+				target_index = mTargetManager->GetIdleTarget();
+				if( -1 == target_index )
+				{
+					break;
+				}
+
+				mStageView->RequestAction( target_index, 2.f );
+			}
+		}
+		void PlayScene::attackProcess( const int world_x, const int world_y )
+		{
+			if( mStageView->RequestAttack( world_x, world_y ) )
+			{
+				CCLOG( "success" );
+			}
+			else // miss callback
+			{
+				CCLOG( "miss" );
+			}
 		}
 
 
