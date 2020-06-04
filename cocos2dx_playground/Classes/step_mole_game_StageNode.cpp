@@ -166,7 +166,7 @@ namespace step_mole
 				}
 
 				// Collision Component
-				mBulletCollisionComponent = step_mole::CircleCollisionComponent::create( 16.f, Vec2::ZERO, { true, true, true } );
+				mBulletCollisionComponent = step_mole::CircleCollisionComponent::create( 8.f, Vec2::ZERO, { true, true, true } );
 				bullet_node->addComponent( mBulletCollisionComponent );
 			}
 
