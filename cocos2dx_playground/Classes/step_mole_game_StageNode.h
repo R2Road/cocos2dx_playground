@@ -48,6 +48,7 @@ namespace step_mole
 				, const int defalut_view_type
 				, const TargetProcessExitCallback& target_rest_callback
 				, const CircleCollisionComponentConfig& circle_collision_component_config
+				, const bool bShowPivot
 			);
 
 		public:

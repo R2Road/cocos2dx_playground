@@ -142,6 +142,7 @@ namespace step_mole
 							, dist( randomEngine )
 							, target_rest_callback
 							, circle_collision_component_config
+							, stage_view_config.bShowPivot
 						);
 						addChild( object_node, 1 );
 
@@ -179,6 +180,7 @@ namespace step_mole
 			, const int defalut_view_type
 			, const TargetProcessExitCallback& target_rest_callback
 			, const CircleCollisionComponentConfig& circle_collision_component_config
+			, const bool bShowPivot
 		)
 		{
 			auto object_node = Node::create();
@@ -186,6 +188,7 @@ namespace step_mole
 			object_node->setPosition( object_position );
 			{
 				// Pivot
+				if( bShowPivot )
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 					pivot->setScale( 2.f );
