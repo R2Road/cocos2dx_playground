@@ -30,12 +30,12 @@ namespace step_mole
 		StageNode* StageNode::create(
 			const StageConfig stage_config
 			, const TargetProcessExitCallback& target_rest_callback
-			, const StageNodeConfig stage_view_config
+			, const StageNodeConfig stage_node_config
 			, const CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
 			auto ret = new ( std::nothrow ) StageNode( stage_config );
-			if( !ret || !ret->init( target_rest_callback, stage_view_config, circle_collision_component_config ) )
+			if( !ret || !ret->init( target_rest_callback, stage_node_config, circle_collision_component_config ) )
 			{
 				delete ret;
 				ret = nullptr;
