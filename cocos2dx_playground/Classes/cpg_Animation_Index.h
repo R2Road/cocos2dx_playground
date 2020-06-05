@@ -12,6 +12,7 @@ namespace cpg
 			wakeup,
 			run,
 			idle,
+			attack_1,
 			win,
 
 			sleep,

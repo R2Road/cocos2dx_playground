@@ -102,7 +102,7 @@ namespace step_mole
 				effect_node->setVisible( false );
 				addChild( effect_node, 1 );
 
-				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() );
+				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetEffectInfoContainer() );
 				effect_node->addComponent( animation_component );
 
 				*cur = animation_component;
@@ -138,7 +138,7 @@ namespace step_mole
 			effect_animation_component->getOwner()->setPosition( this->convertToNodeSpace( button->getTouchBeganPosition() ) );
 			{
 				effect_animation_component->PlayAnimationWithCallback(
-					cpg::animation::eIndex::damaged_2
+					cpg::animation::eIndex::attack_1
 					, [effect_animation_component]()
 					{
 						effect_animation_component->getOwner()->setVisible( false );
