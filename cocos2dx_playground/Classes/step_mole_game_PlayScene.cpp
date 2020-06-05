@@ -24,7 +24,7 @@ USING_NS_CC;
 
 namespace
 {
-	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 6, Size( 40.f, 40.f ) };
+	const step_mole::game::StageConfig STAGE_CONFIG{ 7, 5, Size( 40.f, 40.f ) };
 
 	const std::size_t GetRandomObjectIndex()
 	{
