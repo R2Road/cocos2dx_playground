@@ -93,7 +93,7 @@ namespace step_mole
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
