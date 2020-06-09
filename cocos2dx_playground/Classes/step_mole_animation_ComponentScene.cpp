@@ -20,7 +20,10 @@
 
 USING_NS_CC;
 
-const int TAG_AnimationNode = 20140416;
+namespace
+{
+	const int TAG_AnimationNode = 20140416;
+}
 
 namespace step_mole
 {
@@ -95,7 +98,7 @@ namespace step_mole
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -110,7 +113,7 @@ namespace step_mole
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
 				) );
-				addChild( animation_node, 0 );
+				addChild( animation_node );
 
 
 				animation_node->addComponent( step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() ) );
