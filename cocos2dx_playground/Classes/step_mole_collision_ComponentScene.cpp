@@ -93,7 +93,7 @@ namespace step_mole
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -120,7 +120,7 @@ namespace step_mole
 				actor_root->setTag( TAG_Actor );
 				actor_root->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				{
 					// Pivot
@@ -166,7 +166,7 @@ namespace step_mole
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				);
-				const float negative_range = ( visibleSize.height - visibleOrigin.y ) * 0.3f;
+				const float negative_range = visibleSize.height * 0.3f;
 				const float position_margin = 10.f;
 
 				std::random_device rd;

@@ -30,12 +30,12 @@ namespace step_mole
 		StageNode* StageNode::create(
 			const StageConfig stage_config
 			, const TargetProcessExitCallback& target_rest_callback
-			, const StageNodeConfig stage_view_config
+			, const StageNodeConfig stage_node_config
 			, const CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
 			auto ret = new ( std::nothrow ) StageNode( stage_config );
-			if( !ret || !ret->init( target_rest_callback, stage_view_config, circle_collision_component_config ) )
+			if( !ret || !ret->init( target_rest_callback, stage_node_config, circle_collision_component_config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -142,6 +142,7 @@ namespace step_mole
 							, dist( randomEngine )
 							, target_rest_callback
 							, circle_collision_component_config
+							, stage_view_config.bShowPivot
 						);
 						addChild( object_node, 1 );
 
@@ -166,7 +167,7 @@ namespace step_mole
 				}
 
 				// Collision Component
-				mBulletCollisionComponent = step_mole::CircleCollisionComponent::create( 16.f, Vec2::ZERO, { true, true, true } );
+				mBulletCollisionComponent = step_mole::CircleCollisionComponent::create( 8.f, Vec2::ZERO, circle_collision_component_config );
 				bullet_node->addComponent( mBulletCollisionComponent );
 			}
 
@@ -179,6 +180,7 @@ namespace step_mole
 			, const int defalut_view_type
 			, const TargetProcessExitCallback& target_rest_callback
 			, const CircleCollisionComponentConfig& circle_collision_component_config
+			, const bool bShowPivot
 		)
 		{
 			auto object_node = Node::create();
@@ -186,6 +188,7 @@ namespace step_mole
 			object_node->setPosition( object_position );
 			{
 				// Pivot
+				if( bShowPivot )
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 					pivot->setScale( 2.f );

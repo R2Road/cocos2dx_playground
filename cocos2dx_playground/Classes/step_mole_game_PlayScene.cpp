@@ -14,6 +14,7 @@
 #include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
+#include "step_mole_game_HittingNode.h"
 #include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
 
@@ -23,16 +24,7 @@ USING_NS_CC;
 
 namespace
 {
-	const step_mole::game::StageConfig STAGE_CONFIG{ 8, 6, Size( 40.f, 40.f ) };
-
-	const std::size_t GetRandomObjectIndex()
-	{
-		static std::random_device rd;
-		static std::mt19937 randomEngine( rd() );
-		static std::uniform_int_distribution<> dist( 0, std::max( 0, ( STAGE_CONFIG.BlockCount_Vercital * STAGE_CONFIG.BlockCount_Horizontal ) - 1 ) );
-
-		return dist( randomEngine );
-	}
+	const step_mole::game::StageConfig STAGE_CONFIG{ 7, 5, Size( 40.f, 40.f ) };
 }
 
 namespace step_mole
@@ -45,6 +37,8 @@ namespace step_mole
 			
 			, mTargetManager()
 			, mStageView( nullptr )
+
+			, mCurrentSpawnTargetCount( 1 )
 		{}
 
 		Scene* PlayScene::create()
@@ -129,14 +123,37 @@ namespace step_mole
 				mStageView = step_mole::game::StageNode::create(
 					STAGE_CONFIG
 					, std::bind( &TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
-					, StageNodeConfig{ true, true }
-					, CircleCollisionComponentConfig{ true, true, true }
+					, StageNodeConfig{ false, false }
+					, CircleCollisionComponentConfig{ false, false, false }
 				);
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mStageView->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mStageView->getContentSize().height ) * 0.5f )
 				) );
 				addChild( mStageView );
+			}
+
+			//
+			// Hitting Node
+			//
+			{
+				auto hitting_node = step_mole::game::HittingNode::create(
+					{ STAGE_CONFIG.BlockCount_Horizontal + 1, STAGE_CONFIG.BlockCount_Vercital + 1, STAGE_CONFIG.BlockSize }
+					, game::HittingNodeConfig{ false, false }
+					, std::bind( &PlayScene::attackProcess, this, std::placeholders::_1, std::placeholders::_2 )
+				);
+				hitting_node->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - hitting_node->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - hitting_node->getContentSize().height ) * 0.5f )
+				) );
+				addChild( hitting_node );
+			}
+
+			//
+			// Process Start
+			//
+			{
+				scheduleOnce( SEL_SCHEDULE( &PlayScene::updateForSpawnProcessStart ), 1.f );
 			}
 
 			return true;
@@ -163,6 +180,41 @@ namespace step_mole
 			mKeyboardListener = nullptr;
 
 			Node::onExit();
+		}
+
+
+		void PlayScene::updateForSpawnProcessStart( const float /*dt*/ )
+		{
+			CCLOG( "Start - PlayScene::updateForSpawn" );
+			schedule( SEL_SCHEDULE( &PlayScene::updateForSpawn ), 2.f );
+		}
+		void PlayScene::updateForSpawn( const float /*dt*/ )
+		{
+			int target_index = -1;
+			for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
+			{
+				target_index = mTargetManager->GetIdleTarget();
+				if( -1 == target_index )
+				{
+					break;
+				}
+
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
+				mStageView->RequestAction( target_index, 2.f );
+			}
+		}
+		void PlayScene::attackProcess( const int world_x, const int world_y )
+		{
+			if( mStageView->RequestAttack( world_x, world_y ) )
+			{
+				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
+				CCLOG( "success" );
+			}
+			else // miss callback
+			{
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
+				CCLOG( "miss" );
+			}
 		}
 
 
