@@ -188,31 +188,59 @@ namespace step_mole
 				const auto spawn_func = std::bind( &PlayScene::doSpawn, this, std::placeholders::_1 );
 
 				mProcessActionContainer = {
-					  ProcessAction( 0,		0,		3.f,	2,		delay_func )	// X. delay 1
-					, ProcessAction( 3,		1,		3.f,	4,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 3.0 - repeat 4
-					, ProcessAction( 0,		0,		3.f,	2,		delay_func )	// X. delay 3
-					, ProcessAction( 3,		1,		0.5f,	2,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 0.5 - repeat 2
-					, ProcessAction( 0,		0,		3.f,	2,		delay_func )	// X. delay 3
-					, ProcessAction( 3,		1,		0.5f,	2,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 0.5 - repeat 2
-					, ProcessAction( 0,		0,		2.f,	2,		delay_func )	// X. delay 2
-					, ProcessAction( 3,		1,		0.5f,	2,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 0.5 - repeat 2
-					, ProcessAction( 0,		0,		1.f,	2,		delay_func )	// X. delay 1
-					, ProcessAction( 3,		1,		0.5f,	4,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 0.5 - repeat 4
-					, ProcessAction( 0,		0,		3.f,	2,		delay_func )	// X. delay 3
-					, ProcessAction( 2.5f,	1,		1.f,	4,		spawn_func )	// O. life time : 2.5, spawn : 1, delay : 1.0 - repeat 4
-					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
-					, ProcessAction( 2.5f,	3,		0.f,	1,		spawn_func )	// O. life time : 2.5, spawn : 3, delay : 0.0 - repeat 1
-					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
-					, ProcessAction( 2.5f,	3,		0.f,	1,		spawn_func )	// O. life time : 2.5, spawn : 3, delay : 0.0 - repeat 1
-					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
-					, ProcessAction( 2.5f,	1,		0.5f,	4,		spawn_func )	// O. life time : 2.5, spawn : 1, delay : 0.5 - repeat 4
-					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
-					, ProcessAction( 3.0f,	6,		0.f,	1,		spawn_func )	// O. life time : 3.0, spawn : 6, delay : 0.0 - repeat 1
-					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
-					, ProcessAction( 3.0f,	6,		0.f,	1,		spawn_func )	// O. life time : 3.0, spawn : 6, delay : 0.0 - repeat 1
-					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
-					, ProcessAction( 2.0f,	1,		1.0f,	8,		spawn_func )	// O. life time : 2.0, spawn : 1, delay : 1.0 - repeat 8
-					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
+					  ProcessAction( 0,		0,		3.f,	2,		delay_func )
+					, ProcessAction( 3,		1,		3.f,	3,		spawn_func )
+					, ProcessAction( 0,		0,		3.f,	2,		delay_func )
+					, ProcessAction( 3,		1,		0.5f,	2,		spawn_func )
+					, ProcessAction( 0,		0,		3.f,	2,		delay_func )
+					, ProcessAction( 3,		1,		0.5f,	3,		spawn_func )
+					, ProcessAction( 0,		0,		2.f,	2,		delay_func )
+					, ProcessAction( 3,		1,		0.5f,	2,		spawn_func )
+					, ProcessAction( 0,		0,		1.f,	2,		delay_func )
+					, ProcessAction( 3,		1,		0.5f,	4,		spawn_func )
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )
+					, ProcessAction( 2.5f,	1,		0.7f,	4,		spawn_func )
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )
+					, ProcessAction( 2.5f,	3,		0.f,	1,		spawn_func )
+					, ProcessAction( 0,		0,		1.f,	2,		delay_func )
+					, ProcessAction( 2.5f,	4,		0.f,	1,		spawn_func )
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )
+					, ProcessAction( 2.5f,	1,		0.5f,	5,		spawn_func )
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )
+					, ProcessAction( 3.0f,	6,		0.f,	1,		spawn_func )
+					, ProcessAction( 0,		0,		2.f,	2,		delay_func )
+					, ProcessAction( 3.0f,	7,		0.f,	1,		spawn_func )
+					, ProcessAction( 0,		0,		2.f,	2,		delay_func )
+					, ProcessAction( 2.5f,	1,		0.7f,	8,		spawn_func )
+					, ProcessAction( 0,		0,		1.f,	2,		delay_func )
+					, ProcessAction( 3.0f,	1,		0.1f,	6,		spawn_func )
+					, ProcessAction( 0,		0,		2.f,	2,		delay_func )
+					, ProcessAction( 2.5f,	1,		0.5f,	8,		spawn_func )
+					, ProcessAction( 0,		0,		2.f,	2,		delay_func )
+					, ProcessAction( 2.5f,	5,		0.f,	1,		spawn_func )
+					, ProcessAction( 0,		0,		2.f,	2,		delay_func )
+					, ProcessAction( 2.5f,	6,		0.f,	1,		spawn_func )
+					, ProcessAction( 0,		0,		1.5f,	2,		delay_func )
+					, ProcessAction( 2.5f,	2,		0.5f,	8,		spawn_func )
+					, ProcessAction( 0,		0,		2.f,	2,		delay_func )
+					, ProcessAction( 2.5f,	1,		0.2f,	4,		spawn_func )
+					, ProcessAction( 0,		0,		1.5f,	2,		delay_func )
+					, ProcessAction( 2.5f,	1,		0.3f,	8,		spawn_func )
+					, ProcessAction( 0,		0,		1.5f,	2,		delay_func )
+					, ProcessAction( 2.5f,	5,		0.f,	1,		spawn_func )
+					, ProcessAction( 0,		0,		1.f,	2,		delay_func )
+					, ProcessAction( 2.5f,	3,		0.5f,	4,		spawn_func )
+					, ProcessAction( 0,		0,		1.5f,	2,		delay_func )
+					, ProcessAction( 2.5f,	1,		0.2f,	8,		spawn_func )
+					, ProcessAction( 0,		0,		1.0f,	2,		delay_func )
+					, ProcessAction( 2.5f,	3,		0.2f,	5,		spawn_func )
+					, ProcessAction( 0,		0,		1.0f,	2,		delay_func )
+					, ProcessAction( 2.5f,	1,		0.1f,	14,		spawn_func )
+					, ProcessAction( 0,		0,		0.5f,	2,		delay_func )
+					, ProcessAction( 2.5f,	6,		0.1f,	3,		spawn_func )
+					, ProcessAction( 0,		0,		3.5f,	2,		delay_func )
+					, ProcessAction( 3.5f,	35,		0.f,	1,		spawn_func )
+					, ProcessAction( 0,		0,		0.5f,	2,		delay_func )
 				};
 
 				mProcessActionIndicator = mProcessActionContainer.begin();
