@@ -81,7 +81,7 @@ namespace step_clickclick
 			//
 			{
 				std::stringstream ss;
-				ss << "[ESC] : Return to Root";
+				ss << "[ESC] : Return to Title";
 				ss << std::endl;
 				ss << "[Mouse] : Click";
 

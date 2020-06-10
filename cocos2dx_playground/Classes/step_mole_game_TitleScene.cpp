@@ -15,6 +15,7 @@
 
 #include "step_mole_RootScene.h"
 #include "step_mole_game_PlayScene.h"
+#include "step_mole_game_ResultScene.h"
 
 USING_NS_CC;
 
@@ -57,6 +58,8 @@ namespace step_mole
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << "[F1] : Result Scene Test";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
 				label->setColor( Color3B::WHITE );
@@ -169,6 +172,12 @@ namespace step_mole
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
 				Director::getInstance()->replaceScene( step_mole::game::PlayScene::create() );
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
+			{
+				Director::getInstance()->replaceScene( step_mole::game::ResultScene::create( -10000000 ) );
 				return;
 			}
 		}

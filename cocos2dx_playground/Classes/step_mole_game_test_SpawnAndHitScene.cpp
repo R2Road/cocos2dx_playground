@@ -95,7 +95,7 @@ namespace step_mole
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -144,7 +144,7 @@ namespace step_mole
 			//
 			{
 				auto hitting_node = step_mole::game::HittingNode::create(
-					STAGE_CONFIG
+					{ STAGE_CONFIG.BlockCount_Horizontal + 1, STAGE_CONFIG.BlockCount_Vercital + 1, STAGE_CONFIG.BlockSize }
 					, game::HittingNodeConfig{ false, false }
 					, std::bind( &SpawnAndHitScene::attackProcess, this, std::placeholders::_1, std::placeholders::_2 )
 				);
@@ -204,7 +204,7 @@ namespace step_mole
 		}
 		void SpawnAndHitScene::attackProcess( const int world_x, const int world_y )
 		{
-			if( mStageNode->RequestAttack( world_x, world_y ) )
+			if( 0 < mStageNode->RequestAttack( world_x, world_y ) )
 			{
 				CCLOG( "success" );
 			}

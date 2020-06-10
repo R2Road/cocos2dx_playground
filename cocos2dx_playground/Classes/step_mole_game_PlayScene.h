@@ -1,6 +1,8 @@
 #pragma once
 
+#include <functional>
 #include <memory>
+#include <vector>
 
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
@@ -12,9 +14,35 @@ namespace step_mole
 		using TargetManagerUp = std::unique_ptr<class TargetManager>;
 		class StageNode;
 
+		class ProcessAction
+		{
+		public:
+			using ActionFunc = std::function<void(float, int)>;
+
+			ProcessAction( const float life_time, const int spawn_count, const float delay_time, const int repeat_count, const ActionFunc& action_func );
+			ProcessAction( const float delay_time, const ActionFunc& action_func );
+
+			bool Update( float dt );
+
+		private:
+			float mLifeTime;
+
+			int mRepeatLimit;
+			int mCurrentRepeatCount;
+
+			int mSpawnCount;
+
+			float mDelayTime;
+			float mElapsedTime;
+
+			ActionFunc mActionFunc;
+		};
+
 		class PlayScene : public cocos2d::Scene
 		{
 		private:
+			using ProcessActionContainerT = std::vector<ProcessAction>;
+
 			PlayScene();
 
 		public:
@@ -24,11 +52,13 @@ namespace step_mole
 			bool init() override;
 			void onEnter() override;
 			void onExit() override;
+			void update( float dt ) override;
 
 		private:
-			void updateForSpawnProcessStart( const float dt );
-			void updateForSpawn( const float dt );
+			void doSpawn( const float life_time, const int spawn_count );
 			void attackProcess( const int world_x, const int world_y );
+
+			void updateScoreView();
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
@@ -40,6 +70,11 @@ namespace step_mole
 			StageNode* mStageView;
 
 			int mCurrentSpawnTargetCount;
+
+			ProcessActionContainerT mProcessActionContainer;
+			ProcessActionContainerT::iterator mProcessActionIndicator;
+
+			int mScore;
 		};
 	}
 }
