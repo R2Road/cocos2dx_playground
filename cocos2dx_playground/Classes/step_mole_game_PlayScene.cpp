@@ -20,6 +20,7 @@
 #include "step_mole_game_TargetManager.h"
 
 #include "step_mole_game_TitleScene.h"
+#include "step_mole_game_ResultScene.h"
 
 USING_NS_CC;
 
@@ -218,6 +219,7 @@ namespace step_mole
 			{
 				const auto delay_func = []( int ) {};
 				const auto spawn_func = std::bind( &PlayScene::doSpawn, this, std::placeholders::_1 );
+				const auto go_result_func = [this]( int ) { Director::getInstance()->replaceScene( step_mole::game::ResultScene::create( mScore ) ); };
 
 				mProcessActionContainer = {
 					  ProcessAction( 3.f,	delay_func )
@@ -272,7 +274,7 @@ namespace step_mole
 					, ProcessAction( 2.5f,	6,		0.1f,	3,		spawn_func )
 					, ProcessAction( 3.5f,	delay_func )
 					, ProcessAction( 3.5f,	35,		0.f,	1,		spawn_func )
-					, ProcessAction( 4.f,	delay_func )
+					, ProcessAction( 4.f,	go_result_func )
 				};
 
 				mProcessActionIndicator = mProcessActionContainer.begin();
