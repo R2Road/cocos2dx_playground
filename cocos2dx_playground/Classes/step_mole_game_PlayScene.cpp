@@ -336,12 +336,13 @@ namespace step_mole
 		}
 		void PlayScene::attackProcess( const int world_x, const int world_y )
 		{
-			if( mStageView->RequestAttack( world_x, world_y ) )
+			const auto attack_result = mStageView->RequestAttack( world_x, world_y );
+			if( 0 < attack_result )
 			{
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				CCLOG( "success" );
 
-				mScore += 100;
+				mScore += ( attack_result * 100 );
 				updateScoreView();
 			}
 			else // miss callback

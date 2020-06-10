@@ -225,12 +225,12 @@ namespace step_mole
 			mObjectComponentList[object_index]->ProcessStart( life_time );
 		}
 
-		bool StageNode::RequestAttack( const int world_x, const int world_y )
+		int StageNode::RequestAttack( const int world_x, const int world_y )
 		{
 			const auto temp = convertToNodeSpace( Vec2( world_x, world_y ) );
 			mBulletCollisionComponent->getOwner()->setPosition( temp );
 
-			bool total_collision_result = false;
+			int total_collision_result = 0;
 			bool single_collision_result = false;
 			for( std::size_t cur = 0; mCollisionComponentList.size() > cur; ++cur )
 			{
@@ -241,9 +241,9 @@ namespace step_mole
 				{
 					c->onContact( single_collision_result );
 					mObjectComponentList[cur]->ProcessDamage();
-				}
 
-				total_collision_result |= single_collision_result;
+					++total_collision_result;
+				}
 			}
 
 			return total_collision_result;
