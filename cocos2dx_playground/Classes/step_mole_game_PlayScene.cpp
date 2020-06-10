@@ -269,9 +269,10 @@ namespace step_mole
 					break;
 				}
 
-				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 				mStageView->RequestAction( target_index, 2.f );
 			}
+
+			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 		}
 		void PlayScene::attackProcess( const int world_x, const int world_y )
 		{
