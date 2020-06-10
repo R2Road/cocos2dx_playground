@@ -20,6 +20,7 @@ namespace step_mole
 			using ActionFunc = std::function<void(int)>;
 
 			ProcessAction( const float life_time, const int spawn_count, const float delay_time, const int repeat_count, const ActionFunc& action_func );
+			ProcessAction( const float delay_time, const ActionFunc& action_func );
 
 			bool Update( float dt );
 
