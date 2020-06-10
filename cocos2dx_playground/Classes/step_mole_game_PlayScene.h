@@ -17,7 +17,7 @@ namespace step_mole
 		class ProcessAction
 		{
 		public:
-			using ActionFunc = std::function<void(int)>;
+			using ActionFunc = std::function<void(float, int)>;
 
 			ProcessAction( const float life_time, const int spawn_count, const float delay_time, const int repeat_count, const ActionFunc& action_func );
 			ProcessAction( const float delay_time, const ActionFunc& action_func );
@@ -55,7 +55,7 @@ namespace step_mole
 			void update( float dt ) override;
 
 		private:
-			void doSpawn( const int spawn_count );
+			void doSpawn( const float life_time, const int spawn_count );
 			void attackProcess( const int world_x, const int world_y );
 
 			void updateScoreView();

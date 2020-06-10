@@ -63,7 +63,7 @@ namespace step_mole
 				mElapsedTime = 0.f;
 				++mCurrentRepeatCount;
 
-				mActionFunc( mSpawnCount );
+				mActionFunc( mLifeTime, mSpawnCount );
 
 				return mRepeatLimit > mCurrentRepeatCount;
 			}
@@ -217,9 +217,9 @@ namespace step_mole
 			// Process
 			//
 			{
-				const auto delay_func = []( int ) {};
-				const auto spawn_func = std::bind( &PlayScene::doSpawn, this, std::placeholders::_1 );
-				const auto go_result_func = [this]( int ) { Director::getInstance()->replaceScene( step_mole::game::ResultScene::create( mScore ) ); };
+				const auto delay_func = []( float, int ) {};
+				const auto spawn_func = std::bind( &PlayScene::doSpawn, this, std::placeholders::_1, std::placeholders::_2 );
+				const auto go_result_func = [this]( float, int ) { Director::getInstance()->replaceScene( step_mole::game::ResultScene::create( mScore ) ); };
 
 				mProcessActionContainer = {
 					  ProcessAction( 3.f,	delay_func )
@@ -272,9 +272,9 @@ namespace step_mole
 					, ProcessAction( 2.5f,	1,		0.1f,	14,		spawn_func )
 					, ProcessAction( 0.5f,	delay_func )
 					, ProcessAction( 2.5f,	6,		0.1f,	3,		spawn_func )
-					, ProcessAction( 3.5f,	delay_func )
+					, ProcessAction( 4.5f,	delay_func )
 					, ProcessAction( 3.5f,	35,		0.f,	1,		spawn_func )
-					, ProcessAction( 4.f,	go_result_func )
+					, ProcessAction( 4.5f,	go_result_func )
 				};
 
 				mProcessActionIndicator = mProcessActionContainer.begin();
@@ -320,7 +320,7 @@ namespace step_mole
 		}
 
 
-		void PlayScene::doSpawn( const int spawn_count )
+		void PlayScene::doSpawn( const float life_time, const int spawn_count )
 		{
 			int target_index = -1;
 			for( int i = 0; i < spawn_count; ++i )
@@ -331,7 +331,7 @@ namespace step_mole
 					break;
 				}
 
-				mStageView->RequestAction( target_index, 2.f );
+				mStageView->RequestAction( target_index, life_time );
 			}
 
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
