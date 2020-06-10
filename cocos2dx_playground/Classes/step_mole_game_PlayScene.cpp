@@ -274,7 +274,7 @@ namespace step_mole
 					, ProcessAction( 2.5f,	6,		0.1f,	3,		spawn_func )
 					, ProcessAction( 4.5f,	delay_func )
 					, ProcessAction( 3.5f,	35,		0.f,	1,		spawn_func )
-					, ProcessAction( 4.5f,	go_result_func )
+					, ProcessAction( 5.5f,	go_result_func )
 				};
 
 				mProcessActionIndicator = mProcessActionContainer.begin();
