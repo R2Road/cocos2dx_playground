@@ -31,6 +31,33 @@ namespace step_mole
 {
 	namespace game
 	{
+		ProcessAction::ProcessAction( const float life_time, const int spawn_count, const float delay_time, const int repeat_count, const ActionFunc& action_func ) :
+			mLifeTime( life_time )
+			, mSpawnCount( spawn_count )
+			, mDelayTime( delay_time )
+			, mElapsedTime( delay_time )
+			, mRepeatLimit( repeat_count )
+			, mCurrentRepeatCount( 0 )
+			, mActionFunc( action_func )
+		{}
+
+		bool ProcessAction::Update( float dt )
+		{
+			mElapsedTime += dt;
+			if( mDelayTime <= mElapsedTime )
+			{
+				mElapsedTime = 0.f;
+				++mCurrentRepeatCount;
+
+				mActionFunc( mSpawnCount );
+
+				return mRepeatLimit > mCurrentRepeatCount;
+			}
+
+			return true;
+		}
+
+
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
 			, mAudioID_forBGM( -1 )
@@ -39,6 +66,9 @@ namespace step_mole
 			, mStageView( nullptr )
 
 			, mCurrentSpawnTargetCount( 1 )
+
+			, mProcessActionContainer()
+			, mProcessActionIndicator()
 		{}
 
 		Scene* PlayScene::create()
@@ -52,6 +82,7 @@ namespace step_mole
 			}
 			else
 			{
+				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -150,10 +181,41 @@ namespace step_mole
 			}
 
 			//
-			// Process Start
+			// Process
 			//
 			{
-				scheduleOnce( SEL_SCHEDULE( &PlayScene::updateForSpawnProcessStart ), 1.f );
+				const auto delay_func = []( int ) {};
+				const auto spawn_func = std::bind( &PlayScene::doSpawn, this, std::placeholders::_1 );
+
+				mProcessActionContainer = {
+					  ProcessAction( 0,		0,		3.f,	2,		delay_func )	// X. delay 1
+					, ProcessAction( 3,		1,		3.f,	4,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 3.0 - repeat 4
+					, ProcessAction( 0,		0,		3.f,	2,		delay_func )	// X. delay 3
+					, ProcessAction( 3,		1,		0.5f,	2,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 0.5 - repeat 2
+					, ProcessAction( 0,		0,		3.f,	2,		delay_func )	// X. delay 3
+					, ProcessAction( 3,		1,		0.5f,	2,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 0.5 - repeat 2
+					, ProcessAction( 0,		0,		2.f,	2,		delay_func )	// X. delay 2
+					, ProcessAction( 3,		1,		0.5f,	2,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 0.5 - repeat 2
+					, ProcessAction( 0,		0,		1.f,	2,		delay_func )	// X. delay 1
+					, ProcessAction( 3,		1,		0.5f,	4,		spawn_func )	// O. life time : 3.0, spawn : 1, delay : 0.5 - repeat 4
+					, ProcessAction( 0,		0,		3.f,	2,		delay_func )	// X. delay 3
+					, ProcessAction( 2.5f,	1,		1.f,	4,		spawn_func )	// O. life time : 2.5, spawn : 1, delay : 1.0 - repeat 4
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
+					, ProcessAction( 2.5f,	3,		0.f,	1,		spawn_func )	// O. life time : 2.5, spawn : 3, delay : 0.0 - repeat 1
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
+					, ProcessAction( 2.5f,	3,		0.f,	1,		spawn_func )	// O. life time : 2.5, spawn : 3, delay : 0.0 - repeat 1
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
+					, ProcessAction( 2.5f,	1,		0.5f,	4,		spawn_func )	// O. life time : 2.5, spawn : 1, delay : 0.5 - repeat 4
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
+					, ProcessAction( 3.0f,	6,		0.f,	1,		spawn_func )	// O. life time : 3.0, spawn : 6, delay : 0.0 - repeat 1
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
+					, ProcessAction( 3.0f,	6,		0.f,	1,		spawn_func )	// O. life time : 3.0, spawn : 6, delay : 0.0 - repeat 1
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
+					, ProcessAction( 2.0f,	1,		1.0f,	8,		spawn_func )	// O. life time : 2.0, spawn : 1, delay : 1.0 - repeat 8
+					, ProcessAction( 0,		0,		2.5f,	2,		delay_func )	// X. delay 2.5
+				};
+
+				mProcessActionIndicator = mProcessActionContainer.begin();
 			}
 
 			return true;
@@ -183,15 +245,23 @@ namespace step_mole
 		}
 
 
-		void PlayScene::updateForSpawnProcessStart( const float /*dt*/ )
+		void PlayScene::update( float dt )
 		{
-			CCLOG( "Start - PlayScene::updateForSpawn" );
-			schedule( SEL_SCHEDULE( &PlayScene::updateForSpawn ), 2.f );
+			if( mProcessActionContainer.end() != mProcessActionIndicator )
+			{
+				if( !mProcessActionIndicator->Update( dt ) )
+				{
+					++mProcessActionIndicator;
+				}
+			}
+			Scene::update( dt );
 		}
-		void PlayScene::updateForSpawn( const float /*dt*/ )
+
+
+		void PlayScene::doSpawn( const int spawn_count )
 		{
 			int target_index = -1;
-			for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
+			for( int i = 0; i < spawn_count; ++i )
 			{
 				target_index = mTargetManager->GetIdleTarget();
 				if( -1 == target_index )
