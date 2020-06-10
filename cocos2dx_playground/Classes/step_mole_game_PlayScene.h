@@ -58,6 +58,8 @@ namespace step_mole
 			void doSpawn( const int spawn_count );
 			void attackProcess( const int world_x, const int world_y );
 
+			void updateScoreView();
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
@@ -71,6 +73,8 @@ namespace step_mole
 
 			ProcessActionContainerT mProcessActionContainer;
 			ProcessActionContainerT::iterator mProcessActionIndicator;
+
+			int mScore;
 		};
 	}
 }

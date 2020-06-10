@@ -11,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 #include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
@@ -25,6 +26,8 @@ USING_NS_CC;
 namespace
 {
 	const step_mole::game::StageConfig STAGE_CONFIG{ 7, 5, Size( 40.f, 40.f ) };
+
+	const int TAG_ScoreView = 20140416;
 }
 
 namespace step_mole
@@ -79,6 +82,8 @@ namespace step_mole
 
 			, mProcessActionContainer()
 			, mProcessActionIndicator()
+
+			, mScore( 0 )
 		{}
 
 		Scene* PlayScene::create()
@@ -148,6 +153,23 @@ namespace step_mole
 			{
 				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
 				addChild( background_layer, -1 );
+			}
+
+			//
+			// Score View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				label->setTag( TAG_ScoreView );
+				label->setColor( Color3B::RED );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width * 0.5f
+					, visibleOrigin.y + visibleSize.height - 10.f
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateScoreView();
 			}
 
 			//
@@ -318,12 +340,25 @@ namespace step_mole
 			{
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				CCLOG( "success" );
+
+				mScore += 100;
+				updateScoreView();
 			}
 			else // miss callback
 			{
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				CCLOG( "miss" );
+
+				mScore -= 20;
+				updateScoreView();
 			}
+		}
+
+
+		void PlayScene::updateScoreView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
+			label->setString( StringUtils::format( "Score : %4d", mScore ) );
 		}
 
 
