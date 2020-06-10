@@ -152,7 +152,7 @@ namespace step_mole
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -209,7 +209,7 @@ namespace step_mole
 					visibleOrigin.x + ( ( visibleSize.width - hitting_node->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - hitting_node->getContentSize().height ) * 0.5f )
 				) );
-				addChild( hitting_node );
+				addChild( hitting_node, 1 );
 			}
 
 			//
