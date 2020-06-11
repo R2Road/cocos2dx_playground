@@ -74,14 +74,14 @@ namespace step_typetype
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Increase Stage Size And Reset";
+				ss << "[Arrow Up] : Increase Stage Size And Reset";
 				ss << std::endl;
-				ss << "[2] : Decrease Stage Size And Reset";
+				ss << "[Arrow Down] : Decrease Stage Size And Reset";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[P] : Auto Play Once : Success";
+				ss << "[A] : Auto Play Once : Success";
 				ss << std::endl;
-				ss << "[O] : Auto Play Once : Failed";
+				ss << "[S] : Auto Play Once : Failed";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[R] : Stage Reset";
@@ -170,7 +170,7 @@ namespace step_typetype
 				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
 				return;
 
-			case EventKeyboard::KeyCode::KEY_1: // increase stage size + reset
+			case EventKeyboard::KeyCode::KEY_UP_ARROW: // increase stage size + reset
 				{
 					++mCurrentStageLength;
 					updateStageLengthView();
@@ -179,7 +179,7 @@ namespace step_typetype
 					mStageView->Reset( mStage );
 				}
 				break;
-			case EventKeyboard::KeyCode::KEY_2: // decrease stage size + reset
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW: // decrease stage size + reset
 				{
 					mCurrentStageLength = (
 						mCurrentStageLength > 0
@@ -200,18 +200,7 @@ namespace step_typetype
 				}
 				break;
 
-			case EventKeyboard::KeyCode::KEY_O: // auto play once : failed
-				if( !mStage.IsStageClear() )
-				{
-					const auto target_letter_pos = mStage.GetIndicator_Current();
-					const auto target_letter = mStage.GetLetter( target_letter_pos ) + 1;
-					mStage.RequestLetterDie( target_letter );
-
-					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
-					return;
-				}
-				break;
-			case EventKeyboard::KeyCode::KEY_P: // auto play once : success
+			case EventKeyboard::KeyCode::KEY_A: // auto play once : success
 				if( !mStage.IsStageClear() )
 				{
 					const auto target_letter_pos = mStage.GetIndicator_Current();
@@ -221,6 +210,17 @@ namespace step_typetype
 					mStageView->RequestLetterDie( target_letter_pos );
 
 					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
+					return;
+				}
+				break;
+			case EventKeyboard::KeyCode::KEY_S: // auto play once : failed
+				if( !mStage.IsStageClear() )
+				{
+					const auto target_letter_pos = mStage.GetIndicator_Current();
+					const auto target_letter = mStage.GetLetter( target_letter_pos ) + 1;
+					mStage.RequestLetterDie( target_letter );
+
+					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 					return;
 				}
 				break;
