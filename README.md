@@ -45,8 +45,8 @@
   - typetype
   - clickclick
   - path finder
-  - mole( in progress )
-  - rain of chaos( to do )
+  - mole
+  - rain of chaos( in progress )
   - defender( to do )
   
 - ui practice
