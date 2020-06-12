@@ -80,7 +80,7 @@ namespace
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 100, 100, 100, 150 ), getContentSize().width, getContentSize().height );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//

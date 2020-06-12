@@ -99,7 +99,7 @@ namespace input_practice
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 30,76, 59, 255 ) );
-			addChild( background_layer, -1 );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
 		//

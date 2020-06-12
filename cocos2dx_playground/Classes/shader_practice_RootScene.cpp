@@ -1,6 +1,7 @@
 #include "shader_practice_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCLabel.h"
@@ -68,7 +69,7 @@ namespace shader_practice
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 51, 25, 73, 255 ) );
-			ret->addChild( background_layer, -1 );
+			ret->addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
 		return ret;

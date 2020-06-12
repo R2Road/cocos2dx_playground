@@ -1,6 +1,7 @@
 #include "graph_practice_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCLabel.h"
@@ -82,7 +83,7 @@ namespace graph_practice
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 23, 33, 61, 255 ) );
-			ret->addChild( background_layer, -1 );
+			ret->addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
 		return ret;

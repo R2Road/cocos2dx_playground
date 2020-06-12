@@ -1,6 +1,7 @@
 #include "input_practice_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCLabel.h"
@@ -63,7 +64,7 @@ namespace input_practice
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 44, 112, 87, 255 ) );
-			ret->addChild( background_layer, -1 );
+			ret->addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
 		return ret;
@@ -104,4 +105,4 @@ namespace input_practice
 			CCLOG( "Key Code : %d", keycode );
 		}
 	}
-} // namespace step01
+} // namespace input_practice
