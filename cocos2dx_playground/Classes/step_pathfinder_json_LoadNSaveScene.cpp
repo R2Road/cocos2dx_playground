@@ -88,7 +88,7 @@ namespace step_pathfinder
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//

@@ -9,7 +9,10 @@
 
 USING_NS_CC;
 
-const int TAG_Indicator = 20140416;
+namespace
+{
+	const int TAG_Indicator = 20140416;
+}
 
 namespace step_pathfinder
 {
@@ -101,7 +104,7 @@ namespace step_pathfinder
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 58, 0, 61, 255 ), getContentSize().width, getContentSize().height );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
