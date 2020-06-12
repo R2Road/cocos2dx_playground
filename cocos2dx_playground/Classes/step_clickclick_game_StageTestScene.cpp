@@ -84,9 +84,9 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Increase Stage Size And Reset";
+				ss << "[Arrow Up] : Increase Stage Size And Reset";
 				ss << std::endl;
-				ss << "[2] : Decrease Stage Size And Reset";
+				ss << "[Arrow Down] : Decrease Stage Size And Reset";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Mouse] : Click : Play";
@@ -209,7 +209,7 @@ namespace step_clickclick
 				Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
 				return;
 
-			case EventKeyboard::KeyCode::KEY_1: // Increase
+			case EventKeyboard::KeyCode::KEY_UP_ARROW: // Increase
 				mCurrentStageWidth = (
 					MAX_STAGE_WIDTH >= mCurrentStageWidth + 2
 					? mCurrentStageWidth + 2
@@ -228,7 +228,7 @@ namespace step_clickclick
 				updateScoreView();
 				break;
 
-			case EventKeyboard::KeyCode::KEY_2: // Decrease
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW: // Decrease
 				mCurrentStageWidth = (
 					3 <= mCurrentStageWidth - 2
 					? mCurrentStageWidth - 2
