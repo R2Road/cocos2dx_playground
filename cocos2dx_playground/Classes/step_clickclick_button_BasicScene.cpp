@@ -80,7 +80,7 @@ namespace step_clickclick
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 0, 41, 13, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -95,7 +95,7 @@ namespace step_clickclick
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.7f )
 				) );
-				addChild( label, 2 );
+				addChild( label );
 			}
 
 			//
@@ -110,7 +110,7 @@ namespace step_clickclick
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.6f )
 				) );
-				addChild( label, 2 );
+				addChild( label );
 			}
 
 			//
@@ -125,13 +125,13 @@ namespace step_clickclick
 					, visibleOrigin.y + ( visibleSize.height * 0.3f )
 				) );
 				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
-				addChild( button, 0 );
+				addChild( button );
 
 				auto label = Label::createWithTTF( "Click Here ===>>>", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f, 0.f ) );
-				addChild( label, 1 );
+				addChild( label );
 
 				onButton( button, cocos2d::ui::Widget::TouchEventType::ENDED );
 			}

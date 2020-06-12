@@ -85,7 +85,7 @@ namespace step_clickclick
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
-			ret->addChild( background_layer, -1 );
+			ret->addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
 		return ret;

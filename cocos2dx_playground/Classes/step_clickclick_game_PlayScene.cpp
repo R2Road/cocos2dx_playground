@@ -100,7 +100,7 @@ namespace step_clickclick
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B::BLACK );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -174,9 +174,7 @@ namespace step_clickclick
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.6f
 				) );
-				addChild( label, 1 );
-
-				updateScoreView();
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -190,7 +188,7 @@ namespace step_clickclick
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.4f
 				) );
-				addChild( label, 1 );
+				addChild( label, std::numeric_limits<int>::max() );
 
 				updateCountView( mNextStepData.LimitTime_forCount );
 			}

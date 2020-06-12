@@ -100,7 +100,7 @@ namespace step_clickclick
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 0, 50, 20, 255 ) );
-				addChild( background_layer, -1 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -115,7 +115,7 @@ namespace step_clickclick
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
 				) );
-				addChild( animation_node, 0 );
+				addChild( animation_node );
 			}
 
 			//
