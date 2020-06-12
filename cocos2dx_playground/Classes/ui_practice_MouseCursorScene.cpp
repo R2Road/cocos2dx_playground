@@ -73,7 +73,7 @@ namespace ui_practice
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 50, 75, 112, 255 ) );
-			addChild( background_layer, -1 );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
 		return true;
