@@ -41,11 +41,11 @@
   
   
 ## 목차 | Contents
-- step
-  - typetype
+- [step](https://github.com/R2Road/cocos2dx_playground/wiki)
+  - [typetype](https://github.com/R2Road/cocos2dx_playground/wiki/TypeType)
   - clickclick
   - path finder
-  - mole
+  - [mole](https://github.com/R2Road/cocos2dx_playground/wiki/Step-:-Mole)
   - rain of chaos( in progress )
   - defender( to do )
   
@@ -59,11 +59,11 @@
   - Minimap
   - Slider
 
-- shader practice
+- [shader practice](https://github.com/R2Road/cocos2dx_playground/wiki/Shader-Practice)
   - Basic
   - GL Uniform List
   - Simple Test
 
-- graph practice
+- [graph practice](https://github.com/R2Road/cocos2dx_playground/wiki/Graph-Practice)
   - Basic
   - Collection 01 - 06
