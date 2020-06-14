@@ -4,6 +4,7 @@
 
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
 
 #include "step_pathfinder_game_TerrainData.h"
 
@@ -23,7 +24,7 @@ namespace step_pathfinder
 		TerrainViewer* TerrainViewer::create( const int width, const int height )
 		{
 			const auto& tile_data = TileType2TileData( eTileType::road );
-			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
+			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size * Director::getInstance()->getContentScaleFactor();
 			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 
 			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, pivot_position );
@@ -71,6 +72,7 @@ namespace step_pathfinder
 
 			auto tile_node = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
 			tile_node->setTag( linear_index );
+			tile_node->setScale( Director::getInstance()->getContentScaleFactor() );
 			return tile_node;
 		}
 		void TerrainViewer::UpdateTile( Node* tile_node, const eTileType tile_type )

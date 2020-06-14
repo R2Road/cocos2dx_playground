@@ -3,6 +3,7 @@
 #include <new>
 
 #include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 
@@ -27,7 +28,7 @@ namespace step_pathfinder
 		TerrainViewer* TerrainViewer::create( const int width, const int height, const TileSelectCallback& tile_select_callback )
 		{
 			const auto& tile_data = step_pathfinder::game::TileType2TileData( step_pathfinder::game::eTileType::road );
-			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
+			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size * Director::getInstance()->getContentScaleFactor();
 			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 
 			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, pivot_position, tile_select_callback );
