@@ -46,7 +46,7 @@ namespace step_pathfinder
 				return false;
 			}
 
-			const auto menu_size = step_pathfinder::game::terrain::GetMaxMenuSize();
+			const auto menu_size = step_pathfinder::game::GetMaxMenuSize();
 
 			//
 			// Menu
@@ -56,9 +56,9 @@ namespace step_pathfinder
 				const auto select_callback = CC_CALLBACK_2( TileSelectNode::onSelect, this );
 				Vec2 pivot_position( menu_size.width * 0.5f, menu_size.height * 0.5f );
 
-				for( int cur = static_cast<int>( step_pathfinder::game::terrain::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::terrain::eTileType::SIZE ); cur < end; ++cur )
+				for( int cur = static_cast<int>( step_pathfinder::game::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::eTileType::SIZE ); cur < end; ++cur )
 				{
-					const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( static_cast<step_pathfinder::game::terrain::eTileType>( cur ) );
+					const auto& tile_data = step_pathfinder::game::TileType2TileData( static_cast<step_pathfinder::game::eTileType>( cur ) );
 					if( !tile_data.bToolEnable )
 					{
 						continue;
@@ -111,7 +111,7 @@ namespace step_pathfinder
 			// Start Setup
 			//
 			onSelect(
-				getChildByTag( static_cast<int>( step_pathfinder::game::terrain::eTileType::road ) )
+				getChildByTag( static_cast<int>( step_pathfinder::game::eTileType::road ) )
 				, ui::Widget::TouchEventType::BEGAN
 			);
 
@@ -119,7 +119,7 @@ namespace step_pathfinder
 		}
 
 
-		Node* TileSelectNode::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback ) const
+		Node* TileSelectNode::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback ) const
 		{
 			auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( tile_type ) );
@@ -148,7 +148,7 @@ namespace step_pathfinder
 			auto indicator_node = getChildByTag( TAG_Indicator );
 			indicator_node->setPosition( sender_node->getPosition() );
 
-			mTileSelectCallback( static_cast<step_pathfinder::game::terrain::eTileType>( sender_node->getTag() ) );
+			mTileSelectCallback( static_cast<step_pathfinder::game::eTileType>( sender_node->getTag() ) );
 		}
 	} // namespace game
 }

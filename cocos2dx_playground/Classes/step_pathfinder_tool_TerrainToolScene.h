@@ -25,8 +25,8 @@ namespace step_pathfinder
 			void onExit() override;
 
 		private:
-			cocos2d::Node* makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const cocos2d::ui::Widget::ccWidgetTouchCallback& callback );
-			void onTileSelect( const step_pathfinder::game::terrain::eTileType new_tile_type );
+			cocos2d::Node* makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::eTileType tile_type, const char* button_text, const cocos2d::ui::Widget::ccWidgetTouchCallback& callback );
+			void onTileSelect( const step_pathfinder::game::eTileType new_tile_type );
 			void onGrid( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 			void onSave( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
@@ -37,7 +37,7 @@ namespace step_pathfinder
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			TerrainData mTerrainData;
-			step_pathfinder::game::terrain::eTileType mCurrentTileType;
+			step_pathfinder::game::eTileType mCurrentTileType;
 			TerrainViewer* mTerrainViewer;
 		};
 	}

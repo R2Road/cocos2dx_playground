@@ -17,7 +17,7 @@ namespace step_pathfinder
 			mContainer.resize( mHeight );
 			for( auto& r : mContainer )
 			{
-				r.resize( mWidth, step_pathfinder::game::terrain::eTileType::damage );
+				r.resize( mWidth, eTileType::damage );
 			}
 		}
 
@@ -54,7 +54,7 @@ namespace step_pathfinder
 				y = cur / mHeight;
 				x = cur - ( y * mWidth );
 
-				set( x, y, static_cast<step_pathfinder::game::terrain::eTileType>( value.GetInt() ) );
+				set( x, y, static_cast<eTileType>( value.GetInt() ) );
 			}
 
 			return true;
@@ -66,13 +66,13 @@ namespace step_pathfinder
 			//
 			std::random_device rd;
 			std::mt19937 randomEngine( rd() );
-			std::uniform_int_distribution<> dist( static_cast<int>( step_pathfinder::game::terrain::eTileType::FIRST ), static_cast<int>( step_pathfinder::game::terrain::eTileType::SIZE ) - 1 );
+			std::uniform_int_distribution<> dist( static_cast<int>( eTileType::FIRST ), static_cast<int>( eTileType::SIZE ) - 1 );
 
 			for( auto& r : mContainer )
 			{
 				for( auto& t : r )
 				{
-					t = static_cast<step_pathfinder::game::terrain::eTileType>( dist( randomEngine ) );
+					t = static_cast<eTileType>( dist( randomEngine ) );
 				}
 			}
 
@@ -83,7 +83,7 @@ namespace step_pathfinder
 		{
 			if( !isIn( x, y ) )
 			{
-				return step_pathfinder::game::terrain::eTileType::damage;
+				return eTileType::damage;
 			}
 
 			return mContainer[y][x];

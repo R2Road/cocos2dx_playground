@@ -9,10 +9,7 @@ namespace step_pathfinder
 {
 	namespace game
 	{
-		namespace terrain
-		{
-			class Viewer;
-		}
+		class Viewer;
 
 		class PlayScene : public cocos2d::Scene
 		{
@@ -52,7 +49,7 @@ namespace step_pathfinder
 
 			StageDataContainer mStageDataContainer;
 			TerrainData mTerrainData;
-			terrain::Viewer* mTerrainViewer;
+			Viewer* mTerrainViewer;
 			StageDataContainer::Container::size_type mCurrentStageIndex;
 			TerrainPoint mPlayerPoint;
 			bool mbPlayerLive;

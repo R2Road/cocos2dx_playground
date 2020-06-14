@@ -17,7 +17,7 @@ namespace step_pathfinder
 		class TerrainData
 		{
 		public:
-			using Row = std::vector<step_pathfinder::game::terrain::eTileType>;
+			using Row = std::vector<eTileType>;
 			using Container = std::vector<Row>;
 
 			TerrainData();

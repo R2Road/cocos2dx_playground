@@ -143,7 +143,7 @@ namespace step_pathfinder
 			// Terrain View
 			//
 			{
-				mTerrainViewer = terrain::Viewer::create( mTerrainData.getWidth(), mTerrainData.getHeight() );
+				mTerrainViewer = Viewer::create( mTerrainData.getWidth(), mTerrainData.getHeight() );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.5f )
@@ -227,7 +227,7 @@ namespace step_pathfinder
 			updateTerrainViewer();
 
 			auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
-			mPlayerPoint = mTerrainData.getPoint( step_pathfinder::game::terrain::eTileType::entrance );
+			mPlayerPoint = mTerrainData.getPoint( eTileType::entrance );
 			player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 			return true;
@@ -245,15 +245,15 @@ namespace step_pathfinder
 		void PlayScene::updateTerrainViewer()
 		{
 			// apply terrain data
-			step_pathfinder::game::terrain::eTileType tile_type;
+			eTileType tile_type;
 			for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 			{
 				for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
 				{
 					tile_type = mTerrainData.get( tx, ty );
-					if( step_pathfinder::game::terrain::eTileType::exit == tile_type )
+					if( eTileType::exit == tile_type )
 					{
-						mTerrainViewer->UpdateTile( tx, ty, step_pathfinder::game::terrain::eTileType::road );
+						mTerrainViewer->UpdateTile( tx, ty, eTileType::road );
 					}
 					else
 					{
@@ -282,7 +282,7 @@ namespace step_pathfinder
 			// check player position
 			//
 			const auto tile_type = mTerrainData.get( mPlayerPoint.x, mPlayerPoint.y );
-			if( step_pathfinder::game::terrain::eTileType::damage == tile_type )
+			if( eTileType::damage == tile_type )
 			{
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 
@@ -293,21 +293,21 @@ namespace step_pathfinder
 				// move to title
 				startExitProcess( eNextSceneType::Title, 3.f );
 			}
-			else if( step_pathfinder::game::terrain::eTileType::magic_circle_on == tile_type )
+			else if( eTileType::magic_circle_on == tile_type )
 			{
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 
 				// convert tile data : magic_circle_on > magic_circle_off
-				mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, step_pathfinder::game::terrain::eTileType::magic_circle_off );
-				mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, step_pathfinder::game::terrain::eTileType::magic_circle_off );
+				mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, eTileType::magic_circle_off );
+				mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, eTileType::magic_circle_off );
 
 				// update tile view
-				const auto exit_point = mTerrainData.getPoint( step_pathfinder::game::terrain::eTileType::exit );
-				mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, step_pathfinder::game::terrain::eTileType::exit );
+				const auto exit_point = mTerrainData.getPoint( eTileType::exit );
+				mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, eTileType::exit );
 			}
-			else if( step_pathfinder::game::terrain::eTileType::exit == tile_type )
+			else if( eTileType::exit == tile_type )
 			{
-				if( !mTerrainData.isExist( step_pathfinder::game::terrain::eTileType::magic_circle_on ) )
+				if( !mTerrainData.isExist( eTileType::magic_circle_on ) )
 				{
 					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
 

@@ -34,7 +34,7 @@ namespace step_pathfinder
 		TerrainToolScene::TerrainToolScene() :
 			mKeyboardListener( nullptr )
 			, mTerrainData()
-			, mCurrentTileType( step_pathfinder::game::terrain::eTileType::road )
+			, mCurrentTileType( step_pathfinder::game::eTileType::road )
 			, mTerrainViewer( nullptr )
 		{}
 
@@ -291,7 +291,7 @@ namespace step_pathfinder
 		}
 
 
-		Node* TerrainToolScene::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::terrain::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
+		Node* TerrainToolScene::makeMenuButton( const cocos2d::Size menu_size, const step_pathfinder::game::eTileType tile_type, const char* button_text, const ui::Widget::ccWidgetTouchCallback& callback )
 		{
 			auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( tile_type ) );
@@ -307,7 +307,7 @@ namespace step_pathfinder
 		}
 
 
-		void TerrainToolScene::onTileSelect( const step_pathfinder::game::terrain::eTileType new_tile_type )
+		void TerrainToolScene::onTileSelect( const step_pathfinder::game::eTileType new_tile_type )
 		{
 			mCurrentTileType = new_tile_type;
 		}
@@ -328,9 +328,9 @@ namespace step_pathfinder
 				return;
 			}
 
-			if( step_pathfinder::game::terrain::TileType2UniqueFlag( mCurrentTileType ) )
+			if( step_pathfinder::game::TileType2UniqueFlag( mCurrentTileType ) )
 			{
-				const auto default_tile_type = step_pathfinder::game::terrain::eTileType::road;
+				const auto default_tile_type = step_pathfinder::game::eTileType::road;
 				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
 				{
 					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
