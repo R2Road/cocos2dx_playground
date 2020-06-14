@@ -1,4 +1,4 @@
-#include "step_typetype_game_StageTestScene.h"
+#include "step_typetype_game_test_StageScene.h"
 
 #include <new>
 #include <numeric>

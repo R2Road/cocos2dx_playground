@@ -15,7 +15,7 @@
 
 #include "step_typetype_ScheduleScene.h"
 
-#include "step_typetype_game_StageTestScene.h"
+#include "step_typetype_game_test_StageScene.h"
 #include "step_typetype_game_TitleScene.h"
 
 USING_NS_CC;
