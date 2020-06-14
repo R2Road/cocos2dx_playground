@@ -52,14 +52,14 @@ namespace step_pathfinder
 				setContentSize( Size( mTileSize.width * mWidth, mTileSize.height * mHeight ) );
 
 				const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( step_pathfinder::game::terrain::eTileType::road );
-				Node* button = nullptr;
+				Node* tile_node = nullptr;
 				for( int ty = 0; ty < mHeight; ++ty )
 				{
 					for( int tx = 0; tx < mWidth; ++tx )
 					{
-						button = MakeTile( tile_data, tx, ty );
-						button->setPosition( ConvertPoint2Position( tx, ty ) );
-						addChild( button );
+						tile_node = MakeTile( tile_data, tx, ty );
+						tile_node->setPosition( ConvertPoint2Position( tx, ty ) );
+						addChild( tile_node );
 					}
 				}
 
@@ -70,16 +70,16 @@ namespace step_pathfinder
 			{
 				const int linear_index = grid_x + ( mHeight * grid_y );
 
-				auto indicator = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
-				indicator->setTag( linear_index );
-				return indicator;
+				auto tile_node = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
+				tile_node->setTag( linear_index );
+				return tile_node;
 			}
 			void Viewer::UpdateTile( Node* tile_node, const step_pathfinder::game::terrain::eTileType tile_type )
 			{
-				auto indicator = static_cast<Sprite*>( tile_node );
+				auto sprite = static_cast<Sprite*>( tile_node );
 
 				const auto& tile_data = step_pathfinder::game::terrain::TileType2TileData( tile_type );
-				indicator->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
+				sprite->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 			}
 			void Viewer::UpdateTile( const int grid_x, const int grid_y, const step_pathfinder::game::terrain::eTileType tile_type )
 			{
