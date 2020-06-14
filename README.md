@@ -23,7 +23,7 @@
 
 ## 작업환경 | Environment
 - engine
-  - cocos2d-x 3.17.2
+  - [cocos2d-x 3.17.2](https://www.cocos.com/en/)
 
 - language
   - c++
@@ -32,12 +32,12 @@
   - vs 2017( version : 15.9.16 )
 
 - sound
-  - sfxr
-  - lmms
+  - [sfxr](http://www.drpetter.se/project_sfxr.html)
+  - [lmms](https://lmms.io/)
 
 - graphic
-  - paint.net
-  - aseprite
+  - [paint.net](https://www.getpaint.net/)
+  - [aseprite](https://www.aseprite.org/)
   
   
 ## 목차 | Contents
