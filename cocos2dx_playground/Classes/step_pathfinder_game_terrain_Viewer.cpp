@@ -2,7 +2,8 @@
 
 #include <new>
 
-#include "cocos2d.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 
 #include "step_pathfinder_game_TerrainData.h"
 
