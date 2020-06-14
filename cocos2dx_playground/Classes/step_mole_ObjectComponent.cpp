@@ -70,7 +70,7 @@ namespace step_mole
 		std::uniform_real_distribution<> dist( 0, 0.5f );
 
 		_owner->scheduleOnce(
-			[this]( float dt )
+			[this]( float )
 			{
 				ChangeState( eState::Wait );
 			}
@@ -121,7 +121,7 @@ namespace step_mole
 		{
 			mAnimationComponent->PlayAnimation( cpg::animation::eIndex::idle );
 			_owner->scheduleOnce(
-				[this]( float dt )
+				[this]( float )
 				{
 					ChangeState( eState::Sleep );
 				}
