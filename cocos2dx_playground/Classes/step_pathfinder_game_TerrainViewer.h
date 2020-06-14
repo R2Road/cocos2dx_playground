@@ -2,7 +2,7 @@
 
 #include "2d/CCNode.h"
 
-#include "step_pathfinder_game_terrain_Constant.h"
+#include "step_pathfinder_game_Constant.h"
 
 namespace step_pathfinder
 {

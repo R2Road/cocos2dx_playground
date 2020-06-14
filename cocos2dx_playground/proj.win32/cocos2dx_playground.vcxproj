@@ -219,7 +219,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_pathfinder_game_ResultScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_game_StageDataContainer.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_game_TerrainViewer.cpp" />
-    <ClCompile Include="..\Classes\step_pathfinder_game_terrain_Constant.cpp" />
+    <ClCompile Include="..\Classes\step_pathfinder_game_Constant.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_Stage.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_StageTestScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_json_LoadNSaveScene.cpp" />
@@ -352,7 +352,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_pathfinder_game_ResultScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_game_StageDataContainer.h" />
     <ClInclude Include="..\Classes\step_pathfinder_game_TerrainViewer.h" />
-    <ClInclude Include="..\Classes\step_pathfinder_game_terrain_Constant.h" />
+    <ClInclude Include="..\Classes\step_pathfinder_game_Constant.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_Stage.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_StageTestScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_json_LoadNSaveScene.h" />
