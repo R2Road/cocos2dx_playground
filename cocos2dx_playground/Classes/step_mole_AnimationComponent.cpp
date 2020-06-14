@@ -25,7 +25,7 @@ namespace step_mole
 	}
 
 
-	AnimationComponent* AnimationComponent::create( const cpg::animation::ContainerT& animation_info_container )
+	AnimationComponent* AnimationComponent::create( const cpg::animation::InfoContainerT& animation_info_container )
 	{
 		auto ret = new ( std::nothrow ) AnimationComponent();
 		if( !ret || !ret->init( animation_info_container ) )
@@ -77,7 +77,7 @@ namespace step_mole
 		getOwner()->stopAllActions();
 	}
 
-	bool AnimationComponent::init( const cpg::animation::ContainerT& animation_info_container )
+	bool AnimationComponent::init( const cpg::animation::InfoContainerT& animation_info_container )
 	{
 		if( !Component::init() )
 		{

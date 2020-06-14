@@ -28,14 +28,14 @@ namespace step_mole
 		~AnimationComponent();
 
 		static const char* GetStaticName() { static const char* COMPONENT_NAME = "CPG_ANIMATION"; return COMPONENT_NAME; }
-		static AnimationComponent* create( const cpg::animation::ContainerT& animation_info_container );
+		static AnimationComponent* create( const cpg::animation::InfoContainerT& animation_info_container );
 
 		void PlayAnimation( const cpg::animation::eIndex animation_index );
 		void PlayAnimationWithCallback( const cpg::animation::eIndex animation_index, const AnimationCallback animation_callback );
 		void StopAnimation();
 
 	private:
-		bool init( const cpg::animation::ContainerT& animation_info_container );
+		bool init( const cpg::animation::InfoContainerT& animation_info_container );
 		cocos2d::Animate* getAnimationAction( const cpg::animation::eIndex animation_index );
 
 	private:

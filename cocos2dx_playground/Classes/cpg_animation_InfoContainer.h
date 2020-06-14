@@ -8,6 +8,6 @@ namespace cpg
 {
 	namespace animation
 	{
-		using ContainerT = std::vector<cpg::animation::Info>;
+		using InfoContainerT = std::vector<cpg::animation::Info>;
 	}
 }

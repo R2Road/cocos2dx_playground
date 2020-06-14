@@ -4,9 +4,9 @@ namespace step_mole
 {
 	namespace animation
 	{
-		const cpg::animation::ContainerT& GetObjectInfoContainer()
+		const cpg::animation::InfoContainerT& GetObjectInfoContainer()
 		{
-			static const cpg::animation::ContainerT animation_container = {
+			static const cpg::animation::InfoContainerT animation_info_container = {
 				{
 					cpg::animation::eIndex::wait
 					, 0.6f
@@ -44,12 +44,12 @@ namespace step_mole
 				}
 			};
 
-			return animation_container;
+			return animation_info_container;
 		}
 
-		const cpg::animation::ContainerT& GetEffectInfoContainer()
+		const cpg::animation::InfoContainerT& GetEffectInfoContainer()
 		{
-			static const cpg::animation::ContainerT animation_container = {
+			static const cpg::animation::InfoContainerT animation_info_container = {
 				{
 					cpg::animation::eIndex::attack_1
 					, 0.04f
@@ -57,7 +57,7 @@ namespace step_mole
 				}
 			};
 
-			return animation_container;
+			return animation_info_container;
 		}
 	}
 }
