@@ -13,7 +13,7 @@ namespace step_pathfinder
 		class TerrainViewer : public cocos2d::Node
 		{
 		protected:
-			explicit TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const float tile_scale, const cocos2d::Vec2 pivot_position );
+			explicit TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const float tile_scale );
 
 		public:
 			static TerrainViewer* create( const int width, const int height, const cocos2d::Size tile_size );

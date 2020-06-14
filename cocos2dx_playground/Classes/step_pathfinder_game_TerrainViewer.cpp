@@ -14,21 +14,20 @@ namespace step_pathfinder
 {
 	namespace game
 	{
-		TerrainViewer::TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const float tile_scale, const cocos2d::Vec2 pivot_position ) :
+		TerrainViewer::TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const float tile_scale ) :
 			mWidth( width )
 			, mHeight( height )
 			, mTileSize( tile_size )
 			, mTileScale( tile_scale )
-			, mPivotPosition( pivot_position )
+			, mPivotPosition( tile_size.width * 0.5f, tile_size.height * 0.5f )
 		{}
 
 		TerrainViewer* TerrainViewer::create( const int width, const int height, const cocos2d::Size tile_size )
 		{
 			const auto& tile_data = TileType2TileData( eTileType::road );
 			const float tile_scale = tile_size.height / ( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size.height * Director::getInstance()->getContentScaleFactor() );
-			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 
-			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, tile_scale, pivot_position );
+			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, tile_scale );
 			if( !ret || !ret->init() )
 			{
 				delete ret;

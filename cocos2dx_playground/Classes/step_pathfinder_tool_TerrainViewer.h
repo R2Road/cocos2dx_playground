@@ -20,7 +20,6 @@ namespace step_pathfinder
 				const int width, const int height
 				, const cocos2d::Size tile_size
 				, const float tile_scale
-				, const cocos2d::Vec2 pivot_position
 				, const TileSelectCallback& tile_select_callback
 			);
 
