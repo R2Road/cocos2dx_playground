@@ -69,7 +69,7 @@ namespace step_typetype
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] " << step_typetype::game::StageTestScene::getTitle();
+			ss << "[A] " << step_typetype::game_test::StageScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -143,7 +143,7 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_typetype::game::StageTestScene::create() );
+			Director::getInstance()->replaceScene( step_typetype::game_test::StageScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:

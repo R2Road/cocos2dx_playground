@@ -26,18 +26,18 @@ namespace
 
 namespace step_typetype
 {
-	namespace game
+	namespace game_test
 	{
-		StageTestScene::StageTestScene() :
+		StageScene::StageScene() :
 			mKeyboardListener( nullptr )
 			, mCurrentStageLength( 4 )
 			, mStage( STAGE_MAX_LENGTH )
 			, mStageView( nullptr )
 		{}
 
-		Scene* StageTestScene::create()
+		Scene* StageScene::create()
 		{
-			auto ret = new ( std::nothrow ) StageTestScene();
+			auto ret = new ( std::nothrow ) StageScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -52,7 +52,7 @@ namespace step_typetype
 			return ret;
 		}
 
-		bool StageTestScene::init()
+		bool StageScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -124,7 +124,7 @@ namespace step_typetype
 			// Stage View
 			//
 			{
-				mStageView = StageView::create( STAGE_MAX_LENGTH, StageViewConfig{ true, true } );
+				mStageView = game::StageView::create( STAGE_MAX_LENGTH, game::StageViewConfig{ true, true } );
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -138,16 +138,16 @@ namespace step_typetype
 			return true;
 		}
 
-		void StageTestScene::onEnter()
+		void StageScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void StageTestScene::onExit()
+		void StageScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -156,13 +156,13 @@ namespace step_typetype
 			Node::onExit();
 		}
 
-		void StageTestScene::updateStageLengthView()
+		void StageScene::updateStageLengthView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_StageLengthView ) );
 			label->setString( StringUtils::format( "Stage Length : %d", mCurrentStageLength ) );
 		}
 
-		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void StageScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{

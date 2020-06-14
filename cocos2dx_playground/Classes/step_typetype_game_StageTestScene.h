@@ -9,11 +9,14 @@ namespace step_typetype
 	namespace game
 	{
 		class StageView;
+	}
 
-		class StageTestScene : public cocos2d::Scene	
+	namespace game_test
+	{
+		class StageScene : public cocos2d::Scene	
 		{
 		private:
-			StageTestScene();
+			StageScene();
 
 		public:
 			static const char* getTitle() { return "Game : Stage Test"; }
@@ -32,8 +35,8 @@ namespace step_typetype
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			std::size_t mCurrentStageLength;
-			Stage mStage;
-			StageView* mStageView;
+			game::Stage mStage;
+			game::StageView* mStageView;
 		};
 	}
 }
