@@ -22,10 +22,15 @@ namespace step_pathfinder
 			, mPivotPosition( tile_size.width * 0.5f, tile_size.height * 0.5f )
 		{}
 
-		TerrainViewer* TerrainViewer::create( const int width, const int height, const cocos2d::Size tile_size )
+		float TerrainViewer::CalculateTileScale( const float tile_height )
 		{
 			const auto& tile_data = TileType2TileData( eTileType::road );
-			const float tile_scale = tile_size.height / ( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size.height * Director::getInstance()->getContentScaleFactor() );
+			return tile_height / ( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size.height * Director::getInstance()->getContentScaleFactor() );
+		}
+
+		TerrainViewer* TerrainViewer::create( const int width, const int height, const cocos2d::Size tile_size )
+		{
+			const float tile_scale = CalculateTileScale( tile_size.height );
 
 			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, tile_scale );
 			if( !ret || !ret->init() )
