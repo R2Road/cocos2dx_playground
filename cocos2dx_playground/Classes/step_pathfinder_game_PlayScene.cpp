@@ -143,7 +143,7 @@ namespace step_pathfinder
 			// Terrain View
 			//
 			{
-				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight() );
+				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), Size( 48, 48 ) );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.5f )
@@ -159,6 +159,8 @@ namespace step_pathfinder
 			{
 				auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 				player_node->setTag( TAG_Player );
+				player_node->setAnchorPoint( Vec2( 0.5f, 0.2f ) );
+				player_node->setScale( Director::getInstance()->getContentScaleFactor() );
 				mTerrainViewer->addChild( player_node, 100 );
 				{
 					auto animation_object = Animation::create();

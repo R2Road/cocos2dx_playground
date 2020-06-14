@@ -14,20 +14,21 @@ namespace step_pathfinder
 {
 	namespace game
 	{
-		TerrainViewer::TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const cocos2d::Vec2 pivot_position ) :
+		TerrainViewer::TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const float tile_scale, const cocos2d::Vec2 pivot_position ) :
 			mWidth( width )
 			, mHeight( height )
 			, mTileSize( tile_size )
+			, mTileScale( tile_scale )
 			, mPivotPosition( pivot_position )
 		{}
 
-		TerrainViewer* TerrainViewer::create( const int width, const int height )
+		TerrainViewer* TerrainViewer::create( const int width, const int height, const cocos2d::Size tile_size )
 		{
 			const auto& tile_data = TileType2TileData( eTileType::road );
-			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size * Director::getInstance()->getContentScaleFactor();
+			const float tile_scale = tile_size.height / ( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size.height * Director::getInstance()->getContentScaleFactor() );
 			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 
-			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, pivot_position );
+			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, tile_scale, pivot_position );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -72,7 +73,7 @@ namespace step_pathfinder
 
 			auto tile_node = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
 			tile_node->setTag( linear_index );
-			tile_node->setScale( Director::getInstance()->getContentScaleFactor() );
+			tile_node->setScale( Director::getInstance()->getContentScaleFactor() * mTileScale );
 			return tile_node;
 		}
 		void TerrainViewer::UpdateTile( Node* tile_node, const eTileType tile_type )

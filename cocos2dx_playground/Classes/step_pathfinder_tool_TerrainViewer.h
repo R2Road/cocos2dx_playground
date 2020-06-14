@@ -19,12 +19,13 @@ namespace step_pathfinder
 			explicit TerrainViewer(
 				const int width, const int height
 				, const cocos2d::Size tile_size
+				, const float tile_scale
 				, const cocos2d::Vec2 pivot_position
 				, const TileSelectCallback& tile_select_callback
 			);
 
 		public:
-			static TerrainViewer* create( const int width, const int height, const TileSelectCallback& tile_select_callback );
+			static TerrainViewer* create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback );
 
 		private:
 			cocos2d::Node* MakeTile( const step_pathfinder::game::TileData& tile_data, const int grid_x, const int grid_y ) override;

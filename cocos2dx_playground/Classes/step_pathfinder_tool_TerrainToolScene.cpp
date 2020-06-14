@@ -149,7 +149,7 @@ namespace step_pathfinder
 			// Terrain View
 			//
 			{
-				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
+				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.6f )

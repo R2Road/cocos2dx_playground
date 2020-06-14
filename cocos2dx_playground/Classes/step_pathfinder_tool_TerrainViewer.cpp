@@ -18,20 +18,21 @@ namespace step_pathfinder
 		TerrainViewer::TerrainViewer(
 			const int width, const int height
 			, const cocos2d::Size tile_size
+			, const float tile_scale
 			, const cocos2d::Vec2 pivot_position
 			, const TileSelectCallback& tile_select_callback
 		) :
-			game::TerrainViewer( width, height, tile_size, pivot_position )
+			game::TerrainViewer( width, height, tile_size, tile_scale, pivot_position )
 			, mTileSelectCallback( tile_select_callback )
 		{}
 
-		TerrainViewer* TerrainViewer::create( const int width, const int height, const TileSelectCallback& tile_select_callback )
+		TerrainViewer* TerrainViewer::create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback )
 		{
 			const auto& tile_data = step_pathfinder::game::TileType2TileData( step_pathfinder::game::eTileType::road );
-			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size * Director::getInstance()->getContentScaleFactor();
+			const float tile_scale = tile_size.height / ( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size.height * Director::getInstance()->getContentScaleFactor() );
 			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 
-			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, pivot_position, tile_select_callback );
+			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, tile_scale, pivot_position, tile_select_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
