@@ -16,7 +16,7 @@
 
 #include "step_pathfinder_game_TitleScene.h"
 #include "step_pathfinder_game_ResultScene.h"
-#include "step_pathfinder_game_terrain_Viewer.h"
+#include "step_pathfinder_game_TerrainViewer.h"
 
 USING_NS_CC;
 

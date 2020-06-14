@@ -4,7 +4,7 @@
 
 #include "ui/UIWidget.h"
 
-#include "step_pathfinder_game_terrain_Viewer.h"
+#include "step_pathfinder_game_TerrainViewer.h"
 
 namespace step_pathfinder
 {
