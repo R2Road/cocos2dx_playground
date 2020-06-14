@@ -10,7 +10,7 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		class TerrainViewer : public step_pathfinder::game::Viewer
+		class TerrainViewer : public step_pathfinder::game::TerrainViewer
 		{
 		public:
 			using TileSelectCallback = std::function<void( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )>;

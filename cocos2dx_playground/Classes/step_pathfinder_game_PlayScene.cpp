@@ -143,7 +143,7 @@ namespace step_pathfinder
 			// Terrain View
 			//
 			{
-				mTerrainViewer = Viewer::create( mTerrainData.getWidth(), mTerrainData.getHeight() );
+				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight() );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.5f )

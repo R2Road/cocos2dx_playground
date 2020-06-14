@@ -13,20 +13,20 @@ namespace step_pathfinder
 {
 	namespace game
 	{
-		Viewer::Viewer( const int width, const int height, const cocos2d::Size tile_size, const cocos2d::Vec2 pivot_position ) :
+		TerrainViewer::TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const cocos2d::Vec2 pivot_position ) :
 			mWidth( width )
 			, mHeight( height )
 			, mTileSize( tile_size )
 			, mPivotPosition( pivot_position )
 		{}
 
-		Viewer* Viewer::create( const int width, const int height )
+		TerrainViewer* TerrainViewer::create( const int width, const int height )
 		{
 			const auto& tile_data = TileType2TileData( eTileType::road );
 			const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size;
 			const Vec2 pivot_position( tile_size.width * 0.5f, tile_size.height * 0.5f );
 
-			auto ret = new ( std::nothrow ) Viewer( width, height, tile_size, pivot_position );
+			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, pivot_position );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -41,7 +41,7 @@ namespace step_pathfinder
 			return ret;
 		}
 
-		bool Viewer::init()
+		bool TerrainViewer::init()
 		{
 			if( !Node::init() )
 			{
@@ -65,7 +65,7 @@ namespace step_pathfinder
 			return true;
 		}
 
-		Node* Viewer::MakeTile( const TileData& tile_data, const int grid_x, const int grid_y )
+		Node* TerrainViewer::MakeTile( const TileData& tile_data, const int grid_x, const int grid_y )
 		{
 			const int linear_index = grid_x + ( mHeight * grid_y );
 
@@ -73,14 +73,14 @@ namespace step_pathfinder
 			tile_node->setTag( linear_index );
 			return tile_node;
 		}
-		void Viewer::UpdateTile( Node* tile_node, const eTileType tile_type )
+		void TerrainViewer::UpdateTile( Node* tile_node, const eTileType tile_type )
 		{
 			auto sprite = static_cast<Sprite*>( tile_node );
 
 			const auto& tile_data = TileType2TileData( tile_type );
 			sprite->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 		}
-		void Viewer::UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type )
+		void TerrainViewer::UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type )
 		{
 			const int linear_index = grid_x + ( mWidth * grid_y );
 
@@ -93,7 +93,7 @@ namespace step_pathfinder
 			UpdateTile( grid, tile_type );
 		}
 
-		cocos2d::Vec2 Viewer::ConvertPoint2Position( const int tx, const int ty ) const
+		cocos2d::Vec2 TerrainViewer::ConvertPoint2Position( const int tx, const int ty ) const
 		{
 			return mPivotPosition + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) );
 		}

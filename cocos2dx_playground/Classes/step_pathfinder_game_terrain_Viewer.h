@@ -10,13 +10,13 @@ namespace step_pathfinder
 	{
 		struct TileData;
 
-		class Viewer : public cocos2d::Node
+		class TerrainViewer : public cocos2d::Node
 		{
 		protected:
-			explicit Viewer( const int width, const int height, const cocos2d::Size tile_size, const cocos2d::Vec2 pivot_position );
+			explicit TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const cocos2d::Vec2 pivot_position );
 
 		public:
-			static Viewer* create( const int width, const int height );
+			static TerrainViewer* create( const int width, const int height );
 
 		protected:
 			bool init() override;
