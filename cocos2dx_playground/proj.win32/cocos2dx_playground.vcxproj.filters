@@ -270,9 +270,6 @@
     <ClCompile Include="..\Classes\step_typetype_game_ResultScene.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_StageTestScene.cpp">
-      <Filter>src\scene\step_02_clickclick\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_RootScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos</Filter>
     </ClCompile>
@@ -498,6 +495,9 @@
     <ClCompile Include="..\Classes\step_pathfinder_game_Constant.cpp">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_test_StageScene.cpp">
+      <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -652,9 +652,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_ResultScene.h">
       <Filter>src\scene\step_01_typetype\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_StageTestScene.h">
-      <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_RootScene.h">
       <Filter>src\scene\step_05_rain_of_chaos</Filter>
@@ -892,6 +889,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_game_Constant.h">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_test_StageScene.h">
+      <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
