@@ -30,18 +30,18 @@ namespace
 
 namespace step_clickclick
 {
-	namespace game
+	namespace game_test
 	{
-		BlockTestScene::BlockTestScene() :
+		BlockScene::BlockScene() :
 			mKeyboardListener( nullptr )
 			, mTestActionType( eTestActionType::Increase )
 			, mBlockContainer()
 			, mBlockViewContainer()
 		{}
 
-		Scene* BlockTestScene::create()
+		Scene* BlockScene::create()
 		{
-			auto ret = new ( std::nothrow ) BlockTestScene();
+			auto ret = new ( std::nothrow ) BlockScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -56,7 +56,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool BlockTestScene::init()
+		bool BlockScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -143,11 +143,11 @@ namespace step_clickclick
 			// Block
 			//
 			{
-				int block_type = static_cast<int>( eBlockType::Single );
+				int block_type = static_cast<int>( step_clickclick::game::eBlockType::Single );
 				for( int i = 0; BlockCount > i; ++i, ++block_type )
 				{
 					mBlockContainer.emplace_back( i );
-					mBlockContainer[i].Reset( static_cast<eBlockType>( block_type ), 10 );
+					mBlockContainer[i].Reset( static_cast<step_clickclick::game::eBlockType>( block_type ), 10 );
 				}
 			}
 
@@ -164,10 +164,10 @@ namespace step_clickclick
 					, 0.f
 				);
 
-				BlockView* block_view = nullptr;
+				step_clickclick::game::BlockView* block_view = nullptr;
 				for( int i = 0; BlockCount > i; ++i )
 				{
-					block_view = BlockView::create( i, BlockSize, std::bind( &BlockTestScene::onGameProcess, this, std::placeholders::_1 ) );
+					block_view = step_clickclick::game::BlockView::create( i, BlockSize, std::bind( &BlockScene::onGameProcess, this, std::placeholders::_1 ) );
 					block_view->setTag( i );
 					block_view->setPosition(
 						BlockStartPosition
@@ -187,16 +187,16 @@ namespace step_clickclick
 			return true;
 		}
 
-		void BlockTestScene::onEnter()
+		void BlockScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BlockTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BlockScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void BlockTestScene::onExit()
+		void BlockScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -206,7 +206,7 @@ namespace step_clickclick
 		}
 
 
-		void BlockTestScene::onGameProcess( const int block_linear_index )
+		void BlockScene::onGameProcess( const int block_linear_index )
 		{
 			experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 
@@ -229,12 +229,12 @@ namespace step_clickclick
 				assert( false );
 			}
 
-			auto block_view = static_cast<BlockView*>( getChildByTag( block_linear_index ) );
+			auto block_view = static_cast<step_clickclick::game::BlockView*>( getChildByTag( block_linear_index ) );
 			block_view->UpdateLife( last_life, target_block_data.GetLife() );
 		}
 
 
-		void BlockTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void BlockScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
@@ -261,7 +261,7 @@ namespace step_clickclick
 			}
 		}
 
-		void BlockTestScene::updateTestAction( const eTestActionType test_action_type )
+		void BlockScene::updateTestAction( const eTestActionType test_action_type )
 		{
 			mTestActionType = test_action_type;
 
@@ -281,18 +281,18 @@ namespace step_clickclick
 				assert( false );
 			}
 		}
-		void BlockTestScene::updateSelectedBlockTypeView( const eBlockType block_type )
+		void BlockScene::updateSelectedBlockTypeView( const step_clickclick::game::eBlockType block_type )
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedBlockTypeView ) );
 			switch( block_type )
 			{
-			case eBlockType::Single:
+			case step_clickclick::game::eBlockType::Single:
 				label->setString( "Block Type : Single" );
 				break;
-			case eBlockType::Same:
+			case step_clickclick::game::eBlockType::Same:
 				label->setString( "Block Type : Same" );
 				break;
-			case eBlockType::Different:
+			case step_clickclick::game::eBlockType::Different:
 				label->setString( "Block Type : Different" );
 				break;
 			default:
@@ -300,7 +300,7 @@ namespace step_clickclick
 			}
 		}
 
-		void BlockTestScene::ResetBlockContainer()
+		void BlockScene::ResetBlockContainer()
 		{
 			for( int i = 0; BlockCount > i; ++i )
 			{

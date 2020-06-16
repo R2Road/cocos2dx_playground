@@ -61,7 +61,7 @@ namespace step_clickclick
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << step_clickclick::game::BlockTestScene::getTitle();
+			ss << "[A] : " << step_clickclick::game_test::BlockScene::getTitle();
 			ss << std::endl;
 			ss << "[S] : " << step_clickclick::game::StageTestScene::getTitle();
 			ss << std::endl;
@@ -130,7 +130,7 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_clickclick::game::BlockTestScene::create() );
+			Director::getInstance()->replaceScene( step_clickclick::game_test::BlockScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( step_clickclick::game::StageTestScene::create() );

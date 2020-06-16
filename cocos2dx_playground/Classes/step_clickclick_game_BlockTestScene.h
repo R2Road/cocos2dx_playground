@@ -14,8 +14,11 @@ namespace step_clickclick
 	namespace game
 	{
 		class BlockView;
+	}
 
-		class BlockTestScene : public cocos2d::Scene
+	namespace game_test
+	{
+		class BlockScene : public cocos2d::Scene
 		{
 		private:
 			enum class eTestActionType
@@ -25,7 +28,7 @@ namespace step_clickclick
 				Die,
 			};
 
-			BlockTestScene();
+			BlockScene();
 
 		public:
 			static const char* getTitle() { return "Game : Block Test"; }
@@ -40,7 +43,7 @@ namespace step_clickclick
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 			void updateTestAction( const eTestActionType test_action_type );
-			void updateSelectedBlockTypeView( const eBlockType block_type );
+			void updateSelectedBlockTypeView( const step_clickclick::game::eBlockType block_type );
 
 			void ResetBlockContainer();
 
@@ -48,8 +51,8 @@ namespace step_clickclick
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			eTestActionType mTestActionType;
 
-			std::vector<Block> mBlockContainer;
-			std::vector<BlockView*> mBlockViewContainer;
+			std::vector<step_clickclick::game::Block> mBlockContainer;
+			std::vector<step_clickclick::game::BlockView*> mBlockViewContainer;
 		};
 	}
 }
