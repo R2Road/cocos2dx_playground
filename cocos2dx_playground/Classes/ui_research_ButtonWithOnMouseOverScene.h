@@ -5,6 +5,10 @@
 
 #include "helper_BackToThePreviousScene.h"
 
+NS_CC_BEGIN
+class EventListenerMouse;
+NS_CC_END
+
 namespace ui_research
 {
 	class ButtonWithOnMouseOverScene : public cocos2d::Scene, public helper::BackToThePreviousScene
@@ -26,5 +30,6 @@ namespace ui_research
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+		cocos2d::EventListenerMouse* mMouseListener;
 	};
 }

@@ -8,6 +8,7 @@
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventListenerMouse.h"
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
@@ -18,6 +19,7 @@ namespace ui_research
 	ButtonWithOnMouseOverScene::ButtonWithOnMouseOverScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+		, mMouseListener( nullptr )
 	{}
 
 	Scene* ButtonWithOnMouseOverScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -100,12 +102,25 @@ namespace ui_research
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ButtonWithOnMouseOverScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
+
+		assert( !mMouseListener );
+		mMouseListener = EventListenerMouse::create();
+		mMouseListener->onMouseMove = []( EventMouse* event ) {
+			CCLOG( "mouse move" );
+
+			event->stopPropagation();
+		};
+		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mMouseListener, this );
 	}
 	void ButtonWithOnMouseOverScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
+
+		assert( mMouseListener );
+		getEventDispatcher()->removeEventListener( mMouseListener );
+		mMouseListener = nullptr;
 
 		Node::onExit();
 	}
