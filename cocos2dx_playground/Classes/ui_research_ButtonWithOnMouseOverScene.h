@@ -31,5 +31,6 @@ namespace ui_research
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 		cocos2d::EventListenerMouse* mMouseListener;
+		bool mbOnMouseOver;
 	};
 }

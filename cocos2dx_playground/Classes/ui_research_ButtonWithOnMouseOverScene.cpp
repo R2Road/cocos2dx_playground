@@ -4,6 +4,7 @@
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCCamera.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
@@ -14,12 +15,18 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const int TAG_button = 20140416;
+}
+
 namespace ui_research
 {
 	ButtonWithOnMouseOverScene::ButtonWithOnMouseOverScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 		, mMouseListener( nullptr )
+		, mbOnMouseOver( false )
 	{}
 
 	Scene* ButtonWithOnMouseOverScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -81,6 +88,7 @@ namespace ui_research
 		//
 		{
 			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+			button->setTag( TAG_button );
 			button->setScale9Enabled( true );
 			button->setContentSize( Size( 100.f, 100.f ) );
 			button->setPosition( Vec2(
@@ -105,10 +113,30 @@ namespace ui_research
 
 		assert( !mMouseListener );
 		mMouseListener = EventListenerMouse::create();
-		mMouseListener->onMouseMove = []( EventMouse* event ) {
-			CCLOG( "mouse move" );
+		mMouseListener->onMouseMove = [this]( EventMouse* event ) {
 
-			event->stopPropagation();
+			//
+			// 20200618
+			// This code originated from "Widget::onTouchBegan"
+			//
+
+			const auto button = static_cast<ui::Button*>( getChildByTag( TAG_button ) );
+			const auto camera = Camera::getVisitingCamera();
+			const auto current_hit_result = button->hitTest( Vec2( event->getCursorX(), event->getCursorY() ), camera, nullptr );
+
+			if( !mbOnMouseOver && current_hit_result )
+			{
+				CCLOG( "Mouse Over" );
+
+				mbOnMouseOver = current_hit_result;
+				event->stopPropagation();
+			}
+			else if( mbOnMouseOver && !current_hit_result )
+			{
+				CCLOG( "Mouse Out" );
+
+				mbOnMouseOver = current_hit_result;
+			}
 		};
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mMouseListener, this );
 	}
