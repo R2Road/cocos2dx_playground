@@ -504,6 +504,9 @@
     <ClCompile Include="..\Classes\ui_research_RootScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_ButtonWithOnMouseOverScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -900,6 +903,9 @@
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_RootScene.h">
+      <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_ButtonWithOnMouseOverScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
   </ItemGroup>

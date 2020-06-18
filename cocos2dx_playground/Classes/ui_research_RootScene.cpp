@@ -6,6 +6,8 @@
 
 #include "PlayGroundScene.h"
 
+#include "ui_research_ButtonWithOnMouseOverScene.h"
+
 USING_NS_CC;
 
 namespace ui_research
@@ -40,7 +42,7 @@ namespace ui_research
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << "Add Something";
+			ss << "[1] : " << ui_research::ButtonWithOnMouseOverScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -60,7 +62,7 @@ namespace ui_research
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 99, 1, 0, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 30, 55, 92, 255 ) );
 			ret->addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
@@ -92,6 +94,10 @@ namespace ui_research
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_1:
+			Director::getInstance()->replaceScene( ui_research::ButtonWithOnMouseOverScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
