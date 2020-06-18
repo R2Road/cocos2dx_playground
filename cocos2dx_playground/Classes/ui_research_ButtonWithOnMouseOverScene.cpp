@@ -9,6 +9,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "ui/UIButton.h"
 
 USING_NS_CC;
 
@@ -73,6 +74,21 @@ namespace ui_research
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
+		//
+		// Research
+		//
+		{
+			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+			button->setScale9Enabled( true );
+			button->setContentSize( Size( 100.f, 100.f ) );
+			button->setPosition( Vec2(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+			) );
+			button->addTouchEventListener( CC_CALLBACK_2( ButtonWithOnMouseOverScene::onButton, this ) );
+			addChild( button );
+		}
+
 		return true;
 	}
 
@@ -94,7 +110,13 @@ namespace ui_research
 		Node::onExit();
 	}
 
-
+	void ButtonWithOnMouseOverScene::onButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+	{
+		if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+		{
+			CCLOG( "on button" );
+		}
+	}
 	void ButtonWithOnMouseOverScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
