@@ -15,6 +15,7 @@
 #include "graph_practice_RootScene.h"
 #include "input_practice_RootScene.h"
 
+#include "ui_research_RootScene.h"
 #include "Step99_RootScene.h"
 
 USING_NS_CC;
@@ -86,6 +87,8 @@ bool PlayGroundScene::init()
 		ss << std::endl;
 		ss << "=============================";
 		ss << std::endl;
+		ss << std::endl;
+		ss << "[A] : " << ui_research::RootScene::getTitle();
 		ss << std::endl;
 		ss << "[S] : " << step99::RootScene::getTitle();
 
@@ -159,6 +162,9 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		Director::getInstance()->replaceScene( input_practice::RootScene::create() );
 		break;
 
+	case EventKeyboard::KeyCode::KEY_A:
+		Director::getInstance()->replaceScene( ui_research::RootScene::create() );
+		break;
 	case EventKeyboard::KeyCode::KEY_S:
 		Director::getInstance()->replaceScene( step99::RootScene::create() );
 		break;

@@ -127,6 +127,9 @@
     <Filter Include="src\scene\step_03_pathfinder\fileutil">
       <UniqueIdentifier>{a33986f3-ae92-43ef-a9f0-affd99cecdcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\ui_research">
+      <UniqueIdentifier>{595eb5bf-7bab-46c5-8a69-fe05ce1ae2d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -497,6 +500,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_test_StageScene.cpp">
       <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_RootScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_ButtonWithOnMouseOverScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -892,6 +901,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_test_StageScene.h">
       <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_RootScene.h">
+      <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_ButtonWithOnMouseOverScene.h">
+      <Filter>src\scene\ui_research</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

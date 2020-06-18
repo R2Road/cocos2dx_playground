@@ -272,6 +272,8 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\ui_practice_SliderScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_UIAndCamera.cpp" />
     <ClCompile Include="..\Classes\ui_practice_RootScene.cpp" />
+    <ClCompile Include="..\Classes\ui_research_ButtonWithOnMouseOverScene.cpp" />
+    <ClCompile Include="..\Classes\ui_research_RootScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -405,6 +407,8 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\ui_practice_SliderScene.h" />
     <ClInclude Include="..\Classes\ui_practice_UIAndCamera.h" />
     <ClInclude Include="..\Classes\ui_practice_RootScene.h" />
+    <ClInclude Include="..\Classes\ui_research_ButtonWithOnMouseOverScene.h" />
+    <ClInclude Include="..\Classes\ui_research_RootScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
