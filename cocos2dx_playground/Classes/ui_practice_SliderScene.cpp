@@ -20,8 +20,6 @@ namespace ui_practice
 	SliderScene::SliderScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
-		, mCurrentPressedCount( 0 )
-		, mCameraMoveVec2()
 	{}
 
 	Scene* SliderScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )

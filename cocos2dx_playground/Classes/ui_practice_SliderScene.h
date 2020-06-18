@@ -1,7 +1,6 @@
 #pragma once
 
 #include "2d/CCScene.h"
-#include "ui/UIWidget.h"
 
 #include "helper_BackToThePreviousScene.h"
 
@@ -25,7 +24,5 @@ namespace ui_practice
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
-		int mCurrentPressedCount;
-		cocos2d::Vec2 mCameraMoveVec2;
 	};
 }
