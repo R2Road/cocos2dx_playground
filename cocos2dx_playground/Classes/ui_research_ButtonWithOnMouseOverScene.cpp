@@ -18,6 +18,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_button = 20140416;
+	const int TAG_MouseStatusLabel = 20160528;
 }
 
 namespace ui_research
@@ -87,16 +88,34 @@ namespace ui_research
 		// Research
 		//
 		{
-			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-			button->setTag( TAG_button );
-			button->setScale9Enabled( true );
-			button->setContentSize( Size( 100.f, 100.f ) );
-			button->setPosition( Vec2(
-				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
-			) );
-			button->addTouchEventListener( CC_CALLBACK_2( ButtonWithOnMouseOverScene::onButton, this ) );
-			addChild( button );
+			// Test Button
+			{
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( TAG_button );
+				button->setScale9Enabled( true );
+				button->setContentSize( Size( 100.f, 100.f ) );
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				button->addTouchEventListener( CC_CALLBACK_2( ButtonWithOnMouseOverScene::onButton, this ) );
+				addChild( button );
+			}
+
+			// Mouse Status View
+			{
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 14, Size::ZERO, TextHAlignment::CENTER );
+				label->setTag( TAG_MouseStatusLabel );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.8f )
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateMouseStatusView( false );
+			}
 		}
 
 		return true;
@@ -126,14 +145,14 @@ namespace ui_research
 
 			if( !mbOnMouseOver && current_hit_result )
 			{
-				CCLOG( "Mouse Over" );
+				updateMouseStatusView( current_hit_result );
 
 				mbOnMouseOver = current_hit_result;
 				event->stopPropagation();
 			}
 			else if( mbOnMouseOver && !current_hit_result )
 			{
-				CCLOG( "Mouse Out" );
+				updateMouseStatusView( current_hit_result );
 
 				mbOnMouseOver = current_hit_result;
 			}
@@ -160,6 +179,19 @@ namespace ui_research
 			CCLOG( "on button" );
 		}
 	}
+	void ButtonWithOnMouseOverScene::updateMouseStatusView( bool is_over )
+	{
+		auto label = static_cast<Label*>( getChildByTag( TAG_MouseStatusLabel ) );
+		if( is_over )
+		{
+			label->setString( "Over" );
+		}
+		else
+		{
+			label->setString( "Out" );
+		}
+	}
+
 	void ButtonWithOnMouseOverScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
