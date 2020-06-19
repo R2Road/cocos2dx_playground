@@ -277,6 +277,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\ui_research_type_effect_BasicScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_type_effect_ColorScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_type_effect_MultiByteScene.cpp" />
+    <ClCompile Include="..\Classes\ui_research_type_effect_ShakeScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +416,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\ui_research_type_effect_BasicScene.h" />
     <ClInclude Include="..\Classes\ui_research_type_effect_ColorScene.h" />
     <ClInclude Include="..\Classes\ui_research_type_effect_MultiByteScene.h" />
+    <ClInclude Include="..\Classes\ui_research_type_effect_ShakeScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

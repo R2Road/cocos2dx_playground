@@ -516,6 +516,9 @@
     <ClCompile Include="..\Classes\ui_research_type_effect_ColorScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_type_effect_ShakeScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -924,6 +927,9 @@
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_type_effect_ColorScene.h">
+      <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_type_effect_ShakeScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
   </ItemGroup>

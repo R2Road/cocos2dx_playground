@@ -11,6 +11,7 @@
 #include "ui_research_type_effect_BasicScene.h"
 #include "ui_research_type_effect_MultiByteScene.h"
 #include "ui_research_type_effect_ColorScene.h"
+#include "ui_research_type_effect_ShakeScene.h"
 
 USING_NS_CC;
 
@@ -54,6 +55,8 @@ namespace ui_research
 			ss << "[3] : " << ui_research::type_effect::MultiByteScene::getTitle();
 			ss << std::endl;
 			ss << "[4] : " << ui_research::type_effect::ColorScene::getTitle();
+			ss << std::endl;
+			ss << "[5] : " << ui_research::type_effect::ShakeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -118,6 +121,9 @@ namespace ui_research
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( ui_research::type_effect::ColorScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_5:
+			Director::getInstance()->replaceScene( ui_research::type_effect::ShakeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
