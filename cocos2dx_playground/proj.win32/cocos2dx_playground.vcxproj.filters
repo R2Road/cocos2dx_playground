@@ -510,6 +510,12 @@
     <ClCompile Include="..\Classes\ui_research_type_effect_BasicScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_type_effect_MultiByteScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_type_effect_ColorScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -912,6 +918,12 @@
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_type_effect_BasicScene.h">
+      <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_type_effect_MultiByteScene.h">
+      <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_type_effect_ColorScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
   </ItemGroup>

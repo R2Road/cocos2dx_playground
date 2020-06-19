@@ -1,4 +1,4 @@
-#include "ui_research_type_effect_BasicScene.h"
+#include "ui_research_type_effect_ColorScene.h"
 
 #include <algorithm>
 #include <new>
@@ -26,7 +26,7 @@ namespace ui_research
 {
 	namespace type_effect
 	{
-		BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		ColorScene::ColorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTypeDelay( 0.05f )
@@ -34,9 +34,9 @@ namespace ui_research
 			, mLetterIndicator( 0 )
 		{}
 
-		Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* ColorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) BasicScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) ColorScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -51,7 +51,7 @@ namespace ui_research
 			return ret;
 		}
 
-		bool BasicScene::init()
+		bool ColorScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -97,7 +97,7 @@ namespace ui_research
 			// Delay View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 14, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 14 );
 				label->setTag( TAG_DelayView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -114,7 +114,11 @@ namespace ui_research
 			// Research
 			//
 			{
-				auto label = Label::createWithTTF( "ABCDEF GHIJKL MNOPQ RSTUV\nWXYZ1 2345 67890", "fonts/arial.ttf", 14, Size::ZERO, TextHAlignment::CENTER );
+				const std::u32string u32_string = U"ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ\n아야어여오 요우유으이\n가나다라마 바사아자차 카타파하 1234567890\n화려한 조명이 나를 감싸네";
+				std::string utf8_string;
+				StringUtils::UTF32ToUTF8( u32_string, utf8_string );
+
+				auto label = Label::createWithTTF( utf8_string, "fonts/NanumSquareR.ttf", 15, Size::ZERO, TextHAlignment::CENTER );
 				label->setTag( TAG_TextView );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -123,25 +127,52 @@ namespace ui_research
 				addChild( label, std::numeric_limits<int>::max() );
 
 				// build letters
+				Color3B letter_color = Color3B::WHITE;
 				for( int i = 0; label->getStringLength() > i; ++i )
 				{
-					label->getLetter( i );
+					switch( i )
+					{
+					case 10:
+						letter_color = Color3B::RED;
+						break;
+					case 20:
+						letter_color = Color3B::BLACK;
+						break;
+					case 30:
+						letter_color = Color3B::ORANGE;
+						break;
+					case 40:
+						letter_color = Color3B::MAGENTA;
+						break;
+					case 50:
+						letter_color = Color3B::GREEN;
+						break;
+					case 60:
+						letter_color = Color3B::YELLOW;
+						break;
+					}
+
+					auto letter = label->getLetter( i );
+					if( letter )
+					{
+						letter->setColor( letter_color );
+					}
 				}
 			}
 
 			return true;
 		}
 
-		void BasicScene::onEnter()
+		void ColorScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ColorScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void BasicScene::onExit()
+		void ColorScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -150,7 +181,7 @@ namespace ui_research
 			Node::onExit();
 		}
 
-		void BasicScene::HideLetters()
+		void ColorScene::HideLetters()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_TextView ) );
 			for( auto letter : label->getChildren() )
@@ -158,24 +189,24 @@ namespace ui_research
 				letter->setVisible( false );
 			}
 		}
-		void BasicScene::StartType()
+		void ColorScene::StartType()
 		{
-			if( isScheduled( SEL_SCHEDULE( &BasicScene::updateForType ) ) )
+			if( isScheduled( SEL_SCHEDULE( &ColorScene::updateForType ) ) )
 			{
 				EndType();
 			}
 
 			HideLetters();
-			schedule( SEL_SCHEDULE( &BasicScene::updateForType ) );
+			schedule( SEL_SCHEDULE( &ColorScene::updateForType ) );
 		}
-		void BasicScene::EndType()
+		void ColorScene::EndType()
 		{
 			unscheduleAllCallbacks();
 
 			mElapsedTime = 0.f;
 			mLetterIndicator = 0;
 		}
-		void BasicScene::updateForType( float dt )
+		void ColorScene::updateForType( float dt )
 		{
 			mElapsedTime += dt;
 			if( mTypeDelay > mElapsedTime )
@@ -199,13 +230,13 @@ namespace ui_research
 			}
 		}
 
-		void BasicScene::updateDelayView()
+		void ColorScene::updateDelayView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_DelayView ) );
 			label->setString( StringUtils::format( "Delay : %.2f", mTypeDelay ) );
 		}
 
-		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void ColorScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
