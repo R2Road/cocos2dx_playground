@@ -68,6 +68,8 @@
   - Basic
   - Collection 01 - 06
 
-- ui research
+- [ui research](https://github.com/R2Road/cocos2dx_playground/wiki/UI-Research)
   - Button with On Mouse Over
   - Type Effect : Basic
+  - Type Effect : Multi Byte
+  - Type Effect : Color
