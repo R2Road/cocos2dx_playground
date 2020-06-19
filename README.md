@@ -73,3 +73,4 @@
   - Type Effect : Basic
   - Type Effect : Multi Byte
   - Type Effect : Color
+  - Type Effect : Shake
