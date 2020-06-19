@@ -45,6 +45,7 @@ namespace ui_research
 			ss << std::endl;
 			ss << "[1] : " << ui_research::ButtonWithOnMouseOverScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
 			ss << "[2] : " << ui_research::type_effect::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
