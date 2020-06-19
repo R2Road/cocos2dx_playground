@@ -7,7 +7,9 @@
 #include "PlayGroundScene.h"
 
 #include "ui_research_ButtonWithOnMouseOverScene.h"
+
 #include "ui_research_type_effect_BasicScene.h"
+#include "ui_research_type_effect_MultiByteScene.h"
 
 USING_NS_CC;
 
@@ -47,6 +49,8 @@ namespace ui_research
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[2] : " << ui_research::type_effect::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[3] : " << ui_research::type_effect::MultiByteScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -105,6 +109,9 @@ namespace ui_research
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( ui_research::type_effect::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( ui_research::type_effect::MultiByteScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
