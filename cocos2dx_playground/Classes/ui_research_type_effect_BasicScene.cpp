@@ -125,11 +125,7 @@ namespace ui_research
 				// build letters
 				for( int i = 0; label->getStringLength() > i; ++i )
 				{
-					auto letter = label->getLetter( i );
-					if( letter )
-					{
-						letter->setColor( Color3B::GREEN );
-					}
+					label->getLetter( i );
 				}
 			}
 
