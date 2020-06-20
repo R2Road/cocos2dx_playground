@@ -100,7 +100,7 @@ namespace step_typetype
 			// Input Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "Press Space Bar : Play FX", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "Press Space Bar : Play FX", "fonts/NanumSquareR.ttf", 14 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )

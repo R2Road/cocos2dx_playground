@@ -17,7 +17,7 @@ USING_NS_CC;
 
 namespace
 {
-	const Size letter_size( 12.f, 12.f );
+	const Size letter_size( 14.f, 14.f );
 	const Size margin_size( 2.f, 2.f );
 }
 
@@ -102,7 +102,7 @@ namespace step_typetype
 			//
 			for( auto& letter : mLetters )
 			{
-				letter = Label::createWithTTF( "A", "fonts/NanumSquareR.ttf", 10 );
+				letter = Label::createWithTTF( "A", "fonts/NanumSquareR.ttf", 12 );
 				letter->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				addChild( letter );
 			}
@@ -112,7 +112,7 @@ namespace step_typetype
 			//
 			{
 				mIndicator = Sprite::createWithSpriteFrameName( "guide_01_4.png" );
-				mIndicator->setContentSize( Size( 12.f, 12.f ) );
+				mIndicator->setContentSize( letter_size );
 				mIndicator->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				addChild( mIndicator );
 			}

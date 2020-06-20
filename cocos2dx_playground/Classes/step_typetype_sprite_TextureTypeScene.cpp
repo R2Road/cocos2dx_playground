@@ -80,12 +80,12 @@ namespace step_typetype
 				sprite->getTexture()->setAntiAliasTexParameters();
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.3f )
+					visibleOrigin.x + ( visibleSize.width * 0.25f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "Normal Texture\nSet Antialias", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "Normal Texture\nSet Antialias", "fonts/NanumSquareR.ttf", 12 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					sprite->getPositionX()
@@ -107,7 +107,7 @@ namespace step_typetype
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "Normal Texture\nSet Alias ", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "Normal Texture\nSet Alias ", "fonts/NanumSquareR.ttf", 12 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					sprite->getPositionX()
@@ -126,12 +126,12 @@ namespace step_typetype
 				auto sprite = Sprite::createWithSpriteFrameName( "step_typetype_dummy_02.png" );
 				sprite->setScale( 2.f );
 				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.7f )
+					visibleOrigin.x + ( visibleSize.width * 0.75f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "PList Texture\nSet Alias ", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "PList Texture\nSet Alias ", "fonts/NanumSquareR.ttf", 12 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					sprite->getPositionX()

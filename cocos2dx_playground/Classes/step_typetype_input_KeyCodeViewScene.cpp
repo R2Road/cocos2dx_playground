@@ -79,7 +79,7 @@ namespace step_typetype
 			// KeyCode View
 			//
 			{
-				auto label = Label::createWithTTF( "Press Key", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "Press Key", "fonts/NanumSquareR.ttf", 14 );
 				label->setTag( TAG_KeyCodeViewNode );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
