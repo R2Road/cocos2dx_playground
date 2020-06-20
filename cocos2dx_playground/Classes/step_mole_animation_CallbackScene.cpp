@@ -142,7 +142,7 @@ namespace step_mole
 			// Animation Status
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
 				label->setTag( TAG_AnimationStatusNode );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );

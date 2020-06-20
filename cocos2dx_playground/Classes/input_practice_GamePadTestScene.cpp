@@ -106,7 +106,7 @@ namespace input_practice
 		// KeyCode View
 		//
 		{
-			auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+			auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14 );
 			label->setTag( TAG_KeyCodeViewNode );
 			label->setColor( Color3B::GREEN );
 			label->setPosition( Vec2(
