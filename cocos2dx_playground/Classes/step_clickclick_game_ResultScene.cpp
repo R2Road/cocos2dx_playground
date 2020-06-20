@@ -55,7 +55,7 @@ namespace step_clickclick
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8 );
 				label->setColor( Color3B::BLACK );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -77,7 +77,7 @@ namespace step_clickclick
 			// Game Clear
 			//
 			{
-				auto label = Label::createWithTTF( "Game Clear", "fonts/arial.ttf", 32 );
+				auto label = Label::createWithTTF( "Game Clear", "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -90,7 +90,7 @@ namespace step_clickclick
 			// Result
 			//
 			{
-				auto label = Label::createWithTTF( StringUtils::format( "Clear Score : %d", clear_score ), "fonts/arial.ttf", 32 );
+				auto label = Label::createWithTTF( StringUtils::format( "Clear Score : %d", clear_score ), "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )

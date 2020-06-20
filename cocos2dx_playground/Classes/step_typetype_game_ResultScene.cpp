@@ -53,7 +53,7 @@ namespace step_typetype
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::BLACK );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -75,7 +75,7 @@ namespace step_typetype
 			// Game Clear
 			//
 			{
-				auto label = Label::createWithTTF( "Game Clear", "fonts/arial.ttf", 32 );
+				auto label = Label::createWithTTF( "Game Clear", "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -88,7 +88,7 @@ namespace step_typetype
 			// Result
 			//
 			{
-				auto label = Label::createWithTTF( StringUtils::format( "Clear Time : %.2lf", clear_time ), "fonts/arial.ttf", 32 );
+				auto label = Label::createWithTTF( StringUtils::format( "Clear Time : %.2lf", clear_time ), "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )

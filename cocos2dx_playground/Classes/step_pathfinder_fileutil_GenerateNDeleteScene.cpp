@@ -21,7 +21,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/arial.ttf";
+	const char* FontPath = "fonts/NanumSquareR.ttf";
 
 	const int TAG_FileStatus = 20140416;
 

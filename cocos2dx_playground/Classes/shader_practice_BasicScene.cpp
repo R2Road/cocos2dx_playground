@@ -22,7 +22,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/arial.ttf";
+	const char* FontPath = "fonts/NanumSquareR.ttf";
 	const int FontSize = 9;
 
 	const char* CustomeShaderPath = "shaders/shader_practice_BasicScene.fsh";

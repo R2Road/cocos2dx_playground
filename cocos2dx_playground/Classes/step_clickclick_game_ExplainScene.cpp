@@ -57,7 +57,7 @@ namespace step_clickclick
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -72,7 +72,7 @@ namespace step_clickclick
 			// Subject
 			//
 			{
-				auto label = Label::createWithTTF( "Chanllenge to Remove All Blocks", "fonts/arial.ttf", 18 );
+				auto label = Label::createWithTTF( "Chanllenge to Remove All Blocks", "fonts/NanumSquareR.ttf", 18 );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.86f
@@ -92,7 +92,7 @@ namespace step_clickclick
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( ":   Decrease MySelf", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( ":   Decrease MySelf", "fonts/NanumSquareR.ttf", 14 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				label->setPosition( sprite->getPosition() + Vec2( sprite->getBoundingBox().size.width + 6.f, 0.f ) );
@@ -111,7 +111,7 @@ namespace step_clickclick
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( ":   3 X 3\n   Same Number Decrease\n   Different Number Increase", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( ":   3 X 3\n   Same Number Decrease\n   Different Number Increase", "fonts/NanumSquareR.ttf", 14 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				label->setPosition( sprite->getPosition() + Vec2( sprite->getBoundingBox().size.width + 6.f, 0.f ) );
@@ -130,7 +130,7 @@ namespace step_clickclick
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( ":   3 X 3\n   Different Number Die\n   Same Number Increase", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( ":   3 X 3\n   Different Number Die\n   Same Number Increase", "fonts/NanumSquareR.ttf", 14 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				label->setPosition( sprite->getPosition() + Vec2( sprite->getBoundingBox().size.width + 6.f, 0.f ) );
@@ -142,7 +142,7 @@ namespace step_clickclick
 			// request input
 			//
 			{
-				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 14 );
+				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/NanumSquareR.ttf", 14 );
 				request_input_label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.18f

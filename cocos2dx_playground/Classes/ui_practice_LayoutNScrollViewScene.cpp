@@ -20,7 +20,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/arial.ttf";
+	const char* FontPath = "fonts/NanumSquareR.ttf";
 
 	const std::size_t STRING_COUNT = 20;
 	const char* STRINGs[STRING_COUNT] = {

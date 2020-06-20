@@ -70,7 +70,7 @@ namespace research
 				for( const auto& h : key_map_config_helper.getContainer() )
 					ss << "[ " << h.mName << " : " << cpg::input::KeyCodeNames::get( h.mKeycode ) << " ]" << std::endl;
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -84,7 +84,7 @@ namespace research
 			// exit interface
 			//
 			{
-				auto label = Label::createWithTTF( "Exit", "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Exit", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 
 				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );

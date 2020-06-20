@@ -89,7 +89,7 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << "[R] : Reset";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -111,7 +111,7 @@ namespace step_clickclick
 			// Test Action
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
 				label->setTag( TAG_TestActionView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
@@ -128,7 +128,7 @@ namespace step_clickclick
 			// Selected Block Type View
 			//
 			{
-				auto label = Label::createWithTTF( "Block Type : -", "fonts/arial.ttf", 12 );
+				auto label = Label::createWithTTF( "Block Type : -", "fonts/NanumSquareR.ttf", 12 );
 				label->setTag( TAG_SelectedBlockTypeView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );

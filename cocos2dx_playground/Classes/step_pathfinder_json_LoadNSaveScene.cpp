@@ -74,7 +74,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -99,7 +99,7 @@ namespace step_pathfinder
 
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Target Path>", "fonts/arial.ttf", 14 );
+					auto label = Label::createWithTTF( "<Target Path>", "fonts/NanumSquareR.ttf", 14 );
 					label->setAnchorPoint( Vec2( 1.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -122,7 +122,7 @@ namespace step_pathfinder
 						} );
 						addChild( button );
 						{
-							auto title_label = Label::createWithTTF( "Open Folder", "fonts/arial.ttf", 12 );
+							auto title_label = Label::createWithTTF( "Open Folder", "fonts/NanumSquareR.ttf", 12 );
 							button->setTitleLabel( title_label );
 
 							button->setContentSize( title_label->getContentSize() + Size( 10.f, 4.f ) + Size( 10.f, 4.f ) );
@@ -140,7 +140,7 @@ namespace step_pathfinder
 
 				// Path
 				{
-					auto label = Label::createWithTTF( FileUtils::getInstance()->getWritablePath().c_str(), "fonts/arial.ttf", 10 );
+					auto label = Label::createWithTTF( FileUtils::getInstance()->getWritablePath().c_str(), "fonts/NanumSquareR.ttf", 10 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
@@ -158,7 +158,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<File Name>", "fonts/arial.ttf", 14 );
+					auto label = Label::createWithTTF( "<File Name>", "fonts/NanumSquareR.ttf", 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -169,7 +169,7 @@ namespace step_pathfinder
 
 				// Name
 				{
-					auto label = Label::createWithTTF( FilePath_Step_Pathfinder_Json_LoadNSave, "fonts/arial.ttf", 14 );
+					auto label = Label::createWithTTF( FilePath_Step_Pathfinder_Json_LoadNSave, "fonts/NanumSquareR.ttf", 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
@@ -199,7 +199,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Json File Content String>", "fonts/arial.ttf", 14 );
+					auto label = Label::createWithTTF( "<Json File Content String>", "fonts/NanumSquareR.ttf", 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -210,7 +210,7 @@ namespace step_pathfinder
 
 				// Content
 				{
-					auto label = Label::createWithTTF( json_string.c_str(), "fonts/arial.ttf", 14 );
+					auto label = Label::createWithTTF( json_string.c_str(), "fonts/NanumSquareR.ttf", 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
@@ -227,7 +227,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Parsed Json Data>", "fonts/arial.ttf", 14 );
+					auto label = Label::createWithTTF( "<Parsed Json Data>", "fonts/NanumSquareR.ttf", 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -244,7 +244,7 @@ namespace step_pathfinder
 						ss << "   " << i;
 					}
 
-					auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 14 );
+					auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(

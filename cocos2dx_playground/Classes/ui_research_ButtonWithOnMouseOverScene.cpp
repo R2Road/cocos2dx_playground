@@ -67,7 +67,7 @@ namespace ui_research
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -104,7 +104,7 @@ namespace ui_research
 
 			// Mouse Status View
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 14, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::CENTER );
 				label->setTag( TAG_MouseStatusLabel );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setColor( Color3B::GREEN );

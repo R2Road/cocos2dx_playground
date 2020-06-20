@@ -127,7 +127,7 @@ namespace step_pathfinder
 			button->setScale9Enabled( true );
 			button->setContentSize( menu_size );
 			{
-				auto label = Label::createWithTTF( button_text, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( button_text, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				button->setTitleLabel( label );
 			}
 

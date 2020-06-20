@@ -25,7 +25,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/arial.ttf";
+	const char* FontPath = "fonts/NanumSquareR.ttf";
 	const char* CustomeShaderPath = "shaders/shader_practice_SimpleTestScene.fsh";
 
 	class UniformHelperNode : public Node
@@ -87,7 +87,7 @@ namespace
 			// Title
 			//
 			{
-				auto label = Label::createWithTTF( info.Name, "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( info.Name, "fonts/NanumSquareR.ttf", 10 );
 				label->setColor( Color3B::ORANGE );
 				label->setPosition(
 					CenterPosition
@@ -99,7 +99,7 @@ namespace
 			//
 			// Percent
 			//
-			auto percent_label = Label::createWithTTF( std::to_string( StartPercent ), "fonts/arial.ttf", 9 );
+			auto percent_label = Label::createWithTTF( std::to_string( StartPercent ), "fonts/NanumSquareR.ttf", 10 );
 			percent_label->setColor( Color3B::GREEN );
 			percent_label->setPosition( CenterPosition );
 			addChild( percent_label, 1 );

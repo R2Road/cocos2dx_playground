@@ -63,7 +63,7 @@ namespace step_mole
 		// Radius View
 		if( config.bUseRadiusHelper )
 		{
-			auto label = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 			label->setPositionX( mRadius + margin );
 			label->setVisible( false );

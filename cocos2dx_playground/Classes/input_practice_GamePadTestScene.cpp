@@ -66,7 +66,7 @@ namespace input_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -84,7 +84,7 @@ namespace input_practice
 			ss << std::endl;
 			ss << "Win10 + Xbox Game Controller";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
 			label->setColor( Color3B::GREEN );
 			label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label->setPosition( Vec2(
@@ -106,7 +106,7 @@ namespace input_practice
 		// KeyCode View
 		//
 		{
-			auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+			auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
 			label->setTag( TAG_KeyCodeViewNode );
 			label->setColor( Color3B::GREEN );
 			label->setPosition( Vec2(

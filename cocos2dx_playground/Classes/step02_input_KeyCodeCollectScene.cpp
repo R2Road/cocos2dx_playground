@@ -55,7 +55,7 @@ namespace step02
 				ss << std::endl;
 				ss << "[Keyboard] : Do Type";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -75,7 +75,7 @@ namespace step02
 			//
 			// key viewer
 			//
-			mKeyViewer = Label::createWithTTF( "", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+			mKeyViewer = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 			mKeyViewer->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )

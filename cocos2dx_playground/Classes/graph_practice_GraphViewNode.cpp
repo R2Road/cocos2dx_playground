@@ -69,7 +69,7 @@ namespace graph_practice
 		// Title
 		//
 		{
-			auto label = Label::createWithTTF( title, "fonts/arial.ttf", 9 );
+			auto label = Label::createWithTTF( title, "fonts/NanumSquareR.ttf", 10 );
 			label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 			label->setPositionX( getContentSize().width * 0.5f );
 			addChild( label, std::numeric_limits<int>::max() );

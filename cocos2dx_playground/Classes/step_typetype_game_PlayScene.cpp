@@ -73,7 +73,7 @@ namespace step_typetype
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -96,7 +96,7 @@ namespace step_typetype
 			{
 				auto label = Label::createWithTTF(
 					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
-					, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::RIGHT
+					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -123,7 +123,7 @@ namespace step_typetype
 			// Next Stage Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "ENTER", "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( "ENTER", "fonts/NanumSquareR.ttf", 10 );
 				label->setTag( TAG_NextStageIndicator );
 				label->setColor( Color3B::GREEN );
 				label->setVisible( false );

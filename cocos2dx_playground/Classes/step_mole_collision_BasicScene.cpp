@@ -86,7 +86,7 @@ namespace step_mole
 				ss << std::endl;
 				ss << "[Mouse] : Push and Drag";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleMargin.width
@@ -107,7 +107,7 @@ namespace step_mole
 			// Distance
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
 				label->setTag( TAG_Distance );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
@@ -176,7 +176,7 @@ namespace step_mole
 
 					// Radius View
 					{
-						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 						label->setPositionX( radius + margin.width );
 						actor_root_node->addChild( label );
@@ -248,7 +248,7 @@ namespace step_mole
 
 					// Radius View
 					{
-						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 						label->setPositionX( radius + margin.width );
 						bullet_root_node->addChild( label );

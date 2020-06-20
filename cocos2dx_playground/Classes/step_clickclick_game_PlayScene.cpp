@@ -85,7 +85,7 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << "[Mouse] : Click";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -109,7 +109,7 @@ namespace step_clickclick
 			{
 				auto label = Label::createWithTTF(
 					"BGM : Somewhere in the Elevator\nAuthor : Peachtea@You're Perfect Studio\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
-					, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::RIGHT
+					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -150,7 +150,7 @@ namespace step_clickclick
 			// Score View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
 				label->setTag( TAG_ScoreView );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
@@ -167,7 +167,7 @@ namespace step_clickclick
 			// Clear View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 16 );
 				label->setTag( TAG_ClearView );
 				label->setVisible( false );
 				label->setPosition( Vec2(
@@ -181,7 +181,7 @@ namespace step_clickclick
 			// Count View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 16 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 16 );
 				label->setTag( TAG_CountView );
 				label->setVisible( false );
 				label->setPosition( Vec2(

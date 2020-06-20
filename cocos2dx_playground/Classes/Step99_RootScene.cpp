@@ -54,7 +54,7 @@ namespace step99
 			ss << "\n";
 			ss << "[4] : Configed Keys Test";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )

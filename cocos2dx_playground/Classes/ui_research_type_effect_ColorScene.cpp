@@ -76,7 +76,7 @@ namespace ui_research
 				ss << std::endl;
 				ss << "[A] : End Type";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -97,7 +97,7 @@ namespace ui_research
 			// Delay View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 14 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14 );
 				label->setTag( TAG_DelayView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );

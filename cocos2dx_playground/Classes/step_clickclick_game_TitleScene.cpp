@@ -60,7 +60,7 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << "[F1] : Result Scene Test";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 8 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -91,7 +91,7 @@ namespace step_clickclick
 			// request input
 			//
 			{
-				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 14 );
+				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/NanumSquareR.ttf", 14 );
 				request_input_label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.18f

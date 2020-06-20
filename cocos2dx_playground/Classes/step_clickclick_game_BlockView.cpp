@@ -76,7 +76,7 @@ namespace step_clickclick
 			addChild( mViewNode, 1 );
 
 			// label
-			mLabelNode = Label::createWithTTF( "0", "fonts/arial.ttf", 9 );
+			mLabelNode = Label::createWithTTF( "0", "fonts/NanumSquareR.ttf", 10 );
 			mLabelNode->getFontAtlas()->setAliasTexParameters();
 			mLabelNode->setColor( Color3B::WHITE );
 			mLabelNode->setAnchorPoint( Vec2( 0.5f, 0.5f ) );

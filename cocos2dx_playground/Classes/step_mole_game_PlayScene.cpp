@@ -122,7 +122,7 @@ namespace step_mole
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -137,7 +137,7 @@ namespace step_mole
 			{
 				auto label = Label::createWithTTF(
 					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
-					, "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::RIGHT
+					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -160,7 +160,7 @@ namespace step_mole
 			// Score View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 12 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
 				label->setTag( TAG_ScoreView );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );

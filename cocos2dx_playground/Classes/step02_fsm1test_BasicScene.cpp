@@ -205,7 +205,7 @@ namespace step02
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -227,7 +227,7 @@ namespace step02
 			//
 			{
 				{
-					auto label = Label::createWithTTF( "State 1", "fonts/arial.ttf", 12 );
+					auto label = Label::createWithTTF( "State 1", "fonts/NanumSquareR.ttf", 12 );
 					label->setTag( TAG_Label_State_0 );
 					label->setColor( Color3B::GRAY );
 					label->setPosition( Vec2(
@@ -238,7 +238,7 @@ namespace step02
 				}
 
 				{
-					auto label = Label::createWithTTF( "State 2", "fonts/arial.ttf", 12 );
+					auto label = Label::createWithTTF( "State 2", "fonts/NanumSquareR.ttf", 12 );
 					label->setColor( Color3B::GRAY );
 					label->setTag( TAG_Label_State_1 );
 					label->setPosition( Vec2(

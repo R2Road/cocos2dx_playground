@@ -78,7 +78,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[2] : Decrease Camera Speed";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -99,7 +99,7 @@ namespace ui_practice
 		// Move Speed
 		//
 		{
-			auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+			auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
 			label->setTag( TAG_MoveSpeedLabel );
 			label->setAnchorPoint( Vec2( 1.f, 0.f ) );
 			label->setColor( Color3B::GREEN );
@@ -119,7 +119,7 @@ namespace ui_practice
 		{
 			// Just Label
 			{
-				auto label = Label::createWithTTF( "Just Label", "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( "Just Label", "fonts/NanumSquareR.ttf", 10 );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )

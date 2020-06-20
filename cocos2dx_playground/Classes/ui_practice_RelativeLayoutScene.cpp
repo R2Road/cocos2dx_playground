@@ -18,7 +18,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/arial.ttf";
+	const char* FontPath = "fonts/NanumSquareR.ttf";
 }
 
 namespace ui_practice

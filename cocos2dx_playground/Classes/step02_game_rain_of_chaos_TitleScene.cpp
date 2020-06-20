@@ -59,7 +59,7 @@ namespace step02
 					ss << std::endl;
 					ss << "[ESC] : Return to Root";
 
-					auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x

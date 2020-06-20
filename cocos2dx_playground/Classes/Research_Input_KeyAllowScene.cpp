@@ -25,7 +25,7 @@ namespace research
 			const Size calculateSizeOfKeyAllowControl( const char* str )
 			{
 				const Size key_allow_margin( 8.f, 4.f );
-				auto temp = Label::createWithTTF( str, "fonts/arial.ttf", 10 );
+				auto temp = Label::createWithTTF( str, "fonts/NanumSquareR.ttf", 10 );
 				return Size(
 					std::ceilf( temp->getContentSize().width + ( key_allow_margin.width * 2 ) )
 					, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
@@ -50,7 +50,7 @@ namespace research
 			{
 				auto key_allow_control_root = Node::create();
 				{
-					auto key_allow_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( target_key_code ), "fonts/arial.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_allow_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( target_key_code ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
 					key_allow_control_root->addChild( key_allow_label, 2 );
 
 					auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
@@ -120,7 +120,7 @@ namespace research
 			ss << tab_char;
 			ss << "[Mouse] : Horizontal Scrolling";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setColor( Color3B::GREEN );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(

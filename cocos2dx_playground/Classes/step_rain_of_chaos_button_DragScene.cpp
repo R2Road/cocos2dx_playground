@@ -69,7 +69,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[1] : Position Reset";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -101,7 +101,7 @@ namespace step_rain_of_chaos
 
 				// left label
 				{
-					auto label = Label::createWithTTF( "CLICK HERE ===>>>", "fonts/arial.ttf", 9 );
+					auto label = Label::createWithTTF( "CLICK HERE ===>>>", "fonts/NanumSquareR.ttf", 10 );
 					label->setColor( Color3B::RED );
 					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 					label->setPosition(
@@ -113,7 +113,7 @@ namespace step_rain_of_chaos
 
 				// right label
 				{
-					auto label = Label::createWithTTF( "<<<=== ...AND DRAG", "fonts/arial.ttf", 9 );
+					auto label = Label::createWithTTF( "<<<=== ...AND DRAG", "fonts/NanumSquareR.ttf", 10 );
 					label->setColor( Color3B::RED );
 					label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 					label->setPosition(

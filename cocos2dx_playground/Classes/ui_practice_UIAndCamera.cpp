@@ -64,7 +64,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[Arrow Key] : Move Default Camera";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -87,7 +87,7 @@ namespace ui_practice
 		{
 			// Just Label
 			{
-				auto label = Label::createWithTTF( "Just Label", "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( "Just Label", "fonts/NanumSquareR.ttf", 10 );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.25f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -118,7 +118,7 @@ namespace ui_practice
 				) );
 				addChild( layer );
 				{
-					auto label = Label::createWithTTF( "Label with UI Camera", "fonts/arial.ttf", 9 );
+					auto label = Label::createWithTTF( "Label with UI Camera", "fonts/NanumSquareR.ttf", 10 );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
 						layer->getContentSize().width * 0.5f

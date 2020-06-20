@@ -50,7 +50,7 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( label->getContentSize().width * 0.5f )
 					, visibleOrigin.y + visibleSize.height - ( label->getContentSize().height * 0.5f )
@@ -78,7 +78,7 @@ namespace step_typetype
 				) );
 				addChild( pivot_indicator );
 
-				auto label = Label::createWithTTF( "< == Pivot", "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( "< == Pivot", "fonts/NanumSquareR.ttf", 10 );
 				label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				label->setPosition( pivot_indicator->getPosition() + Vec2( 10.f, 0.f ) );
 				addChild( label );
@@ -103,7 +103,7 @@ namespace step_typetype
 					sprite->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					root_node->addChild( sprite );
 
-					auto label = Label::createWithTTF( "Anchor Point\n0, 0", "fonts/arial.ttf", 9 );
+					auto label = Label::createWithTTF( "Anchor Point\n0, 0", "fonts/NanumSquareR.ttf", 10 );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );
 					root_node->addChild( label );
@@ -129,7 +129,7 @@ namespace step_typetype
 					sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 					root_node->addChild( sprite );
 
-					auto label = Label::createWithTTF( "Anchor Point\n0.5, 0.5", "fonts/arial.ttf", 9 );
+					auto label = Label::createWithTTF( "Anchor Point\n0.5, 0.5", "fonts/NanumSquareR.ttf", 10 );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );
 					root_node->addChild( label );
@@ -155,7 +155,7 @@ namespace step_typetype
 					sprite->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					root_node->addChild( sprite );
 
-					auto label = Label::createWithTTF( "Anchor Point\n1, 1", "fonts/arial.ttf", 9 );
+					auto label = Label::createWithTTF( "Anchor Point\n1, 1", "fonts/NanumSquareR.ttf", 10 );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );
 					root_node->addChild( label );

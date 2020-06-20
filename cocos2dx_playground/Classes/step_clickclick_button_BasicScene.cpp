@@ -67,7 +67,7 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -89,7 +89,7 @@ namespace step_clickclick
 			// Button Status View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
 				label->setTag( TAG_ButtonStatus );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -104,7 +104,7 @@ namespace step_clickclick
 			// Touch Info View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
 				label->setTag( TAG_TouchPosition );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
@@ -129,7 +129,7 @@ namespace step_clickclick
 				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
 				addChild( button );
 
-				auto label = Label::createWithTTF( "Click Here ===>>>", "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Click Here ===>>>", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f, 0.f ) );

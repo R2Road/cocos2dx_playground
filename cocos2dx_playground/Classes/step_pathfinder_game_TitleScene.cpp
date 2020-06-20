@@ -60,7 +60,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[F1] : Result Scene Test";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/arial.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -90,7 +90,7 @@ namespace step_pathfinder
 			// request input
 			//
 			{
-				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/arial.ttf", 12 );
+				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/NanumSquareR.ttf", 12 );
 				request_input_label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.3f

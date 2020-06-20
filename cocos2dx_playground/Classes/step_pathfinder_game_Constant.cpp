@@ -39,7 +39,7 @@ namespace step_pathfinder
 
 		cocos2d::Size GetMaxMenuSize()
 		{
-			auto label = cocos2d::Label::createWithTTF( "", "fonts/arial.ttf", 9 );
+			auto label = cocos2d::Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
 
 			const cocos2d::Size button_margin( 10.f, 4.f );
 			cocos2d::Size max_size;

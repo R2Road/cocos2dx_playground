@@ -24,7 +24,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/arial.ttf";
+	const char* FontPath = "fonts/NanumSquareR.ttf";
 
 	const char* CustomeShaderPath = "shaders/gl_uniform_infos_test.fsh";
 }

@@ -84,7 +84,7 @@ namespace step_typetype
 					auto background = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
 					background->setPosition( Vec2(
 						-getContentSize().width * 0.5f
-						, -getContentSize().height * 0.5f
+						, 1 -getContentSize().height * 0.5f
 					) );
 					addChild( background, std::numeric_limits<int>::min() );
 
@@ -102,7 +102,7 @@ namespace step_typetype
 			//
 			for( auto& letter : mLetters )
 			{
-				letter = Label::createWithTTF( "A", "fonts/arial.ttf", 10 );
+				letter = Label::createWithTTF( "A", "fonts/NanumSquareR.ttf", 10 );
 				letter->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				addChild( letter );
 			}
