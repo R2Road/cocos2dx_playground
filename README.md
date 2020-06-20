@@ -1,6 +1,23 @@
 # cocos2dx_playground
+<div border:1px solid red; float:left;">
+<img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/step_typetype_game_title.gif" width=30% height=30%></img>
+</div>
+<div border:1px solid red; float:left;">
+<img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/step_mole_game_titlescene.gif" width=30% height=30%></img>
+</div>
 
+<br>
 
+<div border:1px solid red; float:left;">
+<img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/shader_practice_simpletest.gif" width=30% height=3%></img>
+</div>
+<div border:1px solid red; float:left;">
+<img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/graph_practice_collection05.gif" width=30% height=30%></img>
+</div>
+<div>
+  <img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/ui_research_type_effect_shake.gif" width=30% height=30%></img>
+</div>
+ 
 ## 주의사항 | Warning
 - **한국어**
   - 이 저장소에는 cocos2d-x 엔진 코드가 포함되어 있지 않습니다.
