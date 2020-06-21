@@ -73,15 +73,6 @@
     <Filter Include="src\scene\step_01_typetype\game">
       <UniqueIdentifier>{78547db5-83f7-49ce-b454-8b4e73e9bee5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_05_defender">
-      <UniqueIdentifier>{84570fc2-9a45-4872-87ef-69d866b1c100}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step_05_defender\fsm1test">
-      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene\step_05_defender\button_drag">
-      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_04_mole">
       <UniqueIdentifier>{db5f8dfe-f7e9-4497-9cbb-f89be21386ae}</UniqueIdentifier>
     </Filter>
@@ -129,6 +120,15 @@
     </Filter>
     <Filter Include="src\scene\ui_research">
       <UniqueIdentifier>{595eb5bf-7bab-46c5-8a69-fe05ce1ae2d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_06_defender">
+      <UniqueIdentifier>{84570fc2-9a45-4872-87ef-69d866b1c100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_06_defender\fsm1test">
+      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_06_defender\button_drag">
+      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -196,7 +196,7 @@
       <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
-      <Filter>src\scene\step_05_defender\fsm1test</Filter>
+      <Filter>src\scene\step_06_defender\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
@@ -205,7 +205,7 @@
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp">
-      <Filter>src\scene\step_05_defender\fsm1test</Filter>
+      <Filter>src\scene\step_06_defender\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp">
       <Filter>src\animation</Filter>
@@ -277,7 +277,7 @@
       <Filter>src\scene\step_05_rain_of_chaos</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp">
-      <Filter>src\scene\step_05_defender\button_drag</Filter>
+      <Filter>src\scene\step_06_defender\button_drag</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_RootScene.cpp">
       <Filter>src\scene\step_03_pathfinder</Filter>
@@ -316,7 +316,7 @@
       <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp">
-      <Filter>src\scene\step_05_defender</Filter>
+      <Filter>src\scene\step_06_defender</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionCollection.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
@@ -588,7 +588,7 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h">
-      <Filter>src\scene\step_05_defender\fsm1test</Filter>
+      <Filter>src\scene\step_06_defender\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_iState.h">
       <Filter>src\fsm1</Filter>
@@ -600,7 +600,7 @@
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h">
-      <Filter>src\scene\step_05_defender\fsm1test</Filter>
+      <Filter>src\scene\step_06_defender\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Animation_Index.h">
       <Filter>src\animation</Filter>
@@ -678,7 +678,7 @@
       <Filter>src\scene\step_05_rain_of_chaos</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h">
-      <Filter>src\scene\step_05_defender\button_drag</Filter>
+      <Filter>src\scene\step_06_defender\button_drag</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_RootScene.h">
       <Filter>src\scene\step_03_pathfinder</Filter>
@@ -717,7 +717,7 @@
       <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_RootScene.h">
-      <Filter>src\scene\step_05_defender</Filter>
+      <Filter>src\scene\step_06_defender</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionCollection.h">
       <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
