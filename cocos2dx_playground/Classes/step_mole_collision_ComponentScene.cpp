@@ -27,6 +27,8 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_Actor = 20140416;
+	const int Z_Bullet = 100;
+	const int Z_Actor = 101;
 }
 
 namespace step_mole
@@ -127,12 +129,12 @@ namespace step_mole
 					{
 						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 						pivot->setScale( 4.f );
-						actor_root->addChild( pivot, 100 );
+						actor_root->addChild( pivot, std::numeric_limits<int>::max() );
 					}
 
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-					view_node->setScale( 2.f );
+					view_node->setScale( _director->getContentScaleFactor() );
 					actor_root->addChild( view_node );
 					{
 						auto animation_object = Animation::create();
@@ -155,7 +157,7 @@ namespace step_mole
 					// Collision Component
 					actor_root->addComponent( CircleCollisionComponent::create( radius, Vec2::ZERO, CircleCollisionComponentConfig{ true, true, true } ) );
 				}
-				addChild( actor_root, 100 );
+				addChild( actor_root, Z_Actor );
 			}
 
 			//
@@ -191,7 +193,7 @@ namespace step_mole
 
 					auto bullet_root_node = makeBullet( collision_enable );
 					bullet_root_node->setPosition( visibleOrigin + new_bullet_position );
-					addChild( bullet_root_node, 101 );
+					addChild( bullet_root_node, Z_Bullet );
 
 					mCollisionComponentList.push_back( static_cast<CircleCollisionComponent*>(
 						bullet_root_node->getComponent( CircleCollisionComponent::GetStaticName() )
@@ -231,11 +233,12 @@ namespace step_mole
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 					pivot->setScale( 4.f );
-					bullet_root_node->addChild( pivot, 100 );
+					bullet_root_node->addChild( pivot, std::numeric_limits<int>::max() );
 				}
 
 				// View
 				auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+				view_node->setScale( _director->getContentScaleFactor() );
 				view_node->setColor( collision_enable ? Color3B::WHITE : Color3B( 90, 90, 90 ) );
 				bullet_root_node->addChild( view_node );
 				{

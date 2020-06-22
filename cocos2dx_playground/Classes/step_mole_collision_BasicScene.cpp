@@ -27,6 +27,9 @@ namespace
 	const int TAG_Distance = 888;
 	const int TAG_CollisionIndicator = 999;
 
+	const int Z_Bullet = 100;
+	const int Z_Actor = 101;
+
 	class RadiusData : public cocos2d::Ref
 	{
 	public:
@@ -154,7 +157,7 @@ namespace step_mole
 
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-					view_node->setScale( 2.f );
+					view_node->setScale( _director->getContentScaleFactor() );
 					actor_root_node->addChild( view_node );
 					{
 						auto animation_object = Animation::create();
@@ -205,7 +208,7 @@ namespace step_mole
 						radius_data->release();
 					}
 				}
-				addChild( actor_root_node, 100 );
+				addChild( actor_root_node, Z_Actor );
 			}
 
 			//
@@ -229,6 +232,7 @@ namespace step_mole
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
 					view_node->setTag( TAG_Bullet );
+					view_node->setScale( _director->getContentScaleFactor() );
 					bullet_root_node->addChild( view_node );
 					{
 						auto animation_object = Animation::create();
@@ -261,7 +265,7 @@ namespace step_mole
 						radius_data->release();
 					}
 				}
-				addChild( bullet_root_node, 101 );
+				addChild( bullet_root_node, Z_Bullet );
 			}
 
 			updateDistance();

@@ -134,7 +134,7 @@ namespace step_mole
 				// Pivot
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 2.f );
+					pivot->setScale( _director->getContentScaleFactor() );
 					object_node->addChild( pivot, std::numeric_limits<int>::max() );
 				}
 
@@ -142,7 +142,7 @@ namespace step_mole
 				auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
 				view_node->setTag( TAG_ViewNode );
 				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				view_node->setScale( 2.f );
+				view_node->setScale( _director->getContentScaleFactor() );
 				view_node->setPositionY( -18.f );
 				object_node->addChild( view_node );
 
