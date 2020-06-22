@@ -7,6 +7,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
 #include "base/ccMacros.h"
 #include "ui/UIButton.h"
 
@@ -71,7 +72,7 @@ namespace step_clickclick
 
 			// view
 			mViewNode = Sprite::create();
-			mViewNode->setScale( 2.f );
+			mViewNode->setScale( _director->getContentScaleFactor() );
 			mViewNode->setPosition( button->getPosition() );
 			addChild( mViewNode, 1 );
 
@@ -85,7 +86,7 @@ namespace step_clickclick
 
 			// effect
 			mEffectNode = Sprite::create();
-			mEffectNode->setScale( 2.f );
+			mEffectNode->setScale( _director->getContentScaleFactor() );
 			mEffectNode->setPosition( button->getPosition() );
 			addChild( mEffectNode, 3 );
 

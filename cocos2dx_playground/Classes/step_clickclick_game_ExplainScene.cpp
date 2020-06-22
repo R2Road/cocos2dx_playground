@@ -85,7 +85,7 @@ namespace step_clickclick
 			//
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_single.png" );
-				sprite->setScale( 2.f );
+				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.3f
 					, visibleOrigin.y + visibleSize.height * 0.7f
@@ -104,7 +104,7 @@ namespace step_clickclick
 			//
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_together.png" );
-				sprite->setScale( 2.f );
+				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.3f
 					, visibleOrigin.y + visibleSize.height * 0.52f
@@ -123,7 +123,7 @@ namespace step_clickclick
 			//
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_different.png" );
-				sprite->setScale( 2.f );
+				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.3f
 					, visibleOrigin.y + visibleSize.height * 0.34f
