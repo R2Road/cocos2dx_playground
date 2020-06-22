@@ -6,6 +6,7 @@
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
 #include "ui/UIButton.h"
 
 #include "step_mole_AnimationComponent.h"
@@ -198,7 +199,7 @@ namespace step_mole
 				// View
 				auto view_node = Sprite::createWithSpriteFrameName( 0 == defalut_view_type ? "step_mole_target_wait_0.png" : "step_mole_target_wait_1.png" );
 				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				view_node->setScale( 2.f );
+				view_node->setScale( _director->getContentScaleFactor() );
 				view_node->setPositionY( -18.f );
 				object_node->addChild( view_node );
 				

@@ -1,5 +1,5 @@
 {
-  "frame_resolution":{ "x":960, "y":640 }
+  "frame_resolution":{ "x":1440, "y":960 }
   , "design_resolution":{ "x":480, "y":320 }
 
   , "display_stats" : true
