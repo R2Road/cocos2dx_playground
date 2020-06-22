@@ -124,8 +124,8 @@ namespace step_mole
 				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				animation_node->setScale( _director->getContentScaleFactor() );
 				animation_node->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
 				) );
 				addChild( animation_node, 0 );
 			}
