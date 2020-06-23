@@ -6,7 +6,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "step02_input_KeyCodeCollectScene.h"
+#include "step_rain_of_chaos_input_KeyCodeCollectScene.h"
 #include "step_rain_of_chaos_batch_node_BasicScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
@@ -46,7 +46,7 @@ namespace step_rain_of_chaos
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << step02::input::KeyCodeCollectScene::getTitle();
+			ss << "[1] : " << step_rain_of_chaos::input::KeyCodeCollectScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[2] : " << step_rain_of_chaos::batch_node::BasicScene::getTitle();
@@ -107,7 +107,7 @@ namespace step_rain_of_chaos
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step02::input::KeyCodeCollectScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::input::KeyCodeCollectScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_2:

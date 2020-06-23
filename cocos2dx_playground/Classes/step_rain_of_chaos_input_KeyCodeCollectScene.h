@@ -6,7 +6,7 @@
 
 #include "cpg_input_KeyCodeCollector.h"
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace input
 	{

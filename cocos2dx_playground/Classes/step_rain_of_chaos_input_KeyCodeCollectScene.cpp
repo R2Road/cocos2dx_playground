@@ -1,4 +1,4 @@
-#include "step02_input_KeyCodeCollectScene.h"
+#include "step_rain_of_chaos_input_KeyCodeCollectScene.h"
 
 #include <new>
 #include <sstream>
@@ -8,7 +8,7 @@
 
 USING_NS_CC;
 
-namespace step02
+namespace step_rain_of_chaos
 {
 	namespace input
 	{
