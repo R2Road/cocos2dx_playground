@@ -130,6 +130,9 @@
     <Filter Include="src\scene\step_06_defender\button_drag">
       <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_05_rain_of_chaos\batch">
+      <UniqueIdentifier>{896d43cf-1403-4462-901a-28b5473dd318}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -518,6 +521,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ui_research_type_effect_ShakeScene.cpp">
       <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\batch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -931,6 +937,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_type_effect_ShakeScene.h">
       <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.h">
+      <Filter>src\scene\step_05_rain_of_chaos\batch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
