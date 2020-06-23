@@ -72,7 +72,7 @@ namespace step_rain_of_chaos
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 0, 9, 61, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 145, 55, 33, 255 ) );
 			ret->addChild( background_layer, -1 );
 		}
 
