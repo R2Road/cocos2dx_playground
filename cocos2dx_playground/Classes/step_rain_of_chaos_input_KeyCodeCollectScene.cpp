@@ -1,7 +1,14 @@
 #include "step_rain_of_chaos_input_KeyCodeCollectScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
+
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "base/CCDirector.h"
+#include "base/CCEventDispatcher.h"
+#include "base/CCEventListenerKeyboard.h"
 
 #include "CPG_Input_KeyCodeNames.h"
 #include "step_rain_of_chaos_RootScene.h"
@@ -39,8 +46,8 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -61,7 +68,7 @@ namespace step_rain_of_chaos
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -69,18 +76,19 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 130, 49, 29, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
 			// key viewer
 			//
-			mKeyViewer = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+			mKeyViewer = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+			mKeyViewer->setColor( Color3B::GREEN );
 			mKeyViewer->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			addChild( mKeyViewer, 9999 );
+			addChild( mKeyViewer );
 
 			return true;
 		}
@@ -88,6 +96,8 @@ namespace step_rain_of_chaos
 		void KeyCodeCollectScene::onEnter()
 		{
 			Scene::onEnter();
+
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( KeyCodeCollectScene::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyCodeCollectScene::onKeyReleased, this );
@@ -98,7 +108,8 @@ namespace step_rain_of_chaos
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-			Node::onExit();
+
+			Scene::onExit();
 		}
 
 		void KeyCodeCollectScene::updateForExit( float /*dt*/ )

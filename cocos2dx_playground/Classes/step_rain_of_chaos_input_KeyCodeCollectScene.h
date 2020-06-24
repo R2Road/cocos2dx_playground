@@ -2,9 +2,13 @@
 
 #include <string>
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 #include "cpg_input_KeyCodeCollector.h"
+
+NS_CC_BEGIN
+class Label;
+NS_CC_END
 
 namespace step_rain_of_chaos
 {
