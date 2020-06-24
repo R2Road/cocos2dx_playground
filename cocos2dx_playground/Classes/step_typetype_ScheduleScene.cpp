@@ -183,7 +183,7 @@ namespace step_typetype
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
-		Node::onExit();
+		Scene::onExit();
 	}
 	void ScheduleScene::update( float dt )
 	{

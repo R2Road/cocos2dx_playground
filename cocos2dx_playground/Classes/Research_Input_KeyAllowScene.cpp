@@ -217,6 +217,7 @@ namespace research
 		{
 			Scene::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyAllowScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -227,7 +228,7 @@ namespace research
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void KeyAllowScene::updateForExit( float /*dt*/ )

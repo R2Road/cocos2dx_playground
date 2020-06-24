@@ -131,7 +131,7 @@ namespace step_typetype
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

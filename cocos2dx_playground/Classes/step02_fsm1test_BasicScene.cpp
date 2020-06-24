@@ -268,6 +268,8 @@ namespace step02
 		void BasicScene::onEnter()
 		{
 			Scene::onEnter();
+
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
@@ -286,7 +288,8 @@ namespace step02
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-			Node::onExit();
+
+			Scene::onExit();
 		}
 
 		void BasicScene::updateForExit( float /*dt*/ )

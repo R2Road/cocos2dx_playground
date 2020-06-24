@@ -122,7 +122,7 @@ namespace step_typetype
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void TitleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

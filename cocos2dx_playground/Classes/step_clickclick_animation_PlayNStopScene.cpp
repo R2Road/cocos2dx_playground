@@ -163,7 +163,7 @@ namespace step_clickclick
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void PlayNStopScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

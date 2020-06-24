@@ -93,7 +93,7 @@ namespace step02
 				getEventDispatcher()->removeEventListener( mKeyboardListener );
 				mKeyboardListener = nullptr;
 
-				Node::onExit();
+				Scene::onExit();
 			}
 
 			void TitleScene::updateForExit( float /*dt*/ )

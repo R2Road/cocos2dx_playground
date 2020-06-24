@@ -169,7 +169,7 @@ namespace ui_research
 		getEventDispatcher()->removeEventListener( mMouseListener );
 		mMouseListener = nullptr;
 
-		Node::onExit();
+		Scene::onExit();
 	}
 
 	void ButtonWithOnMouseOverScene::onButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )

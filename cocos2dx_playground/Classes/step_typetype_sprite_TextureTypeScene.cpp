@@ -160,7 +160,7 @@ namespace step_typetype
 
 			SpriteFrameCache::getInstance()->removeSpriteFramesFromFile( PLIST_Path );
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void TextureTypeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

@@ -176,7 +176,7 @@ namespace step_mole
 			}
 			mAnimationActions.clear();
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void ListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

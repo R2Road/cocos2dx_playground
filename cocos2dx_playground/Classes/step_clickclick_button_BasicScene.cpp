@@ -158,7 +158,7 @@ namespace step_clickclick
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )

@@ -176,7 +176,7 @@ namespace step_mole
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void ObjectActionScene::updateLifeTimeView()

@@ -176,7 +176,7 @@ namespace step_mole
 
 			mSequenceAction->release();
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void CallbackScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

@@ -114,7 +114,7 @@ namespace graph_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
-		Node::onExit();
+		Scene::onExit();
 	}
 	void BasicScene::update( float dt )
 	{

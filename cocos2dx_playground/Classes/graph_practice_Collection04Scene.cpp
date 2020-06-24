@@ -240,7 +240,7 @@ namespace graph_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
-		Node::onExit();
+		Scene::onExit();
 	}
 	void Collection04Scene::update( float dt )
 	{

@@ -418,7 +418,7 @@ namespace ui_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
-		Node::onExit();
+		Scene::onExit();
 	}
 
 
