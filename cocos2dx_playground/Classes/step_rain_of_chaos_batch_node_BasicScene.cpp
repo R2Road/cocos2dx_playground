@@ -122,7 +122,7 @@ namespace step_rain_of_chaos
 			// Current Node Type View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
 				label->setTag( TAG_CurrentNodeTypeView );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -136,7 +136,6 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto label = Label::createWithTTF( "<==== Same Draw Call", "fonts/NanumSquareR.ttf", 10 );
-				label->setTag( TAG_CurrentNodeTypeView );
 				label->setAnchorPoint( Vec2( 1.f, 0.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
