@@ -85,7 +85,7 @@ namespace step02
 
 				mKeyboardListener = EventListenerKeyboard::create();
 				mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TitleScene::onKeyPressed, this );
-				getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+				getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 			}
 			void TitleScene::onExit()
 			{

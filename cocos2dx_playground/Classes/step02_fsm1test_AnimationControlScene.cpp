@@ -232,7 +232,7 @@ namespace step02
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( AnimationControlScene::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( AnimationControlScene::onKeyReleased, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 
 			mFSMMachine.Enter();
 		}

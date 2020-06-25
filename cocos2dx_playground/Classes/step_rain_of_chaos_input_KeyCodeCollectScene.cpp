@@ -101,7 +101,7 @@ namespace step_rain_of_chaos
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( KeyCodeCollectScene::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyCodeCollectScene::onKeyReleased, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void KeyCodeCollectScene::onExit()
 		{

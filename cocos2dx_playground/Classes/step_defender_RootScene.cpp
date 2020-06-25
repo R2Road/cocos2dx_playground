@@ -91,7 +91,7 @@ namespace step_defender
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
-		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
 	void RootScene::onExit()
 	{
