@@ -525,6 +525,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollectScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\batch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -940,6 +943,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollectScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.h">
+      <Filter>src\scene\step_05_rain_of_chaos\batch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

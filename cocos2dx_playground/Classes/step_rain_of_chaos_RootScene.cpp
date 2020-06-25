@@ -8,6 +8,7 @@
 
 #include "step_rain_of_chaos_input_KeyCodeCollectScene.h"
 #include "step_rain_of_chaos_batch_node_BasicScene.h"
+#include "step_rain_of_chaos_batch_node_QuadScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
 #include "step02_game_rain_of_chaos_TitleScene.h"
@@ -51,8 +52,10 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << "[2] : " << step_rain_of_chaos::batch_node::BasicScene::getTitle();
 			ss << std::endl;
+			ss << "[3] : " << step_rain_of_chaos::batch_node::QuadScene::getTitle();
 			ss << std::endl;
-			ss << "[3] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
+			ss << std::endl;
+			ss << "[4] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -113,8 +116,11 @@ namespace step_rain_of_chaos
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::batch_node::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-
 		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step_rain_of_chaos::batch_node::QuadScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
 			break;
 
