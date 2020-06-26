@@ -257,7 +257,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.cpp" />
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp" />
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp" />
-    <ClCompile Include="..\Classes\step02_game_rain_of_chaos_TitleScene.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_TitleScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollectScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_RootScene.cpp" />
     <ClCompile Include="..\Classes\Step99_RootScene.cpp" />
@@ -398,7 +398,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.h" />
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h" />
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h" />
-    <ClInclude Include="..\Classes\step02_game_rain_of_chaos_TitleScene.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_TitleScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollectScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_RootScene.h" />
     <ClInclude Include="..\Classes\Step99_RootScene.h" />

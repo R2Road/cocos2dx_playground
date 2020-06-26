@@ -201,9 +201,6 @@
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step02_game_rain_of_chaos_TitleScene.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp">
       <Filter>src\scene\step_06_defender\fsm1test</Filter>
     </ClCompile>
@@ -528,6 +525,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\batch</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_TitleScene.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -601,9 +601,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_Machine.h">
       <Filter>src\fsm1</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step02_game_rain_of_chaos_TitleScene.h">
-      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h">
       <Filter>src\scene\step_06_defender\fsm1test</Filter>
@@ -946,6 +943,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\batch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_TitleScene.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

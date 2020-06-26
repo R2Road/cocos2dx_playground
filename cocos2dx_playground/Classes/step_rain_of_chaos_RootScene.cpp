@@ -11,7 +11,7 @@
 #include "step_rain_of_chaos_batch_node_QuadScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
-#include "step02_game_rain_of_chaos_TitleScene.h"
+#include "step_rain_of_chaos_game_TitleScene.h"
 
 USING_NS_CC;
 
