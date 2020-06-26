@@ -232,7 +232,7 @@ namespace ui_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
-		Node::onExit();
+		Scene::onExit();
 	}
 
 	void LayoutNScrollViewScene::onDummyButton( Ref* sender, ui::Widget::TouchEventType touchEventType )

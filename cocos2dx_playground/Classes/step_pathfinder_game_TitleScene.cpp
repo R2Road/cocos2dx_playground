@@ -116,7 +116,7 @@ namespace step_pathfinder
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TitleScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void TitleScene::onExit()
 		{
@@ -124,7 +124,7 @@ namespace step_pathfinder
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void TitleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

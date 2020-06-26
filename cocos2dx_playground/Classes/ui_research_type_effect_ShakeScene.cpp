@@ -190,7 +190,7 @@ namespace ui_research
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void ShakeScene::HideLetters()

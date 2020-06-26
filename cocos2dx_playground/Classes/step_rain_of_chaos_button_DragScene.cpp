@@ -134,7 +134,7 @@ namespace step_rain_of_chaos
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( DragScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void DragScene::onExit()
 		{
@@ -142,7 +142,7 @@ namespace step_rain_of_chaos
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void DragScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )

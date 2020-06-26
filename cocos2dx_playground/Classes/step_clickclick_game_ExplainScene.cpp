@@ -176,7 +176,7 @@ namespace step_clickclick
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void ExplainScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

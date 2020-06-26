@@ -85,7 +85,7 @@ namespace step02
 
 				mKeyboardListener = EventListenerKeyboard::create();
 				mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TitleScene::onKeyPressed, this );
-				getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+				getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 			}
 			void TitleScene::onExit()
 			{
@@ -93,7 +93,7 @@ namespace step02
 				getEventDispatcher()->removeEventListener( mKeyboardListener );
 				mKeyboardListener = nullptr;
 
-				Node::onExit();
+				Scene::onExit();
 			}
 
 			void TitleScene::updateForExit( float /*dt*/ )

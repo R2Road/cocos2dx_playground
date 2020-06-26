@@ -109,7 +109,8 @@ namespace step_typetype
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-			Node::onExit();
+
+			Scene::onExit();
 		}
 
 		void KeyCodeViewScene::updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode )

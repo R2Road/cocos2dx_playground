@@ -89,7 +89,7 @@ namespace step_rain_of_chaos
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 15, 49, 131, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 130, 49, 29, 255 ) );
 				addChild( background_layer, 0 );
 			}
 
@@ -141,7 +141,7 @@ namespace step_rain_of_chaos
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CollectionScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void CollectionScene::update( float dt )
 		{

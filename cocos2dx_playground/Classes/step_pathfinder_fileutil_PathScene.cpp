@@ -217,7 +217,7 @@ namespace step_pathfinder
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void PathScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

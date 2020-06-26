@@ -160,13 +160,18 @@ namespace input_practice
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( GamePadTestScene::onKeyPressed, this );
-		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
 	void GamePadTestScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
+
+		assert( mControllerListener );
+		getEventDispatcher()->removeEventListener( mControllerListener );
+		mControllerListener = nullptr;
+
 		Scene::onExit();
 	}
 

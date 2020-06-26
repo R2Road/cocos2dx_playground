@@ -225,18 +225,18 @@ namespace research
 		{
 			Scene::onEnter();
 
+			assert( !keyboard_listener );
 			keyboard_listener = EventListenerKeyboard::create();
 			keyboard_listener->onKeyReleased = CC_CALLBACK_2( KeyConfigScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
 		}
 		void KeyConfigScene::onExit()
 		{
-			if( keyboard_listener )
-			{
-				getEventDispatcher()->removeEventListener( keyboard_listener );
-				keyboard_listener = nullptr;
-			}
-			Node::onExit();
+			assert( keyboard_listener );
+			getEventDispatcher()->removeEventListener( keyboard_listener );
+			keyboard_listener = nullptr;
+
+			Scene::onExit();
 		}
 
 

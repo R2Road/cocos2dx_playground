@@ -124,8 +124,8 @@ namespace step_mole
 				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				animation_node->setScale( _director->getContentScaleFactor() );
 				animation_node->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
 				) );
 				addChild( animation_node, 0 );
 			}
@@ -162,7 +162,7 @@ namespace step_mole
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ListScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void ListScene::onExit()
 		{
@@ -176,7 +176,7 @@ namespace step_mole
 			}
 			mAnimationActions.clear();
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void ListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

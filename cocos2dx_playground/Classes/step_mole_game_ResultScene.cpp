@@ -117,7 +117,7 @@ namespace step_mole
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void ResultScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

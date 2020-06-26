@@ -166,7 +166,7 @@ namespace step_mole
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CallbackScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void CallbackScene::onExit()
 		{
@@ -176,7 +176,7 @@ namespace step_mole
 
 			mSequenceAction->release();
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void CallbackScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

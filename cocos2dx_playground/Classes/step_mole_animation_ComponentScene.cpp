@@ -107,11 +107,11 @@ namespace step_mole
 			{
 				auto animation_node = Sprite::createWithSpriteFrameName( "step_mole_target_dmgd2_4.png" );
 				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setAnchorPoint( Vec2( 0.f, 0.f ) );
+				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				animation_node->setScale( _director->getContentScaleFactor() );
 				animation_node->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( animation_node->getContentSize().width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( animation_node->getContentSize().height * 0.5f ) )
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
 				) );
 				addChild( animation_node );
 
@@ -129,7 +129,7 @@ namespace step_mole
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ComponentScene::onKeyPressed, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void ComponentScene::onExit()
 		{
@@ -137,7 +137,7 @@ namespace step_mole
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			Node::onExit();
+			Scene::onExit();
 		}
 
 		void ComponentScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
