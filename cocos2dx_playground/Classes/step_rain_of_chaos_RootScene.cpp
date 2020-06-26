@@ -61,7 +61,7 @@ namespace step_rain_of_chaos
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[SPACE] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
+			ss << "[SPACE] : " << step_rain_of_chaos::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -125,7 +125,7 @@ namespace step_rain_of_chaos
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			Director::getInstance()->replaceScene( step02::game::rain_of_chaos::TitleScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
 			break;
 
 		default:
