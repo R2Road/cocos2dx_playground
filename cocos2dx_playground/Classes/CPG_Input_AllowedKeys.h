@@ -9,7 +9,7 @@ namespace cpg
 		class AllowedKeys
 		{
 		public:
-			using Container = KeyCodeContainerT;
+			using Container = step_rain_of_chaos::input::KeyCodeContainerT;
 
 			AllowedKeys() = delete;
 

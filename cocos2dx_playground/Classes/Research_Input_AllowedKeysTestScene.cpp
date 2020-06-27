@@ -125,7 +125,7 @@ namespace research
 			if( mInputObserver->inputFound() )
 			{
 				mKeyStrings.clear();
-				for( std::size_t cur = 0; cur < cpg::input::KeyCodeContainerSize; ++cur )
+				for( std::size_t cur = 0; cur < step_rain_of_chaos::input::KeyCodeContainerSize; ++cur )
 				{
 					if( mInputDelegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 					{
