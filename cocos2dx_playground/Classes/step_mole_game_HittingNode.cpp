@@ -5,6 +5,7 @@
 
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "base/CCDirector.h"
 #include "ui/UIButton.h"
 
 #include "step_mole_AnimationComponent.h"
@@ -98,7 +99,7 @@ namespace step_mole
 			for( auto cur = mEffectAnimationComponents.begin(), end = mEffectAnimationComponents.end(); end != cur; ++cur )
 			{
 				auto effect_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
-				effect_node->setScale( 2.f );
+				effect_node->setScale( _director->getContentScaleFactor() );
 				effect_node->setVisible( false );
 				addChild( effect_node, 1 );
 
