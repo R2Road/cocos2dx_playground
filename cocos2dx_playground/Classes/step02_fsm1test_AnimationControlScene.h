@@ -3,7 +3,7 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-#include "cpg_input_KeyCodeCollector.h"
+#include "step_rain_of_chaos_input_KeyCodeCollector.h"
 #include "fsm1_Machine.h"
 
 namespace step02

@@ -192,9 +192,6 @@
     <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
       <Filter>src\scene\step99</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpg_input_KeyCodeCollector.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
       <Filter>src\scene\step_06_defender\fsm1test</Filter>
     </ClCompile>
@@ -528,6 +525,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_TitleScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollector.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -586,9 +586,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\step99</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\cpg_input_KeyCodeCollector.h">
-      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h">
       <Filter>src\scene\step_06_defender\fsm1test</Filter>
@@ -945,6 +942,9 @@
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeContainer.h">
+      <Filter>src\scene\step_05_rain_of_chaos\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollector.h">
       <Filter>src\scene\step_05_rain_of_chaos\input</Filter>
     </ClInclude>
   </ItemGroup>

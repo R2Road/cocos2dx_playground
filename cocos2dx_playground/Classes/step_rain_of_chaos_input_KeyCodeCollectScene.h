@@ -4,7 +4,7 @@
 
 #include "2d/CCScene.h"
 
-#include "cpg_input_KeyCodeCollector.h"
+#include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 NS_CC_BEGIN
 class Label;
