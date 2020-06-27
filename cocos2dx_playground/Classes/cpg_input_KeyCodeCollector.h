@@ -2,7 +2,7 @@
 
 #include "step_rain_of_chaos_input_KeyCodeContainer.h"
 
-namespace cpg
+namespace step_rain_of_chaos
 {
 	namespace input
 	{

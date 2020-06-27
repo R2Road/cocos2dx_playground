@@ -2,7 +2,7 @@
 
 USING_NS_CC;
 
-namespace cpg
+namespace step_rain_of_chaos
 {
 	namespace input
 	{

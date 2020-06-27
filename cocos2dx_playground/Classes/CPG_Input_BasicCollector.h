@@ -5,12 +5,18 @@
 
 #include "CPG_Input_iKeyCollector.h"
 
-namespace cpg
+namespace step_rain_of_chaos
 {
 	namespace input
 	{
 		class KeyCodeCollector;
+	}
+}
 
+namespace cpg
+{
+	namespace input
+	{
 		class BasicCollector : public iKeyCollector
 		{
 		private:
@@ -23,7 +29,7 @@ namespace cpg
 			static KeyCollectorSp create( const KeyMapSp& key_map_container );
 
 		public:
-			void collect( const KeyCodeCollector& key_code_collector ) override;
+			void collect( const step_rain_of_chaos::input::KeyCodeCollector& key_code_collector ) override;
 			void update_forHistory() override;
 
 			const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const override;

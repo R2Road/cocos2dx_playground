@@ -24,7 +24,7 @@ namespace cpg
 			return ret;
 		}
 
-		void BasicCollector::collect( const KeyCodeCollector& key_code_collector )
+		void BasicCollector::collect( const step_rain_of_chaos::input::KeyCodeCollector& key_code_collector )
 		{
 			for( const auto k : mKeyMapContainer->mContainer )
 				( *mCurrent_KeyStatus_Container )[k.idx] = key_code_collector.isActiveKey( k.keycode );

@@ -34,7 +34,7 @@ namespace cpg
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			AllowedKeys::Container mAllowedKeys;
-			KeyCodeCollector mKeycodeCollector;
+			step_rain_of_chaos::input::KeyCodeCollector mKeycodeCollector;
 			KeyCollectorSp mInputCollector;
 		};
 	}

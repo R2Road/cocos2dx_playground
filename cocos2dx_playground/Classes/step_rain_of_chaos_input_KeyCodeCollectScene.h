@@ -35,7 +35,7 @@ namespace step_rain_of_chaos
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cpg::input::KeyCodeCollector mKeyCodeCollector;
+			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
 
 			std::string mKeyStrings;
 			cocos2d::Label* mKeyViewer;

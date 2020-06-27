@@ -32,7 +32,7 @@ namespace step02
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			
-			cpg::input::KeyCodeCollector mKeyCodeCollector;
+			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
 			fsm1::Machine mFSMMachine;
 		};
 	}
