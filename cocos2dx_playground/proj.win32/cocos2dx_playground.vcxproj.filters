@@ -587,9 +587,6 @@
     <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\step99</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_KeyCodeContainer.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyCodeCollector.h">
       <Filter>src\input</Filter>
     </ClInclude>
@@ -946,6 +943,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_TitleScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeContainer.h">
+      <Filter>src\scene\step_05_rain_of_chaos\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

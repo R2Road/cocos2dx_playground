@@ -3,7 +3,7 @@
 #include <array>
 #include <string>
 
-#include "CPG_Input_KeyCodeContainer.h"
+#include "step_rain_of_chaos_input_KeyCodeContainer.h"
 
 USING_NS_CC;
 
