@@ -32,10 +32,13 @@ namespace step_rain_of_chaos
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
+			void updateMoveSpeedView();
+
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
+			float mMoveSpeed;
 		};
 	}
 }

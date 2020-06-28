@@ -12,12 +12,14 @@
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
+#include "base/ccUTF8.h"
 
 USING_NS_CC;
 
 namespace
 {
 	const int TAG_AnimationNode = 20140416;
+	const int TAG_MoveSpeedNode = 20160528;
 }
 
 namespace step_rain_of_chaos
@@ -28,6 +30,7 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
+			, mMoveSpeed( 3.f )
 		{}
 
 		Scene* ActorMoveScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -68,6 +71,14 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[1] : Move Speed Up";
+				ss << std::endl;
+				ss << "[2] : Move Speed Down";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow Key] : Move";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -84,6 +95,23 @@ namespace step_rain_of_chaos
 			{
 				auto background_layer = LayerColor::create( Color4B( 130, 49, 29, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Current Life Time
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				label->setTag( TAG_MoveSpeedNode );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateMoveSpeedView();
 			}
 
 			//
@@ -144,25 +172,27 @@ namespace step_rain_of_chaos
 			Vec2 move_vector;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
 			{
-				move_vector.y += 1.0f;
+				move_vector.y += mMoveSpeed;
 			}
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
 			{
-				move_vector.y -= 1.0f;
+				move_vector.y -= mMoveSpeed;
 			}
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
-				move_vector.x += 1.0f;
+				move_vector.x += mMoveSpeed;
 			}
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
-				move_vector.x -= 1.0f;
+				move_vector.x -= mMoveSpeed;
 			}
 
 			if( 0.f != move_vector.x || 0.f != move_vector.y )
 			{
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				animation_node->setPosition( animation_node->getPosition() + move_vector );
+
+				updateMoveSpeedView();
 			}
 
 			Scene::update( dt );
@@ -176,15 +206,29 @@ namespace step_rain_of_chaos
 				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
-			else
+
+			if( EventKeyboard::KeyCode::KEY_1 == keycode )
 			{
-				mKeyCodeCollector.onKeyPressed( keycode );
-				return;
+				mMoveSpeed += 1.f;
+				updateMoveSpeedView();
 			}
+			if( EventKeyboard::KeyCode::KEY_2 == keycode )
+			{
+				mMoveSpeed = std::max( 1.f, mMoveSpeed - 1.f );
+				updateMoveSpeedView();
+			}
+
+			mKeyCodeCollector.onKeyPressed( keycode );
 		}
 		void ActorMoveScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			mKeyCodeCollector.onKeyReleased( keycode );
+		}
+
+		void ActorMoveScene::updateMoveSpeedView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeedNode ) );
+			label->setString( StringUtils::format( "Move Speed : %.2f", mMoveSpeed ) );
 		}
 	}
 }
