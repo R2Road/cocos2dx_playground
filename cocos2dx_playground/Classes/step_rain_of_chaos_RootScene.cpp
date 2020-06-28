@@ -11,6 +11,8 @@
 #include "step_rain_of_chaos_batch_node_QuadScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
+#include "step_rain_of_chaos_game_test_ActorMoveScene.h"
+
 #include "step_rain_of_chaos_game_TitleScene.h"
 
 USING_NS_CC;
@@ -56,6 +58,12 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[4] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] : " << step_rain_of_chaos::game_test::ActorMoveScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -123,6 +131,12 @@ namespace step_rain_of_chaos
 		case EventKeyboard::KeyCode::KEY_4:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
 			break;
+
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::ActorMoveScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::game::TitleScene::create() );

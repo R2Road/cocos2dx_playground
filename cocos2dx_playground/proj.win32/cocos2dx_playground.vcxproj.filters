@@ -133,6 +133,9 @@
     <Filter Include="src\scene\step_05_rain_of_chaos\batch_node">
       <UniqueIdentifier>{896d43cf-1403-4462-901a-28b5473dd318}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_05_rain_of_chaos\game_test">
+      <UniqueIdentifier>{d41055c3-309e-40dc-9e02-cb6dc928467a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -527,6 +530,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollector.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -946,6 +952,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollector.h">
       <Filter>src\scene\step_05_rain_of_chaos\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
