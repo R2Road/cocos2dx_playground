@@ -136,6 +136,15 @@
     <Filter Include="src\scene\step_05_rain_of_chaos\game_test">
       <UniqueIdentifier>{d41055c3-309e-40dc-9e02-cb6dc928467a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_01_typetype\game_test">
+      <UniqueIdentifier>{6f8f3b70-f08a-4eca-ac28-84b2753f9644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_02_clickclick\game_test">
+      <UniqueIdentifier>{c88ebc9c-c632-43e6-b292-35e2d1a86ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_04_mole\game_test">
+      <UniqueIdentifier>{098adc60-954b-44b2-ada3-0a932feec030}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -396,9 +405,6 @@
     <ClCompile Include="..\Classes\step_clickclick_game_BlockView.cpp">
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_BlockTestScene.cpp">
-      <Filter>src\scene\step_02_clickclick\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_Block.cpp">
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClCompile>
@@ -471,32 +477,14 @@
     <ClCompile Include="..\Classes\step_mole_game_HittingNode.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_test_ObjectActionScene.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_test_HittingNodeScene.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_test_SpawnScene.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_game_test_SpawnAndHitScene.cpp">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_ResultScene.cpp">
       <Filter>src\scene\step_04_mole\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_game_test_StageScene.cpp">
-      <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_game_TerrainViewer.cpp">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_game_Constant.cpp">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_test_StageScene.cpp">
-      <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ui_research_RootScene.cpp">
       <Filter>src\scene\ui_research</Filter>
@@ -533,6 +521,27 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_test_StageScene.cpp">
+      <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_BlockTestScene.cpp">
+      <Filter>src\scene\step_02_clickclick\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_test_StageScene.cpp">
+      <Filter>src\scene\step_02_clickclick\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_HittingNodeScene.cpp">
+      <Filter>src\scene\step_04_mole\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_ObjectActionScene.cpp">
+      <Filter>src\scene\step_04_mole\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_SpawnAndHitScene.cpp">
+      <Filter>src\scene\step_04_mole\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_game_test_SpawnScene.cpp">
+      <Filter>src\scene\step_04_mole\game_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -815,9 +824,6 @@
     <ClInclude Include="..\Classes\step_clickclick_game_BlockView.h">
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_BlockTestScene.h">
-      <Filter>src\scene\step_02_clickclick\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_Block.h">
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
@@ -890,32 +896,14 @@
     <ClInclude Include="..\Classes\step_mole_game_HittingNode.h">
       <Filter>src\scene\step_04_mole\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_test_ObjectActionScene.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_test_HittingNodeScene.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_test_SpawnScene.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_game_test_SpawnAndHitScene.h">
-      <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_ResultScene.h">
       <Filter>src\scene\step_04_mole\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_game_test_StageScene.h">
-      <Filter>src\scene\step_01_typetype\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_game_TerrainViewer.h">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_game_Constant.h">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_test_StageScene.h">
-      <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_RootScene.h">
       <Filter>src\scene\ui_research</Filter>
@@ -955,6 +943,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_test_StageScene.h">
+      <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_BlockTestScene.h">
+      <Filter>src\scene\step_02_clickclick\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_test_StageScene.h">
+      <Filter>src\scene\step_02_clickclick\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_HittingNodeScene.h">
+      <Filter>src\scene\step_04_mole\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_ObjectActionScene.h">
+      <Filter>src\scene\step_04_mole\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_SpawnAndHitScene.h">
+      <Filter>src\scene\step_04_mole\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_game_test_SpawnScene.h">
+      <Filter>src\scene\step_04_mole\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
