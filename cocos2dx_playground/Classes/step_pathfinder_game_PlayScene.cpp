@@ -307,23 +307,20 @@ namespace step_pathfinder
 				const auto exit_point = mTerrainData.getPoint( eTileType::exit );
 				mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, eTileType::exit );
 			}
-			else if( eTileType::exit == tile_type )
+			else if( eTileType::exit == tile_type && !mTerrainData.isExist( eTileType::magic_circle_on ) )
 			{
-				if( !mTerrainData.isExist( eTileType::magic_circle_on ) )
-				{
-					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
+				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
 
-					if( mStageDataContainer.Size() == mCurrentStageIndex + 1 )
-					{
-						// game clear
-						mbPlayerLive = false;
-						startExitProcess( eNextSceneType::Result, 1.f );
-					}
-					else
-					{
-						// go next stage
-						goNextStage();
-					}
+				if( mStageDataContainer.Size() == mCurrentStageIndex + 1 )
+				{
+					// game clear
+					mbPlayerLive = false;
+					startExitProcess( eNextSceneType::Result, 1.f );
+				}
+				else
+				{
+					// go next stage
+					goNextStage();
 				}
 			}
 			else
