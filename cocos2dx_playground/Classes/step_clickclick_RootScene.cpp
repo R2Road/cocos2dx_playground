@@ -11,7 +11,7 @@
 
 #include "step_clickclick_button_BasicScene.h"
 
-#include "step_clickclick_game_BlockTestScene.h"
+#include "step_clickclick_game_test_BlockScene.h"
 #include "step_clickclick_game_test_StageScene.h"
 
 #include "step_clickclick_game_TitleScene.h"

@@ -525,9 +525,6 @@
     <ClCompile Include="..\Classes\step_typetype_game_test_StageScene.cpp">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_BlockTestScene.cpp">
-      <Filter>src\scene\step_02_clickclick\game_test</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_test_StageScene.cpp">
       <Filter>src\scene\step_02_clickclick\game_test</Filter>
     </ClCompile>
@@ -542,6 +539,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_test_SpawnScene.cpp">
       <Filter>src\scene\step_04_mole\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_test_BlockScene.cpp">
+      <Filter>src\scene\step_02_clickclick\game_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -947,9 +947,6 @@
     <ClInclude Include="..\Classes\step_typetype_game_test_StageScene.h">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_BlockTestScene.h">
-      <Filter>src\scene\step_02_clickclick\game_test</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_test_StageScene.h">
       <Filter>src\scene\step_02_clickclick\game_test</Filter>
     </ClInclude>
@@ -964,6 +961,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_test_SpawnScene.h">
       <Filter>src\scene\step_04_mole\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_test_BlockScene.h">
+      <Filter>src\scene\step_02_clickclick\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

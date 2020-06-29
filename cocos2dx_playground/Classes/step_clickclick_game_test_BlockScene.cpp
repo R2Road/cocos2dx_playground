@@ -1,4 +1,4 @@
-#include "step_clickclick_game_BlockTestScene.h"
+#include "step_clickclick_game_test_BlockScene.h"
 
 #include <cassert>
 #include <functional>
