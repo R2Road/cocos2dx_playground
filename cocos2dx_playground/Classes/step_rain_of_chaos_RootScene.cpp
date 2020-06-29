@@ -11,7 +11,9 @@
 #include "step_rain_of_chaos_batch_node_QuadScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
-#include "step02_game_rain_of_chaos_TitleScene.h"
+#include "step_rain_of_chaos_game_test_ActorMoveScene.h"
+
+#include "step_rain_of_chaos_game_TitleScene.h"
 
 USING_NS_CC;
 
@@ -61,7 +63,13 @@ namespace step_rain_of_chaos
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[SPACE] : " << step02::game::rain_of_chaos::TitleScene::getTitle();
+			ss << "[Q] : " << step_rain_of_chaos::game_test::ActorMoveScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[SPACE] : " << step_rain_of_chaos::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -124,8 +132,14 @@ namespace step_rain_of_chaos
 			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
 			break;
 
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::ActorMoveScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			Director::getInstance()->replaceScene( step02::game::rain_of_chaos::TitleScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
 			break;
 
 		default:

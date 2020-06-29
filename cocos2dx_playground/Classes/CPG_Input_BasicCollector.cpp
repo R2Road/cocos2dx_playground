@@ -1,7 +1,7 @@
 #include "CPG_Input_BasicCollector.h"
 
 #include "CPG_InputKeyMap.h"
-#include "cpg_input_KeyCodeCollector.h"
+#include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 USING_NS_CC;
 
@@ -24,7 +24,7 @@ namespace cpg
 			return ret;
 		}
 
-		void BasicCollector::collect( const KeyCodeCollector& key_code_collector )
+		void BasicCollector::collect( const step_rain_of_chaos::input::KeyCodeCollector& key_code_collector )
 		{
 			for( const auto k : mKeyMapContainer->mContainer )
 				( *mCurrent_KeyStatus_Container )[k.idx] = key_code_collector.isActiveKey( k.keycode );

@@ -3,7 +3,7 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-#include "cpg_input_KeyCodeCollector.h"
+#include "step_rain_of_chaos_input_KeyCodeCollector.h"
 #include "fsm1_Machine.h"
 
 namespace step02
@@ -32,7 +32,7 @@ namespace step02
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			
-			cpg::input::KeyCodeCollector mKeyCodeCollector;
+			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
 			fsm1::Machine mFSMMachine;
 		};
 	}

@@ -4,12 +4,19 @@
 
 #include "cocos/base/CCEventKeyboard.h"
 
+namespace step_rain_of_chaos
+{
+	namespace input
+	{
+		class KeyCodeCollector;
+	}
+}
+
 namespace cpg
 {
 	namespace input
 	{
 		using KeyMapSp = std::shared_ptr<class KeyMap>;
-		class KeyCodeCollector;
 		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
 
 		class iKeyCollector
@@ -19,7 +26,7 @@ namespace cpg
 			virtual ~iKeyCollector() {}
 
 		public:
-			virtual void collect( const KeyCodeCollector& key_code_collector ) = 0;
+			virtual void collect( const step_rain_of_chaos::input::KeyCodeCollector& key_code_collector ) = 0;
 			virtual void update_forHistory() = 0;
 
 			virtual const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const = 0;

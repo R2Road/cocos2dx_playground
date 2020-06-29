@@ -4,7 +4,7 @@
 
 #include "2d/CCScene.h"
 
-#include "cpg_input_KeyCodeCollector.h"
+#include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 NS_CC_BEGIN
 class Label;
@@ -35,7 +35,7 @@ namespace step_rain_of_chaos
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cpg::input::KeyCodeCollector mKeyCodeCollector;
+			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
 
 			std::string mKeyStrings;
 			cocos2d::Label* mKeyViewer;

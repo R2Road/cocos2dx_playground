@@ -29,7 +29,7 @@ namespace
 			, mKeyCodeCollector( nullptr )
 		{}
 
-		void Setup( cpg::input::KeyCodeCollector* const keycode_collector )
+		void Setup( step_rain_of_chaos::input::KeyCodeCollector* const keycode_collector )
 		{
 			mKeyCodeCollector = keycode_collector;
 		}
@@ -51,7 +51,7 @@ namespace
 		}
 
 	private:
-		cpg::input::KeyCodeCollector* mKeyCodeCollector;
+		step_rain_of_chaos::input::KeyCodeCollector* mKeyCodeCollector;
 	};
 
 	class MoveState : public fsm1::CustomeState<MoveState, step02::fsm1test::AnimationControlScene>
@@ -62,7 +62,7 @@ namespace
 			, mMoveSpeed( 3 )
 		{}
 
-		void Setup( cpg::input::KeyCodeCollector* const keycode_collector )
+		void Setup( step_rain_of_chaos::input::KeyCodeCollector* const keycode_collector )
 		{
 			mKeyCodeCollector = keycode_collector;
 		}
@@ -107,7 +107,7 @@ namespace
 		}
 
 	private:
-		cpg::input::KeyCodeCollector* mKeyCodeCollector;
+		step_rain_of_chaos::input::KeyCodeCollector* mKeyCodeCollector;
 		const int mMoveSpeed;
 	};
 }

@@ -4,7 +4,7 @@
 
 #include "cocos/base/CCEventKeyboard.h"
 
-namespace cpg
+namespace step_rain_of_chaos
 {
 	namespace input
 	{
