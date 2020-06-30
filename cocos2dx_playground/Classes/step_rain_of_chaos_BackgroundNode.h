@@ -10,8 +10,8 @@ namespace step_rain_of_chaos
 		BackgroundNode();
 
 	public:
-		static BackgroundNode* create();
+		static BackgroundNode* create( const std::size_t vertical_amount, const std::size_t horizontal_amount, const char* texture_path);
 
-		bool init() override;
+		bool init( const std::size_t vertical_amount, const std::size_t horizontal_amount, const char* texture_path );
 	};
 }

@@ -22,10 +22,12 @@ namespace step_rain_of_chaos
 	BackgroundNode::BackgroundNode()
 	{}
 
-	BackgroundNode* BackgroundNode::create()
+	BackgroundNode* BackgroundNode::create( const std::size_t vertical_amount, const std::size_t horizontal_amount, const char* texture_path )
 	{
+		CCASSERT( 0 != vertical_amount && 0 != horizontal_amount );
+
 		auto ret = new ( std::nothrow ) BackgroundNode();
-		if( !ret || !ret->init() )
+		if( !ret || !ret->init( vertical_amount, horizontal_amount, texture_path ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -38,7 +40,7 @@ namespace step_rain_of_chaos
 		return ret;
 	}
 
-	bool BackgroundNode::init()
+	bool BackgroundNode::init( const std::size_t vertical_amount, const std::size_t horizontal_amount, const char* texture_path )
 	{
 		if( !Node::init() )
 		{
@@ -59,17 +61,15 @@ namespace step_rain_of_chaos
 				,SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" )
 		};
 		const Size SpriteSize = SpriteFrames[0]->getOriginalSizeInPixels();
-		const int VerticalAmount = 7;
-		const int HorizontalAmount = 7;
 
-		setContentSize( Size( SpriteSize.width * VerticalAmount, SpriteSize.height * HorizontalAmount ) );
+		setContentSize( Size( SpriteSize.width * vertical_amount, SpriteSize.height * horizontal_amount ) );
 
 		//
 		// Batch Node
 		//
 		{
 			// generate sprite batch node
-			auto sprite_batch_node = SpriteBatchNode::create( "textures/texture_001.png", VerticalAmount * HorizontalAmount );
+			auto sprite_batch_node = SpriteBatchNode::create( texture_path, vertical_amount * horizontal_amount );
 			sprite_batch_node->setContentSize( getContentSize() );
 			addChild( sprite_batch_node );
 
@@ -85,9 +85,9 @@ namespace step_rain_of_chaos
 				std::uniform_int_distribution<> dist( 0, SpriteFrames.size() - 1 );
 
 				auto sprite_frame_indicator = 0u;
-				for( int sy = 0; HorizontalAmount > sy; ++sy )
+				for( std::size_t sy = 0; horizontal_amount > sy; ++sy )
 				{
-					for( int sx = 0; VerticalAmount > sx; ++sx )
+					for( std::size_t sx = 0; vertical_amount > sx; ++sx )
 					{
 						// update target sprite frame
 						sprite_frame_indicator = dist( random_engine );
@@ -98,7 +98,7 @@ namespace step_rain_of_chaos
 							( SpriteSize.width * 0.5f ) + ( SpriteSize.width * sx )
 							, ( SpriteSize.height * 0.5f ) + ( SpriteSize.height * sy )
 						);
-						sprite_batch_node->insertQuadFromSprite( temp_sprite, sx + ( HorizontalAmount * sy ) );
+						sprite_batch_node->insertQuadFromSprite( temp_sprite, sx + ( horizontal_amount * sy ) );
 					}
 				}
 			}

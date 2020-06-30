@@ -83,7 +83,7 @@ namespace step_rain_of_chaos
 			// Batch Node Test
 			//
 			{
-				auto background_node = step_rain_of_chaos::BackgroundNode::create();
+				auto background_node = step_rain_of_chaos::BackgroundNode::create( 7, 7, "textures/texture_001.png" );
 				background_node->setPosition(
 					( getContentSize().width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
 					, ( getContentSize().height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
