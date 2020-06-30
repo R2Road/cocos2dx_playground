@@ -29,17 +29,17 @@ namespace step_rain_of_chaos
 	{}
 
 	BackgroundNode* BackgroundNode::create(
-		const std::size_t horizontal_amount
-		, const std::size_t vertical_amount
+		const std::size_t horizontal_reserve_amount
+		, const std::size_t vertical_reserve_amount
 		, const char* texture_path
 		, SpriteFrameContainerT&& sprite_frame_container
 	)
 	{
-		CCASSERT( 0 != horizontal_amount && 0 != vertical_amount, "Failed - BackgroundNode::create" );
+		CCASSERT( 0 != horizontal_reserve_amount && 0 != vertical_reserve_amount, "Failed - BackgroundNode::create" );
 		CCASSERT( !sprite_frame_container.empty(), "Failed - BackgroundNode::create" );
 
 		auto ret = new ( std::nothrow ) BackgroundNode( std::move( sprite_frame_container ) );
-		if( !ret || !ret->init( vertical_amount, horizontal_amount, texture_path ) )
+		if( !ret || !ret->init( vertical_reserve_amount, horizontal_reserve_amount, texture_path ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -53,8 +53,8 @@ namespace step_rain_of_chaos
 	}
 
 	bool BackgroundNode::init(
-		const std::size_t horizontal_amount
-		, const std::size_t vertical_amount
+		const std::size_t horizontal_reserve_amount
+		, const std::size_t vertical_reserve_amount
 		, const char* texture_path
 	)
 	{
@@ -76,12 +76,10 @@ namespace step_rain_of_chaos
 		// Generate Sprite Batch Node
 		//
 		{
-			auto sprite_batch_node = SpriteBatchNode::create( texture_path, horizontal_amount * vertical_amount );
+			auto sprite_batch_node = SpriteBatchNode::create( texture_path, horizontal_reserve_amount * vertical_reserve_amount );
 			sprite_batch_node->setTag( TAG_BatchNode );
 			addChild( sprite_batch_node );
 		}
-
-		Reset( horizontal_amount, vertical_amount );
 
 		return true;
 	}
