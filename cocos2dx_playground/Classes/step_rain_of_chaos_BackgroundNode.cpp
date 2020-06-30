@@ -22,12 +22,18 @@ namespace step_rain_of_chaos
 	BackgroundNode::BackgroundNode()
 	{}
 
-	BackgroundNode* BackgroundNode::create( const std::size_t vertical_amount, const std::size_t horizontal_amount, const char* texture_path )
+	BackgroundNode* BackgroundNode::create(
+		const std::size_t vertical_amount
+		, const std::size_t horizontal_amount
+		, const char* texture_path
+		, const SpriteFrameContainerT& sprite_frame_container
+	)
 	{
 		CCASSERT( 0 != vertical_amount && 0 != horizontal_amount );
+		CCASSERT( !sprite_frame_container.empty() );
 
 		auto ret = new ( std::nothrow ) BackgroundNode();
-		if( !ret || !ret->init( vertical_amount, horizontal_amount, texture_path ) )
+		if( !ret || !ret->init( vertical_amount, horizontal_amount, texture_path, sprite_frame_container ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -40,7 +46,12 @@ namespace step_rain_of_chaos
 		return ret;
 	}
 
-	bool BackgroundNode::init( const std::size_t vertical_amount, const std::size_t horizontal_amount, const char* texture_path )
+	bool BackgroundNode::init(
+		const std::size_t vertical_amount
+		, const std::size_t horizontal_amount
+		, const char* texture_path
+		, const SpriteFrameContainerT& sprite_frame_container
+	)
 	{
 		if( !Node::init() )
 		{
@@ -56,12 +67,7 @@ namespace step_rain_of_chaos
 			addChild( pivot, std::numeric_limits<int>::max() );
 		}
 
-		const std::array<SpriteFrame*, 2u> SpriteFrames{
-				SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" )
-				,SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" )
-		};
-		const Size SpriteSize = SpriteFrames[0]->getOriginalSizeInPixels();
-
+		const Size SpriteSize = sprite_frame_container[0]->getOriginalSizeInPixels();
 		setContentSize( Size( SpriteSize.width * vertical_amount, SpriteSize.height * horizontal_amount ) );
 
 		//
@@ -82,7 +88,7 @@ namespace step_rain_of_chaos
 				temp_sprite->setScale( _director->getContentScaleFactor() );
 
 				std::mt19937 random_engine{ std::random_device{}( ) };
-				std::uniform_int_distribution<> dist( 0, SpriteFrames.size() - 1 );
+				std::uniform_int_distribution<> dist( 0, sprite_frame_container.size() - 1 );
 
 				auto sprite_frame_indicator = 0u;
 				for( std::size_t sy = 0; horizontal_amount > sy; ++sy )
@@ -93,7 +99,7 @@ namespace step_rain_of_chaos
 						sprite_frame_indicator = dist( random_engine );
 
 						// sprite
-						temp_sprite->setSpriteFrame( SpriteFrames[sprite_frame_indicator] );
+						temp_sprite->setSpriteFrame( sprite_frame_container[sprite_frame_indicator] );
 						temp_sprite->setPosition(
 							( SpriteSize.width * 0.5f ) + ( SpriteSize.width * sx )
 							, ( SpriteSize.height * 0.5f ) + ( SpriteSize.height * sy )

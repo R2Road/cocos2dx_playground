@@ -8,6 +8,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -83,7 +84,12 @@ namespace step_rain_of_chaos
 			// Batch Node Test
 			//
 			{
-				auto background_node = step_rain_of_chaos::BackgroundNode::create( 7, 7, "textures/texture_001.png" );
+				const std::vector<SpriteFrame*> SpriteFrames{
+					SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" )
+					,SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" )
+				};
+
+				auto background_node = step_rain_of_chaos::BackgroundNode::create( 7, 7, "textures/texture_001.png", SpriteFrames );
 				background_node->setPosition(
 					( getContentSize().width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
 					, ( getContentSize().height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
