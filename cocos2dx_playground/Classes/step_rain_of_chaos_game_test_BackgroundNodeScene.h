@@ -21,10 +21,16 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
+			void updateAmountView();
+			void updateBackgroundNode();
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			int mHorizontalAmount;
+			int mVerticalAmount;
 		};
 	}
 }

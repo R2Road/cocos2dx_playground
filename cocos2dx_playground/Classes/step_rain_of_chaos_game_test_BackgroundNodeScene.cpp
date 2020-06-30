@@ -22,6 +22,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_BackgroundNode = 20140416;
+	const int TAG_AmountView = 20160528;
 }
 
 namespace step_rain_of_chaos
@@ -31,6 +32,8 @@ namespace step_rain_of_chaos
 		BackgroundNodeScene::BackgroundNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mHorizontalAmount( 5 )
+			, mVerticalAmount( 5 )
 		{}
 
 		Scene* BackgroundNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -70,7 +73,9 @@ namespace step_rain_of_chaos
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Reset";
+				ss << "[Arrow U/D] : Change Vertical Size";
+				ss << std::endl;
+				ss << "[Arrow L/R] : Change Horizontal Size";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -90,7 +95,22 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Batch Node Test
+			// Amount View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
+				label->setTag( TAG_AmountView );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Background Node
 			//
 			{
 				std::vector<SpriteFrame*> SpriteFrames{
@@ -98,7 +118,7 @@ namespace step_rain_of_chaos
 					,SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" )
 				};
 
-				auto background_node = step_rain_of_chaos::BackgroundNode::create( 7, 7, "textures/texture_001.png", std::move( SpriteFrames ) );
+				auto background_node = step_rain_of_chaos::BackgroundNode::create( mHorizontalAmount, mVerticalAmount, "textures/texture_001.png", std::move( SpriteFrames ) );
 				background_node->setTag( TAG_BackgroundNode );
 				background_node->setPosition(
 					visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
@@ -128,6 +148,26 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
+
+		void BackgroundNodeScene::updateAmountView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_AmountView ) );
+			label->setString( StringUtils::format( "Horizontal Amount : %d\nVertical Amount : %d", mHorizontalAmount ) );
+		}
+		void BackgroundNodeScene::updateBackgroundNode()
+		{
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = Director::getInstance()->getVisibleSize();
+
+			auto background_node = static_cast<BackgroundNode*>( getChildByTag( TAG_BackgroundNode ) );
+			background_node->Reset( mHorizontalAmount, mVerticalAmount );
+			background_node->setPosition(
+				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
+			);
+		}
+
+
 		void BackgroundNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
@@ -136,19 +176,26 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			if( EventKeyboard::KeyCode::KEY_A == keycode )
+			if( EventKeyboard::KeyCode::KEY_UP_ARROW == keycode )
 			{
-				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-				const auto visibleSize = Director::getInstance()->getVisibleSize();
+				++mVerticalAmount;
+				updateBackgroundNode();
+			}
+			if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == keycode )
+			{
+				mVerticalAmount = std::max( 1, mVerticalAmount - 1 );
+				updateBackgroundNode();
+			}
 
-				auto background_node = static_cast<BackgroundNode*>( getChildByTag( TAG_BackgroundNode ) );
-				background_node->Reset( 5, 5 );
-				background_node->setPosition(
-					visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
-				);
-
-				return;
+			if( EventKeyboard::KeyCode::KEY_RIGHT_ARROW == keycode )
+			{
+				++mHorizontalAmount;
+				updateBackgroundNode();
+			}
+			if( EventKeyboard::KeyCode::KEY_LEFT_ARROW == keycode )
+			{
+				mHorizontalAmount = std::max( 1, mHorizontalAmount - 1 );
+				updateBackgroundNode();
 			}
 		}
 	}
