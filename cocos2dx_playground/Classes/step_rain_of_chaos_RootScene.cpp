@@ -12,6 +12,7 @@
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
 #include "step_rain_of_chaos_game_test_ActorMoveScene.h"
+#include "step_rain_of_chaos_game_test_BackgroundNodeScene.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
 
@@ -64,6 +65,8 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[Q] : " << step_rain_of_chaos::game_test::ActorMoveScene::getTitle();
+			ss << std::endl;
+			ss << "[A] : " << step_rain_of_chaos::game_test::BackgroundNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -135,6 +138,9 @@ namespace step_rain_of_chaos
 
 		case EventKeyboard::KeyCode::KEY_Q:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::ActorMoveScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_A:
+			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::BackgroundNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 
