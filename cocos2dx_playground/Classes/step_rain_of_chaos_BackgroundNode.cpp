@@ -29,13 +29,13 @@ namespace step_rain_of_chaos
 	{}
 
 	BackgroundNode* BackgroundNode::create(
-		const std::size_t vertical_amount
-		, const std::size_t horizontal_amount
+		const std::size_t horizontal_amount
+		, const std::size_t vertical_amount
 		, const char* texture_path
 		, SpriteFrameContainerT&& sprite_frame_container
 	)
 	{
-		CCASSERT( 0 != vertical_amount && 0 != horizontal_amount, "Failed - BackgroundNode::create" );
+		CCASSERT( 0 != horizontal_amount && 0 != vertical_amount, "Failed - BackgroundNode::create" );
 		CCASSERT( !sprite_frame_container.empty(), "Failed - BackgroundNode::create" );
 
 		auto ret = new ( std::nothrow ) BackgroundNode( std::move( sprite_frame_container ) );
@@ -53,8 +53,8 @@ namespace step_rain_of_chaos
 	}
 
 	bool BackgroundNode::init(
-		const std::size_t vertical_amount
-		, const std::size_t horizontal_amount
+		const std::size_t horizontal_amount
+		, const std::size_t vertical_amount
 		, const char* texture_path
 	)
 	{
@@ -76,20 +76,20 @@ namespace step_rain_of_chaos
 		// Generate Sprite Batch Node
 		//
 		{
-			auto sprite_batch_node = SpriteBatchNode::create( texture_path, vertical_amount * horizontal_amount );
+			auto sprite_batch_node = SpriteBatchNode::create( texture_path, horizontal_amount * vertical_amount );
 			sprite_batch_node->setTag( TAG_BatchNode );
 			addChild( sprite_batch_node );
 		}
 
-		Reset( vertical_amount, horizontal_amount );
+		Reset( horizontal_amount, vertical_amount );
 
 		return true;
 	}
 
-	void BackgroundNode::Reset( const std::size_t vertical_amount, const std::size_t horizontal_amount )
+	void BackgroundNode::Reset( const std::size_t horizontal_amount, const std::size_t vertical_amount )
 	{
 		const Size SpriteSize = mSpriteFrameContainer[0]->getOriginalSizeInPixels();
-		setContentSize( Size( SpriteSize.width * vertical_amount, SpriteSize.height * horizontal_amount ) );
+		setContentSize( Size( SpriteSize.width * horizontal_amount, SpriteSize.height * vertical_amount ) );
 
 		auto sprite_batch_node = static_cast<SpriteBatchNode*>( getChildByTag( TAG_BatchNode ) );
 		sprite_batch_node->removeAllChildrenWithCleanup( false );
@@ -102,9 +102,9 @@ namespace step_rain_of_chaos
 		std::uniform_int_distribution<> dist( 0, mSpriteFrameContainer.size() - 1 );
 
 		auto sprite_frame_indicator = 0u;
-		for( std::size_t sy = 0; horizontal_amount > sy; ++sy )
+		for( std::size_t sy = 0; vertical_amount > sy; ++sy )
 		{
-			for( std::size_t sx = 0; vertical_amount > sx; ++sx )
+			for( std::size_t sx = 0; horizontal_amount > sx; ++sx )
 			{
 				// update target sprite frame
 				sprite_frame_indicator = dist( random_engine );

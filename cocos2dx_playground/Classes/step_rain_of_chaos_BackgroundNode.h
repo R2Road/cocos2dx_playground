@@ -16,21 +16,21 @@ namespace step_rain_of_chaos
 
 	public:
 		static BackgroundNode* create(
-			const std::size_t vertical_amount
-			, const std::size_t horizontal_amount
+			const std::size_t horizontal_amount
+			, const std::size_t vertical_amount
 			, const char* texture_path
 			, SpriteFrameContainerT&& sprite_frame_container
 		);
 
 	private:
 		bool init(
-			const std::size_t vertical_amount
-			, const std::size_t horizontal_amount
+			const std::size_t horizontal_amount
+			, const std::size_t vertical_amount
 			, const char* texture_path
 		);
 
 	public:
-		void Reset( const std::size_t vertical_amount, const std::size_t horizontal_amount );
+		void Reset( const std::size_t horizontal_amount, const std::size_t vertical_amount );
 
 	private:
 		const SpriteFrameContainerT mSpriteFrameContainer;
