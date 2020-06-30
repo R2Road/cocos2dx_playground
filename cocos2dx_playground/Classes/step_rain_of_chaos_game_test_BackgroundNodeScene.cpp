@@ -73,6 +73,9 @@ namespace step_rain_of_chaos
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
+				ss << "[A] : Reset";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[Arrow U/D] : Change Vertical Size";
 				ss << std::endl;
 				ss << "[Arrow L/R] : Change Horizontal Size";
@@ -176,6 +179,11 @@ namespace step_rain_of_chaos
 			{
 				helper::BackToThePreviousScene::MoveBack();
 				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_A == keycode )
+			{
+				updateBackgroundNode();
 			}
 
 			if( EventKeyboard::KeyCode::KEY_UP_ARROW == keycode )
