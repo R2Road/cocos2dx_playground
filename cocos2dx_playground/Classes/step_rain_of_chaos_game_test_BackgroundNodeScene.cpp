@@ -4,6 +4,7 @@
 #include <new>
 #include <numeric>
 #include <sstream>
+#include <utility>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -17,6 +18,11 @@
 #include "step_rain_of_chaos_BackgroundNode.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const int TAG_BackgroundNode = 20140416;
+}
 
 namespace step_rain_of_chaos
 {
@@ -62,6 +68,9 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[A] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -84,15 +93,16 @@ namespace step_rain_of_chaos
 			// Batch Node Test
 			//
 			{
-				const std::vector<SpriteFrame*> SpriteFrames{
+				std::vector<SpriteFrame*> SpriteFrames{
 					SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" )
 					,SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" )
 				};
 
-				auto background_node = step_rain_of_chaos::BackgroundNode::create( 7, 7, "textures/texture_001.png", SpriteFrames );
+				auto background_node = step_rain_of_chaos::BackgroundNode::create( 7, 7, "textures/texture_001.png", std::move( SpriteFrames ) );
+				background_node->setTag( TAG_BackgroundNode );
 				background_node->setPosition(
-					( getContentSize().width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
-					, ( getContentSize().height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
+					visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
 				);
 				addChild( background_node );
 			}
@@ -123,6 +133,21 @@ namespace step_rain_of_chaos
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
 				helper::BackToThePreviousScene::MoveBack();
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_A == keycode )
+			{
+				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+				const auto visibleSize = Director::getInstance()->getVisibleSize();
+
+				auto background_node = static_cast<BackgroundNode*>( getChildByTag( TAG_BackgroundNode ) );
+				background_node->Reset( 5, 5 );
+				background_node->setPosition(
+					visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
+				);
+
 				return;
 			}
 		}

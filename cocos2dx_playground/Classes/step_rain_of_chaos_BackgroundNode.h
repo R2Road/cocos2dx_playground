@@ -12,21 +12,27 @@ namespace step_rain_of_chaos
 		using SpriteFrameContainerT = std::vector<cocos2d::SpriteFrame*>;
 
 	private:
-		BackgroundNode();
+		BackgroundNode( SpriteFrameContainerT&& sprite_frame_container );
 
 	public:
 		static BackgroundNode* create(
 			const std::size_t vertical_amount
 			, const std::size_t horizontal_amount
 			, const char* texture_path
-			, const SpriteFrameContainerT& sprite_frame_container
+			, SpriteFrameContainerT&& sprite_frame_container
 		);
 
+	private:
 		bool init(
 			const std::size_t vertical_amount
 			, const std::size_t horizontal_amount
 			, const char* texture_path
-			, const SpriteFrameContainerT& sprite_frame_container
 		);
+
+	public:
+		void Reset( const std::size_t vertical_amount, const std::size_t horizontal_amount );
+
+	private:
+		const SpriteFrameContainerT mSpriteFrameContainer;
 	};
 }
