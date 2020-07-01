@@ -543,6 +543,12 @@
     <ClCompile Include="..\Classes\step_clickclick_game_test_BlockScene.cpp">
       <Filter>src\scene\step_02_clickclick\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_BackgroundNode.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -964,6 +970,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_test_BlockScene.h">
       <Filter>src\scene\step_02_clickclick\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_BackgroundNode.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

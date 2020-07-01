@@ -191,6 +191,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_mole_game_TargetManager.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_fileutil_PathScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_BackgroundNode.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionCollection.cpp" />
@@ -204,6 +205,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollector.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp" />
     <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp" />
@@ -330,6 +332,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_mole_game_TargetManager.h" />
     <ClInclude Include="..\Classes\step_pathfinder_fileutil_PathScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_BackgroundNode.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionCollection.h" />
@@ -343,6 +346,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollector.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeContainer.h" />
     <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h" />
