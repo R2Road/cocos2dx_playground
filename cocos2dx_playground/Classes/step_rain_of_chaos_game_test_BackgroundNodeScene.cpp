@@ -101,7 +101,7 @@ namespace step_rain_of_chaos
 			// Amount View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::RIGHT );
 				label->setTag( TAG_AmountView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
@@ -110,6 +110,8 @@ namespace step_rain_of_chaos
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
+
+				updateAmountView();
 			}
 
 			//
@@ -157,7 +159,7 @@ namespace step_rain_of_chaos
 		void BackgroundNodeScene::updateAmountView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_AmountView ) );
-			label->setString( StringUtils::format( "Horizontal Amount : %d\nVertical Amount : %d", mHorizontalAmount ) );
+			label->setString( StringUtils::format( "Horizontal Amount : %3d\nVertical Amount : %3d", mHorizontalAmount, mVerticalAmount ) );
 		}
 		void BackgroundNodeScene::updateBackgroundNode()
 		{
@@ -190,22 +192,26 @@ namespace step_rain_of_chaos
 			{
 				++mVerticalAmount;
 				updateBackgroundNode();
+				updateAmountView();
 			}
 			if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == keycode )
 			{
 				mVerticalAmount = std::max( 1, mVerticalAmount - 1 );
 				updateBackgroundNode();
+				updateAmountView();
 			}
 
 			if( EventKeyboard::KeyCode::KEY_RIGHT_ARROW == keycode )
 			{
 				++mHorizontalAmount;
 				updateBackgroundNode();
+				updateAmountView();
 			}
 			if( EventKeyboard::KeyCode::KEY_LEFT_ARROW == keycode )
 			{
 				mHorizontalAmount = std::max( 1, mHorizontalAmount - 1 );
 				updateBackgroundNode();
+				updateAmountView();
 			}
 		}
 	}
