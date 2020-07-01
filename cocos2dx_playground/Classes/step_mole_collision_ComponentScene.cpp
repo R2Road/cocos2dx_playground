@@ -1,7 +1,6 @@
 #include "step_mole_collision_ComponentScene.h"
 
 #include <algorithm>
-#include <cmath>
 #include <numeric>
 #include <new>
 #include <random>

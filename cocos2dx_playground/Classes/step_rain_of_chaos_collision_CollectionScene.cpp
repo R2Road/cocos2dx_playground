@@ -1,7 +1,5 @@
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
-#include <algorithm>
-#include <cmath>
 #include <numeric>
 #include <new>
 #include <random>
@@ -13,7 +11,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
@@ -67,14 +64,6 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[Arrow Key] : Move Actor";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[1] : Speed Up";
-				ss << std::endl;
-				ss << "[2] : Speed Down";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -82,7 +71,7 @@ namespace step_rain_of_chaos
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
 			//
@@ -90,7 +79,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto background_layer = LayerColor::create( Color4B( 130, 49, 29, 255 ) );
-				addChild( background_layer, 0 );
+				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -111,7 +100,7 @@ namespace step_rain_of_chaos
 
 				int current_bullet_count = 0;
 				Vec2 new_bullet_position;
-				while( current_bullet_count < 50 )
+				while( current_bullet_count < 30 )
 				{
 					new_bullet_position.set(
 						distX( randomEngine )
@@ -125,7 +114,7 @@ namespace step_rain_of_chaos
 
 					auto bullet_root_node = makeBullet();
 					bullet_root_node->setPosition( visibleOrigin + new_bullet_position );
-					addChild( bullet_root_node, 101 );
+					addChild( bullet_root_node );
 
 					++current_bullet_count;
 				}
@@ -206,11 +195,12 @@ namespace step_rain_of_chaos
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 					pivot->setScale( 4.f );
-					bullet_root_node->addChild( pivot, 100 );
+					bullet_root_node->addChild( pivot, std::numeric_limits<int>::max() );
 				}
 
 				// View
 				auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+				view_node->setScale( _director->getContentScaleFactor() );
 				bullet_root_node->addChild( view_node );
 
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
