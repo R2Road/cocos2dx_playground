@@ -11,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
@@ -21,6 +22,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_Bullet = 20140416;
+	const int TAG_BulletCountView = 20160528;
 }
 
 namespace step_rain_of_chaos
@@ -90,6 +92,23 @@ namespace step_rain_of_chaos
 			{
 				auto background_layer = LayerColor::create( Color4B( 130, 49, 29, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Bullet Count
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::RIGHT );
+				label->setTag( TAG_BulletCountView );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateBulletCountView();
 			}
 
 			return true;
@@ -227,6 +246,12 @@ namespace step_rain_of_chaos
 			}
 		}
 
+		void CollectionScene::updateBulletCountView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_BulletCountView ) );
+			label->setString( StringUtils::format( "Child Count : %3d\nCollision Count%3d", getChildrenCount() - 2, mCollisionCollection.Count() ) );
+		}
+
 		void CollectionScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
@@ -238,10 +263,12 @@ namespace step_rain_of_chaos
 			if( EventKeyboard::KeyCode::KEY_A == keycode )
 			{
 				makeBullet();
+				updateBulletCountView();
 			}
 			if( EventKeyboard::KeyCode::KEY_S == keycode )
 			{
 				removeBullet();
+				updateBulletCountView();
 			}
 		}
 	}

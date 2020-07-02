@@ -18,6 +18,8 @@ namespace step_rain_of_chaos
 		void Remove( step_mole::CircleCollisionComponent* component );
 		void Clear() { mContainer.clear(); }
 
+		const std::size_t Count() const { return mContainer.size(); }
+
 	private:
 		ContainerT mContainer;
 	};
