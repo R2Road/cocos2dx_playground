@@ -324,9 +324,6 @@
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp">
       <Filter>src\scene\step_06_defender</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionCollection.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_RootScene.cpp">
       <Filter>src\scene\step_04_mole</Filter>
     </ClCompile>
@@ -736,9 +733,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_RootScene.h">
       <Filter>src\scene\step_06_defender</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionCollection.h">
-      <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_RootScene.h">
       <Filter>src\scene\step_04_mole</Filter>
