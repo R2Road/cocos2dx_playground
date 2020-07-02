@@ -4,10 +4,10 @@ namespace step_rain_of_chaos
 {
 	void CollisionCollection::Add( step_mole::CircleCollisionComponent* component )
 	{
-		mCollisionList.push_back( component );
+		mContainer.push_back( component );
 	}
 	void CollisionCollection::Remove( step_mole::CircleCollisionComponent* component )
 	{
-		mCollisionList.remove( component );
+		mContainer.remove( component );
 	}
 }

@@ -16,9 +16,9 @@ namespace step_rain_of_chaos
 
 		void Add( step_mole::CircleCollisionComponent* component );
 		void Remove( step_mole::CircleCollisionComponent* component );
-		void Clear() { mCollisionList.clear(); }
+		void Clear() { mContainer.clear(); }
 
 	private:
-		ContainerT mCollisionList;
+		ContainerT mContainer;
 	};
 }
