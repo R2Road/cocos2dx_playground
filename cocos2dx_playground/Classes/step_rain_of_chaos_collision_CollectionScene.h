@@ -33,7 +33,8 @@ namespace step_rain_of_chaos
 		private:
 			void addCollision( cocos2d::Node* child );
 			void removeCollision( cocos2d::Node* child );
-			cocos2d::Node* makeBullet();
+			void makeBullet();
+			void removeBullet();
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
