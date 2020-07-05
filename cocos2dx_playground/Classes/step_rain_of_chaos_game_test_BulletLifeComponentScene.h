@@ -22,10 +22,15 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
+			void updateLifeTimeView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			cocos2d::Rect mBulletLifeArea;
+			cocos2d::Rect mBulletGenerateArea;
+			int mCurrentMoveSpeed;
 		};
 	}
 }
