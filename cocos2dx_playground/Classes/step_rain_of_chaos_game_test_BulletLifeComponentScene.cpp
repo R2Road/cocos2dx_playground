@@ -176,7 +176,7 @@ namespace step_rain_of_chaos
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
 
-				updateLifeTimeView();
+				updateMoveSpeedView();
 			}
 
 			//
@@ -239,7 +239,7 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
-		void BulletLifeComponentScene::updateLifeTimeView()
+		void BulletLifeComponentScene::updateMoveSpeedView()
 		{
 			auto life_time_node = static_cast<Label*>( getChildByTag( TAG_LifeTimeNode ) );
 			life_time_node->setString( StringUtils::format( "Move Speed : %d", mCurrentMoveSpeed ) );
@@ -274,12 +274,12 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
 				mCurrentMoveSpeed += 1;
-				updateLifeTimeView();
+				updateMoveSpeedView();
 				return;
 
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 				mCurrentMoveSpeed = std::max( 1, mCurrentMoveSpeed - 1 );
-				updateLifeTimeView();
+				updateMoveSpeedView();
 				return;
 
 			default:

@@ -22,7 +22,7 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
-			void updateLifeTimeView();
+			void updateMoveSpeedView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
