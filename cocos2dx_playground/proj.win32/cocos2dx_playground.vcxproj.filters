@@ -324,9 +324,6 @@
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp">
       <Filter>src\scene\step_06_defender</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_CollisionCollection.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_RootScene.cpp">
       <Filter>src\scene\step_04_mole</Filter>
     </ClCompile>
@@ -549,6 +546,12 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_BackgroundNode.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_BulletLifeComponentScene.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_BulletLifeComponent.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -736,9 +739,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_RootScene.h">
       <Filter>src\scene\step_06_defender</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_CollisionCollection.h">
-      <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_RootScene.h">
       <Filter>src\scene\step_04_mole</Filter>
@@ -975,6 +975,12 @@
       <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_BackgroundNode.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_BulletLifeComponentScene.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_BulletLifeComponent.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
   </ItemGroup>

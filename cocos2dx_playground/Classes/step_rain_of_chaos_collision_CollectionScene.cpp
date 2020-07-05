@@ -11,12 +11,19 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const int TAG_Bullet = 20140416;
+	const int TAG_BulletCountView = 20160528;
+}
 
 namespace step_rain_of_chaos
 {
@@ -64,6 +71,11 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[A] : Add Bullet";
+				ss << std::endl;
+				ss << "[S] : Remove Bullet";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -83,41 +95,20 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Bullet
+			// Bullet Count
 			//
 			{
-				const Vec2 visibleCenter(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				);
-				const float negative_range = ( visibleSize.height - visibleOrigin.y ) * 0.3f;
-				const float position_margin = 10.f;
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::RIGHT );
+				label->setTag( TAG_BulletCountView );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
 
-				std::random_device rd;
-				std::mt19937 randomEngine( rd() );
-				std::uniform_int_distribution<> distX( static_cast<int>( visibleOrigin.x + position_margin ), static_cast<int>( visibleSize.width - position_margin ) );
-				std::uniform_int_distribution<> distY( static_cast<int>( visibleOrigin.y + position_margin ), static_cast<int>( visibleSize.height - position_margin ) );
-
-				int current_bullet_count = 0;
-				Vec2 new_bullet_position;
-				while( current_bullet_count < 30 )
-				{
-					new_bullet_position.set(
-						distX( randomEngine )
-						,distY( randomEngine )
-					);
-
-					if( negative_range >= visibleCenter.distance( new_bullet_position ) )
-					{
-						continue;
-					}
-
-					auto bullet_root_node = makeBullet();
-					bullet_root_node->setPosition( visibleOrigin + new_bullet_position );
-					addChild( bullet_root_node );
-
-					++current_bullet_count;
-				}
+				updateBulletCountView();
 			}
 
 			return true;
@@ -187,10 +178,44 @@ namespace step_rain_of_chaos
 			mCollisionCollection.Remove( static_cast<step_mole::CircleCollisionComponent*>( target_component ) );
 		}
 
-		Node* CollectionScene::makeBullet()
+		void CollectionScene::makeBullet()
 		{
+			const auto visibleSize = Director::getInstance()->getVisibleSize();
+			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+
+			const Vec2 visibleCenter(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+			);
+			const float negative_range = ( visibleSize.height - visibleOrigin.y ) * 0.3f;
+			const float position_margin = 10.f;
+
+			std::random_device rd;
+			std::mt19937 randomEngine( rd() );
+			std::uniform_int_distribution<> distX( static_cast<int>( visibleOrigin.x + position_margin ), static_cast<int>( visibleSize.width - position_margin ) );
+			std::uniform_int_distribution<> distY( static_cast<int>( visibleOrigin.y + position_margin ), static_cast<int>( visibleSize.height - position_margin ) );
+
+			Vec2 new_bullet_position;
+			while( 1 )
+			{
+				new_bullet_position.set(
+					distX( randomEngine )
+					, distY( randomEngine )
+				);
+
+				if( negative_range >= visibleCenter.distance( new_bullet_position ) )
+				{
+					continue;
+				}
+
+				break;
+			}
+				
+
 			auto bullet_root_node = Node::create();
 			{
+				bullet_root_node->setTag( TAG_Bullet );
+
 				// Pivot
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
@@ -209,7 +234,22 @@ namespace step_rain_of_chaos
 				bullet_root_node->addComponent( step_mole::CircleCollisionComponent::create( radius, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ false, false, false } ) );
 			}
 
-			return bullet_root_node;
+			bullet_root_node->setPosition( visibleOrigin + new_bullet_position );
+			addChild( bullet_root_node );
+		}
+		void CollectionScene::removeBullet()
+		{
+			auto node = getChildByTag( TAG_Bullet );
+			if( node )
+			{
+				removeChild( node );
+			}
+		}
+
+		void CollectionScene::updateBulletCountView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_BulletCountView ) );
+			label->setString( StringUtils::format( "Child Count : %3d\nCollision Count%3d", getChildrenCount() - 2, mCollisionCollection.Count() ) );
 		}
 
 		void CollectionScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
@@ -218,6 +258,17 @@ namespace step_rain_of_chaos
 			{
 				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_A == keycode )
+			{
+				makeBullet();
+				updateBulletCountView();
+			}
+			if( EventKeyboard::KeyCode::KEY_S == keycode )
+			{
+				removeBullet();
+				updateBulletCountView();
 			}
 		}
 	}

@@ -1,12 +1,38 @@
 #pragma once
 
+#include <list>
+
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-#include "step_rain_of_chaos_CollisionCollection.h"
+namespace step_mole
+{
+	class CircleCollisionComponent;
+}
 
 namespace step_rain_of_chaos
 {
+	class CollisionCollection
+	{
+	public:
+		using ContainerT = std::list<step_mole::CircleCollisionComponent*>;
+
+		void Add( step_mole::CircleCollisionComponent* component )
+		{
+			mContainer.push_back( component );
+		}
+		void Remove( step_mole::CircleCollisionComponent* component )
+		{
+			mContainer.remove( component );
+		}
+		void Clear() { mContainer.clear(); }
+
+		const std::size_t Count() const { return mContainer.size(); }
+
+	private:
+		ContainerT mContainer;
+	};
+
 	namespace collision
 	{
 		class CollectionScene : public cocos2d::Scene
@@ -33,7 +59,11 @@ namespace step_rain_of_chaos
 		private:
 			void addCollision( cocos2d::Node* child );
 			void removeCollision( cocos2d::Node* child );
-			cocos2d::Node* makeBullet();
+
+			void makeBullet();
+			void removeBullet();
+
+			void updateBulletCountView();
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
