@@ -106,16 +106,16 @@ namespace step_rain_of_chaos
 			}
 
 			const Rect dummy_stage_area(
-				visibleOrigin.x + 50.f, visibleOrigin.y + 50.f
-				, visibleSize.width - 50.f - 50.f, visibleSize.height - 50.f - 50.f
+				visibleOrigin.x + 90.f, visibleOrigin.y + 90.f
+				, visibleSize.width - 90.f - 90.f, visibleSize.height - 90.f - 90.f
 			);
 			mBulletLifeArea.setRect(
-				dummy_stage_area.origin.x - 20.f, dummy_stage_area.origin.y - 20.f
-				, dummy_stage_area.size.width + 20.f + 20.f, dummy_stage_area.size.height + 20.f + 20.f
+				dummy_stage_area.origin.x - 60.f, dummy_stage_area.origin.y - 60.f
+				, dummy_stage_area.size.width + 60.f + 60.f, dummy_stage_area.size.height + 60.f + 60.f
 			);
 			mBulletGenerateArea.setRect(
-				dummy_stage_area.origin.x - 10.f, dummy_stage_area.origin.y - 10.f
-				, dummy_stage_area.size.width + 10.f + 10.f, dummy_stage_area.size.height + 10.f + 10.f
+				dummy_stage_area.origin.x - 30.f, dummy_stage_area.origin.y - 30.f
+				, dummy_stage_area.size.width + 30.f + 30.f, dummy_stage_area.size.height + 30.f + 30.f
 			);
 			
 			//
