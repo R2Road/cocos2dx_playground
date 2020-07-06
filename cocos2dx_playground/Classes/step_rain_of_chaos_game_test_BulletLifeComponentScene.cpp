@@ -26,7 +26,6 @@ namespace
 {
 	const int TAG_ObjectNode = 20140416;
 	const int TAG_LifeTimeNode = 100;
-	const int TAG_ViewNode = 200;
 
 #pragma region Clamp from c++17
 	template<class T, class Compare>
@@ -206,7 +205,6 @@ namespace step_rain_of_chaos
 
 				// View
 				auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
-				view_node->setTag( TAG_ViewNode );
 				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				view_node->setScale( _director->getContentScaleFactor() );
 				view_node->setPositionY( -18.f );
