@@ -52,7 +52,7 @@ namespace step_rain_of_chaos
 
 		bool init() override;
 
-		void ProcessStart( cocos2d::Vec2 move_direction );
+		void ProcessStart( const cocos2d::Vec2 new_position, const cocos2d::Vec2 move_direction );
 		void ProcessBoom();
 
 	private:

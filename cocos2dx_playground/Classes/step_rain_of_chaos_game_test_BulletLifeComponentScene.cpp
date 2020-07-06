@@ -274,9 +274,8 @@ namespace step_rain_of_chaos
 				direction_vector.scale( mCurrentMoveSpeed );
 
 				auto object_node = getChildByTag( TAG_ObjectNode );
-				object_node->setPosition( start_position );
 				auto animation_component = static_cast<step_rain_of_chaos::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::BulletLifeComponent::GetStaticName() ) );
-				animation_component->ProcessStart( -direction_vector );
+				animation_component->ProcessStart( start_position, -direction_vector );
 			}
 			return;
 

@@ -65,8 +65,9 @@ namespace step_rain_of_chaos
 		return true;
 	}
 
-	void BulletLifeComponent::ProcessStart( cocos2d::Vec2 move_direction )
+	void BulletLifeComponent::ProcessStart( const cocos2d::Vec2 new_position, const cocos2d::Vec2 move_direction )
 	{
+		_owner->setPosition( new_position );
 		mMoveDirection = move_direction;
 		_owner->setVisible( true );
 		ChangeState( eState::Wakeup );
