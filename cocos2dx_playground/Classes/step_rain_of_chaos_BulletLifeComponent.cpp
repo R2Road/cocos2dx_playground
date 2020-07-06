@@ -22,7 +22,7 @@ namespace step_rain_of_chaos
 		, const ProcessExitCallback& process_end_callback
 	) :
 		mAllowedArea( allowed_area )
-		, mMoveSpeed( 1.f )
+		, mMoveDirection( Vec2::ONE )
 		, mLastState( eState::Boom_2 )
 		, mAnimationComponent( animation_component )
 		, mCircleCollisionComponent( circle_collision_component )
@@ -65,9 +65,9 @@ namespace step_rain_of_chaos
 		return true;
 	}
 
-	void BulletLifeComponent::ProcessStart( const float move_speed )
+	void BulletLifeComponent::ProcessStart( cocos2d::Vec2 move_direction )
 	{
-		mMoveSpeed = std::max( 1.f, move_speed );
+		mMoveDirection = move_direction;
 		_owner->setVisible( true );
 		ChangeState( eState::Wakeup );
 	}
@@ -110,7 +110,7 @@ namespace step_rain_of_chaos
 			_owner->schedule(
 				[this]( float )
 				{
-					_owner->setPosition( _owner->getPosition() + Vec2( mMoveSpeed, 0.f ) );
+					_owner->setPosition( _owner->getPosition() + mMoveDirection );
 					if( !mAllowedArea.containsPoint( _owner->getPosition() ) )
 					{
 						ChangeState( eState::Disappear );

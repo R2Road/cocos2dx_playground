@@ -27,6 +27,20 @@ namespace
 	const int TAG_ObjectNode = 20140416;
 	const int TAG_LifeTimeNode = 100;
 	const int TAG_ViewNode = 200;
+
+#pragma region Clamp from c++17
+	template<class T, class Compare>
+	constexpr const T& clamp( const T& v, const T& lo, const T& hi, Compare comp )
+	{
+		return CCASSERT( !comp( hi, lo ), "" ), comp( v, lo ) ? lo : comp( hi, v ) ? hi : v;
+	}
+
+	template<class T>
+	constexpr const T& clamp( const T& v, const T& lo, const T& hi )
+	{
+		return clamp( v, lo, hi, std::less<>() );
+	}
+#pragma endregion
 }
 
 namespace step_rain_of_chaos
@@ -247,12 +261,24 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_1:
 			{
-				
+				Vec2 pivot_vector( mBulletGenerateArea.size.width * 0.5f, mBulletGenerateArea.size.height * 0.5f );
+				Vec2 direction_vector = pivot_vector;
+
+				static std::mt19937 randomEngine( std::random_device{}() );
+				std::uniform_real_distribution<> dist( 0, 360 );
+				direction_vector.rotate( Vec2::ZERO, CC_DEGREES_TO_RADIANS( dist( randomEngine ) ) );				
+				direction_vector.x = clamp( direction_vector.x, -pivot_vector.x, pivot_vector.x );
+				direction_vector.y = clamp( direction_vector.y, -pivot_vector.y, pivot_vector.y );
+
+				const auto start_position = mCenter + direction_vector;
+
+				direction_vector.normalize();
+				direction_vector.scale( mCurrentMoveSpeed );
 
 				auto object_node = getChildByTag( TAG_ObjectNode );
-				object_node->setPosition( mBulletGenerateArea.origin.x, mBulletGenerateArea.origin.y );
+				object_node->setPosition( start_position );
 				auto animation_component = static_cast<step_rain_of_chaos::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::BulletLifeComponent::GetStaticName() ) );
-				animation_component->ProcessStart( mCurrentMoveSpeed );
+				animation_component->ProcessStart( -direction_vector );
 			}
 			return;
 
