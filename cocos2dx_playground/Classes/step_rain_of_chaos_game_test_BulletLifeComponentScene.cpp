@@ -214,11 +214,11 @@ namespace step_rain_of_chaos
 				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() );
 				view_node->addComponent( animation_component );
 
-				// Collision Component
+				// Circle Collision Component
 				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true } );
 				object_node->addComponent( circle_collision_component );
 
-				// Object Component
+				// Bullet Life Component
 				object_node->addComponent( step_rain_of_chaos::BulletLifeComponent::create( mBulletLifeArea, animation_component, circle_collision_component, nullptr ) );
 			}
 
@@ -274,16 +274,16 @@ namespace step_rain_of_chaos
 				direction_vector.scale( mCurrentMoveSpeed );
 
 				auto object_node = getChildByTag( TAG_ObjectNode );
-				auto animation_component = static_cast<step_rain_of_chaos::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::BulletLifeComponent::GetStaticName() ) );
-				animation_component->ProcessStart( start_position, -direction_vector );
+				auto bullet_life_component = static_cast<step_rain_of_chaos::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::BulletLifeComponent::GetStaticName() ) );
+				bullet_life_component->ProcessStart( start_position, -direction_vector );
 			}
 			return;
 
 			case EventKeyboard::KeyCode::KEY_2:
 			{
 				auto object_node = getChildByTag( TAG_ObjectNode );
-				auto animation_component = static_cast<step_rain_of_chaos::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::BulletLifeComponent::GetStaticName() ) );
-				animation_component->ProcessBoom();
+				auto bullet_life_component = static_cast<step_rain_of_chaos::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::BulletLifeComponent::GetStaticName() ) );
+				bullet_life_component->ProcessBoom();
 			}
 			return;
 
