@@ -105,9 +105,10 @@ namespace step_rain_of_chaos
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
+			mCenter.set( visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f );
 			const Rect dummy_stage_area(
-				visibleOrigin.x + 90.f, visibleOrigin.y + 90.f
-				, visibleSize.width - 90.f - 90.f, visibleSize.height - 90.f - 90.f
+				mCenter.x - 150.f, mCenter.y - 80.f
+				, 300.f, 160.f
 			);
 			mBulletLifeArea.setRect(
 				dummy_stage_area.origin.x - 60.f, dummy_stage_area.origin.y - 60.f
@@ -126,10 +127,7 @@ namespace step_rain_of_chaos
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setContentSize( dummy_stage_area.size );
 				sprite->setColor( Color3B::GREEN );
-				sprite->setPosition(
-					visibleOrigin.x + dummy_stage_area.origin.x
-					, visibleOrigin.y + dummy_stage_area.origin.y
-				);
+				sprite->setPosition( dummy_stage_area.origin );
 				addChild( sprite );
 			}
 
@@ -141,10 +139,7 @@ namespace step_rain_of_chaos
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setContentSize( mBulletLifeArea.size );
 				sprite->setColor( Color3B::RED );
-				sprite->setPosition(
-					visibleOrigin.x + mBulletLifeArea.origin.x
-					, visibleOrigin.y + mBulletLifeArea.origin.y
-				);
+				sprite->setPosition( mBulletLifeArea.origin );
 				addChild( sprite );
 			}
 
@@ -155,10 +150,7 @@ namespace step_rain_of_chaos
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setContentSize( mBulletGenerateArea.size );
-				sprite->setPosition(
-					visibleOrigin.x + mBulletGenerateArea.origin.x
-					, visibleOrigin.y + mBulletGenerateArea.origin.y
-				);
+				sprite->setPosition( mBulletGenerateArea.origin );
 				addChild( sprite );
 			}
 
@@ -255,7 +247,7 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_1:
 			{
-				const auto aaaa = getPosition();
+				
 
 				auto object_node = getChildByTag( TAG_ObjectNode );
 				object_node->setPosition( mBulletGenerateArea.origin.x, mBulletGenerateArea.origin.y );
