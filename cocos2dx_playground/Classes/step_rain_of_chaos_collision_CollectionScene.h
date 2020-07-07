@@ -12,31 +12,13 @@ namespace step_mole
 
 namespace step_rain_of_chaos
 {
-	class CollisionCollection
-	{
-	public:
-		using ContainerT = std::list<step_mole::CircleCollisionComponent*>;
-
-		void Add( step_mole::CircleCollisionComponent* component )
-		{
-			mContainer.push_back( component );
-		}
-		void Remove( step_mole::CircleCollisionComponent* component )
-		{
-			mContainer.remove( component );
-		}
-		void Clear() { mContainer.clear(); }
-
-		const std::size_t Count() const { return mContainer.size(); }
-
-	private:
-		ContainerT mContainer;
-	};
-
 	namespace collision
 	{
 		class CollectionScene : public cocos2d::Scene
 		{
+		public:
+			using ContainerT = std::list<step_mole::CircleCollisionComponent*>;
+
 		private:
 			CollectionScene();
 
@@ -70,7 +52,7 @@ namespace step_rain_of_chaos
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			CollisionCollection mCollisionCollection;
+			ContainerT mCollisionCollection;
 		};
 	}
 }
