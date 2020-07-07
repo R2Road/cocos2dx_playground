@@ -49,8 +49,7 @@ namespace step_rain_of_chaos
 		BulletLifeComponentScene::BulletLifeComponentScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
-			, mBulletLifeArea()
-			, mBulletGenerateArea()
+			, mStageConfig()
 			, mCurrentMoveSpeed( 3 )
 		{}
 
@@ -118,16 +117,16 @@ namespace step_rain_of_chaos
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
-			mCenter.set( visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f );
+			mStageConfig.mCenter.set( visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f );
 			const Rect dummy_stage_area(
-				mCenter.x - 150.f, mCenter.y - 80.f
+				mStageConfig.mCenter.x - 150.f, mStageConfig.mCenter.y - 80.f
 				, 300.f, 160.f
 			);
-			mBulletLifeArea.setRect(
+			mStageConfig.mBulletLifeArea.setRect(
 				dummy_stage_area.origin.x - 60.f, dummy_stage_area.origin.y - 60.f
 				, dummy_stage_area.size.width + 60.f + 60.f, dummy_stage_area.size.height + 60.f + 60.f
 			);
-			mBulletGenerateArea.setRect(
+			mStageConfig.mBulletGenerateArea.setRect(
 				dummy_stage_area.origin.x - 30.f, dummy_stage_area.origin.y - 30.f
 				, dummy_stage_area.size.width + 30.f + 30.f, dummy_stage_area.size.height + 30.f + 30.f
 			);
@@ -150,9 +149,9 @@ namespace step_rain_of_chaos
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setContentSize( mBulletLifeArea.size );
+				sprite->setContentSize( mStageConfig.mBulletLifeArea.size );
 				sprite->setColor( Color3B::RED );
-				sprite->setPosition( mBulletLifeArea.origin );
+				sprite->setPosition( mStageConfig.mBulletLifeArea.origin );
 				addChild( sprite );
 			}
 
@@ -162,8 +161,8 @@ namespace step_rain_of_chaos
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setContentSize( mBulletGenerateArea.size );
-				sprite->setPosition( mBulletGenerateArea.origin );
+				sprite->setContentSize( mStageConfig.mBulletGenerateArea.size );
+				sprite->setPosition( mStageConfig.mBulletGenerateArea.origin );
 				addChild( sprite );
 			}
 
@@ -219,7 +218,7 @@ namespace step_rain_of_chaos
 				object_node->addComponent( circle_collision_component );
 
 				// Bullet Life Component
-				object_node->addComponent( step_rain_of_chaos::BulletLifeComponent::create( mBulletLifeArea, animation_component, circle_collision_component, nullptr ) );
+				object_node->addComponent( step_rain_of_chaos::BulletLifeComponent::create( mStageConfig.mBulletLifeArea, animation_component, circle_collision_component, nullptr ) );
 			}
 
 			return true;
@@ -259,7 +258,7 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_1:
 			{
-				Vec2 pivot_vector( mBulletGenerateArea.size.width * 0.5f, mBulletGenerateArea.size.height * 0.5f );
+				Vec2 pivot_vector( mStageConfig.mBulletGenerateArea.size.width * 0.5f, mStageConfig.mBulletGenerateArea.size.height * 0.5f );
 				Vec2 direction_vector = pivot_vector;
 
 				static std::mt19937 randomEngine( std::random_device{}() );
@@ -268,7 +267,7 @@ namespace step_rain_of_chaos
 				direction_vector.x = clamp( direction_vector.x, -pivot_vector.x, pivot_vector.x );
 				direction_vector.y = clamp( direction_vector.y, -pivot_vector.y, pivot_vector.y );
 
-				const auto start_position = mCenter + direction_vector;
+				const auto start_position = mStageConfig.mCenter + direction_vector;
 
 				direction_vector.normalize();
 				direction_vector.scale( mCurrentMoveSpeed );

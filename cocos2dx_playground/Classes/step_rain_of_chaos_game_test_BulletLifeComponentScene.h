@@ -3,6 +3,7 @@
 #include "2d/CCScene.h"
 
 #include "helper_BackToThePreviousScene.h"
+#include "step_rain_of_chaos_game_StageConfig.h"
 
 namespace step_rain_of_chaos
 {
@@ -28,9 +29,7 @@ namespace step_rain_of_chaos
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			cocos2d::Vec2 mCenter;
-			cocos2d::Rect mBulletLifeArea;
-			cocos2d::Rect mBulletGenerateArea;
+			game::StageConfig mStageConfig;
 			int mCurrentMoveSpeed;
 		};
 	}
