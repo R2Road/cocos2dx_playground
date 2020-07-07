@@ -117,18 +117,9 @@ namespace step_rain_of_chaos
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
-			mStageConfig.mCenter.set( visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f );
-			const Rect dummy_stage_area(
-				mStageConfig.mCenter.x - 150.f, mStageConfig.mCenter.y - 80.f
+			mStageConfig.Build(
+				visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
 				, 300.f, 160.f
-			);
-			mStageConfig.mBulletLifeArea.setRect(
-				dummy_stage_area.origin.x - 60.f, dummy_stage_area.origin.y - 60.f
-				, dummy_stage_area.size.width + 60.f + 60.f, dummy_stage_area.size.height + 60.f + 60.f
-			);
-			mStageConfig.mBulletGenerateArea.setRect(
-				dummy_stage_area.origin.x - 30.f, dummy_stage_area.origin.y - 30.f
-				, dummy_stage_area.size.width + 30.f + 30.f, dummy_stage_area.size.height + 30.f + 30.f
 			);
 			
 			//
@@ -137,9 +128,9 @@ namespace step_rain_of_chaos
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setContentSize( dummy_stage_area.size );
+				sprite->setContentSize( mStageConfig.GetStageArea().size );
 				sprite->setColor( Color3B::GREEN );
-				sprite->setPosition( dummy_stage_area.origin );
+				sprite->setPosition( mStageConfig.GetStageArea().origin );
 				addChild( sprite );
 			}
 
@@ -149,9 +140,9 @@ namespace step_rain_of_chaos
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setContentSize( mStageConfig.mBulletLifeArea.size );
+				sprite->setContentSize( mStageConfig.GetBulletLifeArea().size );
 				sprite->setColor( Color3B::RED );
-				sprite->setPosition( mStageConfig.mBulletLifeArea.origin );
+				sprite->setPosition( mStageConfig.GetBulletLifeArea().origin );
 				addChild( sprite );
 			}
 
@@ -161,8 +152,8 @@ namespace step_rain_of_chaos
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setContentSize( mStageConfig.mBulletGenerateArea.size );
-				sprite->setPosition( mStageConfig.mBulletGenerateArea.origin );
+				sprite->setContentSize( mStageConfig.GetBulletGenerateArea().size );
+				sprite->setPosition( mStageConfig.GetBulletGenerateArea().origin );
 				addChild( sprite );
 			}
 
@@ -189,10 +180,7 @@ namespace step_rain_of_chaos
 			{
 				auto object_node = Node::create();
 				object_node->setTag( TAG_ObjectNode );
-				object_node->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + dummy_stage_area.origin.x + ( dummy_stage_area.size.width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + dummy_stage_area.origin.y + ( dummy_stage_area.size.height * 0.5f ) )
-				) );
+				object_node->setPosition( mStageConfig.GetCenter() );
 				addChild( object_node, 1 );
 
 				// Pivot
@@ -218,7 +206,7 @@ namespace step_rain_of_chaos
 				object_node->addComponent( circle_collision_component );
 
 				// Bullet Life Component
-				object_node->addComponent( step_rain_of_chaos::BulletLifeComponent::create( mStageConfig.mBulletLifeArea, animation_component, circle_collision_component, nullptr ) );
+				object_node->addComponent( step_rain_of_chaos::BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, nullptr ) );
 			}
 
 			return true;
@@ -258,7 +246,7 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_1:
 			{
-				Vec2 pivot_vector( mStageConfig.mBulletGenerateArea.size.width * 0.5f, mStageConfig.mBulletGenerateArea.size.height * 0.5f );
+				Vec2 pivot_vector( mStageConfig.GetBulletGenerateArea().size.width * 0.5f, mStageConfig.GetBulletGenerateArea().size.height * 0.5f );
 				Vec2 direction_vector = pivot_vector;
 
 				static std::mt19937 randomEngine( std::random_device{}() );
@@ -267,7 +255,7 @@ namespace step_rain_of_chaos
 				direction_vector.x = clamp( direction_vector.x, -pivot_vector.x, pivot_vector.x );
 				direction_vector.y = clamp( direction_vector.y, -pivot_vector.y, pivot_vector.y );
 
-				const auto start_position = mStageConfig.mCenter + direction_vector;
+				const auto start_position = mStageConfig.GetCenter() + direction_vector;
 
 				direction_vector.normalize();
 				direction_vector.scale( mCurrentMoveSpeed );
