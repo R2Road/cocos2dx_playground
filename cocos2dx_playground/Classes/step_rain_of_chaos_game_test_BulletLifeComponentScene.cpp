@@ -246,7 +246,7 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_1:
 			{
-				Vec2 pivot_vector( mStageConfig.GetBulletGenerateArea().size.width * 0.5f, mStageConfig.GetBulletGenerateArea().size.height * 0.5f );
+				const Vec2 pivot_vector( mStageConfig.GetBulletGenerateArea().size.width * 0.5f, mStageConfig.GetBulletGenerateArea().size.height * 0.5f );
 				Vec2 direction_vector = pivot_vector;
 
 				static std::mt19937 randomEngine( std::random_device{}() );
