@@ -97,9 +97,9 @@ namespace step_rain_of_chaos
 				ss << "[2] : Object - Kill";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow Key - Up] : Life Time - Increase";
+				ss << "[Arrow Key - Up] : Move Speed - Increase";
 				ss << std::endl;
-				ss << "[Arrow Key - Down] : Life Time - Decrease";
+				ss << "[Arrow Key - Down] : Move Speed - Decrease";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
