@@ -75,6 +75,11 @@ namespace ui_research
 				ss << "[SPACE] : Start Type";
 				ss << std::endl;
 				ss << "[A] : End Type";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow Up] : Delay - Increase";
+				ss << std::endl;
+				ss << "[Arrow Uown] : Delay - Decrease";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
