@@ -124,7 +124,7 @@ namespace step_rain_of_chaos
 			);
 			
 			//
-			// Dummy Stage View
+			// Stage Area View
 			//
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
@@ -133,6 +133,16 @@ namespace step_rain_of_chaos
 				sprite->setColor( Color3B::GREEN );
 				sprite->setPosition( mStageConfig.GetStageArea().origin );
 				addChild( sprite );
+				{
+					auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition( Vec2(
+						sprite->getContentSize().width
+						, sprite->getContentSize().height
+					) );
+					sprite->addChild( label );
+				}
 			}
 
 			//
@@ -145,6 +155,16 @@ namespace step_rain_of_chaos
 				sprite->setColor( Color3B::RED );
 				sprite->setPosition( mStageConfig.GetBulletLifeArea().origin );
 				addChild( sprite );
+				{
+					auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+					label->setColor( Color3B::RED );
+					label->setPosition( Vec2(
+						sprite->getContentSize().width
+						, sprite->getContentSize().height
+					) );
+					sprite->addChild( label );
+				}
 			}
 
 			//
@@ -154,8 +174,19 @@ namespace step_rain_of_chaos
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setContentSize( mStageConfig.GetBulletGenerateArea().size );
+				sprite->setColor( Color3B::WHITE );
 				sprite->setPosition( mStageConfig.GetBulletGenerateArea().origin );
 				addChild( sprite );
+				{
+					auto label = Label::createWithTTF( "Bullet Generate Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+					label->setColor( Color3B::WHITE );
+					label->setPosition( Vec2(
+						sprite->getContentSize().width
+						, sprite->getContentSize().height
+					) );
+					sprite->addChild( label );
+				}
 			}
 
 			//
