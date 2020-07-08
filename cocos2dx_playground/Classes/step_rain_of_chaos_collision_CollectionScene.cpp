@@ -153,7 +153,7 @@ namespace step_rain_of_chaos
 		}
 		void CollectionScene::removeAllChildrenWithCleanup( bool cleanup )
 		{
-			mCollisionCollection.Clear();
+			mCollisionCollection.clear();
 			Scene::removeAllChildrenWithCleanup( cleanup );
 		}
 
@@ -165,7 +165,7 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			mCollisionCollection.Add( static_cast<step_mole::CircleCollisionComponent*>( target_component ) );
+			mCollisionCollection.push_back( static_cast<step_mole::CircleCollisionComponent*>( target_component ) );
 		}
 		void CollectionScene::removeCollision( cocos2d::Node* child )
 		{
@@ -175,7 +175,7 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			mCollisionCollection.Remove( static_cast<step_mole::CircleCollisionComponent*>( target_component ) );
+			mCollisionCollection.remove( static_cast<step_mole::CircleCollisionComponent*>( target_component ) );
 		}
 
 		void CollectionScene::makeBullet()
@@ -249,7 +249,7 @@ namespace step_rain_of_chaos
 		void CollectionScene::updateBulletCountView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_BulletCountView ) );
-			label->setString( StringUtils::format( "Child Count : %3d\nCollision Count%3d", getChildrenCount() - 2, mCollisionCollection.Count() ) );
+			label->setString( StringUtils::format( "Child Count : %3d\nCollision Count%3d", getChildrenCount() - 2, mCollisionCollection.size() ) );
 		}
 
 		void CollectionScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

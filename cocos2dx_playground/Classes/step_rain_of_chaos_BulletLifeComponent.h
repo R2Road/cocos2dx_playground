@@ -52,7 +52,7 @@ namespace step_rain_of_chaos
 
 		bool init() override;
 
-		void ProcessStart( const float move_speed );
+		void ProcessStart( const cocos2d::Vec2 new_position, const cocos2d::Vec2 move_direction );
 		void ProcessBoom();
 
 	private:
@@ -62,7 +62,7 @@ namespace step_rain_of_chaos
 		const cocos2d::Rect mAllowedArea;
 
 		eState mLastState;
-		float mMoveSpeed;
+		cocos2d::Vec2 mMoveDirection;
 
 		step_mole::AnimationComponent* const mAnimationComponent;
 		cocos2d::Component* const mCircleCollisionComponent;

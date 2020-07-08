@@ -196,16 +196,16 @@ namespace step_mole
 			case EventKeyboard::KeyCode::KEY_1:
 			{
 				auto object_node = getChildByTag( TAG_ObjectNode );
-				auto animation_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
-				animation_component->ProcessStart( mCurrentLifeTime );
+				auto object_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
+				object_component->ProcessStart( mCurrentLifeTime );
 			}
 			return;
 
 			case EventKeyboard::KeyCode::KEY_2:
 			{
 				auto object_node = getChildByTag( TAG_ObjectNode );
-				auto animation_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
-				animation_component->ProcessDamage();
+				auto object_component = static_cast<step_mole::ObjectComponent*>( object_node->getComponent( step_mole::ObjectComponent::GetStaticName() ) );
+				object_component->ProcessDamage();
 			}
 			return;
 

@@ -983,6 +983,9 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_BulletLifeComponent.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_StageConfig.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

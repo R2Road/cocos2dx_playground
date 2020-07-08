@@ -346,6 +346,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_BulletLifeComponent.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_StageConfig.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_BulletLifeComponentScene.h" />
