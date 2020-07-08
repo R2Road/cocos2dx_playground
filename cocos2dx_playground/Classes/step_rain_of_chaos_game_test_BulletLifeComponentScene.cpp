@@ -92,9 +92,9 @@ namespace step_rain_of_chaos
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Object - Process Start";
+				ss << "[1] : Bullet - Process Start";
 				ss << std::endl;
-				ss << "[2] : Object - Kill";
+				ss << "[2] : Bullet - Kill";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Arrow Key - Up] : Move Speed - Increase";
