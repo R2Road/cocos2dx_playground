@@ -10,6 +10,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_rain_of_chaos_game_StageNode.h"
+
 USING_NS_CC;
 
 namespace step_rain_of_chaos
@@ -71,8 +73,25 @@ namespace step_rain_of_chaos
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 130, 49, 29, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 63, 23, 14, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Stage Node
+			//
+			{
+				game::StageConfig stage_config;
+				stage_config.Build(
+					visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
+					, 300.f, 160.f
+				);
+
+				auto stage_node = game::StageNode::create(
+					stage_config
+					, game::StageNodeConfig{ true, true }
+				);
+				addChild( stage_node );
 			}
 
 			return true;
