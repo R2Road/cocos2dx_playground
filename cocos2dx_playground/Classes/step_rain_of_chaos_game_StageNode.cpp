@@ -67,7 +67,7 @@ namespace step_rain_of_chaos
 					sprite->setContentSize( mStageConfig.GetStageArea().size );
 					sprite->setColor( Color3B::GREEN );
 					sprite->setPosition( mStageConfig.GetStageArea().origin );
-					addChild( sprite );
+					addChild( sprite, std::numeric_limits<int>::min() );
 					{
 						auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
 						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -87,7 +87,7 @@ namespace step_rain_of_chaos
 					sprite->setContentSize( mStageConfig.GetBulletLifeArea().size );
 					sprite->setColor( Color3B::RED );
 					sprite->setPosition( mStageConfig.GetBulletLifeArea().origin );
-					addChild( sprite );
+					addChild( sprite, std::numeric_limits<int>::min() );
 					{
 						auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
 						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -108,7 +108,7 @@ namespace step_rain_of_chaos
 					sprite->setContentSize( mStageConfig.GetBulletGenerateArea().size );
 					sprite->setColor( Color3B::WHITE );
 					sprite->setPosition( mStageConfig.GetBulletGenerateArea().origin );
-					addChild( sprite );
+					addChild( sprite, std::numeric_limits<int>::min() );
 					{
 						auto label = Label::createWithTTF( "Bullet Generate Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
 						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
