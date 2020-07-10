@@ -19,7 +19,7 @@
 #include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_rain_of_chaos_BulletLifeComponent.h"
+#include "step_rain_of_chaos_game_BulletLifeComponent.h"
 
 USING_NS_CC;
 

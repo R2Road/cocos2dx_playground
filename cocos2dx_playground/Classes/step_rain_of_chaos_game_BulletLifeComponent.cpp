@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_BulletLifeComponent.h"
+#include "step_rain_of_chaos_game_BulletLifeComponent.h"
 
 #include <algorithm>
 #include <new>
