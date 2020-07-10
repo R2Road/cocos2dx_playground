@@ -14,6 +14,7 @@
 #include "step_rain_of_chaos_game_test_ActorMoveScene.h"
 #include "step_rain_of_chaos_game_test_BackgroundNodeScene.h"
 #include "step_rain_of_chaos_game_test_BulletLifeComponentScene.h"
+#include "step_rain_of_chaos_game_test_StageNodeScene.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
 
@@ -70,6 +71,8 @@ namespace step_rain_of_chaos
 			ss << "[A] : " << step_rain_of_chaos::game_test::BackgroundNodeScene::getTitle();
 			ss << std::endl;
 			ss << "[S] : " << step_rain_of_chaos::game_test::BulletLifeComponentScene::getTitle();
+			ss << std::endl;
+			ss << "[D] : " << step_rain_of_chaos::game_test::StageNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -147,6 +150,9 @@ namespace step_rain_of_chaos
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::BulletLifeComponentScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_D:
+			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::StageNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 

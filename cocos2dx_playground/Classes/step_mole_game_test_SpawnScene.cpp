@@ -131,7 +131,7 @@ namespace step_mole
 				mStageNode = step_mole::game::StageNode::create(
 					STAGE_CONFIG
 					, std::bind( &game::TargetManager::ComeHomeTarget, mTargetManager.get(), std::placeholders::_1 )
-					, game::StageNodeConfig{ true, true }
+					, game::StageNode::DebugConfig{ true, true }
 					, CircleCollisionComponentConfig{ true, true, true }
 				);
 				mStageNode->setPosition( Vec2(

@@ -19,7 +19,7 @@
 #include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_rain_of_chaos_BulletLifeComponent.h"
+#include "step_rain_of_chaos_game_BulletLifeComponent.h"
 
 USING_NS_CC;
 
@@ -114,7 +114,7 @@ namespace step_rain_of_chaos
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 130, 49, 29, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
@@ -238,7 +238,7 @@ namespace step_rain_of_chaos
 				object_node->addComponent( circle_collision_component );
 
 				// Bullet Life Component
-				object_node->addComponent( step_rain_of_chaos::BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, nullptr ) );
+				object_node->addComponent( step_rain_of_chaos::game::BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, nullptr ) );
 			}
 
 			return true;
@@ -293,7 +293,7 @@ namespace step_rain_of_chaos
 				direction_vector.scale( mCurrentMoveSpeed );
 
 				auto object_node = getChildByTag( TAG_ObjectNode );
-				auto bullet_life_component = static_cast<step_rain_of_chaos::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::BulletLifeComponent::GetStaticName() ) );
+				auto bullet_life_component = static_cast<step_rain_of_chaos::game::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::game::BulletLifeComponent::GetStaticName() ) );
 				bullet_life_component->ProcessStart( start_position, -direction_vector );
 			}
 			return;
@@ -301,7 +301,7 @@ namespace step_rain_of_chaos
 			case EventKeyboard::KeyCode::KEY_2:
 			{
 				auto object_node = getChildByTag( TAG_ObjectNode );
-				auto bullet_life_component = static_cast<step_rain_of_chaos::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::BulletLifeComponent::GetStaticName() ) );
+				auto bullet_life_component = static_cast<step_rain_of_chaos::game::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::game::BulletLifeComponent::GetStaticName() ) );
 				bullet_life_component->ProcessBoom();
 			}
 			return;

@@ -31,7 +31,7 @@ namespace step_mole
 		StageNode* StageNode::create(
 			const StageConfig stage_config
 			, const TargetProcessExitCallback& target_rest_callback
-			, const StageNodeConfig stage_node_config
+			, const DebugConfig stage_node_config
 			, const CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
@@ -50,7 +50,7 @@ namespace step_mole
 			return ret;
 		}
 
-		bool StageNode::init( const TargetProcessExitCallback& target_rest_callback, const StageNodeConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
+		bool StageNode::init( const TargetProcessExitCallback& target_rest_callback, const DebugConfig stage_view_config, const CircleCollisionComponentConfig& circle_collision_component_config )
 		{
 			if( !Node::init() )
 			{
