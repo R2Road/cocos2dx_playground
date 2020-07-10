@@ -10,6 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 
 USING_NS_CC;
@@ -90,6 +91,9 @@ namespace step_rain_of_chaos
 				auto stage_node = game::StageNode::create(
 					stage_config
 					, game::StageNode::DebugConfig{ true, true }
+					, 100
+					, nullptr
+					, step_mole::CircleCollisionComponentConfig { true, true, true }
 				);
 				addChild( stage_node );
 			}

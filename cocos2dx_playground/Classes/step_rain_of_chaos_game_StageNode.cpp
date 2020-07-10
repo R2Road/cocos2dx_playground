@@ -10,19 +10,32 @@
 #include "base/CCDirector.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "step_mole_animation_InfoContainer.h"
+#include "step_mole_AnimationComponent.h"
+#include "step_mole_CircleCollisionComponent.h"
+#include "step_rain_of_chaos_game_BulletLifeComponent.h"
+
 USING_NS_CC;
 
 namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		StageNode::StageNode( const StageConfig stage_config ) : mStageConfig( stage_config )
+		StageNode::StageNode( const StageConfig stage_config, const int bullet_count ) :
+			mStageConfig( stage_config )
+			, mObjectComponentList( bullet_count, nullptr )
+			, mCollisionComponentList( bullet_count, nullptr )
 		{}
 
-		StageNode* StageNode::create( const StageConfig stage_config, const DebugConfig stage_node_config )
+		StageNode* StageNode::create(
+			const StageConfig stage_config, const DebugConfig debug_config
+			, const int bullet_count
+			, const BulletProcessExitCallback& bullet_process_exit_callback
+			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+		)
 		{
-			auto ret = new ( std::nothrow ) StageNode( stage_config );
-			if( !ret || !ret->init( stage_node_config ) )
+			auto ret = new ( std::nothrow ) StageNode( stage_config, bullet_count );
+			if( !ret || !ret->init( debug_config, bullet_count, bullet_process_exit_callback, circle_collision_component_config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -36,7 +49,12 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		bool StageNode::init( const DebugConfig stage_node_config )
+		bool StageNode::init(
+			const DebugConfig debug_config
+			, const int bullet_count
+			, const BulletProcessExitCallback& bullet_process_exit_callback
+			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+		)
 		{
 			if( !Node::init() )
 			{
@@ -44,11 +62,11 @@ namespace step_rain_of_chaos
 			}
 
 			setContentSize( _director->getVisibleSize() );
-			
+
 			//
 			// Pivot
 			//
-			if( stage_node_config.bShowPivot )
+			if( debug_config.bShowPivot )
 			{
 				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 				pivot->setScale( 4.f );
@@ -58,7 +76,7 @@ namespace step_rain_of_chaos
 			//
 			// Stage Area Guide
 			//
-			if( stage_node_config.bShowAreaGuide )
+			if( debug_config.bShowAreaGuide )
 			{
 				// Stage Area View
 				{
@@ -122,7 +140,69 @@ namespace step_rain_of_chaos
 				}
 			}
 
+			//
+			// Objects
+			//
+			{
+				for( int i = 0; bullet_count > i; ++i )
+				{
+					auto object_node = MakeBullet(
+						i
+						, bullet_process_exit_callback
+						, circle_collision_component_config
+						, debug_config.bShowPivot
+					);
+					object_node->setPosition( i * 2, 100.f );
+					addChild( object_node );
+
+					mObjectComponentList[i] = static_cast<BulletLifeComponent*>( object_node->getComponent( BulletLifeComponent::GetStaticName() ) );
+					mCollisionComponentList[i] = static_cast<step_mole::CircleCollisionComponent*>( object_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
+				}
+			}
+
 			return true;
 		}
-	} // namespace game
-} // namespace step_mole
+
+		Node* StageNode::MakeBullet(
+			const int index
+			, const BulletProcessExitCallback& target_rest_callback
+			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+			, const bool bShowPivot
+		)
+		{
+			auto object_node = Node::create();
+			object_node->setTag( index );
+			{
+				// Pivot
+				if( bShowPivot )
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					object_node->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// View
+				auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
+				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				view_node->setScale( _director->getContentScaleFactor() );
+				view_node->setPositionY( -18.f );
+				object_node->addChild( view_node );
+
+				// Animation Component
+				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() );
+				view_node->addComponent( animation_component );
+
+				// Collision Component
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 16.f, Vec2( 0.f, -4.f ), circle_collision_component_config );
+				object_node->addComponent( circle_collision_component );
+
+				// Object Component
+				object_node->addComponent( BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, target_rest_callback ) );
+
+			}
+
+			return object_node;
+		}
+	}
+}
+
