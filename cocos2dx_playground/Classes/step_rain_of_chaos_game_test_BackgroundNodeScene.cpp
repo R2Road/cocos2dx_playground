@@ -15,7 +15,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "step_rain_of_chaos_BackgroundNode.h"
+#include "step_rain_of_chaos_game_BackgroundNode.h"
 
 USING_NS_CC;
 

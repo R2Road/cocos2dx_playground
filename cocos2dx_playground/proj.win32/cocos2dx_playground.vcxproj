@@ -191,7 +191,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_mole_game_TargetManager.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_fileutil_PathScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.cpp" />
-    <ClCompile Include="..\Classes\step_rain_of_chaos_BackgroundNode.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_BackgroundNode.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_CircleCollisionComponent.cpp" />
@@ -335,7 +335,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_mole_game_TargetManager.h" />
     <ClInclude Include="..\Classes\step_pathfinder_fileutil_PathScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.h" />
-    <ClInclude Include="..\Classes\step_rain_of_chaos_BackgroundNode.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_BackgroundNode.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.h" />
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponent.h" />
