@@ -89,7 +89,7 @@ namespace step_rain_of_chaos
 
 				auto stage_node = game::StageNode::create(
 					stage_config
-					, game::StageNodeConfig{ true, true }
+					, game::StageNode::DebugConfig{ true, true }
 				);
 				addChild( stage_node );
 			}

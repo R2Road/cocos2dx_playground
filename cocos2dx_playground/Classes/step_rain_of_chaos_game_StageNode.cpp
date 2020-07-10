@@ -19,7 +19,7 @@ namespace step_rain_of_chaos
 		StageNode::StageNode( const StageConfig stage_config ) : mStageConfig( stage_config )
 		{}
 
-		StageNode* StageNode::create( const StageConfig stage_config, const StageNodeConfig stage_node_config )
+		StageNode* StageNode::create( const StageConfig stage_config, const DebugConfig stage_node_config )
 		{
 			auto ret = new ( std::nothrow ) StageNode( stage_config );
 			if( !ret || !ret->init( stage_node_config ) )
@@ -36,7 +36,7 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		bool StageNode::init( const StageNodeConfig stage_node_config )
+		bool StageNode::init( const DebugConfig stage_node_config )
 		{
 			if( !Node::init() )
 			{

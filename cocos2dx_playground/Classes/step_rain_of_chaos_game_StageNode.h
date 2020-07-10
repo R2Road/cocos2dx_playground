@@ -12,25 +12,24 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		struct StageNodeConfig
-		{
-			bool bShowPivot = false;
-			bool bShowAreaGuide = false;
-		};
-
 		class StageNode : public cocos2d::Node
 		{
 		public:
 			using TargetProcessExitCallback = std::function<void( int )>;
+			struct DebugConfig
+			{
+				bool bShowPivot = false;
+				bool bShowAreaGuide = false;
+			};
 
 		private:
 			StageNode( const StageConfig stage_config );
 
 		public:
-			static StageNode* create( const StageConfig stage_config, const StageNodeConfig stage_node_config );
+			static StageNode* create( const StageConfig stage_config, const DebugConfig stage_node_config );
 
 		private:
-			bool init( const StageNodeConfig stage_node_config );
+			bool init( const DebugConfig stage_node_config );
 
 		private:
 			const StageConfig mStageConfig;
