@@ -123,7 +123,7 @@ namespace step_rain_of_chaos
 					,SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" )
 				};
 
-				auto background_node = step_rain_of_chaos::BackgroundNode::create( 10, 10, "textures/texture_001.png", std::move( SpriteFrames ) );
+				auto background_node = step_rain_of_chaos::game::BackgroundNode::create( 10, 10, "textures/texture_001.png", std::move( SpriteFrames ) );
 				background_node->setTag( TAG_BackgroundNode );
 				background_node->setPosition(
 					visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
@@ -166,7 +166,7 @@ namespace step_rain_of_chaos
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 
-			auto background_node = static_cast<BackgroundNode*>( getChildByTag( TAG_BackgroundNode ) );
+			auto background_node = static_cast<step_rain_of_chaos::game::BackgroundNode*>( getChildByTag( TAG_BackgroundNode ) );
 			background_node->Reset( mHorizontalAmount, mVerticalAmount );
 			background_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
