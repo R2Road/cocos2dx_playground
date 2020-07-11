@@ -25,8 +25,8 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_ObjectNode = 20140416;
-	const int TAG_LifeTimeNode = 100;
+	const int TAG_BulletNode = 20140416;
+	const int TAG_MoveSpeedView = 100;
 
 #pragma region Clamp from c++17
 	template<class T, class Compare>
@@ -194,7 +194,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-				label->setTag( TAG_LifeTimeNode );
+				label->setTag( TAG_MoveSpeedView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
@@ -211,7 +211,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto object_node = Node::create();
-				object_node->setTag( TAG_ObjectNode );
+				object_node->setTag( TAG_BulletNode );
 				object_node->setPosition( mStageConfig.GetCenter() );
 				addChild( object_node, 1 );
 
@@ -264,7 +264,7 @@ namespace step_rain_of_chaos
 
 		void BulletLifeComponentScene::updateMoveSpeedView()
 		{
-			auto life_time_node = static_cast<Label*>( getChildByTag( TAG_LifeTimeNode ) );
+			auto life_time_node = static_cast<Label*>( getChildByTag( TAG_MoveSpeedView ) );
 			life_time_node->setString( StringUtils::format( "Move Speed : %d", mCurrentMoveSpeed ) );
 		}
 
@@ -292,7 +292,7 @@ namespace step_rain_of_chaos
 				direction_vector.normalize();
 				direction_vector.scale( mCurrentMoveSpeed );
 
-				auto object_node = getChildByTag( TAG_ObjectNode );
+				auto object_node = getChildByTag( TAG_BulletNode );
 				auto bullet_life_component = static_cast<step_rain_of_chaos::game::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::game::BulletLifeComponent::GetStaticName() ) );
 				bullet_life_component->ProcessStart( start_position, -direction_vector );
 			}
@@ -300,7 +300,7 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_2:
 			{
-				auto object_node = getChildByTag( TAG_ObjectNode );
+				auto object_node = getChildByTag( TAG_BulletNode );
 				auto bullet_life_component = static_cast<step_rain_of_chaos::game::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::game::BulletLifeComponent::GetStaticName() ) );
 				bullet_life_component->ProcessBoom();
 			}
