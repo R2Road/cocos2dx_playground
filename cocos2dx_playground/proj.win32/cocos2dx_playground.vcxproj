@@ -204,6 +204,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletLifeComponent.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletManager.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_StageNode.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.cpp" />
@@ -349,6 +350,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletLifeComponent.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletManager.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_StageConfig.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_StageNode.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.h" />

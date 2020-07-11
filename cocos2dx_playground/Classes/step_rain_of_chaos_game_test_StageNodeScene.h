@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "2d/CCScene.h"
 
 #include "helper_BackToThePreviousScene.h"
@@ -9,6 +11,7 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
+		using BulletManagerUp = std::unique_ptr<class BulletManager>;
 		class StageNode;
 	}
 
@@ -29,14 +32,17 @@ namespace step_rain_of_chaos
 
 		private:
 			void updateMoveSpeedView();
+			void updateFireAmountView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			game::StageConfig mStageConfig;
+			game::BulletManagerUp mTargetManager;
 			game::StageNode* mStageNode;
 			int mCurrentMoveSpeed;
+			int mCurrentFireAmount;
 		};
 	}
 }

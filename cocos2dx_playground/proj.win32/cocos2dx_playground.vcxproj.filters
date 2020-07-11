@@ -558,6 +558,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BackgroundNode.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletManager.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1000,6 +1003,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Clamp.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletManager.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

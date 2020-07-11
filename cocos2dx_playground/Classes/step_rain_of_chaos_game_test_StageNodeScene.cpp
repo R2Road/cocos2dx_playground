@@ -13,12 +13,15 @@
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_StageNode.h"
+#include "step_rain_of_chaos_game_BulletManager.h"
 
 USING_NS_CC;
 
 namespace
 {
 	const int TAG_MoveSpeedView = 20140416;
+	const int BulletCachingAmount = 100;
+	const int TAG_FireAmountView = 20160528;
 }
 
 namespace step_rain_of_chaos
@@ -29,8 +32,10 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mStageConfig()
+			, mTargetManager( nullptr )
 			, mStageNode( nullptr )
 			, mCurrentMoveSpeed( 3 )
+			, mCurrentFireAmount( 1 )
 		{}
 
 		Scene* StageNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -77,6 +82,11 @@ namespace step_rain_of_chaos
 				ss << "[Arrow Key - Up] : Move Speed - Increase";
 				ss << std::endl;
 				ss << "[Arrow Key - Down] : Move Speed - Decrease";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow Key - Right] : Fire Amount - Increase";
+				ss << std::endl;
+				ss << "[Arrow Key - Left] : Fire Amount - Decrease";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -113,6 +123,30 @@ namespace step_rain_of_chaos
 			}
 
 			//
+			// Spawn Target Count
+			//
+			{
+				auto label = Label::createWithTTF( "Temp", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				label->setTag( TAG_FireAmountView );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height - label->getContentSize().height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateFireAmountView();
+			}
+
+			//
+			// Target Manager
+			//
+			{
+				mTargetManager = game::BulletManager::create( BulletCachingAmount );
+			}
+
+			//
 			// Stage Node
 			//
 			{
@@ -124,8 +158,8 @@ namespace step_rain_of_chaos
 				mStageNode = game::StageNode::create(
 					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
-					, 100
-					, nullptr
+					, BulletCachingAmount
+					, mTargetManager->GetComeHomeCallback()
 					, step_mole::CircleCollisionComponentConfig { true, true, true }
 				);
 				addChild( mStageNode );
@@ -157,6 +191,11 @@ namespace step_rain_of_chaos
 			auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeedView ) );
 			label->setString( StringUtils::format( "Move Speed : %d", mCurrentMoveSpeed ) );
 		}
+		void StageNodeScene::updateFireAmountView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_FireAmountView ) );
+			label->setString( StringUtils::format( "Fire Count : %d", mCurrentFireAmount ) );
+		}
 		void StageNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
@@ -167,20 +206,24 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_A:
 			{
-				//int target_index = -1;
-				//for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
-				//{
-				//	target_index = mTargetManager->GetIdleTarget();
-				//	if( -1 == target_index )
-				//	{
-				//		break;
-				//	}
+				Vec2 offset;
+
+				int target_index = -1;
+				for( int i = 0; i < mCurrentFireAmount; ++i )
+				{
+					target_index = mTargetManager->GetIdleTarget();
+					if( -1 == target_index )
+					{
+						break;
+					}
 
 					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
 					dir.normalize();
 					dir.scale( mCurrentMoveSpeed );
-					mStageNode->RequestAction( 0u, Vec2( mStageConfig.GetStageArea().origin ), dir );
-				//}
+					mStageNode->RequestAction( target_index, Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
+
+					offset.y += 10.f;
+				}
 
 				return;
 			}
@@ -189,10 +232,18 @@ namespace step_rain_of_chaos
 				mCurrentMoveSpeed += 1;
 				updateMoveSpeedView();
 				return;
-
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 				mCurrentMoveSpeed = std::max( 1, mCurrentMoveSpeed - 1 );
 				updateMoveSpeedView();
+				return;
+
+			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+				mCurrentFireAmount += 1;
+				updateFireAmountView();
+				return;
+			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+				mCurrentFireAmount = std::max( 1, mCurrentFireAmount - 1 );
+				updateFireAmountView();
 				return;
 
 			default:
