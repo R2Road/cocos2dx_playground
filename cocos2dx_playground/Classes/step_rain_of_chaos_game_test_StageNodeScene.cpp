@@ -22,6 +22,8 @@ namespace step_rain_of_chaos
 		StageNodeScene::StageNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mStageConfig()
+			, mStageNode( nullptr )
 		{}
 
 		Scene* StageNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -60,6 +62,9 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[A] : Do Bullet";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -82,20 +87,19 @@ namespace step_rain_of_chaos
 			// Stage Node
 			//
 			{
-				game::StageConfig stage_config;
-				stage_config.Build(
+				mStageConfig.Build(
 					visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
 					, 300.f, 160.f
 				);
 
-				auto stage_node = game::StageNode::create(
-					stage_config
+				mStageNode = game::StageNode::create(
+					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
 					, 100
 					, nullptr
 					, step_mole::CircleCollisionComponentConfig { true, true, true }
 				);
-				addChild( stage_node );
+				addChild( mStageNode );
 			}
 
 			return true;
@@ -126,6 +130,26 @@ namespace step_rain_of_chaos
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				helper::BackToThePreviousScene::MoveBack();
 				return;
+
+			case EventKeyboard::KeyCode::KEY_A:
+			{
+				//int target_index = -1;
+				//for( int i = 0; i < mCurrentSpawnTargetCount; ++i )
+				//{
+				//	target_index = mTargetManager->GetIdleTarget();
+				//	if( -1 == target_index )
+				//	{
+				//		break;
+				//	}
+
+					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
+					dir.normalize();
+					dir.scale( 5.f );
+					mStageNode->RequestAction( 0u, Vec2( mStageConfig.GetStageArea().origin ), dir );
+				//}
+
+				return;
+			}
 
 			default:
 				CCLOG( "Key Code : %d", keycode );

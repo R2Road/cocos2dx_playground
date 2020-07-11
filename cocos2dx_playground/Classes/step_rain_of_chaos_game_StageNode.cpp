@@ -202,6 +202,13 @@ namespace step_rain_of_chaos
 
 			return root_node;
 		}
+
+		void StageNode::RequestAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction )
+		{
+			CCASSERT( bullet_index < mBulletLifeComponentList.size(), "Invalid Object Index" );
+
+			mBulletLifeComponentList[bullet_index]->ProcessStart( start_position, move_direction );
+		}
 	}
 }
 

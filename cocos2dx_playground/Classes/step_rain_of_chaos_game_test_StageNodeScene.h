@@ -3,9 +3,15 @@
 #include "2d/CCScene.h"
 
 #include "helper_BackToThePreviousScene.h"
+#include "step_rain_of_chaos_game_StageConfig.h"
 
 namespace step_rain_of_chaos
 {
+	namespace game
+	{
+		class StageNode;
+	}
+
 	namespace game_test
 	{
 		class StageNodeScene : public cocos2d::Scene, public helper::BackToThePreviousScene
@@ -26,6 +32,9 @@ namespace step_rain_of_chaos
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			game::StageConfig mStageConfig;
+			game::StageNode* mStageNode;
 		};
 	}
 }
