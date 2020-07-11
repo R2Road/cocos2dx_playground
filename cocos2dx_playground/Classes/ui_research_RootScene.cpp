@@ -13,6 +13,8 @@
 #include "ui_research_type_effect_ColorScene.h"
 #include "ui_research_type_effect_ShakeScene.h"
 
+#include "ui_research_text_field_BMFontScene.h"
+
 USING_NS_CC;
 
 namespace ui_research
@@ -58,6 +60,8 @@ namespace ui_research
 			ss << std::endl;
 			ss << "[5] : " << ui_research::type_effect::ShakeScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
+			ss << "[6] : " << ui_research::text_field::BMFontScene::getTitle();
 			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
@@ -124,6 +128,10 @@ namespace ui_research
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( ui_research::type_effect::ShakeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_6:
+			Director::getInstance()->replaceScene( ui_research::text_field::BMFontScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:

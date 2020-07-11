@@ -558,6 +558,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BackgroundNode.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_text_field_BMFontScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -997,6 +1000,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BackgroundNode.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_text_field_BMFontScene.h">
+      <Filter>src\scene\ui_research</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
