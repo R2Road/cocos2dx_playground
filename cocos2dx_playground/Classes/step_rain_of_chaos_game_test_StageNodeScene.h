@@ -1,11 +1,20 @@
 #pragma once
 
+#include <memory>
+
 #include "2d/CCScene.h"
 
 #include "helper_BackToThePreviousScene.h"
+#include "step_rain_of_chaos_game_StageConfig.h"
 
 namespace step_rain_of_chaos
 {
+	namespace game
+	{
+		using BulletManagerUp = std::unique_ptr<class BulletManager>;
+		class StageNode;
+	}
+
 	namespace game_test
 	{
 		class StageNodeScene : public cocos2d::Scene, public helper::BackToThePreviousScene
@@ -22,10 +31,18 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
+			void updateMoveSpeedView();
+			void updateFireAmountView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			game::StageConfig mStageConfig;
+			game::BulletManagerUp mTargetManager;
+			game::StageNode* mStageNode;
+			int mCurrentMoveSpeed;
+			int mCurrentFireAmount;
 		};
 	}
 }

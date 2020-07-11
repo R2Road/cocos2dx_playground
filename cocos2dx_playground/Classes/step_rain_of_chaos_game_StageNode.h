@@ -55,10 +55,13 @@ namespace step_rain_of_chaos
 				, const bool bShowPivot
 			);
 
+		public:
+			void RequestAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction );
+
 		private:
 			const StageConfig mStageConfig;
 
-			std::vector<step_rain_of_chaos::game::BulletLifeComponent*> mObjectComponentList;
+			std::vector<step_rain_of_chaos::game::BulletLifeComponent*> mBulletLifeComponentList;
 			std::vector<step_mole::CircleCollisionComponent*> mCollisionComponentList;
 		};
 	}

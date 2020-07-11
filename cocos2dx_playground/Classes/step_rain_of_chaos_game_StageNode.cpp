@@ -23,7 +23,7 @@ namespace step_rain_of_chaos
 	{
 		StageNode::StageNode( const StageConfig stage_config, const int bullet_count ) :
 			mStageConfig( stage_config )
-			, mObjectComponentList( bullet_count, nullptr )
+			, mBulletLifeComponentList( bullet_count, nullptr )
 			, mCollisionComponentList( bullet_count, nullptr )
 		{}
 
@@ -141,22 +141,22 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Objects
+			// Bullet
 			//
 			{
 				for( int i = 0; bullet_count > i; ++i )
 				{
-					auto object_node = MakeBullet(
+					auto bullet_node = MakeBullet(
 						i
 						, bullet_process_exit_callback
 						, circle_collision_component_config
 						, debug_config.bShowPivot
 					);
-					object_node->setPosition( i * 2, 100.f );
-					addChild( object_node );
+					bullet_node->setPosition( i * 2, 100.f );
+					addChild( bullet_node );
 
-					mObjectComponentList[i] = static_cast<BulletLifeComponent*>( object_node->getComponent( BulletLifeComponent::GetStaticName() ) );
-					mCollisionComponentList[i] = static_cast<step_mole::CircleCollisionComponent*>( object_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
+					mBulletLifeComponentList[i] = static_cast<BulletLifeComponent*>( bullet_node->getComponent( BulletLifeComponent::GetStaticName() ) );
+					mCollisionComponentList[i] = static_cast<step_mole::CircleCollisionComponent*>( bullet_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
 				}
 			}
 
@@ -170,15 +170,15 @@ namespace step_rain_of_chaos
 			, const bool bShowPivot
 		)
 		{
-			auto object_node = Node::create();
-			object_node->setTag( index );
+			auto root_node = Node::create();
+			root_node->setTag( index );
 			{
 				// Pivot
 				if( bShowPivot )
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 					pivot->setScale( 2.f );
-					object_node->addChild( pivot, std::numeric_limits<int>::max() );
+					root_node->addChild( pivot, std::numeric_limits<int>::max() );
 				}
 
 				// View
@@ -186,7 +186,7 @@ namespace step_rain_of_chaos
 				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				view_node->setScale( _director->getContentScaleFactor() );
 				view_node->setPositionY( -18.f );
-				object_node->addChild( view_node );
+				root_node->addChild( view_node );
 
 				// Animation Component
 				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() );
@@ -194,14 +194,20 @@ namespace step_rain_of_chaos
 
 				// Collision Component
 				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 16.f, Vec2( 0.f, -4.f ), circle_collision_component_config );
-				object_node->addComponent( circle_collision_component );
+				root_node->addComponent( circle_collision_component );
 
 				// Object Component
-				object_node->addComponent( BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, target_rest_callback ) );
-
+				root_node->addComponent( BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, target_rest_callback ) );
 			}
 
-			return object_node;
+			return root_node;
+		}
+
+		void StageNode::RequestAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction )
+		{
+			CCASSERT( bullet_index < mBulletLifeComponentList.size(), "Invalid Object Index" );
+
+			mBulletLifeComponentList[bullet_index]->ProcessStart( start_position, move_direction );
 		}
 	}
 }

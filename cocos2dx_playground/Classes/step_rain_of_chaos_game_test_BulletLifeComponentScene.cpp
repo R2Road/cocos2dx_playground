@@ -14,8 +14,9 @@
 #include "base/ccUTF8.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "step_mole_AnimationComponent.h"
+#include "cpg_Clamp.h"
 
+#include "step_mole_AnimationComponent.h"
 #include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
@@ -25,22 +26,8 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_ObjectNode = 20140416;
-	const int TAG_LifeTimeNode = 100;
-
-#pragma region Clamp from c++17
-	template<class T, class Compare>
-	constexpr const T& clamp( const T& v, const T& lo, const T& hi, Compare comp )
-	{
-		return CCASSERT( !comp( hi, lo ), "" ), comp( v, lo ) ? lo : comp( hi, v ) ? hi : v;
-	}
-
-	template<class T>
-	constexpr const T& clamp( const T& v, const T& lo, const T& hi )
-	{
-		return clamp( v, lo, hi, std::less<>() );
-	}
-#pragma endregion
+	const int TAG_BulletNode = 20140416;
+	const int TAG_MoveSpeedView = 100;
 }
 
 namespace step_rain_of_chaos
@@ -194,7 +181,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-				label->setTag( TAG_LifeTimeNode );
+				label->setTag( TAG_MoveSpeedView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
@@ -211,7 +198,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto object_node = Node::create();
-				object_node->setTag( TAG_ObjectNode );
+				object_node->setTag( TAG_BulletNode );
 				object_node->setPosition( mStageConfig.GetCenter() );
 				addChild( object_node, 1 );
 
@@ -264,7 +251,7 @@ namespace step_rain_of_chaos
 
 		void BulletLifeComponentScene::updateMoveSpeedView()
 		{
-			auto life_time_node = static_cast<Label*>( getChildByTag( TAG_LifeTimeNode ) );
+			auto life_time_node = static_cast<Label*>( getChildByTag( TAG_MoveSpeedView ) );
 			life_time_node->setString( StringUtils::format( "Move Speed : %d", mCurrentMoveSpeed ) );
 		}
 
@@ -284,15 +271,15 @@ namespace step_rain_of_chaos
 				static std::mt19937 randomEngine( std::random_device{}() );
 				std::uniform_real_distribution<> dist( 0, 360 );
 				direction_vector.rotate( Vec2::ZERO, CC_DEGREES_TO_RADIANS( dist( randomEngine ) ) );				
-				direction_vector.x = clamp( direction_vector.x, -pivot_vector.x, pivot_vector.x );
-				direction_vector.y = clamp( direction_vector.y, -pivot_vector.y, pivot_vector.y );
+				direction_vector.x = cpg::clamp( direction_vector.x, -pivot_vector.x, pivot_vector.x );
+				direction_vector.y = cpg::clamp( direction_vector.y, -pivot_vector.y, pivot_vector.y );
 
 				const auto start_position = mStageConfig.GetCenter() + direction_vector;
 
 				direction_vector.normalize();
 				direction_vector.scale( mCurrentMoveSpeed );
 
-				auto object_node = getChildByTag( TAG_ObjectNode );
+				auto object_node = getChildByTag( TAG_BulletNode );
 				auto bullet_life_component = static_cast<step_rain_of_chaos::game::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::game::BulletLifeComponent::GetStaticName() ) );
 				bullet_life_component->ProcessStart( start_position, -direction_vector );
 			}
@@ -300,7 +287,7 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_2:
 			{
-				auto object_node = getChildByTag( TAG_ObjectNode );
+				auto object_node = getChildByTag( TAG_BulletNode );
 				auto bullet_life_component = static_cast<step_rain_of_chaos::game::BulletLifeComponent*>( object_node->getComponent( step_rain_of_chaos::game::BulletLifeComponent::GetStaticName() ) );
 				bullet_life_component->ProcessBoom();
 			}
