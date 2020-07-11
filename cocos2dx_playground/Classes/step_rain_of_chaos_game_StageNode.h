@@ -58,7 +58,7 @@ namespace step_rain_of_chaos
 		private:
 			const StageConfig mStageConfig;
 
-			std::vector<step_rain_of_chaos::game::BulletLifeComponent*> mObjectComponentList;
+			std::vector<step_rain_of_chaos::game::BulletLifeComponent*> mBulletLifeComponentList;
 			std::vector<step_mole::CircleCollisionComponent*> mCollisionComponentList;
 		};
 	}
