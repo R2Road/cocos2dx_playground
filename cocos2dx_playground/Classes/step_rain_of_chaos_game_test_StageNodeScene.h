@@ -28,6 +28,7 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
+			void updateMoveSpeedView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
@@ -35,6 +36,7 @@ namespace step_rain_of_chaos
 
 			game::StageConfig mStageConfig;
 			game::StageNode* mStageNode;
+			int mCurrentMoveSpeed;
 		};
 	}
 }
