@@ -998,6 +998,9 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BackgroundNode.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Clamp.h">
+      <Filter>src\cpg</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

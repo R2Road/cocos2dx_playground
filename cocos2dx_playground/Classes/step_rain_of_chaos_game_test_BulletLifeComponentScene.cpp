@@ -14,8 +14,9 @@
 #include "base/ccUTF8.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "step_mole_AnimationComponent.h"
+#include "cpg_Clamp.h"
 
+#include "step_mole_AnimationComponent.h"
 #include "step_mole_animation_InfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
@@ -27,20 +28,6 @@ namespace
 {
 	const int TAG_BulletNode = 20140416;
 	const int TAG_MoveSpeedView = 100;
-
-#pragma region Clamp from c++17
-	template<class T, class Compare>
-	constexpr const T& clamp( const T& v, const T& lo, const T& hi, Compare comp )
-	{
-		return CCASSERT( !comp( hi, lo ), "" ), comp( v, lo ) ? lo : comp( hi, v ) ? hi : v;
-	}
-
-	template<class T>
-	constexpr const T& clamp( const T& v, const T& lo, const T& hi )
-	{
-		return clamp( v, lo, hi, std::less<>() );
-	}
-#pragma endregion
 }
 
 namespace step_rain_of_chaos
@@ -284,8 +271,8 @@ namespace step_rain_of_chaos
 				static std::mt19937 randomEngine( std::random_device{}() );
 				std::uniform_real_distribution<> dist( 0, 360 );
 				direction_vector.rotate( Vec2::ZERO, CC_DEGREES_TO_RADIANS( dist( randomEngine ) ) );				
-				direction_vector.x = clamp( direction_vector.x, -pivot_vector.x, pivot_vector.x );
-				direction_vector.y = clamp( direction_vector.y, -pivot_vector.y, pivot_vector.y );
+				direction_vector.x = cpg::clamp( direction_vector.x, -pivot_vector.x, pivot_vector.x );
+				direction_vector.y = cpg::clamp( direction_vector.y, -pivot_vector.y, pivot_vector.y );
 
 				const auto start_position = mStageConfig.GetCenter() + direction_vector;
 
