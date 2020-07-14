@@ -27,13 +27,17 @@ namespace step_rain_of_chaos
 
 		bool BulletManager::Init( const int caching_amount )
 		{
-			const auto target_count = std::max( 1, caching_amount );
-			mIdleTarget.resize( target_count, -1 );
-			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......
+			RequestGenerate( caching_amount );
 
 			return true;
 		}
 
+		void BulletManager::RequestGenerate( const int amount )
+		{
+			const auto target_count = std::max( 1, amount );
+			mIdleTarget.resize( target_count, -1 );
+			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......
+		}
 		BulletManager::ComeHomeCallback BulletManager::GetComeHomeCallback()
 		{
 			return std::bind( &BulletManager::ComeHomeTarget, this, std::placeholders::_1 );

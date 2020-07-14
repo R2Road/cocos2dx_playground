@@ -26,6 +26,7 @@ namespace step_rain_of_chaos
 			bool Init( const int caching_amount );
 
 		public:
+			void RequestGenerate( const int amount );
 			ComeHomeCallback GetComeHomeCallback();
 			int GetIdleTarget();
 			void ComeHomeTarget( const int target_index );
