@@ -21,22 +21,33 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		StageNode::StageNode( const StageConfig stage_config, const int bullet_count ) :
+		StageNode::StageNode(
+			const StageConfig stage_config
+			, const DebugConfig debug_config
+			, const BulletProcessExitCallback& bullet_process_exit_callback
+			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+			, const int bullet_count
+		) :
 			mStageConfig( stage_config )
+			, mDebugConfig( debug_config )
+			, mBulletProcessExitCallback( bullet_process_exit_callback )
+			, mCircleCollisionComponentConfig( circle_collision_component_config )
+
 			, mBulletLifeComponentList( bullet_count, nullptr )
 			, mCollisionComponentList( bullet_count, nullptr )
 			, mBulletCount( 0 )
 		{}
 
 		StageNode* StageNode::create(
-			const StageConfig stage_config, const DebugConfig debug_config
+			const StageConfig stage_config
+			, const DebugConfig debug_config
 			, const int bullet_count
 			, const BulletProcessExitCallback& bullet_process_exit_callback
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
-			auto ret = new ( std::nothrow ) StageNode( stage_config, bullet_count );
-			if( !ret || !ret->init( debug_config, bullet_count, bullet_process_exit_callback, circle_collision_component_config ) )
+			auto ret = new ( std::nothrow ) StageNode( stage_config, debug_config, bullet_process_exit_callback, circle_collision_component_config, bullet_count );
+			if( !ret || !ret->init( bullet_count ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -50,12 +61,7 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		bool StageNode::init(
-			const DebugConfig debug_config
-			, const int bullet_count
-			, const BulletProcessExitCallback& bullet_process_exit_callback
-			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
-		)
+		bool StageNode::init( const int bullet_count )
 		{
 			if( !Node::init() )
 			{
@@ -67,7 +73,7 @@ namespace step_rain_of_chaos
 			//
 			// Pivot
 			//
-			if( debug_config.bShowPivot )
+			if( mDebugConfig.bShowPivot )
 			{
 				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 				pivot->setScale( 4.f );
@@ -77,7 +83,7 @@ namespace step_rain_of_chaos
 			//
 			// Stage Area Guide
 			//
-			if( debug_config.bShowAreaGuide )
+			if( mDebugConfig.bShowAreaGuide )
 			{
 				// Stage Area View
 				{
@@ -149,9 +155,9 @@ namespace step_rain_of_chaos
 				{
 					auto bullet_node = MakeBullet(
 						mBulletCount
-						, bullet_process_exit_callback
-						, circle_collision_component_config
-						, debug_config.bShowPivot
+						, mBulletProcessExitCallback
+						, mCircleCollisionComponentConfig
+						, mDebugConfig.bShowPivot
 					);
 					bullet_node->setPosition( mBulletCount * 2, 100.f );
 					addChild( bullet_node );
