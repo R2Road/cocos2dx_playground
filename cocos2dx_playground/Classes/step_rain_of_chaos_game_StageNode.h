@@ -43,9 +43,9 @@ namespace step_rain_of_chaos
 			static StageNode* create(
 				const StageConfig stage_config
 				, const DebugConfig debug_config
-				, const int bullet_count
 				, const BulletProcessExitCallback& bullet_process_exit_callback
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+				, const int bullet_count
 			);
 
 		private:
