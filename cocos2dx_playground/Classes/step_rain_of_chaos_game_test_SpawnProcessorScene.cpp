@@ -30,7 +30,7 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mStageConfig()
-			, mTargetManager( nullptr )
+			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
 			, mCurrentMoveSpeed( 3 )
 			, mCurrentFireAmount( 1 )
@@ -97,7 +97,7 @@ namespace step_rain_of_chaos
 			// Target Manager
 			//
 			{
-				mTargetManager = game::BulletManager::create( BulletCachingAmount );
+				mBulletManager = game::BulletManager::create( BulletCachingAmount );
 			}
 
 			//
@@ -112,7 +112,7 @@ namespace step_rain_of_chaos
 				mStageNode = game::StageNode::create(
 					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
-					, mTargetManager->GetComeHomeCallback()
+					, mBulletManager->GetComeHomeCallback()
 					, step_mole::CircleCollisionComponentConfig { true, true, true }
 					, BulletCachingAmount
 				);
@@ -155,7 +155,7 @@ namespace step_rain_of_chaos
 				int target_index = -1;
 				for( int i = 0; i < mCurrentFireAmount; ++i )
 				{
-					target_index = mTargetManager->GetIdleTarget();
+					target_index = mBulletManager->GetIdleTarget();
 					if( -1 == target_index )
 					{
 						break;
