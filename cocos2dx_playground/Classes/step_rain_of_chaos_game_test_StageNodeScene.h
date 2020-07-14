@@ -39,7 +39,7 @@ namespace step_rain_of_chaos
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			game::StageConfig mStageConfig;
-			game::BulletManagerUp mTargetManager;
+			game::BulletManagerUp mBulletManager;
 			game::StageNode* mStageNode;
 			int mCurrentMoveSpeed;
 			int mCurrentFireAmount;
