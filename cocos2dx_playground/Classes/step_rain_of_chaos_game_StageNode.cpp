@@ -26,15 +26,14 @@ namespace step_rain_of_chaos
 			, const DebugConfig debug_config
 			, const BulletProcessExitCallback& bullet_process_exit_callback
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
-			, const int bullet_count
 		) :
 			mStageConfig( stage_config )
 			, mDebugConfig( debug_config )
 			, mBulletProcessExitCallback( bullet_process_exit_callback )
 			, mCircleCollisionComponentConfig( circle_collision_component_config )
 
-			, mBulletLifeComponentList( bullet_count, nullptr )
-			, mCollisionComponentList( bullet_count, nullptr )
+			, mBulletLifeComponentList()
+			, mCollisionComponentList()
 			, mBulletCount( 0 )
 		{}
 
@@ -46,7 +45,7 @@ namespace step_rain_of_chaos
 			, const int bullet_count
 		)
 		{
-			auto ret = new ( std::nothrow ) StageNode( stage_config, debug_config, bullet_process_exit_callback, circle_collision_component_config, bullet_count );
+			auto ret = new ( std::nothrow ) StageNode( stage_config, debug_config, bullet_process_exit_callback, circle_collision_component_config );
 			if( !ret || !ret->init( bullet_count ) )
 			{
 				delete ret;
@@ -199,7 +198,12 @@ namespace step_rain_of_chaos
 
 		void StageNode::RequestGenerate( const int amount )
 		{
-			for( ; amount > mBulletCount; ++mBulletCount )
+			const int result_amount = mBulletCount + amount;
+
+			mBulletLifeComponentList.resize( result_amount );
+			mCollisionComponentList.resize( result_amount );
+
+			for( ; result_amount > mBulletCount; ++mBulletCount )
 			{
 				auto bullet_node = MakeBullet(
 					mBulletCount

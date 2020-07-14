@@ -214,6 +214,7 @@ namespace step_rain_of_chaos
 					target_index = mTargetManager->GetIdleTarget();
 					if( -1 == target_index )
 					{
+						mStageNode->RequestGenerate( 50 );
 						break;
 					}
 

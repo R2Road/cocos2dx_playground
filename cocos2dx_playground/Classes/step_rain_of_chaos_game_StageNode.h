@@ -36,7 +36,6 @@ namespace step_rain_of_chaos
 				, const DebugConfig debug_config
 				, const BulletProcessExitCallback& bullet_process_exit_callback
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
-				, const int bullet_count
 			);
 
 		public:
