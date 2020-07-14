@@ -59,6 +59,7 @@ namespace step_rain_of_chaos
 			);
 
 		public:
+			void RequestGenerate( const int amount = 1 );
 			void RequestAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction );
 
 		private:
