@@ -10,8 +10,14 @@ namespace step_rain_of_chaos
 	namespace game
 	{
 		BulletManager::BulletManager() :
-			mIdleTarget()
+			mBulletAmount( 0 )
+			, mIdleTarget()
+			, mRestTarget()
 		{}
+		BulletManager::~BulletManager()
+		{
+			CCLOG( "BulletManager : BulletAmount : %d", mBulletAmount );
+		}
 
 		BulletManagerUp BulletManager::create( const int caching_amount )
 		{
@@ -27,13 +33,22 @@ namespace step_rain_of_chaos
 
 		bool BulletManager::Init( const int caching_amount )
 		{
-			const auto target_count = std::max( 1, caching_amount );
-			mIdleTarget.resize( target_count, -1 );
-			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......
+			RequestGenerate( caching_amount );
 
 			return true;
 		}
 
+		void BulletManager::RequestGenerate( const int amount )
+		{
+			const auto target_count = std::max( 1, amount );
+
+			ContainerT temp_container;
+			temp_container.resize( target_count, -1 );
+			std::iota( temp_container.begin(), temp_container.end(), mBulletAmount ); // fill : 0, 1, 2, 3, 4 ......
+			mIdleTarget.splice( mIdleTarget.end(), temp_container );
+
+			mBulletAmount += amount;
+		}
 		BulletManager::ComeHomeCallback BulletManager::GetComeHomeCallback()
 		{
 			return std::bind( &BulletManager::ComeHomeTarget, this, std::placeholders::_1 );

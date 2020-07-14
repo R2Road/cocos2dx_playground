@@ -20,18 +20,23 @@ namespace step_rain_of_chaos
 			BulletManager();
 
 		public:
+			~BulletManager();
+
+		public:
 			static BulletManagerUp create( const int caching_amount );
 
 		private:
 			bool Init( const int caching_amount );
 
 		public:
+			void RequestGenerate( const int amount );
 			ComeHomeCallback GetComeHomeCallback();
 			int GetIdleTarget();
 			void ComeHomeTarget( const int target_index );
 			void Refill();
 
 		private:
+			int mBulletAmount;
 			ContainerT mIdleTarget;
 			ContainerT mRestTarget;
 		};

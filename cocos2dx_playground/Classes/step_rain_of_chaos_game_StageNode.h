@@ -5,6 +5,7 @@
 
 #include "2d/CCNode.h"
 
+#include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_StageConfig.h"
 
 namespace step_mole
@@ -30,23 +31,24 @@ namespace step_rain_of_chaos
 			};
 
 		private:
-			StageNode( const StageConfig stage_config, const int bullet_count );
+			StageNode(
+				const StageConfig stage_config
+				, const DebugConfig debug_config
+				, const BulletProcessExitCallback& bullet_process_exit_callback
+				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+			);
 
 		public:
 			static StageNode* create(
-				const StageConfig stage_config, const DebugConfig debug_config
-				, const int bullet_count
+				const StageConfig stage_config
+				, const DebugConfig debug_config
 				, const BulletProcessExitCallback& bullet_process_exit_callback
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+				, const int bullet_count
 			);
 
 		private:
-			bool init(
-				const DebugConfig debug_config
-				, const int bullet_count
-				, const BulletProcessExitCallback& bullet_process_exit_callback
-				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
-			);
+			bool init( const int bullet_count );
 
 			cocos2d::Node* MakeBullet(
 				const int index
@@ -56,13 +58,18 @@ namespace step_rain_of_chaos
 			);
 
 		public:
+			void RequestGenerate( const int amount = 1 );
 			void RequestAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction );
 
 		private:
 			const StageConfig mStageConfig;
+			const DebugConfig mDebugConfig;
+			const BulletProcessExitCallback mBulletProcessExitCallback;
+			const step_mole::CircleCollisionComponentConfig mCircleCollisionComponentConfig;
 
 			std::vector<step_rain_of_chaos::game::BulletLifeComponent*> mBulletLifeComponentList;
 			std::vector<step_mole::CircleCollisionComponent*> mCollisionComponentList;
+			int mBulletCount;
 		};
 	}
 }

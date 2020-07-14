@@ -17,13 +17,13 @@ namespace step_rain_of_chaos
 
 	namespace game_test
 	{
-		class StageNodeScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class SpawnProcessorScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 		{
 		private:
-			StageNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			SpawnProcessorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Game Test : Stage Node"; }
+			static const char* getTitle() { return "Game Test : Spawn Processor"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
@@ -31,8 +31,6 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
-			void updateMoveSpeedView();
-			void updateFireAmountView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
