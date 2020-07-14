@@ -14,6 +14,10 @@ namespace step_rain_of_chaos
 			, mIdleTarget()
 			, mRestTarget()
 		{}
+		BulletManager::~BulletManager()
+		{
+			CCLOG( "BulletManager : BulletAmount : %d", mBulletAmount );
+		}
 
 		BulletManagerUp BulletManager::create( const int caching_amount )
 		{
