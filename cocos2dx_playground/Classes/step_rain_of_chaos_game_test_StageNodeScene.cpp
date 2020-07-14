@@ -214,8 +214,14 @@ namespace step_rain_of_chaos
 					target_index = mBulletManager->GetIdleTarget();
 					if( -1 == target_index )
 					{
+						mBulletManager->RequestGenerate( 50 );
 						mStageNode->RequestGenerate( 50 );
-						break;
+
+						target_index = mBulletManager->GetIdleTarget();
+						if( -1 == target_index )
+						{
+							break;
+						}
 					}
 
 					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;

@@ -33,6 +33,7 @@ namespace step_rain_of_chaos
 			void Refill();
 
 		private:
+			int mBulletAmount;
 			ContainerT mIdleTarget;
 			ContainerT mRestTarget;
 		};
