@@ -63,6 +63,8 @@ namespace step_rain_of_chaos
 
 			std::vector<step_rain_of_chaos::game::BulletLifeComponent*> mBulletLifeComponentList;
 			std::vector<step_mole::CircleCollisionComponent*> mCollisionComponentList;
+
+			int mBulletCount;
 		};
 	}
 }

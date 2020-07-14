@@ -25,6 +25,7 @@ namespace step_rain_of_chaos
 			mStageConfig( stage_config )
 			, mBulletLifeComponentList( bullet_count, nullptr )
 			, mCollisionComponentList( bullet_count, nullptr )
+			, mBulletCount( 0 )
 		{}
 
 		StageNode* StageNode::create(
@@ -144,19 +145,19 @@ namespace step_rain_of_chaos
 			// Bullet
 			//
 			{
-				for( int i = 0; bullet_count > i; ++i )
+				for( ; bullet_count > mBulletCount; ++mBulletCount )
 				{
 					auto bullet_node = MakeBullet(
-						i
+						mBulletCount
 						, bullet_process_exit_callback
 						, circle_collision_component_config
 						, debug_config.bShowPivot
 					);
-					bullet_node->setPosition( i * 2, 100.f );
+					bullet_node->setPosition( mBulletCount * 2, 100.f );
 					addChild( bullet_node );
 
-					mBulletLifeComponentList[i] = static_cast<BulletLifeComponent*>( bullet_node->getComponent( BulletLifeComponent::GetStaticName() ) );
-					mCollisionComponentList[i] = static_cast<step_mole::CircleCollisionComponent*>( bullet_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
+					mBulletLifeComponentList[mBulletCount] = static_cast<BulletLifeComponent*>( bullet_node->getComponent( BulletLifeComponent::GetStaticName() ) );
+					mCollisionComponentList[mBulletCount] = static_cast<step_mole::CircleCollisionComponent*>( bullet_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
 				}
 			}
 
