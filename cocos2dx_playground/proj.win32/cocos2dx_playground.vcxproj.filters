@@ -567,6 +567,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_SpawnProcessorScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_AnimationInfoContainer.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1018,6 +1021,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_SpawnProcessorScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_AnimationInfoContainer.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

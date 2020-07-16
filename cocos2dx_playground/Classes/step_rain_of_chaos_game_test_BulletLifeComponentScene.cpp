@@ -17,7 +17,7 @@
 #include "cpg_Clamp.h"
 
 #include "step_mole_AnimationComponent.h"
-#include "step_mole_animation_InfoContainer.h"
+#include "step_rain_of_chaos_game_AnimationInfoContainer.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_BulletLifeComponent.h"
@@ -217,7 +217,7 @@ namespace step_rain_of_chaos
 				object_node->addChild( view_node );
 
 				// Animation Component
-				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() );
+				auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetBulletAnimationInfoContainer() );
 				view_node->addComponent( animation_component );
 
 				// Circle Collision Component

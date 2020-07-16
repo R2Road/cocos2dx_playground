@@ -164,6 +164,7 @@ namespace step_rain_of_chaos
 		)
 		{
 			auto root_node = Node::create();
+			root_node->setVisible( false );
 			root_node->setTag( index );
 			{
 				// Pivot
