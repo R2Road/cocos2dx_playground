@@ -14,6 +14,9 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/ccUTF8.h"
 
+#include "step_mole_AnimationComponent.h"
+#include "step_rain_of_chaos_game_AnimationInfoContainer.h"
+
 USING_NS_CC;
 
 namespace
@@ -128,18 +131,11 @@ namespace step_rain_of_chaos
 				) );
 				addChild( animation_node );
 				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					// Animation Component
+					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetActorAnimationInfoContainer() );
+					animation_node->addComponent( animation_component );
 
-					auto animate_action = Animate::create( animation_object );
-
-					auto repeat_action = RepeatForever::create( animate_action );
-
-					animation_node->runAction( repeat_action );
+					animation_component->PlayAnimation( cpg::animation::eIndex::run );
 				}
 
 			}
