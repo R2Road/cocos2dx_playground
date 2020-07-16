@@ -168,23 +168,26 @@ namespace step_rain_of_chaos
 			Vec2 move_vector;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
 			{
-				move_vector.y += mMoveSpeed;
+				move_vector.y += 1.f;
 			}
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
 			{
-				move_vector.y -= mMoveSpeed;
+				move_vector.y -= 1.f;
 			}
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
-				move_vector.x += mMoveSpeed;
+				move_vector.x += 1.f;
 			}
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
-				move_vector.x -= mMoveSpeed;
+				move_vector.x -= 1.f;
 			}
 
 			if( 0.f != move_vector.x || 0.f != move_vector.y )
 			{
+				move_vector.normalize();
+				move_vector.scale( mMoveSpeed );
+
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				animation_node->setPosition( animation_node->getPosition() + move_vector );
 
