@@ -39,8 +39,6 @@ namespace step_rain_of_chaos
 			game::StageConfig mStageConfig;
 			game::BulletManagerUp mBulletManager;
 			game::StageNode* mStageNode;
-			int mCurrentMoveSpeed;
-			int mCurrentFireAmount;
 		};
 	}
 }
