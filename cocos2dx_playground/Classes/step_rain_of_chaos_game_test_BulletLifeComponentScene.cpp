@@ -210,10 +210,9 @@ namespace step_rain_of_chaos
 				}
 
 				// View
-				auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
-				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_bullet_01_0.png" );
+				view_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				view_node->setScale( _director->getContentScaleFactor() );
-				view_node->setPositionY( -18.f );
 				object_node->addChild( view_node );
 
 				// Animation Component
@@ -221,7 +220,7 @@ namespace step_rain_of_chaos
 				view_node->addComponent( animation_component );
 
 				// Circle Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 30.f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 4.f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true } );
 				object_node->addComponent( circle_collision_component );
 
 				// Bullet Life Component

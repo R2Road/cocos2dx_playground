@@ -10,9 +10,9 @@
 #include "base/CCDirector.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "step_mole_animation_InfoContainer.h"
 #include "step_mole_AnimationComponent.h"
 #include "step_mole_CircleCollisionComponent.h"
+#include "step_rain_of_chaos_game_AnimationInfoContainer.h"
 #include "step_rain_of_chaos_game_BulletLifeComponent.h"
 
 USING_NS_CC;
@@ -176,18 +176,17 @@ namespace step_rain_of_chaos
 				}
 
 				// View
-				auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
-				view_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_bullet_01_0.png" );
+				view_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				view_node->setScale( _director->getContentScaleFactor() );
-				view_node->setPositionY( -18.f );
 				root_node->addChild( view_node );
 
 				// Animation Component
-				auto animation_component = step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() );
+				auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetBulletAnimationInfoContainer() );
 				view_node->addComponent( animation_component );
 
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 16.f, Vec2( 0.f, -4.f ), circle_collision_component_config );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 4.f, Vec2::ZERO, circle_collision_component_config );
 				root_node->addComponent( circle_collision_component );
 
 				// Object Component

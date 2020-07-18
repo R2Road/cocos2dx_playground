@@ -406,6 +406,22 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_0.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,7,7</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,7,7</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">ui/checkbox_cross.png</key>
             <key type="filename">ui/checkbox_normal.png</key>
             <struct type="IndividualSpriteSettings">
@@ -594,6 +610,8 @@
             <filename>step_mole/step_mole_effect_attack_01_2.png</filename>
             <filename>step_mole/step_mole_effect_attack_01_3.png</filename>
             <filename>step_mole/step_mole_effect_attack_01_4.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_0.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
