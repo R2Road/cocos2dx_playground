@@ -69,9 +69,10 @@ namespace step_rain_of_chaos
 
 		void BulletLifeComponent::ProcessStart( const cocos2d::Vec2 new_position, const cocos2d::Vec2 move_direction )
 		{
+			_owner->unschedule( "Move" );
 			_owner->setPosition( new_position );
-			mMoveDirection = move_direction;
 			_owner->setVisible( true );
+			mMoveDirection = move_direction;
 			ChangeState( eState::Wakeup );
 		}
 		void BulletLifeComponent::ProcessBoom()
@@ -112,15 +113,15 @@ namespace step_rain_of_chaos
 				mAnimationComponent->PlayAnimation( cpg::animation::eIndex::idle );
 				_owner->schedule(
 					[this]( float )
-				{
-					_owner->setPosition( _owner->getPosition() + mMoveDirection );
-					if( !mAllowedArea.containsPoint( _owner->getPosition() ) )
 					{
-						ChangeState( eState::Disappear );
+						_owner->setPosition( _owner->getPosition() + mMoveDirection );
+						if( !mAllowedArea.containsPoint( _owner->getPosition() ) )
+						{
+							ChangeState( eState::Disappear );
+						}
 					}
-				}
 					, "Move"
-					);
+				);
 			}
 			break;
 

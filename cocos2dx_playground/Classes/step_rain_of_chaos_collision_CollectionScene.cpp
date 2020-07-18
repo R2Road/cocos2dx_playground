@@ -224,7 +224,7 @@ namespace step_rain_of_chaos
 				}
 
 				// View
-				auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_bullet_01_0.png" );
 				view_node->setScale( _director->getContentScaleFactor() );
 				bullet_root_node->addChild( view_node );
 

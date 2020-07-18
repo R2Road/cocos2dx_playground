@@ -9,7 +9,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_StageNode.h"
@@ -32,8 +31,6 @@ namespace step_rain_of_chaos
 			, mStageConfig()
 			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
-			, mCurrentMoveSpeed( 3 )
-			, mCurrentFireAmount( 1 )
 		{}
 
 		Scene* SpawnProcessorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -72,9 +69,6 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[A] : Do Bullet";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -147,30 +141,6 @@ namespace step_rain_of_chaos
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				helper::BackToThePreviousScene::MoveBack();
 				return;
-
-			case EventKeyboard::KeyCode::KEY_A:
-			{
-				Vec2 offset;
-
-				int target_index = -1;
-				for( int i = 0; i < mCurrentFireAmount; ++i )
-				{
-					target_index = mBulletManager->GetIdleTarget();
-					if( -1 == target_index )
-					{
-						break;
-					}
-
-					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
-					dir.normalize();
-					dir.scale( mCurrentMoveSpeed );
-					mStageNode->RequestAction( target_index, Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
-
-					offset.y += 10.f;
-				}
-
-				return;
-			}
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
