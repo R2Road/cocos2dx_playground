@@ -31,6 +31,7 @@ namespace step_rain_of_chaos
 			, mStageConfig()
 			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
+			, mSpawnProcessorContainer()
 		{}
 
 		Scene* SpawnProcessorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -113,6 +114,18 @@ namespace step_rain_of_chaos
 				addChild( mStageNode );
 			}
 
+			//
+			// Spawn Processor
+			//
+			{
+				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create() );
+				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create() );
+				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create() );
+				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
+			}
+
+			schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
+
 			return true;
 		}
 
@@ -132,6 +145,47 @@ namespace step_rain_of_chaos
 			mKeyboardListener = nullptr;
 
 			Scene::onExit();
+		}
+
+		void SpawnProcessorScene::updateForSpawnProcessor( float dt )
+		{
+			if( mSpawnProcessorContainer.end() == mCurrentSpawnProcessor )
+			{
+				unschedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
+				return;
+			}
+
+			game::SpawnInfoContainer aaa;
+
+			if( !( *mCurrentSpawnProcessor )->Update( dt, &aaa ) )
+			{
+				++mCurrentSpawnProcessor;
+			}
+
+			if( !aaa.empty() )
+			{
+				int target_index = -1;
+				for( const auto& s : aaa )
+				{
+					target_index = mBulletManager->GetIdleTarget();
+					if( -1 == target_index )
+					{
+						mBulletManager->RequestGenerate( 50 );
+						mStageNode->RequestGenerate( 50 );
+
+						target_index = mBulletManager->GetIdleTarget();
+						if( -1 == target_index )
+						{
+							break;
+						}
+					}
+
+					Vec2 dir = s.MoveDirection;
+					dir.normalize();
+					dir.scale( 3.f );
+					mStageNode->RequestAction( target_index, s.StartPosition, dir );
+				}
+			}
 		}
 
 		void SpawnProcessorScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

@@ -6,6 +6,7 @@
 
 #include "helper_BackToThePreviousScene.h"
 #include "step_rain_of_chaos_game_StageConfig.h"
+#include "step_rain_of_chaos_game_SpawnProcessor.h"
 
 namespace step_rain_of_chaos
 {
@@ -31,6 +32,8 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
+			void updateForSpawnProcessor( float dt );
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 
 		private:
@@ -39,6 +42,9 @@ namespace step_rain_of_chaos
 			game::StageConfig mStageConfig;
 			game::BulletManagerUp mBulletManager;
 			game::StageNode* mStageNode;
+
+			game::SpawnProcessorContainer mSpawnProcessorContainer;
+			game::SpawnProcessorContainer::iterator mCurrentSpawnProcessor;
 		};
 	}
 }
