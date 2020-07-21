@@ -159,7 +159,7 @@ namespace step_rain_of_chaos
 					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
 					, mBulletManager->GetComeHomeCallback()
-					, step_mole::CircleCollisionComponentConfig { true, true, true }
+					, step_mole::CircleCollisionComponentConfig { false, false, false }
 					, BulletCachingAmount
 				);
 				addChild( mStageNode );
@@ -229,7 +229,7 @@ namespace step_rain_of_chaos
 					dir.scale( mCurrentMoveSpeed );
 					mStageNode->RequestAction( target_index, Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
 
-					offset.y += 10.f;
+					offset.y += 0.5;
 				}
 
 				return;
