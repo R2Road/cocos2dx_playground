@@ -4,12 +4,13 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		TestSpawnProcessor::TestSpawnProcessor() : mElapsedTime( 0.f )
+		TestSpawnProcessor::TestSpawnProcessor( const StageConfig& stage_config ) : iSpawnProcessor( stage_config )
+			, mElapsedTime( 0.f )
 		{}
 
-		SpawnProcessorUp TestSpawnProcessor::Create()
+		SpawnProcessorUp TestSpawnProcessor::Create( const StageConfig& stage_config )
 		{
-			SpawnProcessorUp ret( new ( std::nothrow ) TestSpawnProcessor );
+			SpawnProcessorUp ret( new ( std::nothrow ) TestSpawnProcessor( stage_config ) );
 			return ret;
 		}
 

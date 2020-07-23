@@ -143,9 +143,9 @@ namespace step_rain_of_chaos
 			// Spawn Processor
 			//
 			{
-				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create() );
-				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create() );
-				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create() );
+				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create( mStageConfig ) );
+				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create( mStageConfig ) );
+				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create( mStageConfig ) );
 				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
 			}
 
