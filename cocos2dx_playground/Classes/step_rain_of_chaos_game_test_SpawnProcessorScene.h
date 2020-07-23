@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "2d/CCScene.h"
+#include "ui/UIWidget.h"
 
 #include "helper_BackToThePreviousScene.h"
 #include "step_rain_of_chaos_game_StageConfig.h"
@@ -35,9 +36,11 @@ namespace step_rain_of_chaos
 			void updateForSpawnProcessor( float dt );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			cocos2d::Vec2 mButtonMoveOffset;
 
 			game::StageConfig mStageConfig;
 			game::BulletManagerUp mBulletManager;

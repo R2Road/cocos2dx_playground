@@ -6,9 +6,11 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_StageNode.h"
@@ -19,6 +21,7 @@ USING_NS_CC;
 namespace
 {
 	const int BulletCachingAmount = 100;
+	const int TAG_Button = 100;
 }
 
 namespace step_rain_of_chaos
@@ -86,6 +89,28 @@ namespace step_rain_of_chaos
 			{
 				auto background_layer = LayerColor::create( Color4B::BLACK );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Target Button
+			//
+			{
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( TAG_Button );
+				button->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onButton, this ) );
+				addChild( button, std::numeric_limits<int>::max() - 1 );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
+					button->addChild( pivot, std::numeric_limits<int>::max() );
+				}
 			}
 
 			//
@@ -198,6 +223,21 @@ namespace step_rain_of_chaos
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
+			}
+		}
+		void SpawnProcessorScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				mButtonMoveOffset = button->getPosition() - button->getTouchBeganPosition();
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				button->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
 			}
 		}
 	}
