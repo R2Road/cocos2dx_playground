@@ -9,7 +9,7 @@ namespace step_rain_of_chaos
 {
 	namespace button
 	{
-		class DragScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class DragScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
 			DragScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

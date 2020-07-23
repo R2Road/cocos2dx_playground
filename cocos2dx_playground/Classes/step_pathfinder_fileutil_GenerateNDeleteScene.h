@@ -11,7 +11,7 @@ namespace step_pathfinder
 {
 	namespace fileutil
 	{
-		class GenerateNDeleteScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class GenerateNDeleteScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		public:
 			GenerateNDeleteScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback, std::string&& file_full_path );

@@ -8,7 +8,7 @@ namespace ui_research
 {
 	namespace type_effect
 	{
-		class ShakeScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class ShakeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
 			ShakeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

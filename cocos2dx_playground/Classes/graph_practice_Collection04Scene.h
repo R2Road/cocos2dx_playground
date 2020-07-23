@@ -10,7 +10,7 @@ namespace graph_practice
 {
 	class GraphViewNode;
 
-	class Collection04Scene : public cocos2d::Scene, public helper::BackToThePreviousScene
+	class Collection04Scene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	public:
 		Collection04Scene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

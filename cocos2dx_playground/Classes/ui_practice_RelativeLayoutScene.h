@@ -7,7 +7,7 @@
 
 namespace ui_practice
 {
-	class RelativeLayoutScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+	class RelativeLayoutScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	public:
 		RelativeLayoutScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

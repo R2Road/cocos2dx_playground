@@ -7,7 +7,7 @@
 
 namespace shader_practice
 {
-	class GLUniformInfosScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+	class GLUniformInfosScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	public:
 		GLUniformInfosScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
