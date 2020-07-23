@@ -127,9 +127,6 @@
     <Filter Include="src\scene\step_06_defender\fsm1test">
       <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_06_defender\button_drag">
-      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_05_rain_of_chaos\batch_node">
       <UniqueIdentifier>{896d43cf-1403-4462-901a-28b5473dd318}</UniqueIdentifier>
     </Filter>
@@ -144,6 +141,9 @@
     </Filter>
     <Filter Include="src\scene\step_04_mole\game_test">
       <UniqueIdentifier>{098adc60-954b-44b2-ada3-0a932feec030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_05_rain_of_chaos\button_drag">
+      <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -283,7 +283,7 @@
       <Filter>src\scene\step_05_rain_of_chaos</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_button_DragScene.cpp">
-      <Filter>src\scene\step_06_defender\button_drag</Filter>
+      <Filter>src\scene\step_05_rain_of_chaos\button_drag</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_RootScene.cpp">
       <Filter>src\scene\step_03_pathfinder</Filter>
@@ -720,7 +720,7 @@
       <Filter>src\scene\step_05_rain_of_chaos</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_button_DragScene.h">
-      <Filter>src\scene\step_06_defender\button_drag</Filter>
+      <Filter>src\scene\step_05_rain_of_chaos\button_drag</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_RootScene.h">
       <Filter>src\scene\step_03_pathfinder</Filter>

@@ -11,7 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_defender_RootScene.h"
+#include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
 
@@ -165,7 +165,7 @@ namespace step_rain_of_chaos
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_defender::RootScene::create() );
+				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
 				return;
 			}
 
