@@ -11,8 +11,6 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_rain_of_chaos_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -24,12 +22,14 @@ namespace step_rain_of_chaos
 {
 	namespace button
 	{
-		DragScene::DragScene() : mKeyboardListener( nullptr )
+		DragScene::DragScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
 		{}
 
-		Scene* DragScene::create()
+		Scene* DragScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) DragScene();
+			auto ret = new ( std::nothrow ) DragScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -165,7 +165,7 @@ namespace step_rain_of_chaos
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
 

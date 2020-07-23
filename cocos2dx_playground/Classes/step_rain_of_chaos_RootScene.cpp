@@ -149,7 +149,7 @@ namespace step_rain_of_chaos
 			break;
 
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::button::DragScene::create() );
+			Director::getInstance()->replaceScene( step_rain_of_chaos::button::DragScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 

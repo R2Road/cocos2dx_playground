@@ -3,18 +3,20 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
+#include "helper_BackToThePreviousScene.h"
+
 namespace step_rain_of_chaos
 {
 	namespace button
 	{
-		class DragScene : public cocos2d::Scene
+		class DragScene : public cocos2d::Scene, public helper::BackToThePreviousScene
 		{
 		private:
-			DragScene();
+			DragScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
 			static const char* getTitle() { return "Button : Drag"; }
-			static cocos2d::Scene* create();
+			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
 			void onEnter() override;
