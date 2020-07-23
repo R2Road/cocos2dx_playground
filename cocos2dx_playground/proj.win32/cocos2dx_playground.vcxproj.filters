@@ -570,7 +570,7 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_AnimationInfoContainer.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor.cpp">
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1028,7 +1028,7 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_AnimationInfoContainer.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor.h">
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
   </ItemGroup>

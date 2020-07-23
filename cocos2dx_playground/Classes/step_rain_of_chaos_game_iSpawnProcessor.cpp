@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_game_SpawnProcessor.h"
+#include "step_rain_of_chaos_game_iSpawnProcessor.h"
 
 namespace step_rain_of_chaos
 {
