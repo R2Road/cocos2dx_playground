@@ -157,7 +157,7 @@ namespace step_rain_of_chaos
 
 			game::SpawnInfoContainer aaa;
 
-			if( !( *mCurrentSpawnProcessor )->Update( dt, &aaa ) )
+			if( !( *mCurrentSpawnProcessor )->Update( dt, Vec2::ZERO, &aaa ) )
 			{
 				++mCurrentSpawnProcessor;
 			}

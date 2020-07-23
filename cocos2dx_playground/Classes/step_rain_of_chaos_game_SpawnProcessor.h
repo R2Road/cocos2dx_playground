@@ -27,7 +27,7 @@ namespace step_rain_of_chaos
 		public:
 			virtual ~iSpawnProcessor() {}
 
-			virtual bool Update( float dt, SpawnInfoContainer* out_spawn_info_container ) = 0;
+			virtual bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) = 0;
 		};
 
 		class TestSpawnProcessor : public iSpawnProcessor
@@ -38,7 +38,7 @@ namespace step_rain_of_chaos
 		public:
 			static SpawnProcessorUp Create();
 
-			bool Update( float dt, SpawnInfoContainer* out_spawn_info_container ) override;
+			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
 			float mElapsedTime;
