@@ -12,6 +12,7 @@ namespace helper
 	public:
 		virtual ~BackToThePreviousScene() {}
 
+	protected:
 		void MoveBack()
 		{
 			mSceneMover();
