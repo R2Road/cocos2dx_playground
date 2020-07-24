@@ -126,7 +126,7 @@ namespace step_rain_of_chaos
 			{
 				mStageConfig.Build(
 					visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
-					, 300.f, 160.f
+					, 160.f, 160.f
 				);
 
 				mStageNode = game::StageNode::create(
