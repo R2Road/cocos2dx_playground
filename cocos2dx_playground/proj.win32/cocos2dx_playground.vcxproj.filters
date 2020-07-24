@@ -145,6 +145,9 @@
     <Filter Include="src\scene\step_05_rain_of_chaos\button_drag">
       <UniqueIdentifier>{da25c484-c0d6-45c1-8eb1-6b18b797d644}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_05_rain_of_chaos\game\spawnprocessor">
+      <UniqueIdentifier>{512811c5-387d-402b-8dc6-c641a889e451}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -571,7 +574,10 @@
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_01_Circle_OutToIn.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1029,7 +1035,10 @@
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.h">
-      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_01_Circle_OutToIn.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -29,9 +29,10 @@ namespace step_rain_of_chaos
 		public:
 			virtual ~iSpawnProcessor() {}
 
+			virtual void init() {}
 			virtual bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) = 0;
 
-		private:
+		protected:
 			const StageConfig& mStageConfig;
 		};
 

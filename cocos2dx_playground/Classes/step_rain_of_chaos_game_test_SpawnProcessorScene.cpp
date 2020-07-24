@@ -13,8 +13,9 @@
 #include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_rain_of_chaos_game_StageNode.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
+#include "step_rain_of_chaos_game_StageNode.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_01_Circle_OutToIn.h"
 
 USING_NS_CC;
 
@@ -147,9 +148,7 @@ namespace step_rain_of_chaos
 			// Spawn Processor
 			//
 			{
-				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create( mStageConfig ) );
-				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create( mStageConfig ) );
-				mSpawnProcessorContainer.emplace_back( game::TestSpawnProcessor::Create( mStageConfig ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_01_CircleShape_OutToIn::Create( mStageConfig ) );
 				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
 			}
 
