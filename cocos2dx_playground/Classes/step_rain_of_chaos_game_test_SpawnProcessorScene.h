@@ -45,6 +45,7 @@ namespace step_rain_of_chaos
 			game::StageConfig mStageConfig;
 			game::BulletManagerUp mBulletManager;
 			game::StageNode* mStageNode;
+			cocos2d::Node* mTargetNode;
 
 			game::SpawnProcessorContainer mSpawnProcessorContainer;
 			game::SpawnProcessorContainer::iterator mCurrentSpawnProcessor;

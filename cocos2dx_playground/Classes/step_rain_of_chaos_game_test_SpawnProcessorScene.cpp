@@ -34,7 +34,9 @@ namespace step_rain_of_chaos
 			, mStageConfig()
 			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
+			, mTargetNode( nullptr )
 			, mSpawnProcessorContainer()
+			, mCurrentSpawnProcessor()
 		{}
 
 		Scene* SpawnProcessorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -111,6 +113,8 @@ namespace step_rain_of_chaos
 					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
 					button->addChild( pivot, std::numeric_limits<int>::max() );
 				}
+
+				mTargetNode = button;
 			}
 
 			//
@@ -182,7 +186,7 @@ namespace step_rain_of_chaos
 
 			game::SpawnInfoContainer aaa;
 
-			if( !( *mCurrentSpawnProcessor )->Update( dt, Vec2::ZERO, &aaa ) )
+			if( !( *mCurrentSpawnProcessor )->Update( dt, mTargetNode->getPosition(), &aaa ) )
 			{
 				++mCurrentSpawnProcessor;
 			}
