@@ -34,8 +34,13 @@ namespace step_rain_of_chaos
 		{
 			mPivotPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
 			mPivotPosition += mStageConfig.GetCenter();
+		}
 
-			mFireStartDirection.set( 0.f, -1.f );
+		void SpawnProcessor_CircularSector_01_1Direction::Enter( const Vec2& target_position )
+		{
+			mFireStartDirection = target_position - mPivotPosition;
+			mFireStartDirection.normalize();
+			mFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
 		}
 		bool SpawnProcessor_CircularSector_01_1Direction::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{

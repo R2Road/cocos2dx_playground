@@ -152,6 +152,7 @@ namespace step_rain_of_chaos
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_01_CircleShape_OutToIn::Create( mStageConfig ) );
 				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, 90.f, 10, 4, 10.f ) );
 				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
+				( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
 			}
 
 			schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
