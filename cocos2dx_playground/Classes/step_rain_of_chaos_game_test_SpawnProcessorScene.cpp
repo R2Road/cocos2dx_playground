@@ -16,6 +16,7 @@
 #include "step_rain_of_chaos_game_BulletManager.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_01_Circle_OutToIn.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h"
 
 USING_NS_CC;
 
@@ -148,7 +149,8 @@ namespace step_rain_of_chaos
 			// Spawn Processor
 			//
 			{
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_01_CircleShape_OutToIn::Create( mStageConfig ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_01_CircleShape_OutToIn::Create( mStageConfig ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, 90.f, 10, 4, 10.f ) );
 				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
 			}
 
