@@ -17,6 +17,7 @@
 #include "step_rain_of_chaos_game_StageNode.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_2Direction.h"
 
 USING_NS_CC;
 
@@ -149,8 +150,9 @@ namespace step_rain_of_chaos
 			// Spawn Processor
 			//
 			{
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, false, 50, 2.5f, 2 ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, false, 50, 2.5f, 2 ) );
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
 				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
 				( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
 			}
