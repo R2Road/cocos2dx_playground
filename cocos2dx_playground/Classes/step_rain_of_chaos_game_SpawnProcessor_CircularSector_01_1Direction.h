@@ -9,10 +9,24 @@ namespace step_rain_of_chaos
 		class SpawnProcessor_CircularSector_01_1Direction : public iSpawnProcessor
 		{
 		private:
-			SpawnProcessor_CircularSector_01_1Direction( const StageConfig& stage_config, const float degree_per_cycle, const int bullets_per_cycle, const int repeat_count, const float total_time );
+			SpawnProcessor_CircularSector_01_1Direction(
+				const StageConfig& stage_config
+				, const bool rotate_direction_left
+				, const float degree_per_cycle
+				, const int bullets_per_cycle
+				, const int repeat_count
+				, const float total_time
+			);
 
 		public:
-			static SpawnProcessorUp Create( const StageConfig& stage_config, const float degree_per_cycle, const int bullets_per_cycle, const int repeat_count, const float total_time );
+			static SpawnProcessorUp Create(
+				const StageConfig& stage_config
+				, const bool rotate_direction_left
+				, const float degree_per_cycle
+				, const int bullets_per_cycle
+				, const int repeat_count
+				, const float total_time
+			);
 
 			void init() override;
 			void Enter( const cocos2d::Vec2& target_position ) override;
