@@ -6,10 +6,10 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		class SpawnProcessor_01_CircleShape_OutToIn : public iSpawnProcessor
+		class SpawnProcessor_Circle_01_OutToIn : public iSpawnProcessor
 		{
 		private:
-			SpawnProcessor_01_CircleShape_OutToIn( const StageConfig& stage_config );
+			SpawnProcessor_Circle_01_OutToIn( const StageConfig& stage_config );
 
 		public:
 			static SpawnProcessorUp Create( const StageConfig& stage_config );

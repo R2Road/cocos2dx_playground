@@ -17,25 +17,25 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		SpawnProcessor_01_CircleShape_OutToIn::SpawnProcessor_01_CircleShape_OutToIn( const StageConfig& stage_config ) : iSpawnProcessor( stage_config )
+		SpawnProcessor_Circle_01_OutToIn::SpawnProcessor_Circle_01_OutToIn( const StageConfig& stage_config ) : iSpawnProcessor( stage_config )
 			, mRemainTime( 0.f )
 			, mCurrentStartPosition( Vec2::UNIT_Y )
 			, mCurrentFireCount( 0 )
 		{}
 
-		SpawnProcessorUp SpawnProcessor_01_CircleShape_OutToIn::Create( const StageConfig& stage_config )
+		SpawnProcessorUp SpawnProcessor_Circle_01_OutToIn::Create( const StageConfig& stage_config )
 		{
-			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_01_CircleShape_OutToIn( stage_config ) );
+			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_Circle_01_OutToIn( stage_config ) );
 			ret->init();
 			return ret;
 		}
 
-		void SpawnProcessor_01_CircleShape_OutToIn::init()
+		void SpawnProcessor_Circle_01_OutToIn::init()
 		{
 			mCurrentStartPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
 			mCurrentStartPosition += mStageConfig.GetCenter();
 		}
-		bool SpawnProcessor_01_CircleShape_OutToIn::Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_Circle_01_OutToIn::Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			mRemainTime += dt;
 
