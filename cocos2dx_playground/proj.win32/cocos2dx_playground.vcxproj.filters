@@ -576,10 +576,10 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_01_Circle_OutToIn.cpp">
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.cpp">
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1040,10 +1040,10 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_01_Circle_OutToIn.h">
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h">
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,7 +15,7 @@
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
 #include "step_rain_of_chaos_game_StageNode.h"
-#include "step_rain_of_chaos_game_SpawnProcessor_01_Circle_OutToIn.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h"
 
 USING_NS_CC;
