@@ -1,19 +1,20 @@
-#include "step_rain_of_chaos_game_SpawnProcessor.h"
+#include "step_rain_of_chaos_game_iSpawnProcessor.h"
 
 namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		TestSpawnProcessor::TestSpawnProcessor() : mElapsedTime( 0.f )
+		TestSpawnProcessor::TestSpawnProcessor( const StageConfig& stage_config ) : iSpawnProcessor( stage_config )
+			, mElapsedTime( 0.f )
 		{}
 
-		SpawnProcessorUp TestSpawnProcessor::Create()
+		SpawnProcessorUp TestSpawnProcessor::Create( const StageConfig& stage_config )
 		{
-			SpawnProcessorUp ret( new ( std::nothrow ) TestSpawnProcessor );
+			SpawnProcessorUp ret( new ( std::nothrow ) TestSpawnProcessor( stage_config ) );
 			return ret;
 		}
 
-		bool TestSpawnProcessor::Update( float dt, SpawnInfoContainer* out_spawn_info_container )
+		bool TestSpawnProcessor::Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			mElapsedTime += dt;
 			if( 3.f > mElapsedTime )

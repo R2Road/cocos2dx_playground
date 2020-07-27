@@ -11,7 +11,7 @@ NS_CC_END
 
 namespace ui_research
 {
-	class ButtonWithOnMouseOverScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+	class ButtonWithOnMouseOverScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
 		ButtonWithOnMouseOverScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

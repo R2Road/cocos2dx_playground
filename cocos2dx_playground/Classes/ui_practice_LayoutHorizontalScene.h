@@ -9,7 +9,7 @@
 
 namespace ui_practice
 {
-	class LayoutHorizontalScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+	class LayoutHorizontalScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	public:
 		LayoutHorizontalScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

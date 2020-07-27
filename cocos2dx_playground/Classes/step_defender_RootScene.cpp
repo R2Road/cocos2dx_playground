@@ -6,8 +6,6 @@
 
 #include "PlayGroundScene.h"
 
-#include "step_rain_of_chaos_button_DragScene.h"
-
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
 
@@ -61,9 +59,6 @@ namespace step_defender
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[A] : " << step_rain_of_chaos::button::DragScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -116,10 +111,6 @@ namespace step_defender
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step02::fsm1test::AnimationControlScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::button::DragScene::create() );
 			break;
 
 		default:

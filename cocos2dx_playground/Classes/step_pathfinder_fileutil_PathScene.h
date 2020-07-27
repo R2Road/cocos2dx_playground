@@ -8,7 +8,7 @@ namespace step_pathfinder
 {
 	namespace fileutil
 	{
-		class PathScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class PathScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		public:
 			PathScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

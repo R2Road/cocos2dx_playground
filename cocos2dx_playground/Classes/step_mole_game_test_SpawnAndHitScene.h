@@ -17,7 +17,7 @@ namespace step_mole
 
 	namespace game_test
 	{
-		class SpawnAndHitScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class SpawnAndHitScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
 			SpawnAndHitScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

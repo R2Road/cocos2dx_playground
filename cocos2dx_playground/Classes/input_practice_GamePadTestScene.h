@@ -10,7 +10,7 @@ NS_CC_END
 
 namespace input_practice
 {
-	class GamePadTestScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+	class GamePadTestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	public:
 		GamePadTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

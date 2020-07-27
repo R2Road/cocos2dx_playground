@@ -10,20 +10,27 @@ namespace step_rain_of_chaos
 		class StageConfig
 		{
 		public:
-			void Build( const int center_x, const int center_y, const int width, const int height )
+			void Build( const int center_x, const int center_y, const int width )
 			{
 				mCenter.set( center_x, center_y );
+
 				mStageArea.setRect(
-					mCenter.x - ( width * 0.5f ), mCenter.y - ( height * 0.5f )
-					, width, height
+					mCenter.x - ( width * 0.5f ), mCenter.y - ( width * 0.5f )
+					, width, width
 				);
-				mBulletLifeArea.setRect(
-					mStageArea.origin.x - 60.f, mStageArea.origin.y - 60.f
-					, mStageArea.size.width + 60.f + 60.f, mStageArea.size.height + 60.f + 60.f
-				);
+
+				float temp_radius = sqrt( ( ( mStageArea.size.width * 0.5f ) * ( mStageArea.size.width * 0.5f ) ) * 2.f ) + 10.f;
+
 				mBulletGenerateArea.setRect(
-					mStageArea.origin.x - 30.f, mStageArea.origin.y - 30.f
-					, mStageArea.size.width + 30.f + 30.f, mStageArea.size.height + 30.f + 30.f
+					mCenter.x - temp_radius, mCenter.y - temp_radius
+					, temp_radius * 2.f, temp_radius * 2.f
+				);
+
+				temp_radius = sqrt( ( ( mBulletGenerateArea.size.width * 0.5f ) * ( mBulletGenerateArea.size.width * 0.5f ) ) * 2.f ) + 10.f;
+
+				mBulletLifeArea.setRect(
+					mCenter.x - temp_radius, mCenter.y - temp_radius
+					, temp_radius * 2.f, temp_radius * 2.f
 				);
 			}
 

@@ -8,7 +8,7 @@ namespace ui_research
 {
 	namespace type_effect
 	{
-		class BasicScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class BasicScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
 			BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

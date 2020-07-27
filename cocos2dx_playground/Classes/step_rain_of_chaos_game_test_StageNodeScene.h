@@ -17,7 +17,7 @@ namespace step_rain_of_chaos
 
 	namespace game_test
 	{
-		class StageNodeScene : public cocos2d::Scene, public helper::BackToThePreviousScene
+		class StageNodeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
 			StageNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );

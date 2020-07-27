@@ -9,6 +9,8 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
+		class StageConfig;
+
 		struct SpawnInfo
 		{
 			cocos2d::Vec2 StartPosition = cocos2d::Vec2::ZERO;
@@ -22,23 +24,28 @@ namespace step_rain_of_chaos
 		class iSpawnProcessor
 		{
 		protected:
-			iSpawnProcessor() {}
+			iSpawnProcessor( const StageConfig& stage_config ) : mStageConfig( stage_config ) {}
 
 		public:
 			virtual ~iSpawnProcessor() {}
 
-			virtual bool Update( float dt, SpawnInfoContainer* out_spawn_info_container ) = 0;
+			virtual void init() {}
+			virtual void Enter( const cocos2d::Vec2& target_position ) {}
+			virtual bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) = 0;
+
+		protected:
+			const StageConfig& mStageConfig;
 		};
 
 		class TestSpawnProcessor : public iSpawnProcessor
 		{
 		private:
-			TestSpawnProcessor();
+			TestSpawnProcessor( const StageConfig& stage_config );
 
 		public:
-			static SpawnProcessorUp Create();
+			static SpawnProcessorUp Create( const StageConfig& stage_config );
 
-			bool Update( float dt, SpawnInfoContainer* out_spawn_info_container ) override;
+			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
 			float mElapsedTime;
