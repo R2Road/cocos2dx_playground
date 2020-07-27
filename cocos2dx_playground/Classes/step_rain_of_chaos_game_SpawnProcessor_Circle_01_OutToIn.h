@@ -9,15 +9,31 @@ namespace step_rain_of_chaos
 		class SpawnProcessor_Circle_01_OutToIn : public iSpawnProcessor
 		{
 		private:
-			SpawnProcessor_Circle_01_OutToIn( const StageConfig& stage_config );
+			SpawnProcessor_Circle_01_OutToIn(
+				const StageConfig& stage_config
+				, const bool rotate_direction_left
+				, const int bullets_per_cycle
+				, const float limit_time_per_cycle
+				, const int repeat_count
+			);
 
 		public:
-			static SpawnProcessorUp Create( const StageConfig& stage_config );
+			static SpawnProcessorUp Create(
+				const StageConfig& stage_config
+				, const bool rotate_direction_left
+				, const int bullets_per_cycle
+				, const float limit_time_per_cycle
+				, const int repeat_count
+			);
 
 			void init() override;
 			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
+			const int mRequiredBulletCount;
+			const float mRadianPerBullet;
+			const float mSecondsPerBullet;
+
 			float mRemainTime;
 			cocos2d::Vec2 mCurrentStartPosition;
 			int mCurrentFireCount;
