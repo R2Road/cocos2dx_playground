@@ -210,6 +210,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_2Direction.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Sleep.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_StageNode.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.cpp" />
@@ -363,6 +364,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_2Direction.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Sleep.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_StageConfig.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_StageNode.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.h" />
