@@ -54,6 +54,8 @@ namespace step_rain_of_chaos
 
 		void SpawnProcessor_CircularSector_01_2Direction::Enter( const Vec2& target_position )
 		{
+			mRemainTime = mSecondsPerBullet;
+
 			mPivotDirection = target_position - mPivotPosition;
 			mPivotDirection.normalize();
 
@@ -61,6 +63,7 @@ namespace step_rain_of_chaos
 			mCurrentFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
 
 			mCurrentRadianPerBullet = mRadianPerBullet;
+			mCurrentFireCount = 0;
 		}
 		bool SpawnProcessor_CircularSector_01_2Direction::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{

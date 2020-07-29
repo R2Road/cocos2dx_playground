@@ -26,7 +26,7 @@ namespace step_rain_of_chaos
 				, const int repeat_count
 			);
 
-			void init() override;
+			void Enter( const cocos2d::Vec2& target_position ) override;
 			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:

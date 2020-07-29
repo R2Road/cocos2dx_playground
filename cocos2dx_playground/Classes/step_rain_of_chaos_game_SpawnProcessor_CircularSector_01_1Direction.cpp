@@ -52,9 +52,13 @@ namespace step_rain_of_chaos
 
 		void SpawnProcessor_CircularSector_01_1Direction::Enter( const Vec2& target_position )
 		{
+			mRemainTime = mSecondsPerBullet;
+
 			mFireStartDirection = target_position - mPivotPosition;
 			mFireStartDirection.normalize();
 			mFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
+
+			mCurrentFireCount = 0;
 		}
 		bool SpawnProcessor_CircularSector_01_1Direction::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{

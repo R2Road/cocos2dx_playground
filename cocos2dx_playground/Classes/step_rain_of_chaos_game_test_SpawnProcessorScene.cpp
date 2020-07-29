@@ -78,6 +78,9 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[SPACE] : Start Process";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -150,14 +153,10 @@ namespace step_rain_of_chaos
 			// Spawn Processor
 			//
 			{
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, false, 50, 2.5f, 2 ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, false, 50, 2.5f, 2 ) );
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
-				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
-				( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
 			}
-
-			schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 
 			return true;
 		}
@@ -228,6 +227,16 @@ namespace step_rain_of_chaos
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				helper::BackToThePreviousScene::MoveBack();
 				return;
+
+			case EventKeyboard::KeyCode::KEY_SPACE:
+			{
+				unschedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
+
+				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
+				( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
+				schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
+			}
+			return;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
