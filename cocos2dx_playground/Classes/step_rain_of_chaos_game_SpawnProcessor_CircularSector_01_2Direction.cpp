@@ -109,6 +109,11 @@ namespace step_rain_of_chaos
 						} );
 
 					++mCurrentFireCount;
+					if( mRequiredBulletCount <= mCurrentFireCount )
+					{
+						break;
+					}
+
 					if( 0 == mCurrentFireCount % mBulletsPerCycle )
 					{
 						mStep = eStep::Sleep;
@@ -119,11 +124,6 @@ namespace step_rain_of_chaos
 						const int temp_direction = ( mCurrentFireCount / mBulletsPerCycle ) & 1 ? -1 : 1;
 						mCurrentFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle * temp_direction ); // check odd number
 						mCurrentRadianPerBullet = mRadianPerBullet * temp_direction;
-					}
-
-					if( mRequiredBulletCount <= mCurrentFireCount )
-					{
-						break;
 					}
 
 					mRemainTime -= mSecondsPerBullet;
