@@ -43,6 +43,7 @@ namespace step_rain_of_chaos
 			, mCurrentFireStartDirection()
 			, mCurrentRadianPerBullet( 0.f )
 			, mCurrentFireCount( 0 )
+			, mCurrentFireCountInCycle( 0 )
 
 			, mElapsedTime4Sleep( 0.f )
 		{}
@@ -90,6 +91,7 @@ namespace step_rain_of_chaos
 
 			mCurrentRadianPerBullet = mRadianPerBullet;
 			mCurrentFireCount = 0;
+			mCurrentFireCountInCycle = 0;
 		}
 		bool SpawnProcessor_CircularSector_01_2Direction::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
@@ -97,16 +99,19 @@ namespace step_rain_of_chaos
 			{
 				mRemainTime += dt;
 
-				Vec2 temp_fire_direction = mCurrentFireStartDirection;
+				Vec2 temp_fire_direction;
 
 				while( mSecondsPerBullet <= mRemainTime )
 				{
-					temp_fire_direction.rotate( Vec2::ZERO, mCurrentRadianPerBullet * ( mCurrentFireCount % mBulletsPerCycle ) );
+					mRemainTime -= mSecondsPerBullet;
+
+					temp_fire_direction = mCurrentFireStartDirection;
+					temp_fire_direction.rotate( Vec2::ZERO, mCurrentRadianPerBullet * mCurrentFireCountInCycle );
 
 					out_spawn_info_container->push_back( SpawnInfo{
 						mPivotPosition
 						, temp_fire_direction
-						} );
+					} );
 
 					++mCurrentFireCount;
 					if( mRequiredBulletCount <= mCurrentFireCount )
@@ -114,19 +119,23 @@ namespace step_rain_of_chaos
 						break;
 					}
 
-					if( 0 == mCurrentFireCount % mBulletsPerCycle )
+					++mCurrentFireCountInCycle;
+					if( mBulletsPerCycle <= mCurrentFireCountInCycle )
 					{
+						mCurrentFireCountInCycle = 0;
+
 						mStep = eStep::Sleep;
 						mElapsedTime4Sleep = 0.f;
 
 						mCurrentFireStartDirection = mPivotDirection;
 
-						const int temp_direction = ( mCurrentFireCount / mBulletsPerCycle ) & 1 ? -1 : 1;
-						mCurrentFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle * temp_direction ); // check odd number
+						const int temp_direction = ( mCurrentFireCount / mBulletsPerCycle ) & 1 ? -1 : 1; // check odd number
+						mCurrentFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle * temp_direction );
 						mCurrentRadianPerBullet = mRadianPerBullet * temp_direction;
-					}
 
-					mRemainTime -= mSecondsPerBullet;
+						mRemainTime = mSecondsPerBullet;
+						break;
+					}
 				}
 			}
 			else

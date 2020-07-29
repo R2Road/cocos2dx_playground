@@ -50,6 +50,7 @@ namespace step_rain_of_chaos
 			cocos2d::Vec2 mCurrentFireStartDirection;
 			float mCurrentRadianPerBullet;
 			int mCurrentFireCount;
+			int mCurrentFireCountInCycle;
 			
 			float mElapsedTime4Sleep;
 		};
