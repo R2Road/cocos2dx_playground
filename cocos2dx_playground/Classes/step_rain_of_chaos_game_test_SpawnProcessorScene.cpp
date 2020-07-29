@@ -153,9 +153,9 @@ namespace step_rain_of_chaos
 			// Spawn Processor
 			//
 			{
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, false, 50, 2.5f, 2 ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, false, 50, 2.5f, 2 ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, false, 60.f, 10, 4, 0.025f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 0.025f ) );
 			}
 
 			return true;
@@ -192,6 +192,10 @@ namespace step_rain_of_chaos
 			if( !( *mCurrentSpawnProcessor )->Update( dt, mTargetNode->getPosition(), &aaa ) )
 			{
 				++mCurrentSpawnProcessor;
+				if( mSpawnProcessorContainer.end() != mCurrentSpawnProcessor )
+				{
+					( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
+				}
 			}
 
 			if( !aaa.empty() )
