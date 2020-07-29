@@ -48,6 +48,7 @@ namespace step_rain_of_chaos
 			cocos2d::Vec2 mPivotPosition;
 			cocos2d::Vec2 mFireStartDirection;
 			int mCurrentFireCount;
+			int mCurrentFireCountInCycle;
 
 			float mElapsedTime4Sleep;
 		};

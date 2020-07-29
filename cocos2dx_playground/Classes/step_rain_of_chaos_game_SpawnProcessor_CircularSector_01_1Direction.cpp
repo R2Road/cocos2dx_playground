@@ -41,6 +41,7 @@ namespace step_rain_of_chaos
 			, mPivotPosition( Vec2::UNIT_Y )
 			, mFireStartDirection()
 			, mCurrentFireCount( 0 )
+			, mCurrentFireCountInCycle( 0 )
 
 			, mElapsedTime4Sleep( 0.f )
 		{}
@@ -84,6 +85,7 @@ namespace step_rain_of_chaos
 			mFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
 
 			mCurrentFireCount = 0;
+			mCurrentFireCountInCycle = 0;
 		}
 		bool SpawnProcessor_CircularSector_01_1Direction::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
@@ -91,16 +93,19 @@ namespace step_rain_of_chaos
 			{
 				mRemainTime += dt;
 
-				Vec2 temp_fire_direction = mFireStartDirection;
+				Vec2 temp_fire_direction;
 
 				while( mSecondsPerBullet <= mRemainTime )
 				{
-					temp_fire_direction.rotate( Vec2::ZERO, mRadianPerBullet * ( mCurrentFireCount % mBulletsPerCycle ) );
+					mRemainTime -= mSecondsPerBullet;
+
+					temp_fire_direction = mFireStartDirection;
+					temp_fire_direction.rotate( Vec2::ZERO, mRadianPerBullet * mCurrentFireCountInCycle );
 
 					out_spawn_info_container->push_back( SpawnInfo{
 						mPivotPosition
 						, temp_fire_direction
-						} );
+					} );
 
 					++mCurrentFireCount;
 					if( mRequiredBulletCount <= mCurrentFireCount )
@@ -108,13 +113,17 @@ namespace step_rain_of_chaos
 						break;
 					}
 
-					if( 0 == mCurrentFireCount % mBulletsPerCycle )
+					++mCurrentFireCountInCycle;
+					if( mBulletsPerCycle <= mCurrentFireCountInCycle )
 					{
+						mCurrentFireCountInCycle = 0;
+
 						mStep = eStep::Sleep;
 						mElapsedTime4Sleep = 0.f;
-					}
 
-					mRemainTime -= mSecondsPerBullet;
+						mRemainTime = mSecondsPerBullet;
+						break;
+					}
 				}
 			}
 			else
