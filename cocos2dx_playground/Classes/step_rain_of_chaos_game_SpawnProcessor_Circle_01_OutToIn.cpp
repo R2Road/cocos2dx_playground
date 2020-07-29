@@ -22,7 +22,7 @@ namespace step_rain_of_chaos
 			, mSecondsPerBullet( limit_time_per_cycle / bullets_per_cycle )
 
 			, mRemainTime( 0.f )
-			, mCurrentStartPosition( Vec2::UNIT_Y )
+			, mCurrentStartPosition()
 			, mCurrentFireCount( 0 )
 		{}
 
@@ -43,12 +43,17 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void SpawnProcessor_Circle_01_OutToIn::init()
+		void SpawnProcessor_Circle_01_OutToIn::Enter( const Vec2& /*target_position*/ )
 		{
+			mRemainTime = mSecondsPerBullet;
+
+			mCurrentStartPosition = Vec2::UNIT_Y;
 			mCurrentStartPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
 			mCurrentStartPosition += mStageConfig.GetCenter();
+
+			mCurrentFireCount = 0;
 		}
-		bool SpawnProcessor_Circle_01_OutToIn::Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_Circle_01_OutToIn::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			mRemainTime += dt;
 

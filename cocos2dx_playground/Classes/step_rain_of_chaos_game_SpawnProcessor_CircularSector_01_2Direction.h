@@ -15,7 +15,8 @@ namespace step_rain_of_chaos
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
-				, const float total_time
+				, const float seconds_per_bullet
+				, const float delay_per_cycle
 			);
 
 		public:
@@ -25,7 +26,8 @@ namespace step_rain_of_chaos
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
-				, const float total_time
+				, const float seconds_per_bullet
+				, const float sleep_per_cycle
 			);
 
 			void init() override;
@@ -38,6 +40,9 @@ namespace step_rain_of_chaos
 			const int mRequiredBulletCount;
 			const float mRadianPerBullet;
 			const float mSecondsPerBullet;
+			const float mSleepPerCycle;
+
+			int mStep;
 
 			float mRemainTime;
 			cocos2d::Vec2 mPivotPosition;
@@ -45,6 +50,9 @@ namespace step_rain_of_chaos
 			cocos2d::Vec2 mCurrentFireStartDirection;
 			float mCurrentRadianPerBullet;
 			int mCurrentFireCount;
+			int mCurrentFireCountInCycle;
+			
+			float mElapsedTime4Sleep;
 		};
 	}
 }

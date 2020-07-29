@@ -18,6 +18,7 @@
 #include "step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_2Direction.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_Sleep.h"
 
 USING_NS_CC;
 
@@ -78,6 +79,9 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[SPACE] : Start Process";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -151,13 +155,10 @@ namespace step_rain_of_chaos
 			//
 			{
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, false, 50, 2.5f, 2 ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 1.f ) );
-				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
-				( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, true, 60.f, 10, 4, 0.015f, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 0.025f, 0.3f ) );
 			}
-
-			schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 
 			return true;
 		}
@@ -193,6 +194,10 @@ namespace step_rain_of_chaos
 			if( !( *mCurrentSpawnProcessor )->Update( dt, mTargetNode->getPosition(), &aaa ) )
 			{
 				++mCurrentSpawnProcessor;
+				if( mSpawnProcessorContainer.end() != mCurrentSpawnProcessor )
+				{
+					( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
+				}
 			}
 
 			if( !aaa.empty() )
@@ -228,6 +233,16 @@ namespace step_rain_of_chaos
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				helper::BackToThePreviousScene::MoveBack();
 				return;
+
+			case EventKeyboard::KeyCode::KEY_SPACE:
+			{
+				unschedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
+
+				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
+				( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
+				schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
+			}
+			return;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
