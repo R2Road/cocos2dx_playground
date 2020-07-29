@@ -16,13 +16,13 @@ namespace step_rain_of_chaos
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
-			, const float total_time
+			, const float seconds_per_bullet
 		) : iSpawnProcessor( stage_config )
 			, mHalfRadianPerCycle( CC_DEGREES_TO_RADIANS( degree_per_cycle * 0.5f ) * ( rotate_direction_left ? 1 : -1 ) )
 			, mBulletsPerCycle( std::max( 1, bullets_per_cycle ) )
 			, mRequiredBulletCount( std::max( 1, mBulletsPerCycle * repeat_count ) )
 			, mRadianPerBullet( CC_DEGREES_TO_RADIANS( degree_per_cycle / std::max( 1, mBulletsPerCycle - 1 ) ) * ( rotate_direction_left ? 1 : -1 ) )
-			, mSecondsPerBullet( total_time / mRequiredBulletCount )
+			, mSecondsPerBullet( seconds_per_bullet )
 
 			, mRemainTime( 0.f )
 			, mPivotPosition( Vec2::UNIT_Y )
@@ -38,10 +38,10 @@ namespace step_rain_of_chaos
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
-			, const float total_time
+			, const float seconds_per_bullet
 		)
 		{
-			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_CircularSector_01_2Direction( stage_config, rotate_direction_left, degree_per_cycle, bullets_per_cycle, repeat_count, total_time ) );
+			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_CircularSector_01_2Direction( stage_config, rotate_direction_left, degree_per_cycle, bullets_per_cycle, repeat_count, seconds_per_bullet ) );
 			ret->init();
 			return ret;
 		}
