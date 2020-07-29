@@ -14,7 +14,7 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		bool TestSpawnProcessor::Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
+		bool TestSpawnProcessor::Update( float dt, const cocos2d::Vec2& /*target_position*/, SpawnInfoContainer* out_spawn_info_container )
 		{
 			mElapsedTime += dt;
 			if( 3.f > mElapsedTime )
