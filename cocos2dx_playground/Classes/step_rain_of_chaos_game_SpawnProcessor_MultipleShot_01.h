@@ -1,0 +1,51 @@
+#pragma once
+
+#include "step_rain_of_chaos_game_iSpawnProcessor.h"
+
+namespace step_rain_of_chaos
+{
+	namespace game
+	{
+		class SpawnProcessor_MultipleShot_01 : public iSpawnProcessor
+		{
+		private:
+			SpawnProcessor_MultipleShot_01(
+				const StageConfig& stage_config
+				, const float degree_per_cycle
+				, const int bullets_per_cycle
+				, const int repeat_count
+				, const float seconds_per_bullet
+				, const float sleep_per_cycle
+			);
+
+		public:
+			static SpawnProcessorUp Create(
+				const StageConfig& stage_config
+				, const float degree_per_cycle
+				, const int bullets_per_cycle
+				, const int repeat_count
+				, const float seconds_per_bullet
+				, const float sleep_per_cycle
+			);
+
+			void init() override;
+			void Enter( const cocos2d::Vec2& target_position ) override;
+			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
+
+		private:
+			const float mHalfRadianPerCycle;
+			const int mBulletsPerCycle;
+			const int mRequiredCycle;
+			const float mRadianPerBullet;
+			const float mSleepPerCycle;
+
+			int mStep;
+
+			cocos2d::Vec2 mPivotPosition;
+			cocos2d::Vec2 mFireStartDirection;
+			int mCurrentFireCycle;
+
+			float mElapsedTime4Sleep;
+		};
+	}
+}
