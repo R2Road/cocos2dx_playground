@@ -9,7 +9,13 @@
 <p float:left;">
 <img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/shader_practice_simpletest.gif" width=30% height=3%></img>
 <img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/graph_practice_collection05.gif" width=30% height=30%></img>
-  <img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/ui_research_type_effect_shake.gif" width=30% height=30%></img>
+<img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/ui_research_type_effect_shake.gif" width=30% height=30%></img>
+</p>
+
+<br>
+
+<p float:left;">
+<img src="https://raw.githubusercontent.com/R2Road/cocos2dx_playground/master/wiki/step_rain_of_chaos_game_test_spawnprocessor_01.gif" width=30% height=3%></img>
 </p>
  
 ## 주의사항 | Warning
