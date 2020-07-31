@@ -160,11 +160,11 @@ namespace step_rain_of_chaos
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 0.025f, 0.3f ) );
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 90.f, 3, 4, 0.015f, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 90.f, 3, 4, 0.1f ) );
 				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 45.f, 2, 3, 0.015f, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 45.f, 2, 3, 0.1f ) );
 				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 45.f, 1, 4, 0.015f, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 45.f, 1, 4, 0.1f ) );
 			}
 
 			return true;

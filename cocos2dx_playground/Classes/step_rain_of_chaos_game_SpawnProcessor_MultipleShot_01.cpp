@@ -24,7 +24,6 @@ namespace step_rain_of_chaos
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
-			, const float seconds_per_bullet
 			, const float sleep_per_cycle
 		) : iSpawnProcessor( stage_config )
 			, mHalfRadianPerCycle( CC_DEGREES_TO_RADIANS( degree_per_cycle * 0.5f ) )
@@ -47,7 +46,6 @@ namespace step_rain_of_chaos
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
-			, const float seconds_per_bullet
 			, const float sleep_per_cycle
 		)
 		{
@@ -55,7 +53,6 @@ namespace step_rain_of_chaos
 				stage_config
 				, degree_per_cycle, bullets_per_cycle
 				, repeat_count
-				, seconds_per_bullet
 				, sleep_per_cycle
 			) );
 			ret->init();

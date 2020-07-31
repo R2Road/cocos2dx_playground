@@ -14,7 +14,6 @@ namespace step_rain_of_chaos
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
-				, const float seconds_per_bullet
 				, const float sleep_per_cycle
 			);
 
@@ -24,7 +23,6 @@ namespace step_rain_of_chaos
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
-				, const float seconds_per_bullet
 				, const float sleep_per_cycle
 			);
 
