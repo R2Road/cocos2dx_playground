@@ -40,7 +40,7 @@ namespace step_rain_of_chaos
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			cocos2d::Vec2 mButtonMoveOffset;
+			cocos2d::Vec2 mTargetButton_MoveOffset;
 
 			game::StageConfig mStageConfig;
 			game::BulletManagerUp mBulletManager;

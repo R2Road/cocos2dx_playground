@@ -39,7 +39,7 @@ namespace step_rain_of_chaos
 		SpawnProcessorScene::SpawnProcessorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
-			, mButtonMoveOffset()
+			, mTargetButton_MoveOffset()
 
 			, mStageConfig()
 			, mBulletManager( nullptr )
@@ -299,13 +299,13 @@ namespace step_rain_of_chaos
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				mButtonMoveOffset = button->getPosition() - button->getTouchBeganPosition();
+				mTargetButton_MoveOffset = button->getPosition() - button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				button->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
+				button->setPosition( button->getTouchMovePosition() + mTargetButton_MoveOffset );
 			}
 		}
 	}
