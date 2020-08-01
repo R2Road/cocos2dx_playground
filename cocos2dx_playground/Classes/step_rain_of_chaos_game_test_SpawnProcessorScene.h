@@ -36,21 +36,24 @@ namespace step_rain_of_chaos
 			void updateForSpawnProcessor( float dt );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
-			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onStartButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onTargetButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			cocos2d::Vec2 mStartButton_MoveOffset;
 			cocos2d::Vec2 mTargetButton_MoveOffset;
 
 			game::StageConfig mStageConfig;
 			game::BulletManagerUp mBulletManager;
 			game::StageNode* mStageNode;
+
+			cocos2d::Node* mStartNode;
 			cocos2d::Node* mTargetNode;
 
 			game::SpawnProcessorContainer mSpawnProcessorContainer;
 			game::SpawnProcessorContainer::iterator mCurrentSpawnProcessor;
-
-			cocos2d::Vec2 mFireStartPosition;
 		};
 	}
 }

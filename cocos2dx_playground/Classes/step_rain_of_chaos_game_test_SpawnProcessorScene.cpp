@@ -39,6 +39,8 @@ namespace step_rain_of_chaos
 		SpawnProcessorScene::SpawnProcessorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+
+			, mStartButton_MoveOffset()
 			, mTargetButton_MoveOffset()
 
 			, mStageConfig()
@@ -48,8 +50,6 @@ namespace step_rain_of_chaos
 
 			, mSpawnProcessorContainer()
 			, mCurrentSpawnProcessor()
-
-			, mFireStartPosition()
 		{}
 
 		Scene* SpawnProcessorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -109,6 +109,36 @@ namespace step_rain_of_chaos
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
+			mStageConfig.Build(
+				visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
+				, 120.f
+			);
+
+			//
+			// Start Button
+			//
+			{
+				Vec2 start_position = mStageConfig.GetCenter();
+				start_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
+
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( TAG_Button );
+				button->setColor( Color3B::BLUE );
+				button->setPosition( start_position );
+				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onStartButton, this ) );
+				addChild( button, std::numeric_limits<int>::max() - 1 );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 4.f );
+					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
+					button->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				mStartNode = button;
+			}
+
 			//
 			// Target Button
 			//
@@ -119,7 +149,7 @@ namespace step_rain_of_chaos
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onButton, this ) );
+				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onTargetButton, this ) );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
 
 				// Pivot
@@ -134,7 +164,7 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Target Manager
+			// Bullet Manager
 			//
 			{
 				mBulletManager = game::BulletManager::create( BulletCachingAmount );
@@ -144,11 +174,6 @@ namespace step_rain_of_chaos
 			// Stage Node
 			//
 			{
-				mStageConfig.Build(
-					visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
-					, 120.f
-				);
-
 				mStageNode = game::StageNode::create(
 					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
@@ -158,10 +183,6 @@ namespace step_rain_of_chaos
 				);
 				addChild( mStageNode );
 			}
-
-			mFireStartPosition = Vec2::UNIT_Y;
-			mFireStartPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
-			mFireStartPosition += mStageConfig.GetCenter();
 
 			//
 			// Spawn Processor
@@ -241,7 +262,7 @@ namespace step_rain_of_chaos
 				++mCurrentSpawnProcessor;
 				if( mSpawnProcessorContainer.end() != mCurrentSpawnProcessor )
 				{
-					( *mCurrentSpawnProcessor )->Enter( mFireStartPosition, mTargetNode->getPosition() );
+					( *mCurrentSpawnProcessor )->Enter( mStartNode->getPosition(), mTargetNode->getPosition() );
 				}
 			}
 
@@ -284,7 +305,7 @@ namespace step_rain_of_chaos
 				unschedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 
 				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
-				( *mCurrentSpawnProcessor )->Enter( mFireStartPosition, mTargetNode->getPosition() );
+				( *mCurrentSpawnProcessor )->Enter( mStartNode->getPosition(), mTargetNode->getPosition() );
 				schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 			}
 			return;
@@ -293,7 +314,23 @@ namespace step_rain_of_chaos
 				CCLOG( "Key Code : %d", keycode );
 			}
 		}
-		void SpawnProcessorScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+
+		void SpawnProcessorScene::onStartButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				mStartButton_MoveOffset = button->getPosition() - button->getTouchBeganPosition();
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				button->setPosition( button->getTouchMovePosition() + mStartButton_MoveOffset );
+			}
+		}
+		void SpawnProcessorScene::onTargetButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
