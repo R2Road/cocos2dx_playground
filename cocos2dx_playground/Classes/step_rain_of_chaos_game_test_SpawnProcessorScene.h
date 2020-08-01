@@ -49,6 +49,8 @@ namespace step_rain_of_chaos
 
 			game::SpawnProcessorContainer mSpawnProcessorContainer;
 			game::SpawnProcessorContainer::iterator mCurrentSpawnProcessor;
+
+			cocos2d::Vec2 mFireStartPosition;
 		};
 	}
 }

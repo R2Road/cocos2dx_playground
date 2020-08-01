@@ -30,7 +30,7 @@ namespace step_rain_of_chaos
 			virtual ~iSpawnProcessor() {}
 
 			virtual void init() {}
-			virtual void Enter( const cocos2d::Vec2& /*target_position*/ ) {}
+			virtual void Enter( const cocos2d::Vec2& /*start_position*/, const cocos2d::Vec2& /*target_position*/ ) {}
 			virtual bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) = 0;
 
 		protected:

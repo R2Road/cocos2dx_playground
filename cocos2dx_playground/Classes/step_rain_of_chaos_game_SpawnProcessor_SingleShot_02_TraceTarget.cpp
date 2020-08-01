@@ -25,7 +25,7 @@ namespace step_rain_of_chaos
 
 			, mStep( eStep::Fire )
 
-			, mPivotPosition( Vec2::UNIT_Y )
+			, mStartPosition( Vec2::UNIT_Y )
 			, mCurrentFireCycle( 0 )
 
 			, mElapsedTime4Sleep( 0.f )
@@ -42,15 +42,11 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void SpawnProcessor_SingleShot_02_TraceTarget::init()
-		{
-			mPivotPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
-			mPivotPosition += mStageConfig.GetCenter();
-		}
-
-		void SpawnProcessor_SingleShot_02_TraceTarget::Enter( const Vec2& target_position )
+		void SpawnProcessor_SingleShot_02_TraceTarget::Enter( const cocos2d::Vec2& start_position, const Vec2& target_position )
 		{
 			mStep = eStep::Fire;
+
+			mStartPosition = start_position;
 
 			mCurrentFireCycle = 0;
 		}
@@ -58,11 +54,11 @@ namespace step_rain_of_chaos
 		{
 			if( eStep::Fire == mStep )
 			{
-				auto fire_direction = target_position - mPivotPosition;
+				auto fire_direction = target_position - mStartPosition;
 				fire_direction.normalize();
 
 				out_spawn_info_container->push_back( SpawnInfo{
-					mPivotPosition
+					mStartPosition
 					, fire_direction
 				} );
 

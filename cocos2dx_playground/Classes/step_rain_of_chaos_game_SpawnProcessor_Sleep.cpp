@@ -20,7 +20,7 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void SpawnProcessor_Sleep::Enter( const Vec2& /*target_position*/ )
+		void SpawnProcessor_Sleep::Enter( const Vec2& /*start_position*/, const Vec2& /*target_position*/ )
 		{
 			mElapsedTime = 0.f;
 		}

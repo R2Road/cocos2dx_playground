@@ -14,8 +14,7 @@ namespace step_rain_of_chaos
 		public:
 			static SpawnProcessorUp Create( const StageConfig& stage_config, const int repeat_count, const float sleep_per_cycle );
 
-			void init() override;
-			void Enter( const cocos2d::Vec2& target_position ) override;
+			void Enter( const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position ) override;
 			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
@@ -24,7 +23,7 @@ namespace step_rain_of_chaos
 
 			int mStep;
 
-			cocos2d::Vec2 mPivotPosition;
+			cocos2d::Vec2 mStartPosition;
 			int mCurrentFireCycle;
 
 			float mElapsedTime4Sleep;

@@ -34,7 +34,7 @@ namespace step_rain_of_chaos
 
 			, mStep( eStep::Fire )
 
-			, mPivotPosition( Vec2::UNIT_Y )
+			, mStartPosition( Vec2::UNIT_Y )
 			, mFireStartDirection()
 			, mCurrentFireCycle( 0 )
 
@@ -59,17 +59,13 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void SpawnProcessor_MultipleShot_01::init()
-		{
-			mPivotPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
-			mPivotPosition += mStageConfig.GetCenter();
-		}
-
-		void SpawnProcessor_MultipleShot_01::Enter( const Vec2& target_position )
+		void SpawnProcessor_MultipleShot_01::Enter( const Vec2& start_position, const Vec2& target_position )
 		{
 			mStep = eStep::Fire;
 
-			mFireStartDirection = target_position - mPivotPosition;
+			mStartPosition = start_position;
+
+			mFireStartDirection = target_position - mStartPosition;
 			mFireStartDirection.normalize();
 			mFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
 
@@ -87,7 +83,7 @@ namespace step_rain_of_chaos
 					temp_fire_direction.rotate( Vec2::ZERO, mRadianPerBullet * i );
 
 					out_spawn_info_container->push_back( SpawnInfo{
-						mPivotPosition
+						mStartPosition
 						, temp_fire_direction
 					} );
 				}

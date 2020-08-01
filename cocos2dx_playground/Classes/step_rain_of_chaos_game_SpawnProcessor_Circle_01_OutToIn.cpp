@@ -43,13 +43,11 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void SpawnProcessor_Circle_01_OutToIn::Enter( const Vec2& /*target_position*/ )
+		void SpawnProcessor_Circle_01_OutToIn::Enter( const Vec2& start_position, const Vec2& /*target_position*/ )
 		{
 			mRemainTime = mSecondsPerBullet;
 
-			mCurrentStartPosition = Vec2::UNIT_Y;
-			mCurrentStartPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
-			mCurrentStartPosition += mStageConfig.GetCenter();
+			mCurrentStartPosition = start_position;
 
 			mCurrentFireCount = 0;
 		}
