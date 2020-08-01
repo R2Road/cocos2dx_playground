@@ -128,10 +128,20 @@ namespace step_rain_of_chaos
 				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onStartButton, this ) );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
 
+				// Label
+				{
+					auto label = Label::createWithTTF( "S", "fonts/NanumSquareR.ttf", 10 );
+					label->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + visibleSize.height
+					) );
+					button->setTitleLabel( label );
+				}
+
 				// Pivot
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 4.f );
+					pivot->setScale( 2.f );
 					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
 					button->addChild( pivot, std::numeric_limits<int>::max() );
 				}
@@ -152,10 +162,20 @@ namespace step_rain_of_chaos
 				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onTargetButton, this ) );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
 
+				// Label
+				{
+					auto label = Label::createWithTTF( "T", "fonts/NanumSquareR.ttf", 10 );
+					label->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + visibleSize.height
+					) );
+					button->setTitleLabel( label );
+				}
+
 				// Pivot
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 4.f );
+					pivot->setScale( 2.f );
 					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
 					button->addChild( pivot, std::numeric_limits<int>::max() );
 				}
