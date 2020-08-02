@@ -8,7 +8,7 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		SpawnProcessor_Sleep::SpawnProcessor_Sleep( const float required_time ) : iSpawnProcessor( StageConfig() )
+		SpawnProcessor_Sleep::SpawnProcessor_Sleep( const float required_time ) : iSpawnProcessor( StageConfig(), SpawnProcessorConfig() )
 			, mRequiredTime( required_time )
 			, mElapsedTime( 0.f )
 		{}

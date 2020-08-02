@@ -11,6 +11,7 @@ namespace step_rain_of_chaos
 		private:
 			SpawnProcessor_CircularSector_01_1Direction(
 				const StageConfig& stage_config
+				, const SpawnProcessorConfig& spawn_processor_config
 				, const bool rotate_direction_left
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
@@ -22,6 +23,7 @@ namespace step_rain_of_chaos
 		public:
 			static SpawnProcessorUp Create(
 				const StageConfig& stage_config
+				, const SpawnProcessorConfig& spawn_processor_config
 				, const bool rotate_direction_left
 				, const float degree_per_cycle
 				, const int bullets_per_cycle

@@ -9,10 +9,10 @@ namespace step_rain_of_chaos
 		class SpawnProcessor_SingleShot_01 : public iSpawnProcessor
 		{
 		private:
-			SpawnProcessor_SingleShot_01( const StageConfig& stage_config, const int repeat_count, const float sleep_per_cycle );
+			SpawnProcessor_SingleShot_01( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config, const int repeat_count, const float sleep_per_cycle );
 
 		public:
-			static SpawnProcessorUp Create( const StageConfig& stage_config, const int repeat_count, const float sleep_per_cycle );
+			static SpawnProcessorUp Create( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config, const int repeat_count, const float sleep_per_cycle );
 
 			void Enter( const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position ) override;
 			bool Update( const float dt, const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;

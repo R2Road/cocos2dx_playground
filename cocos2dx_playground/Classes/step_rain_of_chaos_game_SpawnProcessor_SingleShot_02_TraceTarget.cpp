@@ -19,7 +19,8 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		SpawnProcessor_SingleShot_02_TraceTarget::SpawnProcessor_SingleShot_02_TraceTarget( const StageConfig& stage_config, const int repeat_count, const float sleep_per_cycle ) : iSpawnProcessor( stage_config )
+		SpawnProcessor_SingleShot_02_TraceTarget::SpawnProcessor_SingleShot_02_TraceTarget( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config, const int repeat_count, const float sleep_per_cycle )
+			: iSpawnProcessor( stage_config, spawn_processor_config )
 			, mRequiredCycle( std::max( 1, repeat_count ) )
 			, mSleepPerCycle( sleep_per_cycle )
 
@@ -31,10 +32,11 @@ namespace step_rain_of_chaos
 			, mElapsedTime4Sleep( 0.f )
 		{}
 
-		SpawnProcessorUp SpawnProcessor_SingleShot_02_TraceTarget::Create( const StageConfig& stage_config, const int repeat_count, const float sleep_per_cycle )
+		SpawnProcessorUp SpawnProcessor_SingleShot_02_TraceTarget::Create( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config, const int repeat_count, const float sleep_per_cycle )
 		{
 			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_SingleShot_02_TraceTarget(
 				stage_config
+				, spawn_processor_config
 				, repeat_count
 				, sleep_per_cycle
 			) );

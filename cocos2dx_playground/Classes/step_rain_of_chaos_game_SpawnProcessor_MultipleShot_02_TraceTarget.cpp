@@ -21,11 +21,12 @@ namespace step_rain_of_chaos
 	{
 		SpawnProcessor_MultipleShot_02_TraceTarget::SpawnProcessor_MultipleShot_02_TraceTarget(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
 			, const float sleep_per_cycle
-		) : iSpawnProcessor( stage_config )
+		) : iSpawnProcessor( stage_config, spawn_processor_config )
 			, mHalfRadianPerCycle( CC_DEGREES_TO_RADIANS( degree_per_cycle * 0.5f ) )
 			, mBulletsPerCycle( std::max( 2, bullets_per_cycle ) )
 			, mRequiredCycle( std::max( 1, repeat_count ) )
@@ -42,6 +43,7 @@ namespace step_rain_of_chaos
 
 		SpawnProcessorUp SpawnProcessor_MultipleShot_02_TraceTarget::Create(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
@@ -50,6 +52,7 @@ namespace step_rain_of_chaos
 		{
 			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_MultipleShot_02_TraceTarget(
 				stage_config
+				, spawn_processor_config
 				, degree_per_cycle, bullets_per_cycle
 				, repeat_count
 				, sleep_per_cycle

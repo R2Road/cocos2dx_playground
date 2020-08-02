@@ -21,13 +21,14 @@ namespace step_rain_of_chaos
 	{
 		SpawnProcessor_CircularSector_01_1Direction::SpawnProcessor_CircularSector_01_1Direction(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const bool rotate_direction_left
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
 			, const float seconds_per_bullet
 			, const float sleep_per_cycle
-		) : iSpawnProcessor( stage_config )
+		) : iSpawnProcessor( stage_config, spawn_processor_config )
 			, mHalfRadianPerCycle( CC_DEGREES_TO_RADIANS( degree_per_cycle * 0.5f ) * ( rotate_direction_left ? 1 : -1 ) )
 			, mBulletsPerCycle( std::max( 1, bullets_per_cycle ) )
 			, mRequiredBulletCount( std::max( 1, mBulletsPerCycle * repeat_count ) )
@@ -48,6 +49,7 @@ namespace step_rain_of_chaos
 
 		SpawnProcessorUp SpawnProcessor_CircularSector_01_1Direction::Create(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const bool rotate_direction_left
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
@@ -57,7 +59,7 @@ namespace step_rain_of_chaos
 		)
 		{
 			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_CircularSector_01_1Direction(
-				stage_config
+				stage_config, spawn_processor_config
 				, rotate_direction_left
 				, degree_per_cycle, bullets_per_cycle
 				, repeat_count

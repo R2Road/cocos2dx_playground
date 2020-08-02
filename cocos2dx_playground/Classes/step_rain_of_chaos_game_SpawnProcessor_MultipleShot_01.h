@@ -11,6 +11,7 @@ namespace step_rain_of_chaos
 		private:
 			SpawnProcessor_MultipleShot_01(
 				const StageConfig& stage_config
+				, const SpawnProcessorConfig& spawn_processor_config
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
@@ -20,6 +21,7 @@ namespace step_rain_of_chaos
 		public:
 			static SpawnProcessorUp Create(
 				const StageConfig& stage_config
+				, const SpawnProcessorConfig& spawn_processor_config
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count

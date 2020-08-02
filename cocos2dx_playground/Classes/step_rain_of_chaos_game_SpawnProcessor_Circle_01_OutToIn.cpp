@@ -12,11 +12,12 @@ namespace step_rain_of_chaos
 	{
 		SpawnProcessor_Circle_01_OutToIn::SpawnProcessor_Circle_01_OutToIn(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const bool rotate_direction_left
 			, const int bullets_per_cycle
 			, const float limit_time_per_cycle
 			, const int repeat_count
-		) : iSpawnProcessor( stage_config )
+		) : iSpawnProcessor( stage_config, spawn_processor_config )
 			, mRequiredBulletCount( bullets_per_cycle * repeat_count )
 			, mRadianPerBullet( CC_DEGREES_TO_RADIANS( 360.f / bullets_per_cycle ) * ( rotate_direction_left ? 1 : -1 ) )
 			, mSecondsPerBullet( limit_time_per_cycle / bullets_per_cycle )
@@ -28,6 +29,7 @@ namespace step_rain_of_chaos
 
 		SpawnProcessorUp SpawnProcessor_Circle_01_OutToIn::Create(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const bool rotate_direction_left
 			, const int bullets_per_cycle
 			, const float limit_time_per_cycle
@@ -38,7 +40,14 @@ namespace step_rain_of_chaos
 			CCASSERT( 0.f < limit_time_per_cycle, "" );
 			CCASSERT( 0 < repeat_count, "" );
 
-			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_Circle_01_OutToIn( stage_config, rotate_direction_left, bullets_per_cycle, limit_time_per_cycle, repeat_count ) );
+			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_Circle_01_OutToIn(
+				stage_config
+				, spawn_processor_config
+				, rotate_direction_left
+				, bullets_per_cycle
+				, limit_time_per_cycle
+				, repeat_count
+			) );
 			ret->init();
 			return ret;
 		}
