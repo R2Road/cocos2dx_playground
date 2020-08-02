@@ -24,7 +24,7 @@ namespace step_rain_of_chaos
 		{
 			mElapsedTime = 0.f;
 		}
-		bool SpawnProcessor_Sleep::Update( float dt, const Vec2& /*target_position*/, SpawnInfoContainer* /*out_spawn_info_container*/ )
+		bool SpawnProcessor_Sleep::Update( const float dt, const Vec2& /*start_position*/, const Vec2& /*target_position*/, SpawnInfoContainer* /*out_spawn_info_container*/ )
 		{
 			mElapsedTime += dt;
 			return mRequiredTime > mElapsedTime;

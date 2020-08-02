@@ -31,7 +31,7 @@ namespace step_rain_of_chaos
 
 			virtual void init() {}
 			virtual void Enter( const cocos2d::Vec2& /*start_position*/, const cocos2d::Vec2& /*target_position*/ ) {}
-			virtual bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) = 0;
+			virtual bool Update( const float dt, const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) = 0;
 
 		protected:
 			const StageConfig& mStageConfig;
@@ -45,7 +45,7 @@ namespace step_rain_of_chaos
 		public:
 			static SpawnProcessorUp Create( const StageConfig& stage_config );
 
-			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
+			bool Update( const float dt, const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
 			float mElapsedTime;

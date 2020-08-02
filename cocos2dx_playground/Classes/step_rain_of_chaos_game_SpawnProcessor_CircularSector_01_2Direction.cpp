@@ -89,7 +89,7 @@ namespace step_rain_of_chaos
 			mCurrentFireCount = 0;
 			mCurrentFireCountInCycle = 0;
 		}
-		bool SpawnProcessor_CircularSector_01_2Direction::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_CircularSector_01_2Direction::Update( const float dt, const Vec2& /*start_position*/, const Vec2& /*target_position*/, SpawnInfoContainer* out_spawn_info_container )
 		{
 			if( eStep::Fire == mStep )
 			{

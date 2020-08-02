@@ -277,7 +277,7 @@ namespace step_rain_of_chaos
 
 			game::SpawnInfoContainer aaa;
 
-			if( !( *mCurrentSpawnProcessor )->Update( dt, mTargetNode->getPosition(), &aaa ) )
+			if( !( *mCurrentSpawnProcessor )->Update( dt, mStartNode->getPosition(), mTargetNode->getPosition(), &aaa ) )
 			{
 				++mCurrentSpawnProcessor;
 				if( mSpawnProcessorContainer.end() != mCurrentSpawnProcessor )

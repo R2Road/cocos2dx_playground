@@ -71,7 +71,7 @@ namespace step_rain_of_chaos
 
 			mCurrentFireCycle = 0;
 		}
-		bool SpawnProcessor_MultipleShot_01::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_MultipleShot_01::Update( const float dt, const Vec2& /*start_position*/, const Vec2& /*target_position*/, SpawnInfoContainer* out_spawn_info_container )
 		{
 			if( eStep::Fire == mStep )
 			{
