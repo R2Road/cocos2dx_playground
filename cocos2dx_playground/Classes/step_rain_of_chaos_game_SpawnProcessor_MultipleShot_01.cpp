@@ -35,7 +35,8 @@ namespace step_rain_of_chaos
 
 			, mStep( eStep::Fire )
 
-			, mStartPosition( Vec2::UNIT_Y )
+			, mStartPosition()
+			, mTargetPosition()
 			, mFireStartDirection()
 			, mCurrentFireCycle( 0 )
 
@@ -67,19 +68,28 @@ namespace step_rain_of_chaos
 			mStep = eStep::Fire;
 
 			mStartPosition = start_position;
+			mTargetPosition = target_position;
 
-			mFireStartDirection = target_position - mStartPosition;
+			mFireStartDirection = mTargetPosition - mStartPosition;
 			mFireStartDirection.normalize();
 			mFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
 
 			mCurrentFireCycle = 0;
 		}
-		bool SpawnProcessor_MultipleShot_01::Update( const float dt, const Vec2& /*start_position*/, const Vec2& /*target_position*/, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_MultipleShot_01::Update( const float dt, const Vec2& /*start_position*/, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			if( eStep::Fire == mStep )
 			{
-				Vec2 temp_fire_direction;
+				if( mSpawnProcessorConfig.UpdateTargetPosition )
+				{
+					mTargetPosition = target_position;
 
+					mFireStartDirection = mTargetPosition - mStartPosition;
+					mFireStartDirection.normalize();
+					mFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
+				}
+
+				Vec2 temp_fire_direction;
 				for( int i = 0; mBulletsPerCycle > i; ++i )
 				{
 					temp_fire_direction = mFireStartDirection;
