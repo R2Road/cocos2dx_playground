@@ -594,12 +594,6 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_TraceTarget.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_TraceTarget.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_LayoutChangeSequenceScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
@@ -1077,12 +1071,6 @@
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.h">
-      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_TraceTarget.h">
-      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_TraceTarget.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_LayoutChangeSequenceScene.h">

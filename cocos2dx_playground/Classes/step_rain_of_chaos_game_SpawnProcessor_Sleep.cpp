@@ -8,7 +8,7 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		SpawnProcessor_Sleep::SpawnProcessor_Sleep( const float required_time ) : iSpawnProcessor( StageConfig() )
+		SpawnProcessor_Sleep::SpawnProcessor_Sleep( const float required_time ) : iSpawnProcessor( StageConfig(), SpawnProcessorConfig() )
 			, mRequiredTime( required_time )
 			, mElapsedTime( 0.f )
 		{}
@@ -20,11 +20,11 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void SpawnProcessor_Sleep::Enter( const Vec2& /*target_position*/ )
+		void SpawnProcessor_Sleep::Enter( const Vec2& /*start_position*/, const Vec2& /*target_position*/ )
 		{
 			mElapsedTime = 0.f;
 		}
-		bool SpawnProcessor_Sleep::Update( float dt, const Vec2& /*target_position*/, SpawnInfoContainer* /*out_spawn_info_container*/ )
+		bool SpawnProcessor_Sleep::Update( const float dt, const Vec2& /*start_position*/, const Vec2& /*target_position*/, SpawnInfoContainer* /*out_spawn_info_container*/ )
 		{
 			mElapsedTime += dt;
 			return mRequiredTime > mElapsedTime;

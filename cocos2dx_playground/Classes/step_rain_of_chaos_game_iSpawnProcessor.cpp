@@ -4,17 +4,18 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		TestSpawnProcessor::TestSpawnProcessor( const StageConfig& stage_config ) : iSpawnProcessor( stage_config )
+		TestSpawnProcessor::TestSpawnProcessor( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config )
+			: iSpawnProcessor( stage_config, spawn_processor_config )
 			, mElapsedTime( 0.f )
 		{}
 
-		SpawnProcessorUp TestSpawnProcessor::Create( const StageConfig& stage_config )
+		SpawnProcessorUp TestSpawnProcessor::Create( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config )
 		{
-			SpawnProcessorUp ret( new ( std::nothrow ) TestSpawnProcessor( stage_config ) );
+			SpawnProcessorUp ret( new ( std::nothrow ) TestSpawnProcessor( stage_config, spawn_processor_config ) );
 			return ret;
 		}
 
-		bool TestSpawnProcessor::Update( float dt, const cocos2d::Vec2& /*target_position*/, SpawnInfoContainer* out_spawn_info_container )
+		bool TestSpawnProcessor::Update( const float dt, const cocos2d::Vec2& /*start_position*/, const cocos2d::Vec2& /*target_position*/, SpawnInfoContainer* out_spawn_info_container )
 		{
 			mElapsedTime += dt;
 			if( 3.f > mElapsedTime )

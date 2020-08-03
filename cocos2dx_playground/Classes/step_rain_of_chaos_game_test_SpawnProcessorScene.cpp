@@ -19,9 +19,7 @@
 #include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_2Direction.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01.h"
-#include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_TraceTarget.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.h"
-#include "step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_TraceTarget.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_Sleep.h"
 
 USING_NS_CC;
@@ -39,10 +37,15 @@ namespace step_rain_of_chaos
 		SpawnProcessorScene::SpawnProcessorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+
+			, mStartButton_MoveOffset()
+			, mTargetButton_MoveOffset()
+
 			, mStageConfig()
 			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
 			, mTargetNode( nullptr )
+
 			, mSpawnProcessorContainer()
 			, mCurrentSpawnProcessor()
 		{}
@@ -104,6 +107,46 @@ namespace step_rain_of_chaos
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
+			mStageConfig.Build(
+				visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
+				, 120.f
+			);
+
+			//
+			// Start Button
+			//
+			{
+				Vec2 start_position = mStageConfig.GetCenter();
+				start_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
+
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( TAG_Button );
+				button->setColor( Color3B::BLUE );
+				button->setPosition( start_position );
+				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onStartButton, this ) );
+				addChild( button, std::numeric_limits<int>::max() - 1 );
+
+				// Label
+				{
+					auto label = Label::createWithTTF( "S", "fonts/NanumSquareR.ttf", 10 );
+					label->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + visibleSize.height
+					) );
+					button->setTitleLabel( label );
+				}
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
+					button->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				mStartNode = button;
+			}
+
 			//
 			// Target Button
 			//
@@ -114,13 +157,23 @@ namespace step_rain_of_chaos
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onButton, this ) );
+				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onTargetButton, this ) );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
+
+				// Label
+				{
+					auto label = Label::createWithTTF( "T", "fonts/NanumSquareR.ttf", 10 );
+					label->setPosition( Vec2(
+						visibleOrigin.x
+						, visibleOrigin.y + visibleSize.height
+					) );
+					button->setTitleLabel( label );
+				}
 
 				// Pivot
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 4.f );
+					pivot->setScale( 2.f );
 					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
 					button->addChild( pivot, std::numeric_limits<int>::max() );
 				}
@@ -129,7 +182,7 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Target Manager
+			// Bullet Manager
 			//
 			{
 				mBulletManager = game::BulletManager::create( BulletCachingAmount );
@@ -139,11 +192,6 @@ namespace step_rain_of_chaos
 			// Stage Node
 			//
 			{
-				mStageConfig.Build(
-					visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
-					, 120.f
-				);
-
 				mStageNode = game::StageNode::create(
 					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
@@ -158,35 +206,49 @@ namespace step_rain_of_chaos
 			// Spawn Processor
 			//
 			{
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, false, 50, 2.5f, 2 ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, true, 60.f, 10, 4, 0.015f, 0.1f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, false, 60.f, 10, 4, 0.025f, 0.3f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 50, 2.5f, 2 ) );
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 90.f, 3, 4, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 45.f, 2, 3, 0.1f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, 45.f, 1, 4, 0.1f ) );
 
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_02_TraceTarget::Create( mStageConfig, 90.f, 3, 4, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 90.f, 3, 4, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 45.f, 2, 3, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 45.f, 1, 4, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 90.f, 3, 4, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 45.f, 2, 3, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 45.f, 1, 4, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 90.f, 3, 4, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 45.f, 2, 3, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 45.f, 1, 4, 0.1f ) );
+				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 4, 0.1f ) );
 				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_02_TraceTarget::Create( mStageConfig, 45.f, 2, 3, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 3, 0.1f ) );
 				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_MultipleShot_02_TraceTarget::Create( mStageConfig, 45.f, 1, 4, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 4, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, 4, 0.1f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, 3, 0.1f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, 4, 0.1f ) );
-
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_02_TraceTarget::Create( mStageConfig, 4, 0.1f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_02_TraceTarget::Create( mStageConfig, 3, 0.1f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_02_TraceTarget::Create( mStageConfig, 4, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 4, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 3, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 4, 0.1f ) );
+				mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 			}
 
 			return true;
@@ -220,12 +282,12 @@ namespace step_rain_of_chaos
 
 			game::SpawnInfoContainer aaa;
 
-			if( !( *mCurrentSpawnProcessor )->Update( dt, mTargetNode->getPosition(), &aaa ) )
+			if( !( *mCurrentSpawnProcessor )->Update( dt, mStartNode->getPosition(), mTargetNode->getPosition(), &aaa ) )
 			{
 				++mCurrentSpawnProcessor;
 				if( mSpawnProcessorContainer.end() != mCurrentSpawnProcessor )
 				{
-					( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
+					( *mCurrentSpawnProcessor )->Enter( mStartNode->getPosition(), mTargetNode->getPosition() );
 				}
 			}
 
@@ -268,7 +330,7 @@ namespace step_rain_of_chaos
 				unschedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 
 				mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
-				( *mCurrentSpawnProcessor )->Enter( mTargetNode->getPosition() );
+				( *mCurrentSpawnProcessor )->Enter( mStartNode->getPosition(), mTargetNode->getPosition() );
 				schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 			}
 			return;
@@ -277,19 +339,35 @@ namespace step_rain_of_chaos
 				CCLOG( "Key Code : %d", keycode );
 			}
 		}
-		void SpawnProcessorScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+
+		void SpawnProcessorScene::onStartButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				mButtonMoveOffset = button->getPosition() - button->getTouchBeganPosition();
+				mStartButton_MoveOffset = button->getPosition() - button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				button->setPosition( button->getTouchMovePosition() + mButtonMoveOffset );
+				button->setPosition( button->getTouchMovePosition() + mStartButton_MoveOffset );
+			}
+		}
+		void SpawnProcessorScene::onTargetButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				mTargetButton_MoveOffset = button->getPosition() - button->getTouchBeganPosition();
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				button->setPosition( button->getTouchMovePosition() + mTargetButton_MoveOffset );
 			}
 		}
 	}

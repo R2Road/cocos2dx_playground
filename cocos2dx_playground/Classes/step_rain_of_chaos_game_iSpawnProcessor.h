@@ -21,31 +21,38 @@ namespace step_rain_of_chaos
 		using SpawnProcessorUp = std::unique_ptr<class iSpawnProcessor>;
 		using SpawnProcessorContainer = std::vector<SpawnProcessorUp>;
 
+		struct SpawnProcessorConfig
+		{
+			bool UpdateStartPosition = false;
+			bool UpdateTargetPosition = false;
+		};
+
 		class iSpawnProcessor
 		{
 		protected:
-			iSpawnProcessor( const StageConfig& stage_config ) : mStageConfig( stage_config ) {}
+			iSpawnProcessor( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config ) : mStageConfig( stage_config ), mSpawnProcessorConfig( spawn_processor_config ) {}
 
 		public:
 			virtual ~iSpawnProcessor() {}
 
 			virtual void init() {}
-			virtual void Enter( const cocos2d::Vec2& /*target_position*/ ) {}
-			virtual bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) = 0;
+			virtual void Enter( const cocos2d::Vec2& /*start_position*/, const cocos2d::Vec2& /*target_position*/ ) {}
+			virtual bool Update( const float dt, const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) = 0;
 
 		protected:
 			const StageConfig& mStageConfig;
+			const SpawnProcessorConfig mSpawnProcessorConfig;
 		};
 
 		class TestSpawnProcessor : public iSpawnProcessor
 		{
 		private:
-			TestSpawnProcessor( const StageConfig& stage_config );
+			TestSpawnProcessor( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config );
 
 		public:
-			static SpawnProcessorUp Create( const StageConfig& stage_config );
+			static SpawnProcessorUp Create( const StageConfig& stage_config, const SpawnProcessorConfig& spawn_processor_config );
 
-			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
+			bool Update( const float dt, const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
 			float mElapsedTime;

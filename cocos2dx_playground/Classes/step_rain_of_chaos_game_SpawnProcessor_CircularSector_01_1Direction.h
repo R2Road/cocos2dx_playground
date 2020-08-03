@@ -11,6 +11,7 @@ namespace step_rain_of_chaos
 		private:
 			SpawnProcessor_CircularSector_01_1Direction(
 				const StageConfig& stage_config
+				, const SpawnProcessorConfig& spawn_processor_config
 				, const bool rotate_direction_left
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
@@ -22,6 +23,7 @@ namespace step_rain_of_chaos
 		public:
 			static SpawnProcessorUp Create(
 				const StageConfig& stage_config
+				, const SpawnProcessorConfig& spawn_processor_config
 				, const bool rotate_direction_left
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
@@ -30,9 +32,8 @@ namespace step_rain_of_chaos
 				, const float sleep_per_cycle
 			);
 
-			void init() override;
-			void Enter( const cocos2d::Vec2& target_position ) override;
-			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
+			void Enter( const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position ) override;
+			bool Update( const float dt, const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
 			const float mHalfRadianPerCycle;
@@ -45,7 +46,7 @@ namespace step_rain_of_chaos
 			int mStep;
 
 			float mRemainTime;
-			cocos2d::Vec2 mPivotPosition;
+			cocos2d::Vec2 mStartPosition;
 			cocos2d::Vec2 mFireStartDirection;
 			int mCurrentFireCount;
 			int mCurrentFireCountInCycle;

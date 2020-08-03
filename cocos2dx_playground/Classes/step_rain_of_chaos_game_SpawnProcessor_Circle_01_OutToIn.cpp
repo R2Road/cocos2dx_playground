@@ -12,11 +12,12 @@ namespace step_rain_of_chaos
 	{
 		SpawnProcessor_Circle_01_OutToIn::SpawnProcessor_Circle_01_OutToIn(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const bool rotate_direction_left
 			, const int bullets_per_cycle
 			, const float limit_time_per_cycle
 			, const int repeat_count
-		) : iSpawnProcessor( stage_config )
+		) : iSpawnProcessor( stage_config, spawn_processor_config )
 			, mRequiredBulletCount( bullets_per_cycle * repeat_count )
 			, mRadianPerBullet( CC_DEGREES_TO_RADIANS( 360.f / bullets_per_cycle ) * ( rotate_direction_left ? 1 : -1 ) )
 			, mSecondsPerBullet( limit_time_per_cycle / bullets_per_cycle )
@@ -28,6 +29,7 @@ namespace step_rain_of_chaos
 
 		SpawnProcessorUp SpawnProcessor_Circle_01_OutToIn::Create(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const bool rotate_direction_left
 			, const int bullets_per_cycle
 			, const float limit_time_per_cycle
@@ -38,22 +40,27 @@ namespace step_rain_of_chaos
 			CCASSERT( 0.f < limit_time_per_cycle, "" );
 			CCASSERT( 0 < repeat_count, "" );
 
-			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_Circle_01_OutToIn( stage_config, rotate_direction_left, bullets_per_cycle, limit_time_per_cycle, repeat_count ) );
+			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_Circle_01_OutToIn(
+				stage_config
+				, spawn_processor_config
+				, rotate_direction_left
+				, bullets_per_cycle
+				, limit_time_per_cycle
+				, repeat_count
+			) );
 			ret->init();
 			return ret;
 		}
 
-		void SpawnProcessor_Circle_01_OutToIn::Enter( const Vec2& /*target_position*/ )
+		void SpawnProcessor_Circle_01_OutToIn::Enter( const Vec2& start_position, const Vec2& /*target_position*/ )
 		{
 			mRemainTime = mSecondsPerBullet;
 
-			mCurrentStartPosition = Vec2::UNIT_Y;
-			mCurrentStartPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
-			mCurrentStartPosition += mStageConfig.GetCenter();
+			mCurrentStartPosition = start_position;
 
 			mCurrentFireCount = 0;
 		}
-		bool SpawnProcessor_Circle_01_OutToIn::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_Circle_01_OutToIn::Update( const float dt, const Vec2& /*start_position*/, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			mRemainTime += dt;
 

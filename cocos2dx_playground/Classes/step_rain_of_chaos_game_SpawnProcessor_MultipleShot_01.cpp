@@ -21,11 +21,12 @@ namespace step_rain_of_chaos
 	{
 		SpawnProcessor_MultipleShot_01::SpawnProcessor_MultipleShot_01(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
 			, const float sleep_per_cycle
-		) : iSpawnProcessor( stage_config )
+		) : iSpawnProcessor( stage_config, spawn_processor_config )
 			, mHalfRadianPerCycle( CC_DEGREES_TO_RADIANS( degree_per_cycle * 0.5f ) )
 			, mBulletsPerCycle( std::max( 2, bullets_per_cycle ) )
 			, mRequiredCycle( std::max( 1, repeat_count ) )
@@ -34,7 +35,8 @@ namespace step_rain_of_chaos
 
 			, mStep( eStep::Fire )
 
-			, mPivotPosition( Vec2::UNIT_Y )
+			, mStartPosition()
+			, mTargetPosition()
 			, mFireStartDirection()
 			, mCurrentFireCycle( 0 )
 
@@ -43,6 +45,7 @@ namespace step_rain_of_chaos
 
 		SpawnProcessorUp SpawnProcessor_MultipleShot_01::Create(
 			const StageConfig& stage_config
+			, const SpawnProcessorConfig& spawn_processor_config
 			, const float degree_per_cycle
 			, const int bullets_per_cycle
 			, const int repeat_count
@@ -51,6 +54,7 @@ namespace step_rain_of_chaos
 		{
 			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_MultipleShot_01(
 				stage_config
+				, spawn_processor_config
 				, degree_per_cycle, bullets_per_cycle
 				, repeat_count
 				, sleep_per_cycle
@@ -59,35 +63,48 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void SpawnProcessor_MultipleShot_01::init()
-		{
-			mPivotPosition.scale( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
-			mPivotPosition += mStageConfig.GetCenter();
-		}
-
-		void SpawnProcessor_MultipleShot_01::Enter( const Vec2& target_position )
+		void SpawnProcessor_MultipleShot_01::Enter( const Vec2& start_position, const Vec2& target_position )
 		{
 			mStep = eStep::Fire;
 
-			mFireStartDirection = target_position - mPivotPosition;
+			mStartPosition = start_position;
+			mTargetPosition = target_position;
+
+			mFireStartDirection = mTargetPosition - mStartPosition;
 			mFireStartDirection.normalize();
 			mFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
 
 			mCurrentFireCycle = 0;
 		}
-		bool SpawnProcessor_MultipleShot_01::Update( float dt, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_MultipleShot_01::Update( const float dt, const Vec2& start_position, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			if( eStep::Fire == mStep )
 			{
-				Vec2 temp_fire_direction;
+				if( mSpawnProcessorConfig.UpdateTargetPosition )
+				{
+					mStartPosition = start_position;
+				}
 
+				if( mSpawnProcessorConfig.UpdateTargetPosition )
+				{
+					mTargetPosition = target_position;
+				}
+
+				if( mSpawnProcessorConfig.UpdateStartPosition || mSpawnProcessorConfig.UpdateTargetPosition )
+				{
+					mFireStartDirection = mTargetPosition - mStartPosition;
+					mFireStartDirection.normalize();
+					mFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle );
+				}
+
+				Vec2 temp_fire_direction;
 				for( int i = 0; mBulletsPerCycle > i; ++i )
 				{
 					temp_fire_direction = mFireStartDirection;
 					temp_fire_direction.rotate( Vec2::ZERO, mRadianPerBullet * i );
 
 					out_spawn_info_container->push_back( SpawnInfo{
-						mPivotPosition
+						mStartPosition
 						, temp_fire_direction
 					} );
 				}

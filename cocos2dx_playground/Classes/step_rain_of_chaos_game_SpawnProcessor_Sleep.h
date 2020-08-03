@@ -14,8 +14,8 @@ namespace step_rain_of_chaos
 		public:
 			static SpawnProcessorUp Create( const float required_time );
 
-			void Enter( const cocos2d::Vec2& target_position ) override;
-			bool Update( float dt, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
+			void Enter( const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position ) override;
+			bool Update( const float dt, const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
 			const float mRequiredTime;
