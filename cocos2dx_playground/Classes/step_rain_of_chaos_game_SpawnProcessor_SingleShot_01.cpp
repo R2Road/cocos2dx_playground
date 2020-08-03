@@ -50,16 +50,33 @@ namespace step_rain_of_chaos
 			mStep = eStep::Fire;
 
 			mStartPosition = start_position;
+			mTargetPosition = target_position;
 
-			mFireStartDirection = target_position - mStartPosition;
+			mFireStartDirection = mTargetPosition - mStartPosition;
 			mFireStartDirection.normalize();
 
 			mCurrentFireCycle = 0;
 		}
-		bool SpawnProcessor_SingleShot_01::Update( const float dt, const Vec2& /*start_position*/, const Vec2& /*target_position*/, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_SingleShot_01::Update( const float dt, const Vec2& start_position, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			if( eStep::Fire == mStep )
 			{
+				if( mSpawnProcessorConfig.UpdateTargetPosition )
+				{
+					mStartPosition = start_position;
+				}
+
+				if( mSpawnProcessorConfig.UpdateTargetPosition )
+				{
+					mTargetPosition = target_position;
+				}
+
+				if( mSpawnProcessorConfig.UpdateStartPosition || mSpawnProcessorConfig.UpdateTargetPosition )
+				{
+					mFireStartDirection = mTargetPosition - mStartPosition;
+					mFireStartDirection.normalize();
+				}
+
 				out_spawn_info_container->push_back( SpawnInfo{
 					mStartPosition
 					, mFireStartDirection
