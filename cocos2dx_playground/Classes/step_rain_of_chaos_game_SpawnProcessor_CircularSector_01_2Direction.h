@@ -47,6 +47,7 @@ namespace step_rain_of_chaos
 
 			float mRemainTime;
 			cocos2d::Vec2 mStartPosition;
+			cocos2d::Vec2 mTargetPosition;
 			cocos2d::Vec2 mPivotDirection;
 			cocos2d::Vec2 mCurrentFireStartDirection;
 			float mCurrentRadianPerBullet;

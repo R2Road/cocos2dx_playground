@@ -39,7 +39,8 @@ namespace step_rain_of_chaos
 			, mStep( eStep::Fire )
 
 			, mRemainTime( 0.f )
-			, mStartPosition( Vec2::UNIT_Y )
+			, mStartPosition()
+			, mTargetPosition()
 			, mPivotDirection()
 			, mCurrentFireStartDirection()
 			, mCurrentRadianPerBullet( 0.f )
@@ -81,8 +82,9 @@ namespace step_rain_of_chaos
 			mRemainTime = mSecondsPerBullet;
 
 			mStartPosition = start_position;
+			mTargetPosition = target_position;
 
-			mPivotDirection = target_position - mStartPosition;
+			mPivotDirection = mTargetPosition - mStartPosition;
 			mPivotDirection.normalize();
 
 			mCurrentFireStartDirection = mPivotDirection;
@@ -92,48 +94,71 @@ namespace step_rain_of_chaos
 			mCurrentFireCount = 0;
 			mCurrentFireCountInCycle = 0;
 		}
-		bool SpawnProcessor_CircularSector_01_2Direction::Update( const float dt, const Vec2& /*start_position*/, const Vec2& /*target_position*/, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_CircularSector_01_2Direction::Update( const float dt, const Vec2& start_position, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			if( eStep::Fire == mStep )
 			{
 				mRemainTime += dt;
 
-				Vec2 temp_fire_direction;
-
-				while( mSecondsPerBullet <= mRemainTime )
+				if( mSecondsPerBullet <= mRemainTime )
 				{
-					mRemainTime -= mSecondsPerBullet;
-
-					temp_fire_direction = mCurrentFireStartDirection;
-					temp_fire_direction.rotate( Vec2::ZERO, mCurrentRadianPerBullet * mCurrentFireCountInCycle );
-
-					out_spawn_info_container->push_back( SpawnInfo{
-						mStartPosition
-						, temp_fire_direction
-					} );
-
-					++mCurrentFireCount;
-					if( mRequiredBulletCount <= mCurrentFireCount )
+					if( mSpawnProcessorConfig.UpdateStartPosition )
 					{
-						break;
+						mStartPosition = start_position;
 					}
 
-					++mCurrentFireCountInCycle;
-					if( mBulletsPerCycle <= mCurrentFireCountInCycle )
+					if( mSpawnProcessorConfig.UpdateTargetPosition )
 					{
-						mCurrentFireCountInCycle = 0;
+						mTargetPosition = target_position;
+					}
 
-						mStep = eStep::Sleep;
-						mElapsedTime4Sleep = 0.f;
+					if( mSpawnProcessorConfig.UpdateStartPosition || mSpawnProcessorConfig.UpdateTargetPosition )
+					{
+						mPivotDirection = mTargetPosition - mStartPosition;
+						mPivotDirection.normalize();
 
 						mCurrentFireStartDirection = mPivotDirection;
-
 						const int temp_direction = ( mCurrentFireCount / mBulletsPerCycle ) & 1 ? -1 : 1; // check odd number
 						mCurrentFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle * temp_direction );
 						mCurrentRadianPerBullet = mRadianPerBullet * temp_direction;
+					}
 
-						mRemainTime = mSecondsPerBullet;
-						break;
+					Vec2 temp_fire_direction;
+					while( mSecondsPerBullet <= mRemainTime )
+					{
+						mRemainTime -= mSecondsPerBullet;
+
+						temp_fire_direction = mCurrentFireStartDirection;
+						temp_fire_direction.rotate( Vec2::ZERO, mCurrentRadianPerBullet * mCurrentFireCountInCycle );
+
+						out_spawn_info_container->push_back( SpawnInfo{
+							mStartPosition
+							, temp_fire_direction
+							} );
+
+						++mCurrentFireCount;
+						if( mRequiredBulletCount <= mCurrentFireCount )
+						{
+							break;
+						}
+
+						++mCurrentFireCountInCycle;
+						if( mBulletsPerCycle <= mCurrentFireCountInCycle )
+						{
+							mCurrentFireCountInCycle = 0;
+
+							mStep = eStep::Sleep;
+							mElapsedTime4Sleep = 0.f;
+
+							mCurrentFireStartDirection = mPivotDirection;
+
+							const int temp_direction = ( mCurrentFireCount / mBulletsPerCycle ) & 1 ? -1 : 1; // check odd number
+							mCurrentFireStartDirection.rotate( Vec2::ZERO, -mHalfRadianPerCycle * temp_direction );
+							mCurrentRadianPerBullet = mRadianPerBullet * temp_direction;
+
+							mRemainTime = mSecondsPerBullet;
+							break;
+						}
 					}
 				}
 			}
