@@ -80,7 +80,7 @@ namespace step_rain_of_chaos
 		{
 			if( eStep::Fire == mStep )
 			{
-				if( mSpawnProcessorConfig.UpdateTargetPosition )
+				if( mSpawnProcessorConfig.UpdateStartPosition )
 				{
 					mStartPosition = start_position;
 				}
