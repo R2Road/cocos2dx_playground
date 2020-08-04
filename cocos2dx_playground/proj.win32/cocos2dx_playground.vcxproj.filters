@@ -597,6 +597,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_Line.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1074,6 +1077,9 @@
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_Line.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
   </ItemGroup>
