@@ -588,14 +588,14 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Sleep.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_LayoutChangeSequenceScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1067,14 +1067,14 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Sleep.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01.h">
-      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_LayoutChangeSequenceScene.h">
       <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

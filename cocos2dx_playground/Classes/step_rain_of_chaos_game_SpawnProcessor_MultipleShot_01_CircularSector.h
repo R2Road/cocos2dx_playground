@@ -6,10 +6,10 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		class SpawnProcessor_MultipleShot_01 : public iSpawnProcessor
+		class SpawnProcessor_MultipleShot_01_CircularSector : public iSpawnProcessor
 		{
 		private:
-			SpawnProcessor_MultipleShot_01(
+			SpawnProcessor_MultipleShot_01_CircularSector(
 				const StageConfig& stage_config
 				, const SpawnProcessorConfig& spawn_processor_config
 				, const float degree_per_cycle

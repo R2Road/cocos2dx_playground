@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.h"
 
 #include <algorithm>
 
@@ -19,7 +19,7 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		SpawnProcessor_MultipleShot_01::SpawnProcessor_MultipleShot_01(
+		SpawnProcessor_MultipleShot_01_CircularSector::SpawnProcessor_MultipleShot_01_CircularSector(
 			const StageConfig& stage_config
 			, const SpawnProcessorConfig& spawn_processor_config
 			, const float degree_per_cycle
@@ -43,7 +43,7 @@ namespace step_rain_of_chaos
 			, mElapsedTime4Sleep( 0.f )
 		{}
 
-		SpawnProcessorUp SpawnProcessor_MultipleShot_01::Create(
+		SpawnProcessorUp SpawnProcessor_MultipleShot_01_CircularSector::Create(
 			const StageConfig& stage_config
 			, const SpawnProcessorConfig& spawn_processor_config
 			, const float degree_per_cycle
@@ -52,7 +52,7 @@ namespace step_rain_of_chaos
 			, const float sleep_per_cycle
 		)
 		{
-			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_MultipleShot_01(
+			SpawnProcessorUp ret( new ( std::nothrow ) SpawnProcessor_MultipleShot_01_CircularSector(
 				stage_config
 				, spawn_processor_config
 				, degree_per_cycle, bullets_per_cycle
@@ -63,7 +63,7 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void SpawnProcessor_MultipleShot_01::Enter( const Vec2& start_position, const Vec2& target_position )
+		void SpawnProcessor_MultipleShot_01_CircularSector::Enter( const Vec2& start_position, const Vec2& target_position )
 		{
 			mStep = eStep::Fire;
 
@@ -76,7 +76,7 @@ namespace step_rain_of_chaos
 
 			mCurrentFireCycle = 0;
 		}
-		bool SpawnProcessor_MultipleShot_01::Update( const float dt, const Vec2& start_position, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
+		bool SpawnProcessor_MultipleShot_01_CircularSector::Update( const float dt, const Vec2& start_position, const Vec2& target_position, SpawnInfoContainer* out_spawn_info_container )
 		{
 			if( eStep::Fire == mStep )
 			{
