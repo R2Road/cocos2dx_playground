@@ -40,6 +40,7 @@ namespace step_rain_of_chaos
 
 			, mRemainTime( 0.f )
 			, mStartPosition()
+			, mTargetPosition()
 			, mFireStartDirection()
 			, mCurrentFireCount( 0 )
 			, mCurrentFireCountInCycle( 0 )

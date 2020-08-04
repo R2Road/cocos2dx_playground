@@ -26,7 +26,8 @@ namespace step_rain_of_chaos
 
 			, mStep( eStep::Fire )
 
-			, mStartPosition( Vec2::UNIT_Y )
+			, mStartPosition()
+			, mTargetPosition()
 			, mFireStartDirection()
 			, mCurrentFireCycle( 0 )
 
