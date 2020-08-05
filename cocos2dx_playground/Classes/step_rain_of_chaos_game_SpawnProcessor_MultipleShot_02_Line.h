@@ -6,13 +6,13 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		class SpawnProcessor_MultipleShot_01 : public iSpawnProcessor
+		class SpawnProcessor_MultipleShot_02_Line : public iSpawnProcessor
 		{
 		private:
-			SpawnProcessor_MultipleShot_01(
+			SpawnProcessor_MultipleShot_02_Line(
 				const StageConfig& stage_config
 				, const SpawnProcessorConfig& spawn_processor_config
-				, const float degree_per_cycle
+				, const float range_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
 				, const float sleep_per_cycle
@@ -22,7 +22,7 @@ namespace step_rain_of_chaos
 			static SpawnProcessorUp Create(
 				const StageConfig& stage_config
 				, const SpawnProcessorConfig& spawn_processor_config
-				, const float degree_per_cycle
+				, const float range_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
 				, const float sleep_per_cycle
@@ -32,17 +32,19 @@ namespace step_rain_of_chaos
 			bool Update( const float dt, const cocos2d::Vec2& start_position, const cocos2d::Vec2& target_position, SpawnInfoContainer* out_spawn_info_container ) override;
 
 		private:
-			const float mHalfRadianPerCycle;
+			const float mHalfRangePerCycle;
 			const int mBulletsPerCycle;
 			const int mRequiredCycle;
-			const float mRadianPerBullet;
+			const float mRangePerBullet;
 			const float mSleepPerCycle;
 
 			int mStep;
 
 			cocos2d::Vec2 mStartPosition;
 			cocos2d::Vec2 mTargetPosition;
-			cocos2d::Vec2 mFireStartDirection;
+			cocos2d::Vec2 mFireDirection;
+			cocos2d::Vec2 mFireStartPosition;
+			cocos2d::Vec2 mFireOffset;
 			int mCurrentFireCycle;
 
 			float mElapsedTime4Sleep;

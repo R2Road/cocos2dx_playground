@@ -26,7 +26,8 @@ namespace step_rain_of_chaos
 
 			, mStep( eStep::Fire )
 
-			, mStartPosition( Vec2::UNIT_Y )
+			, mStartPosition()
+			, mTargetPosition()
 			, mFireStartDirection()
 			, mCurrentFireCycle( 0 )
 
@@ -61,7 +62,7 @@ namespace step_rain_of_chaos
 		{
 			if( eStep::Fire == mStep )
 			{
-				if( mSpawnProcessorConfig.UpdateTargetPosition )
+				if( mSpawnProcessorConfig.UpdateStartPosition )
 				{
 					mStartPosition = start_position;
 				}

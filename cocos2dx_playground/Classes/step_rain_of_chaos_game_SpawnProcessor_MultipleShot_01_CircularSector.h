@@ -6,29 +6,25 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		class SpawnProcessor_CircularSector_01_2Direction : public iSpawnProcessor
+		class SpawnProcessor_MultipleShot_01_CircularSector : public iSpawnProcessor
 		{
 		private:
-			SpawnProcessor_CircularSector_01_2Direction(
+			SpawnProcessor_MultipleShot_01_CircularSector(
 				const StageConfig& stage_config
 				, const SpawnProcessorConfig& spawn_processor_config
-				, const bool rotate_direction_left
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
-				, const float seconds_per_bullet
-				, const float delay_per_cycle
+				, const float sleep_per_cycle
 			);
 
 		public:
 			static SpawnProcessorUp Create(
 				const StageConfig& stage_config
 				, const SpawnProcessorConfig& spawn_processor_config
-				, const bool rotate_direction_left
 				, const float degree_per_cycle
 				, const int bullets_per_cycle
 				, const int repeat_count
-				, const float seconds_per_bullet
 				, const float sleep_per_cycle
 			);
 
@@ -38,22 +34,17 @@ namespace step_rain_of_chaos
 		private:
 			const float mHalfRadianPerCycle;
 			const int mBulletsPerCycle;
-			const int mRequiredBulletCount;
+			const int mRequiredCycle;
 			const float mRadianPerBullet;
-			const float mSecondsPerBullet;
 			const float mSleepPerCycle;
 
 			int mStep;
 
-			float mRemainTime;
 			cocos2d::Vec2 mStartPosition;
 			cocos2d::Vec2 mTargetPosition;
-			cocos2d::Vec2 mPivotDirection;
-			cocos2d::Vec2 mCurrentFireStartDirection;
-			float mCurrentRadianPerBullet;
-			int mCurrentFireCount;
-			int mCurrentFireCountInCycle;
-			
+			cocos2d::Vec2 mFireStartDirection;
+			int mCurrentFireCycle;
+
 			float mElapsedTime4Sleep;
 		};
 	}

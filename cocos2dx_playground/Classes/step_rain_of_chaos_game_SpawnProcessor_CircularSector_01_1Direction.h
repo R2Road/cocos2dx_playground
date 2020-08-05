@@ -47,6 +47,7 @@ namespace step_rain_of_chaos
 
 			float mRemainTime;
 			cocos2d::Vec2 mStartPosition;
+			cocos2d::Vec2 mTargetPosition;
 			cocos2d::Vec2 mFireStartDirection;
 			int mCurrentFireCount;
 			int mCurrentFireCountInCycle;
