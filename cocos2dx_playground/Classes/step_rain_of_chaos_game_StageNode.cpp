@@ -10,6 +10,8 @@
 #include "base/CCDirector.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_Clamp.h"
+
 #include "step_mole_AnimationComponent.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_rain_of_chaos_game_AnimationInfoContainer.h"
@@ -208,7 +210,12 @@ namespace step_rain_of_chaos
 		}
 		void StageNode::PlayerMoveRequest( const cocos2d::Vec2& move_vector )
 		{
-			mPlayerNode->setPosition( mPlayerNode->getPosition() + move_vector );
+			const Vec2 new_player_position(
+				cpg::clamp( mPlayerNode->getPosition().x + move_vector.x, mStageConfig.GetStageArea().getMinX(), mStageConfig.GetStageArea().getMaxX() )
+				, cpg::clamp( mPlayerNode->getPosition().y + move_vector.y, mStageConfig.GetStageArea().getMinY(), mStageConfig.GetStageArea().getMaxY() )
+			);
+
+			mPlayerNode->setPosition( new_player_position );
 		}
 
 		void StageNode::RequestGenerate( const int amount )
