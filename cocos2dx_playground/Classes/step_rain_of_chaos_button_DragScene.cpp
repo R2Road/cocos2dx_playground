@@ -82,7 +82,7 @@ namespace step_rain_of_chaos
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 15, 49, 101, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 63, 23, 14, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
@@ -102,7 +102,7 @@ namespace step_rain_of_chaos
 				// left label
 				{
 					auto label = Label::createWithTTF( "CLICK HERE ===>>>", "fonts/NanumSquareR.ttf", 10 );
-					label->setColor( Color3B::RED );
+					label->setColor( Color3B::GREEN );
 					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 					label->setPosition(
 						-4.f
@@ -114,7 +114,7 @@ namespace step_rain_of_chaos
 				// right label
 				{
 					auto label = Label::createWithTTF( "<<<=== ...AND DRAG", "fonts/NanumSquareR.ttf", 10 );
-					label->setColor( Color3B::RED );
+					label->setColor( Color3B::GREEN );
 					label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 					label->setPosition(
 						button->getContentSize().width + 4.f
