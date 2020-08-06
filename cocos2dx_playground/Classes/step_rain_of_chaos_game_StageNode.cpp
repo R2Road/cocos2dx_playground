@@ -154,7 +154,7 @@ namespace step_rain_of_chaos
 			// Bullet
 			//
 			{
-				RequestGenerate( bullet_count );
+				RequestGenerateBullet( bullet_count );
 			}
 
 			return true;
@@ -218,7 +218,7 @@ namespace step_rain_of_chaos
 			mPlayerNode->setPosition( new_player_position );
 		}
 
-		void StageNode::RequestGenerate( const int amount )
+		void StageNode::RequestGenerateBullet( const int amount )
 		{
 			const int result_amount = mBulletCount + amount;
 
@@ -240,7 +240,7 @@ namespace step_rain_of_chaos
 				mCollisionComponentList[mBulletCount] = static_cast<step_mole::CircleCollisionComponent*>( bullet_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
 			}
 		}
-		void StageNode::RequestAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction )
+		void StageNode::RequestBulletAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction )
 		{
 			CCASSERT( bullet_index < mBulletLifeComponentList.size(), "Invalid Object Index" );
 

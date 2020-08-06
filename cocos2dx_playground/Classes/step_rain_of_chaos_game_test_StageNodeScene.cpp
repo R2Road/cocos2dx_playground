@@ -273,7 +273,7 @@ namespace step_rain_of_chaos
 					if( -1 == target_index )
 					{
 						mBulletManager->RequestGenerate( 50 );
-						mStageNode->RequestGenerate( 50 );
+						mStageNode->RequestGenerateBullet( 50 );
 
 						target_index = mBulletManager->GetIdleTarget();
 						if( -1 == target_index )
@@ -285,7 +285,7 @@ namespace step_rain_of_chaos
 					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
 					dir.normalize();
 					dir.scale( mCurrentMoveSpeed );
-					mStageNode->RequestAction( target_index, Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
+					mStageNode->RequestBulletAction( target_index, Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
 
 					offset.y += 0.5;
 				}
