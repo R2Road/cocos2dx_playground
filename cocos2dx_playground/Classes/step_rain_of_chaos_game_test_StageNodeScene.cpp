@@ -6,12 +6,15 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "step_mole_AnimationComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
+#include "step_rain_of_chaos_game_AnimationInfoContainer.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
 
@@ -163,6 +166,27 @@ namespace step_rain_of_chaos
 					, BulletCachingAmount
 				);
 				addChild( mStageNode );
+			}
+
+			//
+			// Player Node
+			//
+			//
+			// Animation
+			//
+			{
+				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				animation_node->setScale( _director->getContentScaleFactor() );
+				{
+					// Animation Component
+					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetActorAnimationInfoContainer() );
+					animation_node->addComponent( animation_component );
+
+					animation_component->PlayAnimation( cpg::animation::eIndex::run );
+				}
+
+				mStageNode->AddPlayer( animation_node );
 			}
 
 			return true;

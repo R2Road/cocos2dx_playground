@@ -35,6 +35,8 @@ namespace step_rain_of_chaos
 			, mBulletLifeComponentList()
 			, mCollisionComponentList()
 			, mBulletCount( 0 )
+
+			, mPlayerNode( nullptr )
 		{}
 
 		StageNode* StageNode::create(
@@ -194,6 +196,15 @@ namespace step_rain_of_chaos
 			}
 
 			return root_node;
+		}
+
+		void StageNode::AddPlayer( cocos2d::Node* player_node )
+		{
+			assert( nullptr == mPlayerNode );
+
+			mPlayerNode = player_node;
+			mPlayerNode->setPosition( getContentSize().width * 0.5f, getContentSize().height * 0.5f );
+			addChild( mPlayerNode );
 		}
 
 		void StageNode::RequestGenerate( const int amount )

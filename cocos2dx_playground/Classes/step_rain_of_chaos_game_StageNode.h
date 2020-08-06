@@ -58,6 +58,8 @@ namespace step_rain_of_chaos
 			);
 
 		public:
+			void AddPlayer( cocos2d::Node* player_node );
+
 			void RequestGenerate( const int amount = 1 );
 			void RequestAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction );
 
@@ -70,6 +72,8 @@ namespace step_rain_of_chaos
 			std::vector<step_rain_of_chaos::game::BulletLifeComponent*> mBulletLifeComponentList;
 			std::vector<step_mole::CircleCollisionComponent*> mCollisionComponentList;
 			int mBulletCount;
+
+			cocos2d::Node* mPlayerNode;
 		};
 	}
 }
