@@ -206,6 +206,10 @@ namespace step_rain_of_chaos
 			mPlayerNode->setPosition( getContentSize().width * 0.5f, getContentSize().height * 0.5f );
 			addChild( mPlayerNode );
 		}
+		void StageNode::PlayerMoveRequest( const cocos2d::Vec2& move_vector )
+		{
+			mPlayerNode->setPosition( mPlayerNode->getPosition() + move_vector );
+		}
 
 		void StageNode::RequestGenerate( const int amount )
 		{
