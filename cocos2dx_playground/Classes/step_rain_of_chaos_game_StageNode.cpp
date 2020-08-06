@@ -208,7 +208,7 @@ namespace step_rain_of_chaos
 			mPlayerNode->setPosition( getContentSize().width * 0.5f, getContentSize().height * 0.5f );
 			addChild( mPlayerNode );
 		}
-		void StageNode::PlayerMoveRequest( const cocos2d::Vec2& move_vector )
+		void StageNode::PlayerMoveRequest( const Vec2& move_vector )
 		{
 			const Vec2 new_player_position(
 				cpg::clamp( mPlayerNode->getPosition().x + move_vector.x, mStageConfig.GetStageArea().getMinX(), mStageConfig.GetStageArea().getMaxX() )
@@ -240,7 +240,7 @@ namespace step_rain_of_chaos
 				mCollisionComponentList[mBulletCount] = static_cast<step_mole::CircleCollisionComponent*>( bullet_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
 			}
 		}
-		void StageNode::RequestBulletAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction )
+		void StageNode::RequestBulletAction( const std::size_t bullet_index, const Vec2 start_position, const Vec2 move_direction )
 		{
 			CCASSERT( bullet_index < mBulletLifeComponentList.size(), "Invalid Object Index" );
 
