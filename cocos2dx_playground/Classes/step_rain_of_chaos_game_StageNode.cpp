@@ -200,7 +200,7 @@ namespace step_rain_of_chaos
 			return root_node;
 		}
 
-		void StageNode::AddPlayer( cocos2d::Node* player_node )
+		void StageNode::AddPlayer( Node* player_node )
 		{
 			assert( nullptr == mPlayerNode );
 
