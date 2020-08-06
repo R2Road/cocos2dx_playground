@@ -9,7 +9,6 @@
 #include "step_rain_of_chaos_input_KeyCodeCollectScene.h"
 #include "step_rain_of_chaos_batch_node_BasicScene.h"
 #include "step_rain_of_chaos_batch_node_QuadScene.h"
-#include "step_rain_of_chaos_collision_CollectionScene.h"
 #include "step_rain_of_chaos_button_DragScene.h"
 
 #include "step_rain_of_chaos_game_test_ActorMoveScene.h"
@@ -62,10 +61,7 @@ namespace step_rain_of_chaos
 			ss << "[3] : " << step_rain_of_chaos::batch_node::QuadScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[5] : " << step_rain_of_chaos::button::DragScene::getTitle();
+			ss << "[4] : " << step_rain_of_chaos::button::DragScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -145,10 +141,6 @@ namespace step_rain_of_chaos
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_5:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::button::DragScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 

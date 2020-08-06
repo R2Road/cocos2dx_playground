@@ -8,6 +8,7 @@
 
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
+#include "step_rain_of_chaos_collision_CollectionScene.h"
 
 USING_NS_CC;
 
@@ -56,6 +57,9 @@ namespace step_defender
 			ss << "[1] : " << step02::fsm1test::BasicScene::getTitle();
 			ss << std::endl;
 			ss << "[2] : " << step02::fsm1test::AnimationControlScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[3] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -111,6 +115,10 @@ namespace step_defender
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			Director::getInstance()->replaceScene( step02::fsm1test::AnimationControlScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_3:
+			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
 			break;
 
 		default:

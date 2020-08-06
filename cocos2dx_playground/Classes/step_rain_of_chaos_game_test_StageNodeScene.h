@@ -6,6 +6,7 @@
 
 #include "helper_BackToThePreviousScene.h"
 #include "step_rain_of_chaos_game_StageConfig.h"
+#include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 namespace step_rain_of_chaos
 {
@@ -30,10 +31,13 @@ namespace step_rain_of_chaos
 			void onEnter() override;
 			void onExit() override;
 
+			void UpdateForInput( float dt );
+
 		private:
 			void updateMoveSpeedView();
 			void updateFireAmountView();
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
@@ -43,6 +47,8 @@ namespace step_rain_of_chaos
 			game::StageNode* mStageNode;
 			int mCurrentMoveSpeed;
 			int mCurrentFireAmount;
+
+			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
 		};
 	}
 }

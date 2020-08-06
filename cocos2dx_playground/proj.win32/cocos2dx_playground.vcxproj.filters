@@ -88,9 +88,6 @@
     <Filter Include="src\scene\step_04_mole\animation">
       <UniqueIdentifier>{94f7f939-c9ab-40f0-a1d2-7d90e76ed48a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_05_rain_of_chaos\collision">
-      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_04_mole\circle_collision">
       <UniqueIdentifier>{84b3c0ef-8638-4a3c-b4a4-73fae4e2d165}</UniqueIdentifier>
     </Filter>
@@ -147,6 +144,9 @@
     </Filter>
     <Filter Include="src\scene\step_05_rain_of_chaos\game\spawnprocessor">
       <UniqueIdentifier>{512811c5-387d-402b-8dc6-c641a889e451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_06_defender\collision">
+      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -322,7 +322,7 @@
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
+      <Filter>src\scene\step_06_defender\collision</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp">
       <Filter>src\scene\step_06_defender</Filter>
@@ -786,7 +786,7 @@
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.h">
-      <Filter>src\scene\step_05_rain_of_chaos\collision</Filter>
+      <Filter>src\scene\step_06_defender\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_RootScene.h">
       <Filter>src\scene\step_06_defender</Filter>

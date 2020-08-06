@@ -10,6 +10,8 @@
 #include "base/CCDirector.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_Clamp.h"
+
 #include "step_mole_AnimationComponent.h"
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_rain_of_chaos_game_AnimationInfoContainer.h"
@@ -35,6 +37,8 @@ namespace step_rain_of_chaos
 			, mBulletLifeComponentList()
 			, mCollisionComponentList()
 			, mBulletCount( 0 )
+
+			, mPlayerNode( nullptr )
 		{}
 
 		StageNode* StageNode::create(
@@ -150,7 +154,7 @@ namespace step_rain_of_chaos
 			// Bullet
 			//
 			{
-				RequestGenerate( bullet_count );
+				RequestGenerateBullet( bullet_count );
 			}
 
 			return true;
@@ -196,7 +200,25 @@ namespace step_rain_of_chaos
 			return root_node;
 		}
 
-		void StageNode::RequestGenerate( const int amount )
+		void StageNode::AddPlayer( Node* player_node )
+		{
+			assert( nullptr == mPlayerNode );
+
+			mPlayerNode = player_node;
+			mPlayerNode->setPosition( getContentSize().width * 0.5f, getContentSize().height * 0.5f );
+			addChild( mPlayerNode );
+		}
+		void StageNode::PlayerMoveRequest( const Vec2& move_vector )
+		{
+			const Vec2 new_player_position(
+				cpg::clamp( mPlayerNode->getPosition().x + move_vector.x, mStageConfig.GetStageArea().getMinX(), mStageConfig.GetStageArea().getMaxX() )
+				, cpg::clamp( mPlayerNode->getPosition().y + move_vector.y, mStageConfig.GetStageArea().getMinY(), mStageConfig.GetStageArea().getMaxY() )
+			);
+
+			mPlayerNode->setPosition( new_player_position );
+		}
+
+		void StageNode::RequestGenerateBullet( const int amount )
 		{
 			const int result_amount = mBulletCount + amount;
 
@@ -218,7 +240,7 @@ namespace step_rain_of_chaos
 				mCollisionComponentList[mBulletCount] = static_cast<step_mole::CircleCollisionComponent*>( bullet_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
 			}
 		}
-		void StageNode::RequestAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction )
+		void StageNode::RequestBulletAction( const std::size_t bullet_index, const Vec2 start_position, const Vec2 move_direction )
 		{
 			CCASSERT( bullet_index < mBulletLifeComponentList.size(), "Invalid Object Index" );
 
