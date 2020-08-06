@@ -79,17 +79,17 @@ namespace step_rain_of_chaos
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Do Bullet";
+				ss << "[SPACE] : Do Bullet";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow Key - Up] : Move Speed - Increase";
+				ss << "[Q] : Move Speed - Increase";
 				ss << std::endl;
-				ss << "[Arrow Key - Down] : Move Speed - Decrease";
+				ss << "[W] : Move Speed - Decrease";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow Key - Right] : Fire Amount - Increase";
+				ss << "[A] : Fire Amount - Increase";
 				ss << std::endl;
-				ss << "[Arrow Key - Left] : Fire Amount - Decrease";
+				ss << "[S] : Fire Amount - Decrease";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -228,7 +228,7 @@ namespace step_rain_of_chaos
 				helper::BackToThePreviousScene::MoveBack();
 				return;
 
-			case EventKeyboard::KeyCode::KEY_A:
+			case EventKeyboard::KeyCode::KEY_SPACE:
 			{
 				Vec2 offset;
 
@@ -259,20 +259,20 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+			case EventKeyboard::KeyCode::KEY_Q:
 				mCurrentMoveSpeed += 1;
 				updateMoveSpeedView();
 				return;
-			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+			case EventKeyboard::KeyCode::KEY_W:
 				mCurrentMoveSpeed = std::max( 1, mCurrentMoveSpeed - 1 );
 				updateMoveSpeedView();
 				return;
 
-			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			case EventKeyboard::KeyCode::KEY_A:
 				mCurrentFireAmount += 1;
 				updateFireAmountView();
 				return;
-			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+			case EventKeyboard::KeyCode::KEY_S:
 				mCurrentFireAmount = std::max( 1, mCurrentFireAmount - 1 );
 				updateFireAmountView();
 				return;
