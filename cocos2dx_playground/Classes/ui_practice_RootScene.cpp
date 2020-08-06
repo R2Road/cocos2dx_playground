@@ -62,7 +62,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[5] : " << ui_practice::LayoutNScrollViewScene::getTitle();
 			ss << std::endl;
-			ss << "[6] : " << ui_practice::LayoutChangeSequenceScene::getTitle();
+			ss << "[6] : " << ui_practice::layout_test::ChangeSequenceScene::getTitle();
 			ss << std::endl;
 			ss << "[7] : " << ui_practice::layout_test::VariousItemSizeScene::getTitle();
 			ss << std::endl;
@@ -144,7 +144,7 @@ namespace ui_practice
 			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_6:
-			Director::getInstance()->replaceScene( ui_practice::LayoutChangeSequenceScene::create( helper::CreateSceneMover<RootScene>() ) );
+			Director::getInstance()->replaceScene( ui_practice::layout_test::ChangeSequenceScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_7:
 			Director::getInstance()->replaceScene( ui_practice::layout_test::VariousItemSizeScene::create( helper::CreateSceneMover<RootScene>() ) );
