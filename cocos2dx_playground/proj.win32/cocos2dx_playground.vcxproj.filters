@@ -591,9 +591,6 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_practice_LayoutChangeSequenceScene.cpp">
-      <Filter>src\scene\ui_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
@@ -601,6 +598,9 @@
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_layout_test_VariousItemSizeScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_layout_test_ChangeSequenceScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1076,9 +1076,6 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_practice_LayoutChangeSequenceScene.h">
-      <Filter>src\scene\ui_practice</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
@@ -1086,6 +1083,9 @@
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_layout_test_VariousItemSizeScene.h">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_layout_test_ChangeSequenceScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>

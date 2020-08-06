@@ -11,7 +11,7 @@
 #include "ui_practice_LayoutHorizontalScene.h"
 #include "ui_practice_RelativeLayoutScene.h"
 #include "ui_practice_LayoutNScrollViewScene.h"
-#include "ui_practice_LayoutChangeSequenceScene.h"
+#include "ui_practice_layout_test_ChangeSequenceScene.h"
 #include "ui_practice_layout_test_VariousItemSizeScene.h"
 #include "ui_practice_UIAndCamera.h"
 #include "ui_practice_Minimap.h"
