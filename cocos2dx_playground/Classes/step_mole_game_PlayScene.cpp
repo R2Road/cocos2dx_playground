@@ -367,25 +367,10 @@ namespace step_mole
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			switch( keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				Director::getInstance()->replaceScene( step_mole::game::TitleScene::create() );
 				return;
-
-			case EventKeyboard::KeyCode::KEY_A:
-			{
-				const auto target_index = mTargetManager->GetIdleTarget();
-				if( -1 != target_index )
-				{
-					mStageView->RequestAction( target_index, 3.f );
-				}
-
-				return;
-			}
-
-			default:
-				CCLOG( "Key Code : %d", keycode );
 			}
 		}
 	}
