@@ -16,7 +16,6 @@
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_AnimationInfoContainer.h"
 #include "step_rain_of_chaos_game_StageNode.h"
-#include "step_rain_of_chaos_game_BulletManager.h"
 
 USING_NS_CC;
 
@@ -35,7 +34,6 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mStageConfig()
-			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
 			, mCurrentMoveSpeed( 3 )
 			, mCurrentFireAmount( 1 )
@@ -147,13 +145,6 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Target Manager
-			//
-			{
-				mBulletManager = game::BulletManager::create( BulletCachingAmount );
-			}
-
-			//
 			// Stage Node
 			//
 			{
@@ -165,7 +156,6 @@ namespace step_rain_of_chaos
 				mStageNode = game::StageNode::create(
 					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
-					, mBulletManager->GetComeHomeCallback()
 					, step_mole::CircleCollisionComponentConfig { false, false, false }
 					, BulletCachingAmount
 				);
@@ -266,26 +256,12 @@ namespace step_rain_of_chaos
 			{
 				Vec2 offset;
 
-				int target_index = -1;
 				for( int i = 0; i < mCurrentFireAmount; ++i )
 				{
-					target_index = mBulletManager->GetIdleTarget();
-					if( -1 == target_index )
-					{
-						mBulletManager->RequestGenerate( 50 );
-						mStageNode->RequestGenerateBullet( 50 );
-
-						target_index = mBulletManager->GetIdleTarget();
-						if( -1 == target_index )
-						{
-							break;
-						}
-					}
-
 					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
 					dir.normalize();
 					dir.scale( mCurrentMoveSpeed );
-					mStageNode->RequestBulletAction( target_index, Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
+					mStageNode->RequestBulletAction( Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
 
 					offset.y += 0.5;
 				}

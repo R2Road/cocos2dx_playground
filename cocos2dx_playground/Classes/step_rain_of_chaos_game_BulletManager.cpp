@@ -19,23 +19,16 @@ namespace step_rain_of_chaos
 			CCLOG( "BulletManager : BulletAmount : %d", mBulletAmount );
 		}
 
-		BulletManagerUp BulletManager::create( const int caching_amount )
+		BulletManagerUp BulletManager::create()
 		{
 			BulletManagerUp ret( new ( std::nothrow ) BulletManager() );
-			if( !ret || !ret->Init( caching_amount ) )
+			if( !ret )
 			{
 				ret.reset();
 				return nullptr;
 			}
 
 			return ret;
-		}
-
-		bool BulletManager::Init( const int caching_amount )
-		{
-			RequestGenerate( caching_amount );
-
-			return true;
 		}
 
 		void BulletManager::RequestGenerate( const int amount )

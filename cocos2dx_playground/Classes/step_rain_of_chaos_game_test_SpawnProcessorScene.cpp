@@ -43,7 +43,6 @@ namespace step_rain_of_chaos
 			, mTargetButton_MoveOffset()
 
 			, mStageConfig()
-			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
 			, mTargetNode( nullptr )
 
@@ -183,20 +182,12 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Bullet Manager
-			//
-			{
-				mBulletManager = game::BulletManager::create( BulletCachingAmount );
-			}
-
-			//
 			// Stage Node
 			//
 			{
 				mStageNode = game::StageNode::create(
 					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
-					, mBulletManager->GetComeHomeCallback()
 					, step_mole::CircleCollisionComponentConfig { false, false, false }
 					, BulletCachingAmount
 				);
@@ -288,26 +279,12 @@ namespace step_rain_of_chaos
 
 			if( !aaa.empty() )
 			{
-				int target_index = -1;
 				for( const auto& s : aaa )
 				{
-					target_index = mBulletManager->GetIdleTarget();
-					if( -1 == target_index )
-					{
-						mBulletManager->RequestGenerate( 50 );
-						mStageNode->RequestGenerateBullet( 50 );
-
-						target_index = mBulletManager->GetIdleTarget();
-						if( -1 == target_index )
-						{
-							break;
-						}
-					}
-
 					Vec2 dir = s.MoveDirection;
 					dir.normalize();
 					dir.scale( 3.f );
-					mStageNode->RequestBulletAction( target_index, s.StartPosition, dir );
+					mStageNode->RequestBulletAction( s.StartPosition, dir );
 				}
 			}
 		}

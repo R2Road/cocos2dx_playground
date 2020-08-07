@@ -19,6 +19,7 @@ namespace step_rain_of_chaos
 	namespace game
 	{
 		class BulletLifeComponent;
+		using BulletManagerUp = std::unique_ptr<class BulletManager>;
 
 		class StageNode : public cocos2d::Node
 		{
@@ -34,7 +35,6 @@ namespace step_rain_of_chaos
 			StageNode(
 				const StageConfig stage_config
 				, const DebugConfig debug_config
-				, const BulletProcessExitCallback& bullet_process_exit_callback
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 			);
 
@@ -42,7 +42,6 @@ namespace step_rain_of_chaos
 			static StageNode* create(
 				const StageConfig stage_config
 				, const DebugConfig debug_config
-				, const BulletProcessExitCallback& bullet_process_exit_callback
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 				, const int bullet_count
 			);
@@ -62,14 +61,14 @@ namespace step_rain_of_chaos
 			void PlayerMoveRequest( const cocos2d::Vec2& move_vector );
 
 			void RequestGenerateBullet( const int amount = 1 );
-			void RequestBulletAction( const std::size_t bullet_index, const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction );
+			void RequestBulletAction( const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction );
 
 		private:
 			const StageConfig mStageConfig;
 			const DebugConfig mDebugConfig;
-			const BulletProcessExitCallback mBulletProcessExitCallback;
 			const step_mole::CircleCollisionComponentConfig mCircleCollisionComponentConfig;
 
+			BulletManagerUp mBulletManager;
 			std::vector<step_rain_of_chaos::game::BulletLifeComponent*> mBulletLifeComponentList;
 			std::vector<step_mole::CircleCollisionComponent*> mCollisionComponentList;
 			int mBulletCount;

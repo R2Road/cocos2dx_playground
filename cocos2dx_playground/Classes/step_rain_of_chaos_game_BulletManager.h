@@ -23,10 +23,7 @@ namespace step_rain_of_chaos
 			~BulletManager();
 
 		public:
-			static BulletManagerUp create( const int caching_amount );
-
-		private:
-			bool Init( const int caching_amount );
+			static BulletManagerUp create();
 
 		public:
 			void RequestGenerate( const int amount );
