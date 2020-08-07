@@ -603,6 +603,9 @@
     <ClCompile Include="..\Classes\ui_practice_layout_test_ChangeSequenceScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_practice_ToggleButtonScene.cpp">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1086,6 +1089,9 @@
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_layout_test_ChangeSequenceScene.h">
+      <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_practice_ToggleButtonScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
   </ItemGroup>

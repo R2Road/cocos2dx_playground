@@ -13,6 +13,7 @@
 #include "ui_practice_LayoutNScrollViewScene.h"
 #include "ui_practice_layout_test_ChangeSequenceScene.h"
 #include "ui_practice_layout_test_VariousItemSizeScene.h"
+#include "ui_practice_ToggleButtonScene.h"
 #include "ui_practice_UIAndCamera.h"
 #include "ui_practice_Minimap.h"
 #include "ui_practice_SliderScene.h"
@@ -65,6 +66,9 @@ namespace ui_practice
 			ss << "[6] : " << ui_practice::layout_test::ChangeSequenceScene::getTitle();
 			ss << std::endl;
 			ss << "[7] : " << ui_practice::layout_test::VariousItemSizeScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[8] : " << ui_practice::ToggleButtonScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -148,6 +152,10 @@ namespace ui_practice
 			break;
 		case EventKeyboard::KeyCode::KEY_7:
 			Director::getInstance()->replaceScene( ui_practice::layout_test::VariousItemSizeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_8:
+			Director::getInstance()->replaceScene( ui_practice::ToggleButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_Q:
