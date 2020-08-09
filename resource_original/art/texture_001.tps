@@ -447,6 +447,25 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">ui/radio_button/radio_button_01_0.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_1.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_2.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_3.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,5,10,10</rect>
+                <key>scale9Paddings</key>
+                <rect>5,5,10,10</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">ui/toggle_button/toggle_button_01_0.png</key>
             <key type="filename">ui/toggle_button/toggle_button_01_1.png</key>
             <struct type="IndividualSpriteSettings">
@@ -648,6 +667,11 @@
             <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_1.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_2.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_3.png</filename>
+            <filename>ui/radio_button/radio_button_01_0.png</filename>
+            <filename>ui/radio_button/radio_button_01_1.png</filename>
+            <filename>ui/radio_button/radio_button_01_2.png</filename>
+            <filename>ui/radio_button/radio_button_01_3.png</filename>
+            <filename>ui/radio_button/radio_button_01_4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

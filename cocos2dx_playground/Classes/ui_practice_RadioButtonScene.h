@@ -1,18 +1,18 @@
 #pragma once
 
 #include "2d/CCScene.h"
-#include "extensions/GUI/CCControlExtension/CCControl.h"
+#include "ui/UIWidget.h"
 
 #include "helper_BackToThePreviousScene.h"
 
 namespace ui_practice
 {
-	class ToggleButtonScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+	class RadioButtonScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	public:
-		ToggleButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		RadioButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
-		static const char* getTitle() { return "Toggle Button"; }
+		static const char* getTitle() { return "Radio Button"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		bool init() override;
@@ -20,8 +20,8 @@ namespace ui_practice
 		void onExit() override;
 
 	private:
-		void onToggleButton( cocos2d::Ref* sender, cocos2d::extension::Control::EventType event_type );
-		void updateStatusView( const bool new_status );
+		void onRadioButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touchEventType );
+		void updateStatusView( const int radio_button_tag );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 

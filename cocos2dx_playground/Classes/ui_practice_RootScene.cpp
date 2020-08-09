@@ -13,10 +13,13 @@
 #include "ui_practice_LayoutNScrollViewScene.h"
 #include "ui_practice_layout_test_ChangeSequenceScene.h"
 #include "ui_practice_layout_test_VariousItemSizeScene.h"
-#include "ui_practice_ToggleButtonScene.h"
+
 #include "ui_practice_UIAndCamera.h"
 #include "ui_practice_Minimap.h"
+
 #include "ui_practice_SliderScene.h"
+#include "ui_practice_ToggleButtonScene.h"
+#include "ui_practice_RadioButtonScene.h"
 
 USING_NS_CC;
 
@@ -68,9 +71,6 @@ namespace ui_practice
 			ss << "[7] : " << ui_practice::layout_test::VariousItemSizeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[8] : " << ui_practice::ToggleButtonScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
@@ -83,8 +83,14 @@ namespace ui_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[A] : " << ui_practice::SliderScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[S] : " << ui_practice::ToggleButtonScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[D] : " << ui_practice::RadioButtonScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -154,10 +160,6 @@ namespace ui_practice
 			Director::getInstance()->replaceScene( ui_practice::layout_test::VariousItemSizeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_8:
-			Director::getInstance()->replaceScene( ui_practice::ToggleButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
-
 		case EventKeyboard::KeyCode::KEY_Q:
 			Director::getInstance()->replaceScene( ui_practice::UIAndCamera::create() );
 			break;
@@ -167,6 +169,12 @@ namespace ui_practice
 
 		case EventKeyboard::KeyCode::KEY_A:
 			Director::getInstance()->replaceScene( ui_practice::SliderScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_S:
+			Director::getInstance()->replaceScene( ui_practice::ToggleButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_D:
+			Director::getInstance()->replaceScene( ui_practice::RadioButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
