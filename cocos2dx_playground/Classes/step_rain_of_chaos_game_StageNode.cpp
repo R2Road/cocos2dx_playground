@@ -261,7 +261,7 @@ namespace step_rain_of_chaos
 					, mDebugConfig.bShowPivot
 				);
 				bullet_node->setPosition( mBulletCount * 2, 100.f );
-				addChild( bullet_node );
+				addChild( bullet_node, 1 );
 
 				mBulletLifeComponentList[mBulletCount] = static_cast<BulletLifeComponent*>( bullet_node->getComponent( BulletLifeComponent::GetStaticName() ) );
 				mCollisionComponentList[mBulletCount] = static_cast<step_mole::CircleCollisionComponent*>( bullet_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
