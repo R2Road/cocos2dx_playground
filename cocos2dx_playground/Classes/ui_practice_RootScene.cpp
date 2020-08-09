@@ -13,10 +13,13 @@
 #include "ui_practice_LayoutNScrollViewScene.h"
 #include "ui_practice_layout_test_ChangeSequenceScene.h"
 #include "ui_practice_layout_test_VariousItemSizeScene.h"
-#include "ui_practice_ToggleButtonScene.h"
+
 #include "ui_practice_UIAndCamera.h"
 #include "ui_practice_Minimap.h"
+
 #include "ui_practice_SliderScene.h"
+#include "ui_practice_ToggleButtonScene.h"
+#include "ui_practice_RadioButtonScene.h"
 
 USING_NS_CC;
 
@@ -83,6 +86,9 @@ namespace ui_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[S] : " << ui_practice::ToggleButtonScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[D] : " << ui_practice::RadioButtonScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -166,6 +172,9 @@ namespace ui_practice
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
 			Director::getInstance()->replaceScene( ui_practice::ToggleButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_D:
+			Director::getInstance()->replaceScene( ui_practice::RadioButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
