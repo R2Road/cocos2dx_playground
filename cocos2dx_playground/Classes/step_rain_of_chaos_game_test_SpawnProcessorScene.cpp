@@ -188,7 +188,7 @@ namespace step_rain_of_chaos
 			{
 				mStageNode = game::StageNode::create(
 					mStageConfig
-					, game::StageNode::DebugConfig{ true, true }
+					, game::StageNode::DebugConfig{ false, true }
 					, step_mole::CircleCollisionComponentConfig { false, false, false }
 					, BulletCachingAmount
 				);
