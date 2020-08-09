@@ -1,14 +1,9 @@
 #pragma once
 
-#include <string>
-
 #include "2d/CCScene.h"
 #include "helper_BackToThePreviousScene.h"
-#include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
-NS_CC_BEGIN
-class Label;
-NS_CC_END
+#include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 namespace step_rain_of_chaos
 {
