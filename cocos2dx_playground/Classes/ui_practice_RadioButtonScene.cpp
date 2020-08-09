@@ -10,12 +10,15 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 #include "ui/UIRadioButton.h"
 
 USING_NS_CC;
 
 namespace
 {
+	const int TAG_StatusView = 20140416;
+
 	const char* FontPath = "fonts/NanumSquareR.ttf";
 	const int FontSize = 9;
 }
@@ -82,6 +85,20 @@ namespace ui_practice
 		}
 
 		//
+		// Status View
+		//
+		{
+			auto label = Label::createWithTTF( "", FontPath, FontSize );
+			label->setTag( TAG_StatusView );
+			label->setColor( Color3B::GREEN );
+			label->setPosition( Vec2(
+				visibleOrigin.x + visibleSize.width * 0.5f
+				, visibleOrigin.y + visibleSize.height * 0.7f
+			) );
+			addChild( label, std::numeric_limits<int>::max() );
+		}
+
+		//
 		// Practice
 		//
 		{
@@ -91,7 +108,7 @@ namespace ui_practice
 			auto radio_button_group_node = ui::RadioButtonGroup::create();
 			radio_button_group_node->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.4f )
 			) );
 			addChild( radio_button_group_node );
 
@@ -104,7 +121,7 @@ namespace ui_practice
 				radio_button->setTag( 0 );
 				radio_button->setScale( _director->getContentScaleFactor() );
 				radio_button->setPositionX( -visibleSize.width * 0.1f );
-				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onButton, this ) );
+				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onRadioButton, this ) );
 				radio_button_group_node->addChild( radio_button );
 
 				radio_button_group_node->addRadioButton( radio_button );
@@ -125,7 +142,7 @@ namespace ui_practice
 				radio_button->setTag( 1 );
 				radio_button->setScale( _director->getContentScaleFactor() );
 				radio_button->setPositionX( -visibleSize.width * 0.f );
-				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onButton, this ) );
+				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onRadioButton, this ) );
 				radio_button_group_node->addChild( radio_button );
 
 				radio_button_group_node->addRadioButton( radio_button );
@@ -144,7 +161,7 @@ namespace ui_practice
 				radio_button->setTag( 2 );
 				radio_button->setScale( _director->getContentScaleFactor() );
 				radio_button->setPositionX( visibleSize.width * 0.1f );
-				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onButton, this ) );
+				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onRadioButton, this ) );
 				radio_button_group_node->addChild( radio_button );
 
 				radio_button_group_node->addRadioButton( radio_button );
@@ -157,6 +174,7 @@ namespace ui_practice
 			}
 
 			radio_button_group_node->setSelectedButton( 2 );
+			updateStatusView( 2 );
 		}
 
 		return true;
@@ -180,13 +198,18 @@ namespace ui_practice
 		Scene::onExit();
 	}
 
-	void RadioButtonScene::onButton( Ref* sender, ui::Widget::TouchEventType touchEventType )
+	void RadioButtonScene::onRadioButton( Ref* sender, ui::Widget::TouchEventType touchEventType )
 	{
 		if( cocos2d::ui::Widget::TouchEventType::ENDED == touchEventType )
 		{
 			auto button_node = static_cast<Node*>( sender );
-			CCLOG( "Radio Button : %d", button_node->getTag() );
+			updateStatusView( button_node->getTag() );
 		}
+	}
+	void RadioButtonScene::updateStatusView( const int radio_button_tag )
+	{
+		auto label = static_cast<Label*>( getChildByTag( TAG_StatusView ) );
+		label->setString( StringUtils::format( "Select : %d", radio_button_tag ) );
 	}
 
 	void RadioButtonScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

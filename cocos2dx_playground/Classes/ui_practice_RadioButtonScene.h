@@ -20,7 +20,8 @@ namespace ui_practice
 		void onExit() override;
 
 	private:
-		void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touchEventType );
+		void onRadioButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touchEventType );
+		void updateStatusView( const int radio_button_tag );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
