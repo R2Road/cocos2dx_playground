@@ -12,7 +12,6 @@
 #include "base/CCEventDispatcher.h"
 #include "ui/UIRadioButton.h"
 
-
 USING_NS_CC;
 
 namespace
@@ -84,15 +83,13 @@ namespace ui_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		const int VisibleCount = 10;
-		const Size ButtonSize( 18, 18 );
-		const Size ButtonMargin( 1, 1 );
-
 		//
 		// Practice
 		//
 		{
+			//
 			// Group
+			//
 			auto radio_button_group_node = ui::RadioButtonGroup::create();
 			radio_button_group_node->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -100,33 +97,43 @@ namespace ui_practice
 			) );
 			addChild( radio_button_group_node );
 
+			//
 			// Radio Button 1
+			//
 			{
+				// Radio Button
 				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
 				radio_button->setTag( 0 );
 				radio_button->setScale( _director->getContentScaleFactor() );
 				radio_button->setPositionX( -visibleSize.width * 0.1f );
 				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onButton, this ) );
 				radio_button_group_node->addChild( radio_button );
+
 				radio_button_group_node->addRadioButton( radio_button );
 
-				auto label = Label::createWithTTF( "Test 1", FontPath, FontSize, Size::ZERO, TextHAlignment::LEFT );
+				// Label
+				auto label = Label::createWithTTF( "Test 1", FontPath, FontSize );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setPosition( radio_button->getPosition() + Vec2( 0.f, label->getContentSize().height + 4.f ) );
 				radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
 			}
 
+			//
 			// Radio Button 2
+			//
 			{
+				// Radio Button
 				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
 				radio_button->setTag( 1 );
 				radio_button->setScale( _director->getContentScaleFactor() );
 				radio_button->setPositionX( -visibleSize.width * 0.f );
 				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onButton, this ) );
 				radio_button_group_node->addChild( radio_button );
+
 				radio_button_group_node->addRadioButton( radio_button );
 
-				auto label = Label::createWithTTF( "Test 2", FontPath, FontSize, Size::ZERO, TextHAlignment::LEFT );
+				// Label
+				auto label = Label::createWithTTF( "Test 2", FontPath, FontSize );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setPosition( radio_button->getPosition() + Vec2( 0.f, label->getContentSize().height + 4.f ) );
 				radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
@@ -134,15 +141,18 @@ namespace ui_practice
 
 			// Radio Button 3
 			{
+				// Radio Button
 				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
 				radio_button->setTag( 2 );
 				radio_button->setScale( _director->getContentScaleFactor() );
 				radio_button->setPositionX( visibleSize.width * 0.1f );
 				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onButton, this ) );
 				radio_button_group_node->addChild( radio_button );
+
 				radio_button_group_node->addRadioButton( radio_button );
 
-				auto label = Label::createWithTTF( "Test 3", FontPath, FontSize, Size::ZERO, TextHAlignment::LEFT );
+				// Label
+				auto label = Label::createWithTTF( "Test 3", FontPath, FontSize );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setPosition( radio_button->getPosition() + Vec2( 0.f, label->getContentSize().height + 4.f ) );
 				radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
