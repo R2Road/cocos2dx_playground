@@ -32,6 +32,11 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
+		BulletManager::ComeHomeCallback BulletManager::GetComeHomeCallback()
+		{
+			return std::bind( &BulletManager::ComeHomeTarget, this, std::placeholders::_1 );
+		}
+
 		void BulletManager::RequestGenerate( const int amount )
 		{
 			const auto increase_amount = std::max( 1, amount );
@@ -48,18 +53,13 @@ namespace step_rain_of_chaos
 				mIdleTarget.emplace_back( i );
 			}
 		}
-		BulletManager::ComeHomeCallback BulletManager::GetComeHomeCallback()
-		{
-			return std::bind( &BulletManager::ComeHomeTarget, this, std::placeholders::_1 );
-		}
 		int BulletManager::GetIdleTarget()
 		{
 			int ret = -1;
 
 			if( mIdleTarget.empty() )
 			{
-				Refill();
-				if( mIdleTarget.empty() )
+				if( !Refill() )
 				{
 					return ret;
 				}
@@ -80,16 +80,18 @@ namespace step_rain_of_chaos
 			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
 		}
 
-		void BulletManager::Refill()
+		bool BulletManager::Refill()
 		{
 			if( mRestTarget.empty() )
 			{
 				CCLOG( "Refill Impossible" );
-				return;
+				return false;
 			}
 
 			std::swap( mIdleTarget, mRestTarget );
 			CCLOG( "Refill Successes" );
+
+			return true;
 		}
 	}
 }

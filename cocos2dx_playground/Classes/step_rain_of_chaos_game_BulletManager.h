@@ -27,14 +27,15 @@ namespace step_rain_of_chaos
 		public:
 			static BulletManagerUp create();
 
-		public:
-			void RequestGenerate( const int amount );
-			ComeHomeCallback GetComeHomeCallback();
-			int GetIdleTarget();
-			void ComeHomeTarget( const int target_index );
-			void Refill();
-
 			const LiveContainerT& GetLiveTargetContainer() const { return mLiveTargetContainer; }
+			ComeHomeCallback GetComeHomeCallback();
+
+			void RequestGenerate( const int amount );
+			int GetIdleTarget();
+
+		private:
+			void ComeHomeTarget( const int target_index );
+			bool Refill();
 
 		private:
 			int mBulletAmount;
