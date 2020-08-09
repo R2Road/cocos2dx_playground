@@ -16,6 +16,7 @@ namespace step_rain_of_chaos
 			using ValueT = int;
 			using ContainerT = std::list<ValueT>;
 			using ComeHomeCallback = std::function<void( int )>;
+			using LiveContainerT = std::list<ValueT>;
 
 			BulletManager();
 
@@ -32,10 +33,13 @@ namespace step_rain_of_chaos
 			void ComeHomeTarget( const int target_index );
 			void Refill();
 
+			const LiveContainerT& GetLiveTargetContainer() const { return mLiveTargetContainer; }
+
 		private:
 			int mBulletAmount;
 			ContainerT mIdleTarget;
 			ContainerT mRestTarget;
+			LiveContainerT mLiveTargetContainer;
 		};
 	}
 }

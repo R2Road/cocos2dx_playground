@@ -13,6 +13,7 @@ namespace step_rain_of_chaos
 			mBulletAmount( 0 )
 			, mIdleTarget()
 			, mRestTarget()
+			, mLiveTarget()
 		{}
 		BulletManager::~BulletManager()
 		{
@@ -61,11 +62,15 @@ namespace step_rain_of_chaos
 
 			ret = ( *mIdleTarget.begin() );
 			mIdleTarget.pop_front();
+
+			mLiveTarget.push_back( ret );
+
 			return ret;
 		}
 
 		void BulletManager::ComeHomeTarget( const int target_index )
 		{
+			mLiveTarget.remove( target_index );
 			mRestTarget.push_front( target_index );
 			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
 		}
