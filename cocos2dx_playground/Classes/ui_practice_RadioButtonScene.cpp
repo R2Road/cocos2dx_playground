@@ -25,8 +25,6 @@ namespace ui_practice
 	RadioButtonScene::RadioButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
-		, mLayout( nullptr )
-		, mDirection( true )
 	{}
 
 	Scene* RadioButtonScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )

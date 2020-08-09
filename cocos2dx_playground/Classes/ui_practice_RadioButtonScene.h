@@ -1,18 +1,9 @@
 #pragma once
 
 #include "2d/CCScene.h"
-#include "math/CCGeometry.h"
 #include "ui/UIWidget.h"
-#include "ui/UILayoutParameter.h"
 
 #include "helper_BackToThePreviousScene.h"
-
-NS_CC_BEGIN
-namespace ui
-{
-	class Layout;
-}
-NS_CC_END
 
 namespace ui_practice
 {
@@ -35,8 +26,5 @@ namespace ui_practice
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-		cocos2d::ui::Layout* mLayout;
-		bool mDirection;
 	};
 }
