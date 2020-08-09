@@ -56,6 +56,8 @@ namespace step_rain_of_chaos
 				, const bool bShowPivot
 			);
 
+			void update4Collision( float dt );
+
 		public:
 			void AddPlayer( cocos2d::Node* player_node );
 			void PlayerMoveRequest( const cocos2d::Vec2& move_vector );

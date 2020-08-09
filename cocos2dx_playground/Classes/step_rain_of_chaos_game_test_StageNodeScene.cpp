@@ -13,6 +13,7 @@
 #include "base/ccUTF8.h"
 
 #include "step_mole_AnimationComponent.h"
+#include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_AnimationInfoContainer.h"
 #include "step_rain_of_chaos_game_StageNode.h"
@@ -168,22 +169,27 @@ namespace step_rain_of_chaos
 			//
 			// Player Node
 			//
-			//
-			// Animation
-			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				animation_node->setScale( _director->getContentScaleFactor() );
+				auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				player_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				player_node->setScale( _director->getContentScaleFactor() );
 				{
+					// Pivot
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					player_node->addChild( pivot, std::numeric_limits<int>::max() );
+
 					// Animation Component
 					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetActorAnimationInfoContainer() );
-					animation_node->addComponent( animation_component );
-
+					player_node->addComponent( animation_component );
 					animation_component->PlayAnimation( cpg::animation::eIndex::run );
+
+					// Collision Component
+					auto circle_collision_component = step_mole::CircleCollisionComponent::create( 4.f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true} );
+					player_node->addComponent( circle_collision_component );
 				}
 
-				mStageNode->AddPlayer( animation_node );
+				mStageNode->AddPlayer( player_node );
 			}
 
 			return true;

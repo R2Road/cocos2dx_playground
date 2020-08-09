@@ -70,6 +70,7 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
+			schedule( schedule_selector( StageNode::update4Collision ) );
 			setContentSize( _director->getVisibleSize() );
 
 			//
@@ -200,6 +201,21 @@ namespace step_rain_of_chaos
 
 			return root_node;
 		}
+
+
+		void StageNode::update4Collision( float /*dt*/ )
+		{
+			auto player_collision_component = static_cast<step_mole::CircleCollisionComponent*>( mPlayerNode->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
+
+			for( auto cur = mBulletManager->GetLiveTargetContainer().begin(), end = mBulletManager->GetLiveTargetContainer().end(); end != cur; ++cur )
+			{
+				if( mCollisionComponentList[*cur]->Check( player_collision_component ) )
+				{
+					CCLOG( "Col : %d", *cur );
+				}
+			}
+		}
+
 
 		void StageNode::AddPlayer( Node* player_node )
 		{
