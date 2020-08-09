@@ -406,8 +406,16 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_0.png</key>
-            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_1.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_0.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_1.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_2.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_3.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_idle_0.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_idle_1.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_wakeup_0.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_wakeup_1.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_wakeup_2.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_wakeup_3.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -416,9 +424,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>4,4,7,7</rect>
+                <rect>1,1,3,3</rect>
                 <key>scale9Paddings</key>
-                <rect>4,4,7,7</rect>
+                <rect>1,1,3,3</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -627,11 +635,19 @@
             <filename>step_mole/step_mole_effect_attack_01_2.png</filename>
             <filename>step_mole/step_mole_effect_attack_01_3.png</filename>
             <filename>step_mole/step_mole_effect_attack_01_4.png</filename>
-            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_0.png</filename>
-            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_1.png</filename>
             <filename>ui/toggle_button/toggle_button_01_0.png</filename>
             <filename>ui/toggle_button/toggle_button_01_1.png</filename>
             <filename>ui/toggle_button/toggle_button_thumb_01_0.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_idle_0.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_idle_1.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_wakeup_0.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_wakeup_1.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_wakeup_2.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_wakeup_3.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_0.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_1.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_2.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_3.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
