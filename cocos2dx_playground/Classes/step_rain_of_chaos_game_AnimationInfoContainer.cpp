@@ -23,31 +23,31 @@ namespace step_rain_of_chaos
 				{
 					cpg::animation::eIndex::wakeup
 					, 0.06f
-					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_0.png", "step_rain_of_chaos_bullet_01_1.png", "step_rain_of_chaos_bullet_01_0.png", "step_rain_of_chaos_bullet_01_1.png", "step_rain_of_chaos_bullet_01_0.png", "step_rain_of_chaos_bullet_01_1.png" }
+					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_wakeup_0.png", "step_rain_of_chaos_bullet_01_wakeup_1.png", "step_rain_of_chaos_bullet_01_wakeup_2.png", "step_rain_of_chaos_bullet_01_wakeup_3.png" }
 				}
 
 				, {
 					cpg::animation::eIndex::idle
 					, 0.06f
-					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_1.png" }
+					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_idle_0.png", "step_rain_of_chaos_bullet_01_idle_1.png" }
 				}
 
 				, {
 					cpg::animation::eIndex::sleep
 					, 0.1f
-					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_0.png", "step_rain_of_chaos_bullet_01_1.png", "step_rain_of_chaos_bullet_01_0.png", "step_rain_of_chaos_bullet_01_1.png", "step_rain_of_chaos_bullet_01_0.png", "step_rain_of_chaos_bullet_01_1.png" }
+					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_damaged_0.png", "step_rain_of_chaos_bullet_01_damaged_1.png", "step_rain_of_chaos_bullet_01_damaged_2.png", "step_rain_of_chaos_bullet_01_damaged_0.png", "step_rain_of_chaos_bullet_01_damaged_1.png", "step_rain_of_chaos_bullet_01_damaged_2.png" }
 				}
 
 				, {
 					cpg::animation::eIndex::damaged_1
 					, 0.1f
-					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_0.png" }
+					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_damaged_0.png", "step_rain_of_chaos_bullet_01_damaged_1.png", "step_rain_of_chaos_bullet_01_damaged_2.png" }
 				}
 
 				, {
 					cpg::animation::eIndex::damaged_2
 					, 0.06f
-					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_1.png" }
+					, std::vector<std::string>{ "step_rain_of_chaos_bullet_01_damaged_0.png", "step_rain_of_chaos_bullet_01_damaged_1.png", "step_rain_of_chaos_bullet_01_damaged_2.png" }
 				}
 			};
 

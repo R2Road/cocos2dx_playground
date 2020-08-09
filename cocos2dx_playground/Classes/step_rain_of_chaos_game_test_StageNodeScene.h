@@ -12,7 +12,6 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		using BulletManagerUp = std::unique_ptr<class BulletManager>;
 		class StageNode;
 	}
 
@@ -43,7 +42,6 @@ namespace step_rain_of_chaos
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			game::StageConfig mStageConfig;
-			game::BulletManagerUp mBulletManager;
 			game::StageNode* mStageNode;
 			int mCurrentMoveSpeed;
 			int mCurrentFireAmount;

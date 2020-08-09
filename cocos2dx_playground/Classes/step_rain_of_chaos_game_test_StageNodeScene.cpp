@@ -12,11 +12,9 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "step_mole_AnimationComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_rain_of_chaos_game_AnimationInfoContainer.h"
+#include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
-#include "step_rain_of_chaos_game_BulletManager.h"
 
 USING_NS_CC;
 
@@ -35,7 +33,6 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mStageConfig()
-			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
 			, mCurrentMoveSpeed( 3 )
 			, mCurrentFireAmount( 1 )
@@ -80,20 +77,23 @@ namespace step_rain_of_chaos
 				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[ESC] : Return to Root";
+				ss << "[ESC] Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[SPACE] : Do Bullet";
+				ss << "[ARROW KEY] Actor Move";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Q] : Move Speed - Increase";
-				ss << std::endl;
-				ss << "[W] : Move Speed - Decrease";
+				ss << "[SPACE] Do Bullet";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Fire Amount - Increase";
+				ss << "[Q] Bullet Speed - Increase";
 				ss << std::endl;
-				ss << "[S] : Fire Amount - Decrease";
+				ss << "[W] Bullet Speed - Decrease";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[A] Fire Amount - Increase";
+				ss << std::endl;
+				ss << "[S] Fire Amount - Decrease";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -147,13 +147,6 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Target Manager
-			//
-			{
-				mBulletManager = game::BulletManager::create( BulletCachingAmount );
-			}
-
-			//
 			// Stage Node
 			//
 			{
@@ -165,7 +158,6 @@ namespace step_rain_of_chaos
 				mStageNode = game::StageNode::create(
 					mStageConfig
 					, game::StageNode::DebugConfig{ true, true }
-					, mBulletManager->GetComeHomeCallback()
 					, step_mole::CircleCollisionComponentConfig { false, false, false }
 					, BulletCachingAmount
 				);
@@ -175,22 +167,13 @@ namespace step_rain_of_chaos
 			//
 			// Player Node
 			//
-			//
-			// Animation
-			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				animation_node->setScale( _director->getContentScaleFactor() );
-				{
-					// Animation Component
-					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetActorAnimationInfoContainer() );
-					animation_node->addComponent( animation_component );
-
-					animation_component->PlayAnimation( cpg::animation::eIndex::run );
-				}
-
-				mStageNode->AddPlayer( animation_node );
+				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				player_node->setPosition( Vec2(
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+				) );
+				mStageNode->AddPlayer( player_node );
 			}
 
 			return true;
@@ -266,26 +249,12 @@ namespace step_rain_of_chaos
 			{
 				Vec2 offset;
 
-				int target_index = -1;
 				for( int i = 0; i < mCurrentFireAmount; ++i )
 				{
-					target_index = mBulletManager->GetIdleTarget();
-					if( -1 == target_index )
-					{
-						mBulletManager->RequestGenerate( 50 );
-						mStageNode->RequestGenerateBullet( 50 );
-
-						target_index = mBulletManager->GetIdleTarget();
-						if( -1 == target_index )
-						{
-							break;
-						}
-					}
-
 					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
 					dir.normalize();
 					dir.scale( mCurrentMoveSpeed );
-					mStageNode->RequestBulletAction( target_index, Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
+					mStageNode->RequestBulletAction( Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
 
 					offset.y += 0.5;
 				}

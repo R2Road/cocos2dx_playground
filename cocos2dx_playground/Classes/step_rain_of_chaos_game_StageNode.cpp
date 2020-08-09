@@ -16,6 +16,7 @@
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_rain_of_chaos_game_AnimationInfoContainer.h"
 #include "step_rain_of_chaos_game_BulletLifeComponent.h"
+#include "step_rain_of_chaos_game_BulletManager.h"
 
 USING_NS_CC;
 
@@ -26,30 +27,29 @@ namespace step_rain_of_chaos
 		StageNode::StageNode(
 			const StageConfig stage_config
 			, const DebugConfig debug_config
-			, const BulletProcessExitCallback& bullet_process_exit_callback
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 		) :
 			mStageConfig( stage_config )
 			, mDebugConfig( debug_config )
-			, mBulletProcessExitCallback( bullet_process_exit_callback )
 			, mCircleCollisionComponentConfig( circle_collision_component_config )
 
+			, mBulletManager( nullptr )
 			, mBulletLifeComponentList()
 			, mCollisionComponentList()
 			, mBulletCount( 0 )
 
 			, mPlayerNode( nullptr )
+			, mPlayerCircleCollisionComponent( nullptr )
 		{}
 
 		StageNode* StageNode::create(
 			const StageConfig stage_config
 			, const DebugConfig debug_config
-			, const BulletProcessExitCallback& bullet_process_exit_callback
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 			, const int bullet_count
 		)
 		{
-			auto ret = new ( std::nothrow ) StageNode( stage_config, debug_config, bullet_process_exit_callback, circle_collision_component_config );
+			auto ret = new ( std::nothrow ) StageNode( stage_config, debug_config, circle_collision_component_config );
 			if( !ret || !ret->init( bullet_count ) )
 			{
 				delete ret;
@@ -71,6 +71,7 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
+			schedule( schedule_selector( StageNode::update4Collision ) );
 			setContentSize( _director->getVisibleSize() );
 
 			//
@@ -154,6 +155,8 @@ namespace step_rain_of_chaos
 			// Bullet
 			//
 			{
+				mBulletManager = game::BulletManager::create();
+
 				RequestGenerateBullet( bullet_count );
 			}
 
@@ -180,7 +183,7 @@ namespace step_rain_of_chaos
 				}
 
 				// View
-				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_bullet_01_0.png" );
+				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_bullet_01_damaged_3.png" );
 				view_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				view_node->setScale( _director->getContentScaleFactor() );
 				root_node->addChild( view_node );
@@ -200,13 +203,34 @@ namespace step_rain_of_chaos
 			return root_node;
 		}
 
+
+		void StageNode::update4Collision( float /*dt*/ )
+		{
+			if( mBulletManager->GetLiveTargetContainer().empty() )
+			{
+				return;
+			}
+
+			for( auto cur = mBulletManager->GetLiveTargetContainer().begin(), end = mBulletManager->GetLiveTargetContainer().end(); end != cur; ++cur )
+			{
+				if( mCollisionComponentList[*cur]->Check( mPlayerCircleCollisionComponent ) )
+				{
+					CCLOG( "Col : %d", *cur );
+				}
+			}
+		}
+
+
 		void StageNode::AddPlayer( Node* player_node )
 		{
 			assert( nullptr == mPlayerNode );
+			assert( nullptr != static_cast<step_mole::CircleCollisionComponent*>( player_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) ) );
 
 			mPlayerNode = player_node;
 			mPlayerNode->setPosition( getContentSize().width * 0.5f, getContentSize().height * 0.5f );
 			addChild( mPlayerNode );
+
+			mPlayerCircleCollisionComponent = static_cast<step_mole::CircleCollisionComponent*>( mPlayerNode->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
 		}
 		void StageNode::PlayerMoveRequest( const Vec2& move_vector )
 		{
@@ -220,8 +244,11 @@ namespace step_rain_of_chaos
 
 		void StageNode::RequestGenerateBullet( const int amount )
 		{
-			const int result_amount = mBulletCount + amount;
+			// Bullet Manager
+			mBulletManager->RequestGenerate( amount );
 
+			// Bullet Node
+			const int result_amount = mBulletCount + amount;
 			mBulletLifeComponentList.resize( result_amount );
 			mCollisionComponentList.resize( result_amount );
 
@@ -229,20 +256,30 @@ namespace step_rain_of_chaos
 			{
 				auto bullet_node = MakeBullet(
 					mBulletCount
-					, mBulletProcessExitCallback
+					, mBulletManager->GetComeHomeCallback()
 					, mCircleCollisionComponentConfig
 					, mDebugConfig.bShowPivot
 				);
 				bullet_node->setPosition( mBulletCount * 2, 100.f );
-				addChild( bullet_node );
+				addChild( bullet_node, 1 );
 
 				mBulletLifeComponentList[mBulletCount] = static_cast<BulletLifeComponent*>( bullet_node->getComponent( BulletLifeComponent::GetStaticName() ) );
 				mCollisionComponentList[mBulletCount] = static_cast<step_mole::CircleCollisionComponent*>( bullet_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
 			}
 		}
-		void StageNode::RequestBulletAction( const std::size_t bullet_index, const Vec2 start_position, const Vec2 move_direction )
+		void StageNode::RequestBulletAction( const Vec2 start_position, const Vec2 move_direction )
 		{
-			CCASSERT( bullet_index < mBulletLifeComponentList.size(), "Invalid Object Index" );
+			int bullet_index = mBulletManager->GetIdleTarget();
+			if( -1 == bullet_index )
+			{
+				RequestGenerateBullet( 50 );
+
+				bullet_index = mBulletManager->GetIdleTarget();
+				if( -1 == bullet_index )
+				{
+					return;
+				}
+			}
 
 			mBulletLifeComponentList[bullet_index]->ProcessStart( start_position, move_direction );
 		}

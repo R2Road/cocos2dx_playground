@@ -4,24 +4,21 @@
 #include <numeric>
 #include <sstream>
 
-#include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCSprite.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/ccUTF8.h"
 
-#include "step_mole_AnimationComponent.h"
-#include "step_rain_of_chaos_game_AnimationInfoContainer.h"
+#include "step_mole_CircleCollisionComponentConfig.h"
+#include "step_rain_of_chaos_game_PlayerNode.h"
 
 USING_NS_CC;
 
 namespace
 {
-	const int TAG_AnimationNode = 20140416;
+	const int TAG_PlayerNode = 20140416;
 	const int TAG_MoveSpeedNode = 20160528;
 }
 
@@ -121,23 +118,13 @@ namespace step_rain_of_chaos
 			// Animation
 			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				animation_node->setScale( _director->getContentScaleFactor() );
-				animation_node->setPosition( Vec2(
+				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				player_node->setTag( TAG_PlayerNode );
+				player_node->setPosition( Vec2(
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
 				) );
-				addChild( animation_node );
-				{
-					// Animation Component
-					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetActorAnimationInfoContainer() );
-					animation_node->addComponent( animation_component );
-
-					animation_component->PlayAnimation( cpg::animation::eIndex::run );
-				}
-
+				addChild( player_node );
 			}
 
 			return true;
@@ -188,7 +175,7 @@ namespace step_rain_of_chaos
 				move_vector.normalize();
 				move_vector.scale( mMoveSpeed );
 
-				auto animation_node = getChildByTag( TAG_AnimationNode );
+				auto animation_node = getChildByTag( TAG_PlayerNode );
 				animation_node->setPosition( animation_node->getPosition() + move_vector );
 
 				updateMoveSpeedView();

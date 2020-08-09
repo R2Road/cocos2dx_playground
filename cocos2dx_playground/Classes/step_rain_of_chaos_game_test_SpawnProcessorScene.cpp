@@ -14,6 +14,7 @@
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
+#include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h"
@@ -43,7 +44,6 @@ namespace step_rain_of_chaos
 			, mTargetButton_MoveOffset()
 
 			, mStageConfig()
-			, mBulletManager( nullptr )
 			, mStageNode( nullptr )
 			, mTargetNode( nullptr )
 
@@ -183,24 +183,29 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Bullet Manager
-			//
-			{
-				mBulletManager = game::BulletManager::create( BulletCachingAmount );
-			}
-
-			//
 			// Stage Node
 			//
 			{
 				mStageNode = game::StageNode::create(
 					mStageConfig
-					, game::StageNode::DebugConfig{ true, true }
-					, mBulletManager->GetComeHomeCallback()
+					, game::StageNode::DebugConfig{ false, true }
 					, step_mole::CircleCollisionComponentConfig { false, false, false }
 					, BulletCachingAmount
 				);
 				addChild( mStageNode );
+			}
+
+			//
+			// Player Node
+			//
+			{
+				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				player_node->setPosition( Vec2(
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+				) );
+				player_node->setVisible( false );
+				mStageNode->AddPlayer( player_node );
 			}
 
 			//
@@ -288,26 +293,12 @@ namespace step_rain_of_chaos
 
 			if( !aaa.empty() )
 			{
-				int target_index = -1;
 				for( const auto& s : aaa )
 				{
-					target_index = mBulletManager->GetIdleTarget();
-					if( -1 == target_index )
-					{
-						mBulletManager->RequestGenerate( 50 );
-						mStageNode->RequestGenerateBullet( 50 );
-
-						target_index = mBulletManager->GetIdleTarget();
-						if( -1 == target_index )
-						{
-							break;
-						}
-					}
-
 					Vec2 dir = s.MoveDirection;
 					dir.normalize();
 					dir.scale( 3.f );
-					mStageNode->RequestBulletAction( target_index, s.StartPosition, dir );
+					mStageNode->RequestBulletAction( s.StartPosition, dir );
 				}
 			}
 		}

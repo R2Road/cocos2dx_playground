@@ -606,6 +606,9 @@
     <ClCompile Include="..\Classes\ui_practice_ToggleButtonScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_PlayerNode.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1093,6 +1096,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_ToggleButtonScene.h">
       <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_PlayerNode.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

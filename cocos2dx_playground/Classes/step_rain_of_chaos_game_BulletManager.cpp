@@ -13,16 +13,17 @@ namespace step_rain_of_chaos
 			mBulletAmount( 0 )
 			, mIdleTarget()
 			, mRestTarget()
+			, mLiveTargetContainer()
 		{}
 		BulletManager::~BulletManager()
 		{
 			CCLOG( "BulletManager : BulletAmount : %d", mBulletAmount );
 		}
 
-		BulletManagerUp BulletManager::create( const int caching_amount )
+		BulletManagerUp BulletManager::create()
 		{
 			BulletManagerUp ret( new ( std::nothrow ) BulletManager() );
-			if( !ret || !ret->Init( caching_amount ) )
+			if( !ret )
 			{
 				ret.reset();
 				return nullptr;
@@ -31,27 +32,26 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		bool BulletManager::Init( const int caching_amount )
+		BulletManager::ComeHomeCallback BulletManager::GetComeHomeCallback()
 		{
-			RequestGenerate( caching_amount );
-
-			return true;
+			return std::bind( &BulletManager::ComeHomeTarget, this, std::placeholders::_1 );
 		}
 
 		void BulletManager::RequestGenerate( const int amount )
 		{
-			const auto target_count = std::max( 1, amount );
+			const auto increase_amount = std::max( 1, amount );
 
-			ContainerT temp_container;
-			temp_container.resize( target_count, -1 );
-			std::iota( temp_container.begin(), temp_container.end(), mBulletAmount ); // fill : 0, 1, 2, 3, 4 ......
-			mIdleTarget.splice( mIdleTarget.end(), temp_container );
+			const auto start_index = mBulletAmount;
+			const auto end_index = mBulletAmount + increase_amount;
 
-			mBulletAmount += amount;
-		}
-		BulletManager::ComeHomeCallback BulletManager::GetComeHomeCallback()
-		{
-			return std::bind( &BulletManager::ComeHomeTarget, this, std::placeholders::_1 );
+			mBulletAmount += increase_amount;
+			mIdleTarget.reserve( mBulletAmount );
+			mRestTarget.reserve( mBulletAmount );
+
+			for( int i = start_index; end_index > i; ++i )
+			{
+				mIdleTarget.emplace_back( i );
+			}
 		}
 		int BulletManager::GetIdleTarget()
 		{
@@ -59,34 +59,39 @@ namespace step_rain_of_chaos
 
 			if( mIdleTarget.empty() )
 			{
-				Refill();
-				if( mIdleTarget.empty() )
+				if( !Refill() )
 				{
 					return ret;
 				}
 			}
 
-			ret = ( *mIdleTarget.begin() );
-			mIdleTarget.pop_front();
+			ret = ( *mIdleTarget.rbegin() );
+			mIdleTarget.pop_back();
+
+			mLiveTargetContainer.push_back( ret );
+
 			return ret;
 		}
 
 		void BulletManager::ComeHomeTarget( const int target_index )
 		{
-			mRestTarget.push_front( target_index );
+			mLiveTargetContainer.remove( target_index );
+			mRestTarget.push_back( target_index );
 			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
 		}
 
-		void BulletManager::Refill()
+		bool BulletManager::Refill()
 		{
 			if( mRestTarget.empty() )
 			{
 				CCLOG( "Refill Impossible" );
-				return;
+				return false;
 			}
 
-			mIdleTarget.splice( mIdleTarget.end(), mRestTarget );
+			std::swap( mIdleTarget, mRestTarget );
 			CCLOG( "Refill Successes" );
+
+			return true;
 		}
 	}
 }
