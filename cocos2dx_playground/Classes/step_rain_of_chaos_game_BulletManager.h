@@ -3,6 +3,7 @@
 #include <functional>
 #include <list>
 #include <memory>
+#include <vector>
 
 namespace step_rain_of_chaos
 {
@@ -14,7 +15,7 @@ namespace step_rain_of_chaos
 		{
 		private:
 			using ValueT = int;
-			using ContainerT = std::list<ValueT>;
+			using BaseContainerT = std::vector<ValueT>;
 			using ComeHomeCallback = std::function<void( int )>;
 			using LiveContainerT = std::list<ValueT>;
 
@@ -37,8 +38,8 @@ namespace step_rain_of_chaos
 
 		private:
 			int mBulletAmount;
-			ContainerT mIdleTarget;
-			ContainerT mRestTarget;
+			BaseContainerT mIdleTarget;
+			BaseContainerT mRestTarget;
 			LiveContainerT mLiveTargetContainer;
 		};
 	}

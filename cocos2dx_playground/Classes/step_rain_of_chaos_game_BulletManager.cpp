@@ -34,14 +34,19 @@ namespace step_rain_of_chaos
 
 		void BulletManager::RequestGenerate( const int amount )
 		{
-			const auto target_count = std::max( 1, amount );
+			const auto increase_amount = std::max( 1, amount );
 
-			ContainerT temp_container;
-			temp_container.resize( target_count, -1 );
-			std::iota( temp_container.begin(), temp_container.end(), mBulletAmount ); // fill : 0, 1, 2, 3, 4 ......
-			mIdleTarget.splice( mIdleTarget.end(), temp_container );
+			const auto start_index = mBulletAmount;
+			const auto end_index = mBulletAmount + increase_amount;
 
-			mBulletAmount += amount;
+			mBulletAmount += increase_amount;
+			mIdleTarget.reserve( mBulletAmount );
+			mRestTarget.reserve( mBulletAmount );
+
+			for( int i = start_index; end_index > i; ++i )
+			{
+				mIdleTarget.emplace_back( i );
+			}
 		}
 		BulletManager::ComeHomeCallback BulletManager::GetComeHomeCallback()
 		{
@@ -60,8 +65,8 @@ namespace step_rain_of_chaos
 				}
 			}
 
-			ret = ( *mIdleTarget.begin() );
-			mIdleTarget.pop_front();
+			ret = ( *mIdleTarget.rbegin() );
+			mIdleTarget.pop_back();
 
 			mLiveTargetContainer.push_back( ret );
 
@@ -71,7 +76,7 @@ namespace step_rain_of_chaos
 		void BulletManager::ComeHomeTarget( const int target_index )
 		{
 			mLiveTargetContainer.remove( target_index );
-			mRestTarget.push_front( target_index );
+			mRestTarget.push_back( target_index );
 			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
 		}
 
@@ -83,7 +88,7 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			mIdleTarget.splice( mIdleTarget.end(), mRestTarget );
+			std::swap( mIdleTarget, mRestTarget );
 			CCLOG( "Refill Successes" );
 		}
 	}
