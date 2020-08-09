@@ -76,6 +76,7 @@ namespace step_rain_of_chaos
 			int mBulletCount;
 
 			cocos2d::Node* mPlayerNode;
+			step_mole::CircleCollisionComponent* mPlayerCircleCollisionComponent;
 		};
 	}
 }
