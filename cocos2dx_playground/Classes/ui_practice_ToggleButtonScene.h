@@ -1,18 +1,9 @@
 #pragma once
 
 #include "2d/CCScene.h"
-#include "math/CCGeometry.h"
-#include "ui/UIWidget.h"
-#include "ui/UILayoutParameter.h"
+#include "extensions/GUI/CCControlExtension/CCControl.h"
 
 #include "helper_BackToThePreviousScene.h"
-
-NS_CC_BEGIN
-namespace ui
-{
-	class Layout;
-}
-NS_CC_END
 
 namespace ui_practice
 {
@@ -29,14 +20,12 @@ namespace ui_practice
 		void onExit() override;
 
 	private:
-		void onDummyButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touchEventType );
+		void onToggleButton( cocos2d::Ref* sender, cocos2d::extension::Control::EventType event_type );
+		void updateStatusView( const bool new_status );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-		cocos2d::ui::Layout* mLayout;
-		bool mDirection;
 	};
 }

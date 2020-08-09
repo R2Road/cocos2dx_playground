@@ -11,12 +11,15 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "extensions/GUI/CCControlExtension/CCControlSwitch.h"
+#include "extensions/GUI/CCControlExtension/CCInvocation.h"
 
 
 USING_NS_CC;
 
 namespace
 {
+	const int TAG_StatusView = 20140416;
+
 	const char* FontPath = "fonts/NanumSquareR.ttf";
 	const int FontSize = 9;
 }
@@ -26,8 +29,6 @@ namespace ui_practice
 	ToggleButtonScene::ToggleButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
-		, mLayout( nullptr )
-		, mDirection( true )
 	{}
 
 	Scene* ToggleButtonScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -84,9 +85,19 @@ namespace ui_practice
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		const int VisibleCount = 10;
-		const Size ButtonSize( 18, 18 );
-		const Size ButtonMargin( 1, 1 );
+		//
+		// Status View
+		//
+		{
+			auto label = Label::createWithTTF( "", FontPath, FontSize );
+			label->setTag( TAG_StatusView );
+			label->setColor( Color3B::GREEN );
+			label->setPosition( Vec2(
+				visibleOrigin.x + visibleSize.width * 0.5f
+				, visibleOrigin.y + visibleSize.height * 0.6f
+			) );
+			addChild( label, std::numeric_limits<int>::max() );
+		}
 
 		//
 		// Practice
@@ -102,11 +113,21 @@ namespace ui_practice
 			auto control_switch_node = extension::ControlSwitch::create( mask_sprite, on_sprite, off_sprite, thumb_sprite );
 			control_switch_node->setPosition( Vec2(
 				visibleOrigin.x + visibleSize.width * 0.5f
-				, visibleOrigin.y + visibleSize.height * 0.5f
+				, visibleOrigin.y + visibleSize.height * 0.4f
 			) );
 			control_switch_node->setScale( _director->getContentScaleFactor() );
 			control_switch_node->setOn( true );
 			addChild( control_switch_node );
+
+			//
+			// Callback
+			//
+			control_switch_node->addTargetWithActionForControlEvents( this, cccontrol_selector( ToggleButtonScene::onToggleButton ), extension::Control::EventType::VALUE_CHANGED );
+
+			//
+			//
+			//
+			updateStatusView( control_switch_node->isOn() );
 		}
 
 		return true;
@@ -130,18 +151,15 @@ namespace ui_practice
 		Scene::onExit();
 	}
 
-	void ToggleButtonScene::onDummyButton( Ref* sender, ui::Widget::TouchEventType touchEventType )
+	void ToggleButtonScene::onToggleButton( Ref* sender, extension::Control::EventType event_type )
 	{
-		if( cocos2d::ui::Widget::TouchEventType::BEGAN == touchEventType )
-		{
-			auto button_node = static_cast<Node*>( sender );
-			CCLOG( "Btn : Began : %d", button_node->getTag() );
-		}
-		else if( cocos2d::ui::Widget::TouchEventType::ENDED == touchEventType )
-		{
-			auto button_node = static_cast<Node*>( sender );
-			CCLOG( "Btn : End : %d", button_node->getTag() );
-		}
+		auto control_switch_node = static_cast<extension::ControlSwitch*>( sender );
+		updateStatusView( control_switch_node->isOn() );
+	}
+	void ToggleButtonScene::updateStatusView( const bool new_status )
+	{
+		auto label = static_cast<Label*>( getChildByTag( TAG_StatusView ) );
+		label->setString( new_status ? "Is On" : "Is Off" );
 	}
 
 	void ToggleButtonScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
