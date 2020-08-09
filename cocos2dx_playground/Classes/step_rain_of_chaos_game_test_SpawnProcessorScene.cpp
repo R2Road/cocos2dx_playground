@@ -12,11 +12,9 @@
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
-#include "step_mole_AnimationComponent.h"
-#include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_rain_of_chaos_game_AnimationInfoContainer.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
+#include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h"
@@ -201,25 +199,12 @@ namespace step_rain_of_chaos
 			// Player Node
 			//
 			{
-				auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-				player_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				player_node->setScale( _director->getContentScaleFactor() );
-				{
-					// Pivot
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 2.f );
-					player_node->addChild( pivot, std::numeric_limits<int>::max() );
-
-					// Animation Component
-					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetActorAnimationInfoContainer() );
-					player_node->addComponent( animation_component );
-					animation_component->PlayAnimation( cpg::animation::eIndex::run );
-
-					// Collision Component
-					auto circle_collision_component = step_mole::CircleCollisionComponent::create( 4.f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true } );
-					player_node->addComponent( circle_collision_component );
-				}
-
+				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				player_node->setPosition( Vec2(
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+				) );
+				player_node->setVisible( false );
 				mStageNode->AddPlayer( player_node );
 			}
 
