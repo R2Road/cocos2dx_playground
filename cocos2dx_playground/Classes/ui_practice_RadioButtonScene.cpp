@@ -37,7 +37,6 @@ namespace ui_practice
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
@@ -95,7 +94,7 @@ namespace ui_practice
 				visibleOrigin.x + visibleSize.width * 0.5f
 				, visibleOrigin.y + visibleSize.height * 0.7f
 			) );
-			addChild( label, std::numeric_limits<int>::max() );
+			addChild( label );
 		}
 
 		//
@@ -154,7 +153,9 @@ namespace ui_practice
 				radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
 			}
 
+			//
 			// Radio Button 3
+			//
 			{
 				// Radio Button
 				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
@@ -200,7 +201,7 @@ namespace ui_practice
 
 	void RadioButtonScene::onRadioButton( Ref* sender, ui::Widget::TouchEventType touchEventType )
 	{
-		if( cocos2d::ui::Widget::TouchEventType::ENDED == touchEventType )
+		if( ui::Widget::TouchEventType::ENDED == touchEventType )
 		{
 			auto button_node = static_cast<Node*>( sender );
 			updateStatusView( button_node->getTag() );
