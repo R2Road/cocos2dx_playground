@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
@@ -52,6 +50,7 @@ namespace step_rain_of_chaos
 
 			game::SpawnProcessorContainer mSpawnProcessorContainer;
 			game::SpawnProcessorContainer::iterator mCurrentSpawnProcessor;
+			game::SpawnInfoContainer mSpawnInfoContainer;
 		};
 	}
 }

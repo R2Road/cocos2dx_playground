@@ -49,7 +49,10 @@ namespace step_rain_of_chaos
 
 			, mSpawnProcessorContainer()
 			, mCurrentSpawnProcessor()
-		{}
+			, mSpawnInfoContainer()
+		{
+			mSpawnInfoContainer.reserve( BulletCachingAmount );
+		}
 
 		Scene* SpawnProcessorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
@@ -58,7 +61,6 @@ namespace step_rain_of_chaos
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{
@@ -280,9 +282,9 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			game::SpawnInfoContainer aaa;
+			mSpawnInfoContainer.clear();
 
-			if( !( *mCurrentSpawnProcessor )->Update( dt, mStartNode->getPosition(), mTargetNode->getPosition(), &aaa ) )
+			if( !( *mCurrentSpawnProcessor )->Update( dt, mStartNode->getPosition(), mTargetNode->getPosition(), &mSpawnInfoContainer ) )
 			{
 				++mCurrentSpawnProcessor;
 				if( mSpawnProcessorContainer.end() != mCurrentSpawnProcessor )
@@ -291,9 +293,9 @@ namespace step_rain_of_chaos
 				}
 			}
 
-			if( !aaa.empty() )
+			if( !mSpawnInfoContainer.empty() )
 			{
-				for( const auto& s : aaa )
+				for( const auto& s : mSpawnInfoContainer )
 				{
 					Vec2 dir = s.MoveDirection;
 					dir.normalize();
