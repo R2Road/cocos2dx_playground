@@ -207,7 +207,7 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
-		void StageNodeScene::UpdateForInput( float dt )
+		void StageNodeScene::UpdateForInput( float /*dt*/ )
 		{
 			Vec2 move_vector;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )

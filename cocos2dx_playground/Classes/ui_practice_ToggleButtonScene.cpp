@@ -153,8 +153,11 @@ namespace ui_practice
 
 	void ToggleButtonScene::onToggleButton( Ref* sender, extension::Control::EventType event_type )
 	{
-		auto control_switch_node = static_cast<extension::ControlSwitch*>( sender );
-		updateStatusView( control_switch_node->isOn() );
+		if( extension::Control::EventType::VALUE_CHANGED == event_type ) // is need?
+		{
+			auto control_switch_node = static_cast<extension::ControlSwitch*>( sender );
+			updateStatusView( control_switch_node->isOn() );
+		}
 	}
 	void ToggleButtonScene::updateStatusView( const bool new_status )
 	{
