@@ -406,6 +406,28 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_0.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_1.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_2.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_3.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_4.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_5.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_6.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_7.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,5,5</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,5,5</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_0.png</key>
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_1.png</key>
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_bullet_01_damaged_2.png</key>
@@ -672,6 +694,14 @@
             <filename>ui/radio_button/radio_button_01_2.png</filename>
             <filename>ui/radio_button/radio_button_01_3.png</filename>
             <filename>ui/radio_button/radio_button_01_4.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_0.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_1.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_2.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_3.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_4.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_5.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_6.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_7.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

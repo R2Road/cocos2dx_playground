@@ -8,9 +8,9 @@ namespace step_rain_of_chaos
 		{
 			static const cpg::animation::InfoContainerT animation_info_container = {
 				{
-					cpg::animation::eIndex::run
-					, 0.2f
-					, std::vector<std::string>{ "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
+					cpg::animation::eIndex::idle
+					, 0.1f
+					, std::vector<std::string>{ "step_rain_of_chaos_actor_01_idle_0.png", "step_rain_of_chaos_actor_01_idle_1.png", "step_rain_of_chaos_actor_01_idle_2.png", "step_rain_of_chaos_actor_01_idle_3.png", "step_rain_of_chaos_actor_01_idle_4.png", "step_rain_of_chaos_actor_01_idle_5.png", "step_rain_of_chaos_actor_01_idle_6.png", "step_rain_of_chaos_actor_01_idle_7.png" }
 				}
 			};
 

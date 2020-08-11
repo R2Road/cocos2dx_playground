@@ -62,14 +62,14 @@ namespace step_rain_of_chaos
 			// View
 			//
 			{
-				auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_actor_01_idle_0.png" );
 				view_node->setScale( _director->getContentScaleFactor() );
 				addChild( view_node );
 				{
 					// Animation Component
 					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetActorAnimationInfoContainer() );
 					view_node->addComponent( animation_component );
-					animation_component->PlayAnimation( cpg::animation::eIndex::run );
+					animation_component->PlayAnimation( cpg::animation::eIndex::idle );
 				}
 			}
 
@@ -78,7 +78,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 4.f, Vec2::ZERO, circle_collision_component_config );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 2.f, Vec2::ZERO, circle_collision_component_config );
 				addComponent( circle_collision_component );
 			}
 
