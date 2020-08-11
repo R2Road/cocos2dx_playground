@@ -40,7 +40,7 @@ namespace step_rain_of_chaos
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			cocos2d::Vec2 mStartButton_MoveOffset;
-			cocos2d::Vec2 mTargetButton_MoveOffset;
+			cocos2d::Vec2 mPlayerLastTouchPosition;
 
 			game::StageConfig mStageConfig;
 			game::StageNode* mStageNode;
