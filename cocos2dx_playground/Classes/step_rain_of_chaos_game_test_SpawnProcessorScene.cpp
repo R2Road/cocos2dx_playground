@@ -116,40 +116,6 @@ namespace step_rain_of_chaos
 			);
 
 			//
-			// Start Button
-			//
-			{
-				Vec2 start_position = mStageConfig.GetCenter();
-				start_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
-
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-				button->setColor( Color3B::BLUE );
-				button->setPosition( start_position );
-				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onStartButton, this ) );
-				addChild( button, std::numeric_limits<int>::max() - 1 );
-
-				// Label
-				{
-					auto label = Label::createWithTTF( "S", "fonts/NanumSquareR.ttf", 10 );
-					label->setPosition( Vec2(
-						visibleOrigin.x
-						, visibleOrigin.y + visibleSize.height
-					) );
-					button->setTitleLabel( label );
-				}
-
-				// Pivot
-				{
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 2.f );
-					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
-					button->addChild( pivot, std::numeric_limits<int>::max() );
-				}
-
-				mStartNode = button;
-			}
-
-			//
 			// Stage Node
 			//
 			{
@@ -179,6 +145,8 @@ namespace step_rain_of_chaos
 					button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onTargetButton, this ) );
 					player_node->addChild( button, std::numeric_limits<int>::max() - 1 );
 				}
+
+				mTargetNode = player_node;
 			}
 
 			//
@@ -191,6 +159,15 @@ namespace step_rain_of_chaos
 				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
 				enemy_node->setPosition( enemy_position );
 				mStageNode->AddEnemy( enemy_node );
+
+				// Move Helper
+				{
+					auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+					button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onStartButton, this ) );
+					enemy_node->addChild( button, std::numeric_limits<int>::max() - 1 );
+				}
+
+				mStartNode = enemy_node;
 			}
 
 			//
@@ -317,13 +294,13 @@ namespace step_rain_of_chaos
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				mStartButton_MoveOffset = button->getPosition() - button->getTouchBeganPosition();
+				mStartButton_MoveOffset = button->getParent()->getPosition() - button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				button->setPosition( button->getTouchMovePosition() + mStartButton_MoveOffset );
+				button->getParent()->setPosition( button->getTouchMovePosition() + mStartButton_MoveOffset );
 			}
 		}
 		void SpawnProcessorScene::onTargetButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
