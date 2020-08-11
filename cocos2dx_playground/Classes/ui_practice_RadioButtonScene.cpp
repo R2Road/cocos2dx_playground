@@ -92,13 +92,13 @@ namespace ui_practice
 			label->setColor( Color3B::GREEN );
 			label->setPosition( Vec2(
 				visibleOrigin.x + visibleSize.width * 0.5f
-				, visibleOrigin.y + visibleSize.height * 0.7f
+				, visibleOrigin.y + visibleSize.height * 0.85f
 			) );
 			addChild( label );
 		}
 
 		//
-		// Practice
+		// Practice x 1 : Normal
 		//
 		{
 			//
@@ -107,7 +107,7 @@ namespace ui_practice
 			auto radio_button_group_node = ui::RadioButtonGroup::create();
 			radio_button_group_node->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.4f )
+				, visibleOrigin.y + ( visibleSize.height * 0.65f )
 			) );
 			addChild( radio_button_group_node );
 
@@ -119,17 +119,19 @@ namespace ui_practice
 				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
 				radio_button->setTag( 0 );
 				radio_button->setScale( _director->getContentScaleFactor() );
-				radio_button->setPositionX( -visibleSize.width * 0.1f );
+				radio_button->setPositionX( -visibleSize.width * 0.2f );
 				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onRadioButton, this ) );
 				radio_button_group_node->addChild( radio_button );
 
 				radio_button_group_node->addRadioButton( radio_button );
 
 				// Label
-				auto label = Label::createWithTTF( "Test 1", FontPath, FontSize );
-				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition( radio_button->getPosition() + Vec2( 0.f, label->getContentSize().height + 4.f ) );
-				radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				{
+					auto label = Label::createWithTTF( "Test 1", FontPath, FontSize );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
+					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				}
 			}
 
 			//
@@ -147,10 +149,112 @@ namespace ui_practice
 				radio_button_group_node->addRadioButton( radio_button );
 
 				// Label
-				auto label = Label::createWithTTF( "Test 2", FontPath, FontSize );
-				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition( radio_button->getPosition() + Vec2( 0.f, label->getContentSize().height + 4.f ) );
-				radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				{
+					auto label = Label::createWithTTF( "Test 2", FontPath, FontSize );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
+					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+
+			//
+			// Radio Button 3 - Anchor Point Test
+			//
+			{
+				// Radio Button
+				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
+				radio_button->setTag( 2 );
+				radio_button->setScale( _director->getContentScaleFactor() );
+				radio_button->setPositionX( visibleSize.width * 0.2f );
+				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onRadioButton, this ) );
+				radio_button_group_node->addChild( radio_button );
+
+				radio_button_group_node->addRadioButton( radio_button );
+
+				// Label
+				{
+					auto label = Label::createWithTTF( "Test 3", FontPath, FontSize );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
+					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+
+			radio_button_group_node->setSelectedButton( 2 );
+			updateStatusView( 2 );
+		}
+
+		//
+		// Practice x 2 : Anchor Point
+		//
+		{
+			//
+			// Group
+			//
+			auto radio_button_group_node = ui::RadioButtonGroup::create();
+			radio_button_group_node->setPosition( Vec2(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.15f )
+			) );
+			addChild( radio_button_group_node );
+
+			//
+			// Radio Button 1
+			//
+			{
+				// Radio Button
+				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
+				radio_button->setTag( 0 );
+				radio_button->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				radio_button->setScale( _director->getContentScaleFactor() );
+				radio_button->setPositionX( -visibleSize.width * 0.2f );
+				radio_button_group_node->addChild( radio_button );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					radio_button->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				radio_button_group_node->addRadioButton( radio_button );
+
+				// Label
+				{
+					auto label = Label::createWithTTF( "Test 1\nAnchor Point : 1, 1", FontPath, FontSize );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
+					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				}
+			}
+
+			//
+			// Radio Button 2
+			//
+			{
+				// Radio Button
+				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
+				radio_button->setTag( 1 );
+				radio_button->setScale( _director->getContentScaleFactor() );
+				radio_button->setPositionX( -visibleSize.width * 0.f );
+				radio_button_group_node->addChild( radio_button );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					radio_button->addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				radio_button_group_node->addRadioButton( radio_button );
+
+				// Label
+				{
+					auto label = Label::createWithTTF( "Test 2\nAnchor Point : 0.5, 0.5", FontPath, FontSize );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
+					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				}
 			}
 
 			//
@@ -160,22 +264,28 @@ namespace ui_practice
 				// Radio Button
 				auto radio_button = ui::RadioButton::create( "radio_button_01_0.png", "radio_button_01_1.png", "radio_button_01_3.png", "radio_button_01_2.png", "radio_button_01_4.png", ui::Widget::TextureResType::PLIST );
 				radio_button->setTag( 2 );
+				radio_button->setAnchorPoint( Vec2::ZERO );
 				radio_button->setScale( _director->getContentScaleFactor() );
-				radio_button->setPositionX( visibleSize.width * 0.1f );
-				radio_button->addTouchEventListener( CC_CALLBACK_2( RadioButtonScene::onRadioButton, this ) );
+				radio_button->setPositionX( visibleSize.width * 0.2f );
 				radio_button_group_node->addChild( radio_button );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( 2.f );
+					radio_button->addChild( pivot, std::numeric_limits<int>::max() );
+				}
 
 				radio_button_group_node->addRadioButton( radio_button );
 
 				// Label
-				auto label = Label::createWithTTF( "Test 3", FontPath, FontSize );
-				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition( radio_button->getPosition() + Vec2( 0.f, label->getContentSize().height + 4.f ) );
-				radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				{
+					auto label = Label::createWithTTF( "Test 3\nAnchor Point : 0, 0", FontPath, FontSize );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
+					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
+				}
 			}
-
-			radio_button_group_node->setSelectedButton( 2 );
-			updateStatusView( 2 );
 		}
 
 		return true;
