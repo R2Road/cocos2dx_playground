@@ -17,6 +17,19 @@ namespace step_rain_of_chaos
 			return animation_info_container;
 		}
 
+		const cpg::animation::InfoContainerT& GetEnemyAnimationInfoContainer()
+		{
+			static const cpg::animation::InfoContainerT animation_info_container = {
+				{
+					cpg::animation::eIndex::idle
+					, 0.1f
+					, std::vector<std::string>{ "step_rain_of_chaos_actor_01_idle_0.png" }
+				}
+			};
+
+			return animation_info_container;
+		}
+
 		const cpg::animation::InfoContainerT& GetBulletAnimationInfoContainer()
 		{
 			static const cpg::animation::InfoContainerT animation_info_container = {

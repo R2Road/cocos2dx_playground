@@ -40,6 +40,8 @@ namespace step_rain_of_chaos
 
 			, mPlayerNode( nullptr )
 			, mPlayerCircleCollisionComponent( nullptr )
+			, mEnemyNode( nullptr )
+			, mEnemyCircleCollisionComponent( nullptr )
 		{}
 
 		StageNode* StageNode::create(
@@ -206,6 +208,11 @@ namespace step_rain_of_chaos
 
 		void StageNode::update4Collision( float /*dt*/ )
 		{
+			if( mEnemyCircleCollisionComponent->Check( mPlayerCircleCollisionComponent ) )
+			{
+				CCLOG( "Col : Enemy" );
+			}
+
 			if( mBulletManager->GetLiveTargetContainer().empty() )
 			{
 				return;
@@ -215,7 +222,7 @@ namespace step_rain_of_chaos
 			{
 				if( mCollisionComponentList[*cur]->Check( mPlayerCircleCollisionComponent ) )
 				{
-					CCLOG( "Col : %d", *cur );
+					CCLOG( "Col : Bullet : %d", *cur );
 				}
 			}
 		}
@@ -240,6 +247,17 @@ namespace step_rain_of_chaos
 			);
 
 			mPlayerNode->setPosition( new_player_position );
+		}
+
+		void StageNode::AddEnemy( Node* enemy_node )
+		{
+			assert( nullptr == mEnemyNode );
+			assert( nullptr != static_cast<step_mole::CircleCollisionComponent*>( enemy_node->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) ) );
+
+			mEnemyNode = enemy_node;
+			addChild( mEnemyNode );
+
+			mEnemyCircleCollisionComponent = static_cast<step_mole::CircleCollisionComponent*>( mEnemyNode->getComponent( step_mole::CircleCollisionComponent::GetStaticName() ) );
 		}
 
 		void StageNode::RequestGenerateBullet( const int amount )

@@ -14,6 +14,7 @@
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
+#include "step_rain_of_chaos_game_EnemyNode.h"
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h"
@@ -178,6 +179,18 @@ namespace step_rain_of_chaos
 					button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onTargetButton, this ) );
 					player_node->addChild( button, std::numeric_limits<int>::max() - 1 );
 				}
+			}
+
+			//
+			// Enemy Node
+			//
+			{
+				Vec2 enemy_position = mStageConfig.GetCenter();
+				enemy_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
+
+				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				enemy_node->setPosition( enemy_position );
+				mStageNode->AddEnemy( enemy_node );
 			}
 
 			//

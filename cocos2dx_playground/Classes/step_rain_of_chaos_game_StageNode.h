@@ -62,6 +62,8 @@ namespace step_rain_of_chaos
 			void AddPlayer( cocos2d::Node* player_node );
 			void PlayerMoveRequest( const cocos2d::Vec2& move_vector );
 
+			void AddEnemy( cocos2d::Node* const enemy_node );
+
 			void RequestGenerateBullet( const int amount = 1 );
 			void RequestBulletAction( const cocos2d::Vec2 start_position, const cocos2d::Vec2 move_direction );
 
@@ -77,6 +79,8 @@ namespace step_rain_of_chaos
 
 			cocos2d::Node* mPlayerNode;
 			step_mole::CircleCollisionComponent* mPlayerCircleCollisionComponent;
+			cocos2d::Node* mEnemyNode;
+			step_mole::CircleCollisionComponent* mEnemyCircleCollisionComponent;
 		};
 	}
 }
