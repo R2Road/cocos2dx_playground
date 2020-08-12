@@ -14,6 +14,7 @@
 #include "step_rain_of_chaos_game_test_ActorMoveScene.h"
 #include "step_rain_of_chaos_game_test_BackgroundNodeScene.h"
 #include "step_rain_of_chaos_game_test_BulletLifeComponentScene.h"
+#include "step_rain_of_chaos_game_test_EnemyProcessorScene.h"
 #include "step_rain_of_chaos_game_test_StageNodeScene.h"
 #include "step_rain_of_chaos_game_test_SpawnProcessorScene.h"
 
@@ -69,13 +70,16 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << "[Q] : " << step_rain_of_chaos::game_test::ActorMoveScene::getTitle();
 			ss << std::endl;
-			ss << "[A] : " << step_rain_of_chaos::game_test::BackgroundNodeScene::getTitle();
+			ss << "[W] : " << step_rain_of_chaos::game_test::BackgroundNodeScene::getTitle();
 			ss << std::endl;
-			ss << "[S] : " << step_rain_of_chaos::game_test::BulletLifeComponentScene::getTitle();
+			ss << "[E] : " << step_rain_of_chaos::game_test::BulletLifeComponentScene::getTitle();
 			ss << std::endl;
-			ss << "[D] : " << step_rain_of_chaos::game_test::StageNodeScene::getTitle();
+			ss << "[R] : " << step_rain_of_chaos::game_test::StageNodeScene::getTitle();
 			ss << std::endl;
-			ss << "[F] : " << step_rain_of_chaos::game_test::SpawnProcessorScene::getTitle();
+			ss << std::endl;
+			ss << "[A] : " << step_rain_of_chaos::game_test::SpawnProcessorScene::getTitle();
+			ss << std::endl;
+			ss << "[S] : " << step_rain_of_chaos::game_test::EnemyProcessorScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -148,17 +152,21 @@ namespace step_rain_of_chaos
 		case EventKeyboard::KeyCode::KEY_Q:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::ActorMoveScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-		case EventKeyboard::KeyCode::KEY_A:
+		case EventKeyboard::KeyCode::KEY_W:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::BackgroundNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-		case EventKeyboard::KeyCode::KEY_S:
+		case EventKeyboard::KeyCode::KEY_E:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::BulletLifeComponentScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-		case EventKeyboard::KeyCode::KEY_D:
+		case EventKeyboard::KeyCode::KEY_R:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::StageNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-		case EventKeyboard::KeyCode::KEY_F:
+
+		case EventKeyboard::KeyCode::KEY_A:
 			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::SpawnProcessorScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_S:
+			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::EnemyProcessorScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 

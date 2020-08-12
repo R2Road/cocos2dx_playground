@@ -220,6 +220,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_BulletLifeComponentScene.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_EnemyProcessorScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_SpawnProcessorScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_StageNodeScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollector.cpp" />
@@ -384,6 +385,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_BulletLifeComponentScene.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_EnemyProcessorScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_SpawnProcessorScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_StageNodeScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_input_KeyCodeCollector.h" />
