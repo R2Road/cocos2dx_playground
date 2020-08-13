@@ -13,6 +13,7 @@
 #include "base/ccUTF8.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
+#include "step_rain_of_chaos_game_EnemyNode.h"
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 
@@ -108,7 +109,7 @@ namespace step_rain_of_chaos
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 63, 23, 14, 255 ) );
+				auto background_layer = LayerColor::create( Color4B::BLACK );
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
@@ -169,11 +170,19 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
-				player_node->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
-				) );
 				mStageNode->AddPlayer( player_node );
+			}
+
+			//
+			// Enemy Node
+			//
+			{
+				Vec2 enemy_position = mStageConfig.GetCenter();
+				enemy_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
+
+				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				enemy_node->setPosition( enemy_position );
+				mStageNode->AddEnemy( enemy_node );
 			}
 
 			return true;
@@ -198,7 +207,7 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
-		void StageNodeScene::UpdateForInput( float dt )
+		void StageNodeScene::UpdateForInput( float /*dt*/ )
 		{
 			Vec2 move_vector;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
@@ -254,9 +263,9 @@ namespace step_rain_of_chaos
 					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
 					dir.normalize();
 					dir.scale( mCurrentMoveSpeed );
-					mStageNode->RequestBulletAction( Vec2( mStageConfig.GetStageArea().origin ) + offset, dir );
+					mStageNode->RequestBulletAction( Vec2( mStageConfig.GetBulletGenerateArea().origin ) + offset, dir );
 
-					offset.y += 0.5;
+					offset.y += 2.f;
 				}
 			}
 			break;

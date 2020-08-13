@@ -1,4 +1,4 @@
-#include "step_rain_of_chaos_game_PlayerNode.h"
+#include "step_rain_of_chaos_game_EnemyNode.h"
 
 #include <new>
 #include <numeric>
@@ -16,14 +16,14 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		PlayerNode::PlayerNode() {}
+		EnemyNode::EnemyNode() {}
 
-		PlayerNode* PlayerNode::create(
+		EnemyNode* EnemyNode::create(
 			const DebugConfig debug_config
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
-			auto ret = new ( std::nothrow ) PlayerNode();
+			auto ret = new ( std::nothrow ) EnemyNode();
 			if( !ret || !ret->init( debug_config, circle_collision_component_config ) )
 			{
 				delete ret;
@@ -38,7 +38,7 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		bool PlayerNode::init(
+		bool EnemyNode::init(
 			const DebugConfig debug_config
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 		)
@@ -67,7 +67,7 @@ namespace step_rain_of_chaos
 				addChild( view_node );
 				{
 					// Animation Component
-					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetActorAnimationInfoContainer() );
+					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetEnemyAnimationInfoContainer() );
 					view_node->addComponent( animation_component );
 					animation_component->PlayAnimation( cpg::animation::eIndex::idle );
 				}

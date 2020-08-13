@@ -14,6 +14,7 @@
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
+#include "step_rain_of_chaos_game_EnemyNode.h"
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h"
@@ -29,7 +30,6 @@ USING_NS_CC;
 namespace
 {
 	const int BulletCachingAmount = 100;
-	const int TAG_Button = 100;
 }
 
 namespace step_rain_of_chaos
@@ -41,7 +41,7 @@ namespace step_rain_of_chaos
 			, mKeyboardListener( nullptr )
 
 			, mStartButton_MoveOffset()
-			, mTargetButton_MoveOffset()
+			, mPlayerLastTouchPosition()
 
 			, mStageConfig()
 			, mStageNode( nullptr )
@@ -49,7 +49,10 @@ namespace step_rain_of_chaos
 
 			, mSpawnProcessorContainer()
 			, mCurrentSpawnProcessor()
-		{}
+			, mSpawnInfoContainer()
+		{
+			mSpawnInfoContainer.reserve( BulletCachingAmount );
+		}
 
 		Scene* SpawnProcessorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
@@ -58,7 +61,6 @@ namespace step_rain_of_chaos
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{
@@ -114,75 +116,6 @@ namespace step_rain_of_chaos
 			);
 
 			//
-			// Start Button
-			//
-			{
-				Vec2 start_position = mStageConfig.GetCenter();
-				start_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
-
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-				button->setTag( TAG_Button );
-				button->setColor( Color3B::BLUE );
-				button->setPosition( start_position );
-				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onStartButton, this ) );
-				addChild( button, std::numeric_limits<int>::max() - 1 );
-
-				// Label
-				{
-					auto label = Label::createWithTTF( "S", "fonts/NanumSquareR.ttf", 10 );
-					label->setPosition( Vec2(
-						visibleOrigin.x
-						, visibleOrigin.y + visibleSize.height
-					) );
-					button->setTitleLabel( label );
-				}
-
-				// Pivot
-				{
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 2.f );
-					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
-					button->addChild( pivot, std::numeric_limits<int>::max() );
-				}
-
-				mStartNode = button;
-			}
-
-			//
-			// Target Button
-			//
-			{
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-				button->setTag( TAG_Button );
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
-				button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onTargetButton, this ) );
-				addChild( button, std::numeric_limits<int>::max() - 1 );
-
-				// Label
-				{
-					auto label = Label::createWithTTF( "T", "fonts/NanumSquareR.ttf", 10 );
-					label->setPosition( Vec2(
-						visibleOrigin.x
-						, visibleOrigin.y + visibleSize.height
-					) );
-					button->setTitleLabel( label );
-				}
-
-				// Pivot
-				{
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-					pivot->setScale( 2.f );
-					pivot->setPosition( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f );
-					button->addChild( pivot, std::numeric_limits<int>::max() );
-				}
-
-				mTargetNode = button;
-			}
-
-			//
 			// Stage Node
 			//
 			{
@@ -204,8 +137,37 @@ namespace step_rain_of_chaos
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
 				) );
-				player_node->setVisible( false );
 				mStageNode->AddPlayer( player_node );
+
+				// Move Helper
+				{
+					auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+					button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onTargetButton, this ) );
+					player_node->addChild( button, std::numeric_limits<int>::max() - 1 );
+				}
+
+				mTargetNode = player_node;
+			}
+
+			//
+			// Enemy Node
+			//
+			{
+				Vec2 enemy_position = mStageConfig.GetCenter();
+				enemy_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
+
+				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				enemy_node->setPosition( enemy_position );
+				mStageNode->AddEnemy( enemy_node );
+
+				// Move Helper
+				{
+					auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+					button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onStartButton, this ) );
+					enemy_node->addChild( button, std::numeric_limits<int>::max() - 1 );
+				}
+
+				mStartNode = enemy_node;
 			}
 
 			//
@@ -280,9 +242,9 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			game::SpawnInfoContainer aaa;
+			mSpawnInfoContainer.clear();
 
-			if( !( *mCurrentSpawnProcessor )->Update( dt, mStartNode->getPosition(), mTargetNode->getPosition(), &aaa ) )
+			if( !( *mCurrentSpawnProcessor )->Update( dt, mStartNode->getPosition(), mTargetNode->getPosition(), &mSpawnInfoContainer ) )
 			{
 				++mCurrentSpawnProcessor;
 				if( mSpawnProcessorContainer.end() != mCurrentSpawnProcessor )
@@ -291,9 +253,9 @@ namespace step_rain_of_chaos
 				}
 			}
 
-			if( !aaa.empty() )
+			if( !mSpawnInfoContainer.empty() )
 			{
-				for( const auto& s : aaa )
+				for( const auto& s : mSpawnInfoContainer )
 				{
 					Vec2 dir = s.MoveDirection;
 					dir.normalize();
@@ -332,13 +294,13 @@ namespace step_rain_of_chaos
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				mStartButton_MoveOffset = button->getPosition() - button->getTouchBeganPosition();
+				mStartButton_MoveOffset = button->getParent()->getPosition() - button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				button->setPosition( button->getTouchMovePosition() + mStartButton_MoveOffset );
+				button->getParent()->setPosition( button->getTouchMovePosition() + mStartButton_MoveOffset );
 			}
 		}
 		void SpawnProcessorScene::onTargetButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
@@ -347,13 +309,15 @@ namespace step_rain_of_chaos
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				mTargetButton_MoveOffset = button->getPosition() - button->getTouchBeganPosition();
+				mPlayerLastTouchPosition = button->getTouchBeganPosition();
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				auto button = static_cast<ui::Button*>( sender );
 
-				button->setPosition( button->getTouchMovePosition() + mTargetButton_MoveOffset );
+				mStageNode->PlayerMoveRequest( button->getTouchMovePosition() - mPlayerLastTouchPosition );
+
+				mPlayerLastTouchPosition = button->getTouchMovePosition();
 			}
 		}
 	}
