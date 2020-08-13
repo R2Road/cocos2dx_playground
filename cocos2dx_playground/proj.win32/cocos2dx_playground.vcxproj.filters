@@ -148,6 +148,9 @@
     <Filter Include="src\scene\step_06_defender\collision">
       <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_05_rain_of_chaos\game\enemyprocessor">
+      <UniqueIdentifier>{f8f106bc-152d-4802-9182-53511a33f5ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -617,6 +620,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_EnemyProcessorScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1117,6 +1123,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_EnemyProcessorScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_iEnemyProcessor.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
