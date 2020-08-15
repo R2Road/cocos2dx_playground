@@ -18,6 +18,12 @@
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Fire.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_Line.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_Sleep.h"
+
 USING_NS_CC;
 
 namespace
@@ -157,6 +163,35 @@ namespace step_rain_of_chaos
 				mStartNode = enemy_node;
 			}
 
+			//
+			// Processor
+			//
+			{
+				game::EnemyNode::EnemyProcessorContainer enemy_processor_container;
+				enemy_processor_container.reserve( 100 );
+
+				//enemy_processor_container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
+				//enemy_processor_container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
+
+				game::SpawnProcessorContainer spawn_processor_container;
+				spawn_processor_container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 98.f, 8, 4, 0.1f ) );
+				spawn_processor_container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				spawn_processor_container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 52.f, 4, 3, 0.1f ) );
+				spawn_processor_container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+				spawn_processor_container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 1, 4, 0.1f ) );
+				spawn_processor_container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+
+				enemy_processor_container.emplace_back( game::EnemyProcessor_Fire::Create(
+					mStageConfig
+					, mStartNode
+					, mTargetNode
+					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
+					, std::move( spawn_processor_container )
+				) );
+
+				static_cast<game::EnemyNode*>( mStartNode )->SetProcessor( std::move( enemy_processor_container ) );
+			}
+
 			return true;
 		}
 
@@ -185,6 +220,12 @@ namespace step_rain_of_chaos
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				helper::BackToThePreviousScene::MoveBack();
 				return;
+
+			case EventKeyboard::KeyCode::KEY_SPACE:
+			{
+				static_cast<game::EnemyNode*>( mStartNode )->StartProcess();
+			}
+			return;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );

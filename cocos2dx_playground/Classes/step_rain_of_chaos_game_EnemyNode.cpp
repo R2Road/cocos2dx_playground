@@ -2,6 +2,7 @@
 
 #include <new>
 #include <numeric>
+#include <utility>
 
 #include "2d/CCSprite.h"
 #include "base/CCDirector.h"
@@ -16,7 +17,10 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		EnemyNode::EnemyNode() {}
+		EnemyNode::EnemyNode() :
+			mProcessorContainer()
+			, mCurrentProcessor()
+		{}
 
 		EnemyNode* EnemyNode::create(
 			const DebugConfig debug_config
@@ -83,6 +87,38 @@ namespace step_rain_of_chaos
 			}
 
 			return true;
+		}
+
+		void EnemyNode::update4Processor( float dt )
+		{
+			if( mProcessorContainer.end() == mCurrentProcessor )
+			{
+				unschedule( schedule_selector( EnemyNode::update4Processor ) );
+				return;
+			}
+
+			if( !( *mCurrentProcessor )->Update( dt ) )
+			{
+				++mCurrentProcessor;
+				if( mProcessorContainer.end() != mCurrentProcessor )
+				{
+					( *mCurrentProcessor )->Enter();
+				}
+			}
+		}
+
+		void EnemyNode::SetProcessor( EnemyProcessorContainer&& enemy_processor_container )
+		{
+			mProcessorContainer = std::move( enemy_processor_container );
+		}
+
+		void EnemyNode::StartProcess()
+		{
+			unschedule( schedule_selector( EnemyNode::update4Processor ) );
+
+			mCurrentProcessor = mProcessorContainer.begin();
+			( *mCurrentProcessor )->Enter();
+			schedule( schedule_selector( EnemyNode::update4Processor ) );
 		}
 	}
 }
