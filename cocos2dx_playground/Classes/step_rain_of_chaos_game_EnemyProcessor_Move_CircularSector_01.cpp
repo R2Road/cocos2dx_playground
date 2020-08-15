@@ -16,10 +16,11 @@ namespace step_rain_of_chaos
 		EnemyProcessor_Move_CircularSector_01::EnemyProcessor_Move_CircularSector_01(
 			const StageConfig& stage_config
 			, Node* const owner_node
+			, Node* const target_node
 			, const float limit_time
 			, const bool direction
 			, const float degree_per_cycle
-		) : iEnemyProcessor( stage_config, owner_node )
+		) : iEnemyProcessor( stage_config, owner_node, target_node )
 			, mLimitTime( limit_time )
 			, mRadianPerCycle( ( CC_DEGREES_TO_RADIANS( degree_per_cycle ) * ( direction ? 1 : -1 ) ) )
 
@@ -31,12 +32,13 @@ namespace step_rain_of_chaos
 		EnemyProcessorUp EnemyProcessor_Move_CircularSector_01::Create(
 			const StageConfig& stage_config
 			, Node* const owner_node
+			, Node* const target_node
 			, const float limit_time
 			, const bool direction
 			, const float degree_per_cycle
 		)
 		{
-			EnemyProcessorUp ret( new (std::nothrow) EnemyProcessor_Move_CircularSector_01( stage_config, owner_node, limit_time, direction, degree_per_cycle ) );
+			EnemyProcessorUp ret( new (std::nothrow) EnemyProcessor_Move_CircularSector_01( stage_config, owner_node, target_node, limit_time, direction, degree_per_cycle ) );
 			ret->init();
 			return ret;
 		}

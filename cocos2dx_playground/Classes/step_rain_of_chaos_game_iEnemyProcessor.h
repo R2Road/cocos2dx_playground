@@ -26,7 +26,11 @@ namespace step_rain_of_chaos
 		class iEnemyProcessor
 		{
 		protected:
-			iEnemyProcessor( const StageConfig& stage_config, cocos2d::Node* const owner_node ) : mStageConfig( stage_config ), mOwnerNode( owner_node ) {}
+			iEnemyProcessor( const StageConfig& stage_config, cocos2d::Node* const owner_node, cocos2d::Node* const target_node ) :
+				mStageConfig( stage_config )
+				, mOwnerNode( owner_node )
+				, mTargetNode( target_node )
+			{}
 
 		public:
 			virtual ~iEnemyProcessor() {}
@@ -38,6 +42,7 @@ namespace step_rain_of_chaos
 		protected:
 			const StageConfig& mStageConfig;
 			cocos2d::Node* const mOwnerNode;
+			cocos2d::Node* const mTargetNode;
 		};
 	}
 }

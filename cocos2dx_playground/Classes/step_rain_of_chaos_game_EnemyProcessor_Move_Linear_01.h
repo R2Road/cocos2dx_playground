@@ -14,6 +14,7 @@ namespace step_rain_of_chaos
 			EnemyProcessor_Move_Linear_01(
 				const StageConfig& stage_config
 				, cocos2d::Node* const owner_node
+				, cocos2d::Node* const target_node
 				, const float limit_time
 				, const bool direction
 				, const float degree_per_cycle
@@ -24,6 +25,7 @@ namespace step_rain_of_chaos
 			static EnemyProcessorUp Create(
 				const StageConfig& stage_config
 				, cocos2d::Node* const owner_node
+				, cocos2d::Node* const target_node
 				, const float limit_time
 				, const bool direction
 				, const float degree_per_cycle
