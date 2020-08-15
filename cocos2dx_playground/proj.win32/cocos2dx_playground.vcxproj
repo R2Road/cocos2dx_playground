@@ -207,6 +207,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletLifeComponent.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletManager.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyNode.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.cpp" />
@@ -373,6 +374,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletLifeComponent.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletManager.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyNode.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_iEnemyProcessor.h" />
