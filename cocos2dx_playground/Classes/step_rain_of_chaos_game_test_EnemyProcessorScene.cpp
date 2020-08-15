@@ -18,6 +18,7 @@
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
 
 USING_NS_CC;
@@ -166,7 +167,8 @@ namespace step_rain_of_chaos
 				game::EnemyNode::EnemyProcessorContainer enemy_processor_container;
 				enemy_processor_container.reserve( 100 );
 
-				enemy_processor_container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, 0.5f, true, 180.f ) );
+				enemy_processor_container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, mStartNode, 0.5f, true, 180.f ) );
+				//enemy_processor_container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, 0.5f, true, 180.f ) );
 
 				static_cast<game::EnemyNode*>( mStartNode )->SetProcessor( std::move( enemy_processor_container ) );
 			}
