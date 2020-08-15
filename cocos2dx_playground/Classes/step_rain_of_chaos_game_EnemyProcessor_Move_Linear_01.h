@@ -11,20 +11,34 @@ namespace step_rain_of_chaos
 		class EnemyProcessor_Move_Linear_01 : public iEnemyProcessor
 		{
 		private:
-			EnemyProcessor_Move_Linear_01( const StageConfig& stage_config, cocos2d::Node* const owner_node );
+			EnemyProcessor_Move_Linear_01(
+				const StageConfig& stage_config
+				, cocos2d::Node* const owner_node
+				, const float limit_time
+				, const bool direction
+				, const float degree_per_cycle
+			);
 
 		public:
 
-			static EnemyProcessorUp Create( const StageConfig& stage_config, cocos2d::Node* const owner_node );
+			static EnemyProcessorUp Create(
+				const StageConfig& stage_config
+				, cocos2d::Node* const owner_node
+				, const float limit_time
+				, const bool direction
+				, const float degree_per_cycle
+			);
 
 			void Enter() override;
 			bool Update( const float delta_time ) override;
 
 		private:
+			const float mLimitTime;
+			const float mRadianPerCycle;
+
 			cocos2d::Vec2 mStartPosition;
 			cocos2d::Vec2 mMove;
 
-			float mLimitTime;
 			float mElapsedTime;
 		};
 	}
