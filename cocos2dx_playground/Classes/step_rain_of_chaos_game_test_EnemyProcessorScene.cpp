@@ -44,6 +44,8 @@ namespace step_rain_of_chaos
 
 			, mStageConfig()
 			, mStageNode( nullptr )
+
+			, mStartNode( nullptr )
 			, mTargetNode( nullptr )
 		{}
 
@@ -149,7 +151,11 @@ namespace step_rain_of_chaos
 				Vec2 enemy_position = mStageConfig.GetCenter();
 				enemy_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
 
-				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				auto enemy_node = game::EnemyNode::create(
+					game::EnemyNode::DebugConfig{ true }
+					, step_mole::CircleCollisionComponentConfig{ true, true, true }
+					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
+				);
 				enemy_node->setPosition( enemy_position );
 				mStageNode->AddEnemy( enemy_node );
 
@@ -167,6 +173,8 @@ namespace step_rain_of_chaos
 			// Processor
 			//
 			{
+				auto enemy_node = static_cast<game::EnemyNode*>( mStartNode );
+
 				game::EnemyNode::EnemyProcessorContainer enemy_processor_container;
 				enemy_processor_container.reserve( 100 );
 
@@ -185,11 +193,11 @@ namespace step_rain_of_chaos
 					mStageConfig
 					, mStartNode
 					, mTargetNode
-					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
 					, std::move( spawn_processor_container )
+					, enemy_node->GetSpawnInfoContainer()
 				) );
 
-				static_cast<game::EnemyNode*>( mStartNode )->SetProcessor( std::move( enemy_processor_container ) );
+				enemy_node->SetProcessor( std::move( enemy_processor_container ) );
 			}
 
 			return true;

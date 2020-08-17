@@ -156,7 +156,7 @@ namespace step_rain_of_chaos
 				Vec2 enemy_position = mStageConfig.GetCenter();
 				enemy_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
 
-				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true }, []( Vec2, Vec2 ) {} );
 				enemy_node->setPosition( enemy_position );
 				mStageNode->AddEnemy( enemy_node );
 

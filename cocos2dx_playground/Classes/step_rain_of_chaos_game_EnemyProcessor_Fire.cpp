@@ -17,26 +17,29 @@ namespace step_rain_of_chaos
 			const StageConfig& stage_config
 			, Node* const owner_node
 			, Node* const target_node
-			, const RequestBulletCallback& request_bullet_callback
 			, SpawnProcessorContainer&& spawn_processor_container
+			, SpawnInfoContainer& spawn_info_container
 		) : iEnemyProcessor( stage_config, owner_node, target_node )
-			, mRequestBulletCallback( request_bullet_callback )
 			, mSpawnProcessorContainer( std::move( spawn_processor_container ) )
 			, mCurrentSpawnProcessor()
-			, mSpawnInfoContainer()
-		{
-			mSpawnInfoContainer.reserve( 100 );
-		}
+			, mSpawnInfoContainer( spawn_info_container )
+		{}
 
 		EnemyProcessorUp EnemyProcessor_Fire::Create(
 			const StageConfig& stage_config
 			, Node* const owner_node
 			, Node* const target_node
-			, const RequestBulletCallback& request_bullet_callback
 			, SpawnProcessorContainer&& spawn_processor_container
+			, SpawnInfoContainer& spawn_info_container
 		)
 		{
-			EnemyProcessorUp ret( new (std::nothrow) EnemyProcessor_Fire( stage_config, owner_node, target_node, request_bullet_callback, std::move( spawn_processor_container ) ) );
+			EnemyProcessorUp ret( new (std::nothrow) EnemyProcessor_Fire(
+				stage_config
+				, owner_node
+				, target_node
+				, std::move( spawn_processor_container )
+				, spawn_info_container )
+			);
 			ret->init();
 			return ret;
 		}
@@ -54,25 +57,12 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			mSpawnInfoContainer.clear();
-
 			if( !( *mCurrentSpawnProcessor )->Update( delta_time, mOwnerNode->getPosition(), mTargetNode->getPosition(), &mSpawnInfoContainer ) )
 			{
 				++mCurrentSpawnProcessor;
 				if( mSpawnProcessorContainer.end() != mCurrentSpawnProcessor )
 				{
 					( *mCurrentSpawnProcessor )->Enter( mOwnerNode->getPosition(), mTargetNode->getPosition() );
-				}
-			}
-
-			if( !mSpawnInfoContainer.empty() )
-			{
-				for( const auto& s : mSpawnInfoContainer )
-				{
-					Vec2 dir = s.MoveDirection;
-					dir.normalize();
-					dir.scale( 3.f );
-					mRequestBulletCallback( s.StartPosition, dir );
 				}
 			}
 		}
