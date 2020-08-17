@@ -65,6 +65,8 @@ namespace step_rain_of_chaos
 					( *mCurrentSpawnProcessor )->Enter( mOwnerNode->getPosition(), mTargetNode->getPosition() );
 				}
 			}
+
+			return true;
 		}
 	}
 }
