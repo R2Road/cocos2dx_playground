@@ -151,7 +151,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				Vec2 enemy_position = mStageConfig.GetCenter();
-				enemy_position.y += ( mStageConfig.GetBulletGenerateAreaMax().size.width * 0.5f );
+				enemy_position.y += ( mStageConfig.GetBulletGenerateRadiusMax() );
 
 				auto enemy_node = game::EnemyNode::create(
 					game::EnemyNode::DebugConfig{ true }

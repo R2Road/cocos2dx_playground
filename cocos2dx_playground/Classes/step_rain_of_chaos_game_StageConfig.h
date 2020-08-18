@@ -20,16 +20,10 @@ namespace step_rain_of_chaos
 				);
 
 				float temp_radius = sqrt( ( ( mStageRect.size.width * 0.5f ) * ( mStageRect.size.width * 0.5f ) ) * 2.f ) + 8.f;
-				mBulletGenerateAreaMin.setRect(
-					mCenter.x - temp_radius, mCenter.y - temp_radius
-					, temp_radius * 2.f, temp_radius * 2.f
-				);
+				mBulletGenerateRadiusMin = temp_radius;
 
 				temp_radius += 40.f;
-				mBulletGenerateAreaMax.setRect(
-					mCenter.x - temp_radius, mCenter.y - temp_radius
-					, temp_radius * 2.f, temp_radius * 2.f
-				);
+				mBulletGenerateRadiusMax = temp_radius;
 
 				temp_radius += 20.f;
 				mBulletLifeRect.setRect(
@@ -39,10 +33,12 @@ namespace step_rain_of_chaos
 			}
 
 			cocos2d::Vec2 GetCenter() const { return mCenter; }
+
 			cocos2d::Rect GetStageRect() const { return mStageRect; }
 			cocos2d::Rect GetBulletLifeRect() const { return  mBulletLifeRect; }
-			cocos2d::Rect GetBulletGenerateAreaMin() const { return mBulletGenerateAreaMin; }
-			cocos2d::Rect GetBulletGenerateAreaMax() const { return mBulletGenerateAreaMax; }
+
+			float GetBulletGenerateRadiusMin() const { return mBulletGenerateRadiusMin; }
+			float GetBulletGenerateRadiusMax() const { return mBulletGenerateRadiusMax; }
 
 		private:
 			cocos2d::Vec2 mCenter;
@@ -50,8 +46,8 @@ namespace step_rain_of_chaos
 			cocos2d::Rect mStageRect;
 			cocos2d::Rect mBulletLifeRect;
 
-			cocos2d::Rect mBulletGenerateAreaMin;
-			cocos2d::Rect mBulletGenerateAreaMax;
+			float mBulletGenerateRadiusMin;
+			float mBulletGenerateRadiusMax;
 		};
 	}
 }

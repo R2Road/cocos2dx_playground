@@ -134,7 +134,7 @@ namespace step_rain_of_chaos
 
 				// Bullet Generate Area View Min
 				{
-					const float radius = mStageConfig.GetBulletGenerateAreaMin().size.width * 0.5f;
+					const float radius = mStageConfig.GetBulletGenerateRadiusMin();
 
 					auto draw_node = cocos2d::DrawNode::create();
 					draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
@@ -152,7 +152,7 @@ namespace step_rain_of_chaos
 
 				// Bullet Generate Area View Max
 				{
-					const float radius = mStageConfig.GetBulletGenerateAreaMax().size.width * 0.5f;
+					const float radius = mStageConfig.GetBulletGenerateRadiusMax();
 
 					auto draw_node = cocos2d::DrawNode::create();
 					draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
