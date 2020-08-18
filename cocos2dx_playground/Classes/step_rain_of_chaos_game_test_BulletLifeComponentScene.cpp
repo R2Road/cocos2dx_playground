@@ -116,9 +116,9 @@ namespace step_rain_of_chaos
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setContentSize( mStageConfig.GetStageArea().size );
+				sprite->setContentSize( mStageConfig.GetStageRect().size );
 				sprite->setColor( Color3B::GREEN );
-				sprite->setPosition( mStageConfig.GetStageArea().origin );
+				sprite->setPosition( mStageConfig.GetStageRect().origin );
 				addChild( sprite );
 				{
 					auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
@@ -138,9 +138,9 @@ namespace step_rain_of_chaos
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setContentSize( mStageConfig.GetBulletLifeArea().size );
+				sprite->setContentSize( mStageConfig.GetBulletLifeRect().size );
 				sprite->setColor( Color3B::RED );
-				sprite->setPosition( mStageConfig.GetBulletLifeArea().origin );
+				sprite->setPosition( mStageConfig.GetBulletLifeRect().origin );
 				addChild( sprite );
 				{
 					auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
@@ -224,7 +224,7 @@ namespace step_rain_of_chaos
 				object_node->addComponent( circle_collision_component );
 
 				// Bullet Life Component
-				object_node->addComponent( step_rain_of_chaos::game::BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, nullptr ) );
+				object_node->addComponent( step_rain_of_chaos::game::BulletLifeComponent::create( mStageConfig.GetBulletLifeRect(), animation_component, circle_collision_component, nullptr ) );
 			}
 
 			return true;

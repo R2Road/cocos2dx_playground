@@ -95,9 +95,9 @@ namespace step_rain_of_chaos
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( mStageConfig.GetStageArea().size );
+					sprite->setContentSize( mStageConfig.GetStageRect().size );
 					sprite->setColor( Color3B::GREEN );
-					sprite->setPosition( mStageConfig.GetStageArea().origin );
+					sprite->setPosition( mStageConfig.GetStageRect().origin );
 					addChild( sprite, std::numeric_limits<int>::min() );
 					{
 						auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
@@ -115,9 +115,9 @@ namespace step_rain_of_chaos
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( mStageConfig.GetBulletLifeArea().size );
+					sprite->setContentSize( mStageConfig.GetBulletLifeRect().size );
 					sprite->setColor( Color3B::RED );
-					sprite->setPosition( mStageConfig.GetBulletLifeArea().origin );
+					sprite->setPosition( mStageConfig.GetBulletLifeRect().origin );
 					addChild( sprite, std::numeric_limits<int>::min() );
 					{
 						auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
@@ -215,7 +215,7 @@ namespace step_rain_of_chaos
 				root_node->addComponent( circle_collision_component );
 
 				// Object Component
-				root_node->addComponent( BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, target_rest_callback ) );
+				root_node->addComponent( BulletLifeComponent::create( mStageConfig.GetBulletLifeRect(), animation_component, circle_collision_component, target_rest_callback ) );
 			}
 
 			return root_node;
@@ -258,8 +258,8 @@ namespace step_rain_of_chaos
 		void StageNode::PlayerMoveRequest( const Vec2& move_vector )
 		{
 			const Vec2 new_player_position(
-				cpg::clamp( mPlayerNode->getPosition().x + move_vector.x, mStageConfig.GetStageArea().getMinX(), mStageConfig.GetStageArea().getMaxX() )
-				, cpg::clamp( mPlayerNode->getPosition().y + move_vector.y, mStageConfig.GetStageArea().getMinY(), mStageConfig.GetStageArea().getMaxY() )
+				cpg::clamp( mPlayerNode->getPosition().x + move_vector.x, mStageConfig.GetStageRect().getMinX(), mStageConfig.GetStageRect().getMaxX() )
+				, cpg::clamp( mPlayerNode->getPosition().y + move_vector.y, mStageConfig.GetStageRect().getMinY(), mStageConfig.GetStageRect().getMaxY() )
 			);
 
 			mPlayerNode->setPosition( new_player_position );

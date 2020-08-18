@@ -260,7 +260,7 @@ namespace step_rain_of_chaos
 
 				for( int i = 0; i < mCurrentFireAmount; ++i )
 				{
-					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
+					Vec2 dir = Vec2( mStageConfig.GetStageRect().getMaxX(), mStageConfig.GetStageRect().getMaxY() ) - mStageConfig.GetStageRect().origin;
 					dir.normalize();
 					dir.scale( mCurrentMoveSpeed );
 					mStageNode->RequestBulletAction( Vec2( mStageConfig.GetBulletGenerateAreaMax().origin ) + offset, dir );
