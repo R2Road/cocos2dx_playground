@@ -1,9 +1,6 @@
 #pragma once
 
-#include "math/Vec2.h"
-
 #include "step_rain_of_chaos_game_iEnemyProcessor.h"
-#include "step_rain_of_chaos_game_iSpawnProcessor.h"
 
 namespace step_rain_of_chaos
 {

@@ -1,11 +1,7 @@
 #include "step_rain_of_chaos_game_EnemyProcessor_Tie.h"
 
-#include <algorithm>
 #include <new>
-
-#include "2d/CCNode.h"
-
-#include "step_rain_of_chaos_game_StageConfig.h"
+#include <utility>
 
 USING_NS_CC;
 
