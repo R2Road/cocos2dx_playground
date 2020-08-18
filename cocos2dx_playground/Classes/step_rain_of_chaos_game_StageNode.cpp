@@ -100,7 +100,7 @@ namespace step_rain_of_chaos
 					sprite->setPosition( mStageConfig.GetStageArea().origin );
 					addChild( sprite, std::numeric_limits<int>::min() );
 					{
-						auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+						auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
 						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 						label->setColor( Color3B::GREEN );
 						label->setPosition( Vec2(
@@ -120,7 +120,7 @@ namespace step_rain_of_chaos
 					sprite->setPosition( mStageConfig.GetBulletLifeArea().origin );
 					addChild( sprite, std::numeric_limits<int>::min() );
 					{
-						auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+						auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
 						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 						label->setColor( Color3B::RED );
 						label->setPosition( Vec2(
@@ -132,24 +132,40 @@ namespace step_rain_of_chaos
 				}
 
 
-				// Bullet Generate Area View
+				// Bullet Generate Area View Min
 				{
-					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
-					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( mStageConfig.GetBulletGenerateArea().size );
-					sprite->setColor( Color3B::WHITE );
-					sprite->setPosition( mStageConfig.GetBulletGenerateArea().origin );
-					addChild( sprite, std::numeric_limits<int>::min() );
-					{
-						auto label = Label::createWithTTF( "Bullet Generate Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
-						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-						label->setColor( Color3B::WHITE );
-						label->setPosition( Vec2(
-							sprite->getContentSize().width
-							, sprite->getContentSize().height
-						) );
-						sprite->addChild( label );
-					}
+					const float radius = mStageConfig.GetBulletGenerateAreaMin().size.width * 0.5f;
+
+					auto draw_node = cocos2d::DrawNode::create();
+					draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
+					addChild( draw_node, std::numeric_limits<int>::min() );
+
+					auto label = Label::createWithTTF( "Bullet Generate Area Min", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::WHITE );
+					label->setPosition(
+						mStageConfig.GetCenter()
+						+ Vec2( 0.f, radius )
+					);
+					draw_node->addChild( label );
+				}
+
+				// Bullet Generate Area View Max
+				{
+					const float radius = mStageConfig.GetBulletGenerateAreaMax().size.width * 0.5f;
+
+					auto draw_node = cocos2d::DrawNode::create();
+					draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
+					addChild( draw_node, std::numeric_limits<int>::min() );
+
+					auto label = Label::createWithTTF( "Bullet Generate Area Max", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::WHITE );
+					label->setPosition(
+						mStageConfig.GetCenter()
+						+ Vec2( 0.f, radius )
+					);
+					draw_node->addChild( label );
 				}
 			}
 

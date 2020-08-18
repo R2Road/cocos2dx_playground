@@ -160,9 +160,9 @@ namespace step_rain_of_chaos
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setContentSize( mStageConfig.GetBulletGenerateArea().size );
+				sprite->setContentSize( mStageConfig.GetBulletGenerateAreaMax().size );
 				sprite->setColor( Color3B::WHITE );
-				sprite->setPosition( mStageConfig.GetBulletGenerateArea().origin );
+				sprite->setPosition( mStageConfig.GetBulletGenerateAreaMax().origin );
 				addChild( sprite );
 				{
 					auto label = Label::createWithTTF( "Bullet Generate Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
@@ -264,7 +264,7 @@ namespace step_rain_of_chaos
 
 			case EventKeyboard::KeyCode::KEY_1:
 			{
-				const Vec2 pivot_vector( mStageConfig.GetBulletGenerateArea().size.width * 0.5f, mStageConfig.GetBulletGenerateArea().size.height * 0.5f );
+				const Vec2 pivot_vector( mStageConfig.GetBulletGenerateAreaMax().size.width * 0.5f, mStageConfig.GetBulletGenerateAreaMax().size.height * 0.5f );
 				Vec2 direction_vector = pivot_vector;
 
 				static std::mt19937 randomEngine( std::random_device{}() );
