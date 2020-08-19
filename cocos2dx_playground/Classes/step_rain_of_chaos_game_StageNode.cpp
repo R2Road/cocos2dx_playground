@@ -95,12 +95,12 @@ namespace step_rain_of_chaos
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( mStageConfig.GetStageArea().size );
+					sprite->setContentSize( mStageConfig.GetStageRect().size );
 					sprite->setColor( Color3B::GREEN );
-					sprite->setPosition( mStageConfig.GetStageArea().origin );
+					sprite->setPosition( mStageConfig.GetStageRect().origin );
 					addChild( sprite, std::numeric_limits<int>::min() );
 					{
-						auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+						auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
 						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 						label->setColor( Color3B::GREEN );
 						label->setPosition( Vec2(
@@ -115,12 +115,12 @@ namespace step_rain_of_chaos
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( mStageConfig.GetBulletLifeArea().size );
+					sprite->setContentSize( mStageConfig.GetBulletLifeRect().size );
 					sprite->setColor( Color3B::RED );
-					sprite->setPosition( mStageConfig.GetBulletLifeArea().origin );
+					sprite->setPosition( mStageConfig.GetBulletLifeRect().origin );
 					addChild( sprite, std::numeric_limits<int>::min() );
 					{
-						auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+						auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
 						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 						label->setColor( Color3B::RED );
 						label->setPosition( Vec2(
@@ -132,24 +132,40 @@ namespace step_rain_of_chaos
 				}
 
 
-				// Bullet Generate Area View
+				// Bullet Generate Area View Min
 				{
-					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
-					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( mStageConfig.GetBulletGenerateArea().size );
-					sprite->setColor( Color3B::WHITE );
-					sprite->setPosition( mStageConfig.GetBulletGenerateArea().origin );
-					addChild( sprite, std::numeric_limits<int>::min() );
-					{
-						auto label = Label::createWithTTF( "Bullet Generate Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
-						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-						label->setColor( Color3B::WHITE );
-						label->setPosition( Vec2(
-							sprite->getContentSize().width
-							, sprite->getContentSize().height
-						) );
-						sprite->addChild( label );
-					}
+					const float radius = mStageConfig.GetBulletGenerateRadiusMin();
+
+					auto draw_node = cocos2d::DrawNode::create();
+					draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
+					addChild( draw_node, std::numeric_limits<int>::min() );
+
+					auto label = Label::createWithTTF( "Bullet Generate Area Min", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::WHITE );
+					label->setPosition(
+						mStageConfig.GetCenter()
+						+ Vec2( 0.f, radius )
+					);
+					draw_node->addChild( label );
+				}
+
+				// Bullet Generate Area View Max
+				{
+					const float radius = mStageConfig.GetBulletGenerateRadiusMax();
+
+					auto draw_node = cocos2d::DrawNode::create();
+					draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
+					addChild( draw_node, std::numeric_limits<int>::min() );
+
+					auto label = Label::createWithTTF( "Bullet Generate Area Max", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+					label->setColor( Color3B::WHITE );
+					label->setPosition(
+						mStageConfig.GetCenter()
+						+ Vec2( 0.f, radius )
+					);
+					draw_node->addChild( label );
 				}
 			}
 
@@ -199,7 +215,7 @@ namespace step_rain_of_chaos
 				root_node->addComponent( circle_collision_component );
 
 				// Object Component
-				root_node->addComponent( BulletLifeComponent::create( mStageConfig.GetBulletLifeArea(), animation_component, circle_collision_component, target_rest_callback ) );
+				root_node->addComponent( BulletLifeComponent::create( mStageConfig.GetBulletLifeRect(), animation_component, circle_collision_component, target_rest_callback ) );
 			}
 
 			return root_node;
@@ -242,8 +258,8 @@ namespace step_rain_of_chaos
 		void StageNode::PlayerMoveRequest( const Vec2& move_vector )
 		{
 			const Vec2 new_player_position(
-				cpg::clamp( mPlayerNode->getPosition().x + move_vector.x, mStageConfig.GetStageArea().getMinX(), mStageConfig.GetStageArea().getMaxX() )
-				, cpg::clamp( mPlayerNode->getPosition().y + move_vector.y, mStageConfig.GetStageArea().getMinY(), mStageConfig.GetStageArea().getMaxY() )
+				cpg::clamp( mPlayerNode->getPosition().x + move_vector.x, mStageConfig.GetStageRect().getMinX(), mStageConfig.GetStageRect().getMaxX() )
+				, cpg::clamp( mPlayerNode->getPosition().y + move_vector.y, mStageConfig.GetStageRect().getMinY(), mStageConfig.GetStageRect().getMaxY() )
 			);
 
 			mPlayerNode->setPosition( new_player_position );

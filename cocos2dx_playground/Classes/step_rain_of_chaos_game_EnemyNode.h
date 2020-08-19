@@ -5,6 +5,7 @@
 #include "2d/CCNode.h"
 
 #include "step_rain_of_chaos_game_iEnemyProcessor.h"
+#include "step_rain_of_chaos_game_iSpawnProcessor.h"
 
 namespace step_mole
 {
@@ -25,13 +26,16 @@ namespace step_rain_of_chaos
 
 			using EnemyProcessorContainer = std::vector<EnemyProcessorUp>;
 
+			using RequestBulletCallback = std::function<void( cocos2d::Vec2, cocos2d::Vec2 )>;
+
 		private:
-			EnemyNode();
+			EnemyNode( const RequestBulletCallback& request_bullet_callback );
 
 		public:
 			static EnemyNode* create(
 				const DebugConfig debug_config
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+				, const RequestBulletCallback& request_bullet_callback
 			);
 
 		private:
@@ -46,9 +50,14 @@ namespace step_rain_of_chaos
 			void SetProcessor( EnemyProcessorContainer&& enemy_processor_container );
 			void StartProcess();
 
+			SpawnInfoContainer& GetSpawnInfoContainer() { return mSpawnInfoContainer; }
+
 		private:
+			const RequestBulletCallback mRequestBulletCallback;
+
 			EnemyProcessorContainer mProcessorContainer;
 			EnemyProcessorContainer::iterator mCurrentProcessor;
+			SpawnInfoContainer mSpawnInfoContainer;
 		};
 	}
 }

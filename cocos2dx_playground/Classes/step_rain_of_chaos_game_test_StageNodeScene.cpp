@@ -178,9 +178,9 @@ namespace step_rain_of_chaos
 			//
 			{
 				Vec2 enemy_position = mStageConfig.GetCenter();
-				enemy_position.y += ( mStageConfig.GetBulletGenerateArea().size.width * 0.5f );
+				enemy_position.y += ( mStageConfig.GetBulletGenerateRadiusMax() );
 
-				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				auto enemy_node = game::EnemyNode::create( game::EnemyNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true }, []( Vec2, Vec2 ) {} );
 				enemy_node->setPosition( enemy_position );
 				mStageNode->AddEnemy( enemy_node );
 			}
@@ -260,10 +260,13 @@ namespace step_rain_of_chaos
 
 				for( int i = 0; i < mCurrentFireAmount; ++i )
 				{
-					Vec2 dir = Vec2( mStageConfig.GetStageArea().getMaxX(), mStageConfig.GetStageArea().getMaxY() ) - mStageConfig.GetStageArea().origin;
+					Vec2 dir = Vec2( mStageConfig.GetStageRect().getMaxX(), mStageConfig.GetStageRect().getMaxY() ) - mStageConfig.GetStageRect().origin;
 					dir.normalize();
 					dir.scale( mCurrentMoveSpeed );
-					mStageNode->RequestBulletAction( Vec2( mStageConfig.GetBulletGenerateArea().origin ) + offset, dir );
+					mStageNode->RequestBulletAction(
+						mStageConfig.GetCenter() - Vec2( mStageConfig.GetBulletGenerateRadiusMin(), mStageConfig.GetBulletGenerateRadiusMin() ) + offset
+						, dir
+					);
 
 					offset.y += 2.f;
 				}

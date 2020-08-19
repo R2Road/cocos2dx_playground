@@ -59,6 +59,11 @@ namespace step_rain_of_chaos
 
 		bool EnemyProcessor_Move_Linear_01::Update( const float delta_time )
 		{
+			if( mLimitTime <= mElapsedTime )
+			{
+				return false;
+			}
+
 			mElapsedTime += delta_time;
 
 			float rate = mElapsedTime / mLimitTime;

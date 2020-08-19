@@ -17,17 +17,22 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		EnemyNode::EnemyNode() :
-			mProcessorContainer()
+		EnemyNode::EnemyNode( const RequestBulletCallback& request_bullet_callback ) :
+			mRequestBulletCallback( request_bullet_callback )
+			, mProcessorContainer()
 			, mCurrentProcessor()
-		{}
+			, mSpawnInfoContainer()
+		{
+			mSpawnInfoContainer.reserve( 100 );
+		}
 
 		EnemyNode* EnemyNode::create(
 			const DebugConfig debug_config
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+			, const RequestBulletCallback& request_bullet_callback
 		)
 		{
-			auto ret = new ( std::nothrow ) EnemyNode();
+			auto ret = new ( std::nothrow ) EnemyNode( request_bullet_callback );
 			if( !ret || !ret->init( debug_config, circle_collision_component_config ) )
 			{
 				delete ret;
@@ -97,12 +102,25 @@ namespace step_rain_of_chaos
 				return;
 			}
 
+			mSpawnInfoContainer.clear();
+
 			if( !( *mCurrentProcessor )->Update( dt ) )
 			{
 				++mCurrentProcessor;
 				if( mProcessorContainer.end() != mCurrentProcessor )
 				{
 					( *mCurrentProcessor )->Enter();
+				}
+			}
+
+			if( !mSpawnInfoContainer.empty() )
+			{
+				for( const auto& s : mSpawnInfoContainer )
+				{
+					Vec2 dir = s.MoveDirection;
+					dir.normalize();
+					dir.scale( 3.f );
+					mRequestBulletCallback( s.StartPosition, dir );
 				}
 			}
 		}
