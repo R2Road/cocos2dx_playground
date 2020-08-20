@@ -1,13 +1,18 @@
 #include "step_rain_of_chaos_game_PlayScene.h"
 
+#include <cstdlib> // ldiv
 #include <new>
 #include <numeric>
 #include <sstream>
 
 #include "2d/CCLabel.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+
+#include "step_rain_of_chaos_game_BackgroundNode.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
 
@@ -78,6 +83,36 @@ namespace step_rain_of_chaos
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Background Node
+			//
+			{
+				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_0.png" )->getOriginalSizeInPixels();
+
+				const auto div_result_width = std::div( static_cast<int>( visibleSize.width ), static_cast<int>( tile_size.width ) );
+				const std::size_t vertical_amount = div_result_width.rem > 0 ? div_result_width.quot + 1 : div_result_width.quot;
+
+				const auto div_result_height = std::div( static_cast<int>( visibleSize.height ), static_cast<int>( tile_size.height ) );
+				const std::size_t horizontal_amount = div_result_height.rem > 0 ? div_result_height.quot + 1 : div_result_height.quot;
+
+				std::vector<SpriteFrame*> SpriteFrames{
+					SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_0.png" )
+					, SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_1.png" )
+					, SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_2.png" )
+					, SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_3.png" )
+					, SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_4.png" )
+					, SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_5.png" )
+				};
+
+				auto background_node = step_rain_of_chaos::game::BackgroundNode::create( 10, 10, "textures/texture_001.png", std::move( SpriteFrames ) );
+				background_node->Reset( vertical_amount, horizontal_amount );
+				background_node->setPosition(
+					visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
+				);
+				addChild( background_node, std::numeric_limits<int>::min() );
 			}
 
 			return true;
