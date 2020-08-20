@@ -636,6 +636,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Sleep.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_PlayScene.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1153,6 +1156,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Sleep.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_PlayScene.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
