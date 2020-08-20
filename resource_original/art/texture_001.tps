@@ -363,6 +363,10 @@
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_tile_01_3.png</key>
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_tile_01_4.png</key>
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_tile_01_5.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_tile_01_6.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_tile_01_7.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_tile_01_8.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_tile_01_9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -714,6 +718,10 @@
             <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_3.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_4.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_5.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_6.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_7.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_8.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_9.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
