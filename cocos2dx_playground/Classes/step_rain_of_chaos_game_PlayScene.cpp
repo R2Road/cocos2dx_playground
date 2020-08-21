@@ -32,6 +32,7 @@ namespace step_rain_of_chaos
 	{
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
+			, mKeyCodeCollector()
 
 			, mStageConfig()
 			, mStageNode( nullptr )
@@ -60,6 +61,8 @@ namespace step_rain_of_chaos
 			{
 				return false;
 			}
+
+			schedule( schedule_selector( PlayScene::UpdateForInput ) );
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
@@ -191,6 +194,7 @@ namespace step_rain_of_chaos
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( PlayScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void PlayScene::onExit()
@@ -202,6 +206,35 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
+		void PlayScene::UpdateForInput( float delta_time )
+		{
+			Vec2 move_vector;
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
+			{
+				move_vector.y += 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_DOWN_ARROW ) )
+			{
+				move_vector.y -= 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
+			{
+				move_vector.x += 1.f;
+			}
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
+			{
+				move_vector.x -= 1.f;
+			}
+
+			if( 0.f != move_vector.x || 0.f != move_vector.y )
+			{
+				move_vector.normalize();
+				move_vector.scale( 100.f * delta_time );
+
+				mStageNode->PlayerMoveRequest( move_vector );
+			}
+		}
+
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
@@ -209,6 +242,12 @@ namespace step_rain_of_chaos
 				Director::getInstance()->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
 				return;
 			}
+
+			mKeyCodeCollector.onKeyPressed( keycode );
+		}
+		void PlayScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		{
+			mKeyCodeCollector.onKeyReleased( keycode );
 		}
 	}
 }
