@@ -2,10 +2,14 @@
 
 #include "2d/CCScene.h"
 
+#include "step_rain_of_chaos_game_StageConfig.h"
+
 namespace step_rain_of_chaos
 {
 	namespace game
 	{
+		class StageNode;
+
 		class PlayScene : public cocos2d::Scene
 		{
 		private:
@@ -24,6 +28,9 @@ namespace step_rain_of_chaos
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			game::StageConfig mStageConfig;
+			game::StageNode* mStageNode;
 		};
 	}
 }

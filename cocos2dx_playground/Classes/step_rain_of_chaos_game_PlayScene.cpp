@@ -13,16 +13,28 @@
 #include "base/CCEventDispatcher.h"
 
 #include "step_rain_of_chaos_game_BackgroundNode.h"
+#include "step_rain_of_chaos_game_EnemyNode.h"
+#include "step_rain_of_chaos_game_PlayerNode.h"
+#include "step_rain_of_chaos_game_StageNode.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
 
 USING_NS_CC;
 
+namespace
+{
+	const int BulletCachingAmount = 100;
+}
+
 namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		PlayScene::PlayScene() : mKeyboardListener( nullptr )
+		PlayScene::PlayScene() :
+			mKeyboardListener( nullptr )
+
+			, mStageConfig()
+			, mStageNode( nullptr )
 		{}
 
 		Scene* PlayScene::create()
@@ -118,6 +130,52 @@ namespace step_rain_of_chaos
 					, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
 				);
 				addChild( background_node, std::numeric_limits<int>::min() );
+			}
+
+			mStageConfig.Build(
+				visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
+				, 120.f
+			);
+
+			//
+			// Stage Node
+			//
+			{
+				mStageNode = game::StageNode::create(
+					mStageConfig
+					, game::StageNode::DebugConfig{ false, true }
+					, step_mole::CircleCollisionComponentConfig{ false, false, false }
+					, BulletCachingAmount
+				);
+				addChild( mStageNode );
+			}
+
+			//
+			// Player Node
+			//
+			{
+				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				player_node->setPosition( Vec2(
+					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
+					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+				) );
+				mStageNode->AddPlayer( player_node );
+			}
+
+			//
+			// Enemy Node
+			//
+			{
+				Vec2 enemy_position = mStageConfig.GetCenter();
+				enemy_position.y += ( mStageConfig.GetBulletGenerateRadiusMax() );
+
+				auto enemy_node = game::EnemyNode::create(
+					game::EnemyNode::DebugConfig{ true }
+					, step_mole::CircleCollisionComponentConfig{ true, true, true }
+					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
+				);
+				enemy_node->setPosition( enemy_position );
+				mStageNode->AddEnemy( enemy_node );
 			}
 
 			return true;
