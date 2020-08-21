@@ -143,7 +143,7 @@ namespace step_rain_of_chaos
 			{
 				mStageNode = game::StageNode::create(
 					mStageConfig
-					, game::StageNode::DebugConfig{ false, true }
+					, game::StageNode::DebugConfig{ false, false, false, false }
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 					, BulletCachingAmount
 				);
@@ -154,7 +154,10 @@ namespace step_rain_of_chaos
 			// Player Node
 			//
 			{
-				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				auto player_node = game::PlayerNode::create(
+					game::PlayerNode::DebugConfig{ false }
+					, step_mole::CircleCollisionComponentConfig{ false, false, false }
+				);
 				player_node->setPosition( Vec2(
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
@@ -170,8 +173,8 @@ namespace step_rain_of_chaos
 				enemy_position.y += ( mStageConfig.GetBulletGenerateRadiusMax() );
 
 				auto enemy_node = game::EnemyNode::create(
-					game::EnemyNode::DebugConfig{ true }
-					, step_mole::CircleCollisionComponentConfig{ true, true, true }
+					game::EnemyNode::DebugConfig{ false }
+					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
 				);
 				enemy_node->setPosition( enemy_position );

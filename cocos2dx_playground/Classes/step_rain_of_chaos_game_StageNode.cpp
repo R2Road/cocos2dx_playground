@@ -89,50 +89,53 @@ namespace step_rain_of_chaos
 			//
 			// Stage Area Guide
 			//
-			if( mDebugConfig.bShowAreaGuide )
 			{
-				// Stage Area View
+				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				sprite->setContentSize( mStageConfig.GetStageRect().size );
+				sprite->setColor( Color3B::GREEN );
+				sprite->setPosition( mStageConfig.GetStageRect().origin );
+				addChild( sprite, std::numeric_limits<int>::min() );
+
+				if( mDebugConfig.bShowLabel_StageArea )
 				{
-					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
-					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( mStageConfig.GetStageRect().size );
-					sprite->setColor( Color3B::GREEN );
-					sprite->setPosition( mStageConfig.GetStageRect().origin );
-					addChild( sprite, std::numeric_limits<int>::min() );
-					{
-						auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
-						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-						label->setColor( Color3B::GREEN );
-						label->setPosition( Vec2(
-							sprite->getContentSize().width
-							, sprite->getContentSize().height
-						) );
-						sprite->addChild( label );
-					}
+					auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+					label->setColor( Color3B::GREEN );
+					label->setPosition( Vec2(
+						sprite->getContentSize().width
+						, sprite->getContentSize().height
+					) );
+					sprite->addChild( label );
 				}
+			}
 
-				// Bullet Life Area View
+			// Bullet Life Area Guide
+			if( mDebugConfig.bShowGuide_BulletLifeArea )
+			{
+				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				sprite->setContentSize( mStageConfig.GetBulletLifeRect().size );
+				sprite->setColor( Color3B::RED );
+				sprite->setPosition( mStageConfig.GetBulletLifeRect().origin );
+				addChild( sprite, std::numeric_limits<int>::min() );
 				{
-					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
-					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( mStageConfig.GetBulletLifeRect().size );
-					sprite->setColor( Color3B::RED );
-					sprite->setPosition( mStageConfig.GetBulletLifeRect().origin );
-					addChild( sprite, std::numeric_limits<int>::min() );
-					{
-						auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
-						label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-						label->setColor( Color3B::RED );
-						label->setPosition( Vec2(
-							sprite->getContentSize().width
-							, sprite->getContentSize().height
-						) );
-						sprite->addChild( label );
-					}
+					auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+					label->setColor( Color3B::RED );
+					label->setPosition( Vec2(
+						sprite->getContentSize().width
+						, sprite->getContentSize().height
+					) );
+					sprite->addChild( label );
 				}
+			}
 
 
-				// Bullet Generate Area View Min
+			// Bullet Generate Area Guide
+			if( mDebugConfig.bShowGuide_BulletGenerateArea )
+			{
+				// Min
 				{
 					const float radius = mStageConfig.GetBulletGenerateRadiusMin();
 
@@ -150,7 +153,7 @@ namespace step_rain_of_chaos
 					draw_node->addChild( label );
 				}
 
-				// Bullet Generate Area View Max
+				// Max
 				{
 					const float radius = mStageConfig.GetBulletGenerateRadiusMax();
 

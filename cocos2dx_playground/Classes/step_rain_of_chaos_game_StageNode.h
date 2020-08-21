@@ -28,7 +28,9 @@ namespace step_rain_of_chaos
 			struct DebugConfig
 			{
 				bool bShowPivot = false;
-				bool bShowAreaGuide = false;
+				bool bShowLabel_StageArea = false;
+				bool bShowGuide_BulletLifeArea = false;
+				bool bShowGuide_BulletGenerateArea = false;
 			};
 
 		private:
