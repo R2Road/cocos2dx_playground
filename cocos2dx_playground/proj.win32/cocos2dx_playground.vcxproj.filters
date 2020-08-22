@@ -151,6 +151,9 @@
     <Filter Include="src\scene\step_05_rain_of_chaos\game\enemyprocessor">
       <UniqueIdentifier>{f8f106bc-152d-4802-9182-53511a33f5ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_05_rain_of_chaos\draw_node">
+      <UniqueIdentifier>{ecd4150e-3c0f-4804-b83d-5632a944bc07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -638,6 +641,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_PlayScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_draw_node_CircleScene.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\draw_node</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1159,6 +1165,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_PlayScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_draw_node_CircleScene.h">
+      <Filter>src\scene\step_05_rain_of_chaos\draw_node</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
