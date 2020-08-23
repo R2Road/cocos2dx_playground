@@ -2163,7 +2163,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6bba9027cdf9f3ce74d4b068cec0790f:0493a34cd17c1d02ddc63a7fb256e35b:647b4f3223f85a3f89e579e670869bc1$</string>
+            <string>$TexturePacker:SmartUpdate:9aaac23ecc2ccfa369a04d9640934633:29d530f86f0452f8c59115c8b7638a91:647b4f3223f85a3f89e579e670869bc1$</string>
             <key>textureFileName</key>
             <string>texture_001.png</string>
         </dict>
