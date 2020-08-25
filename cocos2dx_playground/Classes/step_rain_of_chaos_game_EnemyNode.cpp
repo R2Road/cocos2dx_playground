@@ -70,7 +70,7 @@ namespace step_rain_of_chaos
 			// View
 			//
 			{
-				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_actor_01_idle_0.png" );
+				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_enemy_01_idle_0.png" );
 				view_node->setScale( _director->getContentScaleFactor() );
 				addChild( view_node );
 				{

@@ -462,6 +462,28 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_0.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_1.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_2.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_3.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_4.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_5.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_6.png</key>
+            <key type="filename">step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_7.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,7,7</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,7,7</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">ui/checkbox_cross.png</key>
             <key type="filename">ui/checkbox_normal.png</key>
             <key type="filename">ui/toggle_button/toggle_button_thumb_01_0.png</key>
@@ -722,6 +744,14 @@
             <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_7.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_8.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_tile_01_9.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_0.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_1.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_2.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_3.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_4.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_5.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_6.png</filename>
+            <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_7.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

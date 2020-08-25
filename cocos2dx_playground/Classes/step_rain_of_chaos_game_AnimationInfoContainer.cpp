@@ -23,7 +23,11 @@ namespace step_rain_of_chaos
 				{
 					cpg::animation::eIndex::idle
 					, 0.1f
-					, std::vector<std::string>{ "step_rain_of_chaos_actor_01_idle_0.png" }
+					, std::vector<std::string>{
+						"step_rain_of_chaos_enemy_01_idle_0.png", "step_rain_of_chaos_enemy_01_idle_1.png", "step_rain_of_chaos_enemy_01_idle_2.png"
+						, "step_rain_of_chaos_enemy_01_idle_3.png", "step_rain_of_chaos_enemy_01_idle_4.png", "step_rain_of_chaos_enemy_01_idle_5.png"
+						, "step_rain_of_chaos_enemy_01_idle_6.png", "step_rain_of_chaos_enemy_01_idle_7.png"
+					}
 				}
 			};
 
