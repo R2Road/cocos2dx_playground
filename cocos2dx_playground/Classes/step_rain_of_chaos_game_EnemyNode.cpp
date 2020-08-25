@@ -37,7 +37,6 @@ namespace step_rain_of_chaos
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{
@@ -63,7 +62,7 @@ namespace step_rain_of_chaos
 			if( debug_config.bShowPivot )
 			{
 				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-				pivot->setScale( 2.f );
+				pivot->setScale( _director->getContentScaleFactor() );
 				addChild( pivot, std::numeric_limits<int>::max() );
 			}
 
@@ -71,12 +70,14 @@ namespace step_rain_of_chaos
 			// View
 			//
 			{
-				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_actor_01_idle_0.png" );
+				const auto& animation_info_container = step_rain_of_chaos::game::GetEnemyAnimationInfoContainer();
+
+				auto view_node = Sprite::createWithSpriteFrameName( animation_info_container[0].SpriteFrameNames[0] );
 				view_node->setScale( _director->getContentScaleFactor() );
 				addChild( view_node );
 				{
 					// Animation Component
-					auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetEnemyAnimationInfoContainer() );
+					auto animation_component = step_mole::AnimationComponent::create( animation_info_container );
 					view_node->addComponent( animation_component );
 					animation_component->PlayAnimation( cpg::animation::eIndex::idle );
 				}

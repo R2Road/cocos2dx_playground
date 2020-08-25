@@ -155,8 +155,8 @@ namespace step_rain_of_chaos
 				);
 
 				const std::array<SpriteFrame*, 2u> SpriteFrames{
-					SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_0.png" )
-					,SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_tile_1.png" )
+					SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_0.png" )
+					, SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_1.png" )
 				};
 				const Size SpriteSize = SpriteFrames[0]->getOriginalSizeInPixels();
 				const int VerticalAmount = 3;

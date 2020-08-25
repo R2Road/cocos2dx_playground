@@ -30,7 +30,7 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
-			, mMoveSpeed( 3.f )
+			, mMoveSpeed( 80.f )
 		{}
 
 		Scene* ActorMoveScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -57,7 +57,7 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			scheduleUpdate();
+			schedule( schedule_selector( ActorMoveScene::UpdateForInput ) );
 
 			const auto visibleSize = _director->getVisibleSize();
 			const auto visibleOrigin = _director->getVisibleOrigin();
@@ -115,7 +115,7 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// Animation
+			// Player Node
 			//
 			{
 				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
@@ -150,7 +150,7 @@ namespace step_rain_of_chaos
 		}
 
 
-		void ActorMoveScene::update( float dt )
+		void ActorMoveScene::UpdateForInput( float delta_time )
 		{
 			Vec2 move_vector;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
@@ -173,15 +173,13 @@ namespace step_rain_of_chaos
 			if( 0.f != move_vector.x || 0.f != move_vector.y )
 			{
 				move_vector.normalize();
-				move_vector.scale( mMoveSpeed );
+				move_vector.scale( mMoveSpeed * delta_time );
 
 				auto animation_node = getChildByTag( TAG_PlayerNode );
 				animation_node->setPosition( animation_node->getPosition() + move_vector );
 
 				updateMoveSpeedView();
 			}
-
-			Scene::update( dt );
 		}
 
 

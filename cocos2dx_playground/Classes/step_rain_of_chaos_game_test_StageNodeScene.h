@@ -30,7 +30,7 @@ namespace step_rain_of_chaos
 			void onEnter() override;
 			void onExit() override;
 
-			void UpdateForInput( float dt );
+			void UpdateForInput( float delta_time );
 
 		private:
 			void updateMoveSpeedView();

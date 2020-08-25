@@ -158,7 +158,7 @@ namespace step_rain_of_chaos
 
 				mStageNode = game::StageNode::create(
 					mStageConfig
-					, game::StageNode::DebugConfig{ true, true }
+					, game::StageNode::DebugConfig{ true, true, true, true }
 					, step_mole::CircleCollisionComponentConfig { false, false, false }
 					, BulletCachingAmount
 				);
@@ -207,7 +207,7 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
-		void StageNodeScene::UpdateForInput( float /*dt*/ )
+		void StageNodeScene::UpdateForInput( float delta_time )
 		{
 			Vec2 move_vector;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
@@ -230,7 +230,7 @@ namespace step_rain_of_chaos
 			if( 0.f != move_vector.x || 0.f != move_vector.y )
 			{
 				move_vector.normalize();
-				move_vector.scale( 3.f );
+				move_vector.scale( 80.f * delta_time );
 
 				mStageNode->PlayerMoveRequest( move_vector );
 			}

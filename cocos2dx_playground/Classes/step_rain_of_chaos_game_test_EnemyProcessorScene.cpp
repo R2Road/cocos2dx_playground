@@ -13,7 +13,6 @@
 #include "ui/UIButton.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
-#include "step_rain_of_chaos_game_BulletManager.h"
 #include "step_rain_of_chaos_game_EnemyNode.h"
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
@@ -118,7 +117,7 @@ namespace step_rain_of_chaos
 			{
 				mStageNode = game::StageNode::create(
 					mStageConfig
-					, game::StageNode::DebugConfig{ false, true }
+					, game::StageNode::DebugConfig{ false, true, true, true }
 					, step_mole::CircleCollisionComponentConfig { false, false, false }
 					, BulletCachingAmount
 				);

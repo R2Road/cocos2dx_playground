@@ -21,7 +21,8 @@ namespace step_rain_of_chaos
 			bool init() override;
 			void onEnter() override;
 			void onExit() override;
-			void update( float dt ) override;
+
+			void UpdateForInput( float delta_time );
 
 		private:
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );

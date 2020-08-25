@@ -191,6 +191,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_mole_game_TargetManager.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_fileutil_PathScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_draw_node_CircleScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_AnimationInfoContainer.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BackgroundNode.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.cpp" />
@@ -214,6 +215,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Tie.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_PlayerNode.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_PlayScene.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_2Direction.cpp" />
@@ -360,6 +362,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_mole_game_TargetManager.h" />
     <ClInclude Include="..\Classes\step_pathfinder_fileutil_PathScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_fileutil_GenerateNDeleteScene.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_draw_node_CircleScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_AnimationInfoContainer.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BackgroundNode.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.h" />
@@ -384,6 +387,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_iEnemyProcessor.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_PlayerNode.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_PlayScene.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Circle_01_OutToIn.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_1Direction.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_CircularSector_01_2Direction.h" />
