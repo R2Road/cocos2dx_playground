@@ -33,14 +33,16 @@ namespace step_rain_of_chaos
 
 		public:
 			static EnemyNode* create(
-				const DebugConfig debug_config
+				const float radius
+				, const DebugConfig debug_config
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 				, const RequestBulletCallback& request_bullet_callback
 			);
 
 		private:
 			bool init(
-				const DebugConfig debug_config
+				const float radius
+				, const DebugConfig debug_config
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 			);
 

@@ -176,7 +176,8 @@ namespace step_rain_of_chaos
 				enemy_position.y += ( mStageConfig.GetBulletGenerateRadiusMax() );
 
 				auto enemy_node = game::EnemyNode::create(
-					game::EnemyNode::DebugConfig{ false }
+					3.f
+					, game::EnemyNode::DebugConfig{ false }
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
 				);
