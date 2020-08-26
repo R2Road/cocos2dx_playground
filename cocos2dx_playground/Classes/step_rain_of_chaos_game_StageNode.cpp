@@ -202,14 +202,16 @@ namespace step_rain_of_chaos
 					root_node->addChild( pivot, std::numeric_limits<int>::max() );
 				}
 
+				const auto& animation_info_container = step_rain_of_chaos::game::GetBulletAnimationInfoContainer();
+
 				// View
-				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_bullet_01_damaged_3.png" );
+				auto view_node = Sprite::createWithSpriteFrameName( animation_info_container[0].SpriteFrameNames[0] );
 				view_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				view_node->setScale( _director->getContentScaleFactor() );
 				root_node->addChild( view_node );
 
 				// Animation Component
-				auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetBulletAnimationInfoContainer() );
+				auto animation_component = step_mole::AnimationComponent::create( animation_info_container );
 				view_node->addComponent( animation_component );
 
 				// Collision Component
