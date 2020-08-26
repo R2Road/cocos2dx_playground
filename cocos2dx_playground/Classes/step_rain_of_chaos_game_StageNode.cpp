@@ -213,7 +213,7 @@ namespace step_rain_of_chaos
 				view_node->addComponent( animation_component );
 
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 4.f, Vec2::ZERO, circle_collision_component_config );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 2.5f, Vec2::ZERO, circle_collision_component_config );
 				root_node->addComponent( circle_collision_component );
 
 				// Object Component

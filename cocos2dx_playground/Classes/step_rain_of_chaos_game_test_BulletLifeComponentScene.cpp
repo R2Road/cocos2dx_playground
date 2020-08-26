@@ -234,7 +234,7 @@ namespace step_rain_of_chaos
 				view_node->addComponent( animation_component );
 
 				// Circle Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 4.f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 2.5f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true } );
 				object_node->addComponent( circle_collision_component );
 
 				// Bullet Life Component

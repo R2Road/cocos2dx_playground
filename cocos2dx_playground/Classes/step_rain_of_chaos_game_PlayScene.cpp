@@ -157,7 +157,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto player_node = game::PlayerNode::create(
-					2.f
+					1.f
 					, game::PlayerNode::DebugConfig{ false }
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 				);
