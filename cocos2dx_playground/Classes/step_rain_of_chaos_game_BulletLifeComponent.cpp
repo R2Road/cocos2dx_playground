@@ -24,8 +24,10 @@ namespace step_rain_of_chaos
 			, const ProcessExitCallback& process_end_callback
 		) :
 			mAllowedArea( allowed_area )
-			, mMoveDirection( Vec2::ONE )
+
 			, mLastState( eState::Boom_2 )
+			, mMoveDirection( Vec2::ONE )
+
 			, mAnimationComponent( animation_component )
 			, mCircleCollisionComponent( circle_collision_component )
 			, mProcessEndCallback( process_end_callback )
