@@ -30,6 +30,7 @@ USING_NS_CC;
 namespace
 {
 	const int BulletCachingAmount = 100;
+	const float BulletSpeed = 150.f;
 }
 
 namespace step_rain_of_chaos
@@ -259,7 +260,7 @@ namespace step_rain_of_chaos
 				{
 					Vec2 dir = s.MoveDirection;
 					dir.normalize();
-					dir.scale( 3.f );
+					dir.scale( BulletSpeed );
 					mStageNode->RequestBulletAction( s.StartPosition, dir );
 				}
 			}

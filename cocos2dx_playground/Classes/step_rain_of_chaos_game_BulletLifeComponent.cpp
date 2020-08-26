@@ -114,9 +114,9 @@ namespace step_rain_of_chaos
 			{
 				mAnimationComponent->PlayAnimation( cpg::animation::eIndex::idle );
 				_owner->schedule(
-					[this]( float )
+					[this]( float delta_time )
 					{
-						_owner->setPosition( _owner->getPosition() + mMoveDirection );
+						_owner->setPosition( _owner->getPosition() + ( mMoveDirection * delta_time ) );
 						if( !mAllowedArea.containsPoint( _owner->getPosition() ) )
 						{
 							ChangeState( eState::Disappear );

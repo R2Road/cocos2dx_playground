@@ -38,7 +38,7 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mStageConfig()
-			, mCurrentMoveSpeed( 3 )
+			, mCurrentMoveSpeed( 150.f )
 		{}
 
 		Scene* BulletLifeComponentScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )

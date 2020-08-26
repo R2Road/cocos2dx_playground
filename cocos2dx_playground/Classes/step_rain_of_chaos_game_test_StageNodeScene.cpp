@@ -35,7 +35,7 @@ namespace step_rain_of_chaos
 			, mKeyboardListener( nullptr )
 			, mStageConfig()
 			, mStageNode( nullptr )
-			, mCurrentMoveSpeed( 3 )
+			, mCurrentMoveSpeed( 150 )
 			, mCurrentFireAmount( 1 )
 
 			, mKeyCodeCollector()

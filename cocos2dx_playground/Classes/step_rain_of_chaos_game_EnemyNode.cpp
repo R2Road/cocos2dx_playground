@@ -122,7 +122,7 @@ namespace step_rain_of_chaos
 				{
 					Vec2 dir = s.MoveDirection;
 					dir.normalize();
-					dir.scale( 3.f );
+					dir.scale( 150.f );
 					mRequestBulletCallback( s.StartPosition, dir );
 				}
 			}
