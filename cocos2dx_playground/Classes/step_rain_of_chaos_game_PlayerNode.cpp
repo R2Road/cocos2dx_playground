@@ -19,12 +19,13 @@ namespace step_rain_of_chaos
 		PlayerNode::PlayerNode() {}
 
 		PlayerNode* PlayerNode::create(
-			const DebugConfig debug_config
+			const float radius
+			, const DebugConfig debug_config
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
 			auto ret = new ( std::nothrow ) PlayerNode();
-			if( !ret || !ret->init( debug_config, circle_collision_component_config ) )
+			if( !ret || !ret->init( radius, debug_config, circle_collision_component_config ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -38,7 +39,8 @@ namespace step_rain_of_chaos
 		}
 
 		bool PlayerNode::init(
-			const DebugConfig debug_config
+			const float radius
+			, const DebugConfig debug_config
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 		)
 		{
@@ -79,7 +81,7 @@ namespace step_rain_of_chaos
 			//
 			{
 				// Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 2.f, Vec2::ZERO, circle_collision_component_config );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( radius, Vec2::ZERO, circle_collision_component_config );
 				addComponent( circle_collision_component );
 			}
 

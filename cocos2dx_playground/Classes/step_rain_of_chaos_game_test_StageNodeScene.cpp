@@ -169,7 +169,7 @@ namespace step_rain_of_chaos
 			// Player Node
 			//
 			{
-				auto player_node = game::PlayerNode::create( game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				auto player_node = game::PlayerNode::create( 2.f, game::PlayerNode::DebugConfig{ true }, step_mole::CircleCollisionComponentConfig{ true, true, true } );
 				mStageNode->AddPlayer( player_node );
 			}
 

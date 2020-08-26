@@ -157,7 +157,8 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto player_node = game::PlayerNode::create(
-					game::PlayerNode::DebugConfig{ false }
+					2.f
+					, game::PlayerNode::DebugConfig{ false }
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 				);
 				player_node->setPosition( Vec2(
