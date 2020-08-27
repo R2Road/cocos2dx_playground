@@ -5,7 +5,9 @@
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
@@ -24,6 +26,8 @@ USING_NS_CC;
 namespace
 {
 	const int BulletCachingAmount = 100;
+
+	const int TAG_FadeIn = 10001;
 }
 
 namespace step_rain_of_chaos
@@ -36,6 +40,8 @@ namespace step_rain_of_chaos
 
 			, mStageConfig()
 			, mStageNode( nullptr )
+
+			, mStep( eStep::FadeIn )
 		{}
 
 		Scene* PlayScene::create()
@@ -61,7 +67,7 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			schedule( schedule_selector( PlayScene::UpdateForInput ) );
+			schedule( schedule_selector( PlayScene::Update4Game) );
 
 			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
@@ -79,7 +85,7 @@ namespace step_rain_of_chaos
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, std::numeric_limits<int>::max() );
+				addChild( label, std::numeric_limits<int>::max() - 1 );
 			}
 
 			//
@@ -96,7 +102,7 @@ namespace step_rain_of_chaos
 					visibleOrigin.x + visibleSize.width
 					, visibleOrigin.y + visibleSize.height
 				) );
-				addChild( label, std::numeric_limits<int>::max() );
+				addChild( label, std::numeric_limits<int>::max() - 1 );
 			}
 
 			//
@@ -185,6 +191,15 @@ namespace step_rain_of_chaos
 				mStageNode->AddEnemy( enemy_node );
 			}
 
+			//
+			// Fade In
+			//
+			{
+				auto node = LayerColor::create( Color4B::BLACK );
+				node->setTag( TAG_FadeIn );
+				addChild( node, std::numeric_limits<int>::max() );
+			}
+
 			return true;
 		}
 
@@ -207,6 +222,38 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
+		void PlayScene::Update4Game( float delta_time )
+		{
+			switch( mStep )
+			{
+			case eStep::FadeIn:
+			{
+				auto fade_out_action = FadeOut::create( 1.8f );
+				getChildByTag( TAG_FadeIn )->runAction( fade_out_action );
+
+				mStep = eStep::FadeInWait;
+			}
+			break;
+
+			case eStep::FadeInWait:
+				if( 0u == getChildByTag( TAG_FadeIn )->getOpacity() )
+				{
+					mStep = eStep::Ready;
+				}
+				break;
+			case eStep::Ready:
+				CCLOG( "Ready" );
+				mStep = eStep::Go;
+				break;
+			case eStep::Go:
+				break;
+			case eStep::Game:
+				UpdateForInput( delta_time );
+				break;
+			case eStep::GameOver:
+				break;
+			}
+		}
 		void PlayScene::UpdateForInput( float delta_time )
 		{
 			Vec2 move_vector;

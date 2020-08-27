@@ -14,6 +14,16 @@ namespace step_rain_of_chaos
 		class PlayScene : public cocos2d::Scene
 		{
 		private:
+			enum eStep
+			{
+				FadeIn,
+				FadeInWait,
+				Ready,
+				Go,
+				Game,
+				GameOver,
+			};
+
 			PlayScene();
 
 		public:
@@ -24,6 +34,7 @@ namespace step_rain_of_chaos
 			void onEnter() override;
 			void onExit() override;
 
+			void Update4Game( float delta_time );
 			void UpdateForInput( float delta_time );
 
 		private:
@@ -36,6 +47,8 @@ namespace step_rain_of_chaos
 
 			game::StageConfig mStageConfig;
 			game::StageNode* mStageNode;
+
+			eStep mStep;
 		};
 	}
 }
