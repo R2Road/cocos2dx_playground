@@ -18,8 +18,15 @@ namespace step_rain_of_chaos
 			{
 				FadeIn,
 				FadeInWait,
+
 				Ready,
+				ReadyWait_1,
+				ReadyWait_2,
+
 				Go,
+				GoWait_1,
+				GoWait_2,
+
 				Game,
 				GameOver,
 			};

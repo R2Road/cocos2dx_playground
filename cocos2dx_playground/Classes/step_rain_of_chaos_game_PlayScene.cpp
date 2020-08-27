@@ -28,6 +28,8 @@ namespace
 	const int BulletCachingAmount = 100;
 
 	const int TAG_FadeIn = 10001;
+	const int TAG_Ready = 10002;
+	const int TAG_Go = 10003;
 }
 
 namespace step_rain_of_chaos
@@ -69,8 +71,9 @@ namespace step_rain_of_chaos
 
 			schedule( schedule_selector( PlayScene::Update4Game) );
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
 			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = Director::getInstance()->getVisibleSize();
+			const auto visibleCenter = visibleOrigin + Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f );
 
 			//
 			// Summury
@@ -200,6 +203,28 @@ namespace step_rain_of_chaos
 				addChild( node, std::numeric_limits<int>::max() );
 			}
 
+			//
+			// Ready
+			//
+			{
+				auto label = Label::createWithTTF( "READY", "fonts/NanumSquareR.ttf", 28 );
+				label->setTag( TAG_Ready );
+				label->setPosition( visibleCenter );
+				label->setOpacity( 0u );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Go
+			//
+			{
+				auto label = Label::createWithTTF( "GO", "fonts/NanumSquareR.ttf", 28 );
+				label->setTag( TAG_Go );
+				label->setPosition( visibleCenter );
+				label->setOpacity( 0u );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
 			return true;
 		}
 
@@ -234,22 +259,65 @@ namespace step_rain_of_chaos
 				mStep = eStep::FadeInWait;
 			}
 			break;
-
 			case eStep::FadeInWait:
 				if( 0u == getChildByTag( TAG_FadeIn )->getOpacity() )
 				{
 					mStep = eStep::Ready;
 				}
 				break;
+
 			case eStep::Ready:
-				CCLOG( "Ready" );
-				mStep = eStep::Go;
+			{
+				auto fade_in_action = FadeIn::create( 0.6f );
+				auto delay_action = DelayTime::create( 1.f );
+				auto fade_out_action = FadeOut::create( 0.8f );
+				auto blinkSequence = Sequence::create( fade_in_action, delay_action, fade_out_action, nullptr );
+				getChildByTag( TAG_Ready )->runAction( blinkSequence );
+
+				mStep = eStep::ReadyWait_1;
+			}
+			break;
+			case eStep::ReadyWait_1:
+				if( 0u < getChildByTag( TAG_Ready )->getOpacity() )
+				{
+					mStep = eStep::ReadyWait_2;
+				}
 				break;
+			case eStep::ReadyWait_2:
+				if( 0u == getChildByTag( TAG_Ready )->getOpacity() )
+				{
+					mStep = eStep::Go;
+				}
+				break;
+
 			case eStep::Go:
+			{
+				auto fade_in_action = FadeIn::create( 0.6f );
+				auto delay_action = DelayTime::create( 1.f );
+				auto fade_out_action = FadeOut::create( 0.8f );
+				auto blinkSequence = Sequence::create( fade_in_action, delay_action, fade_out_action, nullptr );
+				getChildByTag( TAG_Go )->runAction( blinkSequence );
+
+				mStep = eStep::GoWait_1;
+			}
+			break;
+			case eStep::GoWait_1:
+				if( 0u < getChildByTag( TAG_Go )->getOpacity() )
+				{
+					mStep = eStep::GoWait_2;
+				}
 				break;
+			case eStep::GoWait_2:
+				if( 0u == getChildByTag( TAG_Go )->getOpacity() )
+				{
+					mStep = eStep::Game;
+				}
+				break;
+
 			case eStep::Game:
 				UpdateForInput( delta_time );
 				break;
+
 			case eStep::GameOver:
 				break;
 			}
