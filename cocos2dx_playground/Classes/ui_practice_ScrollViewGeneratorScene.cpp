@@ -91,7 +91,7 @@ namespace ui_practice
 			const std::size_t visible_count = 0u;
 
 			auto scroll_view = cpgui::ScrollViewGenerator::Create(
-				""
+				"Practice 1"
 				, item_info_container
 				, CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
 				, 0
@@ -116,7 +116,7 @@ namespace ui_practice
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					scroll_view->getPosition()
-					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 10.f )
+					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 20.f )
 				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
@@ -132,7 +132,7 @@ namespace ui_practice
 			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 
 			auto scroll_view = cpgui::ScrollViewGenerator::Create(
-				""
+				"Practice 2"
 				, item_info_container
 				, CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
 				, visible_count
@@ -157,7 +157,7 @@ namespace ui_practice
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					scroll_view->getPosition()
-					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 10.f )
+					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 20.f )
 				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
@@ -203,7 +203,7 @@ namespace ui_practice
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					scroll_view->getPosition()
-					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 10.f )
+					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 20.f )
 				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
