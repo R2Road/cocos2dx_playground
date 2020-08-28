@@ -55,7 +55,7 @@ namespace cpgui
 		, const Size item_size
 	)
 	{
-		const int visible_button_count = std::min( item_info_container.size(), item_visible_count );
+		const auto visible_button_count = std::max( 1u, item_visible_count );
 
 		const Size ListInnerMargin( 1, 1 );
 		const Size ListVisibleSize(
@@ -65,7 +65,7 @@ namespace cpgui
 
 		const Size ListTotalSize(
 			ListInnerMargin.width + item_size.width + ListInnerMargin.width
-			, ( ListInnerMargin.height + item_size.height + ListInnerMargin.height ) * item_info_container.size()
+			, ( ListInnerMargin.height + item_size.height + ListInnerMargin.height ) * std::max( visible_button_count, item_info_container.size() )
 		);
 
 		const Size RootMargin( 2, 2 );

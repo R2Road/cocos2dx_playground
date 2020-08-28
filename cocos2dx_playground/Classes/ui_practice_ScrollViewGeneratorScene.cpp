@@ -9,6 +9,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "cpgui_ScrollViewGenerator.h"
 
@@ -52,7 +53,6 @@ namespace ui_practice
 
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
 		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-		const auto visibleCenter = visibleOrigin + Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f );
 
 		//
 		// Summury
@@ -82,12 +82,97 @@ namespace ui_practice
 		}
 
 		//
-		// Practice
+		// Practice x 1
+		// - Item Count : 0
+		// - Visible Count : 0
 		//
 		{
 			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
+			const std::size_t visible_count = 0u;
+
+			auto scroll_view = cpgui::ScrollViewGenerator::Create(
+				""
+				, item_info_container
+				, CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
+				, 0
+				, Size( 100, 18 )
+			);
+			scroll_view->setPosition( Vec2(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.2f, visibleSize.height * 0.45f )
+				- Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height * 0.5f )
+			) );
+			addChild( scroll_view );
+
+			//
+			// Explain
+			//
+			{
+				auto label = Label::createWithTTF(
+					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), visible_count )
+					, FontPath, 9, Size::ZERO, TextHAlignment::LEFT
+				);
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					scroll_view->getPosition()
+					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 10.f )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+		}
+
+		//
+		// Practice x 2
+		// - Item Count : 0
+		// - Visible Count : 10
+		//
+		{
+			const std::size_t visible_count = 10u;
+			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
+
+			auto scroll_view = cpgui::ScrollViewGenerator::Create(
+				""
+				, item_info_container
+				, CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
+				, visible_count
+				, Size( 100, 18 )
+			);
+			scroll_view->setPosition( Vec2(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.45f )
+				- Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height * 0.5f )
+			) );
+			addChild( scroll_view );
+
+			//
+			// Explain
+			//
+			{
+				auto label = Label::createWithTTF(
+					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), visible_count )
+					, FontPath, 9, Size::ZERO, TextHAlignment::LEFT
+				);
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					scroll_view->getPosition()
+					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 10.f )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+		}
+
+		//
+		// Practice x 3
+		// - Item Count : 40
+		// - Visible Count : 10
+		//
+		{
+			const std::size_t visible_count = 10u;
+			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 			item_info_container.emplace_back( -1, "-1" );
-			for( int i = 0; 40 > i; ++i )
+			for( int i = 1; 40 > i; ++i )
 			{
 				item_info_container.emplace_back( i, std::to_string( i ) );
 			}
@@ -96,14 +181,32 @@ namespace ui_practice
 				""
 				, item_info_container
 				, CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
-				, 10
+				, visible_count
 				, Size( 100, 18 )
 			);
 			scroll_view->setPosition( Vec2(
-				visibleCenter
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.8f, visibleSize.height * 0.45f )
 				- Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height * 0.5f )
 			) );
 			addChild( scroll_view );
+
+			//
+			// Explain
+			//
+			{
+				auto label = Label::createWithTTF(
+					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), visible_count )
+					, FontPath, 9, Size::ZERO, TextHAlignment::LEFT
+				);
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					scroll_view->getPosition()
+					+ Vec2( scroll_view->getContentSize().width * 0.5f, scroll_view->getContentSize().height + 10.f )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+			}
 		}
 
 		return true;
