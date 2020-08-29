@@ -179,82 +179,77 @@ namespace step_rain_of_chaos
 			//
 			{
 				{
-					game::SpawnProcessorPackage container;
-					container.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 50, 2.5f, 2 ) );
+					NameNPackage name_n_package;
+					name_n_package.Name = "Circle_01_OutToIn";
 
-					mPackgeContainer.emplace_back( std::move( container ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 50, 2.5f, 2 ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
 
 				{
-					game::SpawnProcessorPackage container;
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					NameNPackage name_n_package;
+					name_n_package.Name = "CircularSector_01_1Direction";
 
-					mPackgeContainer.emplace_back( std::move( container ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
 
 				{
-					game::SpawnProcessorPackage container;
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					NameNPackage name_n_package;
+					name_n_package.Name = "CircularSector_01_2Direction";
 
-					mPackgeContainer.emplace_back( std::move( container ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
 
 				{
-					game::SpawnProcessorPackage container;
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					NameNPackage name_n_package;
+					name_n_package.Name = "MultipleShot_01_CircularSector";
 
-					mPackgeContainer.emplace_back( std::move( container ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_MultipleShot_01_CircularSector::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 90.f, 8, 4, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_MultipleShot_01_CircularSector::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 45.f, 4, 3, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_MultipleShot_01_CircularSector::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 45.f, 1, 4, 0.1f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
 
 				{
-					game::SpawnProcessorPackage container;
-					container.emplace_back( game::SpawnProcessor_MultipleShot_01_CircularSector::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 90.f, 8, 4, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_MultipleShot_01_CircularSector::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 45.f, 4, 3, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_MultipleShot_01_CircularSector::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 45.f, 1, 4, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					NameNPackage name_n_package;
+					name_n_package.Name = "MultipleShot_02_Line";
 
-					mPackgeContainer.emplace_back( std::move( container ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 98.f, 8, 4, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 52.f, 4, 3, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 1, 4, 0.1f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
 
 				{
-					game::SpawnProcessorPackage container;
-					container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 98.f, 8, 4, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 52.f, 4, 3, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 1, 4, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					NameNPackage name_n_package;
+					name_n_package.Name = "SingleShot_01";
 
-					mPackgeContainer.emplace_back( std::move( container ) );
-				}
+					name_n_package.Package.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 4, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 3, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 4, 0.1f ) );
 
-				{
-					game::SpawnProcessorPackage container;
-					container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 4, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 3, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-					container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 4, 0.1f ) );
-					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
-
-					mPackgeContainer.emplace_back( std::move( container ) );
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
 
 				mCurrentPackage = &mPackgeContainer[0];
@@ -268,7 +263,7 @@ namespace step_rain_of_chaos
 				cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 				for( std::size_t i = 0; mPackgeContainer.size() > i; ++i )
 				{
-					item_info_container.emplace_back( i, std::to_string( i ) );
+					item_info_container.emplace_back( i, mPackgeContainer[i].Name );
 				}
 
 				auto scroll_view = cpgui::ScrollViewGenerator::Create(
@@ -309,7 +304,7 @@ namespace step_rain_of_chaos
 
 		void SpawnProcessorScene::updateForSpawnProcessor( float dt )
 		{
-			if( mCurrentPackage->end() == mCurrentSpawnProcessor )
+			if( mCurrentPackage->Package.end() == mCurrentSpawnProcessor )
 			{
 				unschedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 				return;
@@ -320,7 +315,7 @@ namespace step_rain_of_chaos
 			if( !( *mCurrentSpawnProcessor )->Update( dt, mStartNode->getPosition(), mTargetNode->getPosition(), &mSpawnInfoContainer ) )
 			{
 				++mCurrentSpawnProcessor;
-				if( mCurrentPackage->end() != mCurrentSpawnProcessor )
+				if( mCurrentPackage->Package.end() != mCurrentSpawnProcessor )
 				{
 					( *mCurrentSpawnProcessor )->Enter( mStartNode->getPosition(), mTargetNode->getPosition() );
 				}
@@ -350,7 +345,7 @@ namespace step_rain_of_chaos
 			{
 				unschedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 
-				mCurrentSpawnProcessor = mCurrentPackage->begin();
+				mCurrentSpawnProcessor = mCurrentPackage->Package.begin();
 				( *mCurrentSpawnProcessor )->Enter( mStartNode->getPosition(), mTargetNode->getPosition() );
 				schedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 			}
@@ -401,7 +396,7 @@ namespace step_rain_of_chaos
 
 				auto node = static_cast<Node*>( sender );
 				mCurrentPackage = &mPackgeContainer[node->getTag()];
-				mCurrentSpawnProcessor = mCurrentPackage->begin();
+				mCurrentSpawnProcessor = mCurrentPackage->Package.begin();
 			}
 		}
 	}
