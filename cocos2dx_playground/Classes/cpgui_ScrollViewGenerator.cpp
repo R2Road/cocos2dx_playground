@@ -14,7 +14,7 @@ namespace
 
 namespace cpgui
 {
-	Node* CreateScrollViewItem( const ScrollViewGenerator::Config& config, cocos2d::Size button_margin, const cpgui::ScrollViewGenerator::Item& item_info, const ui::Widget::ccWidgetTouchCallback& item_select_callback )
+	Node* CreateScrollViewItem( const ScrollViewGenerator::Config& config, const cpgui::ScrollViewGenerator::Item& item_info, const ui::Widget::ccWidgetTouchCallback& item_select_callback )
 	{
 		auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 		button->setTag( item_info.Tag );
@@ -32,8 +32,7 @@ namespace cpgui
 		// Align
 		{
 			auto param = ui::LinearLayoutParameter::create();
-			auto margin = ui::Margin( button_margin.width, button_margin.height, button_margin.width, button_margin.height );
-			param->setMargin( margin );
+			param->setMargin( config.ItemMargin );
 
 			button->setLayoutParameter( param );
 		}
@@ -56,22 +55,14 @@ namespace cpgui
 	{
 		const auto visible_button_count = std::max( 1u, config.ItemVisibleCount );
 
-		const Size ListInnerMargin( 1, 1 );
 		const Size ListVisibleSize(
-			ListInnerMargin.width + config.ItemSize.width + ListInnerMargin.width
-			, ( ListInnerMargin.height + config.ItemSize.height + ListInnerMargin.height ) * visible_button_count
+			config.ItemMargin.left + config.ItemSize.width + config.ItemMargin.right
+			, ( config.ItemMargin.top + config.ItemSize.height + config.ItemMargin.bottom ) * visible_button_count
 		);
 
 		const Size ListTotalSize(
-			ListInnerMargin.width + config.ItemSize.width + ListInnerMargin.width
-			, ( ListInnerMargin.height + config.ItemSize.height + ListInnerMargin.height ) * std::max( visible_button_count, item_info_container.size() )
-		);
-
-		const Size RootMargin( 2, 2 );
-		const Size RootSize(
-			RootMargin
-			+ ListVisibleSize
-			+ RootMargin
+			config.ItemMargin.left + config.ItemSize.width + config.ItemMargin.right
+			, ( config.ItemMargin.top + config.ItemSize.height + config.ItemMargin.bottom ) * std::max( visible_button_count, item_info_container.size() )
 		);
 
 		auto root_node = Node::create();
@@ -93,7 +84,7 @@ namespace cpgui
 				{
 					for( auto cur = item_info_container.begin(), end = item_info_container.end(); end != cur; ++cur )
 					{
-						auto button = CreateScrollViewItem( config, ListInnerMargin, *cur, item_select_callback );
+						auto button = CreateScrollViewItem( config, *cur, item_select_callback );
 						layout_node->addChild( button );
 					}
 				}

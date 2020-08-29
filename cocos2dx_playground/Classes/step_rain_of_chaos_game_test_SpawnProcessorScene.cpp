@@ -259,7 +259,7 @@ namespace step_rain_of_chaos
 			//
 			//
 			{
-				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ) };
+				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ), ui::Margin( 0.f, 0.f, 0.f, 0.f ) };
 				cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 				for( std::size_t i = 0; mPackgeContainer.size() > i; ++i )
 				{
