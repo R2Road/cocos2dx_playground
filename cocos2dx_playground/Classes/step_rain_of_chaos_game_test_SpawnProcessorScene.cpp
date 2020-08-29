@@ -12,6 +12,8 @@
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
+#include "cpgui_ScrollViewGenerator.h"
+
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
 #include "step_rain_of_chaos_game_EnemyNode.h"
@@ -212,6 +214,33 @@ namespace step_rain_of_chaos
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 4, 0.1f ) );
 				//mSpawnProcessorContainer.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
+			}
+
+			//
+			//
+			//
+			{
+				const std::size_t visible_count = 10u;
+				cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
+				item_info_container.emplace_back( -1, "-1" );
+				for( int i = 1; 40 > i; ++i )
+				{
+					item_info_container.emplace_back( i, std::to_string( i ) );
+				}
+
+				auto scroll_view = cpgui::ScrollViewGenerator::Create(
+					""
+					, item_info_container
+					, nullptr //CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
+					, visible_count
+					, Size( 100, 18 )
+				);
+				scroll_view->setPosition( Vec2(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+					- Vec2( scroll_view->getContentSize().width, scroll_view->getContentSize().height )
+				) );
+				addChild( scroll_view );
 			}
 
 			return true;
