@@ -19,6 +19,8 @@ namespace step_rain_of_chaos
 		class SpawnProcessorScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
+			using PackageContainer = std::vector<game::SpawnProcessorContainer>;
+
 			SpawnProcessorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
@@ -35,6 +37,7 @@ namespace step_rain_of_chaos
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
 			void onStartButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void onTargetButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onPackageSelect( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
@@ -48,7 +51,8 @@ namespace step_rain_of_chaos
 			cocos2d::Node* mStartNode;
 			cocos2d::Node* mTargetNode;
 
-			game::SpawnProcessorContainer mSpawnProcessorContainer;
+			PackageContainer mPackgeContainer;
+			game::SpawnProcessorContainer* mCurrentPackage;
 			game::SpawnProcessorContainer::iterator mCurrentSpawnProcessor;
 			game::SpawnInfoContainer mSpawnInfoContainer;
 		};
