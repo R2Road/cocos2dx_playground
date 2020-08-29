@@ -259,7 +259,7 @@ namespace step_rain_of_chaos
 			//
 			//
 			{
-				const std::size_t visible_count = 10u;
+				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ) };
 				cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 				for( std::size_t i = 0; mPackgeContainer.size() > i; ++i )
 				{
@@ -267,11 +267,10 @@ namespace step_rain_of_chaos
 				}
 
 				auto scroll_view = cpgui::ScrollViewGenerator::Create(
-					"Package List"
+					config
+					, "Package List"
 					, item_info_container
 					, CC_CALLBACK_2( SpawnProcessorScene::onPackageSelect, this )
-					, visible_count
-					, Size( 100, 18 )
 				);
 				scroll_view->setPosition( Vec2(
 					visibleOrigin

@@ -87,15 +87,14 @@ namespace ui_practice
 		// - Visible Count : 0
 		//
 		{
+			const cpgui::ScrollViewGenerator::Config config{ 8u, 0u, Size( 100, 18 ) };
 			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
-			const std::size_t visible_count = 0u;
 
 			auto scroll_view = cpgui::ScrollViewGenerator::Create(
-				"Practice 1"
+				config
+				, "Practice 1"
 				, item_info_container
 				, CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
-				, 0
-				, Size( 100, 18 )
 			);
 			scroll_view->setPosition( Vec2(
 				visibleOrigin
@@ -109,7 +108,7 @@ namespace ui_practice
 			//
 			{
 				auto label = Label::createWithTTF(
-					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), visible_count )
+					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), config.ItemVisibleCount )
 					, FontPath, 9, Size::ZERO, TextHAlignment::LEFT
 				);
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
@@ -128,15 +127,14 @@ namespace ui_practice
 		// - Visible Count : 10
 		//
 		{
-			const std::size_t visible_count = 10u;
+			const cpgui::ScrollViewGenerator::Config config{ 8u, 10u, Size( 100, 18 ) };
 			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 
 			auto scroll_view = cpgui::ScrollViewGenerator::Create(
-				"Practice 2"
+				config
+				, "Practice 2"
 				, item_info_container
 				, CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
-				, visible_count
-				, Size( 100, 18 )
 			);
 			scroll_view->setPosition( Vec2(
 				visibleOrigin
@@ -150,7 +148,7 @@ namespace ui_practice
 			//
 			{
 				auto label = Label::createWithTTF(
-					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), visible_count )
+					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), config.ItemVisibleCount )
 					, FontPath, 9, Size::ZERO, TextHAlignment::LEFT
 				);
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
@@ -169,7 +167,7 @@ namespace ui_practice
 		// - Visible Count : 10
 		//
 		{
-			const std::size_t visible_count = 10u;
+			const cpgui::ScrollViewGenerator::Config config{ 8u, 10u, Size( 100, 18 ) };
 			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 			item_info_container.emplace_back( -1, "-1" );
 			for( int i = 1; 40 > i; ++i )
@@ -178,11 +176,10 @@ namespace ui_practice
 			}
 
 			auto scroll_view = cpgui::ScrollViewGenerator::Create(
-				""
+				config
+				, ""
 				, item_info_container
 				, CC_CALLBACK_2( ScrollViewGeneratorScene::onDummyButton, this )
-				, visible_count
-				, Size( 100, 18 )
 			);
 			scroll_view->setPosition( Vec2(
 				visibleOrigin
@@ -196,7 +193,7 @@ namespace ui_practice
 			//
 			{
 				auto label = Label::createWithTTF(
-					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), visible_count )
+					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), config.ItemVisibleCount )
 					, FontPath, 9, Size::ZERO, TextHAlignment::LEFT
 				);
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );

@@ -14,17 +14,17 @@ namespace
 
 namespace cpgui
 {
-	Node* CreateScrollViewItem( cocos2d::Size item_size, cocos2d::Size button_margin, const cpgui::ScrollViewGenerator::Item& item_info, const ui::Widget::ccWidgetTouchCallback& item_select_callback )
+	Node* CreateScrollViewItem( const ScrollViewGenerator::Config& config, cocos2d::Size button_margin, const cpgui::ScrollViewGenerator::Item& item_info, const ui::Widget::ccWidgetTouchCallback& item_select_callback )
 	{
 		auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 		button->setTag( item_info.Tag );
 		button->setScale9Enabled( true );
-		button->setContentSize( item_size );
+		button->setContentSize( config.ItemSize );
 		button->addTouchEventListener( item_select_callback );
 
 		// Label
 		{
-			auto label = Label::createWithTTF( item_info.Name, FontPath, 9 );
+			auto label = Label::createWithTTF( item_info.Name, FontPath, config.FontSize );
 			label->getFontAtlas()->setAliasTexParameters();
 			button->setTitleLabel( label );
 		}
@@ -48,24 +48,23 @@ namespace cpgui
 	}
 
 	Node* ScrollViewGenerator::Create(
-		const char* title_string
+		const Config& config
+		, const char* title_string
 		, const ItemContainerT& item_info_container
 		, const ui::Widget::ccWidgetTouchCallback& item_select_callback
-		, const std::size_t item_visible_count
-		, const Size item_size
 	)
 	{
-		const auto visible_button_count = std::max( 1u, item_visible_count );
+		const auto visible_button_count = std::max( 1u, config.ItemVisibleCount );
 
 		const Size ListInnerMargin( 1, 1 );
 		const Size ListVisibleSize(
-			ListInnerMargin.width + item_size.width + ListInnerMargin.width
-			, ( ListInnerMargin.height + item_size.height + ListInnerMargin.height ) * visible_button_count
+			ListInnerMargin.width + config.ItemSize.width + ListInnerMargin.width
+			, ( ListInnerMargin.height + config.ItemSize.height + ListInnerMargin.height ) * visible_button_count
 		);
 
 		const Size ListTotalSize(
-			ListInnerMargin.width + item_size.width + ListInnerMargin.width
-			, ( ListInnerMargin.height + item_size.height + ListInnerMargin.height ) * std::max( visible_button_count, item_info_container.size() )
+			ListInnerMargin.width + config.ItemSize.width + ListInnerMargin.width
+			, ( ListInnerMargin.height + config.ItemSize.height + ListInnerMargin.height ) * std::max( visible_button_count, item_info_container.size() )
 		);
 
 		const Size RootMargin( 2, 2 );
@@ -94,7 +93,7 @@ namespace cpgui
 				{
 					for( auto cur = item_info_container.begin(), end = item_info_container.end(); end != cur; ++cur )
 					{
-						auto button = CreateScrollViewItem( item_size, ListInnerMargin, *cur, item_select_callback );
+						auto button = CreateScrollViewItem( config, ListInnerMargin, *cur, item_select_callback );
 						layout_node->addChild( button );
 					}
 				}
