@@ -179,14 +179,14 @@ namespace step_rain_of_chaos
 			//
 			{
 				{
-					game::SpawnProcessorContainer container;
+					game::SpawnProcessorPackage container;
 					container.emplace_back( game::SpawnProcessor_Circle_01_OutToIn::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 50, 2.5f, 2 ) );
 
 					mPackgeContainer.emplace_back( std::move( container ) );
 				}
 
 				{
-					game::SpawnProcessorContainer container;
+					game::SpawnProcessorPackage container;
 					container.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
 					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 					container.emplace_back( game::SpawnProcessor_CircularSector_01_1Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, true, 60.f, 10, 4, 0.015f, 0.1f ) );
@@ -198,7 +198,7 @@ namespace step_rain_of_chaos
 				}
 
 				{
-					game::SpawnProcessorContainer container;
+					game::SpawnProcessorPackage container;
 					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
 					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
@@ -210,7 +210,7 @@ namespace step_rain_of_chaos
 				}
 
 				{
-					game::SpawnProcessorContainer container;
+					game::SpawnProcessorPackage container;
 					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
 					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 					container.emplace_back( game::SpawnProcessor_CircularSector_01_2Direction::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, false, 60.f, 10, 4, 0.025f, 0.3f ) );
@@ -222,7 +222,7 @@ namespace step_rain_of_chaos
 				}
 
 				{
-					game::SpawnProcessorContainer container;
+					game::SpawnProcessorPackage container;
 					container.emplace_back( game::SpawnProcessor_MultipleShot_01_CircularSector::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 90.f, 8, 4, 0.1f ) );
 					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 					container.emplace_back( game::SpawnProcessor_MultipleShot_01_CircularSector::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 45.f, 4, 3, 0.1f ) );
@@ -234,7 +234,7 @@ namespace step_rain_of_chaos
 				}
 
 				{
-					game::SpawnProcessorContainer container;
+					game::SpawnProcessorPackage container;
 					container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 98.f, 8, 4, 0.1f ) );
 					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 					container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 52.f, 4, 3, 0.1f ) );
@@ -246,7 +246,7 @@ namespace step_rain_of_chaos
 				}
 
 				{
-					game::SpawnProcessorContainer container;
+					game::SpawnProcessorPackage container;
 					container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 4, 0.1f ) );
 					container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 					container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 3, 0.1f ) );

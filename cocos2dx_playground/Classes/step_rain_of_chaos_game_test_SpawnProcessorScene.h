@@ -19,7 +19,7 @@ namespace step_rain_of_chaos
 		class SpawnProcessorScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
-			using PackageContainer = std::vector<game::SpawnProcessorContainer>;
+			using PackageContainer = std::vector<game::SpawnProcessorPackage>;
 
 			SpawnProcessorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
@@ -52,8 +52,8 @@ namespace step_rain_of_chaos
 			cocos2d::Node* mTargetNode;
 
 			PackageContainer mPackgeContainer;
-			game::SpawnProcessorContainer* mCurrentPackage;
-			game::SpawnProcessorContainer::iterator mCurrentSpawnProcessor;
+			game::SpawnProcessorPackage* mCurrentPackage;
+			game::SpawnProcessorPackage::iterator mCurrentSpawnProcessor;
 			game::SpawnInfoContainer mSpawnInfoContainer;
 		};
 	}

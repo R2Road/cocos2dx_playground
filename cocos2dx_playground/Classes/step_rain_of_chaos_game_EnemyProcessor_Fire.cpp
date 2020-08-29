@@ -17,7 +17,7 @@ namespace step_rain_of_chaos
 			const StageConfig& stage_config
 			, Node* const owner_node
 			, Node* const target_node
-			, SpawnProcessorContainer&& spawn_processor_container
+			, SpawnProcessorPackage&& spawn_processor_container
 			, SpawnInfoContainer& spawn_info_container
 		) : iEnemyProcessor( stage_config, owner_node, target_node )
 			, mSpawnProcessorContainer( std::move( spawn_processor_container ) )
@@ -29,7 +29,7 @@ namespace step_rain_of_chaos
 			const StageConfig& stage_config
 			, Node* const owner_node
 			, Node* const target_node
-			, SpawnProcessorContainer&& spawn_processor_container
+			, SpawnProcessorPackage&& spawn_processor_container
 			, SpawnInfoContainer& spawn_info_container
 		)
 		{

@@ -19,7 +19,7 @@ namespace step_rain_of_chaos
 		using SpawnInfoContainer = std::vector<SpawnInfo>;
 
 		using SpawnProcessorUp = std::unique_ptr<class iSpawnProcessor>;
-		using SpawnProcessorContainer = std::vector<SpawnProcessorUp>;
+		using SpawnProcessorPackage = std::vector<SpawnProcessorUp>;
 
 		struct SpawnProcessorConfig
 		{

@@ -202,7 +202,7 @@ namespace step_rain_of_chaos
 				//}
 
 				{
-					game::SpawnProcessorContainer spawn_processor_container;
+					game::SpawnProcessorPackage spawn_processor_container;
 					spawn_processor_container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 98.f, 8, 4, 0.1f ) );
 					spawn_processor_container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 					spawn_processor_container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 52.f, 3, 3, 0.1f ) );

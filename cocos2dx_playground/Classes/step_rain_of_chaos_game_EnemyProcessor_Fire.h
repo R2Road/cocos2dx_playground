@@ -16,7 +16,7 @@ namespace step_rain_of_chaos
 				const StageConfig& stage_config
 				, cocos2d::Node* const owner_node
 				, cocos2d::Node* const target_node
-				, SpawnProcessorContainer&& spawn_processor_container
+				, SpawnProcessorPackage&& spawn_processor_container
 				, SpawnInfoContainer& spawn_info_container
 			);
 
@@ -26,7 +26,7 @@ namespace step_rain_of_chaos
 				const StageConfig& stage_config
 				, cocos2d::Node* const owner_node
 				, cocos2d::Node* const target_node
-				, SpawnProcessorContainer&& spawn_processor_container
+				, SpawnProcessorPackage&& spawn_processor_container
 				, SpawnInfoContainer& spawn_info_container
 			);
 
@@ -34,8 +34,8 @@ namespace step_rain_of_chaos
 			bool Update( const float delta_time ) override;
 
 		private:
-			SpawnProcessorContainer mSpawnProcessorContainer;
-			SpawnProcessorContainer::iterator mCurrentSpawnProcessor;
+			SpawnProcessorPackage mSpawnProcessorContainer;
+			SpawnProcessorPackage::iterator mCurrentSpawnProcessor;
 			SpawnInfoContainer& mSpawnInfoContainer;
 		};
 	}
