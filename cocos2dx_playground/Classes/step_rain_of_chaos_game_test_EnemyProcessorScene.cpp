@@ -17,6 +17,8 @@
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 
+#include "cpgui_ScrollViewGenerator.h"
+
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
@@ -231,6 +233,31 @@ namespace step_rain_of_chaos
 				enemy_processor_container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
 
 				enemy_node->SetProcessor( std::move( enemy_processor_container ) );
+			}
+
+			//
+			// List
+			//
+			{
+				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ), ui::Margin( 0.f, 0.f, 0.f, 0.f ) };
+				cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
+				//for( std::size_t i = 0; mPackgeContainer.size() > i; ++i )
+				//{
+				//	item_info_container.emplace_back( i, mPackgeContainer[i].Name );
+				//}
+
+				auto scroll_view = cpgui::ScrollViewGenerator::Create(
+					config
+					, "Package List"
+					, item_info_container
+					, nullptr //CC_CALLBACK_2( SpawnProcessorScene::onPackageSelect, this )
+				);
+				scroll_view->setPosition( Vec2(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height * 0.5f )
+					- Vec2( scroll_view->getContentSize().width, scroll_view->getContentSize().height * 0.5f )
+				) );
+				addChild( scroll_view );
 			}
 
 			return true;
