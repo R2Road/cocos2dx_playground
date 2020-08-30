@@ -49,7 +49,7 @@ namespace step_rain_of_chaos
 			void update4Processor( float delta_time );
 
 		public:
-			void StartProcess( EnemyProcessorContainer&& enemy_processor_container );
+			void StartProcess( EnemyProcessorContainer* enemy_processor_container );
 			void StopProcess();
 
 			SpawnInfoContainer& GetSpawnInfoContainer() { return mSpawnInfoContainer; }
@@ -57,7 +57,7 @@ namespace step_rain_of_chaos
 		private:
 			const RequestBulletCallback mRequestBulletCallback;
 
-			EnemyProcessorContainer mProcessorContainer;
+			EnemyProcessorContainer* mProcessorContainer;
 			EnemyProcessorContainer::iterator mCurrentProcessor;
 			SpawnInfoContainer mSpawnInfoContainer;
 		};

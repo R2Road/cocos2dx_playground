@@ -19,7 +19,7 @@ namespace step_rain_of_chaos
 	{
 		EnemyNode::EnemyNode( const RequestBulletCallback& request_bullet_callback ) :
 			mRequestBulletCallback( request_bullet_callback )
-			, mProcessorContainer()
+			, mProcessorContainer( nullptr )
 			, mCurrentProcessor()
 			, mSpawnInfoContainer()
 		{
@@ -99,7 +99,7 @@ namespace step_rain_of_chaos
 
 		void EnemyNode::update4Processor( float dt )
 		{
-			if( mProcessorContainer.end() == mCurrentProcessor )
+			if( mProcessorContainer->end() == mCurrentProcessor )
 			{
 				StopProcess();
 				return;
@@ -110,7 +110,7 @@ namespace step_rain_of_chaos
 			if( !( *mCurrentProcessor )->Update( dt ) )
 			{
 				++mCurrentProcessor;
-				if( mProcessorContainer.end() != mCurrentProcessor )
+				if( mProcessorContainer->end() != mCurrentProcessor )
 				{
 					( *mCurrentProcessor )->Enter();
 				}
@@ -128,12 +128,12 @@ namespace step_rain_of_chaos
 			}
 		}
 
-		void EnemyNode::StartProcess( EnemyProcessorContainer&& enemy_processor_container )
+		void EnemyNode::StartProcess( EnemyProcessorContainer* enemy_processor_container )
 		{
 			StopProcess();
 
 			mProcessorContainer = std::move( enemy_processor_container );
-			mCurrentProcessor = mProcessorContainer.begin();
+			mCurrentProcessor = mProcessorContainer->begin();
 
 			( *mCurrentProcessor )->Enter();
 
