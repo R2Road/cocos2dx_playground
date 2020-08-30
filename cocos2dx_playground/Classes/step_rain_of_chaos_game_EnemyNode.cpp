@@ -101,7 +101,7 @@ namespace step_rain_of_chaos
 		{
 			if( mProcessorContainer.end() == mCurrentProcessor )
 			{
-				unschedule( schedule_selector( EnemyNode::update4Processor ) );
+				StopProcess();
 				return;
 			}
 
@@ -128,18 +128,20 @@ namespace step_rain_of_chaos
 			}
 		}
 
-		void EnemyNode::SetProcessor( EnemyProcessorContainer&& enemy_processor_container )
+		void EnemyNode::StartProcess( EnemyProcessorContainer&& enemy_processor_container )
 		{
-			mProcessorContainer = std::move( enemy_processor_container );
-		}
+			StopProcess();
 
-		void EnemyNode::StartProcess()
+			mProcessorContainer = std::move( enemy_processor_container );
+			mCurrentProcessor = mProcessorContainer.begin();
+
+			( *mCurrentProcessor )->Enter();
+
+			schedule( schedule_selector( EnemyNode::update4Processor ) );
+		}
+		void EnemyNode::StopProcess()
 		{
 			unschedule( schedule_selector( EnemyNode::update4Processor ) );
-
-			mCurrentProcessor = mProcessorContainer.begin();
-			( *mCurrentProcessor )->Enter();
-			schedule( schedule_selector( EnemyNode::update4Processor ) );
 		}
 	}
 }

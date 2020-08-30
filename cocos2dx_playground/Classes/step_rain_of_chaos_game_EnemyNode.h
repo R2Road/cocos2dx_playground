@@ -49,8 +49,8 @@ namespace step_rain_of_chaos
 			void update4Processor( float delta_time );
 
 		public:
-			void SetProcessor( EnemyProcessorContainer&& enemy_processor_container );
-			void StartProcess();
+			void StartProcess( EnemyProcessorContainer&& enemy_processor_container );
+			void StopProcess();
 
 			SpawnInfoContainer& GetSpawnInfoContainer() { return mSpawnInfoContainer; }
 

@@ -298,9 +298,7 @@ namespace step_rain_of_chaos
 			case EventKeyboard::KeyCode::KEY_SPACE:
 			{
 				auto enemy_node = static_cast<game::EnemyNode*>( mStartNode );
-
-				enemy_node->SetProcessor( std::move( mPackgeContainer.begin()->Package ) );
-				enemy_node->StartProcess();
+				enemy_node->StartProcess( std::move( mPackgeContainer.begin()->Package ) );
 			}
 			return;
 
