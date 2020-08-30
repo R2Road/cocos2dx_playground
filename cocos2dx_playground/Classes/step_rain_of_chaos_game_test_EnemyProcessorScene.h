@@ -4,6 +4,7 @@
 #include "ui/UIWidget.h"
 
 #include "helper_BackToThePreviousScene.h"
+#include "step_rain_of_chaos_game_EnemyNode.h"
 #include "step_rain_of_chaos_game_StageConfig.h"
 
 namespace step_rain_of_chaos
@@ -18,6 +19,13 @@ namespace step_rain_of_chaos
 		class EnemyProcessorScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
+			struct NameNPackage
+			{
+				const char* Name = nullptr;
+				game::EnemyNode::EnemyProcessorContainer Package;
+			};
+			using PackageContainer = std::vector<NameNPackage>;
+
 			EnemyProcessorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
@@ -44,6 +52,8 @@ namespace step_rain_of_chaos
 
 			cocos2d::Node* mStartNode;
 			cocos2d::Node* mTargetNode;
+
+			PackageContainer mPackgeContainer;
 		};
 	}
 }
