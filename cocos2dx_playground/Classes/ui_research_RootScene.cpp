@@ -7,6 +7,7 @@
 #include "PlayGroundScene.h"
 
 #include "ui_research_button_research_OnMouseOverScene.h"
+#include "ui_research_button_research_MouseRightClickScene.h"
 
 #include "ui_research_type_effect_BasicScene.h"
 #include "ui_research_type_effect_MultiByteScene.h"
@@ -51,22 +52,27 @@ namespace ui_research
 			ss << std::endl;
 			ss << "[1] : " << ui_research::button_research::OnMouseOverScene::getTitle();
 			ss << std::endl;
+			ss << "[2] : " << ui_research::button_research::MouseRightClickScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << ui_research::type_effect::BasicScene::getTitle();
-			ss << std::endl;
-			ss << "[3] : " << ui_research::type_effect::MultiByteScene::getTitle();
-			ss << std::endl;
-			ss << "[4] : " << ui_research::type_effect::ColorScene::getTitle();
-			ss << std::endl;
-			ss << "[5] : " << ui_research::type_effect::ShakeScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[6] : " << ui_research::text_field::BMFontScene::getTitle();
 			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[Q] : " << "Add Something";
+			ss << "[Q] : " << ui_research::type_effect::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[W] : " << ui_research::type_effect::MultiByteScene::getTitle();
+			ss << std::endl;
+			ss << "[E] : " << ui_research::type_effect::ColorScene::getTitle();
+			ss << std::endl;
+			ss << "[R] : " << ui_research::type_effect::ShakeScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[T] : " << ui_research::text_field::BMFontScene::getTitle();
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[A] : " << "Add Something";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -118,19 +124,23 @@ namespace ui_research
 			Director::getInstance()->replaceScene( ui_research::button_research::OnMouseOverScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
+			Director::getInstance()->replaceScene( ui_research::button_research::MouseRightClickScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_Q:
 			Director::getInstance()->replaceScene( ui_research::type_effect::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-		case EventKeyboard::KeyCode::KEY_3:
+		case EventKeyboard::KeyCode::KEY_W:
 			Director::getInstance()->replaceScene( ui_research::type_effect::MultiByteScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_E:
 			Director::getInstance()->replaceScene( ui_research::type_effect::ColorScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_R:
 			Director::getInstance()->replaceScene( ui_research::type_effect::ShakeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_T:
 			Director::getInstance()->replaceScene( ui_research::text_field::BMFontScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 

@@ -654,6 +654,9 @@
     <ClCompile Include="..\Classes\ui_research_button_research_OnMouseOverScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_button_research_MouseRightClickScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1182,6 +1185,9 @@
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_button_research_OnMouseOverScene.h">
+      <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_button_research_MouseRightClickScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
   </ItemGroup>
