@@ -38,7 +38,7 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mStageConfig()
-			, mCurrentMoveSpeed( 3 )
+			, mCurrentMoveSpeed( 150.f )
 		{}
 
 		Scene* BulletLifeComponentScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -223,18 +223,19 @@ namespace step_rain_of_chaos
 					object_node->addChild( pivot, std::numeric_limits<int>::max() );
 				}
 
+				const auto& animation_info_container = step_rain_of_chaos::game::GetBulletAnimationInfoContainer();
+
 				// View
-				auto view_node = Sprite::createWithSpriteFrameName( "step_rain_of_chaos_bullet_01_damaged_3.png" );
-				view_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				auto view_node = Sprite::createWithSpriteFrameName( animation_info_container[0].SpriteFrameNames[0] );
 				view_node->setScale( _director->getContentScaleFactor() );
 				object_node->addChild( view_node );
 
 				// Animation Component
-				auto animation_component = step_mole::AnimationComponent::create( step_rain_of_chaos::game::GetBulletAnimationInfoContainer() );
+				auto animation_component = step_mole::AnimationComponent::create( animation_info_container );
 				view_node->addComponent( animation_component );
 
 				// Circle Collision Component
-				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 4.f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true } );
+				auto circle_collision_component = step_mole::CircleCollisionComponent::create( 2.5f, Vec2::ZERO, step_mole::CircleCollisionComponentConfig{ true, true, true } );
 				object_node->addComponent( circle_collision_component );
 
 				// Bullet Life Component

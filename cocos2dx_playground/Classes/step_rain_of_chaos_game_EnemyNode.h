@@ -33,29 +33,31 @@ namespace step_rain_of_chaos
 
 		public:
 			static EnemyNode* create(
-				const DebugConfig debug_config
+				const float radius
+				, const DebugConfig debug_config
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 				, const RequestBulletCallback& request_bullet_callback
 			);
 
 		private:
 			bool init(
-				const DebugConfig debug_config
+				const float radius
+				, const DebugConfig debug_config
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
 			);
 
 			void update4Processor( float delta_time );
 
 		public:
-			void SetProcessor( EnemyProcessorContainer&& enemy_processor_container );
-			void StartProcess();
+			void StartProcess( EnemyProcessorContainer* enemy_processor_container );
+			void StopProcess();
 
 			SpawnInfoContainer& GetSpawnInfoContainer() { return mSpawnInfoContainer; }
 
 		private:
 			const RequestBulletCallback mRequestBulletCallback;
 
-			EnemyProcessorContainer mProcessorContainer;
+			EnemyProcessorContainer* mProcessorContainer;
 			EnemyProcessorContainer::iterator mCurrentProcessor;
 			SpawnInfoContainer mSpawnInfoContainer;
 		};

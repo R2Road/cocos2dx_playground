@@ -24,8 +24,10 @@ namespace step_rain_of_chaos
 			, const ProcessExitCallback& process_end_callback
 		) :
 			mAllowedArea( allowed_area )
-			, mMoveDirection( Vec2::ONE )
+
 			, mLastState( eState::Boom_2 )
+			, mMoveDirection( Vec2::ONE )
+
 			, mAnimationComponent( animation_component )
 			, mCircleCollisionComponent( circle_collision_component )
 			, mProcessEndCallback( process_end_callback )
@@ -112,9 +114,9 @@ namespace step_rain_of_chaos
 			{
 				mAnimationComponent->PlayAnimation( cpg::animation::eIndex::idle );
 				_owner->schedule(
-					[this]( float )
+					[this]( float delta_time )
 					{
-						_owner->setPosition( _owner->getPosition() + mMoveDirection );
+						_owner->setPosition( _owner->getPosition() + ( mMoveDirection * delta_time ) );
 						if( !mAllowedArea.containsPoint( _owner->getPosition() ) )
 						{
 							ChangeState( eState::Disappear );
