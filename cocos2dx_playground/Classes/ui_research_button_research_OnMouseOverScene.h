@@ -11,28 +11,31 @@ NS_CC_END
 
 namespace ui_research
 {
-	class ButtonWithOnMouseOverScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+	namespace button_research
 	{
-	private:
-		ButtonWithOnMouseOverScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		class OnMouseOverScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+		{
+		private:
+			OnMouseOverScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
-	public:
-		static const char* getTitle() { return "Button Research : OnMouseOver"; }
-		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		public:
+			static const char* getTitle() { return "Button Research : OnMouseOver"; }
+			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
-		bool init() override;
-		void onEnter() override;
-		void onExit() override;
+			bool init() override;
+			void onEnter() override;
+			void onExit() override;
 
-	private:
-		void onButton( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-		void updateMouseStatusView( bool is_over );
+		private:
+			void onButton( Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void updateMouseStatusView( bool is_over );
 
-		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
-	private:
-		cocos2d::EventListenerKeyboard* mKeyboardListener;
-		cocos2d::EventListenerMouse* mMouseListener;
-		bool mbOnMouseOver;
-	};
+		private:
+			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			cocos2d::EventListenerMouse* mMouseListener;
+			bool mbOnMouseOver;
+		};
+	}
 }
