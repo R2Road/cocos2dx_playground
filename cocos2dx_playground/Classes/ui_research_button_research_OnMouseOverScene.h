@@ -17,7 +17,7 @@ namespace ui_research
 		ButtonWithOnMouseOverScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Button With OnMouseOver"; }
+		static const char* getTitle() { return "Button Research : OnMouseOver"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		bool init() override;

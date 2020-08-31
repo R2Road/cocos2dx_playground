@@ -6,7 +6,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "ui_research_ButtonWithOnMouseOverScene.h"
+#include "ui_research_button_research_OnMouseOverScene.h"
 
 #include "ui_research_type_effect_BasicScene.h"
 #include "ui_research_type_effect_MultiByteScene.h"

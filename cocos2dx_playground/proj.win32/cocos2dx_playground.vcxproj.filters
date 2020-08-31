@@ -498,9 +498,6 @@
     <ClCompile Include="..\Classes\ui_research_RootScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_ButtonWithOnMouseOverScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ui_research_type_effect_BasicScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
@@ -653,6 +650,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_ScrollViewGeneratorScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_button_research_OnMouseOverScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1016,9 +1016,6 @@
     <ClInclude Include="..\Classes\ui_research_RootScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_ButtonWithOnMouseOverScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ui_research_type_effect_BasicScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
@@ -1183,6 +1180,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_ScrollViewGeneratorScene.h">
       <Filter>src\scene\ui_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_button_research_OnMouseOverScene.h">
+      <Filter>src\scene\ui_research</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
