@@ -265,28 +265,38 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// List
+			// Package List
 			//
 			{
-				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ), ui::Margin( 0.f, 0.f, 0.f, 0.f ) };
+				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ), ui::Margin( 0.f, 0.f, 0.f, 0.f ), true };
 				cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 				for( std::size_t i = 0; mPackgeContainer.size() > i; ++i )
 				{
 					item_info_container.emplace_back( i, mPackgeContainer[i].Name );
 				}
 
-				auto scroll_view = cpgui::ScrollViewGenerator::Create(
+				auto scroll_view_node = cpgui::ScrollViewGenerator::Create(
 					config
 					, "Package List"
 					, item_info_container
 					, CC_CALLBACK_2( EnemyProcessorScene::onPackageSelect, this )
 				);
-				scroll_view->setPosition( Vec2(
+				scroll_view_node->setPosition( Vec2(
 					visibleOrigin
 					+ Vec2( visibleSize.width, visibleSize.height * 0.5f )
-					- Vec2( scroll_view->getContentSize().width, scroll_view->getContentSize().height * 0.5f )
+					- Vec2( scroll_view_node->getContentSize().width, scroll_view_node->getContentSize().height * 0.5f )
 				) );
-				addChild( scroll_view );
+				addChild( scroll_view_node );
+
+				//
+				// Select
+				//
+				{
+					onPackageSelect(
+						scroll_view_node->getChildByTag( cpgui::ScrollViewGenerator::eTAG::ScrollView )->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Layout )->getChildByTag( item_info_container.begin()->Tag )
+						, ui::Widget::TouchEventType::ENDED
+					);
+				}
 			}
 
 			return true;
@@ -371,6 +381,17 @@ namespace step_rain_of_chaos
 				enemy_node->StopProcess();
 
 				auto node = static_cast<Node*>( sender );
+				auto indicator_node = node->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Indicator );
+				if( !indicator_node->isVisible() )
+				{
+					for( auto c : node->getParent()->getChildren() )
+					{
+						c->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Indicator )->setVisible( false );
+					}
+
+					indicator_node->setVisible( true );
+				}
+
 				mCurrentPackage = &mPackgeContainer[node->getTag()];
 			}
 		}
