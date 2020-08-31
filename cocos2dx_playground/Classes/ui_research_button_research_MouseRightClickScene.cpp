@@ -134,30 +134,37 @@ namespace ui_research
 
 			assert( !mMouseListener );
 			mMouseListener = EventListenerMouse::create();
-			mMouseListener->onMouseMove = [this]( EventMouse* event ) {
+			mMouseListener->onMouseDown = [this]( EventMouse* event ) {
 
 				//
 				// 20200618
 				// This code originated from "Widget::onTouchBegan"
 				//
 
+				if( EventMouse::MouseButton::BUTTON_RIGHT != event->getMouseButton() )
+				{
+					return;
+				}
+
 				const auto button = static_cast<ui::Button*>( getChildByTag( TAG_button ) );
 				const auto camera = Camera::getVisitingCamera();
 				const auto current_hit_result = button->hitTest( Vec2( event->getCursorX(), event->getCursorY() ), camera, nullptr );
 
-				if( !mbOnMouseOver && current_hit_result )
-				{
-					updateMouseStatusView( current_hit_result );
+				updateMouseStatusView( current_hit_result );
+			};
+			mMouseListener->onMouseUp = [this]( EventMouse* event ) {
 
-					mbOnMouseOver = current_hit_result;
-					event->stopPropagation();
-				}
-				else if( mbOnMouseOver && !current_hit_result )
-				{
-					updateMouseStatusView( current_hit_result );
+				//
+				// 20200618
+				// This code originated from "Widget::onTouchBegan"
+				//
 
-					mbOnMouseOver = current_hit_result;
+				if( EventMouse::MouseButton::BUTTON_RIGHT != event->getMouseButton() )
+				{
+					return;
 				}
+
+				updateMouseStatusView( false );
 			};
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mMouseListener, this );
 		}
@@ -181,16 +188,16 @@ namespace ui_research
 				CCLOG( "on button" );
 			}
 		}
-		void MouseRightClickScene::updateMouseStatusView( bool is_over )
+		void MouseRightClickScene::updateMouseStatusView( bool right_click )
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_MouseStatusLabel ) );
-			if( is_over )
+			if( right_click )
 			{
-				label->setString( "Over" );
+				label->setString( "Down" );
 			}
 			else
 			{
-				label->setString( "Out" );
+				label->setString( "Up" );
 			}
 		}
 
