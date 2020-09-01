@@ -20,6 +20,7 @@
 #include "cpgui_ScrollViewGenerator.h"
 
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Sleep.h"
@@ -187,6 +188,19 @@ namespace step_rain_of_chaos
 					name_n_package.Name = "Move_CircularSector_01";
 
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
+				}
+
+				{
+					NameNPackage name_n_package;
+					name_n_package.Name = "Move_CircularSector_Random_01";
+
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 30.f, 90.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 30.f, 90.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 30.f, 90.f ) );
 
 					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
