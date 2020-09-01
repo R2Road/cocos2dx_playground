@@ -202,7 +202,7 @@ namespace step_rain_of_chaos
 
 				{
 					NameNPackage name_n_package;
-					name_n_package.Name = "EnemyProcessor_Fire";
+					name_n_package.Name = "Fire";
 
 					{
 						game::SpawnProcessorPackage spawn_processor_package;
@@ -226,7 +226,7 @@ namespace step_rain_of_chaos
 
 				{
 					NameNPackage name_n_package;
-					name_n_package.Name = "EnemyProcessor_Tie";
+					name_n_package.Name = "Tie";
 
 					{
 						game::SpawnProcessorPackage spawn_processor_container;
