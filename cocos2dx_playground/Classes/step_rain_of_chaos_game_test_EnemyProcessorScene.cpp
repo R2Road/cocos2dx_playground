@@ -255,9 +255,6 @@ namespace step_rain_of_chaos
 						) );
 					}
 
-					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 1.f ) );
-					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
-
 					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
 
