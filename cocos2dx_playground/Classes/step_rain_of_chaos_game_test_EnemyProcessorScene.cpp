@@ -25,6 +25,7 @@
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_Random_01.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_Random_02.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Sleep.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Tie.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_Line.h"
@@ -224,7 +225,10 @@ namespace step_rain_of_chaos
 					NameNPackage name_n_package;
 					name_n_package.Name = "Move_Linear_01";
 
-					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.4f, true, 180.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.4f, true, 90.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.4f, true, 180.f ) );
+					
 
 					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
@@ -238,6 +242,19 @@ namespace step_rain_of_chaos
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_Random_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 90.f, 180.f ) );
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.05f ) );
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_Random_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 90.f, 180.f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
+				}
+
+				{
+					NameNPackage name_n_package;
+					name_n_package.Name = "Move_Linear_Random_02";
+
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_Random_02::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, 90.f, 180.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.05f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_Random_02::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, 90.f, 180.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.05f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_Random_02::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, 90.f, 180.f ) );
 
 					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
