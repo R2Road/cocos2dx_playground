@@ -214,6 +214,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_02.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Linear_Random_01.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Sleep.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Tie.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_iSpawnProcessor.cpp" />
@@ -390,6 +391,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_02.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Linear_Random_01.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Sleep.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Tie.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_iEnemyProcessor.h" />
