@@ -3,6 +3,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCSprite.h"
 #include "ui/UIButton.h"
+#include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"
 
 USING_NS_CC;
@@ -43,6 +44,17 @@ namespace cpgui
 			button->addChild( pivot, std::numeric_limits<int>::max() );
 		}
 
+		// Indicator
+		if( config.bAddItemIndicator )
+		{
+			auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
+			sprite->setTag( ScrollViewGenerator::eTAG::Indicator );
+			sprite->setAnchorPoint( Vec2::ZERO );
+			sprite->setContentSize( config.ItemSize );
+			sprite->setVisible( false );
+			button->addChild( sprite, 1 );
+		}
+
 		return button;
 	}
 
@@ -69,12 +81,14 @@ namespace cpgui
 		root_node->setContentSize( ListVisibleSize );
 		{
 			auto scroll_view = ui::ScrollView::create();
+			scroll_view->setTag( ScrollViewGenerator::eTAG::ScrollView );
 			scroll_view->setDirection( ui::ScrollView::Direction::VERTICAL );
 			scroll_view->setContentSize( ListVisibleSize );
 			scroll_view->setInnerContainerSize( ListTotalSize );
 			root_node->addChild( scroll_view );
 			{
 				auto layout_node = ui::Layout::create();
+				layout_node->setTag( ScrollViewGenerator::eTAG::Layout );
 				layout_node->setContentSize( ListTotalSize );
 				layout_node->setLayoutType( ui::Layout::Type::VERTICAL );
 				layout_node->setBackGroundColor( Color3B( 0, 148, 255 ) );

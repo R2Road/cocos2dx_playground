@@ -20,6 +20,8 @@
 #include "cpgui_ScrollViewGenerator.h"
 
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_02.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Sleep.h"
@@ -193,6 +195,32 @@ namespace step_rain_of_chaos
 
 				{
 					NameNPackage name_n_package;
+					name_n_package.Name = "Move_CircularSector_Random_01";
+
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 30.f, 90.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 30.f, 90.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 30.f, 90.f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
+				}
+
+				{
+					NameNPackage name_n_package;
+					name_n_package.Name = "Move_CircularSector_Random_02";
+
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_02::Create( mStageConfig, mStartNode, mTargetNode, 0.2f, 30.f, 40.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.05f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_02::Create( mStageConfig, mStartNode, mTargetNode, 0.2f, 30.f, 40.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.05f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_02::Create( mStageConfig, mStartNode, mTargetNode, 0.2f, 30.f, 40.f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
+				}
+
+				{
+					NameNPackage name_n_package;
 					name_n_package.Name = "Move_Linear_01";
 
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
@@ -202,7 +230,7 @@ namespace step_rain_of_chaos
 
 				{
 					NameNPackage name_n_package;
-					name_n_package.Name = "EnemyProcessor_Fire";
+					name_n_package.Name = "Fire";
 
 					{
 						game::SpawnProcessorPackage spawn_processor_package;
@@ -226,7 +254,7 @@ namespace step_rain_of_chaos
 
 				{
 					NameNPackage name_n_package;
-					name_n_package.Name = "EnemyProcessor_Tie";
+					name_n_package.Name = "Tie";
 
 					{
 						game::SpawnProcessorPackage spawn_processor_container;
@@ -255,9 +283,6 @@ namespace step_rain_of_chaos
 						) );
 					}
 
-					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 1.f ) );
-					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
-
 					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
 
@@ -265,28 +290,38 @@ namespace step_rain_of_chaos
 			}
 
 			//
-			// List
+			// Package List
 			//
 			{
-				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ), ui::Margin( 0.f, 0.f, 0.f, 0.f ) };
+				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ), ui::Margin( 0.f, 0.f, 0.f, 0.f ), true };
 				cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
 				for( std::size_t i = 0; mPackgeContainer.size() > i; ++i )
 				{
 					item_info_container.emplace_back( i, mPackgeContainer[i].Name );
 				}
 
-				auto scroll_view = cpgui::ScrollViewGenerator::Create(
+				auto scroll_view_node = cpgui::ScrollViewGenerator::Create(
 					config
 					, "Package List"
 					, item_info_container
 					, CC_CALLBACK_2( EnemyProcessorScene::onPackageSelect, this )
 				);
-				scroll_view->setPosition( Vec2(
+				scroll_view_node->setPosition( Vec2(
 					visibleOrigin
 					+ Vec2( visibleSize.width, visibleSize.height * 0.5f )
-					- Vec2( scroll_view->getContentSize().width, scroll_view->getContentSize().height * 0.5f )
+					- Vec2( scroll_view_node->getContentSize().width, scroll_view_node->getContentSize().height * 0.5f )
 				) );
-				addChild( scroll_view );
+				addChild( scroll_view_node );
+
+				//
+				// Select
+				//
+				{
+					onPackageSelect(
+						scroll_view_node->getChildByTag( cpgui::ScrollViewGenerator::eTAG::ScrollView )->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Layout )->getChildByTag( item_info_container.begin()->Tag )
+						, ui::Widget::TouchEventType::ENDED
+					);
+				}
 			}
 
 			return true;
@@ -371,6 +406,17 @@ namespace step_rain_of_chaos
 				enemy_node->StopProcess();
 
 				auto node = static_cast<Node*>( sender );
+				auto indicator_node = node->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Indicator );
+				if( !indicator_node->isVisible() )
+				{
+					for( auto c : node->getParent()->getChildren() )
+					{
+						c->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Indicator )->setVisible( false );
+					}
+
+					indicator_node->setVisible( true );
+				}
+
 				mCurrentPackage = &mPackgeContainer[node->getTag()];
 			}
 		}
