@@ -43,44 +43,55 @@ namespace step_rain_of_chaos
 		{
 			mStartPosition = mOwnerNode->getPosition();
 
-			Vec2 Enemy2Player = mTargetNode->getPosition() - mStartPosition;
-			Enemy2Player.normalize();
-			Vec2 Enemy2Center = mStageConfig.GetCenter() - mStartPosition;
-			Enemy2Center.normalize();
-
-			//
-			// # dot
-			// ( dot_result = 0 ) == 90`
-			// ( dot_result < 0 ) > 90`
-			// ( dot_result > 0 ) < 90`
-			//
-			const auto dot_result = Enemy2Player.dot( Enemy2Center );
-			const auto theta = acos( dot_result );
-			const auto degree = CC_RADIANS_TO_DEGREES( theta );
-
-			//
-			// # make rotation angle
-			// - rotation angle : angle for Center2Enemy to Center2TargetPosition
-			// - total inner angle for triangle : 180
-			// - enemy position is on the circle
-			// - target position is on the circle
-			// - two coner angle is same
-			// - degree + degree + x = 180
-			//
-			const auto degree4E2T = 180.f - ( degree * 2 );
-
-			Vec2 Center2Enemy = mStartPosition - mStageConfig.GetCenter();
-			if( 0.f <= Enemy2Center.cross( Enemy2Player ) ) // check rotation direction
+			if( MATH_EPSILON > mTargetNode->getPosition().distance( mOwnerNode->getPosition() ) )
 			{
-				Center2Enemy.rotate( Vec2::ZERO, -CC_DEGREES_TO_RADIANS( degree4E2T ) );
+				//
+				// Do Pass
+				//
+				mMove = Vec2::ZERO;
+				mElapsedTime = mLimitTime;
 			}
 			else
 			{
-				Center2Enemy.rotate( Vec2::ZERO, CC_DEGREES_TO_RADIANS( degree4E2T ) );
-			}
+				Vec2 Enemy2Player = mTargetNode->getPosition() - mStartPosition;
+				Enemy2Player.normalize();
+				Vec2 Enemy2Center = mStageConfig.GetCenter() - mStartPosition;
+				Enemy2Center.normalize();
 
-			const Vec2 target_position = mStageConfig.GetCenter() + Center2Enemy;
-			mMove = target_position - mStartPosition;
+				//
+				// # dot
+				// ( dot_result = 0 ) == 90`
+				// ( dot_result < 0 ) > 90`
+				// ( dot_result > 0 ) < 90`
+				//
+				const auto dot_result = Enemy2Player.dot( Enemy2Center );
+				const auto theta = acos( dot_result );
+				const auto degree = CC_RADIANS_TO_DEGREES( theta );
+
+				//
+				// # make rotation angle
+				// - rotation angle : angle for Center2Enemy to Center2TargetPosition
+				// - total inner angle for triangle : 180
+				// - enemy position is on the circle
+				// - target position is on the circle
+				// - two coner angle is same
+				// - degree + degree + x = 180
+				//
+				const auto degree4E2T = 180.f - ( degree * 2 );
+
+				Vec2 Center2Enemy = mStartPosition - mStageConfig.GetCenter();
+				if( 0.f <= Enemy2Center.cross( Enemy2Player ) ) // check rotation direction
+				{
+					Center2Enemy.rotate( Vec2::ZERO, -CC_DEGREES_TO_RADIANS( degree4E2T ) );
+				}
+				else
+				{
+					Center2Enemy.rotate( Vec2::ZERO, CC_DEGREES_TO_RADIANS( degree4E2T ) );
+				}
+
+				const Vec2 target_position = mStageConfig.GetCenter() + Center2Enemy;
+				mMove = target_position - mStartPosition;
+			}
 
 			mElapsedTime = 0.f;
 		}
