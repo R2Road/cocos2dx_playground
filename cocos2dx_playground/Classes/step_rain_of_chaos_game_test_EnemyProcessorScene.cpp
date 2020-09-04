@@ -20,6 +20,7 @@
 #include "cpgui_ScrollViewGenerator.h"
 
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_2Target_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_02.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire.h"
@@ -192,6 +193,15 @@ namespace step_rain_of_chaos
 					name_n_package.Name = "Move_CircularSector_01";
 
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, true, 180.f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
+				}
+
+				{
+					NameNPackage name_n_package;
+					name_n_package.Name = "Move_CircularSector_2Target_02";
+
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_CircularSector_2Target_01::Create( mStageConfig, mStartNode, mTargetNode, 0.2f ) );
 
 					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
