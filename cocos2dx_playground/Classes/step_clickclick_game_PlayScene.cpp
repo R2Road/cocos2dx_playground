@@ -73,8 +73,8 @@ namespace step_clickclick
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -314,7 +314,7 @@ namespace step_clickclick
 
 			case NextStepData::eStep::game_clear:
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
-				Director::getInstance()->replaceScene( step_clickclick::game::ResultScene::create( mScore ) );
+				_director->replaceScene( step_clickclick::game::ResultScene::create( mScore ) );
 				break;
 
 			default:
@@ -329,7 +329,7 @@ namespace step_clickclick
 				return;
 			}
 
-			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
+			_director->replaceScene( step_clickclick::game::TitleScene::create() );
 		}
 	} // namespace game
 } // namespace step_clickclick

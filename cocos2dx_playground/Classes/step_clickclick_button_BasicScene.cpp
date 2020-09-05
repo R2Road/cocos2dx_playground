@@ -53,8 +53,8 @@ namespace step_clickclick
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 
 			//
@@ -198,7 +198,7 @@ namespace step_clickclick
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
+			_director->replaceScene( step_clickclick::RootScene::create() );
 		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{

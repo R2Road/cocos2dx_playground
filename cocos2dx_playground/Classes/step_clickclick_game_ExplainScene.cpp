@@ -47,8 +47,8 @@ namespace step_clickclick
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -183,13 +183,13 @@ namespace step_clickclick
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
+				_director->replaceScene( step_clickclick::game::TitleScene::create() );
 				return;
 			}
 
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_clickclick::game::PlayScene::create() );
+				_director->replaceScene( step_clickclick::game::PlayScene::create() );
 				return;
 			}
 		}

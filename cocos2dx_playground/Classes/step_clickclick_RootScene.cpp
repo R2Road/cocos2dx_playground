@@ -115,29 +115,29 @@ namespace step_clickclick
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step_clickclick::animation::BasicScene::create() );
+			_director->replaceScene( step_clickclick::animation::BasicScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step_clickclick::animation::PlayNStopScene::create() );
+			_director->replaceScene( step_clickclick::animation::PlayNStopScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_clickclick::button::BasicScene::create() );
+			_director->replaceScene( step_clickclick::button::BasicScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_clickclick::game_test::BlockScene::create() );
+			_director->replaceScene( step_clickclick::game_test::BlockScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( step_clickclick::game::StageTestScene::create() );
+			_director->replaceScene( step_clickclick::game::StageTestScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			Director::getInstance()->replaceScene( step_clickclick::game::TitleScene::create() );
+			_director->replaceScene( step_clickclick::game::TitleScene::create() );
 			break;
 
 		default:
