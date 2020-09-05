@@ -97,7 +97,7 @@ namespace step99
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:

@@ -48,8 +48,8 @@ namespace step_pathfinder
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -131,19 +131,19 @@ namespace step_pathfinder
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
+				_director->replaceScene( step_pathfinder::RootScene::create() );
 				return;
 			}
 
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_pathfinder::game::PlayScene::create() );
+				_director->replaceScene( step_pathfinder::game::PlayScene::create() );
 				return;
 			}
 
 			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
 			{
-				Director::getInstance()->replaceScene( step_pathfinder::game::ResultScene::create( 54321.12345f ) );
+				_director->replaceScene( step_pathfinder::game::ResultScene::create( 54321.12345f ) );
 				return;
 			}
 		}

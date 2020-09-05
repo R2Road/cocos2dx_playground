@@ -115,29 +115,29 @@ namespace step_pathfinder
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step_pathfinder::fileutil::PathScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_pathfinder::fileutil::PathScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step_pathfinder::fileutil::GenerateNDeleteScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_pathfinder::fileutil::GenerateNDeleteScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_pathfinder::json::LoadNSaveScene::create() );
+			_director->replaceScene( step_pathfinder::json::LoadNSaveScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step_pathfinder::text_field::BasicScene::create() );
+			_director->replaceScene( step_pathfinder::text_field::BasicScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_pathfinder::tool::TerrainToolScene::create() );
+			_director->replaceScene( step_pathfinder::tool::TerrainToolScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			Director::getInstance()->replaceScene( step_pathfinder::game::TitleScene::create() );
+			_director->replaceScene( step_pathfinder::game::TitleScene::create() );
 			break;
 
 		default:

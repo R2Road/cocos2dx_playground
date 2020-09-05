@@ -31,7 +31,7 @@ void EntryScene::update_forLoad( float /*dt*/ )
 	research::Setting::load();
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( "textures/texture_001.plist", "textures/texture_001.png" );
-	Director::getInstance()->getTextureCache()->getTextureForKey( "textures/texture_001.png" )->setAliasTexParameters();
+	_director->getTextureCache()->getTextureForKey( "textures/texture_001.png" )->setAliasTexParameters();
 
-	Director::getInstance()->replaceScene( PlayGroundScene::create() );
+	_director->replaceScene( PlayGroundScene::create() );
 }

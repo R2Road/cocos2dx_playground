@@ -69,8 +69,8 @@ namespace step_pathfinder
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -160,7 +160,7 @@ namespace step_pathfinder
 				auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 				player_node->setTag( TAG_Player );
 				player_node->setAnchorPoint( Vec2( 0.5f, 0.2f ) );
-				player_node->setScale( Director::getInstance()->getContentScaleFactor() );
+				player_node->setScale( _director->getContentScaleFactor() );
 				mTerrainViewer->addChild( player_node, 100 );
 				{
 					auto animation_object = Animation::create();
@@ -334,11 +334,11 @@ namespace step_pathfinder
 		{
 			if( eNextSceneType::Title == mNextSceneType )
 			{
-				Director::getInstance()->replaceScene( game::TitleScene::create() );
+				_director->replaceScene( game::TitleScene::create() );
 			}
 			else
 			{
-				Director::getInstance()->replaceScene( game::ResultScene::create( mElapsedTime ) );
+				_director->replaceScene( game::ResultScene::create( mElapsedTime ) );
 			}
 		}
 		void PlayScene::startExitProcess( const eNextSceneType next_scene_type, float wait_time )

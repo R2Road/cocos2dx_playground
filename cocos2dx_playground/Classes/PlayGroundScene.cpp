@@ -46,8 +46,8 @@ bool PlayGroundScene::init()
 		return false;
 	}
 
-	const auto visibleSize = Director::getInstance()->getVisibleSize();
-	const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+	const auto visibleSize = _director->getVisibleSize();
+	const auto visibleOrigin = _director->getVisibleOrigin();
 
 	//
 	// Summury
@@ -127,46 +127,46 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 	switch( keycode )
 	{
 	case EventKeyboard::KeyCode::KEY_ESCAPE:
-		cocos2d::Director::getInstance()->end();
+		_director->end();
 		break;
 
 	case EventKeyboard::KeyCode::KEY_1:
-		Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+		_director->replaceScene( step_typetype::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_2:
-		Director::getInstance()->replaceScene( step_clickclick::RootScene::create() );
+		_director->replaceScene( step_clickclick::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_3:
-		Director::getInstance()->replaceScene( step_pathfinder::RootScene::create() );
+		_director->replaceScene( step_pathfinder::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_4:
-		Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+		_director->replaceScene( step_mole::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_5:
-		Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+		_director->replaceScene( step_rain_of_chaos::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_6:
-		Director::getInstance()->replaceScene( step_defender::RootScene::create() );
+		_director->replaceScene( step_defender::RootScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_Q:
-		Director::getInstance()->replaceScene( ui_practice::RootScene::create() );
+		_director->replaceScene( ui_practice::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_W:
-		Director::getInstance()->replaceScene( shader_practice::RootScene::create() );
+		_director->replaceScene( shader_practice::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_E:
-		Director::getInstance()->replaceScene( graph_practice::RootScene::create() );
+		_director->replaceScene( graph_practice::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_R:
-		Director::getInstance()->replaceScene( input_practice::RootScene::create() );
+		_director->replaceScene( input_practice::RootScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_A:
-		Director::getInstance()->replaceScene( ui_research::RootScene::create() );
+		_director->replaceScene( ui_research::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_S:
-		Director::getInstance()->replaceScene( step99::RootScene::create() );
+		_director->replaceScene( step99::RootScene::create() );
 		break;
 
 	default:
