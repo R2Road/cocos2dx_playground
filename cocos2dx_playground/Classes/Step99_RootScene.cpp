@@ -101,17 +101,17 @@ namespace step99
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( research::input::KeyAllowScene::create() );
+			_director->replaceScene( research::input::KeyAllowScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( research::input::AllowedKeysTestScene::create() );
+			_director->replaceScene( research::input::AllowedKeysTestScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( research::input::KeyConfigScene::create() );
+			_director->replaceScene( research::input::KeyConfigScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( research::input::ConfigedKeysTestScene::create() );
+			_director->replaceScene( research::input::ConfigedKeysTestScene::create() );
 			break;
 
 		default:

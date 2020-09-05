@@ -138,53 +138,53 @@ namespace ui_practice
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( ui_practice::MouseCursorScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::MouseCursorScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( ui_practice::LayoutVerticalScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::LayoutVerticalScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( ui_practice::LayoutHorizontalScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::LayoutHorizontalScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( ui_practice::RelativeLayoutScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::RelativeLayoutScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
+			_director->replaceScene( ui_practice::LayoutNScrollViewScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_6:
-			Director::getInstance()->replaceScene( ui_practice::layout_test::ChangeSequenceScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::layout_test::ChangeSequenceScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_7:
-			Director::getInstance()->replaceScene( ui_practice::layout_test::VariousItemSizeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::layout_test::VariousItemSizeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_8:
-			Director::getInstance()->replaceScene( ui_practice::ScrollViewGeneratorScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::ScrollViewGeneratorScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_Q:
-			Director::getInstance()->replaceScene( ui_practice::UIAndCamera::create() );
+			_director->replaceScene( ui_practice::UIAndCamera::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_W:
-			Director::getInstance()->replaceScene( ui_practice::Minimap::create() );
+			_director->replaceScene( ui_practice::Minimap::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( ui_practice::SliderScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::SliderScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( ui_practice::ToggleButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::ToggleButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_D:
-			Director::getInstance()->replaceScene( ui_practice::RadioButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( ui_practice::RadioButtonScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:

@@ -46,8 +46,8 @@ namespace ui_practice
 			return false;
 		}
 
-		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
 		// Summury
@@ -83,7 +83,7 @@ namespace ui_practice
 	{
 		Scene::onEnter();
 
-		auto gl_view = Director::getInstance()->getOpenGLView();
+		auto gl_view = _director->getOpenGLView();
 		gl_view->setCursor( "textures/step_typetype/step_typetype_dummy_02.png", Vec2::ANCHOR_BOTTOM_LEFT );
 
 		assert( !mKeyboardListener );
@@ -93,7 +93,7 @@ namespace ui_practice
 	}
 	void MouseCursorScene::onExit()
 	{
-		auto gl_view = Director::getInstance()->getOpenGLView();
+		auto gl_view = _director->getOpenGLView();
 		gl_view->setDefaultCursor();
 
 		assert( mKeyboardListener );

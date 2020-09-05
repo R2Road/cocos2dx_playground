@@ -100,8 +100,8 @@ namespace ui_practice
 			return false;
 		}
 
-		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
 		// Summury
@@ -253,7 +253,7 @@ namespace ui_practice
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{
-			Director::getInstance()->replaceScene( RootScene::create() );
+			_director->replaceScene( RootScene::create() );
 			return;
 		}
 	}
