@@ -45,8 +45,8 @@ namespace step_typetype
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 
 			//
@@ -143,7 +143,7 @@ namespace step_typetype
 
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+				_director->replaceScene( step_typetype::RootScene::create() );
 				return;
 			}
 		}

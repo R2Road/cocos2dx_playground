@@ -59,8 +59,8 @@ namespace step_typetype
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 
 			//
@@ -167,7 +167,7 @@ namespace step_typetype
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_typetype::RootScene::create() );
+				_director->replaceScene( step_typetype::RootScene::create() );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_UP_ARROW: // increase stage size + reset

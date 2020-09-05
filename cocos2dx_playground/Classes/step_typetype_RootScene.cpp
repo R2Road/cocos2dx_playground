@@ -120,34 +120,34 @@ namespace step_typetype
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step_typetype::sprite::TextureTypeScene::create() );
+			_director->replaceScene( step_typetype::sprite::TextureTypeScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step_typetype::sprite::AnchorPointScene::create() );
+			_director->replaceScene( step_typetype::sprite::AnchorPointScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
+			_director->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step_typetype::sound::BasicScene::create() );
+			_director->replaceScene( step_typetype::sound::BasicScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step_typetype::ScheduleScene::create() );
+			_director->replaceScene( step_typetype::ScheduleScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_typetype::game_test::StageScene::create() );
+			_director->replaceScene( step_typetype::game_test::StageScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			Director::getInstance()->replaceScene( step_typetype::game::TitleScene::create() );
+			_director->replaceScene( step_typetype::game::TitleScene::create() );
 			break;
 
 		default:

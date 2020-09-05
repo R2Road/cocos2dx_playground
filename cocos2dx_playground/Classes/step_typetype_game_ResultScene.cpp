@@ -41,10 +41,12 @@ namespace step_typetype
 		bool ResultScene::init( const double clear_time )
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -122,7 +124,7 @@ namespace step_typetype
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_typetype::game::TitleScene::create() );
+				_director->replaceScene( step_typetype::game::TitleScene::create() );
 				return;
 			}
 		}

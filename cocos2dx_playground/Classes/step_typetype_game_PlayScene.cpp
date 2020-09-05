@@ -62,8 +62,8 @@ namespace step_typetype
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 
 			//
@@ -171,7 +171,7 @@ namespace step_typetype
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_typetype::game::TitleScene::create() );
+				_director->replaceScene( step_typetype::game::TitleScene::create() );
 				return;
 			}
 
@@ -213,7 +213,7 @@ namespace step_typetype
 				}
 				else // game clear
 				{
-					Director::getInstance()->replaceScene( step_typetype::game::ResultScene::create( mElapsedTime ) );
+					_director->replaceScene( step_typetype::game::ResultScene::create( mElapsedTime ) );
 				}
 			}
 		}
