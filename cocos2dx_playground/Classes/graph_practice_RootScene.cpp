@@ -113,29 +113,29 @@ namespace graph_practice
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			return;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			Director::getInstance()->replaceScene( graph_practice::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( graph_practice::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( graph_practice::Collection01Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( graph_practice::Collection01Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( graph_practice::Collection02Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( graph_practice::Collection02Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( graph_practice::Collection03Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( graph_practice::Collection03Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( graph_practice::Collection04Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( graph_practice::Collection04Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( graph_practice::Collection05Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( graph_practice::Collection05Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		case EventKeyboard::KeyCode::KEY_6:
-			Director::getInstance()->replaceScene( graph_practice::Collection06Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( graph_practice::Collection06Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		default:

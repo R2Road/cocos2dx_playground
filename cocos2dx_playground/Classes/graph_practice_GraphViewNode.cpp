@@ -160,7 +160,7 @@ namespace graph_practice
 			//
 			//
 			{
-				auto batch_node = SpriteBatchNode::createWithTexture( Director::getInstance()->getTextureCache()->getTextureForKey( "textures/texture_001.png" ), 100u );
+				auto batch_node = SpriteBatchNode::createWithTexture( _director->getTextureCache()->getTextureForKey( "textures/texture_001.png" ), 100u );
 				view_node->addChild( batch_node, 1 );
 				{
 					auto shadow_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
