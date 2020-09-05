@@ -40,8 +40,8 @@ namespace step_defender
 			return false;
 		}
 
-		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
 		// Summury
@@ -107,18 +107,18 @@ namespace step_defender
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step02::fsm1test::BasicScene::create() );
+			_director->replaceScene( step02::fsm1test::BasicScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step02::fsm1test::AnimationControlScene::create() );
+			_director->replaceScene( step02::fsm1test::AnimationControlScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
+			_director->replaceScene( step_rain_of_chaos::collision::CollectionScene::create() );
 			break;
 
 		default:

@@ -51,10 +51,12 @@ namespace research
 		bool ConfigedKeysTestScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			cpg::input_test::KeyMapConfigHelper key_map_config_helper;
 			key_map_config_helper.load( research::Setting::getKeyMapFileName().c_str() );
@@ -68,7 +70,9 @@ namespace research
 				ss << "\n";
 				ss << "\n";
 				for( const auto& h : key_map_config_helper.getContainer() )
+				{
 					ss << "[ " << h.mName << " : " << cpg::input::KeyCodeNames::get( h.mKeycode ) << " ]" << std::endl;
+				}
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
@@ -160,7 +164,9 @@ namespace research
 				for( auto v : mKeyViewerList )
 				{
 					if( !v->isVisible() )
+					{
 						continue;
+					}
 
 					v->setPositionY( v->getPositionY() + v->getContentSize().height + key_viewer_margin );
 					v->setVisible( mKeyViewer_EndPosition.y > v->getPositionY() );
@@ -169,7 +175,9 @@ namespace research
 				for( auto v : mKeyViewerList )
 				{
 					if( v->isVisible() )
+					{
 						continue;
+					}
 
 					v->setVisible( true );
 					v->setPosition( mKeyViewer_StartPosition );
@@ -184,14 +192,18 @@ namespace research
 		void ConfigedKeysTestScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
+			{
 				return;
+			}
 
 			if( !isScheduled( schedule_selector( ConfigedKeysTestScene::update_forExit ) ) )
+			{
 				scheduleOnce( schedule_selector( ConfigedKeysTestScene::update_forExit ), 0.f );
+			}
 		}
 		void ConfigedKeysTestScene::update_forExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step99::RootScene::create() );
+			_director->replaceScene( step99::RootScene::create() );
 		}
 	}
 }

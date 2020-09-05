@@ -292,7 +292,7 @@ namespace research
 		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
 			mKeymapConfigHelper.save( research::Setting::getKeyMapFileName().c_str() );
-			Director::getInstance()->replaceScene( step99::RootScene::create() );
+			_director->replaceScene( step99::RootScene::create() );
 		}
 	}
 }

@@ -100,10 +100,12 @@ namespace research
 		bool KeyAllowScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 
 
@@ -234,7 +236,7 @@ namespace research
 		void KeyAllowScene::updateForExit( float /*dt*/ )
 		{
 			cpg::input::AllowedKeys::save( mAllowedKeys, research::Setting::getKeyAllowFileName().c_str() );
-			Director::getInstance()->replaceScene( step99::RootScene::create() );
+			_director->replaceScene( step99::RootScene::create() );
 		}
 		void KeyAllowScene::onKeyAllowControl( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{

@@ -49,10 +49,12 @@ namespace research
 		bool AllowedKeysTestScene::init()
 		{
 			if( !Scene::init() )
+			{
 				return false;
+			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// summury
@@ -150,7 +152,7 @@ namespace research
 		}
 		void AllowedKeysTestScene::update_forExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step99::RootScene::create() );
+			_director->replaceScene( step99::RootScene::create() );
 		}
 	}
 }

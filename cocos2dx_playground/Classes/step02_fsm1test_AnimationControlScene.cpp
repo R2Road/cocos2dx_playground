@@ -144,8 +144,8 @@ namespace step02
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -253,7 +253,7 @@ namespace step02
 
 		void AnimationControlScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step_defender::RootScene::create() );
+			_director->replaceScene( step_defender::RootScene::create() );
 		}
 		void AnimationControlScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
