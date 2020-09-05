@@ -99,17 +99,17 @@ namespace shader_practice
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( shader_practice::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( shader_practice::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( shader_practice::GLUniformInfosScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( shader_practice::GLUniformInfosScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( shader_practice::SimpleTestScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( shader_practice::SimpleTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:

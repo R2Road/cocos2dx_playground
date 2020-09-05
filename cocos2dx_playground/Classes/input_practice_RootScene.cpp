@@ -94,11 +94,11 @@ namespace input_practice
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( input_practice::GamePadTestScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( input_practice::GamePadTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		default:
