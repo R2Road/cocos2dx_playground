@@ -165,9 +165,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Setting.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\CPG_Input_AllowedKeys.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
@@ -675,15 +672,15 @@
     <ClCompile Include="..\Classes\cpg_Setting.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Setting.cpp">
+      <Filter>src\scene\step99</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Setting.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_AllowedKeys.h">
@@ -1225,6 +1222,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Setting.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Setting.h">
+      <Filter>src\scene\step99</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

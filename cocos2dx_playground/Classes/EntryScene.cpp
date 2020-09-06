@@ -2,7 +2,6 @@
 
 #include <new>
 
-#include "Research_Setting.h"
 #include "PlayGroundScene.h"
 
 USING_NS_CC;
@@ -37,8 +36,6 @@ bool EntryScene::init()
 
 void EntryScene::update_forLoad( float /*dt*/ )
 {
-	research::Setting::load();
-
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( "textures/texture_001.plist", "textures/texture_001.png" );
 	_director->getTextureCache()->getTextureForKey( "textures/texture_001.png" )->setAliasTexParameters();
 

@@ -11,6 +11,8 @@
 #include "Research_Input_KeyConfigScene.h"
 #include "Research_Input_ConfigedKeysTestScene.h"
 
+#include "Research_Setting.h"
+
 USING_NS_CC;
 
 namespace step99
@@ -19,6 +21,8 @@ namespace step99
 
 	Scene* RootScene::create()
 	{
+		research::Setting::load();
+
 		auto ret = new ( std::nothrow ) RootScene();
 		if( !ret || !ret->init() )
 		{
