@@ -14,16 +14,25 @@ Scene* EntryScene::create()
 	{
 		delete ret;
 		ret = nullptr;
-		return nullptr;
 	}
 	else
 	{
 		ret->autorelease();
 	}
 
-	ret->scheduleOnce( schedule_selector( EntryScene::update_forLoad ), 0.f );
-
 	return ret;
+}
+
+bool EntryScene::init()
+{
+	if( Scene::init() )
+	{
+		return false;
+	}
+
+	scheduleOnce( schedule_selector( EntryScene::update_forLoad ), 0.f );
+
+	return true;
 }
 
 void EntryScene::update_forLoad( float /*dt*/ )

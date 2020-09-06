@@ -10,5 +10,8 @@ private:
 public:
     static cocos2d::Scene* create();
 
+private:
+	bool init() override;
+
 	void update_forLoad( float dt );
 };
