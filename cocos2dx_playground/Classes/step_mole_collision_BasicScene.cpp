@@ -72,8 +72,8 @@ namespace step_mole
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 			const Size visibleMargin( 4.f, 4.f );
 
 			//
@@ -341,7 +341,7 @@ namespace step_mole
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				_director->replaceScene( step_mole::RootScene::create() );
 				return;
 			}
 		}

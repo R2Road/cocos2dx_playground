@@ -49,8 +49,8 @@ namespace step_mole
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -165,19 +165,19 @@ namespace step_mole
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				_director->replaceScene( step_mole::RootScene::create() );
 				return;
 			}
 
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_mole::game::PlayScene::create() );
+				_director->replaceScene( step_mole::game::PlayScene::create() );
 				return;
 			}
 
 			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
 			{
-				Director::getInstance()->replaceScene( step_mole::game::ResultScene::create( -10000000 ) );
+				_director->replaceScene( step_mole::game::ResultScene::create( -10000000 ) );
 				return;
 			}
 		}

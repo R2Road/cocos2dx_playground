@@ -112,8 +112,8 @@ namespace step_mole
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -219,7 +219,7 @@ namespace step_mole
 			{
 				const auto delay_func = []( float, int ) {};
 				const auto spawn_func = std::bind( &PlayScene::doSpawn, this, std::placeholders::_1, std::placeholders::_2 );
-				const auto go_result_func = [this]( float, int ) { Director::getInstance()->replaceScene( step_mole::game::ResultScene::create( mScore ) ); };
+				const auto go_result_func = [this]( float, int ) { _director->replaceScene( step_mole::game::ResultScene::create( mScore ) ); };
 
 				mProcessActionContainer = {
 					  ProcessAction( 3.f,	delay_func )
@@ -369,7 +369,7 @@ namespace step_mole
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_mole::game::TitleScene::create() );
+				_director->replaceScene( step_mole::game::TitleScene::create() );
 				return;
 			}
 		}

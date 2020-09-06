@@ -56,8 +56,8 @@ namespace step_mole
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -145,7 +145,7 @@ namespace step_mole
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				Director::getInstance()->replaceScene( step_mole::RootScene::create() );
+				_director->replaceScene( step_mole::RootScene::create() );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:

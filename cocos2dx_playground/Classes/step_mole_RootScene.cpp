@@ -128,41 +128,41 @@ namespace step_mole
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step_mole::animation::ListScene::create() );
+			_director->replaceScene( step_mole::animation::ListScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step_mole::animation::CallbackScene::create() );
+			_director->replaceScene( step_mole::animation::CallbackScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_mole::animation::ComponentScene::create() );
+			_director->replaceScene( step_mole::animation::ComponentScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step_mole::collision::BasicScene::create() );
+			_director->replaceScene( step_mole::collision::BasicScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step_mole::collision::ComponentScene::create() );
+			_director->replaceScene( step_mole::collision::ComponentScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_mole::game_test::ObjectActionScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_mole::game_test::ObjectActionScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( step_mole::game_test::SpawnScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_mole::game_test::SpawnScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_D:
-			Director::getInstance()->replaceScene( step_mole::game_test::HittingNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_mole::game_test::HittingNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_F:
-			Director::getInstance()->replaceScene( step_mole::game_test::SpawnAndHitScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_mole::game_test::SpawnAndHitScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			Director::getInstance()->replaceScene( step_mole::game::TitleScene::create() );
+			_director->replaceScene( step_mole::game::TitleScene::create() );
 			break;
 
 		default:
