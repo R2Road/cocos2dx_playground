@@ -25,7 +25,7 @@ Scene* EntryScene::create()
 
 bool EntryScene::init()
 {
-	if( Scene::init() )
+	if( !Scene::init() )
 	{
 		return false;
 	}
