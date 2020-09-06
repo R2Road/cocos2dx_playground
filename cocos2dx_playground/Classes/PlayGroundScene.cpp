@@ -29,7 +29,6 @@ Scene* PlayGroundScene::create()
 	{
 		delete ret;
 		ret = nullptr;
-		return nullptr;
 	}
 	else
 	{
