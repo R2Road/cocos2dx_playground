@@ -23,7 +23,6 @@ namespace step_defender
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{

@@ -31,7 +31,6 @@ namespace ui_research
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{

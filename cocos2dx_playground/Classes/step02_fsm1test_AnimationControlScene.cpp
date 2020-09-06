@@ -126,7 +126,6 @@ namespace step02
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{

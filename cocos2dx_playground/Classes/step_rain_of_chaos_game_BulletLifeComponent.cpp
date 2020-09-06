@@ -47,7 +47,6 @@ namespace step_rain_of_chaos
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{

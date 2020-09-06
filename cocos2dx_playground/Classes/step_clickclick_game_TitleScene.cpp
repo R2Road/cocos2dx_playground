@@ -31,7 +31,6 @@ namespace step_clickclick
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{

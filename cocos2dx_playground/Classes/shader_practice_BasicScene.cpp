@@ -42,7 +42,6 @@ namespace shader_practice
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{

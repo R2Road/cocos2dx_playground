@@ -44,7 +44,6 @@ namespace step_mole
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{

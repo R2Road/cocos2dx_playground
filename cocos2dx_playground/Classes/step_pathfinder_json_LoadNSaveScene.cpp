@@ -43,7 +43,6 @@ namespace step_pathfinder
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{

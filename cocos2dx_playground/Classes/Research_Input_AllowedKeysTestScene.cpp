@@ -35,14 +35,12 @@ namespace research
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{
 				ret->autorelease();
 			}
 
-			ret->scheduleUpdate();
 			return ret;
 		}
 
@@ -52,6 +50,8 @@ namespace research
 			{
 				return false;
 			}
+
+			scheduleUpdate();
 
 			const auto visibleSize = _director->getVisibleSize();
 			const auto visibleOrigin = _director->getVisibleOrigin();

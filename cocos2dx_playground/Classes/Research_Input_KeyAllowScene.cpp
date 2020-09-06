@@ -87,7 +87,6 @@ namespace research
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{

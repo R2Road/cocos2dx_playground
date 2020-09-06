@@ -27,7 +27,6 @@ namespace step_typetype
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{

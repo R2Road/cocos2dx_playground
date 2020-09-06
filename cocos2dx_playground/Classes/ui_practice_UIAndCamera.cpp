@@ -30,11 +30,9 @@ namespace ui_practice
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
-			ret->scheduleUpdate();
 			ret->autorelease();
 		}
 
@@ -47,6 +45,8 @@ namespace ui_practice
 		{
 			return false;
 		}
+
+		scheduleUpdate();
 
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
