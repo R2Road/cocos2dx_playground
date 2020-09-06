@@ -46,9 +46,8 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const Vec2 visibleCenter( visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f );
+			const auto visibleOrigin = _director->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
 
 			//
 			// Summury

@@ -51,8 +51,8 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -171,8 +171,8 @@ namespace step_rain_of_chaos
 
 			if( EventKeyboard::KeyCode::KEY_1 == keycode )
 			{
-				const auto visibleSize = Director::getInstance()->getVisibleSize();
-				const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+				const auto visibleSize = _director->getVisibleSize();
+				const auto visibleOrigin = _director->getVisibleOrigin();
 
 				auto node = getChildByTag( TAG_Button );
 				node->setPosition( Vec2(

@@ -59,8 +59,8 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
 
 			//
 			// Summury
@@ -171,8 +171,8 @@ namespace step_rain_of_chaos
 		}
 		void BackgroundNodeScene::updateBackgroundNode()
 		{
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
 
 			auto background_node = static_cast<step_rain_of_chaos::game::BackgroundNode*>( getChildByTag( TAG_BackgroundNode ) );
 			background_node->Reset( mHorizontalAmount, mVerticalAmount );

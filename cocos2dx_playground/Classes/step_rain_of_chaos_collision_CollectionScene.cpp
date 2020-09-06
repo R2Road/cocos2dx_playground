@@ -59,8 +59,8 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// Summury
@@ -180,8 +180,8 @@ namespace step_rain_of_chaos
 
 		void CollectionScene::makeBullet()
 		{
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			const Vec2 visibleCenter(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -256,7 +256,7 @@ namespace step_rain_of_chaos
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_defender::RootScene::create() );
+				_director->replaceScene( step_defender::RootScene::create() );
 				return;
 			}
 

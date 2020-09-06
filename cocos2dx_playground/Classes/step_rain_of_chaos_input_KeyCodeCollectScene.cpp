@@ -114,7 +114,7 @@ namespace step_rain_of_chaos
 
 		void KeyCodeCollectScene::updateForExit( float /*dt*/ )
 		{
-			Director::getInstance()->replaceScene( step_rain_of_chaos::RootScene::create() );
+			_director->replaceScene( step_rain_of_chaos::RootScene::create() );
 		}
 
 		void KeyCodeCollectScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

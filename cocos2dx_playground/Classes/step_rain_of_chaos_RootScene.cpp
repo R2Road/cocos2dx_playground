@@ -134,52 +134,52 @@ namespace step_rain_of_chaos
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			Director::getInstance()->replaceScene( PlayGroundScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::input::KeyCodeCollectScene::create() );
+			_director->replaceScene( step_rain_of_chaos::input::KeyCodeCollectScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_2:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::batch_node::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::batch_node::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::batch_node::QuadScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::batch_node::QuadScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::button::DragScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::button::DragScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_5:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::draw_node::CircleScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::draw_node::CircleScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 
 		case EventKeyboard::KeyCode::KEY_Q:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::ActorMoveScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::game_test::ActorMoveScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_W:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::BackgroundNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::game_test::BackgroundNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_E:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::BulletLifeComponentScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::game_test::BulletLifeComponentScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_R:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::StageNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::game_test::StageNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::SpawnProcessorScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::game_test::SpawnProcessorScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::game_test::EnemyProcessorScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_rain_of_chaos::game_test::EnemyProcessorScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			Director::getInstance()->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
+			_director->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
 			break;
 
 		default:

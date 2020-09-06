@@ -71,8 +71,8 @@ namespace step_rain_of_chaos
 
 			schedule( schedule_selector( PlayScene::Update4Game) );
 
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
+			const auto visibleSize = _director->getVisibleSize();
 			const auto visibleCenter = visibleOrigin + Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f );
 
 			//
@@ -355,7 +355,7 @@ namespace step_rain_of_chaos
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				Director::getInstance()->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
+				_director->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
 				return;
 			}
 
