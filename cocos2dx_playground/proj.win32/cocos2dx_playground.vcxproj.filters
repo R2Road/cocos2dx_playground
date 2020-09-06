@@ -453,9 +453,6 @@
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpg_Setting.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_ScheduleScene.cpp">
       <Filter>src\scene\step_01_typetype\schedule</Filter>
     </ClCompile>
@@ -674,6 +671,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_2Target_01.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_Setting.cpp">
+      <Filter>src\cpg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -992,9 +992,6 @@
     <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cpg_Setting.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_ScheduleScene.h">
       <Filter>src\scene\step_01_typetype\schedule</Filter>
     </ClInclude>
@@ -1225,6 +1222,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_2Target_01.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Setting.h">
+      <Filter>src\cpg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
