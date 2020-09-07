@@ -28,8 +28,10 @@ namespace
 	const int BulletCachingAmount = 100;
 
 	const int TAG_FadeIn = 10001;
-	const int TAG_Ready = 10002;
-	const int TAG_Go = 10003;
+	const int TAG_Player = 10002;
+	const int TAG_Enemy = 10003;
+	const int TAG_Ready = 10004;
+	const int TAG_Go = 10005;
 }
 
 namespace step_rain_of_chaos
@@ -170,6 +172,9 @@ namespace step_rain_of_chaos
 					, game::PlayerNode::DebugConfig{ false }
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 				);
+				player_node->setTag( TAG_Player );
+				player_node->setCascadeOpacityEnabled( true );
+				player_node->setOpacity( 0u );
 				player_node->setPosition( Vec2(
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
@@ -190,6 +195,9 @@ namespace step_rain_of_chaos
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
 				);
+				enemy_node->setTag( TAG_Enemy );
+				enemy_node->setCascadeOpacityEnabled( true );
+				enemy_node->setOpacity( 0u );
 				enemy_node->setPosition( enemy_position );
 				mStageNode->AddEnemy( enemy_node );
 			}
@@ -260,10 +268,44 @@ namespace step_rain_of_chaos
 			}
 			break;
 			case eStep::FadeInWait:
-				if( 0u == getChildByTag( TAG_FadeIn )->getOpacity() )
+				if( 50u > getChildByTag( TAG_FadeIn )->getOpacity() )
 				{
-					mStep = eStep::Ready;
+					mStep = eStep::FadeInPlayer;
 				}
+				break;
+
+			case eStep::FadeInPlayer:
+			{
+				auto action = FadeIn::create( 0.7f );
+				mStageNode->getChildByTag( TAG_Player )->runAction( action );
+
+				mStep = eStep::FadeInPlayerWait;
+			}
+			break;
+			case eStep::FadeInPlayerWait:
+				if( 200u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
+				{
+					mStep = eStep::FadeInEnemy;
+				}
+				break;
+
+			case eStep::FadeInEnemy:
+			{
+				auto action = FadeIn::create( 0.7f );
+				mStageNode->getChildByTag( TAG_Enemy )->runAction( action );
+
+				mStep = eStep::FadeInEnemyWait;
+			}
+			break;
+			case eStep::FadeInEnemyWait:
+				if( 200u < mStageNode->getChildByTag( TAG_Enemy )->getOpacity() )
+				{
+					mStep = eStep::EnemyProcessStart;
+				}
+				break;
+
+			case eStep::EnemyProcessStart:
+				mStep = eStep::Ready;
 				break;
 
 			case eStep::Ready:

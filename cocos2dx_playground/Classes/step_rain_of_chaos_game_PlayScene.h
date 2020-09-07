@@ -19,6 +19,14 @@ namespace step_rain_of_chaos
 				FadeIn,
 				FadeInWait,
 
+				FadeInPlayer,
+				FadeInPlayerWait,
+
+				FadeInEnemy,
+				FadeInEnemyWait,
+
+				EnemyProcessStart,
+
 				Ready,
 				ReadyWait_1,
 				ReadyWait_2,
