@@ -63,7 +63,7 @@ namespace step_rain_of_chaos
 			game::StageConfig mStageConfig;
 			game::StageNode* mStageNode;
 
-			eStep mStep;
+			int mStep;
 		};
 	}
 }

@@ -264,13 +264,13 @@ namespace step_rain_of_chaos
 				auto fade_out_action = FadeOut::create( 1.8f );
 				getChildByTag( TAG_FadeIn )->runAction( fade_out_action );
 
-				mStep = eStep::FadeInWait;
+				++mStep;
 			}
 			break;
 			case eStep::FadeInWait:
 				if( 50u > getChildByTag( TAG_FadeIn )->getOpacity() )
 				{
-					mStep = eStep::FadeInPlayer;
+					++mStep;
 				}
 				break;
 
@@ -279,13 +279,13 @@ namespace step_rain_of_chaos
 				auto action = FadeIn::create( 0.7f );
 				mStageNode->getChildByTag( TAG_Player )->runAction( action );
 
-				mStep = eStep::FadeInPlayerWait;
+				++mStep;
 			}
 			break;
 			case eStep::FadeInPlayerWait:
 				if( 200u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
 				{
-					mStep = eStep::FadeInEnemy;
+					++mStep;
 				}
 				break;
 
@@ -294,18 +294,18 @@ namespace step_rain_of_chaos
 				auto action = FadeIn::create( 0.7f );
 				mStageNode->getChildByTag( TAG_Enemy )->runAction( action );
 
-				mStep = eStep::FadeInEnemyWait;
+				++mStep;
 			}
 			break;
 			case eStep::FadeInEnemyWait:
 				if( 200u < mStageNode->getChildByTag( TAG_Enemy )->getOpacity() )
 				{
-					mStep = eStep::EnemyProcessStart;
+					++mStep;
 				}
 				break;
 
 			case eStep::EnemyProcessStart:
-				mStep = eStep::Ready;
+				++mStep;
 				break;
 
 			case eStep::Ready:
@@ -316,19 +316,19 @@ namespace step_rain_of_chaos
 				auto blinkSequence = Sequence::create( fade_in_action, delay_action, fade_out_action, nullptr );
 				getChildByTag( TAG_Ready )->runAction( blinkSequence );
 
-				mStep = eStep::ReadyWait_1;
+				++mStep;
 			}
 			break;
 			case eStep::ReadyWait_1:
 				if( 0u < getChildByTag( TAG_Ready )->getOpacity() )
 				{
-					mStep = eStep::ReadyWait_2;
+					++mStep;
 				}
 				break;
 			case eStep::ReadyWait_2:
 				if( 0u == getChildByTag( TAG_Ready )->getOpacity() )
 				{
-					mStep = eStep::Go;
+					++mStep;
 				}
 				break;
 
@@ -340,19 +340,19 @@ namespace step_rain_of_chaos
 				auto blinkSequence = Sequence::create( fade_in_action, delay_action, fade_out_action, nullptr );
 				getChildByTag( TAG_Go )->runAction( blinkSequence );
 
-				mStep = eStep::GoWait_1;
+				++mStep;
 			}
 			break;
 			case eStep::GoWait_1:
 				if( 0u < getChildByTag( TAG_Go )->getOpacity() )
 				{
-					mStep = eStep::GoWait_2;
+					++mStep;
 				}
 				break;
 			case eStep::GoWait_2:
 				if( 0u == getChildByTag( TAG_Go )->getOpacity() )
 				{
-					mStep = eStep::Game;
+					++mStep;
 				}
 				break;
 
