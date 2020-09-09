@@ -167,6 +167,7 @@ namespace step_rain_of_chaos
 					3.f
 					, game::EnemyNode::DebugConfig{ true }
 					, step_mole::CircleCollisionComponentConfig{ true, true, true }
+					, []() {}
 					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
 				);
 				enemy_node->setPosition( enemy_position );

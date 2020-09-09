@@ -193,6 +193,7 @@ namespace step_rain_of_chaos
 					3.f
 					, game::EnemyNode::DebugConfig{ false }
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
+					, std::bind( &PlayScene::onEnemyProcessEnd, this )
 					, std::bind( &game::StageNode::RequestBulletAction, mStageNode, std::placeholders::_1, std::placeholders::_2 )
 				);
 				enemy_node->setTag( TAG_Enemy );

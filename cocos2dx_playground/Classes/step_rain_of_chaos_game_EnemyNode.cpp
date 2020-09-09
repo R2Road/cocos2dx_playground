@@ -17,8 +17,9 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		EnemyNode::EnemyNode( const RequestBulletCallback& request_bullet_callback ) :
-			mRequestBulletCallback( request_bullet_callback )
+		EnemyNode::EnemyNode( const ProcessEndCallback& process_end_callback, const RequestBulletCallback& request_bullet_callback ) :
+			mProcessEndCallback( process_end_callback )
+			, mRequestBulletCallback( request_bullet_callback )
 			, mProcessorContainer( nullptr )
 			, mCurrentProcessor()
 			, mSpawnInfoContainer()
@@ -30,10 +31,14 @@ namespace step_rain_of_chaos
 			const float radius
 			, const DebugConfig debug_config
 			, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+			, const ProcessEndCallback& process_end_callback
 			, const RequestBulletCallback& request_bullet_callback
 		)
 		{
-			auto ret = new ( std::nothrow ) EnemyNode( request_bullet_callback );
+			CCASSERT( process_end_callback, "" );
+			CCASSERT( request_bullet_callback, "" );
+
+			auto ret = new ( std::nothrow ) EnemyNode( process_end_callback, request_bullet_callback );
 			if( !ret || !ret->init( radius, debug_config, circle_collision_component_config ) )
 			{
 				delete ret;
@@ -102,6 +107,7 @@ namespace step_rain_of_chaos
 			if( mProcessorContainer->end() == mCurrentProcessor )
 			{
 				StopProcess();
+				mProcessEndCallback();
 				return;
 			}
 
