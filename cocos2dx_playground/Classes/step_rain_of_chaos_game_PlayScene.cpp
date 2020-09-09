@@ -10,6 +10,7 @@
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
+#include "audio/include/AudioEngine.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -296,12 +297,19 @@ namespace step_rain_of_chaos
 
 			case eStep::FadeInPlayer:
 			{
-				auto action = FadeIn::create( 0.7f );
+				auto action = FadeIn::create( 1.f );
 				mStageNode->getChildByTag( TAG_Player )->runAction( action );
 
 				++mStep;
 			}
 			break;
+			case eStep::FadeInPlayerSound:
+				if( 30u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
+				{
+					experimental::AudioEngine::play2d( "sounds/fx/powerup_003.ogg", false, 0.1f );
+					++mStep;
+				}
+				break;
 			case eStep::FadeInPlayerWait:
 				if( 200u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
 				{
@@ -311,12 +319,19 @@ namespace step_rain_of_chaos
 
 			case eStep::FadeInEnemy:
 			{
-				auto action = FadeIn::create( 0.7f );
+				auto action = FadeIn::create( 1.f );
 				mStageNode->getChildByTag( TAG_Enemy )->runAction( action );
 
 				++mStep;
 			}
 			break;
+			case eStep::FadeInEnemySound:
+				if( 30u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
+				{
+					experimental::AudioEngine::play2d( "sounds/fx/powerup_003.ogg", false, 0.1f );
+					++mStep;
+				}
+				break;
 			case eStep::FadeInEnemyWait:
 				if( 200u < mStageNode->getChildByTag( TAG_Enemy )->getOpacity() )
 				{
