@@ -3,6 +3,7 @@
 #include "2d/CCScene.h"
 
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
+#include "step_rain_of_chaos_game_EnemyNode.h"
 #include "step_rain_of_chaos_game_StageConfig.h"
 
 namespace step_rain_of_chaos
@@ -39,6 +40,8 @@ namespace step_rain_of_chaos
 				GameOver,
 			};
 
+			using PackageContainer = std::vector<game::EnemyNode::EnemyProcessorContainer>;
+
 			PlayScene();
 
 		public:
@@ -49,10 +52,13 @@ namespace step_rain_of_chaos
 			void onEnter() override;
 			void onExit() override;
 
+		private:
 			void Update4Game( float delta_time );
 			void UpdateForInput( float delta_time );
 
-		private:
+			void onEnemyProcessEnd();
+			void startEnemyProcess();
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
@@ -64,6 +70,8 @@ namespace step_rain_of_chaos
 			game::StageNode* mStageNode;
 
 			int mStep;
+			PackageContainer mPackgeContainer;
+			std::size_t mPackageIndicator;
 		};
 	}
 }

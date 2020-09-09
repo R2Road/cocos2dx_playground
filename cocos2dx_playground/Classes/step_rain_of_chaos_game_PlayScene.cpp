@@ -15,9 +15,10 @@
 #include "base/CCEventDispatcher.h"
 
 #include "step_rain_of_chaos_game_BackgroundNode.h"
-#include "step_rain_of_chaos_game_EnemyNode.h"
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
+
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
 
@@ -46,6 +47,8 @@ namespace step_rain_of_chaos
 			, mStageNode( nullptr )
 
 			, mStep( eStep::FadeIn )
+			, mPackgeContainer()
+			, mPackageIndicator( 0u )
 		{}
 
 		Scene* PlayScene::create()
@@ -204,6 +207,22 @@ namespace step_rain_of_chaos
 			}
 
 			//
+			// Processor
+			//
+			{
+				auto player_node = mStageNode->getChildByTag( TAG_Player );
+				auto enemy_node= mStageNode->getChildByTag( TAG_Enemy );
+
+				{
+					game::EnemyNode::EnemyProcessorContainer container;
+
+					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 5.5f, true, 360.f ) );
+
+					mPackgeContainer.emplace_back( std::move( container ) );
+				}
+			}
+
+			//
 			// Fade In
 			//
 			{
@@ -306,6 +325,7 @@ namespace step_rain_of_chaos
 				break;
 
 			case eStep::EnemyProcessStart:
+				startEnemyProcess();
 				++mStep;
 				break;
 
@@ -392,6 +412,22 @@ namespace step_rain_of_chaos
 
 				mStageNode->PlayerMoveRequest( move_vector );
 			}
+		}
+
+		void PlayScene::onEnemyProcessEnd()
+		{
+			++mPackageIndicator;
+			startEnemyProcess();
+		}
+		void PlayScene::startEnemyProcess()
+		{
+			if( mPackgeContainer.size() <= mPackageIndicator )
+			{
+				return;
+			}
+
+			auto enemy_node = static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
+			enemy_node->StartProcess( &mPackgeContainer[mPackageIndicator] );
 		}
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
