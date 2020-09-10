@@ -5,6 +5,7 @@
 #include <utility>
 
 #include "2d/CCSprite.h"
+#include "audio/include/AudioEngine.h"
 #include "base/CCDirector.h"
 
 #include "step_mole_AnimationComponent.h"
@@ -131,6 +132,16 @@ namespace step_rain_of_chaos
 					dir.scale( 150.f );
 					mRequestBulletCallback( s.StartPosition, dir );
 				}
+
+				static std::random_device rd;
+				static std::mt19937 randomEngine( rd() );
+				static std::uniform_int_distribution<> dist( 0, 1 );
+
+				experimental::AudioEngine::play2d(
+					0 == dist( randomEngine ) ? "sounds/fx/shoot_004.ogg" : "sounds/fx/shoot_006.ogg"
+					, false
+					, 0.1f
+				);
 			}
 		}
 
