@@ -222,12 +222,14 @@ namespace step_rain_of_chaos
 
 				game::EnemyNode::EnemyProcessorContainer container;
 
+				// Ready
 				{
 					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 5.5f, true, 360.f ) );
 
 					mPackgeContainer.emplace_back( std::move( container ) );
 				}
 
+				// Wave 01
 				{
 					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, true, 30.f ) );
 					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
