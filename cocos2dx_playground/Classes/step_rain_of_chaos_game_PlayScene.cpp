@@ -19,7 +19,13 @@
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 
+#include "step_rain_of_chaos_game_EnemyProcessor_Fire.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Sleep.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Tie.h"
+
+#include "step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_Sleep.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
 
@@ -212,15 +218,68 @@ namespace step_rain_of_chaos
 			//
 			{
 				auto player_node = mStageNode->getChildByTag( TAG_Player );
-				auto enemy_node= mStageNode->getChildByTag( TAG_Enemy );
+				auto enemy_node= static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
+
+				game::EnemyNode::EnemyProcessorContainer container;
 
 				{
-					game::EnemyNode::EnemyProcessorContainer container;
-
 					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 5.5f, true, 360.f ) );
 
 					mPackgeContainer.emplace_back( std::move( container ) );
 				}
+
+				{
+					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, true, 30.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					{
+						game::SpawnProcessorPackage spawn_processor_container;
+						spawn_processor_container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 1, 1.f ) );
+
+						container.emplace_back( game::EnemyProcessor_Fire::Create( mStageConfig, enemy_node, player_node, std::move( spawn_processor_container ), enemy_node->GetSpawnInfoContainer() ) );
+					}
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 1.f ) );
+					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, true, 30.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					{
+						game::SpawnProcessorPackage spawn_processor_container;
+						spawn_processor_container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 1, 1.f ) );
+
+						container.emplace_back( game::EnemyProcessor_Fire::Create( mStageConfig, enemy_node, player_node, std::move( spawn_processor_container ), enemy_node->GetSpawnInfoContainer() ) );
+					}
+					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, true, 30.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					{
+						game::SpawnProcessorPackage spawn_processor_container;
+						spawn_processor_container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 1, 1.f ) );
+
+						container.emplace_back( game::EnemyProcessor_Fire::Create( mStageConfig, enemy_node, player_node, std::move( spawn_processor_container ), enemy_node->GetSpawnInfoContainer() ) );
+					}
+					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, true, 30.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					{
+						game::SpawnProcessorPackage spawn_processor_container;
+						spawn_processor_container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 1, 1.f ) );
+
+						container.emplace_back( game::EnemyProcessor_Fire::Create( mStageConfig, enemy_node, player_node, std::move( spawn_processor_container ), enemy_node->GetSpawnInfoContainer() ) );
+					}
+
+					mPackgeContainer.emplace_back( std::move( container ) );
+				}
+
+				//{
+				//	{
+				//		game::SpawnProcessorPackage spawn_processor_container;
+				//		spawn_processor_container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 1, 1.f ) );
+
+				//		auto fire_processor = game::EnemyProcessor_Fire::Create( mStageConfig, enemy_node, player_node, std::move( spawn_processor_container ), enemy_node->GetSpawnInfoContainer() );
+
+				//		auto move_processor = game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 1.f, true, 30.f );
+
+				//		container.emplace_back( game::EnemyProcessor_Tie::Create( mStageConfig, enemy_node, player_node, std::move( move_processor ), std::move( fire_processor ) ) );
+				//	}
+
+				//	mPackgeContainer.emplace_back( std::move( container ) );
+				//}
 			}
 
 			//
