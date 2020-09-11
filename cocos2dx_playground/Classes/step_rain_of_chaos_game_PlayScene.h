@@ -55,8 +55,8 @@ namespace step_rain_of_chaos
 			void onExit() override;
 
 		private:
-			void Update4Game( float delta_time );
-			void UpdateForInput( float delta_time );
+			void update4Intro( float delta_time );
+			void update4Game( float delta_time );
 
 			void onEnemyProcessEnd();
 			void startEnemyProcess();

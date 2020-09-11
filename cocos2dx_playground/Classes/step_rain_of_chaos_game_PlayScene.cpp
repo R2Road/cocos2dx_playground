@@ -81,7 +81,7 @@ namespace step_rain_of_chaos
 				return false;
 			}
 
-			schedule( schedule_selector( PlayScene::Update4Game) );
+			schedule( schedule_selector( PlayScene::update4Intro) );
 
 			const auto visibleOrigin = _director->getVisibleOrigin();
 			const auto visibleSize = _director->getVisibleSize();
@@ -337,7 +337,7 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
-		void PlayScene::Update4Game( float delta_time )
+		void PlayScene::update4Intro( float delta_time )
 		{
 			switch( mStep )
 			{
@@ -454,14 +454,14 @@ namespace step_rain_of_chaos
 				break;
 
 			case eStep::Game:
-				UpdateForInput( delta_time );
+				update4Game( delta_time );
 				break;
 
 			case eStep::GameOver:
 				break;
 			}
 		}
-		void PlayScene::UpdateForInput( float delta_time )
+		void PlayScene::update4Game( float delta_time )
 		{
 			Vec2 move_vector;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
