@@ -441,8 +441,9 @@ namespace step_rain_of_chaos
 			}
 			break;
 			case eStep::GoWait_1:
-				if( 0u < getChildByTag( TAG_Go )->getOpacity() )
+				if( 100u < getChildByTag( TAG_Go )->getOpacity() )
 				{
+					schedule( schedule_selector( PlayScene::update4Game ) );
 					++mStep;
 				}
 				break;
@@ -454,10 +455,7 @@ namespace step_rain_of_chaos
 				break;
 
 			case eStep::Game:
-				update4Game( delta_time );
-				break;
-
-			case eStep::GameOver:
+				unschedule( schedule_selector( PlayScene::update4Intro ) );
 				break;
 			}
 		}
