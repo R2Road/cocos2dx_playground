@@ -53,7 +53,7 @@ namespace step_rain_of_chaos
 			, mStageConfig()
 			, mStageNode( nullptr )
 
-			, mStep( eStep::FadeIn )
+			, mStep( eStep::Test )
 			, mPackgeContainer()
 			, mPackageIndicator( 0u )
 		{}
@@ -456,6 +456,16 @@ namespace step_rain_of_chaos
 
 			case eStep::Game:
 				unschedule( schedule_selector( PlayScene::update4Intro ) );
+				break;
+
+			case eStep::Test:
+				getChildByTag( TAG_FadeIn )->setOpacity( 0u );
+				mStageNode->getChildByTag( TAG_Enemy )->setOpacity( 255u );
+				mStageNode->getChildByTag( TAG_Player )->setOpacity( 255u );
+				unschedule( schedule_selector( PlayScene::update4Intro ) );
+				schedule( schedule_selector( PlayScene::update4Game ) );
+				mPackageIndicator = 1u;
+				startEnemyProcess();
 				break;
 			}
 		}

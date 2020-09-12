@@ -40,6 +40,8 @@ namespace step_rain_of_chaos
 
 				Game,
 				GameOver,
+
+				Test,
 			};
 
 			using PackageContainer = std::vector<game::EnemyNode::EnemyProcessorContainer>;
