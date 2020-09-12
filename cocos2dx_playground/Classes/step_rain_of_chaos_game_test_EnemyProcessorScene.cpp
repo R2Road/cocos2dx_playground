@@ -291,6 +291,10 @@ namespace step_rain_of_chaos
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, 1.f ) );
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.05f ) );
 					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, 0.5f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.05f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, -1.f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Sleep::Create( 0.05f ) );
+					name_n_package.Package.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, mStartNode, mTargetNode, 0.5f, -0.5f ) );
 
 					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}
