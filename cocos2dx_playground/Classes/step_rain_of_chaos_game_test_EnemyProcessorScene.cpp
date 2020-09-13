@@ -23,7 +23,7 @@
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_2Target_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_02.h"
-#include "step_rain_of_chaos_game_EnemyProcessor_Fire.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Fire_Chain.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_2Target_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_Random_01.h"
