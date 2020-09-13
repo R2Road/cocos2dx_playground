@@ -149,7 +149,7 @@ namespace step_rain_of_chaos
 		{
 			StopProcess();
 
-			mProcessorContainer = std::move( enemy_processor_container );
+			mProcessorContainer = enemy_processor_container;
 			mCurrentProcessor = mProcessorContainer->begin();
 
 			( *mCurrentProcessor )->Enter();
