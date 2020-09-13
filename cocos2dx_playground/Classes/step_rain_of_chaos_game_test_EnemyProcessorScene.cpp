@@ -23,6 +23,7 @@
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_2Target_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_02.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Fire_Single.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire_Chain.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_2Target_01.h"
@@ -301,7 +302,26 @@ namespace step_rain_of_chaos
 
 				{
 					NameNPackage name_n_package;
-					name_n_package.Name = "Fire";
+					name_n_package.Name = "Fire Single";
+
+					{
+						auto spawn_processor = game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 1, 4, 0.1f );
+
+						name_n_package.Package.emplace_back( game::EnemyProcessor_Fire_Single::Create(
+							mStageConfig
+							, mStartNode
+							, mTargetNode
+							, std::move( spawn_processor )
+							, enemy_node->GetSpawnInfoContainer()
+						) );
+					}
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
+				}
+
+				{
+					NameNPackage name_n_package;
+					name_n_package.Name = "Fire Chain";
 
 					{
 						game::SpawnProcessorPackage spawn_processor_package;

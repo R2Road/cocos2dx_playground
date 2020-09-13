@@ -678,6 +678,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Chain.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Single.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1230,6 +1233,9 @@
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Chain.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Single.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
   </ItemGroup>
