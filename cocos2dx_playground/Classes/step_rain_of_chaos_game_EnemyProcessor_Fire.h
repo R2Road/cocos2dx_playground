@@ -9,10 +9,10 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		class EnemyProcessor_Fire : public iEnemyProcessor
+		class EnemyProcessor_Fire_Chain : public iEnemyProcessor
 		{
 		private:
-			EnemyProcessor_Fire(
+			EnemyProcessor_Fire_Chain(
 				const StageConfig& stage_config
 				, cocos2d::Node* const owner_node
 				, cocos2d::Node* const target_node

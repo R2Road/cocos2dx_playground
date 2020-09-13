@@ -311,7 +311,7 @@ namespace step_rain_of_chaos
 						spawn_processor_package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 1, 4, 0.1f ) );
 
-						name_n_package.Package.emplace_back( game::EnemyProcessor_Fire::Create(
+						name_n_package.Package.emplace_back( game::EnemyProcessor_Fire_Chain::Create(
 							mStageConfig
 							, mStartNode
 							, mTargetNode
@@ -335,7 +335,7 @@ namespace step_rain_of_chaos
 						spawn_processor_container.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 						spawn_processor_container.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 2, 4, 0.1f ) );
 
-						auto fire_processor = game::EnemyProcessor_Fire::Create(
+						auto fire_processor = game::EnemyProcessor_Fire_Chain::Create(
 							mStageConfig
 							, mStartNode
 							, mTargetNode

@@ -13,7 +13,7 @@ namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		EnemyProcessor_Fire::EnemyProcessor_Fire(
+		EnemyProcessor_Fire_Chain::EnemyProcessor_Fire_Chain(
 			const StageConfig& stage_config
 			, Node* const owner_node
 			, Node* const target_node
@@ -25,7 +25,7 @@ namespace step_rain_of_chaos
 			, mSpawnInfoContainer( spawn_info_container )
 		{}
 
-		EnemyProcessorUp EnemyProcessor_Fire::Create(
+		EnemyProcessorUp EnemyProcessor_Fire_Chain::Create(
 			const StageConfig& stage_config
 			, Node* const owner_node
 			, Node* const target_node
@@ -33,7 +33,7 @@ namespace step_rain_of_chaos
 			, SpawnInfoContainer& spawn_info_container
 		)
 		{
-			EnemyProcessorUp ret( new (std::nothrow) EnemyProcessor_Fire(
+			EnemyProcessorUp ret( new (std::nothrow) EnemyProcessor_Fire_Chain(
 				stage_config
 				, owner_node
 				, target_node
@@ -44,13 +44,13 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		void EnemyProcessor_Fire::Enter()
+		void EnemyProcessor_Fire_Chain::Enter()
 		{
 			mCurrentSpawnProcessor = mSpawnProcessorContainer.begin();
 			( *mCurrentSpawnProcessor )->Enter( mOwnerNode->getPosition(), mTargetNode->getPosition() );
 		}
 
-		bool EnemyProcessor_Fire::Update( const float delta_time )
+		bool EnemyProcessor_Fire_Chain::Update( const float delta_time )
 		{
 			if( mSpawnProcessorContainer.end() == mCurrentSpawnProcessor )
 			{
