@@ -3,21 +3,20 @@
 #include "math/Vec2.h"
 
 #include "step_rain_of_chaos_game_iEnemyProcessor.h"
-#include "step_rain_of_chaos_game_iSpawnProcessor.h"
 
 namespace step_rain_of_chaos
 {
 	namespace game
 	{
-		class EnemyProcessor_Fire : public iEnemyProcessor
+		class EnemyProcessor_Move_Orbit_01 : public iEnemyProcessor
 		{
 		private:
-			EnemyProcessor_Fire(
+			EnemyProcessor_Move_Orbit_01(
 				const StageConfig& stage_config
 				, cocos2d::Node* const owner_node
 				, cocos2d::Node* const target_node
-				, SpawnProcessorPackage&& spawn_processor_container
-				, SpawnInfoContainer& spawn_info_container
+				, const float limit_time
+				, const float distance_rate
 			);
 
 		public:
@@ -26,17 +25,21 @@ namespace step_rain_of_chaos
 				const StageConfig& stage_config
 				, cocos2d::Node* const owner_node
 				, cocos2d::Node* const target_node
-				, SpawnProcessorPackage&& spawn_processor_container
-				, SpawnInfoContainer& spawn_info_container
+				, const float limit_time
+				, const float distance_rate
 			);
 
 			void Enter() override;
 			bool Update( const float delta_time ) override;
 
 		private:
-			SpawnProcessorPackage mSpawnProcessorContainer;
-			SpawnProcessorPackage::iterator mCurrentSpawnProcessor;
-			SpawnInfoContainer& mSpawnInfoContainer;
+			const float mLimitTime;
+			const float mDistance;
+
+			cocos2d::Vec2 mStartPosition;
+			cocos2d::Vec2 mMove;
+
+			float mElapsedTime;
 		};
 	}
 }

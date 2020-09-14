@@ -624,9 +624,6 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire.cpp">
-      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Tie.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
@@ -674,6 +671,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Research_Setting.cpp">
       <Filter>src\scene\step99</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Orbit_01.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Chain.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Single.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1175,9 +1181,6 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire.h">
-      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Tie.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
@@ -1225,6 +1228,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Research_Setting.h">
       <Filter>src\scene\step99</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Orbit_01.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Chain.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Single.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

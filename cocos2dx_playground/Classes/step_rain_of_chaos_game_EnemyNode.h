@@ -26,16 +26,18 @@ namespace step_rain_of_chaos
 
 			using EnemyProcessorContainer = std::vector<EnemyProcessorUp>;
 
+			using ProcessEndCallback = std::function<void()>;
 			using RequestBulletCallback = std::function<void( cocos2d::Vec2, cocos2d::Vec2 )>;
 
 		private:
-			EnemyNode( const RequestBulletCallback& request_bullet_callback );
+			EnemyNode( const ProcessEndCallback& process_end_callback, const RequestBulletCallback& request_bullet_callback );
 
 		public:
 			static EnemyNode* create(
 				const float radius
 				, const DebugConfig debug_config
 				, const step_mole::CircleCollisionComponentConfig& circle_collision_component_config
+				, const ProcessEndCallback& process_end_callback
 				, const RequestBulletCallback& request_bullet_callback
 			);
 
@@ -55,6 +57,7 @@ namespace step_rain_of_chaos
 			SpawnInfoContainer& GetSpawnInfoContainer() { return mSpawnInfoContainer; }
 
 		private:
+			const ProcessEndCallback mProcessEndCallback;
 			const RequestBulletCallback mRequestBulletCallback;
 
 			EnemyProcessorContainer* mProcessorContainer;
