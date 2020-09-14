@@ -157,6 +157,9 @@
     <Filter Include="src\ui">
       <UniqueIdentifier>{cd981cce-c834-4dd7-8d81-40c41e7564da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_01_typetype\label">
+      <UniqueIdentifier>{9e7cadda-7276-4f73-ba22-3284cd7e7cca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -680,6 +683,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Single.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_label_node_BasicScene.cpp">
+      <Filter>src\scene\step_01_typetype\label</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1237,6 +1243,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Single.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_label_node_BasicScene.h">
+      <Filter>src\scene\step_01_typetype\label</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
