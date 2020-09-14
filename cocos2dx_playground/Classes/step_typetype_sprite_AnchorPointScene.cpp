@@ -105,6 +105,7 @@ namespace step_typetype
 					root_node->addChild( sprite );
 
 					auto label = Label::createWithTTF( "Anchor Point\n0, 0", "fonts/NanumSquareR.ttf", 12 );
+					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );
 					root_node->addChild( label );
@@ -130,7 +131,8 @@ namespace step_typetype
 					sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 					root_node->addChild( sprite );
 
-					auto label = Label::createWithTTF( "Anchor Point\n0.5, 0.5", "fonts/NanumSquareR.ttf", 12 );
+					auto label = Label::createWithTTF( "Anchor Point\n0.5, 0.5\n\nDefault", "fonts/NanumSquareR.ttf", 12 );
+					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );
 					root_node->addChild( label );
@@ -157,6 +159,7 @@ namespace step_typetype
 					root_node->addChild( sprite );
 
 					auto label = Label::createWithTTF( "Anchor Point\n1, 1", "fonts/NanumSquareR.ttf", 12 );
+					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );
 					root_node->addChild( label );
