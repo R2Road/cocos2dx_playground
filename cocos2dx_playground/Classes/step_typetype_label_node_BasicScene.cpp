@@ -1,18 +1,10 @@
 #include "step_typetype_label_node_BasicScene.h"
 
 #include <new>
-#include <numeric>
-#include <sstream>
 
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
-
-namespace
-{
-	const char* PLIST_Path = "textures/step_typetype/step_typetype_textures.plist";
-	const char* TEXTURE_Path = "textures/step_typetype/step_typetype_textures.png";
-}
 
 namespace step_typetype
 {
@@ -47,42 +39,18 @@ namespace step_typetype
 			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
-			// Summury
-			//
-			{
-				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[ESC] : Return to Root";
-
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( label->getContentSize().width * 0.5f )
-					, visibleOrigin.y + visibleSize.height - ( label->getContentSize().height * 0.5f )
-				) );
-				addChild( label, std::numeric_limits<int>::max() );
-			}
-
-			//
-			// Background
-			//
-			{
-				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
-				addChild( background_layer, std::numeric_limits<int>::min() );
-			}
-
-			//
 			// Label
 			//
 			{
-				auto label = Label::createWithTTF( "Label Test... o_o", "fonts/NanumSquareR.ttf", 30, Size::ZERO, TextHAlignment::CENTER );
+				const char* label_string = "Label Test... o_o\n\nESC Key : Return to Root";
+
+				auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 30 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				addChild( label, std::numeric_limits<int>::max() );
+				addChild( label );
 			}
 
 			return true;
