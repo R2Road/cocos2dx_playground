@@ -54,7 +54,7 @@ namespace step_typetype
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] " << step_typetype::label_node::LabelScene::getTitle();
+			ss << "[1] " << step_typetype::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[2] " << step_typetype::sprite::TextureTypeScene::getTitle();
@@ -129,7 +129,7 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( step_typetype::label_node::LabelScene::create() );
+			_director->replaceScene( step_typetype::BasicScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_2:
