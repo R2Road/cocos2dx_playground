@@ -269,7 +269,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_typetype_game_test_StageScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_StageView.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_TitleScene.cpp" />
-    <ClCompile Include="..\Classes\step_typetype_label_node_BasicScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_ScheduleScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_sound_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainViewer.cpp" />
@@ -457,7 +457,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_typetype_game_test_StageScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_StageView.h" />
     <ClInclude Include="..\Classes\step_typetype_game_TitleScene.h" />
-    <ClInclude Include="..\Classes\step_typetype_label_node_BasicScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_BasicScene.h" />
     <ClInclude Include="..\Classes\step_typetype_ScheduleScene.h" />
     <ClInclude Include="..\Classes\step_typetype_sound_BasicScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainViewer.h" />

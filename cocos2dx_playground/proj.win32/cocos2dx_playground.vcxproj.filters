@@ -684,7 +684,7 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Single.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_label_node_BasicScene.cpp">
+    <ClCompile Include="..\Classes\step_typetype_BasicScene.cpp">
       <Filter>src\scene\step_01_typetype\label</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1244,7 +1244,7 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Fire_Single.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_label_node_BasicScene.h">
+    <ClInclude Include="..\Classes\step_typetype_BasicScene.h">
       <Filter>src\scene\step_01_typetype\label</Filter>
     </ClInclude>
   </ItemGroup>

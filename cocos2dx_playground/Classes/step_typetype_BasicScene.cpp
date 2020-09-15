@@ -1,4 +1,4 @@
-#include "step_typetype_label_node_BasicScene.h"
+#include "step_typetype_BasicScene.h"
 
 #include <new>
 
