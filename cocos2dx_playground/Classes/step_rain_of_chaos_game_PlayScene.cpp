@@ -258,26 +258,21 @@ namespace step_rain_of_chaos
 					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, true, 30.f ) );
 					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.5f ) );
 					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 1, 1.f ) ), enemy_node->GetSpawnInfoContainer() ) );
-					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.5f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 2.f ) );
 
 
 					mPackgeContainer.emplace_back( std::move( container ) );
 				}
 
-				//{
-				//	{
-				//		game::SpawnProcessorPackage spawn_processor_container;
-				//		spawn_processor_container.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 1, 1.f ) );
+				// Wave 03
+				{
+					auto move_processor = game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 1.8f, true, 180.f );
+					auto fire_processor = game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 5, 0.3f ) ), enemy_node->GetSpawnInfoContainer() );
+					container.emplace_back( game::EnemyProcessor_Tie::Create( mStageConfig, enemy_node, player_node, std::move( move_processor ), std::move( fire_processor ) ) );
 
-				//		auto fire_processor = game::EnemyProcessor_Fire::Create( mStageConfig, enemy_node, player_node, std::move( spawn_processor_container ), enemy_node->GetSpawnInfoContainer() );
 
-				//		auto move_processor = game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 1.f, true, 30.f );
-
-				//		container.emplace_back( game::EnemyProcessor_Tie::Create( mStageConfig, enemy_node, player_node, std::move( move_processor ), std::move( fire_processor ) ) );
-				//	}
-
-				//	mPackgeContainer.emplace_back( std::move( container ) );
-				//}
+					mPackgeContainer.emplace_back( std::move( container ) );
+				}
 			}
 
 			//
