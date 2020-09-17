@@ -22,6 +22,7 @@
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire_Chain.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire_Single.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
+#include "step_rain_of_chaos_game_EnemyProcessor_Move_Linear_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_Orbit_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Sleep.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Tie.h"
@@ -322,6 +323,21 @@ namespace step_rain_of_chaos
 
 					mPackgeContainer.emplace_back( std::move( container ) );
 				}
+
+				// Wave 07
+				{
+					container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.3f, false, 90.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.3f, false, 90.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.3f, false, 90.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 5, 0.2f ) ), enemy_node->GetSpawnInfoContainer() ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 2.f ) );
+
+
+					mPackgeContainer.emplace_back( std::move( container ) );
+				}
 			}
 
 			//
@@ -504,7 +520,7 @@ namespace step_rain_of_chaos
 				mStageNode->getChildByTag( TAG_Player )->setOpacity( 255u );
 				unschedule( schedule_selector( PlayScene::update4Intro ) );
 				schedule( schedule_selector( PlayScene::update4Game ) );
-				mPackageIndicator = 1u;
+				mPackageIndicator = 6u;
 				startEnemyProcess();
 				break;
 			}
