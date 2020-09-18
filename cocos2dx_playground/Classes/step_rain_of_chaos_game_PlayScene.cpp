@@ -488,7 +488,7 @@ namespace step_rain_of_chaos
 			auto player_node = mStageNode->getChildByTag( TAG_Player );
 			auto enemy_node = static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
 			auto center_pivot_node = mStageNode->getChildByTag( TAG_CenterPivot );
-			float wave_delay = 1.8f;
+			float wave_delay = 1.7f;
 
 			game::EnemyNode::EnemyProcessorContainer container;
 
@@ -555,6 +555,8 @@ namespace step_rain_of_chaos
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
 
+			wave_delay -= 0.1f;
+
 			// Wave 05
 			{
 				container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, true, 30.f ) );
@@ -581,11 +583,13 @@ namespace step_rain_of_chaos
 			{
 				container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.2f, false, 90.f ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
-				container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.2f, false, 90.f ) );
+				container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 3, 0.2f ) ), enemy_node->GetSpawnInfoContainer() ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
 				container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.2f, false, 90.f ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
-				container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 5, 0.2f ) ), enemy_node->GetSpawnInfoContainer() ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.2f, false, 90.f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+				container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 3, 0.2f ) ), enemy_node->GetSpawnInfoContainer() ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
 
 
@@ -603,9 +607,11 @@ namespace step_rain_of_chaos
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
 
+			wave_delay -= 0.1f;
+
 			// Wave 09
 			{
-				auto move_processor = game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 1.5f, false, 270.f );
+				auto move_processor = game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 1.5f, false, 225.f );
 				auto fire_processor = game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, center_pivot_node, std::move( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 2, 5, 0.3f ) ), enemy_node->GetSpawnInfoContainer() );
 				container.emplace_back( game::EnemyProcessor_Tie::Create( mStageConfig, enemy_node, player_node, std::move( move_processor ), std::move( fire_processor ) ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
