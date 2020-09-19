@@ -2,10 +2,10 @@
 
 #include <algorithm>
 #include <new>
-#include <random>
 
 #include "2d/CCNode.h"
 
+#include "cpg_Random.h"
 #include "step_rain_of_chaos_game_StageConfig.h"
 
 USING_NS_CC;
@@ -48,12 +48,7 @@ namespace step_rain_of_chaos
 
 		void EnemyProcessor_Move_CircularSector_Random_02::Enter()
 		{
-			std::random_device rd;
-			std::mt19937 randomEngine( rd() );
-			std::uniform_real_distribution<> dist( mRadianPerCycle_MIN, mRadianPerCycle_MAX );
-			std::uniform_int_distribution<> dist2( 0, 1 );
-
-			mRadianPerCycle = dist( randomEngine ) * ( dist2( randomEngine ) ? 1 : -1 );
+			mRadianPerCycle = cpg::Random::GetFloat( mRadianPerCycle_MIN, mRadianPerCycle_MAX ) * ( cpg::Random::GetBool() ? 1 : -1 );
 			mPivot = mOwnerNode->getPosition() - mStageConfig.GetCenter();
 
 			mElapsedTime = 0.f;
