@@ -687,6 +687,9 @@
     <ClCompile Include="..\Classes\step_typetype_BasicScene.cpp">
       <Filter>src\scene\step_01_typetype\label</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_Random.cpp">
+      <Filter>src\cpg</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1246,6 +1249,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_BasicScene.h">
       <Filter>src\scene\step_01_typetype\label</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Random.h">
+      <Filter>src\cpg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
