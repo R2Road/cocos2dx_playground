@@ -549,6 +549,8 @@ namespace step_rain_of_chaos
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
 
+			wave_delay -= 0.1f;
+
 			// Wave 04
 			{
 				container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, move_direction, 30.f ) );
@@ -559,8 +561,6 @@ namespace step_rain_of_chaos
 
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
-
-			wave_delay -= 0.1f;
 
 			// Wave 05
 			{
@@ -584,6 +584,7 @@ namespace step_rain_of_chaos
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
 
+			wave_delay -= 0.1f;
 			move_direction = cpg::Random::GetBool();
 
 			// Wave 07
@@ -614,8 +615,6 @@ namespace step_rain_of_chaos
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
 
-			wave_delay -= 0.1f;
-
 			// Wave 09
 			{
 				auto move_processor = game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 1.5f, move_direction, 225.f );
@@ -626,6 +625,8 @@ namespace step_rain_of_chaos
 
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
+
+			wave_delay -= 0.1f;
 
 			// Wave 10
 			{
@@ -689,6 +690,8 @@ namespace step_rain_of_chaos
 
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
+
+			wave_delay -= 0.1f;
 		}
 	}
 }
