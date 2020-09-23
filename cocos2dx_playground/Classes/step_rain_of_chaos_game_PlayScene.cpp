@@ -728,7 +728,7 @@ namespace step_rain_of_chaos
 				{
 					container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.4f, move_direction, 45.f ) );
 					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
-					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_02_Spread::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, true, 50.f, 7, 2, 0.1f, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
+					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_02_Spread::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, true, 50.f, 7, i + 1, 0.1f, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
 
 					if( 2 <= i )
 					{
