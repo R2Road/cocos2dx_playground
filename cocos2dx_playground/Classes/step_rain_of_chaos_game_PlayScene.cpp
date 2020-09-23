@@ -579,7 +579,9 @@ namespace step_rain_of_chaos
 			{
 				container.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, enemy_node, player_node, 1.f, 1.1f ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.5f ) );
-				container.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, enemy_node, player_node, 0.3f, -1.f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.3f, move_direction, 180.f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.5f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, enemy_node, player_node, 1.f, 1.f ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
 
 
