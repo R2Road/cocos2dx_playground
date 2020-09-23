@@ -690,6 +690,9 @@
     <ClCompile Include="..\Classes\cpg_Random.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_Spread.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1252,6 +1255,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Random.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_Spread.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
