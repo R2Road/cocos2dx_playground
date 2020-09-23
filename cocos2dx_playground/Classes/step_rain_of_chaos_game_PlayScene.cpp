@@ -627,6 +627,7 @@ namespace step_rain_of_chaos
 			}
 
 			wave_delay -= 0.1f;
+			move_direction = cpg::Random::GetBool();
 
 			// Wave 10
 			{
@@ -692,6 +693,30 @@ namespace step_rain_of_chaos
 			}
 
 			wave_delay -= 0.1f;
+			move_direction = cpg::Random::GetBool();
+
+			// Wave 13
+			{
+				for( int i = 0; ; ++i )
+				{
+					container.emplace_back( game::EnemyProcessor_Move_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.3f, move_direction, 20.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 50.f, 3, 2, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
+
+					if( 6 <= i )
+					{
+						break;
+					}
+
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+				}
+
+
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
+
+
+				mPackgeContainer.emplace_back( std::move( container ) );
+			}
 		}
 	}
 }
