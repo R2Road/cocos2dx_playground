@@ -2,10 +2,10 @@
 
 #include <algorithm>
 #include <new>
-#include <random>
 
 #include "2d/CCNode.h"
 
+#include "cpg_Random.h"
 #include "step_rain_of_chaos_game_StageConfig.h"
 
 USING_NS_CC;
@@ -46,11 +46,7 @@ namespace step_rain_of_chaos
 
 			if( MATH_EPSILON > mTargetNode->getPosition().distance( mStageConfig.GetCenter() ) )
 			{
-				std::random_device rd;
-				std::mt19937 randomEngine( rd() );
-				std::uniform_int_distribution<> dist( 0, 1 );
-
-				mRadianPerCycle = CC_DEGREES_TO_RADIANS( 90.f * ( dist( randomEngine ) ? -1.f : 1.f ) );
+				mRadianPerCycle = CC_DEGREES_TO_RADIANS( 90.f * ( cpg::Random::GetBool() ? -1.f : 1.f ) );
 			}
 			else
 			{

@@ -25,6 +25,7 @@
 #include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_Line.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_Spread.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_Sleep.h"
 
 USING_NS_CC;
@@ -248,6 +249,16 @@ namespace step_rain_of_chaos
 					name_n_package.Package.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 3, 0.1f ) );
 					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 					name_n_package.Package.emplace_back( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 4, 0.1f ) );
+
+					mPackgeContainer.emplace_back( std::move( name_n_package ) );
+				}
+
+				{
+					NameNPackage name_n_package;
+					name_n_package.Name = "SingleShot_02_Spread";
+
+					name_n_package.Package.emplace_back( game::SpawnProcessor_SingleShot_02_Spread::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, true, 90.f, 10, 4, 0.1f, 0.1f ) );
+					name_n_package.Package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.3f ) );
 
 					mPackgeContainer.emplace_back( std::move( name_n_package ) );
 				}

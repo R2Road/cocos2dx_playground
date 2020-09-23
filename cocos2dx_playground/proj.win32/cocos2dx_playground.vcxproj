@@ -152,6 +152,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp" />
+    <ClCompile Include="..\Classes\cpg_Random.cpp" />
     <ClCompile Include="..\Classes\cpg_Setting.cpp" />
     <ClCompile Include="..\Classes\graph_practice_BasicScene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection01Scene.cpp" />
@@ -231,6 +232,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_Line.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.cpp" />
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_Spread.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Sleep.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_StageNode.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.cpp" />
@@ -330,6 +332,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h" />
     <ClInclude Include="..\Classes\cpg_Clamp.h" />
+    <ClInclude Include="..\Classes\cpg_Random.h" />
     <ClInclude Include="..\Classes\cpg_Setting.h" />
     <ClInclude Include="..\Classes\graph_practice_BasicScene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection01Scene.h" />
@@ -415,6 +418,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_Line.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.h" />
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_Spread.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_Sleep.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_StageConfig.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_StageNode.h" />
