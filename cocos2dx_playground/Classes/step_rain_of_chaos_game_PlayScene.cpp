@@ -34,6 +34,7 @@
 #include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_01_CircularSector.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_MultipleShot_02_Line.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_SingleShot_01.h"
+#include "step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_Spread.h"
 #include "step_rain_of_chaos_game_SpawnProcessor_Sleep.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
@@ -704,6 +705,29 @@ namespace step_rain_of_chaos
 					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 50.f, 3, 2, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
 
 					if( 6 <= i )
+					{
+						break;
+					}
+
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+				}
+
+
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
+
+
+				mPackgeContainer.emplace_back( std::move( container ) );
+			}
+
+			// Wave 14
+			{
+				for( int i = 0; ; ++i )
+				{
+					container.emplace_back( game::EnemyProcessor_Move_Linear_01::Create( mStageConfig, enemy_node, player_node, 0.4f, move_direction, 45.f ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.1f ) );
+					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_02_Spread::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, true, 50.f, 7, 2, 0.1f, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
+
+					if( 2 <= i )
 					{
 						break;
 					}
