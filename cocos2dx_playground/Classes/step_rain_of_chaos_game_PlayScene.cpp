@@ -45,7 +45,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int BulletCachingAmount = 100;
+	const int BulletCachingAmount = 200;
 
 	const int TAG_FadeIn = 10001;
 	const int TAG_Player = 10002;
