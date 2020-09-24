@@ -21,6 +21,9 @@ namespace step_rain_of_chaos
 		EnemyNode::EnemyNode( const ProcessEndCallback& process_end_callback, const RequestBulletCallback& request_bullet_callback ) :
 			mProcessEndCallback( process_end_callback )
 			, mRequestBulletCallback( request_bullet_callback )
+
+			, mViewNode( nullptr )
+
 			, mProcessorContainer( nullptr )
 			, mCurrentProcessor()
 			, mSpawnInfoContainer()
@@ -89,6 +92,8 @@ namespace step_rain_of_chaos
 					view_node->addComponent( animation_component );
 					animation_component->PlayAnimation( cpg::animation::eIndex::idle );
 				}
+
+				mViewNode = view_node;
 			}
 
 			//
@@ -143,6 +148,15 @@ namespace step_rain_of_chaos
 					, 0.1f
 				);
 			}
+		}
+
+		void EnemyNode::ShowView()
+		{
+			mViewNode->setVisible( true );
+		}
+		void EnemyNode::HideView()
+		{
+			mViewNode->setVisible( false );
 		}
 
 		void EnemyNode::StartProcess( EnemyProcessorContainer* enemy_processor_container )
