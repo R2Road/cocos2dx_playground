@@ -21,6 +21,7 @@
 #include "step_rain_of_chaos_game_PlayerNode.h"
 #include "step_rain_of_chaos_game_StageNode.h"
 
+#include "step_rain_of_chaos_game_EnemyProcessor_Blink_CircularSector_01.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire_Chain.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Fire_Single.h"
 #include "step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_01.h"
@@ -766,6 +767,40 @@ namespace step_rain_of_chaos
 				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.5f ) );
 				container.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, enemy_node, player_node, 1.f, 1.f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
+
+
+				mPackgeContainer.emplace_back( std::move( container ) );
+			}
+
+			// Wave 17
+			{
+				for( int i = 0; ; ++i )
+				{
+					container.emplace_back( game::EnemyProcessor_Blink_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.5f, move_direction, 70.f ) );
+					{
+						game::SpawnProcessorPackage spawn_processor_package;
+						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 100.f, 6, 3, 0.1f ) );
+						spawn_processor_package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.2f ) );
+						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 52.f, 4, 4, 0.1f ) );
+						spawn_processor_package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.2f ) );
+						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 3, 5, 0.1f ) );
+
+						container.emplace_back( game::EnemyProcessor_Fire_Chain::Create(
+							mStageConfig, enemy_node, player_node
+							, std::move( spawn_processor_package )
+							, enemy_node->GetSpawnInfoContainer()
+						) );
+					}
+
+					if( 1 <= i )
+					{
+						break;
+					}
+
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.5f ) );
+				}
+
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
 
 
