@@ -53,6 +53,8 @@ namespace
 	const int TAG_CenterPivot = 10004;
 	const int TAG_Ready = 10005;
 	const int TAG_Go = 10006;
+
+	const float ParallaxScale = 0.15f;
 }
 
 namespace step_rain_of_chaos
@@ -65,6 +67,7 @@ namespace step_rain_of_chaos
 
 			, mStageConfig()
 			, mStageNode( nullptr )
+			, mBackgroundNode( nullptr )
 
 			, mStep( eStep::Test )
 			, mPackgeContainer()
@@ -133,16 +136,21 @@ namespace step_rain_of_chaos
 				addChild( label, std::numeric_limits<int>::max() - 1 );
 			}
 
+			mStageConfig.Build(
+				visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
+				, 120.f
+			);
+
 			//
 			// Background Node
 			//
 			{
 				const auto tile_size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_0.png" )->getOriginalSizeInPixels();
 
-				const auto div_result_width = std::div( static_cast<int>( visibleSize.width ), static_cast<int>( tile_size.width ) );
+				const auto div_result_width = std::div( static_cast<int>( visibleSize.width + mStageConfig.GetStageRect().size.width * ParallaxScale ), static_cast<int>( tile_size.width ) );
 				const std::size_t vertical_amount = div_result_width.rem > 0 ? div_result_width.quot + 1 : div_result_width.quot;
 
-				const auto div_result_height = std::div( static_cast<int>( visibleSize.height ), static_cast<int>( tile_size.height ) );
+				const auto div_result_height = std::div( static_cast<int>( visibleSize.height + mStageConfig.GetStageRect().size.height * ParallaxScale ), static_cast<int>( tile_size.height ) );
 				const std::size_t horizontal_amount = div_result_height.rem > 0 ? div_result_height.quot + 1 : div_result_height.quot;
 
 				std::vector<SpriteFrame*> SpriteFrames{
@@ -162,16 +170,13 @@ namespace step_rain_of_chaos
 				auto background_node = step_rain_of_chaos::game::BackgroundNode::create( 10, 10, "textures/texture_001.png", std::move( SpriteFrames ) );
 				background_node->Reset( vertical_amount, horizontal_amount );
 				background_node->setPosition(
-					visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( background_node->getContentSize().width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( background_node->getContentSize().height * 0.5f )
+					-mStageConfig.GetStageRect().size.width * 0.5f * ParallaxScale
+					, -mStageConfig.GetStageRect().size.height * 0.5f * ParallaxScale
 				);
 				addChild( background_node, std::numeric_limits<int>::min() );
-			}
 
-			mStageConfig.Build(
-				visibleOrigin.x + visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f
-				, 120.f
-			);
+				mBackgroundNode = background_node;
+			}
 
 			//
 			// Stage Node
@@ -451,10 +456,20 @@ namespace step_rain_of_chaos
 
 			if( 0.f != move_vector.x || 0.f != move_vector.y )
 			{
+				//
+				// Update Player Position
+				//
 				move_vector.normalize();
 				move_vector.scale( 150.f * delta_time );
-
 				mStageNode->PlayerMoveRequest( move_vector );
+
+				//
+				// Background Parallax
+				//
+				auto player_node = mStageNode->getChildByTag( TAG_Player );
+				auto offset = player_node->getPosition() - mStageConfig.GetStageRect().origin;
+				offset.scale( ParallaxScale );
+				mBackgroundNode->setPosition( -offset );
 			}
 		}
 
