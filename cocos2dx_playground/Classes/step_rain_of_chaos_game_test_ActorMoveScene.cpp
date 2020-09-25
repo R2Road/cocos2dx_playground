@@ -30,7 +30,7 @@ namespace step_rain_of_chaos
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
-			, mMoveSpeed( 80.f )
+			, mMoveSpeed( 150.f )
 		{}
 
 		Scene* ActorMoveScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )

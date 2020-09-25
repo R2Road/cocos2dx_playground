@@ -452,7 +452,7 @@ namespace step_rain_of_chaos
 			if( 0.f != move_vector.x || 0.f != move_vector.y )
 			{
 				move_vector.normalize();
-				move_vector.scale( 100.f * delta_time );
+				move_vector.scale( 150.f * delta_time );
 
 				mStageNode->PlayerMoveRequest( move_vector );
 			}
