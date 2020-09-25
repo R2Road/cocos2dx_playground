@@ -464,7 +464,7 @@ namespace step_rain_of_chaos
 				mStageNode->PlayerMoveRequest( move_vector );
 
 				//
-				// Background Parallax
+				// Background Scroll
 				//
 				auto player_node = mStageNode->getChildByTag( TAG_Player );
 				auto offset = player_node->getPosition() - mStageConfig.GetStageRect().origin;
