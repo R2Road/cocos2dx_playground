@@ -51,6 +51,9 @@ namespace step_rain_of_chaos
 			void update4Processor( float delta_time );
 
 		public:
+			void ShowView();
+			void HideView();
+
 			void StartProcess( EnemyProcessorContainer* enemy_processor_container );
 			void StopProcess();
 
@@ -59,6 +62,8 @@ namespace step_rain_of_chaos
 		private:
 			const ProcessEndCallback mProcessEndCallback;
 			const RequestBulletCallback mRequestBulletCallback;
+
+			cocos2d::Node* mViewNode;
 
 			EnemyProcessorContainer* mProcessorContainer;
 			EnemyProcessorContainer::iterator mCurrentProcessor;

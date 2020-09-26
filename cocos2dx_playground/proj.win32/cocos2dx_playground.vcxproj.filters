@@ -693,6 +693,9 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_Spread.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Blink_CircularSector_01.cpp">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1258,6 +1261,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_SpawnProcessor_SingleShot_02_Spread.h">
       <Filter>src\scene\step_05_rain_of_chaos\game\spawnprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Blink_CircularSector_01.h">
+      <Filter>src\scene\step_05_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -74,6 +74,7 @@ namespace step_rain_of_chaos
 
 			game::StageConfig mStageConfig;
 			game::StageNode* mStageNode;
+			cocos2d::Node* mBackgroundNode;
 
 			int mStep;
 			PackageContainer mPackgeContainer;

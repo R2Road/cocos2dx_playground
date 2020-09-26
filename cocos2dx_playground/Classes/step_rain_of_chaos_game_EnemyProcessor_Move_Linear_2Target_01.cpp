@@ -65,8 +65,20 @@ namespace step_rain_of_chaos
 				// ( dot_result > 0 ) < 90`
 				//
 				const auto dot_result = Enemy2Player.dot( Enemy2Center );
-				const auto theta = acos( dot_result );
+
+				//
+				// # warning
+				// "acos" some time return "nan"
+				// dot_result >= 1
+				//
+				const auto theta = dot_result >= 1.0f ? 0.f : acos( dot_result );
 				const auto degree = CC_RADIANS_TO_DEGREES( theta );
+				
+				//CCLOG( "E2P : %f, %f", Enemy2Player.x, Enemy2Player.y );
+				//CCLOG( "E2C : %f, %f", Enemy2Center.x, Enemy2Center.y );
+				//CCLOG( "dot : %f", dot_result );
+				//CCLOG( "theta : %f", theta );
+				//CCLOG( "degree : %f", degree );
 
 				//
 				// # make rotation angle
