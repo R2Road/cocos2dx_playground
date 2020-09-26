@@ -817,11 +817,11 @@ namespace step_rain_of_chaos
 					container.emplace_back( game::EnemyProcessor_Blink_CircularSector_01::Create( mStageConfig, enemy_node, player_node, 0.5f, move_direction, 70.f ) );
 					{
 						game::SpawnProcessorPackage spawn_processor_package;
-						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 100.f, 6, 3, 0.1f ) );
+						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, false }, 100.f, 6, 2, 0.1f ) );
 						spawn_processor_package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.2f ) );
-						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 52.f, 4, 4, 0.1f ) );
+						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ false, true }, 52.f, 4, 3, 0.1f ) );
 						spawn_processor_package.emplace_back( game::SpawnProcessor_Sleep::Create( 0.2f ) );
-						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 3, 5, 0.1f ) );
+						spawn_processor_package.emplace_back( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 14.f, 3, 4, 0.1f ) );
 
 						container.emplace_back( game::EnemyProcessor_Fire_Chain::Create(
 							mStageConfig, enemy_node, player_node
