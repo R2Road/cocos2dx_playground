@@ -940,6 +940,25 @@ namespace step_rain_of_chaos
 
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
+
+			// Wave 23
+			{
+				container.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, enemy_node, player_node, 0.2f, move_direction, 5.f, 20.f ) );
+				container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 4, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+
+				for( int i = 1; 9 > i; ++i )
+				{
+					container.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, enemy_node, player_node, 0.2f, move_direction, 5.f, 20.f ) );
+					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 10.f * i, 1 + i, 4, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+				}
+
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
+
+
+				mPackgeContainer.emplace_back( std::move( container ) );
+			}
 		}
 	}
 }
