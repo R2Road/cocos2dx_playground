@@ -25,6 +25,7 @@ namespace step_rain_of_chaos
 		{
 		public:
 			using BulletProcessExitCallback = std::function<void( int )>;
+			using PlayerCollisionCallback = std::function<void()>;
 			struct DebugConfig
 			{
 				bool bShowPivot = false;
@@ -63,6 +64,7 @@ namespace step_rain_of_chaos
 		public:
 			void AddPlayer( cocos2d::Node* player_node );
 			void PlayerMoveRequest( const cocos2d::Vec2& move_vector );
+			void SetPlayerCollisionCallback( const PlayerCollisionCallback& player_collision_callback ) { mPlayerCollisionCallback = player_collision_callback; }
 
 			void AddEnemy( cocos2d::Node* const enemy_node );
 
@@ -81,6 +83,8 @@ namespace step_rain_of_chaos
 
 			cocos2d::Node* mPlayerNode;
 			step_mole::CircleCollisionComponent* mPlayerCircleCollisionComponent;
+			PlayerCollisionCallback mPlayerCollisionCallback;
+
 			cocos2d::Node* mEnemyNode;
 			step_mole::CircleCollisionComponent* mEnemyCircleCollisionComponent;
 		};

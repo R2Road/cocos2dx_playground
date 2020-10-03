@@ -189,6 +189,10 @@ namespace step_rain_of_chaos
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 					, BulletCachingAmount
 				);
+				mStageNode->SetPlayerCollisionCallback( []()
+				{
+					CCLOG( "Player Col~!" );
+				} );
 				addChild( mStageNode );
 			}
 
