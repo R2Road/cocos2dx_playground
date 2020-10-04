@@ -14,6 +14,7 @@
 
 #include "step_rain_of_chaos_RootScene.h"
 #include "step_rain_of_chaos_game_PlayScene.h"
+#include "step_rain_of_chaos_game_ResultScene.h"
 
 USING_NS_CC;
 
@@ -137,6 +138,12 @@ namespace step_rain_of_chaos
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
 				_director->replaceScene( step_rain_of_chaos::game::PlayScene::create() );
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
+			{
+				_director->replaceScene( step_rain_of_chaos::game::ResultScene::create( 1234.5678f ) );
 				return;
 			}
 		}
