@@ -54,6 +54,7 @@ namespace
 	const int TAG_CenterPivot = 10004;
 	const int TAG_Ready = 10005;
 	const int TAG_Go = 10006;
+	const int TAG_GameOver = 10006;
 
 	const float ScrollScale = 0.15f;
 }
@@ -189,10 +190,7 @@ namespace step_rain_of_chaos
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 					, BulletCachingAmount
 				);
-				mStageNode->SetPlayerCollisionCallback( []()
-				{
-					CCLOG( "Player Col~!" );
-				} );
+				mStageNode->SetPlayerCollisionCallback( std::bind( &PlayScene::playerHasDamage, this ) );
 				addChild( mStageNode );
 			}
 
@@ -283,6 +281,29 @@ namespace step_rain_of_chaos
 				label->setPosition( visibleCenter );
 				label->setOpacity( 0u );
 				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Game Over
+			//
+			{
+				auto game_over_indicator = LayerColor::create( Color4B( 50, 50, 50, 180 ), visibleSize.width, visibleSize.height * 0.3f );
+				game_over_indicator->setTag( TAG_GameOver );
+				game_over_indicator->setVisible( false );
+				game_over_indicator->setPosition( Vec2(
+					visibleOrigin.x
+					, visibleOrigin.y + ( ( visibleSize.height - game_over_indicator->getContentSize().height ) * 0.5f )
+				) );
+				addChild( game_over_indicator, std::numeric_limits<int>::max() - 1 );
+				{
+					auto label = Label::createWithTTF( "Game Over", "fonts/NanumSquareR.ttf", 20 );
+					label->setColor( Color3B::RED );
+					label->setPosition( Vec2(
+						game_over_indicator->getContentSize().width * 0.5f
+						, game_over_indicator->getContentSize().height * 0.5f
+					) );
+					game_over_indicator->addChild( label );
+				}
 			}
 
 			return true;
@@ -492,6 +513,11 @@ namespace step_rain_of_chaos
 
 			auto enemy_node = static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
 			enemy_node->StartProcess( &mPackgeContainer[mPackageIndicator] );
+		}
+		void PlayScene::playerHasDamage()
+		{
+			getChildByTag( TAG_GameOver )->setVisible( true );
+			_director->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
 		}
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

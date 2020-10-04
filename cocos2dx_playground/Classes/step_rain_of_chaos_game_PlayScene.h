@@ -62,6 +62,7 @@ namespace step_rain_of_chaos
 
 			void onEnemyProcessEnd();
 			void startEnemyProcess();
+			void playerHasDamage();
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
