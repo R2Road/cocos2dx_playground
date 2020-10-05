@@ -54,7 +54,7 @@ namespace
 	const int TAG_CenterPivot = 10004;
 	const int TAG_Ready = 10005;
 	const int TAG_Go = 10006;
-	const int TAG_GameOver = 10006;
+	const int TAG_GameOver = 10007;
 
 	const float ScrollScale = 0.15f;
 }
