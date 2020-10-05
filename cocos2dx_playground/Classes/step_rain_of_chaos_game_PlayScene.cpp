@@ -6,6 +6,7 @@
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
+#include "2d/CCActionInstant.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
@@ -71,7 +72,7 @@ namespace step_rain_of_chaos
 			, mStageNode( nullptr )
 			, mBackgroundNode( nullptr )
 
-			, mStep( eIntroStep::FadeIn )
+			, mStep( eIntroStep::Test )
 			, mPackgeContainer()
 			, mPackageIndicator( 0u )
 		{}
@@ -287,8 +288,10 @@ namespace step_rain_of_chaos
 			// Game Over
 			//
 			{
-				auto game_over_indicator = LayerColor::create( Color4B( 50, 50, 50, 180 ), visibleSize.width, visibleSize.height * 0.3f );
+				auto game_over_indicator = LayerColor::create( Color4B( 30, 30, 30, 255 ), visibleSize.width, visibleSize.height * 0.3f );
 				game_over_indicator->setTag( TAG_GameOver );
+				game_over_indicator->setCascadeOpacityEnabled( true );
+				game_over_indicator->setOpacity( 0u );
 				game_over_indicator->setVisible( false );
 				game_over_indicator->setPosition( Vec2(
 					visibleOrigin.x
@@ -498,6 +501,28 @@ namespace step_rain_of_chaos
 				mBackgroundNode->setPosition( -offset );
 			}
 		}
+		void PlayScene::update4GameOver( float delta_time )
+		{
+			switch( mStep )
+			{
+			case eGameOverStep::FadeInGameOver:
+			{
+				getChildByTag( TAG_GameOver )->setVisible( true );
+
+				auto fade_in_action = FadeIn::create( 1.5f );
+				auto delay_action = DelayTime::create( 3.f );
+				auto FadeInSequence = Sequence::create( fade_in_action, delay_action, CallFunc::create( [this](){ ++mStep; } ), nullptr );
+				getChildByTag( TAG_GameOver )->runAction( FadeInSequence );
+				++mStep;
+			}
+			break;
+
+			case eGameOverStep::Exit:
+				++mStep;
+				_director->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
+				break;
+			}
+		}
 
 		void PlayScene::onEnemyProcessEnd()
 		{
@@ -516,8 +541,11 @@ namespace step_rain_of_chaos
 		}
 		void PlayScene::playerHasDamage()
 		{
-			getChildByTag( TAG_GameOver )->setVisible( true );
-			_director->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
+			mStageNode->SetPlayerCollisionCallback( nullptr );
+			unschedule( schedule_selector( PlayScene::update4Game ) );
+
+			mStep = eGameOverStep::FadeInGameOver;
+			schedule( schedule_selector( PlayScene::update4GameOver ) );
 		}
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

@@ -244,7 +244,10 @@ namespace step_rain_of_chaos
 			{
 				if( mCollisionComponentList[*cur]->Check( mPlayerCircleCollisionComponent ) )
 				{
-					mPlayerCollisionCallback();
+					if( mPlayerCollisionCallback )
+					{
+						mPlayerCollisionCallback();
+					}
 				}
 			}
 		}
