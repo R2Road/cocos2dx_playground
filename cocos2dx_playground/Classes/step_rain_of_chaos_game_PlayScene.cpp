@@ -71,7 +71,7 @@ namespace step_rain_of_chaos
 			, mStageNode( nullptr )
 			, mBackgroundNode( nullptr )
 
-			, mStep( eStep::Test )
+			, mStep( eIntroStep::FadeIn )
 			, mPackgeContainer()
 			, mPackageIndicator( 0u )
 		{}
@@ -332,7 +332,7 @@ namespace step_rain_of_chaos
 		{
 			switch( mStep )
 			{
-			case eStep::FadeIn:
+			case eIntroStep::FadeIn:
 			{
 				auto fade_out_action = FadeOut::create( 1.8f );
 				getChildByTag( TAG_FadeIn )->runAction( fade_out_action );
@@ -340,14 +340,14 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::FadeInWait:
+			case eIntroStep::FadeInWait:
 				if( 50u > getChildByTag( TAG_FadeIn )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::FadeInPlayer:
+			case eIntroStep::FadeInPlayer:
 			{
 				auto action = FadeIn::create( 1.f );
 				mStageNode->getChildByTag( TAG_Player )->runAction( action );
@@ -355,21 +355,21 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::FadeInPlayerSound:
+			case eIntroStep::FadeInPlayerSound:
 				if( 30u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
 				{
 					experimental::AudioEngine::play2d( "sounds/fx/powerup_003.ogg", false, 0.1f );
 					++mStep;
 				}
 				break;
-			case eStep::FadeInPlayerWait:
+			case eIntroStep::FadeInPlayerWait:
 				if( 200u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::FadeInEnemy:
+			case eIntroStep::FadeInEnemy:
 			{
 				auto action = FadeIn::create( 1.f );
 				mStageNode->getChildByTag( TAG_Enemy )->runAction( action );
@@ -377,26 +377,26 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::FadeInEnemySound:
+			case eIntroStep::FadeInEnemySound:
 				if( 30u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
 				{
 					experimental::AudioEngine::play2d( "sounds/fx/powerup_003.ogg", false, 0.1f );
 					++mStep;
 				}
 				break;
-			case eStep::FadeInEnemyWait:
+			case eIntroStep::FadeInEnemyWait:
 				if( 200u < mStageNode->getChildByTag( TAG_Enemy )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::EnemyProcessStart:
+			case eIntroStep::EnemyProcessStart:
 				startEnemyProcess();
 				++mStep;
 				break;
 
-			case eStep::Ready:
+			case eIntroStep::Ready:
 			{
 				auto fade_in_action = FadeIn::create( 0.6f );
 				auto delay_action = DelayTime::create( 1.f );
@@ -407,20 +407,20 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::ReadyWait_1:
+			case eIntroStep::ReadyWait_1:
 				if( 0u < getChildByTag( TAG_Ready )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
-			case eStep::ReadyWait_2:
+			case eIntroStep::ReadyWait_2:
 				if( 0u == getChildByTag( TAG_Ready )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::Go:
+			case eIntroStep::Go:
 			{
 				auto fade_in_action = FadeIn::create( 0.6f );
 				auto delay_action = DelayTime::create( 1.f );
@@ -431,25 +431,25 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::GoWait_1:
+			case eIntroStep::GoWait_1:
 				if( 100u < getChildByTag( TAG_Go )->getOpacity() )
 				{
 					schedule( schedule_selector( PlayScene::update4Game ) );
 					++mStep;
 				}
 				break;
-			case eStep::GoWait_2:
+			case eIntroStep::GoWait_2:
 				if( 0u == getChildByTag( TAG_Go )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::Game:
+			case eIntroStep::StartGame:
 				unschedule( schedule_selector( PlayScene::update4Intro ) );
 				break;
 
-			case eStep::Test:
+			case eIntroStep::Test:
 				getChildByTag( TAG_FadeIn )->setOpacity( 0u );
 				mStageNode->getChildByTag( TAG_Enemy )->setOpacity( 255u );
 				mStageNode->getChildByTag( TAG_Player )->setOpacity( 255u );

@@ -15,7 +15,7 @@ namespace step_rain_of_chaos
 		class PlayScene : public cocos2d::Scene
 		{
 		private:
-			enum eStep
+			enum eIntroStep
 			{
 				FadeIn,
 				FadeInWait,
@@ -38,7 +38,8 @@ namespace step_rain_of_chaos
 				GoWait_1,
 				GoWait_2,
 
-				Game,
+				StartGame,
+
 				GameOver,
 
 				Test,
