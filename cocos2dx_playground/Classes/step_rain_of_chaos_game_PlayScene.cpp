@@ -507,6 +507,8 @@ namespace step_rain_of_chaos
 			{
 			case eGameOverStep::FadeInGameOver:
 			{
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_002.ogg", false, 0.3f );
+
 				getChildByTag( TAG_GameOver )->setVisible( true );
 
 				auto fade_in_action = FadeIn::create( 1.5f );
