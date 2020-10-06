@@ -40,6 +40,8 @@ namespace step_rain_of_chaos
 
 			, mPlayerNode( nullptr )
 			, mPlayerCircleCollisionComponent( nullptr )
+			, mPlayerCollisionCallback( nullptr )
+
 			, mEnemyNode( nullptr )
 			, mEnemyCircleCollisionComponent( nullptr )
 		{}
@@ -242,7 +244,10 @@ namespace step_rain_of_chaos
 			{
 				if( mCollisionComponentList[*cur]->Check( mPlayerCircleCollisionComponent ) )
 				{
-					CCLOG( "Col : Bullet : %d", *cur );
+					if( mPlayerCollisionCallback )
+					{
+						mPlayerCollisionCallback();
+					}
 				}
 			}
 		}

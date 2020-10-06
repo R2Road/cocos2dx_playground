@@ -6,6 +6,7 @@
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
+#include "2d/CCActionInstant.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
@@ -54,6 +55,7 @@ namespace
 	const int TAG_CenterPivot = 10004;
 	const int TAG_Ready = 10005;
 	const int TAG_Go = 10006;
+	const int TAG_GameOver = 10007;
 
 	const float ScrollScale = 0.15f;
 }
@@ -70,7 +72,7 @@ namespace step_rain_of_chaos
 			, mStageNode( nullptr )
 			, mBackgroundNode( nullptr )
 
-			, mStep( eStep::Test )
+			, mStep( eIntroStep::Test )
 			, mPackgeContainer()
 			, mPackageIndicator( 0u )
 		{}
@@ -189,6 +191,7 @@ namespace step_rain_of_chaos
 					, step_mole::CircleCollisionComponentConfig{ false, false, false }
 					, BulletCachingAmount
 				);
+				mStageNode->SetPlayerCollisionCallback( std::bind( &PlayScene::playerHasDamage, this ) );
 				addChild( mStageNode );
 			}
 
@@ -281,6 +284,31 @@ namespace step_rain_of_chaos
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
+			//
+			// Game Over
+			//
+			{
+				auto game_over_indicator = LayerColor::create( Color4B( 30, 30, 30, 255 ), visibleSize.width, visibleSize.height * 0.3f );
+				game_over_indicator->setTag( TAG_GameOver );
+				game_over_indicator->setCascadeOpacityEnabled( true );
+				game_over_indicator->setOpacity( 0u );
+				game_over_indicator->setVisible( false );
+				game_over_indicator->setPosition( Vec2(
+					visibleOrigin.x
+					, visibleOrigin.y + ( ( visibleSize.height - game_over_indicator->getContentSize().height ) * 0.5f )
+				) );
+				addChild( game_over_indicator, std::numeric_limits<int>::max() - 1 );
+				{
+					auto label = Label::createWithTTF( "Game Over", "fonts/NanumSquareR.ttf", 20 );
+					label->setColor( Color3B::RED );
+					label->setPosition( Vec2(
+						game_over_indicator->getContentSize().width * 0.5f
+						, game_over_indicator->getContentSize().height * 0.5f
+					) );
+					game_over_indicator->addChild( label );
+				}
+			}
+
 			return true;
 		}
 
@@ -307,7 +335,7 @@ namespace step_rain_of_chaos
 		{
 			switch( mStep )
 			{
-			case eStep::FadeIn:
+			case eIntroStep::FadeIn:
 			{
 				auto fade_out_action = FadeOut::create( 1.8f );
 				getChildByTag( TAG_FadeIn )->runAction( fade_out_action );
@@ -315,14 +343,14 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::FadeInWait:
+			case eIntroStep::FadeInWait:
 				if( 50u > getChildByTag( TAG_FadeIn )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::FadeInPlayer:
+			case eIntroStep::FadeInPlayer:
 			{
 				auto action = FadeIn::create( 1.f );
 				mStageNode->getChildByTag( TAG_Player )->runAction( action );
@@ -330,21 +358,21 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::FadeInPlayerSound:
+			case eIntroStep::FadeInPlayerSound:
 				if( 30u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
 				{
 					experimental::AudioEngine::play2d( "sounds/fx/powerup_003.ogg", false, 0.1f );
 					++mStep;
 				}
 				break;
-			case eStep::FadeInPlayerWait:
+			case eIntroStep::FadeInPlayerWait:
 				if( 200u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::FadeInEnemy:
+			case eIntroStep::FadeInEnemy:
 			{
 				auto action = FadeIn::create( 1.f );
 				mStageNode->getChildByTag( TAG_Enemy )->runAction( action );
@@ -352,26 +380,26 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::FadeInEnemySound:
+			case eIntroStep::FadeInEnemySound:
 				if( 30u < mStageNode->getChildByTag( TAG_Player )->getOpacity() )
 				{
 					experimental::AudioEngine::play2d( "sounds/fx/powerup_003.ogg", false, 0.1f );
 					++mStep;
 				}
 				break;
-			case eStep::FadeInEnemyWait:
+			case eIntroStep::FadeInEnemyWait:
 				if( 200u < mStageNode->getChildByTag( TAG_Enemy )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::EnemyProcessStart:
+			case eIntroStep::EnemyProcessStart:
 				startEnemyProcess();
 				++mStep;
 				break;
 
-			case eStep::Ready:
+			case eIntroStep::Ready:
 			{
 				auto fade_in_action = FadeIn::create( 0.6f );
 				auto delay_action = DelayTime::create( 1.f );
@@ -382,20 +410,20 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::ReadyWait_1:
+			case eIntroStep::ReadyWait_1:
 				if( 0u < getChildByTag( TAG_Ready )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
-			case eStep::ReadyWait_2:
+			case eIntroStep::ReadyWait_2:
 				if( 0u == getChildByTag( TAG_Ready )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::Go:
+			case eIntroStep::Go:
 			{
 				auto fade_in_action = FadeIn::create( 0.6f );
 				auto delay_action = DelayTime::create( 1.f );
@@ -406,25 +434,25 @@ namespace step_rain_of_chaos
 				++mStep;
 			}
 			break;
-			case eStep::GoWait_1:
+			case eIntroStep::GoWait_1:
 				if( 100u < getChildByTag( TAG_Go )->getOpacity() )
 				{
 					schedule( schedule_selector( PlayScene::update4Game ) );
 					++mStep;
 				}
 				break;
-			case eStep::GoWait_2:
+			case eIntroStep::GoWait_2:
 				if( 0u == getChildByTag( TAG_Go )->getOpacity() )
 				{
 					++mStep;
 				}
 				break;
 
-			case eStep::Game:
+			case eIntroStep::StartGame:
 				unschedule( schedule_selector( PlayScene::update4Intro ) );
 				break;
 
-			case eStep::Test:
+			case eIntroStep::Test:
 				getChildByTag( TAG_FadeIn )->setOpacity( 0u );
 				mStageNode->getChildByTag( TAG_Enemy )->setOpacity( 255u );
 				mStageNode->getChildByTag( TAG_Player )->setOpacity( 255u );
@@ -473,6 +501,30 @@ namespace step_rain_of_chaos
 				mBackgroundNode->setPosition( -offset );
 			}
 		}
+		void PlayScene::update4GameOver( float delta_time )
+		{
+			switch( mStep )
+			{
+			case eGameOverStep::FadeInGameOver:
+			{
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_002.ogg", false, 0.3f );
+
+				getChildByTag( TAG_GameOver )->setVisible( true );
+
+				auto fade_in_action = FadeIn::create( 1.5f );
+				auto delay_action = DelayTime::create( 3.f );
+				auto FadeInSequence = Sequence::create( fade_in_action, delay_action, CallFunc::create( [this](){ ++mStep; } ), nullptr );
+				getChildByTag( TAG_GameOver )->runAction( FadeInSequence );
+				++mStep;
+			}
+			break;
+
+			case eGameOverStep::Exit:
+				++mStep;
+				_director->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
+				break;
+			}
+		}
 
 		void PlayScene::onEnemyProcessEnd()
 		{
@@ -488,6 +540,14 @@ namespace step_rain_of_chaos
 
 			auto enemy_node = static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
 			enemy_node->StartProcess( &mPackgeContainer[mPackageIndicator] );
+		}
+		void PlayScene::playerHasDamage()
+		{
+			mStageNode->SetPlayerCollisionCallback( nullptr );
+			unschedule( schedule_selector( PlayScene::update4Game ) );
+
+			mStep = eGameOverStep::FadeInGameOver;
+			schedule( schedule_selector( PlayScene::update4GameOver ) );
 		}
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
@@ -785,6 +845,8 @@ namespace step_rain_of_chaos
 				container.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, enemy_node, player_node, 1.f, 1.1f ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.5f ) );
 				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.5f ) );
 				container.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, enemy_node, player_node, 1.f, 1.f ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
@@ -947,8 +1009,12 @@ namespace step_rain_of_chaos
 				container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_SingleShot_01::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 4, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
 				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
 
-				for( int i = 1; 9 > i; ++i )
+				for( int i = 1; 5 > i; ++i )
 				{
+					container.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, enemy_node, player_node, 0.2f, move_direction, 5.f, 20.f ) );
+					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 10.f * i, 1 + i, 4, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
+					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+
 					container.emplace_back( game::EnemyProcessor_Move_CircularSector_Random_01::Create( mStageConfig, enemy_node, player_node, 0.2f, move_direction, 5.f, 20.f ) );
 					container.emplace_back( game::EnemyProcessor_Fire_Single::Create( mStageConfig, enemy_node, player_node, std::move( game::SpawnProcessor_MultipleShot_02_Line::Create( mStageConfig, game::SpawnProcessorConfig{ true, true }, 10.f * i, 1 + i, 4, 0.1f ) ), enemy_node->GetSpawnInfoContainer() ) );
 					container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
@@ -959,6 +1025,43 @@ namespace step_rain_of_chaos
 
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
+
+			// Wave 24
+			{
+				container.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, enemy_node, player_node, 1.f, 1.1f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 1.f ) );
+
+				container.emplace_back( game::EnemyProcessor_Move_CircularSector_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.3f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+
+				container.emplace_back( game::EnemyProcessor_Move_CircularSector_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.3f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+
+				container.emplace_back( game::EnemyProcessor_Move_CircularSector_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.3f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+				container.emplace_back( game::EnemyProcessor_Move_Linear_2Target_01::Create( mStageConfig, enemy_node, player_node, 0.5f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 0.2f ) );
+
+
+				container.emplace_back( game::EnemyProcessor_Move_Orbit_01::Create( mStageConfig, enemy_node, player_node, 1.f, 1.f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( wave_delay ) );
+
+
+				mPackgeContainer.emplace_back( std::move( container ) );
+			}
+
+			wave_delay -= 0.1f;
+			move_direction = cpg::Random::GetBool();
 		}
 	}
 }

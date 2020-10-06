@@ -15,7 +15,7 @@ namespace step_rain_of_chaos
 		class PlayScene : public cocos2d::Scene
 		{
 		private:
-			enum eStep
+			enum eIntroStep
 			{
 				FadeIn,
 				FadeInWait,
@@ -38,10 +38,16 @@ namespace step_rain_of_chaos
 				GoWait_1,
 				GoWait_2,
 
-				Game,
-				GameOver,
+				StartGame,
 
 				Test,
+			};
+
+			enum eGameOverStep
+			{
+				FadeInGameOver,
+
+				Exit = FadeInGameOver + 2,
 			};
 
 			using PackageContainer = std::vector<game::EnemyNode::EnemyProcessorContainer>;
@@ -59,9 +65,11 @@ namespace step_rain_of_chaos
 		private:
 			void update4Intro( float delta_time );
 			void update4Game( float delta_time );
+			void update4GameOver( float delta_time );
 
 			void onEnemyProcessEnd();
 			void startEnemyProcess();
+			void playerHasDamage();
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
