@@ -553,12 +553,50 @@ namespace step_rain_of_chaos
 		}
 		void PlayScene::playerHasDamage()
 		{
+			//
+			// Stop : Collision Check, Player Move
+			//
 			mStageNode->SetPlayerCollisionCallback( nullptr );
 			unschedule( schedule_selector( PlayScene::update4Game ) );
 
+			//
+			// Start : Game Over Processor
+			//
 			mStep = eGameOverStep::FadeInGameOver;
 			mPackageIndicatorWhenPlayerDie = mPackageIndicator;
 			schedule( schedule_selector( PlayScene::update4GameOver ) );
+
+			//
+			// Dying Message
+			//
+			auto player_node = mStageNode->getChildByTag( TAG_Player );
+			{
+				// horizontal move
+				{
+					auto horizontal_sequence = Sequence::create(
+						MoveBy::create( 0.01f, Vec2( -2.f, 0.f ) )
+						, MoveBy::create( 0.012f, Vec2( 2.f, 0.f ) )
+						, MoveBy::create( 0.01f, Vec2( 2.f, 0.f ) )
+						, MoveBy::create( 0.011f, Vec2( -2.f, 0.f ) )
+						, nullptr
+					);
+					auto horizontal_repeat = RepeatForever::create( horizontal_sequence );
+					player_node->runAction( horizontal_repeat );
+				}
+
+				// vertical move
+				{
+					auto vertical_sequence = Sequence::create(
+						MoveBy::create( 0.012f, Vec2( 0.f, -2.f ) )
+						, MoveBy::create( 0.01f, Vec2( 0.f, 2.f ) )
+						, MoveBy::create( 0.011f, Vec2( 0.f, 2.f ) )
+						, MoveBy::create( 0.011f, Vec2( 0.f, -2.f ) )
+						, nullptr
+					);
+					auto vertical_repeat = RepeatForever::create( vertical_sequence );
+					player_node->runAction( vertical_repeat );
+				}
+			}
 		}
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
