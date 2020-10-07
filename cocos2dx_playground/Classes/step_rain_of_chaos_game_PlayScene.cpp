@@ -73,7 +73,7 @@ namespace step_rain_of_chaos
 			, mStageNode( nullptr )
 			, mBackgroundNode( nullptr )
 
-			, mStep( eIntroStep::Test )
+			, mStep( eIntroStep::FadeIn )
 			, mPackgeContainer()
 			, mPackageIndicator( 0u )
 		{}
@@ -459,7 +459,7 @@ namespace step_rain_of_chaos
 				mStageNode->getChildByTag( TAG_Player )->setOpacity( 255u );
 				unschedule( schedule_selector( PlayScene::update4Intro ) );
 				schedule( schedule_selector( PlayScene::update4Game ) );
-				mPackageIndicator = 24u;
+				mPackageIndicator = 1u;
 				startEnemyProcess();
 				break;
 			}
