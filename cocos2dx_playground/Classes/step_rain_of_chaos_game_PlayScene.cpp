@@ -68,6 +68,7 @@ namespace step_rain_of_chaos
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
+			, mAudioID_forBGM( -1 )
 
 			, mStageConfig()
 			, mStageNode( nullptr )
@@ -325,6 +326,9 @@ namespace step_rain_of_chaos
 		}
 		void PlayScene::onExit()
 		{
+			experimental::AudioEngine::stop( mAudioID_forBGM );
+			mAudioID_forBGM = -1;
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
@@ -396,6 +400,7 @@ namespace step_rain_of_chaos
 				break;
 
 			case eIntroStep::EnemyProcessStart:
+				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/EmpySpace.ogg", true, 0.1f );
 				startEnemyProcess();
 				++mStep;
 				break;
