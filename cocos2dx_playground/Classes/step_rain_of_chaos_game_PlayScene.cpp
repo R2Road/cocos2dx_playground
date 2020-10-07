@@ -1076,7 +1076,7 @@ namespace step_rain_of_chaos
 
 			// Wave End
 			{
-				container.emplace_back( game::EnemyProcessor_Sleep::Create( 4.f ) );
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 2.f ) );
 
 				mPackgeContainer.emplace_back( std::move( container ) );
 			}
