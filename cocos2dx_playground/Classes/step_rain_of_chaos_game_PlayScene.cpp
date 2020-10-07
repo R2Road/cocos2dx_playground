@@ -42,6 +42,7 @@
 #include "step_rain_of_chaos_game_SpawnProcessor_Sleep.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
+#include "step_rain_of_chaos_game_ResultScene.h"
 
 USING_NS_CC;
 
@@ -458,7 +459,7 @@ namespace step_rain_of_chaos
 				mStageNode->getChildByTag( TAG_Player )->setOpacity( 255u );
 				unschedule( schedule_selector( PlayScene::update4Intro ) );
 				schedule( schedule_selector( PlayScene::update4Game ) );
-				mPackageIndicator = 1u;
+				mPackageIndicator = 24u;
 				startEnemyProcess();
 				break;
 			}
@@ -533,13 +534,16 @@ namespace step_rain_of_chaos
 		}
 		void PlayScene::startEnemyProcess()
 		{
-			if( mPackgeContainer.size() <= mPackageIndicator )
+			if( mPackgeContainer.size() > mPackageIndicator )
 			{
+				auto enemy_node = static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
+				enemy_node->StartProcess( &mPackgeContainer[mPackageIndicator] );
+			}
+			else
+			{
+				_director->replaceScene( step_rain_of_chaos::game::ResultScene::create( 0.f ) );
 				return;
 			}
-
-			auto enemy_node = static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
-			enemy_node->StartProcess( &mPackgeContainer[mPackageIndicator] );
 		}
 		void PlayScene::playerHasDamage()
 		{
@@ -1062,6 +1066,13 @@ namespace step_rain_of_chaos
 
 			wave_delay -= 0.1f;
 			move_direction = cpg::Random::GetBool();
+
+			// Wave End
+			{
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 4.f ) );
+
+				mPackgeContainer.emplace_back( std::move( container ) );
+			}
 		}
 	}
 }
