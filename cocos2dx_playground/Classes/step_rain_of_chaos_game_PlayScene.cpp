@@ -291,7 +291,7 @@ namespace step_rain_of_chaos
 			// Game Over
 			//
 			{
-				auto game_over_indicator = LayerColor::create( Color4B( 30, 30, 30, 255 ), visibleSize.width, visibleSize.height * 0.3f );
+				auto game_over_indicator = LayerColor::create( Color4B::BLACK, visibleSize.width, visibleSize.height * 0.3f );
 				game_over_indicator->setTag( TAG_GameOver );
 				game_over_indicator->setCascadeOpacityEnabled( true );
 				game_over_indicator->setOpacity( 0u );
