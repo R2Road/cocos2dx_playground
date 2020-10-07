@@ -8,7 +8,8 @@ namespace cpg
 	template<class T, class Compare>
 	constexpr const T& clamp( const T& v, const T& lo, const T& hi, Compare comp )
 	{
-		return CCASSERT( !comp( hi, lo ), "" ), comp( v, lo ) ? lo : comp( hi, v ) ? hi : v;
+		CCASSERT( !comp( hi, lo ), "" );
+		return comp( v, lo ) ? lo : comp( hi, v ) ? hi : v;
 	}
 
 	template<class T>
