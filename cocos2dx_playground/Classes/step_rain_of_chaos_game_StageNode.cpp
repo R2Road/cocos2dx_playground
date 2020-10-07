@@ -230,9 +230,15 @@ namespace step_rain_of_chaos
 
 		void StageNode::update4Collision( float /*dt*/ )
 		{
+			if( !mPlayerCollisionCallback )
+			{
+				return;
+			}
+
 			if( mEnemyCircleCollisionComponent->Check( mPlayerCircleCollisionComponent ) )
 			{
-				CCLOG( "Col : Enemy" );
+				mPlayerCollisionCallback();
+				return;
 			}
 
 			if( mBulletManager->GetLiveTargetContainer().empty() )
@@ -247,6 +253,7 @@ namespace step_rain_of_chaos
 					if( mPlayerCollisionCallback )
 					{
 						mPlayerCollisionCallback();
+						return;
 					}
 				}
 			}

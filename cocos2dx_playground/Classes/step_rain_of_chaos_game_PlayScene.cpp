@@ -42,6 +42,7 @@
 #include "step_rain_of_chaos_game_SpawnProcessor_Sleep.h"
 
 #include "step_rain_of_chaos_game_TitleScene.h"
+#include "step_rain_of_chaos_game_ResultScene.h"
 
 USING_NS_CC;
 
@@ -67,12 +68,13 @@ namespace step_rain_of_chaos
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
+			, mAudioID_forBGM( -1 )
 
 			, mStageConfig()
 			, mStageNode( nullptr )
 			, mBackgroundNode( nullptr )
 
-			, mStep( eIntroStep::Test )
+			, mStep( eIntroStep::FadeIn )
 			, mPackgeContainer()
 			, mPackageIndicator( 0u )
 		{}
@@ -324,6 +326,9 @@ namespace step_rain_of_chaos
 		}
 		void PlayScene::onExit()
 		{
+			experimental::AudioEngine::stop( mAudioID_forBGM );
+			mAudioID_forBGM = -1;
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
@@ -395,6 +400,7 @@ namespace step_rain_of_chaos
 				break;
 
 			case eIntroStep::EnemyProcessStart:
+				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/EmpySpace.ogg", true, 0.1f );
 				startEnemyProcess();
 				++mStep;
 				break;
@@ -533,13 +539,16 @@ namespace step_rain_of_chaos
 		}
 		void PlayScene::startEnemyProcess()
 		{
-			if( mPackgeContainer.size() <= mPackageIndicator )
+			if( mPackgeContainer.size() > mPackageIndicator )
 			{
+				auto enemy_node = static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
+				enemy_node->StartProcess( &mPackgeContainer[mPackageIndicator] );
+			}
+			else
+			{
+				_director->replaceScene( step_rain_of_chaos::game::ResultScene::create( 0.f ) );
 				return;
 			}
-
-			auto enemy_node = static_cast<game::EnemyNode*>( mStageNode->getChildByTag( TAG_Enemy ) );
-			enemy_node->StartProcess( &mPackgeContainer[mPackageIndicator] );
 		}
 		void PlayScene::playerHasDamage()
 		{
@@ -1062,6 +1071,13 @@ namespace step_rain_of_chaos
 
 			wave_delay -= 0.1f;
 			move_direction = cpg::Random::GetBool();
+
+			// Wave End
+			{
+				container.emplace_back( game::EnemyProcessor_Sleep::Create( 4.f ) );
+
+				mPackgeContainer.emplace_back( std::move( container ) );
+			}
 		}
 	}
 }

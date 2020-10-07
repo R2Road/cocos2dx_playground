@@ -80,7 +80,7 @@ namespace step_rain_of_chaos
 				title->setScaleY( visibleSize.height / title->getContentSize().height );
 				title->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.55f
+					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
 				addChild( title, 0 );
 			}

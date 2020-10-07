@@ -79,6 +79,7 @@ namespace step_rain_of_chaos
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
+			int mAudioID_forBGM;
 
 			game::StageConfig mStageConfig;
 			game::StageNode* mStageNode;
