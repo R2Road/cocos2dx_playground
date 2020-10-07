@@ -22,7 +22,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_MoveSpeedView = 20140416;
-	const int BulletCachingAmount = 1000;
+	const int BulletCachingAmount = 500;
 	const int TAG_FireAmountView = 20160528;
 }
 
