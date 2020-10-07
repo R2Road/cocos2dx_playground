@@ -143,7 +143,7 @@ namespace step_rain_of_chaos
 
 			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
 			{
-				_director->replaceScene( step_rain_of_chaos::game::ResultScene::create( 1234.5678f ) );
+				_director->replaceScene( step_rain_of_chaos::game::ResultScene::create( 1234, 5678 ) );
 				return;
 			}
 		}

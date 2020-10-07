@@ -13,9 +13,9 @@ namespace step_rain_of_chaos
 
 		public:
 			static const char* getTitle() { return "Game : Result"; }
-			static cocos2d::Scene* create( const float clear_time );
+			static cocos2d::Scene* create( const int total_wave_count, const int clear_wave_count );
 
-			bool init( const float clear_time );
+			bool init( const int total_wave_count, const int clear_wave_count );
 			void onEnter() override;
 			void onExit() override;
 

@@ -21,10 +21,10 @@ namespace step_rain_of_chaos
 	{
 		ResultScene::ResultScene() : mKeyboardListener( nullptr ) {}
 
-		Scene* ResultScene::create( const float clear_time )
+		Scene* ResultScene::create( const int total_wave_count, const int clear_wave_count )
 		{
 			auto ret = new ( std::nothrow ) ResultScene();
-			if( !ret || !ret->init( clear_time ) )
+			if( !ret || !ret->init( total_wave_count, clear_wave_count ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -37,7 +37,7 @@ namespace step_rain_of_chaos
 			return ret;
 		}
 
-		bool ResultScene::init( const float clear_time )
+		bool ResultScene::init( const int total_wave_count, const int clear_wave_count )
 		{
 			if( !Scene::init() )
 			{
@@ -68,7 +68,7 @@ namespace step_rain_of_chaos
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B::WHITE );
+				auto background_layer = LayerColor::create( total_wave_count == clear_wave_count ? Color4B::WHITE : Color4B::GRAY );
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
@@ -76,7 +76,11 @@ namespace step_rain_of_chaos
 			// Game Clear
 			//
 			{
-				auto label = Label::createWithTTF( "Game Clear", "fonts/NanumSquareR.ttf", 32 );
+				auto label = Label::createWithTTF(
+					total_wave_count == clear_wave_count ? "Game Clear" : "You Died"
+					, "fonts/NanumSquareR.ttf"
+					, 32
+				);
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -89,7 +93,7 @@ namespace step_rain_of_chaos
 			// Result
 			//
 			{
-				auto label = Label::createWithTTF( StringUtils::format( "Clear Time : %.2f", clear_time ) , "fonts/NanumSquareR.ttf", 32 );
+				auto label = Label::createWithTTF( StringUtils::format( "Wave : %d / %d", clear_wave_count, total_wave_count ) , "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )

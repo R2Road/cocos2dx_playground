@@ -88,6 +88,7 @@ namespace step_rain_of_chaos
 			int mStep;
 			PackageContainer mPackgeContainer;
 			std::size_t mPackageIndicator;
+			std::size_t mPackageIndicatorWhenPlayerDie;
 		};
 	}
 }

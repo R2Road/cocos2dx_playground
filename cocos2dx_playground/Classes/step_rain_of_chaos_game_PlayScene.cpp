@@ -77,6 +77,7 @@ namespace step_rain_of_chaos
 			, mStep( eIntroStep::FadeIn )
 			, mPackgeContainer()
 			, mPackageIndicator( 0u )
+			, mPackageIndicatorWhenPlayerDie( 0u )
 		{}
 
 		Scene* PlayScene::create()
@@ -527,7 +528,7 @@ namespace step_rain_of_chaos
 
 			case eGameOverStep::Exit:
 				++mStep;
-				_director->replaceScene( step_rain_of_chaos::game::TitleScene::create() );
+				_director->replaceScene( step_rain_of_chaos::game::ResultScene::create( mPackgeContainer.size(), mPackageIndicatorWhenPlayerDie ) );
 				break;
 			}
 		}
@@ -546,7 +547,7 @@ namespace step_rain_of_chaos
 			}
 			else
 			{
-				_director->replaceScene( step_rain_of_chaos::game::ResultScene::create( 0.f ) );
+				_director->replaceScene( step_rain_of_chaos::game::ResultScene::create( mPackgeContainer.size(), mPackgeContainer.size() ) );
 				return;
 			}
 		}
@@ -556,6 +557,7 @@ namespace step_rain_of_chaos
 			unschedule( schedule_selector( PlayScene::update4Game ) );
 
 			mStep = eGameOverStep::FadeInGameOver;
+			mPackageIndicatorWhenPlayerDie = mPackageIndicator;
 			schedule( schedule_selector( PlayScene::update4GameOver ) );
 		}
 
