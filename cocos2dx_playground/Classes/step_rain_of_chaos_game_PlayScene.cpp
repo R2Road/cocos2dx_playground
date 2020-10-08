@@ -337,7 +337,7 @@ namespace step_rain_of_chaos
 			Scene::onExit();
 		}
 
-		void PlayScene::update4Intro( float delta_time )
+		void PlayScene::update4Intro( float /*delta_time*/ )
 		{
 			switch( mStep )
 			{
@@ -508,7 +508,7 @@ namespace step_rain_of_chaos
 				mBackgroundNode->setPosition( -offset );
 			}
 		}
-		void PlayScene::update4GameOver( float delta_time )
+		void PlayScene::update4GameOver( float /*delta_time*/ )
 		{
 			switch( mStep )
 			{
