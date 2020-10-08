@@ -518,7 +518,7 @@ namespace step_rain_of_chaos
 
 				getChildByTag( TAG_GameOver )->setVisible( true );
 
-				auto fade_in_action = FadeIn::create( 1.5f );
+				auto fade_in_action = FadeIn::create( 2.5f );
 				auto delay_action = DelayTime::create( 3.f );
 				auto FadeInSequence = Sequence::create( fade_in_action, delay_action, CallFunc::create( [this](){ ++mStep; } ), nullptr );
 				getChildByTag( TAG_GameOver )->runAction( FadeInSequence );
