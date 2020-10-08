@@ -230,26 +230,27 @@ namespace step_rain_of_chaos
 
 		void StageNode::update4Collision( float /*dt*/ )
 		{
-			if( !mPlayerCollisionCallback )
+			//
+			// Enemy vs Player
+			//
+			if( mPlayerCollisionCallback )
 			{
-				return;
+				if( mEnemyCircleCollisionComponent->Check( mPlayerCircleCollisionComponent ) )
+				{
+					mPlayerCollisionCallback();
+					return;
+				}
 			}
 
-			if( mEnemyCircleCollisionComponent->Check( mPlayerCircleCollisionComponent ) )
-			{
-				mPlayerCollisionCallback();
-				return;
-			}
-
-			if( mBulletManager->GetLiveTargetContainer().empty() )
-			{
-				return;
-			}
-
+			//
+			// Bullet vs Player
+			//
 			for( auto current_bullet_index : mBulletManager->GetLiveTargetContainer() )
 			{
 				if( mCollisionComponentList[current_bullet_index]->Check( mPlayerCircleCollisionComponent ) )
 				{
+					mBulletLifeComponentList[current_bullet_index]->ProcessBoom();
+
 					if( mPlayerCollisionCallback )
 					{
 						mPlayerCollisionCallback();
