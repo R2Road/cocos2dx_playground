@@ -23,7 +23,7 @@ namespace step_rain_of_chaos
 		private:
 			void selectTestNode( const int node_tag );
 
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;

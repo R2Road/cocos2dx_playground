@@ -40,7 +40,7 @@ namespace step_clickclick
 
 		private:
 			void onGameProcess( const int block_linear_index );
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 			void updateTestAction( const eTestActionType test_action_type );
 			void updateSelectedBlockTypeView( const step_clickclick::game::eBlockType block_type );

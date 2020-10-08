@@ -30,7 +30,7 @@ namespace step_clickclick
 			void updateCountView( const float count );
 			void updateForNextStep( float dt );
 
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;

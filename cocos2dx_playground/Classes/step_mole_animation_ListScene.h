@@ -24,7 +24,7 @@ namespace step_mole
 			void onExit() override;
 
 		private:
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 			void playAnimation( const cpg::animation::eIndex animation_index );
 			void stopAnimation();

@@ -29,7 +29,7 @@ namespace step_pathfinder
 			void saveJsonFile( const char* json_path, const ContainerT& json_datas ) const;
 			bool loadJsonFile( const char* json_path, std::string& out_json_string, ContainerT& out_json_datas );
 
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;

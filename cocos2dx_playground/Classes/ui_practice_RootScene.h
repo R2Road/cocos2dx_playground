@@ -16,7 +16,7 @@ namespace ui_practice
 		void onEnter() override;
 		void onExit() override;
 
-		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;

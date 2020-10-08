@@ -21,8 +21,8 @@ namespace step_typetype
 		private:
 			void updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode );
 			void clearKeyCodeView();
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			int mPressedKeyCount;

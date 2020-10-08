@@ -41,7 +41,7 @@ namespace step_pathfinder
 			void updateForExit( float dt );
 			void startExitProcess( const eNextSceneType next_scene_type, float wait_time );
 
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;

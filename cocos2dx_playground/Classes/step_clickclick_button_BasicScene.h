@@ -26,7 +26,7 @@ namespace step_clickclick
 			void updateView_TouchPosition( const cocos2d::Vec2 touch_position );
 
 			void updateForExit( float dt );
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;

@@ -36,7 +36,7 @@ namespace step_typetype
 		void customeUpdate( float dt );
 		void updateLabel( ScheduleView& schedule_view );
 
-		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* /*event*/ );
+		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
