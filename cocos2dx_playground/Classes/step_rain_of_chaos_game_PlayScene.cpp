@@ -588,7 +588,7 @@ namespace step_rain_of_chaos
 		void PlayScene::playerHasDamage()
 		{
 			//
-			// Stop : Collision Check, Player Move
+			// Stop : Player Move, Background Scroll
 			//
 			mStageNode->SetPlayerCollisionCallback( nullptr );
 			unschedule( schedule_selector( PlayScene::update4Game ) );
