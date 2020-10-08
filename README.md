@@ -46,7 +46,7 @@
   - c++
 
 - editor
-  - vs 2017( version : 15.9.16 )
+  - vs 2017( version : 15.9.27 )
 
 - sound
   - [sfxr](http://www.drpetter.se/project_sfxr.html)
