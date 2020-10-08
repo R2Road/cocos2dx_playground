@@ -246,9 +246,9 @@ namespace step_rain_of_chaos
 				return;
 			}
 
-			for( auto cur = mBulletManager->GetLiveTargetContainer().begin(), end = mBulletManager->GetLiveTargetContainer().end(); end != cur; ++cur )
+			for( auto current_bullet_index : mBulletManager->GetLiveTargetContainer() )
 			{
-				if( mCollisionComponentList[*cur]->Check( mPlayerCircleCollisionComponent ) )
+				if( mCollisionComponentList[current_bullet_index]->Check( mPlayerCircleCollisionComponent ) )
 				{
 					if( mPlayerCollisionCallback )
 					{
