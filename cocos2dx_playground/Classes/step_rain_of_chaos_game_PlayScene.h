@@ -45,6 +45,7 @@ namespace step_rain_of_chaos
 
 			enum eGameOverStep
 			{
+				DyingMessage,
 				FadeInGameOver,
 
 				Exit = FadeInGameOver + 2,
