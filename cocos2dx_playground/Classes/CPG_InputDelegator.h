@@ -1,6 +1,7 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d//CCNode.h"
+
 #include "CPG_Input_AllowedKeys.h"
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
@@ -18,6 +19,10 @@ namespace cpg
 		public:
 			static Delegator* create( const char* allowed_keys_file_name );
 
+		private:
+			bool init( const char* allowed_keys_file_name );
+
+		public:
 			void onEnter() override;
 			void update( float dt ) override;
 			void post_update( float dt );

@@ -1,5 +1,10 @@
 #include "CPG_InputDelegator.h"
 
+#include <new>
+
+#include "base/CCEventDispatcher.h"
+#include "base/CCEventListenerKeyboard.h"
+
 #include "CPG_Input_BasicCollector.h"
 
 USING_NS_CC;
@@ -18,28 +23,39 @@ namespace cpg
 		Delegator* Delegator::create( const char* allowed_keys_file_name )
 		{
 			auto ret = new ( std::nothrow ) Delegator();
-			if( !ret || !ret->init() )
+			if( !ret || !ret->init( allowed_keys_file_name ) )
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{
 				ret->autorelease();
 			}
 
-			ret->mAllowedKeys = AllowedKeys::load( allowed_keys_file_name );
-
-			ret->scheduleUpdateWithPriority( -1 );
-			ret->schedule( schedule_selector( Delegator::post_update) );
 			return ret;
+		}
+
+		bool Delegator::init( const char* allowed_keys_file_name )
+		{
+			if( !Node::init() )
+			{
+				return false;
+			}
+
+			mAllowedKeys = AllowedKeys::load( allowed_keys_file_name );
+
+			scheduleUpdateWithPriority( -1 );
+			schedule( schedule_selector( Delegator::post_update ) );
+
+			return true;
 		}
 
 		void Delegator::onEnter()
 		{
 			Node::onEnter();
 
+			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( Delegator::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( Delegator::onKeyReleased, this );
@@ -59,18 +75,19 @@ namespace cpg
 		}
 		void Delegator::onExit()
 		{
-			if( mKeyboardListener )
-			{
-				getEventDispatcher()->removeEventListener( mKeyboardListener );
-				mKeyboardListener = nullptr;
-			}
+			assert( mKeyboardListener );
+			getEventDispatcher()->removeEventListener( mKeyboardListener );
+			mKeyboardListener = nullptr;
+
 			Node::onExit();
 		}
 
 		void Delegator::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( !mAllowedKeys[static_cast<std::size_t>( keycode )] )
+			{
 				return;
+			}
 
 			mKeycodeCollector.onKeyPressed( keycode );
 		}
@@ -78,7 +95,9 @@ namespace cpg
 		void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( !mAllowedKeys[static_cast<std::size_t>( keycode )] )
+			{
 				return;
+			}
 
 			mKeycodeCollector.onKeyReleased( keycode );
 		}
