@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 namespace step99
 {
