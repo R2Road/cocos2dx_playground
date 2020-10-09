@@ -1,6 +1,7 @@
 #include "Step99_RootScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 
 #include "PlayGroundScene.h"
@@ -28,11 +29,20 @@ namespace step99
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
 			ret->autorelease();
+		}
+
+		return ret;
+	}
+
+	bool RootScene::init()
+	{
+		if( !Scene::init() )
+		{
+			return false;
 		}
 
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -44,27 +54,26 @@ namespace step99
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << "\n";
-			ss << "\n";
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
-			ss << "\n";
-			ss << "\n";
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[1] : Key Allow";
-			ss << "\n";
+			ss << std::endl;
 			ss << "[2] : Allowed Keys Test";
-			ss << "\n";
-			ss << "\n";
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[3] : Key Config";
-			ss << "\n";
+			ss << std::endl;
 			ss << "[4] : Configed Keys Test";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
-			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12 );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, 1 );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -72,19 +81,20 @@ namespace step99
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 0, 9, 61, 255 ) );
-			ret->addChild( background_layer, 0 );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		return ret;
+		return true;
 	}
 
 	void RootScene::onEnter()
 	{
 		Scene::onEnter();
 
+		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
-		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
 	void RootScene::onExit()
 	{

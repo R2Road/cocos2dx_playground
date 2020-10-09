@@ -12,6 +12,10 @@ namespace step99
 		static const char* getTitle() { return "Step 99 : @_@"; }
 		static cocos2d::Scene* create();
 
+	private:
+		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 
