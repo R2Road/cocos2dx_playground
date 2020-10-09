@@ -1,9 +1,9 @@
 #pragma once
 
-#include <vector>
 #include <memory>
+#include <vector>
 
-#include "cocos2d.h"
+#include "base/CCEventKeyboard.h"
 
 namespace cpg
 {
@@ -33,7 +33,7 @@ namespace cpg
 			static const KeyMapSp& get_default();
 			static const KeyMapSp& get_dummy();
 
-			const int getKeyIndex( const cocos2d::EventKeyboard::KeyCode key_code ) const;
+			int getKeyIndex( const cocos2d::EventKeyboard::KeyCode key_code ) const;
 
 			const KeyMapContainer mContainer;
 		};
