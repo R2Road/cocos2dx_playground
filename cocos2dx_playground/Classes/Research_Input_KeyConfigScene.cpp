@@ -1,6 +1,14 @@
 #include "Research_Input_KeyConfigScene.h"
 
+#include <new>
+#include <numeric>
 #include <sstream>
+
+#include "2d/CCLabel.h"
+#include "base/CCDirector.h"
+#include "base/CCEventDispatcher.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "platform/CCFileUtils.h"
 
 #include "Step99_RootScene.h"
 #include "CPG_Input_KeyCodeNames.h"
@@ -34,17 +42,25 @@ namespace research
 					label->setString( h.mName );
 
 					if( result_size.width < label->getContentSize().width )
+					{
 						result_size.width = label->getContentSize().width;
+					}
 
 					if( result_size.height < label->getContentSize().height )
+					{
 						result_size.height = label->getContentSize().height;
+					}
 				}
 
 				label->setString( cpg::input::KeyCodeNames::get_longest() );
 				if( result_size.width < label->getContentSize().width )
+				{
 					result_size.width = label->getContentSize().width;
+				}
 				if( result_size.height < label->getContentSize().height )
+				{
 					result_size.height = label->getContentSize().height;
+				}
 
 				return Size(
 					std::ceilf( ( result_size.width * 2 ) + ( control_side_margin.width * 2 ) + inner_horizontal_margin )
@@ -88,7 +104,7 @@ namespace research
 		}
 
 		KeyConfigScene::KeyConfigScene() :
-			keyboard_listener( nullptr )
+			mKeyboardListener( nullptr )
 
 			, mAllowedKeys()
 			, mKeymapConfigHelper()
@@ -102,15 +118,24 @@ namespace research
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{
 				ret->autorelease();
 			}
 
-			const auto visibleSize = Director::getInstance()->getVisibleSize();
-			const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+			return ret;
+		}
+
+		bool KeyConfigScene::init()
+		{
+			if( !Scene::init() )
+			{
+				return false;
+			}
+
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			//
 			// summury
@@ -118,9 +143,9 @@ namespace research
 			{
 				std::stringstream ss;
 				ss << "+ Input : Key Config Scene";
-				ss << "\n";
-				ss << "\n";
-				ss << "<Config File Path> : " << cocos2d::FileUtils::getInstance()->getWritablePath();
+				ss << std::endl;
+				ss << std::endl;
+				ss << "<Config File Path> : " << FileUtils::getInstance()->getWritablePath();
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
@@ -129,7 +154,7 @@ namespace research
 					visibleOrigin.x
 					, visibleOrigin.y + visibleSize.height
 				) );
-				ret->addChild( label, 9999 );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -146,8 +171,8 @@ namespace research
 				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 				button->setScale9Enabled( true );
 				button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
-				button->addTouchEventListener( CC_CALLBACK_2( KeyConfigScene::onExitButton, ret ) );
-				ret->addChild( button, 9999 );
+				button->addTouchEventListener( CC_CALLBACK_2( KeyConfigScene::onExitButton, this ) );
+				addChild( button, std::numeric_limits<int>::max() );
 				button->setTitleLabel( label );
 
 				button->setPosition( Vec2(
@@ -160,20 +185,20 @@ namespace research
 			// key info
 			//
 			{
-				ret->mAllowedKeys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
-				ret->mKeymapConfigHelper.load( research::Setting::getKeyMapFileName().c_str() );
+				mAllowedKeys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
+				mKeymapConfigHelper.load( research::Setting::getKeyMapFileName().c_str() );
 			}
 
 			//
 			// Setup Key Config Controls
 			//
 			{
-				static const Size size_of_key_config_control = calculateSizeOfKeyConfigControl( ret->mKeymapConfigHelper );
+				static const Size size_of_key_config_control = calculateSizeOfKeyConfigControl( mKeymapConfigHelper );
 				const Size side_margin( 8.f, 8.f );
 				const float inner_margin = 4.f;
 				const float total_height = (
-					( size_of_key_config_control.height * ret->mKeymapConfigHelper.getContainer().size() )
-					+ ( inner_margin * std::max( 0, static_cast<int>( ret->mKeymapConfigHelper.getContainer().size() ) - 1 )  )
+					( size_of_key_config_control.height * mKeymapConfigHelper.getContainer().size() )
+					+ ( inner_margin * std::max( 0, static_cast<int>( mKeymapConfigHelper.getContainer().size() ) - 1 )  )
 					+ ( side_margin.height * 2 )
 				);
 				const float start_x = visibleOrigin.x + ( visibleSize.width * 0.5f );
@@ -182,7 +207,7 @@ namespace research
 				auto scroll_view = ui::ScrollView::create();
 				scroll_view->setDirection( ui::ScrollView::Direction::VERTICAL );
 				scroll_view->setContentSize( visibleSize );
-				ret->addChild( scroll_view );
+				addChild( scroll_view );
 				{
 					Node* root_node = Node::create();
 					root_node->setContentSize( Size(
@@ -198,12 +223,12 @@ namespace research
 					scroll_view->setInnerContainerSize( root_node->getContentSize() );
 					{
 						int count = 0;
-						for( const auto& h : ret->mKeymapConfigHelper.getContainer() )
+						for( const auto& h : mKeymapConfigHelper.getContainer() )
 						{
 							if( h.mName.empty() || h.mSpriteFrameName.empty() )
 								continue;
 
-							auto control = createKeyConfigControl( size_of_key_config_control, h.mName, h.mIdx, h.mKeycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, ret ) );
+							auto control = createKeyConfigControl( size_of_key_config_control, h.mName, h.mIdx, h.mKeycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, this ) );
 							control->setPosition( Vec2(
 								start_x
 								, start_y + ( ( control->getContentSize().height + inner_margin ) * count )
@@ -215,9 +240,6 @@ namespace research
 					}
 				}
 			}
-			
-			ret->scheduleUpdate();
-			return ret;
 		}
 
 
@@ -225,16 +247,16 @@ namespace research
 		{
 			Scene::onEnter();
 
-			assert( !keyboard_listener );
-			keyboard_listener = EventListenerKeyboard::create();
-			keyboard_listener->onKeyReleased = CC_CALLBACK_2( KeyConfigScene::onKeyReleased, this );
-			getEventDispatcher()->addEventListenerWithFixedPriority( keyboard_listener, 1 );
+			assert( !mKeyboardListener );
+			mKeyboardListener = EventListenerKeyboard::create();
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyConfigScene::onKeyReleased, this );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void KeyConfigScene::onExit()
 		{
-			assert( keyboard_listener );
-			getEventDispatcher()->removeEventListener( keyboard_listener );
-			keyboard_listener = nullptr;
+			assert( mKeyboardListener );
+			getEventDispatcher()->removeEventListener( mKeyboardListener );
+			mKeyboardListener = nullptr;
 
 			Scene::onExit();
 		}
@@ -243,7 +265,9 @@ namespace research
 		void KeyConfigScene::onKeyConfigControl( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
+			{
 				return;
+			}
 
 			auto button_node = static_cast<Node*>( sender );
 			
@@ -260,19 +284,27 @@ namespace research
 			button_bg->setVisible( !button_bg->isVisible() );
 
 			if( button_bg->isVisible() )
+			{
 				mCurrentButtonNode = button_node;
+			}
 			else
+			{
 				mCurrentButtonNode = nullptr;
+			}
 		}
 
 
 		void KeyConfigScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( !mCurrentButtonNode )
+			{
 				return;
+			}
 
 			if( !mAllowedKeys[static_cast<std::size_t>( keycode )] )
+			{
 				return;
+			}
 
 			mKeymapConfigHelper.set( mCurrentButtonNode->getTag(), keycode );
 
@@ -284,10 +316,14 @@ namespace research
 		void KeyConfigScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
+			{
 				return;
+			}
 
 			if( !isScheduled( schedule_selector( KeyConfigScene::update_forExit ) ) )
+			{
 				scheduleOnce( schedule_selector( KeyConfigScene::update_forExit ), 0.f );
+			}
 		}
 		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
