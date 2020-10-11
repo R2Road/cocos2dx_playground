@@ -81,7 +81,7 @@ namespace step_defender
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 0, 9, 61, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 10, 52, 58, 255 ) );
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
