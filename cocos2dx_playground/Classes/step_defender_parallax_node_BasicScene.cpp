@@ -87,14 +87,14 @@ namespace step_defender
 			//
 			//
 			{
-				auto node = ParallaxNode::create();
-				node->setTag( TAG_Parallax );
-				addChild( node );
+				auto background_node = ParallaxNode::create();
+				background_node->setTag( TAG_Parallax );
+				addChild( background_node );
 
 				{
 					auto sprite = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 					sprite->setScale( 1.f );
-					node->addChild( sprite, 1, Vec2( 1.f, 1.f )
+					background_node->addChild( sprite, 1, Vec2( 0.6f, 1.f )
 						, Vec2(
 							visibleOrigin.x + ( visibleSize.width * 0.5f )
 							, visibleOrigin.y + visibleSize.height * 0.5f
@@ -105,7 +105,7 @@ namespace step_defender
 				{
 					auto sprite = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 					sprite->setScale( 2.f );
-					node->addChild( sprite, 2, Vec2( 2.f, 1.f )
+					background_node->addChild( sprite, 2, Vec2( 0.8f, 1.f )
 						, Vec2(
 							visibleOrigin.x + ( visibleSize.width * 0.5f )
 							, visibleOrigin.y + visibleSize.height * 0.5f
@@ -116,7 +116,7 @@ namespace step_defender
 				{
 					auto sprite = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 					sprite->setScale( 3.f );
-					node->addChild( sprite, 3, Vec2( 3.f, 1.f )
+					background_node->addChild( sprite, 3, Vec2( 1.f, 1.f )
 						, Vec2(
 							visibleOrigin.x + ( visibleSize.width * 0.5f )
 							, visibleOrigin.y + visibleSize.height * 0.5f
@@ -153,12 +153,14 @@ namespace step_defender
 		{
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
-				getChildByTag( TAG_Parallax )->setPosition( getChildByTag( TAG_Parallax )->getPosition() + Vec2( -100.f * delta_time, 0.f ) );
+				auto background_node = getChildByTag( TAG_Parallax );
+				background_node->setPosition( background_node->getPosition() + Vec2( -100.f * delta_time, 0.f ) );
 			}
 
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
-				getChildByTag( TAG_Parallax )->setPosition( getChildByTag( TAG_Parallax )->getPosition() + Vec2( 100.f * delta_time, 0.f ) );
+				auto background_node = getChildByTag( TAG_Parallax );
+				background_node->setPosition( background_node->getPosition() + Vec2( 100.f * delta_time, 0.f ) );
 			}
 		}
 
