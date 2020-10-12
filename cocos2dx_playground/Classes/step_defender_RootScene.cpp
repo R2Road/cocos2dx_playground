@@ -7,6 +7,7 @@
 #include "PlayGroundScene.h"
 
 #include "step_defender_parallax_node_BasicScene.h"
+#include "step_defender_parallax_node_BasicScene02.h"
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
@@ -55,6 +56,8 @@ namespace step_defender
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[1] : " << step_defender::parallax_node::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << step_defender::parallax_node::BasicScene02::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -117,6 +120,9 @@ namespace step_defender
 
 		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( step_defender::parallax_node::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
+			_director->replaceScene( step_defender::parallax_node::BasicScene02::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
