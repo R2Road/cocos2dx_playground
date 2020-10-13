@@ -160,6 +160,9 @@
     <Filter Include="src\scene\step_01_typetype\label">
       <UniqueIdentifier>{9e7cadda-7276-4f73-ba22-3284cd7e7cca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_06_defender\parallax_node">
+      <UniqueIdentifier>{d6cd02e7-978c-4fcb-a147-0de27f7bfbaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -698,6 +701,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_ResultScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_parallax_node_BasicScene.cpp">
+      <Filter>src\scene\step_06_defender\parallax_node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_parallax_node_BasicScene02.cpp">
+      <Filter>src\scene\step_06_defender\parallax_node</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1270,6 +1279,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_ResultScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_parallax_node_BasicScene.h">
+      <Filter>src\scene\step_06_defender\parallax_node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_parallax_node_BasicScene02.h">
+      <Filter>src\scene\step_06_defender\parallax_node</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
