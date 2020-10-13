@@ -4,14 +4,13 @@
 #include <numeric>
 #include <sstream>
 
-#include "2d/CCParallaxNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCParallaxNode.h"
 #include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 
 USING_NS_CC;
 
