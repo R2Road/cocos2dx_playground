@@ -102,7 +102,7 @@ namespace step_defender
 				{
 					const float parallax_rate = 0.6f;
 					const float part_width = 100.f;
-					const float part_height = TotalContentSize.height;
+					const float part_height = TotalContentSize.height * 0.75f;
 
 					auto background_node = Node::create();
 					background_root_node->addChild( background_node, 1, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
