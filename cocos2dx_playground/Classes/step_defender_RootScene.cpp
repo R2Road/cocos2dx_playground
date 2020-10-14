@@ -8,6 +8,7 @@
 
 #include "step_defender_parallax_node_BasicScene.h"
 #include "step_defender_parallax_node_BasicScene02.h"
+#include "step_defender_parallax_node_MoveWithCameraScene.h"
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
@@ -58,6 +59,8 @@ namespace step_defender
 			ss << "[1] : " << step_defender::parallax_node::BasicScene::getTitle();
 			ss << std::endl;
 			ss << "[2] : " << step_defender::parallax_node::BasicScene02::getTitle();
+			ss << std::endl;
+			ss << "[3] : " << step_defender::parallax_node::MoveWithCameraScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -123,6 +126,9 @@ namespace step_defender
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_defender::parallax_node::BasicScene02::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			_director->replaceScene( step_defender::parallax_node::MoveWithCameraScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:

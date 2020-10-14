@@ -708,6 +708,9 @@
     <ClCompile Include="..\Classes\step_defender_parallax_node_BasicScene02.cpp">
       <Filter>src\scene\step_06_defender\parallax_node</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_parallax_node_MoveWithCameraScene.cpp">
+      <Filter>src\scene\step_06_defender\parallax_node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1284,6 +1287,9 @@
       <Filter>src\scene\step_06_defender\parallax_node</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_parallax_node_BasicScene02.h">
+      <Filter>src\scene\step_06_defender\parallax_node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_parallax_node_MoveWithCameraScene.h">
       <Filter>src\scene\step_06_defender\parallax_node</Filter>
     </ClInclude>
   </ItemGroup>
