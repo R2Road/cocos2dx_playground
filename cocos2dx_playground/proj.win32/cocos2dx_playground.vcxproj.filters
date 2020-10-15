@@ -121,9 +121,6 @@
     <Filter Include="src\scene\step_06_defender">
       <UniqueIdentifier>{84570fc2-9a45-4872-87ef-69d866b1c100}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_06_defender\fsm1test">
-      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_05_rain_of_chaos\batch_node">
       <UniqueIdentifier>{896d43cf-1403-4462-901a-28b5473dd318}</UniqueIdentifier>
     </Filter>
@@ -145,9 +142,6 @@
     <Filter Include="src\scene\step_05_rain_of_chaos\game\spawnprocessor">
       <UniqueIdentifier>{512811c5-387d-402b-8dc6-c641a889e451}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_06_defender\collision">
-      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_05_rain_of_chaos\game\enemyprocessor">
       <UniqueIdentifier>{f8f106bc-152d-4802-9182-53511a33f5ed}</UniqueIdentifier>
     </Filter>
@@ -162,6 +156,12 @@
     </Filter>
     <Filter Include="src\scene\step_06_defender\parallax_node">
       <UniqueIdentifier>{d6cd02e7-978c-4fcb-a147-0de27f7bfbaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step99\collision">
+      <UniqueIdentifier>{e7745824-03e3-48c3-a6df-54dd91a6403f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step99\fsm1test">
+      <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -220,13 +220,13 @@
       <Filter>src\scene\step99</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
-      <Filter>src\scene\step_06_defender\fsm1test</Filter>
+      <Filter>src\scene\step99\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\fsm1_Machine.cpp">
       <Filter>src\fsm1</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_AnimationControlScene.cpp">
-      <Filter>src\scene\step_06_defender\fsm1test</Filter>
+      <Filter>src\scene\step99\fsm1test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp">
       <Filter>src\animation</Filter>
@@ -334,7 +334,7 @@
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.cpp">
-      <Filter>src\scene\step_06_defender\collision</Filter>
+      <Filter>src\scene\step99\collision</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_defender_RootScene.cpp">
       <Filter>src\scene\step_06_defender</Filter>
@@ -768,7 +768,7 @@
       <Filter>src\scene\step99</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h">
-      <Filter>src\scene\step_06_defender\fsm1test</Filter>
+      <Filter>src\scene\step99\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\fsm1_iState.h">
       <Filter>src\fsm1</Filter>
@@ -777,7 +777,7 @@
       <Filter>src\fsm1</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_AnimationControlScene.h">
-      <Filter>src\scene\step_06_defender\fsm1test</Filter>
+      <Filter>src\scene\step99\fsm1test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Animation_Index.h">
       <Filter>src\animation</Filter>
@@ -891,7 +891,7 @@
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_collision_CollectionScene.h">
-      <Filter>src\scene\step_06_defender\collision</Filter>
+      <Filter>src\scene\step99\collision</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_RootScene.h">
       <Filter>src\scene\step_06_defender</Filter>

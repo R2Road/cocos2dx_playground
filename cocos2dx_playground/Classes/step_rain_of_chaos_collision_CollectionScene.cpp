@@ -29,14 +29,15 @@ namespace step_rain_of_chaos
 {
 	namespace collision
 	{
-		CollectionScene::CollectionScene() :
-			mKeyboardListener( nullptr )
+		CollectionScene::CollectionScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
 			, mCollisionCollection()
 		{}
 
-		Scene* CollectionScene::create()
+		Scene* CollectionScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) CollectionScene();
+			auto ret = new ( std::nothrow ) CollectionScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -255,7 +256,7 @@ namespace step_rain_of_chaos
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				_director->replaceScene( step_defender::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
 

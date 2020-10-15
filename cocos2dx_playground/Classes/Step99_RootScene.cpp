@@ -12,6 +12,10 @@
 #include "Research_Input_KeyConfigScene.h"
 #include "Research_Input_ConfigedKeysTestScene.h"
 
+#include "step02_fsm1test_BasicScene.h"
+#include "step02_fsm1test_AnimationControlScene.h"
+#include "step_rain_of_chaos_collision_CollectionScene.h"
+
 #include "Research_Setting.h"
 
 USING_NS_CC;
@@ -67,6 +71,20 @@ namespace step99
 			ss << "[3] : Key Config";
 			ss << std::endl;
 			ss << "[4] : Configed Keys Test";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[A] : " << step02::fsm1test::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[B] : " << step02::fsm1test::AnimationControlScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[C] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12 );
 			label->setPosition( Vec2(
@@ -126,6 +144,16 @@ namespace step99
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( research::input::ConfigedKeysTestScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_A:
+			_director->replaceScene( step02::fsm1test::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_B:
+			_director->replaceScene( step02::fsm1test::AnimationControlScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_C:
+			_director->replaceScene( step_rain_of_chaos::collision::CollectionScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:

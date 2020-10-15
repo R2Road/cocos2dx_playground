@@ -2,8 +2,8 @@
 
 #include <list>
 
+#include "helper_BackToThePreviousScene.h"
 #include "2d/CCScene.h"
-#include "ui/UIWidget.h"
 
 namespace step_mole
 {
@@ -14,17 +14,17 @@ namespace step_rain_of_chaos
 {
 	namespace collision
 	{
-		class CollectionScene : public cocos2d::Scene
+		class CollectionScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		public:
 			using ContainerT = std::list<step_mole::CircleCollisionComponent*>;
 
 		private:
-			CollectionScene();
+			CollectionScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
 			static const char* getTitle() { return "Collision : Collection"; }
-			static cocos2d::Scene* create();
+			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
 			void onEnter() override;

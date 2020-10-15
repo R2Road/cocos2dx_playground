@@ -1,7 +1,7 @@
 #pragma once
 
+#include "helper_BackToThePreviousScene.h"
 #include "2d/CCScene.h"
-#include "ui/UIWidget.h"
 
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
 #include "fsm1_Machine.h"
@@ -10,14 +10,14 @@ namespace step02
 {
 	namespace fsm1test
 	{
-		class AnimationControlScene : public cocos2d::Scene
+		class AnimationControlScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
-			AnimationControlScene();
+			AnimationControlScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
 			static const char* getTitle() { return "FSM1 Test : Animation Control"; }
-			static cocos2d::Scene* create();
+			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
 			void onEnter() override;

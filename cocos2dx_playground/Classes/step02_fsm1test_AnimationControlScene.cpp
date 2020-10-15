@@ -14,7 +14,6 @@
 #include "base/CCEventDispatcher.h"
 
 #include "fsm1_iState.h"
-#include "step_defender_RootScene.h"
 
 USING_NS_CC;
 
@@ -116,12 +115,14 @@ namespace step02
 {
 	namespace fsm1test
 	{
-		AnimationControlScene::AnimationControlScene() : mKeyboardListener( nullptr )
+		AnimationControlScene::AnimationControlScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
 		{}
 
-		Scene* AnimationControlScene::create()
+		Scene* AnimationControlScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) AnimationControlScene();
+			auto ret = new ( std::nothrow ) AnimationControlScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -252,7 +253,7 @@ namespace step02
 
 		void AnimationControlScene::updateForExit( float /*dt*/ )
 		{
-			_director->replaceScene( step_defender::RootScene::create() );
+			helper::BackToThePreviousScene::MoveBack();
 		}
 		void AnimationControlScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
