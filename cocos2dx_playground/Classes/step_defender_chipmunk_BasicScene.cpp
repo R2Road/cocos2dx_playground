@@ -22,17 +22,17 @@ namespace
 
 namespace step_defender
 {
-	namespace parallax_node
+	namespace chipmunk
 	{
-		MoveWithCameraScene::MoveWithCameraScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
 		{}
 
-		Scene* MoveWithCameraScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) MoveWithCameraScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) BasicScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -46,7 +46,7 @@ namespace step_defender
 			return ret;
 		}
 
-		bool MoveWithCameraScene::init()
+		bool BasicScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -224,22 +224,22 @@ namespace step_defender
 				}
 			}
 
-			schedule( schedule_selector( MoveWithCameraScene::update4Move ) );
+			schedule( schedule_selector( BasicScene::update4Move ) );
 
 			return true;
 		}
 
-		void MoveWithCameraScene::onEnter()
+		void BasicScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( MoveWithCameraScene::onKeyPressed, this );
-			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( MoveWithCameraScene::onKeyReleased, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( BasicScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void MoveWithCameraScene::onExit()
+		void BasicScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -248,7 +248,7 @@ namespace step_defender
 			Scene::onExit();
 		}
 
-		void MoveWithCameraScene::update4Move( float delta_time )
+		void BasicScene::update4Move( float delta_time )
 		{
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
@@ -283,7 +283,7 @@ namespace step_defender
 			}
 		}
 
-		void MoveWithCameraScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+		void BasicScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
 			{
@@ -293,7 +293,7 @@ namespace step_defender
 
 			mKeyCodeCollector.onKeyPressed( key_code );
 		}
-		void MoveWithCameraScene::onKeyReleased( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+		void BasicScene::onKeyReleased( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			mKeyCodeCollector.onKeyReleased( key_code );
 		}

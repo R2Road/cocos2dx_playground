@@ -57,7 +57,7 @@ namespace step_defender
 			ss << std::endl;
 			ss << "[2] : " << step_defender::parallax_node::RatioCheckScene::getTitle();
 			ss << std::endl;
-			ss << "[3] : " << step_defender::parallax_node::MoveWithCameraScene::getTitle();
+			ss << "[3] : " << step_defender::chipmunk::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -115,7 +115,7 @@ namespace step_defender
 			_director->replaceScene( step_defender::parallax_node::RatioCheckScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			_director->replaceScene( step_defender::parallax_node::MoveWithCameraScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_defender::chipmunk::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:

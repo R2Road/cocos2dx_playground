@@ -7,12 +7,12 @@
 
 namespace step_defender
 {
-	namespace parallax_node
+	namespace chipmunk
 	{
-		class MoveWithCameraScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+		class BasicScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
-			MoveWithCameraScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
 			static const char* getTitle() { return "Parallax Node : Move with Camera"; }
