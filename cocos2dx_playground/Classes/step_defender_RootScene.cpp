@@ -8,7 +8,7 @@
 
 #include "step_defender_parallax_node_BasicScene.h"
 #include "step_defender_parallax_node_RatioCheckScene.h"
-#include "step_defender_parallax_node_MoveWithCameraScene.h"
+#include "step_defender_chipmunk_BasicScene.h"
 
 USING_NS_CC;
 

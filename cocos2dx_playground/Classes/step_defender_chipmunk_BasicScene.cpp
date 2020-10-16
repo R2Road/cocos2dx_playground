@@ -1,4 +1,4 @@
-#include "step_defender_parallax_node_MoveWithCameraScene.h"
+#include "step_defender_chipmunk_BasicScene.h"
 
 #include <new>
 #include <numeric>
