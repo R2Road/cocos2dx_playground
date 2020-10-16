@@ -7,7 +7,7 @@
 #include "PlayGroundScene.h"
 
 #include "step_defender_parallax_node_BasicScene.h"
-#include "step_defender_parallax_node_BasicScene02.h"
+#include "step_defender_parallax_node_RatioCheckScene.h"
 #include "step_defender_parallax_node_MoveWithCameraScene.h"
 
 USING_NS_CC;
@@ -55,7 +55,7 @@ namespace step_defender
 			ss << std::endl;
 			ss << "[1] : " << step_defender::parallax_node::BasicScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step_defender::parallax_node::BasicScene02::getTitle();
+			ss << "[2] : " << step_defender::parallax_node::RatioCheckScene::getTitle();
 			ss << std::endl;
 			ss << "[3] : " << step_defender::parallax_node::MoveWithCameraScene::getTitle();
 			ss << std::endl;
@@ -112,7 +112,7 @@ namespace step_defender
 			_director->replaceScene( step_defender::parallax_node::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			_director->replaceScene( step_defender::parallax_node::BasicScene02::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_defender::parallax_node::RatioCheckScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( step_defender::parallax_node::MoveWithCameraScene::create( helper::CreateSceneMover<RootScene>() ) );

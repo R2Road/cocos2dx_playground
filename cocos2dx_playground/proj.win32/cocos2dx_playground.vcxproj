@@ -176,7 +176,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_clickclick_game_BlockView.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_Processor.cpp" />
     <ClCompile Include="..\Classes\step_defender_parallax_node_BasicScene.cpp" />
-    <ClCompile Include="..\Classes\step_defender_parallax_node_BasicScene02.cpp" />
+    <ClCompile Include="..\Classes\step_defender_parallax_node_RatioCheckScene.cpp" />
     <ClCompile Include="..\Classes\step_defender_parallax_node_MoveWithCameraScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_AnimationComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp" />
@@ -363,7 +363,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_clickclick_game_BlockView.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_Processor.h" />
     <ClInclude Include="..\Classes\step_defender_parallax_node_BasicScene.h" />
-    <ClInclude Include="..\Classes\step_defender_parallax_node_BasicScene02.h" />
+    <ClInclude Include="..\Classes\step_defender_parallax_node_RatioCheckScene.h" />
     <ClInclude Include="..\Classes\step_defender_parallax_node_MoveWithCameraScene.h" />
     <ClInclude Include="..\Classes\step_mole_AnimationComponent.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Index.h" />
