@@ -57,6 +57,7 @@ namespace step_defender
 			ss << std::endl;
 			ss << "[2] : " << step_defender::parallax_node::RatioCheckScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
 			ss << "[3] : " << step_defender::chipmunk::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
