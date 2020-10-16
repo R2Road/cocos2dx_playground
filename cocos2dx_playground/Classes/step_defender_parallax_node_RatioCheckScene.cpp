@@ -17,6 +17,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_Parallax = 10000;
+	const float ScrollSpeed = 300.f;
 }
 
 namespace step_defender
@@ -86,7 +87,21 @@ namespace step_defender
 			}
 
 			//
+			// Explain
 			//
+			{
+				auto label = Label::createWithTTF( "+ Do Scroll and Check Green Line", "fonts/NanumSquareR.ttf", 10 );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Test Setup
 			//
 			{
 				const Size TotalContentSize( visibleSize.width * 2, visibleSize.height );
@@ -249,22 +264,22 @@ namespace step_defender
 
 		void RatioCheckScene::update4Move( float delta_time )
 		{
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
 				auto background_node = getChildByTag( TAG_Parallax );
 
-				const auto new_position = background_node->getPosition() + Vec2( -150.f * delta_time, 0.f );
+				const auto new_position = background_node->getPosition() + Vec2( -ScrollSpeed * delta_time, 0.f );
 				if( -getContentSize().width < new_position.x )
 				{
 					background_node->setPosition( new_position );
 				}
 			}
 
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
 				auto background_node = getChildByTag( TAG_Parallax );
 
-				const auto new_position = background_node->getPosition() + Vec2( 150.f * delta_time, 0.f );
+				const auto new_position = background_node->getPosition() + Vec2( ScrollSpeed * delta_time, 0.f );
 				if( 0.f > new_position.x )
 				{
 					background_node->setPosition( new_position );
