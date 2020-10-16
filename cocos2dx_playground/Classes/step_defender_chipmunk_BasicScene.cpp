@@ -13,6 +13,11 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const int TAG_RootNode = 100;
+}
+
 namespace step_defender
 {
 	namespace chipmunk
@@ -60,10 +65,13 @@ namespace step_defender
 				ss << "+ " << getTitle();
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[ESC] Return to Root";
+				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] Toggle Physics Debug Draw";
+				ss << "[1] : Toggle Physics Debug Draw";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow L/R] : Move Root Node";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -87,6 +95,7 @@ namespace step_defender
 			//
 			{
 				auto root_node = Node::create();
+				root_node->setTag( TAG_RootNode );
 				addChild( root_node );
 
 				auto edge_box_component = PhysicsBody::createEdgeBox(
@@ -135,6 +144,18 @@ namespace step_defender
 					? PhysicsWorld::DEBUGDRAW_ALL
 					: PhysicsWorld::DEBUGDRAW_NONE
 				);
+			}
+
+			if( EventKeyboard::KeyCode::KEY_LEFT_ARROW == key_code )
+			{
+				auto root_node = getChildByTag( TAG_RootNode );
+				root_node->setPositionX( root_node->getPositionX() - 10.f );
+			}
+
+			if( EventKeyboard::KeyCode::KEY_RIGHT_ARROW == key_code )
+			{
+				auto root_node = getChildByTag( TAG_RootNode );
+				root_node->setPositionX( root_node->getPositionX() + 10.f );
 			}
 		}
 	}
