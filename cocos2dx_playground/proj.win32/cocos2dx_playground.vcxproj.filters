@@ -163,6 +163,9 @@
     <Filter Include="src\scene\step99\fsm1test">
       <UniqueIdentifier>{1a9c12b1-3aa3-4477-9148-d15770dbbcfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_06_defender\chipmunk">
+      <UniqueIdentifier>{dcdbcf87-3edf-4b6d-b8fa-785c52308143}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -709,7 +712,7 @@
       <Filter>src\scene\step_06_defender\parallax_node</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_defender_chipmunk_BasicScene.cpp">
-      <Filter>src\scene\step_06_defender\parallax_node</Filter>
+      <Filter>src\scene\step_06_defender\chipmunk</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1290,7 +1293,7 @@
       <Filter>src\scene\step_06_defender\parallax_node</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_chipmunk_BasicScene.h">
-      <Filter>src\scene\step_06_defender\parallax_node</Filter>
+      <Filter>src\scene\step_06_defender\chipmunk</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

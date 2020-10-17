@@ -6,10 +6,13 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "physics/CCPhysicsWorld.h"
+
+#include "cpg_Random.h"
 
 USING_NS_CC;
 
@@ -96,15 +99,31 @@ namespace step_defender
 			{
 				auto root_node = Node::create();
 				root_node->setTag( TAG_RootNode );
+				root_node->setContentSize( visibleSize );
+				root_node->setPosition( visibleOrigin.x, visibleOrigin.y );
 				addChild( root_node );
 
-				auto edge_box_component = PhysicsBody::createEdgeBox(
-					visibleSize
-					, PHYSICSBODY_MATERIAL_DEFAULT
-					, 2.f
-					, Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
-				);
-				root_node->setPhysicsBody( edge_box_component );
+				//
+				// Guide
+				//
+				{
+					auto edge_box_component = PhysicsBody::createEdgeBox(
+						visibleSize
+						, PHYSICSBODY_MATERIAL_DEFAULT
+						, 2.f
+					);
+					root_node->setPhysicsBody( edge_box_component );
+				}
+				
+				//
+				// Bodies
+				//
+				{
+					AddSprite( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.5f )
+					) );
+				}
 			}
 
 			return true;
@@ -129,6 +148,19 @@ namespace step_defender
 		}
 
 
+		void BasicScene::AddSprite( const cocos2d::Vec2 sprite_position )
+		{
+			auto root_node = getChildByTag( TAG_RootNode );
+
+			auto sprite = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+			sprite->setScale( _director->getContentScaleFactor() );
+			{
+				auto circle = PhysicsBody::createCircle( sprite->getBoundingBox().size.width * 0.25f, PHYSICSBODY_MATERIAL_DEFAULT );
+				sprite->setPhysicsBody( circle );
+			}
+			sprite->setPosition( sprite_position );
+			root_node->addChild( sprite );
+		}
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
@@ -156,6 +188,11 @@ namespace step_defender
 			{
 				auto root_node = getChildByTag( TAG_RootNode );
 				root_node->setPositionX( root_node->getPositionX() + 10.f );
+			}
+
+			if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
+			{
+				AddSprite( Vec2::ZERO );
 			}
 		}
 	}
