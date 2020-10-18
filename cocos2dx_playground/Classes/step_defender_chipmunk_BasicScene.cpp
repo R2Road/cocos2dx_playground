@@ -10,6 +10,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 #include "physics/CCPhysicsWorld.h"
 
 #include "cpg_Random.h"
@@ -18,6 +19,7 @@ USING_NS_CC;
 
 namespace
 {
+	const int TAG_GravityView = 10;
 	const int TAG_RootNode = 100;
 }
 
@@ -75,6 +77,11 @@ namespace step_defender
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[Arrow L/R] : Move Root Node";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow U/D] : Gravity Up/Down";
+
+
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -91,6 +98,22 @@ namespace step_defender
 			{
 				auto background_layer = LayerColor::create( Color4B( 7, 39, 43, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Gravity
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+				label->setTag( TAG_GravityView );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateGravityView();
 			}
 
 			//
@@ -161,6 +184,13 @@ namespace step_defender
 			sprite->setPosition( sprite_position );
 			root_node->addChild( sprite );
 		}
+
+		void BasicScene::updateGravityView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_GravityView ) );
+			label->setString( StringUtils::format( "%2.f, %2.f", getPhysicsWorld()->getGravity().x, getPhysicsWorld()->getGravity().y ) );
+		}
+
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
@@ -183,11 +213,21 @@ namespace step_defender
 				auto root_node = getChildByTag( TAG_RootNode );
 				root_node->setPositionX( root_node->getPositionX() - 10.f );
 			}
-
 			if( EventKeyboard::KeyCode::KEY_RIGHT_ARROW == key_code )
 			{
 				auto root_node = getChildByTag( TAG_RootNode );
 				root_node->setPositionX( root_node->getPositionX() + 10.f );
+			}
+
+			if( EventKeyboard::KeyCode::KEY_UP_ARROW == key_code )
+			{
+				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, -100.f ) );
+				updateGravityView();
+			}
+			if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == key_code )
+			{
+				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, 100.f ) );
+				updateGravityView();
 			}
 
 			if( EventKeyboard::KeyCode::KEY_SPACE == key_code )

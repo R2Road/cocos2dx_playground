@@ -22,6 +22,7 @@ namespace step_defender
 
 		private:
 			void AddSprite( const cocos2d::Vec2 sprite_position );
+			void updateGravityView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
 		private:
