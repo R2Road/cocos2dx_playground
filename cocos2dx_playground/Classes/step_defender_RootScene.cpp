@@ -9,6 +9,7 @@
 #include "step_defender_parallax_node_BasicScene.h"
 #include "step_defender_parallax_node_RatioCheckScene.h"
 #include "step_defender_chipmunk_BasicScene.h"
+#include "step_defender_chipmunk_MoveScene.h"
 
 USING_NS_CC;
 
@@ -59,6 +60,8 @@ namespace step_defender
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[3] : " << step_defender::chipmunk::BasicScene::getTitle();
+			ss << std::endl;
+			ss << "[4] : " << step_defender::chipmunk::MoveScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -115,8 +118,12 @@ namespace step_defender
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_defender::parallax_node::RatioCheckScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
+
 		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( step_defender::chipmunk::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_4:
+			_director->replaceScene( step_defender::chipmunk::MoveScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
