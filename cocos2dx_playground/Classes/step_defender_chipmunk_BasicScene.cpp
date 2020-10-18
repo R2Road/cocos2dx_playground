@@ -58,6 +58,7 @@ namespace step_defender
 				return false;
 			}
 			getPhysicsWorld()->setDebugDrawMask( PhysicsWorld::DEBUGDRAW_ALL );
+			getPhysicsWorld()->setGravity( Vec2::ZERO );
 
 			const auto visibleOrigin = _director->getVisibleOrigin();
 			const auto visibleSize = _director->getVisibleSize();
@@ -76,10 +77,10 @@ namespace step_defender
 				ss << "[1] : Toggle Physics Debug Draw";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow L/R] : Move Root Node";
+				ss << "[Arrow L/R/U/D] : Change Gravity";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow U/D] : Gravity Up/Down";
+				ss << "[SPACE] : Add Physics Body";
 
 
 
@@ -101,12 +102,13 @@ namespace step_defender
 			}
 
 			//
-			// Gravity
+			// Gravity View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
 				label->setTag( TAG_GravityView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width
 					, visibleOrigin.y + visibleSize.height
@@ -142,7 +144,7 @@ namespace step_defender
 				// Bodies
 				//
 				{
-					AddSprite( Vec2(
+					addPhysicsBody( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.5f )
 					) );
@@ -171,7 +173,7 @@ namespace step_defender
 		}
 
 
-		void BasicScene::AddSprite( const cocos2d::Vec2 sprite_position )
+		void BasicScene::addPhysicsBody( const cocos2d::Vec2 sprite_position )
 		{
 			auto root_node = getChildByTag( TAG_RootNode );
 
@@ -188,7 +190,7 @@ namespace step_defender
 		void BasicScene::updateGravityView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_GravityView ) );
-			label->setString( StringUtils::format( "%2.f, %2.f", getPhysicsWorld()->getGravity().x, getPhysicsWorld()->getGravity().y ) );
+			label->setString( StringUtils::format( "+ Gravity\nx : %.1f, y : %.1f", getPhysicsWorld()->getGravity().x, getPhysicsWorld()->getGravity().y ) );
 		}
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
@@ -199,6 +201,9 @@ namespace step_defender
 				return;
 			}
 
+			//
+			// Debug View
+			//
 			if( EventKeyboard::KeyCode::KEY_1 == key_code )
 			{
 				getPhysicsWorld()->setDebugDrawMask(
@@ -208,32 +213,37 @@ namespace step_defender
 				);
 			}
 
-			if( EventKeyboard::KeyCode::KEY_LEFT_ARROW == key_code )
-			{
-				auto root_node = getChildByTag( TAG_RootNode );
-				root_node->setPositionX( root_node->getPositionX() - 10.f );
-			}
-			if( EventKeyboard::KeyCode::KEY_RIGHT_ARROW == key_code )
-			{
-				auto root_node = getChildByTag( TAG_RootNode );
-				root_node->setPositionX( root_node->getPositionX() + 10.f );
-			}
-
+			//
+			// Gravity
+			//
 			if( EventKeyboard::KeyCode::KEY_UP_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, -100.f ) );
-				updateGravityView();
-			}
-			if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == key_code )
 			{
 				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, 100.f ) );
 				updateGravityView();
 			}
+			if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == key_code )
+			{
+				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, -100.f ) );
+				updateGravityView();
+			}
+			if( EventKeyboard::KeyCode::KEY_LEFT_ARROW == key_code )
+			{
+				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( -100.f, 0.f ) );
+				updateGravityView();
+			}
+			if( EventKeyboard::KeyCode::KEY_RIGHT_ARROW == key_code )
+			{
+				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 100.f, 0.f ) );
+				updateGravityView();
+			}
 
+			//
+			// Add Physics Body
+			//
 			if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
 			{
 				auto root_node = getChildByTag( TAG_RootNode );
-				AddSprite( Vec2( 0.f, root_node->getContentSize().height ) );
+				addPhysicsBody( Vec2( 0.f, root_node->getContentSize().height ) );
 			}
 		}
 	}
