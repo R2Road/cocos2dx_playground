@@ -192,7 +192,8 @@ namespace step_defender
 
 			if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
 			{
-				AddSprite( Vec2::ZERO );
+				auto root_node = getChildByTag( TAG_RootNode );
+				AddSprite( Vec2( 0.f, root_node->getContentSize().height ) );
 			}
 		}
 	}
