@@ -9,13 +9,13 @@ namespace step_defender
 {
 	namespace parallax_node
 	{
-		class BasicScene02 : public cocos2d::Scene, private helper::BackToThePreviousScene
+		class RatioCheckScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
-			BasicScene02( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			RatioCheckScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Parallax Node : Basic 02"; }
+			static const char* getTitle() { return "Parallax Node : Ratio Check"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;

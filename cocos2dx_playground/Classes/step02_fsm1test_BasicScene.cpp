@@ -10,8 +10,6 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "step_defender_RootScene.h"
-
 #include "fsm1_iState.h"
 
 USING_NS_CC;
@@ -164,12 +162,15 @@ namespace step02
 {
 	namespace fsm1test
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mFSMMachine()
+		BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
+			, mFSMMachine()
 		{}
 
-		Scene* BasicScene::create()
+		Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) BasicScene();
+			auto ret = new ( std::nothrow ) BasicScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -293,7 +294,7 @@ namespace step02
 
 		void BasicScene::updateForExit( float /*dt*/ )
 		{
-			_director->replaceScene( step_defender::RootScene::create() );
+			helper::BackToThePreviousScene::MoveBack();
 		}
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

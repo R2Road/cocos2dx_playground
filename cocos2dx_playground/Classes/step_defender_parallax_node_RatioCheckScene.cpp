@@ -1,4 +1,4 @@
-#include "step_defender_parallax_node_BasicScene02.h"
+#include "step_defender_parallax_node_RatioCheckScene.h"
 
 #include <new>
 #include <numeric>
@@ -17,21 +17,22 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_Parallax = 10000;
+	const float ScrollSpeed = 300.f;
 }
 
 namespace step_defender
 {
 	namespace parallax_node
 	{
-		BasicScene02::BasicScene02( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		RatioCheckScene::RatioCheckScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
 		{}
 
-		Scene* BasicScene02::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* RatioCheckScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) BasicScene02( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) RatioCheckScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -45,7 +46,7 @@ namespace step_defender
 			return ret;
 		}
 
-		bool BasicScene02::init()
+		bool RatioCheckScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -86,7 +87,21 @@ namespace step_defender
 			}
 
 			//
+			// Explain
 			//
+			{
+				auto label = Label::createWithTTF( "+ Do Scroll and Check Green Line", "fonts/NanumSquareR.ttf", 10 );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Test Setup
 			//
 			{
 				const Size TotalContentSize( visibleSize.width * 2, visibleSize.height );
@@ -223,22 +238,22 @@ namespace step_defender
 				}
 			}
 
-			schedule( schedule_selector( BasicScene02::update4Move ) );
+			schedule( schedule_selector( RatioCheckScene::update4Move ) );
 
 			return true;
 		}
 
-		void BasicScene02::onEnter()
+		void RatioCheckScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene02::onKeyPressed, this );
-			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( BasicScene02::onKeyReleased, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RatioCheckScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( RatioCheckScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void BasicScene02::onExit()
+		void RatioCheckScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -247,24 +262,24 @@ namespace step_defender
 			Scene::onExit();
 		}
 
-		void BasicScene02::update4Move( float delta_time )
+		void RatioCheckScene::update4Move( float delta_time )
 		{
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
 				auto background_node = getChildByTag( TAG_Parallax );
 
-				const auto new_position = background_node->getPosition() + Vec2( -150.f * delta_time, 0.f );
+				const auto new_position = background_node->getPosition() + Vec2( -ScrollSpeed * delta_time, 0.f );
 				if( -getContentSize().width < new_position.x )
 				{
 					background_node->setPosition( new_position );
 				}
 			}
 
-			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
+			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
 				auto background_node = getChildByTag( TAG_Parallax );
 
-				const auto new_position = background_node->getPosition() + Vec2( 150.f * delta_time, 0.f );
+				const auto new_position = background_node->getPosition() + Vec2( ScrollSpeed * delta_time, 0.f );
 				if( 0.f > new_position.x )
 				{
 					background_node->setPosition( new_position );
@@ -272,7 +287,7 @@ namespace step_defender
 			}
 		}
 
-		void BasicScene02::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+		void RatioCheckScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
 			{
@@ -282,7 +297,7 @@ namespace step_defender
 
 			mKeyCodeCollector.onKeyPressed( key_code );
 		}
-		void BasicScene02::onKeyReleased( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+		void RatioCheckScene::onKeyReleased( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			mKeyCodeCollector.onKeyReleased( key_code );
 		}

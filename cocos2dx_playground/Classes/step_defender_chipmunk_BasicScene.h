@@ -1,13 +1,11 @@
 #pragma once
 
-#include "helper_BackToThePreviousScene.h"
 #include "2d/CCScene.h"
+#include "helper_BackToThePreviousScene.h"
 
-#include "fsm1_Machine.h"
-
-namespace step02
+namespace step_defender
 {
-	namespace fsm1test
+	namespace chipmunk
 	{
 		class BasicScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
@@ -15,22 +13,20 @@ namespace step02
 			BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "FSM1 Test : Basic"; }
+			static const char* getTitle() { return "Chipmunk : Basic"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			bool init() override;
 			void onEnter() override;
-			void update( float dt ) override;
 			void onExit() override;
 
 		private:
-			void updateForExit( float dt );
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+			void addPhysicsBody( const cocos2d::Vec2 sprite_position, const bool is_dynamic );
+			void updateGravityView();
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-			fsm1::Machine mFSMMachine;
 		};
 	}
 }
