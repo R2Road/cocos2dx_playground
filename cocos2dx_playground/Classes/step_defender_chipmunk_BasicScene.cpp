@@ -144,10 +144,25 @@ namespace step_defender
 				// Bodies
 				//
 				{
-					addPhysicsBody( Vec2(
-						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.5f )
-					) );
+					// Static Body
+					{
+						addPhysicsBody(
+							Vec2( visibleOrigin.x + ( visibleSize.width * 0.25f ), visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+							, false
+						);
+						addPhysicsBody(
+							Vec2( visibleOrigin.x + ( visibleSize.width * 0.75f ), visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+							, false
+						);
+					}
+
+					// Dynamic Body
+					{
+						addPhysicsBody(
+							Vec2( visibleOrigin.x + ( visibleSize.width * 0.5f ), visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+							, true
+						);
+					}
 				}
 			}
 
@@ -173,14 +188,15 @@ namespace step_defender
 		}
 
 
-		void BasicScene::addPhysicsBody( const cocos2d::Vec2 sprite_position )
+		void BasicScene::addPhysicsBody( const cocos2d::Vec2 sprite_position, const bool is_dynamic )
 		{
 			auto root_node = getChildByTag( TAG_RootNode );
 
-			auto sprite = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+			auto sprite = Sprite::createWithSpriteFrameName( is_dynamic ? "actor001_run_01.png" : "step_mole_target_idl_0.png" );
 			sprite->setScale( _director->getContentScaleFactor() );
 			{
 				auto circle = PhysicsBody::createCircle( sprite->getBoundingBox().size.width * 0.25f, PHYSICSBODY_MATERIAL_DEFAULT );
+				circle->setDynamic( is_dynamic );
 				sprite->setPhysicsBody( circle );
 			}
 			sprite->setPosition( sprite_position );
@@ -243,7 +259,7 @@ namespace step_defender
 			if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
 			{
 				auto root_node = getChildByTag( TAG_RootNode );
-				addPhysicsBody( Vec2( 0.f, root_node->getContentSize().height ) );
+				addPhysicsBody( Vec2( 0.f, root_node->getContentSize().height ), true );
 			}
 		}
 	}

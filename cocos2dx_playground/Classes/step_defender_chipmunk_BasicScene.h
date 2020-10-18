@@ -21,7 +21,7 @@ namespace step_defender
 			void onExit() override;
 
 		private:
-			void addPhysicsBody( const cocos2d::Vec2 sprite_position );
+			void addPhysicsBody( const cocos2d::Vec2 sprite_position, const bool is_dynamic );
 			void updateGravityView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
