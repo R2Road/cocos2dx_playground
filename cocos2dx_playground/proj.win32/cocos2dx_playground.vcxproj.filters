@@ -717,6 +717,9 @@
     <ClCompile Include="..\Classes\step_defender_chipmunk_MoveScene.cpp">
       <Filter>src\scene\step_06_defender\chipmunk</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_chipmunk_ContactScene.cpp">
+      <Filter>src\scene\step_06_defender\chipmunk</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1299,6 +1302,9 @@
       <Filter>src\scene\step_06_defender\chipmunk</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_chipmunk_MoveScene.h">
+      <Filter>src\scene\step_06_defender\chipmunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_chipmunk_ContactScene.h">
       <Filter>src\scene\step_06_defender\chipmunk</Filter>
     </ClInclude>
   </ItemGroup>
