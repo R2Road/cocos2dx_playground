@@ -127,11 +127,15 @@ namespace step_defender
 					// Static Body
 					{
 						addPhysicsBody(
-							Vec2( visibleOrigin.x + ( visibleSize.width * 0.25f ), visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+							Vec2( visibleOrigin.x + ( visibleSize.width * 0.25f ), visibleOrigin.y + ( visibleSize.height * 0.25f ) )
 							, false
 						);
 						addPhysicsBody(
-							Vec2( visibleOrigin.x + ( visibleSize.width * 0.75f ), visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+							Vec2( visibleOrigin.x + ( visibleSize.width * 0.75f ), visibleOrigin.y + ( visibleSize.height * 0.25f ) )
+							, false
+						);
+						addPhysicsBody(
+							Vec2( visibleOrigin.x + ( visibleSize.width * 0.5f ), visibleOrigin.y + ( visibleSize.height * 0.75f ) )
 							, false
 						);
 					}
