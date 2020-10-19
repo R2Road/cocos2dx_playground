@@ -15,8 +15,6 @@
 #include "physics/CCPhysicsWorld.h"
 #include "ui/UIButton.h"
 
-#include "cpg_Random.h"
-
 USING_NS_CC;
 
 namespace

@@ -13,8 +13,6 @@
 #include "base/ccUTF8.h"
 #include "physics/CCPhysicsWorld.h"
 
-#include "cpg_Random.h"
-
 USING_NS_CC;
 
 namespace
