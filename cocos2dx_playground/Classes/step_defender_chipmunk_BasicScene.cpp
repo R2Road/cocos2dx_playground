@@ -10,16 +10,12 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 #include "physics/CCPhysicsWorld.h"
-
-#include "cpg_Random.h"
 
 USING_NS_CC;
 
 namespace
 {
-	const int TAG_GravityView = 10;
 	const int TAG_RootNode = 100;
 }
 
@@ -180,12 +176,6 @@ namespace step_defender
 			}
 			sprite->setPosition( sprite_position );
 			root_node->addChild( sprite );
-		}
-
-		void BasicScene::updateGravityView()
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_GravityView ) );
-			label->setString( StringUtils::format( "+ Gravity\nx : %.1f, y : %.1f", getPhysicsWorld()->getGravity().x, getPhysicsWorld()->getGravity().y ) );
 		}
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
