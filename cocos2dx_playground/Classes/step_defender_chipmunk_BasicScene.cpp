@@ -58,7 +58,6 @@ namespace step_defender
 				return false;
 			}
 			getPhysicsWorld()->setDebugDrawMask( PhysicsWorld::DEBUGDRAW_ALL );
-			getPhysicsWorld()->setGravity( Vec2::ZERO );
 
 			const auto visibleOrigin = _director->getVisibleOrigin();
 			const auto visibleSize = _director->getVisibleSize();
@@ -75,9 +74,6 @@ namespace step_defender
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[1] : Toggle Physics Debug Draw";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[Arrow L/R/U/D] : Change Gravity";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[SPACE] : Add Physics Body";
@@ -99,23 +95,6 @@ namespace step_defender
 			{
 				auto background_layer = LayerColor::create( Color4B( 7, 39, 43, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
-			}
-
-			//
-			// Gravity View
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
-				label->setTag( TAG_GravityView );
-				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, std::numeric_limits<int>::max() );
-
-				updateGravityView();
 			}
 
 			//
@@ -227,30 +206,6 @@ namespace step_defender
 					? PhysicsWorld::DEBUGDRAW_ALL
 					: PhysicsWorld::DEBUGDRAW_NONE
 				);
-			}
-
-			//
-			// Gravity
-			//
-			if( EventKeyboard::KeyCode::KEY_UP_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, 100.f ) );
-				updateGravityView();
-			}
-			if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, -100.f ) );
-				updateGravityView();
-			}
-			if( EventKeyboard::KeyCode::KEY_LEFT_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( -100.f, 0.f ) );
-				updateGravityView();
-			}
-			if( EventKeyboard::KeyCode::KEY_RIGHT_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 100.f, 0.f ) );
-				updateGravityView();
 			}
 
 			//
