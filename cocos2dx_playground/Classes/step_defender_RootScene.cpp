@@ -9,6 +9,7 @@
 #include "step_defender_parallax_node_BasicScene.h"
 #include "step_defender_parallax_node_RatioCheckScene.h"
 #include "step_defender_chipmunk_BasicScene.h"
+#include "step_defender_chipmunk_GravityScene.h"
 #include "step_defender_chipmunk_MoveScene.h"
 #include "step_defender_chipmunk_ContactScene.h"
 
@@ -62,9 +63,11 @@ namespace step_defender
 			ss << std::endl;
 			ss << "[3] : " << step_defender::chipmunk::BasicScene::getTitle();
 			ss << std::endl;
-			ss << "[4] : " << step_defender::chipmunk::MoveScene::getTitle();
+			ss << "[4] : " << step_defender::chipmunk::GravityScene::getTitle();
 			ss << std::endl;
-			ss << "[5] : " << step_defender::chipmunk::ContactScene::getTitle();
+			ss << "[5] : " << step_defender::chipmunk::MoveScene::getTitle();
+			ss << std::endl;
+			ss << "[6] : " << step_defender::chipmunk::ContactScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -126,9 +129,12 @@ namespace step_defender
 			_director->replaceScene( step_defender::chipmunk::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			_director->replaceScene( step_defender::chipmunk::MoveScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_defender::chipmunk::GravityScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
+			_director->replaceScene( step_defender::chipmunk::MoveScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_6:
 			_director->replaceScene( step_defender::chipmunk::ContactScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
