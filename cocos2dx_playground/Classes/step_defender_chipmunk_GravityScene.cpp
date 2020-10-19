@@ -146,6 +146,30 @@ namespace step_defender
 					) );
 					button->addTouchEventListener( CC_CALLBACK_2( GravityScene::onGravityHelperButton, this ) );
 					addChild( button, std::numeric_limits<int>::max() - 1 );
+
+					// left label
+					{
+						auto label = Label::createWithTTF( "CLICK HERE ===>>>", "fonts/NanumSquareR.ttf", 10 );
+						label->setColor( Color3B::GREEN );
+						label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+						label->setPosition(
+							-4.f
+							, button->getContentSize().height * 0.5f
+						);
+						button->addChild( label );
+					}
+
+					// right label
+					{
+						auto label = Label::createWithTTF( "<<<=== ...AND DRAG", "fonts/NanumSquareR.ttf", 10 );
+						label->setColor( Color3B::GREEN );
+						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+						label->setPosition(
+							button->getContentSize().width + 4.f
+							, button->getContentSize().height * 0.5f
+						);
+						button->addChild( label );
+					}
 				}
 			}
 
