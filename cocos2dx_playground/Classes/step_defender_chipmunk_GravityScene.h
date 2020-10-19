@@ -6,6 +6,8 @@
 //
 
 #include "2d/CCScene.h"
+#include "ui/UIWidget.h"
+
 #include "helper_BackToThePreviousScene.h"
 
 namespace step_defender
@@ -27,11 +29,15 @@ namespace step_defender
 
 		private:
 			void addPhysicsBody( const cocos2d::Vec2 sprite_position, const bool is_dynamic );
+
+			void onGravityHelperButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 			void updateGravityView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			cocos2d::Vec2 mGravityHelperButton_MoveOffset;
 		};
 	}
 }

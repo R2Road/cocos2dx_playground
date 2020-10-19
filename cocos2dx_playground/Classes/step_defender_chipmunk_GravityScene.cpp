@@ -12,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 #include "physics/CCPhysicsWorld.h"
+#include "ui/UIButton.h"
 
 #include "cpg_Random.h"
 
@@ -20,6 +21,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_GravityView = 10;
+	const int TAG_GravityPivot = 11;
 	const int TAG_RootNode = 100;
 }
 
@@ -30,6 +32,7 @@ namespace step_defender
 		GravityScene::GravityScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mGravityHelperButton_MoveOffset()
 		{}
 
 		Scene* GravityScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -78,6 +81,9 @@ namespace step_defender
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[SPACE] : Add Physics Body";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[BUTTON Drag] : Change Gravity";
 
 
 
@@ -96,6 +102,51 @@ namespace step_defender
 			{
 				auto background_layer = LayerColor::create( Color4B( 7, 39, 43, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Gravity View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+				label->setTag( TAG_GravityView );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+
+				updateGravityView();
+			}
+
+			//
+			// Gravity Helper
+			//
+			{
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setTag( TAG_GravityPivot );
+					pivot->setScale( _director->getContentScaleFactor() );
+					pivot->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.5f )
+					) );
+					addChild( pivot, std::numeric_limits<int>::max() );
+				}
+
+				// Helper
+				{
+					auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+					button->setPosition( Vec2(
+						visibleOrigin.x + ( visibleSize.width * 0.5f )
+						, visibleOrigin.y + ( visibleSize.height * 0.5f )
+					) );
+					button->addTouchEventListener( CC_CALLBACK_2( GravityScene::onGravityHelperButton, this ) );
+					addChild( button, std::numeric_limits<int>::max() - 1 );
+				}
 			}
 
 			//
@@ -191,6 +242,33 @@ namespace step_defender
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_GravityView ) );
 			label->setString( StringUtils::format( "+ Gravity\nx : %.1f, y : %.1f", getPhysicsWorld()->getGravity().x, getPhysicsWorld()->getGravity().y ) );
+		}
+
+		void GravityScene::onGravityHelperButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				mGravityHelperButton_MoveOffset = button->getPosition() - button->getTouchBeganPosition();
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				auto button = static_cast<ui::Button*>( sender );
+
+				button->setPosition( button->getTouchMovePosition() + mGravityHelperButton_MoveOffset );
+
+				//
+				// Update Gravity
+				//
+				const auto pivot_position = getChildByTag( TAG_GravityPivot )->getPosition();
+				getPhysicsWorld()->setGravity( button->getPosition() - pivot_position );
+
+				//
+				// Update Gravity View
+				//
+				updateGravityView();
+			}
 		}
 
 		void GravityScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
