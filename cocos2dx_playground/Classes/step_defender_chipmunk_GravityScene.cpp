@@ -262,7 +262,7 @@ namespace step_defender
 				// Update Gravity
 				//
 				const auto pivot_position = getChildByTag( TAG_GravityPivot )->getPosition();
-				getPhysicsWorld()->setGravity( button->getPosition() - pivot_position );
+				getPhysicsWorld()->setGravity( ( button->getPosition() - pivot_position ) * 2.f );
 
 				//
 				// Update Gravity View
