@@ -1,5 +1,10 @@
 #pragma once
 
+//
+// Documentation
+// - https://chipmunk-physics.net/release/ChipmunkLatest-Docs/
+//
+
 #include "2d/CCScene.h"
 #include "helper_BackToThePreviousScene.h"
 
