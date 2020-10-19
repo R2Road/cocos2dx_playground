@@ -4,6 +4,7 @@
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
@@ -22,6 +23,7 @@ namespace
 {
 	const int TAG_GravityView = 10;
 	const int TAG_GravityPivot = 11;
+	const int TAG_GravityGuide = 12;
 	const int TAG_RootNode = 100;
 }
 
@@ -65,6 +67,7 @@ namespace step_defender
 
 			const auto visibleOrigin = _director->getVisibleOrigin();
 			const auto visibleSize = _director->getVisibleSize();
+			const Vec2 visibleCenter( visibleOrigin.x + ( visibleSize.width * 0.5f ), visibleOrigin.y + ( visibleSize.height * 0.5f ) );
 
 			//
 			// Summury
@@ -130,20 +133,14 @@ namespace step_defender
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 					pivot->setTag( TAG_GravityPivot );
 					pivot->setScale( _director->getContentScaleFactor() );
-					pivot->setPosition( Vec2(
-						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.5f )
-					) );
+					pivot->setPosition( visibleCenter );
 					addChild( pivot, std::numeric_limits<int>::max() );
 				}
 
 				// Helper
 				{
 					auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-					button->setPosition( Vec2(
-						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.5f )
-					) );
+					button->setPosition( visibleCenter );
 					button->addTouchEventListener( CC_CALLBACK_2( GravityScene::onGravityHelperButton, this ) );
 					addChild( button, std::numeric_limits<int>::max() - 1 );
 
@@ -170,6 +167,18 @@ namespace step_defender
 						);
 						button->addChild( label );
 					}
+				}
+
+				// Guide
+				{
+					auto draw_node = cocos2d::DrawNode::create();
+					draw_node->setTag( TAG_GravityGuide );
+					draw_node->drawLine(
+						visibleCenter
+						, visibleCenter
+						, Color4F::GREEN
+					);
+					addChild( draw_node, std::numeric_limits<int>::max() - 1 );
 				}
 			}
 
@@ -218,7 +227,7 @@ namespace step_defender
 					// Dynamic Body
 					{
 						addPhysicsBody(
-							Vec2( visibleOrigin.x + ( visibleSize.width * 0.5f ), visibleOrigin.y + ( visibleSize.height * 0.5f ) )
+							visibleCenter
 							, true
 						);
 					}
@@ -286,7 +295,17 @@ namespace step_defender
 				// Update Gravity
 				//
 				const auto pivot_position = getChildByTag( TAG_GravityPivot )->getPosition();
-				getPhysicsWorld()->setGravity( ( button->getPosition() - pivot_position ) * 2.f );
+				const auto gravity_direction = button->getPosition() - pivot_position;
+				getPhysicsWorld()->setGravity( gravity_direction * 2.f );
+
+				//
+				// Update Gravity Guide
+				//
+				{
+					auto draw_node = static_cast<DrawNode*>( getChildByTag( TAG_GravityGuide ) );
+					draw_node->clear();
+					draw_node->drawLine( pivot_position, pivot_position + gravity_direction, Color4F::GREEN );
+				}
 
 				//
 				// Update Gravity View
