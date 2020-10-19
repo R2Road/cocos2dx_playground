@@ -58,6 +58,7 @@ namespace step_defender
 				return false;
 			}
 			getPhysicsWorld()->setDebugDrawMask( PhysicsWorld::DEBUGDRAW_ALL );
+			getPhysicsWorld()->setGravity( Vec2::ZERO );
 
 			const auto visibleOrigin = _director->getVisibleOrigin();
 			const auto visibleSize = _director->getVisibleSize();
