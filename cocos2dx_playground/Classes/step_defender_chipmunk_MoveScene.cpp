@@ -85,8 +85,6 @@ namespace step_defender
 				ss << std::endl;
 				ss << "[Arrow L/R/U/D] : Move";
 
-
-
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
