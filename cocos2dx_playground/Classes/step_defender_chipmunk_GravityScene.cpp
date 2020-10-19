@@ -82,9 +82,6 @@ namespace step_defender
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[SPACE] : Add Physics Body";
-				ss << std::endl;
-				ss << std::endl;
-				ss << "[BUTTON Drag] : Change Gravity";
 
 
 
