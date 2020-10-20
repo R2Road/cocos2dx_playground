@@ -1,5 +1,10 @@
 #pragma once
 
+//
+// Documentation
+// - https://chipmunk-physics.net/release/ChipmunkLatest-Docs/
+//
+
 #include "2d/CCScene.h"
 #include "helper_BackToThePreviousScene.h"
 
@@ -9,6 +14,7 @@ NS_CC_BEGIN
 class EventListenerPhysicsContact;
 class PhysicsContact;
 class PhysicsContactPostSolve;
+class PhysicsContactPreSolve;
 NS_CC_END
 
 namespace step_defender
@@ -32,9 +38,12 @@ namespace step_defender
 			void update4Input( float delta_time );
 
 			bool onContactBegin( cocos2d::PhysicsContact& contact );
+			bool onContactPreSolve( cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve );
 			void onContactPostSolve( cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve );
+			void onContactSeparate( cocos2d::PhysicsContact& contact );
 
 			void addStaticPhysicsBody( const cocos2d::Vec2 sprite_position );
+			void addStaticPhysicsSensor( const cocos2d::Vec2 sprite_position );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 

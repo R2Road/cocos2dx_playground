@@ -13,13 +13,12 @@
 #include "base/ccUTF8.h"
 #include "physics/CCPhysicsWorld.h"
 
-#include "cpg_Random.h"
-
 USING_NS_CC;
 
 namespace
 {
 	const int TAG_MoveSpeedView = 10;
+	const int TAG_PhysicsRotationView = 11;
 	const int TAG_RootNode = 100;
 }
 
@@ -79,12 +78,12 @@ namespace step_defender
 				ss << std::endl;
 				ss << "[1] : Toggle Physics Debug Draw";
 				ss << std::endl;
+				ss << "[2] : Toggle Physics Rotation Enable";
+				ss << std::endl;
+				ss << std::endl;
 				ss << "[A/S] : Move Speed Up/Down";
 				ss << std::endl;
-				ss << std::endl;
 				ss << "[Arrow L/R/U/D] : Move";
-
-
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -116,8 +115,21 @@ namespace step_defender
 					, visibleOrigin.y + visibleSize.height
 				) );
 				addChild( label, std::numeric_limits<int>::max() );
+			}
 
-				updateMoveSpeedView();
+			//
+			// Physics Rotation Flag View
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
+				label->setTag( TAG_PhysicsRotationView );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height - 20.f
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -180,6 +192,13 @@ namespace step_defender
 					}
 				}
 			}
+
+
+			//
+			// Setup
+			//
+			updateMoveSpeedView();
+			updatePhysicsRotationFlagView();
 
 			schedule( schedule_selector( MoveScene::update4Input ) );
 
@@ -250,6 +269,11 @@ namespace step_defender
 			auto label = static_cast<Label*>( getChildByTag( TAG_MoveSpeedView ) );
 			label->setString( StringUtils::format( "+ Speed : %d", mMoveSpeed ) );
 		}
+		void MoveScene::updatePhysicsRotationFlagView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_PhysicsRotationView ) );
+			label->setString( StringUtils::format( "+ Physics Rotation : %s", ( mMoveNode->getPhysicsBody()->isRotationEnabled() ? "ON" : "OFF" ) ) );
+		}
 
 		void MoveScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
@@ -269,6 +293,22 @@ namespace step_defender
 					? PhysicsWorld::DEBUGDRAW_ALL
 					: PhysicsWorld::DEBUGDRAW_NONE
 				);
+			}
+
+			//
+			// Physics Rotation Flag View
+			//
+			if( EventKeyboard::KeyCode::KEY_2 == key_code )
+			{
+				auto new_flag = !mMoveNode->getPhysicsBody()->isRotationEnabled();
+				mMoveNode->getPhysicsBody()->setRotationEnable( new_flag );
+
+				if( !new_flag )
+				{
+					mMoveNode->getPhysicsBody()->setAngularVelocity( 0.f );
+				}
+
+				updatePhysicsRotationFlagView();
 			}
 
 			if( EventKeyboard::KeyCode::KEY_A == key_code )

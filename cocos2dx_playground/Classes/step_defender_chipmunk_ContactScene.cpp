@@ -84,8 +84,6 @@ namespace step_defender
 				ss << std::endl;
 				ss << "[Arrow L/R/U/D] : Move";
 
-
-
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -136,13 +134,53 @@ namespace step_defender
 					// Static Body
 					{
 						addStaticPhysicsBody( Vec2(
-							visibleOrigin.x + ( visibleSize.width * 0.5f )
+							visibleOrigin.x + ( visibleSize.width * 0.45f )
 							, visibleOrigin.y + ( visibleSize.height * 0.25f )
 						) );
 						addStaticPhysicsBody( Vec2(
+							visibleOrigin.x + ( visibleSize.width * 0.55f )
+							, visibleOrigin.y + ( visibleSize.height * 0.25f )
+						) );
+
+						// Explain Label
+						{
+							auto label = Label::createWithTTF( "STATIC BODY ===>>>", "fonts/NanumSquareR.ttf", 10 );
+							label->setColor( Color3B::GREEN );
+							label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+							label->setPosition(
+								visibleOrigin.x + ( visibleSize.width * 0.4f )
+								, visibleOrigin.y + ( visibleSize.height * 0.25f )
+							);
+							addChild( label );
+						}
+					}
+
+					// Static Sensor
+					{
+						addStaticPhysicsSensor( Vec2(
+							visibleOrigin.x + ( visibleSize.width * 0.45f )
+							, visibleOrigin.y + ( visibleSize.height * 0.75f )
+						) );
+						addStaticPhysicsSensor( Vec2(
 							visibleOrigin.x + ( visibleSize.width * 0.5f )
 							, visibleOrigin.y + ( visibleSize.height * 0.75f )
 						) );
+						addStaticPhysicsSensor( Vec2(
+							visibleOrigin.x + ( visibleSize.width * 0.55f )
+							, visibleOrigin.y + ( visibleSize.height * 0.75f )
+						) );
+
+						// Explain Label
+						{
+							auto label = Label::createWithTTF( "<<<=== SENSOR", "fonts/NanumSquareR.ttf", 10 );
+							label->setColor( Color3B::GREEN );
+							label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+							label->setPosition(
+								visibleOrigin.x + ( visibleSize.width * 0.6f )
+								, visibleOrigin.y + ( visibleSize.height * 0.75f )
+							);
+							addChild( label );
+						}
 					}
 
 					// Move Body
@@ -179,7 +217,9 @@ namespace step_defender
 			assert( !mEventListenerPhysicsContact );
 			mEventListenerPhysicsContact = EventListenerPhysicsContact::create();
 			mEventListenerPhysicsContact->onContactBegin = CC_CALLBACK_1( ContactScene::onContactBegin, this );
+			mEventListenerPhysicsContact->onContactPreSolve = CC_CALLBACK_2( ContactScene::onContactPreSolve, this );
 			mEventListenerPhysicsContact->onContactPostSolve = CC_CALLBACK_2( ContactScene::onContactPostSolve, this );
+			mEventListenerPhysicsContact->onContactSeparate = CC_CALLBACK_1( ContactScene::onContactSeparate, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mEventListenerPhysicsContact, this );
 		}
 		void ContactScene::onExit()
@@ -226,9 +266,18 @@ namespace step_defender
 
 			return true;
 		}
-		void ContactScene::onContactPostSolve( cocos2d::PhysicsContact& contact, const PhysicsContactPostSolve& solve )
+		bool ContactScene::onContactPreSolve( PhysicsContact& contact, PhysicsContactPreSolve& solve )
+		{
+			CCLOG( "onContactPreSolve" );
+			return true;
+		}
+		void ContactScene::onContactPostSolve( PhysicsContact& contact, const PhysicsContactPostSolve& solve )
 		{
 			CCLOG( "onContactPostSolve" );
+		}
+		void ContactScene::onContactSeparate( PhysicsContact& contact )
+		{
+			CCLOG( "onContactSeparate" );
 		}
 
 
@@ -242,6 +291,23 @@ namespace step_defender
 				auto circle = PhysicsBody::createCircle( sprite->getBoundingBox().size.width * 0.25f, PHYSICSBODY_MATERIAL_DEFAULT );
 				circle->setDynamic( false );
 				circle->setContactTestBitmask( true );
+				sprite->setPhysicsBody( circle );
+			}
+			sprite->setPosition( sprite_position );
+			root_node->addChild( sprite );
+		}
+
+		void ContactScene::addStaticPhysicsSensor( const cocos2d::Vec2 sprite_position )
+		{
+			auto root_node = getChildByTag( TAG_RootNode );
+
+			auto sprite = Sprite::createWithSpriteFrameName( "step_mole_target_dmgd1_0.png" );
+			sprite->setScale( _director->getContentScaleFactor() );
+			{
+				auto circle = PhysicsBody::createCircle( sprite->getBoundingBox().size.width * 0.25f, PHYSICSBODY_MATERIAL_DEFAULT );
+				circle->setDynamic( false );
+				circle->setContactTestBitmask( true );
+				circle->setCollisionBitmask( 0 );
 				sprite->setPhysicsBody( circle );
 			}
 			sprite->setPosition( sprite_position );

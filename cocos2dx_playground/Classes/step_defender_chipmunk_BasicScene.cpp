@@ -10,16 +10,12 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 #include "physics/CCPhysicsWorld.h"
-
-#include "cpg_Random.h"
 
 USING_NS_CC;
 
 namespace
 {
-	const int TAG_GravityView = 10;
 	const int TAG_RootNode = 100;
 }
 
@@ -58,7 +54,6 @@ namespace step_defender
 				return false;
 			}
 			getPhysicsWorld()->setDebugDrawMask( PhysicsWorld::DEBUGDRAW_ALL );
-			getPhysicsWorld()->setGravity( Vec2::ZERO );
 
 			const auto visibleOrigin = _director->getVisibleOrigin();
 			const auto visibleSize = _director->getVisibleSize();
@@ -77,12 +72,7 @@ namespace step_defender
 				ss << "[1] : Toggle Physics Debug Draw";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow L/R/U/D] : Change Gravity";
-				ss << std::endl;
-				ss << std::endl;
 				ss << "[SPACE] : Add Physics Body";
-
-
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -99,23 +89,6 @@ namespace step_defender
 			{
 				auto background_layer = LayerColor::create( Color4B( 7, 39, 43, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
-			}
-
-			//
-			// Gravity View
-			//
-			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
-				label->setTag( TAG_GravityView );
-				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, std::numeric_limits<int>::max() );
-
-				updateGravityView();
 			}
 
 			//
@@ -203,12 +176,6 @@ namespace step_defender
 			root_node->addChild( sprite );
 		}
 
-		void BasicScene::updateGravityView()
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_GravityView ) );
-			label->setString( StringUtils::format( "+ Gravity\nx : %.1f, y : %.1f", getPhysicsWorld()->getGravity().x, getPhysicsWorld()->getGravity().y ) );
-		}
-
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
@@ -227,30 +194,6 @@ namespace step_defender
 					? PhysicsWorld::DEBUGDRAW_ALL
 					: PhysicsWorld::DEBUGDRAW_NONE
 				);
-			}
-
-			//
-			// Gravity
-			//
-			if( EventKeyboard::KeyCode::KEY_UP_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, 100.f ) );
-				updateGravityView();
-			}
-			if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 0.f, -100.f ) );
-				updateGravityView();
-			}
-			if( EventKeyboard::KeyCode::KEY_LEFT_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( -100.f, 0.f ) );
-				updateGravityView();
-			}
-			if( EventKeyboard::KeyCode::KEY_RIGHT_ARROW == key_code )
-			{
-				getPhysicsWorld()->setGravity( getPhysicsWorld()->getGravity() + Vec2( 100.f, 0.f ) );
-				updateGravityView();
 			}
 
 			//
