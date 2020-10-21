@@ -53,7 +53,6 @@ namespace step_pathfinder
 			int menu_index = 0;
 			{
 				const auto select_callback = CC_CALLBACK_2( TileSelectNode::onSelect, this );
-				Vec2 pivot_position( menu_size.width * 0.5f, menu_size.height * 0.5f );
 
 				for( int cur = static_cast<int>( step_pathfinder::game::eTileType::FIRST ), end = static_cast<int>( step_pathfinder::game::eTileType::SIZE ); cur < end; ++cur )
 				{
@@ -69,10 +68,7 @@ namespace step_pathfinder
 						, tile_data.Name
 						, select_callback
 					);
-					button->setPosition(
-						pivot_position
-						+ Vec2( 0.f, button->getContentSize().height * menu_index )
-					);
+					button->setPositionY( menu_size.height * menu_index );
 					addChild( button );
 
 					++menu_index;
@@ -84,7 +80,7 @@ namespace step_pathfinder
 			//
 			{
 				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
-				indicator->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				indicator->setAnchorPoint( Vec2::ZERO );
 				indicator->setTag( TAG_Indicator );
 				indicator->setContentSize( menu_size );
 				addChild( indicator, 1 );
@@ -122,6 +118,7 @@ namespace step_pathfinder
 		{
 			auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( tile_type ) );
+			button->setAnchorPoint( Vec2::ZERO );
 			button->addTouchEventListener( callback );
 			button->setScale9Enabled( true );
 			button->setContentSize( menu_size );
