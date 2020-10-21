@@ -102,14 +102,6 @@ namespace step_pathfinder
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
-			//
-			// Start Setup
-			//
-			onSelect(
-				getChildByTag( static_cast<int>( step_pathfinder::game::eTileType::road ) )
-				, ui::Widget::TouchEventType::BEGAN
-			);
-
 			return true;
 		}
 
@@ -130,6 +122,15 @@ namespace step_pathfinder
 			return button;
 		}
 
+
+		void TileSelectNode::SetIndicator( const step_pathfinder::game::eTileType tile_type )
+		{
+			auto button_node = getChildByTag( static_cast<int>( tile_type ) );
+
+			// setup indicator
+			auto indicator_node = getChildByTag( TAG_Indicator );
+			indicator_node->setPosition( button_node->getPosition() );
+		}
 
 		void TileSelectNode::onSelect( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{

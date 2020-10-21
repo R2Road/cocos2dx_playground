@@ -176,6 +176,11 @@ namespace step_pathfinder
 					- ( tile_select_node->getContentSize().height * 0.5f )
 				);
 				addChild( tile_select_node );
+
+				//
+				// indicator setup
+				//
+				tile_select_node->SetIndicator( mCurrentTileType );
 			}
 
 

@@ -31,6 +31,11 @@ namespace step_pathfinder
 				, const char* button_text
 				, const cocos2d::ui::Widget::ccWidgetTouchCallback& callback
 			) const;
+
+		public:
+			void SetIndicator( const step_pathfinder::game::eTileType tile_type );
+
+		private:
 			void onSelect( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
