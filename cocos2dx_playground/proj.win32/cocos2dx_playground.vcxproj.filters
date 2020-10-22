@@ -166,6 +166,9 @@
     <Filter Include="src\scene\step_06_defender\chipmunk">
       <UniqueIdentifier>{dcdbcf87-3edf-4b6d-b8fa-785c52308143}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_06_defender\tool">
+      <UniqueIdentifier>{d3b8f62d-ee09-43d0-a5b9-11028eb50787}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -722,6 +725,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_defender_chipmunk_GravityScene.cpp">
       <Filter>src\scene\step_06_defender\chipmunk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_tool_parallax_layer_EntryScene.cpp">
+      <Filter>src\scene\step_06_defender\tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1312,6 +1318,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_chipmunk_GravityScene.h">
       <Filter>src\scene\step_06_defender\chipmunk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_tool_parallax_layer_EntryScene.h">
+      <Filter>src\scene\step_06_defender\tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
