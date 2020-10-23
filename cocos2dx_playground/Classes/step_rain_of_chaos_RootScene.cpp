@@ -11,6 +11,7 @@
 #include "step_rain_of_chaos_batch_node_QuadScene.h"
 #include "step_rain_of_chaos_button_DragScene.h"
 #include "step_rain_of_chaos_draw_node_CircleScene.h"
+#include "ui_practice_LayoutVerticalScene.h"
 
 #include "step_rain_of_chaos_game_test_ActorMoveScene.h"
 #include "step_rain_of_chaos_game_test_BackgroundNodeScene.h"
@@ -67,6 +68,9 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[5] : " << step_rain_of_chaos::draw_node::CircleScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[6] : " << ui_practice::LayoutVerticalScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -154,6 +158,10 @@ namespace step_rain_of_chaos
 
 		case EventKeyboard::KeyCode::KEY_5:
 			_director->replaceScene( step_rain_of_chaos::draw_node::CircleScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_6:
+			_director->replaceScene( ui_practice::LayoutVerticalScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 
