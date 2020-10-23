@@ -11,8 +11,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
-
-#include "cpgui_ScrollViewGenerator.h"
+#include "ui/UILayout.h"
+#include "ui/UIScale9Sprite.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
@@ -34,6 +34,8 @@ namespace
 {
 	const int BulletCachingAmount = 100;
 	const float BulletSpeed = 150.f;
+
+	const int TAG_PackageIndicator = 10001;
 }
 
 namespace step_rain_of_chaos
@@ -270,34 +272,72 @@ namespace step_rain_of_chaos
 			// Package List
 			//
 			{
-				const cpgui::ScrollViewGenerator::Config config{ 7u, 10u, Size( 120, 18 ), ui::Margin( 0.f, 0.f, 0.f, 0.f ), true };
-				cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
-				for( std::size_t i = 0; mPackgeContainer.size() > i; ++i )
-				{
-					item_info_container.emplace_back( i, mPackgeContainer[i].Name );
-				}
-
-				auto scroll_view_node = cpgui::ScrollViewGenerator::Create(
-					config
-					, "Package List"
-					, item_info_container
-					, CC_CALLBACK_2( SpawnProcessorScene::onPackageSelect, this )
+				const Size ItemSize( 120, 18 );
+				const ui::Margin ItemMargin( 0.f, 0.f, 0.f, 0.f );
+				const Size LayoutSize(
+					ItemMargin.left + ItemSize.width + ItemMargin.right
+					, ( ItemMargin.top + ItemSize.height + ItemMargin.bottom ) * mPackgeContainer.size()
 				);
-				scroll_view_node->setPosition( Vec2(
+
+				auto layout_node = ui::Layout::create();
+				layout_node->setContentSize( LayoutSize );
+				layout_node->setLayoutType( ui::Layout::Type::VERTICAL );
+				layout_node->setBackGroundColor( Color3B( 0, 148, 255 ) );
+				layout_node->setBackGroundColorOpacity( 150u );
+				layout_node->setBackGroundColorType( cocos2d::ui::Layout::BackGroundColorType::SOLID );
+				layout_node->setPosition( Vec2(
 					visibleOrigin
 					+ Vec2( visibleSize.width, visibleSize.height * 0.5f )
-					- Vec2( scroll_view_node->getContentSize().width, scroll_view_node->getContentSize().height * 0.5f )
+					- Vec2( layout_node->getContentSize().width, layout_node->getContentSize().height * 0.5f )
 				) );
-				addChild( scroll_view_node );
+				addChild( layout_node );
+
+				for( std::size_t i = 0; mPackgeContainer.size() > i; ++i )
+				{
+					auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+					button->setTag( i );
+					button->setScale9Enabled( true );
+					button->setContentSize( ItemSize );
+					button->addTouchEventListener( CC_CALLBACK_2( SpawnProcessorScene::onPackageSelect, this ) );
+
+					// Label
+					{
+						auto label = Label::createWithTTF( mPackgeContainer[i].Name, "fonts/NanumSquareR.ttf", 7 );
+						label->getFontAtlas()->setAliasTexParameters();
+						button->setTitleLabel( label );
+					}
+
+					// Align
+					{
+						auto param = ui::LinearLayoutParameter::create();
+						param->setMargin( ItemMargin );
+						button->setLayoutParameter( param );
+					}
+
+					// Pivot
+					{
+						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+						button->addChild( pivot, std::numeric_limits<int>::max() );
+					}
+
+					// Indicator
+					{
+						auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
+						sprite->setTag( TAG_PackageIndicator );
+						sprite->setAnchorPoint( Vec2::ZERO );
+						sprite->setContentSize( ItemSize );
+						sprite->setVisible( false );
+						button->addChild( sprite, 1 );
+					}
+
+					layout_node->addChild( button );
+				}
 
 				//
 				// Select
 				//
 				{
-					onPackageSelect(
-						scroll_view_node->getChildByTag( cpgui::ScrollViewGenerator::eTAG::ScrollView )->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Layout )->getChildByTag( item_info_container.begin()->Tag )
-						, ui::Widget::TouchEventType::ENDED
-					);
+					onPackageSelect( layout_node->getChildByTag( 0 ), ui::Widget::TouchEventType::ENDED );
 				}
 			}
 
@@ -415,12 +455,12 @@ namespace step_rain_of_chaos
 				unschedule( schedule_selector( SpawnProcessorScene::updateForSpawnProcessor ) );
 
 				auto node = static_cast<Node*>( sender );
-				auto indicator_node = node->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Indicator );
+				auto indicator_node = node->getChildByTag( TAG_PackageIndicator );
 				if( !indicator_node->isVisible() )
 				{
 					for( auto c : node->getParent()->getChildren() )
 					{
-						c->getChildByTag( cpgui::ScrollViewGenerator::eTAG::Indicator )->setVisible( false );
+						c->getChildByTag( TAG_PackageIndicator )->setVisible( false );
 					}
 
 					indicator_node->setVisible( true );
