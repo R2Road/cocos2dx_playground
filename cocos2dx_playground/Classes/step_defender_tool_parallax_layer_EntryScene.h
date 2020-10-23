@@ -13,7 +13,7 @@ namespace step_defender
 			EntryScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Tool : ParallaxParts"; }
+			static const char* getTitle() { return "Tool : Parallax Layer"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		private:
