@@ -1,4 +1,4 @@
-#include "step_defender_tool_parallax_layer_EntryScene.h"
+#include "step_defender_tool_ParallaxLayerEditorScene.h"
 
 #include <new>
 #include <numeric>
@@ -16,16 +16,16 @@ USING_NS_CC;
 
 namespace step_defender
 {
-	namespace tool_parallax_layer
+	namespace tool
 	{
-		EntryScene::EntryScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		ParallaxLayerEditorScene::ParallaxLayerEditorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 		{}
 
-		Scene* EntryScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* ParallaxLayerEditorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) EntryScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) ParallaxLayerEditorScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -39,7 +39,7 @@ namespace step_defender
 			return ret;
 		}
 
-		bool EntryScene::init()
+		bool ParallaxLayerEditorScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -127,16 +127,16 @@ namespace step_defender
 			return true;
 		}
 
-		void EntryScene::onEnter()
+		void ParallaxLayerEditorScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( EntryScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ParallaxLayerEditorScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void EntryScene::onExit()
+		void ParallaxLayerEditorScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -145,7 +145,7 @@ namespace step_defender
 			Scene::onExit();
 		}
 
-		void EntryScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+		void ParallaxLayerEditorScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
 			{

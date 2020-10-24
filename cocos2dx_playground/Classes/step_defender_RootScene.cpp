@@ -12,7 +12,7 @@
 #include "step_defender_chipmunk_GravityScene.h"
 #include "step_defender_chipmunk_MoveScene.h"
 #include "step_defender_chipmunk_ContactScene.h"
-#include "step_defender_tool_parallax_layer_EntryScene.h"
+#include "step_defender_tool_ParallaxLayerEditorScene.h"
 
 USING_NS_CC;
 
@@ -74,7 +74,7 @@ namespace step_defender
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << step_defender::tool_parallax_layer::EntryScene::getTitle();
+			ss << "[A] : " << step_defender::tool::ParallaxLayerEditorScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -144,7 +144,7 @@ namespace step_defender
 
 
 		case EventKeyboard::KeyCode::KEY_A:
-			_director->replaceScene( step_defender::tool_parallax_layer::EntryScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( step_defender::tool::ParallaxLayerEditorScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:

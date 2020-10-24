@@ -5,15 +5,15 @@
 
 namespace step_defender
 {
-	namespace tool_parallax_layer
+	namespace tool
 	{
-		class EntryScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+		class ParallaxLayerEditorScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
-			EntryScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			ParallaxLayerEditorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Tool : Parallax Layer"; }
+			static const char* getTitle() { return "Tool : Parallax Layer Editor"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		private:
