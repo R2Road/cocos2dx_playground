@@ -268,10 +268,14 @@ namespace step_defender
 			{
 				auto background_node = getChildByTag( TAG_Parallax );
 
-				const auto new_position = background_node->getPosition() + Vec2( -ScrollSpeed * delta_time, 0.f );
-				if( -getContentSize().width < new_position.x )
+				const auto new_position = background_node->getPositionX() + ( -ScrollSpeed * delta_time );
+				if( -getContentSize().width < new_position )
 				{
-					background_node->setPosition( new_position );
+					background_node->setPositionX( new_position );
+				}
+				else
+				{
+					background_node->setPositionX( -getContentSize().width );
 				}
 			}
 
@@ -279,10 +283,14 @@ namespace step_defender
 			{
 				auto background_node = getChildByTag( TAG_Parallax );
 
-				const auto new_position = background_node->getPosition() + Vec2( ScrollSpeed * delta_time, 0.f );
-				if( 0.f > new_position.x )
+				const auto new_position = background_node->getPositionX() + ( ScrollSpeed * delta_time );
+				if( 0.f > new_position )
 				{
-					background_node->setPosition( new_position );
+					background_node->setPositionX( new_position );
+				}
+				else
+				{
+					background_node->setPositionX( 0.f );
 				}
 			}
 		}
