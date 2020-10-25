@@ -102,12 +102,13 @@ namespace step_defender
 				mParallaxNode = ParallaxNode::create();
 				addChild( mParallaxNode );
 
+				const int part_width = 100.f;
+
 				//
 				// Background 1
 				//
 				{
 					const float parallax_rate = 0.6f;
-					const int part_width = 100.f;
 					const float part_height = TotalContentSize.height * 0.75f;
 
 					auto background_node = Node::create();
@@ -148,7 +149,6 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 0.8f;
-					const int part_width = 100.f;
 					const float part_height = TotalContentSize.height * 0.5f;
 
 					auto background_node = Node::create();
@@ -184,7 +184,6 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 1.f;
-					const int part_width = 100.f;
 					const float part_height = TotalContentSize.height * 0.25f;
 
 					auto background_node = Node::create();
