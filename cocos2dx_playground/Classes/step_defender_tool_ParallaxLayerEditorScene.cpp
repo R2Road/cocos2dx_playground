@@ -107,7 +107,7 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 0.6f;
-					const float part_width = 100.f;
+					const int part_width = 100.f;
 					const float part_height = TotalContentSize.height * 0.75f;
 
 					auto background_node = Node::create();
@@ -121,21 +121,16 @@ namespace step_defender
 					//
 					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
-					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						if( ( i & 1 ) == 0 )
-						{
-							current_color = Color4B::RED;
-						}
-						else
-						{
-							current_color = Color4B::BLUE;
-						}
-
-						auto layer = LayerColor::create( current_color, part_width, part_height );
-						layer->setPositionX( i * part_width );
-						background_node->addChild( layer );
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+						label->setColor( Color3B::BLUE );
+						label->setPosition( Vec2(
+							i * part_width
+							, part_height
+						) );
+						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
 
 					//
@@ -153,7 +148,7 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 0.8f;
-					const float part_width = 50.f;
+					const int part_width = 100.f;
 					const float part_height = TotalContentSize.height * 0.5f;
 
 					auto background_node = Node::create();
@@ -164,18 +159,14 @@ namespace step_defender
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						if( ( i & 1 ) == 0 )
-						{
-							current_color = Color4B::YELLOW;
-						}
-						else
-						{
-							current_color = Color4B::ORANGE;
-						}
-
-						auto layer = LayerColor::create( current_color, part_width, part_height );
-						layer->setPositionX( i * part_width );
-						background_node->addChild( layer );
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+						label->setColor( Color3B::YELLOW );
+						label->setPosition( Vec2(
+							i * part_width
+							, part_height
+						) );
+						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
 
 					//
@@ -193,7 +184,7 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 1.f;
-					const float part_width = 25.f;
+					const int part_width = 100.f;
 					const float part_height = TotalContentSize.height * 0.25f;
 
 					auto background_node = Node::create();
@@ -204,18 +195,14 @@ namespace step_defender
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						if( ( i & 1 ) == 0 )
-						{
-							current_color = Color4B::WHITE;
-						}
-						else
-						{
-							current_color = Color4B::BLACK;
-						}
-
-						auto layer = LayerColor::create( current_color, part_width, part_height );
-						layer->setPositionX( i * part_width );
-						background_node->addChild( layer );
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+						label->setColor( Color3B::WHITE );
+						label->setPosition( Vec2(
+							i * part_width
+							, part_height
+						) );
+						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
 
 					//
@@ -258,19 +245,27 @@ namespace step_defender
 		{
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
-				const auto new_position = mParallaxNode->getPosition() + Vec2( -ScrollSpeed * delta_time, 0.f );
-				if( -getContentSize().width < new_position.x )
+				const auto new_position = mParallaxNode->getPositionX() + ( -ScrollSpeed * delta_time );
+				if( -getContentSize().width < new_position )
 				{
-					mParallaxNode->setPosition( new_position );
+					mParallaxNode->setPositionX( new_position );
+				}
+				else
+				{
+					mParallaxNode->setPositionX( -getContentSize().width );
 				}
 			}
 
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
-				const auto new_position = mParallaxNode->getPosition() + Vec2( ScrollSpeed * delta_time, 0.f );
-				if( 0.f > new_position.x )
+				const auto new_position = mParallaxNode->getPositionX() + ( ScrollSpeed * delta_time );
+				if( 0.f > new_position )
 				{
-					mParallaxNode->setPosition( new_position );
+					mParallaxNode->setPositionX( new_position );
+				}
+				else
+				{
+					mParallaxNode->setPositionX( 0.f );
 				}
 			}
 		}
