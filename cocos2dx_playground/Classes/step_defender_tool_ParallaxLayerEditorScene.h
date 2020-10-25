@@ -3,6 +3,12 @@
 #include "2d/CCScene.h"
 #include "helper_BackToThePreviousScene.h"
 
+#include "step_rain_of_chaos_input_KeyCodeCollector.h"
+
+NS_CC_BEGIN
+class ParallaxNode;
+NS_CC_END
+
 namespace step_defender
 {
 	namespace tool
@@ -23,11 +29,17 @@ namespace step_defender
 			void onEnter() override;
 			void onExit() override;
 
+			void update4Move( float delta_time );
+
 		private:
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
+
+			cocos2d::ParallaxNode* mParallaxNode;
 		};
 	}
 }
