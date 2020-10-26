@@ -1,4 +1,4 @@
-#include "step_defender_parallax_node_RatioCheckScene.h"
+#include "step_defender_tool_ParallaxLayerEditorScene.h"
 
 #include <new>
 #include <numeric>
@@ -7,32 +7,34 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCParallaxNode.h"
-#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "ui/UIButton.h"
+#include "ui/UILayout.h"
 
 USING_NS_CC;
 
 namespace
 {
-	const int TAG_Parallax = 10000;
 	const float ScrollSpeed = 300.f;
 }
 
 namespace step_defender
 {
-	namespace parallax_node
+	namespace tool
 	{
-		RatioCheckScene::RatioCheckScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		ParallaxLayerEditorScene::ParallaxLayerEditorScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
+
+			, mParallaxNode( nullptr )
 		{}
 
-		Scene* RatioCheckScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* ParallaxLayerEditorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) RatioCheckScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) ParallaxLayerEditorScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -46,7 +48,7 @@ namespace step_defender
 			return ret;
 		}
 
-		bool RatioCheckScene::init()
+		bool ParallaxLayerEditorScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -55,6 +57,10 @@ namespace step_defender
 
 			const auto visibleOrigin = _director->getVisibleOrigin();
 			const auto visibleSize = _director->getVisibleSize();
+			const Vec2 visibleCenter(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+			);
 
 			//
 			// Summury
@@ -87,40 +93,26 @@ namespace step_defender
 			}
 
 			//
-			// Explain
-			//
-			{
-				auto label = Label::createWithTTF( "+ Do Scroll and Check Green Line", "fonts/NanumSquareR.ttf", 10 );
-				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, std::numeric_limits<int>::max() );
-			}
-
-			//
-			// Test Setup
+			// ParallaxNode Setup
 			//
 			{
 				const Size TotalContentSize( visibleSize.width * 2, visibleSize.height );
 				setContentSize( TotalContentSize );
 
-				auto background_root_node = ParallaxNode::create();
-				background_root_node->setTag( TAG_Parallax );
-				addChild( background_root_node );
+				mParallaxNode = ParallaxNode::create();
+				addChild( mParallaxNode );
+
+				const int part_width = 100.f;
 
 				//
 				// Background 1
 				//
 				{
 					const float parallax_rate = 0.6f;
-					const float part_width = 100.f;
 					const float part_height = TotalContentSize.height * 0.75f;
 
 					auto background_node = Node::create();
-					background_root_node->addChild( background_node, 1, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
+					mParallaxNode->addChild( background_node, 1, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					//
 					// # Summury
@@ -130,21 +122,16 @@ namespace step_defender
 					//
 					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
-					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						if( ( i & 1 ) == 0 )
-						{
-							current_color = Color4B::RED;
-						}
-						else
-						{
-							current_color = Color4B::BLUE;
-						}
-
-						auto layer = LayerColor::create( current_color, part_width, part_height );
-						layer->setPositionX( i * part_width );
-						background_node->addChild( layer );
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+						label->setColor( Color3B::BLUE );
+						label->setPosition( Vec2(
+							i * part_width
+							, part_height
+						) );
+						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
 
 					//
@@ -162,29 +149,24 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 0.8f;
-					const float part_width = 50.f;
 					const float part_height = TotalContentSize.height * 0.5f;
 
 					auto background_node = Node::create();
-					background_root_node->addChild( background_node, 2, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
+					mParallaxNode->addChild( background_node, 2, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						if( ( i & 1 ) == 0 )
-						{
-							current_color = Color4B::YELLOW;
-						}
-						else
-						{
-							current_color = Color4B::ORANGE;
-						}
-
-						auto layer = LayerColor::create( current_color, part_width, part_height );
-						layer->setPositionX( i * part_width );
-						background_node->addChild( layer );
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+						label->setColor( Color3B::YELLOW );
+						label->setPosition( Vec2(
+							i * part_width
+							, part_height
+						) );
+						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
 
 					//
@@ -202,29 +184,24 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 1.f;
-					const float part_width = 25.f;
 					const float part_height = TotalContentSize.height * 0.25f;
 
 					auto background_node = Node::create();
-					background_root_node->addChild( background_node, 2, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
+					mParallaxNode->addChild( background_node, 2, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						if( ( i & 1 ) == 0 )
-						{
-							current_color = Color4B::WHITE;
-						}
-						else
-						{
-							current_color = Color4B::BLACK;
-						}
-
-						auto layer = LayerColor::create( current_color, part_width, part_height );
-						layer->setPositionX( i * part_width );
-						background_node->addChild( layer );
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+						label->setColor( Color3B::WHITE );
+						label->setPosition( Vec2(
+							i * part_width
+							, part_height
+						) );
+						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
 
 					//
@@ -238,22 +215,22 @@ namespace step_defender
 				}
 			}
 
-			schedule( schedule_selector( RatioCheckScene::update4Move ) );
+			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
 
 			return true;
 		}
 
-		void RatioCheckScene::onEnter()
+		void ParallaxLayerEditorScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RatioCheckScene::onKeyPressed, this );
-			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( RatioCheckScene::onKeyReleased, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ParallaxLayerEditorScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( ParallaxLayerEditorScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void RatioCheckScene::onExit()
+		void ParallaxLayerEditorScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -262,50 +239,47 @@ namespace step_defender
 			Scene::onExit();
 		}
 
-		void RatioCheckScene::update4Move( float delta_time )
+
+		void ParallaxLayerEditorScene::update4Move( float delta_time )
 		{
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
-				auto background_node = getChildByTag( TAG_Parallax );
-
-				const auto new_position = background_node->getPositionX() + ( -ScrollSpeed * delta_time );
+				const auto new_position = mParallaxNode->getPositionX() + ( -ScrollSpeed * delta_time );
 				if( -getContentSize().width < new_position )
 				{
-					background_node->setPositionX( new_position );
+					mParallaxNode->setPositionX( new_position );
 				}
 				else
 				{
-					background_node->setPositionX( -getContentSize().width );
+					mParallaxNode->setPositionX( -getContentSize().width );
 				}
 			}
 
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
-				auto background_node = getChildByTag( TAG_Parallax );
-
-				const auto new_position = background_node->getPositionX() + ( ScrollSpeed * delta_time );
+				const auto new_position = mParallaxNode->getPositionX() + ( ScrollSpeed * delta_time );
 				if( 0.f > new_position )
 				{
-					background_node->setPositionX( new_position );
+					mParallaxNode->setPositionX( new_position );
 				}
 				else
 				{
-					background_node->setPositionX( 0.f );
+					mParallaxNode->setPositionX( 0.f );
 				}
 			}
 		}
 
-		void RatioCheckScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+
+		void ParallaxLayerEditorScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
 			{
 				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
-
 			mKeyCodeCollector.onKeyPressed( key_code );
 		}
-		void RatioCheckScene::onKeyReleased( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+		void ParallaxLayerEditorScene::onKeyReleased( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 		{
 			mKeyCodeCollector.onKeyReleased( key_code );
 		}

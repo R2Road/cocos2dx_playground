@@ -726,7 +726,7 @@
     <ClCompile Include="..\Classes\step_defender_chipmunk_GravityScene.cpp">
       <Filter>src\scene\step_06_defender\chipmunk</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_defender_tool_parallax_layer_EntryScene.cpp">
+    <ClCompile Include="..\Classes\step_defender_tool_ParallaxLayerEditorScene.cpp">
       <Filter>src\scene\step_06_defender\tool</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1319,7 +1319,7 @@
     <ClInclude Include="..\Classes\step_defender_chipmunk_GravityScene.h">
       <Filter>src\scene\step_06_defender\chipmunk</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_defender_tool_parallax_layer_EntryScene.h">
+    <ClInclude Include="..\Classes\step_defender_tool_ParallaxLayerEditorScene.h">
       <Filter>src\scene\step_06_defender\tool</Filter>
     </ClInclude>
   </ItemGroup>
