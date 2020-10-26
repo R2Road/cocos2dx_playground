@@ -124,7 +124,7 @@ namespace step_defender
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 						label->setColor( Color3B::BLUE );
 						label->setPosition( Vec2(
@@ -159,7 +159,7 @@ namespace step_defender
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 						label->setColor( Color3B::YELLOW );
 						label->setPosition( Vec2(
