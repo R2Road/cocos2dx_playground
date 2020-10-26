@@ -169,6 +169,9 @@
     <Filter Include="src\scene\step_06_defender\tool">
       <UniqueIdentifier>{d3b8f62d-ee09-43d0-a5b9-11028eb50787}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\cpgui">
+      <UniqueIdentifier>{426843c1-8679-4018-9029-295647a2bc02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -728,6 +731,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_defender_tool_ParallaxLayerEditorScene.cpp">
       <Filter>src\scene\step_06_defender\tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpgui_ToolBarNode.cpp">
+      <Filter>src\cpgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1321,6 +1330,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_tool_ParallaxLayerEditorScene.h">
       <Filter>src\scene\step_06_defender\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.h">
+      <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpgui_ToolBarNode.h">
+      <Filter>src\cpgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

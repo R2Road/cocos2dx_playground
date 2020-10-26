@@ -151,7 +151,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp" />
     <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp" />
+    <ClCompile Include="..\Classes\cpgui_ToolBarNode.cpp" />
     <ClCompile Include="..\Classes\cpg_Random.cpp" />
     <ClCompile Include="..\Classes\cpg_Setting.cpp" />
     <ClCompile Include="..\Classes\graph_practice_BasicScene.cpp" />
@@ -339,7 +341,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.h" />
     <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h" />
+    <ClInclude Include="..\Classes\cpgui_ToolBarNode.h" />
     <ClInclude Include="..\Classes\cpg_Clamp.h" />
     <ClInclude Include="..\Classes\cpg_Random.h" />
     <ClInclude Include="..\Classes\cpg_Setting.h" />

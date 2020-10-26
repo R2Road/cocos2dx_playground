@@ -16,6 +16,8 @@
 
 #include "ui_research_text_field_BMFontScene.h"
 
+#include "cpgui_research_layout_ToolBarNodeScene.h"
+
 USING_NS_CC;
 
 namespace ui_research
@@ -69,12 +71,19 @@ namespace ui_research
 			ss << std::endl;
 			ss << "[T] : " << ui_research::text_field::BMFontScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << "Add Something";
+			ss << "[A] : " << cpgui::research_layout::ToolBarNodeScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Z] : " << "Add Something";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 11, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -142,6 +151,10 @@ namespace ui_research
 
 		case EventKeyboard::KeyCode::KEY_T:
 			_director->replaceScene( ui_research::text_field::BMFontScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_A:
+			_director->replaceScene( cpgui::research_layout::ToolBarNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
