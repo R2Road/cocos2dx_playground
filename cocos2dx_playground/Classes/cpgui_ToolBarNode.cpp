@@ -3,6 +3,7 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "base/CCDirector.h"
@@ -158,7 +159,6 @@ namespace cpgui
 		// Symbol
 		{
 			tool_symbol->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-			tool_symbol->setScale( _director->getContentScaleFactor() );
 			tool_symbol->setPosition(
 				button->getContentSize().width * 0.5f
 				, button->getContentSize().height * 0.5f
@@ -188,7 +188,13 @@ namespace cpgui
 	void ToolBarNode::AddTool( const int tool_tag, const char* tool_sprite_frame_path, const std::function<void()>& callback )
 	{
 		auto tool_sprite = Sprite::createWithSpriteFrameName( tool_sprite_frame_path );
+		tool_sprite->setScale( _director->getContentScaleFactor() );
 		AddTool( tool_tag, tool_sprite, callback );
+	}
+	void ToolBarNode::AddTool( const int tool_tag, const char* symbol_string, const int font_size, const std::function<void()>& callback )
+	{
+		auto label = Label::createWithTTF( symbol_string, "fonts/NanumSquareR.ttf", font_size );
+		AddTool( tool_tag, label, callback );
 	}
 
 	void ToolBarNode::SelectTool( const int tool_tag )
