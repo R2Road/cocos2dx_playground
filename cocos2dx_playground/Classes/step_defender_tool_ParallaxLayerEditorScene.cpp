@@ -14,6 +14,8 @@
 
 #include "cpgui_ToolBarNode.h"
 
+#include "step_defender_Constant.h"
+
 USING_NS_CC;
 
 namespace
@@ -117,8 +119,7 @@ namespace step_defender
 			// ParallaxNode Setup
 			//
 			{
-				const Size TotalContentSize( visibleSize.width * 2, visibleSize.height );
-				setContentSize( TotalContentSize );
+				setContentSize( WorldConfig.WorldSize );
 
 				mParallaxNode = ParallaxNode::create();
 				addChild( mParallaxNode );
@@ -130,7 +131,7 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 0.6f;
-					const float part_height = TotalContentSize.height * 0.75f;
+					const float part_height = WorldConfig.WorldSize.height * 0.75f;
 
 					auto background_node = Node::create();
 					background_node->setTag( 1 );
@@ -140,10 +141,10 @@ namespace step_defender
 					//
 					// # Summury
 					// - "... + visibleSize.width;" is need for scroll limit
-					// - Background node tails meet on position x( "-TotalContentSize.width" )
+					// - Background node tails meet on position x( "-WorldConfig.WorldSize.width" )
 					// - Do run and Show green line
 					//
-					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
+					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
@@ -162,7 +163,7 @@ namespace step_defender
 					//
 					{
 						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
-						layer->setPositionX( TotalContentSize.width * parallax_rate );
+						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
 				}
@@ -172,14 +173,14 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 0.8f;
-					const float part_height = TotalContentSize.height * 0.5f;
+					const float part_height = WorldConfig.WorldSize.height * 0.5f;
 
 					auto background_node = Node::create();
 					background_node->setTag( 2 );
 					background_node->setCascadeOpacityEnabled( true );
 					mParallaxNode->addChild( background_node, 2, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
-					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
+					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
@@ -199,7 +200,7 @@ namespace step_defender
 					//
 					{
 						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
-						layer->setPositionX( TotalContentSize.width * parallax_rate );
+						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
 				}
@@ -209,14 +210,14 @@ namespace step_defender
 				//
 				{
 					const float parallax_rate = 1.f;
-					const float part_height = TotalContentSize.height * 0.25f;
+					const float part_height = WorldConfig.WorldSize.height * 0.25f;
 
 					auto background_node = Node::create();
 					background_node->setTag( 3 );
 					background_node->setCascadeOpacityEnabled( true );
 					mParallaxNode->addChild( background_node, 3, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
-					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
+					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
@@ -236,7 +237,7 @@ namespace step_defender
 					//
 					{
 						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
-						layer->setPositionX( TotalContentSize.width * parallax_rate );
+						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
 				}
