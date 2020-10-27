@@ -10,8 +10,8 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "ui/UIButton.h"
-#include "ui/UILayout.h"
+
+#include "cpgui_ToolBarNode.h"
 
 USING_NS_CC;
 
@@ -90,6 +90,26 @@ namespace step_defender
 			{
 				auto background_layer = LayerColor::create( Color4B( 7, 39, 43, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Layer Selector
+			//
+			{
+				auto tool_bar_node = cpgui::ToolBarNode::create();
+				addChild( tool_bar_node );
+
+				tool_bar_node->AddTool( 1, "1", 10, []() { CCLOG( "1" ); } );
+				tool_bar_node->AddTool( 2, "2", 10, []() { CCLOG( "2" ); } );
+				tool_bar_node->AddTool( 3, "3", 10, []() { CCLOG( "3" ); } );
+
+				tool_bar_node->setPosition(
+					visibleCenter.x - ( tool_bar_node->getContentSize().width * 0.5f )
+					, visibleOrigin.y + visibleSize.height - tool_bar_node->getContentSize().height
+				);
+
+				// Set Indicator
+				tool_bar_node->SelectTool( 1 );
 			}
 
 			//
