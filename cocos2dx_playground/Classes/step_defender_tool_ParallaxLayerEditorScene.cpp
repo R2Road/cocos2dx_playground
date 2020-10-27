@@ -149,7 +149,7 @@ namespace step_defender
 					{
 						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( Color3B::BLUE );
+						label->setColor( Color3B( 90u, 200u, 255u ) );
 						label->setPosition( Vec2(
 							i * part_width
 							, part_height
