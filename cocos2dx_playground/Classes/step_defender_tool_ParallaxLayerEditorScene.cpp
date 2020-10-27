@@ -1,5 +1,6 @@
 #include "step_defender_tool_ParallaxLayerEditorScene.h"
 
+#include <functional>
 #include <new>
 #include <numeric>
 #include <sstream>
@@ -99,9 +100,9 @@ namespace step_defender
 				auto tool_bar_node = cpgui::ToolBarNode::create();
 				addChild( tool_bar_node );
 
-				tool_bar_node->AddTool( 1, "1", 10, []() { CCLOG( "1" ); } );
-				tool_bar_node->AddTool( 2, "2", 10, []() { CCLOG( "2" ); } );
-				tool_bar_node->AddTool( 3, "3", 10, []() { CCLOG( "3" ); } );
+				tool_bar_node->AddTool( 1, "1", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 1 ) );
+				tool_bar_node->AddTool( 2, "2", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 2 ) );
+				tool_bar_node->AddTool( 3, "3", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 3 ) );
 
 				tool_bar_node->setPosition(
 					visibleCenter.x - ( tool_bar_node->getContentSize().width * 0.5f )
@@ -132,6 +133,8 @@ namespace step_defender
 					const float part_height = TotalContentSize.height * 0.75f;
 
 					auto background_node = Node::create();
+					background_node->setTag( 1 );
+					background_node->setCascadeOpacityEnabled( true );
 					mParallaxNode->addChild( background_node, 1, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					//
@@ -172,6 +175,8 @@ namespace step_defender
 					const float part_height = TotalContentSize.height * 0.5f;
 
 					auto background_node = Node::create();
+					background_node->setTag( 2 );
+					background_node->setCascadeOpacityEnabled( true );
 					mParallaxNode->addChild( background_node, 2, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
@@ -207,7 +212,9 @@ namespace step_defender
 					const float part_height = TotalContentSize.height * 0.25f;
 
 					auto background_node = Node::create();
-					mParallaxNode->addChild( background_node, 2, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
+					background_node->setTag( 3 );
+					background_node->setCascadeOpacityEnabled( true );
+					mParallaxNode->addChild( background_node, 3, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( TotalContentSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
@@ -235,7 +242,12 @@ namespace step_defender
 				}
 			}
 
+
+			//
+			// Setup
+			//
 			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
+			onLayerSelect( 1 );
 
 			return true;
 		}
@@ -286,6 +298,15 @@ namespace step_defender
 				{
 					mParallaxNode->setPositionX( 0.f );
 				}
+			}
+		}
+
+
+		void ParallaxLayerEditorScene::onLayerSelect( const int layer_index )
+		{
+			for( auto c : mParallaxNode->getChildren() )
+			{
+				c->setOpacity( layer_index == c->getTag() ? 255u : 80u );
 			}
 		}
 

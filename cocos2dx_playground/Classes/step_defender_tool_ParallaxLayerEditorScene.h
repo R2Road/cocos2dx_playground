@@ -32,6 +32,8 @@ namespace step_defender
 			void update4Move( float delta_time );
 
 		private:
+			void onLayerSelect( const int layer_index );
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
