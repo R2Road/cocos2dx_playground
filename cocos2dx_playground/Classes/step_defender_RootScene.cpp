@@ -8,10 +8,14 @@
 
 #include "step_defender_parallax_node_BasicScene.h"
 #include "step_defender_parallax_node_RatioCheckScene.h"
+
 #include "step_defender_chipmunk_BasicScene.h"
 #include "step_defender_chipmunk_GravityScene.h"
 #include "step_defender_chipmunk_MoveScene.h"
 #include "step_defender_chipmunk_ContactScene.h"
+
+#include "cpgui_research_layout_ToolBarNodeScene.h"
+
 #include "step_defender_tool_ParallaxLayerEditorScene.h"
 
 USING_NS_CC;
@@ -69,6 +73,12 @@ namespace step_defender
 			ss << "[5] : " << step_defender::chipmunk::MoveScene::getTitle();
 			ss << std::endl;
 			ss << "[6] : " << step_defender::chipmunk::ContactScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] : " << cpgui::research_layout::ToolBarNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -140,6 +150,10 @@ namespace step_defender
 			break;
 		case EventKeyboard::KeyCode::KEY_6:
 			_director->replaceScene( step_defender::chipmunk::ContactScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			_director->replaceScene( cpgui::research_layout::ToolBarNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 
