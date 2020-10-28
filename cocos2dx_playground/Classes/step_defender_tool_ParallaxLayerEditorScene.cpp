@@ -22,6 +22,12 @@ USING_NS_CC;
 namespace
 {
 	const float ScrollSpeed = 300.f;
+
+	const Color3B BackgroundColors[3] = {
+		{ 90u, 200u, 255u }
+		, Color3B::YELLOW
+		, Color3B::WHITE
+	};
 }
 
 namespace step_defender
@@ -104,9 +110,9 @@ namespace step_defender
 				auto tool_bar_node = cpgui::ToolBarNode::create();
 				addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-				tool_bar_node->AddTool( 1, "1", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 1 ) );
-				tool_bar_node->AddTool( 2, "2", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 2 ) );
-				tool_bar_node->AddTool( 3, "3", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 3 ) );
+				tool_bar_node->AddTool( 1, "1", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 0 ) );
+				tool_bar_node->AddTool( 2, "2", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 1 ) );
+				tool_bar_node->AddTool( 3, "3", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 2 ) );
 
 				tool_bar_node->setPosition(
 					visibleCenter.x - ( tool_bar_node->getContentSize().width * 0.5f )
@@ -142,30 +148,63 @@ namespace step_defender
 				const int part_width = 100.f;
 
 				//
-				// Background 1
+				// Background 0
 				//
 				{
+					const int background_index = 0;
 					const float parallax_rate = 0.6f;
 					const float part_height = WorldConfig.WorldSize.height * 0.75f;
 
 					auto background_node = Node::create();
-					background_node->setTag( 1 );
+					background_node->setTag( background_index );
 					background_node->setCascadeOpacityEnabled( true );
-					mParallaxNode->addChild( background_node, 1, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
+					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
-					//
-					// # Summury
-					// - "... + visibleSize.width;" is need for scroll limit
-					// - Background node tails meet on position x( "-WorldConfig.WorldSize.width" )
-					// - Do run and Show green line
-					//
 					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
 						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( Color3B( 90u, 200u, 255u ) );
+						label->setColor( BackgroundColors[background_index] );
+						label->setPosition( Vec2(
+							i * part_width
+							, part_height
+						) );
+						background_node->addChild( label, std::numeric_limits<int>::max() );
+					}
+
+					//
+					// Tail Guide
+					//
+					{
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
+						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
+						background_node->addChild( layer, 1 );
+					}
+				}
+
+				//
+				// Background 1
+				//
+				{
+					const int background_index = 1;
+					const float parallax_rate = 0.8f;
+					const float part_height = WorldConfig.WorldSize.height * 0.5f;
+
+					auto background_node = Node::create();
+					background_node->setTag( background_index );
+					background_node->setCascadeOpacityEnabled( true );
+					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
+
+					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
+					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
+					Color4B current_color;
+					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
+					{
+						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
+						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
 							i * part_width
 							, part_height
@@ -187,50 +226,14 @@ namespace step_defender
 				// Background 2
 				//
 				{
-					const float parallax_rate = 0.8f;
-					const float part_height = WorldConfig.WorldSize.height * 0.5f;
-
-					auto background_node = Node::create();
-					background_node->setTag( 2 );
-					background_node->setCascadeOpacityEnabled( true );
-					mParallaxNode->addChild( background_node, 2, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
-
-					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
-					Color4B current_color;
-					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
-					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
-						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( Color3B::YELLOW );
-						label->setPosition( Vec2(
-							i * part_width
-							, part_height
-						) );
-						background_node->addChild( label, std::numeric_limits<int>::max() );
-					}
-
-					//
-					// Tail Guide
-					//
-					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
-						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
-						background_node->addChild( layer, 1 );
-					}
-				}
-
-				//
-				// Background 3
-				//
-				{
+					const int background_index = 2;
 					const float parallax_rate = 1.f;
 					const float part_height = WorldConfig.WorldSize.height * 0.25f;
 
 					auto background_node = Node::create();
-					background_node->setTag( 3 );
+					background_node->setTag( background_index );
 					background_node->setCascadeOpacityEnabled( true );
-					mParallaxNode->addChild( background_node, 3, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
+					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
@@ -239,7 +242,7 @@ namespace step_defender
 					{
 						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( Color3B::WHITE );
+						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
 							i * part_width
 							, part_height
@@ -263,7 +266,7 @@ namespace step_defender
 			// Setup
 			//
 			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
-			onLayerSelect( 1 );
+			onLayerSelect( 0 );
 
 			return true;
 		}
@@ -328,6 +331,7 @@ namespace step_defender
 			{
 				c->setOpacity( layer_index == c->getTag() ? 255u : 80u );
 			}
+			mTouchNode->setColor( BackgroundColors[layer_index] );
 		}
 
 
