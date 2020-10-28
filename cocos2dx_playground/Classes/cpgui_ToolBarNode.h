@@ -33,6 +33,7 @@ namespace cpgui
 	public:
 		void AddTool( const int tool_tag, cocos2d::Node* tool_symbol, const std::function<void()>& callback );
 		void AddTool( const int tool_tag, const char* tool_sprite_frame_path, const std::function<void()>& callback );
+		void AddTool( const int tool_tag, const char* symbol_string, const int font_size, const std::function<void()>& callback );
 		void SelectTool( const int tool_tag );
 
 		void ClearTools();

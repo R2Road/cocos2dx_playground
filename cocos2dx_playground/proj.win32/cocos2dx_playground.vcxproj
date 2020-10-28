@@ -373,6 +373,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_defender_chipmunk_ContactScene.h" />
     <ClInclude Include="..\Classes\step_defender_chipmunk_GravityScene.h" />
     <ClInclude Include="..\Classes\step_defender_chipmunk_MoveScene.h" />
+    <ClInclude Include="..\Classes\step_defender_Constant.h" />
     <ClInclude Include="..\Classes\step_defender_parallax_node_BasicScene.h" />
     <ClInclude Include="..\Classes\step_defender_parallax_node_RatioCheckScene.h" />
     <ClInclude Include="..\Classes\step_defender_chipmunk_BasicScene.h" />

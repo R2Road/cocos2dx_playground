@@ -1337,6 +1337,9 @@
     <ClInclude Include="..\Classes\cpgui_ToolBarNode.h">
       <Filter>src\cpgui</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_Constant.h">
+      <Filter>src\scene\step_06_defender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
