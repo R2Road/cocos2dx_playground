@@ -1,4 +1,4 @@
-#include "ui_research_button_research_OnMouseOverScene.h"
+#include "cpgui_research_button_OnMouseOverScene.h"
 
 #include <new>
 #include <numeric>

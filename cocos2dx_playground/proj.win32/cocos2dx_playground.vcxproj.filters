@@ -657,9 +657,6 @@
     <ClCompile Include="..\Classes\ui_practice_ScrollViewGeneratorScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_button_research_OnMouseOverScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ui_research_button_research_MouseRightClickScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
@@ -737,6 +734,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpgui_ToolBarNode.cpp">
       <Filter>src\cpgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpgui_research_button_OnMouseOverScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1256,9 +1256,6 @@
     <ClInclude Include="..\Classes\ui_practice_ScrollViewGeneratorScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_button_research_OnMouseOverScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ui_research_button_research_MouseRightClickScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
@@ -1339,6 +1336,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_Constant.h">
       <Filter>src\scene\step_06_defender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpgui_research_button_OnMouseOverScene.h">
+      <Filter>src\scene\ui_research</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
