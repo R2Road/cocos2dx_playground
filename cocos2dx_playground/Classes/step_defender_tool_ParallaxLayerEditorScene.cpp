@@ -100,7 +100,7 @@ namespace step_defender
 			//
 			{
 				auto tool_bar_node = cpgui::ToolBarNode::create();
-				addChild( tool_bar_node );
+				addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
 				tool_bar_node->AddTool( 1, "1", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 1 ) );
 				tool_bar_node->AddTool( 2, "2", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 2 ) );
