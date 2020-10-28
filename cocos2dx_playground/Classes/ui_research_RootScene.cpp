@@ -52,7 +52,7 @@ namespace ui_research
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << ui_research::button_research::OnMouseOverScene::getTitle();
+			ss << "[1] : " << cpgui::research_button::OnMouseOverScene::getTitle();
 			ss << std::endl;
 			ss << "[2] : " << ui_research::button_research::MouseRightClickScene::getTitle();
 			ss << std::endl;
@@ -130,7 +130,7 @@ namespace ui_research
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( ui_research::button_research::OnMouseOverScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( cpgui::research_button::OnMouseOverScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( ui_research::button_research::MouseRightClickScene::create( helper::CreateSceneMover<RootScene>() ) );

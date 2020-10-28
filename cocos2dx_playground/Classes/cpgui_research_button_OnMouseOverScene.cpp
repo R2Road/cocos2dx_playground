@@ -21,9 +21,9 @@ namespace
 	const int TAG_MouseStatusLabel = 20160528;
 }
 
-namespace ui_research
+namespace cpgui
 {
-	namespace button_research
+	namespace research_button
 	{
 		OnMouseOverScene::OnMouseOverScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
