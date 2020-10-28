@@ -11,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "ui/UIButton.h"
 
 #include "cpgui_ToolBarNode.h"
 
@@ -33,6 +34,7 @@ namespace step_defender
 			, mKeyCodeCollector()
 
 			, mParallaxNode( nullptr )
+			, mTouchNode( nullptr )
 		{}
 
 		Scene* ParallaxLayerEditorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -113,6 +115,19 @@ namespace step_defender
 
 				// Set Indicator
 				tool_bar_node->SelectTool( 1 );
+			}
+
+			//
+			// Touch Node
+			//
+			{
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				button->setAnchorPoint( Vec2::ZERO );
+				button->setScale9Enabled( true );
+				button->setContentSize( WorldConfig.WorldSize + Size( +visibleSize.width, 0.f ) );
+				addChild( button, std::numeric_limits<int>::max() - 1 );
+
+				mTouchNode = button;
 			}
 
 			//
@@ -281,10 +296,12 @@ namespace step_defender
 				if( -getContentSize().width < new_position )
 				{
 					mParallaxNode->setPositionX( new_position );
+					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
 					mParallaxNode->setPositionX( -getContentSize().width );
+					mTouchNode->setPositionX( -getContentSize().width );
 				}
 			}
 
@@ -294,10 +311,12 @@ namespace step_defender
 				if( 0.f > new_position )
 				{
 					mParallaxNode->setPositionX( new_position );
+					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
 					mParallaxNode->setPositionX( 0.f );
+					mTouchNode->setPositionX( 0.f );
 				}
 			}
 		}

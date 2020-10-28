@@ -6,6 +6,6 @@ namespace step_defender
 {
 	const struct
 	{
-		cocos2d::Size WorldSize = cocos2d::Size( 960.f, 360.f );
+		cocos2d::Size WorldSize = cocos2d::Size( 960.f, 320.f );
 	} WorldConfig;
 }
