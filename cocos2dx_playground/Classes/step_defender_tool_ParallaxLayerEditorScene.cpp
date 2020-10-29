@@ -41,6 +41,7 @@ namespace step_defender
 
 			, mParallaxNode( nullptr )
 			, mTouchNode( nullptr )
+			, mStage( nullptr )
 		{}
 
 		Scene* ParallaxLayerEditorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -143,7 +144,7 @@ namespace step_defender
 				setContentSize( WorldConfig.WorldSize );
 
 				mParallaxNode = ParallaxNode::create();
-				addChild( mParallaxNode );
+				addChild( mParallaxNode, 0 );
 
 				const int part_width = 100.f;
 
@@ -190,7 +191,7 @@ namespace step_defender
 				{
 					const int background_index = 1;
 					const float parallax_rate = 0.8f;
-					const float part_height = WorldConfig.WorldSize.height * 0.5f;
+					const float part_height = WorldConfig.WorldSize.height * 0.55f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
@@ -228,7 +229,7 @@ namespace step_defender
 				{
 					const int background_index = 2;
 					const float parallax_rate = 1.f;
-					const float part_height = WorldConfig.WorldSize.height * 0.25f;
+					const float part_height = WorldConfig.WorldSize.height * 0.35f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
@@ -261,6 +262,13 @@ namespace step_defender
 				}
 			}
 
+			//
+			// Stage Area
+			//
+			{
+				mStage = LayerColor::create( Color4B::GRAY, WorldConfig.BottomSize.width, WorldConfig.BottomSize.height );
+				addChild( mStage, 1 );
+			}
 
 			//
 			// Setup
@@ -306,6 +314,8 @@ namespace step_defender
 					mParallaxNode->setPositionX( -getContentSize().width );
 					mTouchNode->setPositionX( -getContentSize().width );
 				}
+
+				mStage->setPosition( mParallaxNode->getPosition() );
 			}
 
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
@@ -321,6 +331,8 @@ namespace step_defender
 					mParallaxNode->setPositionX( 0.f );
 					mTouchNode->setPositionX( 0.f );
 				}
+
+				mStage->setPosition( mParallaxNode->getPosition() );
 			}
 		}
 
