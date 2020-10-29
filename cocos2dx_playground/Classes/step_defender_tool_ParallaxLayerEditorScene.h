@@ -43,6 +43,7 @@ namespace step_defender
 
 			cocos2d::ParallaxNode* mParallaxNode;
 			cocos2d::Node* mTouchNode;
+			cocos2d::Node* mCurrentBackgroundLayer;
 			cocos2d::Node* mStage;
 		};
 	}

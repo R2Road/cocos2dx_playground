@@ -8,6 +8,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCParallaxNode.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -276,6 +277,20 @@ namespace step_defender
 			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
 			onLayerSelect( 0 );
 
+			//
+			// Dummy
+			//
+			{
+				auto sprite = Sprite::createWithSpriteFrameName( "step_defender_background_01_0.png" );
+				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setPosition(
+					sprite->getBoundingBox().size.width * 0.5f
+					, visibleSize.height * 0.5f
+				);
+
+				mCurrentBackgroundLayer->addChild( sprite );
+			}
+
 			return true;
 		}
 
@@ -341,7 +356,15 @@ namespace step_defender
 		{
 			for( auto c : mParallaxNode->getChildren() )
 			{
-				c->setOpacity( layer_index == c->getTag() ? 255u : 80u );
+				if( layer_index == c->getTag() )
+				{
+					mCurrentBackgroundLayer = c;
+					c->setOpacity( 255u );
+				}
+				else
+				{
+					c->setOpacity( 80u );
+				}
 			}
 			mTouchNode->setColor( BackgroundColors[layer_index] );
 		}
