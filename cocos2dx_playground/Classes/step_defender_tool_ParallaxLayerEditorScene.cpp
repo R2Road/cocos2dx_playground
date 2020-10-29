@@ -154,7 +154,7 @@ namespace step_defender
 				{
 					const int background_index = 0;
 					const float parallax_rate = 0.6f;
-					const float part_height = WorldConfig.WorldSize.height * 0.75f;
+					const float label_y = WorldConfig.WorldSize.height * 0.75f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
@@ -170,7 +170,7 @@ namespace step_defender
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
 							i * part_width
-							, part_height
+							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
@@ -179,7 +179,7 @@ namespace step_defender
 					// Tail Guide
 					//
 					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
 						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
@@ -191,7 +191,7 @@ namespace step_defender
 				{
 					const int background_index = 1;
 					const float parallax_rate = 0.8f;
-					const float part_height = WorldConfig.WorldSize.height * 0.55f;
+					const float label_y = WorldConfig.WorldSize.height * 0.55f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
@@ -208,7 +208,7 @@ namespace step_defender
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
 							i * part_width
-							, part_height
+							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
@@ -217,7 +217,7 @@ namespace step_defender
 					// Tail Guide
 					//
 					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
 						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
@@ -229,7 +229,7 @@ namespace step_defender
 				{
 					const int background_index = 2;
 					const float parallax_rate = 1.f;
-					const float part_height = WorldConfig.WorldSize.height * 0.35f;
+					const float label_y = WorldConfig.WorldSize.height * 0.35f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
@@ -246,7 +246,7 @@ namespace step_defender
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
 							i * part_width
-							, part_height
+							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
@@ -255,7 +255,7 @@ namespace step_defender
 					// Tail Guide
 					//
 					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
 						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
