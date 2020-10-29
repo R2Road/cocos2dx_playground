@@ -98,11 +98,11 @@ namespace step_defender
 			}
 			
 			//
-			// Background
+			// Sky
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 7, 39, 43, 255 ) );
-				addChild( background_layer, std::numeric_limits<int>::min() );
+				auto layer = LayerColor::create( WorldConfig.SkyColor );
+				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
 			//
