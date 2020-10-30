@@ -93,16 +93,20 @@ namespace step_defender
 			// Indicator
 			//
 			{
-				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
+				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "scale9_guide_01_0.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale9Enabled( true );
 				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) ) );
 				sprite->setColor( Color3B::GREEN );
-				sprite->setVisible( false );
 				addChild( sprite, std::numeric_limits<int>::max() );
 
 				mIndicator = sprite;
 			}
+
+			//
+			// Setup
+			//
+			updateIndicatorPosition( Vec2::ZERO );
 
 			return true;
 		}
@@ -113,35 +117,31 @@ namespace step_defender
 
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				const auto node_space_position = convertToNodeSpace( button->getTouchBeganPosition() );
-
-				const Vec2 fixed_position( cpg::clamp( node_space_position.x, 0.f, getContentSize().width - 1.f ), cpg::clamp( node_space_position.y, 0.f, getContentSize().height - 1.f ) );
-				const auto scaled_position = fixed_position * _director->getContentScaleFactor();
-
-				const auto touch_point = mGridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
-
-				mIndicator->setPosition( touch_point.x * mIndicator->getContentSize().width, touch_point.y * mIndicator->getContentSize().height );
-				mIndicator->setVisible( true );
+				updateIndicatorPosition( button->getTouchBeganPosition() );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				const auto node_space_position = convertToNodeSpace( button->getTouchMovePosition() );
-
-				const Vec2 fixed_position( cpg::clamp( node_space_position.x, 0.f, getContentSize().width - 1.f ), cpg::clamp( node_space_position.y, 0.f, getContentSize().height - 1.f ) );
-				const auto scaled_position = fixed_position * _director->getContentScaleFactor();
-
-				const auto touch_point = mGridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
-
-				mIndicator->setPosition( touch_point.x * mIndicator->getContentSize().width, touch_point.y * mIndicator->getContentSize().height );
+				updateIndicatorPosition( button->getTouchMovePosition() );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
-				mIndicator->setVisible( false );
+				updateIndicatorPosition( button->getTouchEndPosition() );
 			}
 			else if( ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
-				mIndicator->setVisible( false );
+				updateIndicatorPosition( button->getTouchEndPosition() );
 			}
+		}
+		void TileSheetNode::updateIndicatorPosition( cocos2d::Vec2 world_position )
+		{
+			const auto node_space_position = convertToNodeSpace( world_position );
+
+			const Vec2 fixed_position( cpg::clamp( node_space_position.x, 0.f, getContentSize().width - 1.f ), cpg::clamp( node_space_position.y, 0.f, getContentSize().height - 1.f ) );
+			const auto scaled_position = fixed_position * _director->getContentScaleFactor();
+
+			const auto touch_point = mGridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
+
+			mIndicator->setPosition( touch_point.x * mIndicator->getContentSize().width, touch_point.y * mIndicator->getContentSize().height );
 		}
 	}
 }
