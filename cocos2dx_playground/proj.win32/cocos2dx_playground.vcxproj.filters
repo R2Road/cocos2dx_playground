@@ -172,6 +172,9 @@
     <Filter Include="src\cpgui">
       <UniqueIdentifier>{426843c1-8679-4018-9029-295647a2bc02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_06_defender\game_test">
+      <UniqueIdentifier>{7ef5ea8c-bb2c-4fae-bf44-62d94330b7b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -737,6 +740,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpgui_research_button_OnMouseOverScene.cpp">
       <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_game_test_TileMapNodeScene.cpp">
+      <Filter>src\scene\step_06_defender\game_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1339,6 +1345,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpgui_research_button_OnMouseOverScene.h">
       <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_game_test_TileMapNodeScene.h">
+      <Filter>src\scene\step_06_defender\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

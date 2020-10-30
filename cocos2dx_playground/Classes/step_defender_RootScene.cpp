@@ -16,6 +16,8 @@
 
 #include "cpgui_research_layout_ToolBarNodeScene.h"
 
+#include "step_defender_game_test_TileMapNodeScene.h"
+
 #include "step_defender_tool_ParallaxLayerEditorScene.h"
 
 USING_NS_CC;
@@ -76,6 +78,9 @@ namespace step_defender
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[7] : " << cpgui::research_layout::ToolBarNodeScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[8] : " << step_defender::game_test::TileMapNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -151,6 +156,10 @@ namespace step_defender
 
 		case EventKeyboard::KeyCode::KEY_7:
 			_director->replaceScene( cpgui::research_layout::ToolBarNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_8:
+			_director->replaceScene( step_defender::game_test::TileMapNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 
