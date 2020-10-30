@@ -3,11 +3,14 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
+
+#include "cpg_Clamp.h"
 
 USING_NS_CC;
 
@@ -65,17 +68,24 @@ namespace step_defender
 				auto sprite = Sprite::createWithTexture( texture );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				addChild( sprite );
+
+				// Guide
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 80u ), sprite->getContentSize().width, sprite->getContentSize().height );
+				addChild( guide, -1 );
 			}
 
 			//
 			// Mouse Interface
 			//
 			{
+				const Size Margin( 10.f, 10.f );
+
 				auto button = ui::Button::create( "guide_01_3.png", "guide_01_3.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
 				button->setAnchorPoint( Vec2::ZERO );
 				button->setScale9Enabled( true );
-				button->setContentSize( getContentSize() );
+				button->setContentSize( Margin + getContentSize() + Margin );
 				button->addTouchEventListener( CC_CALLBACK_2( TileSheetNode::onButton, this ) );
+				button->setPosition( Vec2( -Margin.width, -Margin.height ) );
 				addChild( button, std::numeric_limits<int>::min() );
 			}
 
@@ -83,11 +93,11 @@ namespace step_defender
 			// Indicator
 			//
 			{
-				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_3.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale9Enabled( true );
 				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) ) );
-				sprite->setOpacity( 80u );
+				sprite->setColor( Color3B::GREEN );
 				sprite->setVisible( false );
 				addChild( sprite, std::numeric_limits<int>::max() );
 
@@ -103,16 +113,24 @@ namespace step_defender
 
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				const auto touch_position = convertToNodeSpace( button->getTouchBeganPosition() ) * _director->getContentScaleFactor();
-				const auto touch_point = mGridIndexConverter.Position2Point( touch_position.x, touch_position.y );
+				const auto node_space_position = convertToNodeSpace( button->getTouchBeganPosition() );
+
+				const Vec2 fixed_position( cpg::clamp( node_space_position.x, 0.f, getContentSize().width - 1.f ), cpg::clamp( node_space_position.y, 0.f, getContentSize().height - 1.f ) );
+				const auto scaled_position = fixed_position * _director->getContentScaleFactor();
+
+				const auto touch_point = mGridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
 
 				mIndicator->setPosition( touch_point.x * mIndicator->getContentSize().width, touch_point.y * mIndicator->getContentSize().height );
 				mIndicator->setVisible( true );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				const auto touch_position = convertToNodeSpace( button->getTouchMovePosition() ) * _director->getContentScaleFactor();
-				const auto touch_point = mGridIndexConverter.Position2Point( touch_position.x, touch_position.y );
+				const auto node_space_position = convertToNodeSpace( button->getTouchMovePosition() );
+
+				const Vec2 fixed_position( cpg::clamp( node_space_position.x, 0.f, getContentSize().width - 1.f ), cpg::clamp( node_space_position.y, 0.f, getContentSize().height - 1.f ) );
+				const auto scaled_position = fixed_position * _director->getContentScaleFactor();
+
+				const auto touch_point = mGridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
 
 				mIndicator->setPosition( touch_point.x * mIndicator->getContentSize().width, touch_point.y * mIndicator->getContentSize().height );
 			}
