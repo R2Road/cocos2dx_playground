@@ -6,13 +6,20 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "renderer/CCTextureCache.h"
 
 #include "step_defender_tool_TileSheetNode.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const int TAG_SelectedTileView = 100001;
+}
 
 namespace step_defender
 {
@@ -78,7 +85,7 @@ namespace step_defender
 			}
 
 			//
-			// Test Setup
+			// Tile Sheet Node
 			//
 			{
 				auto tile_sheet_node = step_defender::tool::TileSheetNode::create(
@@ -88,14 +95,36 @@ namespace step_defender
 					}
 				);
 				tile_sheet_node->setPosition(
-					visibleCenter
-					- Size( tile_sheet_node->getContentSize().width * 0.5f, tile_sheet_node->getContentSize().height * 0.5f )
+					Vec2( visibleOrigin.x + ( visibleSize.width * 0.7f ), visibleCenter.y )
+					- Vec2( tile_sheet_node->getContentSize().width * 0.5f, tile_sheet_node->getContentSize().height * 0.5f )
 				);
 				tile_sheet_node->SetSelectCallback( []( int x, int y )
 				{
 					CCLOG( "%d, %d", x, y );
 				} );
 				addChild( tile_sheet_node );
+			}
+
+			//
+			// Selected Tile View
+			//
+			{
+				auto texture = _director->getTextureCache()->getTextureForKey( "textures/texture_001.png" );
+				const auto temp_size = CC_SIZE_PIXELS_TO_POINTS( Size( 32.f, 32.f ) );
+
+				auto sprite = Sprite::createWithTexture( texture, Rect( 0, 0, temp_size.width, temp_size.height ) );
+				sprite->setTag( TAG_SelectedTileView );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				sprite->setPosition(
+					Vec2( visibleOrigin.x + ( visibleSize.width * 0.3f ) ,visibleCenter.y )
+					- Vec2( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f )
+				);
+				addChild( sprite );
+
+				// Guide
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), temp_size.width, temp_size.height );
+				guide->setPosition( sprite->getPosition() );
+				addChild( guide, -1 );
 			}
 
 			return true;
