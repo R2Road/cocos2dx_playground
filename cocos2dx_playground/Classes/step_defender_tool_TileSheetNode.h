@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "2d/CCNode.h"
+#include "ui/UIWidget.h"
 
 namespace step_defender
 {
@@ -28,8 +28,11 @@ namespace step_defender
 		private:
 			bool init() override;
 
+			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+
 		private:
 			const Config mConfig;
+			cocos2d::Node* mIndicator;
 		};
 	}
 }
