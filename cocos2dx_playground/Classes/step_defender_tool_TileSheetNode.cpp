@@ -22,6 +22,7 @@ namespace step_defender
 			mConfig( config )
 			, mGridIndexConverter( config.TileWidth, config.TileHeight )
 			, mIndicator( nullptr )
+			, mLastSelectedPoint()
 		{}
 
 		TileSheetNode* TileSheetNode::create( const Config& config )
@@ -132,7 +133,7 @@ namespace step_defender
 				updateIndicatorPosition( button->getTouchEndPosition() );
 			}
 		}
-		void TileSheetNode::updateIndicatorPosition( cocos2d::Vec2 world_position )
+		TileSheetNode::Point TileSheetNode::calculateSelectedPoint( cocos2d::Vec2 world_position )
 		{
 			const auto node_space_position = convertToNodeSpace( world_position );
 
@@ -140,8 +141,13 @@ namespace step_defender
 			const auto scaled_position = fixed_position * _director->getContentScaleFactor();
 
 			const auto touch_point = mGridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
+			return Point{ touch_point.x, touch_point.y };
+		}
+		void TileSheetNode::updateIndicatorPosition( cocos2d::Vec2 world_position )
+		{
+			mLastSelectedPoint = calculateSelectedPoint( world_position );
 
-			mIndicator->setPosition( touch_point.x * mIndicator->getContentSize().width, touch_point.y * mIndicator->getContentSize().height );
+			mIndicator->setPosition( mLastSelectedPoint.x * mIndicator->getContentSize().width, mLastSelectedPoint.y * mIndicator->getContentSize().height );
 		}
 	}
 }

@@ -21,6 +21,12 @@ namespace step_defender
 				std::string TexturePath;
 			};
 
+			struct Point
+			{
+				int x = 0;
+				int y = 0;
+			};
+
 		private:
 			TileSheetNode( const Config& config );
 
@@ -31,12 +37,14 @@ namespace step_defender
 			bool init() override;
 
 			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			Point calculateSelectedPoint( cocos2d::Vec2 world_position );
 			void updateIndicatorPosition( cocos2d::Vec2 world_position );
 
 		private:
 			const Config mConfig;
 			const cpg::GridIndexConverter mGridIndexConverter;
 			cocos2d::Node* mIndicator;
+			Point mLastSelectedPoint;
 		};
 	}
 }
