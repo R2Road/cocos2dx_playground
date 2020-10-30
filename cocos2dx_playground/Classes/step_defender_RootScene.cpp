@@ -75,10 +75,7 @@ namespace step_defender
 			ss << "[6] : " << step_defender::chipmunk::ContactScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[Q] : " << cpgui::research_layout::ToolBarNodeScene::getTitle();
+			ss << "[7] : " << cpgui::research_layout::ToolBarNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -152,7 +149,7 @@ namespace step_defender
 			_director->replaceScene( step_defender::chipmunk::ContactScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_Q:
+		case EventKeyboard::KeyCode::KEY_7:
 			_director->replaceScene( cpgui::research_layout::ToolBarNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
