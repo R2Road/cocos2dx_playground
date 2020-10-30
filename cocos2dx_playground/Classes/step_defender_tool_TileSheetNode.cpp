@@ -70,7 +70,7 @@ namespace step_defender
 				addChild( sprite );
 
 				// Guide
-				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 80u ), sprite->getContentSize().width, sprite->getContentSize().height );
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getContentSize().width, sprite->getContentSize().height );
 				addChild( guide, -1 );
 			}
 
