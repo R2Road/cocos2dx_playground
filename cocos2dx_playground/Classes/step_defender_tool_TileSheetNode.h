@@ -4,6 +4,8 @@
 
 #include "ui/UIWidget.h"
 
+#include "cpg_GridIndexConverter.h"
+
 namespace step_defender
 {
 	namespace tool
@@ -32,6 +34,7 @@ namespace step_defender
 
 		private:
 			const Config mConfig;
+			const cpg::GridIndexConverter mGridIndexConverter;
 			cocos2d::Node* mIndicator;
 		};
 	}

@@ -15,7 +15,10 @@ namespace step_defender
 {
 	namespace tool
 	{
-		TileSheetNode::TileSheetNode( const Config& config ) : mConfig( config ), mIndicator( nullptr )
+		TileSheetNode::TileSheetNode( const Config& config ) :
+			mConfig( config )
+			, mGridIndexConverter( config.TileWidth, config.TileHeight )
+			, mIndicator( nullptr )
 		{}
 
 		TileSheetNode* TileSheetNode::create( const Config& config )
@@ -68,7 +71,7 @@ namespace step_defender
 			// Mouse Interface
 			//
 			{
-				auto button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_3.png", "guide_01_3.png", "guide_01_3.png", ui::Widget::TextureResType::PLIST );
 				button->setAnchorPoint( Vec2::ZERO );
 				button->setScale9Enabled( true );
 				button->setContentSize( getContentSize() );
@@ -81,8 +84,10 @@ namespace step_defender
 			//
 			{
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
+				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale9Enabled( true );
 				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) ) );
+				sprite->setOpacity( 80u );
 				sprite->setVisible( false );
 				addChild( sprite, std::numeric_limits<int>::max() );
 
@@ -98,14 +103,18 @@ namespace step_defender
 
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				const auto touch_position = convertToNodeSpace( button->getTouchBeganPosition() );
-				mIndicator->setPosition( touch_position );
+				const auto touch_position = convertToNodeSpace( button->getTouchBeganPosition() ) * _director->getContentScaleFactor();
+				const auto touch_point = mGridIndexConverter.Position2Point( touch_position.x, touch_position.y );
+
+				mIndicator->setPosition( touch_point.x * mIndicator->getContentSize().width, touch_point.y * mIndicator->getContentSize().height );
 				mIndicator->setVisible( true );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				const auto touch_position = convertToNodeSpace( button->getTouchMovePosition() );
-				mIndicator->setPosition( touch_position );
+				const auto touch_position = convertToNodeSpace( button->getTouchMovePosition() ) * _director->getContentScaleFactor();
+				const auto touch_point = mGridIndexConverter.Position2Point( touch_position.x, touch_position.y );
+
+				mIndicator->setPosition( touch_point.x * mIndicator->getContentSize().width, touch_point.y * mIndicator->getContentSize().height );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
