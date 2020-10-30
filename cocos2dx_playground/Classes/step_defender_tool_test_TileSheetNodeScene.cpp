@@ -91,6 +91,10 @@ namespace step_defender
 					visibleCenter
 					- Size( tile_sheet_node->getContentSize().width * 0.5f, tile_sheet_node->getContentSize().height * 0.5f )
 				);
+				tile_sheet_node->SetSelectCallback( []( int x, int y )
+				{
+					CCLOG( "%d, %d", x, y );
+				} );
 				addChild( tile_sheet_node );
 			}
 

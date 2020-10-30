@@ -21,6 +21,9 @@ namespace step_defender
 		TileSheetNode::TileSheetNode( const Config& config ) :
 			mConfig( config )
 			, mGridIndexConverter( config.TileWidth, config.TileHeight )
+
+			, mSelectCallback( nullptr )
+
 			, mIndicator( nullptr )
 			, mLastSelectedPoint()
 		{}
@@ -125,13 +128,13 @@ namespace step_defender
 			{
 				updateSelectedPoint( button->getTouchMovePosition() );
 			}
-			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
+			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
 				updateSelectedPoint( button->getTouchEndPosition() );
-			}
-			else if( ui::Widget::TouchEventType::CANCELED == touch_event_type )
-			{
-				updateSelectedPoint( button->getTouchEndPosition() );
+				if( mSelectCallback )
+				{
+					mSelectCallback( mLastSelectedPoint.x, mLastSelectedPoint.y );
+				}
 			}
 
 			updateIndicatorPosition();

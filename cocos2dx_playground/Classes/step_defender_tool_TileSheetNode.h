@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <string>
 
 #include "ui/UIWidget.h"
@@ -13,6 +14,8 @@ namespace step_defender
 		class TileSheetNode : public cocos2d::Node
 		{
 		public:
+			using SelectCallback = std::function<void( int x, int y )>;
+
 			struct Config
 			{
 				int TileWidth = 32;
@@ -21,13 +24,13 @@ namespace step_defender
 				std::string TexturePath;
 			};
 
+		private:
 			struct Point
 			{
 				int x = 0;
 				int y = 0;
 			};
 
-		private:
 			TileSheetNode( const Config& config );
 
 		public:
@@ -40,9 +43,15 @@ namespace step_defender
 			void updateSelectedPoint( const cocos2d::Vec2& world_position );
 			void updateIndicatorPosition();
 
+		public:
+			void SetSelectCallback( const SelectCallback& callback ) { mSelectCallback = callback; }
+
 		private:
 			const Config mConfig;
 			const cpg::GridIndexConverter mGridIndexConverter;
+
+			SelectCallback mSelectCallback;
+
 			cocos2d::Node* mIndicator;
 			Point mLastSelectedPoint;
 		};
