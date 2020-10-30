@@ -10,6 +10,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_defender_game_TileMapNode.h"
+
 USING_NS_CC;
 
 namespace step_defender
@@ -72,6 +74,20 @@ namespace step_defender
 			{
 				auto background_layer = LayerColor::create( Color4B( 7, 39, 43, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			//
+			//
+			{
+				auto tile_map_node = step_defender::game::TileMapNode::create(
+					step_defender::game::TileMapNode::Config{
+						10, 10
+						,32 , 32
+						, "textures/texture_001.png"
+					}
+				);
+				addChild( tile_map_node );
 			}
 
 			return true;

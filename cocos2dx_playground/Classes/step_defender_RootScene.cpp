@@ -80,7 +80,10 @@ namespace step_defender
 			ss << "[7] : " << cpgui::research_layout::ToolBarNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[8] : " << step_defender::game_test::TileMapNodeScene::getTitle();
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] : " << step_defender::game_test::TileMapNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -158,7 +161,7 @@ namespace step_defender
 			_director->replaceScene( cpgui::research_layout::ToolBarNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_8:
+		case EventKeyboard::KeyCode::KEY_Q:
 			_director->replaceScene( step_defender::game_test::TileMapNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 

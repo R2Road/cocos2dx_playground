@@ -175,6 +175,9 @@
     <Filter Include="src\scene\step_06_defender\game_test">
       <UniqueIdentifier>{7ef5ea8c-bb2c-4fae-bf44-62d94330b7b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_06_defender\game">
+      <UniqueIdentifier>{63250f0c-fa91-496e-8d98-7b39f7a324bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -743,6 +746,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_defender_game_test_TileMapNodeScene.cpp">
       <Filter>src\scene\step_06_defender\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_game_TileMapNode.cpp">
+      <Filter>src\scene\step_06_defender\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1348,6 +1354,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_game_test_TileMapNodeScene.h">
       <Filter>src\scene\step_06_defender\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_game_TileMapNode.h">
+      <Filter>src\scene\step_06_defender\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
