@@ -37,8 +37,8 @@ namespace step_defender
 			bool init() override;
 
 			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-			Point calculateSelectedPoint( cocos2d::Vec2 world_position );
-			void updateIndicatorPosition( cocos2d::Vec2 world_position );
+			void updateSelectedPoint( const cocos2d::Vec2& world_position );
+			void updateIndicatorPosition();
 
 		private:
 			const Config mConfig;

@@ -107,7 +107,8 @@ namespace step_defender
 			//
 			// Setup
 			//
-			updateIndicatorPosition( Vec2::ZERO );
+			updateSelectedPoint( Vec2::ZERO );
+			updateIndicatorPosition();
 
 			return true;
 		}
@@ -118,22 +119,24 @@ namespace step_defender
 
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				updateIndicatorPosition( button->getTouchBeganPosition() );
+				updateSelectedPoint( button->getTouchBeganPosition() );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				updateIndicatorPosition( button->getTouchMovePosition() );
+				updateSelectedPoint( button->getTouchMovePosition() );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
-				updateIndicatorPosition( button->getTouchEndPosition() );
+				updateSelectedPoint( button->getTouchEndPosition() );
 			}
 			else if( ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
-				updateIndicatorPosition( button->getTouchEndPosition() );
+				updateSelectedPoint( button->getTouchEndPosition() );
 			}
+
+			updateIndicatorPosition();
 		}
-		TileSheetNode::Point TileSheetNode::calculateSelectedPoint( cocos2d::Vec2 world_position )
+		void TileSheetNode::updateSelectedPoint( const cocos2d::Vec2& world_position )
 		{
 			const auto node_space_position = convertToNodeSpace( world_position );
 
@@ -141,12 +144,11 @@ namespace step_defender
 			const auto scaled_position = fixed_position * _director->getContentScaleFactor();
 
 			const auto touch_point = mGridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
-			return Point{ touch_point.x, touch_point.y };
+			mLastSelectedPoint.x = touch_point.x;
+			mLastSelectedPoint.y = touch_point.y;
 		}
-		void TileSheetNode::updateIndicatorPosition( cocos2d::Vec2 world_position )
+		void TileSheetNode::updateIndicatorPosition()
 		{
-			mLastSelectedPoint = calculateSelectedPoint( world_position );
-
 			mIndicator->setPosition( mLastSelectedPoint.x * mIndicator->getContentSize().width, mLastSelectedPoint.y * mIndicator->getContentSize().height );
 		}
 	}
