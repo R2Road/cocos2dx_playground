@@ -28,6 +28,7 @@ namespace step_defender
 		TileSheetNodeScene::TileSheetNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mTileSheetNode( nullptr )
 		{}
 
 		Scene* TileSheetNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -88,21 +89,18 @@ namespace step_defender
 			// Tile Sheet Node
 			//
 			{
-				auto tile_sheet_node = step_defender::tool::TileSheetNode::create(
+				mTileSheetNode = step_defender::tool::TileSheetNode::create(
 					step_defender::tool::TileSheetNode::Config{
 						32 , 32
 						, "textures/texture_001.png"
 					}
 				);
-				tile_sheet_node->setPosition(
+				mTileSheetNode->setPosition(
 					Vec2( visibleOrigin.x + ( visibleSize.width * 0.7f ), visibleCenter.y )
-					- Vec2( tile_sheet_node->getContentSize().width * 0.5f, tile_sheet_node->getContentSize().height * 0.5f )
+					- Vec2( mTileSheetNode->getContentSize().width * 0.5f, mTileSheetNode->getContentSize().height * 0.5f )
 				);
-				tile_sheet_node->SetSelectCallback( []( int x, int y )
-				{
-					CCLOG( "%d, %d", x, y );
-				} );
-				addChild( tile_sheet_node );
+				mTileSheetNode->SetSelectCallback( CC_CALLBACK_2( TileSheetNodeScene::onTileSelect, this ) );
+				addChild( mTileSheetNode );
 			}
 
 			//
@@ -110,20 +108,18 @@ namespace step_defender
 			//
 			{
 				auto texture = _director->getTextureCache()->getTextureForKey( "textures/texture_001.png" );
-				const auto temp_size = CC_SIZE_PIXELS_TO_POINTS( Size( 32.f, 32.f ) );
-
-				auto sprite = Sprite::createWithTexture( texture, Rect( 0, 0, temp_size.width, temp_size.height ) );
+				
+				auto sprite = Sprite::createWithTexture( texture );
 				sprite->setTag( TAG_SelectedTileView );
-				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setPosition(
 					Vec2( visibleOrigin.x + ( visibleSize.width * 0.3f ) ,visibleCenter.y )
-					- Vec2( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f )
 				);
 				addChild( sprite );
+				onTileSelect( 0, 0 );
 
 				// Guide
-				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), temp_size.width, temp_size.height );
-				guide->setPosition( sprite->getPosition() );
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getContentSize().width, sprite->getContentSize().height );
+				guide->setPosition( sprite->getPosition() - Vec2( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f ) );
 				addChild( guide, -1 );
 			}
 
@@ -155,6 +151,14 @@ namespace step_defender
 				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
+		}
+
+		void TileSheetNodeScene::onTileSelect( const int x, const int y )
+		{
+			CCLOG( "%d, %d", x, y );
+
+			auto sprite = static_cast<Sprite*>( getChildByTag( TAG_SelectedTileView ) );
+			sprite->setTextureRect( mTileSheetNode->ConvertTilePoint2Rect( x, y ) );
 		}
 	}
 }

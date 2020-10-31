@@ -45,6 +45,7 @@ namespace step_defender
 
 		public:
 			void SetSelectCallback( const SelectCallback& callback ) { mSelectCallback = callback; }
+			cocos2d::Rect ConvertTilePoint2Rect( const int x, const int y ) const;
 
 		private:
 			const Config mConfig;

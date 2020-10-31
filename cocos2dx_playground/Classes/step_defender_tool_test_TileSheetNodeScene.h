@@ -5,6 +5,11 @@
 
 namespace step_defender
 {
+	namespace tool
+	{
+		class TileSheetNode;
+	}
+
 	namespace tool_test
 	{
 		class TileSheetNodeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
@@ -25,9 +30,12 @@ namespace step_defender
 
 		private:
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
+			void onTileSelect( const int x, const int y );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			step_defender::tool::TileSheetNode* mTileSheetNode;
 		};
 	}
 }

@@ -131,12 +131,12 @@ namespace step_defender
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
 				updateSelectedPoint( button->getTouchEndPosition() );
-				if( mSelectCallback )
-				{
-					mSelectCallback( mLastSelectedPoint.x, mLastSelectedPoint.y );
-				}
 			}
 
+			if( mSelectCallback )
+			{
+				mSelectCallback( mLastSelectedPoint.x, mLastSelectedPoint.y );
+			}
 			updateIndicatorPosition();
 		}
 		void TileSheetNode::updateSelectedPoint( const cocos2d::Vec2& world_position )
@@ -153,6 +153,18 @@ namespace step_defender
 		void TileSheetNode::updateIndicatorPosition()
 		{
 			mIndicator->setPosition( mLastSelectedPoint.x * mIndicator->getContentSize().width, mLastSelectedPoint.y * mIndicator->getContentSize().height );
+		}
+
+
+		cocos2d::Rect TileSheetNode::ConvertTilePoint2Rect( const int x, const int y ) const
+		{
+			const auto temp_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) );
+
+			return Rect(
+				x * temp_size.width
+				, getContentSize().height - ( y * temp_size.height ) - temp_size.height
+				, temp_size.width, temp_size.height
+			);
 		}
 	}
 }
