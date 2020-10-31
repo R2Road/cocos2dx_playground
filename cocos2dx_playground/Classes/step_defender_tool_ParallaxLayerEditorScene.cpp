@@ -8,6 +8,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCParallaxNode.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -41,6 +42,7 @@ namespace step_defender
 
 			, mParallaxNode( nullptr )
 			, mTouchNode( nullptr )
+			, mStage( nullptr )
 		{}
 
 		Scene* ParallaxLayerEditorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -96,11 +98,11 @@ namespace step_defender
 			}
 			
 			//
-			// Background
+			// Sky
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 7, 39, 43, 255 ) );
-				addChild( background_layer, std::numeric_limits<int>::min() );
+				auto layer = LayerColor::create( WorldConfig.SkyColor );
+				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -143,7 +145,7 @@ namespace step_defender
 				setContentSize( WorldConfig.WorldSize );
 
 				mParallaxNode = ParallaxNode::create();
-				addChild( mParallaxNode );
+				addChild( mParallaxNode, 0 );
 
 				const int part_width = 100.f;
 
@@ -153,7 +155,7 @@ namespace step_defender
 				{
 					const int background_index = 0;
 					const float parallax_rate = 0.6f;
-					const float part_height = WorldConfig.WorldSize.height * 0.75f;
+					const float label_y = WorldConfig.WorldSize.height * 0.75f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
@@ -169,7 +171,7 @@ namespace step_defender
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
 							i * part_width
-							, part_height
+							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
@@ -178,7 +180,7 @@ namespace step_defender
 					// Tail Guide
 					//
 					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
 						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
@@ -190,7 +192,7 @@ namespace step_defender
 				{
 					const int background_index = 1;
 					const float parallax_rate = 0.8f;
-					const float part_height = WorldConfig.WorldSize.height * 0.5f;
+					const float label_y = WorldConfig.WorldSize.height * 0.55f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
@@ -207,7 +209,7 @@ namespace step_defender
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
 							i * part_width
-							, part_height
+							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
@@ -216,7 +218,7 @@ namespace step_defender
 					// Tail Guide
 					//
 					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
 						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
@@ -228,7 +230,7 @@ namespace step_defender
 				{
 					const int background_index = 2;
 					const float parallax_rate = 1.f;
-					const float part_height = WorldConfig.WorldSize.height * 0.25f;
+					const float label_y = WorldConfig.WorldSize.height * 0.35f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
@@ -245,7 +247,7 @@ namespace step_defender
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
 							i * part_width
-							, part_height
+							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
@@ -254,19 +256,40 @@ namespace step_defender
 					// Tail Guide
 					//
 					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, part_height );
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
 						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
 				}
 			}
 
+			//
+			// Stage Area
+			//
+			{
+				mStage = LayerColor::create( Color4B::GRAY, WorldConfig.BottomSize.width, WorldConfig.BottomSize.height );
+				addChild( mStage, 1 );
+			}
 
 			//
 			// Setup
 			//
 			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
 			onLayerSelect( 0 );
+
+			//
+			// Dummy
+			//
+			{
+				auto sprite = Sprite::createWithSpriteFrameName( "step_defender_background_01_0.png" );
+				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setPosition(
+					sprite->getBoundingBox().size.width * 0.5f
+					, visibleSize.height * 0.5f
+				);
+
+				mCurrentBackgroundLayer->addChild( sprite );
+			}
 
 			return true;
 		}
@@ -306,6 +329,8 @@ namespace step_defender
 					mParallaxNode->setPositionX( -getContentSize().width );
 					mTouchNode->setPositionX( -getContentSize().width );
 				}
+
+				mStage->setPosition( mParallaxNode->getPosition() );
 			}
 
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
@@ -321,6 +346,8 @@ namespace step_defender
 					mParallaxNode->setPositionX( 0.f );
 					mTouchNode->setPositionX( 0.f );
 				}
+
+				mStage->setPosition( mParallaxNode->getPosition() );
 			}
 		}
 
@@ -329,7 +356,15 @@ namespace step_defender
 		{
 			for( auto c : mParallaxNode->getChildren() )
 			{
-				c->setOpacity( layer_index == c->getTag() ? 255u : 80u );
+				if( layer_index == c->getTag() )
+				{
+					mCurrentBackgroundLayer = c;
+					c->setOpacity( 255u );
+				}
+				else
+				{
+					c->setOpacity( 80u );
+				}
 			}
 			mTouchNode->setColor( BackgroundColors[layer_index] );
 		}

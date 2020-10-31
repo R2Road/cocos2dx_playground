@@ -172,6 +172,12 @@
     <Filter Include="src\cpgui">
       <UniqueIdentifier>{426843c1-8679-4018-9029-295647a2bc02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_06_defender\game_test">
+      <UniqueIdentifier>{7ef5ea8c-bb2c-4fae-bf44-62d94330b7b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_06_defender\game">
+      <UniqueIdentifier>{63250f0c-fa91-496e-8d98-7b39f7a324bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -737,6 +743,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpgui_research_button_OnMouseOverScene.cpp">
       <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_game_test_TileMapNodeScene.cpp">
+      <Filter>src\scene\step_06_defender\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_game_TileMapNode.cpp">
+      <Filter>src\scene\step_06_defender\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_tool_TileSheetNode.cpp">
+      <Filter>src\scene\step_06_defender\tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.cpp">
+      <Filter>src\scene\step_06_defender\tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1339,6 +1357,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpgui_research_button_OnMouseOverScene.h">
       <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_game_test_TileMapNodeScene.h">
+      <Filter>src\scene\step_06_defender\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_game_TileMapNode.h">
+      <Filter>src\scene\step_06_defender\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_tool_TileSheetNode.h">
+      <Filter>src\scene\step_06_defender\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.h">
+      <Filter>src\scene\step_06_defender\tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
