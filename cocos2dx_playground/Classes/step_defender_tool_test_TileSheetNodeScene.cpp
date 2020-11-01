@@ -111,6 +111,7 @@ namespace step_defender
 				
 				auto sprite = Sprite::createWithTexture( texture );
 				sprite->setTag( TAG_SelectedTileView );
+				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition(
 					Vec2( visibleOrigin.x + ( visibleSize.width * 0.3f ) ,visibleCenter.y )
 				);
@@ -118,8 +119,8 @@ namespace step_defender
 				onTileSelect( 0, 0 );
 
 				// Guide
-				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getContentSize().width, sprite->getContentSize().height );
-				guide->setPosition( sprite->getPosition() - Vec2( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f ) );
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getBoundingBox().size.width, sprite->getBoundingBox().size.height );
+				guide->setPosition( sprite->getPosition() - Vec2( guide->getContentSize().width * 0.5f, guide->getContentSize().height * 0.5f ) );
 				addChild( guide, -1 );
 			}
 
