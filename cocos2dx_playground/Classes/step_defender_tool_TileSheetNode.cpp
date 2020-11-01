@@ -53,7 +53,8 @@ namespace step_defender
 				return false;
 			}
 
-			auto texture = _director->getTextureCache()->getTextureForKey( mConfig.TexturePath );
+			auto texture = _director->getTextureCache()->addImage( mConfig.TexturePath );
+			texture->setAliasTexParameters();
 			setContentSize( texture->getContentSize() );
 
 			//
