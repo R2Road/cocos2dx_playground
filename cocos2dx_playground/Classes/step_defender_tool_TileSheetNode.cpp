@@ -20,7 +20,7 @@ namespace step_defender
 	{
 		TileSheetNode::TileSheetNode( const game::TileSheetConfiguration& config ) :
 			mConfig( config )
-			, mGridIndexConverter( config.TileMargin_Width + config.TileWidth + config.TileMargin_Width, config.TileMargin_Height + config.TileHeight + config.TileMargin_Height )
+			, mGridIndexConverter( mConfig.BlockWidth, mConfig.BlockHeight )
 
 			, mSelectCallback( nullptr )
 
@@ -101,10 +101,7 @@ namespace step_defender
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "scale9_guide_01_0.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale9Enabled( true );
-				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size(
-					mConfig.TileMargin_Width + mConfig.TileWidth + mConfig.TileMargin_Width
-					, mConfig.TileMargin_Height + mConfig.TileHeight + mConfig.TileMargin_Height
-				) ) );
+				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.BlockWidth, mConfig.BlockHeight ) ) );
 				sprite->setColor( Color3B::GREEN );
 				addChild( sprite, std::numeric_limits<int>::max() );
 
@@ -167,10 +164,7 @@ namespace step_defender
 		{
 			const auto margin_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileMargin_Width, mConfig.TileMargin_Height ) );
 			const auto tile_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) );
-			const auto block_size = CC_SIZE_PIXELS_TO_POINTS( Size(
-				mConfig.TileMargin_Width + mConfig.TileWidth + mConfig.TileMargin_Width
-				, mConfig.TileMargin_Height + mConfig.TileHeight + mConfig.TileMargin_Height
-			) );
+			const auto block_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.BlockWidth, mConfig.BlockHeight ) );
 
 			return Rect(
 				( x * block_size.width ) + margin_size.width

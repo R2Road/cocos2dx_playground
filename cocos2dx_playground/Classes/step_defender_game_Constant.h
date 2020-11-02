@@ -16,12 +16,15 @@ namespace step_defender
 
 		struct TileSheetConfiguration
 		{
-			explicit TileSheetConfiguration( int tile_width, int tile_height, int tile_margin_width, int tile_margin_height, const char* texture_path ) :
+			TileSheetConfiguration( int tile_width, int tile_height, int tile_margin_width, int tile_margin_height, const char* texture_path ) :
 				TileWidth( tile_width )
 				, TileHeight( tile_height )
 
 				, TileMargin_Width( tile_margin_width )
 				, TileMargin_Height( tile_margin_width )
+
+				, BlockWidth( TileMargin_Width + TileWidth +TileMargin_Width )
+				, BlockHeight( TileMargin_Height + TileHeight +TileMargin_Height )
 
 				, TexturePath( texture_path )
 			{}
@@ -32,9 +35,11 @@ namespace step_defender
 			const int TileMargin_Width;
 			const int TileMargin_Height;
 
+			const int BlockWidth;
+			const int BlockHeight;
+
 			const std::string TexturePath;
 		};
-
 		const TileSheetConfiguration TileSheetConfig( 32, 32, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" );
 	}
 }
