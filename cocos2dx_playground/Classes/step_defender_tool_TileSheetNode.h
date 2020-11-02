@@ -21,6 +21,9 @@ namespace step_defender
 				int TileWidth = 32;
 				int TileHeight = 32;
 
+				int TileMargin_Width = 1;
+				int TileMargin_Height = 1;
+
 				std::string TexturePath;
 			};
 

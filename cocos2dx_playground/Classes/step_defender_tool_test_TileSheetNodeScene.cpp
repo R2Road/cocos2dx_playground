@@ -87,6 +87,7 @@ namespace step_defender
 
 			const step_defender::tool::TileSheetNode::Config TileSheetConfig{
 				32, 32
+				, 1, 1
 				, "textures/step_defender/step_defender_tilesheet_01.png"
 			};
 
