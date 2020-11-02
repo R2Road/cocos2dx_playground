@@ -16,7 +16,7 @@
 
 #include "cpgui_ToolBarNode.h"
 
-#include "step_defender_Constant.h"
+#include "step_defender_game_Constant.h"
 
 USING_NS_CC;
 
@@ -101,7 +101,7 @@ namespace step_defender
 			// Sky
 			//
 			{
-				auto layer = LayerColor::create( WorldConfig.SkyColor );
+				auto layer = LayerColor::create( game::WorldConfig.SkyColor );
 				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
@@ -132,7 +132,7 @@ namespace step_defender
 				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setAnchorPoint( Vec2::ZERO );
 				button->setScale9Enabled( true );
-				button->setContentSize( WorldConfig.WorldSize + Size( +visibleSize.width, 0.f ) );
+				button->setContentSize( game::WorldConfig.WorldSize + Size( +visibleSize.width, 0.f ) );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
 
 				mTouchNode = button;
@@ -142,7 +142,7 @@ namespace step_defender
 			// ParallaxNode Setup
 			//
 			{
-				setContentSize( WorldConfig.WorldSize );
+				setContentSize( game::WorldConfig.WorldSize );
 
 				mParallaxNode = ParallaxNode::create();
 				addChild( mParallaxNode, 0 );
@@ -155,14 +155,14 @@ namespace step_defender
 				{
 					const int background_index = 0;
 					const float parallax_rate = 0.6f;
-					const float label_y = WorldConfig.WorldSize.height * 0.75f;
+					const float label_y = game::WorldConfig.WorldSize.height * 0.75f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
 					background_node->setCascadeOpacityEnabled( true );
 					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
-					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
+					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
@@ -181,7 +181,7 @@ namespace step_defender
 					//
 					{
 						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
+						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
 				}
@@ -192,14 +192,14 @@ namespace step_defender
 				{
 					const int background_index = 1;
 					const float parallax_rate = 0.8f;
-					const float label_y = WorldConfig.WorldSize.height * 0.55f;
+					const float label_y = game::WorldConfig.WorldSize.height * 0.55f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
 					background_node->setCascadeOpacityEnabled( true );
 					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
-					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
+					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
@@ -219,7 +219,7 @@ namespace step_defender
 					//
 					{
 						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
+						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
 				}
@@ -230,14 +230,14 @@ namespace step_defender
 				{
 					const int background_index = 2;
 					const float parallax_rate = 1.f;
-					const float label_y = WorldConfig.WorldSize.height * 0.35f;
+					const float label_y = game::WorldConfig.WorldSize.height * 0.35f;
 
 					auto background_node = Node::create();
 					background_node->setTag( background_index );
 					background_node->setCascadeOpacityEnabled( true );
 					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
-					const auto background_width = ( WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
+					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
@@ -257,7 +257,7 @@ namespace step_defender
 					//
 					{
 						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( WorldConfig.WorldSize.width * parallax_rate );
+						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
 						background_node->addChild( layer, 1 );
 					}
 				}
@@ -267,7 +267,7 @@ namespace step_defender
 			// Stage Area
 			//
 			{
-				mStage = LayerColor::create( Color4B::GRAY, WorldConfig.BottomSize.width, WorldConfig.BottomSize.height );
+				mStage = LayerColor::create( Color4B::GRAY, game::WorldConfig.BottomSize.width, game::WorldConfig.BottomSize.height );
 				addChild( mStage, 1 );
 			}
 

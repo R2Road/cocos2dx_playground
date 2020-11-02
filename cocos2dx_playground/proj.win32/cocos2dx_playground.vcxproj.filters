@@ -1352,9 +1352,6 @@
     <ClInclude Include="..\Classes\cpgui_ToolBarNode.h">
       <Filter>src\cpgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_defender_Constant.h">
-      <Filter>src\scene\step_06_defender</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\cpgui_research_button_OnMouseOverScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
@@ -1369,6 +1366,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.h">
       <Filter>src\scene\step_06_defender\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_game_Constant.h">
+      <Filter>src\scene\step_06_defender\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
