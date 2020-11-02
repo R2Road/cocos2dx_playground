@@ -89,12 +89,7 @@ namespace step_defender
 			// Tile Sheet Node
 			//
 			{
-				mTileSheetNode = step_defender::tool::TileSheetNode::create(
-					step_defender::tool::TileSheetNode::Config{
-						32 , 32
-						, "textures/texture_001.png"
-					}
-				);
+				mTileSheetNode = step_defender::tool::TileSheetNode::create( game::TileSheetConfig );
 				mTileSheetNode->setPosition(
 					Vec2( visibleOrigin.x + ( visibleSize.width * 0.7f ), visibleCenter.y )
 					- Vec2( mTileSheetNode->getContentSize().width * 0.5f, mTileSheetNode->getContentSize().height * 0.5f )
@@ -107,10 +102,11 @@ namespace step_defender
 			// Selected Tile View
 			//
 			{
-				auto texture = _director->getTextureCache()->getTextureForKey( "textures/texture_001.png" );
+				auto texture = _director->getTextureCache()->getTextureForKey( game::TileSheetConfig.TexturePath );
 				
 				auto sprite = Sprite::createWithTexture( texture );
 				sprite->setTag( TAG_SelectedTileView );
+				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition(
 					Vec2( visibleOrigin.x + ( visibleSize.width * 0.3f ) ,visibleCenter.y )
 				);
@@ -118,8 +114,8 @@ namespace step_defender
 				onTileSelect( 0, 0 );
 
 				// Guide
-				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getContentSize().width, sprite->getContentSize().height );
-				guide->setPosition( sprite->getPosition() - Vec2( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f ) );
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getBoundingBox().size.width, sprite->getBoundingBox().size.height );
+				guide->setPosition( sprite->getPosition() - Vec2( guide->getContentSize().width * 0.5f, guide->getContentSize().height * 0.5f ) );
 				addChild( guide, -1 );
 			}
 
