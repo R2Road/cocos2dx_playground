@@ -6,6 +6,7 @@
 #include "ui/UIWidget.h"
 
 #include "cpg_GridIndexConverter.h"
+#include "step_defender_game_Constant.h"
 
 namespace step_defender
 {
@@ -16,17 +17,6 @@ namespace step_defender
 		public:
 			using SelectCallback = std::function<void( int x, int y )>;
 
-			struct TileSheetConfiguration
-			{
-				int TileWidth = 32;
-				int TileHeight = 32;
-
-				int TileMargin_Width = 1;
-				int TileMargin_Height = 1;
-
-				std::string TexturePath;
-			};
-
 		private:
 			struct Point
 			{
@@ -34,10 +24,10 @@ namespace step_defender
 				int y = 0;
 			};
 
-			TileSheetNode( const TileSheetConfiguration& config );
+			TileSheetNode( const game::TileSheetConfiguration& config );
 
 		public:
-			static TileSheetNode* create( const TileSheetConfiguration& config );
+			static TileSheetNode* create( const game::TileSheetConfiguration& config );
 
 		private:
 			bool init() override;
@@ -51,7 +41,7 @@ namespace step_defender
 			cocos2d::Rect ConvertTilePoint2Rect( const int x, const int y ) const;
 
 		private:
-			const TileSheetConfiguration mConfig;
+			const game::TileSheetConfiguration mConfig;
 			const cpg::GridIndexConverter mGridIndexConverter;
 
 			SelectCallback mSelectCallback;
