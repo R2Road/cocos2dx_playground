@@ -14,15 +14,27 @@ namespace step_defender
 			cocos2d::Size BottomSize = cocos2d::Size( 960.f, 80.f );
 		} WorldConfig;
 
-		const struct TileSheetConfiguration
+		struct TileSheetConfiguration
 		{
-			int TileWidth = 32;
-			int TileHeight = 32;
+			explicit TileSheetConfiguration( int tile_width, int tile_height, int tile_margin_width, int tile_margin_height, const char* texture_path ) :
+				TileWidth( tile_width )
+				, TileHeight( tile_height )
 
-			int TileMargin_Width = 1;
-			int TileMargin_Height = 1;
+				, TileMargin_Width( tile_margin_width )
+				, TileMargin_Height( tile_margin_width )
 
-			std::string TexturePath = "textures/step_defender/step_defender_tilesheet_01.png";
-		} TileSheetConfig;
+				, TexturePath( texture_path )
+			{}
+
+			const int TileWidth;
+			const int TileHeight;
+
+			const int TileMargin_Width;
+			const int TileMargin_Height;
+
+			const std::string TexturePath;
+		};
+
+		const TileSheetConfiguration TileSheetConfig( 32, 32, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" );
 	}
 }
