@@ -20,7 +20,7 @@ namespace step_defender
 	{
 		TileSheetNode::TileSheetNode( const Config& config ) :
 			mConfig( config )
-			, mGridIndexConverter( config.TileWidth, config.TileHeight )
+			, mGridIndexConverter( config.TileMargin_Width + config.TileWidth + config.TileMargin_Width, config.TileMargin_Height + config.TileHeight + config.TileMargin_Height )
 
 			, mSelectCallback( nullptr )
 
@@ -101,7 +101,10 @@ namespace step_defender
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "scale9_guide_01_0.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale9Enabled( true );
-				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) ) );
+				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size(
+					mConfig.TileMargin_Width + mConfig.TileWidth + mConfig.TileMargin_Width
+					, mConfig.TileMargin_Height + mConfig.TileHeight + mConfig.TileMargin_Height
+				) ) );
 				sprite->setColor( Color3B::GREEN );
 				addChild( sprite, std::numeric_limits<int>::max() );
 
@@ -153,18 +156,26 @@ namespace step_defender
 		}
 		void TileSheetNode::updateIndicatorPosition()
 		{
-			mIndicator->setPosition( mLastSelectedPoint.x * mIndicator->getContentSize().width, mLastSelectedPoint.y * mIndicator->getContentSize().height );
+			mIndicator->setPosition(
+				mLastSelectedPoint.x * mIndicator->getContentSize().width
+				, mLastSelectedPoint.y * mIndicator->getContentSize().height
+			);
 		}
 
 
 		cocos2d::Rect TileSheetNode::ConvertTilePoint2Rect( const int x, const int y ) const
 		{
-			const auto temp_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) );
+			const auto margin_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileMargin_Width, mConfig.TileMargin_Height ) );
+			const auto tile_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) );
+			const auto block_size = CC_SIZE_PIXELS_TO_POINTS( Size(
+				mConfig.TileMargin_Width + mConfig.TileWidth + mConfig.TileMargin_Width
+				, mConfig.TileMargin_Height + mConfig.TileHeight + mConfig.TileMargin_Height
+			) );
 
 			return Rect(
-				x * temp_size.width
-				, getContentSize().height - ( y * temp_size.height ) - temp_size.height
-				, temp_size.width, temp_size.height
+				( x * block_size.width ) + margin_size.width
+				, ( getContentSize().height - ( y * block_size.height ) - block_size.height ) + margin_size.height
+				, tile_size.width, tile_size.height
 			);
 		}
 	}
