@@ -16,7 +16,7 @@ namespace step_defender
 		public:
 			using SelectCallback = std::function<void( int x, int y )>;
 
-			struct Config
+			struct TileSheetConfiguration
 			{
 				int TileWidth = 32;
 				int TileHeight = 32;
@@ -34,10 +34,10 @@ namespace step_defender
 				int y = 0;
 			};
 
-			TileSheetNode( const Config& config );
+			TileSheetNode( const TileSheetConfiguration& config );
 
 		public:
-			static TileSheetNode* create( const Config& config );
+			static TileSheetNode* create( const TileSheetConfiguration& config );
 
 		private:
 			bool init() override;
@@ -51,7 +51,7 @@ namespace step_defender
 			cocos2d::Rect ConvertTilePoint2Rect( const int x, const int y ) const;
 
 		private:
-			const Config mConfig;
+			const TileSheetConfiguration mConfig;
 			const cpg::GridIndexConverter mGridIndexConverter;
 
 			SelectCallback mSelectCallback;

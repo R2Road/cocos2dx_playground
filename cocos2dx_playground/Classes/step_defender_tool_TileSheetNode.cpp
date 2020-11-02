@@ -18,7 +18,7 @@ namespace step_defender
 {
 	namespace tool
 	{
-		TileSheetNode::TileSheetNode( const Config& config ) :
+		TileSheetNode::TileSheetNode( const TileSheetConfiguration& config ) :
 			mConfig( config )
 			, mGridIndexConverter( config.TileMargin_Width + config.TileWidth + config.TileMargin_Width, config.TileMargin_Height + config.TileHeight + config.TileMargin_Height )
 
@@ -28,7 +28,7 @@ namespace step_defender
 			, mLastSelectedPoint()
 		{}
 
-		TileSheetNode* TileSheetNode::create( const Config& config )
+		TileSheetNode* TileSheetNode::create( const TileSheetConfiguration& config )
 		{
 			CCASSERT( 0 < config.TileWidth && 0 < config.TileHeight, "Failed - TileSheetNode::create" );
 

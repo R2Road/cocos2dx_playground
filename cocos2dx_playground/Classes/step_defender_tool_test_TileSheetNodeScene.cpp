@@ -85,7 +85,7 @@ namespace step_defender
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
-			const step_defender::tool::TileSheetNode::Config TileSheetConfig{
+			const step_defender::tool::TileSheetNode::TileSheetConfiguration TileSheetConfiguration{
 				32, 32
 				, 1, 1
 				, "textures/step_defender/step_defender_tilesheet_01.png"
@@ -95,7 +95,7 @@ namespace step_defender
 			// Tile Sheet Node
 			//
 			{
-				mTileSheetNode = step_defender::tool::TileSheetNode::create( TileSheetConfig );
+				mTileSheetNode = step_defender::tool::TileSheetNode::create( TileSheetConfiguration );
 				mTileSheetNode->setPosition(
 					Vec2( visibleOrigin.x + ( visibleSize.width * 0.7f ), visibleCenter.y )
 					- Vec2( mTileSheetNode->getContentSize().width * 0.5f, mTileSheetNode->getContentSize().height * 0.5f )
@@ -108,7 +108,7 @@ namespace step_defender
 			// Selected Tile View
 			//
 			{
-				auto texture = _director->getTextureCache()->getTextureForKey( TileSheetConfig.TexturePath );
+				auto texture = _director->getTextureCache()->getTextureForKey( TileSheetConfiguration.TexturePath );
 				
 				auto sprite = Sprite::createWithTexture( texture );
 				sprite->setTag( TAG_SelectedTileView );
