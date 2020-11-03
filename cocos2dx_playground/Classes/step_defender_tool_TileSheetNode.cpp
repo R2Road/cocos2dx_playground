@@ -161,7 +161,7 @@ namespace step_defender
 		}
 
 
-		cocos2d::Rect TileSheetNode::ConvertTilePoint2TextureRect( const int x, const int y ) const
+		Rect TileSheetNode::ConvertTilePoint2TextureRect( const int x, const int y ) const
 		{
 			Rect temp_rect(
 				( x * mConfig.BlockWidth ) + mConfig.TileMargin_Width
