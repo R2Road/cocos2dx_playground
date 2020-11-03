@@ -154,7 +154,7 @@ namespace step_defender
 			CCLOG( "%d, %d", x, y );
 
 			auto sprite = static_cast<Sprite*>( getChildByTag( TAG_SelectedTileView ) );
-			sprite->setTextureRect( mTileSheetNode->ConvertTilePoint2Rect( x, y ) );
+			sprite->setTextureRect( mTileSheetNode->ConvertTilePoint2TextureRect( x, y ) );
 		}
 	}
 }
