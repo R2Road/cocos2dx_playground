@@ -24,6 +24,7 @@ namespace step_defender
 
 			, mSelectCallback( nullptr )
 
+			, mSheetView( nullptr )
 			, mIndicator( nullptr )
 			, mLastSelectedPoint()
 		{}
@@ -70,12 +71,12 @@ namespace step_defender
 			// Sheet View
 			//
 			{
-				auto sprite = Sprite::createWithTexture( texture );
-				sprite->setAnchorPoint( Vec2::ZERO );
-				addChild( sprite );
+				mSheetView = Sprite::createWithTexture( texture );
+				mSheetView->setAnchorPoint( Vec2::ZERO );
+				addChild( mSheetView );
 
 				// Guide
-				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getContentSize().width, sprite->getContentSize().height );
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), mSheetView->getContentSize().width, mSheetView->getContentSize().height );
 				addChild( guide, -1 );
 			}
 
@@ -162,15 +163,17 @@ namespace step_defender
 
 		cocos2d::Rect TileSheetNode::ConvertTilePoint2Rect( const int x, const int y ) const
 		{
-			const auto margin_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileMargin_Width, mConfig.TileMargin_Height ) );
-			const auto tile_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.TileWidth, mConfig.TileHeight ) );
-			const auto block_size = CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.BlockWidth, mConfig.BlockHeight ) );
-
-			return Rect(
-				( x * block_size.width ) + margin_size.width
-				, ( getContentSize().height - ( y * block_size.height ) - block_size.height ) + margin_size.height
-				, tile_size.width, tile_size.height
+			Rect temp_rect(
+				( x * mConfig.BlockWidth ) + mConfig.TileMargin_Width
+				, ( mSheetView->getTexture()->getContentSizeInPixels().height - ( y * mConfig.BlockHeight ) - mConfig.BlockHeight ) + mConfig.TileMargin_Height
+				, mConfig.TileWidth, mConfig.TileHeight
 			);
+			//CCLOG( "Orig %f, %f", temp_rect.origin.x, temp_rect.origin.y );
+
+			temp_rect = CC_RECT_PIXELS_TO_POINTS( temp_rect );
+			//CCLOG( "Fixed %f, %f", temp_rect.origin.x, temp_rect.origin.y );
+
+			return temp_rect;
 		}
 	}
 }

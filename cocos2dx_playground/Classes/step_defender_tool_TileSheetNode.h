@@ -8,6 +8,10 @@
 #include "cpg_GridIndexConverter.h"
 #include "step_defender_game_Constant.h"
 
+NS_CC_BEGIN
+class Sprite;
+NS_CC_END
+
 namespace step_defender
 {
 	namespace tool
@@ -43,9 +47,9 @@ namespace step_defender
 		private:
 			const game::TileSheetConfiguration mConfig;
 			const cpg::GridIndexConverter mGridIndexConverter;
-
 			SelectCallback mSelectCallback;
 
+			cocos2d::Sprite* mSheetView;
 			cocos2d::Node* mIndicator;
 			Point mLastSelectedPoint;
 		};
