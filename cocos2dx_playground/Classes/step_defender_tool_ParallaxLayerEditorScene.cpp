@@ -277,20 +277,6 @@ namespace step_defender
 			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
 			onLayerSelect( 0 );
 
-			//
-			// Dummy
-			//
-			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_defender_background_01_0.png" );
-				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setPosition(
-					sprite->getBoundingBox().size.width * 0.5f
-					, visibleSize.height * 0.5f
-				);
-
-				mCurrentBackgroundLayer->addChild( sprite );
-			}
-
 			return true;
 		}
 
