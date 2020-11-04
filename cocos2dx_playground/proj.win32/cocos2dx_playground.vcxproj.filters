@@ -756,6 +756,9 @@
     <ClCompile Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.cpp">
       <Filter>src\scene\step_06_defender\tool</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_game_TileSheetUtility.cpp">
+      <Filter>src\scene\step_06_defender\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1368,6 +1371,9 @@
       <Filter>src\scene\step_06_defender\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_game_Constant.h">
+      <Filter>src\scene\step_06_defender\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_game_TileSheetUtility.h">
       <Filter>src\scene\step_06_defender\game</Filter>
     </ClInclude>
   </ItemGroup>

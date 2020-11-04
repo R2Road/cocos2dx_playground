@@ -21,6 +21,7 @@ namespace step_defender
 		TileSheetNode::TileSheetNode( const game::TileSheetConfiguration& config ) :
 			mConfig( config )
 			, mGridIndexConverter( mConfig.BlockWidth, mConfig.BlockHeight )
+			, mTileSheetUtility()
 
 			, mSelectCallback( nullptr )
 
@@ -57,6 +58,8 @@ namespace step_defender
 			auto texture = _director->getTextureCache()->addImage( mConfig.TexturePath );
 			texture->setAliasTexParameters();
 			setContentSize( texture->getContentSize() );
+
+			mTileSheetUtility.Setup( mConfig.TileWidth, mConfig.TileHeight, mConfig.TileMargin_Width, mConfig.TileMargin_Height, texture->getContentSizeInPixels().height );
 
 			//
 			// Pivot
@@ -163,17 +166,7 @@ namespace step_defender
 
 		Rect TileSheetNode::ConvertTilePoint2TextureRect( const int x, const int y ) const
 		{
-			Rect temp_rect(
-				( x * mConfig.BlockWidth ) + mConfig.TileMargin_Width
-				, ( mSheetView->getTexture()->getContentSizeInPixels().height - ( y * mConfig.BlockHeight ) - mConfig.BlockHeight ) + mConfig.TileMargin_Height
-				, mConfig.TileWidth, mConfig.TileHeight
-			);
-			//CCLOG( "Orig %f, %f", temp_rect.origin.x, temp_rect.origin.y );
-
-			temp_rect = CC_RECT_PIXELS_TO_POINTS( temp_rect );
-			//CCLOG( "Fixed %f, %f", temp_rect.origin.x, temp_rect.origin.y );
-
-			return temp_rect;
+			return mTileSheetUtility.ConvertTilePoint2TextureRect( x, y );
 		}
 	}
 }

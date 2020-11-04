@@ -7,6 +7,7 @@
 
 #include "cpg_GridIndexConverter.h"
 #include "step_defender_game_Constant.h"
+#include "step_defender_game_TileSheetUtility.h"
 
 NS_CC_BEGIN
 class Sprite;
@@ -47,6 +48,8 @@ namespace step_defender
 		private:
 			const game::TileSheetConfiguration mConfig;
 			const cpg::GridIndexConverter mGridIndexConverter;
+			game::TileSheetUtility mTileSheetUtility;
+
 			SelectCallback mSelectCallback;
 
 			cocos2d::Sprite* mSheetView;
