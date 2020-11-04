@@ -1,9 +1,7 @@
 #include "step_defender_game_TileSheetUtility.h"
 
-#include <algorithm>
-
-#include "base/ccMacros.h"
 #include "base/CCDirector.h" // for CC_RECT_PIXELS_TO_POINTS
+#include "base/ccMacros.h"
 
 namespace step_defender
 {
@@ -39,8 +37,8 @@ namespace step_defender
 		cocos2d::Rect TileSheetUtility::ConvertTilePoint2TextureRect( const int x, const int y ) const
 		{
 			cocos2d::Rect temp_rect(
-				( x * BlockWidth ) + TileMargin_Width
-				, ( TileSheetHeight - ( y * BlockHeight ) - BlockHeight ) + TileMargin_Height
+				TileMargin_Width + ( x * BlockWidth )
+				, TileMargin_Height + ( TileSheetHeight - ( y * BlockHeight ) - BlockHeight )
 				, TileWidth, TileHeight
 			);
 			//CCLOG( "Orig %f, %f", temp_rect.origin.x, temp_rect.origin.y );
