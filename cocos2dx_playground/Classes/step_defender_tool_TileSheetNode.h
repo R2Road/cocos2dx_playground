@@ -7,7 +7,6 @@
 
 #include "cpg_GridIndexConverter.h"
 #include "step_defender_game_Constant.h"
-#include "step_defender_game_TileSheetUtility.h"
 
 NS_CC_BEGIN
 class Sprite;
@@ -43,16 +42,12 @@ namespace step_defender
 
 		public:
 			void SetSelectCallback( const SelectCallback& callback ) { mSelectCallback = callback; }
-			cocos2d::Rect ConvertTilePoint2TextureRect( const int x, const int y ) const;
 
 		private:
 			const game::TileSheetConfiguration mConfig;
 			const cpg::GridIndexConverter mGridIndexConverter;
-			game::TileSheetUtility mTileSheetUtility;
-
 			SelectCallback mSelectCallback;
 
-			cocos2d::Sprite* mSheetView;
 			cocos2d::Node* mIndicator;
 			Point mLastSelectedPoint;
 		};

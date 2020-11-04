@@ -21,11 +21,8 @@ namespace step_defender
 		TileSheetNode::TileSheetNode( const game::TileSheetConfiguration& config ) :
 			mConfig( config )
 			, mGridIndexConverter( mConfig.BlockWidth, mConfig.BlockHeight )
-			, mTileSheetUtility()
-
 			, mSelectCallback( nullptr )
 
-			, mSheetView( nullptr )
 			, mIndicator( nullptr )
 			, mLastSelectedPoint()
 		{}
@@ -56,10 +53,10 @@ namespace step_defender
 			}
 
 			auto texture = _director->getTextureCache()->addImage( mConfig.TexturePath );
+			CCASSERT( nullptr != texture, "Texture Nothing" );
+
 			texture->setAliasTexParameters();
 			setContentSize( texture->getContentSize() );
-
-			mTileSheetUtility.Setup( mConfig.TileWidth, mConfig.TileHeight, mConfig.TileMargin_Width, mConfig.TileMargin_Height, texture->getContentSizeInPixels().height );
 
 			//
 			// Pivot
@@ -74,12 +71,12 @@ namespace step_defender
 			// Sheet View
 			//
 			{
-				mSheetView = Sprite::createWithTexture( texture );
-				mSheetView->setAnchorPoint( Vec2::ZERO );
-				addChild( mSheetView );
+				auto sprite = Sprite::createWithTexture( texture );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				addChild( sprite );
 
 				// Guide
-				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), mSheetView->getContentSize().width, mSheetView->getContentSize().height );
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getContentSize().width, sprite->getContentSize().height );
 				addChild( guide, -1 );
 			}
 
@@ -161,12 +158,6 @@ namespace step_defender
 				mLastSelectedPoint.x * mIndicator->getContentSize().width
 				, mLastSelectedPoint.y * mIndicator->getContentSize().height
 			);
-		}
-
-
-		Rect TileSheetNode::ConvertTilePoint2TextureRect( const int x, const int y ) const
-		{
-			return mTileSheetUtility.ConvertTilePoint2TextureRect( x, y );
 		}
 	}
 }
