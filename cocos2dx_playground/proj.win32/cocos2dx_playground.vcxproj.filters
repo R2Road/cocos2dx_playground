@@ -178,6 +178,9 @@
     <Filter Include="src\scene\step_06_defender\game">
       <UniqueIdentifier>{63250f0c-fa91-496e-8d98-7b39f7a324bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_06_defender\tool_test">
+      <UniqueIdentifier>{93c2fcc4-390b-44f6-a1a3-3f59a228bc82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -753,11 +756,11 @@
     <ClCompile Include="..\Classes\step_defender_tool_TileSheetNode.cpp">
       <Filter>src\scene\step_06_defender\tool</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.cpp">
-      <Filter>src\scene\step_06_defender\tool</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_defender_game_TileSheetUtility.cpp">
       <Filter>src\scene\step_06_defender\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.cpp">
+      <Filter>src\scene\step_06_defender\tool_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1367,14 +1370,14 @@
     <ClInclude Include="..\Classes\step_defender_tool_TileSheetNode.h">
       <Filter>src\scene\step_06_defender\tool</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.h">
-      <Filter>src\scene\step_06_defender\tool</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_defender_game_Constant.h">
       <Filter>src\scene\step_06_defender\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_game_TileSheetUtility.h">
       <Filter>src\scene\step_06_defender\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.h">
+      <Filter>src\scene\step_06_defender\tool_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
