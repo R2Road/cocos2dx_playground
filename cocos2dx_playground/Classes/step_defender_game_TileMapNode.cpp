@@ -67,11 +67,12 @@ namespace step_defender
 			}
 
 			//
-			// Tile Sheet Utility
+			// Setup - Texture & Tile Sheet Utility 
 			//
 			{
 				auto texture = _director->getTextureCache()->addImage( game::TileSheetConfig.TexturePath );
 				CCASSERT( nullptr != texture, "Texture Nothing" );
+				texture->setAliasTexParameters();
 
 				mTileSheetUtility.Setup( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight, game::TileSheetConfig.TileMargin_Width, game::TileSheetConfig.TileMargin_Height, texture->getContentSizeInPixels().height );
 			}
