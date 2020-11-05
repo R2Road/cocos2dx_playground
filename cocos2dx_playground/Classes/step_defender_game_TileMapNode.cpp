@@ -12,11 +12,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const int TAG_BatchNode = 20140416;
-}
-
 namespace step_defender
 {
 	namespace game
@@ -86,7 +81,6 @@ namespace step_defender
 			//
 			{
 				mSpriteBatchNode = SpriteBatchNode::create( mTileSheetConfig.TexturePath, mConfig.MapWidth* mConfig.MapHeight );
-				mSpriteBatchNode->setTag( TAG_BatchNode );
 				addChild( mSpriteBatchNode );
 			}
 
@@ -124,8 +118,7 @@ namespace step_defender
 
 		void TileMapNode::Reset()
 		{
-			auto sprite_batch_node = static_cast<SpriteBatchNode*>( getChildByTag( TAG_BatchNode ) );
-			sprite_batch_node->removeAllChildrenWithCleanup( false );
+			mSpriteBatchNode->removeAllChildrenWithCleanup( false );
 		}
 	}
 }
