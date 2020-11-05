@@ -2,21 +2,20 @@
 
 #include <string>
 
-#include "2d/CCNode.h"
+#include "2d/CCSpriteBatchNode.h"
 
 #include "step_defender_game_Constant.h"
 #include "step_defender_game_TileSheetUtility.h"
 
 NS_CC_BEGIN
 class Sprite;
-class SpriteBatchNode;
 NS_CC_END
 
 namespace step_defender
 {
 	namespace game
 	{
-		class TileMapNode : public cocos2d::Node
+		class TileMapNode : public cocos2d::SpriteBatchNode
 		{
 		public:
 			struct Config
@@ -45,7 +44,6 @@ namespace step_defender
 			const TileSheetConfiguration mTileSheetConfig;
 			TileSheetUtility mTileSheetUtility;
 
-			cocos2d::SpriteBatchNode* mSpriteBatchNode;
 			cocos2d::Sprite* mReusedSprite;
 		};
 	}
