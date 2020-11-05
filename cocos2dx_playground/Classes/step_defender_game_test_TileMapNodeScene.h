@@ -31,6 +31,9 @@ namespace step_defender
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			step_defender::game::TileMapNode* mTileMapNode;
+
+			int mCurrentTilePointX;
+			int mCurrentTilePointY;
 		};
 	}
 }

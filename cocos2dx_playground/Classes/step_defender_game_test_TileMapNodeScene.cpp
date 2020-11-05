@@ -22,6 +22,9 @@ namespace step_defender
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTileMapNode( nullptr )
+
+			, mCurrentTilePointX( 0 )
+			, mCurrentTilePointY( 0 )
 		{}
 
 		Scene* TileMapNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -100,7 +103,7 @@ namespace step_defender
 				);
 				addChild( mTileMapNode );
 
-				mTileMapNode->FillAll( 0, 0 );
+				mTileMapNode->FillAll( mCurrentTilePointX, mCurrentTilePointY );
 			}
 
 			return true;
@@ -134,13 +137,24 @@ namespace step_defender
 
 			if( EventKeyboard::KeyCode::KEY_1 == key_code )
 			{
+				mCurrentTilePointX = 0;
+				mCurrentTilePointY = 0;
+
 				mTileMapNode->Reset();
 				return;
 			}
 
 			if( EventKeyboard::KeyCode::KEY_2 == key_code )
 			{
-				mTileMapNode->FillAll( 0, 2 );
+				++mCurrentTilePointX;
+				if( 2 < mCurrentTilePointX )
+				{
+					mCurrentTilePointX = 0;
+
+					mCurrentTilePointY = mCurrentTilePointY + 1 > 2 ? 0 : mCurrentTilePointY + 1;
+				}
+
+				mTileMapNode->FillAll( mCurrentTilePointX, mCurrentTilePointY );
 			}
 		}
 	}
