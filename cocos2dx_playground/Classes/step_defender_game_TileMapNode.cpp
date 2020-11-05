@@ -60,7 +60,7 @@ namespace step_defender
 			}
 
 			const Size ContentSize( mConfig.MapWidth * mTileSheetConfig.TileWidth, mConfig.MapHeight * mTileSheetConfig.TileHeight );
-			setContentSize( CC_SIZE_PIXELS_TO_POINTS( ContentSize ) );
+			setContentSize( ContentSize );
 
 			//
 			// Pivot
@@ -97,6 +97,26 @@ namespace step_defender
 				mReusedSprite = Sprite::createWithTexture( mSpriteBatchNode->getTexture()  );
 				mReusedSprite->setBatchNode( mSpriteBatchNode );
 				mReusedSprite->retain();
+			}
+
+			//
+			// Setup Quads : TextureAtlas::insertQuad
+			//
+			{
+				const auto tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 0, 0 );
+				for( int sy = 0; mConfig.MapHeight > sy; ++sy )
+				{
+					for( int sx = 0; mConfig.MapWidth > sx; ++sx )
+					{
+						mReusedSprite->setTextureRect( tile_rect );
+						mReusedSprite->setScale( _director->getContentScaleFactor() );
+						mReusedSprite->setPosition(
+							( TileSheetConfig.TileWidth * 0.5f ) + ( TileSheetConfig.TileWidth * sx )
+							, ( TileSheetConfig.TileHeight * 0.5f ) + ( TileSheetConfig.TileHeight * sy )
+						);
+						mSpriteBatchNode->insertQuadFromSprite( mReusedSprite, sx + ( mConfig.MapWidth * sy ) );
+					}
+				}
 			}
 
 			return true;

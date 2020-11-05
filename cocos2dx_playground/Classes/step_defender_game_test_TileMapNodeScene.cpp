@@ -85,7 +85,7 @@ namespace step_defender
 			//
 			{
 				auto tile_map_node = step_defender::game::TileMapNode::create(
-					step_defender::game::TileMapNode::Config{ 10, 10 }
+					step_defender::game::TileMapNode::Config{ 10, 6 }
 					, game::TileSheetConfig
 				);
 				tile_map_node->setPosition(
