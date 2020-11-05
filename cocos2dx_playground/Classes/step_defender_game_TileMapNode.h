@@ -4,6 +4,8 @@
 
 #include "2d/CCNode.h"
 
+#include "step_defender_game_Constant.h"
+
 NS_CC_BEGIN
 class Sprite;
 class SpriteBatchNode;
@@ -20,20 +22,15 @@ namespace step_defender
 			{
 				int MapWidth = 10;
 				int MapHeight = 10;
-
-				int TileWidth = 32;
-				int TileHeight = 32;
-
-				std::string TexturePath;
 			};
 
 		private:
-			TileMapNode( const Config& config );
+			TileMapNode( const Config& config, const TileSheetConfiguration& tile_sheet_config );
 
 		public:
 			~TileMapNode();
 
-			static TileMapNode* create( const Config& config );
+			static TileMapNode* create( const Config& config, const TileSheetConfiguration& tile_sheet_config );
 
 		private:
 			bool init() override;
@@ -43,6 +40,7 @@ namespace step_defender
 
 		private:
 			const Config mConfig;
+			const TileSheetConfiguration mTileSheetConfig;
 
 			cocos2d::SpriteBatchNode* mSpriteBatchNode;
 			cocos2d::Sprite* mReusedSprite;

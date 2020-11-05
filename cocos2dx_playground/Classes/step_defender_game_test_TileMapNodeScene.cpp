@@ -85,11 +85,8 @@ namespace step_defender
 			//
 			{
 				auto tile_map_node = step_defender::game::TileMapNode::create(
-					step_defender::game::TileMapNode::Config{
-						10, 10
-						, 32, 32
-						, "textures/texture_001.png"
-					}
+					step_defender::game::TileMapNode::Config{ 10, 10 }
+					, game::TileSheetConfig
 				);
 				tile_map_node->setPosition(
 					visibleCenter

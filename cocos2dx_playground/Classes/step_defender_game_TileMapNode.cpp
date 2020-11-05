@@ -24,7 +24,11 @@ namespace step_defender
 {
 	namespace game
 	{
-		TileMapNode::TileMapNode( const Config& config ) : mConfig( config ), mSpriteBatchNode( nullptr ), mReusedSprite( nullptr )
+		TileMapNode::TileMapNode( const Config& config, const TileSheetConfiguration& tile_sheet_config ) :
+			mConfig( config )
+			, mTileSheetConfig( tile_sheet_config )
+			, mSpriteBatchNode( nullptr )
+			, mReusedSprite( nullptr )
 		{}
 
 		TileMapNode::~TileMapNode()
@@ -32,11 +36,11 @@ namespace step_defender
 			CC_SAFE_RELEASE( mReusedSprite );
 		}
 
-		TileMapNode* TileMapNode::create( const Config& config )
+		TileMapNode* TileMapNode::create( const Config& config, const TileSheetConfiguration& tile_sheet_config )
 		{
 			CCASSERT( 0 != config.MapWidth && 0 != config.MapHeight, "Failed - TileMapNode::create" );
 
-			auto ret = new ( std::nothrow ) TileMapNode( config );
+			auto ret = new ( std::nothrow ) TileMapNode( config, tile_sheet_config );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -57,7 +61,7 @@ namespace step_defender
 				return false;
 			}
 
-			const Size ContentSize( mConfig.MapWidth * mConfig.TileWidth, mConfig.MapHeight * mConfig.TileHeight );
+			const Size ContentSize( mConfig.MapWidth * mTileSheetConfig.TileWidth, mConfig.MapHeight * mTileSheetConfig.TileHeight );
 			setContentSize( CC_SIZE_PIXELS_TO_POINTS( ContentSize ) );
 
 			//
@@ -73,7 +77,7 @@ namespace step_defender
 			// Generate Sprite Batch Node
 			//
 			{
-				mSpriteBatchNode = SpriteBatchNode::create( mConfig.TexturePath, mConfig.MapWidth* mConfig.MapHeight );
+				mSpriteBatchNode = SpriteBatchNode::create( mTileSheetConfig.TexturePath, mConfig.MapWidth* mConfig.MapHeight );
 				mSpriteBatchNode->setTag( TAG_BatchNode );
 				addChild( mSpriteBatchNode );
 			}
@@ -85,21 +89,6 @@ namespace step_defender
 				mReusedSprite = Sprite::createWithTexture( mSpriteBatchNode->getTexture()  );
 				mReusedSprite->setBatchNode( mSpriteBatchNode );
 				mReusedSprite->retain();
-			}
-
-			auto sprite_frame_indicator = 0u;
-			for( int sy = 0; mConfig.MapHeight > sy; ++sy )
-			{
-				for( int sx = 0; mConfig.MapWidth > sx; ++sx )
-				{
-					mReusedSprite->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_1.png" ) );
-					mReusedSprite->setScale( _director->getContentScaleFactor() );
-					mReusedSprite->setPosition(
-						( mConfig.TileWidth * 0.5f ) + ( mConfig.TileWidth * sx )
-						, ( mConfig.TileHeight * 0.5f ) + ( mConfig.TileHeight * sy )
-					);
-					mSpriteBatchNode->insertQuadFromSprite( mReusedSprite, sx + ( mConfig.MapWidth * sy ) );
-				}
 			}
 
 			return true;
