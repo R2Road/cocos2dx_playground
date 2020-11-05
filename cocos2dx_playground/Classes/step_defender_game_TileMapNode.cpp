@@ -98,17 +98,17 @@ namespace step_defender
 			//
 			{
 				const auto tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 0, 0 );
-				for( int sy = 0; mConfig.MapHeight > sy; ++sy )
+				for( int ty = 0; mConfig.MapHeight > ty; ++ty )
 				{
-					for( int sx = 0; mConfig.MapWidth > sx; ++sx )
+					for( int tx = 0; mConfig.MapWidth > tx; ++tx )
 					{
 						mReusedSprite->setTextureRect( tile_rect );
 						mReusedSprite->setScale( _director->getContentScaleFactor() );
 						mReusedSprite->setPosition(
-							( TileSheetConfig.TileWidth * 0.5f ) + ( TileSheetConfig.TileWidth * sx )
-							, ( TileSheetConfig.TileHeight * 0.5f ) + ( TileSheetConfig.TileHeight * sy )
+							( TileSheetConfig.TileWidth * 0.5f ) + ( TileSheetConfig.TileWidth * tx )
+							, ( TileSheetConfig.TileHeight * 0.5f ) + ( TileSheetConfig.TileHeight * ty )
 						);
-						mSpriteBatchNode->insertQuadFromSprite( mReusedSprite, sx + ( mConfig.MapWidth * sy ) );
+						mSpriteBatchNode->insertQuadFromSprite( mReusedSprite, tx + ( mConfig.MapWidth * ty ) );
 					}
 				}
 			}
