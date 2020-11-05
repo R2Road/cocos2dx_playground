@@ -5,6 +5,7 @@
 #include "2d/CCNode.h"
 
 #include "step_defender_game_Constant.h"
+#include "step_defender_game_TileSheetUtility.h"
 
 NS_CC_BEGIN
 class Sprite;
@@ -41,6 +42,7 @@ namespace step_defender
 		private:
 			const Config mConfig;
 			const TileSheetConfiguration mTileSheetConfig;
+			TileSheetUtility mTileSheetUtility;
 
 			cocos2d::SpriteBatchNode* mSpriteBatchNode;
 			cocos2d::Sprite* mReusedSprite;

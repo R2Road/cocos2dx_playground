@@ -3,15 +3,12 @@
 #include <new>
 #include <numeric>
 
-#include "2d/CCLabel.h"
-#include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteBatchNode.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
+#include "renderer/CCTextureCache.h"
 
 USING_NS_CC;
 
@@ -27,6 +24,7 @@ namespace step_defender
 		TileMapNode::TileMapNode( const Config& config, const TileSheetConfiguration& tile_sheet_config ) :
 			mConfig( config )
 			, mTileSheetConfig( tile_sheet_config )
+			, mTileSheetUtility()
 			, mSpriteBatchNode( nullptr )
 			, mReusedSprite( nullptr )
 		{}
@@ -71,6 +69,16 @@ namespace step_defender
 				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 				pivot->setScale( 2.f );
 				addChild( pivot, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Tile Sheet Utility
+			//
+			{
+				auto texture = _director->getTextureCache()->addImage( game::TileSheetConfig.TexturePath );
+				CCASSERT( nullptr != texture, "Texture Nothing" );
+
+				mTileSheetUtility.Setup( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight, game::TileSheetConfig.TileMargin_Width, game::TileSheetConfig.TileMargin_Height, texture->getContentSizeInPixels().height );
 			}
 
 			//
