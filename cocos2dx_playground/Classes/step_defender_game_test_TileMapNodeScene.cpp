@@ -93,6 +93,8 @@ namespace step_defender
 					- Vec2( tile_map_node->getContentSize().width * 0.5f, tile_map_node->getContentSize().height * 0.5f )
 				);
 				addChild( tile_map_node );
+
+				tile_map_node->FillAll( 0, 1 );
 			}
 
 			return true;

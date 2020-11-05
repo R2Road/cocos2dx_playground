@@ -120,5 +120,25 @@ namespace step_defender
 		{
 			mSpriteBatchNode->removeAllChildrenWithCleanup( false );
 		}
+
+		void TileMapNode::FillAll( const int tile_point_x, const int tile_point_y )
+		{
+			Reset();
+
+			const auto tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( tile_point_x, tile_point_y );
+			for( int ty = 0; mConfig.MapHeight > ty; ++ty )
+			{
+				for( int tx = 0; mConfig.MapWidth > tx; ++tx )
+				{
+					mReusedSprite->setTextureRect( tile_rect );
+					mReusedSprite->setScale( _director->getContentScaleFactor() );
+					mReusedSprite->setPosition(
+						( TileSheetConfig.TileWidth * 0.5f ) + ( TileSheetConfig.TileWidth * tx )
+						, ( TileSheetConfig.TileHeight * 0.5f ) + ( TileSheetConfig.TileHeight * ty )
+					);
+					mSpriteBatchNode->insertQuadFromSprite( mReusedSprite, tx + ( mConfig.MapWidth * ty ) );
+				}
+			}
+		}
 	}
 }
