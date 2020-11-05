@@ -100,7 +100,7 @@ namespace step_defender
 				);
 				addChild( mTileMapNode );
 
-				mTileMapNode->FillAll( 0, 1 );
+				mTileMapNode->FillAll( 0, 0 );
 			}
 
 			return true;
