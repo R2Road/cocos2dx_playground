@@ -48,6 +48,10 @@ namespace step_defender
 
 			const auto visibleOrigin = _director->getVisibleOrigin();
 			const auto visibleSize = _director->getVisibleSize();
+			const Vec2 visibleCenter(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+			);
 
 			//
 			// Summury
@@ -83,9 +87,13 @@ namespace step_defender
 				auto tile_map_node = step_defender::game::TileMapNode::create(
 					step_defender::game::TileMapNode::Config{
 						10, 10
-						,32 , 32
+						, 32, 32
 						, "textures/texture_001.png"
 					}
+				);
+				tile_map_node->setPosition(
+					visibleCenter
+					- Vec2( tile_map_node->getContentSize().width * 0.5f, tile_map_node->getContentSize().height * 0.5f )
 				);
 				addChild( tile_map_node );
 			}
