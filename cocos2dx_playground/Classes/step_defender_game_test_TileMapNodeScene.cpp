@@ -21,6 +21,7 @@ namespace step_defender
 		TileMapNodeScene::TileMapNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mTileMapNode( nullptr )
 		{}
 
 		Scene* TileMapNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -62,6 +63,11 @@ namespace step_defender
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[1] : Clear";
+				ss << std::endl;
+				ss << "[2] : Fill All";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -84,17 +90,17 @@ namespace step_defender
 			//
 			//
 			{
-				auto tile_map_node = step_defender::game::TileMapNode::create(
+				mTileMapNode = step_defender::game::TileMapNode::create(
 					step_defender::game::TileMapNode::Config{ 10, 6 }
 					, game::TileSheetConfig
 				);
-				tile_map_node->setPosition(
+				mTileMapNode->setPosition(
 					visibleCenter
-					- Vec2( tile_map_node->getContentSize().width * 0.5f, tile_map_node->getContentSize().height * 0.5f )
+					- Vec2( mTileMapNode->getContentSize().width * 0.5f, mTileMapNode->getContentSize().height * 0.5f )
 				);
-				addChild( tile_map_node );
+				addChild( mTileMapNode );
 
-				tile_map_node->FillAll( 0, 1 );
+				mTileMapNode->FillAll( 0, 1 );
 			}
 
 			return true;
@@ -124,6 +130,17 @@ namespace step_defender
 			{
 				helper::BackToThePreviousScene::MoveBack();
 				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_1 == key_code )
+			{
+				mTileMapNode->Reset();
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_2 == key_code )
+			{
+				mTileMapNode->FillAll( 0, 2 );
 			}
 		}
 	}
