@@ -89,7 +89,9 @@ namespace step_defender
 			//
 			{
 				mReusedSprite = Sprite::createWithTexture( mSpriteBatchNode->getTexture()  );
+				mReusedSprite->setAnchorPoint( Vec2::ZERO );
 				mReusedSprite->setBatchNode( mSpriteBatchNode );
+				mReusedSprite->setScale( _director->getContentScaleFactor() );
 				mReusedSprite->retain();
 			}
 
@@ -103,10 +105,9 @@ namespace step_defender
 					for( int tx = 0; mConfig.MapWidth > tx; ++tx )
 					{
 						mReusedSprite->setTextureRect( tile_rect );
-						mReusedSprite->setScale( _director->getContentScaleFactor() );
 						mReusedSprite->setPosition(
-							( TileSheetConfig.TileWidth * 0.5f ) + ( TileSheetConfig.TileWidth * tx )
-							, ( TileSheetConfig.TileHeight * 0.5f ) + ( TileSheetConfig.TileHeight * ty )
+							TileSheetConfig.TileWidth * tx
+							, TileSheetConfig.TileHeight * ty
 						);
 						mSpriteBatchNode->insertQuadFromSprite( mReusedSprite, tx + ( mConfig.MapWidth * ty ) );
 					}
@@ -131,10 +132,9 @@ namespace step_defender
 				for( int tx = 0; mConfig.MapWidth > tx; ++tx )
 				{
 					mReusedSprite->setTextureRect( tile_rect );
-					mReusedSprite->setScale( _director->getContentScaleFactor() );
 					mReusedSprite->setPosition(
-						( TileSheetConfig.TileWidth * 0.5f ) + ( TileSheetConfig.TileWidth * tx )
-						, ( TileSheetConfig.TileHeight * 0.5f ) + ( TileSheetConfig.TileHeight * ty )
+						TileSheetConfig.TileWidth * tx
+						, TileSheetConfig.TileHeight * ty
 					);
 					mSpriteBatchNode->insertQuadFromSprite( mReusedSprite, tx + ( mConfig.MapWidth * ty ) );
 				}
