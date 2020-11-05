@@ -21,7 +21,7 @@ namespace step_defender
 				, TileHeight( tile_height )
 
 				, TileMargin_Width( tile_margin_width )
-				, TileMargin_Height( tile_margin_width )
+				, TileMargin_Height( tile_margin_height )
 
 				, BlockWidth( TileMargin_Width + TileWidth +TileMargin_Width )
 				, BlockHeight( TileMargin_Height + TileHeight +TileMargin_Height )
