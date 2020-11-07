@@ -81,12 +81,11 @@ namespace step_defender
 			// Setup Quads : TextureAtlas::insertQuad
 			//
 			{
-				const auto tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 0, 0 );
 				for( int ty = 0; mConfig.MapHeight > ty; ++ty )
 				{
 					for( int tx = 0; mConfig.MapWidth > tx; ++tx )
 					{
-						mReusedSprite->setTextureRect( tile_rect );
+						mReusedSprite->setTextureRect( Rect::ZERO );
 						mReusedSprite->setPosition(
 							TileSheetConfig.TileWidth * tx
 							, TileSheetConfig.TileHeight * ty
