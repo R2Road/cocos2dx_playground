@@ -68,7 +68,7 @@ namespace step_defender
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Clear";
+				ss << "[1] : Fill Ones";
 				ss << std::endl;
 				ss << "[2] : Fill All";
 
@@ -137,10 +137,15 @@ namespace step_defender
 
 			if( EventKeyboard::KeyCode::KEY_1 == key_code )
 			{
-				mCurrentTilePointX = 0;
-				mCurrentTilePointY = 0;
+				++mCurrentTilePointX;
+				if( 2 < mCurrentTilePointX )
+				{
+					mCurrentTilePointX = 0;
 
-				mTileMapNode->Reset();
+					mCurrentTilePointY = mCurrentTilePointY + 1 > 2 ? 0 : mCurrentTilePointY + 1;
+				}
+
+				mTileMapNode->UpdateTile( 0, 0, mCurrentTilePointX, mCurrentTilePointY );
 				return;
 			}
 

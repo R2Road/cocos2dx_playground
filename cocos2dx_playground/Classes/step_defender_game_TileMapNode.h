@@ -38,6 +38,7 @@ namespace step_defender
 		public:
 			void Reset();
 			void FillAll( const int tile_point_x, const int tile_point_y );
+			void UpdateTile( const int map_point_x, const int map_point_y, const int tile_point_x, const int tile_point_y );
 
 		private:
 			const Config mConfig;

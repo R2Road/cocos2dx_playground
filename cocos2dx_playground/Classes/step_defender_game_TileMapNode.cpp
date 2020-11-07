@@ -119,5 +119,21 @@ namespace step_defender
 				}
 			}
 		}
+		void TileMapNode::UpdateTile( const int map_point_x, const int map_point_y, const int tile_point_x, const int tile_point_y )
+		{
+			if( mConfig.MapWidth <= map_point_x || mConfig.MapHeight <= map_point_y )
+			{
+				return;
+			}
+
+			const auto tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( tile_point_x, tile_point_y );
+
+			mReusedSprite->setTextureRect( tile_rect );
+			mReusedSprite->setPosition(
+				TileSheetConfig.TileWidth * map_point_x
+				, TileSheetConfig.TileHeight * map_point_y
+			);
+			updateQuadFromSprite( mReusedSprite, map_point_x + ( mConfig.MapWidth * map_point_y ) );
+		}
 	}
 }
