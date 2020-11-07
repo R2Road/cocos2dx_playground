@@ -100,6 +100,20 @@ namespace step_defender
 			}
 
 			//
+			// Explain
+			//
+			{
+				auto label = Label::createWithTTF( "Select Tile", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				label->setPosition(
+					visibleOrigin.x + ( visibleSize.width * 0.7f )
+					, visibleOrigin.y + ( visibleSize.height * 0.7f )
+				);
+				addChild( label );
+			}
+
+			//
 			// Tile Sheet Utility
 			//
 			{
