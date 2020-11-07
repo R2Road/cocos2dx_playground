@@ -29,6 +29,8 @@ namespace
 		, Color3B::YELLOW
 		, Color3B::WHITE
 	};
+
+	const int Distance_Indicator_Part_Width = 100.f;
 }
 
 namespace step_defender
@@ -146,8 +148,6 @@ namespace step_defender
 
 				mParallaxNode = ParallaxNode::create();
 				addChild( mParallaxNode, 0 );
-
-				const int Distance_Indicator_Part_Width = 100.f;
 
 				//
 				// Background 0
