@@ -147,7 +147,7 @@ namespace step_defender
 				mParallaxNode = ParallaxNode::create();
 				addChild( mParallaxNode, 0 );
 
-				const int part_width = 100.f;
+				const int Distance_Indicator_Part_Width = 100.f;
 
 				//
 				// Background 0
@@ -163,14 +163,14 @@ namespace step_defender
 					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
+					const auto div_result = std::div( static_cast<int>( background_width ), Distance_Indicator_Part_Width );
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( std::to_string( i * Distance_Indicator_Part_Width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
-							i * part_width
+							i * Distance_Indicator_Part_Width
 							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
@@ -200,15 +200,15 @@ namespace step_defender
 					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
+					const auto div_result = std::div( static_cast<int>( background_width ), Distance_Indicator_Part_Width );
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( std::to_string( i * Distance_Indicator_Part_Width ), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
-							i * part_width
+							i * Distance_Indicator_Part_Width
 							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
@@ -238,15 +238,15 @@ namespace step_defender
 					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
+					const auto div_result = std::div( static_cast<int>( background_width ), Distance_Indicator_Part_Width );
 					Color4B current_color;
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( std::to_string( i * Distance_Indicator_Part_Width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 						label->setColor( BackgroundColors[background_index] );
 						label->setPosition( Vec2(
-							i * part_width
+							i * Distance_Indicator_Part_Width
 							, label_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
