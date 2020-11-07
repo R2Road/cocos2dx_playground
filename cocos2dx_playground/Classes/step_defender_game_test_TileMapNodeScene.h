@@ -5,6 +5,11 @@
 
 namespace step_defender
 {
+	namespace game
+	{
+		class TileMapNode;
+	}
+
 	namespace game_test
 	{
 		class TileMapNodeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
@@ -25,6 +30,10 @@ namespace step_defender
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			step_defender::game::TileMapNode* mTileMapNode;
+
+			int mCurrentTilePointX;
+			int mCurrentTilePointY;
 		};
 	}
 }

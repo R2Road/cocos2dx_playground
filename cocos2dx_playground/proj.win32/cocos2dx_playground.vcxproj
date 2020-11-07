@@ -181,6 +181,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_defender_chipmunk_GravityScene.cpp" />
     <ClCompile Include="..\Classes\step_defender_chipmunk_MoveScene.cpp" />
     <ClCompile Include="..\Classes\step_defender_game_test_TileMapNodeScene.cpp" />
+    <ClCompile Include="..\Classes\step_defender_game_TileSheetUtility.cpp" />
     <ClCompile Include="..\Classes\step_defender_parallax_node_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_defender_parallax_node_RatioCheckScene.cpp" />
     <ClCompile Include="..\Classes\step_defender_chipmunk_BasicScene.cpp" />
@@ -379,6 +380,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_defender_chipmunk_MoveScene.h" />
     <ClInclude Include="..\Classes\step_defender_game_Constant.h" />
     <ClInclude Include="..\Classes\step_defender_game_test_TileMapNodeScene.h" />
+    <ClInclude Include="..\Classes\step_defender_game_TileSheetUtility.h" />
     <ClInclude Include="..\Classes\step_defender_parallax_node_BasicScene.h" />
     <ClInclude Include="..\Classes\step_defender_parallax_node_RatioCheckScene.h" />
     <ClInclude Include="..\Classes\step_defender_chipmunk_BasicScene.h" />

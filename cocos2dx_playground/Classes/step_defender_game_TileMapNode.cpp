@@ -3,28 +3,23 @@
 #include <new>
 #include <numeric>
 
-#include "2d/CCLabel.h"
-#include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCSpriteBatchNode.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
+#include "renderer/CCTextureCache.h"
 
 USING_NS_CC;
-
-namespace
-{
-	const int TAG_BatchNode = 20140416;
-}
 
 namespace step_defender
 {
 	namespace game
 	{
-		TileMapNode::TileMapNode( const Config& config ) : mConfig( config ), mSpriteBatchNode( nullptr ), mReusedSprite( nullptr )
+		TileMapNode::TileMapNode( const Config& config, const TileSheetConfiguration& tile_sheet_config ) :
+			mConfig( config )
+			, mTileSheetConfig( tile_sheet_config )
+			, mTileSheetUtility()
+			, mReusedSprite( nullptr )
 		{}
 
 		TileMapNode::~TileMapNode()
@@ -32,11 +27,11 @@ namespace step_defender
 			CC_SAFE_RELEASE( mReusedSprite );
 		}
 
-		TileMapNode* TileMapNode::create( const Config& config )
+		TileMapNode* TileMapNode::create( const Config& config, const TileSheetConfiguration& tile_sheet_config )
 		{
 			CCASSERT( 0 != config.MapWidth && 0 != config.MapHeight, "Failed - TileMapNode::create" );
 
-			auto ret = new ( std::nothrow ) TileMapNode( config );
+			auto ret = new ( std::nothrow ) TileMapNode( config, tile_sheet_config );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -52,53 +47,51 @@ namespace step_defender
 
 		bool TileMapNode::init()
 		{
-			if( !Node::init() )
+			auto texture = _director->getTextureCache()->addImage( game::TileSheetConfig.TexturePath );
+			CCASSERT( nullptr != texture, "Texture Nothing" );
+			texture->setAliasTexParameters();
+
+			if( !SpriteBatchNode::initWithTexture( texture, mConfig.MapWidth* mConfig.MapHeight ) )
 			{
 				return false;
 			}
 
-			const Size ContentSize( mConfig.MapWidth * mConfig.TileWidth, mConfig.MapHeight * mConfig.TileHeight );
-			setContentSize( CC_SIZE_PIXELS_TO_POINTS( ContentSize ) );
+			const Size ContentSize( mConfig.MapWidth * mTileSheetConfig.TileWidth, mConfig.MapHeight * mTileSheetConfig.TileHeight );
+			setContentSize( ContentSize );
 
 			//
-			// Pivot
+			// Setup - Texture & Tile Sheet Utility 
 			//
 			{
-				auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-				pivot->setScale( 2.f );
-				addChild( pivot, std::numeric_limits<int>::max() );
-			}
-
-			//
-			// Generate Sprite Batch Node
-			//
-			{
-				mSpriteBatchNode = SpriteBatchNode::create( mConfig.TexturePath, mConfig.MapWidth* mConfig.MapHeight );
-				mSpriteBatchNode->setTag( TAG_BatchNode );
-				addChild( mSpriteBatchNode );
+				mTileSheetUtility.Setup( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight, game::TileSheetConfig.TileMargin_Width, game::TileSheetConfig.TileMargin_Height, texture->getContentSizeInPixels().height );
 			}
 
 			//
 			// Reused Sprite
 			//
 			{
-				mReusedSprite = Sprite::createWithTexture( mSpriteBatchNode->getTexture()  );
-				mReusedSprite->setBatchNode( mSpriteBatchNode );
+				mReusedSprite = Sprite::createWithTexture( texture );
+				mReusedSprite->setAnchorPoint( Vec2::ZERO );
+				mReusedSprite->setBatchNode( this );
+				mReusedSprite->setScale( _director->getContentScaleFactor() );
 				mReusedSprite->retain();
 			}
 
-			auto sprite_frame_indicator = 0u;
-			for( int sy = 0; mConfig.MapHeight > sy; ++sy )
+			//
+			// Setup Quads : TextureAtlas::insertQuad
+			//
 			{
-				for( int sx = 0; mConfig.MapWidth > sx; ++sx )
+				for( int ty = 0; mConfig.MapHeight > ty; ++ty )
 				{
-					mReusedSprite->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_rain_of_chaos_tile_01_1.png" ) );
-					mReusedSprite->setScale( _director->getContentScaleFactor() );
-					mReusedSprite->setPosition(
-						( mConfig.TileWidth * 0.5f ) + ( mConfig.TileWidth * sx )
-						, ( mConfig.TileHeight * 0.5f ) + ( mConfig.TileHeight * sy )
-					);
-					mSpriteBatchNode->insertQuadFromSprite( mReusedSprite, sx + ( mConfig.MapWidth * sy ) );
+					for( int tx = 0; mConfig.MapWidth > tx; ++tx )
+					{
+						mReusedSprite->setTextureRect( Rect::ZERO );
+						mReusedSprite->setPosition(
+							TileSheetConfig.TileWidth * tx
+							, TileSheetConfig.TileHeight * ty
+						);
+						insertQuadFromSprite( mReusedSprite, tx + ( mConfig.MapWidth * ty ) );
+					}
 				}
 			}
 
@@ -107,8 +100,40 @@ namespace step_defender
 
 		void TileMapNode::Reset()
 		{
-			auto sprite_batch_node = static_cast<SpriteBatchNode*>( getChildByTag( TAG_BatchNode ) );
-			sprite_batch_node->removeAllChildrenWithCleanup( false );
+			removeAllChildrenWithCleanup( false );
+		}
+
+		void TileMapNode::FillAll( const int tile_point_x, const int tile_point_y )
+		{
+			const auto tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( tile_point_x, tile_point_y );
+			for( int ty = 0; mConfig.MapHeight > ty; ++ty )
+			{
+				for( int tx = 0; mConfig.MapWidth > tx; ++tx )
+				{
+					mReusedSprite->setTextureRect( tile_rect );
+					mReusedSprite->setPosition(
+						TileSheetConfig.TileWidth * tx
+						, TileSheetConfig.TileHeight * ty
+					);
+					updateQuadFromSprite( mReusedSprite, tx + ( mConfig.MapWidth * ty ) );
+				}
+			}
+		}
+		void TileMapNode::UpdateTile( const int map_point_x, const int map_point_y, const int tile_point_x, const int tile_point_y )
+		{
+			if( mConfig.MapWidth <= map_point_x || mConfig.MapHeight <= map_point_y )
+			{
+				return;
+			}
+
+			const auto tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( tile_point_x, tile_point_y );
+
+			mReusedSprite->setTextureRect( tile_rect );
+			mReusedSprite->setPosition(
+				TileSheetConfig.TileWidth * map_point_x
+				, TileSheetConfig.TileHeight * map_point_y
+			);
+			updateQuadFromSprite( mReusedSprite, map_point_x + ( mConfig.MapWidth * map_point_y ) );
 		}
 	}
 }

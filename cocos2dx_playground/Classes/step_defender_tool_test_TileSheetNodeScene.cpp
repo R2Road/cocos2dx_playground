@@ -29,6 +29,7 @@ namespace step_defender
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTileSheetNode( nullptr )
+			, mTileSheetUtility()
 		{}
 
 		Scene* TileSheetNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -99,6 +100,16 @@ namespace step_defender
 			}
 
 			//
+			// Tile Sheet Utility
+			//
+			{
+				auto texture = _director->getTextureCache()->addImage( game::TileSheetConfig.TexturePath );
+				CCASSERT( nullptr != texture, "Texture Nothing" );
+
+				mTileSheetUtility.Setup( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight, game::TileSheetConfig.TileMargin_Width, game::TileSheetConfig.TileMargin_Height, texture->getContentSizeInPixels().height );
+			}
+
+			//
 			// Selected Tile View
 			//
 			{
@@ -154,7 +165,7 @@ namespace step_defender
 			CCLOG( "%d, %d", x, y );
 
 			auto sprite = static_cast<Sprite*>( getChildByTag( TAG_SelectedTileView ) );
-			sprite->setTextureRect( mTileSheetNode->ConvertTilePoint2TextureRect( x, y ) );
+			sprite->setTextureRect( mTileSheetUtility.ConvertTilePoint2TextureRect( x, y ) );
 		}
 	}
 }

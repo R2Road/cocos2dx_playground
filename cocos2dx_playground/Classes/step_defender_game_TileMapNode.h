@@ -2,49 +2,49 @@
 
 #include <string>
 
-#include "2d/CCNode.h"
+#include "2d/CCSpriteBatchNode.h"
+
+#include "step_defender_game_Constant.h"
+#include "step_defender_game_TileSheetUtility.h"
 
 NS_CC_BEGIN
 class Sprite;
-class SpriteBatchNode;
 NS_CC_END
 
 namespace step_defender
 {
 	namespace game
 	{
-		class TileMapNode : public cocos2d::Node
+		class TileMapNode : public cocos2d::SpriteBatchNode
 		{
 		public:
 			struct Config
 			{
 				int MapWidth = 10;
 				int MapHeight = 10;
-
-				int TileWidth = 32;
-				int TileHeight = 32;
-
-				std::string TexturePath;
 			};
 
 		private:
-			TileMapNode( const Config& config );
+			TileMapNode( const Config& config, const TileSheetConfiguration& tile_sheet_config );
 
 		public:
 			~TileMapNode();
 
-			static TileMapNode* create( const Config& config );
+			static TileMapNode* create( const Config& config, const TileSheetConfiguration& tile_sheet_config );
 
 		private:
 			bool init() override;
 
 		public:
 			void Reset();
+			void FillAll( const int tile_point_x, const int tile_point_y );
+			void UpdateTile( const int map_point_x, const int map_point_y, const int tile_point_x, const int tile_point_y );
 
 		private:
 			const Config mConfig;
+			const TileSheetConfiguration mTileSheetConfig;
+			TileSheetUtility mTileSheetUtility;
 
-			cocos2d::SpriteBatchNode* mSpriteBatchNode;
 			cocos2d::Sprite* mReusedSprite;
 		};
 	}

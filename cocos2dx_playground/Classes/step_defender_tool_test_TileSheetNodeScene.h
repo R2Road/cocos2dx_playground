@@ -3,6 +3,8 @@
 #include "2d/CCScene.h"
 #include "helper_BackToThePreviousScene.h"
 
+#include "step_defender_game_TileSheetUtility.h"
+
 namespace step_defender
 {
 	namespace tool
@@ -36,6 +38,7 @@ namespace step_defender
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			step_defender::tool::TileSheetNode* mTileSheetNode;
+			step_defender::game::TileSheetUtility mTileSheetUtility;
 		};
 	}
 }

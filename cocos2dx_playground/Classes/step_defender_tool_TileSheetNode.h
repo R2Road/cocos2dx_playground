@@ -42,14 +42,12 @@ namespace step_defender
 
 		public:
 			void SetSelectCallback( const SelectCallback& callback ) { mSelectCallback = callback; }
-			cocos2d::Rect ConvertTilePoint2TextureRect( const int x, const int y ) const;
 
 		private:
 			const game::TileSheetConfiguration mConfig;
 			const cpg::GridIndexConverter mGridIndexConverter;
 			SelectCallback mSelectCallback;
 
-			cocos2d::Sprite* mSheetView;
 			cocos2d::Node* mIndicator;
 			Point mLastSelectedPoint;
 		};

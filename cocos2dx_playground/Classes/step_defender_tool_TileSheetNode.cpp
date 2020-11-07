@@ -21,10 +21,8 @@ namespace step_defender
 		TileSheetNode::TileSheetNode( const game::TileSheetConfiguration& config ) :
 			mConfig( config )
 			, mGridIndexConverter( mConfig.BlockWidth, mConfig.BlockHeight )
-
 			, mSelectCallback( nullptr )
 
-			, mSheetView( nullptr )
 			, mIndicator( nullptr )
 			, mLastSelectedPoint()
 		{}
@@ -55,6 +53,8 @@ namespace step_defender
 			}
 
 			auto texture = _director->getTextureCache()->addImage( mConfig.TexturePath );
+			CCASSERT( nullptr != texture, "Texture Nothing" );
+
 			texture->setAliasTexParameters();
 			setContentSize( texture->getContentSize() );
 
@@ -71,12 +71,12 @@ namespace step_defender
 			// Sheet View
 			//
 			{
-				mSheetView = Sprite::createWithTexture( texture );
-				mSheetView->setAnchorPoint( Vec2::ZERO );
-				addChild( mSheetView );
+				auto sprite = Sprite::createWithTexture( texture );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				addChild( sprite );
 
 				// Guide
-				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), mSheetView->getContentSize().width, mSheetView->getContentSize().height );
+				auto guide = LayerColor::create( Color4B( 0u, 0u, 0u, 60u ), sprite->getContentSize().width, sprite->getContentSize().height );
 				addChild( guide, -1 );
 			}
 
@@ -158,22 +158,6 @@ namespace step_defender
 				mLastSelectedPoint.x * mIndicator->getContentSize().width
 				, mLastSelectedPoint.y * mIndicator->getContentSize().height
 			);
-		}
-
-
-		Rect TileSheetNode::ConvertTilePoint2TextureRect( const int x, const int y ) const
-		{
-			Rect temp_rect(
-				( x * mConfig.BlockWidth ) + mConfig.TileMargin_Width
-				, ( mSheetView->getTexture()->getContentSizeInPixels().height - ( y * mConfig.BlockHeight ) - mConfig.BlockHeight ) + mConfig.TileMargin_Height
-				, mConfig.TileWidth, mConfig.TileHeight
-			);
-			//CCLOG( "Orig %f, %f", temp_rect.origin.x, temp_rect.origin.y );
-
-			temp_rect = CC_RECT_PIXELS_TO_POINTS( temp_rect );
-			//CCLOG( "Fixed %f, %f", temp_rect.origin.x, temp_rect.origin.y );
-
-			return temp_rect;
 		}
 	}
 }
