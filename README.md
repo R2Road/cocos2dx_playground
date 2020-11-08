@@ -63,18 +63,23 @@
   - clickclick
   - path finder
   - [mole](https://github.com/R2Road/cocos2dx_playground/wiki/Step-:-Mole)
-  - rain of chaos( in progress )
-  - defender( to do )
+  - rain of chaos
+  - defender( in progress )
   
 - ui practice
   - Mouse Cursor
-  - Layout Vertical
-  - Layout Horizontal
-  - Layout Relative
+  - Layout - Vertical
+  - Layout - Horizontal
+  - Relative Layout
+  - Layout N Scroll View
+  - Layout - Change Sequence
+  - Layout - Various Item Size
   - ScrollView
   - UI and Camera
   - Minimap
   - Slider
+  - Toggle Button
+  - Radio Button
 
 - [shader practice](https://github.com/R2Road/cocos2dx_playground/wiki/Shader-Practice)
   - Basic
@@ -83,11 +88,19 @@
 
 - [graph practice](https://github.com/R2Road/cocos2dx_playground/wiki/Graph-Practice)
   - Basic
-  - Collection 01 - 06
+  - Collection 01
+  - Collection 02
+  - Collection 03
+  - Collection 04
+  - Collection 05
+  - Collection 06
 
 - [ui research](https://github.com/R2Road/cocos2dx_playground/wiki/UI-Research)
-  - Button with On Mouse Over
+  - Button Research - On Mouse Over
+  - Button Research - Mouse Right Click
   - Type Effect : Basic
   - Type Effect : Multi Byte
   - Type Effect : Color
   - Type Effect : Shake
+  - TextField - BMFont
+  - Tool Bar node
