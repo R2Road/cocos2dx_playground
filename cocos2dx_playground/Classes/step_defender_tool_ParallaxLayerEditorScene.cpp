@@ -43,7 +43,7 @@ namespace step_defender
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
 
-			, mParallaxRulerNode( nullptr )
+			, mRulerNode( nullptr )
 			, mParallaxNode( nullptr )
 			, mTouchNode( nullptr )
 			, mCurrentBackgroundLayer( nullptr )
@@ -149,8 +149,8 @@ namespace step_defender
 			{
 				setContentSize( game::WorldConfig.WorldSize );
 
-				mParallaxRulerNode = ParallaxNode::create();
-				addChild( mParallaxRulerNode, 1 );
+				mRulerNode = ParallaxNode::create();
+				addChild( mRulerNode, 1 );
 
 				for( const auto& c : game::ParallaxNodeConfigContainer )
 				{
@@ -159,7 +159,7 @@ namespace step_defender
 					auto background_node = Node::create();
 					background_node->setTag( c.Index );
 					background_node->setCascadeOpacityEnabled( true );
-					mParallaxRulerNode->addChild( background_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
+					mRulerNode->addChild( background_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
 
 					const auto background_width = ( game::WorldConfig.WorldSize.width * c.Rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), Parallax_Ruler_Part_Width );
@@ -256,47 +256,47 @@ namespace step_defender
 		{
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
-				const auto new_position = mParallaxRulerNode->getPositionX() + ( -ScrollSpeed * delta_time );
+				const auto new_position = mRulerNode->getPositionX() + ( -ScrollSpeed * delta_time );
 				if( -getContentSize().width < new_position )
 				{
-					mParallaxRulerNode->setPositionX( new_position );
+					mRulerNode->setPositionX( new_position );
 					mParallaxNode->setPositionX( new_position );
 					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
-					mParallaxRulerNode->setPositionX( -getContentSize().width );
+					mRulerNode->setPositionX( -getContentSize().width );
 					mParallaxNode->setPositionX( new_position );
 					mTouchNode->setPositionX( -getContentSize().width );
 				}
 
-				mStage->setPosition( mParallaxRulerNode->getPosition() );
+				mStage->setPosition( mRulerNode->getPosition() );
 			}
 
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
-				const auto new_position = mParallaxRulerNode->getPositionX() + ( ScrollSpeed * delta_time );
+				const auto new_position = mRulerNode->getPositionX() + ( ScrollSpeed * delta_time );
 				if( 0.f > new_position )
 				{
-					mParallaxRulerNode->setPositionX( new_position );
+					mRulerNode->setPositionX( new_position );
 					mParallaxNode->setPositionX( new_position );
 					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
-					mParallaxRulerNode->setPositionX( 0.f );
+					mRulerNode->setPositionX( 0.f );
 					mParallaxNode->setPositionX( new_position );
 					mTouchNode->setPositionX( 0.f );
 				}
 
-				mStage->setPosition( mParallaxRulerNode->getPosition() );
+				mStage->setPosition( mRulerNode->getPosition() );
 			}
 		}
 
 
 		void ParallaxLayerEditorScene::onLayerSelect( const int layer_index )
 		{
-			for( auto c : mParallaxRulerNode->getChildren() )
+			for( auto c : mRulerNode->getChildren() )
 			{
 				if( layer_index == c->getTag() )
 				{
