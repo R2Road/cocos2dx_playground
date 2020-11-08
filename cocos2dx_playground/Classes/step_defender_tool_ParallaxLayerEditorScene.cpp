@@ -147,9 +147,9 @@ namespace step_defender
 				float RulerY = 0.f;
 			};
 			const ParallaxNodeConfig ParallaxNodeConfigContainer[3] = {
-				{ 0, 0.6f, 0.75f }
-				, { 1, 0.8f, 0.55f }
-				, { 2, 1.f, 0.35f }
+				{ 0, 0.6f, 0.2f }
+				, { 1, 0.8f, 0.25f }
+				, { 2, 1.f, 0.3f }
 			};
 
 			//
@@ -172,12 +172,12 @@ namespace step_defender
 					const auto div_result = std::div( static_cast<int>( background_width ), Parallax_Ruler_Part_Width );
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), "fonts/NanumSquareR.ttf", 6 + c.Index, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 						label->setColor( BackgroundColors[c.Index] );
 						label->setPosition( Vec2(
 							i * Parallax_Ruler_Part_Width
-							, game::WorldConfig.WorldSize.height * c.RulerY
+							, game::WorldConfig.WorldSize.height - ( game::WorldConfig.WorldSize.height * c.RulerY )
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
