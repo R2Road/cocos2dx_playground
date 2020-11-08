@@ -17,6 +17,7 @@
 #include "cpgui_ToolBarNode.h"
 
 #include "step_defender_game_Constant.h"
+#include "step_defender_game_TileMapNode.h"
 
 USING_NS_CC;
 
@@ -43,6 +44,7 @@ namespace step_defender
 			, mKeyCodeCollector()
 
 			, mParallaxRulerNode( nullptr )
+			, mParallaxNode( nullptr )
 			, mTouchNode( nullptr )
 			, mCurrentBackgroundLayer( nullptr )
 			, mStage( nullptr )
@@ -148,7 +150,7 @@ namespace step_defender
 				setContentSize( game::WorldConfig.WorldSize );
 
 				mParallaxRulerNode = ParallaxNode::create();
-				addChild( mParallaxRulerNode, 0 );
+				addChild( mParallaxRulerNode, 1 );
 
 				for( const auto& c : game::ParallaxNodeConfigContainer )
 				{
@@ -185,10 +187,39 @@ namespace step_defender
 			}
 
 			//
+			// ParallaxNode Setup - Main
+			//
+			{
+				setContentSize( game::WorldConfig.WorldSize );
+
+				mParallaxNode = ParallaxNode::create();
+				addChild( mParallaxNode, 0 );
+
+				const auto height_div_result = std::div( static_cast<int>( game::WorldConfig.WorldSize.height ), game::TileSheetConfig.TileHeight );
+
+				for( const auto& c : game::ParallaxNodeConfigContainer )
+				{
+					const auto parallax_width = ( game::WorldConfig.WorldSize.width * c.Rate ) + visibleSize.width;
+					const auto width_div_result = std::div( static_cast<int>( parallax_width ), game::TileSheetConfig.TileWidth );
+
+					auto tile_map_node = game::TileMapNode::create(
+						step_defender::game::TileMapNode::Config{
+							width_div_result.quot + ( width_div_result.rem > 0 ? 1 : 0 )
+							, height_div_result.quot + ( height_div_result.rem > 0 ? 1 : 0 )
+						}
+						, game::TileSheetConfig
+					);
+					tile_map_node->setTag( c.Index );
+					tile_map_node->FillAll( 0, 2 );
+					mParallaxNode->addChild( tile_map_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
+				}
+			}
+
+			//
 			// Stage Area
 			//
 			{
-				mStage = LayerColor::create( Color4B::GRAY, game::WorldConfig.BottomSize.width, game::WorldConfig.BottomSize.height );
+				mStage = LayerColor::create( Color4B( 160u, 160u, 160u, 160u ), game::WorldConfig.BottomSize.width, game::WorldConfig.BottomSize.height );
 				addChild( mStage, 1 );
 			}
 
@@ -229,11 +260,13 @@ namespace step_defender
 				if( -getContentSize().width < new_position )
 				{
 					mParallaxRulerNode->setPositionX( new_position );
+					mParallaxNode->setPositionX( new_position );
 					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
 					mParallaxRulerNode->setPositionX( -getContentSize().width );
+					mParallaxNode->setPositionX( new_position );
 					mTouchNode->setPositionX( -getContentSize().width );
 				}
 
@@ -246,11 +279,13 @@ namespace step_defender
 				if( 0.f > new_position )
 				{
 					mParallaxRulerNode->setPositionX( new_position );
+					mParallaxNode->setPositionX( new_position );
 					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
 					mParallaxRulerNode->setPositionX( 0.f );
+					mParallaxNode->setPositionX( new_position );
 					mTouchNode->setPositionX( 0.f );
 				}
 

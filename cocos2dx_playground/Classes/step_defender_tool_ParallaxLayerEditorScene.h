@@ -42,6 +42,7 @@ namespace step_defender
 			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
 
 			cocos2d::ParallaxNode* mParallaxRulerNode;
+			cocos2d::ParallaxNode* mParallaxNode;
 			cocos2d::Node* mTouchNode;
 			cocos2d::Node* mCurrentBackgroundLayer;
 			cocos2d::Node* mStage;
