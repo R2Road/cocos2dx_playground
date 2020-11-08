@@ -144,12 +144,11 @@ namespace step_defender
 			{
 				int Index = -1;
 				float Rate = 1.f;
-				float RulerY = 0.f;
 			};
 			const ParallaxNodeConfig ParallaxNodeConfigContainer[3] = {
-				{ 0, 0.6f, 0.2f }
-				, { 1, 0.8f, 0.25f }
-				, { 2, 1.f, 0.3f }
+				{ 0, 0.6f }
+				, { 1, 0.8f }
+				, { 2, 1.f }
 			};
 
 			//
@@ -163,6 +162,8 @@ namespace step_defender
 
 				for( const auto& c : ParallaxNodeConfigContainer )
 				{
+					const float ruler_y = game::WorldConfig.WorldSize.height - ( game::WorldConfig.WorldSize.height * ( 0.2f + ( 0.05f * c.Index ) ) );
+
 					auto background_node = Node::create();
 					background_node->setTag( c.Index );
 					background_node->setCascadeOpacityEnabled( true );
@@ -177,7 +178,7 @@ namespace step_defender
 						label->setColor( BackgroundColors[c.Index] );
 						label->setPosition( Vec2(
 							i * Parallax_Ruler_Part_Width
-							, game::WorldConfig.WorldSize.height - ( game::WorldConfig.WorldSize.height * c.RulerY )
+							, ruler_y
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
@@ -186,7 +187,7 @@ namespace step_defender
 					// Tail Guide
 					//
 					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, game::WorldConfig.WorldSize.height * c.RulerY );
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, ruler_y );
 						layer->setPositionX( game::WorldConfig.WorldSize.width * c.Rate );
 						background_node->addChild( layer, 1 );
 					}
