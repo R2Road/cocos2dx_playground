@@ -35,6 +35,8 @@ namespace step_defender
 		private:
 			bool init() override;
 
+			void updateColor() override;
+
 		public:
 			void Reset();
 			void FillAll( const int tile_point_x, const int tile_point_y );

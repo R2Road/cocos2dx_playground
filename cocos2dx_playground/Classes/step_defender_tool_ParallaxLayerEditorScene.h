@@ -1,8 +1,10 @@
 #pragma once
 
 #include "2d/CCScene.h"
+#include "ui/UIWidget.h"
 #include "helper_BackToThePreviousScene.h"
 
+#include "cpg_GridIndexConverter.h"
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 NS_CC_BEGIN
@@ -11,6 +13,11 @@ NS_CC_END
 
 namespace step_defender
 {
+	namespace game
+	{
+		class TileMapNode;
+	}
+
 	namespace tool
 	{
 		class ParallaxLayerEditorScene : public cocos2d::Scene, private helper::BackToThePreviousScene
@@ -33,6 +40,9 @@ namespace step_defender
 
 		private:
 			void onLayerSelect( const int layer_index );
+			void onTileSelect( const int x, const int y );
+
+			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
@@ -40,11 +50,19 @@ namespace step_defender
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
+			cpg::GridIndexConverter mGridIndexConverter;
 
+			cocos2d::ParallaxNode* mRulerNode;
 			cocos2d::ParallaxNode* mParallaxNode;
 			cocos2d::Node* mTouchNode;
-			cocos2d::Node* mCurrentBackgroundLayer;
+			game::TileMapNode* mCurrentBackgroundLayer;
 			cocos2d::Node* mStage;
+
+			struct
+			{
+				int x;
+				int y;
+			} mCurrentTilePoint;
 		};
 	}
 }

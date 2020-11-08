@@ -17,6 +17,8 @@
 #include "cpgui_ToolBarNode.h"
 
 #include "step_defender_game_Constant.h"
+#include "step_defender_game_TileMapNode.h"
+#include "step_defender_tool_TileSheetNode.h"
 
 USING_NS_CC;
 
@@ -39,10 +41,15 @@ namespace step_defender
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
+			, mGridIndexConverter( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight )
 
+			, mRulerNode( nullptr )
 			, mParallaxNode( nullptr )
 			, mTouchNode( nullptr )
+			, mCurrentBackgroundLayer( nullptr )
 			, mStage( nullptr )
+			
+			, mCurrentTilePoint( { 0, 0 } )
 		{}
 
 		Scene* ParallaxLayerEditorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -74,6 +81,8 @@ namespace step_defender
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			);
+
+			setContentSize( game::WorldConfig.WorldSize );
 
 			//
 			// Summury
@@ -122,24 +131,82 @@ namespace step_defender
 				);
 
 				// Set Indicator
-				tool_bar_node->SelectTool( 1 );
+				tool_bar_node->SelectTool( 2 );
+			}
+
+			//
+			// Tile Sheet Node
+			//
+			{
+				auto tile_sheet_node = step_defender::tool::TileSheetNode::create( game::TileSheetConfig );
+				tile_sheet_node->setPosition(
+					Vec2( visibleOrigin.x + visibleSize.width, visibleCenter.y )
+					- Vec2( tile_sheet_node->getContentSize().width + 10.f, tile_sheet_node->getContentSize().height * 0.5f )
+				);
+				tile_sheet_node->SetSelectCallback( CC_CALLBACK_2( ParallaxLayerEditorScene::onTileSelect, this ) );
+				addChild( tile_sheet_node, std::numeric_limits<int>::max() );
 			}
 
 			//
 			// Touch Node
 			//
 			{
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setAnchorPoint( Vec2::ZERO );
 				button->setScale9Enabled( true );
-				button->setContentSize( game::WorldConfig.WorldSize + Size( +visibleSize.width, 0.f ) );
+				button->setContentSize( visibleSize );
+				button->setPosition( visibleOrigin );
+				button->addTouchEventListener( CC_CALLBACK_2( ParallaxLayerEditorScene::onButton, this ) );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
 
 				mTouchNode = button;
 			}
 
 			//
-			// ParallaxNode Setup
+			// ParallaxNode Setup - Ruler
+			//
+			{
+				const int Parallax_Ruler_Part_Width = 100.f;
+
+				mRulerNode = ParallaxNode::create();
+				addChild( mRulerNode, 1 );
+
+				for( const auto& c : game::ParallaxNodeConfigContainer )
+				{
+					const float ruler_y = game::WorldConfig.WorldSize.height - ( game::WorldConfig.WorldSize.height * ( 0.2f + ( 0.05f * c.Index ) ) );
+
+					auto background_node = Node::create();
+					background_node->setTag( c.Index );
+					background_node->setCascadeOpacityEnabled( true );
+					mRulerNode->addChild( background_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
+
+					const auto background_width = ( game::WorldConfig.WorldSize.width * c.Rate ) + visibleSize.width;
+					const auto div_result = std::div( static_cast<int>( background_width ), Parallax_Ruler_Part_Width );
+					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
+					{
+						auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), "fonts/NanumSquareR.ttf", 6 + c.Index );
+						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+						label->setColor( BackgroundColors[c.Index] );
+						label->setPosition( Vec2(
+							i * Parallax_Ruler_Part_Width
+							, ruler_y
+						) );
+						background_node->addChild( label, std::numeric_limits<int>::max() );
+					}
+
+					//
+					// Tail Guide
+					//
+					{
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, ruler_y );
+						layer->setPositionX( game::WorldConfig.WorldSize.width * c.Rate );
+						background_node->addChild( layer, 1 );
+					}
+				}
+			}
+
+			//
+			// ParallaxNode Setup - Main
 			//
 			{
 				setContentSize( game::WorldConfig.WorldSize );
@@ -147,119 +214,22 @@ namespace step_defender
 				mParallaxNode = ParallaxNode::create();
 				addChild( mParallaxNode, 0 );
 
-				const int part_width = 100.f;
+				const auto height_div_result = std::div( static_cast<int>( game::WorldConfig.WorldSize.height ), game::TileSheetConfig.TileHeight );
 
-				//
-				// Background 0
-				//
+				for( const auto& c : game::ParallaxNodeConfigContainer )
 				{
-					const int background_index = 0;
-					const float parallax_rate = 0.6f;
-					const float label_y = game::WorldConfig.WorldSize.height * 0.75f;
+					const auto parallax_width = ( game::WorldConfig.WorldSize.width * c.Rate ) + visibleSize.width;
+					const auto width_div_result = std::div( static_cast<int>( parallax_width ), game::TileSheetConfig.TileWidth );
 
-					auto background_node = Node::create();
-					background_node->setTag( background_index );
-					background_node->setCascadeOpacityEnabled( true );
-					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
-
-					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
-					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
-					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
-						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( BackgroundColors[background_index] );
-						label->setPosition( Vec2(
-							i * part_width
-							, label_y
-						) );
-						background_node->addChild( label, std::numeric_limits<int>::max() );
-					}
-
-					//
-					// Tail Guide
-					//
-					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
-						background_node->addChild( layer, 1 );
-					}
-				}
-
-				//
-				// Background 1
-				//
-				{
-					const int background_index = 1;
-					const float parallax_rate = 0.8f;
-					const float label_y = game::WorldConfig.WorldSize.height * 0.55f;
-
-					auto background_node = Node::create();
-					background_node->setTag( background_index );
-					background_node->setCascadeOpacityEnabled( true );
-					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
-
-					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
-					Color4B current_color;
-					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
-					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
-						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( BackgroundColors[background_index] );
-						label->setPosition( Vec2(
-							i * part_width
-							, label_y
-						) );
-						background_node->addChild( label, std::numeric_limits<int>::max() );
-					}
-
-					//
-					// Tail Guide
-					//
-					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
-						background_node->addChild( layer, 1 );
-					}
-				}
-
-				//
-				// Background 2
-				//
-				{
-					const int background_index = 2;
-					const float parallax_rate = 1.f;
-					const float label_y = game::WorldConfig.WorldSize.height * 0.35f;
-
-					auto background_node = Node::create();
-					background_node->setTag( background_index );
-					background_node->setCascadeOpacityEnabled( true );
-					mParallaxNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
-
-					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), part_width );
-					Color4B current_color;
-					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
-					{
-						auto label = Label::createWithTTF( std::to_string( i * part_width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
-						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( BackgroundColors[background_index] );
-						label->setPosition( Vec2(
-							i * part_width
-							, label_y
-						) );
-						background_node->addChild( label, std::numeric_limits<int>::max() );
-					}
-
-					//
-					// Tail Guide
-					//
-					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
-						background_node->addChild( layer, 1 );
-					}
+					auto tile_map_node = game::TileMapNode::create(
+						step_defender::game::TileMapNode::Config{
+							width_div_result.quot + ( width_div_result.rem > 0 ? 1 : 0 )
+							, height_div_result.quot + ( height_div_result.rem > 0 ? 1 : 0 )
+						}
+						, game::TileSheetConfig
+					);
+					tile_map_node->setTag( c.Index );
+					mParallaxNode->addChild( tile_map_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
 				}
 			}
 
@@ -267,7 +237,7 @@ namespace step_defender
 			// Stage Area
 			//
 			{
-				mStage = LayerColor::create( Color4B::GRAY, game::WorldConfig.BottomSize.width, game::WorldConfig.BottomSize.height );
+				mStage = LayerColor::create( Color4B( 160u, 160u, 160u, 160u ), game::WorldConfig.BottomSize.width, game::WorldConfig.BottomSize.height );
 				addChild( mStage, 1 );
 			}
 
@@ -275,7 +245,7 @@ namespace step_defender
 			// Setup
 			//
 			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
-			onLayerSelect( 0 );
+			onLayerSelect( 2 );
 
 			return true;
 		}
@@ -304,55 +274,104 @@ namespace step_defender
 		{
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
 			{
-				const auto new_position = mParallaxNode->getPositionX() + ( -ScrollSpeed * delta_time );
+				const auto new_position = mRulerNode->getPositionX() + ( -ScrollSpeed * delta_time );
 				if( -getContentSize().width < new_position )
 				{
+					mRulerNode->setPositionX( new_position );
 					mParallaxNode->setPositionX( new_position );
-					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
-					mParallaxNode->setPositionX( -getContentSize().width );
-					mTouchNode->setPositionX( -getContentSize().width );
+					mRulerNode->setPositionX( -getContentSize().width );
+					mParallaxNode->setPositionX( new_position );
 				}
 
-				mStage->setPosition( mParallaxNode->getPosition() );
+				mStage->setPosition( mRulerNode->getPosition() );
 			}
 
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
 			{
-				const auto new_position = mParallaxNode->getPositionX() + ( ScrollSpeed * delta_time );
+				const auto new_position = mRulerNode->getPositionX() + ( ScrollSpeed * delta_time );
 				if( 0.f > new_position )
 				{
+					mRulerNode->setPositionX( new_position );
 					mParallaxNode->setPositionX( new_position );
-					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
-					mParallaxNode->setPositionX( 0.f );
-					mTouchNode->setPositionX( 0.f );
+					mRulerNode->setPositionX( 0.f );
+					mParallaxNode->setPositionX( new_position );
 				}
 
-				mStage->setPosition( mParallaxNode->getPosition() );
+				mStage->setPosition( mRulerNode->getPosition() );
 			}
 		}
 
 
 		void ParallaxLayerEditorScene::onLayerSelect( const int layer_index )
 		{
-			for( auto c : mParallaxNode->getChildren() )
+			for( auto c : mRulerNode->getChildren() )
 			{
 				if( layer_index == c->getTag() )
 				{
-					mCurrentBackgroundLayer = c;
 					c->setOpacity( 255u );
 				}
 				else
 				{
-					c->setOpacity( 80u );
+					c->setOpacity( 60u );
 				}
 			}
+
+			for( auto c : mParallaxNode->getChildren() )
+			{
+				if( layer_index == c->getTag() )
+				{
+					mCurrentBackgroundLayer = static_cast<game::TileMapNode*>( c );
+					c->setOpacity( 255u );
+				}
+				else
+				{
+					c->setOpacity( 60u );
+				}
+			}
+
 			mTouchNode->setColor( BackgroundColors[layer_index] );
+		}
+		void ParallaxLayerEditorScene::onTileSelect( const int x, const int y )
+		{
+			mCurrentTilePoint.x = x;
+			mCurrentTilePoint.y = y;
+		}
+
+
+		void ParallaxLayerEditorScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			auto button = static_cast<ui::Button*>( sender );
+
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchBeganPosition() );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "B : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchMovePosition() );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "M : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+			}
+			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchEndPosition() );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "E : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+			}
 		}
 
 

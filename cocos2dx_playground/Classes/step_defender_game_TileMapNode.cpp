@@ -98,6 +98,24 @@ namespace step_defender
 			return true;
 		}
 
+		void TileMapNode::updateColor()
+		{
+			auto quads = _textureAtlas->getQuads();
+			for( std::size_t cur = 0u, end = _textureAtlas->getTotalQuads(); end > cur; ++cur )
+			{
+				auto& q = quads[cur];
+
+				q.tl.colors.a = _displayedOpacity;
+				q.tl.colors.r = _displayedColor.r;
+				q.tl.colors.g = _displayedColor.g;
+				q.tl.colors.b = _displayedColor.b;
+
+				q.tr.colors = q.tl.colors;
+				q.bl.colors = q.tl.colors;
+				q.br.colors = q.tl.colors;
+			}
+		}
+
 		void TileMapNode::Reset()
 		{
 			removeAllChildrenWithCleanup( false );
