@@ -40,6 +40,7 @@ namespace step_defender
 
 		private:
 			void onLayerSelect( const int layer_index );
+			void onTileSelect( const int x, const int y );
 
 			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
@@ -56,6 +57,12 @@ namespace step_defender
 			cocos2d::Node* mTouchNode;
 			game::TileMapNode* mCurrentBackgroundLayer;
 			cocos2d::Node* mStage;
+
+			struct
+			{
+				int x;
+				int y;
+			} mCurrentTilePoint;
 		};
 	}
 }

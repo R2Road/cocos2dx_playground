@@ -18,6 +18,7 @@
 
 #include "step_defender_game_Constant.h"
 #include "step_defender_game_TileMapNode.h"
+#include "step_defender_tool_TileSheetNode.h"
 
 USING_NS_CC;
 
@@ -47,6 +48,8 @@ namespace step_defender
 			, mTouchNode( nullptr )
 			, mCurrentBackgroundLayer( nullptr )
 			, mStage( nullptr )
+			
+			, mCurrentTilePoint( { 0, 0 } )
 		{}
 
 		Scene* ParallaxLayerEditorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -129,6 +132,19 @@ namespace step_defender
 
 				// Set Indicator
 				tool_bar_node->SelectTool( 2 );
+			}
+
+			//
+			// Tile Sheet Node
+			//
+			{
+				auto tile_sheet_node = step_defender::tool::TileSheetNode::create( game::TileSheetConfig );
+				tile_sheet_node->setPosition(
+					Vec2( visibleOrigin.x + visibleSize.width, visibleCenter.y )
+					- Vec2( tile_sheet_node->getContentSize().width + 10.f, tile_sheet_node->getContentSize().height * 0.5f )
+				);
+				tile_sheet_node->SetSelectCallback( CC_CALLBACK_2( ParallaxLayerEditorScene::onTileSelect, this ) );
+				addChild( tile_sheet_node, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -321,6 +337,11 @@ namespace step_defender
 
 			mTouchNode->setColor( BackgroundColors[layer_index] );
 		}
+		void ParallaxLayerEditorScene::onTileSelect( const int x, const int y )
+		{
+			mCurrentTilePoint.x = x;
+			mCurrentTilePoint.y = y;
+		}
 
 
 		void ParallaxLayerEditorScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
@@ -333,7 +354,7 @@ namespace step_defender
 				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "B : %d, %d", point.x, point.y );
 
-				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, 1, 0 );
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
@@ -341,7 +362,7 @@ namespace step_defender
 				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "M : %d, %d", point.x, point.y );
 
-				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, 1, 0 );
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
@@ -349,7 +370,7 @@ namespace step_defender
 				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "E : %d, %d", point.x, point.y );
 
-				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, 1, 0 );
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
 			}
 		}
 
