@@ -128,7 +128,7 @@ namespace step_defender
 				);
 
 				// Set Indicator
-				tool_bar_node->SelectTool( 1 );
+				tool_bar_node->SelectTool( 2 );
 			}
 
 			//
@@ -229,7 +229,7 @@ namespace step_defender
 			// Setup
 			//
 			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
-			onLayerSelect( 0 );
+			onLayerSelect( 2 );
 
 			return true;
 		}
