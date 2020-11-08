@@ -44,6 +44,7 @@ namespace step_defender
 
 			, mParallaxRulerNode( nullptr )
 			, mTouchNode( nullptr )
+			, mCurrentBackgroundLayer( nullptr )
 			, mStage( nullptr )
 		{}
 
