@@ -309,7 +309,7 @@ namespace step_defender
 			{
 				if( layer_index == c->getTag() )
 				{
-					mCurrentBackgroundLayer = c;
+					mCurrentBackgroundLayer = static_cast<game::TileMapNode*>( c );
 					c->setOpacity( 255u );
 				}
 				else

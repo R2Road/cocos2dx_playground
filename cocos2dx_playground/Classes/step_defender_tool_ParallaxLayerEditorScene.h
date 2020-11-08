@@ -11,6 +11,11 @@ NS_CC_END
 
 namespace step_defender
 {
+	namespace game
+	{
+		class TileMapNode;
+	}
+
 	namespace tool
 	{
 		class ParallaxLayerEditorScene : public cocos2d::Scene, private helper::BackToThePreviousScene
@@ -44,7 +49,7 @@ namespace step_defender
 			cocos2d::ParallaxNode* mRulerNode;
 			cocos2d::ParallaxNode* mParallaxNode;
 			cocos2d::Node* mTouchNode;
-			cocos2d::Node* mCurrentBackgroundLayer;
+			game::TileMapNode* mCurrentBackgroundLayer;
 			cocos2d::Node* mStage;
 		};
 	}
