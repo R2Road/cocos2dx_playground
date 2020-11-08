@@ -135,7 +135,7 @@ namespace step_defender
 			// Touch Node
 			//
 			{
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setAnchorPoint( Vec2::ZERO );
 				button->setScale9Enabled( true );
 				button->setContentSize( visibleSize );
