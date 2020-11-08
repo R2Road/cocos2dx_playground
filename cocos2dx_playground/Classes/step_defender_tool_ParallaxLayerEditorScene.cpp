@@ -139,6 +139,7 @@ namespace step_defender
 				button->setScale9Enabled( true );
 				button->setContentSize( visibleSize );
 				button->setPosition( visibleOrigin );
+				button->addTouchEventListener( CC_CALLBACK_2( ParallaxLayerEditorScene::onButton, this ) );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
 
 				mTouchNode = button;
@@ -319,6 +320,28 @@ namespace step_defender
 			}
 
 			mTouchNode->setColor( BackgroundColors[layer_index] );
+		}
+
+
+		void ParallaxLayerEditorScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			auto button = static_cast<ui::Button*>( sender );
+
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchBeganPosition() );
+				CCLOG( "B : %.2f, %.2f", pos.x, pos.y );
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchMovePosition() );
+				CCLOG( "M : %.2f, %.2f", pos.x, pos.y );
+			}
+			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchEndPosition() );
+				CCLOG( "E : %.2f, %.2f", pos.x, pos.y );
+			}
 		}
 
 
