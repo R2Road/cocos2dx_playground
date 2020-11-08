@@ -140,8 +140,20 @@ namespace step_defender
 				mTouchNode = button;
 			}
 
+			struct ParallaxNodeConfig
+			{
+				int Index = -1;
+				float Rate = 1.f;
+				float RulerY = 0.f;
+			};
+			const ParallaxNodeConfig ParallaxNodeConfigContainer[3] = {
+				{ 0, 0.6f, 0.75f }
+				, { 1, 0.8f, 0.55f }
+				, { 2, 1.f, 0.35f }
+			};
+
 			//
-			// ParallaxNode Setup
+			// ParallaxNode Setup - Ruler
 			//
 			{
 				setContentSize( game::WorldConfig.WorldSize );
@@ -149,29 +161,23 @@ namespace step_defender
 				mParallaxRulerNode = ParallaxNode::create();
 				addChild( mParallaxRulerNode, 0 );
 
-				//
-				// Background 0
-				//
+				for( const auto& c : ParallaxNodeConfigContainer )
 				{
-					const int background_index = 0;
-					const float parallax_rate = 0.6f;
-					const float label_y = game::WorldConfig.WorldSize.height * 0.75f;
-
 					auto background_node = Node::create();
-					background_node->setTag( background_index );
+					background_node->setTag( c.Index );
 					background_node->setCascadeOpacityEnabled( true );
-					mParallaxRulerNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
+					mParallaxRulerNode->addChild( background_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
 
-					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
+					const auto background_width = ( game::WorldConfig.WorldSize.width * c.Rate ) + visibleSize.width;
 					const auto div_result = std::div( static_cast<int>( background_width ), Parallax_Ruler_Part_Width );
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
 						auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), "fonts/NanumSquareR.ttf", 6, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( BackgroundColors[background_index] );
+						label->setColor( BackgroundColors[c.Index] );
 						label->setPosition( Vec2(
 							i * Parallax_Ruler_Part_Width
-							, label_y
+							, game::WorldConfig.WorldSize.height * c.RulerY
 						) );
 						background_node->addChild( label, std::numeric_limits<int>::max() );
 					}
@@ -180,84 +186,8 @@ namespace step_defender
 					// Tail Guide
 					//
 					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
-						background_node->addChild( layer, 1 );
-					}
-				}
-
-				//
-				// Background 1
-				//
-				{
-					const int background_index = 1;
-					const float parallax_rate = 0.8f;
-					const float label_y = game::WorldConfig.WorldSize.height * 0.55f;
-
-					auto background_node = Node::create();
-					background_node->setTag( background_index );
-					background_node->setCascadeOpacityEnabled( true );
-					mParallaxRulerNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
-
-					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), Parallax_Ruler_Part_Width );
-					Color4B current_color;
-					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
-					{
-						auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
-						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( BackgroundColors[background_index] );
-						label->setPosition( Vec2(
-							i * Parallax_Ruler_Part_Width
-							, label_y
-						) );
-						background_node->addChild( label, std::numeric_limits<int>::max() );
-					}
-
-					//
-					// Tail Guide
-					//
-					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
-						background_node->addChild( layer, 1 );
-					}
-				}
-
-				//
-				// Background 2
-				//
-				{
-					const int background_index = 2;
-					const float parallax_rate = 1.f;
-					const float label_y = game::WorldConfig.WorldSize.height * 0.35f;
-
-					auto background_node = Node::create();
-					background_node->setTag( background_index );
-					background_node->setCascadeOpacityEnabled( true );
-					mParallaxRulerNode->addChild( background_node, background_index, Vec2( parallax_rate, 1.f ), Vec2::ZERO );
-
-					const auto background_width = ( game::WorldConfig.WorldSize.width * parallax_rate ) + visibleSize.width;
-					const auto div_result = std::div( static_cast<int>( background_width ), Parallax_Ruler_Part_Width );
-					Color4B current_color;
-					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
-					{
-						auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
-						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-						label->setColor( BackgroundColors[background_index] );
-						label->setPosition( Vec2(
-							i * Parallax_Ruler_Part_Width
-							, label_y
-						) );
-						background_node->addChild( label, std::numeric_limits<int>::max() );
-					}
-
-					//
-					// Tail Guide
-					//
-					{
-						auto layer = LayerColor::create( Color4B::GREEN, 5.f, label_y );
-						layer->setPositionX( game::WorldConfig.WorldSize.width * parallax_rate );
+						auto layer = LayerColor::create( Color4B::GREEN, 5.f, game::WorldConfig.WorldSize.height * c.RulerY );
+						layer->setPositionX( game::WorldConfig.WorldSize.width * c.Rate );
 						background_node->addChild( layer, 1 );
 					}
 				}
