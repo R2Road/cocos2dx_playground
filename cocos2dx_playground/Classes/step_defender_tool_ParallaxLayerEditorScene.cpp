@@ -40,6 +40,7 @@ namespace step_defender
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
+			, mGridIndexConverter( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight )
 
 			, mRulerNode( nullptr )
 			, mParallaxNode( nullptr )
@@ -330,17 +331,26 @@ namespace step_defender
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchBeganPosition() );
-				CCLOG( "B : %.2f, %.2f", pos.x, pos.y );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "B : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, 1, 0 );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchMovePosition() );
-				CCLOG( "M : %.2f, %.2f", pos.x, pos.y );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "M : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, 1, 0 );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchEndPosition() );
-				CCLOG( "E : %.2f, %.2f", pos.x, pos.y );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "E : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, 1, 0 );
 			}
 		}
 

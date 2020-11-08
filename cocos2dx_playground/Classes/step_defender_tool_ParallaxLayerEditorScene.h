@@ -4,6 +4,7 @@
 #include "ui/UIWidget.h"
 #include "helper_BackToThePreviousScene.h"
 
+#include "cpg_GridIndexConverter.h"
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 NS_CC_BEGIN
@@ -48,6 +49,7 @@ namespace step_defender
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			step_rain_of_chaos::input::KeyCodeCollector mKeyCodeCollector;
+			cpg::GridIndexConverter mGridIndexConverter;
 
 			cocos2d::ParallaxNode* mRulerNode;
 			cocos2d::ParallaxNode* mParallaxNode;
