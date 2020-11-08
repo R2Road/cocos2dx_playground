@@ -304,7 +304,7 @@ namespace step_defender
 				}
 				else
 				{
-					c->setOpacity( 80u );
+					c->setOpacity( 60u );
 				}
 			}
 
@@ -317,7 +317,7 @@ namespace step_defender
 				}
 				else
 				{
-					c->setOpacity( 80u );
+					c->setOpacity( 60u );
 				}
 			}
 
