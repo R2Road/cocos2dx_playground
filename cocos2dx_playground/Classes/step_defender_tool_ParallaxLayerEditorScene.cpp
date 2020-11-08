@@ -300,6 +300,18 @@ namespace step_defender
 			{
 				if( layer_index == c->getTag() )
 				{
+					c->setOpacity( 255u );
+				}
+				else
+				{
+					c->setOpacity( 80u );
+				}
+			}
+
+			for( auto c : mParallaxNode->getChildren() )
+			{
+				if( layer_index == c->getTag() )
+				{
 					mCurrentBackgroundLayer = c;
 					c->setOpacity( 255u );
 				}
@@ -308,6 +320,7 @@ namespace step_defender
 					c->setOpacity( 80u );
 				}
 			}
+
 			mTouchNode->setColor( BackgroundColors[layer_index] );
 		}
 
