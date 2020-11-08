@@ -78,6 +78,8 @@ namespace step_defender
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			);
 
+			setContentSize( game::WorldConfig.WorldSize );
+
 			//
 			// Summury
 			//
@@ -145,8 +147,6 @@ namespace step_defender
 			// ParallaxNode Setup - Ruler
 			//
 			{
-				setContentSize( game::WorldConfig.WorldSize );
-
 				const int Parallax_Ruler_Part_Width = 100.f;
 
 				mRulerNode = ParallaxNode::create();
