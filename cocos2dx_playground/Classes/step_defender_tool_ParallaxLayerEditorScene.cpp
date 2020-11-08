@@ -213,7 +213,6 @@ namespace step_defender
 						, game::TileSheetConfig
 					);
 					tile_map_node->setTag( c.Index );
-					tile_map_node->FillAll( 0, 2 );
 					mParallaxNode->addChild( tile_map_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
 				}
 			}
