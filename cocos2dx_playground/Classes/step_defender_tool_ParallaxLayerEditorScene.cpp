@@ -172,7 +172,7 @@ namespace step_defender
 					const auto div_result = std::div( static_cast<int>( background_width ), Parallax_Ruler_Part_Width );
 					for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
 					{
-						auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), "fonts/NanumSquareR.ttf", 6 + c.Index, Size::ZERO, TextHAlignment::LEFT );
+						auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), "fonts/NanumSquareR.ttf", 6 + c.Index );
 						label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 						label->setColor( BackgroundColors[c.Index] );
 						label->setPosition( Vec2(
