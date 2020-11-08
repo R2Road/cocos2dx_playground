@@ -30,8 +30,6 @@ namespace
 		, Color3B::YELLOW
 		, Color3B::WHITE
 	};
-
-	const int Parallax_Ruler_Part_Width = 100.f;
 }
 
 namespace step_defender
@@ -148,6 +146,8 @@ namespace step_defender
 			//
 			{
 				setContentSize( game::WorldConfig.WorldSize );
+
+				const int Parallax_Ruler_Part_Width = 100.f;
 
 				mRulerNode = ParallaxNode::create();
 				addChild( mRulerNode, 1 );
