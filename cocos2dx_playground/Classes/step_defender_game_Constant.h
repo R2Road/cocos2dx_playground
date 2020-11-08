@@ -41,5 +41,16 @@ namespace step_defender
 			const std::string TexturePath;
 		};
 		const TileSheetConfiguration TileSheetConfig( 32, 32, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" );
+
+		struct ParallaxNodeConfig
+		{
+			int Index = -1;
+			float Rate = 1.f;
+		};
+		const ParallaxNodeConfig ParallaxNodeConfigContainer[3] = {
+			{ 0, 0.6f }
+			, { 1, 0.8f }
+			, { 2, 1.f }
+		};
 	}
 }

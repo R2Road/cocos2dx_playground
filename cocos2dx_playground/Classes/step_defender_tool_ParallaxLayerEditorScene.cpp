@@ -140,17 +140,6 @@ namespace step_defender
 				mTouchNode = button;
 			}
 
-			struct ParallaxNodeConfig
-			{
-				int Index = -1;
-				float Rate = 1.f;
-			};
-			const ParallaxNodeConfig ParallaxNodeConfigContainer[3] = {
-				{ 0, 0.6f }
-				, { 1, 0.8f }
-				, { 2, 1.f }
-			};
-
 			//
 			// ParallaxNode Setup - Ruler
 			//
@@ -160,7 +149,7 @@ namespace step_defender
 				mParallaxRulerNode = ParallaxNode::create();
 				addChild( mParallaxRulerNode, 0 );
 
-				for( const auto& c : ParallaxNodeConfigContainer )
+				for( const auto& c : game::ParallaxNodeConfigContainer )
 				{
 					const float ruler_y = game::WorldConfig.WorldSize.height - ( game::WorldConfig.WorldSize.height * ( 0.2f + ( 0.05f * c.Index ) ) );
 
