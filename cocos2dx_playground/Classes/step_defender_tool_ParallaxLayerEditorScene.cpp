@@ -137,7 +137,8 @@ namespace step_defender
 				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setAnchorPoint( Vec2::ZERO );
 				button->setScale9Enabled( true );
-				button->setContentSize( game::WorldConfig.WorldSize + Size( +visibleSize.width, 0.f ) );
+				button->setContentSize( visibleSize );
+				button->setPosition( visibleOrigin );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
 
 				mTouchNode = button;
@@ -261,13 +262,11 @@ namespace step_defender
 				{
 					mRulerNode->setPositionX( new_position );
 					mParallaxNode->setPositionX( new_position );
-					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
 					mRulerNode->setPositionX( -getContentSize().width );
 					mParallaxNode->setPositionX( new_position );
-					mTouchNode->setPositionX( -getContentSize().width );
 				}
 
 				mStage->setPosition( mRulerNode->getPosition() );
@@ -280,13 +279,11 @@ namespace step_defender
 				{
 					mRulerNode->setPositionX( new_position );
 					mParallaxNode->setPositionX( new_position );
-					mTouchNode->setPositionX( new_position );
 				}
 				else
 				{
 					mRulerNode->setPositionX( 0.f );
 					mParallaxNode->setPositionX( new_position );
-					mTouchNode->setPositionX( 0.f );
 				}
 
 				mStage->setPosition( mRulerNode->getPosition() );
