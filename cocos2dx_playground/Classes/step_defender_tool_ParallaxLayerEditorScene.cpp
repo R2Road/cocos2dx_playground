@@ -131,7 +131,7 @@ namespace step_defender
 				);
 
 				// Set Indicator
-				tool_bar_node->SelectTool( 2 );
+				tool_bar_node->SelectTool( 3 );
 			}
 
 			//
