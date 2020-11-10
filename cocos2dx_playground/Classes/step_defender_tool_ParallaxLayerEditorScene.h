@@ -56,7 +56,6 @@ namespace step_defender
 			cocos2d::ParallaxNode* mParallaxNode;
 			cocos2d::Node* mTouchNode;
 			game::TileMapNode* mCurrentBackgroundLayer;
-			cocos2d::Node* mStage;
 
 			struct
 			{

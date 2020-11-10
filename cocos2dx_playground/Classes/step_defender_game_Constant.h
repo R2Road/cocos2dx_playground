@@ -40,7 +40,7 @@ namespace step_defender
 
 			const std::string TexturePath;
 		};
-		const TileSheetConfiguration TileSheetConfig( 32, 32, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" );
+		const TileSheetConfiguration TileSheetConfig( 16, 16, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" );
 
 		struct ParallaxNodeConfig
 		{
