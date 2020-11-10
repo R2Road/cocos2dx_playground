@@ -47,7 +47,6 @@ namespace step_defender
 			, mParallaxNode( nullptr )
 			, mTouchNode( nullptr )
 			, mCurrentBackgroundLayer( nullptr )
-			, mStage( nullptr )
 			
 			, mCurrentTilePoint( { 0, 0 } )
 		{}
@@ -234,14 +233,6 @@ namespace step_defender
 			}
 
 			//
-			// Stage Area
-			//
-			{
-				mStage = LayerColor::create( Color4B( 160u, 160u, 160u, 160u ), game::WorldConfig.BottomSize.width, game::WorldConfig.BottomSize.height );
-				addChild( mStage, 1 );
-			}
-
-			//
 			// Setup
 			//
 			schedule( schedule_selector( ParallaxLayerEditorScene::update4Move ) );
@@ -285,8 +276,6 @@ namespace step_defender
 					mRulerNode->setPositionX( -getContentSize().width );
 					mParallaxNode->setPositionX( new_position );
 				}
-
-				mStage->setPosition( mRulerNode->getPosition() );
 			}
 
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
@@ -302,8 +291,6 @@ namespace step_defender
 					mRulerNode->setPositionX( 0.f );
 					mParallaxNode->setPositionX( new_position );
 				}
-
-				mStage->setPosition( mRulerNode->getPosition() );
 			}
 		}
 
