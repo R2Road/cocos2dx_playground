@@ -274,7 +274,7 @@ namespace step_defender
 				else
 				{
 					mRulerNode->setPositionX( -getContentSize().width );
-					mParallaxNode->setPositionX( new_position );
+					mParallaxNode->setPositionX( -getContentSize().width );
 				}
 			}
 
@@ -289,7 +289,7 @@ namespace step_defender
 				else
 				{
 					mRulerNode->setPositionX( 0.f );
-					mParallaxNode->setPositionX( new_position );
+					mParallaxNode->setPositionX( 0.f );
 				}
 			}
 		}
