@@ -138,7 +138,7 @@ namespace step_defender
 			if( EventKeyboard::KeyCode::KEY_1 == key_code )
 			{
 				++mCurrentTilePointX;
-				if( 2 < mCurrentTilePointX )
+				if( 0 < mCurrentTilePointX )
 				{
 					mCurrentTilePointX = 0;
 
@@ -152,7 +152,7 @@ namespace step_defender
 			if( EventKeyboard::KeyCode::KEY_2 == key_code )
 			{
 				++mCurrentTilePointX;
-				if( 2 < mCurrentTilePointX )
+				if( 0 < mCurrentTilePointX )
 				{
 					mCurrentTilePointX = 0;
 
