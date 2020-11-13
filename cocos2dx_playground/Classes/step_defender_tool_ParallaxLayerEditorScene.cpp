@@ -49,6 +49,7 @@ namespace step_defender
 			, mCurrentBackgroundLayer( nullptr )
 			
 			, mCurrentTilePoint( { 0, 0 } )
+			, mToolIndex( 0 )
 		{}
 
 		Scene* ParallaxLayerEditorScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -149,7 +150,7 @@ namespace step_defender
 				);
 
 				// Set Indicator
-				tool_bar_node->SelectTool( 0 );
+				tool_bar_node->SelectTool( mToolIndex );
 			}
 
 			//
@@ -174,7 +175,7 @@ namespace step_defender
 				button->setScale9Enabled( true );
 				button->setContentSize( visibleSize );
 				button->setPosition( visibleOrigin );
-				button->addTouchEventListener( CC_CALLBACK_2( ParallaxLayerEditorScene::onButton, this ) );
+				button->addTouchEventListener( CC_CALLBACK_2( ParallaxLayerEditorScene::onUpdateTile, this ) );
 				addChild( button, std::numeric_limits<int>::max() - 1 );
 
 				mTouchNode = button;
@@ -346,6 +347,7 @@ namespace step_defender
 		void ParallaxLayerEditorScene::onToolSelect( const int tool_index )
 		{
 			CCLOG( "%d", tool_index );
+			mToolIndex = tool_index;
 		}
 		void ParallaxLayerEditorScene::onTileSelect( const int x, const int y )
 		{
@@ -354,7 +356,18 @@ namespace step_defender
 		}
 
 
-		void ParallaxLayerEditorScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void ParallaxLayerEditorScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			if( 0 == mToolIndex )
+			{
+				onAddTile( sender, touch_event_type );
+			}
+			else
+			{
+				onEraseTile( sender, touch_event_type );
+			}
+		}
+		void ParallaxLayerEditorScene::onAddTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			auto button = static_cast<ui::Button*>( sender );
 
@@ -381,6 +394,35 @@ namespace step_defender
 				CCLOG( "E : %d, %d", point.x, point.y );
 
 				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+			}
+		}
+		void ParallaxLayerEditorScene::onEraseTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			auto button = static_cast<ui::Button*>( sender );
+
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchBeganPosition() );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "E : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->EraseTile( point.x, point.y );
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchMovePosition() );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "E : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->EraseTile( point.x, point.y );
+			}
+			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
+			{
+				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchEndPosition() );
+				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				CCLOG( "E : %d, %d", point.x, point.y );
+
+				mCurrentBackgroundLayer->EraseTile( point.x, point.y );
 			}
 		}
 

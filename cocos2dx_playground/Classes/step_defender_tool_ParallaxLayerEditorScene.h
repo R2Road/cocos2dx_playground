@@ -44,6 +44,8 @@ namespace step_defender
 			void onTileSelect( const int x, const int y );
 
 			void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onAddTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+			void onEraseTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
@@ -63,6 +65,7 @@ namespace step_defender
 				int x;
 				int y;
 			} mCurrentTilePoint;
+			int mToolIndex;
 		};
 	}
 }
