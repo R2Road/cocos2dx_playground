@@ -40,6 +40,7 @@ namespace step_defender
 
 		private:
 			void onLayerSelect( const int layer_index );
+			void onToolSelect( const int tool_index );
 			void onTileSelect( const int x, const int y );
 
 			void onButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );

@@ -134,6 +134,25 @@ namespace step_defender
 			}
 
 			//
+			// Tool Selector
+			//
+			{
+				auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
+				addChild( tool_bar_node, std::numeric_limits<int>::max() );
+
+				tool_bar_node->AddTool( 0, "step_defender_tool_icon_01_0.png", std::bind( &ParallaxLayerEditorScene::onToolSelect, this, 0 ) );
+				tool_bar_node->AddTool( 1, "step_defender_tool_icon_01_1.png", std::bind( &ParallaxLayerEditorScene::onToolSelect, this, 1 ) );
+
+				tool_bar_node->setPosition(
+					visibleOrigin.x + visibleSize.width - tool_bar_node->getContentSize().width
+					, visibleOrigin.y + visibleSize.height - tool_bar_node->getContentSize().height
+				);
+
+				// Set Indicator
+				tool_bar_node->SelectTool( 0 );
+			}
+
+			//
 			// Tile Sheet Node
 			//
 			{
@@ -311,7 +330,7 @@ namespace step_defender
 
 			for( auto c : mParallaxNode->getChildren() )
 			{
-				if( layer_index == c->getTag() )
+				if( layer_index >= c->getTag() )
 				{
 					mCurrentBackgroundLayer = static_cast<game::TileMapNode*>( c );
 					c->setOpacity( 255u );
@@ -323,6 +342,10 @@ namespace step_defender
 			}
 
 			mTouchNode->setColor( BackgroundColors[layer_index] );
+		}
+		void ParallaxLayerEditorScene::onToolSelect( const int tool_index )
+		{
+			CCLOG( "%d", tool_index );
 		}
 		void ParallaxLayerEditorScene::onTileSelect( const int x, const int y )
 		{
