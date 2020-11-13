@@ -89,15 +89,11 @@ namespace step_defender
 			//
 			{
 				std::stringstream ss;
-				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
 				ss << std::endl;
 				ss << "[Arrow L/R] : Do Parralax";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
