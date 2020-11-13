@@ -48,8 +48,8 @@ namespace step_defender
 			float Rate = 1.f;
 		};
 		const ParallaxNodeConfig ParallaxNodeConfigContainer[3] = {
-			{ 0, 0.6f }
-			, { 1, 0.8f }
+			{ 0, 0.2f }
+			, { 1, 0.5f }
 			, { 2, 1.f }
 		};
 	}
