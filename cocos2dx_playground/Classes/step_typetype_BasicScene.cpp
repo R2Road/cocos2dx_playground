@@ -40,7 +40,7 @@ namespace step_typetype
 		// Label
 		//
 		{
-			const char* label_string = "This is Test Label ^_^\n\nESC Key : Return to Root";
+			const char* label_string = "This is Test Label ^_^\n\n[ESC Key] : Return to Root";
 
 			auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 30 );
 			label->setColor( Color3B::GREEN );
