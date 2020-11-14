@@ -27,8 +27,10 @@ namespace step_typetype
 		public:
 			static StageView* create( const std::size_t max_length, const StageViewConfig config = StageViewConfig() );
 
+		private:
 			bool init( const StageViewConfig config );
 
+		public:
 			void Reset( const Stage& stage );
 			void RequestLetterDie( const std::size_t target_pos );
 
