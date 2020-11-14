@@ -4,10 +4,6 @@
 
 #include "2d/CCNode.h"
 
-NS_CC_BEGIN
-	class Sprite;
-NS_CC_END
-
 namespace step_typetype
 {
 	namespace game
@@ -38,7 +34,7 @@ namespace step_typetype
 
 		private:
 			ContainerT mLetters;
-			cocos2d::Sprite* mIndicator;
+			cocos2d::Node* mIndicator;
 		};
 	}
 }
