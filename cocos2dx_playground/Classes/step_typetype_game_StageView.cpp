@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <new>
 #include <numeric>
-#include <string>
 
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
