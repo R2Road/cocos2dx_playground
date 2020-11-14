@@ -5,11 +5,11 @@
 #include <numeric>
 #include <string>
 
-#include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "base/ccUTF8.h"
 
+#include "step_typetype_game_LetterView.h"
 #include "step_typetype_game_Stage.h"
 #include "step_typetype_RootScene.h"
 
@@ -101,8 +101,7 @@ namespace step_typetype
 			//
 			for( auto& letter : mLetters )
 			{
-				letter = Label::createWithTTF( "A", "fonts/NanumSquareR.ttf", 12 );
-				letter->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				letter = LetterView::create();
 				addChild( letter );
 			}
 
@@ -150,14 +149,11 @@ namespace step_typetype
 			//
 			for( std::size_t i = 0; i < stage.GetLength(); ++i )
 			{
-				mLetters[i]->setString( StringUtils::format( "%c", stage.GetLetter( i ) ) );
-				mLetters[i]->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				mLetters[i]->Reset( stage.GetLetter( i ) );
 				mLetters[i]->setPosition(
 					letter_pivot_position
 					+ Vec2( ( i * letter_size.width ), 0.f )
 				);
-				mLetters[i]->setColor( Color3B::WHITE );
-				mLetters[i]->setVisible( true );
 			}
 
 			//
@@ -172,9 +168,14 @@ namespace step_typetype
 		{
 			assert( mLetters.size() > target_pos );
 
-			mLetters[target_pos]->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-			mLetters[target_pos]->setColor( Color3B( 100u, 100u, 100u ) );
+			//
+			// Setup Letter
+			//
+			mLetters[target_pos]->Die();
 
+			//
+			// Setup Indicator
+			//
 			const auto indicator_pos = target_pos + 1u;
 			if( mLetters.size() > indicator_pos && mLetters[indicator_pos]->isVisible() )
 			{

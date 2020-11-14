@@ -5,7 +5,6 @@
 #include "2d/CCNode.h"
 
 NS_CC_BEGIN
-	class Label;
 	class Sprite;
 NS_CC_END
 
@@ -13,6 +12,7 @@ namespace step_typetype
 {
 	namespace game
 	{
+		class LetterView;
 		class Stage;
 
 		struct StageViewConfig
@@ -24,7 +24,7 @@ namespace step_typetype
 		class StageView : public cocos2d::Node
 		{
 		private:
-			using ContainerT = std::vector<cocos2d::Label*>;
+			using ContainerT = std::vector<LetterView*>;
 
 			StageView( const std::size_t max_length );
 
