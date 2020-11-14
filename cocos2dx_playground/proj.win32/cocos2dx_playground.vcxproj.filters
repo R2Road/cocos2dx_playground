@@ -765,6 +765,9 @@
     <ClCompile Include="..\Classes\step_typetype_game_test_LetterViewScene.cpp">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_LetterView.cpp">
+      <Filter>src\scene\step_01_typetype\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1384,6 +1387,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_test_LetterViewScene.h">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_LetterView.h">
+      <Filter>src\scene\step_01_typetype\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

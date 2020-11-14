@@ -10,6 +10,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_typetype_game_LetterView.h"
+
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -20,6 +22,7 @@ namespace step_typetype
 	{
 		LetterViewScene::LetterViewScene() :
 			mKeyboardListener( nullptr )
+			, mLetterView( nullptr )
 		{}
 
 		Scene* LetterViewScene::create()
@@ -58,6 +61,11 @@ namespace step_typetype
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[A] : Reset";
+				ss << std::endl;
+				ss << "[S] : Die";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -74,6 +82,18 @@ namespace step_typetype
 			{
 				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			//
+			//
+			{
+				mLetterView = game::LetterView::create();
+				mLetterView->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				) );
+				addChild( mLetterView );
 			}
 
 			return true;
@@ -103,6 +123,13 @@ namespace step_typetype
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				_director->replaceScene( step_typetype::RootScene::create() );
+				return;
+
+			case EventKeyboard::KeyCode::KEY_A:
+				mLetterView->Reset( 'S' );
+				return;
+			case EventKeyboard::KeyCode::KEY_S:
+				mLetterView->Die();
 				return;
 			}
 		}

@@ -4,6 +4,11 @@
 
 namespace step_typetype
 {
+	namespace game
+	{
+		class LetterView;
+	}
+
 	namespace game_test
 	{
 		class LetterViewScene : public cocos2d::Scene	
@@ -27,6 +32,8 @@ namespace step_typetype
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			game::LetterView* mLetterView;
 		};
 	}
 }

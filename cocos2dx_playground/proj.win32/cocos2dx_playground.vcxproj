@@ -281,6 +281,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_pathfinder_json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.cpp" />
     <ClCompile Include="..\Classes\step_mole_collision_ComponentScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_LetterView.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_PlayScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_ResultScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp" />
@@ -489,6 +490,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_pathfinder_json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.h" />
     <ClInclude Include="..\Classes\step_mole_collision_ComponentScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_LetterView.h" />
     <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_ResultScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_Stage.h" />
