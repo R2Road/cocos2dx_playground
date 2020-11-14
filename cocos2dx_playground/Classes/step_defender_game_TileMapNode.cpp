@@ -153,5 +153,19 @@ namespace step_defender
 			);
 			updateQuadFromSprite( mReusedSprite, map_point_x + ( mConfig.MapWidth * map_point_y ) );
 		}
+		void TileMapNode::EraseTile( const int map_point_x, const int map_point_y )
+		{
+			if( mConfig.MapWidth <= map_point_x || mConfig.MapHeight <= map_point_y )
+			{
+				return;
+			}
+
+			mReusedSprite->setTextureRect( Rect::ZERO );
+			mReusedSprite->setPosition(
+				TileSheetConfig.TileWidth * map_point_x
+				, TileSheetConfig.TileHeight * map_point_y
+			);
+			updateQuadFromSprite( mReusedSprite, map_point_x + ( mConfig.MapWidth * map_point_y ) );
+		}
 	}
 }

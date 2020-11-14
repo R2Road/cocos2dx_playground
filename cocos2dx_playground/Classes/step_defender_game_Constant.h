@@ -10,7 +10,7 @@ namespace step_defender
 		const struct
 		{
 			cocos2d::Size WorldSize = cocos2d::Size( 960.f, 320.f );
-			cocos2d::Color4B SkyColor = cocos2d::Color4B::BLACK;
+			cocos2d::Color4B SkyColor = cocos2d::Color4B( 95u, 205u, 228u, 255u );
 			cocos2d::Size BottomSize = cocos2d::Size( 960.f, 80.f );
 		} WorldConfig;
 
@@ -48,8 +48,8 @@ namespace step_defender
 			float Rate = 1.f;
 		};
 		const ParallaxNodeConfig ParallaxNodeConfigContainer[3] = {
-			{ 0, 0.6f }
-			, { 1, 0.8f }
+			{ 0, 0.2f }
+			, { 1, 0.5f }
 			, { 2, 1.f }
 		};
 	}

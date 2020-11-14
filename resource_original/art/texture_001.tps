@@ -305,6 +305,27 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">step_defender/step_defender_tool_icon_01_0.png</key>
+            <key type="filename">step_defender/step_defender_tool_icon_01_1.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_0.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_1.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_2.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_3.png</key>
+            <key type="filename">ui/radio_button/radio_button_01_4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,5,10,10</rect>
+                <key>scale9Paddings</key>
+                <rect>5,5,10,10</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">step_mole/step_mole_effect_attack_01_0.png</key>
             <key type="filename">step_mole/step_mole_effect_attack_01_1.png</key>
             <key type="filename">step_mole/step_mole_effect_attack_01_2.png</key>
@@ -499,25 +520,6 @@
                 <rect>3,3,5,5</rect>
                 <key>scale9Paddings</key>
                 <rect>3,3,5,5</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">ui/radio_button/radio_button_01_0.png</key>
-            <key type="filename">ui/radio_button/radio_button_01_1.png</key>
-            <key type="filename">ui/radio_button/radio_button_01_2.png</key>
-            <key type="filename">ui/radio_button/radio_button_01_3.png</key>
-            <key type="filename">ui/radio_button/radio_button_01_4.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>5,5,10,10</rect>
-                <key>scale9Paddings</key>
-                <rect>5,5,10,10</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -754,6 +756,8 @@
             <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_6.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_7.png</filename>
             <filename>ui/scale9_guide/scale9_guide_01_0.png</filename>
+            <filename>step_defender/step_defender_tool_icon_01_0.png</filename>
+            <filename>step_defender/step_defender_tool_icon_01_1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
