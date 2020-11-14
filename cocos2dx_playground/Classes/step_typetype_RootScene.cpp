@@ -17,6 +17,7 @@
 
 #include "step_typetype_ScheduleScene.h"
 
+#include "step_typetype_game_test_LetterViewScene.h"
 #include "step_typetype_game_test_StageScene.h"
 #include "step_typetype_game_TitleScene.h"
 
@@ -74,7 +75,9 @@ namespace step_typetype
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] " << step_typetype::game_test::StageScene::getTitle();
+			ss << "[A] " << step_typetype::game_test::LetterViewScene::getTitle();
+			ss << std::endl;
+			ss << "[S] " << step_typetype::game_test::StageScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -82,7 +85,7 @@ namespace step_typetype
 			ss << std::endl;
 			ss << "[SPACE] " << step_typetype::game::TitleScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 11, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -152,6 +155,9 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
+			_director->replaceScene( step_typetype::game_test::LetterViewScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_S:
 			_director->replaceScene( step_typetype::game_test::StageScene::create() );
 			break;
 

@@ -762,6 +762,9 @@
     <ClCompile Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.cpp">
       <Filter>src\scene\step_06_defender\tool_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_test_LetterViewScene.cpp">
+      <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1378,6 +1381,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.h">
       <Filter>src\scene\step_06_defender\tool_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_test_LetterViewScene.h">
+      <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
