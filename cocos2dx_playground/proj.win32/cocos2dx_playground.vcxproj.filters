@@ -360,9 +360,6 @@
     <ClCompile Include="..\Classes\step_mole_RootScene.cpp">
       <Filter>src\scene\step_04_mole</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_animation_ListScene.cpp">
-      <Filter>src\scene\step_04_mole\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_animation_ComponentScene.cpp">
       <Filter>src\scene\step_04_mole\animation</Filter>
     </ClCompile>
@@ -768,6 +765,9 @@
     <ClCompile Include="..\Classes\step_typetype_game_LetterView.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_mole_animation_ListScene.cpp">
+      <Filter>src\scene\step_02_clickclick\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -955,9 +955,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_RootScene.h">
       <Filter>src\scene\step_04_mole</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_animation_ListScene.h">
-      <Filter>src\scene\step_04_mole\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_animation_ComponentScene.h">
       <Filter>src\scene\step_04_mole\animation</Filter>
@@ -1390,6 +1387,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_LetterView.h">
       <Filter>src\scene\step_01_typetype\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_mole_animation_ListScene.h">
+      <Filter>src\scene\step_02_clickclick\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,6 @@
 
 #include "helper_SceneMover.h"
 
-#include "step_mole_animation_ListScene.h"
 #include "step_mole_animation_CallbackScene.h"
 #include "step_mole_animation_ComponentScene.h"
 
@@ -56,16 +55,14 @@ namespace step_mole
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << step_mole::animation::ListScene::getTitle();
+			ss << "[1] : " << step_mole::animation::CallbackScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step_mole::animation::CallbackScene::getTitle();
-			ss << std::endl;
-			ss << "[3] : " << step_mole::animation::ComponentScene::getTitle();
+			ss << "[2] : " << step_mole::animation::ComponentScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_mole::collision::BasicScene::getTitle();
+			ss << "[3] : " << step_mole::collision::BasicScene::getTitle();
 			ss << std::endl;
-			ss << "[5] : " << step_mole::collision::ComponentScene::getTitle();
+			ss << "[4] : " << step_mole::collision::ComponentScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -132,19 +129,16 @@ namespace step_mole
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( step_mole::animation::ListScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_mole::animation::CallbackScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_3:
+		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_mole::animation::ComponentScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( step_mole::collision::BasicScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( step_mole::collision::ComponentScene::create() );
 			break;
 
