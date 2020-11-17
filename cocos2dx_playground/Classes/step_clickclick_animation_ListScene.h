@@ -6,7 +6,7 @@
 
 #include "cpg_Animation_Index.h"
 
-namespace step_mole
+namespace step_clickclick
 {
 	namespace animation
 	{

@@ -765,7 +765,7 @@
     <ClCompile Include="..\Classes\step_typetype_game_LetterView.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_mole_animation_ListScene.cpp">
+    <ClCompile Include="..\Classes\step_clickclick_animation_ListScene.cpp">
       <Filter>src\scene\step_02_clickclick\animation</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1388,7 +1388,7 @@
     <ClInclude Include="..\Classes\step_typetype_game_LetterView.h">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_mole_animation_ListScene.h">
+    <ClInclude Include="..\Classes\step_clickclick_animation_ListScene.h">
       <Filter>src\scene\step_02_clickclick\animation</Filter>
     </ClInclude>
   </ItemGroup>

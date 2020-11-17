@@ -1,4 +1,4 @@
-#include "step_mole_animation_ListScene.h"
+#include "step_clickclick_animation_ListScene.h"
 
 #include <new>
 #include <numeric>
@@ -45,7 +45,7 @@ namespace
 	};
 }
 
-namespace step_mole
+namespace step_clickclick
 {
 	namespace animation
 	{
