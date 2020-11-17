@@ -232,22 +232,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">bullet/bullet001_01.png</key>
-            <key type="filename">bullet/bullet001_02.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>7,7,14,14</rect>
-                <key>scale9Paddings</key>
-                <rect>7,7,14,14</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">etc/empty_2x2.png</key>
             <key type="filename">etc/white_2x2.png</key>
             <key type="filename">helper/helper_pivot.png</key>
@@ -628,8 +612,6 @@
             <filename>animation/actor001/actor001_win_01.png</filename>
             <filename>animation/actor001/actor001_win_02.png</filename>
             <filename>ui/guide_empty.png</filename>
-            <filename>bullet/bullet001_01.png</filename>
-            <filename>bullet/bullet001_02.png</filename>
             <filename>ui/guide_02_1.png</filename>
             <filename>ui/guide_02_2.png</filename>
             <filename>ui/guide_02_3.png</filename>

@@ -235,15 +235,15 @@ namespace step_mole
 				}
 
 				// View
-				auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+				auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
 				view_node->setScale( _director->getContentScaleFactor() );
 				view_node->setColor( collision_enable ? Color3B::WHITE : Color3B( 90, 90, 90 ) );
 				bullet_root_node->addChild( view_node );
 				{
 					auto animation_object = Animation::create();
 					animation_object->setDelayPerUnit( 0.1f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_02.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_wait_0.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_wait_1.png" ) );
 
 					auto animate_action = Animate::create( animation_object );
 
@@ -255,7 +255,7 @@ namespace step_mole
 				const float radius = ( view_node->getBoundingBox().size.height ) * 0.5f;
 
 				// Collision Component
-				auto circle_collision_component = CircleCollisionComponent::create( radius, Vec2::ZERO, CircleCollisionComponentConfig{ true, true, true} );
+				auto circle_collision_component = CircleCollisionComponent::create( radius, Vec2( 0.f, -3.f ), CircleCollisionComponentConfig{ true, true, true} );
 				circle_collision_component->setEnabled( collision_enable );
 				bullet_root_node->addComponent( circle_collision_component );
 			}

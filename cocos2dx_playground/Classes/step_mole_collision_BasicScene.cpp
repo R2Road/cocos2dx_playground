@@ -229,15 +229,15 @@ namespace step_mole
 					}
 
 					// View
-					auto view_node = Sprite::createWithSpriteFrameName( "bullet001_01.png" );
+					auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
 					view_node->setTag( TAG_Bullet );
 					view_node->setScale( _director->getContentScaleFactor() );
 					bullet_root_node->addChild( view_node );
 					{
 						auto animation_object = Animation::create();
 						animation_object->setDelayPerUnit( 0.1f );
-						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_01.png" ) );
-						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "bullet001_02.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_wait_0.png" ) );
+						animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_mole_target_wait_1.png" ) );
 
 						auto animate_action = Animate::create( animation_object );
 
