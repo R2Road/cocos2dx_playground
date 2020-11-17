@@ -26,21 +26,21 @@ namespace
 
 	const std::vector<cpg::animation::Info> AnimationInfos = {
 		{
-			cpg::animation::eIndex::wakeup
-			, 0.06f
-			, std::vector<std::string>{ "step_mole_target_wkup_0.png", "step_mole_target_wkup_1.png", "step_mole_target_wkup_2.png", "step_mole_target_wkup_3.png", "step_mole_target_wkup_4.png" }
-		}
-
-		, {
 			cpg::animation::eIndex::idle
 			, 0.06f
-			, std::vector<std::string>{ "step_mole_target_idl_0.png", "step_mole_target_idl_1.png", "step_mole_target_idl_2.png", "step_mole_target_idl_3.png", "step_mole_target_idl_4.png", "step_mole_target_idl_5.png", "step_mole_target_idl_6.png", "step_mole_target_idl_7.png" }
+			, std::vector<std::string>{ "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_01.png", "actor001_idle_03.png" }
 		}
 
 		, {
-			cpg::animation::eIndex::sleep
+			cpg::animation::eIndex::run
+			, 0.2f
+			, std::vector<std::string>{ "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
+		}
+
+		, {
+			cpg::animation::eIndex::win
 			, 0.1f
-			, std::vector<std::string>{ "step_mole_target_slp_0.png", "step_mole_target_slp_1.png", "step_mole_target_slp_2.png", "step_mole_target_slp_3.png", "step_mole_target_slp_4.png" }
+			, std::vector<std::string>{ "actor001_win_01.png", "actor001_win_02.png" }
 		}
 	};
 }
@@ -89,11 +89,11 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Play Animation - Wakeup";
+				ss << "[A] : Play Animation - Idle";
 				ss << std::endl;
-				ss << "[S] : Play Animation - Idle";
+				ss << "[S] : Play Animation - Run";
 				ss << std::endl;
-				ss << "[D] : Play Animation - Sleep";
+				ss << "[D] : Play Animation - Win";
 				ss << std::endl;
 				ss << "[SpaceBar] : Stop Animation";
 
@@ -187,15 +187,15 @@ namespace step_clickclick
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
-				playAnimation( cpg::animation::eIndex::wakeup );
-				break;
-
-			case EventKeyboard::KeyCode::KEY_S:
 				playAnimation( cpg::animation::eIndex::idle );
 				break;
 
+			case EventKeyboard::KeyCode::KEY_S:
+				playAnimation( cpg::animation::eIndex::run );
+				break;
+
 			case EventKeyboard::KeyCode::KEY_D:
-				playAnimation( cpg::animation::eIndex::sleep );
+				playAnimation( cpg::animation::eIndex::win );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE: // Stop
