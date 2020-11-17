@@ -1,12 +1,9 @@
 #include "step_clickclick_game_test_EffectViewScene.h"
 
-#include <cassert>
-#include <functional>
 #include <new>
 #include <numeric>
 #include <sstream>
 
-#include "audio/include/AudioEngine.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
