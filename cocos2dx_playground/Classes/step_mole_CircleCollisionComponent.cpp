@@ -177,7 +177,7 @@ namespace step_mole
 			return false;
 		}
 
-		const float distance = _owner->getPosition().distance( other->getOwner()->getPosition() + mOffset );
+		const float distance = GetFixedPosition().distance( other->GetFixedPosition() );
 		const float contact_limit_distance = mRadius + other->GetRadius();
 		
 		return distance <= contact_limit_distance;

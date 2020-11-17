@@ -29,6 +29,7 @@ namespace step_mole
 
 	public:
 		float GetRadius() const { return mRadius; }
+		cocos2d::Vec2 GetFixedPosition() const { return getOwner()->getPosition() + mOffset; }
 
 		bool Check( const CircleCollisionComponent* const other ) const;
 		void onContact( const bool contact );
