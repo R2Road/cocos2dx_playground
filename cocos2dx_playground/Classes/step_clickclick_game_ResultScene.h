@@ -15,7 +15,10 @@ namespace step_clickclick
 			static const char* getTitle() { return "Game : Path Finder - Result"; }
 			static cocos2d::Scene* create( const int clear_score );
 
+		private:
 			bool init( const int clear_score );
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 

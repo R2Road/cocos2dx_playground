@@ -16,7 +16,10 @@ namespace step_clickclick
 			static const char* getTitle() { return "Button : Basic"; }
 			static cocos2d::Scene* create();
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 

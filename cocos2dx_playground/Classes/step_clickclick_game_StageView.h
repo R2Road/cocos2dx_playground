@@ -38,8 +38,10 @@ namespace step_clickclick
 		public:
 			static StageView* create( const int width, const int height, const OnBlockCallback& on_block_callback, const StageViewConfig config = StageViewConfig() );
 
+		private:
 			bool init( const StageViewConfig config, const OnBlockCallback& on_block_callback );
 
+		public:
 			void Setup( const Stage& stage_data );
 			void UpdateBlock( const int linear_index, const int last_life, const int current_life );
 

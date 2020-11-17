@@ -19,7 +19,10 @@ namespace step_clickclick
 			static const char* getTitle() { return "Animation : List"; }
 			static cocos2d::Scene* create();
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 
