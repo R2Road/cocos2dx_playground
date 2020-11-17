@@ -771,6 +771,9 @@
     <ClCompile Include="..\Classes\step_clickclick_game_EffectView.cpp">
       <Filter>src\scene\step_02_clickclick\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_test_EffectViewScene.cpp">
+      <Filter>src\scene\step_02_clickclick\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1396,6 +1399,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_EffectView.h">
       <Filter>src\scene\step_02_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_test_EffectViewScene.h">
+      <Filter>src\scene\step_02_clickclick\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
