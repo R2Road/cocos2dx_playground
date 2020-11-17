@@ -257,6 +257,13 @@ namespace step_mole
 						bullet_root_node->addChild( label );
 					}
 
+					// Collision Guide
+					{
+						auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
+						guide->setScale( radius / ( guide->getContentSize().width * 0.5f ) );
+						bullet_root_node->addChild( guide );
+					}
+
 					// Radius Data
 					{
 						auto radius_data( new RadiusData( radius ) );
