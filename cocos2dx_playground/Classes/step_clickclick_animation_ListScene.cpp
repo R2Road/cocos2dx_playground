@@ -120,7 +120,6 @@ namespace step_clickclick
 			{
 				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_win_01.png" );
 				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				animation_node->setScale( _director->getContentScaleFactor() );
 				animation_node->setPosition( Vec2(
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
