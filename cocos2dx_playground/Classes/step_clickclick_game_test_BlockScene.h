@@ -31,7 +31,7 @@ namespace step_clickclick
 			BlockScene();
 
 		public:
-			static const char* getTitle() { return "Game : Block Test"; }
+			static const char* getTitle() { return "Game Test : Block"; }
 			static cocos2d::Scene* create();
 
 		private:

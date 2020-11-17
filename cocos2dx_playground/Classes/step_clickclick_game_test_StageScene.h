@@ -19,7 +19,7 @@ namespace step_clickclick
 			StageTestScene();
 
 		public:
-			static const char* getTitle() { return "Game : Stage Test"; }
+			static const char* getTitle() { return "Game Test : Stage"; }
 			static cocos2d::Scene* create();
 
 		private:
