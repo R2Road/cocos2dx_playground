@@ -11,6 +11,7 @@
 #include "base/ccMacros.h"
 #include "ui/UIButton.h"
 
+#include "step_clickclick_game_EffectView.h"
 #include "step_clickclick_game_Stage.h"
 
 USING_NS_CC;
@@ -24,18 +25,8 @@ namespace step_clickclick
 			, mViewNode( nullptr )
 			, mLabelNode( nullptr )
 			, mEffectNode( nullptr )
-			, mIncreaseEffectAction( nullptr )
-			, mDecreaseEffectAction( nullptr )
-			, mDieEffectAction( nullptr )
 			, mOnBlockCallback( on_block_callback )
 		{}
-
-		BlockView::~BlockView()
-		{
-			CC_SAFE_RELEASE_NULL( mIncreaseEffectAction );
-			CC_SAFE_RELEASE_NULL( mDecreaseEffectAction );
-			CC_SAFE_RELEASE_NULL( mDieEffectAction );
-		}
 
 		BlockView* BlockView::create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback )
 		{
@@ -84,45 +75,9 @@ namespace step_clickclick
 			addChild( mLabelNode, 2 );
 
 			// effect
-			mEffectNode = Sprite::create();
-			mEffectNode->setScale( _director->getContentScaleFactor() );
+			mEffectNode = EffectView::create();
 			mEffectNode->setPosition( button->getPosition() );
 			addChild( mEffectNode, 3 );
-
-			// increase animation action
-			auto increase_animation_object = Animation::create();
-			increase_animation_object->setDelayPerUnit( 0.07f );
-			increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase1.png" ) );
-			increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase2.png" ) );
-			increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase3.png" ) );
-			increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase4.png" ) );
-			increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_increase5.png" ) );
-			increase_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
-			mIncreaseEffectAction = Animate::create( increase_animation_object );
-			mIncreaseEffectAction->retain();
-
-			// decrease animation action
-			auto decrease_animation_object = Animation::create();
-			decrease_animation_object->setDelayPerUnit( 0.07f );
-			decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease1.png" ) );
-			decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease2.png" ) );
-			decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease3.png" ) );
-			decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease4.png" ) );
-			decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_decrease5.png" ) );
-			decrease_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
-			mDecreaseEffectAction = Animate::create( decrease_animation_object );
-			mDecreaseEffectAction->retain();
-
-			// die animation action
-			auto die_animation_object = Animation::create();
-			die_animation_object->setDelayPerUnit( 0.07f );
-			die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die1.png" ) );
-			die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die2.png" ) );
-			die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die3.png" ) );
-			die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_effect_die4.png" ) );
-			die_animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
-			mDieEffectAction = Animate::create( die_animation_object );
-			mDieEffectAction->retain();
 
 			return true;
 		}
@@ -159,8 +114,7 @@ namespace step_clickclick
 			if( 0 == current_life )
 			{
 				SetVisible( false );
-				mEffectNode->stopAllActions();
-				mEffectNode->runAction( mDieEffectAction );
+				mEffectNode->PlayEffect( EffectView::eAnimationIndex::Die );
 			}
 			else
 			{
@@ -168,13 +122,11 @@ namespace step_clickclick
 
 				if( last_life < current_life )
 				{
-					mEffectNode->stopAllActions();
-					mEffectNode->runAction( mIncreaseEffectAction );
+					mEffectNode->PlayEffect( EffectView::eAnimationIndex::Increase );
 				}
 				else
 				{
-					mEffectNode->stopAllActions();
-					mEffectNode->runAction( mDecreaseEffectAction );
+					mEffectNode->PlayEffect( EffectView::eAnimationIndex::Decrease );
 				}
 			}
 		}

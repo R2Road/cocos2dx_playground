@@ -7,15 +7,16 @@
 #include "step_clickclick_game_Constant.h"
 
 NS_CC_BEGIN
-	class Label;
 	class Sprite;
-	class Action;
+	class Label;
 NS_CC_END
 
 namespace step_clickclick
 {
 	namespace game
 	{
+		class EffectView;
+
 		class BlockView : public cocos2d::Node
 		{
 		public:
@@ -25,8 +26,6 @@ namespace step_clickclick
 			BlockView( const OnBlockCallback& on_block_callback );
 
 		public:
-			~BlockView();
-
 			static BlockView* create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback );
 
 		private:
@@ -44,10 +43,7 @@ namespace step_clickclick
 			cocos2d::Node* mButtonNode;
 			cocos2d::Sprite* mViewNode;
 			cocos2d::Label* mLabelNode;
-			cocos2d::Sprite* mEffectNode;
-			cocos2d::Action* mIncreaseEffectAction;
-			cocos2d::Action* mDecreaseEffectAction;
-			cocos2d::Action* mDieEffectAction;
+			EffectView* mEffectNode;
 
 			const OnBlockCallback mOnBlockCallback;
 		};
