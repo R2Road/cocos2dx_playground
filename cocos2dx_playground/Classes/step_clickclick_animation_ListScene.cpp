@@ -16,7 +16,7 @@
 
 #include "cpg_Animation_Info.h"
 
-#include "step_mole_RootScene.h"
+#include "step_clickclick_RootScene.h"
 
 USING_NS_CC;
 
@@ -110,7 +110,7 @@ namespace step_clickclick
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 3, 20, 70, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 0, 55, 25, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
@@ -182,7 +182,7 @@ namespace step_clickclick
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				_director->replaceScene( step_mole::RootScene::create() );
+				_director->replaceScene( step_clickclick::RootScene::create() );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
