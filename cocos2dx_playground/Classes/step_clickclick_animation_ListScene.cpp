@@ -118,7 +118,7 @@ namespace step_clickclick
 			// Animation Node
 			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
+				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_win_01.png" );
 				animation_node->setTag( TAG_AnimationNode );
 				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				animation_node->setScale( _director->getContentScaleFactor() );
