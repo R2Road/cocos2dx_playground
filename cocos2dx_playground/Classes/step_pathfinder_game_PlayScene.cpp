@@ -35,7 +35,7 @@ namespace step_pathfinder
 			, mAudioID_forBGM( -1 )
 
 			, mStageDataContainer()
-			, mCurrentStageIndex( 0u )
+			, mCurrentStageDataIndex( 0u )
 
 			, mTerrainData()
 			, mTerrainViewer( nullptr )
@@ -181,8 +181,8 @@ namespace step_pathfinder
 			// Load Stage
 			//
 			{
-				assert( mStageDataContainer.Size() > mCurrentStageIndex );
-				loadStage( mCurrentStageIndex );
+				assert( mStageDataContainer.Size() > mCurrentStageDataIndex );
+				loadStage( mCurrentStageDataIndex );
 			}
 
 			schedule( schedule_selector( PlayScene::update4PlayTime ) );
@@ -236,12 +236,12 @@ namespace step_pathfinder
 		}
 		bool PlayScene::goNextStage()
 		{
-			if( !loadStage( mCurrentStageIndex + 1 ) )
+			if( !loadStage( mCurrentStageDataIndex + 1 ) )
 			{
 				return false;
 			}
 
-			++mCurrentStageIndex;
+			++mCurrentStageDataIndex;
 			return true;
 		}
 		void PlayScene::updateTerrainViewer()
@@ -311,7 +311,7 @@ namespace step_pathfinder
 			{
 				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
 
-				if( mStageDataContainer.Size() == mCurrentStageIndex + 1 )
+				if( mStageDataContainer.Size() == mCurrentStageDataIndex + 1 )
 				{
 					// game clear
 					mbPlayerLive = false;
