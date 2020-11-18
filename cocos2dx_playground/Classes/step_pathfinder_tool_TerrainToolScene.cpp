@@ -148,7 +148,7 @@ namespace step_pathfinder
 			// Terrain View
 			//
 			{
-				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
+				mTerrainViewer = TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.6f )
@@ -156,9 +156,9 @@ namespace step_pathfinder
 				addChild( mTerrainViewer );
 
 				// apply terrain data
-				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
+				for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
 				{
-					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+					for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 					{
 						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
 					}
@@ -325,8 +325,8 @@ namespace step_pathfinder
 			}
 
 			auto button = static_cast<Node*>( sender );
-			const int gy = button->getTag() / mTerrainData.getHeight();
-			const int gx = button->getTag() - ( gy * mTerrainData.getWidth() );
+			const int gy = button->getTag() / mTerrainData.GetHeight();
+			const int gx = button->getTag() - ( gy * mTerrainData.GetWidth() );
 			if( mCurrentTileType == mTerrainData.get( gx, gy ) )
 			{
 				return;
@@ -335,9 +335,9 @@ namespace step_pathfinder
 			if( step_pathfinder::game::TileType2UniqueFlag( mCurrentTileType ) )
 			{
 				const auto default_tile_type = step_pathfinder::game::eTileType::road;
-				for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
+				for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
 				{
-					for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+					for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 					{
 						if( mTerrainData.get( tx, ty ) != mCurrentTileType )
 						{
@@ -400,9 +400,9 @@ namespace step_pathfinder
 			mTerrainData.load( path.str().c_str() );
 
 			// apply terrain data
-			for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
+			for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
 			{
-				for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 				{
 					mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
 				}

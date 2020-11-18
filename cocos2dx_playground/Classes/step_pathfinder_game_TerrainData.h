@@ -26,8 +26,8 @@ namespace step_pathfinder
 			bool load( const char* file_name );
 			bool load();
 
-			int getWidth() const { return mWidth; }
-			int getHeight() const { return mHeight; }
+			int GetWidth() const { return mWidth; }
+			int GetHeight() const { return mHeight; }
 
 			Row::value_type get( const int x, const int y ) const;
 			void set( const int x, const int y, const Row::value_type tile_type );

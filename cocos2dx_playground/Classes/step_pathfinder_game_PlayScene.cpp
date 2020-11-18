@@ -142,7 +142,7 @@ namespace step_pathfinder
 			// Terrain View
 			//
 			{
-				mTerrainViewer = TerrainViewer::create( mTerrainData.getWidth(), mTerrainData.getHeight(), Size( 48, 48 ) );
+				mTerrainViewer = TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 48, 48 ) );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.5f )
@@ -248,9 +248,9 @@ namespace step_pathfinder
 		{
 			// apply terrain data
 			eTileType tile_type;
-			for( int ty = 0; ty < mTerrainData.getHeight(); ++ty )
+			for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
 			{
-				for( int tx = 0; tx < mTerrainData.getWidth(); ++tx )
+				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 				{
 					tile_type = mTerrainData.get( tx, ty );
 					if( eTileType::exit == tile_type )
