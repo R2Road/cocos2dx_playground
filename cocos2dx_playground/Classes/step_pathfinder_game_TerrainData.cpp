@@ -79,7 +79,7 @@ namespace step_pathfinder
 			return true;
 		}
 
-		TerrainData::Row::value_type TerrainData::get( const int x, const int y ) const
+		TerrainData::Row::value_type TerrainData::Get( const int x, const int y ) const
 		{
 			if( !isIn( x, y ) )
 			{

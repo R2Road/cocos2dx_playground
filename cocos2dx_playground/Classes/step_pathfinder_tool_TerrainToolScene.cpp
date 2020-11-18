@@ -160,7 +160,7 @@ namespace step_pathfinder
 				{
 					for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 					{
-						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
+						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
 					}
 				}
 			}
@@ -327,7 +327,7 @@ namespace step_pathfinder
 			auto button = static_cast<Node*>( sender );
 			const int gy = button->getTag() / mTerrainData.GetHeight();
 			const int gx = button->getTag() - ( gy * mTerrainData.GetWidth() );
-			if( mCurrentTileType == mTerrainData.get( gx, gy ) )
+			if( mCurrentTileType == mTerrainData.Get( gx, gy ) )
 			{
 				return;
 			}
@@ -339,7 +339,7 @@ namespace step_pathfinder
 				{
 					for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 					{
-						if( mTerrainData.get( tx, ty ) != mCurrentTileType )
+						if( mTerrainData.Get( tx, ty ) != mCurrentTileType )
 						{
 							continue;
 						}
@@ -404,7 +404,7 @@ namespace step_pathfinder
 			{
 				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 				{
-					mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
+					mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
 				}
 			}
 		}

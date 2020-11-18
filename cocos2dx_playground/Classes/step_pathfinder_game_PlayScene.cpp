@@ -252,14 +252,14 @@ namespace step_pathfinder
 			{
 				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 				{
-					tile_type = mTerrainData.get( tx, ty );
+					tile_type = mTerrainData.Get( tx, ty );
 					if( eTileType::exit == tile_type )
 					{
 						mTerrainViewer->UpdateTile( tx, ty, eTileType::road );
 					}
 					else
 					{
-						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.get( tx, ty ) );
+						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
 					}
 				}
 			}
@@ -283,7 +283,7 @@ namespace step_pathfinder
 			//
 			// check player position
 			//
-			const auto tile_type = mTerrainData.get( mPlayerPoint.x, mPlayerPoint.y );
+			const auto tile_type = mTerrainData.Get( mPlayerPoint.x, mPlayerPoint.y );
 			if( eTileType::damage == tile_type )
 			{
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );

@@ -29,7 +29,7 @@ namespace step_pathfinder
 			int GetWidth() const { return mWidth; }
 			int GetHeight() const { return mHeight; }
 
-			Row::value_type get( const int x, const int y ) const;
+			Row::value_type Get( const int x, const int y ) const;
 			void set( const int x, const int y, const Row::value_type tile_type );
 
 			TerrainPoint getPoint( const Row::value_type tile_type ) const;
