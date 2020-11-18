@@ -26,7 +26,10 @@ namespace step_pathfinder
 			static const char* getTitle() { return "Game : Play Scene"; }
 			static cocos2d::Scene* create();
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void update( float dt ) override;
 			void onExit() override;
