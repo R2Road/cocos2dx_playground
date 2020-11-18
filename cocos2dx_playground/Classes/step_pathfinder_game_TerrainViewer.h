@@ -35,7 +35,6 @@ namespace step_pathfinder
 			const int mHeight;
 			cocos2d::Size mTileSize;
 			const float mTileScale;
-			cocos2d::Vec2 mPivotPosition;
 		};
 	}
 }

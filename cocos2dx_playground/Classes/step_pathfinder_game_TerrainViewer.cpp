@@ -19,7 +19,6 @@ namespace step_pathfinder
 			, mHeight( height )
 			, mTileSize( tile_size )
 			, mTileScale( tile_scale )
-			, mPivotPosition( tile_size.width * 0.5f, tile_size.height * 0.5f )
 		{}
 
 		float TerrainViewer::CalculateTileScale( const float tile_height )
@@ -101,7 +100,7 @@ namespace step_pathfinder
 
 		cocos2d::Vec2 TerrainViewer::ConvertPoint2Position( const int tx, const int ty ) const
 		{
-			return mPivotPosition + Vec2( ( tx * mTileSize.width ), ( ty * mTileSize.height ) );
+			return Vec2( mTileSize.width * 0.5f, mTileSize.height * 0.5f ) + Vec2( tx * mTileSize.width, ty * mTileSize.height );
 		}
 	}
 }
