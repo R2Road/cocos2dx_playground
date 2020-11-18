@@ -32,7 +32,7 @@ namespace step_pathfinder
 			Row::value_type Get( const int x, const int y ) const;
 			void Set( const int x, const int y, const Row::value_type tile_type );
 
-			TerrainPoint getPoint( const Row::value_type tile_type ) const;
+			TerrainPoint FindTilePoint( const Row::value_type tile_type ) const;
 			bool isExist( const Row::value_type tile_type ) const;
 			bool isIn( const int x, const int y ) const;
 

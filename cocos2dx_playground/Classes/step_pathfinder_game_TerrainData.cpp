@@ -98,7 +98,7 @@ namespace step_pathfinder
 			mContainer[y][x] = tile_type;
 		}
 
-		TerrainPoint TerrainData::getPoint( const Row::value_type tile_type ) const
+		TerrainPoint TerrainData::FindTilePoint( const Row::value_type tile_type ) const
 		{
 			for( int y = 0; y < mHeight; ++y )
 			{

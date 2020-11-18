@@ -229,7 +229,7 @@ namespace step_pathfinder
 			updateTerrainViewer();
 
 			auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
-			mPlayerPoint = mTerrainData.getPoint( eTileType::entrance );
+			mPlayerPoint = mTerrainData.FindTilePoint( eTileType::entrance );
 			player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 			return true;
@@ -304,7 +304,7 @@ namespace step_pathfinder
 				mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, eTileType::magic_circle_off );
 
 				// update tile view
-				const auto exit_point = mTerrainData.getPoint( eTileType::exit );
+				const auto exit_point = mTerrainData.FindTilePoint( eTileType::exit );
 				mTerrainViewer->UpdateTile( exit_point.x, exit_point.y, eTileType::exit );
 			}
 			else if( eTileType::exit == tile_type && !mTerrainData.isExist( eTileType::magic_circle_on ) )
