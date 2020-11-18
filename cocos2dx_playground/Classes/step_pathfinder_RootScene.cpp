@@ -12,7 +12,9 @@
 #include "step_pathfinder_json_LoadNSaveScene.h"
 #include "step_pathfinder_textField_BasicScene.h"
 
+#include "step_pathfinder_game_test_TerrainViewerScene.h"
 #include "step_pathfinder_tool_TerrainToolScene.h"
+
 #include "step_pathfinder_game_TitleScene.h"
 
 USING_NS_CC;
@@ -61,6 +63,9 @@ namespace step_pathfinder
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] : " << step_pathfinder::game_test::TerrainViewerScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[A] : " << step_pathfinder::tool::TerrainToolScene::getTitle();
@@ -130,6 +135,10 @@ namespace step_pathfinder
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( step_pathfinder::text_field::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			_director->replaceScene( step_pathfinder::game_test::TerrainViewerScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:

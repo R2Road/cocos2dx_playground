@@ -181,6 +181,9 @@
     <Filter Include="src\scene\step_06_defender\tool_test">
       <UniqueIdentifier>{93c2fcc4-390b-44f6-a1a3-3f59a228bc82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_03_pathfinder\game_test">
+      <UniqueIdentifier>{6c2671fd-8339-4f0e-84c8-e263190b6920}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -773,6 +776,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_test_EffectViewScene.cpp">
       <Filter>src\scene\step_02_clickclick\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_test_TerrainViewerScene.cpp">
+      <Filter>src\scene\step_03_pathfinder\game_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1402,6 +1408,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_test_EffectViewScene.h">
       <Filter>src\scene\step_02_clickclick\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_test_TerrainViewerScene.h">
+      <Filter>src\scene\step_03_pathfinder\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
