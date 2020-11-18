@@ -344,14 +344,14 @@ namespace step_pathfinder
 							continue;
 						}
 						
-						mTerrainData.set( tx, ty, default_tile_type );
+						mTerrainData.Set( tx, ty, default_tile_type );
 						mTerrainViewer->UpdateTile( tx, ty, default_tile_type );
 					}
 				}
 			}
 
 			
-			mTerrainData.set( gx, gy, mCurrentTileType );
+			mTerrainData.Set( gx, gy, mCurrentTileType );
 			mTerrainViewer->UpdateTile( gx, gy, mCurrentTileType );
 		}
 

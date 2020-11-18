@@ -300,7 +300,7 @@ namespace step_pathfinder
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 
 				// convert tile data : magic_circle_on > magic_circle_off
-				mTerrainData.set( mPlayerPoint.x, mPlayerPoint.y, eTileType::magic_circle_off );
+				mTerrainData.Set( mPlayerPoint.x, mPlayerPoint.y, eTileType::magic_circle_off );
 				mTerrainViewer->UpdateTile( mPlayerPoint.x, mPlayerPoint.y, eTileType::magic_circle_off );
 
 				// update tile view

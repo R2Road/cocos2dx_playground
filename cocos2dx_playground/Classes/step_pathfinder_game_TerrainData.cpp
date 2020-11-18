@@ -54,7 +54,7 @@ namespace step_pathfinder
 				y = cur / mHeight;
 				x = cur - ( y * mWidth );
 
-				set( x, y, static_cast<eTileType>( value.GetInt() ) );
+				Set( x, y, static_cast<eTileType>( value.GetInt() ) );
 			}
 
 			return true;
@@ -88,7 +88,7 @@ namespace step_pathfinder
 
 			return mContainer[y][x];
 		}
-		void TerrainData::set( const int x, const int y, const Row::value_type tile_type )
+		void TerrainData::Set( const int x, const int y, const Row::value_type tile_type )
 		{
 			if( !isIn( x, y ) )
 			{
