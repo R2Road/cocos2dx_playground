@@ -376,7 +376,7 @@ namespace step_pathfinder
 			path << text_field->getString().c_str();
 			path << ".stage";
 
-			mTerrainData.save( path.str().c_str() );
+			mTerrainData.Save( path.str().c_str() );
 		}
 		void TerrainToolScene::onLoad( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{

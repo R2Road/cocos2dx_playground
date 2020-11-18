@@ -9,7 +9,7 @@ namespace step_pathfinder
 		class TerrainData : public step_pathfinder::game::TerrainData
 		{
 		public:
-			void save( const char* file_name ) const;
+			void Save( const char* file_name ) const;
 		};
 	}
 }
