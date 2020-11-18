@@ -15,9 +15,9 @@ namespace step_pathfinder
 			, mContainer()
 		{
 			mContainer.resize( mHeight );
-			for( auto& r : mContainer )
+			for( auto& row : mContainer )
 			{
-				r.resize( mWidth, eTileType::damage );
+				row.resize( mWidth, eTileType::damage );
 			}
 		}
 
@@ -68,11 +68,11 @@ namespace step_pathfinder
 			std::mt19937 randomEngine( rd() );
 			std::uniform_int_distribution<> dist( static_cast<int>( eTileType::FIRST ), static_cast<int>( eTileType::SIZE ) - 1 );
 
-			for( auto& r : mContainer )
+			for( auto& row : mContainer )
 			{
-				for( auto& t : r )
+				for( auto& tile_type : row )
 				{
-					t = static_cast<eTileType>( dist( randomEngine ) );
+					tile_type = static_cast<eTileType>( dist( randomEngine ) );
 				}
 			}
 
