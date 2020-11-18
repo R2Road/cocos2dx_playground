@@ -33,7 +33,7 @@ namespace step_pathfinder
 		protected:
 			const int mWidth;
 			const int mHeight;
-			cocos2d::Size mTileSize;
+			const cocos2d::Size mTileSize;
 			const float mTileScale;
 		};
 	}
