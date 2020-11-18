@@ -90,10 +90,11 @@ namespace step_pathfinder
 			//
 			{
 				mTerrainViewer = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 48, 48 ) );
-				mTerrainViewer->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.5f )
-				) );
+				mTerrainViewer->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+					- Vec2( mTerrainViewer->getContentSize().width * 0.5f, mTerrainViewer->getContentSize().height * 0.5f )
+				);
 				addChild( mTerrainViewer );
 			}
 
