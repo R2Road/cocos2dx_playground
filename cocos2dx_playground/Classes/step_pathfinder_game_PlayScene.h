@@ -52,9 +52,10 @@ namespace step_pathfinder
 			int mAudioID_forBGM;
 
 			StageDataContainer mStageDataContainer;
+			StageDataContainer::Container::size_type mCurrentStageIndex;
+
 			TerrainData mTerrainData;
 			TerrainViewer* mTerrainViewer;
-			StageDataContainer::Container::size_type mCurrentStageIndex;
 			TerrainPoint mPlayerPoint;
 			bool mbPlayerLive;
 			float mElapsedTime;

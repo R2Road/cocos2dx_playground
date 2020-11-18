@@ -35,9 +35,10 @@ namespace step_pathfinder
 			, mAudioID_forBGM( -1 )
 
 			, mStageDataContainer()
+			, mCurrentStageIndex( 0u )
+
 			, mTerrainData()
 			, mTerrainViewer( nullptr )
-			, mCurrentStageIndex( 0u )
 			, mPlayerPoint()
 			, mbPlayerLive( true )
 			, mElapsedTime( 0.f )
