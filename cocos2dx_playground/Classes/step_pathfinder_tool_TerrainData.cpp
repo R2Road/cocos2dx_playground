@@ -15,11 +15,11 @@ namespace step_pathfinder
 		{
 			rapidjson::Document document;
 			document.SetArray();
-			for( auto& row : mContainer )
+			for( const auto& row : mContainer )
 			{
-				for( auto& t : row )
+				for( const auto& tile_type : row )
 				{
-					document.PushBack( static_cast<int>( t ), document.GetAllocator() );
+					document.PushBack( static_cast<int>( tile_type ), document.GetAllocator() );
 				}
 			}
 
