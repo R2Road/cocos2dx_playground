@@ -19,7 +19,7 @@ namespace step_pathfinder
 		public:
 			using ValueT = eTileType;
 			using Row = std::vector<ValueT>;
-			using Container = std::vector<Row>;
+			using ContainerT = std::vector<Row>;
 
 			TerrainData();
 			virtual ~TerrainData() = default;
@@ -40,7 +40,7 @@ namespace step_pathfinder
 		protected:
 			const int mWidth;
 			const int mHeight;
-			Container mContainer;
+			ContainerT mContainer;
 		};
 	} // namespace game
 }
