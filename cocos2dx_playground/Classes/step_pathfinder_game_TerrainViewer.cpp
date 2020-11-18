@@ -75,7 +75,7 @@ namespace step_pathfinder
 
 			auto tile_node = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
 			tile_node->setTag( linear_index );
-			tile_node->setScale( Director::getInstance()->getContentScaleFactor() * mTileScale );
+			tile_node->setScale( _director->getContentScaleFactor() * mTileScale );
 			return tile_node;
 		}
 		void TerrainViewer::UpdateTile( Node* tile_node, const eTileType tile_type )
