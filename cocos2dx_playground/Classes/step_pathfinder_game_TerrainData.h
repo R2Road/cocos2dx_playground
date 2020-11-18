@@ -17,7 +17,8 @@ namespace step_pathfinder
 		class TerrainData
 		{
 		public:
-			using Row = std::vector<eTileType>;
+			using ValueT = eTileType;
+			using Row = std::vector<ValueT>;
 			using Container = std::vector<Row>;
 
 			TerrainData();
@@ -29,11 +30,11 @@ namespace step_pathfinder
 			int GetWidth() const { return mWidth; }
 			int GetHeight() const { return mHeight; }
 
-			Row::value_type Get( const int x, const int y ) const;
-			void Set( const int x, const int y, const Row::value_type tile_type );
+			ValueT Get( const int x, const int y ) const;
+			void Set( const int x, const int y, const ValueT tile_type );
 
-			TerrainPoint FindTilePoint( const Row::value_type tile_type ) const;
-			bool isExist( const Row::value_type tile_type ) const;
+			TerrainPoint FindTilePoint( const ValueT tile_type ) const;
+			bool isExist( const ValueT tile_type ) const;
 			bool isIn( const int x, const int y ) const;
 
 		protected:

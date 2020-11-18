@@ -79,7 +79,7 @@ namespace step_pathfinder
 			return true;
 		}
 
-		TerrainData::Row::value_type TerrainData::Get( const int x, const int y ) const
+		TerrainData::ValueT TerrainData::Get( const int x, const int y ) const
 		{
 			if( !isIn( x, y ) )
 			{
@@ -88,7 +88,7 @@ namespace step_pathfinder
 
 			return mContainer[y][x];
 		}
-		void TerrainData::Set( const int x, const int y, const Row::value_type tile_type )
+		void TerrainData::Set( const int x, const int y, const ValueT tile_type )
 		{
 			if( !isIn( x, y ) )
 			{
@@ -98,7 +98,7 @@ namespace step_pathfinder
 			mContainer[y][x] = tile_type;
 		}
 
-		TerrainPoint TerrainData::FindTilePoint( const Row::value_type tile_type ) const
+		TerrainPoint TerrainData::FindTilePoint( const ValueT tile_type ) const
 		{
 			for( int y = 0; y < mHeight; ++y )
 			{
@@ -113,7 +113,7 @@ namespace step_pathfinder
 
 			return TerrainPoint{ -1, -1 };
 		}
-		bool TerrainData::isExist( const Row::value_type tile_type ) const
+		bool TerrainData::isExist( const ValueT tile_type ) const
 		{
 			for( int y = 0; y < mHeight; ++y )
 			{
