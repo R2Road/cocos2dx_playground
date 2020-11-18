@@ -36,6 +36,8 @@ namespace step_pathfinder
 			void onExit() override;
 
 		private:
+			void resetTerrain();
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:

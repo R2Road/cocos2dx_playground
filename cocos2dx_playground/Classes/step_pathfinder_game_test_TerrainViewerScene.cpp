@@ -64,6 +64,9 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[R] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -82,8 +85,6 @@ namespace step_pathfinder
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
-			mTerrainData.Load();
-
 			//
 			// Terrain View
 			//
@@ -94,15 +95,6 @@ namespace step_pathfinder
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.6f )
 				) );
 				addChild( mTerrainViewer );
-
-				// apply terrain data
-				for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
-				{
-					for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
-					{
-						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
-					}
-				}
 			}
 
 			return true;
@@ -127,12 +119,32 @@ namespace step_pathfinder
 		}
 
 
+		void TerrainViewerScene::resetTerrain()
+		{
+			mTerrainData.Load();
+
+			// Update Terrain Viewer
+			for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
+			{
+				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
+				{
+					mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
+				}
+			}
+		}
+
+
 		void TerrainViewerScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
 				helper::BackToThePreviousScene::MoveBack();
 				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_R == keycode )
+			{
+				resetTerrain();
 			}
 		}
 	}
