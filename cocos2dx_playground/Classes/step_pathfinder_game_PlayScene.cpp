@@ -54,7 +54,6 @@ namespace step_pathfinder
 			}
 			else
 			{
-				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -185,6 +184,8 @@ namespace step_pathfinder
 				loadStage( mCurrentStageIndex );
 			}
 
+			schedule( schedule_selector( PlayScene::update4PlayTime ) );
+
 			return true;
 		}
 
@@ -199,12 +200,6 @@ namespace step_pathfinder
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void PlayScene::update( float dt )
-		{
-			mElapsedTime += dt;
-
-			Scene::update( dt );
-		}
 		void PlayScene::onExit()
 		{
 			experimental::AudioEngine::stop( mAudioID_forBGM );
@@ -215,6 +210,11 @@ namespace step_pathfinder
 			mKeyboardListener = nullptr;
 
 			Scene::onExit();
+		}
+
+		void PlayScene::update4PlayTime( float dt )
+		{
+			mElapsedTime += dt;
 		}
 
 

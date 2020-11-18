@@ -31,8 +31,9 @@ namespace step_pathfinder
 
 		public:
 			void onEnter() override;
-			void update( float dt ) override;
 			void onExit() override;
+
+			void update4PlayTime( float dt );
 
 		private:
 			bool loadStage( std::size_t stage_index );
