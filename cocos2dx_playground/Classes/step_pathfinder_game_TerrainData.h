@@ -18,9 +18,10 @@ namespace step_pathfinder
 		{
 		public:
 			using ValueT = eTileType;
-			using Row = std::vector<ValueT>;
-			using ContainerT = std::vector<Row>;
+			using RowT = std::vector<ValueT>;
+			using ContainerT = std::vector<RowT>;
 
+		public:
 			TerrainData();
 			virtual ~TerrainData() = default;
 
