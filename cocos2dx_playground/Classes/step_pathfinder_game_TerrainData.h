@@ -23,8 +23,8 @@ namespace step_pathfinder
 			TerrainData();
 			virtual ~TerrainData() = default;
 
-			bool load( const char* file_name );
-			bool load();
+			bool Load( const char* file_name );
+			bool Load();
 
 			int GetWidth() const { return mWidth; }
 			int GetHeight() const { return mHeight; }

@@ -397,7 +397,7 @@ namespace step_pathfinder
 			path << cocos2d::FileUtils::getInstance()->getWritablePath();
 			path << text_field->getString().c_str();
 			path << ".stage";
-			mTerrainData.load( path.str().c_str() );
+			mTerrainData.Load( path.str().c_str() );
 
 			// apply terrain data
 			for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )

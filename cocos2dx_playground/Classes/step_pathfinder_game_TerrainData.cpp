@@ -21,7 +21,7 @@ namespace step_pathfinder
 			}
 		}
 
-		bool TerrainData::load( const char* file_name )
+		bool TerrainData::Load( const char* file_name )
 		{
 			const std::string regionStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( file_name ) ) );
 			rapidjson::Document doc;
@@ -59,7 +59,7 @@ namespace step_pathfinder
 
 			return true;
 		}
-		bool TerrainData::load()
+		bool TerrainData::Load()
 		{
 			//
 			// generate dummy data

@@ -221,7 +221,7 @@ namespace step_pathfinder
 
 		bool PlayScene::loadStage( std::size_t stage_index )
 		{
-			if( !mTerrainData.load( mStageDataContainer.Get( stage_index ).c_str() ) )
+			if( !mTerrainData.Load( mStageDataContainer.Get( stage_index ).c_str() ) )
 			{
 				return false;
 			}
