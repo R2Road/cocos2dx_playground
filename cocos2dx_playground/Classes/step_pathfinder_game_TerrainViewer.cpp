@@ -89,13 +89,13 @@ namespace step_pathfinder
 		{
 			const int linear_index = grid_x + ( mWidth * grid_y );
 
-			auto grid = getChildByTag( linear_index );
-			if( !grid )
+			auto tile_node = getChildByTag( linear_index );
+			if( !tile_node )
 			{
 				return;
 			}
 
-			UpdateTile( grid, tile_type );
+			UpdateTile( tile_node, tile_type );
 		}
 
 		cocos2d::Vec2 TerrainViewer::ConvertPoint2Position( const int tx, const int ty ) const
