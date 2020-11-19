@@ -11,7 +11,7 @@
 #include "ui/UIButton.h"
 #include "ui/UITextField.h"
 
-#include "step_pathfinder_tool_TerrainViewer.h"
+#include "step_pathfinder_tool_TerrainEditHelper.h"
 #include "step_pathfinder_tool_ui_TileSelectNode.h"
 
 #include "step_pathfinder_RootScene.h"
@@ -171,7 +171,7 @@ namespace step_pathfinder
 			// Terrain Editor
 			//
 			{
-				mTerrainEditor = TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
+				mTerrainEditor = TerrainEditHelper::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
 				mTerrainEditor->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainEditor->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainEditor->getContentSize().height ) * 0.6f )

@@ -10,13 +10,13 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		class TerrainViewer : public step_pathfinder::game::TerrainViewer
+		class TerrainEditHelper : public step_pathfinder::game::TerrainViewer
 		{
 		public:
 			using TileSelectCallback = std::function<void( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )>;
 
 		private:
-			explicit TerrainViewer(
+			explicit TerrainEditHelper(
 				const int width, const int height
 				, const cocos2d::Size tile_size
 				, const float tile_scale
@@ -24,7 +24,7 @@ namespace step_pathfinder
 			);
 
 		public:
-			static TerrainViewer* create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback );
+			static TerrainEditHelper* create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback );
 
 		private:
 			cocos2d::Node* MakeTile( const step_pathfinder::game::TileData& tile_data, const int grid_x, const int grid_y ) override;

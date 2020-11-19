@@ -14,7 +14,7 @@ namespace step_pathfinder
 
 	namespace tool
 	{
-		class TerrainViewer;
+		class TerrainEditHelper;
 
 		class TerrainToolScene : public cocos2d::Scene
 		{
@@ -44,7 +44,7 @@ namespace step_pathfinder
 			TerrainData mTerrainData;
 			step_pathfinder::game::eTileType mCurrentTileType;
 
-			TerrainViewer* mTerrainEditor;
+			TerrainEditHelper* mTerrainEditor;
 			game::TerrainViewer* mTerrainViewer;
 		};
 	}

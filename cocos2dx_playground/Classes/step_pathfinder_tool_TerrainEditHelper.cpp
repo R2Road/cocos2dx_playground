@@ -1,4 +1,4 @@
-#include "step_pathfinder_tool_TerrainViewer.h"
+#include "step_pathfinder_tool_TerrainEditHelper.h"
 
 #include <new>
 
@@ -15,7 +15,7 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		TerrainViewer::TerrainViewer(
+		TerrainEditHelper::TerrainEditHelper(
 			const int width, const int height
 			, const cocos2d::Size tile_size
 			, const float tile_scale
@@ -25,11 +25,11 @@ namespace step_pathfinder
 			, mTileSelectCallback( tile_select_callback )
 		{}
 
-		TerrainViewer* TerrainViewer::create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback )
+		TerrainEditHelper* TerrainEditHelper::create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback )
 		{
 			const float tile_scale = CalculateTileScale( tile_size.height );
 
-			auto ret = new ( std::nothrow ) TerrainViewer( width, height, tile_size, tile_scale, tile_select_callback );
+			auto ret = new ( std::nothrow ) TerrainEditHelper( width, height, tile_size, tile_scale, tile_select_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -43,7 +43,7 @@ namespace step_pathfinder
 			return ret;
 		}
 
-		Node* TerrainViewer::MakeTile( const step_pathfinder::game::TileData& tile_data, const int grid_x, const int grid_y )
+		Node* TerrainEditHelper::MakeTile( const step_pathfinder::game::TileData& tile_data, const int grid_x, const int grid_y )
 		{
 			auto tile_node = game::TerrainViewer::MakeTile( tile_data, grid_x, grid_y );
 			{
