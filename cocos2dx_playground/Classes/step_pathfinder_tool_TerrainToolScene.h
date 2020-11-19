@@ -7,6 +7,11 @@
 
 namespace step_pathfinder
 {
+	namespace game
+	{
+		class TerrainViewer;
+	}
+
 	namespace tool
 	{
 		class TerrainViewer;
@@ -38,7 +43,9 @@ namespace step_pathfinder
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			TerrainData mTerrainData;
 			step_pathfinder::game::eTileType mCurrentTileType;
+
 			TerrainViewer* mTerrainEditor;
+			game::TerrainViewer* mTerrainViewer;
 		};
 	}
 }

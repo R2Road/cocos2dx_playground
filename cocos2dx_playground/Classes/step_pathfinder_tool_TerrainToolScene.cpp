@@ -35,6 +35,8 @@ namespace step_pathfinder
 			mKeyboardListener( nullptr )
 			, mTerrainData()
 			, mCurrentTileType( step_pathfinder::game::eTileType::road )
+
+			, mTerrainEditor( nullptr )
 			, mTerrainViewer( nullptr )
 		{}
 
@@ -145,10 +147,10 @@ namespace step_pathfinder
 			}
 
 			//
-			// Terrain View
+			// Terrain Viewer
 			//
 			{
-				mTerrainViewer = TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
+				mTerrainViewer = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
 				mTerrainViewer->setPosition( Vec2(
 					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.6f )
@@ -163,6 +165,18 @@ namespace step_pathfinder
 						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
 					}
 				}
+			}
+
+			//
+			// Terrain Editor
+			//
+			{
+				mTerrainEditor = TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
+				mTerrainEditor->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - mTerrainEditor->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - mTerrainEditor->getContentSize().height ) * 0.6f )
+				) );
+				addChild( mTerrainEditor, 1 );
 			}
 
 			//
