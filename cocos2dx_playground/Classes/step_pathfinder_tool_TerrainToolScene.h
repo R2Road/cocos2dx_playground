@@ -38,7 +38,7 @@ namespace step_pathfinder
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			TerrainData mTerrainData;
 			step_pathfinder::game::eTileType mCurrentTileType;
-			TerrainViewer* mTerrainViewer;
+			TerrainViewer* mTerrainEditor;
 		};
 	}
 }
