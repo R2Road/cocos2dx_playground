@@ -55,7 +55,9 @@ namespace step_pathfinder
 			{
 				for( int tx = 0; tx < mWidth; ++tx )
 				{
-					tile_node = MakeTile( tile_data, tx, ty );
+					tile_node = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
+					tile_node->setTag( mGridIndexConverter.To_Linear( tx, ty) );
+					tile_node->setScale( _director->getContentScaleFactor() * mTileScale );
 					tile_node->setPosition( ConvertPoint2Position( tx, ty ) );
 					addChild( tile_node );
 				}
@@ -64,13 +66,6 @@ namespace step_pathfinder
 			return true;
 		}
 
-		Node* TerrainViewer::MakeTile( const TileData& tile_data, const int grid_x, const int grid_y )
-		{
-			auto tile_node = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
-			tile_node->setTag( mGridIndexConverter.To_Linear( grid_x, grid_y ) );
-			tile_node->setScale( _director->getContentScaleFactor() * mTileScale );
-			return tile_node;
-		}
 		void TerrainViewer::UpdateTile( Node* tile_node, const eTileType tile_type )
 		{
 			auto sprite = static_cast<Sprite*>( tile_node );
