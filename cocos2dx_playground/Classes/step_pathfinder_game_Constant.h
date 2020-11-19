@@ -30,5 +30,7 @@ namespace step_pathfinder
 		const TileData& TileType2TileData( const eTileType tile_type );
 		bool TileType2UniqueFlag( const eTileType tile_type );
 		cocos2d::Size GetMaxMenuSize();
+
+		float CalculateTileScale( const float tile_height );
 	}
 }

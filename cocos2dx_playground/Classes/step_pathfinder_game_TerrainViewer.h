@@ -15,8 +15,6 @@ namespace step_pathfinder
 		protected:
 			explicit TerrainViewer( const int width, const int height, const cocos2d::Size tile_size, const float tile_scale );
 
-			static float CalculateTileScale( const float tile_height );
-
 		public:
 			static TerrainViewer* create( const int width, const int height, const cocos2d::Size tile_size );
 

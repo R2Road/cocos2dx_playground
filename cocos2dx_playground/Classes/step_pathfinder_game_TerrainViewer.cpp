@@ -21,12 +21,6 @@ namespace step_pathfinder
 			, mTileScale( tile_scale )
 		{}
 
-		float TerrainViewer::CalculateTileScale( const float tile_height )
-		{
-			const auto& tile_data = TileType2TileData( eTileType::road );
-			return tile_height / ( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size.height * Director::getInstance()->getContentScaleFactor() );
-		}
-
 		TerrainViewer* TerrainViewer::create( const int width, const int height, const cocos2d::Size tile_size )
 		{
 			const float tile_scale = CalculateTileScale( tile_size.height );

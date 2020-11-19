@@ -27,7 +27,7 @@ namespace step_pathfinder
 
 		TerrainEditHelper* TerrainEditHelper::create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback )
 		{
-			const float tile_scale = CalculateTileScale( tile_size.height );
+			const float tile_scale = game::CalculateTileScale( tile_size.height );
 
 			auto ret = new ( std::nothrow ) TerrainEditHelper( width, height, tile_size, tile_scale, tile_select_callback );
 			if( !ret || !ret->init() )

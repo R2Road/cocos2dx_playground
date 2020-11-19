@@ -3,6 +3,8 @@
 #include <array>
 
 #include "2d/CCLabel.h"
+#include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
 
 namespace step_pathfinder
 {
@@ -54,6 +56,16 @@ namespace step_pathfinder
 			max_size = button_margin + max_size + button_margin;
 
 			return max_size;
+		}
+
+		float CalculateTileScale( const float tile_height )
+		{
+			const auto& tile_data = TileType2TileData( eTileType::road );
+			return tile_height
+				/ (
+					cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath )->getRect().size.height
+					* cocos2d::Director::getInstance()->getContentScaleFactor()
+				);
 		}
 	}
 }
