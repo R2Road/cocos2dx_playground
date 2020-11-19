@@ -37,7 +37,6 @@ namespace step_pathfinder
 			, mTerrainData()
 			, mCurrentTileType( step_pathfinder::game::eTileType::road )
 
-			, mTerrainEditor( nullptr )
 			, mTerrainViewer( nullptr )
 		{}
 
@@ -172,12 +171,12 @@ namespace step_pathfinder
 			// Terrain Editor
 			//
 			{
-				mTerrainEditor = TerrainEditHelper::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
-				mTerrainEditor->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - mTerrainEditor->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - mTerrainEditor->getContentSize().height ) * 0.6f )
+				auto terrain_edit_helper = TerrainEditHelper::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
+				terrain_edit_helper->setPosition( Vec2(
+					visibleOrigin.x + ( ( visibleSize.width - terrain_edit_helper->getContentSize().width ) * 0.5f )
+					, visibleOrigin.y + ( ( visibleSize.height - terrain_edit_helper->getContentSize().height ) * 0.6f )
 				) );
-				addChild( mTerrainEditor, 1 );
+				addChild( terrain_edit_helper, 1 );
 			}
 
 			//

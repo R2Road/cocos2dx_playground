@@ -44,7 +44,6 @@ namespace step_pathfinder
 			TerrainData mTerrainData;
 			step_pathfinder::game::eTileType mCurrentTileType;
 
-			TerrainEditHelper* mTerrainEditor;
 			game::TerrainViewer* mTerrainViewer;
 		};
 	}
