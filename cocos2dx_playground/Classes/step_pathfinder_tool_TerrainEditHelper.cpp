@@ -44,10 +44,10 @@ namespace step_pathfinder
 
 			setContentSize( Size( tile_size.width * width, tile_size.height * height ) );
 
-			const float tile_scale = game::CalculateTileScale( tile_size.height );
-
 			const auto& tile_data = game::TileType2TileData( game::eTileType::road );
 			const auto tile_sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath );
+
+			const auto tile_scale = game::CalculateTileScale( tile_size.height );
 			const auto button_size = tile_sprite_frame->getOriginalSize() * _director->getContentScaleFactor() * tile_scale;
 
 			ui::Button* button = nullptr;
