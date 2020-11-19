@@ -15,13 +15,14 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		TerrainEditHelper::TerrainEditHelper( const TileSelectCallback& tile_select_callback ) :
+		TerrainEditHelper::TerrainEditHelper( const int width, const int height, const TileSelectCallback& tile_select_callback ) :
 			mTileSelectCallback( tile_select_callback )
+			, mGridIndexConverter( width, height )
 		{}
 
 		TerrainEditHelper* TerrainEditHelper::create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback )
 		{
-			auto ret = new ( std::nothrow ) TerrainEditHelper( tile_select_callback );
+			auto ret = new ( std::nothrow ) TerrainEditHelper( width, height, tile_select_callback );
 			if( !ret || !ret->init( width, height, tile_size ) )
 			{
 				delete ret;
@@ -55,10 +56,8 @@ namespace step_pathfinder
 			{
 				for( int tx = 0; tx < width; ++tx )
 				{
-					const int linear_index = tx + ( width * ty );
-
 					button = ui::Button::create( "guide_01_3.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-					button->setTag( linear_index );
+					button->setTag( mGridIndexConverter.To_Linear( tx, ty ) );
 					button->setAnchorPoint( Vec2::ZERO );
 					button->setScale9Enabled( true );
 					button->setContentSize( button_size );

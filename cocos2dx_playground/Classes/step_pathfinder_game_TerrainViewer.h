@@ -2,6 +2,7 @@
 
 #include "2d/CCNode.h"
 
+#include "cpg_GridIndexConverter.h"
 #include "step_pathfinder_game_Constant.h"
 
 namespace step_pathfinder
@@ -33,6 +34,7 @@ namespace step_pathfinder
 			const int mHeight;
 			const cocos2d::Size mTileSize;
 			const float mTileScale;
+			const cpg::GridIndexConverter mGridIndexConverter;
 		};
 	}
 }

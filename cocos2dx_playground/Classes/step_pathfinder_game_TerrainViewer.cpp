@@ -19,6 +19,7 @@ namespace step_pathfinder
 			, mHeight( height )
 			, mTileSize( tile_size )
 			, mTileScale( tile_scale )
+			, mGridIndexConverter( width, height )
 		{}
 
 		TerrainViewer* TerrainViewer::create( const int width, const int height, const cocos2d::Size tile_size )
@@ -65,10 +66,8 @@ namespace step_pathfinder
 
 		Node* TerrainViewer::MakeTile( const TileData& tile_data, const int grid_x, const int grid_y )
 		{
-			const int linear_index = grid_x + ( mHeight * grid_y );
-
 			auto tile_node = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
-			tile_node->setTag( linear_index );
+			tile_node->setTag( mGridIndexConverter.To_Linear( grid_x, grid_y ) );
 			tile_node->setScale( _director->getContentScaleFactor() * mTileScale );
 			return tile_node;
 		}
@@ -81,9 +80,7 @@ namespace step_pathfinder
 		}
 		void TerrainViewer::UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type )
 		{
-			const int linear_index = grid_x + ( mWidth * grid_y );
-
-			auto tile_node = getChildByTag( linear_index );
+			auto tile_node = getChildByTag( mGridIndexConverter.To_Linear( grid_x, grid_y ) );
 			if( !tile_node )
 			{
 				return;
