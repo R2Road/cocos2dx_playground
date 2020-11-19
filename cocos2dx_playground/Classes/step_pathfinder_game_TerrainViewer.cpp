@@ -51,14 +51,14 @@ namespace step_pathfinder
 
 			const auto& tile_data = TileType2TileData( eTileType::road );
 			Node* tile_node = nullptr;
-			for( int ty = 0; ty < mHeight; ++ty )
+			for( int grid_y = 0; grid_y < mHeight; ++grid_y )
 			{
-				for( int tx = 0; tx < mWidth; ++tx )
+				for( int grid_x = 0; grid_x < mWidth; ++grid_x )
 				{
 					tile_node = Sprite::createWithSpriteFrameName( tile_data.ResourcePath );
-					tile_node->setTag( mGridIndexConverter.To_Linear( tx, ty) );
+					tile_node->setTag( mGridIndexConverter.To_Linear( grid_x, grid_y) );
 					tile_node->setScale( _director->getContentScaleFactor() * mTileScale );
-					tile_node->setPosition( ConvertPoint2Position( tx, ty ) );
+					tile_node->setPosition( ConvertPoint2Position( grid_x, grid_y ) );
 					addChild( tile_node );
 				}
 			}
