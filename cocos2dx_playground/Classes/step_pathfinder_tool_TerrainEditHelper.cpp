@@ -20,7 +20,7 @@ namespace step_pathfinder
 			, mGridIndexConverter( width, height )
 		{}
 
-		TerrainEditHelper* TerrainEditHelper::create( const int width, const int height, const cocos2d::Size tile_size, const TileSelectCallback& tile_select_callback )
+		TerrainEditHelper* TerrainEditHelper::create( const int width, const int height, const Size tile_size, const TileSelectCallback& tile_select_callback )
 		{
 			auto ret = new ( std::nothrow ) TerrainEditHelper( width, height, tile_select_callback );
 			if( !ret || !ret->init( width, height, tile_size ) )
@@ -36,7 +36,7 @@ namespace step_pathfinder
 			return ret;
 		}
 
-		bool TerrainEditHelper::init( const int width, const int height, const cocos2d::Size tile_size )
+		bool TerrainEditHelper::init( const int width, const int height, const Size tile_size )
 		{
 			if( !Node::init() )
 			{

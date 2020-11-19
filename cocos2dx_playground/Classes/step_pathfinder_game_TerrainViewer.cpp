@@ -89,7 +89,7 @@ namespace step_pathfinder
 			UpdateTile( tile_node, tile_type );
 		}
 
-		cocos2d::Vec2 TerrainViewer::ConvertPoint2Position( const int tx, const int ty ) const
+		Vec2 TerrainViewer::ConvertPoint2Position( const int tx, const int ty ) const
 		{
 			return Vec2( mTileSize.width * 0.5f, mTileSize.height * 0.5f ) + Vec2( tx * mTileSize.width, ty * mTileSize.height );
 		}
