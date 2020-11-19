@@ -66,22 +66,16 @@ namespace step_pathfinder
 			return true;
 		}
 
-		void TerrainViewer::UpdateTile( Node* tile_node, const eTileType tile_type )
-		{
-			auto sprite = static_cast<Sprite*>( tile_node );
-
-			const auto& tile_data = TileType2TileData( tile_type );
-			sprite->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
-		}
 		void TerrainViewer::UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type )
 		{
-			auto tile_node = getChildByTag( mGridIndexConverter.To_Linear( grid_x, grid_y ) );
+			auto tile_node = static_cast<Sprite*>( getChildByTag( mGridIndexConverter.To_Linear( grid_x, grid_y ) ) );
 			if( !tile_node )
 			{
 				return;
 			}
 
-			UpdateTile( tile_node, tile_type );
+			const auto& tile_data = TileType2TileData( tile_type );
+			tile_node->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 		}
 
 		Vec2 TerrainViewer::ConvertPoint2Position( const int tx, const int ty ) const

@@ -22,8 +22,6 @@ namespace step_pathfinder
 		private:
 			bool init() override;
 
-			void UpdateTile( cocos2d::Node* tile_node, const eTileType tile_type );
-
 		public:
 			void UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type );
 			cocos2d::Vec2 ConvertPoint2Position( const int tx, const int ty ) const;
