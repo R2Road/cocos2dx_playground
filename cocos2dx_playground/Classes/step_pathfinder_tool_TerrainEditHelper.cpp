@@ -48,6 +48,7 @@ namespace step_pathfinder
 
 			const auto& tile_data = game::TileType2TileData( game::eTileType::road );
 			const auto tile_sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath );
+			const auto button_size = tile_sprite_frame->getOriginalSize() * _director->getContentScaleFactor() * tile_scale;
 
 			ui::Button* button = nullptr;
 			for( int ty = 0; ty < height; ++ty )
@@ -60,7 +61,7 @@ namespace step_pathfinder
 					button->setTag( linear_index );
 					button->setAnchorPoint( Vec2::ZERO );
 					button->setScale9Enabled( true );
-					button->setContentSize( tile_sprite_frame->getOriginalSize() * _director->getContentScaleFactor() * tile_scale );
+					button->setContentSize( button_size );
 					button->getRendererNormal()->setOpacity( 100u );
 					button->setPosition( Vec2( tx * tile_size.width, ty * tile_size.height ) );
 					button->addTouchEventListener( mTileSelectCallback );
