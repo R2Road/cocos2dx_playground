@@ -19,7 +19,7 @@ namespace step_pathfinder
 		public:
 			static TerrainViewer* create( const int width, const int height, const cocos2d::Size tile_size );
 
-		protected:
+		private:
 			bool init() override;
 
 			cocos2d::Node* MakeTile( const TileData& tile_data, const int grid_x, const int grid_y );
@@ -29,7 +29,7 @@ namespace step_pathfinder
 			void UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type );
 			cocos2d::Vec2 ConvertPoint2Position( const int tx, const int ty ) const;
 
-		protected:
+		private:
 			const int mWidth;
 			const int mHeight;
 			const cocos2d::Size mTileSize;
