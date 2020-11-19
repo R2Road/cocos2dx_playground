@@ -78,9 +78,9 @@ namespace step_pathfinder
 			tile_node->setSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( tile_data.ResourcePath ) );
 		}
 
-		Vec2 TerrainViewer::ConvertPoint2Position( const int tx, const int ty ) const
+		Vec2 TerrainViewer::ConvertPoint2Position( const int grid_x, const int grid_y ) const
 		{
-			return Vec2( mTileSize.width * 0.5f, mTileSize.height * 0.5f ) + Vec2( tx * mTileSize.width, ty * mTileSize.height );
+			return Vec2( mTileSize.width * 0.5f, mTileSize.height * 0.5f ) + Vec2( grid_x * mTileSize.width, grid_y * mTileSize.height );
 		}
 	}
 }

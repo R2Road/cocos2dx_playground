@@ -24,7 +24,7 @@ namespace step_pathfinder
 
 		public:
 			void UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type );
-			cocos2d::Vec2 ConvertPoint2Position( const int tx, const int ty ) const;
+			cocos2d::Vec2 ConvertPoint2Position( const int grid_x, const int grid_y ) const;
 
 		private:
 			const int mWidth;
