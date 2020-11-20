@@ -7,6 +7,8 @@
 #include "json/stringbuffer.h"
 #include "json/writer.h"
 
+#include "step_pathfinder_game_TerrainData.h"
+
 namespace step_pathfinder
 {
 	namespace tool
