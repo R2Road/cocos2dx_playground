@@ -246,23 +246,7 @@ namespace step_pathfinder
 		}
 		void PlayScene::updateTerrainViewer()
 		{
-			// apply terrain data
-			eTileType tile_type;
-			for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
-			{
-				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
-				{
-					tile_type = mTerrainData.Get( tx, ty );
-					if( eTileType::exit == tile_type )
-					{
-						mTerrainViewer->UpdateTile( tx, ty, eTileType::road );
-					}
-					else
-					{
-						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
-					}
-				}
-			}
+			mTerrainViewer->LoadTerrainData4Game( mTerrainData );
 		}
 
 

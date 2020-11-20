@@ -146,6 +146,8 @@ namespace step_pathfinder
 					mTerrainViewer4Random->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
 				}
 			}
+
+			mTerrainViewer4TerrainDataLoad->LoadTerrainData4Game( mTerrainData );
 		}
 
 

@@ -66,6 +66,25 @@ namespace step_pathfinder
 			return true;
 		}
 
+		void TerrainViewer::LoadTerrainData4Game( const TerrainData& terrain_data )
+		{
+			eTileType tile_type;
+			for( int ty = 0; ty < terrain_data.GetHeight(); ++ty )
+			{
+				for( int tx = 0; tx < terrain_data.GetWidth(); ++tx )
+				{
+					tile_type = terrain_data.Get( tx, ty );
+					if( eTileType::exit == tile_type )
+					{
+						UpdateTile( tx, ty, eTileType::road );
+					}
+					else
+					{
+						UpdateTile( tx, ty, terrain_data.Get( tx, ty ) );
+					}
+				}
+			}
+		}
 		void TerrainViewer::UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type )
 		{
 			auto tile_node = static_cast<Sprite*>( getChildByTag( mGridIndexConverter.To_Linear( grid_x, grid_y ) ) );
