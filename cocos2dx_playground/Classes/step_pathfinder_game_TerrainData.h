@@ -25,7 +25,7 @@ namespace step_pathfinder
 			TerrainData();
 
 			ContainerT::const_iterator begin() const { return mContainer.begin(); }
-			ContainerT::const_iterator end() const { return mContainer.begin(); }
+			ContainerT::const_iterator end() const { return mContainer.end(); }
 
 			bool Load( const char* file_name );
 			bool Load();
