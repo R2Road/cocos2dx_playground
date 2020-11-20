@@ -59,7 +59,7 @@ namespace step_pathfinder
 
 			return true;
 		}
-		bool TerrainData::Load()
+		bool TerrainData::FillRandomTileType()
 		{
 			//
 			// generate dummy data

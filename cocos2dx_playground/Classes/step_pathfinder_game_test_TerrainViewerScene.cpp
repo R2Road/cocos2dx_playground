@@ -158,7 +158,7 @@ namespace step_pathfinder
 
 		void TerrainViewerScene::resetTerrain()
 		{
-			mTerrainData.Load();
+			mTerrainData.FillRandomTileType();
 
 			mTerrainViewer4Original->LoadTerrainData4Original( mTerrainData );
 			mTerrainViewer4Game->LoadTerrainData4Game( mTerrainData );
