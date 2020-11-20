@@ -11,7 +11,7 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		void TerrainData::Save( const game::TerrainData& terrain_data, const char* file_name )
+		void TerrainSaveHelper::Save( const game::TerrainData& terrain_data, const char* file_name )
 		{
 			rapidjson::Document document;
 			document.SetArray();

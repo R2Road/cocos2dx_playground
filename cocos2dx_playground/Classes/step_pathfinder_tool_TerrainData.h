@@ -11,7 +11,7 @@ namespace step_pathfinder
 
 	namespace tool
 	{
-		class TerrainData
+		class TerrainSaveHelper
 		{
 		public:
 			static void Save( const game::TerrainData& terrain_data, const char* file_name );
