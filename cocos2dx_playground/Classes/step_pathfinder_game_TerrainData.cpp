@@ -1,7 +1,5 @@
 #include "step_pathfinder_game_TerrainData.h"
 
-#include <random>
-
 #include "cocos/platform/CCFileUtils.h"
 #include "json/document.h"
 
@@ -55,25 +53,6 @@ namespace step_pathfinder
 				x = cur - ( y * mWidth );
 
 				Set( x, y, static_cast<eTileType>( value.GetInt() ) );
-			}
-
-			return true;
-		}
-		bool TerrainData::FillRandomTileType()
-		{
-			//
-			// generate dummy data
-			//
-			std::random_device rd;
-			std::mt19937 randomEngine( rd() );
-			std::uniform_int_distribution<> dist( static_cast<int>( eTileType::FIRST ), static_cast<int>( eTileType::SIZE ) - 1 );
-
-			for( auto& row : mContainer )
-			{
-				for( auto& tile_type : row )
-				{
-					tile_type = static_cast<eTileType>( dist( randomEngine ) );
-				}
 			}
 
 			return true;

@@ -28,7 +28,6 @@ namespace step_pathfinder
 			ContainerT::const_iterator end() const { return mContainer.end(); }
 
 			bool Load( const char* file_name );
-			bool FillRandomTileType();
 
 			int GetWidth() const { return mWidth; }
 			int GetHeight() const { return mHeight; }

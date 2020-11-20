@@ -2,6 +2,7 @@
 
 #include <new>
 #include <numeric>
+#include <random>
 #include <sstream>
 
 #include "2d/CCLabel.h"
@@ -158,8 +159,26 @@ namespace step_pathfinder
 
 		void TerrainViewerScene::resetTerrain()
 		{
-			mTerrainData.FillRandomTileType();
+			//
+			// generate dummy data
+			//
+			{
+				std::random_device rd;
+				std::mt19937 randomEngine( rd() );
+				std::uniform_int_distribution<> dist( static_cast<int>( game::eTileType::FIRST ), static_cast<int>( game::eTileType::SIZE ) - 1 );
 
+				for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
+				{
+					for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
+					{
+						mTerrainData.Set( tx, ty, static_cast<game::eTileType>( dist( randomEngine ) ) );
+					}
+				}
+			}
+
+			//
+			// Reset TerrainViewer
+			//
 			mTerrainViewer4Original->LoadTerrainData4Original( mTerrainData );
 			mTerrainViewer4Game->LoadTerrainData4Game( mTerrainData );
 		}
