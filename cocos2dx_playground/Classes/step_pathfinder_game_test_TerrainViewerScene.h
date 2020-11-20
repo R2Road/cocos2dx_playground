@@ -43,8 +43,8 @@ namespace step_pathfinder
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			
 			game::TerrainData mTerrainData;
-			game::TerrainViewer* mTerrainViewer4Random;
-			game::TerrainViewer* mTerrainViewer4TerrainDataLoad;
+			game::TerrainViewer* mTerrainViewer4Original;
+			game::TerrainViewer* mTerrainViewer4Game;
 		};
 	}
 }

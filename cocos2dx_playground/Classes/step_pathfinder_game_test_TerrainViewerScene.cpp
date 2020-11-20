@@ -26,8 +26,8 @@ namespace step_pathfinder
 		TerrainViewerScene::TerrainViewerScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) : helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTerrainData()
-			, mTerrainViewer4Random( nullptr )
-			, mTerrainViewer4TerrainDataLoad( nullptr )
+			, mTerrainViewer4Original( nullptr )
+			, mTerrainViewer4Game( nullptr )
 		{}
 
 		Scene* TerrainViewerScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -87,29 +87,29 @@ namespace step_pathfinder
 			}
 
 			//
-			// Terrain View 4 Random
+			// Terrain View 4 Original
 			//
 			{
-				mTerrainViewer4Random = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
-				mTerrainViewer4Random->setPosition(
+				mTerrainViewer4Original = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
+				mTerrainViewer4Original->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
-					- Vec2( mTerrainViewer4Random->getContentSize().width * 0.5f, mTerrainViewer4Random->getContentSize().height * 0.5f )
+					- Vec2( mTerrainViewer4Original->getContentSize().width * 0.5f, mTerrainViewer4Original->getContentSize().height * 0.5f )
 				);
-				addChild( mTerrainViewer4Random );
+				addChild( mTerrainViewer4Original );
 			}
 
 			//
-			// Terrain View 4 Terrain Data Load
+			// Terrain View 4 Game
 			//
 			{
-				mTerrainViewer4TerrainDataLoad = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
-				mTerrainViewer4TerrainDataLoad->setPosition(
+				mTerrainViewer4Game = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
+				mTerrainViewer4Game->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
-					- Vec2( mTerrainViewer4TerrainDataLoad->getContentSize().width * 0.5f, mTerrainViewer4TerrainDataLoad->getContentSize().height * 0.5f )
+					- Vec2( mTerrainViewer4Game->getContentSize().width * 0.5f, mTerrainViewer4Game->getContentSize().height * 0.5f )
 				);
-				addChild( mTerrainViewer4TerrainDataLoad );
+				addChild( mTerrainViewer4Game );
 			}
 
 			return true;
@@ -138,8 +138,8 @@ namespace step_pathfinder
 		{
 			mTerrainData.Load();
 
-			mTerrainViewer4Random->LoadTerrainData4Original( mTerrainData );
-			mTerrainViewer4TerrainDataLoad->LoadTerrainData4Game( mTerrainData );
+			mTerrainViewer4Original->LoadTerrainData4Original( mTerrainData );
+			mTerrainViewer4Game->LoadTerrainData4Game( mTerrainData );
 		}
 
 
