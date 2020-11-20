@@ -308,7 +308,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Research_Setting.cpp" />
     <ClCompile Include="..\Classes\PlayGroundScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_RootScene.cpp" />
-    <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainData.cpp" />
+    <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainSaveHelper.cpp" />
     <ClCompile Include="..\Classes\step_mole_animation_ComponentScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_animation_CallbackScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_animation_ListScene.cpp" />
@@ -520,7 +520,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Research_Setting.h" />
     <ClInclude Include="..\Classes\PlayGroundScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_RootScene.h" />
-    <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainData.h" />
+    <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainSaveHelper.h" />
     <ClInclude Include="..\Classes\step_mole_animation_ComponentScene.h" />
     <ClInclude Include="..\Classes\step_mole_animation_CallbackScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_animation_ListScene.h" />

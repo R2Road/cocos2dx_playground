@@ -4,7 +4,7 @@
 
 #include "helper_BackToThePreviousScene.h"
 
-#include "step_pathfinder_tool_TerrainData.h"
+#include "step_pathfinder_game_TerrainData.h"
 
 namespace step_pathfinder
 {

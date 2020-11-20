@@ -12,7 +12,7 @@
 #include "ui/UITextField.h"
 
 #include "step_pathfinder_game_TerrainViewer.h"
-#include "step_pathfinder_tool_TerrainData.h"
+#include "step_pathfinder_tool_TerrainSaveHelper.h"
 #include "step_pathfinder_tool_TerrainEditHelper.h"
 #include "step_pathfinder_tool_ui_TileSelectNode.h"
 

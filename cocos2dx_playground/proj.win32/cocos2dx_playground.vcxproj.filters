@@ -345,9 +345,6 @@
     <ClCompile Include="..\Classes\step_pathfinder_game_TitleScene.cpp">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainData.cpp">
-      <Filter>src\scene\step_03_pathfinder\tool</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.cpp">
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClCompile>
@@ -780,6 +777,9 @@
     <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainEditHelper.cpp">
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainSaveHelper.cpp">
+      <Filter>src\scene\step_03_pathfinder\tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -949,9 +949,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_game_TitleScene.h">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainData.h">
-      <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.h">
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
@@ -1410,6 +1407,9 @@
       <Filter>src\scene\step_03_pathfinder\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainEditHelper.h">
+      <Filter>src\scene\step_03_pathfinder\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainSaveHelper.h">
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClInclude>
   </ItemGroup>
