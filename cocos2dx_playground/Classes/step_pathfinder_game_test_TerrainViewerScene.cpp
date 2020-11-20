@@ -138,15 +138,7 @@ namespace step_pathfinder
 		{
 			mTerrainData.Load();
 
-			// Update Terrain Viewer
-			for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
-			{
-				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
-				{
-					mTerrainViewer4Random->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
-				}
-			}
-
+			mTerrainViewer4Random->LoadTerrainData4Original( mTerrainData );
 			mTerrainViewer4TerrainDataLoad->LoadTerrainData4Game( mTerrainData );
 		}
 

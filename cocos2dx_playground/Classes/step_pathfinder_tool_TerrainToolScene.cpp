@@ -158,13 +158,7 @@ namespace step_pathfinder
 				addChild( mTerrainViewer );
 
 				// apply terrain data
-				for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
-				{
-					for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
-					{
-						mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
-					}
-				}
+				mTerrainViewer->LoadTerrainData4Original( mTerrainData );
 			}
 
 			//
@@ -414,13 +408,7 @@ namespace step_pathfinder
 			mTerrainData.Load( path.str().c_str() );
 
 			// apply terrain data
-			for( int ty = 0; ty < mTerrainData.GetHeight(); ++ty )
-			{
-				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
-				{
-					mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
-				}
-			}
+			mTerrainViewer->LoadTerrainData4Original( mTerrainData );
 		}
 
 

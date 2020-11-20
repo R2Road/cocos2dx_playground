@@ -25,6 +25,8 @@ namespace step_pathfinder
 
 		public:
 			void LoadTerrainData4Game( const TerrainData& terrain_data );
+			void LoadTerrainData4Original( const TerrainData& terrain_data );
+
 			void UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type );
 			cocos2d::Vec2 ConvertPoint2Position( const int grid_x, const int grid_y ) const;
 

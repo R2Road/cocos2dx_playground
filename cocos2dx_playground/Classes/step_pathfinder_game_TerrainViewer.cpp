@@ -85,6 +85,17 @@ namespace step_pathfinder
 				}
 			}
 		}
+		void TerrainViewer::LoadTerrainData4Original( const TerrainData& terrain_data )
+		{
+			for( int ty = 0; ty < terrain_data.GetHeight(); ++ty )
+			{
+				for( int tx = 0; tx < terrain_data.GetWidth(); ++tx )
+				{
+					UpdateTile( tx, ty, terrain_data.Get( tx, ty ) );
+				}
+			}
+		}
+
 		void TerrainViewer::UpdateTile( const int grid_x, const int grid_y, const eTileType tile_type )
 		{
 			auto tile_node = static_cast<Sprite*>( getChildByTag( mGridIndexConverter.To_Linear( grid_x, grid_y ) ) );
