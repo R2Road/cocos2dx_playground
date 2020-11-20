@@ -27,6 +27,7 @@ namespace step_pathfinder
 			, mKeyboardListener( nullptr )
 			, mTerrainData()
 			, mTerrainViewer4Random( nullptr )
+			, mTerrainViewer4TerrainDataLoad( nullptr )
 		{}
 
 		Scene* TerrainViewerScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -96,6 +97,19 @@ namespace step_pathfinder
 					- Vec2( mTerrainViewer4Random->getContentSize().width * 0.5f, mTerrainViewer4Random->getContentSize().height * 0.5f )
 				);
 				addChild( mTerrainViewer4Random );
+			}
+
+			//
+			// Terrain View 4 Terrain Data Load
+			//
+			{
+				mTerrainViewer4TerrainDataLoad = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
+				mTerrainViewer4TerrainDataLoad->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
+					- Vec2( mTerrainViewer4TerrainDataLoad->getContentSize().width * 0.5f, mTerrainViewer4TerrainDataLoad->getContentSize().height * 0.5f )
+				);
+				addChild( mTerrainViewer4TerrainDataLoad );
 			}
 
 			return true;

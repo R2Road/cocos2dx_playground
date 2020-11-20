@@ -44,6 +44,7 @@ namespace step_pathfinder
 			
 			game::TerrainData mTerrainData;
 			game::TerrainViewer* mTerrainViewer4Random;
+			game::TerrainViewer* mTerrainViewer4TerrainDataLoad;
 		};
 	}
 }
