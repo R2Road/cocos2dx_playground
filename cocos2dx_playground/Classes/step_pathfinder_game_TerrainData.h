@@ -25,6 +25,9 @@ namespace step_pathfinder
 			TerrainData();
 			virtual ~TerrainData() = default;
 
+			ContainerT::const_iterator begin() const { return mContainer.begin(); }
+			ContainerT::const_iterator end() const { return mContainer.begin(); }
+
 			bool Load( const char* file_name );
 			bool Load();
 

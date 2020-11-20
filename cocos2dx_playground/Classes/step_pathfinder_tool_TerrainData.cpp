@@ -11,11 +11,11 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		void TerrainData::Save( const char* file_name ) const
+		void TerrainData::Save( const game::TerrainData& terrain_data, const char* file_name )
 		{
 			rapidjson::Document document;
 			document.SetArray();
-			for( const auto& row : mContainer )
+			for( const auto& row : terrain_data )
 			{
 				for( const auto& tile_type : row )
 				{

@@ -4,12 +4,17 @@
 
 namespace step_pathfinder
 {
+	namespace game
+	{
+		class TerrainData;
+	}
+
 	namespace tool
 	{
-		class TerrainData : public step_pathfinder::game::TerrainData
+		class TerrainData
 		{
 		public:
-			void Save( const char* file_name ) const;
+			static void Save( const game::TerrainData& terrain_data, const char* file_name );
 		};
 	}
 }

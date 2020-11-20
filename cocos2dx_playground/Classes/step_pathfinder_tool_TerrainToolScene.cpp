@@ -12,6 +12,7 @@
 #include "ui/UITextField.h"
 
 #include "step_pathfinder_game_TerrainViewer.h"
+#include "step_pathfinder_tool_TerrainData.h"
 #include "step_pathfinder_tool_TerrainEditHelper.h"
 #include "step_pathfinder_tool_ui_TileSelectNode.h"
 
@@ -384,7 +385,7 @@ namespace step_pathfinder
 			path << text_field->getString().c_str();
 			path << ".stage";
 
-			mTerrainData.Save( path.str().c_str() );
+			tool::TerrainData::Save( mTerrainData, path.str().c_str() );
 		}
 		void TerrainToolScene::onLoad( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type )
 		{

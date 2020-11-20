@@ -3,7 +3,7 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-#include "step_pathfinder_tool_TerrainData.h"
+#include "step_pathfinder_game_TerrainData.h"
 
 namespace step_pathfinder
 {
@@ -41,7 +41,7 @@ namespace step_pathfinder
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			TerrainData mTerrainData;
+			game::TerrainData mTerrainData;
 			step_pathfinder::game::eTileType mCurrentTileType;
 
 			game::TerrainViewer* mTerrainViewer;
