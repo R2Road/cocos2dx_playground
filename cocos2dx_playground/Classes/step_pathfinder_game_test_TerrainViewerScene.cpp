@@ -26,7 +26,7 @@ namespace step_pathfinder
 		TerrainViewerScene::TerrainViewerScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) : helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mTerrainData()
-			, mTerrainViewer( nullptr )
+			, mTerrainViewer4Random( nullptr )
 		{}
 
 		Scene* TerrainViewerScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -86,16 +86,16 @@ namespace step_pathfinder
 			}
 
 			//
-			// Terrain View
+			// Terrain View 4 Random
 			//
 			{
-				mTerrainViewer = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
-				mTerrainViewer->setPosition(
+				mTerrainViewer4Random = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
+				mTerrainViewer4Random->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
-					- Vec2( mTerrainViewer->getContentSize().width * 0.5f, mTerrainViewer->getContentSize().height * 0.5f )
+					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
+					- Vec2( mTerrainViewer4Random->getContentSize().width * 0.5f, mTerrainViewer4Random->getContentSize().height * 0.5f )
 				);
-				addChild( mTerrainViewer );
+				addChild( mTerrainViewer4Random );
 			}
 
 			return true;
@@ -129,7 +129,7 @@ namespace step_pathfinder
 			{
 				for( int tx = 0; tx < mTerrainData.GetWidth(); ++tx )
 				{
-					mTerrainViewer->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
+					mTerrainViewer4Random->UpdateTile( tx, ty, mTerrainData.Get( tx, ty ) );
 				}
 			}
 		}
