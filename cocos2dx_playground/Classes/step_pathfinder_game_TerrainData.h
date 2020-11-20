@@ -23,7 +23,6 @@ namespace step_pathfinder
 
 		public:
 			TerrainData();
-			virtual ~TerrainData() = default;
 
 			ContainerT::const_iterator begin() const { return mContainer.begin(); }
 			ContainerT::const_iterator end() const { return mContainer.begin(); }
@@ -41,7 +40,7 @@ namespace step_pathfinder
 			bool isExist( const ValueT tile_type ) const;
 			bool isIn( const int x, const int y ) const;
 
-		protected:
+		private:
 			const int mWidth;
 			const int mHeight;
 			ContainerT mContainer;
