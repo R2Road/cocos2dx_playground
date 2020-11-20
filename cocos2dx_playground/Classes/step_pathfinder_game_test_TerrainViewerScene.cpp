@@ -90,10 +90,21 @@ namespace step_pathfinder
 			// Terrain View 4 Original
 			//
 			{
+				// Explain Label
+				auto label = Label::createWithTTF( "Original Data", FontPath, 11 );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.8f )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+
+
+				// Terrain
 				mTerrainViewer4Original = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
 				mTerrainViewer4Original->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
+					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.45f )
 					- Vec2( mTerrainViewer4Original->getContentSize().width * 0.5f, mTerrainViewer4Original->getContentSize().height * 0.5f )
 				);
 				addChild( mTerrainViewer4Original );
@@ -103,10 +114,21 @@ namespace step_pathfinder
 			// Terrain View 4 Game
 			//
 			{
+				// Explain Label
+				auto label = Label::createWithTTF( "Fixed Data 4 Game", FontPath, 11 );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.8f )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+
+
+				// Terrain
 				mTerrainViewer4Game = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
 				mTerrainViewer4Game->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
+					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.45f )
 					- Vec2( mTerrainViewer4Game->getContentSize().width * 0.5f, mTerrainViewer4Game->getContentSize().height * 0.5f )
 				);
 				addChild( mTerrainViewer4Game );
