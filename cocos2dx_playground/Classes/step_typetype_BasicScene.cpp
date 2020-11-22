@@ -38,18 +38,128 @@ namespace step_typetype
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
-		// Label
+		// Summury
 		//
 		{
-			const char* label_string = "This is Test Label ^_^\n\n[ESC Key] : Return to Root";
+			std::stringstream ss;
+			ss << "+ " << getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 30 );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
+			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+			);
+			addChild( label, std::numeric_limits<int>::max() );
+		}
+
+		//
+		// Align Test
+		//
+		{
+			// Label 1
+			{
+				const char* label_string = "Test Label \n ----------------------------- \n Align Center";
+
+				auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::CENTER );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.25f )
+				);
+				addChild( label );
+			}
+
+			// Label 2
+			{
+				const char* label_string = "Test Label \n ----------------------------- \n Align Left";
+
+				auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
+				label->setColor( Color3B::BLUE );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
+				);
+				addChild( label );
+			}
+
+			// Label 3
+			{
+				const char* label_string = "Test Label \n ----------------------------- \n Align Right";
+
+				auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::RIGHT );
+				label->setColor( Color3B::RED );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.75f )
+				);
+				addChild( label );
+			}
+		}
+
+		//
+		// Dimensions
+		//
+		{
+			const char* label_string = "Dimensions( 20, 200 ) \n ----------------------------- \n";
+
+			auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size( 20, 200 ) );
 			label->setColor( Color3B::GREEN );
-			label->setPosition( Vec2(
-				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+			);
 			addChild( label );
+		}
+
+		//
+		// Overflow
+		//
+		{
+			// Clamp
+			{
+				const char* label_string = "Overflow : Clamp \n ----------------------------- \n Dimensions( 70, 20 )";
+
+				auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size( 70, 20 ) );
+				label->setColor( Color3B::YELLOW );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.75f )
+				);
+				label->setOverflow( Label::Overflow::CLAMP );
+				addChild( label );
+			}
+
+			// Shrink
+			{
+				const char* label_string = "Overflow : Shrink \n ----------------------------- \n Dimensions( 70, 20 )";
+
+				auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size( 70, 20 ) );
+				label->setColor( Color3B::YELLOW );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
+				);
+				label->setOverflow( Label::Overflow::SHRINK );
+				addChild( label );
+			}
+
+			// Resize Height
+			{
+				const char* label_string = "Overflow : Resize Height \n ----------------------------- \n Dimensions( 70, 20 )";
+
+				auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size( 70, 20 ) );
+				label->setColor( Color3B::YELLOW );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.25f )
+				);
+				label->setOverflow( Label::Overflow::RESIZE_HEIGHT );
+				addChild( label );
+			}
 		}
 
 		return true;
