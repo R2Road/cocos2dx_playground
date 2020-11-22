@@ -13,6 +13,10 @@ namespace graph_practice
 		static const char* getTitle() { return "Graph Practice"; }
 		static cocos2d::Scene* create();
 
+	private:
+		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 

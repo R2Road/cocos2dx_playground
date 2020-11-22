@@ -35,11 +35,20 @@ namespace graph_practice
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
 			ret->autorelease();
+		}
+
+		return ret;
+	}
+
+	bool RootScene::init()
+	{
+		if( !Scene::init() )
+		{
+			return false;
 		}
 
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -76,7 +85,7 @@ namespace graph_practice
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label );
+			addChild( label );
 		}
 
 		//
@@ -84,10 +93,10 @@ namespace graph_practice
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 23, 33, 61, 255 ) );
-			ret->addChild( background_layer, std::numeric_limits<int>::min() );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		return ret;
+		return true;
 	}
 
 	void RootScene::onEnter()
