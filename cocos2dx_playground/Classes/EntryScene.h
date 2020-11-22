@@ -13,5 +13,5 @@ public:
 private:
 	bool init() override;
 
-	void update_forLoad( float dt );
+	void update4Load( float dt );
 };

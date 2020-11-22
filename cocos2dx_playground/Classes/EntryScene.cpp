@@ -31,12 +31,12 @@ bool EntryScene::init()
 		return false;
 	}
 
-	scheduleOnce( schedule_selector( EntryScene::update_forLoad ), 0.f );
+	scheduleOnce( schedule_selector( EntryScene::update4Load ), 0.f );
 
 	return true;
 }
 
-void EntryScene::update_forLoad( float /*dt*/ )
+void EntryScene::update4Load( float /*dt*/ )
 {
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( "textures/texture_001.plist", "textures/texture_001.png" );
 	_director->getTextureCache()->getTextureForKey( "textures/texture_001.png" )->setAliasTexParameters();
