@@ -2,6 +2,7 @@
 
 #include <sstream>
 
+#include "cocos2d.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 

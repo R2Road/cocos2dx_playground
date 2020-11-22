@@ -5,6 +5,7 @@
 #include <cstdlib> // ldiv
 #include <utility> // pair
 
+#include "cocos2d.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"

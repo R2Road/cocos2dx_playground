@@ -2,6 +2,8 @@
 
 #include <new>
 
+#include "cocos2d.h"
+
 USING_NS_CC;
 
 namespace cpg

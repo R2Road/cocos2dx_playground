@@ -4,6 +4,8 @@
 #include <numeric>
 #include <sstream>
 
+#include "cocos2d.h"
+
 #include "PlayGroundScene.h"
 
 #include "step_typetype_label_ttf_BasicScene.h"

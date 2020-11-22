@@ -4,6 +4,8 @@
 #include <numeric>
 #include <sstream>
 
+#include "cocos2d.h"
+
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;

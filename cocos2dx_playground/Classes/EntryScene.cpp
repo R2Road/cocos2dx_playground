@@ -2,6 +2,8 @@
 
 #include <new>
 
+#include "cocos2d.h"
+
 #include "PlayGroundScene.h"
 
 USING_NS_CC;

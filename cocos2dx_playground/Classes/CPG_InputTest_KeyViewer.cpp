@@ -1,5 +1,9 @@
 #include "CPG_InputTest_KeyViewer.h"
 
+#include <new>
+
+#include "cocos2d.h"
+
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputTest_KeyMapConfigHelper.h"
 

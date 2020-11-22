@@ -1,6 +1,7 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCNode.h"
+
 #include "CPG_Input_AllowedKeys.h"
 
 namespace cpg

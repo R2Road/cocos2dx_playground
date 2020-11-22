@@ -2,8 +2,12 @@
 
 #include <string>
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 #include "ui/UIWidget.h"
+
+NS_CC_BEGIN
+class Label;
+NS_CC_END
 
 namespace cpg
 {

@@ -4,6 +4,12 @@
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
+
 #include "cpg_StringTable.h"
 
 #include "PlayGroundScene.h"

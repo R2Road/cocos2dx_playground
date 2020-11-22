@@ -2,7 +2,11 @@
 
 #include <vector>
 
-#include "cocos2d.h"
+#include "2d/CCNode.h"
+
+NS_CC_BEGIN
+class Sprite;
+NS_CC_END
 
 namespace cpg
 {

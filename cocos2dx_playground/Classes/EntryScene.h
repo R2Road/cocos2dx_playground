@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "2d/CCScene.h"
 
 class EntryScene : public cocos2d::Scene
 {
