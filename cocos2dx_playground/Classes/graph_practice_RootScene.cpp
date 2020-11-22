@@ -51,8 +51,8 @@ namespace graph_practice
 			return false;
 		}
 
-		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
 		// Summury
@@ -85,7 +85,7 @@ namespace graph_practice
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			addChild( label );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
