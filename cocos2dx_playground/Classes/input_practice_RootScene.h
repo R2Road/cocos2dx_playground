@@ -13,6 +13,10 @@ namespace input_practice
 		static const char* getTitle() { return "Input Practice"; }
 		static cocos2d::Scene* create();
 
+	private:
+		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 
