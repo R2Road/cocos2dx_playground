@@ -13,6 +13,7 @@
 #include "step_pathfinder_textField_BasicScene.h"
 
 #include "step_pathfinder_game_test_TerrainViewerScene.h"
+#include "step_pathfinder_game_test_PlayerMoveScene.h"
 #include "step_pathfinder_tool_TerrainToolScene.h"
 
 #include "step_pathfinder_game_TitleScene.h"
@@ -66,6 +67,8 @@ namespace step_pathfinder
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[Q] : " << step_pathfinder::game_test::TerrainViewerScene::getTitle();
+			ss << std::endl;
+			ss << "[W] : " << step_pathfinder::game_test::PlayerMoveScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[A] : " << step_pathfinder::tool::TerrainToolScene::getTitle();
@@ -139,6 +142,9 @@ namespace step_pathfinder
 
 		case EventKeyboard::KeyCode::KEY_Q:
 			_director->replaceScene( step_pathfinder::game_test::TerrainViewerScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_W:
+			_director->replaceScene( step_pathfinder::game_test::PlayerMoveScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:

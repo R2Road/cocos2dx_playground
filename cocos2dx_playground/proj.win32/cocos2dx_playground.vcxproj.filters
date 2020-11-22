@@ -780,6 +780,9 @@
     <ClCompile Include="..\Classes\step_pathfinder_tool_TerrainSaveHelper.cpp">
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_test_PlayerMoveScene.cpp">
+      <Filter>src\scene\step_03_pathfinder\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1411,6 +1414,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_tool_TerrainSaveHelper.h">
       <Filter>src\scene\step_03_pathfinder\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_test_PlayerMoveScene.h">
+      <Filter>src\scene\step_03_pathfinder\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
