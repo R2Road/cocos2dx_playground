@@ -28,9 +28,6 @@
     <Filter Include="src\animation">
       <UniqueIdentifier>{1257b598-16f9-4be8-81d6-9e22d089a147}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\table">
-      <UniqueIdentifier>{f016cb03-47a6-4a5c-b33d-9986b9dbc156}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_02_clickclick">
       <UniqueIdentifier>{f0a8247b-c79a-4550-845d-19e0c375ca24}</UniqueIdentifier>
     </Filter>
@@ -147,9 +144,6 @@
     </Filter>
     <Filter Include="src\scene\step_05_rain_of_chaos\draw_node">
       <UniqueIdentifier>{ecd4150e-3c0f-4804-b83d-5632a944bc07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\ui">
-      <UniqueIdentifier>{cd981cce-c834-4dd7-8d81-40c41e7564da}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\scene\step_01_typetype\label">
       <UniqueIdentifier>{9e7cadda-7276-4f73-ba22-3284cd7e7cca}</UniqueIdentifier>
@@ -654,9 +648,6 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_draw_node_CircleScene.cpp">
       <Filter>src\scene\step_05_rain_of_chaos\draw_node</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp">
-      <Filter>src\ui</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ui_practice_ScrollViewGeneratorScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
@@ -785,6 +776,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_label_ttf_BasicScene.cpp">
       <Filter>src\scene\step_01_typetype\label</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp">
+      <Filter>src\cpgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1289,9 +1283,6 @@
     <ClInclude Include="..\Classes\step_rain_of_chaos_draw_node_CircleScene.h">
       <Filter>src\scene\step_05_rain_of_chaos\draw_node</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h">
-      <Filter>src\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ui_practice_ScrollViewGeneratorScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
@@ -1423,6 +1414,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_label_ttf_BasicScene.h">
       <Filter>src\scene\step_01_typetype\label</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h">
+      <Filter>src\cpgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
