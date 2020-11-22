@@ -85,7 +85,7 @@ namespace step_typetype
 			}
 
 			//
-			//
+			// Letter View
 			//
 			{
 				mLetterView = game::LetterView::create();
@@ -95,6 +95,11 @@ namespace step_typetype
 				) );
 				addChild( mLetterView );
 			}
+
+			//
+			// Setup
+			//
+			mLetterView->Reset( 'S' );
 
 			return true;
 		}
