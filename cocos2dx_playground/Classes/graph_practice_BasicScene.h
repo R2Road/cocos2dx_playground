@@ -14,7 +14,10 @@ namespace graph_practice
 		static const char* getTitle() { return "Basic"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+	private:
 		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 		void update( float dt ) override;
