@@ -34,11 +34,20 @@ namespace step_typetype
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
 			ret->autorelease();
+		}
+
+		return ret;
+	}
+
+	bool RootScene::init()
+	{
+		if( !Scene::init() )
+		{
+			return false;
 		}
 
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -90,7 +99,7 @@ namespace step_typetype
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label );
+			addChild( label );
 		}
 
 		//
@@ -98,10 +107,10 @@ namespace step_typetype
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 99, 1, 0, 255 ) );
-			ret->addChild( background_layer, std::numeric_limits<int>::min() );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		return ret;
+		return true;
 	}
 
 	void RootScene::onEnter()
