@@ -11,7 +11,6 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "cpg_StringTable.h"
 #include "step_typetype_game_TitleScene.h"
 
 USING_NS_CC;
@@ -55,7 +54,7 @@ namespace step_typetype
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::BLACK );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -77,7 +76,7 @@ namespace step_typetype
 			// Game Clear
 			//
 			{
-				auto label = Label::createWithTTF( "Game Clear", cpg::StringTable::GetFontPath(), 32 );
+				auto label = Label::createWithTTF( "Game Clear", "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -90,7 +89,7 @@ namespace step_typetype
 			// Result
 			//
 			{
-				auto label = Label::createWithTTF( StringUtils::format( "Clear Time : %.2lf", clear_time ), cpg::StringTable::GetFontPath(), 32 );
+				auto label = Label::createWithTTF( StringUtils::format( "Clear Time : %.2lf", clear_time ), "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )

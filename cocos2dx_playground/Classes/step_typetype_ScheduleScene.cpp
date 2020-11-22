@@ -12,7 +12,6 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "cpg_StringTable.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -74,7 +73,7 @@ namespace step_typetype
 			ss << std::endl;
 			ss << "[3] : Unschedule Lambda Update";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -95,7 +94,7 @@ namespace step_typetype
 		// Label - Update
 		//
 		{
-			mScheduleView_forUpdate.ViewLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
+			mScheduleView_forUpdate.ViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 			mScheduleView_forUpdate.ViewLabel->setName( "Update" );
 			mScheduleView_forUpdate.ViewLabel->setColor( Color3B::GREEN );
 			mScheduleView_forUpdate.ViewLabel->setPosition(
@@ -111,7 +110,7 @@ namespace step_typetype
 		// Label - Custome Update
 		//
 		{
-			mScheduleView_forCustomeUpdate.ViewLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
+			mScheduleView_forCustomeUpdate.ViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 			mScheduleView_forCustomeUpdate.ViewLabel->setName( "Custome Update" );
 			mScheduleView_forCustomeUpdate.ViewLabel->setColor( Color3B::GREEN );
 			mScheduleView_forCustomeUpdate.ViewLabel->setPosition(
@@ -127,7 +126,7 @@ namespace step_typetype
 		// Label - Lambda Update
 		//
 		{
-			mScheduleView_forLambda.ViewLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
+			mScheduleView_forLambda.ViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
 			mScheduleView_forLambda.ViewLabel->setName( "Lambda Update" );
 			mScheduleView_forLambda.ViewLabel->setColor( Color3B::GREEN );
 			mScheduleView_forLambda.ViewLabel->setPosition(

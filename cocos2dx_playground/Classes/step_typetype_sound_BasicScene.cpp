@@ -11,7 +11,6 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "cpg_StringTable.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -62,7 +61,7 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[SPACE BAR] : Play FX";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -85,7 +84,7 @@ namespace step_typetype
 			{
 				auto label = Label::createWithTTF(
 					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
-					, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::RIGHT
+					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -100,7 +99,7 @@ namespace step_typetype
 			// Input Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "Press Space Bar : Play FX", cpg::StringTable::GetFontPath(), 14 );
+				auto label = Label::createWithTTF( "Press Space Bar : Play FX", "fonts/NanumSquareR.ttf", 14 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )

@@ -4,7 +4,6 @@
 #include <numeric>
 #include <sstream>
 
-#include "cpg_StringTable.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -58,7 +57,7 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( label->getContentSize().width * 0.5f )
 					, visibleOrigin.y + visibleSize.height - ( label->getContentSize().height * 0.5f )
@@ -87,7 +86,7 @@ namespace step_typetype
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "Normal Texture\nSet Antialias", cpg::StringTable::GetFontPath(), 12 );
+				auto label = Label::createWithTTF( "Normal Texture\nSet Antialias", "fonts/NanumSquareR.ttf", 12 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					sprite->getPositionX()
@@ -109,7 +108,7 @@ namespace step_typetype
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "Normal Texture\nSet Alias ", cpg::StringTable::GetFontPath(), 12 );
+				auto label = Label::createWithTTF( "Normal Texture\nSet Alias ", "fonts/NanumSquareR.ttf", 12 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					sprite->getPositionX()
@@ -133,7 +132,7 @@ namespace step_typetype
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "PList Texture\nSet Alias ", cpg::StringTable::GetFontPath(), 12 );
+				auto label = Label::createWithTTF( "PList Texture\nSet Alias ", "fonts/NanumSquareR.ttf", 12 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
 					sprite->getPositionX()

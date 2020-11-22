@@ -12,8 +12,6 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "cpg_StringTable.h"
-
 #include "step_typetype_game_ResultScene.h"
 #include "step_typetype_game_StageView.h"
 #include "step_typetype_game_TitleScene.h"
@@ -74,7 +72,7 @@ namespace step_typetype
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -97,7 +95,7 @@ namespace step_typetype
 			{
 				auto label = Label::createWithTTF(
 					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
-					, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::RIGHT
+					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -124,7 +122,7 @@ namespace step_typetype
 			// Next Stage Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "ENTER", cpg::StringTable::GetFontPath(), 10 );
+				auto label = Label::createWithTTF( "ENTER", "fonts/NanumSquareR.ttf", 10 );
 				label->setTag( TAG_NextStageIndicator );
 				label->setColor( Color3B::GREEN );
 				label->setVisible( false );

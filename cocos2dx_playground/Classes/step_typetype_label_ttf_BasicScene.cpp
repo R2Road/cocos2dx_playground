@@ -2,7 +2,6 @@
 
 #include <new>
 
-#include "cpg_StringTable.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -49,7 +48,7 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition(
 					visibleOrigin
@@ -66,7 +65,7 @@ namespace step_typetype
 				{
 					const char* label_string = "Test Label \n ----------------------------- \n Align Center";
 
-					auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::CENTER );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
 						visibleOrigin
@@ -79,7 +78,7 @@ namespace step_typetype
 				{
 					const char* label_string = "Test Label \n ----------------------------- \n Align Left";
 
-					auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::BLUE );
 					label->setPosition(
 						visibleOrigin
@@ -92,7 +91,7 @@ namespace step_typetype
 				{
 					const char* label_string = "Test Label \n ----------------------------- \n Align Right";
 
-					auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::RIGHT );
+					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::RIGHT );
 					label->setColor( Color3B::RED );
 					label->setPosition(
 						visibleOrigin
@@ -108,7 +107,7 @@ namespace step_typetype
 			{
 				const char* label_string = "Dimensions( 20, 200 ) \n ----------------------------- \n";
 
-				auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size( 20, 200 ) );
+				auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size( 20, 200 ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					visibleOrigin
@@ -125,7 +124,7 @@ namespace step_typetype
 				{
 					const char* label_string = "Overflow : Clamp \n ----------------------------- \n Dimensions( 70, 20 )";
 
-					auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size( 70, 20 ) );
+					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size( 70, 20 ) );
 					label->setColor( Color3B::YELLOW );
 					label->setPosition(
 						visibleOrigin
@@ -139,7 +138,7 @@ namespace step_typetype
 				{
 					const char* label_string = "Overflow : Shrink \n ----------------------------- \n Dimensions( 70, 20 )";
 
-					auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size( 70, 20 ) );
+					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size( 70, 20 ) );
 					label->setColor( Color3B::YELLOW );
 					label->setPosition(
 						visibleOrigin
@@ -153,7 +152,7 @@ namespace step_typetype
 				{
 					const char* label_string = "Overflow : Resize Height \n ----------------------------- \n Dimensions( 70, 20 )";
 
-					auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 9, Size( 70, 20 ) );
+					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size( 70, 20 ) );
 					label->setColor( Color3B::YELLOW );
 					label->setPosition(
 						visibleOrigin
