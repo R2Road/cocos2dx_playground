@@ -8,9 +8,10 @@ namespace graph_practice
 {
 	class BasicScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
-	public:
+	private:
 		BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+	public:
 		static const char* getTitle() { return "Basic"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 

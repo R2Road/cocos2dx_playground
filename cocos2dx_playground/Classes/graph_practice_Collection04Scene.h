@@ -12,9 +12,10 @@ namespace graph_practice
 
 	class Collection04Scene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
-	public:
+	private:
 		Collection04Scene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+	public:
 		static const char* getTitle() { return "Collection 04"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
