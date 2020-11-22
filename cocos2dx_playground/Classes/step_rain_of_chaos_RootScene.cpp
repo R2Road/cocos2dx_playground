@@ -112,7 +112,7 @@ namespace step_rain_of_chaos
 			ss << std::endl;
 			ss << "[SPACE] : " << step_rain_of_chaos::game::TitleScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
