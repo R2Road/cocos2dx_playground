@@ -72,6 +72,9 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[R] : Reset Player Position";
 
 				auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -159,6 +162,13 @@ namespace step_pathfinder
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
 				helper::BackToThePreviousScene::MoveBack();
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_R == keycode )
+			{
+				mPlayerPoint = { 0, 0 };
+				mPlayer->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 				return;
 			}
 
