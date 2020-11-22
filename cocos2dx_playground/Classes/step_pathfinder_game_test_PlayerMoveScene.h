@@ -42,6 +42,7 @@ namespace step_pathfinder
 			
 			game::TerrainData mTerrainData;
 			game::TerrainViewer* mTerrainViewer;
+			cocos2d::Node* mPlayer;
 		};
 	}
 }

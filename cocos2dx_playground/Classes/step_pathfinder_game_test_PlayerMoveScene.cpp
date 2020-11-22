@@ -5,8 +5,11 @@
 #include <random>
 #include <sstream>
 
+#include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -28,6 +31,7 @@ namespace step_pathfinder
 			, mKeyboardListener( nullptr )
 			, mTerrainData()
 			, mTerrainViewer( nullptr )
+			, mPlayer( nullptr )
 		{}
 
 		Scene* PlayerMoveScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -94,6 +98,30 @@ namespace step_pathfinder
 					- Vec2( mTerrainViewer->getContentSize().width * 0.5f, mTerrainViewer->getContentSize().height * 0.5f )
 				);
 				addChild( mTerrainViewer );
+			}
+
+			//
+			// Player
+			//
+			{
+				mPlayer = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				mPlayer->setAnchorPoint( Vec2( 0.5f, 0.2f ) );
+				mPlayer->setScale( _director->getContentScaleFactor() );
+				mTerrainViewer->addChild( mPlayer, 1 );
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.2f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+
+					auto animate_action = Animate::create( animation_object );
+
+					auto repeat_action = RepeatForever::create( animate_action );
+
+					mPlayer->runAction( repeat_action );
+				}
 			}
 
 			return true;
