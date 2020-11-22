@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <random>
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
