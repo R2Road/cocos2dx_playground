@@ -6,9 +6,10 @@ namespace step_rain_of_chaos
 {
 	class RootScene : public cocos2d::Scene
 	{
-	public:
+	private:
 		RootScene();
 
+	public:
 		static const char* getTitle() { return "Step : Rain of Chaos"; }
 		static cocos2d::Scene* create();
 
