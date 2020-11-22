@@ -25,7 +25,6 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/NanumSquareR.ttf";
 	const char* CustomeShaderPath = "shaders/shader_practice_SimpleTestScene.fsh";
 
 	class UniformHelperNode : public Node
@@ -184,7 +183,7 @@ namespace shader_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -205,7 +204,7 @@ namespace shader_practice
 		// Custome Shader Path
 		//
 		{
-			auto label_1 = Label::createWithTTF( CustomeShaderPath, FontPath, 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label_1 = Label::createWithTTF( CustomeShaderPath, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label_1->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label_1->setColor( Color3B::GREEN );
 			label_1->setPosition( Vec2(
@@ -214,7 +213,7 @@ namespace shader_practice
 			) );
 			addChild( label_1, std::numeric_limits<int>::max() );
 
-			auto label_2 = Label::createWithTTF( "Custome Shader Path : ", FontPath, 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label_2 = Label::createWithTTF( "Custome Shader Path : ", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label_2->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label_2->setPosition(
 				label_1->getPosition()

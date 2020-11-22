@@ -15,11 +15,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const char* FontPath = "fonts/NanumSquareR.ttf";
-}
-
 namespace step_pathfinder
 {
 	namespace game_test
@@ -70,7 +65,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[R] : Reset";
 
-				auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -92,7 +87,7 @@ namespace step_pathfinder
 			//
 			{
 				// Explain Label
-				auto label = Label::createWithTTF( "Original Data", FontPath, 11 );
+				auto label = Label::createWithTTF( "Original Data", "fonts/NanumSquareR.ttf", 11 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					visibleOrigin
@@ -116,7 +111,7 @@ namespace step_pathfinder
 			//
 			{
 				// Explain Label
-				auto label = Label::createWithTTF( "Fixed Data 4 Game", FontPath, 11 );
+				auto label = Label::createWithTTF( "Fixed Data 4 Game", "fonts/NanumSquareR.ttf", 11 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					visibleOrigin

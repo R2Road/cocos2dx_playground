@@ -20,8 +20,6 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/NanumSquareR.ttf";
-
 	const int TerrainWidth = 5;
 	const int TerrainHeight = 5;
 }
@@ -76,7 +74,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[R] : Reset Player Position";
 
-				auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition(
 					visibleOrigin

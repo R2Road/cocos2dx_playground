@@ -18,7 +18,6 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/NanumSquareR.ttf";
 	const int FontSize = 9;
 }
 
@@ -65,7 +64,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), FontPath, FontSize, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -112,7 +111,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 3\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 3\n", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -143,7 +142,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\n", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -174,7 +173,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nVisible : 4\nContent : 6\nClipping", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -218,7 +217,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nGravity : Left", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nGravity : Left", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -250,7 +249,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nGravity : Center", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nGravity : Center", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -282,7 +281,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nGravity : Right", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nGravity : Right", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -323,7 +322,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\n\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\n\n", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -354,7 +353,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\nOver Eat\n", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\nOver Eat\n", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -385,7 +384,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\nOver Eat\nClipping", FontPath, FontSize, Size::ZERO, TextHAlignment::CENTER );
+					auto label = Label::createWithTTF( "Vertical\n\nFlip Y\nOver Eat\nClipping", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
@@ -469,7 +468,7 @@ namespace ui_practice
 
 			// Title
 			{
-				auto label = Label::createWithTTF( std::to_string( i ), FontPath, FontSize );
+				auto label = Label::createWithTTF( std::to_string( i ), "fonts/NanumSquareR.ttf", FontSize );
 				label->setScaleY( label->getScaleY() * ( flip ? -1 : 1 ) );
 				button->setTitleLabel( label );
 			}

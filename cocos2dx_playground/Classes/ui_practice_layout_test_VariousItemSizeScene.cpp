@@ -18,7 +18,6 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/NanumSquareR.ttf";
 	const int FontSize = 9;
 }
 
@@ -69,7 +68,7 @@ namespace ui_practice
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), FontPath, FontSize, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -206,7 +205,7 @@ namespace ui_practice
 
 			// Title
 			{
-				auto label = Label::createWithTTF( std::to_string( item_tag ), FontPath, FontSize );
+				auto label = Label::createWithTTF( std::to_string( item_tag ), "fonts/NanumSquareR.ttf", FontSize );
 				label->setScaleY( label->getScaleY() );
 				button->setTitleLabel( label );
 			}

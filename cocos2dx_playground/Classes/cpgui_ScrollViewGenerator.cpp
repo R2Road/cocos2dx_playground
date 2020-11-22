@@ -8,11 +8,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const char* FontPath = "fonts/NanumSquareR.ttf";
-}
-
 namespace cpgui
 {
 	Node* CreateScrollViewItem( const ScrollViewGenerator::Config& config, const cpgui::ScrollViewGenerator::Item& item_info, const ui::Widget::ccWidgetTouchCallback& item_select_callback )
@@ -25,7 +20,7 @@ namespace cpgui
 
 		// Label
 		{
-			auto label = Label::createWithTTF( item_info.Name, FontPath, config.FontSize );
+			auto label = Label::createWithTTF( item_info.Name, "fonts/NanumSquareR.ttf", config.FontSize );
 			label->getFontAtlas()->setAliasTexParameters();
 			button->setTitleLabel( label );
 		}
@@ -109,7 +104,7 @@ namespace cpgui
 		// Title Label
 		//
 		{
-			auto label = Label::createWithTTF( title_string, FontPath, 9 );
+			auto label = Label::createWithTTF( title_string, "fonts/NanumSquareR.ttf", 9 );
 			label->getFontAtlas()->setAliasTexParameters();
 			label->setAnchorPoint( Vec2::ZERO );
 			label->setPositionY( root_node->getContentSize().height );

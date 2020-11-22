@@ -16,11 +16,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const char* FontPath = "fonts/NanumSquareR.ttf";
-}
-
 namespace ui_practice
 {
 	RelativeLayoutScene::RelativeLayoutScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
@@ -64,7 +59,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -135,7 +130,7 @@ namespace ui_practice
 
 				// Title
 				{
-					auto label = Label::createWithTTF( std::to_string( cur ), FontPath, 9 );
+					auto label = Label::createWithTTF( std::to_string( cur ), "fonts/NanumSquareR.ttf", 9 );
 					button->setTitleLabel( label );
 				}
 

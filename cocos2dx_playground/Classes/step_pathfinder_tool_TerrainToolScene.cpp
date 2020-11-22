@@ -24,8 +24,6 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/NanumSquareR.ttf";
-
 	const int TAG_TextField = 20140416;
 }
 
@@ -77,7 +75,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -94,7 +92,7 @@ namespace step_pathfinder
 
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Target Path>", FontPath, 14 );
+					auto label = Label::createWithTTF( "<Target Path>", "fonts/NanumSquareR.ttf", 14 );
 					label->setAnchorPoint( Vec2( 1.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width - 4.f
@@ -117,7 +115,7 @@ namespace step_pathfinder
 						} );
 						addChild( button );
 						{
-							auto title_label = Label::createWithTTF( "Open Folder", FontPath, 10 );
+							auto title_label = Label::createWithTTF( "Open Folder", "fonts/NanumSquareR.ttf", 10 );
 							button->setTitleLabel( title_label );
 
 							button->setContentSize( title_label->getContentSize() + Size( 10.f, 4.f ) + Size( 10.f, 4.f ) );
@@ -135,7 +133,7 @@ namespace step_pathfinder
 
 				// Path
 				{
-					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), FontPath, 10 );
+					auto label = Label::createWithTTF( FileUtils::getInstance()->getWritablePath().c_str(), "fonts/NanumSquareR.ttf", 10 );
 					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
@@ -204,7 +202,7 @@ namespace step_pathfinder
 				const std::string DUMMY_STRING( TEXT_FIELD_MAX_LENGTH, 'A' );
 				const std::string PLACE_HOLDER_STRING( "input file name here~!" );
 
-				auto ui_text_field = ui::TextField::create( DUMMY_STRING, FontPath, 12 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/NanumSquareR.ttf", 12 );
 				ui_text_field->setTag( TAG_TextField );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
@@ -247,7 +245,7 @@ namespace step_pathfinder
 				button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onSave, this ) );
 				addChild( button );
 				{
-					auto label = Label::createWithTTF( "Save", FontPath, 12, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "Save", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::RED );
 					button->setTitleLabel( label );
 
@@ -269,7 +267,7 @@ namespace step_pathfinder
 				button->addTouchEventListener( CC_CALLBACK_2( TerrainToolScene::onLoad, this ) );
 				addChild( button );
 				{
-					auto label = Label::createWithTTF( "Load", FontPath, 12, Size::ZERO, TextHAlignment::LEFT );
+					auto label = Label::createWithTTF( "Load", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 					label->setColor( Color3B::MAGENTA );
 					button->setTitleLabel( label );
 
@@ -312,7 +310,7 @@ namespace step_pathfinder
 			button->setScale9Enabled( true );
 			button->setContentSize( menu_size );
 			{
-				auto label = Label::createWithTTF( button_text, FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( button_text, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 				button->setTitleLabel( label );
 			}
 

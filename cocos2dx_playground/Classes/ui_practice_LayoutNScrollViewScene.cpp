@@ -20,8 +20,6 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FontPath = "fonts/NanumSquareR.ttf";
-
 	const std::size_t STRING_COUNT = 20;
 	const char* STRINGs[STRING_COUNT] = {
 		"alksdjflaskdjflasjdfalsdkfj"
@@ -50,7 +48,7 @@ namespace
 	{
 		Size label_max_size;
 		{
-			auto label = Label::createWithTTF( "", FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			for( const auto& s : STRINGs )
 			{
 				label->setString( s );
@@ -112,7 +110,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -186,7 +184,7 @@ namespace ui_practice
 
 						// Label
 						{
-							auto label = Label::createWithTTF( s, FontPath, 9, Size::ZERO, TextHAlignment::LEFT );
+							auto label = Label::createWithTTF( s, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
 							button->setTitleLabel( label );
 						}
 

@@ -19,7 +19,6 @@ namespace
 {
 	const int TAG_StatusView = 20140416;
 
-	const char* FontPath = "fonts/NanumSquareR.ttf";
 	const int FontSize = 9;
 }
 
@@ -66,7 +65,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), FontPath, FontSize, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -87,7 +86,7 @@ namespace ui_practice
 		// Status View
 		//
 		{
-			auto label = Label::createWithTTF( "", FontPath, FontSize );
+			auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", FontSize );
 			label->setTag( TAG_StatusView );
 			label->setColor( Color3B::GREEN );
 			label->setPosition( Vec2(
@@ -127,7 +126,7 @@ namespace ui_practice
 
 				// Label
 				{
-					auto label = Label::createWithTTF( "Test 1", FontPath, FontSize );
+					auto label = Label::createWithTTF( "Test 1", "fonts/NanumSquareR.ttf", FontSize );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
 					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
@@ -150,7 +149,7 @@ namespace ui_practice
 
 				// Label
 				{
-					auto label = Label::createWithTTF( "Test 2", FontPath, FontSize );
+					auto label = Label::createWithTTF( "Test 2", "fonts/NanumSquareR.ttf", FontSize );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
 					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
@@ -173,7 +172,7 @@ namespace ui_practice
 
 				// Label
 				{
-					auto label = Label::createWithTTF( "Test 3", FontPath, FontSize );
+					auto label = Label::createWithTTF( "Test 3", "fonts/NanumSquareR.ttf", FontSize );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
 					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
@@ -221,7 +220,7 @@ namespace ui_practice
 
 				// Label
 				{
-					auto label = Label::createWithTTF( "Test 1\nAnchor Point : 1, 1", FontPath, FontSize );
+					auto label = Label::createWithTTF( "Test 1\nAnchor Point : 1, 1", "fonts/NanumSquareR.ttf", FontSize );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
 					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
@@ -250,7 +249,7 @@ namespace ui_practice
 
 				// Label
 				{
-					auto label = Label::createWithTTF( "Test 2\nAnchor Point : 0.5, 0.5", FontPath, FontSize );
+					auto label = Label::createWithTTF( "Test 2\nAnchor Point : 0.5, 0.5", "fonts/NanumSquareR.ttf", FontSize );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
 					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
@@ -280,7 +279,7 @@ namespace ui_practice
 
 				// Label
 				{
-					auto label = Label::createWithTTF( "Test 3\nAnchor Point : 0, 0", FontPath, FontSize );
+					auto label = Label::createWithTTF( "Test 3\nAnchor Point : 0, 0", "fonts/NanumSquareR.ttf", FontSize );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( radio_button->getPosition() + Vec2( 0.f, 34.f ) );
 					radio_button_group_node->addChild( label, std::numeric_limits<int>::max() );
