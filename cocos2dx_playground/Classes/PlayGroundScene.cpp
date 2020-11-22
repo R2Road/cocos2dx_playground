@@ -3,6 +3,8 @@
 #include <new>
 #include <sstream>
 
+#include "cocos2d.h"
+
 #include "cpg_StringTable.h"
 
 #include "step_typetype_RootScene.h"
