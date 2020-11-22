@@ -8,12 +8,6 @@ namespace step_pathfinder
 {
 	namespace game
 	{
-		struct TerrainPoint
-		{
-			int x = 0;
-			int y = 0;
-		};
-
 		class TerrainData
 		{
 		public:

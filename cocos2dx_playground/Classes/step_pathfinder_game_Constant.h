@@ -32,5 +32,12 @@ namespace step_pathfinder
 		cocos2d::Size GetMaxMenuSize();
 
 		float CalculateTileScale( const float tile_height );
+
+
+		struct TerrainPoint
+		{
+			int x = 0;
+			int y = 0;
+		};
 	}
 }
