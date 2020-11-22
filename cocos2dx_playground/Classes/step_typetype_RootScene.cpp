@@ -8,7 +8,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "step_typetype_BasicScene.h"
+#include "step_typetype_label_ttf_BasicScene.h"
 
 #include "step_typetype_sprite_TextureTypeScene.h"
 #include "step_typetype_sprite_AnchorPointScene.h"
