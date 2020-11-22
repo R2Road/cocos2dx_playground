@@ -1,4 +1,4 @@
-#include "CPG_Setting.h"
+#include "cpg_Setting.h"
 
 #include "platform\CCFileUtils.h"
 #include "json/document.h"
