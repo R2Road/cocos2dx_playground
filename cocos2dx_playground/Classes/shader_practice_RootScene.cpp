@@ -31,15 +31,24 @@ namespace shader_practice
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
 			ret->autorelease();
 		}
 
-		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		return ret;
+	}
+
+	bool RootScene::init()
+	{
+		if( !Scene::init() )
+		{
+			return false;
+		}
+
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
 		// Summury
@@ -63,7 +72,7 @@ namespace shader_practice
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -71,10 +80,10 @@ namespace shader_practice
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 51, 25, 73, 255 ) );
-			ret->addChild( background_layer, std::numeric_limits<int>::min() );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		return ret;
+		return true;
 	}
 
 	void RootScene::onEnter()
