@@ -35,6 +35,7 @@ namespace step_pathfinder
 			void onExit() override;
 
 		private:
+			void playerMove( const int move_x, const int move_y );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:

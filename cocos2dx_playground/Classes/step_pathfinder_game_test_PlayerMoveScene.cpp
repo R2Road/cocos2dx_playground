@@ -156,6 +156,13 @@ namespace step_pathfinder
 		}
 
 
+		void PlayerMoveScene::playerMove( const int move_x, const int move_y )
+		{
+			mPlayerPoint.x += move_x;
+			mPlayerPoint.y += move_y;
+
+			mPlayer->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
+		}
 		void PlayerMoveScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
@@ -174,20 +181,18 @@ namespace step_pathfinder
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-				mPlayerPoint.x -= 1;
+				playerMove( -1, 0 );
 				break;
 			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-				mPlayerPoint.x += 1;
+				playerMove( 1, 0 );
 				break;
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
-				mPlayerPoint.y += 1;
+				playerMove( 0, 1 );
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-				mPlayerPoint.y -= 1;
+				playerMove( 0, -1 );
 				break;
 			}
-
-			mPlayer->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 		}
 	}
 }
