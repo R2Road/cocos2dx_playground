@@ -4,7 +4,7 @@
 
 #include "helper_BackToThePreviousScene.h"
 
-#include "step_pathfinder_game_TerrainData.h"
+#include "step_pathfinder_game_Constant.h"
 
 namespace step_pathfinder
 {
@@ -40,7 +40,6 @@ namespace step_pathfinder
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			
-			game::TerrainData mTerrainData;
 			game::TerrainViewer* mTerrainViewer;
 			cocos2d::Node* mPlayer;
 			game::TerrainPoint mPlayerPoint;

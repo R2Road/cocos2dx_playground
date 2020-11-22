@@ -21,6 +21,9 @@ USING_NS_CC;
 namespace
 {
 	const char* FontPath = "fonts/NanumSquareR.ttf";
+
+	const int TerrainWidth = 5;
+	const int TerrainHeight = 5;
 }
 
 namespace step_pathfinder
@@ -29,7 +32,6 @@ namespace step_pathfinder
 	{
 		PlayerMoveScene::PlayerMoveScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) : helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
-			, mTerrainData()
 			, mTerrainViewer( nullptr )
 			, mPlayer( nullptr )
 			, mPlayerPoint()
@@ -92,7 +94,7 @@ namespace step_pathfinder
 			// Terrain View
 			//
 			{
-				mTerrainViewer = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
+				mTerrainViewer = game::TerrainViewer::create( TerrainWidth, TerrainHeight, Size( 32, 32 ) );
 				mTerrainViewer->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
