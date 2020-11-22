@@ -4,12 +4,16 @@
 
 class PlayGroundScene : public cocos2d::Scene
 {
-public:
+private:
 	PlayGroundScene();
 
+public:
     static cocos2d::Scene* create();
 
+private:
 	bool init() override;
+
+public:
     void onEnter() override;
 	void onExit() override;
     
