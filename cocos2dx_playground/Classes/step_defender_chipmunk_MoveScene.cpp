@@ -227,7 +227,7 @@ namespace step_defender
 		}
 
 
-		void MoveScene::update4Input( float delta_time )
+		void MoveScene::update4Input( float /*delta_time*/ )
 		{
 			Vec2 velocity;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
@@ -326,7 +326,7 @@ namespace step_defender
 
 			mKeyCodeCollector.onKeyPressed( key_code );
 		}
-		void MoveScene::onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event )
+		void MoveScene::onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* /*event*/ )
 		{
 			mKeyCodeCollector.onKeyReleased( key_code );
 		}

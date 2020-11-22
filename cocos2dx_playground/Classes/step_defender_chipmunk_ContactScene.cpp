@@ -238,7 +238,7 @@ namespace step_defender
 		}
 
 
-		void ContactScene::update4Input( float delta_time )
+		void ContactScene::update4Input( float /*delta_time*/ )
 		{
 			Vec2 velocity;
 			if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_UP_ARROW ) )
@@ -262,22 +262,22 @@ namespace step_defender
 		}
 
 
-		bool ContactScene::onContactBegin( PhysicsContact& contact )
+		bool ContactScene::onContactBegin( PhysicsContact& /*contact*/ )
 		{
 			CCLOG( "onContactBegin" );
 
 			return true;
 		}
-		bool ContactScene::onContactPreSolve( PhysicsContact& contact, PhysicsContactPreSolve& solve )
+		bool ContactScene::onContactPreSolve( PhysicsContact& /*contact*/, PhysicsContactPreSolve& /*solve*/ )
 		{
 			CCLOG( "onContactPreSolve" );
 			return true;
 		}
-		void ContactScene::onContactPostSolve( PhysicsContact& contact, const PhysicsContactPostSolve& solve )
+		void ContactScene::onContactPostSolve( PhysicsContact& /*contact*/, const PhysicsContactPostSolve& /*solve*/ )
 		{
 			CCLOG( "onContactPostSolve" );
 		}
-		void ContactScene::onContactSeparate( PhysicsContact& contact )
+		void ContactScene::onContactSeparate( PhysicsContact& /*contact*/ )
 		{
 			CCLOG( "onContactSeparate" );
 		}
@@ -339,7 +339,7 @@ namespace step_defender
 
 			mKeyCodeCollector.onKeyPressed( key_code );
 		}
-		void ContactScene::onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event )
+		void ContactScene::onKeyReleased( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* /*event*/ )
 		{
 			mKeyCodeCollector.onKeyReleased( key_code );
 		}

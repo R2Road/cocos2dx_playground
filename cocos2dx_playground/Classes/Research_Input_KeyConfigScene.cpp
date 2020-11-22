@@ -241,6 +241,8 @@ namespace research
 					}
 				}
 			}
+
+			return true;
 		}
 
 
