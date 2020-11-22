@@ -32,6 +32,7 @@ namespace step_pathfinder
 			, mTerrainData()
 			, mTerrainViewer( nullptr )
 			, mPlayer( nullptr )
+			, mPlayerPoint()
 		{}
 
 		Scene* PlayerMoveScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -124,6 +125,11 @@ namespace step_pathfinder
 				}
 			}
 
+			//
+			// Setup
+			//
+			mPlayer->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
+
 			return true;
 		}
 
@@ -153,6 +159,24 @@ namespace step_pathfinder
 				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
+
+			switch( keycode )
+			{
+			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+				mPlayerPoint.x -= 1;
+				break;
+			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+				mPlayerPoint.x += 1;
+				break;
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+				mPlayerPoint.y += 1;
+				break;
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+				mPlayerPoint.y -= 1;
+				break;
+			}
+
+			mPlayer->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 		}
 	}
 }
