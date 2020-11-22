@@ -7,12 +7,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const Size letter_size( 14.f, 14.f );
-	const Size margin_size( 2.f, 2.f );
-}
-
 namespace step_typetype
 {
 	namespace game
