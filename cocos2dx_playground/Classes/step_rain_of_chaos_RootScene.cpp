@@ -43,15 +43,24 @@ namespace step_rain_of_chaos
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
 			ret->autorelease();
 		}
 
-		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		return ret;
+	}
+
+	bool RootScene::init()
+	{
+		if( !Scene::init() )
+		{
+			return false;
+		}
+
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
 		// Summury
@@ -108,7 +117,7 @@ namespace step_rain_of_chaos
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, std::numeric_limits<int>::max() );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -116,10 +125,10 @@ namespace step_rain_of_chaos
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 140, 54, 32, 255 ) );
-			ret->addChild( background_layer, -1 );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		return ret;
+		return true;
 	}
 
 	void RootScene::onEnter()
