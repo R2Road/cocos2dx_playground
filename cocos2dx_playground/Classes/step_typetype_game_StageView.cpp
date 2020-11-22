@@ -146,11 +146,14 @@ namespace step_typetype
 			//
 			// Setup Letters
 			//
+			LetterView* letter_view = nullptr;
 			for( std::size_t i = 0; i < stage.GetLength(); ++i )
 			{
-				mLetters[i]->setVisible( true );
-				mLetters[i]->Reset( stage.GetLetter( i ) );
-				mLetters[i]->setPosition(
+				letter_view = mLetters[i];
+
+				letter_view->setVisible( true );
+				letter_view->Reset( stage.GetLetter( i ) );
+				letter_view->setPosition(
 					letter_pivot_position
 					+ Vec2( ( i * letter_size.width ), 0.f )
 				);
