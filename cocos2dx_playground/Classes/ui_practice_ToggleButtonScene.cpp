@@ -13,6 +13,8 @@
 #include "extensions/GUI/CCControlExtension/CCControlSwitch.h"
 #include "extensions/GUI/CCControlExtension/CCInvocation.h"
 
+#include "cpg_StringTable.h"
+
 
 USING_NS_CC;
 
@@ -66,7 +68,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), FontSize, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -87,7 +89,7 @@ namespace ui_practice
 		// Status View
 		//
 		{
-			auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", FontSize );
+			auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), FontSize );
 			label->setTag( TAG_StatusView );
 			label->setColor( Color3B::GREEN );
 			label->setPosition( Vec2(

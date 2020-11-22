@@ -13,6 +13,8 @@
 #include "base/ccUTF8.h"
 #include "physics/CCPhysicsWorld.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -85,7 +87,7 @@ namespace step_defender
 				ss << std::endl;
 				ss << "[Arrow L/R/U/D] : Move";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -106,7 +108,7 @@ namespace step_defender
 			// Move Speed View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::RIGHT );
 				label->setTag( TAG_MoveSpeedView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
@@ -121,7 +123,7 @@ namespace step_defender
 			// Physics Rotation Flag View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::RIGHT );
 				label->setTag( TAG_PhysicsRotationView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );

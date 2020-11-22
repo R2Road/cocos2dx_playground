@@ -7,6 +7,8 @@
 #include "cocos/2d/CCSprite.h"
 #include "cocos/base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_mole_CircleCollisionComponentConfig.h"
 
 USING_NS_CC;
@@ -62,7 +64,7 @@ namespace step_mole
 		// Radius View
 		if( config.bUseRadiusHelper )
 		{
-			auto label = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( StringUtils::format( "%.2f", mRadius ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 			label->setPositionX( mRadius + margin );
 			label->setVisible( false );

@@ -14,6 +14,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -80,7 +82,7 @@ namespace ui_research
 				ss << std::endl;
 				ss << "[Arrow Uown] : Delay - Decrease";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -101,7 +103,7 @@ namespace ui_research
 			// Delay View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14 );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14 );
 				label->setTag( TAG_DelayView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -122,7 +124,7 @@ namespace ui_research
 				std::string utf8_string;
 				StringUtils::UTF32ToUTF8( u32_string, utf8_string );
 
-				auto label = Label::createWithTTF( utf8_string, "fonts/NanumSquareR.ttf", 15, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( utf8_string, cpg::StringTable::GetFontPath(), 15, Size::ZERO, TextHAlignment::CENTER );
 				label->setTag( TAG_TextView );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )

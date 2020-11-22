@@ -10,6 +10,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_StringTable.h"
+
 #include "PlayGroundScene.h"
 
 #include "input_practice_GamePadTestScene.h"
@@ -51,7 +53,7 @@ namespace input_practice
 			ss << std::endl;
 			ss << "[1] : " << input_practice::GamePadTestScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )

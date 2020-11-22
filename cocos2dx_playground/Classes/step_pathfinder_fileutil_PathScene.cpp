@@ -11,6 +11,8 @@
 #include "base/CCEventDispatcher.h"
 #include "platform/CCFileUtils.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace step_pathfinder
@@ -58,7 +60,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -83,7 +85,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Writable Path : for Save Various Data>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<Writable Path : for Save Various Data>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -94,7 +96,7 @@ namespace step_pathfinder
 
 				// Path
 				{
-					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), cpg::StringTable::GetFontPath(), 10 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
@@ -112,7 +114,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Default Resource Root Path : Copied Resources>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<Default Resource Root Path : Copied Resources>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -123,7 +125,7 @@ namespace step_pathfinder
 
 				// Path
 				{
-					auto label = Label::createWithTTF( FileUtils::getInstance()->getDefaultResourceRootPath().c_str(), "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( FileUtils::getInstance()->getDefaultResourceRootPath().c_str(), cpg::StringTable::GetFontPath(), 10 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
 					label->setColor( Color3B::GREEN );
@@ -141,7 +143,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Your Resource Path : for Tool>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<Your Resource Path : for Tool>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -181,7 +183,7 @@ namespace step_pathfinder
 						}
 					}
 
-					auto label = Label::createWithTTF( source_path.c_str(), "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( source_path.c_str(), cpg::StringTable::GetFontPath(), 10 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
 					label->setColor( Color3B::GREEN );

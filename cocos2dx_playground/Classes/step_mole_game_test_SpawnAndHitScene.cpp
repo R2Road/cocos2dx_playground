@@ -12,6 +12,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_game_StageNode.h"
 #include "step_mole_game_TargetManager.h"
@@ -80,7 +82,7 @@ namespace step_mole
 				ss << std::endl;
 				ss << "[Arrow Down] : Decrease Spawn Count";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -101,7 +103,7 @@ namespace step_mole
 			// Spawn Target Count
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setTag( TAG_GroupSpawnCountNode );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );

@@ -14,6 +14,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_clickclick_RootScene.h"
 
 #include "step_clickclick_game_Processor.h"
@@ -93,7 +95,7 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << "[R] : Reset";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -115,7 +117,7 @@ namespace step_clickclick
 			// Stage Length View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
 				label->setTag( TAG_StageSizeView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -158,7 +160,7 @@ namespace step_clickclick
 			// Score View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
 				label->setTag( TAG_ScoreView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );

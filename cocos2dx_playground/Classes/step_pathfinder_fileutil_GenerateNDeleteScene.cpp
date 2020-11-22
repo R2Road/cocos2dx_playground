@@ -15,6 +15,8 @@
 #include "platform/CCFileUtils.h"
 #include "ui/UIButton.h"
 
+#include "cpg_StringTable.h"
+
 #include "helper_Win32DirectoryOpen.h"
 
 USING_NS_CC;
@@ -75,7 +77,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -100,7 +102,7 @@ namespace step_pathfinder
 
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Target Path>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<Target Path>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -123,7 +125,7 @@ namespace step_pathfinder
 						} );
 						addChild( button );
 						{
-							auto title_label = Label::createWithTTF( "Open Folder", "fonts/NanumSquareR.ttf", 12 );
+							auto title_label = Label::createWithTTF( "Open Folder", cpg::StringTable::GetFontPath(), 12 );
 							button->setTitleLabel( title_label );
 
 							button->setContentSize( title_label->getContentSize() + Size( 10.f, 4.f ) + Size( 10.f, 4.f ) );
@@ -141,7 +143,7 @@ namespace step_pathfinder
 
 				// Path
 				{
-					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( cocos2d::FileUtils::getInstance()->getWritablePath().c_str(), cpg::StringTable::GetFontPath(), 10 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
@@ -159,7 +161,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<File Name>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<File Name>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -170,7 +172,7 @@ namespace step_pathfinder
 
 				// Name
 				{
-					auto label = Label::createWithTTF( FilePath_for_Generate_N_Delete, "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( FilePath_for_Generate_N_Delete, cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
@@ -187,7 +189,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<File Status>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<File Status>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
@@ -198,7 +200,7 @@ namespace step_pathfinder
 
 				// Status
 				{
-					auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14 );
 					label->setTag( TAG_FileStatus );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::RED );
@@ -227,7 +229,7 @@ namespace step_pathfinder
 				) );
 				addChild( button );
 				{
-					auto label = Label::createWithTTF( "Generate", "fonts/NanumSquareR.ttf", 12 );
+					auto label = Label::createWithTTF( "Generate", cpg::StringTable::GetFontPath(), 12 );
 					button->setTitleLabel( label );
 
 					button->setContentSize( label->getContentSize() + ButtonMargin + ButtonMargin );
@@ -247,7 +249,7 @@ namespace step_pathfinder
 				) );
 				addChild( button );
 				{
-					auto label = Label::createWithTTF( "Delete", "fonts/NanumSquareR.ttf", 12 );
+					auto label = Label::createWithTTF( "Delete", cpg::StringTable::GetFontPath(), 12 );
 					button->setTitleLabel( label );
 
 					button->setContentSize( label->getContentSize() + ButtonMargin + ButtonMargin );

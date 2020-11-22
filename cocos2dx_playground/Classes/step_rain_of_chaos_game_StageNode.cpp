@@ -11,6 +11,7 @@
 #include "ui/UIScale9Sprite.h"
 
 #include "cpg_Clamp.h"
+#include "cpg_StringTable.h"
 
 #include "step_mole_AnimationComponent.h"
 #include "step_mole_CircleCollisionComponent.h"
@@ -100,7 +101,7 @@ namespace step_rain_of_chaos
 
 				if( mDebugConfig.bShowLabel_StageArea )
 				{
-					auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					auto label = Label::createWithTTF( "Stage Area", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::RIGHT );
 					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
@@ -121,7 +122,7 @@ namespace step_rain_of_chaos
 				sprite->setPosition( mStageConfig.GetBulletLifeRect().origin );
 				addChild( sprite, std::numeric_limits<int>::min() );
 				{
-					auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					auto label = Label::createWithTTF( "Bullet Life Area", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::RIGHT );
 					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					label->setColor( Color3B::RED );
 					label->setPosition( Vec2(
@@ -144,7 +145,7 @@ namespace step_rain_of_chaos
 					draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
 					addChild( draw_node, std::numeric_limits<int>::min() );
 
-					auto label = Label::createWithTTF( "Bullet Generate Area Min", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					auto label = Label::createWithTTF( "Bullet Generate Area Min", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::RIGHT );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::WHITE );
 					label->setPosition(
@@ -162,7 +163,7 @@ namespace step_rain_of_chaos
 					draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
 					addChild( draw_node, std::numeric_limits<int>::min() );
 
-					auto label = Label::createWithTTF( "Bullet Generate Area Max", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+					auto label = Label::createWithTTF( "Bullet Generate Area Max", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::RIGHT );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setColor( Color3B::WHITE );
 					label->setPosition(

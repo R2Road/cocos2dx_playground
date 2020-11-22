@@ -13,6 +13,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_defender_RootScene.h"
@@ -77,7 +79,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[S] : Remove Bullet";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -98,7 +100,7 @@ namespace step_rain_of_chaos
 			// Bullet Count
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::RIGHT );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14, Size::ZERO, TextHAlignment::RIGHT );
 				label->setTag( TAG_BulletCountView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );

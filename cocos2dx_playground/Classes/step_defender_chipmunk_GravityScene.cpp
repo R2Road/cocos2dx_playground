@@ -15,6 +15,8 @@
 #include "physics/CCPhysicsWorld.h"
 #include "ui/UIButton.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -83,7 +85,7 @@ namespace step_defender
 				ss << std::endl;
 				ss << "[SPACE] : Add Physics Body";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -104,7 +106,7 @@ namespace step_defender
 			// Gravity View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::RIGHT );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::RIGHT );
 				label->setTag( TAG_GravityView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
@@ -139,7 +141,7 @@ namespace step_defender
 
 					// left label
 					{
-						auto label = Label::createWithTTF( "CLICK HERE ===>>>", "fonts/NanumSquareR.ttf", 10 );
+						auto label = Label::createWithTTF( "CLICK HERE ===>>>", cpg::StringTable::GetFontPath(), 10 );
 						label->setColor( Color3B::GREEN );
 						label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 						label->setPosition(
@@ -151,7 +153,7 @@ namespace step_defender
 
 					// right label
 					{
-						auto label = Label::createWithTTF( "<<<=== ...AND DRAG", "fonts/NanumSquareR.ttf", 10 );
+						auto label = Label::createWithTTF( "<<<=== ...AND DRAG", cpg::StringTable::GetFontPath(), 10 );
 						label->setColor( Color3B::GREEN );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 						label->setPosition(

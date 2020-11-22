@@ -783,6 +783,9 @@
     <ClCompile Include="..\Classes\step_pathfinder_game_test_PlayerMoveScene.cpp">
       <Filter>src\scene\step_03_pathfinder\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_StringTable.cpp">
+      <Filter>src\cpg</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1417,6 +1420,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_game_test_PlayerMoveScene.h">
       <Filter>src\scene\step_03_pathfinder\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_StringTable.h">
+      <Filter>src\cpg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

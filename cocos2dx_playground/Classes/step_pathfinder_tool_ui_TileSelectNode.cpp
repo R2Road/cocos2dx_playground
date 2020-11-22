@@ -7,6 +7,8 @@
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -115,7 +117,7 @@ namespace step_pathfinder
 			button->setScale9Enabled( true );
 			button->setContentSize( menu_size );
 			{
-				auto label = Label::createWithTTF( button_text, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( button_text, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				button->setTitleLabel( label );
 			}
 

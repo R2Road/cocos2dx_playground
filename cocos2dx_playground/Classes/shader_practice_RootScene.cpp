@@ -15,6 +15,8 @@
 #include "shader_practice_GLUniformInfosScene.h"
 #include "shader_practice_SimpleTestScene.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace shader_practice
@@ -56,7 +58,7 @@ namespace shader_practice
 			ss << std::endl;
 			ss << "[3] : " << shader_practice::SimpleTestScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )

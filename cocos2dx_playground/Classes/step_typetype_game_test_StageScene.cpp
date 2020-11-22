@@ -12,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
 #include "step_typetype_game_StageView.h"
 #include "step_typetype_RootScene.h"
 
@@ -85,7 +86,7 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[R] : Stage Reset";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -106,7 +107,7 @@ namespace step_typetype
 			// Stage Length View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
 				label->setTag( TAG_StageLengthView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );

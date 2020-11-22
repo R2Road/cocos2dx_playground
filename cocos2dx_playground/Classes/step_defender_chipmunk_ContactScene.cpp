@@ -14,6 +14,8 @@
 #include "physics/CCPhysicsContact.h"
 #include "physics/CCPhysicsWorld.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -84,7 +86,7 @@ namespace step_defender
 				ss << std::endl;
 				ss << "[Arrow L/R/U/D] : Move";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -144,7 +146,7 @@ namespace step_defender
 
 						// Explain Label
 						{
-							auto label = Label::createWithTTF( "STATIC BODY ===>>>", "fonts/NanumSquareR.ttf", 10 );
+							auto label = Label::createWithTTF( "STATIC BODY ===>>>", cpg::StringTable::GetFontPath(), 10 );
 							label->setColor( Color3B::GREEN );
 							label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 							label->setPosition(
@@ -172,7 +174,7 @@ namespace step_defender
 
 						// Explain Label
 						{
-							auto label = Label::createWithTTF( "<<<=== SENSOR", "fonts/NanumSquareR.ttf", 10 );
+							auto label = Label::createWithTTF( "<<<=== SENSOR", cpg::StringTable::GetFontPath(), 10 );
 							label->setColor( Color3B::GREEN );
 							label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 							label->setPosition(

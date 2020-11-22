@@ -10,7 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "PlayGroundScene.h"
+#include "cpg_StringTable.h"
 
 #include "graph_practice_BasicScene.h"
 #include "graph_practice_Collection01Scene.h"
@@ -19,6 +19,7 @@
 #include "graph_practice_Collection04Scene.h"
 #include "graph_practice_Collection05Scene.h"
 #include "graph_practice_Collection06Scene.h"
+#include "PlayGroundScene.h"
 
 USING_NS_CC;
 
@@ -70,7 +71,7 @@ namespace graph_practice
 			ss << std::endl;
 			ss << "[6] : " << graph_practice::Collection06Scene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )

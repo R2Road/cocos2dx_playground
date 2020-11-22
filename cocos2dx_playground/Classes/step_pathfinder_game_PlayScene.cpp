@@ -14,6 +14,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_pathfinder_game_TitleScene.h"
 #include "step_pathfinder_game_ResultScene.h"
 #include "step_pathfinder_game_TerrainViewer.h"
@@ -81,7 +83,7 @@ namespace step_pathfinder
 				ss << "[ARROW] : Move";
 
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -96,7 +98,7 @@ namespace step_pathfinder
 			{
 				auto label = Label::createWithTTF(
 					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
-					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT
+					, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -121,7 +123,7 @@ namespace step_pathfinder
 				);
 				addChild( game_over_indicator, std::numeric_limits<int>::max() - 1 );
 				{
-					auto label = Label::createWithTTF( "Game Over", "fonts/NanumSquareR.ttf", 20 );
+					auto label = Label::createWithTTF( "Game Over", cpg::StringTable::GetFontPath(), 20 );
 					label->setColor( Color3B::RED );
 					label->setPosition( Vec2(
 						game_over_indicator->getContentSize().width * 0.5f

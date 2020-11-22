@@ -14,6 +14,8 @@
 #include "base/ccUTF8.h"
 #include "ui/UIButton.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_game_HittingNode.h"
 #include "step_mole_game_StageNode.h"
@@ -121,7 +123,7 @@ namespace step_mole
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -136,7 +138,7 @@ namespace step_mole
 			{
 				auto label = Label::createWithTTF(
 					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
-					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT
+					, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -159,7 +161,7 @@ namespace step_mole
 			// Score View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
 				label->setTag( TAG_ScoreView );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );

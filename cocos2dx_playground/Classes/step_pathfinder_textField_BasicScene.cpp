@@ -12,6 +12,8 @@
 #include "ui/UITextField.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_pathfinder_RootScene.h"
 
 USING_NS_CC;
@@ -60,7 +62,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -88,14 +90,14 @@ namespace step_pathfinder
 			// Text Field : Original
 			//
 			{
-				auto summury_for_text_field = Label::createWithTTF( "Text Field Only : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", "fonts/NanumSquareR.ttf", 12 );
+				auto summury_for_text_field = Label::createWithTTF( "Text Field Only : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", cpg::StringTable::GetFontPath(), 12 );
 				summury_for_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.8f )
 				) );
 				addChild( summury_for_text_field, 1 );
 
-				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/NanumSquareR.ttf", 12 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, cpg::StringTable::GetFontPath(), 12 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );
 				ui_text_field->setMaxLengthEnabled( true );
@@ -119,14 +121,14 @@ namespace step_pathfinder
 			// Text Field : Suggest
 			//
 			{
-				auto summury_for_text_field = Label::createWithTTF( "Text Field + Button Support : Suggest", "fonts/NanumSquareR.ttf", 12 );
+				auto summury_for_text_field = Label::createWithTTF( "Text Field + Button Support : Suggest", cpg::StringTable::GetFontPath(), 12 );
 				summury_for_text_field->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.4f )
 				) );
 				addChild( summury_for_text_field, 1 );
 
-				auto ui_text_field = ui::TextField::create( DUMMY_STRING, "fonts/NanumSquareR.ttf", 12 );
+				auto ui_text_field = ui::TextField::create( DUMMY_STRING, cpg::StringTable::GetFontPath(), 12 );
 				ui_text_field->setPlaceHolderColor( Color3B::GREEN );
 				ui_text_field->setTextColor( Color4B::RED );
 				ui_text_field->setMaxLength( TEXT_FIELD_MAX_LENGTH );

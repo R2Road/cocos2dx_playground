@@ -6,6 +6,8 @@
 #include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace cpgui
@@ -20,7 +22,7 @@ namespace cpgui
 
 		// Label
 		{
-			auto label = Label::createWithTTF( item_info.Name, "fonts/NanumSquareR.ttf", config.FontSize );
+			auto label = Label::createWithTTF( item_info.Name, cpg::StringTable::GetFontPath(), config.FontSize );
 			label->getFontAtlas()->setAliasTexParameters();
 			button->setTitleLabel( label );
 		}
@@ -104,7 +106,7 @@ namespace cpgui
 		// Title Label
 		//
 		{
-			auto label = Label::createWithTTF( title_string, "fonts/NanumSquareR.ttf", 9 );
+			auto label = Label::createWithTTF( title_string, cpg::StringTable::GetFontPath(), 9 );
 			label->getFontAtlas()->setAliasTexParameters();
 			label->setAnchorPoint( Vec2::ZERO );
 			label->setPositionY( root_node->getContentSize().height );

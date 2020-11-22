@@ -5,6 +5,8 @@
 #include "2d/CCLabel.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -43,7 +45,7 @@ namespace step_typetype
 				return false;
 			}
 
-			mLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
+			mLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
 			addChild( mLabel );
 
 			return true;

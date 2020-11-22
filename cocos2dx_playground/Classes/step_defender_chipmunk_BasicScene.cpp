@@ -12,6 +12,8 @@
 #include "base/CCEventDispatcher.h"
 #include "physics/CCPhysicsWorld.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -74,7 +76,7 @@ namespace step_defender
 				ss << std::endl;
 				ss << "[SPACE] : Add Physics Body";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x

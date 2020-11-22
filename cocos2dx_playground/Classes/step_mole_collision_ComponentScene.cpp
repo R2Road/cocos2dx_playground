@@ -17,6 +17,8 @@
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_mole_CircleCollisionComponent.h"
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_mole_RootScene.h"
@@ -79,7 +81,7 @@ namespace step_mole
 				ss << std::endl;
 				ss << "[Mouse] : Push and Drag";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x + visibleMargin.width

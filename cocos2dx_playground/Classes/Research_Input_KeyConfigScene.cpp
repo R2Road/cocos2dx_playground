@@ -10,7 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "platform/CCFileUtils.h"
 
-#include "Step99_RootScene.h"
+#include "cpg_StringTable.h"
 #include "CPG_Input_KeyCodeNames.h"
 
 #include "ui/UIButton.h"
@@ -19,6 +19,7 @@
 
 #include "Research_Setting.h"
 
+#include "Step99_RootScene.h"
 USING_NS_CC;
 
 namespace research
@@ -35,7 +36,7 @@ namespace research
 				const Size control_side_margin( 8.f, 4.f );
 				const float inner_horizontal_margin = 10.f;
 
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
 				Size result_size;
 				for( const auto& h : helper.getContainer() )
 				{
@@ -73,11 +74,11 @@ namespace research
 				auto root = Node::create();
 				root->setContentSize( control_size );
 				{
-					auto key_name_label = Label::createWithTTF( key_name, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_name_label = Label::createWithTTF( key_name, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 					key_name_label->setPositionX( -control_size.width * 0.25f );
 					root->addChild( key_name_label, 2 );
 
-					auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( key_code ), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+					auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 					key_code_label->setTag( TAG_KeyCode_Label );
 					key_code_label->setPositionX( control_size.width * 0.25f );
 					root->addChild( key_code_label, 2 );
@@ -147,7 +148,7 @@ namespace research
 				ss << std::endl;
 				ss << "<Config File Path> : " << FileUtils::getInstance()->getWritablePath();
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -161,7 +162,7 @@ namespace research
 			// exit interface
 			//
 			{
-				auto label = Label::createWithTTF( "Save & Exit", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Save & Exit", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 
 				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );

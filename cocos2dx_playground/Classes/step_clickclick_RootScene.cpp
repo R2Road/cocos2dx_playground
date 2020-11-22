@@ -4,6 +4,8 @@
 #include <numeric>
 #include <sstream>
 
+#include "cpg_StringTable.h"
+
 #include "PlayGroundScene.h"
 
 #include "step_clickclick_animation_BasicScene.h"
@@ -77,7 +79,7 @@ namespace step_clickclick
 			ss << std::endl;
 			ss << "[SPACE] : " << step_clickclick::game::TitleScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )

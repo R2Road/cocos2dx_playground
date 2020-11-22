@@ -156,6 +156,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpgui_ToolBarNode.cpp" />
     <ClCompile Include="..\Classes\cpg_Random.cpp" />
     <ClCompile Include="..\Classes\cpg_Setting.cpp" />
+    <ClCompile Include="..\Classes\cpg_StringTable.cpp" />
     <ClCompile Include="..\Classes\graph_practice_BasicScene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection01Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection02Scene.cpp" />
@@ -358,6 +359,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_Clamp.h" />
     <ClInclude Include="..\Classes\cpg_Random.h" />
     <ClInclude Include="..\Classes\cpg_Setting.h" />
+    <ClInclude Include="..\Classes\cpg_StringTable.h" />
     <ClInclude Include="..\Classes\graph_practice_BasicScene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection01Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection02Scene.h" />

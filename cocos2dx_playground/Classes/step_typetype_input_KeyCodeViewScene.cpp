@@ -4,6 +4,7 @@
 #include <numeric>
 #include <sstream>
 
+#include "cpg_StringTable.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -59,7 +60,7 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[Keyboard] : Show Key Code";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -80,7 +81,7 @@ namespace step_typetype
 			// KeyCode View
 			//
 			{
-				auto label = Label::createWithTTF( "Press Key", "fonts/NanumSquareR.ttf", 14 );
+				auto label = Label::createWithTTF( "Press Key", cpg::StringTable::GetFontPath(), 14 );
 				label->setTag( TAG_KeyCodeViewNode );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(

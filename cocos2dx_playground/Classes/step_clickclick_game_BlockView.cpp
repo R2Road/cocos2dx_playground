@@ -11,6 +11,8 @@
 #include "base/ccMacros.h"
 #include "ui/UIButton.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_clickclick_game_EffectView.h"
 #include "step_clickclick_game_Stage.h"
 
@@ -67,7 +69,7 @@ namespace step_clickclick
 			addChild( mViewNode, 1 );
 
 			// label
-			mLabelNode = Label::createWithTTF( "0", "fonts/NanumSquareR.ttf", 10 );
+			mLabelNode = Label::createWithTTF( "0", cpg::StringTable::GetFontPath(), 10 );
 			mLabelNode->getFontAtlas()->setAliasTexParameters();
 			mLabelNode->setColor( Color3B::WHITE );
 			mLabelNode->setAnchorPoint( Vec2( 0.5f, 0.5f ) );

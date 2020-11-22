@@ -12,6 +12,8 @@
 #include "base/CCEventDispatcher.h"
 #include "renderer/CCTextureCache.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_defender_tool_TileSheetNode.h"
 
 USING_NS_CC;
@@ -69,7 +71,7 @@ namespace step_defender
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -103,7 +105,7 @@ namespace step_defender
 			// Explain
 			//
 			{
-				auto label = Label::createWithTTF( "Select Tile", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Select Tile", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setPosition(

@@ -13,6 +13,8 @@
 #include "base/ccUTF8.h"
 #include "ui/UISlider.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace ui_practice
@@ -58,7 +60,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2::ANCHOR_TOP_LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x

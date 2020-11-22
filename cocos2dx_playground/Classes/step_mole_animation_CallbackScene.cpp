@@ -15,6 +15,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_mole_RootScene.h"
 
 USING_NS_CC;
@@ -72,7 +74,7 @@ namespace step_mole
 				ss << std::endl;
 				ss << "[A] : Play Animation";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -141,7 +143,7 @@ namespace step_mole
 			// Animation Status
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
 				label->setTag( TAG_AnimationStatusNode );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );

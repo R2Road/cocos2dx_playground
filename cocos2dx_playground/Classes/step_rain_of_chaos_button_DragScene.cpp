@@ -11,6 +11,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -68,7 +70,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[1] : Position Reset";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -100,7 +102,7 @@ namespace step_rain_of_chaos
 
 				// left label
 				{
-					auto label = Label::createWithTTF( "CLICK HERE ===>>>", "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( "CLICK HERE ===>>>", cpg::StringTable::GetFontPath(), 10 );
 					label->setColor( Color3B::GREEN );
 					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 					label->setPosition(
@@ -112,7 +114,7 @@ namespace step_rain_of_chaos
 
 				// right label
 				{
-					auto label = Label::createWithTTF( "<<<=== ...AND DRAG", "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( "<<<=== ...AND DRAG", cpg::StringTable::GetFontPath(), 10 );
 					label->setColor( Color3B::GREEN );
 					label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 					label->setPosition(

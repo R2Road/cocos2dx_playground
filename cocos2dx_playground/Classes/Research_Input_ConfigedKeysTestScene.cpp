@@ -5,7 +5,7 @@
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "Step99_RootScene.h"
+#include "cpg_StringTable.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
@@ -15,6 +15,7 @@
 
 #include "Research_Setting.h"
 
+#include "Step99_RootScene.h"
 USING_NS_CC;
 
 namespace research
@@ -74,7 +75,7 @@ namespace research
 					ss << "[ " << h.mName << " : " << cpg::input::KeyCodeNames::get( h.mKeycode ) << " ]" << std::endl;
 				}
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -88,7 +89,7 @@ namespace research
 			// exit interface
 			//
 			{
-				auto label = Label::createWithTTF( "Exit", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Exit", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 
 				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );

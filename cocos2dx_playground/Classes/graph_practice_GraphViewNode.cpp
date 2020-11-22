@@ -12,6 +12,8 @@
 #include "renderer/CCTextureCache.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace graph_practice
@@ -68,7 +70,7 @@ namespace graph_practice
 		// Title
 		//
 		{
-			auto label = Label::createWithTTF( title, "fonts/NanumSquareR.ttf", 10 );
+			auto label = Label::createWithTTF( title, cpg::StringTable::GetFontPath(), 10 );
 			label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 			label->setPositionX( getContentSize().width * 0.5f );
 			addChild( label, std::numeric_limits<int>::max() );

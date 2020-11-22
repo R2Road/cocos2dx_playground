@@ -11,6 +11,8 @@
 #include "ui/UILayout.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -193,7 +195,7 @@ namespace cpgui
 	}
 	void ToolBarNode::AddTool( const int tool_tag, const char* symbol_string, const int font_size, const std::function<void()>& callback )
 	{
-		auto label = Label::createWithTTF( symbol_string, "fonts/NanumSquareR.ttf", font_size );
+		auto label = Label::createWithTTF( symbol_string, cpg::StringTable::GetFontPath(), font_size );
 		AddTool( tool_tag, label, callback );
 	}
 

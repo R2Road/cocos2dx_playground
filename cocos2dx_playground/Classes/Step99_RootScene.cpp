@@ -4,6 +4,8 @@
 #include <numeric>
 #include <sstream>
 
+#include "cpg_StringTable.h"
+
 #include "PlayGroundScene.h"
 
 #include "Research_Input_KeyAllowScene.h"
@@ -86,7 +88,7 @@ namespace step99
 			ss << std::endl;
 			ss << "=============================";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12 );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12 );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )

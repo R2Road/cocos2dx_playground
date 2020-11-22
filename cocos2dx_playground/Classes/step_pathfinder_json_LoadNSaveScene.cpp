@@ -20,6 +20,8 @@
 #include "json/stringbuffer.h"
 #include "json/writer.h"
 
+#include "cpg_StringTable.h"
+
 #include "helper_Win32DirectoryOpen.h"
 #include "step_pathfinder_RootScene.h"
 
@@ -73,7 +75,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -98,7 +100,7 @@ namespace step_pathfinder
 
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Target Path>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<Target Path>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 1.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -121,7 +123,7 @@ namespace step_pathfinder
 						} );
 						addChild( button );
 						{
-							auto title_label = Label::createWithTTF( "Open Folder", "fonts/NanumSquareR.ttf", 12 );
+							auto title_label = Label::createWithTTF( "Open Folder", cpg::StringTable::GetFontPath(), 12 );
 							button->setTitleLabel( title_label );
 
 							button->setContentSize( title_label->getContentSize() + Size( 10.f, 4.f ) + Size( 10.f, 4.f ) );
@@ -139,7 +141,7 @@ namespace step_pathfinder
 
 				// Path
 				{
-					auto label = Label::createWithTTF( FileUtils::getInstance()->getWritablePath().c_str(), "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( FileUtils::getInstance()->getWritablePath().c_str(), cpg::StringTable::GetFontPath(), 10 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
@@ -157,7 +159,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<File Name>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<File Name>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -168,7 +170,7 @@ namespace step_pathfinder
 
 				// Name
 				{
-					auto label = Label::createWithTTF( FilePath_Step_Pathfinder_Json_LoadNSave, "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( FilePath_Step_Pathfinder_Json_LoadNSave, cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
@@ -198,7 +200,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Json File Content String>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<Json File Content String>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -209,7 +211,7 @@ namespace step_pathfinder
 
 				// Content
 				{
-					auto label = Label::createWithTTF( json_string.c_str(), "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( json_string.c_str(), cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
@@ -226,7 +228,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Parsed Json Data>", "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( "<Parsed Json Data>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -243,7 +245,7 @@ namespace step_pathfinder
 						ss << "   " << i;
 					}
 
-					auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 14 );
+					auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(

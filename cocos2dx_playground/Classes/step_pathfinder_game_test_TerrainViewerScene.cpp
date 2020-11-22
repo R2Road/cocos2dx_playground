@@ -11,6 +11,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_pathfinder_game_TerrainViewer.h"
 
 USING_NS_CC;
@@ -65,7 +67,7 @@ namespace step_pathfinder
 				ss << std::endl;
 				ss << "[R] : Reset";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -87,7 +89,7 @@ namespace step_pathfinder
 			//
 			{
 				// Explain Label
-				auto label = Label::createWithTTF( "Original Data", "fonts/NanumSquareR.ttf", 11 );
+				auto label = Label::createWithTTF( "Original Data", cpg::StringTable::GetFontPath(), 11 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					visibleOrigin
@@ -111,7 +113,7 @@ namespace step_pathfinder
 			//
 			{
 				// Explain Label
-				auto label = Label::createWithTTF( "Fixed Data 4 Game", "fonts/NanumSquareR.ttf", 11 );
+				auto label = Label::createWithTTF( "Fixed Data 4 Game", cpg::StringTable::GetFontPath(), 11 );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					visibleOrigin

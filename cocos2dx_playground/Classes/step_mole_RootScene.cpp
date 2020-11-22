@@ -4,6 +4,7 @@
 #include <numeric>
 #include <sstream>
 
+#include "cpg_StringTable.h"
 #include "helper_SceneMover.h"
 
 #include "step_mole_animation_CallbackScene.h"
@@ -82,7 +83,7 @@ namespace step_mole
 			ss << std::endl;
 			ss << "[SPACE] : " << step_mole::game::TitleScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )

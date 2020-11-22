@@ -4,6 +4,7 @@
 #include <numeric>
 #include <sstream>
 
+#include "cpg_StringTable.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -51,7 +52,7 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( label->getContentSize().width * 0.5f )
 					, visibleOrigin.y + visibleSize.height - ( label->getContentSize().height * 0.5f )
@@ -79,7 +80,7 @@ namespace step_typetype
 				) );
 				addChild( pivot_indicator );
 
-				auto label = Label::createWithTTF( "< == Pivot", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "< == Pivot", cpg::StringTable::GetFontPath(), 12 );
 				label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 				label->setPosition( pivot_indicator->getPosition() + Vec2( 10.f, 0.f ) );
 				addChild( label );
@@ -104,7 +105,7 @@ namespace step_typetype
 					sprite->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					root_node->addChild( sprite );
 
-					auto label = Label::createWithTTF( "Anchor Point\n0, 0", "fonts/NanumSquareR.ttf", 12 );
+					auto label = Label::createWithTTF( "Anchor Point\n0, 0", cpg::StringTable::GetFontPath(), 12 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );
@@ -131,7 +132,7 @@ namespace step_typetype
 					sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 					root_node->addChild( sprite );
 
-					auto label = Label::createWithTTF( "Anchor Point\n0.5, 0.5\n\nDefault", "fonts/NanumSquareR.ttf", 12 );
+					auto label = Label::createWithTTF( "Anchor Point\n0.5, 0.5\n\nDefault", cpg::StringTable::GetFontPath(), 12 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );
@@ -158,7 +159,7 @@ namespace step_typetype
 					sprite->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					root_node->addChild( sprite );
 
-					auto label = Label::createWithTTF( "Anchor Point\n1, 1", "fonts/NanumSquareR.ttf", 12 );
+					auto label = Label::createWithTTF( "Anchor Point\n1, 1", cpg::StringTable::GetFontPath(), 12 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPositionY( -visibleSize.height * 0.2f );

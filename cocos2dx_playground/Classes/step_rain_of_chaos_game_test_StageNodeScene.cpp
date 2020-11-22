@@ -12,6 +12,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_EnemyNode.h"
 #include "step_rain_of_chaos_game_PlayerNode.h"
@@ -95,7 +97,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[S] Fire Amount - Decrease";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -116,7 +118,7 @@ namespace step_rain_of_chaos
 			// Current Move Speed
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setTag( TAG_MoveSpeedView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
@@ -133,7 +135,7 @@ namespace step_rain_of_chaos
 			// Spawn Target Count
 			//
 			{
-				auto label = Label::createWithTTF( "Temp", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( "Temp", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setTag( TAG_FireAmountView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );

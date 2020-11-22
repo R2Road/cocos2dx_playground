@@ -17,6 +17,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "cpg_Random.h"
+#include "cpg_StringTable.h"
 
 #include "step_rain_of_chaos_game_BackgroundNode.h"
 #include "step_rain_of_chaos_game_PlayerNode.h"
@@ -116,7 +117,7 @@ namespace step_rain_of_chaos
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -131,7 +132,7 @@ namespace step_rain_of_chaos
 			{
 				auto label = Label::createWithTTF(
 					"BGM : Empty Space\nAuthor : tcarisland\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
-					, "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT
+					, cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
@@ -269,7 +270,7 @@ namespace step_rain_of_chaos
 			// Ready
 			//
 			{
-				auto label = Label::createWithTTF( "READY", "fonts/NanumSquareR.ttf", 28 );
+				auto label = Label::createWithTTF( "READY", cpg::StringTable::GetFontPath(), 28 );
 				label->setTag( TAG_Ready );
 				label->setPosition( visibleCenter );
 				label->setOpacity( 0u );
@@ -280,7 +281,7 @@ namespace step_rain_of_chaos
 			// Go
 			//
 			{
-				auto label = Label::createWithTTF( "GO", "fonts/NanumSquareR.ttf", 28 );
+				auto label = Label::createWithTTF( "GO", cpg::StringTable::GetFontPath(), 28 );
 				label->setTag( TAG_Go );
 				label->setPosition( visibleCenter );
 				label->setOpacity( 0u );
@@ -302,7 +303,7 @@ namespace step_rain_of_chaos
 				) );
 				addChild( game_over_indicator, std::numeric_limits<int>::max() - 1 );
 				{
-					auto label = Label::createWithTTF( "Game Over", "fonts/NanumSquareR.ttf", 20 );
+					auto label = Label::createWithTTF( "Game Over", cpg::StringTable::GetFontPath(), 20 );
 					label->setColor( Color3B::RED );
 					label->setPosition( Vec2(
 						game_over_indicator->getContentSize().width * 0.5f

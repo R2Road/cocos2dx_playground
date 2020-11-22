@@ -15,6 +15,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace step_rain_of_chaos
@@ -62,7 +64,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -86,7 +88,7 @@ namespace step_rain_of_chaos
 				std::stringstream ss;
 				ss << "Use SpriteBatchNode::insertQuadFromSprite instead addChild";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
@@ -159,7 +161,7 @@ namespace step_rain_of_chaos
 				// Child Count View
 				//
 				{
-					auto label = Label::createWithTTF( StringUtils::format( "Child Count : %d", sprite_batch_node->getChildrenCount() ), "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( StringUtils::format( "Child Count : %d", sprite_batch_node->getChildrenCount() ), cpg::StringTable::GetFontPath(), 10 );
 					label->setPosition( Vec2(
 						visibleOrigin.x + ( visibleSize.width * 0.5f )
 						, visibleOrigin.y + ( visibleSize.height * 0.8f )

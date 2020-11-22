@@ -3,6 +3,8 @@
 #include <new>
 #include <sstream>
 
+#include "cpg_StringTable.h"
+
 #include "step_typetype_RootScene.h"
 #include "step_clickclick_RootScene.h"
 #include "step_pathfinder_RootScene.h"
@@ -91,7 +93,7 @@ bool PlayGroundScene::init()
 		ss << std::endl;
 		ss << "[S] : " << step99::RootScene::getTitle();
 
-		auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 		label->setPosition( Vec2(
 			visibleOrigin.x + ( visibleSize.width * 0.5f )
 			, visibleOrigin.y + ( visibleSize.height * 0.5f )

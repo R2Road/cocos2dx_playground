@@ -15,6 +15,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -74,7 +76,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[2] : Show Batch Node";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -108,7 +110,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "For that reason, it is not necessary to use it.";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(
@@ -122,7 +124,7 @@ namespace step_rain_of_chaos
 			// Current Node Type View
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
 				label->setTag( TAG_CurrentNodeTypeView );
 				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -135,7 +137,7 @@ namespace step_rain_of_chaos
 			// Draw Call Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "<==== Same Draw Call", "fonts/NanumSquareR.ttf", 10 );
+				auto label = Label::createWithTTF( "<==== Same Draw Call", cpg::StringTable::GetFontPath(), 10 );
 				label->setAnchorPoint( Vec2( 1.f, 0.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition( Vec2(

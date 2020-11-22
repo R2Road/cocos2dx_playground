@@ -4,6 +4,8 @@
 #include <numeric>
 #include <sstream>
 
+#include "cpg_StringTable.h"
+
 #include "PlayGroundScene.h"
 
 #include "step_pathfinder_fileutil_PathScene.h"
@@ -79,7 +81,7 @@ namespace step_pathfinder
 			ss << std::endl;
 			ss << "[SPACE] : " << step_pathfinder::game::TitleScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )

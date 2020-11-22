@@ -11,6 +11,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_StringTable.h"
 #include "cpgui_ScrollViewGenerator.h"
 
 USING_NS_CC;
@@ -58,7 +59,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -103,7 +104,7 @@ namespace ui_practice
 			{
 				auto label = Label::createWithTTF(
 					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), config.ItemVisibleCount )
-					, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT
+					, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT
 				);
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setColor( Color3B::GREEN );
@@ -143,7 +144,7 @@ namespace ui_practice
 			{
 				auto label = Label::createWithTTF(
 					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), config.ItemVisibleCount )
-					, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT
+					, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT
 				);
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setColor( Color3B::GREEN );
@@ -188,7 +189,7 @@ namespace ui_practice
 			{
 				auto label = Label::createWithTTF(
 					StringUtils::format( "Item Count : %d\nVisible Count %d", item_info_container.size(), config.ItemVisibleCount )
-					, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT
+					, cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT
 				);
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setColor( Color3B::GREEN );

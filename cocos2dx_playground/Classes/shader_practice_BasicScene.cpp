@@ -18,6 +18,8 @@
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/ccShaders.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace
@@ -70,7 +72,7 @@ namespace shader_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -91,7 +93,7 @@ namespace shader_practice
 		// Custome Shader Path
 		//
 		{
-			auto label_1 = Label::createWithTTF( CustomeShaderPath, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label_1 = Label::createWithTTF( CustomeShaderPath, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label_1->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label_1->setColor( Color3B::GREEN );
 			label_1->setPosition( Vec2(
@@ -100,7 +102,7 @@ namespace shader_practice
 			) );
 			addChild( label_1, std::numeric_limits<int>::max() );
 
-			auto label_2 = Label::createWithTTF( "Custome Shader Path : ", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label_2 = Label::createWithTTF( "Custome Shader Path : ", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label_2->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label_2->setPosition(
 				label_1->getPosition()
@@ -122,7 +124,7 @@ namespace shader_practice
 
 			// Explain
 			{
-				auto label = Label::createWithTTF( "cocos2d-x Default Shader", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "cocos2d-x Default Shader", cpg::StringTable::GetFontPath(), FontSize, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					view_node->getPosition()
@@ -182,7 +184,7 @@ namespace shader_practice
 
 			// Explain
 			{
-				auto label = Label::createWithTTF( "Custome Shader", "fonts/NanumSquareR.ttf", FontSize, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Custome Shader", cpg::StringTable::GetFontPath(), FontSize, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					view_node->getPosition()

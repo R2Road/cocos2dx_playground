@@ -2,6 +2,7 @@
 
 #include <new>
 
+#include "cpg_StringTable.h"
 #include "step_typetype_RootScene.h"
 
 USING_NS_CC;
@@ -42,7 +43,7 @@ namespace step_typetype
 		{
 			const char* label_string = "This is Test Label ^_^\n\n[ESC Key] : Return to Root";
 
-			auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 30 );
+			auto label = Label::createWithTTF( label_string, cpg::StringTable::GetFontPath(), 30 );
 			label->setColor( Color3B::GREEN );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )

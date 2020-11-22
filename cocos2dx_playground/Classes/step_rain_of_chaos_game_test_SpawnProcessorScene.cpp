@@ -14,6 +14,8 @@
 #include "ui/UILayout.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_StringTable.h"
+
 #include "step_mole_CircleCollisionComponentConfig.h"
 #include "step_rain_of_chaos_game_BulletManager.h"
 #include "step_rain_of_chaos_game_EnemyNode.h"
@@ -100,7 +102,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[SPACE] : Start Process";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -302,7 +304,7 @@ namespace step_rain_of_chaos
 
 					// Label
 					{
-						auto label = Label::createWithTTF( mPackgeContainer[i].Name, "fonts/NanumSquareR.ttf", 7 );
+						auto label = Label::createWithTTF( mPackgeContainer[i].Name, cpg::StringTable::GetFontPath(), 7 );
 						label->getFontAtlas()->setAliasTexParameters();
 						button->setTitleLabel( label );
 					}

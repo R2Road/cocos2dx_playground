@@ -10,6 +10,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 
+#include "cpg_StringTable.h"
 #include "CPG_Input_KeyCodeNames.h"
 #include "step_rain_of_chaos_RootScene.h"
 
@@ -61,7 +62,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[Keyboard] : Do Type";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -81,7 +82,7 @@ namespace step_rain_of_chaos
 			//
 			// key viewer
 			//
-			mKeyViewer = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+			mKeyViewer = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
 			mKeyViewer->setColor( Color3B::GREEN );
 			mKeyViewer->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )

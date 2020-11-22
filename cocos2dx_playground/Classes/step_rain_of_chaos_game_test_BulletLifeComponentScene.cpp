@@ -15,6 +15,7 @@
 #include "ui/UIScale9Sprite.h"
 
 #include "cpg_Clamp.h"
+#include "cpg_StringTable.h"
 
 #include "step_mole_AnimationComponent.h"
 #include "step_rain_of_chaos_game_AnimationInfoContainer.h"
@@ -87,7 +88,7 @@ namespace step_rain_of_chaos
 				ss << std::endl;
 				ss << "[Arrow Key - Down] : Move Speed - Decrease";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -120,7 +121,7 @@ namespace step_rain_of_chaos
 				sprite->setPosition( mStageConfig.GetStageRect().origin );
 				addChild( sprite );
 				{
-					auto label = Label::createWithTTF( "Stage Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+					auto label = Label::createWithTTF( "Stage Area", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::RIGHT );
 					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( Vec2(
@@ -142,7 +143,7 @@ namespace step_rain_of_chaos
 				sprite->setPosition( mStageConfig.GetBulletLifeRect().origin );
 				addChild( sprite );
 				{
-					auto label = Label::createWithTTF( "Bullet Life Area", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT );
+					auto label = Label::createWithTTF( "Bullet Life Area", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::RIGHT );
 					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					label->setColor( Color3B::RED );
 					label->setPosition( Vec2(
@@ -161,7 +162,7 @@ namespace step_rain_of_chaos
 				draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
 				addChild( draw_node, std::numeric_limits<int>::min() );
 
-				auto label = Label::createWithTTF( "Bullet Generate Area Min", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+				auto label = Label::createWithTTF( "Bullet Generate Area Min", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::RIGHT );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setColor( Color3B::WHITE );
 				label->setPosition(
@@ -179,7 +180,7 @@ namespace step_rain_of_chaos
 				draw_node->drawCircle( mStageConfig.GetCenter(), radius, 0.f, 50, false, 1.0f, 1.0f, Color4F::WHITE );
 				addChild( draw_node, std::numeric_limits<int>::min() );
 
-				auto label = Label::createWithTTF( "Bullet Generate Area Max", "fonts/NanumSquareR.ttf", 8, Size::ZERO, TextHAlignment::RIGHT );
+				auto label = Label::createWithTTF( "Bullet Generate Area Max", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::RIGHT );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				label->setColor( Color3B::WHITE );
 				label->setPosition(
@@ -193,7 +194,7 @@ namespace step_rain_of_chaos
 			// Current Move Speed
 			//
 			{
-				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 				label->setTag( TAG_MoveSpeedView );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				label->setColor( Color3B::GREEN );

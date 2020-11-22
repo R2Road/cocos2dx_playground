@@ -13,6 +13,8 @@
 #include "base/ccUTF8.h"
 #include "ui/UISlider.h"
 
+#include "cpg_StringTable.h"
+
 USING_NS_CC;
 
 namespace ui_practice
@@ -58,7 +60,7 @@ namespace ui_practice
 			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition( Vec2(
 				visibleOrigin.x
@@ -94,7 +96,7 @@ namespace ui_practice
 			) );
 			addChild( slider );
 
-			auto label = Label::createWithTTF( "Slider : Normal", "fonts/NanumSquareR.ttf", 10 );
+			auto label = Label::createWithTTF( "Slider : Normal", cpg::StringTable::GetFontPath(), 10 );
 			label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 			label->setColor( Color3B::GREEN );
 			label->setPosition( slider->getPosition() - Vec2( 0.f, 20.f ) );
@@ -122,7 +124,7 @@ namespace ui_practice
 
 			slider->setPercent( 10 );
 
-			auto label = Label::createWithTTF( "Slider : With Scale9Enable\n\n ...mm Not Good", "fonts/NanumSquareR.ttf", 10 );
+			auto label = Label::createWithTTF( "Slider : With Scale9Enable\n\n ...mm Not Good", cpg::StringTable::GetFontPath(), 10 );
 			label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 			label->setColor( Color3B::GREEN );
 			label->setPosition( slider->getPosition() - Vec2( 0.f, 20.f ) );
@@ -141,7 +143,7 @@ namespace ui_practice
 			addChild( root_node );
 			{
 				// Percent
-				auto percent_label = Label::createWithTTF( "slider : 0", "fonts/NanumSquareR.ttf", 10 );
+				auto percent_label = Label::createWithTTF( "slider : 0", cpg::StringTable::GetFontPath(), 10 );
 				percent_label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				percent_label->setColor( Color3B::ORANGE );
 				percent_label->setPosition( root_node->getPosition() + Vec2( 0.f, 20.f ) );
@@ -179,7 +181,7 @@ namespace ui_practice
 
 				// Explain
 				{
-					auto label = Label::createWithTTF( "Slider : + @", "fonts/NanumSquareR.ttf", 10 );
+					auto label = Label::createWithTTF( "Slider : + @", cpg::StringTable::GetFontPath(), 10 );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setPosition( root_node->getPosition() - Vec2( 0.f, 20.f ) );

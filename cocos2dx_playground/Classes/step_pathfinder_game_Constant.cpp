@@ -6,6 +6,8 @@
 #include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 
+#include "cpg_StringTable.h"
+
 namespace step_pathfinder
 {
 	namespace game
@@ -41,7 +43,7 @@ namespace step_pathfinder
 
 		cocos2d::Size GetMaxMenuSize()
 		{
-			auto label = cocos2d::Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+			auto label = cocos2d::Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
 
 			const cocos2d::Size button_margin( 10.f, 4.f );
 			cocos2d::Size max_size;

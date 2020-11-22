@@ -11,6 +11,8 @@
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 
+#include "cpg_StringTable.h"
+
 #include "cpgui_ToolBarNode.h"
 
 USING_NS_CC;
@@ -68,7 +70,7 @@ namespace cpgui
 				ss << std::endl;
 				ss << "[2] : Clear";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->getFontAtlas()->setAliasTexParameters();
 				label->setAnchorPoint( Vec2( 0.0f, 1.0f ) );
 				label->setPosition(
