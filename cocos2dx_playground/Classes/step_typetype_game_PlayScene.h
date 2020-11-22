@@ -19,7 +19,10 @@ namespace step_typetype
 			static const char* getTitle() { return "Game : Play"; }
 			static cocos2d::Scene* create();
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void update( float dt ) override;
 			void onExit() override;

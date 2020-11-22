@@ -15,7 +15,10 @@ namespace step_typetype
 			static const char* getTitle() { return "Game : Result"; }
 			static cocos2d::Scene* create( const double clear_time );
 
+		private:
 			bool init( const double clear_time );
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 

@@ -14,7 +14,10 @@ namespace step_typetype
 			static const char* getTitle() { return "Input : Keycode View"; }
 			static cocos2d::Scene* create();
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 
