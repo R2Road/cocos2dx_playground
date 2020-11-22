@@ -148,6 +148,7 @@ namespace step_typetype
 			//
 			for( std::size_t i = 0; i < stage.GetLength(); ++i )
 			{
+				mLetters[i]->setVisible( true );
 				mLetters[i]->Reset( stage.GetLetter( i ) );
 				mLetters[i]->setPosition(
 					letter_pivot_position

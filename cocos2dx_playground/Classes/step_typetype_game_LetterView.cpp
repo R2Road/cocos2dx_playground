@@ -51,8 +51,6 @@ namespace step_typetype
 
 		void LetterView::Reset( const char letter )
 		{
-			setVisible( true );
-
 			mLabel->setString( StringUtils::format( "%c", letter ) );
 			mLabel->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 			mLabel->setColor( Color3B::WHITE );
