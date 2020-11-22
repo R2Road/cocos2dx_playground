@@ -4,25 +4,28 @@
 
 namespace step_typetype
 {
-	class BasicScene : public cocos2d::Scene
+	namespace label_ttf
 	{
-	public:
-		BasicScene();
+		class BasicScene : public cocos2d::Scene
+		{
+		public:
+			BasicScene();
 
-		static const char* getTitle() { return "Label"; }
-		static cocos2d::Scene* create();
+			static const char* getTitle() { return "Label TTF"; }
+			static cocos2d::Scene* create();
 
-	private:
-		bool init() override;
+		private:
+			bool init() override;
 
-	public:
-		void onEnter() override;
-		void onExit() override;
+		public:
+			void onEnter() override;
+			void onExit() override;
 
-	private:
-		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+		private:
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
-	private:
-		cocos2d::EventListenerKeyboard* mKeyboardListener;
-	};
+		private:
+			cocos2d::EventListenerKeyboard* mKeyboardListener;
+		};
+	}
 }
