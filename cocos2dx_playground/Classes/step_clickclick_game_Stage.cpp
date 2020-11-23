@@ -51,7 +51,7 @@ namespace step_clickclick
 		StageUp Stage::create( const int width, const int height )
 		{
 			StageUp ret( new ( std::nothrow ) Stage( width, height ) );
-			if( !ret || !ret->Init() )
+			if( !ret || !ret->init() )
 			{
 				ret.reset();
 				return nullptr;
@@ -60,7 +60,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool Stage::Init()
+		bool Stage::init()
 		{
 			for( int ty = 0; ty < mStageHeight; ++ty )
 			{

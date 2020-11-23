@@ -21,7 +21,7 @@ namespace step_clickclick
 			static StageUp create( const int width, const int height );
 
 		private:
-			bool Init();
+			bool init();
 
 		public:
 			void Setup( const int width, const int height );
