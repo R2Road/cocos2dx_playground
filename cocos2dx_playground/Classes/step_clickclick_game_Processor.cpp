@@ -46,7 +46,7 @@ namespace step_clickclick
 						const auto& target_block_data = stage->GetBlockData( cur_x, cur_y );
 
 						// is pivot
-						if( block_linear_index == target_block_data.GetIndex() )
+						if( pivot_block_data.GetIndex() == target_block_data.GetIndex() )
 						{
 							continue;
 						}
