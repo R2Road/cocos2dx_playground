@@ -1,6 +1,5 @@
 #pragma once
 
-#include <functional>
 #include <vector>
 #include <memory>
 
@@ -17,7 +16,6 @@ namespace step_mole
 		private:
 			using ValueT = int;
 			using ContainerT = std::vector<ValueT>;
-			using RestRequestCallback = std::function<void( ValueT )>;
 
 			TargetManager();
 
