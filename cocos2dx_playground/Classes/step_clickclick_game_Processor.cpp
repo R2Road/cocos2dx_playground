@@ -14,11 +14,11 @@ namespace step_clickclick
 	{
 		void Processor::Do( Stage* stage, StageView* stage_view, const int block_linear_index, int* out_score )
 		{
-			const auto& block_data = stage->GetBlockData( block_linear_index );
-			const auto block_point_index = stage->ConvertLinearIndex2PointIndex( block_data.GetIndex() );
+			const auto& pivot_block_data = stage->GetBlockData( block_linear_index );
+			const auto block_point_index = stage->ConvertLinearIndex2PointIndex( pivot_block_data.GetIndex() );
 			int last_life = 0;
 
-			if( eBlockType::Single == block_data.GetType() )
+			if( eBlockType::Single == pivot_block_data.GetType() )
 			{
 				cocos2d::experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 
@@ -61,27 +61,27 @@ namespace step_clickclick
 					}
 				}
 
-				last_life = block_data.GetLife();
+				last_life = pivot_block_data.GetLife();
 				if( has_neighbor )
 				{
 					++*out_score;
 
-					stage->DecreaseBlockLife( block_data.GetIndex() );
-					stage_view->UpdateBlock( block_data.GetIndex(), last_life, block_data.GetLife() );
+					stage->DecreaseBlockLife( pivot_block_data.GetIndex() );
+					stage_view->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
 				}
 				else
 				{
-					*out_score = std::max( 0, *out_score - block_data.GetLife() );
+					*out_score = std::max( 0, *out_score - pivot_block_data.GetLife() );
 
-					stage->DieBlock( block_data.GetIndex() );
-					stage_view->UpdateBlock( block_data.GetIndex(), last_life, block_data.GetLife() );
+					stage->DieBlock( pivot_block_data.GetIndex() );
+					stage_view->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
 				}
 			}
-			else if( eBlockType::Same == block_data.GetType() )
+			else if( eBlockType::Same == pivot_block_data.GetType() )
 			{
 				cocos2d::experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 
-				const int pivot_life = block_data.GetLife();
+				const int pivot_life = pivot_block_data.GetLife();
 
 				const int start_x = block_point_index.x - 1;
 				const int start_y = block_point_index.y - 1;
@@ -123,11 +123,11 @@ namespace step_clickclick
 					}
 				}
 			}
-			else if( eBlockType::Different == block_data.GetType() )
+			else if( eBlockType::Different == pivot_block_data.GetType() )
 			{
 				cocos2d::experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 
-				const int pivot_life = block_data.GetLife();
+				const int pivot_life = pivot_block_data.GetLife();
 
 				const int start_x = block_point_index.x - 1;
 				const int start_y = block_point_index.y - 1;
@@ -150,7 +150,7 @@ namespace step_clickclick
 						}
 
 						last_life = target_block_data.GetLife();
-						if( target_block_data.GetIndex() != block_data.GetIndex() && pivot_life == target_block_data.GetLife() )
+						if( target_block_data.GetIndex() != pivot_block_data.GetIndex() && pivot_life == target_block_data.GetLife() )
 						{
 							stage->IncreaseBlockLife( target_block_data.GetIndex() );
 							stage->IncreaseBlockLife( target_block_data.GetIndex() );
