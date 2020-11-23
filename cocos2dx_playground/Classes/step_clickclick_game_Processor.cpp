@@ -15,15 +15,15 @@ namespace step_clickclick
 		void Processor::Do( Stage* stage, StageView* stage_view, const int block_linear_index, int* out_score )
 		{
 			const auto& pivot_block_data = stage->GetBlockData( block_linear_index );
-			const auto block_point_index = stage->ConvertLinearIndex2PointIndex( pivot_block_data.GetIndex() );
+			const auto pivot_block_point_index = stage->ConvertLinearIndex2PointIndex( pivot_block_data.GetIndex() );
 			int last_life = 0;
 
 			if( eBlockType::Single == pivot_block_data.GetType() )
 			{
 				cocos2d::experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 
-				const int start_x = block_point_index.x - 1;
-				const int start_y = block_point_index.y - 1;
+				const int start_x = pivot_block_point_index.x - 1;
+				const int start_y = pivot_block_point_index.y - 1;
 				const int end_x = start_x + 3;
 				const int end_y = start_y + 3;
 
@@ -38,7 +38,7 @@ namespace step_clickclick
 						}
 
 						// check up, down, left, right
-						if( cur_x != block_point_index.x && cur_y != block_point_index.y )
+						if( cur_x != pivot_block_point_index.x && cur_y != pivot_block_point_index.y )
 						{
 							continue;
 						}
@@ -83,8 +83,8 @@ namespace step_clickclick
 
 				const int pivot_life = pivot_block_data.GetLife();
 
-				const int start_x = block_point_index.x - 1;
-				const int start_y = block_point_index.y - 1;
+				const int start_x = pivot_block_point_index.x - 1;
+				const int start_y = pivot_block_point_index.y - 1;
 				const int end_x = start_x + 3;
 				const int end_y = start_y + 3;
 
@@ -129,8 +129,8 @@ namespace step_clickclick
 
 				const int pivot_life = pivot_block_data.GetLife();
 
-				const int start_x = block_point_index.x - 1;
-				const int start_y = block_point_index.y - 1;
+				const int start_x = pivot_block_point_index.x - 1;
+				const int start_y = pivot_block_point_index.y - 1;
 				const int end_x = start_x + 3;
 				const int end_y = start_y + 3;
 
