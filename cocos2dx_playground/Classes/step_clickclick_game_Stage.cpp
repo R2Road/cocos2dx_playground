@@ -183,5 +183,5 @@ namespace step_clickclick
 			mBlocks[linear_index].Die();
 			--mActiveBlockCount;
 		}
-	} // namespace game
-} // namespace step_clickclick
+	}
+}
