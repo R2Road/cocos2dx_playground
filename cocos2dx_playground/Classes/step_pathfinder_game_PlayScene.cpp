@@ -267,16 +267,11 @@ namespace step_pathfinder
 			{
 				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
 
-				if( mStageDataContainer.Size() == mCurrentStageDataIndex + 1 )
+				if( !goNextStage() )
 				{
 					// game clear
 					mbPlayerLive = false;
 					startExitProcess( eNextSceneType::Result, 1.f );
-				}
-				else
-				{
-					// go next stage
-					goNextStage();
 				}
 			}
 			else
