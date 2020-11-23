@@ -137,11 +137,11 @@ namespace step_clickclick
 
 				auto itr_block_type = block_type_list.cbegin();
 				int linear_index = 0;
-				for( int ty = start_y; ty < end_y; ++ty )
+				for( int cur_y = start_y; cur_y < end_y; ++cur_y )
 				{
-					for( int tx = start_x; tx < end_x; ++tx )
+					for( int cur_x = start_x; cur_x < end_x; ++cur_x )
 					{
-						linear_index = mGridIndexConverter.To_Linear( tx, ty );
+						linear_index = mGridIndexConverter.To_Linear( cur_x, cur_y );
 
 						mBlocks[linear_index].Reset( *itr_block_type, GetRandomInt( 3, 9 ) );
 						++itr_block_type;
