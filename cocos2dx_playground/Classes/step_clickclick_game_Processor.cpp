@@ -34,12 +34,15 @@ namespace step_clickclick
 							continue;
 						}
 
+						// check up, down, left, right
 						if( tx != block_point_index.x && ty != block_point_index.y )
 						{
 							continue;
 						}
 
 						const auto& target_block_data = stage->GetBlockData( tx, ty );
+
+						// is pivot
 						if( block_linear_index == target_block_data.GetIndex() )
 						{
 							continue;
