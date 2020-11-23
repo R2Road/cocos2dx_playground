@@ -125,7 +125,7 @@ namespace step_clickclick
 
 			const int current_pivot_x = mCenterX - ( width / 2 );
 			const int current_pivot_y = mCenterY - ( height / 2 );
-			auto t_type = block_type_list.cbegin();
+			auto itr_block_type = block_type_list.cbegin();
 			int linear_index = 0;
 			for( int ty = current_pivot_y; ty < current_pivot_y + height; ++ty )
 			{
@@ -133,8 +133,8 @@ namespace step_clickclick
 				{
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					mBlocks[linear_index].Reset( *t_type, GetRandomInt( 3, 9 ) );
-					++t_type;
+					mBlocks[linear_index].Reset( *itr_block_type, GetRandomInt( 3, 9 ) );
+					++itr_block_type;
 				}
 			}
 		}
