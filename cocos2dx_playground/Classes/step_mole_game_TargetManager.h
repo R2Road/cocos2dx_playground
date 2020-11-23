@@ -1,7 +1,7 @@
 #pragma once
 
 #include <functional>
-#include <list>
+#include <vector>
 #include <memory>
 
 #include "step_mole_game_StageConfig.h"
@@ -16,7 +16,7 @@ namespace step_mole
 		{
 		private:
 			using ValueT = int;
-			using ContainerT = std::list<ValueT>;
+			using ContainerT = std::vector<ValueT>;
 			using RestRequestCallback = std::function<void( ValueT )>;
 
 			TargetManager();
@@ -35,6 +35,7 @@ namespace step_mole
 
 		private:
 			ContainerT mIdleTarget;
+			ContainerT::const_iterator mIdleTargetIndicator;
 			ContainerT mRestTarget;
 		};
 	}

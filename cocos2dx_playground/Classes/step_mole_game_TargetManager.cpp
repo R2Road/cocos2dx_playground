@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <numeric>
 #include <random>
-#include <vector>
 
 #include "base/CCConsole.h"
 #include "platform/CCPlatformMacros.h"
@@ -14,6 +13,8 @@ namespace step_mole
 	{
 		TargetManager::TargetManager() :
 			mIdleTarget()
+			, mIdleTargetIndicator()
+			, mRestTarget()
 		{}
 
 		TargetManagerUp TargetManager::create( const StageConfig& stage_config )
@@ -32,47 +33,41 @@ namespace step_mole
 		{
 			const auto target_count = stage_config.BlockCount_Horizontal* stage_config.BlockCount_Vercital;
 			mIdleTarget.resize( target_count, -1 );
-			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......
-
-			
+			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......			
 			shuffle( mIdleTarget );
+			mIdleTargetIndicator = mIdleTarget.begin();
+
+			mRestTarget.reserve( target_count );
 
 			return true;
 		}
 
 		void TargetManager::shuffle( ContainerT& target_container )
 		{
-			//
-			// shuffle for list : from cplusplus.com
-			// ...mm not good.
-			//
-			std::vector<ValueT> temp_vector( target_container.begin(), target_container.end() );
-			std::shuffle( temp_vector.begin(), temp_vector.end(), std::mt19937{ std::random_device{}( ) } );
-			ContainerT shuffled_list{ temp_vector.begin(), temp_vector.end() };
-			target_container.swap( shuffled_list );
+			std::shuffle( target_container.begin(), target_container.end(), std::mt19937{ std::random_device{}( ) } );
 		}
 
 		int TargetManager::GetIdleTarget()
 		{
 			int ret = -1;
 
-			if( mIdleTarget.empty() )
+			if( mIdleTarget.end() == mIdleTargetIndicator )
 			{
 				Refill();
-				if( mIdleTarget.empty() )
+				if( mIdleTarget.end() == mIdleTargetIndicator )
 				{
 					return ret;
 				}
 			}
 
-			ret = ( *mIdleTarget.begin() );
-			mIdleTarget.pop_front();
+			ret = ( *mIdleTargetIndicator );
+			++mIdleTargetIndicator;
 			return ret;
 		}
 
 		void TargetManager::ComeHomeTarget( const int target_index )
 		{
-			mRestTarget.push_front( target_index );
+			mRestTarget.push_back( target_index );
 			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
 		}
 
@@ -85,7 +80,11 @@ namespace step_mole
 			}
 
 			shuffle( mRestTarget );
-			mIdleTarget.splice( mIdleTarget.end(), mRestTarget );
+			mRestTarget.swap( mIdleTarget );
+			mRestTarget.clear();
+
+			mIdleTargetIndicator = mIdleTarget.begin();
+
 			CCLOG( "Refill Successes" );
 		}
 	}
