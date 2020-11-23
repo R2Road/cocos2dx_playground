@@ -149,8 +149,6 @@ namespace step_pathfinder
 					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.5f )
 				) );
 				addChild( mTerrainViewer );
-
-				updateTerrainViewer();
 			}
 
 			//
