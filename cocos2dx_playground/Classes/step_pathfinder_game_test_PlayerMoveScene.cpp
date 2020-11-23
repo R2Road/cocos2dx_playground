@@ -71,6 +71,8 @@ namespace step_pathfinder
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
+				ss << "[Arrow] : Move Player";
+				ss << std::endl;
 				ss << "[R] : Reset Player Position";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
