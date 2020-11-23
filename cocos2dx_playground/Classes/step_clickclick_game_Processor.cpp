@@ -168,5 +168,5 @@ namespace step_clickclick
 				}
 			}
 		}
-	} // namespace game
-} // namespace step_clickclick
+	}
+}
