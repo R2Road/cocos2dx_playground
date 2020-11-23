@@ -129,18 +129,21 @@ namespace step_clickclick
 
 				const int pivot_count = block_data.GetLife();
 
-				const int current_pivot_x = block_point_index.x - 1;
-				const int current_pivot_y = block_point_index.y - 1;
-				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				const int start_x = block_point_index.x - 1;
+				const int start_y = block_point_index.y - 1;
+				const int end_x = start_x + 3;
+				const int end_y = start_y + 3;
+
+				for( int cur_y = start_y; cur_y < end_y; ++cur_y )
 				{
-					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					for( int cur_x = start_x; cur_x < end_x; ++cur_x )
 					{
-						if( !stage->isIn( tx, ty ) )
+						if( !stage->isIn( cur_x, cur_y ) )
 						{
 							continue;
 						}
 
-						const auto& target_block_data = stage->GetBlockData( tx, ty );
+						const auto& target_block_data = stage->GetBlockData( cur_x, cur_y );
 						if( !target_block_data.IsActive() )
 						{
 							continue;
