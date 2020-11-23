@@ -81,7 +81,7 @@ namespace step_clickclick
 			{
 				cocos2d::experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 
-				const int pivot_count = block_data.GetLife();
+				const int pivot_life = block_data.GetLife();
 
 				const int start_x = block_point_index.x - 1;
 				const int start_y = block_point_index.y - 1;
@@ -103,13 +103,13 @@ namespace step_clickclick
 							continue;
 						}
 
-						if( eBlockType::Same == target_block_data.GetType() && pivot_count != target_block_data.GetLife() )
+						if( eBlockType::Same == target_block_data.GetType() && pivot_life != target_block_data.GetLife() )
 						{
 							continue;
 						}
 
 						last_life = target_block_data.GetLife();
-						if( pivot_count != target_block_data.GetLife() )
+						if( pivot_life != target_block_data.GetLife() )
 						{
 							stage->IncreaseBlockLife( target_block_data.GetIndex() );
 						}
