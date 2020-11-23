@@ -94,24 +94,28 @@ namespace step_clickclick
 
 			std::vector<eBlockType> block_type_list;
 			{
+				// Fill Block : Single
 				block_type_list.resize( mActiveBlockCount, eBlockType::Single );
 
-				// init
-				const int together_count = mActiveBlockCount * 0.3f;
-				const int different_count = mActiveBlockCount * 0.2f;
 				auto cur = block_type_list.begin();
-				for( int i = 0; i < together_count; ++i )
+
+				// Fill Block : Same
+				const int same_block_count = mActiveBlockCount * 0.3f;
+				for( int i = 0; i < same_block_count; ++i )
 				{
 					*cur = eBlockType::Same;
 					++cur;
 				}
-				for( int i = 0; i < different_count; ++i )
+
+				// Fill Block : Different
+				const int different_block_count = mActiveBlockCount * 0.2f;
+				for( int i = 0; i < different_block_count; ++i )
 				{
 					*cur = eBlockType::Different;
 					++cur;
 				}
 
-				// shuffle
+				// Shuffle x 2
 				const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 				std::default_random_engine random_engine( seed );
 				std::shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
