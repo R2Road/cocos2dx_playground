@@ -31,9 +31,9 @@ namespace step_mole
 			void Refill();
 
 		private:
-			ContainerT mIdleTarget;
+			ContainerT mIdleTargetContainer;
 			ContainerT::const_iterator mIdleTargetIndicator;
-			ContainerT mRestTarget;
+			ContainerT mRestTargetContainer;
 		};
 	}
 }

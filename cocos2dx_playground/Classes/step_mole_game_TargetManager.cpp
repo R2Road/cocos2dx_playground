@@ -9,9 +9,9 @@ namespace step_mole
 	namespace game
 	{
 		TargetManager::TargetManager() :
-			mIdleTarget()
+			mIdleTargetContainer()
 			, mIdleTargetIndicator()
-			, mRestTarget()
+			, mRestTargetContainer()
 		{}
 
 		TargetManagerUp TargetManager::create( const StageConfig& stage_config )
@@ -33,10 +33,10 @@ namespace step_mole
 		{
 			const auto capacity = stage_config.BlockCount_Horizontal* stage_config.BlockCount_Vercital;
 
-			mIdleTarget.reserve( capacity );
+			mIdleTargetContainer.reserve( capacity );
 
-			mRestTarget.resize( capacity, -1 );
-			std::iota( mRestTarget.begin(), mRestTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......			
+			mRestTargetContainer.resize( capacity, -1 );
+			std::iota( mRestTargetContainer.begin(), mRestTargetContainer.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......			
 
 			Refill();
 		}
@@ -45,10 +45,10 @@ namespace step_mole
 		{
 			int ret = -1;
 
-			if( mIdleTarget.end() == mIdleTargetIndicator )
+			if( mIdleTargetContainer.end() == mIdleTargetIndicator )
 			{
 				Refill();
-				if( mIdleTarget.end() == mIdleTargetIndicator )
+				if( mIdleTargetContainer.end() == mIdleTargetIndicator )
 				{
 					return ret;
 				}
@@ -61,23 +61,23 @@ namespace step_mole
 
 		void TargetManager::ComeHomeTarget( const int target_index )
 		{
-			mRestTarget.push_back( target_index );
-			CCLOG( "Rest Target Count : %d", mRestTarget.size() );
+			mRestTargetContainer.push_back( target_index );
+			CCLOG( "Rest Target Count : %d", mRestTargetContainer.size() );
 		}
 
 		void TargetManager::Refill()
 		{
-			if( mRestTarget.empty() )
+			if( mRestTargetContainer.empty() )
 			{
 				CCLOG( "Refill Impossible" );
 				return;
 			}
 
-			std::shuffle( mRestTarget.begin(), mRestTarget.end(), std::mt19937{ std::random_device{}( ) } );
-			mRestTarget.swap( mIdleTarget );
-			mRestTarget.clear();
+			std::shuffle( mRestTargetContainer.begin(), mRestTargetContainer.end(), std::mt19937{ std::random_device{}( ) } );
+			mRestTargetContainer.swap( mIdleTargetContainer );
+			mRestTargetContainer.clear();
 
-			mIdleTargetIndicator = mIdleTarget.begin();
+			mIdleTargetIndicator = mIdleTargetContainer.begin();
 
 			CCLOG( "Refill Successes" );
 		}
