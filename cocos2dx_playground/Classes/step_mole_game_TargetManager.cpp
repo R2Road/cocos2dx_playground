@@ -31,13 +31,14 @@ namespace step_mole
 
 		bool TargetManager::init( const StageConfig& stage_config )
 		{
-			const auto target_count = stage_config.BlockCount_Horizontal* stage_config.BlockCount_Vercital;
-			mIdleTarget.resize( target_count, -1 );
+			const auto capacity = stage_config.BlockCount_Horizontal* stage_config.BlockCount_Vercital;
+
+			mIdleTarget.resize( capacity, -1 );
 			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......			
 			shuffle( mIdleTarget );
 			mIdleTargetIndicator = mIdleTarget.begin();
 
-			mRestTarget.reserve( target_count );
+			mRestTarget.reserve( capacity );
 
 			return true;
 		}
