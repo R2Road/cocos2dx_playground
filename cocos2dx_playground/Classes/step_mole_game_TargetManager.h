@@ -25,8 +25,8 @@ namespace step_mole
 			static TargetManagerUp create( const StageConfig& stage_config );
 
 		private:
-			bool Init( const StageConfig& stage_config );
-			void Shuffle( ContainerT& target_container );
+			bool init( const StageConfig& stage_config );
+			void shuffle( ContainerT& target_container );
 
 		public:
 			int GetIdleTarget();

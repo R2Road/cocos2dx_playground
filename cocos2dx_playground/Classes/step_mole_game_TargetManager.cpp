@@ -19,7 +19,7 @@ namespace step_mole
 		TargetManagerUp TargetManager::create( const StageConfig& stage_config )
 		{
 			TargetManagerUp ret( new ( std::nothrow ) TargetManager() );
-			if( !ret || !ret->Init( stage_config ) )
+			if( !ret || !ret->init( stage_config ) )
 			{
 				ret.reset();
 				return nullptr;
@@ -28,19 +28,19 @@ namespace step_mole
 			return ret;
 		}
 
-		bool TargetManager::Init( const StageConfig& stage_config )
+		bool TargetManager::init( const StageConfig& stage_config )
 		{
 			const auto target_count = stage_config.BlockCount_Horizontal* stage_config.BlockCount_Vercital;
 			mIdleTarget.resize( target_count, -1 );
 			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......
 
 			
-			Shuffle( mIdleTarget );
+			shuffle( mIdleTarget );
 
 			return true;
 		}
 
-		void TargetManager::Shuffle( ContainerT& target_container )
+		void TargetManager::shuffle( ContainerT& target_container )
 		{
 			//
 			// shuffle for list : from cplusplus.com
@@ -84,7 +84,7 @@ namespace step_mole
 				return;
 			}
 
-			Shuffle( mRestTarget );
+			shuffle( mRestTarget );
 			mIdleTarget.splice( mIdleTarget.end(), mRestTarget );
 			CCLOG( "Refill Successes" );
 		}
