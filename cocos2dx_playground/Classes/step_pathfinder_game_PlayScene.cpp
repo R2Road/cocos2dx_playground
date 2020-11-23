@@ -217,12 +217,14 @@ namespace step_pathfinder
 		}
 		bool PlayScene::goNextStage()
 		{
-			if( !loadStage( mCurrentStageDataIndex + 1 ) )
+			const auto target_stage_data_index = mCurrentStageDataIndex + 1;
+			if( !loadStage( target_stage_data_index ) )
 			{
 				return false;
 			}
 
-			++mCurrentStageDataIndex;
+			mCurrentStageDataIndex = target_stage_data_index;
+
 			return true;
 		}
 
