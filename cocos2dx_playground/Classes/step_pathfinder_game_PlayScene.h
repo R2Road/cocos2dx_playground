@@ -38,7 +38,6 @@ namespace step_pathfinder
 		private:
 			bool loadStage( std::size_t stage_index );
 			bool goNextStage();
-			void updateTerrainViewer();
 
 			void GameProcess( const int move_x, const int move_y );
 

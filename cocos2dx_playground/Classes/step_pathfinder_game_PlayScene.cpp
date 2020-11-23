@@ -208,7 +208,7 @@ namespace step_pathfinder
 				return false;
 			}
 
-			updateTerrainViewer();
+			mTerrainViewer->LoadTerrainData4Game( mTerrainData );
 
 			mPlayerPoint = mTerrainData.FindTilePoint( eTileType::entrance );
 			mPlayerNode->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
@@ -224,10 +224,6 @@ namespace step_pathfinder
 
 			++mCurrentStageDataIndex;
 			return true;
-		}
-		void PlayScene::updateTerrainViewer()
-		{
-			mTerrainViewer->LoadTerrainData4Game( mTerrainData );
 		}
 
 
