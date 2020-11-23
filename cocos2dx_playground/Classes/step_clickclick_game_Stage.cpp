@@ -51,16 +51,19 @@ namespace step_clickclick
 		StageUp Stage::create( const int width, const int height )
 		{
 			StageUp ret( new ( std::nothrow ) Stage( width, height ) );
-			if( !ret || !ret->init() )
+			if( !ret )
 			{
 				ret.reset();
-				return nullptr;
+			}
+			else
+			{
+				ret->init();
 			}
 
 			return ret;
 		}
 
-		bool Stage::init()
+		void Stage::init()
 		{
 			for( int ty = 0; ty < mStageHeight; ++ty )
 			{
@@ -71,8 +74,6 @@ namespace step_clickclick
 					mBlocks.emplace_back( linear_index );
 				}
 			}
-
-			return true;
 		}
 
 		void Stage::Setup( const int width, const int height )
