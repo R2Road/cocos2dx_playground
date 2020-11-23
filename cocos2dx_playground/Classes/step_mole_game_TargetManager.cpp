@@ -33,12 +33,12 @@ namespace step_mole
 		{
 			const auto capacity = stage_config.BlockCount_Horizontal* stage_config.BlockCount_Vercital;
 
-			mIdleTarget.resize( capacity, -1 );
-			std::iota( mIdleTarget.begin(), mIdleTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......			
-			shuffle( mIdleTarget );
-			mIdleTargetIndicator = mIdleTarget.begin();
+			mIdleTarget.reserve( capacity );
 
-			mRestTarget.reserve( capacity );
+			mRestTarget.resize( capacity, -1 );
+			std::iota( mRestTarget.begin(), mRestTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......			
+
+			Refill();
 
 			return true;
 		}
