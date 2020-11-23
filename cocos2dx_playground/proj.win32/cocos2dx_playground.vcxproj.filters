@@ -780,6 +780,9 @@
     <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp">
       <Filter>src\cpgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_pathfinder_game_PlayerNode.cpp">
+      <Filter>src\scene\step_03_pathfinder\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1417,6 +1420,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h">
       <Filter>src\cpgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_pathfinder_game_PlayerNode.h">
+      <Filter>src\scene\step_03_pathfinder\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

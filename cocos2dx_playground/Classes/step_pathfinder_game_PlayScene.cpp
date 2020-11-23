@@ -4,11 +4,8 @@
 #include <numeric>
 #include <sstream>
 
-#include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCSprite.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "audio/include/AudioEngine.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
@@ -16,9 +13,10 @@
 
 #include "cpg_StringTable.h"
 
-#include "step_pathfinder_game_TitleScene.h"
+#include "step_pathfinder_game_PlayerNode.h"
 #include "step_pathfinder_game_ResultScene.h"
 #include "step_pathfinder_game_TerrainViewer.h"
+#include "step_pathfinder_game_TitleScene.h"
 
 USING_NS_CC;
 
@@ -158,25 +156,9 @@ namespace step_pathfinder
 			// Player
 			//
 			{
-				auto player_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				auto player_node = PlayerNode::create();
 				player_node->setTag( TAG_Player );
-				player_node->setAnchorPoint( Vec2( 0.5f, 0.2f ) );
-				player_node->setScale( _director->getContentScaleFactor() );
 				mTerrainViewer->addChild( player_node, 100 );
-				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
-
-					auto animate_action = Animate::create( animation_object );
-
-					auto repeat_action = RepeatForever::create( animate_action );
-
-					player_node->runAction( repeat_action );
-				}
 			}
 
 			//
