@@ -20,16 +20,19 @@ namespace step_mole
 		TargetManagerUp TargetManager::create( const StageConfig& stage_config )
 		{
 			TargetManagerUp ret( new ( std::nothrow ) TargetManager() );
-			if( !ret || !ret->init( stage_config ) )
+			if( !ret )
 			{
 				ret.reset();
-				return nullptr;
+			}
+			else
+			{
+				ret->init( stage_config );
 			}
 
 			return ret;
 		}
 
-		bool TargetManager::init( const StageConfig& stage_config )
+		void TargetManager::init( const StageConfig& stage_config )
 		{
 			const auto capacity = stage_config.BlockCount_Horizontal* stage_config.BlockCount_Vercital;
 
@@ -39,8 +42,6 @@ namespace step_mole
 			std::iota( mRestTarget.begin(), mRestTarget.end(), 0 ); // fill : 0, 1, 2, 3, 4 ......			
 
 			Refill();
-
-			return true;
 		}
 
 		int TargetManager::GetIdleTarget()

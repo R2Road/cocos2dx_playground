@@ -23,7 +23,7 @@ namespace step_mole
 			static TargetManagerUp create( const StageConfig& stage_config );
 
 		private:
-			bool init( const StageConfig& stage_config );
+			void init( const StageConfig& stage_config );
 
 		public:
 			int GetIdleTarget();
