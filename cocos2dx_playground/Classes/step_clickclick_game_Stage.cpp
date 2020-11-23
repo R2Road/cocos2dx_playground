@@ -144,6 +144,21 @@ namespace step_clickclick
 			}
 		}
 
+		bool Stage::isIn( const int x, const int y ) const
+		{
+			if( 0 > y || mStageWidth <= y )
+			{
+				return false;
+			}
+
+			if( 0 > x || mStageHeight <= x )
+			{
+				return false;
+			}
+
+			return true;
+		}
+
 		const Block& Stage::GetBlockData( const int x, const int y ) const
 		{
 			return GetBlockData( mGridIndexConverter.To_Linear( x, y )	 );

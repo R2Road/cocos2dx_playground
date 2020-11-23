@@ -29,8 +29,7 @@ namespace step_clickclick
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
 					{
-						if( 0 > tx || stage->GetWidth() <= tx
-							|| 0 > ty || stage->GetHeight() <= ty )
+						if( !stage->isIn( tx, ty ) )
 						{
 							continue;
 						}
@@ -84,8 +83,7 @@ namespace step_clickclick
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
 					{
-						if( 0 > tx || stage->GetWidth() <= tx
-							|| 0 > ty || stage->GetHeight() <= ty )
+						if( !stage->isIn( tx, ty ) )
 						{
 							continue;
 						}
@@ -128,8 +126,7 @@ namespace step_clickclick
 				{
 					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
 					{
-						if( 0 > tx || stage->GetWidth() <= tx
-							|| 0 > ty || stage->GetHeight() <= ty )
+						if( !stage->isIn( tx, ty ) )
 						{
 							continue;
 						}
