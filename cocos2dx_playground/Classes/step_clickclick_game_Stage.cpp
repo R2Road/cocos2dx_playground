@@ -132,11 +132,14 @@ namespace step_clickclick
 			{
 				const int start_x = mCenterX - ( width / 2 );
 				const int start_y = mCenterY - ( height / 2 );
+				const int end_x = start_x + width;
+				const int end_y = start_y + height;
+
 				auto itr_block_type = block_type_list.cbegin();
 				int linear_index = 0;
-				for( int ty = start_y; ty < start_y + height; ++ty )
+				for( int ty = start_y; ty < end_y; ++ty )
 				{
-					for( int tx = start_x; tx < start_x + width; ++tx )
+					for( int tx = start_x; tx < end_x; ++tx )
 					{
 						linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
