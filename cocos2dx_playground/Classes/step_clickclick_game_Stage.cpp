@@ -6,32 +6,32 @@
 #include <new>
 #include <random>
 
+namespace
+{
+
+#if defined( DEBUG ) || defined( _DEBUG )
+	#define CHECK_ODD_NUMBER( number ) ( assert( 1 == ( ( number ) & 1 ) ) )
+	#define CHECK_SIZE( pivot, number ) ( assert( pivot >= number ) )
+	#define CHECK_LINEAR_INDEX( min_index, max_index, defendant ) ( assert( min_index <= defendant && max_index > defendant ) )
+#else
+	#define CHECK_ODD_NUMBER( number )
+	#define CHECK_SIZE( pivot, number )
+	#define CHECK_LINEAR_INDEX( min_index, max_index, defendant )
+#endif
+
+	int GetRandomInt( int min, int max )
+	{
+		static std::random_device rd;
+		static std::mt19937 randomEngine( rd() );
+		static std::uniform_int_distribution<> dist( min, max );
+		return dist( randomEngine );
+	}
+}
+
 namespace step_clickclick
 {
 	namespace game
 	{
-		namespace
-		{
-			
-#if defined( DEBUG ) || defined( _DEBUG )
-			#define CHECK_ODD_NUMBER( number ) ( assert( 1 == ( ( number ) & 1 ) ) )
-			#define CHECK_SIZE( pivot, number ) ( assert( pivot >= number ) )
-			#define CHECK_LINEAR_INDEX( min_index, max_index, defendant ) ( assert( min_index <= defendant && max_index > defendant ) )
-#else
-			#define CHECK_ODD_NUMBER( number )
-			#define CHECK_SIZE( pivot, number )
-			#define CHECK_LINEAR_INDEX( min_index, max_index, defendant )
-#endif
-
-			int GetRandomInt( int min, int max )
-			{
-				static std::random_device rd;
-				static std::mt19937 randomEngine( rd() );
-				static std::uniform_int_distribution<> dist( min, max );
-				return dist( randomEngine );
-			}
-		}
-
 		Stage::Stage( const int width, const int height ) :
 			mStageWidth( width )
 			, mStageHeight( height )
