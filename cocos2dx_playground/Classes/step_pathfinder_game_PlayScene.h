@@ -56,6 +56,8 @@ namespace step_pathfinder
 
 			TerrainData mTerrainData;
 			TerrainViewer* mTerrainViewer;
+			cocos2d::Node* mPlayerNode;
+
 			TerrainPoint mPlayerPoint;
 			bool mbPlayerLive;
 			float mElapsedTime;

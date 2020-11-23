@@ -22,7 +22,6 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_Player = 20140416;
 	const int TAG_GameOver = 20200209;
 }
 
@@ -39,6 +38,8 @@ namespace step_pathfinder
 
 			, mTerrainData()
 			, mTerrainViewer( nullptr )
+			, mPlayerNode( nullptr )
+
 			, mPlayerPoint()
 			, mbPlayerLive( true )
 			, mElapsedTime( 0.f )
@@ -156,9 +157,8 @@ namespace step_pathfinder
 			// Player
 			//
 			{
-				auto player_node = PlayerNode::create();
-				player_node->setTag( TAG_Player );
-				mTerrainViewer->addChild( player_node, 100 );
+				mPlayerNode = PlayerNode::create();
+				mTerrainViewer->addChild( mPlayerNode, 100 );
 			}
 
 			//
@@ -212,9 +212,8 @@ namespace step_pathfinder
 
 			updateTerrainViewer();
 
-			auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
 			mPlayerPoint = mTerrainData.FindTilePoint( eTileType::entrance );
-			player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
+			mPlayerNode->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 			return true;
 		}
@@ -245,8 +244,7 @@ namespace step_pathfinder
 			//
 			// move player view
 			//
-			auto player_node = mTerrainViewer->getChildByTag( TAG_Player );
-			player_node->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
+			mPlayerNode->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 			//
 			// check player position
