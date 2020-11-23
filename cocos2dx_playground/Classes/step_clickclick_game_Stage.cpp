@@ -6,6 +6,8 @@
 #include <new>
 #include <random>
 
+#include "cpg_Random.h"
+
 namespace
 {
 
@@ -18,14 +20,6 @@ namespace
 	#define CHECK_SIZE( pivot, number )
 	#define CHECK_LINEAR_INDEX( min_index, max_index, defendant )
 #endif
-
-	int GetRandomInt( int min, int max )
-	{
-		static std::random_device rd;
-		static std::mt19937 randomEngine( rd() );
-		static std::uniform_int_distribution<> dist( min, max );
-		return dist( randomEngine );
-	}
 }
 
 namespace step_clickclick
@@ -143,7 +137,7 @@ namespace step_clickclick
 					{
 						linear_index = mGridIndexConverter.To_Linear( cur_x, cur_y );
 
-						mBlocks[linear_index].Reset( *itr_block_type, GetRandomInt( 3, 9 ) );
+						mBlocks[linear_index].Reset( *itr_block_type, cpg::Random::GetInt( 3, 9 ) );
 						++itr_block_type;
 					}
 				}
