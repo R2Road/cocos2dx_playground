@@ -22,25 +22,28 @@ namespace step_clickclick
 			{
 				cocos2d::experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 
+				const int start_x = block_point_index.x - 1;
+				const int start_y = block_point_index.y - 1;
+				const int end_x = start_x + 3;
+				const int end_y = start_y + 3;
+
 				bool has_neighbor = false;
-				const int current_pivot_x = block_point_index.x - 1;
-				const int current_pivot_y = block_point_index.y - 1;
-				for( int ty = current_pivot_y; ty < current_pivot_y + 3; ++ty )
+				for( int cur_y = start_y; cur_y < end_y; ++cur_y )
 				{
-					for( int tx = current_pivot_x; tx < current_pivot_x + 3; ++tx )
+					for( int cur_x = start_x; cur_x < end_x; ++cur_x )
 					{
-						if( !stage->isIn( tx, ty ) )
+						if( !stage->isIn( cur_x, cur_y ) )
 						{
 							continue;
 						}
 
 						// check up, down, left, right
-						if( tx != block_point_index.x && ty != block_point_index.y )
+						if( cur_x != block_point_index.x && cur_y != block_point_index.y )
 						{
 							continue;
 						}
 
-						const auto& target_block_data = stage->GetBlockData( tx, ty );
+						const auto& target_block_data = stage->GetBlockData( cur_x, cur_y );
 
 						// is pivot
 						if( block_linear_index == target_block_data.GetIndex() )
