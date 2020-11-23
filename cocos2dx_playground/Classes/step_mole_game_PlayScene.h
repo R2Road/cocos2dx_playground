@@ -52,7 +52,8 @@ namespace step_mole
 			bool init() override;
 			void onEnter() override;
 			void onExit() override;
-			void update( float dt ) override;
+
+			void update4Game( float dt );
 
 		private:
 			void doSpawn( const float life_time, const int spawn_count );

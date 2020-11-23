@@ -99,7 +99,6 @@ namespace step_mole
 			}
 			else
 			{
-				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -281,6 +280,11 @@ namespace step_mole
 				mProcessActionIndicator = mProcessActionContainer.begin();
 			}
 
+			//
+			// Setup
+			//
+			schedule( schedule_selector( PlayScene::update4Game ) );
+
 			return true;
 		}
 
@@ -308,7 +312,7 @@ namespace step_mole
 		}
 
 
-		void PlayScene::update( float dt )
+		void PlayScene::update4Game( float dt )
 		{
 			if( mProcessActionContainer.end() != mProcessActionIndicator )
 			{
@@ -317,7 +321,6 @@ namespace step_mole
 					++mProcessActionIndicator;
 				}
 			}
-			Scene::update( dt );
 		}
 
 
