@@ -240,10 +240,6 @@ namespace step_pathfinder
 			//
 			mPlayerPoint.x += move_x;
 			mPlayerPoint.y += move_y;
-
-			//
-			// move player view
-			//
 			mPlayerNode->setPosition( mTerrainViewer->ConvertPoint2Position( mPlayerPoint.x, mPlayerPoint.y ) );
 
 			//
