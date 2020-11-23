@@ -10,7 +10,6 @@ namespace step_pathfinder
 	namespace game
 	{
 		class TerrainData;
-		struct TileData;
 
 		class TerrainViewer : public cocos2d::Node
 		{
