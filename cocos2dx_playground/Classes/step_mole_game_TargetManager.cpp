@@ -1,11 +1,8 @@
 #include "step_mole_game_TargetManager.h"
 
-#include <algorithm>
-#include <numeric>
+#include <new>
+#include <numeric> // std::iota
 #include <random>
-
-#include "base/CCConsole.h"
-#include "platform/CCPlatformMacros.h"
 
 namespace step_mole
 {
