@@ -93,6 +93,9 @@ namespace step_clickclick
 				p.Die();
 			}
 
+			//
+			// Build Block Type list
+			//
 			std::vector<eBlockType> block_type_list;
 			{
 				// Fill Block : Single
@@ -123,18 +126,23 @@ namespace step_clickclick
 				std::shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
 			}
 
-			const int current_pivot_x = mCenterX - ( width / 2 );
-			const int current_pivot_y = mCenterY - ( height / 2 );
-			auto itr_block_type = block_type_list.cbegin();
-			int linear_index = 0;
-			for( int ty = current_pivot_y; ty < current_pivot_y + height; ++ty )
+			//
+			// Block Setup
+			//
 			{
-				for( int tx = current_pivot_x; tx < current_pivot_x + width; ++tx )
+				const int current_pivot_x = mCenterX - ( width / 2 );
+				const int current_pivot_y = mCenterY - ( height / 2 );
+				auto itr_block_type = block_type_list.cbegin();
+				int linear_index = 0;
+				for( int ty = current_pivot_y; ty < current_pivot_y + height; ++ty )
 				{
-					linear_index = mGridIndexConverter.To_Linear( tx, ty );
+					for( int tx = current_pivot_x; tx < current_pivot_x + width; ++tx )
+					{
+						linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					mBlocks[linear_index].Reset( *itr_block_type, GetRandomInt( 3, 9 ) );
-					++itr_block_type;
+						mBlocks[linear_index].Reset( *itr_block_type, GetRandomInt( 3, 9 ) );
+						++itr_block_type;
+					}
 				}
 			}
 		}
