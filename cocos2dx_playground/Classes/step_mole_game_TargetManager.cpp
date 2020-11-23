@@ -43,11 +43,6 @@ namespace step_mole
 			return true;
 		}
 
-		void TargetManager::shuffle( ContainerT& target_container )
-		{
-			std::shuffle( target_container.begin(), target_container.end(), std::mt19937{ std::random_device{}( ) } );
-		}
-
 		int TargetManager::GetIdleTarget()
 		{
 			int ret = -1;
@@ -80,7 +75,7 @@ namespace step_mole
 				return;
 			}
 
-			shuffle( mRestTarget );
+			std::shuffle( mRestTarget.begin(), mRestTarget.end(), std::mt19937{ std::random_device{}( ) } );
 			mRestTarget.swap( mIdleTarget );
 			mRestTarget.clear();
 

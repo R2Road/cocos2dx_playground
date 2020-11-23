@@ -26,7 +26,6 @@ namespace step_mole
 
 		private:
 			bool init( const StageConfig& stage_config );
-			void shuffle( ContainerT& target_container );
 
 		public:
 			int GetIdleTarget();
