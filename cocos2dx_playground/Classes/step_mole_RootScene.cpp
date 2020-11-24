@@ -41,15 +41,24 @@ namespace step_mole
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
 			ret->autorelease();
 		}
 
-		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		return ret;
+	}
+
+	bool RootScene::init()
+	{
+		if( !Scene::init() )
+		{
+			return false;
+		}
+
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
 		// Summury
@@ -94,7 +103,7 @@ namespace step_mole
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
 			) );
-			ret->addChild( label, std::numeric_limits<int>::max() );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -102,10 +111,10 @@ namespace step_mole
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 0, 9, 61, 255 ) );
-			ret->addChild( background_layer, std::numeric_limits<int>::min() );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		return ret;
+		return true;
 	}
 
 	void RootScene::onEnter()
