@@ -15,7 +15,10 @@ namespace step_mole
 			static const char* getTitle() { return "Game : Result"; }
 			static cocos2d::Scene* create( const int score );
 
+		private:
 			bool init( const int score );
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 
