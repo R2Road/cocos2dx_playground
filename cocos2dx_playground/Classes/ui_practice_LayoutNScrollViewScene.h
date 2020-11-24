@@ -7,13 +7,17 @@ namespace ui_practice
 {
 	class LayoutNScrollViewScene : public cocos2d::Scene
 	{
-	public:
+	private:
 		LayoutNScrollViewScene();
 
+	public:
 		static const char* getTitle() { return "Layout N ScrollView"; }
 		static cocos2d::Scene* create();
 
+	private:
 		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 

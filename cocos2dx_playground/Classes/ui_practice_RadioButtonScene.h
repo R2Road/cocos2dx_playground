@@ -9,13 +9,17 @@ namespace ui_practice
 {
 	class RadioButtonScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
-	public:
+	private:
 		RadioButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+	public:
 		static const char* getTitle() { return "Radio Button"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+	private:
 		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 

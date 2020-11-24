@@ -20,13 +20,17 @@ namespace ui_practice
 	{
 		class VariousItemSizeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
-		public:
+		private:
 			VariousItemSizeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+		public:
 			static const char* getTitle() { return "Layout - Various Item Size"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 
