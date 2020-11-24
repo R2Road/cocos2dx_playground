@@ -15,7 +15,10 @@ namespace step_rain_of_chaos
 			static const char* getTitle() { return "Game : Rain Of Chaos"; }
 			static cocos2d::Scene* create();
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 

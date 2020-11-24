@@ -16,7 +16,10 @@ namespace step_rain_of_chaos
 			static const char* getTitle() { return "Game Test : Background Node"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 
