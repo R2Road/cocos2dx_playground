@@ -13,6 +13,10 @@ namespace ui_practice
 		static const char* getTitle() { return "UI Practice"; }
 		static cocos2d::Scene* create();
 
+	private:
+		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 
