@@ -6,13 +6,17 @@ namespace step_defender
 {
 	class RootScene : public cocos2d::Scene
 	{
-	public:
+	private:
 		RootScene();
 
+	public:
 		static const char* getTitle() { return "Step : Defender( In Progress )"; }
 		static cocos2d::Scene* create();
 
+	private:
 		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 
