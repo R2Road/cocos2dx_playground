@@ -2,7 +2,7 @@
 
 #include "2d/CCScene.h"
 
-namespace step_defender
+namespace step_flipflip
 {
 	class RootScene : public cocos2d::Scene
 	{
@@ -10,7 +10,7 @@ namespace step_defender
 		RootScene();
 
 	public:
-		static const char* getTitle() { return "Step : Defender( To Do )"; }
+		static const char* getTitle() { return "Step : FlipFlip( In Progress )"; }
 		static cocos2d::Scene* create();
 
 	private:

@@ -8,6 +8,7 @@
 #include "cpg_StringTable.h"
 
 #include "step_typetype_RootScene.h"
+#include "step_flipflip_RootScene.h"
 #include "step_clickclick_RootScene.h"
 #include "step_pathfinder_RootScene.h"
 #include "step_mole_RootScene.h"
@@ -65,15 +66,17 @@ bool PlayGroundScene::init()
 		ss << std::endl;
 		ss << "[1] : " << step_typetype::RootScene::getTitle();
 		ss << std::endl;
-		ss << "[2] : " << step_clickclick::RootScene::getTitle();
+		ss << "[2] : " << step_flipflip::RootScene::getTitle();
 		ss << std::endl;
-		ss << "[3] : " << step_pathfinder::RootScene::getTitle();
+		ss << "[3] : " << step_clickclick::RootScene::getTitle();
 		ss << std::endl;
-		ss << "[4] : " << step_mole::RootScene::getTitle();
+		ss << "[4] : " << step_pathfinder::RootScene::getTitle();
 		ss << std::endl;
-		ss << "[5] : " << step_rain_of_chaos::RootScene::getTitle();
+		ss << "[5] : " << step_mole::RootScene::getTitle();
 		ss << std::endl;
-		ss << "[6] : " << step_defender::RootScene::getTitle();
+		ss << "[6] : " << step_rain_of_chaos::RootScene::getTitle();
+		ss << std::endl;
+		ss << "[7] : " << step_defender::RootScene::getTitle();
 		ss << std::endl;
 		ss << std::endl;
 		ss << "=============================";
@@ -95,7 +98,7 @@ bool PlayGroundScene::init()
 		ss << std::endl;
 		ss << "[S] : " << step99::RootScene::getTitle();
 
-		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
+		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
 		label->setPosition( Vec2(
 			visibleOrigin.x + ( visibleSize.width * 0.5f )
 			, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -137,18 +140,21 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		_director->replaceScene( step_typetype::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_2:
-		_director->replaceScene( step_clickclick::RootScene::create() );
+		_director->replaceScene( step_flipflip::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_3:
-		_director->replaceScene( step_pathfinder::RootScene::create() );
+		_director->replaceScene( step_clickclick::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_4:
-		_director->replaceScene( step_mole::RootScene::create() );
+		_director->replaceScene( step_pathfinder::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_5:
-		_director->replaceScene( step_rain_of_chaos::RootScene::create() );
+		_director->replaceScene( step_mole::RootScene::create() );
 		break;
 	case EventKeyboard::KeyCode::KEY_6:
+		_director->replaceScene( step_rain_of_chaos::RootScene::create() );
+		break;
+	case EventKeyboard::KeyCode::KEY_7:
 		_director->replaceScene( step_defender::RootScene::create() );
 		break;
 

@@ -10,7 +10,7 @@
 
 #include "step_typetype_label_ttf_BasicScene.h"
 
-#include "step_typetype_sprite_TextureTypeScene.h"
+#include "step_typetype_sprite_BasicScene.h"
 #include "step_typetype_sprite_AnchorPointScene.h"
 
 #include "step_typetype_input_KeyCodeViewScene.h"
@@ -69,7 +69,7 @@ namespace step_typetype
 			ss << "[1] " << step_typetype::label_ttf::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[2] " << step_typetype::sprite::TextureTypeScene::getTitle();
+			ss << "[2] " << step_typetype::sprite::BasicScene::getTitle();
 			ss << std::endl;
 			ss << "[3] " << step_typetype::sprite::AnchorPointScene::getTitle();
 			ss << std::endl;
@@ -147,7 +147,7 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_2:
-			_director->replaceScene( step_typetype::sprite::TextureTypeScene::create() );
+			_director->replaceScene( step_typetype::sprite::BasicScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( step_typetype::sprite::AnchorPointScene::create() );
