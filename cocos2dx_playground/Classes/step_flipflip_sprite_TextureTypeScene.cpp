@@ -1,4 +1,4 @@
-#include "step_typetype_sprite_TextureTypeScene.h"
+#include "step_flipflip_sprite_TextureTypeScene.h"
 
 #include <new>
 #include <numeric>
@@ -16,7 +16,7 @@ namespace
 	const char* TEXTURE_Path = "textures/step_typetype/step_typetype_textures.png";
 }
 
-namespace step_typetype
+namespace step_flipflip
 {
 	namespace sprite
 	{

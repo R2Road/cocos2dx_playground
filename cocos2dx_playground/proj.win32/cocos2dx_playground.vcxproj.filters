@@ -789,13 +789,13 @@
     <ClCompile Include="..\Classes\step_flipflip_RootScene.cpp">
       <Filter>src\scene\step_02_flipflip</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp">
-      <Filter>src\scene\step_02_flipflip\sprite</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_sprite_BasicScene.cpp">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_sprite_AliasScene.cpp">
+    <ClCompile Include="..\Classes\step_flipflip_sprite_TextureTypeScene.cpp">
+      <Filter>src\scene\step_02_flipflip\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_sprite_AliasScene.cpp">
       <Filter>src\scene\step_02_flipflip\sprite</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1439,13 +1439,13 @@
     <ClInclude Include="..\Classes\step_flipflip_RootScene.h">
       <Filter>src\scene\step_02_flipflip</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h">
-      <Filter>src\scene\step_02_flipflip\sprite</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sprite_BasicScene.h">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_sprite_AliasScene.h">
+    <ClInclude Include="..\Classes\step_flipflip_sprite_TextureTypeScene.h">
+      <Filter>src\scene\step_02_flipflip\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_sprite_AliasScene.h">
       <Filter>src\scene\step_02_flipflip\sprite</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#include "step_typetype_sprite_AliasScene.h"
+#include "step_flipflip_sprite_AliasScene.h"
 
 #include <new>
 #include <numeric>
@@ -10,7 +10,7 @@
 
 USING_NS_CC;
 
-namespace step_typetype
+namespace step_flipflip
 {
 	namespace sprite
 	{
