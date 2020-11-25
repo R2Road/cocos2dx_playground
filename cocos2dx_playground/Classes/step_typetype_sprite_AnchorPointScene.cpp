@@ -73,7 +73,7 @@ namespace step_typetype
 			// Explain
 			//
 			{
-				auto pivot_indicator = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+				auto pivot_indicator = Sprite::create( "textures/step_typetype/step_typetype_helper_pivot.png" );
 				pivot_indicator->setScale( 2.f );
 				pivot_indicator->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.45f )
@@ -98,12 +98,14 @@ namespace step_typetype
 				) );
 				addChild( root_node );
 				{
-					auto pivot_indicator = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					auto pivot_indicator = Sprite::create( "textures/step_typetype/step_typetype_helper_pivot.png" );
 					pivot_indicator->setScale( 2.f );
 					root_node->addChild( pivot_indicator, 100 );
 
-					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_4.png" );
+					auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
+					sprite->getTexture()->setAliasTexParameters();
 					sprite->setAnchorPoint( Vec2( 0.f, 0.f ) );
+					sprite->setScale( _director->getContentScaleFactor() );
 					root_node->addChild( sprite );
 
 					auto label = Label::createWithTTF( "Anchor Point\n0, 0", "fonts/NanumSquareR.ttf", 12 );
@@ -125,12 +127,14 @@ namespace step_typetype
 				) );
 				addChild( root_node );
 				{
-					auto pivot_indicator = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					auto pivot_indicator = Sprite::create( "textures/step_typetype/step_typetype_helper_pivot.png" );
 					pivot_indicator->setScale( 2.f );
 					root_node->addChild( pivot_indicator, 100 );
 
-					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_4.png" );
+					auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_02.png" );
+					sprite->getTexture()->setAliasTexParameters();
 					sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+					sprite->setScale( _director->getContentScaleFactor() );
 					root_node->addChild( sprite );
 
 					auto label = Label::createWithTTF( "Anchor Point\n0.5, 0.5\n\nDefault", "fonts/NanumSquareR.ttf", 12 );
@@ -156,8 +160,10 @@ namespace step_typetype
 					pivot_indicator->setScale( 2.f );
 					root_node->addChild( pivot_indicator, 100 );
 
-					auto sprite = Sprite::createWithSpriteFrameName( "guide_01_4.png" );
+					auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
+					sprite->getTexture()->setAliasTexParameters();
 					sprite->setAnchorPoint( Vec2( 1.f, 1.f ) );
+					sprite->setScale( _director->getContentScaleFactor() );
 					root_node->addChild( sprite );
 
 					auto label = Label::createWithTTF( "Anchor Point\n1, 1", "fonts/NanumSquareR.ttf", 12 );
