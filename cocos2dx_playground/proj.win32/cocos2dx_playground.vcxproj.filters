@@ -181,6 +181,9 @@
     <Filter Include="src\scene\step_0x_flipflip">
       <UniqueIdentifier>{0d1428a9-b2f2-4f47-9608-0a6a3818f24a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_0x_flipflip\sprite">
+      <UniqueIdentifier>{c6391555-f23d-45ca-80ec-8735b232aeab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -290,9 +293,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_input_KeyCodeViewScene.cpp">
       <Filter>src\scene\step_01_typetype\input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp">
-      <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
@@ -789,6 +789,9 @@
     <ClCompile Include="..\Classes\step_flipflip_RootScene.cpp">
       <Filter>src\scene\step_0x_flipflip</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp">
+      <Filter>src\scene\step_0x_flipflip\sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -907,9 +910,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_input_KeyCodeViewScene.h">
       <Filter>src\scene\step_01_typetype\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h">
-      <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
@@ -1432,6 +1432,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_RootScene.h">
       <Filter>src\scene\step_0x_flipflip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h">
+      <Filter>src\scene\step_0x_flipflip\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

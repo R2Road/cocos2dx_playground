@@ -12,6 +12,8 @@
 
 #include "PlayGroundScene.h"
 
+#include "step_typetype_sprite_TextureTypeScene.h"
+
 USING_NS_CC;
 
 namespace step_flipflip
@@ -53,6 +55,9 @@ namespace step_flipflip
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[1] " << step_typetype::sprite::TextureTypeScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -98,6 +103,10 @@ namespace step_flipflip
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			_director->replaceScene( PlayGroundScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_1:
+			_director->replaceScene( step_typetype::sprite::TextureTypeScene::create() );
 			break;
 
 		default:
