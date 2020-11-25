@@ -74,7 +74,6 @@ namespace step_typetype
 			//
 			{
 				auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
-				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )

@@ -103,9 +103,7 @@ namespace step_typetype
 					root_node->addChild( pivot_indicator, 100 );
 
 					auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
-					sprite->getTexture()->setAliasTexParameters();
 					sprite->setAnchorPoint( Vec2( 0.f, 0.f ) );
-					sprite->setScale( _director->getContentScaleFactor() );
 					root_node->addChild( sprite );
 
 					auto label = Label::createWithTTF( "Anchor Point\n0, 0", "fonts/NanumSquareR.ttf", 12 );
@@ -132,9 +130,7 @@ namespace step_typetype
 					root_node->addChild( pivot_indicator, 100 );
 
 					auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_02.png" );
-					sprite->getTexture()->setAliasTexParameters();
 					sprite->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-					sprite->setScale( _director->getContentScaleFactor() );
 					root_node->addChild( sprite );
 
 					auto label = Label::createWithTTF( "Anchor Point\n0.5, 0.5\n\nDefault", "fonts/NanumSquareR.ttf", 12 );
@@ -161,9 +157,7 @@ namespace step_typetype
 					root_node->addChild( pivot_indicator, 100 );
 
 					auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
-					sprite->getTexture()->setAliasTexParameters();
 					sprite->setAnchorPoint( Vec2( 1.f, 1.f ) );
-					sprite->setScale( _director->getContentScaleFactor() );
 					root_node->addChild( sprite );
 
 					auto label = Label::createWithTTF( "Anchor Point\n1, 1", "fonts/NanumSquareR.ttf", 12 );

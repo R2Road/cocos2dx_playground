@@ -75,7 +75,6 @@ namespace step_typetype
 			{
 				auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
 				sprite->getTexture()->setAntiAliasTexParameters();
-				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.5f )
@@ -97,7 +96,6 @@ namespace step_typetype
 			{
 				auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_02.png" );
 				sprite->getTexture()->setAliasTexParameters();
-				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.5f )
