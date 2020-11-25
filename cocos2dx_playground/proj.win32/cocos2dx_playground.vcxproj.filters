@@ -178,6 +178,9 @@
     <Filter Include="src\scene\step_03_pathfinder\game_test">
       <UniqueIdentifier>{6c2671fd-8339-4f0e-84c8-e263190b6920}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_0x_flipflip">
+      <UniqueIdentifier>{0d1428a9-b2f2-4f47-9608-0a6a3818f24a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -782,6 +785,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_game_PlayerNode.cpp">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_RootScene.cpp">
+      <Filter>src\scene\step_0x_flipflip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1423,6 +1429,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_game_PlayerNode.h">
       <Filter>src\scene\step_03_pathfinder\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_RootScene.h">
+      <Filter>src\scene\step_0x_flipflip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
