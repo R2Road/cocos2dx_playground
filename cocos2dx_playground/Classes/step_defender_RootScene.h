@@ -10,7 +10,7 @@ namespace step_defender
 		RootScene();
 
 	public:
-		static const char* getTitle() { return "Step : Defender( In Progress )"; }
+		static const char* getTitle() { return "Step : Defender( To Do )"; }
 		static cocos2d::Scene* create();
 
 	private:
