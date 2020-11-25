@@ -72,7 +72,7 @@ namespace step_typetype
 			{
 				if( config.bShowPivot )
 				{
-					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					auto pivot = Sprite::create( "textures/step_typetype/step_typetype_helper_pivot.png" );
 					pivot->setScale( 2.f );
 					addChild( pivot, std::numeric_limits<int>::max() );
 				}
@@ -88,7 +88,7 @@ namespace step_typetype
 
 					if( config.bShowPivot )
 					{
-						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+						auto pivot = Sprite::create( "textures/step_typetype/step_typetype_helper_pivot.png" );
 						pivot->setScale( 2.f );
 						background->addChild( pivot );
 					}
@@ -108,7 +108,7 @@ namespace step_typetype
 			// Indicator
 			//
 			{
-				mIndicator = Sprite::createWithSpriteFrameName( "guide_01_4.png" );
+				mIndicator = Sprite::create( "textures/step_typetype/step_typetype_letter_guide.png" );
 				mIndicator->setContentSize( letter_size );
 				mIndicator->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				addChild( mIndicator );
