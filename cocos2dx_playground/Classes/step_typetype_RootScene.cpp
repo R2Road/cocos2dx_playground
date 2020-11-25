@@ -11,6 +11,7 @@
 #include "step_typetype_label_ttf_BasicScene.h"
 
 #include "step_typetype_sprite_BasicScene.h"
+#include "step_typetype_sprite_AliasScene.h"
 #include "step_typetype_sprite_AnchorPointScene.h"
 
 #include "step_typetype_input_KeyCodeViewScene.h"
@@ -71,16 +72,18 @@ namespace step_typetype
 			ss << std::endl;
 			ss << "[2] " << step_typetype::sprite::BasicScene::getTitle();
 			ss << std::endl;
-			ss << "[3] " << step_typetype::sprite::AnchorPointScene::getTitle();
+			ss << "[3] " << step_typetype::sprite::AliasScene::getTitle();
+			ss << std::endl;
+			ss << "[4] " << step_typetype::sprite::AnchorPointScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] " << step_typetype::input::KeyCodeViewScene::getTitle();
+			ss << "[5] " << step_typetype::input::KeyCodeViewScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[5] " << step_typetype::sound::BasicScene::getTitle();
+			ss << "[6] " << step_typetype::sound::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[6] " << step_typetype::ScheduleScene::getTitle();
+			ss << "[7] " << step_typetype::ScheduleScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -150,18 +153,21 @@ namespace step_typetype
 			_director->replaceScene( step_typetype::sprite::BasicScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
+			_director->replaceScene( step_typetype::sprite::AliasScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( step_typetype::sprite::AnchorPointScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_5:
 			_director->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_6:
 			_director->replaceScene( step_typetype::sound::BasicScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_7:
 			_director->replaceScene( step_typetype::ScheduleScene::create() );
 			break;
 
