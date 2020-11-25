@@ -73,9 +73,9 @@ namespace step_typetype
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow Up] : Increase Stage Size And Reset";
+				ss << "[Arrow U] : Increase Stage Size And Reset";
 				ss << std::endl;
-				ss << "[Arrow Down] : Decrease Stage Size And Reset";
+				ss << "[Arrow D] : Decrease Stage Size And Reset";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[A] : Auto Play Once : Success";
