@@ -6,7 +6,7 @@
 
 #include "cocos2d.h"
 
-#include "step_typetype_RootScene.h"
+#include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
 
@@ -136,7 +136,7 @@ namespace step_typetype
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				_director->replaceScene( step_typetype::RootScene::create() );
+				_director->replaceScene( step_flipflip::RootScene::create() );
 				return;
 			}
 		}

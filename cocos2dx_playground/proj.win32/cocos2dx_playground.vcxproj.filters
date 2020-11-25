@@ -796,7 +796,7 @@
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_sprite_AliasScene.cpp">
-      <Filter>src\scene\step_01_typetype\sprite</Filter>
+      <Filter>src\scene\step_0x_flipflip\sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1446,7 +1446,7 @@
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sprite_AliasScene.h">
-      <Filter>src\scene\step_01_typetype\sprite</Filter>
+      <Filter>src\scene\step_0x_flipflip\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
