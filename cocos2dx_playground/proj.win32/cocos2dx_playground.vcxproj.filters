@@ -792,6 +792,9 @@
     <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp">
       <Filter>src\scene\step_0x_flipflip\sprite</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_sprite_BasicScene.cpp">
+      <Filter>src\scene\step_01_typetype\sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1435,6 +1438,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h">
       <Filter>src\scene\step_0x_flipflip\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_sprite_BasicScene.h">
+      <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
