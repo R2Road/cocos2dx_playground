@@ -181,9 +181,6 @@
     <Filter Include="src\scene\step_02_flipflip">
       <UniqueIdentifier>{0d1428a9-b2f2-4f47-9608-0a6a3818f24a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_02_flipflip\plist">
-      <UniqueIdentifier>{9bcf0fbe-b47a-4fa8-9475-7e31fbbee7ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step_02_flipflip\texture">
       <UniqueIdentifier>{c6391555-f23d-45ca-80ec-8735b232aeab}</UniqueIdentifier>
     </Filter>
@@ -795,10 +792,10 @@
     <ClCompile Include="..\Classes\step_typetype_sprite_BasicScene.cpp">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_flipflip_sprite_TextureTypeScene.cpp">
-      <Filter>src\scene\step_02_flipflip\plist</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_flipflip_texture_AliasScene.cpp">
+      <Filter>src\scene\step_02_flipflip\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_texture_PListScene.cpp">
       <Filter>src\scene\step_02_flipflip\texture</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1445,10 +1442,10 @@
     <ClInclude Include="..\Classes\step_typetype_sprite_BasicScene.h">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_flipflip_sprite_TextureTypeScene.h">
-      <Filter>src\scene\step_02_flipflip\plist</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_texture_AliasScene.h">
+      <Filter>src\scene\step_02_flipflip\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_texture_PListScene.h">
       <Filter>src\scene\step_02_flipflip\texture</Filter>
     </ClInclude>
   </ItemGroup>

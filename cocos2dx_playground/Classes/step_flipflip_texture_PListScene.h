@@ -4,14 +4,14 @@
 
 namespace step_flipflip
 {
-	namespace sprite
+	namespace texture
 	{
-		class TextureTypeScene : public cocos2d::Scene
+		class PListScene : public cocos2d::Scene
 		{
 		public:
-			TextureTypeScene();
+			PListScene();
 
-			static const char* getTitle() { return "Sprite : Texture Type"; }
+			static const char* getTitle() { return "Texture : PList"; }
 			static cocos2d::Scene* create();
 
 		private:

@@ -1,4 +1,4 @@
-#include "step_flipflip_sprite_TextureTypeScene.h"
+#include "step_flipflip_texture_PListScene.h"
 
 #include <new>
 #include <numeric>
@@ -25,13 +25,13 @@ namespace
 
 namespace step_flipflip
 {
-	namespace sprite
+	namespace texture
 	{
-		TextureTypeScene::TextureTypeScene() : mKeyboardListener( nullptr ) {}
+		PListScene::PListScene() : mKeyboardListener( nullptr ) {}
 
-		Scene* TextureTypeScene::create()
+		Scene* PListScene::create()
 		{
-			auto ret = new ( std::nothrow ) TextureTypeScene();
+			auto ret = new ( std::nothrow ) PListScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -45,7 +45,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool TextureTypeScene::init()
+		bool PListScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -109,16 +109,16 @@ namespace step_flipflip
 			return true;
 		}
 
-		void TextureTypeScene::onEnter()
+		void PListScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TextureTypeScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PListScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void TextureTypeScene::onExit()
+		void PListScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -129,7 +129,7 @@ namespace step_flipflip
 			Scene::onExit();
 		}
 
-		void TextureTypeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void PListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
