@@ -83,50 +83,6 @@ namespace step_flipflip
 			}
 
 			//
-			// Sprite With Normal Texture : Antialias
-			//
-			{
-				auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
-				sprite->getTexture()->setAntiAliasTexParameters();
-				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.25f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
-				addChild( sprite );
-
-				auto label = Label::createWithTTF( "Normal Texture\nSet Antialias", "fonts/NanumSquareR.ttf", 12 );
-				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					sprite->getPositionX()
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
-				addChild( label );
-			}
-
-			//
-			// Sprite With Normal Texture : Alias
-			//
-			{
-				auto sprite = Sprite::create( "textures/step_typetype/step_typetype_dummy_02.png" );
-				sprite->getTexture()->setAliasTexParameters();
-				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
-				addChild( sprite );
-
-				auto label = Label::createWithTTF( "Normal Texture\nSet Alias ", "fonts/NanumSquareR.ttf", 12 );
-				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					sprite->getPositionX()
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
-				addChild( label );
-			}
-
-			//
 			// Sprite With PList
 			//
 			{
@@ -136,7 +92,7 @@ namespace step_flipflip
 				auto sprite = Sprite::createWithSpriteFrameName( "step_typetype_dummy_02.png" );
 				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.75f )
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
 				addChild( sprite );
