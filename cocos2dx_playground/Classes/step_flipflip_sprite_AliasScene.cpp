@@ -4,7 +4,12 @@
 #include <numeric>
 #include <sstream>
 
-#include "cocos2d.h"
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
 
 #include "step_flipflip_RootScene.h"
 
