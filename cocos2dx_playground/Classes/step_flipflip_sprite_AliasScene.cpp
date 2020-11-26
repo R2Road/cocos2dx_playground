@@ -80,14 +80,37 @@ namespace step_flipflip
 			{
 				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
 				sprite->getTexture()->setAntiAliasTexParameters();
-				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setScale( 3.f );
 				sprite->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.5f )
+					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.6f )
 				);
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "Texture Setting\nAntialias\n\nDefault", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "Scale x 3\n\nTexture Setting\nAntialias\n\nDefault", "fonts/NanumSquareR.ttf", 12 );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					sprite->getPosition()
+					- Vec2( 0.f, 50.f )
+				);
+				addChild( label );
+			}
+
+			//
+			// Sprite : Original
+			//
+			{
+				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
+				sprite->getTexture()->setAntiAliasTexParameters();
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.6f )
+				);
+				addChild( sprite );
+
+				auto label = Label::createWithTTF( "Original", "fonts/NanumSquareR.ttf", 12 );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					sprite->getPosition()
@@ -102,14 +125,15 @@ namespace step_flipflip
 			{
 				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_02.png" );
 				sprite->getTexture()->setAliasTexParameters();
-				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setScale( 3.f );
 				sprite->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.5f )
+					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.6f )
 				);
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "Texture Setting\nAlias", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "Scale x 3\n\nTexture Setting\nAlias", "fonts/NanumSquareR.ttf", 12 );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					sprite->getPosition()
