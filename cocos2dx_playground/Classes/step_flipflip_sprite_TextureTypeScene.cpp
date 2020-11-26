@@ -20,7 +20,7 @@ namespace step_flipflip
 {
 	namespace sprite
 	{
-		TextureTypeScene::TextureTypeScene() : mPressedKeyCount( 0 ), mKeyboardListener( nullptr ) {}
+		TextureTypeScene::TextureTypeScene() : mKeyboardListener( nullptr ) {}
 
 		Scene* TextureTypeScene::create()
 		{
