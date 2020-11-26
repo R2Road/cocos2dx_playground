@@ -1,4 +1,4 @@
-#include "step_flipflip_sprite_AliasScene.h"
+#include "step_flipflip_texture_AliasScene.h"
 
 #include <new>
 #include <numeric>
@@ -17,7 +17,7 @@ USING_NS_CC;
 
 namespace step_flipflip
 {
-	namespace sprite
+	namespace texture
 	{
 		AliasScene::AliasScene() : mKeyboardListener( nullptr ) {}
 

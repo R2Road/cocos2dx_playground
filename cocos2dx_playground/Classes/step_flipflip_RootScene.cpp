@@ -12,7 +12,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "step_flipflip_sprite_AliasScene.h"
+#include "step_flipflip_texture_AliasScene.h"
 #include "step_flipflip_sprite_TextureTypeScene.h"
 
 USING_NS_CC;
@@ -58,7 +58,7 @@ namespace step_flipflip
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] " << step_flipflip::sprite::AliasScene::getTitle();
+			ss << "[1] " << step_flipflip::texture::AliasScene::getTitle();
 			ss << std::endl;
 			ss << "[2] " << step_flipflip::sprite::TextureTypeScene::getTitle();
 
@@ -109,7 +109,7 @@ namespace step_flipflip
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( step_flipflip::sprite::AliasScene::create() );
+			_director->replaceScene( step_flipflip::texture::AliasScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_flipflip::sprite::TextureTypeScene::create() );

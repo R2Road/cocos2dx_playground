@@ -327,7 +327,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Step99_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_RootScene.cpp" />
-    <ClCompile Include="..\Classes\step_flipflip_sprite_AliasScene.cpp" />
+    <ClCompile Include="..\Classes\step_flipflip_texture_AliasScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_sprite_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_sprite_TextureTypeScene.cpp" />
@@ -545,7 +545,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Step99_RootScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_RootScene.h" />
     <ClInclude Include="..\Classes\step_typetype_RootScene.h" />
-    <ClInclude Include="..\Classes\step_flipflip_sprite_AliasScene.h" />
+    <ClInclude Include="..\Classes\step_flipflip_texture_AliasScene.h" />
     <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h" />
     <ClInclude Include="..\Classes\step_typetype_sprite_BasicScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_sprite_TextureTypeScene.h" />

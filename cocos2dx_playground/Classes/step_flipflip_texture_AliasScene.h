@@ -4,7 +4,7 @@
 
 namespace step_flipflip
 {
-	namespace sprite
+	namespace texture
 	{
 		class AliasScene : public cocos2d::Scene
 		{
