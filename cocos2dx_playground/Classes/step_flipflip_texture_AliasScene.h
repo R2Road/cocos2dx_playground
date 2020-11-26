@@ -11,7 +11,7 @@ namespace step_flipflip
 		public:
 			AliasScene();
 
-			static const char* getTitle() { return "Sprite : Alias"; }
+			static const char* getTitle() { return "Texture : Alias"; }
 			static cocos2d::Scene* create();
 
 		private:
