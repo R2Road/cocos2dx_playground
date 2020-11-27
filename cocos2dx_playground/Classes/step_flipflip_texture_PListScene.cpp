@@ -11,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 #include "renderer/CCTextureCache.h"
 
 #include "step_flipflip_RootScene.h"
@@ -83,11 +84,50 @@ namespace step_flipflip
 			}
 
 			//
+			// PList Info
+			//
+			{
+				auto label = Label::createWithTTF(
+					StringUtils::format( "PList Path : %s\nTexture Path : %s", PLIST_Path, TEXTURE_Path )
+					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT
+				);
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Load PList
 			//
 			{
 				SpriteFrameCache::getInstance()->addSpriteFramesWithFile( PLIST_Path, TEXTURE_Path );
 				_director->getTextureCache()->getTextureForKey( TEXTURE_Path )->setAliasTexParameters();
+			}
+
+			//
+			// Texture View
+			//
+			{
+				auto sprite = Sprite::create( TEXTURE_Path );
+				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.3f )
+					, visibleOrigin.y + visibleSize.height * 0.5f
+				) );
+				addChild( sprite );
+
+				auto label = Label::createWithTTF( "Texture 4 PList", "fonts/NanumSquareR.ttf", 12 );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					sprite->getPosition()
+					- Vec2( 0.f, sprite->getBoundingBox().size.height * 0.5f )
+					- Vec2( 0.f, 20.f )
+				);
+				addChild( label );
 			}
 
 			//
@@ -97,17 +137,18 @@ namespace step_flipflip
 				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_0.png" );
 				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					visibleOrigin.x + ( visibleSize.width * 0.7f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "PList Texture\nSet Alias ", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "Sprite With PList", "fonts/NanumSquareR.ttf", 12 );
 				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					sprite->getPositionX()
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
+				label->setPosition(
+					sprite->getPosition()
+					- Vec2( 0.f, sprite->getBoundingBox().size.height * 0.5f )
+					- Vec2( 0.f, 20.f )
+				);
 				addChild( label );
 			}
 
