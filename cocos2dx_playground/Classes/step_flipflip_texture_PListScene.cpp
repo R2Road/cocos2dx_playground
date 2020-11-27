@@ -89,7 +89,7 @@ namespace step_flipflip
 				SpriteFrameCache::getInstance()->addSpriteFramesWithFile( PLIST_Path, TEXTURE_Path );
 				_director->getTextureCache()->getTextureForKey( TEXTURE_Path )->setAliasTexParameters();
 
-				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_dummy_02.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_0.png" );
 				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
