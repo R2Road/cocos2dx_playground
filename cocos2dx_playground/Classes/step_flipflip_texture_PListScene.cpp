@@ -83,12 +83,17 @@ namespace step_flipflip
 			}
 
 			//
-			// Sprite With PList
+			// Load PList
 			//
 			{
 				SpriteFrameCache::getInstance()->addSpriteFramesWithFile( PLIST_Path, TEXTURE_Path );
 				_director->getTextureCache()->getTextureForKey( TEXTURE_Path )->setAliasTexParameters();
+			}
 
+			//
+			// Sprite With PList
+			//
+			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_0.png" );
 				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
