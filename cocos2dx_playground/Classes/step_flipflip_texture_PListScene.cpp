@@ -171,6 +171,7 @@ namespace step_flipflip
 			mKeyboardListener = nullptr;
 
 			SpriteFrameCache::getInstance()->removeSpriteFramesFromFile( PLIST_Path );
+			_director->getTextureCache()->removeTextureForKey( TEXTURE_Path );
 
 			Scene::onExit();
 		}
