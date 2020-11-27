@@ -25,7 +25,6 @@ namespace step_typetype
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
-			int mPressedKeyCount;
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 		};
 	}

@@ -181,8 +181,11 @@
     <Filter Include="src\scene\step_02_flipflip">
       <UniqueIdentifier>{0d1428a9-b2f2-4f47-9608-0a6a3818f24a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step_02_flipflip\sprite">
+    <Filter Include="src\scene\step_02_flipflip\texture">
       <UniqueIdentifier>{c6391555-f23d-45ca-80ec-8735b232aeab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_02_flipflip\game_test">
+      <UniqueIdentifier>{48241e61-a370-4fce-878e-21761f9b01c9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -789,14 +792,14 @@
     <ClCompile Include="..\Classes\step_flipflip_RootScene.cpp">
       <Filter>src\scene\step_02_flipflip</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_sprite_TextureTypeScene.cpp">
-      <Filter>src\scene\step_02_flipflip\sprite</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_sprite_BasicScene.cpp">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_sprite_AliasScene.cpp">
-      <Filter>src\scene\step_02_flipflip\sprite</Filter>
+    <ClCompile Include="..\Classes\step_flipflip_texture_AliasScene.cpp">
+      <Filter>src\scene\step_02_flipflip\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_texture_PListScene.cpp">
+      <Filter>src\scene\step_02_flipflip\texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1439,14 +1442,14 @@
     <ClInclude Include="..\Classes\step_flipflip_RootScene.h">
       <Filter>src\scene\step_02_flipflip</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_sprite_TextureTypeScene.h">
-      <Filter>src\scene\step_02_flipflip\sprite</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_sprite_BasicScene.h">
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_sprite_AliasScene.h">
-      <Filter>src\scene\step_02_flipflip\sprite</Filter>
+    <ClInclude Include="..\Classes\step_flipflip_texture_AliasScene.h">
+      <Filter>src\scene\step_02_flipflip\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_texture_PListScene.h">
+      <Filter>src\scene\step_02_flipflip\texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

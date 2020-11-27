@@ -2,16 +2,16 @@
 
 #include "2d/CCScene.h"
 
-namespace step_typetype
+namespace step_flipflip
 {
-	namespace sprite
+	namespace texture
 	{
-		class TextureTypeScene : public cocos2d::Scene
+		class PListScene : public cocos2d::Scene
 		{
 		public:
-			TextureTypeScene();
+			PListScene();
 
-			static const char* getTitle() { return "Sprite : Texture Type"; }
+			static const char* getTitle() { return "Texture : PList"; }
 			static cocos2d::Scene* create();
 
 		private:
@@ -25,7 +25,6 @@ namespace step_typetype
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
-			int mPressedKeyCount;
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 		};
 	}

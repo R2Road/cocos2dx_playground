@@ -14,7 +14,7 @@ namespace step_typetype
 {
 	namespace sprite
 	{
-		AnchorPointScene::AnchorPointScene() : mPressedKeyCount( 0 ), mKeyboardListener( nullptr ) {}
+		AnchorPointScene::AnchorPointScene() : mKeyboardListener( nullptr ) {}
 
 		Scene* AnchorPointScene::create()
 		{
