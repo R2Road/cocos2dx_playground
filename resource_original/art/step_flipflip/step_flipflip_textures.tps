@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../../cocos2dx_playground/Resources/textures/step_typetype/step_typetype_textures.png</filename>
+        <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_textures.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../cocos2dx_playground/Resources/textures/step_typetype/step_typetype_textures.plist</filename>
+                <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_textures.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,8 +181,8 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">step_typetype_dummy_01.png</key>
-            <key type="filename">step_typetype_dummy_02.png</key>
+            <key type="filename">step_flipflip_dummy_01.png</key>
+            <key type="filename">step_flipflip_dummy_02.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -200,8 +200,8 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>step_typetype_dummy_01.png</filename>
-            <filename>step_typetype_dummy_02.png</filename>
+            <filename>step_flipflip_dummy_01.png</filename>
+            <filename>step_flipflip_dummy_02.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

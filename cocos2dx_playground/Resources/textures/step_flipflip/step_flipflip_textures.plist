@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>step_typetype_dummy_01.png</key>
+            <key>step_flipflip_dummy_01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_typetype_dummy_02.png</key>
+            <key>step_flipflip_dummy_02.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -44,13 +44,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>step_typetype_textures.png</string>
+            <string>step_flipflip_textures.png</string>
             <key>size</key>
             <string>{64,64}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fee56c1603af8c657c5024cc871766d7:03a5e30e22a41d997256ae6cdf38210d:1bf933573406b00f758e6e4808a15556$</string>
+            <string>$TexturePacker:SmartUpdate:71992f8ee14ef7540d71e673b88858c7:03a5e30e22a41d997256ae6cdf38210d:a55b241e3d14adfbcdb6355af10c05cb$</string>
             <key>textureFileName</key>
-            <string>step_typetype_textures.png</string>
+            <string>step_flipflip_textures.png</string>
         </dict>
     </dict>
 </plist>

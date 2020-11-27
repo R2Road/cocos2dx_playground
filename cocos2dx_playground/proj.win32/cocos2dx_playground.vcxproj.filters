@@ -184,6 +184,9 @@
     <Filter Include="src\scene\step_02_flipflip\texture">
       <UniqueIdentifier>{c6391555-f23d-45ca-80ec-8735b232aeab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_02_flipflip\game_test">
+      <UniqueIdentifier>{48241e61-a370-4fce-878e-21761f9b01c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

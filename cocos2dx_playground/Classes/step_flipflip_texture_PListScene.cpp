@@ -19,8 +19,8 @@ USING_NS_CC;
 
 namespace
 {
-	const char* PLIST_Path = "textures/step_typetype/step_typetype_textures.plist";
-	const char* TEXTURE_Path = "textures/step_typetype/step_typetype_textures.png";
+	const char* PLIST_Path = "textures/step_flipflip/step_flipflip_textures.plist";
+	const char* TEXTURE_Path = "textures/step_flipflip/step_flipflip_textures.png";
 }
 
 namespace step_flipflip
@@ -89,7 +89,7 @@ namespace step_flipflip
 				SpriteFrameCache::getInstance()->addSpriteFramesWithFile( PLIST_Path, TEXTURE_Path );
 				_director->getTextureCache()->getTextureForKey( TEXTURE_Path )->setAliasTexParameters();
 
-				auto sprite = Sprite::createWithSpriteFrameName( "step_typetype_dummy_02.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_dummy_02.png" );
 				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
