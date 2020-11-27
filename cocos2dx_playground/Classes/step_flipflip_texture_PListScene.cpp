@@ -68,10 +68,11 @@ namespace step_flipflip
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( label->getContentSize().width * 0.5f )
-					, visibleOrigin.y + visibleSize.height - ( label->getContentSize().height * 0.5f )
-				) );
+				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
