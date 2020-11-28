@@ -15,6 +15,8 @@
 #include "step_flipflip_texture_AliasScene.h"
 #include "step_flipflip_texture_PListScene.h"
 
+#include "step_flipflip_scale_BasicScene.h"
+
 USING_NS_CC;
 
 namespace step_flipflip
@@ -61,6 +63,9 @@ namespace step_flipflip
 			ss << "[1] " << step_flipflip::texture::AliasScene::getTitle();
 			ss << std::endl;
 			ss << "[2] " << step_flipflip::texture::PListScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[3] " << step_flipflip::scale::BasicScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -113,6 +118,10 @@ namespace step_flipflip
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_flipflip::texture::PListScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_3:
+			_director->replaceScene( step_flipflip::scale::BasicScene::create() );
 			break;
 
 		default:

@@ -1,0 +1,195 @@
+#include "step_flipflip_scale_BasicScene.h"
+
+#include <new>
+#include <numeric>
+#include <sstream>
+
+#include "2d/CCLabel.h"
+#include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
+#include "renderer/CCTextureCache.h"
+
+#include "step_flipflip_RootScene.h"
+
+USING_NS_CC;
+
+namespace
+{
+	const char* PLIST_Path = "textures/step_flipflip/step_flipflip_textures.plist";
+	const char* TEXTURE_Path = "textures/step_flipflip/step_flipflip_textures.png";
+}
+
+namespace step_flipflip
+{
+	namespace scale
+	{
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mTestNode( nullptr ), mScaleView( nullptr ) {}
+
+		Scene* BasicScene::create()
+		{
+			auto ret = new ( std::nothrow ) BasicScene();
+			if( !ret || !ret->init() )
+			{
+				delete ret;
+				ret = nullptr;
+			}
+			else
+			{
+				ret->autorelease();
+			}
+
+			return ret;
+		}
+
+		bool BasicScene::init()
+		{
+			if( !Scene::init() )
+			{
+				return false;
+			}
+
+			const auto visibleSize = _director->getVisibleSize();
+			const auto visibleOrigin = _director->getVisibleOrigin();
+
+
+			//
+			// Summury
+			//
+			{
+				std::stringstream ss;
+				ss << "+ " << getTitle();
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow R] : Scale X - Up";
+				ss << std::endl;
+				ss << "[Arrow L] : Scale X - Down";
+				ss << std::endl;
+				ss << "[Arrow U] : Scale Y - Up";
+				ss << std::endl;
+				ss << "[Arrow D] : Scale Y - Uown";
+
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B( 29, 96, 96, 255 ) );
+				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Load PList
+			//
+			{
+				SpriteFrameCache::getInstance()->addSpriteFramesWithFile( PLIST_Path, TEXTURE_Path );
+				_director->getTextureCache()->getTextureForKey( TEXTURE_Path )->setAliasTexParameters();
+			}
+
+			//
+			// Scale View
+			//
+			{
+				mScaleView = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				mScaleView->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				mScaleView->setColor( Color3B::GREEN );
+				mScaleView->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
+				addChild( mScaleView, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Test Node
+			//
+			{
+				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_4.png" );
+				sprite->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + visibleSize.height * 0.5f
+				) );
+				addChild( sprite );
+
+				mTestNode = sprite;
+			}
+
+			//
+			// Setup
+			//
+			updateScaleView();
+
+			return true;
+		}
+
+		void BasicScene::onEnter()
+		{
+			Scene::onEnter();
+
+			assert( !mKeyboardListener );
+			mKeyboardListener = EventListenerKeyboard::create();
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
+		}
+		void BasicScene::onExit()
+		{
+			assert( mKeyboardListener );
+			getEventDispatcher()->removeEventListener( mKeyboardListener );
+			mKeyboardListener = nullptr;
+
+			SpriteFrameCache::getInstance()->removeSpriteFramesFromFile( PLIST_Path );
+			_director->getTextureCache()->removeTextureForKey( TEXTURE_Path );
+
+			Scene::onExit();
+		}
+
+		void BasicScene::updateScaleView()
+		{
+			mScaleView->setString( StringUtils::format( "X : %.2f\nY : %.2f", mTestNode->getScaleX(), mTestNode->getScaleY() ) );
+		}
+
+		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		{
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
+			{
+				_director->replaceScene( step_flipflip::RootScene::create() );
+				return;
+			}
+
+			switch( keycode )
+			{
+			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+				mTestNode->setScaleX( mTestNode->getScaleX() + 0.2f );
+				updateScaleView();
+				break;
+			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+				mTestNode->setScaleX( mTestNode->getScaleX() - 0.2f );
+				updateScaleView();
+				break;
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+				mTestNode->setScaleY( mTestNode->getScaleY() + 0.2f );
+				updateScaleView();
+				break;
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+				mTestNode->setScaleY( mTestNode->getScaleY() - 0.2f );
+				updateScaleView();
+				break;
+			}
+		}
+	}
+}

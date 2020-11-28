@@ -187,6 +187,9 @@
     <Filter Include="src\scene\step_02_flipflip\game_test">
       <UniqueIdentifier>{48241e61-a370-4fce-878e-21761f9b01c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_02_flipflip\scale">
+      <UniqueIdentifier>{bb05c989-6286-4be8-8ab7-05b677e54414}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -800,6 +803,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_flipflip_texture_PListScene.cpp">
       <Filter>src\scene\step_02_flipflip\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_scale_BasicScene.cpp">
+      <Filter>src\scene\step_02_flipflip\scale</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1450,6 +1456,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_texture_PListScene.h">
       <Filter>src\scene\step_02_flipflip\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_scale_BasicScene.h">
+      <Filter>src\scene\step_02_flipflip\scale</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
