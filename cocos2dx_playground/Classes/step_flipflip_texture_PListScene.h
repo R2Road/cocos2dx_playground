@@ -8,9 +8,10 @@ namespace step_flipflip
 	{
 		class PListScene : public cocos2d::Scene
 		{
-		public:
+		private:
 			PListScene();
 
+		public:
 			static const char* getTitle() { return "Texture : PList"; }
 			static cocos2d::Scene* create();
 

@@ -8,9 +8,10 @@ namespace step_flipflip
 	{
 		class AliasScene : public cocos2d::Scene
 		{
-		public:
+		private:
 			AliasScene();
 
+		public:
 			static const char* getTitle() { return "Texture : Alias"; }
 			static cocos2d::Scene* create();
 
