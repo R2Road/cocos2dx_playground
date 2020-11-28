@@ -11,11 +11,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{2,2},{26,40}}</string>
+                <string>{{2,2},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -26,11 +26,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{30,2},{26,40}}</string>
+                <string>{{82,2},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -41,11 +41,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{2,44},{26,40}}</string>
+                <string>{{162,2},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -56,11 +56,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{30,44},{26,40}}</string>
+                <string>{{2,124},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -71,11 +71,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{2,86},{26,40}}</string>
+                <string>{{82,124},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -86,11 +86,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{30,86},{26,40}}</string>
+                <string>{{162,124},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -106,9 +106,9 @@
             <key>realTextureFileName</key>
             <string>step_flipflip_textures.png</string>
             <key>size</key>
-            <string>{64,128}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7decd9bde3d22cc93a85a4cf1d3bf1e0:6b31ae8ac5d858e1944e643846727159:a55b241e3d14adfbcdb6355af10c05cb$</string>
+            <string>$TexturePacker:SmartUpdate:25562bb1c1f53828212a43768cb14cee:f055c0c4142ece8636be6005f2b9de5e:a55b241e3d14adfbcdb6355af10c05cb$</string>
             <key>textureFileName</key>
             <string>step_flipflip_textures.png</string>
         </dict>

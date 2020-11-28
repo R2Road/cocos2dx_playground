@@ -114,7 +114,6 @@ namespace step_flipflip
 			//
 			{
 				auto sprite = Sprite::create( TEXTURE_Path );
-				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.3f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
@@ -136,7 +135,6 @@ namespace step_flipflip
 			//
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_0.png" );
-				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.7f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
