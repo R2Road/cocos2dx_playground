@@ -20,8 +20,8 @@ USING_NS_CC;
 
 namespace
 {
-	const char* PLIST_Path = "textures/step_flipflip/step_flipflip_textures.plist";
-	const char* TEXTURE_Path = "textures/step_flipflip/step_flipflip_textures.png";
+	const char* PLIST_Path = "textures/step_flipflip/step_flipflip_dummy_textures.plist";
+	const char* TEXTURE_Path = "textures/step_flipflip/step_flipflip_dummy_textures.png";
 }
 
 namespace step_flipflip

@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_textures.png</filename>
+        <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_dummy_textures.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_textures.plist</filename>
+                <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_dummy_textures.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
