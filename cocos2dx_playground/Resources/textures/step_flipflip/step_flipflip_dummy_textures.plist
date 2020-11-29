@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>step_flipflip_card_back_0.png</key>
+            <key>step_flipflip_dummy4plist_back_0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_0.png</key>
+            <key>step_flipflip_dummy4plist_front_0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -34,7 +34,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_1.png</key>
+            <key>step_flipflip_dummy4plist_front_1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -49,7 +49,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_2.png</key>
+            <key>step_flipflip_dummy4plist_front_2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -64,7 +64,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_3.png</key>
+            <key>step_flipflip_dummy4plist_front_3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -79,96 +79,6 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_4.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{78,120}</string>
-                <key>spriteSourceSize</key>
-                <string>{78,120}</string>
-                <key>textureRect</key>
-                <string>{{162,124},{78,120}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>step_flipflip_dummy4plist_back_0.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{78,120}</string>
-                <key>spriteSourceSize</key>
-                <string>{78,120}</string>
-                <key>textureRect</key>
-                <string>{{2,246},{78,120}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>step_flipflip_dummy4plist_front_0.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{78,120}</string>
-                <key>spriteSourceSize</key>
-                <string>{78,120}</string>
-                <key>textureRect</key>
-                <string>{{82,246},{78,120}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>step_flipflip_dummy4plist_front_1.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{78,120}</string>
-                <key>spriteSourceSize</key>
-                <string>{78,120}</string>
-                <key>textureRect</key>
-                <string>{{162,246},{78,120}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>step_flipflip_dummy4plist_front_2.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{78,120}</string>
-                <key>spriteSourceSize</key>
-                <string>{78,120}</string>
-                <key>textureRect</key>
-                <string>{{2,368},{78,120}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>step_flipflip_dummy4plist_front_3.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{78,120}</string>
-                <key>spriteSourceSize</key>
-                <string>{78,120}</string>
-                <key>textureRect</key>
-                <string>{{82,368},{78,120}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
             <key>step_flipflip_dummy4plist_front_4.png</key>
             <dict>
                 <key>aliases</key>
@@ -180,7 +90,7 @@
                 <key>spriteSourceSize</key>
                 <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{162,368},{78,120}}</string>
+                <string>{{162,124},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -196,9 +106,9 @@
             <key>realTextureFileName</key>
             <string>step_flipflip_dummy_textures.png</string>
             <key>size</key>
-            <string>{256,512}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:65118387d3d2120bfb10c9ccd295dacf:34672a6ebbd3739086d8547e77c307f9:e70bf94b712d59d97bf04fe29d444d5a$</string>
+            <string>$TexturePacker:SmartUpdate:a75fec7cc7880d055aa29e9f7ee67ebd:90155959d49dec442f63d22d01167e8a:e70bf94b712d59d97bf04fe29d444d5a$</string>
             <key>textureFileName</key>
             <string>step_flipflip_dummy_textures.png</string>
         </dict>

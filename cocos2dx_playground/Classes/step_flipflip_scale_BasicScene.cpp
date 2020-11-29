@@ -7,22 +7,14 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
-#include "renderer/CCTextureCache.h"
 
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
-
-namespace
-{
-	const char* PLIST_Path = "textures/step_flipflip/step_flipflip_dummy_textures.plist";
-	const char* TEXTURE_Path = "textures/step_flipflip/step_flipflip_dummy_textures.png";
-}
 
 namespace step_flipflip
 {
@@ -94,14 +86,6 @@ namespace step_flipflip
 			}
 
 			//
-			// Load PList
-			//
-			{
-				SpriteFrameCache::getInstance()->addSpriteFramesWithFile( PLIST_Path, TEXTURE_Path );
-				_director->getTextureCache()->getTextureForKey( TEXTURE_Path )->setAliasTexParameters();
-			}
-
-			//
 			// Scale View
 			//
 			{
@@ -153,9 +137,6 @@ namespace step_flipflip
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-
-			SpriteFrameCache::getInstance()->removeSpriteFramesFromFile( PLIST_Path );
-			_director->getTextureCache()->removeTextureForKey( TEXTURE_Path );
 
 			Scene::onExit();
 		}

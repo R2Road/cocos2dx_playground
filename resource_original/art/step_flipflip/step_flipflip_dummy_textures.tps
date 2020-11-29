@@ -181,12 +181,6 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">step_flipflip_card_back_0.png</key>
-            <key type="filename">step_flipflip_card_front_0.png</key>
-            <key type="filename">step_flipflip_card_front_1.png</key>
-            <key type="filename">step_flipflip_card_front_2.png</key>
-            <key type="filename">step_flipflip_card_front_3.png</key>
-            <key type="filename">step_flipflip_card_front_4.png</key>
             <key type="filename">step_flipflip_dummy4plist_back_0.png</key>
             <key type="filename">step_flipflip_dummy4plist_front_0.png</key>
             <key type="filename">step_flipflip_dummy4plist_front_1.png</key>
@@ -210,12 +204,6 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>step_flipflip_card_back_0.png</filename>
-            <filename>step_flipflip_card_front_0.png</filename>
-            <filename>step_flipflip_card_front_1.png</filename>
-            <filename>step_flipflip_card_front_2.png</filename>
-            <filename>step_flipflip_card_front_3.png</filename>
-            <filename>step_flipflip_card_front_4.png</filename>
             <filename>step_flipflip_dummy4plist_back_0.png</filename>
             <filename>step_flipflip_dummy4plist_front_0.png</filename>
             <filename>step_flipflip_dummy4plist_front_1.png</filename>
