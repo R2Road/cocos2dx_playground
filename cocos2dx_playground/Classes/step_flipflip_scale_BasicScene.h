@@ -26,15 +26,27 @@ namespace step_flipflip
 			void onEnter() override;
 			void onExit() override;
 
+			void update4Scale( float dt );
+
 		private:
 			void updateScaleView();
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			cocos2d::Node* mTestNode;
 			cocos2d::Label* mScaleView;
+
+			enum eScaleFlag
+			{
+				Right,
+				Left,
+				Up,
+				Down,
+			};
+			int mScaleFlags;
 		};
 	}
 }

@@ -28,7 +28,7 @@ namespace step_flipflip
 {
 	namespace scale
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mTestNode( nullptr ), mScaleView( nullptr ) {}
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mTestNode( nullptr ), mScaleView( nullptr ), mScaleFlags( 0 ) {}
 
 		Scene* BasicScene::create()
 		{
@@ -133,6 +133,7 @@ namespace step_flipflip
 			// Setup
 			//
 			updateScaleView();
+			schedule( schedule_selector( BasicScene::update4Scale ) );
 
 			return true;
 		}
@@ -144,6 +145,7 @@ namespace step_flipflip
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( BasicScene::onKeyReleased, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
 		void BasicScene::onExit()
@@ -156,6 +158,37 @@ namespace step_flipflip
 			_director->getTextureCache()->removeTextureForKey( TEXTURE_Path );
 
 			Scene::onExit();
+		}
+
+		void BasicScene::update4Scale( float dt )
+		{
+			if( 0 == mScaleFlags )
+			{
+				return;
+			}
+
+			static float ChangeAmount = 6.f;
+			Vec2 temp;
+			if( mScaleFlags & ( 1 << eScaleFlag::Right ) )
+			{
+				temp.x += ChangeAmount;
+			}
+			if( mScaleFlags & ( 1 << eScaleFlag::Left ) )
+			{
+				temp.x -= ChangeAmount;
+			}
+			if( mScaleFlags & ( 1 << eScaleFlag::Up ) )
+			{
+				temp.y += ChangeAmount;
+			}
+			if( mScaleFlags & ( 1 << eScaleFlag::Down ) )
+			{
+				temp.y -= ChangeAmount;
+			}
+
+			mTestNode->setScaleX( mTestNode->getScaleX() + ( temp.x * dt ) );
+			mTestNode->setScaleY( mTestNode->getScaleY() + ( temp.y * dt ) );
+			updateScaleView();
 		}
 
 		void BasicScene::updateScaleView()
@@ -174,20 +207,36 @@ namespace step_flipflip
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-				mTestNode->setScaleX( mTestNode->getScaleX() + 0.2f );
-				updateScaleView();
+				mScaleFlags |= 1 << eScaleFlag::Right;
 				break;
 			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-				mTestNode->setScaleX( mTestNode->getScaleX() - 0.2f );
+				mScaleFlags |= 1 << eScaleFlag::Left;
 				updateScaleView();
 				break;
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
-				mTestNode->setScaleY( mTestNode->getScaleY() + 0.2f );
-				updateScaleView();
+				mScaleFlags |= 1 << eScaleFlag::Up;
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-				mTestNode->setScaleY( mTestNode->getScaleY() - 0.2f );
-				updateScaleView();
+				mScaleFlags |= 1 << eScaleFlag::Down;
+				break;
+			}
+		}
+
+		void BasicScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		{
+			switch( keycode )
+			{
+			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+				mScaleFlags ^= 1 << eScaleFlag::Right;
+				break;
+			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+				mScaleFlags ^= 1 << eScaleFlag::Left;
+				break;
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+				mScaleFlags ^= 1 << eScaleFlag::Up;
+				break;
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+				mScaleFlags ^= 1 << eScaleFlag::Down;
 				break;
 			}
 		}
