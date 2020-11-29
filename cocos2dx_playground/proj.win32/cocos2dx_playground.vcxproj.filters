@@ -807,6 +807,9 @@
     <ClCompile Include="..\Classes\step_flipflip_scale_BasicScene.cpp">
       <Filter>src\scene\step_02_flipflip\scale</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_texture_PList4ThisProjectScene.cpp">
+      <Filter>src\scene\step_02_flipflip\texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1459,6 +1462,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_scale_BasicScene.h">
       <Filter>src\scene\step_02_flipflip\scale</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_texture_PList4ThisProjectScene.h">
+      <Filter>src\scene\step_02_flipflip\texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
