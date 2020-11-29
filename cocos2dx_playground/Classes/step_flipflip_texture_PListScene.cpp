@@ -134,7 +134,7 @@ namespace step_flipflip
 			// Sprite With PList
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_0.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_dummy4plist_front_0.png" );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.7f )
 					, visibleOrigin.y + visibleSize.height * 0.5f

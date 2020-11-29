@@ -187,6 +187,12 @@
             <key type="filename">step_flipflip_card_front_2.png</key>
             <key type="filename">step_flipflip_card_front_3.png</key>
             <key type="filename">step_flipflip_card_front_4.png</key>
+            <key type="filename">step_flipflip_dummy4plist_back_0.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_0.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_1.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_2.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_3.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -195,21 +201,27 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>7,10,13,20</rect>
+                <rect>20,30,39,60</rect>
                 <key>scale9Paddings</key>
-                <rect>7,10,13,20</rect>
+                <rect>20,30,39,60</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>step_flipflip_card_front_3.png</filename>
-            <filename>step_flipflip_card_front_4.png</filename>
             <filename>step_flipflip_card_back_0.png</filename>
             <filename>step_flipflip_card_front_0.png</filename>
             <filename>step_flipflip_card_front_1.png</filename>
             <filename>step_flipflip_card_front_2.png</filename>
+            <filename>step_flipflip_card_front_3.png</filename>
+            <filename>step_flipflip_card_front_4.png</filename>
+            <filename>step_flipflip_dummy4plist_back_0.png</filename>
+            <filename>step_flipflip_dummy4plist_front_0.png</filename>
+            <filename>step_flipflip_dummy4plist_front_1.png</filename>
+            <filename>step_flipflip_dummy4plist_front_2.png</filename>
+            <filename>step_flipflip_dummy4plist_front_3.png</filename>
+            <filename>step_flipflip_dummy4plist_front_4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
