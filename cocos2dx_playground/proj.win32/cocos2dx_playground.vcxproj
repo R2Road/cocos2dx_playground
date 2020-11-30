@@ -192,6 +192,8 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_defender_tool_ParallaxLayerEditorScene.cpp" />
     <ClCompile Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.cpp" />
     <ClCompile Include="..\Classes\step_defender_tool_TileSheetNode.cpp" />
+    <ClCompile Include="..\Classes\step_flipflip_game_CardViewNode.cpp" />
+    <ClCompile Include="..\Classes\step_flipflip_game_test_CardViewScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_scale_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_texture_PList4ThisProjectScene.cpp" />
@@ -404,6 +406,8 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_defender_tool_ParallaxLayerEditorScene.h" />
     <ClInclude Include="..\Classes\step_defender_tool_test_TileSheetNodeScene.h" />
     <ClInclude Include="..\Classes\step_defender_tool_TileSheetNode.h" />
+    <ClInclude Include="..\Classes\step_flipflip_game_CardViewNode.h" />
+    <ClInclude Include="..\Classes\step_flipflip_game_test_CardViewScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_RootScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_scale_BasicScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_texture_PList4ThisProjectScene.h" />

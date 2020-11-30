@@ -18,6 +18,8 @@
 
 #include "step_flipflip_scale_BasicScene.h"
 
+#include "step_flipflip_game_test_CardViewScene.h"
+
 USING_NS_CC;
 
 namespace step_flipflip
@@ -69,6 +71,12 @@ namespace step_flipflip
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[4] " << step_flipflip::scale::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] " << step_flipflip::game_test::CardViewScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -128,6 +136,10 @@ namespace step_flipflip
 
 		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( step_flipflip::scale::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			_director->replaceScene( step_flipflip::game_test::CardViewScene::create() );
 			break;
 
 		default:
