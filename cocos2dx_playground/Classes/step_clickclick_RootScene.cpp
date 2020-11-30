@@ -14,7 +14,6 @@
 
 #include "PlayGroundScene.h"
 
-#include "step_clickclick_animation_BasicScene.h"
 #include "step_clickclick_animation_PlayNStopScene.h"
 #include "step_clickclick_animation_ListScene.h"
 
@@ -60,14 +59,12 @@ namespace step_clickclick
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << step_clickclick::animation::BasicScene::getTitle();
+			ss << "[1] : " << step_clickclick::animation::PlayNStopScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << step_clickclick::animation::PlayNStopScene::getTitle();
-			ss << std::endl;
-			ss << "[3] : " << step_clickclick::animation::ListScene::getTitle();
+			ss << "[2] : " << step_clickclick::animation::ListScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : " << step_clickclick::button::BasicScene::getTitle();
+			ss << "[3] : " << step_clickclick::button::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -133,16 +130,13 @@ namespace step_clickclick
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( step_clickclick::animation::BasicScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_clickclick::animation::PlayNStopScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_3:
+		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_clickclick::animation::ListScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( step_clickclick::button::BasicScene::create() );
 			break;
 

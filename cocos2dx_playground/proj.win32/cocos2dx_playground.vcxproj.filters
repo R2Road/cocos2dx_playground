@@ -273,9 +273,6 @@
     <ClCompile Include="..\Classes\step_clickclick_animation_PlayNStopScene.cpp">
       <Filter>src\scene\step_03_clickclick\animation</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_animation_BasicScene.cpp">
-      <Filter>src\scene\step_03_clickclick\animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_button_BasicScene.cpp">
       <Filter>src\scene\step_03_clickclick\button</Filter>
     </ClCompile>
@@ -906,9 +903,6 @@
       <Filter>src\scene\step_03_clickclick</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_animation_PlayNStopScene.h">
-      <Filter>src\scene\step_03_clickclick\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_animation_BasicScene.h">
       <Filter>src\scene\step_03_clickclick\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_button_BasicScene.h">
