@@ -310,6 +310,26 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">step_flipflip/step_flipflip_card_back_0.png</key>
+            <key type="filename">step_flipflip/step_flipflip_card_front_0.png</key>
+            <key type="filename">step_flipflip/step_flipflip_card_front_1.png</key>
+            <key type="filename">step_flipflip/step_flipflip_card_front_2.png</key>
+            <key type="filename">step_flipflip/step_flipflip_card_front_3.png</key>
+            <key type="filename">step_flipflip/step_flipflip_card_front_4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,30,39,60</rect>
+                <key>scale9Paddings</key>
+                <rect>20,30,39,60</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">step_mole/step_mole_effect_attack_01_0.png</key>
             <key type="filename">step_mole/step_mole_effect_attack_01_1.png</key>
             <key type="filename">step_mole/step_mole_effect_attack_01_2.png</key>
@@ -740,6 +760,12 @@
             <filename>ui/scale9_guide/scale9_guide_01_0.png</filename>
             <filename>step_defender/step_defender_tool_icon_01_0.png</filename>
             <filename>step_defender/step_defender_tool_icon_01_1.png</filename>
+            <filename>step_flipflip/step_flipflip_card_front_3.png</filename>
+            <filename>step_flipflip/step_flipflip_card_front_4.png</filename>
+            <filename>step_flipflip/step_flipflip_card_front_0.png</filename>
+            <filename>step_flipflip/step_flipflip_card_front_1.png</filename>
+            <filename>step_flipflip/step_flipflip_card_front_2.png</filename>
+            <filename>step_flipflip/step_flipflip_card_back_0.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

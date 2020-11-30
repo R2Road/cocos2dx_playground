@@ -1,4 +1,4 @@
-#include "step_flipflip_texture_PListScene.h"
+#include "step_flipflip_texture_PList4ThisProjectScene.h"
 
 #include <new>
 #include <numeric>
@@ -20,19 +20,19 @@ USING_NS_CC;
 
 namespace
 {
-	const char* PLIST_Path = "textures/step_flipflip/step_flipflip_dummy_textures.plist";
-	const char* TEXTURE_Path = "textures/step_flipflip/step_flipflip_dummy_textures.png";
+	const char* PLIST_Path = "textures/texture_001.plist";
+	const char* TEXTURE_Path = "textures/texture_001.png";
 }
 
 namespace step_flipflip
 {
 	namespace texture
 	{
-		PListScene::PListScene() : mKeyboardListener( nullptr ) {}
+		PList4ThisProjectScene::PList4ThisProjectScene() : mKeyboardListener( nullptr ) {}
 
-		Scene* PListScene::create()
+		Scene* PList4ThisProjectScene::create()
 		{
-			auto ret = new ( std::nothrow ) PListScene();
+			auto ret = new ( std::nothrow ) PList4ThisProjectScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -46,7 +46,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool PListScene::init()
+		bool PList4ThisProjectScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -102,14 +102,6 @@ namespace step_flipflip
 			}
 
 			//
-			// Load PList
-			//
-			{
-				SpriteFrameCache::getInstance()->addSpriteFramesWithFile( PLIST_Path, TEXTURE_Path );
-				_director->getTextureCache()->getTextureForKey( TEXTURE_Path )->setAliasTexParameters();
-			}
-
-			//
 			// Texture View
 			//
 			{
@@ -119,63 +111,46 @@ namespace step_flipflip
 					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
 				addChild( sprite );
-
-				auto label = Label::createWithTTF( "Texture 4 PList", "fonts/NanumSquareR.ttf", 12 );
-				label->setColor( Color3B::GREEN );
-				label->setPosition(
-					sprite->getPosition()
-					- Vec2( 0.f, sprite->getBoundingBox().size.height * 0.5f )
-					- Vec2( 0.f, 20.f )
-				);
-				addChild( label );
 			}
 
 			//
-			// Sprite With PList
+			// Explain
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_dummy4plist_front_0.png" );
-				sprite->setPosition( Vec2(
+				auto label = Label::createWithTTF(
+					"<=== This texture will be used\nthroughout the project"
+					, "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::RIGHT
+				);
+				label->setColor( Color3B::YELLOW );
+				label->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.7f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
-				addChild( sprite );
-
-				auto label = Label::createWithTTF( "Sprite With PList", "fonts/NanumSquareR.ttf", 12 );
-				label->setColor( Color3B::GREEN );
-				label->setPosition(
-					sprite->getPosition()
-					- Vec2( 0.f, sprite->getBoundingBox().size.height * 0.5f )
-					- Vec2( 0.f, 20.f )
-				);
 				addChild( label );
 			}
 
 			return true;
 		}
 
-		void PListScene::onEnter()
+		void PList4ThisProjectScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PListScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PList4ThisProjectScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void PListScene::onExit()
+		void PList4ThisProjectScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
 
-			SpriteFrameCache::getInstance()->removeSpriteFramesFromFile( PLIST_Path );
-			_director->getTextureCache()->removeTextureForKey( TEXTURE_Path );
-
 			Scene::onExit();
 		}
 
-		void PListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void PList4ThisProjectScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{

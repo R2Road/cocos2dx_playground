@@ -14,6 +14,11 @@
 
 #include "step_flipflip_texture_AliasScene.h"
 #include "step_flipflip_texture_PListScene.h"
+#include "step_flipflip_texture_PList4ThisProjectScene.h"
+
+#include "step_flipflip_scale_BasicScene.h"
+
+#include "step_flipflip_game_test_CardViewScene.h"
 
 USING_NS_CC;
 
@@ -61,8 +66,19 @@ namespace step_flipflip
 			ss << "[1] " << step_flipflip::texture::AliasScene::getTitle();
 			ss << std::endl;
 			ss << "[2] " << step_flipflip::texture::PListScene::getTitle();
+			ss << std::endl;
+			ss << "[3] " << step_flipflip::texture::PList4ThisProjectScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[4] " << step_flipflip::scale::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] " << step_flipflip::game_test::CardViewScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -113,6 +129,17 @@ namespace step_flipflip
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_flipflip::texture::PListScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			_director->replaceScene( step_flipflip::texture::PList4ThisProjectScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_4:
+			_director->replaceScene( step_flipflip::scale::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			_director->replaceScene( step_flipflip::game_test::CardViewScene::create() );
 			break;
 
 		default:

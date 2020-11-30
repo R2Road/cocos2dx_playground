@@ -4,93 +4,93 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>step_flipflip_card_back_0.png</key>
+            <key>step_flipflip_dummy4plist_back_0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{2,2},{26,40}}</string>
+                <string>{{2,2},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_0.png</key>
+            <key>step_flipflip_dummy4plist_front_0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{30,2},{26,40}}</string>
+                <string>{{82,2},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_1.png</key>
+            <key>step_flipflip_dummy4plist_front_1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{2,44},{26,40}}</string>
+                <string>{{162,2},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_2.png</key>
+            <key>step_flipflip_dummy4plist_front_2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{30,44},{26,40}}</string>
+                <string>{{2,124},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_3.png</key>
+            <key>step_flipflip_dummy4plist_front_3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{2,86},{26,40}}</string>
+                <string>{{82,124},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>step_flipflip_card_front_4.png</key>
+            <key>step_flipflip_dummy4plist_front_4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>spriteSourceSize</key>
-                <string>{26,40}</string>
+                <string>{78,120}</string>
                 <key>textureRect</key>
-                <string>{{30,86},{26,40}}</string>
+                <string>{{162,124},{78,120}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -104,13 +104,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>step_flipflip_textures.png</string>
+            <string>step_flipflip_dummy_textures.png</string>
             <key>size</key>
-            <string>{64,128}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7decd9bde3d22cc93a85a4cf1d3bf1e0:6b31ae8ac5d858e1944e643846727159:a55b241e3d14adfbcdb6355af10c05cb$</string>
+            <string>$TexturePacker:SmartUpdate:a75fec7cc7880d055aa29e9f7ee67ebd:90155959d49dec442f63d22d01167e8a:e70bf94b712d59d97bf04fe29d444d5a$</string>
             <key>textureFileName</key>
-            <string>step_flipflip_textures.png</string>
+            <string>step_flipflip_dummy_textures.png</string>
         </dict>
     </dict>
 </plist>

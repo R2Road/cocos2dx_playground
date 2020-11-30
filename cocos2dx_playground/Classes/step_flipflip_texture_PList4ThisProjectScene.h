@@ -6,13 +6,13 @@ namespace step_flipflip
 {
 	namespace texture
 	{
-		class PListScene : public cocos2d::Scene
+		class PList4ThisProjectScene : public cocos2d::Scene
 		{
 		private:
-			PListScene();
+			PList4ThisProjectScene();
 
 		public:
-			static const char* getTitle() { return "Texture : PList"; }
+			static const char* getTitle() { return "Texture : PList 4 This Project"; }
 			static cocos2d::Scene* create();
 
 		private:

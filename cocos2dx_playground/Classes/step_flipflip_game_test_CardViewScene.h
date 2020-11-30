@@ -4,15 +4,20 @@
 
 namespace step_flipflip
 {
-	namespace texture
+	namespace game
 	{
-		class PListScene : public cocos2d::Scene
+		class CardViewNode;
+	}
+
+	namespace game_test
+	{
+		class CardViewScene : public cocos2d::Scene
 		{
 		private:
-			PListScene();
+			CardViewScene();
 
 		public:
-			static const char* getTitle() { return "Texture : PList"; }
+			static const char* getTitle() { return "Game Test : Card View"; }
 			static cocos2d::Scene* create();
 
 		private:
@@ -27,6 +32,8 @@ namespace step_flipflip
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			game::CardViewNode* mCardViewNode;
 		};
 	}
 }

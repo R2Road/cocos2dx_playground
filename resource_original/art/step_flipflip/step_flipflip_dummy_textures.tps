@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_textures.png</filename>
+        <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_dummy_textures.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_textures.plist</filename>
+                <filename>../../../cocos2dx_playground/Resources/textures/step_flipflip/step_flipflip_dummy_textures.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,12 +181,12 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">step_flipflip_card_back_0.png</key>
-            <key type="filename">step_flipflip_card_front_0.png</key>
-            <key type="filename">step_flipflip_card_front_1.png</key>
-            <key type="filename">step_flipflip_card_front_2.png</key>
-            <key type="filename">step_flipflip_card_front_3.png</key>
-            <key type="filename">step_flipflip_card_front_4.png</key>
+            <key type="filename">step_flipflip_dummy4plist_back_0.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_0.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_1.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_2.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_3.png</key>
+            <key type="filename">step_flipflip_dummy4plist_front_4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -195,21 +195,21 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>7,10,13,20</rect>
+                <rect>20,30,39,60</rect>
                 <key>scale9Paddings</key>
-                <rect>7,10,13,20</rect>
+                <rect>20,30,39,60</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>step_flipflip_card_front_3.png</filename>
-            <filename>step_flipflip_card_front_4.png</filename>
-            <filename>step_flipflip_card_back_0.png</filename>
-            <filename>step_flipflip_card_front_0.png</filename>
-            <filename>step_flipflip_card_front_1.png</filename>
-            <filename>step_flipflip_card_front_2.png</filename>
+            <filename>step_flipflip_dummy4plist_back_0.png</filename>
+            <filename>step_flipflip_dummy4plist_front_0.png</filename>
+            <filename>step_flipflip_dummy4plist_front_1.png</filename>
+            <filename>step_flipflip_dummy4plist_front_2.png</filename>
+            <filename>step_flipflip_dummy4plist_front_3.png</filename>
+            <filename>step_flipflip_dummy4plist_front_4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
