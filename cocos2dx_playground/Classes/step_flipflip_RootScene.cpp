@@ -15,8 +15,8 @@
 #include "step_flipflip_texture_AliasScene.h"
 #include "step_flipflip_texture_PListScene.h"
 #include "step_flipflip_texture_PList4ThisProjectScene.h"
-
 #include "step_flipflip_scale_BasicScene.h"
+#include "step_flipflip_action_BasicScene.h"
 
 #include "step_flipflip_game_test_CardViewScene.h"
 
@@ -71,6 +71,9 @@ namespace step_flipflip
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[4] " << step_flipflip::scale::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[5] " << step_flipflip::action::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -136,6 +139,10 @@ namespace step_flipflip
 
 		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( step_flipflip::scale::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_5:
+			_director->replaceScene( step_flipflip::action::BasicScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_Q:

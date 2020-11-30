@@ -193,6 +193,9 @@
     <Filter Include="src\scene\step_02_flipflip\game">
       <UniqueIdentifier>{7271943b-0c3b-4e26-94d9-0fdfc5f60af9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_02_flipflip\action">
+      <UniqueIdentifier>{ed97cea9-ccdf-485b-a786-90a4a2e1eb79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -818,6 +821,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_flipflip_game_CardViewNode.cpp">
       <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_action_BasicScene.cpp">
+      <Filter>src\scene\step_02_flipflip\action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1480,6 +1486,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_game_CardViewNode.h">
       <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_action_BasicScene.h">
+      <Filter>src\scene\step_02_flipflip\action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
