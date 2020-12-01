@@ -66,7 +66,7 @@ namespace step_flipflip
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow R/L] : Opacity - Up/Down";
+				ss << "[Arrow U/D] : Opacity - Up/Down";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
