@@ -105,7 +105,7 @@ namespace step_flipflip
 			// Test Node
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( GetSpriteFrameName_CardFrontSide( game::eCardType::E ) );
+				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_4.png" );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
