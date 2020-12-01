@@ -7,19 +7,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const char* CardBackSideSpriteFrameName = "step_flipflip_card_back_0.png";
-
-	const char* CardFrontSpriteFrameNames[static_cast<std::size_t>( step_flipflip::game::eCardType::SIZE )] = {
-		"step_flipflip_card_front_0.png"
-		, "step_flipflip_card_front_1.png"
-		, "step_flipflip_card_front_2.png"
-		, "step_flipflip_card_front_3.png"
-		, "step_flipflip_card_front_4.png"
-	};
-}
-
 namespace step_flipflip
 {
 	namespace game
@@ -50,8 +37,8 @@ namespace step_flipflip
 				return false;
 			}
 
-			mBackSideSpriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName( CardBackSideSpriteFrameName );
-			mFrontSideSpriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName( CardFrontSpriteFrameNames[static_cast<std::size_t>( card_type )] );
+			mBackSideSpriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName( GetSpriteFrameName_CardBackSide() );
+			mFrontSideSpriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName( GetSpriteFrameName_CardFrontSide( card_type ) );
 
 			mView = Sprite::createWithSpriteFrame( mBackSideSpriteFrame );
 			addChild( mView );
