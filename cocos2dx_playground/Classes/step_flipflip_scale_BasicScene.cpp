@@ -16,6 +16,11 @@
 
 USING_NS_CC;
 
+namespace
+{
+	static float ChangeAmount_Per_Seconds = 6.f;
+}
+
 namespace step_flipflip
 {
 	namespace scale
@@ -85,7 +90,7 @@ namespace step_flipflip
 			// Scale View
 			//
 			{
-				mScaleView = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				mScaleView = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::LEFT );
 				mScaleView->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				mScaleView->setColor( Color3B::GREEN );
 				mScaleView->setPosition(
@@ -144,23 +149,22 @@ namespace step_flipflip
 				return;
 			}
 
-			static float ChangeAmount = 6.f;
 			Vec2 temp;
 			if( mScaleFlags & ( 1 << eScaleFlag::Right ) )
 			{
-				temp.x += ChangeAmount;
+				temp.x += ChangeAmount_Per_Seconds;
 			}
 			if( mScaleFlags & ( 1 << eScaleFlag::Left ) )
 			{
-				temp.x -= ChangeAmount;
+				temp.x -= ChangeAmount_Per_Seconds;
 			}
 			if( mScaleFlags & ( 1 << eScaleFlag::Up ) )
 			{
-				temp.y += ChangeAmount;
+				temp.y += ChangeAmount_Per_Seconds;
 			}
 			if( mScaleFlags & ( 1 << eScaleFlag::Down ) )
 			{
-				temp.y -= ChangeAmount;
+				temp.y -= ChangeAmount_Per_Seconds;
 			}
 
 			mTestNode->setScaleX( mTestNode->getScaleX() + ( temp.x * dt ) );
