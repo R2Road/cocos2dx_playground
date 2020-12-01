@@ -20,8 +20,6 @@ namespace step_flipflip
 		CardViewNode::CardViewNode() :
 			mbFrontSide( false )
 			, mView( nullptr )
-			, mBackSideSpriteFrame( nullptr )
-			, mFrontSideSpriteFrame( nullptr )
 			, mAction4FrontSide( nullptr )
 			, mAction4BackSide( nullptr )
 		{}
@@ -55,10 +53,10 @@ namespace step_flipflip
 				return false;
 			}
 
-			mBackSideSpriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName( GetSpriteFrameName_CardBackSide() );
-			mFrontSideSpriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName( GetSpriteFrameName_CardFrontSide( card_type ) );
+			auto back_side_sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( GetSpriteFrameName_CardBackSide() );
+			auto front_side_sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( GetSpriteFrameName_CardFrontSide( card_type ) );
 
-			mView = Sprite::createWithSpriteFrame( mBackSideSpriteFrame );
+			mView = Sprite::createWithSpriteFrame( back_side_sprite_frame );
 			addChild( mView );
 
 			//
@@ -69,7 +67,7 @@ namespace step_flipflip
 
 				auto animation_object = Animation::create();
 				animation_object->setDelayPerUnit( 0.01f );
-				animation_object->addSpriteFrame( mFrontSideSpriteFrame );
+				animation_object->addSpriteFrame( front_side_sprite_frame );
 				auto animate = Animate::create( animation_object );
 
 				auto scale_to_2 = ScaleTo::create( 0.1f, 1.f, 1.f );
@@ -89,7 +87,7 @@ namespace step_flipflip
 
 				auto animation_object = Animation::create();
 				animation_object->setDelayPerUnit( 0.01f );
-				animation_object->addSpriteFrame( mBackSideSpriteFrame );
+				animation_object->addSpriteFrame( back_side_sprite_frame );
 				auto animate = Animate::create( animation_object );
 
 				auto scale_to_2 = ScaleTo::create( 0.1f, 1.f, 1.f );

@@ -34,8 +34,6 @@ namespace step_flipflip
 			bool mbFrontSide;
 
 			cocos2d::Sprite* mView;
-			cocos2d::SpriteFrame* mBackSideSpriteFrame;
-			cocos2d::SpriteFrame* mFrontSideSpriteFrame;
 			cocos2d::Action* mAction4FrontSide;
 			cocos2d::Action* mAction4BackSide;
 		};
