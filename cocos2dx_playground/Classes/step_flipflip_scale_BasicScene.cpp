@@ -12,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "step_flipflip_game_Constant.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
@@ -104,7 +105,7 @@ namespace step_flipflip
 			// Test Node
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_4.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( GetSpriteFrameName_CardFrontSide( game::eCardType::E ) );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + visibleSize.height * 0.5f

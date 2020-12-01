@@ -13,6 +13,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_flipflip_game_Constant.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
@@ -81,7 +82,7 @@ namespace step_flipflip
 			// Action : Scale
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_0.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( GetSpriteFrameName_CardFrontSide( game::eCardType::A ) );
 				sprite->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
@@ -119,7 +120,7 @@ namespace step_flipflip
 			// Action : Fade
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_1.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( GetSpriteFrameName_CardFrontSide( game::eCardType::B ) );
 				sprite->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
@@ -156,7 +157,7 @@ namespace step_flipflip
 			// Action : Animation
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_back_0.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( GetSpriteFrameName_CardFrontSide( game::eCardType::A ) );
 				sprite->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
