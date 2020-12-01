@@ -97,7 +97,7 @@ namespace step_flipflip
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 36, 120, 122, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 33, 112, 112, 255 ) );
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
