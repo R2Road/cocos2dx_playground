@@ -11,7 +11,7 @@ namespace
 {
 	const char* CardBackSideSpriteFrameName = "step_flipflip_card_back_0.png";
 
-	const char* CardFrontSpriteFrameNames[static_cast<std::size_t>( step_flipflip::game::CardViewNode::eCardType::SIZE )] = {
+	const char* CardFrontSpriteFrameNames[static_cast<std::size_t>( step_flipflip::game::eCardType::SIZE )] = {
 		"step_flipflip_card_front_0.png"
 		, "step_flipflip_card_front_1.png"
 		, "step_flipflip_card_front_2.png"

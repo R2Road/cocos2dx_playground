@@ -84,7 +84,7 @@ namespace step_flipflip
 			// Test Node
 			//
 			{
-				mCardViewNode = game::CardViewNode::create( game::CardViewNode::eCardType::A );
+				mCardViewNode = game::CardViewNode::create( game::eCardType::A );
 				mCardViewNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )

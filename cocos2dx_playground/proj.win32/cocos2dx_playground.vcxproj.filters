@@ -828,6 +828,9 @@
     <ClCompile Include="..\Classes\step_flipflip_opacity_BasicScene.cpp">
       <Filter>src\scene\step_02_flipflip\opacity</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_game_Constant.cpp">
+      <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1492,6 +1495,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_opacity_BasicScene.h">
       <Filter>src\scene\step_02_flipflip\opacity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_game_Constant.h">
+      <Filter>src\scene\step_02_flipflip\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
