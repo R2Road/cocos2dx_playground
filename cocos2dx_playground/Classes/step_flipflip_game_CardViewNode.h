@@ -5,6 +5,7 @@
 #include "step_flipflip_game_Constant.h"
 
 NS_CC_BEGIN
+	class Action;
 	class Sprite;
 	class SpriteFrame;
 NS_CC_END
@@ -19,6 +20,8 @@ namespace step_flipflip
 			CardViewNode();
 
 		public:
+			~CardViewNode();
+
 			static CardViewNode* create( const eCardType card_type );
 
 		private:
@@ -33,6 +36,8 @@ namespace step_flipflip
 			cocos2d::Sprite* mView;
 			cocos2d::SpriteFrame* mBackSideSpriteFrame;
 			cocos2d::SpriteFrame* mFrontSideSpriteFrame;
+			cocos2d::Action* mAction4FrontSide;
+			cocos2d::Action* mAction4BackSide;
 		};
 	}
 }
