@@ -6,8 +6,6 @@
 
 NS_CC_BEGIN
 	class Action;
-	class Sprite;
-	class SpriteFrame;
 NS_CC_END
 
 namespace step_flipflip
@@ -33,7 +31,7 @@ namespace step_flipflip
 		private:
 			bool mbFrontSide;
 
-			cocos2d::Sprite* mView;
+			cocos2d::Node* mView;
 			cocos2d::Action* mAction4FrontSide;
 			cocos2d::Action* mAction4BackSide;
 		};

@@ -56,8 +56,13 @@ namespace step_flipflip
 			auto back_side_sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( GetSpriteFrameName_CardBackSide() );
 			auto front_side_sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( GetSpriteFrameName_CardFrontSide( card_type ) );
 
-			mView = Sprite::createWithSpriteFrame( back_side_sprite_frame );
-			addChild( mView );
+			//
+			// View
+			//
+			{
+				mView = Sprite::createWithSpriteFrame( back_side_sprite_frame );
+				addChild( mView );
+			}
 
 			//
 			// Flip Action - Go Front Side
@@ -73,10 +78,10 @@ namespace step_flipflip
 				auto scale_to_2 = ScaleTo::create( 0.1f, 1.f, 1.f );
 
 				auto sequence = Sequence::create( scale_to_1, animate, scale_to_2, nullptr );
-				sequence->retain();
 
 				mAction4FrontSide = sequence;
 				mAction4FrontSide->setTag( TAG_Action );
+				mAction4FrontSide->retain();
 			}
 
 			//
@@ -93,10 +98,10 @@ namespace step_flipflip
 				auto scale_to_2 = ScaleTo::create( 0.1f, 1.f, 1.f );
 
 				auto sequence = Sequence::create( scale_to_1, animate, scale_to_2, nullptr );
-				sequence->retain();
-
+				
 				mAction4BackSide = sequence;
-				mAction4FrontSide->setTag( TAG_Action );
+				mAction4BackSide->setTag( TAG_Action );
+				mAction4BackSide->retain();
 			}
 
 			return true;
