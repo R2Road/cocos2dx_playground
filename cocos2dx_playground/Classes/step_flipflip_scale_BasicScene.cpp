@@ -60,13 +60,9 @@ namespace step_flipflip
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow R] : Scale X - Up";
+				ss << "[Arrow R/L] : Scale X - Up/Down";
 				ss << std::endl;
-				ss << "[Arrow L] : Scale X - Down";
-				ss << std::endl;
-				ss << "[Arrow U] : Scale Y - Up";
-				ss << std::endl;
-				ss << "[Arrow D] : Scale Y - Uown";
+				ss << "[Arrow U/D] : Scale Y - Up/Down";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
