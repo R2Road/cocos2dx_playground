@@ -91,12 +91,12 @@ namespace step_flipflip
 
 				// Action
 				{
-					auto scale_by_1 = ScaleTo::create( 0.5f, -1.f, 1.f );
+					auto scale_to_1 = ScaleTo::create( 0.5f, -1.f, 1.f );
 					auto delay_time_1 = DelayTime::create( 0.5f );
-					auto scale_by_2 = ScaleTo::create( 0.5f, 1.f, 1.f );
+					auto scale_to_2 = ScaleTo::create( 0.5f, 1.f, 1.f );
 					auto delay_time_2 = DelayTime::create( 0.5f );
 
-					auto sequence = Sequence::create( scale_by_1, delay_time_1, scale_by_2, delay_time_2, nullptr );
+					auto sequence = Sequence::create( scale_to_1, delay_time_1, scale_to_2, delay_time_2, nullptr );
 
 					auto repeat_forever = RepeatForever::create( sequence );
 
