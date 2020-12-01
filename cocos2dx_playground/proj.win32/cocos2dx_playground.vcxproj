@@ -199,6 +199,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_flipflip_opacity_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_RootScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_scale_BasicScene.cpp" />
+    <ClCompile Include="..\Classes\step_flipflip_sprite_frame_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_texture_PList4ThisProjectScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_AnimationComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_Animation_Index.cpp" />
@@ -415,6 +416,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_flipflip_opacity_BasicScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_RootScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_scale_BasicScene.h" />
+    <ClInclude Include="..\Classes\step_flipflip_sprite_frame_BasicScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_texture_PList4ThisProjectScene.h" />
     <ClInclude Include="..\Classes\step_mole_AnimationComponent.h" />
     <ClInclude Include="..\Classes\cpg_Animation_Index.h" />

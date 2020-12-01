@@ -199,6 +199,9 @@
     <Filter Include="src\scene\step_02_flipflip\opacity">
       <UniqueIdentifier>{c7574f85-b687-4c06-85aa-0ba25b8f495e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_02_flipflip\sprite_frame">
+      <UniqueIdentifier>{a70260a5-6b93-4f29-b053-f8624067d4d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -830,6 +833,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_flipflip_game_Constant.cpp">
       <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_sprite_frame_BasicScene.cpp">
+      <Filter>src\scene\step_02_flipflip\sprite_frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1498,6 +1504,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_game_Constant.h">
       <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_sprite_frame_BasicScene.h">
+      <Filter>src\scene\step_02_flipflip\sprite_frame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
