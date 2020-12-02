@@ -75,19 +75,18 @@ namespace step_flipflip
 			}
 
 			//
-			// Sprite : Texture Setting - Antialias
+			// Sprite : Original
 			//
 			{
 				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
 				sprite->getTexture()->setAntiAliasTexParameters();
-				sprite->setScale( 3.f );
 				sprite->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.6f )
 				);
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "Scale x 3\n\nTexture Setting\nAntialias\n\nDefault", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "Original", "fonts/NanumSquareR.ttf", 12 );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
@@ -98,18 +97,19 @@ namespace step_flipflip
 			}
 
 			//
-			// Sprite : Original
+			// Sprite : Texture Setting - Antialias
 			//
 			{
 				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
 				sprite->getTexture()->setAntiAliasTexParameters();
+				sprite->setScale( 4.f );
 				sprite->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.6f )
+					+ Vec2( visibleSize.width * 0.55f, visibleSize.height * 0.6f )
 				);
 				addChild( sprite );
 
-				auto label = Label::createWithTTF( "Original", "fonts/NanumSquareR.ttf", 12 );
+				auto label = Label::createWithTTF( "Scale x 3\n\nTexture Setting\nAntialias\n\nDefault", "fonts/NanumSquareR.ttf", 12 );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
@@ -125,10 +125,10 @@ namespace step_flipflip
 			{
 				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_02.png" );
 				sprite->getTexture()->setAliasTexParameters();
-				sprite->setScale( 3.f );
+				sprite->setScale( 4.f );
 				sprite->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.6f )
+					+ Vec2( visibleSize.width * 0.8f, visibleSize.height * 0.6f )
 				);
 				addChild( sprite );
 
