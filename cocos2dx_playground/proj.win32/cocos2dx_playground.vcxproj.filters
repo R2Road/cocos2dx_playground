@@ -837,6 +837,9 @@
     <ClCompile Include="..\Classes\step_flipflip_sprite_frame_BasicScene.cpp">
       <Filter>src\scene\step_02_flipflip\sprite_frame</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_game_test_StageViewScene.cpp">
+      <Filter>src\scene\step_02_flipflip\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1507,6 +1510,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_sprite_frame_BasicScene.h">
       <Filter>src\scene\step_02_flipflip\sprite_frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_game_test_StageViewScene.h">
+      <Filter>src\scene\step_02_flipflip\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
