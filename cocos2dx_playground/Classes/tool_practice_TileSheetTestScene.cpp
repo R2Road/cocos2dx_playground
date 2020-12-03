@@ -202,17 +202,6 @@ namespace tool_practice
 
 	void TileSheetTestScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
-		if( 0 == mToolIndex )
-		{
-			onAddTile( sender, touch_event_type );
-		}
-		else
-		{
-			onEraseTile( sender, touch_event_type );
-		}
-	}
-	void TileSheetTestScene::onAddTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
-	{
 		auto button = static_cast<ui::Button*>( sender );
 
 		Vec2 pos;
@@ -224,7 +213,7 @@ namespace tool_practice
 		{
 			pos = mTileMapNode->convertToNodeSpace( button->getTouchMovePosition() );
 		}
-		else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
+		else //if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 		{
 			pos = mTileMapNode->convertToNodeSpace( button->getTouchEndPosition() );
 		}
@@ -237,35 +226,22 @@ namespace tool_practice
 			return;
 		}
 
-		mTileMapNode->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+		if( 0 == mToolIndex )
+		{
+			onAddTile( point.x, point.y );
+		}
+		else
+		{
+			onEraseTile( point.x, point.y );
+		}
 	}
-	void TileSheetTestScene::onEraseTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+	void TileSheetTestScene::onAddTile( const int grid_point_x, const int grid_point_y )
 	{
-		auto button = static_cast<ui::Button*>( sender );
-
-		Vec2 pos;
-		if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
-		{
-			pos = mTileMapNode->convertToNodeSpace( button->getTouchBeganPosition() );
-		}
-		else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
-		{
-			pos = mTileMapNode->convertToNodeSpace( button->getTouchMovePosition() );
-		}
-		else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
-		{
-			pos = mTileMapNode->convertToNodeSpace( button->getTouchEndPosition() );
-		}
-
-		const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
-		CCLOG( "E : %d, %d", point.x, point.y );
-
-		if( 0 > point.x || ToolPractice_TileMapConfig.MapWidth <= point.x || 0 > point.y || ToolPractice_TileMapConfig.MapHeight <= point.y )
-		{
-			return;
-		}
-
-		mTileMapNode->EraseTile( point.x, point.y );
+		mTileMapNode->UpdateTile( grid_point_x, grid_point_y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+	}
+	void TileSheetTestScene::onEraseTile( const int grid_point_x, const int grid_point_y )
+	{
+		mTileMapNode->EraseTile( grid_point_x, grid_point_y );
 	}
 
 

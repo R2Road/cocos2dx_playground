@@ -37,8 +37,8 @@ namespace tool_practice
 		void onTileSelect( const int x, const int y );
 
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-		void onAddTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-		void onEraseTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+		void onAddTile( const int grid_point_x, const int grid_point_y );
+		void onEraseTile( const int grid_point_x, const int grid_point_y );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
