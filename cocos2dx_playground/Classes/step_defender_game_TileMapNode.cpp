@@ -47,7 +47,7 @@ namespace step_defender
 
 		bool TileMapNode::init()
 		{
-			auto texture = _director->getTextureCache()->addImage( game::TileSheetConfig.TexturePath );
+			auto texture = _director->getTextureCache()->addImage( mTileSheetConfig.TexturePath );
 			CCASSERT( nullptr != texture, "Texture Nothing" );
 			texture->setAliasTexParameters();
 
@@ -63,7 +63,11 @@ namespace step_defender
 			// Setup - Texture & Tile Sheet Utility 
 			//
 			{
-				mTileSheetUtility.Setup( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight, game::TileSheetConfig.TileMargin_Width, game::TileSheetConfig.TileMargin_Height, texture->getContentSizeInPixels().height );
+				mTileSheetUtility.Setup(
+					mTileSheetConfig.TileWidth, mTileSheetConfig.TileHeight
+					, mTileSheetConfig.TileMargin_Width, mTileSheetConfig.TileMargin_Height
+					, texture->getContentSizeInPixels().height
+				);
 			}
 
 			//
