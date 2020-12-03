@@ -7,7 +7,6 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCParallaxNode.h"
 #include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
@@ -39,13 +38,9 @@ namespace tool_practice
 	TileSheetTestScene::TileSheetTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
-		, mKeyCodeCollector()
 		, mGridIndexConverter( step_defender::game::TileSheetConfig.TileWidth, step_defender::game::TileSheetConfig.TileHeight )
 
-		, mRulerNode( nullptr )
-		, mParallaxNode( nullptr )
-		, mTouchNode( nullptr )
-		, mCurrentBackgroundLayer( nullptr )
+		, mTileMapNode( nullptr )
 			
 		, mCurrentTilePoint( { 0, 0 } )
 		, mToolIndex( 0 )
@@ -102,31 +97,11 @@ namespace tool_practice
 		}
 			
 		//
-		// Sky
+		// Background
 		//
 		{
-			auto layer = LayerColor::create( step_defender::game::WorldConfig.SkyColor );
+			auto layer = LayerColor::create( Color4B::BLACK );
 			addChild( layer, std::numeric_limits<int>::min() );
-		}
-
-		//
-		// Layer Selector
-		//
-		{
-			auto tool_bar_node = cpgui::ToolBarNode::create();
-			addChild( tool_bar_node, std::numeric_limits<int>::max() );
-
-			tool_bar_node->AddTool( 1, "1", 10, std::bind( &TileSheetTestScene::onLayerSelect, this, 0 ) );
-			tool_bar_node->AddTool( 2, "2", 10, std::bind( &TileSheetTestScene::onLayerSelect, this, 1 ) );
-			tool_bar_node->AddTool( 3, "3", 10, std::bind( &TileSheetTestScene::onLayerSelect, this, 2 ) );
-
-			tool_bar_node->setPosition(
-				visibleCenter.x - ( tool_bar_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height - tool_bar_node->getContentSize().height
-			);
-
-			// Set Indicator
-			tool_bar_node->SelectTool( 3 );
 		}
 
 		//
@@ -162,96 +137,45 @@ namespace tool_practice
 		}
 
 		//
-		// Touch Node
+		// Tile Edit Node
 		//
 		{
-			auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-			button->setAnchorPoint( Vec2::ZERO );
-			button->setScale9Enabled( true );
-			button->setContentSize( visibleSize );
-			button->setPosition( visibleOrigin );
-			button->addTouchEventListener( CC_CALLBACK_2( TileSheetTestScene::onUpdateTile, this ) );
-			addChild( button, std::numeric_limits<int>::max() - 1 );
-
-			mTouchNode = button;
-		}
-
-		//
-		// ParallaxNode Setup - Ruler
-		//
-		{
-			const int Parallax_Ruler_Part_Width = 100.f;
-
-			mRulerNode = ParallaxNode::create();
-			addChild( mRulerNode, 1 );
-
-			for( const auto& c : step_defender::game::ParallaxNodeConfigContainer )
+			auto root_node = LayerColor::create( Color4B::GRAY );
+			addChild( root_node, 0 );
 			{
-				const float ruler_y = step_defender::game::WorldConfig.WorldSize.height - ( step_defender::game::WorldConfig.WorldSize.height * ( 0.2f + ( 0.05f * c.Index ) ) );
-
-				auto background_node = Node::create();
-				background_node->setTag( c.Index );
-				background_node->setCascadeOpacityEnabled( true );
-				mRulerNode->addChild( background_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
-
-				const auto background_width = ( step_defender::game::WorldConfig.WorldSize.width * c.Rate ) + visibleSize.width;
-				const auto div_result = std::div( static_cast<int>( background_width ), Parallax_Ruler_Part_Width );
-				for( int i = 0, end = div_result.quot + ( div_result.rem > 0 ? 1 : 0 ); end > i; ++i )
+				// Tile Map
 				{
-					auto label = Label::createWithTTF( std::to_string( i * Parallax_Ruler_Part_Width ), cpg::StringTable::GetFontPath(), 6 + c.Index );
-					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-					label->setColor( BackgroundColors[c.Index] );
-					label->setPosition( Vec2(
-						i * Parallax_Ruler_Part_Width
-						, ruler_y
-					) );
-					background_node->addChild( label, std::numeric_limits<int>::max() );
+					mTileMapNode = step_defender::game::TileMapNode::create(
+						step_defender::game::TileMapNode::Config{
+							10
+							, 10
+						}
+						, step_defender::game::TileSheetConfig
+					);
+					mTileMapNode->setPosition( 4.f, 4.f );
+					root_node->addChild( mTileMapNode );
+
+					root_node->setContentSize( mTileMapNode->getContentSize() + Size( 8.f, 8.f ) );
+					root_node->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
+						- Vec2( root_node->getContentSize().width * 0.5f, root_node->getContentSize().height * 0.5f )
+					);
 				}
 
 				//
-				// Tail Guide
+				// Touch Node
 				//
 				{
-					auto layer = LayerColor::create( Color4B::GREEN, 5.f, ruler_y );
-					layer->setPositionX( step_defender::game::WorldConfig.WorldSize.width * c.Rate );
-					background_node->addChild( layer, 1 );
+					auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+					button->setAnchorPoint( Vec2::ZERO );
+					button->setScale9Enabled( true );
+					button->setContentSize( root_node->getContentSize() );
+					button->addTouchEventListener( CC_CALLBACK_2( TileSheetTestScene::onUpdateTile, this ) );
+					root_node->addChild( button, std::numeric_limits<int>::max() - 1 );
 				}
 			}
 		}
-
-		//
-		// ParallaxNode Setup - Main
-		//
-		{
-			setContentSize( step_defender::game::WorldConfig.WorldSize );
-
-			mParallaxNode = ParallaxNode::create();
-			addChild( mParallaxNode, 0 );
-
-			const auto height_div_result = std::div( static_cast<int>( step_defender::game::WorldConfig.WorldSize.height ), step_defender::game::TileSheetConfig.TileHeight );
-
-			for( const auto& c : step_defender::game::ParallaxNodeConfigContainer )
-			{
-				const auto parallax_width = ( step_defender::game::WorldConfig.WorldSize.width * c.Rate ) + visibleSize.width;
-				const auto width_div_result = std::div( static_cast<int>( parallax_width ), step_defender::game::TileSheetConfig.TileWidth );
-
-				auto tile_map_node = step_defender::game::TileMapNode::create(
-					step_defender::game::TileMapNode::Config{
-						width_div_result.quot + ( width_div_result.rem > 0 ? 1 : 0 )
-						, height_div_result.quot + ( height_div_result.rem > 0 ? 1 : 0 )
-					}
-					, step_defender::game::TileSheetConfig
-				);
-				tile_map_node->setTag( c.Index );
-				mParallaxNode->addChild( tile_map_node, c.Index, Vec2( c.Rate, 1.f ), Vec2::ZERO );
-			}
-		}
-
-		//
-		// Setup
-		//
-		schedule( schedule_selector( TileSheetTestScene::update4Move ) );
-		onLayerSelect( 2 );
 
 		return true;
 	}
@@ -263,7 +187,6 @@ namespace tool_practice
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TileSheetTestScene::onKeyPressed, this );
-		mKeyboardListener->onKeyReleased = CC_CALLBACK_2( TileSheetTestScene::onKeyReleased, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
 	void TileSheetTestScene::onExit()
@@ -276,69 +199,6 @@ namespace tool_practice
 	}
 
 
-	void TileSheetTestScene::update4Move( float delta_time )
-	{
-		if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_RIGHT_ARROW ) )
-		{
-			const auto new_position = mRulerNode->getPositionX() + ( -ScrollSpeed * delta_time );
-			if( -getContentSize().width < new_position )
-			{
-				mRulerNode->setPositionX( new_position );
-				mParallaxNode->setPositionX( new_position );
-			}
-			else
-			{
-				mRulerNode->setPositionX( -getContentSize().width );
-				mParallaxNode->setPositionX( -getContentSize().width );
-			}
-		}
-
-		if( mKeyCodeCollector.isActiveKey( EventKeyboard::KeyCode::KEY_LEFT_ARROW ) )
-		{
-			const auto new_position = mRulerNode->getPositionX() + ( ScrollSpeed * delta_time );
-			if( 0.f > new_position )
-			{
-				mRulerNode->setPositionX( new_position );
-				mParallaxNode->setPositionX( new_position );
-			}
-			else
-			{
-				mRulerNode->setPositionX( 0.f );
-				mParallaxNode->setPositionX( 0.f );
-			}
-		}
-	}
-
-
-	void TileSheetTestScene::onLayerSelect( const int layer_index )
-	{
-		for( auto c : mRulerNode->getChildren() )
-		{
-			if( layer_index == c->getTag() )
-			{
-				c->setOpacity( 255u );
-			}
-			else
-			{
-				c->setOpacity( 60u );
-			}
-		}
-
-		for( auto c : mParallaxNode->getChildren() )
-		{
-			if( layer_index >= c->getTag() )
-			{
-				mCurrentBackgroundLayer = static_cast<step_defender::game::TileMapNode*>( c );
-				c->setOpacity( 255u );
-			}
-			else
-			{
-				c->setOpacity( 60u );
-			}
-		}
-
-		mTouchNode->setColor( BackgroundColors[layer_index] );
-	}
 	void TileSheetTestScene::onToolSelect( const int tool_index )
 	{
 		CCLOG( "%d", tool_index );
@@ -366,59 +226,57 @@ namespace tool_practice
 	{
 		auto button = static_cast<ui::Button*>( sender );
 
+		Vec2 pos;
 		if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 		{
-			const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchBeganPosition() );
-			const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
-			CCLOG( "B : %d, %d", point.x, point.y );
-
-			mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+			pos = mTileMapNode->convertToNodeSpace( button->getTouchBeganPosition() );
 		}
 		else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 		{
-			const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchMovePosition() );
-			const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
-			CCLOG( "M : %d, %d", point.x, point.y );
-
-			mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+			pos = mTileMapNode->convertToNodeSpace( button->getTouchMovePosition() );
 		}
 		else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 		{
-			const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchEndPosition() );
-			const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
-			CCLOG( "E : %d, %d", point.x, point.y );
-
-			mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
+			pos = mTileMapNode->convertToNodeSpace( button->getTouchEndPosition() );
 		}
+
+		const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+		CCLOG( "A : %d, %d", point.x, point.y );
+
+		if( 0 > point.x || 10 <= point.x || 0 > point.y || 10 <= point.y )
+		{
+			return;
+		}
+
+		mTileMapNode->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
 	}
 	void TileSheetTestScene::onEraseTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
 		auto button = static_cast<ui::Button*>( sender );
 
+		Vec2 pos;
 		if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 		{
-			const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchBeganPosition() );
-			const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
-			CCLOG( "E : %d, %d", point.x, point.y );
-
-			mCurrentBackgroundLayer->EraseTile( point.x, point.y );
+			pos = mTileMapNode->convertToNodeSpace( button->getTouchBeganPosition() );
 		}
 		else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 		{
-			const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchMovePosition() );
-			const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
-			CCLOG( "E : %d, %d", point.x, point.y );
-
-			mCurrentBackgroundLayer->EraseTile( point.x, point.y );
+			pos = mTileMapNode->convertToNodeSpace( button->getTouchMovePosition() );
 		}
 		else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 		{
-			const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchEndPosition() );
-			const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
-			CCLOG( "E : %d, %d", point.x, point.y );
-
-			mCurrentBackgroundLayer->EraseTile( point.x, point.y );
+			pos = mTileMapNode->convertToNodeSpace( button->getTouchEndPosition() );
 		}
+
+		const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+		CCLOG( "E : %d, %d", point.x, point.y );
+
+		if( 0 > point.x || 10 <= point.x || 0 > point.y || 10 <= point.y )
+		{
+			return;
+		}
+
+		mTileMapNode->EraseTile( point.x, point.y );
 	}
 
 
@@ -429,10 +287,5 @@ namespace tool_practice
 			helper::BackToThePreviousScene::MoveBack();
 			return;
 		}
-		mKeyCodeCollector.onKeyPressed( key_code );
-	}
-	void TileSheetTestScene::onKeyReleased( EventKeyboard::KeyCode key_code, Event* /*event*/ )
-	{
-		mKeyCodeCollector.onKeyReleased( key_code );
 	}
 }
