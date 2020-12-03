@@ -25,6 +25,8 @@ USING_NS_CC;
 namespace
 {
 	const step_defender::game::TileSheetConfiguration ToolPractice_TileSheetConfig( 16, 16, 1, 1, "textures/tool_practice/tool_practice_tilesheettest.png" );
+
+	const step_defender::game::TileMapNode::Config ToolPractice_TileMapConfig { 10, 10 };
 }
 
 namespace tool_practice
@@ -136,10 +138,7 @@ namespace tool_practice
 				// Tile Map
 				{
 					mTileMapNode = step_defender::game::TileMapNode::create(
-						step_defender::game::TileMapNode::Config{
-							10
-							, 10
-						}
+						ToolPractice_TileMapConfig
 						, ToolPractice_TileSheetConfig
 					);
 					mTileMapNode->setPosition( 4.f, 4.f );
@@ -233,7 +232,7 @@ namespace tool_practice
 		const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
 		CCLOG( "A : %d, %d", point.x, point.y );
 
-		if( 0 > point.x || 10 <= point.x || 0 > point.y || 10 <= point.y )
+		if( 0 > point.x || ToolPractice_TileMapConfig.MapWidth <= point.x || 0 > point.y || ToolPractice_TileMapConfig.MapHeight <= point.y )
 		{
 			return;
 		}
@@ -261,7 +260,7 @@ namespace tool_practice
 		const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
 		CCLOG( "E : %d, %d", point.x, point.y );
 
-		if( 0 > point.x || 10 <= point.x || 0 > point.y || 10 <= point.y )
+		if( 0 > point.x || ToolPractice_TileMapConfig.MapWidth <= point.x || 0 > point.y || ToolPractice_TileMapConfig.MapHeight <= point.y )
 		{
 			return;
 		}
