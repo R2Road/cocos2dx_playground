@@ -24,6 +24,8 @@ USING_NS_CC;
 
 namespace
 {
+	const int TAG_ToolBar = 20140416;
+
 	const step_defender::game::TileSheetConfiguration ToolPractice_TileSheetConfig( 16, 16, 1, 1, "textures/tool_practice/tool_practice_tilesheettest.png" );
 
 	const step_defender::game::TileMapNode::Config ToolPractice_TileMapConfig { 10, 10 };
@@ -78,6 +80,9 @@ namespace tool_practice
 		{
 			std::stringstream ss;
 			ss << "[ESC] : Return to Root";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[W/E] : " << "Shortcut( Pick/Erase )";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -101,6 +106,7 @@ namespace tool_practice
 		//
 		{
 			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
+			tool_bar_node->setTag( TAG_ToolBar );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
 			tool_bar_node->AddTool( 0, "step_defender_tool_icon_01_0.png", std::bind( &TileSheetTestScene::onToolSelect, this, 0 ) );
@@ -251,6 +257,17 @@ namespace tool_practice
 		{
 			helper::BackToThePreviousScene::MoveBack();
 			return;
+		}
+
+		if( EventKeyboard::KeyCode::KEY_W == key_code )
+		{
+			onToolSelect( 0 );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( mToolIndex );
+		}
+		if( EventKeyboard::KeyCode::KEY_E == key_code )
+		{
+			onToolSelect( 1 );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( mToolIndex );
 		}
 	}
 }
