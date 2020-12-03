@@ -20,6 +20,8 @@
 #include "Research_Input_KeyConfigScene.h"
 #include "Research_Input_ConfigedKeysTestScene.h"
 
+#include "tool_practice_TileSheetTestScene.h"
+
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
@@ -79,6 +81,12 @@ namespace step99
 			ss << "[3] : Key Config";
 			ss << std::endl;
 			ss << "[4] : Configed Keys Test";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] : " << tool_practice::TileSheetTestScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -153,6 +161,12 @@ namespace step99
 		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( research::input::ConfigedKeysTestScene::create() );
 			break;
+
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			_director->replaceScene( tool_practice::TileSheetTestScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
 
 		case EventKeyboard::KeyCode::KEY_A:
 			_director->replaceScene( step02::fsm1test::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
