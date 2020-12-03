@@ -36,7 +36,7 @@ namespace tool_practice
 	TileSheetTestScene::TileSheetTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
-		, mGridIndexConverter( step_defender::game::TileSheetConfig.TileWidth, step_defender::game::TileSheetConfig.TileHeight )
+		, mGridIndexConverter( ToolPractice_TileSheetConfig.TileWidth, ToolPractice_TileSheetConfig.TileHeight )
 
 		, mTileMapNode( nullptr )
 			
