@@ -1,4 +1,4 @@
-#include "step_flipflip_game_test_CardViewScene.h"
+#include "step_flipflip_sprite_frame_BasicScene.h"
 
 #include <new>
 #include <numeric>
@@ -11,21 +11,20 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_flipflip_game_CardViewNode.h"
-
+#include "step_flipflip_game_Constant.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
 
 namespace step_flipflip
 {
-	namespace game_test
+	namespace sprite_frame
 	{
-		CardViewScene::CardViewScene() : mKeyboardListener( nullptr ), mCardViewNode( nullptr ) {}
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mTestNode( nullptr ) {}
 
-		Scene* CardViewScene::create()
+		Scene* BasicScene::create()
 		{
-			auto ret = new ( std::nothrow ) CardViewScene();
+			auto ret = new ( std::nothrow ) BasicScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -39,7 +38,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool CardViewScene::init()
+		bool BasicScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -61,7 +60,9 @@ namespace step_flipflip
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Flip";
+				ss << "[A] : Change Sprite Frame : Card A";
+				ss << std::endl;
+				ss << "[S] : Change Sprite Frame : Card B";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -84,31 +85,27 @@ namespace step_flipflip
 			// Test Node
 			//
 			{
-				mCardViewNode = game::CardViewNode::create( game::eCardType::A );
-				mCardViewNode->setPosition(
-					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
-				);
-				addChild( mCardViewNode );
+				mTestNode = Sprite::createWithSpriteFrameName( "step_flipflip_card_back_0.png" );
+				mTestNode->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + visibleSize.height * 0.5f
+				) );
+				addChild( mTestNode );
 			}
-
-			//
-			// Setup
-			//
 
 			return true;
 		}
 
-		void CardViewScene::onEnter()
+		void BasicScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CardViewScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void CardViewScene::onExit()
+		void BasicScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -118,7 +115,7 @@ namespace step_flipflip
 		}
 
 
-		void CardViewScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
@@ -128,7 +125,12 @@ namespace step_flipflip
 
 			if( EventKeyboard::KeyCode::KEY_A == keycode )
 			{
-				mCardViewNode->Flip();
+				mTestNode->setSpriteFrame( "step_flipflip_card_front_0.png" );
+			}
+
+			if( EventKeyboard::KeyCode::KEY_S == keycode )
+			{
+				mTestNode->setSpriteFrame( "step_flipflip_card_front_1.png" );
 			}
 		}
 	}

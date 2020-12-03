@@ -2,17 +2,17 @@
 
 #include "2d/CCScene.h"
 
-namespace step_clickclick
+namespace step_flipflip
 {
-	namespace animation
+	namespace game_test
 	{
-		class BasicScene : public cocos2d::Scene
+		class StageViewScene : public cocos2d::Scene
 		{
 		private:
-			BasicScene();
+			StageViewScene();
 
 		public:
-			static const char* getTitle() { return "Animation : Basic"; }
+			static const char* getTitle() { return "Game Test : Stage View"; }
 			static cocos2d::Scene* create();
 
 		private:

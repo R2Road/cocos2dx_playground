@@ -193,6 +193,15 @@
     <Filter Include="src\scene\step_02_flipflip\game">
       <UniqueIdentifier>{7271943b-0c3b-4e26-94d9-0fdfc5f60af9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_02_flipflip\action">
+      <UniqueIdentifier>{ed97cea9-ccdf-485b-a786-90a4a2e1eb79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_02_flipflip\opacity">
+      <UniqueIdentifier>{c7574f85-b687-4c06-85aa-0ba25b8f495e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step_02_flipflip\sprite_frame">
+      <UniqueIdentifier>{a70260a5-6b93-4f29-b053-f8624067d4d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -268,9 +277,6 @@
       <Filter>src\scene\step_03_clickclick</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_animation_PlayNStopScene.cpp">
-      <Filter>src\scene\step_03_clickclick\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_animation_BasicScene.cpp">
       <Filter>src\scene\step_03_clickclick\animation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_button_BasicScene.cpp">
@@ -819,6 +825,21 @@
     <ClCompile Include="..\Classes\step_flipflip_game_CardViewNode.cpp">
       <Filter>src\scene\step_02_flipflip\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_action_BasicScene.cpp">
+      <Filter>src\scene\step_02_flipflip\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_opacity_BasicScene.cpp">
+      <Filter>src\scene\step_02_flipflip\opacity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_game_Constant.cpp">
+      <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_sprite_frame_BasicScene.cpp">
+      <Filter>src\scene\step_02_flipflip\sprite_frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_game_test_StageViewScene.cpp">
+      <Filter>src\scene\step_02_flipflip\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -900,9 +921,6 @@
       <Filter>src\scene\step_03_clickclick</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_animation_PlayNStopScene.h">
-      <Filter>src\scene\step_03_clickclick\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_animation_BasicScene.h">
       <Filter>src\scene\step_03_clickclick\animation</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_button_BasicScene.h">
@@ -1480,6 +1498,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_game_CardViewNode.h">
       <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_action_BasicScene.h">
+      <Filter>src\scene\step_02_flipflip\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_opacity_BasicScene.h">
+      <Filter>src\scene\step_02_flipflip\opacity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_game_Constant.h">
+      <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_sprite_frame_BasicScene.h">
+      <Filter>src\scene\step_02_flipflip\sprite_frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_game_test_StageViewScene.h">
+      <Filter>src\scene\step_02_flipflip\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

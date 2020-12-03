@@ -17,8 +17,13 @@
 #include "step_flipflip_texture_PList4ThisProjectScene.h"
 
 #include "step_flipflip_scale_BasicScene.h"
+#include "step_flipflip_opacity_BasicScene.h"
+#include "step_flipflip_sprite_frame_BasicScene.h"
+
+#include "step_flipflip_action_BasicScene.h"
 
 #include "step_flipflip_game_test_CardViewScene.h"
+#include "step_flipflip_game_test_StageViewScene.h"
 
 USING_NS_CC;
 
@@ -73,12 +78,23 @@ namespace step_flipflip
 			ss << "[4] " << step_flipflip::scale::BasicScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
+			ss << "[5] " << step_flipflip::opacity::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[6] " << step_flipflip::sprite_frame::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[7] " << step_flipflip::action::BasicScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[Q] " << step_flipflip::game_test::CardViewScene::getTitle();
+			ss << std::endl;
+			ss << "[W] " << step_flipflip::game_test::StageViewScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 11, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -90,7 +106,7 @@ namespace step_flipflip
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 36, 120, 122, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 33, 112, 112, 255 ) );
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
@@ -138,8 +154,23 @@ namespace step_flipflip
 			_director->replaceScene( step_flipflip::scale::BasicScene::create() );
 			break;
 
+		case EventKeyboard::KeyCode::KEY_5:
+			_director->replaceScene( step_flipflip::opacity::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_6:
+			_director->replaceScene( step_flipflip::sprite_frame::BasicScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_7:
+			_director->replaceScene( step_flipflip::action::BasicScene::create() );
+			break;
+
 		case EventKeyboard::KeyCode::KEY_Q:
 			_director->replaceScene( step_flipflip::game_test::CardViewScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_W:
+			_director->replaceScene( step_flipflip::game_test::StageViewScene::create() );
 			break;
 
 		default:

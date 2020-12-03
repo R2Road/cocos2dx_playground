@@ -2,9 +2,10 @@
 
 #include "2d/CCNode.h"
 
+#include "step_flipflip_game_Constant.h"
+
 NS_CC_BEGIN
-	class Sprite;
-	class SpriteFrame;
+	class Action;
 NS_CC_END
 
 namespace step_flipflip
@@ -13,22 +14,12 @@ namespace step_flipflip
 	{
 		class CardViewNode : public cocos2d::Node
 		{
-		public:
-			enum class eCardType
-			{
-				A
-				,B
-				,C
-				,D
-				,E
-
-				, SIZE
-			};
-
 		private:
 			CardViewNode();
 
 		public:
+			~CardViewNode();
+
 			static CardViewNode* create( const eCardType card_type );
 
 		private:
@@ -40,9 +31,9 @@ namespace step_flipflip
 		private:
 			bool mbFrontSide;
 
-			cocos2d::Sprite* mView;
-			cocos2d::SpriteFrame* mBackSideSpriteFrame;
-			cocos2d::SpriteFrame* mFrontSideSpriteFrame;
+			cocos2d::Node* mView;
+			cocos2d::Action* mAction4FrontSide;
+			cocos2d::Action* mAction4BackSide;
 		};
 	}
 }

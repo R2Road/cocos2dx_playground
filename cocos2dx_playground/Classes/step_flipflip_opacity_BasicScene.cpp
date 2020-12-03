@@ -1,4 +1,4 @@
-#include "step_flipflip_scale_BasicScene.h"
+#include "step_flipflip_opacity_BasicScene.h"
 
 #include <new>
 #include <numeric>
@@ -19,14 +19,14 @@ USING_NS_CC;
 
 namespace
 {
-	static float ChangeAmount_Per_Seconds = 6.f;
+	const float ChangeAmount_Per_Seconds = 100.f;
 }
 
 namespace step_flipflip
 {
-	namespace scale
+	namespace opacity
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mTestNode( nullptr ), mScaleView( nullptr ), mScaleFlags( 0 ) {}
+		BasicScene::BasicScene() : mKeyboardListener( nullptr ), mTestNode( nullptr ), mOpacityView( nullptr ), mOpacityFlags( 0 ), mCurrentOpacity( 0.f ) {}
 
 		Scene* BasicScene::create()
 		{
@@ -66,9 +66,7 @@ namespace step_flipflip
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow R/L] : Scale X - Up/Down";
-				ss << std::endl;
-				ss << "[Arrow U/D] : Scale Y - Up/Down";
+				ss << "[Arrow U/D] : Opacity - Up/Down";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -88,24 +86,25 @@ namespace step_flipflip
 			}
 
 			//
-			// Scale View
+			// Opacity View
 			//
 			{
-				mScaleView = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::LEFT );
-				mScaleView->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				mScaleView->setColor( Color3B::GREEN );
-				mScaleView->setPosition(
+				mOpacityView = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::LEFT );
+				mOpacityView->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				mOpacityView->setColor( Color3B::GREEN );
+				mOpacityView->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width, visibleSize.height )
 				);
-				addChild( mScaleView, std::numeric_limits<int>::max() );
+				addChild( mOpacityView, std::numeric_limits<int>::max() );
 			}
 
 			//
 			// Test Node
 			//
 			{
-				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_4.png" );
+				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_0.png" );
+				sprite->setOpacity( GLubyte( 150 ) );
 				sprite->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + visibleSize.height * 0.5f
@@ -113,13 +112,14 @@ namespace step_flipflip
 				addChild( sprite );
 
 				mTestNode = sprite;
+				mCurrentOpacity = sprite->getOpacity();
 			}
 
 			//
 			// Setup
 			//
-			updateScaleView();
-			schedule( schedule_selector( BasicScene::update4Scale ) );
+			updateOpacityView();
+			schedule( schedule_selector( BasicScene::update4Opacity ) );
 
 			return true;
 		}
@@ -143,39 +143,32 @@ namespace step_flipflip
 			Scene::onExit();
 		}
 
-		void BasicScene::update4Scale( float dt )
+		void BasicScene::update4Opacity( float dt )
 		{
-			if( 0 == mScaleFlags )
+			if( 0 == mOpacityFlags )
 			{
 				return;
 			}
 
-			Vec2 temp;
-			if( mScaleFlags & ( 1 << eScaleFlag::Right ) )
+			float temp_change_amount = 0.f;
+			if( mOpacityFlags & ( 1 << eOpacityFlag::Up ) )
 			{
-				temp.x += ChangeAmount_Per_Seconds;
+				temp_change_amount += ChangeAmount_Per_Seconds;
 			}
-			if( mScaleFlags & ( 1 << eScaleFlag::Left ) )
+			if( mOpacityFlags & ( 1 << eOpacityFlag::Down ) )
 			{
-				temp.x -= ChangeAmount_Per_Seconds;
-			}
-			if( mScaleFlags & ( 1 << eScaleFlag::Up ) )
-			{
-				temp.y += ChangeAmount_Per_Seconds;
-			}
-			if( mScaleFlags & ( 1 << eScaleFlag::Down ) )
-			{
-				temp.y -= ChangeAmount_Per_Seconds;
+				temp_change_amount -= ChangeAmount_Per_Seconds;
 			}
 
-			mTestNode->setScaleX( mTestNode->getScaleX() + ( temp.x * dt ) );
-			mTestNode->setScaleY( mTestNode->getScaleY() + ( temp.y * dt ) );
-			updateScaleView();
+			mCurrentOpacity = std::max( 0.f, std::min( 255.f, mCurrentOpacity + temp_change_amount * dt ) );
+
+			mTestNode->setOpacity( static_cast<GLubyte>( mCurrentOpacity ) );
+			updateOpacityView();
 		}
 
-		void BasicScene::updateScaleView()
+		void BasicScene::updateOpacityView()
 		{
-			mScaleView->setString( StringUtils::format( "X : %.2f\nY : %.2f", mTestNode->getScaleX(), mTestNode->getScaleY() ) );
+			mOpacityView->setString( StringUtils::format( "Opacity : %d / 255", mTestNode->getOpacity() ) );
 		}
 
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
@@ -188,18 +181,12 @@ namespace step_flipflip
 
 			switch( keycode )
 			{
-			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-				mScaleFlags |= 1 << eScaleFlag::Right;
-				break;
-			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-				mScaleFlags |= 1 << eScaleFlag::Left;
-				updateScaleView();
-				break;
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
-				mScaleFlags |= 1 << eScaleFlag::Up;
+				mOpacityFlags |= 1 << eOpacityFlag::Up;
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-				mScaleFlags |= 1 << eScaleFlag::Down;
+				mOpacityFlags |= 1 << eOpacityFlag::Down;
+				updateOpacityView();
 				break;
 			}
 		}
@@ -208,17 +195,11 @@ namespace step_flipflip
 		{
 			switch( keycode )
 			{
-			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-				mScaleFlags ^= 1 << eScaleFlag::Right;
-				break;
-			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-				mScaleFlags ^= 1 << eScaleFlag::Left;
-				break;
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
-				mScaleFlags ^= 1 << eScaleFlag::Up;
+				mOpacityFlags ^= 1 << eOpacityFlag::Up;
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-				mScaleFlags ^= 1 << eScaleFlag::Down;
+				mOpacityFlags ^= 1 << eOpacityFlag::Down;
 				break;
 			}
 		}
