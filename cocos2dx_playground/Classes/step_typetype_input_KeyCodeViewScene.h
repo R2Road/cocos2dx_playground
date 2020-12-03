@@ -8,9 +8,10 @@ namespace step_typetype
 	{
 		class KeyCodeViewScene : public cocos2d::Scene
 		{
-		public:
+		private:
 			KeyCodeViewScene();
 
+		public:
 			static const char* getTitle() { return "Input : Keycode View"; }
 			static cocos2d::Scene* create();
 

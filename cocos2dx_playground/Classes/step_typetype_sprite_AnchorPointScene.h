@@ -8,9 +8,10 @@ namespace step_typetype
 	{
 		class AnchorPointScene : public cocos2d::Scene
 		{
-		public:
+		private:
 			AnchorPointScene();
 
+		public:
 			static const char* getTitle() { return "Sprite : AnchorPoint"; }
 			static cocos2d::Scene* create();
 

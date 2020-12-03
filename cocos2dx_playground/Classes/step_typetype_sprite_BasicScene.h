@@ -8,9 +8,10 @@ namespace step_typetype
 	{
 		class BasicScene : public cocos2d::Scene
 		{
-		public:
+		private:
 			BasicScene();
 
+		public:
 			static const char* getTitle() { return "Sprite : Basic"; }
 			static cocos2d::Scene* create();
 
