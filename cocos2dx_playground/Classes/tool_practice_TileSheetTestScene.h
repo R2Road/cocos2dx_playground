@@ -19,6 +19,12 @@ namespace tool_practice
 	class TileSheetTestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
+		enum class eToolIndex
+		{
+			Pick,
+			Erase,
+		};
+
 		TileSheetTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
@@ -53,6 +59,6 @@ namespace tool_practice
 			int x;
 			int y;
 		} mCurrentTilePoint;
-		int mToolIndex;
+		eToolIndex mToolIndex;
 	};
 }

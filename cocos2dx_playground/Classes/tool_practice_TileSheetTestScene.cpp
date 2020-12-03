@@ -41,7 +41,7 @@ namespace tool_practice
 		, mTileMapNode( nullptr )
 			
 		, mCurrentTilePoint( { 0, 0 } )
-		, mToolIndex( 0 )
+		, mToolIndex( eToolIndex::Pick )
 	{}
 
 	Scene* TileSheetTestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -109,8 +109,8 @@ namespace tool_practice
 			tool_bar_node->setTag( TAG_ToolBar );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( 0, "step_defender_tool_icon_01_0.png", std::bind( &TileSheetTestScene::onToolSelect, this, 0 ) );
-			tool_bar_node->AddTool( 1, "step_defender_tool_icon_01_1.png", std::bind( &TileSheetTestScene::onToolSelect, this, 1 ) );
+			tool_bar_node->AddTool( 0, "step_defender_tool_icon_01_0.png", std::bind( &TileSheetTestScene::onToolSelect, this, static_cast<int>( eToolIndex::Pick ) ) );
+			tool_bar_node->AddTool( 1, "step_defender_tool_icon_01_1.png", std::bind( &TileSheetTestScene::onToolSelect, this, static_cast<int>( eToolIndex::Erase ) ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin.x + visibleSize.width - tool_bar_node->getContentSize().width
@@ -118,7 +118,7 @@ namespace tool_practice
 			);
 
 			// Set Indicator
-			tool_bar_node->SelectTool( mToolIndex );
+			tool_bar_node->SelectTool( static_cast<int>( mToolIndex ) );
 		}
 
 		//
@@ -197,7 +197,7 @@ namespace tool_practice
 	void TileSheetTestScene::onToolSelect( const int tool_index )
 	{
 		CCLOG( "%d", tool_index );
-		mToolIndex = tool_index;
+		mToolIndex = static_cast<eToolIndex>( tool_index );
 	}
 	void TileSheetTestScene::onTileSelect( const int x, const int y )
 	{
@@ -232,7 +232,7 @@ namespace tool_practice
 			return;
 		}
 
-		if( 0 == mToolIndex )
+		if( eToolIndex::Pick == mToolIndex )
 		{
 			onAddTile( point.x, point.y );
 		}
@@ -262,12 +262,12 @@ namespace tool_practice
 		if( EventKeyboard::KeyCode::KEY_W == key_code )
 		{
 			onToolSelect( 0 );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( mToolIndex );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
 		}
 		if( EventKeyboard::KeyCode::KEY_E == key_code )
 		{
 			onToolSelect( 1 );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( mToolIndex );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Erase ) );
 		}
 	}
 }
