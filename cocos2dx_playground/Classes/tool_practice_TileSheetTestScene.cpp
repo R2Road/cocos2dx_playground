@@ -22,6 +22,11 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const step_defender::game::TileSheetConfiguration ToolPractice_TileSheetConfig( 16, 16, 1, 1, "textures/tool_practice/tool_practice_tilesheettest.png" );
+}
+
 namespace tool_practice
 {
 	TileSheetTestScene::TileSheetTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
@@ -112,7 +117,7 @@ namespace tool_practice
 		// Tile Sheet Node
 		//
 		{
-			auto tile_sheet_node = step_defender::tool::TileSheetNode::create( step_defender::game::TileSheetConfig );
+			auto tile_sheet_node = step_defender::tool::TileSheetNode::create( ToolPractice_TileSheetConfig );
 			tile_sheet_node->setPosition(
 				Vec2( visibleOrigin.x + visibleSize.width, visibleCenter.y )
 				- Vec2( tile_sheet_node->getContentSize().width + 10.f, tile_sheet_node->getContentSize().height * 0.5f )
@@ -135,7 +140,7 @@ namespace tool_practice
 							10
 							, 10
 						}
-						, step_defender::game::TileSheetConfig
+						, ToolPractice_TileSheetConfig
 					);
 					mTileMapNode->setPosition( 4.f, 4.f );
 					root_node->addChild( mTileMapNode );
