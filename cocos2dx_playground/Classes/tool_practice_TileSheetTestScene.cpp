@@ -22,17 +22,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const float ScrollSpeed = 300.f;
-
-	const Color3B BackgroundColors[3] = {
-		{ 90u, 200u, 255u }
-		, Color3B::YELLOW
-		, Color3B::WHITE
-	};
-}
-
 namespace tool_practice
 {
 	TileSheetTestScene::TileSheetTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
@@ -76,16 +65,12 @@ namespace tool_practice
 			, visibleOrigin.y + ( visibleSize.height * 0.5f )
 		);
 
-		setContentSize( step_defender::game::WorldConfig.WorldSize );
-
 		//
 		// Summury
 		//
 		{
 			std::stringstream ss;
 			ss << "[ESC] : Return to Root";
-			ss << std::endl;
-			ss << "[Arrow L/R] : Do Parralax";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
