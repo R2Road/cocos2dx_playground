@@ -28,7 +28,7 @@ namespace tool_practice
 		TileSheetTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Tool : Parallax Layer Editor"; }
+		static const char* getTitle() { return "Tool : Tile Sheet Test"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:
