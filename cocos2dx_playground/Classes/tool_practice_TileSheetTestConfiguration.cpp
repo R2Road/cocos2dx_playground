@@ -49,6 +49,8 @@ namespace tool_practice
 			}
 
 			mLayerCount = root_itr->value.GetInt();
+
+			CCASSERT( 0 < mLayerCount, "Invalid Layer Count" );
 		}
 
 		//
@@ -75,6 +77,9 @@ namespace tool_practice
 
 			mWidth = w_itr->value.GetInt();
 			mHeight = h_itr->value.GetInt();
+
+			CCASSERT( 0 < mWidth, "Invalid Width" );
+			CCASSERT( 0 < mHeight, "Invalid Height" );
 		}
 
 		//
@@ -104,6 +109,12 @@ namespace tool_practice
 				CCLOG( "check property of sheet" );
 				return false;
 			}
+
+			CCASSERT( 0 < tile_w_itr->value.GetInt(), "Invalid Tile Width" );
+			CCASSERT( 0 < tile_h_itr->value.GetInt(), "Invalid Tile Height" );
+			CCASSERT( 0 <= tile_margin_w_itr->value.GetInt(), "Invalid Tile Margin Width" );
+			CCASSERT( 0 <= tile_margin_h_itr->value.GetInt(), "Invalid Tile Margin Height" );
+			CCASSERT( 0 < texture_itr->value.GetStringLength(), "Invalid Texture Path" );
 
 			mTileSheetConfiguration = step_defender::game::TileSheetConfiguration{
 				tile_w_itr->value.GetInt()
