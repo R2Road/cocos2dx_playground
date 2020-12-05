@@ -6,7 +6,7 @@ namespace cpg
 {
 	GridIndexConverter::GridIndexConverter( const int width, const int height ) :
 		mWidth( width ), mHeight( height )
-		, mLinearEnd( To_Linear( width, height ) - 1 )
+		, mLinearEnd( To_Linear( width, height ) )
 	{}
 
 	GridIndexConverter::Point GridIndexConverter::To_Point( const int linear_index ) const
