@@ -116,6 +116,27 @@ namespace tool_practice
 		}
 
 		//
+		// Layer Selector
+		//
+		{
+			auto tool_bar_node = cpgui::ToolBarNode::create();
+			addChild( tool_bar_node, std::numeric_limits<int>::max() );
+
+			for( int i = 0; mConfiguration.GetLayerCount() > i; ++i )
+			{
+				tool_bar_node->AddTool( i, std::to_string( i + 1 ).c_str(), 10, std::bind( &TileSheetTestScene::onLayerSelect, this, i ) );
+			}
+
+			tool_bar_node->setPosition(
+				visibleCenter.x - ( tool_bar_node->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height - tool_bar_node->getContentSize().height
+			);
+
+			// Set Indicator
+			tool_bar_node->SelectTool( mConfiguration.GetLayerCount() - 1 );
+		}
+
+		//
 		// Tool Selector
 		//
 		{
@@ -217,6 +238,16 @@ namespace tool_practice
 	}
 
 
+	void TileSheetTestScene::onLayerSelect( const int layer_index )
+	{
+		CCASSERT( 0 <= layer_index && layer_index < mTileMapNodeContainer.size(), "Invalid Layer Index" );
+		mTileMapNode = mTileMapNodeContainer[layer_index];
+
+		for( auto n : mTileMapNodeContainer )
+		{
+			n->setVisible( n->getTag() <= layer_index );
+		}
+	}
 	void TileSheetTestScene::onToolSelect( const int tool_index )
 	{
 		CCLOG( "%d", tool_index );
