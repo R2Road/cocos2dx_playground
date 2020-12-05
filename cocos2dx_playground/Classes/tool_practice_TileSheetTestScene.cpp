@@ -155,22 +155,26 @@ namespace tool_practice
 			auto root_node = LayerColor::create( Color4B::GRAY );
 			addChild( root_node, 0 );
 			{
-				// Tile Map
+				// Tile Maps
+				for( int i = 0; mConfiguration.GetLayerCount() > i; ++i )
 				{
-					mTileMapNode = step_defender::game::TileMapNode::create(
+					auto tile_map_node = step_defender::game::TileMapNode::create(
 						step_defender::game::TileMapNode::Config{ mConfiguration.GetWidth(), mConfiguration.GetHeight() }
 						, mConfiguration.GetTileSheetConfiguration()
 					);
-					mTileMapNode->setPosition( 4.f, 4.f );
-					root_node->addChild( mTileMapNode );
+					tile_map_node->setTag( i );
+					tile_map_node->setPosition( 4.f, 4.f );
+					root_node->addChild( tile_map_node );
 
-					root_node->setContentSize( mTileMapNode->getContentSize() + Size( 8.f, 8.f ) );
-					root_node->setPosition(
-						visibleOrigin
-						+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
-						- Vec2( root_node->getContentSize().width * 0.5f, root_node->getContentSize().height * 0.5f )
-					);
+					mTileMapNodeContainer.push_back( tile_map_node );
 				}
+
+				root_node->setContentSize( ( *mTileMapNodeContainer.begin() )->getContentSize() + Size( 8.f, 8.f ) );
+				root_node->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
+					- Vec2( root_node->getContentSize().width * 0.5f, root_node->getContentSize().height * 0.5f )
+				);
 
 				//
 				// Touch Node
@@ -185,6 +189,11 @@ namespace tool_practice
 				}
 			}
 		}
+
+		//
+		// Setup
+		//
+		mTileMapNode = mTileMapNodeContainer[mTileMapNodeContainer.size() - 1u];
 
 		return true;
 	}

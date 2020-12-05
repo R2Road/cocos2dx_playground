@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 #include "helper_BackToThePreviousScene.h"
@@ -56,6 +58,7 @@ namespace tool_practice
 
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 
+		std::vector<step_defender::game::TileMapNode*> mTileMapNodeContainer;
 		step_defender::game::TileMapNode* mTileMapNode;
 
 		struct
