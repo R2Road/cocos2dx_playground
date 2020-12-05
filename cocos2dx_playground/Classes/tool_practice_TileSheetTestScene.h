@@ -4,7 +4,7 @@
 #include "ui/UIWidget.h"
 #include "helper_BackToThePreviousScene.h"
 
-#include "cpg_GridIndexConverter.h"
+#include "cpg_Position2GridIndexConverter.h"
 
 #include "tool_practice_TileSheetTestConfiguration.h"
 
@@ -54,7 +54,7 @@ namespace tool_practice
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 		TileSheetTestConfiguration mConfiguration;
 
-		cpg::GridIndexConverter mGridIndexConverter;
+		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 
 		step_defender::game::TileMapNode* mTileMapNode;
 

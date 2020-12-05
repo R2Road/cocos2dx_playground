@@ -17,8 +17,6 @@ namespace cpg
 		int To_Linear( const Point point_index ) const;
 		int To_Linear( const int x, const int y ) const;
 
-		Point Position2Point( const float x, const float y ) const;
-
 	private:
 		int mWidth;
 		int mHeight;

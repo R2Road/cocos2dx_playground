@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp" />
     <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp" />
     <ClCompile Include="..\Classes\cpgui_ToolBarNode.cpp" />
+    <ClCompile Include="..\Classes\cpg_Position2GridIndexConverter.cpp" />
     <ClCompile Include="..\Classes\cpg_Random.cpp" />
     <ClCompile Include="..\Classes\cpg_Setting.cpp" />
     <ClCompile Include="..\Classes\cpg_StringTable.cpp" />
@@ -371,6 +372,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h" />
     <ClInclude Include="..\Classes\cpgui_ToolBarNode.h" />
     <ClInclude Include="..\Classes\cpg_Clamp.h" />
+    <ClInclude Include="..\Classes\cpg_Position2GridIndexConverter.h" />
     <ClInclude Include="..\Classes\cpg_Random.h" />
     <ClInclude Include="..\Classes\cpg_Setting.h" />
     <ClInclude Include="..\Classes\cpg_StringTable.h" />

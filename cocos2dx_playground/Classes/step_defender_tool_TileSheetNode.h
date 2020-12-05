@@ -5,7 +5,7 @@
 
 #include "ui/UIWidget.h"
 
-#include "cpg_GridIndexConverter.h"
+#include "cpg_Position2GridIndexConverter.h"
 #include "step_defender_game_Constant.h"
 
 NS_CC_BEGIN
@@ -45,7 +45,7 @@ namespace step_defender
 
 		private:
 			const game::TileSheetConfiguration mConfig;
-			const cpg::GridIndexConverter mGridIndexConverter;
+			const cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 			SelectCallback mSelectCallback;
 
 			cocos2d::Node* mIndicator;

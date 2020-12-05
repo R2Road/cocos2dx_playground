@@ -20,7 +20,7 @@ namespace step_defender
 	{
 		TileSheetNode::TileSheetNode( const game::TileSheetConfiguration& config ) :
 			mConfig( config )
-			, mGridIndexConverter( mConfig.BlockWidth, mConfig.BlockHeight )
+			, mPosition2GridIndexConverter( mConfig.BlockWidth, mConfig.BlockHeight )
 			, mSelectCallback( nullptr )
 
 			, mIndicator( nullptr )
@@ -148,7 +148,7 @@ namespace step_defender
 			const Vec2 fixed_position( cpg::clamp( node_space_position.x, 0.f, getContentSize().width - 1.f ), cpg::clamp( node_space_position.y, 0.f, getContentSize().height - 1.f ) );
 			const auto scaled_position = fixed_position * _director->getContentScaleFactor();
 
-			const auto touch_point = mGridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
+			const auto touch_point = mPosition2GridIndexConverter.Position2Point( scaled_position.x, scaled_position.y );
 			mLastSelectedPoint.x = touch_point.x;
 			mLastSelectedPoint.y = touch_point.y;
 		}

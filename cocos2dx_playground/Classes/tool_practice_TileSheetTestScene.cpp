@@ -35,7 +35,7 @@ namespace tool_practice
 		, mKeyboardListener( nullptr )
 		, mConfiguration()
 
-		, mGridIndexConverter( 1, 1 )
+		, mPosition2GridIndexConverter( 1, 1 )
 
 		, mTileMapNode( nullptr )
 			
@@ -74,7 +74,7 @@ namespace tool_practice
 		//
 		// Setup Grid Index Converter
 		//
-		mGridIndexConverter = cpg::GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
+		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
 
 		//
 		// Reload Texture
@@ -238,7 +238,7 @@ namespace tool_practice
 			pos = mTileMapNode->convertToNodeSpace( button->getTouchEndPosition() );
 		}
 
-		const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+		const auto point = mPosition2GridIndexConverter.Position2Point( pos.x, pos.y );
 		CCLOG( "A : %d, %d", point.x, point.y );
 
 		if( 0 > point.x || mConfiguration.GetWidth() <= point.x || 0 > point.y || mConfiguration.GetHeight() <= point.y )

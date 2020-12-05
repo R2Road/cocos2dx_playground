@@ -28,13 +28,4 @@ namespace cpg
 
 		return fixed_x + ( fixed_y * mWidth );
 	}
-
-
-	GridIndexConverter::Point GridIndexConverter::Position2Point( const float x, const float y ) const
-	{
-		return Point{
-			static_cast<int>( x / mWidth )
-			, static_cast<int>( y / mHeight )
-		};
-	}
 }

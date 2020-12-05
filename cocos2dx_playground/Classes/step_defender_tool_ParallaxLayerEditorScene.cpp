@@ -42,7 +42,7 @@ namespace step_defender
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
-			, mGridIndexConverter( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight )
+			, mPosition2GridIndexConverter( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight )
 
 			, mRulerNode( nullptr )
 			, mParallaxNode( nullptr )
@@ -371,7 +371,7 @@ namespace step_defender
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchBeganPosition() );
-				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				const auto point = mPosition2GridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "B : %d, %d", point.x, point.y );
 
 				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
@@ -379,7 +379,7 @@ namespace step_defender
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchMovePosition() );
-				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				const auto point = mPosition2GridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "M : %d, %d", point.x, point.y );
 
 				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
@@ -387,7 +387,7 @@ namespace step_defender
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchEndPosition() );
-				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				const auto point = mPosition2GridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "E : %d, %d", point.x, point.y );
 
 				mCurrentBackgroundLayer->UpdateTile( point.x, point.y, mCurrentTilePoint.x, mCurrentTilePoint.y );
@@ -400,7 +400,7 @@ namespace step_defender
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchBeganPosition() );
-				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				const auto point = mPosition2GridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "E : %d, %d", point.x, point.y );
 
 				mCurrentBackgroundLayer->EraseTile( point.x, point.y );
@@ -408,7 +408,7 @@ namespace step_defender
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchMovePosition() );
-				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				const auto point = mPosition2GridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "E : %d, %d", point.x, point.y );
 
 				mCurrentBackgroundLayer->EraseTile( point.x, point.y );
@@ -416,7 +416,7 @@ namespace step_defender
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
 				const auto pos = mCurrentBackgroundLayer->convertToNodeSpace( button->getTouchEndPosition() );
-				const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
+				const auto point = mPosition2GridIndexConverter.Position2Point( pos.x, pos.y );
 				CCLOG( "E : %d, %d", point.x, point.y );
 
 				mCurrentBackgroundLayer->EraseTile( point.x, point.y );
