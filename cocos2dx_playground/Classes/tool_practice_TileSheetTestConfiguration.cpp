@@ -6,7 +6,8 @@
 namespace tool_practice
 {
 	TileSheetTestConfiguration::TileSheetTestConfiguration() :
-		mWidth( 10 )
+		mLayerCount( 1 )
+		, mWidth( 10 )
 		, mHeight( 10 )
 		, mTileSheetConfiguration( 16, 16, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" )
 	{}
@@ -35,6 +36,20 @@ namespace tool_practice
 		}
 
 		rapidjson::Value::MemberIterator root_itr;
+
+		//
+		// Layer
+		//
+		{
+			root_itr = doc.FindMember( "layer" );
+			if( doc.MemberEnd() == root_itr )
+			{
+				CCLOG( "layer is empty" );
+				return false;
+			}
+
+			mLayerCount = root_itr->value.GetInt();
+		}
 
 		//
 		// Size
