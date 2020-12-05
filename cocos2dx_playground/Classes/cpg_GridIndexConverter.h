@@ -20,8 +20,8 @@ namespace cpg
 		Point Position2Point( const float x, const float y ) const;
 
 	private:
-		const int mWidth;
-		const int mHeight;
-		const int mLinearEnd;
+		int mWidth;
+		int mHeight;
+		int mLinearEnd;
 	};
 }

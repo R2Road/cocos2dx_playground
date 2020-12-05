@@ -26,8 +26,6 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_ToolBar = 20140416;
-
-	const step_defender::game::TileSheetConfiguration ToolPractice_TileSheetConfig( 16, 16, 1, 1, "textures/tool_practice/tool_practice_tilesheettest.png" );
 }
 
 namespace tool_practice
@@ -37,7 +35,7 @@ namespace tool_practice
 		, mKeyboardListener( nullptr )
 		, mConfiguration()
 
-		, mGridIndexConverter( ToolPractice_TileSheetConfig.TileWidth, ToolPractice_TileSheetConfig.TileHeight )
+		, mGridIndexConverter( 1, 1 )
 
 		, mTileMapNode( nullptr )
 			
@@ -73,7 +71,15 @@ namespace tool_practice
 			return false;
 		}
 
-		_director->getTextureCache()->reloadTexture( ToolPractice_TileSheetConfig.TexturePath );
+		//
+		// Setup Grid Index Converter
+		//
+		mGridIndexConverter = cpg::GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
+
+		//
+		// Reload Texture
+		//
+		_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().TexturePath );
 
 		const auto visibleOrigin = _director->getVisibleOrigin();
 		const auto visibleSize = _director->getVisibleSize();
@@ -133,7 +139,7 @@ namespace tool_practice
 		// Tile Sheet Node
 		//
 		{
-			auto tile_sheet_node = step_defender::tool::TileSheetNode::create( ToolPractice_TileSheetConfig );
+			auto tile_sheet_node = step_defender::tool::TileSheetNode::create( mConfiguration.GetTileSheetConfiguration() );
 			tile_sheet_node->setPosition(
 				Vec2( visibleOrigin.x + visibleSize.width, visibleCenter.y )
 				- Vec2( tile_sheet_node->getContentSize().width + 10.f, tile_sheet_node->getContentSize().height * 0.5f )
