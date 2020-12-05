@@ -846,6 +846,9 @@
     <ClCompile Include="..\Classes\tool_practice_TileSheetTestScene.cpp">
       <Filter>src\scene\step99\tool</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\tool_practice_TileSheetTestConfiguration.cpp">
+      <Filter>src\scene\step99\tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1521,6 +1524,9 @@
       <Filter>src\scene\step_02_flipflip\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\tool_practice_TileSheetTestScene.h">
+      <Filter>src\scene\step99\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tool_practice_TileSheetTestConfiguration.h">
       <Filter>src\scene\step99\tool</Filter>
     </ClInclude>
   </ItemGroup>

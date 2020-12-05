@@ -28,8 +28,6 @@ namespace
 	const int TAG_ToolBar = 20140416;
 
 	const step_defender::game::TileSheetConfiguration ToolPractice_TileSheetConfig( 16, 16, 1, 1, "textures/tool_practice/tool_practice_tilesheettest.png" );
-
-	const step_defender::game::TileMapNode::Config ToolPractice_TileMapConfig { 10, 10 };
 }
 
 namespace tool_practice
@@ -37,6 +35,8 @@ namespace tool_practice
 	TileSheetTestScene::TileSheetTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+		, mConfiguration()
+
 		, mGridIndexConverter( ToolPractice_TileSheetConfig.TileWidth, ToolPractice_TileSheetConfig.TileHeight )
 
 		, mTileMapNode( nullptr )
@@ -64,6 +64,11 @@ namespace tool_practice
 	bool TileSheetTestScene::init()
 	{
 		if( !Scene::init() )
+		{
+			return false;
+		}
+
+		if( !mConfiguration.Load() )
 		{
 			return false;
 		}
@@ -147,8 +152,8 @@ namespace tool_practice
 				// Tile Map
 				{
 					mTileMapNode = step_defender::game::TileMapNode::create(
-						ToolPractice_TileMapConfig
-						, ToolPractice_TileSheetConfig
+						step_defender::game::TileMapNode::Config{ mConfiguration.GetWidth(), mConfiguration.GetHeight() }
+						, mConfiguration.GetTileSheetConfiguration()
 					);
 					mTileMapNode->setPosition( 4.f, 4.f );
 					root_node->addChild( mTileMapNode );
@@ -230,7 +235,7 @@ namespace tool_practice
 		const auto point = mGridIndexConverter.Position2Point( pos.x, pos.y );
 		CCLOG( "A : %d, %d", point.x, point.y );
 
-		if( 0 > point.x || ToolPractice_TileMapConfig.MapWidth <= point.x || 0 > point.y || ToolPractice_TileMapConfig.MapHeight <= point.y )
+		if( 0 > point.x || mConfiguration.GetWidth() <= point.x || 0 > point.y || mConfiguration.GetHeight() <= point.y )
 		{
 			return;
 		}

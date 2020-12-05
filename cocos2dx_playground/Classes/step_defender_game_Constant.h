@@ -29,16 +29,16 @@ namespace step_defender
 				, TexturePath( texture_path )
 			{}
 
-			const int TileWidth;
-			const int TileHeight;
+			int TileWidth;
+			int TileHeight;
 
-			const int TileMargin_Width;
-			const int TileMargin_Height;
+			int TileMargin_Width;
+			int TileMargin_Height;
 
-			const int BlockWidth;
-			const int BlockHeight;
+			int BlockWidth;
+			int BlockHeight;
 
-			const std::string TexturePath;
+			std::string TexturePath;
 		};
 		const TileSheetConfiguration TileSheetConfig( 16, 16, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" );
 

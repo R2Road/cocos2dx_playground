@@ -6,6 +6,8 @@
 
 #include "cpg_GridIndexConverter.h"
 
+#include "tool_practice_TileSheetTestConfiguration.h"
+
 namespace step_defender
 {
 	namespace game
@@ -50,6 +52,8 @@ namespace tool_practice
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+		TileSheetTestConfiguration mConfiguration;
+
 		cpg::GridIndexConverter mGridIndexConverter;
 
 		step_defender::game::TileMapNode* mTileMapNode;
