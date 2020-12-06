@@ -133,7 +133,7 @@ namespace tool_practice
 			);
 
 			// Set Indicator
-			tool_bar_node->SelectTool( mConfiguration.GetLayerCount() - 1 );
+			tool_bar_node->SelectTool( 0 );
 		}
 
 		//
@@ -214,7 +214,7 @@ namespace tool_practice
 		//
 		// Setup
 		//
-		mTileMapNode = mTileMapNodeContainer[mTileMapNodeContainer.size() - 1u];
+		mTileMapNode = mTileMapNodeContainer[0u];
 
 		return true;
 	}
