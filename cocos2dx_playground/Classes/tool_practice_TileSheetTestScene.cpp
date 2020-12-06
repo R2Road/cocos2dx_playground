@@ -7,7 +7,6 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -206,7 +205,7 @@ namespace tool_practice
 					button->setScale9Enabled( true );
 					button->setContentSize( root_node->getContentSize() );
 					button->addTouchEventListener( CC_CALLBACK_2( TileSheetTestScene::onUpdateTile, this ) );
-					root_node->addChild( button, std::numeric_limits<int>::max() - 1 );
+					root_node->addChild( button, std::numeric_limits<int>::max() );
 				}
 			}
 		}
