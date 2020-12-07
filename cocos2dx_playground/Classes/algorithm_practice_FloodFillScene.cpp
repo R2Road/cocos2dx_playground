@@ -106,7 +106,7 @@ namespace algorithm_practice
 		// Background
 		//
 		{
-			auto layer = LayerColor::create( Color4B::BLACK );
+			auto layer = LayerColor::create( Color4B( 8, 45, 48, 255 ) );
 			addChild( layer, std::numeric_limits<int>::min() );
 		}
 
