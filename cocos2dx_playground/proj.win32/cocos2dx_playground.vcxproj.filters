@@ -858,6 +858,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_FloodFillScene.cpp">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1542,6 +1545,9 @@
       <Filter>src\cpg</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_FloodFillScene.h">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
   </ItemGroup>
