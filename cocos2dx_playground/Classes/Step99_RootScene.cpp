@@ -21,6 +21,7 @@
 #include "Research_Input_ConfigedKeysTestScene.h"
 
 #include "tool_practice_TileSheetTestScene.h"
+#include "algorithm_practice_RootScene.h"
 
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
@@ -87,6 +88,8 @@ namespace step99
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[Q] : " << tool_practice::TileSheetTestScene::getTitle();
+			ss << std::endl;
+			ss << "[W] : " << algorithm_practice::RootScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -165,6 +168,9 @@ namespace step99
 
 		case EventKeyboard::KeyCode::KEY_Q:
 			_director->replaceScene( tool_practice::TileSheetTestScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_W:
+			_director->replaceScene( algorithm_practice::RootScene::create() );
 			break;
 
 

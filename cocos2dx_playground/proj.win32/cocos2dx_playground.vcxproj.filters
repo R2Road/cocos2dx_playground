@@ -205,6 +205,9 @@
     <Filter Include="src\scene\step99\tool">
       <UniqueIdentifier>{c7283c4e-210a-420f-a875-42d985335828}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step99\algorithm_practice">
+      <UniqueIdentifier>{64c6c9c5-7f6d-461a-b00e-3e73d682654c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -851,6 +854,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_Position2GridIndexConverter.cpp">
       <Filter>src\cpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1534,6 +1540,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Position2GridIndexConverter.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_RootScene.h">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
