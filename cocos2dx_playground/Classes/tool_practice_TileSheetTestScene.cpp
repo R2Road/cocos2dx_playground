@@ -71,7 +71,7 @@ namespace tool_practice
 		}
 
 		//
-		// Setup Grid Index Converter
+		// Setup Position 2 Grid Index Converter
 		//
 		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
 
