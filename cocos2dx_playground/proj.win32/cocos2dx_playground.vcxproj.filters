@@ -202,11 +202,11 @@
     <Filter Include="src\scene\step_02_flipflip\sprite_frame">
       <UniqueIdentifier>{a70260a5-6b93-4f29-b053-f8624067d4d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step99\tool">
-      <UniqueIdentifier>{c7283c4e-210a-420f-a875-42d985335828}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\step99\algorithm_practice">
       <UniqueIdentifier>{64c6c9c5-7f6d-461a-b00e-3e73d682654c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\step99\tool_practice">
+      <UniqueIdentifier>{c7283c4e-210a-420f-a875-42d985335828}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -847,10 +847,10 @@
       <Filter>src\scene\step_02_flipflip\game_test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\tool_practice_TileSheetTestScene.cpp">
-      <Filter>src\scene\step99\tool</Filter>
+      <Filter>src\scene\step99\tool_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\tool_practice_TileSheetTestConfiguration.cpp">
-      <Filter>src\scene\step99\tool</Filter>
+      <Filter>src\scene\step99\tool_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_Position2GridIndexConverter.cpp">
       <Filter>src\cpg</Filter>
@@ -1536,10 +1536,10 @@
       <Filter>src\scene\step_02_flipflip\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\tool_practice_TileSheetTestScene.h">
-      <Filter>src\scene\step99\tool</Filter>
+      <Filter>src\scene\step99\tool_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\tool_practice_TileSheetTestConfiguration.h">
-      <Filter>src\scene\step99\tool</Filter>
+      <Filter>src\scene\step99\tool_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Position2GridIndexConverter.h">
       <Filter>src\cpg</Filter>
