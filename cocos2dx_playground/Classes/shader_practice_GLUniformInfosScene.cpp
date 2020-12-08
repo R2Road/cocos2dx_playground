@@ -25,7 +25,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* CustomeShaderPath = "shaders/gl_uniform_infos_test.fsh";
+	const char* CustomeShaderPath = "shaders/shader_practice_GLUniformInfosScene.fsh";
 }
 
 namespace shader_practice
