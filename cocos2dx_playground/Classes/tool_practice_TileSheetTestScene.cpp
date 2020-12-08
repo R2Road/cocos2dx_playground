@@ -338,21 +338,20 @@ namespace tool_practice
 			return;
 		}
 
+		if( EventKeyboard::KeyCode::KEY_1 <= key_code && EventKeyboard::KeyCode::KEY_9 >= key_code )
+		{
+			const int target_layer_index = static_cast<int>( key_code ) - 77;
+			if( target_layer_index < mConfiguration.GetLayerCount() )
+			{
+				onLayerSelect( target_layer_index );
+				static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( target_layer_index );
+			}
+
+			return;
+		}
+
 		switch( key_code )
 		{
-		case EventKeyboard::KeyCode::KEY_1:
-			onLayerSelect( 0 );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( 0 );
-			break;
-		case EventKeyboard::KeyCode::KEY_2:
-			onLayerSelect( 1 );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( 1 );
-			break;
-		case EventKeyboard::KeyCode::KEY_3:
-			onLayerSelect( 2 );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( 2 );
-			break;
-
 		case EventKeyboard::KeyCode::KEY_B:
 			onToolSelect( 0 );
 			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
