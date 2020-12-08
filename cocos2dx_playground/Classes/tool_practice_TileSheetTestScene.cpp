@@ -25,7 +25,7 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_LayerSelector = 100;
-	const int TAG_ToolBar = 20140416;
+	const int TAG_ToolSelector = 20140416;
 }
 
 namespace tool_practice
@@ -160,7 +160,7 @@ namespace tool_practice
 		//
 		{
 			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
-			tool_bar_node->setTag( TAG_ToolBar );
+			tool_bar_node->setTag( TAG_ToolSelector );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
 			tool_bar_node->AddTool( 0, "step_defender_tool_icon_01_0.png", std::bind( &TileSheetTestScene::onToolSelect, this, static_cast<int>( eToolIndex::Pick ) ) );
@@ -354,11 +354,11 @@ namespace tool_practice
 		{
 		case EventKeyboard::KeyCode::KEY_B:
 			onToolSelect( 0 );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolSelector ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_E:
 			onToolSelect( 1 );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Erase ) );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolSelector ) )->SelectTool( static_cast<int>( eToolIndex::Erase ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_R :
