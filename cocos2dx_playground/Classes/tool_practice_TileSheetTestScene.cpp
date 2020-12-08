@@ -353,11 +353,11 @@ namespace tool_practice
 		switch( key_code )
 		{
 		case EventKeyboard::KeyCode::KEY_B:
-			onToolSelect( 0 );
+			onToolSelect( static_cast<int>( eToolIndex::Pick ) );
 			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolSelector ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_E:
-			onToolSelect( 1 );
+			onToolSelect( static_cast<int>( eToolIndex::Erase ) );
 			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolSelector ) )->SelectTool( static_cast<int>( eToolIndex::Erase ) );
 			break;
 
