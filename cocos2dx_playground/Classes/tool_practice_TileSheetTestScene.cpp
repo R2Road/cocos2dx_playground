@@ -340,7 +340,7 @@ namespace tool_practice
 
 		if( EventKeyboard::KeyCode::KEY_1 <= key_code && EventKeyboard::KeyCode::KEY_9 >= key_code )
 		{
-			const int target_layer_index = static_cast<int>( key_code ) - 77;
+			const int target_layer_index = static_cast<int>( key_code ) - static_cast<int>( EventKeyboard::KeyCode::KEY_1 );
 			if( target_layer_index < mConfiguration.GetLayerCount() )
 			{
 				onLayerSelect( target_layer_index );
