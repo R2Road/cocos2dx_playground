@@ -11,7 +11,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 
 #include "platform/CCFileUtils.h"
 #include "renderer/CCGLProgram.h"
@@ -111,7 +110,10 @@ namespace shader_practice
 			addChild( label_2, std::numeric_limits<int>::max() );
 		}
 
+
+		//
 		// Default
+		//
 		{
 			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
 			view_node->getTexture()->setAliasTexParameters();
@@ -119,7 +121,7 @@ namespace shader_practice
 				visibleOrigin.x + visibleSize.width * 0.3f
 				, visibleOrigin.y + visibleSize.height * 0.45f
 			);
-			view_node->setScale( 4.f );
+			view_node->setScale( 2.f );
 			addChild( view_node );
 
 			// Explain
@@ -136,23 +138,17 @@ namespace shader_practice
 		}
 
 
-
 		//
 		// Practice : Load N Caching
 		//
 		{
-			//
 			// Load
-			//
-			const auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
-			auto gl_program = cocos2d::GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
+			const auto shader_source = FileUtils::getInstance()->getStringFromFile( FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
+			auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
 
-			//
 			// Caching
-			//
 			GLProgramCache::getInstance()->addGLProgram( gl_program, "shader_practice_BasicScene" );
 		}
-
 		//
 		// Practice : Apply Custome Shader
 		//
@@ -163,7 +159,7 @@ namespace shader_practice
 				visibleOrigin.x + visibleSize.width * 0.7f
 				, visibleOrigin.y + visibleSize.height * 0.45f
 			);
-			view_node->setScale( 4.f );
+			view_node->setScale( 2.f );
 			addChild( view_node );
 			{
 				//
