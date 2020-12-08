@@ -120,9 +120,9 @@ namespace shader_practice
 			view_node->getTexture()->setAliasTexParameters();
 			view_node->setPosition(
 				visibleOrigin.x + visibleSize.width * 0.5f
-				, visibleOrigin.y + visibleSize.height * 0.5f
+				, visibleOrigin.y + visibleSize.height * 0.6f
 			);
-			view_node->setScale( 4.f );
+			view_node->setScale( 2.f );
 			addChild( view_node );
 			{
 				const auto shader_source = cocos2d::FileUtils::getInstance()->getStringFromFile( cocos2d::FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
