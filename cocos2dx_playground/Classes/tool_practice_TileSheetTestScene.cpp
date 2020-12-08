@@ -96,6 +96,9 @@ namespace tool_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[W/E] : " << "Shortcut( Pick/Erase )";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[R] : " << "Reload Texture";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -321,6 +324,11 @@ namespace tool_practice
 		{
 			onToolSelect( 1 );
 			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Erase ) );
+		}
+
+		if( EventKeyboard::KeyCode::KEY_R == key_code )
+		{
+			_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().TexturePath );
 		}
 	}
 }
