@@ -95,7 +95,7 @@ namespace tool_practice
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[W/E] : " << "Shortcut( Pick/Erase )";
+			ss << "[B/E] : " << "Shortcut( Pick/Erase )";
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[R] : " << "Reload Texture";
@@ -315,7 +315,7 @@ namespace tool_practice
 			return;
 		}
 
-		if( EventKeyboard::KeyCode::KEY_W == key_code )
+		if( EventKeyboard::KeyCode::KEY_B == key_code )
 		{
 			onToolSelect( 0 );
 			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
