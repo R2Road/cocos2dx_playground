@@ -43,6 +43,7 @@ namespace tool_practice
 		void onExit() override;
 
 	private:
+		void reloadTexture();
 		void onLayerSelect( const int layer_index );
 		void onToolSelect( const int tool_index );
 		void onTileSelect( const int x, const int y );

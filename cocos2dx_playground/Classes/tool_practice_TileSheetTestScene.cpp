@@ -78,7 +78,7 @@ namespace tool_practice
 		//
 		// Reload Texture
 		//
-		_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().TexturePath );
+		reloadTexture();
 
 		const auto visibleOrigin = _director->getVisibleOrigin();
 		const auto visibleSize = _director->getVisibleSize();
@@ -240,6 +240,12 @@ namespace tool_practice
 	}
 
 
+	void TileSheetTestScene::reloadTexture()
+	{
+		_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().TexturePath );
+	}
+
+
 	void TileSheetTestScene::onLayerSelect( const int layer_index )
 	{
 		CCASSERT( 0 <= layer_index && layer_index < mTileMapNodeContainer.size(), "Invalid Layer Index" );
@@ -328,7 +334,7 @@ namespace tool_practice
 
 		if( EventKeyboard::KeyCode::KEY_R == key_code )
 		{
-			_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().TexturePath );
+			reloadTexture();
 		}
 	}
 }
