@@ -24,6 +24,7 @@ USING_NS_CC;
 
 namespace
 {
+	const int TAG_LayerSelector = 100;
 	const int TAG_ToolBar = 20140416;
 }
 
@@ -95,6 +96,21 @@ namespace tool_practice
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;
+
+			ss << "[";
+			for( int i = 0; mConfiguration.GetLayerCount() > i; ++i )
+			{
+				ss << std::to_string( i + 1 ).c_str();
+
+				if( mConfiguration.GetLayerCount() > i + 1 )
+				{
+					ss << "/";
+				}
+			}
+			ss << "] : Layer Select";
+
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[B/E] : " << "Shortcut( Pick/Erase )";
 			ss << std::endl;
 			ss << std::endl;
@@ -122,6 +138,7 @@ namespace tool_practice
 		//
 		{
 			auto tool_bar_node = cpgui::ToolBarNode::create();
+			tool_bar_node->setTag( TAG_LayerSelector );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
 			for( int i = 0; mConfiguration.GetLayerCount() > i; ++i )
@@ -321,20 +338,33 @@ namespace tool_practice
 			return;
 		}
 
-		if( EventKeyboard::KeyCode::KEY_B == key_code )
+		switch( key_code )
 		{
+		case EventKeyboard::KeyCode::KEY_1:
+			onLayerSelect( 0 );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( 0 );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
+			onLayerSelect( 1 );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( 1 );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			onLayerSelect( 2 );
+			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( 2 );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_B:
 			onToolSelect( 0 );
 			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
-		}
-		if( EventKeyboard::KeyCode::KEY_E == key_code )
-		{
+			break;
+		case EventKeyboard::KeyCode::KEY_E:
 			onToolSelect( 1 );
 			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolBar ) )->SelectTool( static_cast<int>( eToolIndex::Erase ) );
-		}
+			break;
 
-		if( EventKeyboard::KeyCode::KEY_R == key_code )
-		{
+		case EventKeyboard::KeyCode::KEY_R :
 			reloadTexture();
+			break;
 		}
 	}
 }
