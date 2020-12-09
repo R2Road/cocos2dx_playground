@@ -140,7 +140,7 @@ namespace input_practice
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
-			_director->replaceScene( input_practice::KeyConfigScene::create() );
+			_director->replaceScene( input_practice::KeyConfigScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
 			_director->replaceScene( research::input::ConfigedKeysTestScene::create() );
