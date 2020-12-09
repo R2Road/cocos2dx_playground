@@ -30,7 +30,6 @@ namespace input_practice
 		void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		void onExitButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-		void update_forExit( float dt );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;

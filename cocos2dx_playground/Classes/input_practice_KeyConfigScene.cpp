@@ -260,6 +260,8 @@ namespace input_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
+		mKeymapConfigHelper.save( research::Setting::getKeyMapFileName().c_str() );
+
 		Scene::onExit();
 	}
 
@@ -317,19 +319,10 @@ namespace input_practice
 
 	void KeyConfigScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 	{
-		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
+		if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 		{
+			_director->replaceScene( input_practice::RootScene::create() );
 			return;
 		}
-
-		if( !isScheduled( schedule_selector( KeyConfigScene::update_forExit ) ) )
-		{
-			scheduleOnce( schedule_selector( KeyConfigScene::update_forExit ), 0.f );
-		}
-	}
-	void KeyConfigScene::update_forExit( float /*dt*/ )
-	{
-		mKeymapConfigHelper.save( research::Setting::getKeyMapFileName().c_str() );
-		_director->replaceScene( input_practice::RootScene::create() );
 	}
 }
