@@ -12,9 +12,10 @@ namespace input_practice
 {
 	class GamePadTestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
-	public:
+	private:
 		GamePadTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+	public:
 		static const char* getTitle() { return "GamePad Test"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
