@@ -14,12 +14,6 @@
 
 #include "PlayGroundScene.h"
 
-#include "Research_Input_KeyAllowScene.h"
-#include "Research_Input_AllowedKeysTestScene.h"
-
-#include "Research_Input_KeyConfigScene.h"
-#include "Research_Input_ConfigedKeysTestScene.h"
-
 #include "tool_practice_TileSheetTestScene.h"
 #include "algorithm_practice_RootScene.h"
 
@@ -72,19 +66,6 @@ namespace step99
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[1] : Key Allow";
-			ss << std::endl;
-			ss << "[2] : Allowed Keys Test";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[3] : Key Config";
-			ss << std::endl;
-			ss << "[4] : Configed Keys Test";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[Q] : " << tool_practice::TileSheetTestScene::getTitle();
@@ -149,20 +130,6 @@ namespace step99
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			_director->replaceScene( PlayGroundScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( research::input::KeyAllowScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_2:
-			_director->replaceScene( research::input::AllowedKeysTestScene::create() );
-			break;
-
-		case EventKeyboard::KeyCode::KEY_3:
-			_director->replaceScene( research::input::KeyConfigScene::create() );
-			break;
-		case EventKeyboard::KeyCode::KEY_4:
-			_director->replaceScene( research::input::ConfigedKeysTestScene::create() );
 			break;
 
 

@@ -17,9 +17,10 @@
 #include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"
 
+#include "input_practice_RootScene.h"
+
 #include "Research_Setting.h"
 
-#include "Step99_RootScene.h"
 USING_NS_CC;
 
 namespace research
@@ -331,7 +332,7 @@ namespace research
 		void KeyConfigScene::update_forExit( float /*dt*/ )
 		{
 			mKeymapConfigHelper.save( research::Setting::getKeyMapFileName().c_str() );
-			_director->replaceScene( step99::RootScene::create() );
+			_director->replaceScene( input_practice::RootScene::create() );
 		}
 	}
 }

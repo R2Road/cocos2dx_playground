@@ -252,18 +252,6 @@
     <ClCompile Include="..\Classes\Step99_RootScene.cpp">
       <Filter>src\scene\step99</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
-      <Filter>src\scene\step99</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
-      <Filter>src\scene\step99</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
-      <Filter>src\scene\step99</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
-      <Filter>src\scene\step99</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step02_fsm1test_BasicScene.cpp">
       <Filter>src\scene\step99\fsm1test</Filter>
     </ClCompile>
@@ -699,9 +687,6 @@
     <ClCompile Include="..\Classes\cpg_Setting.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Setting.cpp">
-      <Filter>src\scene\step99</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Orbit_01.cpp">
       <Filter>src\scene\step_06_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
@@ -861,6 +846,21 @@
     <ClCompile Include="..\Classes\algorithm_practice_FloodFillScene.cpp">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_AllowedKeysTestScene.cpp">
+      <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
+      <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
+      <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
+      <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Setting.cpp">
+      <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -903,18 +903,6 @@
       <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Step99_RootScene.h">
-      <Filter>src\scene\step99</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
-      <Filter>src\scene\step99</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
-      <Filter>src\scene\step99</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
-      <Filter>src\scene\step99</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\step99</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step02_fsm1test_BasicScene.h">
@@ -1385,9 +1373,6 @@
     <ClInclude Include="..\Classes\cpg_Setting.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Setting.h">
-      <Filter>src\scene\step99</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_Orbit_01.h">
       <Filter>src\scene\step_06_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
@@ -1549,6 +1534,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_FloodFillScene.h">
       <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_AllowedKeysTestScene.h">
+      <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
+      <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
+      <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
+      <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Setting.h">
+      <Filter>src\scene\input_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

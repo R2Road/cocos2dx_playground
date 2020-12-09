@@ -14,6 +14,12 @@
 
 #include "PlayGroundScene.h"
 
+#include "Research_Input_KeyAllowScene.h"
+#include "Research_Input_AllowedKeysTestScene.h"
+
+#include "Research_Input_KeyConfigScene.h"
+#include "Research_Input_ConfigedKeysTestScene.h"
+
 #include "input_practice_GamePadTestScene.h"
 
 USING_NS_CC;
@@ -61,6 +67,16 @@ namespace input_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[1] : " << input_practice::GamePadTestScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[2] : Key Allow";
+			ss << std::endl;
+			ss << "[3] : Allowed Keys Test";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[4] : Key Config";
+			ss << std::endl;
+			ss << "[5] : Configed Keys Test";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -111,6 +127,20 @@ namespace input_practice
 		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( input_practice::GamePadTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
+
+		case EventKeyboard::KeyCode::KEY_2:
+			_director->replaceScene( research::input::KeyAllowScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_3:
+			_director->replaceScene( research::input::AllowedKeysTestScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_4:
+			_director->replaceScene( research::input::KeyConfigScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_5:
+			_director->replaceScene( research::input::ConfigedKeysTestScene::create() );
+			break;
 
 		default:
 			CCLOG( "Key Code : %d", keycode );

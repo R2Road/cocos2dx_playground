@@ -8,10 +8,11 @@
 
 #include "cpg_StringTable.h"
 
-#include "Step99_RootScene.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_InputTest_KeyboardInputObserver.h"
 #include "CPG_Input_KeyCodeNames.h"
+
+#include "input_practice_RootScene.h"
 
 #include "Research_Setting.h"
 
@@ -155,7 +156,7 @@ namespace research
 		}
 		void AllowedKeysTestScene::update_forExit( float /*dt*/ )
 		{
-			_director->replaceScene( step99::RootScene::create() );
+			_director->replaceScene( input_practice::RootScene::create() );
 		}
 	}
 }

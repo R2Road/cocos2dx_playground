@@ -14,9 +14,10 @@
 #include "CPG_InputTest_KeyMapConfigHelper.h"
 #include "CPG_Input_KeyCodeNames.h"
 
+#include "input_practice_RootScene.h"
+
 #include "Research_Setting.h"
 
-#include "Step99_RootScene.h"
 USING_NS_CC;
 
 namespace research
@@ -205,7 +206,7 @@ namespace research
 		}
 		void ConfigedKeysTestScene::update_forExit( float /*dt*/ )
 		{
-			_director->replaceScene( step99::RootScene::create() );
+			_director->replaceScene( input_practice::RootScene::create() );
 		}
 	}
 }
