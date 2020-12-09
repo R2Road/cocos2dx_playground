@@ -858,7 +858,7 @@
     <ClCompile Include="..\Classes\input_practice_Setting.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
+    <ClCompile Include="..\Classes\input_practice_KeyAllowScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1547,7 +1547,7 @@
     <ClInclude Include="..\Classes\input_practice_Setting.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
+    <ClInclude Include="..\Classes\input_practice_KeyAllowScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
   </ItemGroup>

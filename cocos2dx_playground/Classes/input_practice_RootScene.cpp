@@ -14,7 +14,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "Research_Input_KeyAllowScene.h"
+#include "input_practice_KeyAllowScene.h"
 #include "Research_Input_AllowedKeysTestScene.h"
 
 #include "input_practice_KeyConfigScene.h"

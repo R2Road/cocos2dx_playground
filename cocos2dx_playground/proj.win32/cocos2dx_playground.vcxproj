@@ -316,7 +316,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_pathfinder_game_TerrainData.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_game_TitleScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_game_PlayScene.cpp" />
-    <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp" />
+    <ClCompile Include="..\Classes\input_practice_KeyAllowScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_input_KeyCodeViewScene.cpp" />
     <ClCompile Include="..\Classes\input_practice_KeyConfigScene.cpp" />
     <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp" />
@@ -547,7 +547,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_pathfinder_game_TerrainData.h" />
     <ClInclude Include="..\Classes\step_pathfinder_game_TitleScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_game_PlayScene.h" />
-    <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h" />
+    <ClInclude Include="..\Classes\input_practice_KeyAllowScene.h" />
     <ClInclude Include="..\Classes\step_typetype_input_KeyCodeViewScene.h" />
     <ClInclude Include="..\Classes\input_practice_KeyConfigScene.h" />
     <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h" />
