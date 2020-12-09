@@ -858,7 +858,7 @@
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
+    <ClCompile Include="..\Classes\input_practice_KeyConfigScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1547,7 +1547,7 @@
     <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
+    <ClInclude Include="..\Classes\input_practice_KeyConfigScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
   </ItemGroup>

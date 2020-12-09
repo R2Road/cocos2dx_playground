@@ -1,4 +1,4 @@
-#include "Research_Input_KeyConfigScene.h"
+#include "input_practice_KeyConfigScene.h"
 
 #include <new>
 #include <numeric>
