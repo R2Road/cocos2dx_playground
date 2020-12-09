@@ -7,7 +7,10 @@
 #include <numeric>
 #include <utility> // pair
 
-#include "cocos2d.h"
+#include "2d/CCLabel.h"
+#include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"
