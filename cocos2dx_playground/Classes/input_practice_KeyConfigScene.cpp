@@ -8,14 +8,13 @@
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
+#include "ui/UIButton.h"
+#include "ui/UIScale9Sprite.h"
+#include "ui/UIScrollView.h"
 #include "platform/CCFileUtils.h"
 
 #include "cpg_StringTable.h"
 #include "CPG_Input_KeyCodeNames.h"
-
-#include "ui/UIButton.h"
-#include "ui/UIScale9Sprite.h"
-#include "ui/UIScrollView.h"
 
 #include "input_practice_RootScene.h"
 
@@ -23,86 +22,86 @@
 
 USING_NS_CC;
 
-namespace input_practice
+namespace
 {
-	namespace
+	const int TAG_KeyConfigControl_BG = 20140416;
+	const int TAG_KeyCode_Label = 20160528;
+
+	const Size calculateSizeOfKeyConfigControl( cpg::input_test::KeyMapConfigHelper& helper )
 	{
-		const int TAG_KeyConfigControl_BG = 20140416;
-		const int TAG_KeyCode_Label = 20160528;
+		const Size control_side_margin( 8.f, 4.f );
+		const float inner_horizontal_margin = 10.f;
 
-		const Size calculateSizeOfKeyConfigControl( cpg::input_test::KeyMapConfigHelper& helper )
+		auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
+		Size result_size;
+		for( const auto& h : helper.getContainer() )
 		{
-			const Size control_side_margin( 8.f, 4.f );
-			const float inner_horizontal_margin = 10.f;
+			label->setString( h.mName );
 
-			auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
-			Size result_size;
-			for( const auto& h : helper.getContainer() )
-			{
-				label->setString( h.mName );
-
-				if( result_size.width < label->getContentSize().width )
-				{
-					result_size.width = label->getContentSize().width;
-				}
-
-				if( result_size.height < label->getContentSize().height )
-				{
-					result_size.height = label->getContentSize().height;
-				}
-			}
-
-			label->setString( cpg::input::KeyCodeNames::get_longest() );
 			if( result_size.width < label->getContentSize().width )
 			{
 				result_size.width = label->getContentSize().width;
 			}
+
 			if( result_size.height < label->getContentSize().height )
 			{
 				result_size.height = label->getContentSize().height;
 			}
-
-			return Size(
-				std::ceilf( ( result_size.width * 2 ) + ( control_side_margin.width * 2 ) + inner_horizontal_margin )
-				, std::ceilf( result_size.height + ( control_side_margin.height * 2 ) )
-			);
 		}
 
-		Node* createKeyConfigControl( const Size control_size, const std::string& key_name, const int key_idx, const EventKeyboard::KeyCode key_code, const ui::Widget::ccWidgetTouchCallback& callback )
+		label->setString( cpg::input::KeyCodeNames::get_longest() );
+		if( result_size.width < label->getContentSize().width )
 		{
-			auto root = Node::create();
-			root->setContentSize( control_size );
-			{
-				auto key_name_label = Label::createWithTTF( key_name, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
-				key_name_label->setPositionX( -control_size.width * 0.25f );
-				root->addChild( key_name_label, 2 );
-
-				auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
-				key_code_label->setTag( TAG_KeyCode_Label );
-				key_code_label->setPositionX( control_size.width * 0.25f );
-				root->addChild( key_code_label, 2 );
-
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
-				button->setTag( static_cast<int>( key_idx ) );
-				button->getRendererNormal()->getTexture()->setAliasTexParameters();
-				button->getRendererClicked()->getTexture()->setAliasTexParameters();
-				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
-				button->setScale9Enabled( true );
-				button->setContentSize( control_size );
-				button->addTouchEventListener( callback );
-				root->addChild( button, 1 );
-
-				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
-				indicator->setTag( TAG_KeyConfigControl_BG );
-				indicator->setVisible( false );
-				indicator->setContentSize( control_size );
-				root->addChild( indicator, 0 );
-			}
-
-			return root;
+			result_size.width = label->getContentSize().width;
 		}
+		if( result_size.height < label->getContentSize().height )
+		{
+			result_size.height = label->getContentSize().height;
+		}
+
+		return Size(
+			std::ceilf( ( result_size.width * 2 ) + ( control_side_margin.width * 2 ) + inner_horizontal_margin )
+			, std::ceilf( result_size.height + ( control_side_margin.height * 2 ) )
+		);
 	}
 
+	Node* createKeyConfigControl( const Size control_size, const std::string& key_name, const int key_idx, const EventKeyboard::KeyCode key_code, const ui::Widget::ccWidgetTouchCallback& callback )
+	{
+		auto root = Node::create();
+		root->setContentSize( control_size );
+		{
+			auto key_name_label = Label::createWithTTF( key_name, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
+			key_name_label->setPositionX( -control_size.width * 0.25f );
+			root->addChild( key_name_label, 2 );
+
+			auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
+			key_code_label->setTag( TAG_KeyCode_Label );
+			key_code_label->setPositionX( control_size.width * 0.25f );
+			root->addChild( key_code_label, 2 );
+
+			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
+			button->setTag( static_cast<int>( key_idx ) );
+			button->getRendererNormal()->getTexture()->setAliasTexParameters();
+			button->getRendererClicked()->getTexture()->setAliasTexParameters();
+			button->getRendererDisabled()->getTexture()->setAliasTexParameters();
+			button->setScale9Enabled( true );
+			button->setContentSize( control_size );
+			button->addTouchEventListener( callback );
+			root->addChild( button, 1 );
+
+			auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
+			indicator->setTag( TAG_KeyConfigControl_BG );
+			indicator->setVisible( false );
+			indicator->setContentSize( control_size );
+			root->addChild( indicator, 0 );
+		}
+
+		return root;
+	}
+}
+
+namespace input_practice
+{
 	KeyConfigScene::KeyConfigScene() :
 		mKeyboardListener( nullptr )
 
