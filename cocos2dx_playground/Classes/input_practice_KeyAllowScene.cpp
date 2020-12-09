@@ -3,6 +3,8 @@
 #include <cmath> // ceil
 #include <sstream>
 #include <cstdlib> // ldiv
+#include <new>
+#include <numeric>
 #include <utility> // pair
 
 #include "cocos2d.h"
@@ -18,66 +20,66 @@
 
 USING_NS_CC;
 
-namespace input_practice
+namespace
 {
-	namespace
+	const int TAG_KeyAllowControl_BG = 20140416;
+
+	const Size calculateSizeOfKeyAllowControl( const char* str )
 	{
-		const int TAG_KeyAllowControl_BG = 20140416;
-		const Size calculateSizeOfKeyAllowControl( const char* str )
-		{
-			const Size key_allow_margin( 8.f, 4.f );
-			auto temp = Label::createWithTTF( str, cpg::StringTable::GetFontPath(), 10 );
-			return Size(
-				std::ceilf( temp->getContentSize().width + ( key_allow_margin.width * 2 ) )
-				, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
-			);
-		}
-		const std::pair<int,int> calculateKeyAllowControlsRowAndColumn( const Size view_size, const Size control_size, const Size control_margin )
-		{
-			const auto _row_count = ldiv(
-				static_cast<int>( view_size.height )
-				, static_cast<int>( control_size.height + control_margin.height )
-			).quot;
+		const Size key_allow_margin( 8.f, 4.f );
+		auto temp = Label::createWithTTF( str, cpg::StringTable::GetFontPath(), 10 );
+		return Size(
+			std::ceilf( temp->getContentSize().width + ( key_allow_margin.width * 2 ) )
+			, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
+		);
+	}
+	const std::pair<int, int> calculateKeyAllowControlsRowAndColumn( const Size view_size, const Size control_size, const Size control_margin )
+	{
+		const auto _row_count = ldiv(
+			static_cast<int>( view_size.height )
+			, static_cast<int>( control_size.height + control_margin.height )
+		).quot;
 
-			const auto div_result = std::ldiv( step_rain_of_chaos::input::KeyCodeContainerSize, _row_count );
+		const auto div_result = std::ldiv( step_rain_of_chaos::input::KeyCodeContainerSize, _row_count );
 
-			return std::make_pair(
-				div_result.rem > 0 ? div_result.quot + 1 : div_result.quot
-				, _row_count
-			);
-		}
-
-		Node* createKeyAllowControl( const Size control_size, const EventKeyboard::KeyCode target_key_code, const ui::Widget::ccWidgetTouchCallback& callback )
-		{
-			auto key_allow_control_root = Node::create();
-			{
-				auto key_allow_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( target_key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
-				key_allow_control_root->addChild( key_allow_label, 2 );
-
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
-				button->setTag( static_cast<int>( target_key_code ) );
-				button->getRendererNormal()->getTexture()->setAliasTexParameters();
-				button->getRendererClicked()->getTexture()->setAliasTexParameters();
-				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
-				button->setScale9Enabled( true );
-				button->setContentSize( control_size );
-				button->addTouchEventListener( callback );
-				key_allow_control_root->addChild( button, 1 );
-
-				auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
-				indicator->setTag( TAG_KeyAllowControl_BG );
-				indicator->setVisible( false );
-				indicator->setContentSize( control_size );
-				key_allow_control_root->addChild( indicator, 0 );
-			}
-
-			return key_allow_control_root;
-		}
+		return std::make_pair(
+			div_result.rem > 0 ? div_result.quot + 1 : div_result.quot
+			, _row_count
+		);
 	}
 
+	Node* createKeyAllowControl( const Size control_size, const EventKeyboard::KeyCode target_key_code, const ui::Widget::ccWidgetTouchCallback& callback )
+	{
+		auto key_allow_control_root = Node::create();
+		{
+			auto key_allow_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( target_key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
+			key_allow_control_root->addChild( key_allow_label, 2 );
+
+			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
+			button->setTag( static_cast<int>( target_key_code ) );
+			button->getRendererNormal()->getTexture()->setAliasTexParameters();
+			button->getRendererClicked()->getTexture()->setAliasTexParameters();
+			button->getRendererDisabled()->getTexture()->setAliasTexParameters();
+			button->setScale9Enabled( true );
+			button->setContentSize( control_size );
+			button->addTouchEventListener( callback );
+			key_allow_control_root->addChild( button, 1 );
+
+			auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
+			indicator->setTag( TAG_KeyAllowControl_BG );
+			indicator->setVisible( false );
+			indicator->setContentSize( control_size );
+			key_allow_control_root->addChild( indicator, 0 );
+		}
+
+		return key_allow_control_root;
+	}
+}
+
+namespace input_practice
+{
 	KeyAllowScene::KeyAllowScene() :
 		mKeyboardListener( nullptr )
-		, mGoExit( false )
 		, mAllowedKeys()
 	{}
 
@@ -107,30 +109,29 @@ namespace input_practice
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
-
-
 		//
 		// Summury
 		//
-		static const auto tab_char = "    ";
-		std::stringstream ss;
-		ss << "+ Key Allow Scene";
-		ss << tab_char;
-		ss << tab_char;
-		ss << "[ESC] : Save & Exit";
-		ss << tab_char;
-		ss << tab_char;
-		ss << "[Mouse] : Horizontal Scrolling";
+		{
+			static const auto tab_char = "    ";
+			std::stringstream ss;
+			ss << "+ Key Allow Scene";
+			ss << tab_char;
+			ss << tab_char;
+			ss << "[ESC] : Save & Exit";
+			ss << tab_char;
+			ss << tab_char;
+			ss << "[Mouse] : Horizontal Scrolling";
 
-		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
-		label->setColor( Color3B::GREEN );
-		label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-		label->setPosition( Vec2(
-			visibleOrigin.x
-			, visibleOrigin.y + visibleSize.height
-		) );
-		addChild( label, 9999 );
-
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			label->setColor( Color3B::GREEN );
+			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+			label->setPosition( Vec2(
+				visibleOrigin.x
+				, visibleOrigin.y + visibleSize.height
+			) );
+			addChild( label, std::numeric_limits<int>::max() );
+		}
 
 
 		//
@@ -222,7 +223,7 @@ namespace input_practice
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
 		mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyAllowScene::onKeyReleased, this );
-		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
+		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
 	void KeyAllowScene::onExit()
 	{
@@ -230,35 +231,33 @@ namespace input_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
+		cpg::input::AllowedKeys::save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
+
 		Scene::onExit();
 	}
 
-	void KeyAllowScene::updateForExit( float /*dt*/ )
+	
+	void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
-		cpg::input::AllowedKeys::save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
+		if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+		{
+			return;
+		}
+
 		_director->replaceScene( input_practice::RootScene::create() );
 	}
+
 	void KeyAllowScene::onKeyAllowControl( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
 		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
+		{
 			return;
+		}
 
 		auto button = static_cast<ui::Button*>( sender );
 		auto bg = button->getParent()->getChildByTag( TAG_KeyAllowControl_BG );
 		bg->setVisible( !bg->isVisible() );
 
 		mAllowedKeys[button->getTag()] = bg->isVisible();
-	}
-
-	void KeyAllowScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
-	{
-		if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
-			return;
-
-		if( mGoExit )
-			return;
-
-		mGoExit = true;
-		scheduleOnce( schedule_selector( KeyAllowScene::updateForExit ), 0.f );
 	}
 }

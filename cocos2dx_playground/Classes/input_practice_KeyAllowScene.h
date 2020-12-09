@@ -9,23 +9,26 @@ namespace input_practice
 {
 	class KeyAllowScene : public cocos2d::Scene
 	{
-	public:
+	private:
 		KeyAllowScene();
 
+	public:
 		static cocos2d::Scene* create();
 
+	private:
 		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 
 	private:
-		void updateForExit( float dt );
-		void onKeyAllowControl( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 		void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+		void onKeyAllowControl( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
-		bool mGoExit;
+
 		cpg::input::AllowedKeys::Container mAllowedKeys;
 	};
 }
