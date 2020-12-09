@@ -74,7 +74,7 @@ namespace input_practice
 			ss << "[3] : Allowed Keys Test";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[4] : Key Config";
+			ss << "[4] : " << input_practice::KeyConfigScene::getTitle();
 			ss << std::endl;
 			ss << "[5] : Configed Keys Test";
 

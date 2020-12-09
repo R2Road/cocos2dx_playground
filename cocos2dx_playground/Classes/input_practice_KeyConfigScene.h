@@ -14,6 +14,7 @@ namespace input_practice
 		KeyConfigScene();
 
 	public:
+		static const char* getTitle() { return "Key Config"; }
 		static cocos2d::Scene* create();
 
 	private:
