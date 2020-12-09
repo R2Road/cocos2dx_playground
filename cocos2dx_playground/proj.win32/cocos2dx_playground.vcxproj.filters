@@ -471,9 +471,6 @@
     <ClCompile Include="..\Classes\input_practice_RootScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
-      <Filter>src\scene\input_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_ScheduleScene.cpp">
       <Filter>src\scene\step_01_typetype\schedule</Filter>
     </ClCompile>
@@ -855,10 +852,13 @@
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
+    <ClCompile Include="..\Classes\Research_Setting.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Setting.cpp">
+    <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
+      <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Research_Input_KeyConfigScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1143,9 +1143,6 @@
       <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\input_practice_RootScene.h">
-      <Filter>src\scene\input_practice</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_ScheduleScene.h">
@@ -1544,10 +1541,13 @@
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
+    <ClInclude Include="..\Classes\Research_Setting.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Setting.h">
+    <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
+      <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Research_Input_KeyConfigScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
   </ItemGroup>
