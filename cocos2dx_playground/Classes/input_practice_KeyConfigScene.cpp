@@ -18,7 +18,7 @@
 
 #include "input_practice_RootScene.h"
 
-#include "Research_Setting.h"
+#include "input_practice_Setting.h"
 
 USING_NS_CC;
 
@@ -184,8 +184,8 @@ namespace input_practice
 		// key info
 		//
 		{
-			mAllowedKeys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
-			mKeymapConfigHelper.load( research::Setting::getKeyMapFileName().c_str() );
+			mAllowedKeys = cpg::input::AllowedKeys::load( input_practice::Setting::getKeyAllowFileName().c_str() );
+			mKeymapConfigHelper.load( input_practice::Setting::getKeyMapFileName().c_str() );
 		}
 
 		//
@@ -259,7 +259,7 @@ namespace input_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
-		mKeymapConfigHelper.save( research::Setting::getKeyMapFileName().c_str() );
+		mKeymapConfigHelper.save( input_practice::Setting::getKeyMapFileName().c_str() );
 
 		Scene::onExit();
 	}

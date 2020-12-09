@@ -852,13 +852,13 @@
     <ClCompile Include="..\Classes\Research_Input_KeyAllowScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Setting.cpp">
-      <Filter>src\scene\input_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\input_practice_KeyConfigScene.cpp">
+      <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\input_practice_Setting.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1541,13 +1541,13 @@
     <ClInclude Include="..\Classes\Research_Input_KeyAllowScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Setting.h">
-      <Filter>src\scene\input_practice</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\input_practice_KeyConfigScene.h">
+      <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\input_practice_Setting.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
   </ItemGroup>

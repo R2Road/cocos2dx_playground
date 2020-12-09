@@ -15,8 +15,7 @@
 #include "CPG_Input_KeyCodeNames.h"
 
 #include "input_practice_RootScene.h"
-
-#include "Research_Setting.h"
+#include "input_practice_Setting.h"
 
 USING_NS_CC;
 
@@ -62,7 +61,7 @@ namespace research
 			const auto visibleOrigin = _director->getVisibleOrigin();
 
 			cpg::input_test::KeyMapConfigHelper key_map_config_helper;
-			key_map_config_helper.load( research::Setting::getKeyMapFileName().c_str() );
+			key_map_config_helper.load( input_practice::Setting::getKeyMapFileName().c_str() );
 
 			//
 			// summury
@@ -116,10 +115,10 @@ namespace research
 			// input
 			//
 			{
-				auto input_delegator = cpg::input::Delegator::create( research::Setting::getKeyAllowFileName().c_str() );
+				auto input_delegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 				addChild( input_delegator, 0 );
 
-				const auto key_map = cpg::input::KeyMap::create( research::Setting::getKeyMapFileName().c_str() );
+				const auto key_map = cpg::input::KeyMap::create( input_practice::Setting::getKeyMapFileName().c_str() );
 
 				mInputCollector = cpg::input::BasicCollector::create( key_map );
 				input_delegator->addInputCollector( mInputCollector );

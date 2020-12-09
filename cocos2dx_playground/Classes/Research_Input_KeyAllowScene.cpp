@@ -14,7 +14,7 @@
 #include "CPG_Input_KeyCodeNames.h"
 
 #include "input_practice_RootScene.h"
-#include "Research_Setting.h"
+#include "input_practice_Setting.h"
 
 USING_NS_CC;
 
@@ -138,7 +138,7 @@ namespace research
 			//
 			// Load Allowed Keys
 			//
-			mAllowedKeys = cpg::input::AllowedKeys::load( research::Setting::getKeyAllowFileName().c_str() );
+			mAllowedKeys = cpg::input::AllowedKeys::load( input_practice::Setting::getKeyAllowFileName().c_str() );
 
 
 
@@ -237,7 +237,7 @@ namespace research
 
 		void KeyAllowScene::updateForExit( float /*dt*/ )
 		{
-			cpg::input::AllowedKeys::save( mAllowedKeys, research::Setting::getKeyAllowFileName().c_str() );
+			cpg::input::AllowedKeys::save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
 			_director->replaceScene( input_practice::RootScene::create() );
 		}
 		void KeyAllowScene::onKeyAllowControl( Ref* sender, ui::Widget::TouchEventType touch_event_type )

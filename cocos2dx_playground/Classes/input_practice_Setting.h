@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace research
+namespace input_practice
 {
 	class Setting
 	{

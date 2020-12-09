@@ -14,7 +14,7 @@
 
 #include "input_practice_RootScene.h"
 
-#include "Research_Setting.h"
+#include "input_practice_Setting.h"
 
 USING_NS_CC;
 
@@ -107,10 +107,10 @@ namespace research
 			//
 			// input
 			//
-			mInputDelegator = cpg::input::Delegator::create( research::Setting::getKeyAllowFileName().c_str() );
+			mInputDelegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 			addChild( mInputDelegator, 0 );
 
-			mInputObserver = cpg::input_test::KeyboardInputObserver::create( research::Setting::getKeyAllowFileName().c_str() );
+			mInputObserver = cpg::input_test::KeyboardInputObserver::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 			addChild( mInputObserver, 1 );
 
 

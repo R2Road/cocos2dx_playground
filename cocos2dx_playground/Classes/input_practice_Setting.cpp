@@ -1,9 +1,9 @@
-#include "Research_Setting.h"
+#include "input_practice_Setting.h"
 
 #include "platform\CCFileUtils.h"
 #include "json/document.h"
 
-namespace research
+namespace input_practice
 {
 	Setting Setting::instance;
 
