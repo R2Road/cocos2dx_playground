@@ -2,32 +2,30 @@
 
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
+
 #include "CPG_Input_AllowedKeys.h"
 
-namespace research
+namespace input_practice
 {
-	namespace input
+	class KeyAllowScene : public cocos2d::Scene
 	{
-		class KeyAllowScene : public cocos2d::Scene
-		{
-		public:
-			KeyAllowScene();
+	public:
+		KeyAllowScene();
 
-			static cocos2d::Scene* create();
+		static cocos2d::Scene* create();
 
-			bool init() override;
-			void onEnter() override;
-			void onExit() override;
+		bool init() override;
+		void onEnter() override;
+		void onExit() override;
 
-		private:
-			void updateForExit( float dt );
-			void onKeyAllowControl( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+	private:
+		void updateForExit( float dt );
+		void onKeyAllowControl( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+		void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
-		private:
-			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			bool mGoExit;
-			cpg::input::AllowedKeys::Container mAllowedKeys;
-		};
-	}
+	private:
+		cocos2d::EventListenerKeyboard* mKeyboardListener;
+		bool mGoExit;
+		cpg::input::AllowedKeys::Container mAllowedKeys;
+	};
 }

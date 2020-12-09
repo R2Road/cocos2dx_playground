@@ -133,7 +133,7 @@ namespace input_practice
 			return;
 
 		case EventKeyboard::KeyCode::KEY_2:
-			_director->replaceScene( research::input::KeyAllowScene::create() );
+			_director->replaceScene( input_practice::KeyAllowScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( research::input::AllowedKeysTestScene::create() );
