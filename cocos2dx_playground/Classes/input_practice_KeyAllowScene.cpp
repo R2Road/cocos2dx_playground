@@ -18,7 +18,6 @@
 #include "cpg_StringTable.h"
 #include "CPG_Input_KeyCodeNames.h"
 
-#include "input_practice_RootScene.h"
 #include "input_practice_Setting.h"
 
 USING_NS_CC;
@@ -81,14 +80,15 @@ namespace
 
 namespace input_practice
 {
-	KeyAllowScene::KeyAllowScene() :
-		mKeyboardListener( nullptr )
+	KeyAllowScene::KeyAllowScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+		, mKeyboardListener( nullptr )
 		, mAllowedKeys()
 	{}
 
-	Scene* KeyAllowScene::create()
+	Scene* KeyAllowScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) KeyAllowScene();
+		auto ret = new ( std::nothrow ) KeyAllowScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -247,7 +247,7 @@ namespace input_practice
 			return;
 		}
 
-		_director->replaceScene( input_practice::RootScene::create() );
+		helper::BackToThePreviousScene::MoveBack();
 	}
 
 	void KeyAllowScene::onKeyAllowControl( Ref* sender, ui::Widget::TouchEventType touch_event_type )
