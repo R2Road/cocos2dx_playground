@@ -21,8 +21,6 @@
 #include "step02_fsm1test_AnimationControlScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
 
-#include "Research_Setting.h"
-
 USING_NS_CC;
 
 namespace step99
@@ -31,8 +29,6 @@ namespace step99
 
 	Scene* RootScene::create()
 	{
-		research::Setting::load();
-
 		auto ret = new ( std::nothrow ) RootScene();
 		if( !ret || !ret->init() )
 		{

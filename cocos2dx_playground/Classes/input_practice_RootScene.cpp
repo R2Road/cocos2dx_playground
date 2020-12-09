@@ -22,6 +22,8 @@
 
 #include "input_practice_GamePadTestScene.h"
 
+#include "Research_Setting.h"
+
 USING_NS_CC;
 
 namespace input_practice
@@ -31,6 +33,8 @@ namespace input_practice
 
 	Scene* RootScene::create()
 	{
+		research::Setting::load();
+
 		auto ret = new ( std::nothrow ) RootScene();
 		if( !ret || !ret->init() )
 		{
