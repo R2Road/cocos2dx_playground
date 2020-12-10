@@ -65,7 +65,7 @@ namespace input_practice
 		//
 		{
 			std::stringstream ss;
-			ss << "+ Allowed Keys Test Scene";
+			ss << "+ " << getTitle();
 			ss << "    [ ... ] : do input allowed keys";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

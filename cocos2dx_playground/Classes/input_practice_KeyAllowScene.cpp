@@ -118,7 +118,7 @@ namespace input_practice
 		{
 			const auto tab_char = "    ";
 			std::stringstream ss;
-			ss << "+ Key Allow Scene";
+			ss << "+ " << getTitle();
 			ss << tab_char;
 			ss << tab_char;
 			ss << "[ESC] : Save & Exit";
