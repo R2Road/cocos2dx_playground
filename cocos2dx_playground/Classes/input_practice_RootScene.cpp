@@ -73,7 +73,7 @@ namespace input_practice
 			ss << "[1] : " << input_practice::GamePadTestScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[2] : Key Allow";
+			ss << "[2] : " << input_practice::KeyAllowScene::getTitle();;
 			ss << std::endl;
 			ss << "[3] : " << input_practice::AllowedKeysTestScene::getTitle();
 			ss << std::endl;
