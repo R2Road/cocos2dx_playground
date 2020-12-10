@@ -152,11 +152,6 @@ namespace input_practice
 		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
 			return;
 
-		if( !isScheduled( schedule_selector( AllowedKeysTestScene::update_forExit ) ) )
-			scheduleOnce( schedule_selector( AllowedKeysTestScene::update_forExit ), 0.f );
-	}
-	void AllowedKeysTestScene::update_forExit( float /*dt*/ )
-	{
 		_director->replaceScene( input_practice::RootScene::create() );
 	}
 }

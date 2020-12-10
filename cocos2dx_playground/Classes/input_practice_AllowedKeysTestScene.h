@@ -40,7 +40,6 @@ namespace input_practice
 
 	private:
 		void onExitButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-		void update_forExit( float dt );
 
 	private:
 		cpg::input::Delegator* mInputDelegator;
