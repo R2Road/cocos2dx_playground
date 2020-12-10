@@ -86,24 +86,24 @@ namespace input_practice
 		// exit interface
 		//
 		{
-			auto label = Label::createWithTTF( "Exit", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
-			label->setColor( Color3B::GREEN );
-
 			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
 			button->setColor( Color3B::GREEN );
 			button->getRendererNormal()->getTexture()->setAliasTexParameters();
 			button->getRendererClicked()->getTexture()->setAliasTexParameters();
 			button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 			button->setScale9Enabled( true );
-			button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
+			button->setContentSize( Size( 18.f, 12.f ) + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
 			button->addTouchEventListener( CC_CALLBACK_2( AllowedKeysTestScene::onExitButton, this ) );
-			addChild( button, 9999 );
-			button->setTitleLabel( label );
-
 			button->setPosition( Vec2(
 				visibleOrigin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
 				, visibleOrigin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
 			) );
+			addChild( button, std::numeric_limits<int>::max() );
+
+			// Title
+			auto label = Label::createWithTTF( "Exit", cpg::StringTable::GetFontPath(), 10, Size::ZERO );
+			label->setColor( Color3B::GREEN );
+			button->setTitleLabel( label );
 		}
 
 
