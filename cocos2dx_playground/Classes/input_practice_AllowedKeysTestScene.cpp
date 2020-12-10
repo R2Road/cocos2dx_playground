@@ -12,8 +12,6 @@
 #include "CPG_InputTest_KeyboardInputObserver.h"
 #include "CPG_Input_KeyCodeNames.h"
 
-#include "input_practice_RootScene.h"
-
 #include "input_practice_Setting.h"
 
 USING_NS_CC;
@@ -26,16 +24,17 @@ namespace
 
 namespace input_practice
 {
-	AllowedKeysTestScene::AllowedKeysTestScene() :
-		mInputDelegator( nullptr )
+	AllowedKeysTestScene::AllowedKeysTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+		, mInputDelegator( nullptr )
 		, mKeyViewer( nullptr )
 		, mKeyStrings( 200, 0 )
 		, mInputObserver( nullptr )
 	{}
 
-	Scene* AllowedKeysTestScene::create()
+	Scene* AllowedKeysTestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) AllowedKeysTestScene();
+		auto ret = new ( std::nothrow ) AllowedKeysTestScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -152,6 +151,6 @@ namespace input_practice
 		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
 			return;
 
-		_director->replaceScene( input_practice::RootScene::create() );
+		helper::BackToThePreviousScene::MoveBack();
 	}
 }

@@ -136,7 +136,7 @@ namespace input_practice
 			_director->replaceScene( input_practice::KeyAllowScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			_director->replaceScene( input_practice::AllowedKeysTestScene::create() );
+			_director->replaceScene( input_practice::AllowedKeysTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_4:
