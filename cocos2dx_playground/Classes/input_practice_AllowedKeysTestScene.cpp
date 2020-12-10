@@ -1,5 +1,7 @@
 #include "input_practice_AllowedKeysTestScene.h"
 
+#include <new>
+#include <numeric>
 #include <sstream>
 
 #include "2d/CCLabel.h"
@@ -76,7 +78,7 @@ namespace input_practice
 				visibleOrigin.x
 				, visibleOrigin.y + visibleSize.height
 			) );
-			addChild( label, 9999 );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 
@@ -108,22 +110,26 @@ namespace input_practice
 		//
 		// input
 		//
-		mInputDelegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
-		addChild( mInputDelegator, 0 );
+		{
+			mInputDelegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			addChild( mInputDelegator, 0 );
 
-		mInputObserver = cpg::input_test::KeyboardInputObserver::create( input_practice::Setting::getKeyAllowFileName().c_str() );
-		addChild( mInputObserver, 1 );
+			mInputObserver = cpg::input_test::KeyboardInputObserver::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			addChild( mInputObserver, 1 );
+		}
 
 
 		//
 		// key viewer
 		//
-		mKeyViewer = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
-		mKeyViewer->setPosition( Vec2(
-			visibleOrigin.x + ( visibleSize.width * 0.5f )
-			, visibleOrigin.y + ( visibleSize.height * 0.5f )
-		) );
-		addChild( mKeyViewer, 9999 );
+		{
+			mKeyViewer = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
+			mKeyViewer->setPosition( Vec2(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+			) );
+			addChild( mKeyViewer );
+		}
 
 		return true;
 	}
