@@ -18,11 +18,14 @@
 
 USING_NS_CC;
 
-namespace input_practice
+namespace
 {
 	const int key_viewer_count = 10;
 	const float key_viewer_margin = 4.f;
+}
 
+namespace input_practice
+{
 	AllowedKeysTestScene::AllowedKeysTestScene() :
 		mInputDelegator( nullptr )
 		, mKeyViewer( nullptr )

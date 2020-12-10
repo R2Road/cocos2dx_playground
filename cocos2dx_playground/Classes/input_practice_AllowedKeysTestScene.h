@@ -26,12 +26,16 @@ namespace input_practice
 {
 	class AllowedKeysTestScene : public cocos2d::Scene
 	{
-	public:
+	private:
 		AllowedKeysTestScene();
 
+	public:
 		static cocos2d::Scene* create();
 
+	private:
 		bool init() override;
+
+	public:
 		void update( float dt ) override;
 
 	private:
