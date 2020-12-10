@@ -116,7 +116,7 @@ namespace input_practice
 		// Summury
 		//
 		{
-			static const auto tab_char = "    ";
+			const auto tab_char = "    ";
 			std::stringstream ss;
 			ss << "+ Key Allow Scene";
 			ss << tab_char;
