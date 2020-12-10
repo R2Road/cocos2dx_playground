@@ -155,9 +155,10 @@ namespace input_practice
 
 	void AllowedKeysTestScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 	{
-		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
+		if( ui::Widget::TouchEventType::ENDED == touch_event_type )
+		{
+			helper::BackToThePreviousScene::MoveBack();
 			return;
-
-		helper::BackToThePreviousScene::MoveBack();
+		}
 	}
 }
