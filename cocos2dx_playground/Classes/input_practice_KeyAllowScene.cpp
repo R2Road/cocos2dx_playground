@@ -188,8 +188,7 @@ namespace input_practice
 
 			auto root_node = ui::Layout::create();
 			root_node->setContentSize( scroll_view->getInnerContainerSize() );
-			root_node->setBackGroundColor( Color3B::BLUE );
-			root_node->setBackGroundColorOpacity( 150u );
+			root_node->setBackGroundColor( Color3B( 22, 73, 127 ) );
 			root_node->setBackGroundColorType( cocos2d::ui::Layout::BackGroundColorType::SOLID );
 			scroll_view->addChild( root_node );
 			{
