@@ -35,9 +35,10 @@ namespace
 			, std::ceilf( label->getContentSize().height + ( key_allow_margin.height * 2 ) )
 		);
 	}
-	const std::pair<int, int> calculateKeyAllowControlsRowAndColumn( const Size view_size, const Size item_size )
+
+	const std::pair<int, int> calculateKeyAllowControlsRowAndColumn( const float visible_height, const float item_height )
 	{
-		const auto row_count = std::div( static_cast<int>( view_size.height ), static_cast<int>( item_size.height ) ).quot;
+		const auto row_count = std::div( static_cast<int>( visible_height ), static_cast<int>( item_height ) ).quot;
 
 		const auto div_result = std::div( step_rain_of_chaos::input::KeyCodeContainerSize, row_count );
 		const auto column_count = div_result.rem > 0 ? div_result.quot + 1 : div_result.quot;
@@ -160,8 +161,8 @@ namespace input_practice
 
 			const Size inner_container_margin( 20.f, 20.f );
 			const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
-				scroll_view_size - ( inner_container_margin * 2 )
-				, item_size
+				scroll_view_size.height - ( inner_container_margin.height * 2 )
+				, item_size.height
 			);
 
 			auto scroll_view = ui::ScrollView::create();
