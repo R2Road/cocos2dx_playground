@@ -22,7 +22,6 @@ USING_NS_CC;
 namespace
 {
 	const int key_viewer_count = 10;
-	const float key_viewer_margin = 4.f;
 }
 
 namespace input_practice
@@ -58,8 +57,6 @@ namespace input_practice
 			return false;
 		}
 
-		scheduleUpdate();
-
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
@@ -74,13 +71,12 @@ namespace input_practice
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setColor( Color3B::GREEN );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPosition( Vec2(
-				visibleOrigin.x
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
-
 
 		//
 		// exit interface
@@ -101,11 +97,10 @@ namespace input_practice
 			addChild( button, std::numeric_limits<int>::max() );
 
 			// Title
-			auto label = Label::createWithTTF( "Exit", cpg::StringTable::GetFontPath(), 10, Size::ZERO );
+			auto label = Label::createWithTTF( "Exit", cpg::StringTable::GetFontPath(), 10 );
 			label->setColor( Color3B::GREEN );
 			button->setTitleLabel( label );
 		}
-
 
 		//
 		// input
@@ -118,18 +113,22 @@ namespace input_practice
 			addChild( mInputObserver, 1 );
 		}
 
-
 		//
 		// key viewer
 		//
 		{
 			mKeyViewer = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
-			mKeyViewer->setPosition( Vec2(
-				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
-			) );
+			mKeyViewer->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+			);
 			addChild( mKeyViewer );
 		}
+
+		//
+		// Setup
+		//
+		scheduleUpdate();
 
 		return true;
 	}
