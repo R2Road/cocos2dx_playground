@@ -237,8 +237,6 @@ namespace input_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
-		cpg::input::AllowedKeys::save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
-
 		Scene::onExit();
 	}
 
@@ -249,6 +247,8 @@ namespace input_practice
 		{
 			return;
 		}
+
+		cpg::input::AllowedKeys::save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
 
 		helper::BackToThePreviousScene::MoveBack();
 	}
