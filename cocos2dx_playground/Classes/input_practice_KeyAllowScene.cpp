@@ -26,10 +26,10 @@ namespace
 {
 	const int TAG_KeyIndicator = 20140416;
 
-	const Size calculateSizeOfKeyAllowControl( const char* str )
+	const Size calculateSizeOfKeyAllowControl()
 	{
 		const Size key_allow_margin( 8.f, 4.f );
-		auto temp = Label::createWithTTF( str, cpg::StringTable::GetFontPath(), 10 );
+		auto temp = Label::createWithTTF( cpg::input::KeyCodeNames::get_longest(), cpg::StringTable::GetFontPath(), 10 );
 		return Size(
 			std::ceilf( temp->getContentSize().width + ( key_allow_margin.width * 2 ) )
 			, std::ceilf( temp->getContentSize().height + ( key_allow_margin.height * 2 ) )
@@ -166,7 +166,7 @@ namespace input_practice
 		key_allow_controls_root->setPosition( Vec2( visibleOrigin.x, visibleOrigin.y ) );
 		scroll_view->addChild( key_allow_controls_root );
 		{
-			static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl( cpg::input::KeyCodeNames::get_longest() );
+			static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl();
 			const Size expected_margin_of_key_allow_control( 2.f, 2.f );
 			const Size side_margin( 20.f, 20.f );
 			const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
