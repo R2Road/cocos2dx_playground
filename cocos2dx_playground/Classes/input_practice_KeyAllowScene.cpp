@@ -48,7 +48,7 @@ namespace
 
 	Node* createKeyAllowControl( const Size control_size, const EventKeyboard::KeyCode target_key_code, const ui::Widget::ccWidgetTouchCallback& callback )
 	{
-		auto root_node = Node::create();
+		auto root_node = ui::Widget::create();
 		{
 			//
 			// Button
@@ -188,7 +188,7 @@ namespace input_practice
 			) );
 			addChild( scroll_view );
 
-			auto root_node = Node::create();
+			auto root_node = ui::Layout::create();
 			scroll_view->addChild( root_node );
 			{
 				int grid_x = 0;
