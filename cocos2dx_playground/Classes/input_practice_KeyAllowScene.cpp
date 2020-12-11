@@ -160,10 +160,8 @@ namespace input_practice
 			const auto item_size = control_margin + control_size + control_margin;
 
 			const Size inner_container_margin( 20.f, 20.f );
-			const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
-				scroll_view_size.height - ( inner_container_margin.height * 2 )
-				, item_size.height
-			);
+			const float item_area_height = scroll_view_size.height - ( inner_container_margin.height * 2 );
+			const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn( item_area_height, item_size.height );
 
 			auto scroll_view = ui::ScrollView::create();
 			scroll_view->setDirection( ui::ScrollView::Direction::HORIZONTAL );
