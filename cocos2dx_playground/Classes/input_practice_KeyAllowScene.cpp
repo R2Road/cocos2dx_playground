@@ -24,7 +24,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_KeyAllowControl_BG = 20140416;
+	const int TAG_KeyIndicator = 20140416;
 
 	const Size calculateSizeOfKeyAllowControl( const char* str )
 	{
@@ -68,7 +68,7 @@ namespace
 			key_allow_control_root->addChild( button, 1 );
 
 			auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
-			indicator->setTag( TAG_KeyAllowControl_BG );
+			indicator->setTag( TAG_KeyIndicator );
 			indicator->setVisible( false );
 			indicator->setContentSize( control_size );
 			key_allow_control_root->addChild( indicator, 0 );
@@ -204,7 +204,7 @@ namespace input_practice
 				) );
 				key_allow_controls_root->addChild( key_allow_control_root );
 
-				auto bg = key_allow_control_root->getChildByTag( TAG_KeyAllowControl_BG );
+				auto bg = key_allow_control_root->getChildByTag( TAG_KeyIndicator );
 				bg->setVisible( mAllowedKeys[cur] );
 
 				++grid_y;
@@ -258,9 +258,10 @@ namespace input_practice
 		}
 
 		auto button = static_cast<ui::Button*>( sender );
-		auto bg = button->getParent()->getChildByTag( TAG_KeyAllowControl_BG );
-		bg->setVisible( !bg->isVisible() );
 
-		mAllowedKeys[button->getTag()] = bg->isVisible();
+		auto indicator_node = button->getParent()->getChildByTag( TAG_KeyIndicator );
+		indicator_node->setVisible( !indicator_node->isVisible() );
+
+		mAllowedKeys[button->getTag()] = indicator_node->isVisible();
 	}
 }
