@@ -35,19 +35,14 @@ namespace
 			, std::ceilf( label->getContentSize().height + ( key_allow_margin.height * 2 ) )
 		);
 	}
-	const std::pair<int, int> calculateKeyAllowControlsRowAndColumn( const Size view_size, const Size control_size, const Size control_margin )
+	const std::pair<int, int> calculateKeyAllowControlsRowAndColumn( const Size view_size, const Size item_size )
 	{
-		const auto _row_count = ldiv(
-			static_cast<int>( view_size.height )
-			, static_cast<int>( control_size.height + control_margin.height )
-		).quot;
+		const auto row_count = std::div( static_cast<int>( view_size.height ), static_cast<int>( item_size.height ) ).quot;
 
-		const auto div_result = std::ldiv( step_rain_of_chaos::input::KeyCodeContainerSize, _row_count );
+		const auto div_result = std::div( step_rain_of_chaos::input::KeyCodeContainerSize, row_count );
+		const auto column_count = div_result.rem > 0 ? div_result.quot + 1 : div_result.quot;
 
-		return std::make_pair(
-			div_result.rem > 0 ? div_result.quot + 1 : div_result.quot
-			, _row_count
-		);
+		return std::make_pair( column_count, row_count );
 	}
 
 	Node* createKeyAllowControl( const Size control_size, const EventKeyboard::KeyCode target_key_code, const ui::Widget::ccWidgetTouchCallback& callback )
@@ -162,7 +157,12 @@ namespace input_practice
 			const Size control_size = calculateSizeOfKeyAllowControl();
 			const Size control_margin( 2.f, 2.f );
 			const auto item_size = control_margin + control_size + control_margin;
+
 			const Size inner_container_margin( 20.f, 20.f );
+			const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
+				scroll_view_size - ( inner_container_margin * 2 )
+				, item_size
+			);
 
 			auto scroll_view = ui::ScrollView::create();
 			scroll_view->setDirection( ui::ScrollView::Direction::HORIZONTAL );
@@ -173,12 +173,6 @@ namespace input_practice
 			key_allow_controls_root->setPosition( Vec2( visibleOrigin.x, visibleOrigin.y ) );
 			scroll_view->addChild( key_allow_controls_root );
 			{
-				
-				const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
-					scroll_view_size - ( inner_container_margin * 2 )
-					, control_size
-					, control_margin
-				);
 
 				const float margin_of_key_allow_control(
 					0 >= row_n_column_count.second
