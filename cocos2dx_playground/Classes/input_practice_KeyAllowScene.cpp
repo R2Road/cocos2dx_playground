@@ -157,71 +157,77 @@ namespace input_practice
 		//
 		// Setup Key Allow Controls
 		//
-		auto scroll_view = ui::ScrollView::create();
-		scroll_view->setDirection( ui::ScrollView::Direction::HORIZONTAL );
-		scroll_view->setContentSize( visibleSize );
-		addChild( scroll_view );
-
-		auto key_allow_controls_root = Node::create();
-		key_allow_controls_root->setPosition( Vec2( visibleOrigin.x, visibleOrigin.y ) );
-		scroll_view->addChild( key_allow_controls_root );
 		{
-			static const Size size_of_key_allow_control = calculateSizeOfKeyAllowControl();
-			const Size expected_margin_of_key_allow_control( 2.f, 2.f );
-			const Size side_margin( 20.f, 20.f );
-			const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
-				visibleSize - ( side_margin * 2 )
-				, size_of_key_allow_control
-				, expected_margin_of_key_allow_control
-			);
+			const auto scroll_view_size = visibleSize;
+			const Size control_size = calculateSizeOfKeyAllowControl();
+			const Size control_margin( 2.f, 2.f );
+			const auto item_size = control_margin + control_size + control_margin;
+			const Size inner_container_margin( 20.f, 20.f );
 
-			const float margin_of_key_allow_control(
-				0 >= row_n_column_count.second
-				? 2.f
-				: (
-					( visibleSize.height - ( side_margin.height * 2 ) )
-					- ( row_n_column_count.second * size_of_key_allow_control.height )
-				)
-				/ row_n_column_count.second
-			);
+			auto scroll_view = ui::ScrollView::create();
+			scroll_view->setDirection( ui::ScrollView::Direction::HORIZONTAL );
+			scroll_view->setContentSize( scroll_view_size );
+			addChild( scroll_view );
 
-			scroll_view->setInnerContainerSize( Size(
-				visibleOrigin.x + ( side_margin.width * 2 ) + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * row_n_column_count.first ) - margin_of_key_allow_control
-				, visibleSize.height
-			) );
-
-			const Vec2 start_position(
-				visibleOrigin.x + side_margin.width + ( ( size_of_key_allow_control.width + margin_of_key_allow_control ) * 0.5f )
-				, visibleOrigin.y + side_margin.height + ( ( size_of_key_allow_control.height + margin_of_key_allow_control ) * 0.5f )
-			);
-			const Size spacing_of_control(
-				( size_of_key_allow_control.width + margin_of_key_allow_control )
-				, ( size_of_key_allow_control.height + margin_of_key_allow_control )
-			);
-
-			int grid_x = 0;
-			int grid_y = 0;
-			for( std::size_t cur = step_rain_of_chaos::input::KeyCodeContainerFirst; step_rain_of_chaos::input::KeyCodeContainerSize > cur; ++cur )
+			auto key_allow_controls_root = Node::create();
+			key_allow_controls_root->setPosition( Vec2( visibleOrigin.x, visibleOrigin.y ) );
+			scroll_view->addChild( key_allow_controls_root );
 			{
-				auto key_allow_control_root = createKeyAllowControl(
-					size_of_key_allow_control
-					, static_cast<EventKeyboard::KeyCode>( cur )
-					, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
+				
+				const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn(
+					scroll_view_size - ( inner_container_margin * 2 )
+					, control_size
+					, control_margin
 				);
-				key_allow_control_root->setPosition( Vec2(
-					start_position.x + ( spacing_of_control.width * grid_x )
-					, start_position.y + ( spacing_of_control.height * grid_y )
+
+				const float margin_of_key_allow_control(
+					0 >= row_n_column_count.second
+					? 2.f
+					: (
+					( scroll_view_size.height - ( inner_container_margin.height * 2 ) )
+						- ( row_n_column_count.second * control_size.height )
+						)
+					/ row_n_column_count.second
+				);
+
+				scroll_view->setInnerContainerSize( Size(
+					visibleOrigin.x + ( inner_container_margin.width * 2 ) + ( ( control_size.width + margin_of_key_allow_control ) * row_n_column_count.first ) - margin_of_key_allow_control
+					, scroll_view_size.height
 				) );
-				key_allow_controls_root->addChild( key_allow_control_root );
 
-				auto bg = key_allow_control_root->getChildByTag( TAG_KeyIndicator );
-				bg->setVisible( mAllowedKeys[cur] );
+				const Vec2 start_position(
+					visibleOrigin.x + inner_container_margin.width + ( ( control_size.width + margin_of_key_allow_control ) * 0.5f )
+					, visibleOrigin.y + inner_container_margin.height + ( ( control_size.height + margin_of_key_allow_control ) * 0.5f )
+				);
+				const Size spacing_of_control(
+					( control_size.width + margin_of_key_allow_control )
+					, ( control_size.height + margin_of_key_allow_control )
+				);
 
-				++grid_y;
-				if( row_n_column_count.second <= grid_y )
+				int grid_x = 0;
+				int grid_y = 0;
+				for( std::size_t cur = step_rain_of_chaos::input::KeyCodeContainerFirst; step_rain_of_chaos::input::KeyCodeContainerSize > cur; ++cur )
 				{
-					grid_y = 0;
-					++grid_x;
+					auto key_allow_control_root = createKeyAllowControl(
+						control_size
+						, static_cast<EventKeyboard::KeyCode>( cur )
+						, CC_CALLBACK_2( KeyAllowScene::onKeyAllowControl, this )
+					);
+					key_allow_control_root->setPosition( Vec2(
+						start_position.x + ( spacing_of_control.width * grid_x )
+						, start_position.y + ( spacing_of_control.height * grid_y )
+					) );
+					key_allow_controls_root->addChild( key_allow_control_root );
+
+					auto bg = key_allow_control_root->getChildByTag( TAG_KeyIndicator );
+					bg->setVisible( mAllowedKeys[cur] );
+
+					++grid_y;
+					if( row_n_column_count.second <= grid_y )
+					{
+						grid_y = 0;
+						++grid_x;
+					}
 				}
 			}
 		}
