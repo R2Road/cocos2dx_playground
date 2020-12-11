@@ -159,19 +159,17 @@ namespace input_practice
 			const Size control_margin( 2.f, 2.f );
 			const auto item_size = control_margin + control_size + control_margin;
 
-			const Size inner_container_margin( 20.f, 20.f );
-			const float item_area_height = scroll_view_size.height - ( inner_container_margin.height * 2 );
-			const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn( item_area_height, item_size.height );
+			const auto row_n_column_count = calculateKeyAllowControlsRowAndColumn( scroll_view_size.height, item_size.height );
 
 			const float margin_of_key_allow_control(
 				0 >= row_n_column_count.second
 				? 2.f
-				: ( item_area_height - ( row_n_column_count.second * item_size.height ) ) / row_n_column_count.second
+				: ( scroll_view_size.height - ( row_n_column_count.second * item_size.height ) ) / row_n_column_count.second
 			);
 
 			const Vec2 start_position(
-				inner_container_margin.width + ( ( item_size.width + margin_of_key_allow_control ) * 0.5f )
-				, inner_container_margin.height + ( ( item_size.height + margin_of_key_allow_control ) * 0.5f )
+				( item_size.width + margin_of_key_allow_control ) * 0.5f
+				, ( item_size.height + margin_of_key_allow_control ) * 0.5f
 			);
 			const Size spacing_of_control(
 				( item_size.width + margin_of_key_allow_control )
@@ -182,8 +180,7 @@ namespace input_practice
 			scroll_view->setDirection( ui::ScrollView::Direction::HORIZONTAL );
 			scroll_view->setContentSize( scroll_view_size );
 			scroll_view->setInnerContainerSize( Size(
-				( inner_container_margin.width * 2 )
-				+ ( ( item_size.width + margin_of_key_allow_control ) * row_n_column_count.first ) - margin_of_key_allow_control
+				( ( item_size.width + margin_of_key_allow_control ) * row_n_column_count.first ) - margin_of_key_allow_control
 				, scroll_view_size.height
 			) );
 			addChild( scroll_view );
