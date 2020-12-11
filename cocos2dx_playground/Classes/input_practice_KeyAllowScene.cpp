@@ -154,7 +154,7 @@ namespace input_practice
 		// Setup Key Allow Controls
 		//
 		{
-			const auto scroll_view_size = visibleSize;
+			const Size scroll_view_size( visibleSize.width * 0.94f, visibleSize.height * 0.86f );
 			const Size control_size = calculateSizeOfKeyAllowControl();
 			const Size control_margin( 2.f, 2.f );
 			const auto item_size = control_margin + control_size + control_margin;
@@ -183,6 +183,7 @@ namespace input_practice
 				( ( item_size.width + margin_of_key_allow_control ) * row_n_column_count.first ) - margin_of_key_allow_control
 				, scroll_view_size.height
 			) );
+			scroll_view->setPosition( Vec2( visibleSize.width * 0.03f, visibleSize.height * 0.07f ) );
 			addChild( scroll_view );
 
 			auto root_node = ui::Layout::create();
