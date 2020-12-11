@@ -52,11 +52,11 @@ namespace
 
 	Node* createKeyAllowControl( const Size control_size, const EventKeyboard::KeyCode target_key_code, const ui::Widget::ccWidgetTouchCallback& callback )
 	{
-		auto key_allow_control_root = Node::create();
+		auto root_node = Node::create();
 		{
-			auto key_allow_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( target_key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
-			key_allow_control_root->addChild( key_allow_label, 2 );
-
+			//
+			// Button
+			//
 			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( target_key_code ) );
 			button->getRendererNormal()->getTexture()->setAliasTexParameters();
@@ -65,16 +65,26 @@ namespace
 			button->setScale9Enabled( true );
 			button->setContentSize( control_size );
 			button->addTouchEventListener( callback );
-			key_allow_control_root->addChild( button, 1 );
+			root_node->addChild( button );
 
+			//
+			// Key Name
+			//
+			auto label = Label::createWithTTF( cpg::input::KeyCodeNames::get( target_key_code ), cpg::StringTable::GetFontPath(), 10 );
+			button->setTitleLabel( label );
+
+
+			//
+			// Indicator
+			//
 			auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
 			indicator->setTag( TAG_KeyIndicator );
 			indicator->setVisible( false );
 			indicator->setContentSize( control_size );
-			key_allow_control_root->addChild( indicator, 0 );
+			root_node->addChild( indicator, std::numeric_limits<int>::max() );
 		}
 
-		return key_allow_control_root;
+		return root_node;
 	}
 }
 
