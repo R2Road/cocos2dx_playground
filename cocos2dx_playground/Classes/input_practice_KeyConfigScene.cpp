@@ -8,10 +8,10 @@
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
+#include "platform/CCFileUtils.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"
-#include "platform/CCFileUtils.h"
 
 #include "cpg_StringTable.h"
 #include "CPG_Input_KeyCodeNames.h"
