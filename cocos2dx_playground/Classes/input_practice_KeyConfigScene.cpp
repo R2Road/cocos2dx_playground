@@ -258,8 +258,6 @@ namespace input_practice
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
 
-		mKeymapConfigHelper.save( input_practice::Setting::getKeyMapFileName().c_str() );
-
 		Scene::onExit();
 	}
 
@@ -319,7 +317,10 @@ namespace input_practice
 	{
 		if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 		{
+			mKeymapConfigHelper.save( input_practice::Setting::getKeyMapFileName().c_str() );
+
 			helper::BackToThePreviousScene::MoveBack();
+
 			return;
 		}
 	}
