@@ -79,9 +79,6 @@ namespace
 
 			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( key_idx ) );
-			button->getRendererNormal()->getTexture()->setAliasTexParameters();
-			button->getRendererClicked()->getTexture()->setAliasTexParameters();
-			button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 			button->setScale9Enabled( true );
 			button->setContentSize( control_size );
 			button->addTouchEventListener( callback );
@@ -164,9 +161,6 @@ namespace input_practice
 
 			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
 			button->setColor( Color3B::GREEN );
-			button->getRendererNormal()->getTexture()->setAliasTexParameters();
-			button->getRendererClicked()->getTexture()->setAliasTexParameters();
-			button->getRendererDisabled()->getTexture()->setAliasTexParameters();
 			button->setScale9Enabled( true );
 			button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
 			button->addTouchEventListener( CC_CALLBACK_2( KeyConfigScene::onExitButton, this ) );
