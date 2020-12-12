@@ -22,7 +22,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_KeyConfigControl_BG = 20140416;
+	const int TAG_KeyIndicator = 20140416;
 	const int TAG_KeyCode_Label = 20160528;
 
 	const Size calculateSizeOfKeyConfigControl( cpg::input_test::KeyMapConfigHelper& helper )
@@ -85,7 +85,7 @@ namespace
 			root->addChild( button, 1 );
 
 			auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
-			indicator->setTag( TAG_KeyConfigControl_BG );
+			indicator->setTag( TAG_KeyIndicator );
 			indicator->setVisible( false );
 			indicator->setContentSize( control_size );
 			root->addChild( indicator, 0 );
@@ -269,15 +269,15 @@ namespace input_practice
 		{
 			if( mCurrentButtonNode != button_node )
 			{
-				auto bg = mCurrentButtonNode->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
-				bg->setVisible( false );
+				auto indicator = mCurrentButtonNode->getParent()->getChildByTag( TAG_KeyIndicator );
+				indicator->setVisible( false );
 			}
 		}
 
-		auto button_bg = button_node->getParent()->getChildByTag( TAG_KeyConfigControl_BG );
-		button_bg->setVisible( !button_bg->isVisible() );
+		auto indicator = button_node->getParent()->getChildByTag( TAG_KeyIndicator );
+		indicator->setVisible( !indicator->isVisible() );
 
-		if( button_bg->isVisible() )
+		if( indicator->isVisible() )
 		{
 			mCurrentButtonNode = button_node;
 		}
