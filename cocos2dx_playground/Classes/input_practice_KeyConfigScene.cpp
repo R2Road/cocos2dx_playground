@@ -70,25 +70,25 @@ namespace
 		{
 			auto key_name_label = Label::createWithTTF( key_name, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 			key_name_label->setPositionX( -control_size.width * 0.25f );
-			root->addChild( key_name_label, 2 );
+			root->addChild( key_name_label, 1 );
 
 			auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 			key_code_label->setTag( TAG_KeyCode_Label );
 			key_code_label->setPositionX( control_size.width * 0.25f );
-			root->addChild( key_code_label, 2 );
+			root->addChild( key_code_label, 1 );
 
 			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
 			button->setTag( static_cast<int>( key_idx ) );
 			button->setScale9Enabled( true );
 			button->setContentSize( control_size );
 			button->addTouchEventListener( callback );
-			root->addChild( button, 1 );
+			root->addChild( button, 0 );
 
 			auto indicator = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_4.png" );
 			indicator->setTag( TAG_KeyIndicator );
 			indicator->setVisible( false );
 			indicator->setContentSize( control_size );
-			root->addChild( indicator, 0 );
+			root->addChild( indicator, std::numeric_limits<int>::max() );
 		}
 
 		return root;
