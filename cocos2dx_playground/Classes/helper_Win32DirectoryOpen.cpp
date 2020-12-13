@@ -1,15 +1,15 @@
-#include "input_practice_GamePadTestScene.h"
+#include "helper_Win32DirectoryOpen.h"
 
 #include <codecvt>
 #include <cstring>
 #include <locale>
 #include <string>
 
+#include "base/ccMacros.h"
+
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 )
 #include "shellapi.h"
 #endif
-
-#include "platform/CCFileUtils.h"
 
 namespace helper
 {
