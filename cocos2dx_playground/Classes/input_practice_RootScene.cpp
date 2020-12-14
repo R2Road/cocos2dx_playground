@@ -143,7 +143,7 @@ namespace input_practice
 			_director->replaceScene( input_practice::KeyConfigScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
-			_director->replaceScene( research::input::ConfigedKeysTestScene::create() );
+			_director->replaceScene( input_practice::ConfigedKeysTestScene::create() );
 			break;
 
 		default:

@@ -18,29 +18,26 @@ namespace cpg
 	}
 }
 
-namespace research
+namespace input_practice
 {
-	namespace input
+	class ConfigedKeysTestScene : public cocos2d::Scene
 	{
-		class ConfigedKeysTestScene : public cocos2d::Scene
-		{
-		public:
-			ConfigedKeysTestScene();
+	public:
+		ConfigedKeysTestScene();
 
-			static cocos2d::Scene* create();
+		static cocos2d::Scene* create();
 
-			bool init() override;
-			void update( float dt ) override;
+		bool init() override;
+		void update( float dt ) override;
 
-		private:
-			void onExitButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-			void update_forExit( float dt );
+	private:
+		void onExitButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+		void update_forExit( float dt );
 
-		private:
-			cpg::input::KeyCollectorSp mInputCollector;
-			std::list<cpg::input_test::KeyViewer*> mKeyViewerList;
-			cocos2d::Vec2 mKeyViewer_StartPosition;
-			cocos2d::Vec2 mKeyViewer_EndPosition;
-		};
-	}
+	private:
+		cpg::input::KeyCollectorSp mInputCollector;
+		std::list<cpg::input_test::KeyViewer*> mKeyViewerList;
+		cocos2d::Vec2 mKeyViewer_StartPosition;
+		cocos2d::Vec2 mKeyViewer_EndPosition;
+	};
 }

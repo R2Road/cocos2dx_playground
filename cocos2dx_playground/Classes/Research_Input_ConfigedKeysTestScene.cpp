@@ -19,193 +19,190 @@
 
 USING_NS_CC;
 
-namespace research
+namespace input_practice
 {
-	namespace input
+	const int key_viewer_count = 10;
+	const float key_viewer_margin = 4.f;
+
+	ConfigedKeysTestScene::ConfigedKeysTestScene() :
+		mInputCollector()
+		, mKeyViewerList()
+		, mKeyViewer_StartPosition()
+	{}
+
+	Scene* ConfigedKeysTestScene::create()
 	{
-		const int key_viewer_count = 10;
-		const float key_viewer_margin = 4.f;
-
-		ConfigedKeysTestScene::ConfigedKeysTestScene() :
-			mInputCollector()
-			, mKeyViewerList()
-			, mKeyViewer_StartPosition()
-		{}
-
-		Scene* ConfigedKeysTestScene::create()
+		auto ret = new ( std::nothrow ) ConfigedKeysTestScene();
+		if( !ret || !ret->init() )
 		{
-			auto ret = new ( std::nothrow ) ConfigedKeysTestScene();
-			if( !ret || !ret->init() )
-			{
-				delete ret;
-				ret = nullptr;
-			}
-			else
-			{
-				ret->autorelease();
-			}
-
-			return ret;
+			delete ret;
+			ret = nullptr;
+		}
+		else
+		{
+			ret->autorelease();
 		}
 
-		bool ConfigedKeysTestScene::init()
+		return ret;
+	}
+
+	bool ConfigedKeysTestScene::init()
+	{
+		if( !Scene::init() )
 		{
-			if( !Scene::init() )
+			return false;
+		}
+
+		scheduleUpdate();
+
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
+
+		cpg::input_test::KeyMapConfigHelper key_map_config_helper;
+		key_map_config_helper.load( input_practice::Setting::getKeyMapFileName().c_str() );
+
+		//
+		// summury
+		//
+		{
+			std::stringstream ss;
+			ss << "+ Configed Keys Test Scene";
+			ss << "\n";
+			ss << "\n";
+			for( const auto& h : key_map_config_helper.getContainer() )
 			{
-				return false;
+				ss << "[ " << h.mName << " : " << cpg::input::KeyCodeNames::get( h.mKeycode ) << " ]" << std::endl;
 			}
 
-			scheduleUpdate();
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			label->setColor( Color3B::GREEN );
+			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+			label->setPosition( Vec2(
+				visibleOrigin.x
+				, visibleOrigin.y + visibleSize.height
+			) );
+			addChild( label, 9999 );
+		}
 
-			const auto visibleSize = _director->getVisibleSize();
-			const auto visibleOrigin = _director->getVisibleOrigin();
+		//
+		// exit interface
+		//
+		{
+			auto label = Label::createWithTTF( "Exit", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
+			label->setColor( Color3B::GREEN );
 
-			cpg::input_test::KeyMapConfigHelper key_map_config_helper;
-			key_map_config_helper.load( input_practice::Setting::getKeyMapFileName().c_str() );
+			auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
+			button->setColor( Color3B::GREEN );
+			button->getRendererNormal()->getTexture()->setAliasTexParameters();
+			button->getRendererClicked()->getTexture()->setAliasTexParameters();
+			button->getRendererDisabled()->getTexture()->setAliasTexParameters();
+			button->setScale9Enabled( true );
+			button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
+			button->addTouchEventListener( CC_CALLBACK_2( ConfigedKeysTestScene::onExitButton, this ) );
+			addChild( button, 9999 );
+			button->setTitleLabel( label );
 
-			//
-			// summury
-			//
+			button->setPosition( Vec2(
+				visibleOrigin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
+			) );
+		}
+
+
+		//
+		// input
+		//
+		{
+			auto input_delegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			addChild( input_delegator, 0 );
+
+			const auto key_map = cpg::input::KeyMap::create( input_practice::Setting::getKeyMapFileName().c_str() );
+
+			mInputCollector = cpg::input::BasicCollector::create( key_map );
+			input_delegator->addInputCollector( mInputCollector );
+		}
+
+
+		//
+		// key viewer
+		//
+		{
+			cpg::input_test::KeyViewer* key_viewer = nullptr;
+			mKeyViewer_StartPosition.set(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.1f )
+			);
+			for( int i = 0; i < key_viewer_count; ++i )
 			{
-				std::stringstream ss;
-				ss << "+ Configed Keys Test Scene";
-				ss << "\n";
-				ss << "\n";
-				for( const auto& h : key_map_config_helper.getContainer() )
+				key_viewer = cpg::input_test::KeyViewer::create( key_map_config_helper );
+				key_viewer->setPosition( mKeyViewer_StartPosition );
+				key_viewer->setVisible( false );
+				addChild( key_viewer, 1 );
+
+				mKeyViewerList.push_back( key_viewer );
+			}
+			mKeyViewer_EndPosition.set(
+				mKeyViewer_StartPosition.x
+				, mKeyViewer_StartPosition.y + ( mKeyViewerList.front()->getContentSize().height * ( key_viewer_count - 1 ) )
+			);
+
+			// indicator
+			auto indicator = Sprite::createWithSpriteFrameName( "white_2x2.png" );
+			indicator->setScaleX( 200.f );
+			indicator->setColor( Color3B::RED );
+			indicator->setPosition( mKeyViewer_StartPosition );
+			addChild( indicator, 0 );
+		}
+
+		return true;
+	}
+
+	void ConfigedKeysTestScene::update( float dt )
+	{
+		if( mInputCollector->hasChanged() )
+		{
+			for( auto v : mKeyViewerList )
+			{
+				if( !v->isVisible() )
 				{
-					ss << "[ " << h.mName << " : " << cpg::input::KeyCodeNames::get( h.mKeycode ) << " ]" << std::endl;
+					continue;
 				}
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, 9999 );
+				v->setPositionY( v->getPositionY() + v->getContentSize().height + key_viewer_margin );
+				v->setVisible( mKeyViewer_EndPosition.y > v->getPositionY() );
 			}
 
-			//
-			// exit interface
-			//
+			for( auto v : mKeyViewerList )
 			{
-				auto label = Label::createWithTTF( "Exit", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
-				label->setColor( Color3B::GREEN );
-
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_0.png", ui::Widget::TextureResType::PLIST );
-				button->setColor( Color3B::GREEN );
-				button->getRendererNormal()->getTexture()->setAliasTexParameters();
-				button->getRendererClicked()->getTexture()->setAliasTexParameters();
-				button->getRendererDisabled()->getTexture()->setAliasTexParameters();
-				button->setScale9Enabled( true );
-				button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
-				button->addTouchEventListener( CC_CALLBACK_2( ConfigedKeysTestScene::onExitButton, this ) );
-				addChild( button, 9999 );
-				button->setTitleLabel( label );
-
-				button->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width - ( button->getContentSize().width * 0.5f )
-					, visibleOrigin.y + visibleSize.height - ( button->getContentSize().height * 0.5f )
-				) );
-			}
-
-
-			//
-			// input
-			//
-			{
-				auto input_delegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
-				addChild( input_delegator, 0 );
-
-				const auto key_map = cpg::input::KeyMap::create( input_practice::Setting::getKeyMapFileName().c_str() );
-
-				mInputCollector = cpg::input::BasicCollector::create( key_map );
-				input_delegator->addInputCollector( mInputCollector );
-			}
-
-
-			//
-			// key viewer
-			//
-			{
-				cpg::input_test::KeyViewer* key_viewer = nullptr;
-				mKeyViewer_StartPosition.set(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.1f )
-				);
-				for( int i = 0; i < key_viewer_count; ++i )
+				if( v->isVisible() )
 				{
-					key_viewer = cpg::input_test::KeyViewer::create( key_map_config_helper );
-					key_viewer->setPosition( mKeyViewer_StartPosition );
-					key_viewer->setVisible( false );
-					addChild( key_viewer, 1 );
-
-					mKeyViewerList.push_back( key_viewer );
-				}
-				mKeyViewer_EndPosition.set(
-					mKeyViewer_StartPosition.x
-					, mKeyViewer_StartPosition.y + ( mKeyViewerList.front()->getContentSize().height * ( key_viewer_count - 1 ) )
-				);
-
-				// indicator
-				auto indicator = Sprite::createWithSpriteFrameName( "white_2x2.png" );
-				indicator->setScaleX( 200.f );
-				indicator->setColor( Color3B::RED );
-				indicator->setPosition( mKeyViewer_StartPosition );
-				addChild( indicator, 0 );
-			}
-
-			return true;
-		}
-
-		void ConfigedKeysTestScene::update( float dt )
-		{
-			if( mInputCollector->hasChanged() )
-			{
-				for( auto v : mKeyViewerList )
-				{
-					if( !v->isVisible() )
-					{
-						continue;
-					}
-
-					v->setPositionY( v->getPositionY() + v->getContentSize().height + key_viewer_margin );
-					v->setVisible( mKeyViewer_EndPosition.y > v->getPositionY() );
+					continue;
 				}
 
-				for( auto v : mKeyViewerList )
-				{
-					if( v->isVisible() )
-					{
-						continue;
-					}
-
-					v->setVisible( true );
-					v->setPosition( mKeyViewer_StartPosition );
-					v->setup( mInputCollector );
-					break;
-				}
+				v->setVisible( true );
+				v->setPosition( mKeyViewer_StartPosition );
+				v->setup( mInputCollector );
+				break;
 			}
-
-			Scene::update( dt );
 		}
 
-		void ConfigedKeysTestScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+		Scene::update( dt );
+	}
+
+	void ConfigedKeysTestScene::onExitButton( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+	{
+		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
 		{
-			if( ui::Widget::TouchEventType::ENDED != touch_event_type )
-			{
-				return;
-			}
+			return;
+		}
 
-			if( !isScheduled( schedule_selector( ConfigedKeysTestScene::update_forExit ) ) )
-			{
-				scheduleOnce( schedule_selector( ConfigedKeysTestScene::update_forExit ), 0.f );
-			}
-		}
-		void ConfigedKeysTestScene::update_forExit( float /*dt*/ )
+		if( !isScheduled( schedule_selector( ConfigedKeysTestScene::update_forExit ) ) )
 		{
-			_director->replaceScene( input_practice::RootScene::create() );
+			scheduleOnce( schedule_selector( ConfigedKeysTestScene::update_forExit ), 0.f );
 		}
+	}
+	void ConfigedKeysTestScene::update_forExit( float /*dt*/ )
+	{
+		_director->replaceScene( input_practice::RootScene::create() );
 	}
 }
