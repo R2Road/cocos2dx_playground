@@ -22,13 +22,17 @@ namespace input_practice
 {
 	class ConfigedKeysTestScene : public cocos2d::Scene
 	{
-	public:
+	private:
 		ConfigedKeysTestScene();
 
+	public:
 		static const char* getTitle() { return "Configed Keys Test"; }
 		static cocos2d::Scene* create();
 
+	private:
 		bool init() override;
+
+	public:
 		void update( float dt ) override;
 
 	private:
