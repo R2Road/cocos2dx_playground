@@ -18,7 +18,7 @@
 #include "input_practice_AllowedKeysTestScene.h"
 
 #include "input_practice_KeyConfigScene.h"
-#include "Research_Input_ConfigedKeysTestScene.h"
+#include "input_practice_ConfigedKeysTestScene.h"
 
 #include "input_practice_GamePadTestScene.h"
 

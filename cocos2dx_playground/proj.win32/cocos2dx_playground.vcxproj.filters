@@ -843,9 +843,6 @@
     <ClCompile Include="..\Classes\algorithm_practice_FloodFillScene.cpp">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Research_Input_ConfigedKeysTestScene.cpp">
-      <Filter>src\scene\input_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
@@ -859,6 +856,9 @@
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\input_practice_AllowedKeysTestScene.cpp">
+      <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\input_practice_ConfigedKeysTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1532,9 +1532,6 @@
     <ClInclude Include="..\Classes\algorithm_practice_FloodFillScene.h">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Research_Input_ConfigedKeysTestScene.h">
-      <Filter>src\scene\input_practice</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
@@ -1548,6 +1545,9 @@
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\input_practice_AllowedKeysTestScene.h">
+      <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\input_practice_ConfigedKeysTestScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
   </ItemGroup>
