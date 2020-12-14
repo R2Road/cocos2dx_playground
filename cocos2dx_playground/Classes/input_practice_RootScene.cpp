@@ -80,7 +80,7 @@ namespace input_practice
 			ss << std::endl;
 			ss << "[4] : " << input_practice::KeyConfigScene::getTitle();
 			ss << std::endl;
-			ss << "[5] : Configed Keys Test";
+			ss << "[5] : " << input_practice::ConfigedKeysTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(

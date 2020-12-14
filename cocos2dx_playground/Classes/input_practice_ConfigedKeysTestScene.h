@@ -25,6 +25,7 @@ namespace input_practice
 	public:
 		ConfigedKeysTestScene();
 
+		static const char* getTitle() { return "Configed Keys Test"; }
 		static cocos2d::Scene* create();
 
 		bool init() override;
