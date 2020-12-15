@@ -1,5 +1,7 @@
 #include "input_practice_ConfigedKeysTestScene.h"
 
+#include <new>
+#include <numeric>
 #include <sstream>
 
 #include "cocos2d.h"
@@ -53,8 +55,6 @@ namespace input_practice
 			return false;
 		}
 
-		scheduleUpdate();
-
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
@@ -81,7 +81,7 @@ namespace input_practice
 				visibleOrigin.x
 				, visibleOrigin.y + visibleSize.height
 			) );
-			addChild( label, 9999 );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -99,7 +99,7 @@ namespace input_practice
 			button->setScale9Enabled( true );
 			button->setContentSize( label->getContentSize() + Size( 40.f, 4.f ) + Size( 40.f, 4.f ) );
 			button->addTouchEventListener( CC_CALLBACK_2( ConfigedKeysTestScene::onExitButton, this ) );
-			addChild( button, 9999 );
+			addChild( button, std::numeric_limits<int>::max() );
 			button->setTitleLabel( label );
 
 			button->setPosition( Vec2(
@@ -115,11 +115,12 @@ namespace input_practice
 		{
 			auto input_delegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_delegator, 0 );
+			{
+				const auto key_map = cpg::input::KeyMap::create( input_practice::Setting::getKeyMapFileName().c_str() );
 
-			const auto key_map = cpg::input::KeyMap::create( input_practice::Setting::getKeyMapFileName().c_str() );
-
-			mInputCollector = cpg::input::BasicCollector::create( key_map );
-			input_delegator->addInputCollector( mInputCollector );
+				mInputCollector = cpg::input::BasicCollector::create( key_map );
+				input_delegator->addInputCollector( mInputCollector );
+			}
 		}
 
 
@@ -153,6 +154,11 @@ namespace input_practice
 			indicator->setPosition( mKeyViewer_StartPosition );
 			addChild( indicator, 0 );
 		}
+
+		//
+		// Setup
+		//
+		scheduleUpdate();
 
 		return true;
 	}
