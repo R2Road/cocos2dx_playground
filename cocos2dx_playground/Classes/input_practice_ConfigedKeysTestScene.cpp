@@ -4,7 +4,8 @@
 #include <numeric>
 #include <sstream>
 
-#include "cocos2d.h"
+#include "2d/CCLabel.h"
+#include "base/CCDirector.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 
