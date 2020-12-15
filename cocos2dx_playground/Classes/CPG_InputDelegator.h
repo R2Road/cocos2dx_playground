@@ -25,7 +25,6 @@ namespace cpg
 		public:
 			void onEnter() override;
 			void update( float dt ) override;
-			void post_update( float dt );
 			void onExit() override;
 
 		private:

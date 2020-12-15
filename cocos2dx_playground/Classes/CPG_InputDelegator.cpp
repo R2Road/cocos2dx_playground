@@ -46,7 +46,6 @@ namespace cpg
 			mAllowedKeys = AllowedKeys::load( allowed_keys_file_name );
 
 			scheduleUpdateWithPriority( -1 );
-			schedule( schedule_selector( Delegator::post_update ) );
 
 			return true;
 		}
@@ -64,14 +63,13 @@ namespace cpg
 		void Delegator::update( float dt )
 		{
 			if( mInputCollector )
+			{
+				mInputCollector->update_forHistory();
+
 				mInputCollector->collect( mKeycodeCollector );
+			}
 
 			Node::update( dt );
-		}
-		void Delegator::post_update( float /*dt*/ )
-		{
-			if( mInputCollector )
-				mInputCollector->update_forHistory();
 		}
 		void Delegator::onExit()
 		{
