@@ -70,7 +70,7 @@ namespace input_practice
 		//
 		{
 			std::stringstream ss;
-			ss << "+ Configed Keys Test Scene";
+			ss << "+ " << getTitle();
 			ss << "\n";
 			ss << "\n";
 			for( const auto& h : key_map_config_helper.getContainer() )
