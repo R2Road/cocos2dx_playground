@@ -205,7 +205,7 @@
     <Filter Include="src\scene\step99\algorithm_practice">
       <UniqueIdentifier>{64c6c9c5-7f6d-461a-b00e-3e73d682654c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step99\tool_practice">
+    <Filter Include="src\scene\tool_practice">
       <UniqueIdentifier>{c7283c4e-210a-420f-a875-42d985335828}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -829,10 +829,10 @@
       <Filter>src\scene\step_02_flipflip\game_test</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\tool_practice_TileSheetTestScene.cpp">
-      <Filter>src\scene\step99\tool_practice</Filter>
+      <Filter>src\scene\tool_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\tool_practice_TileSheetTestConfiguration.cpp">
-      <Filter>src\scene\step99\tool_practice</Filter>
+      <Filter>src\scene\tool_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_Position2GridIndexConverter.cpp">
       <Filter>src\cpg</Filter>
@@ -860,6 +860,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\input_practice_ConfigedKeysTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tool_practice_RootScene.cpp">
+      <Filter>src\scene\tool_practice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1518,10 +1521,10 @@
       <Filter>src\scene\step_02_flipflip\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\tool_practice_TileSheetTestScene.h">
-      <Filter>src\scene\step99\tool_practice</Filter>
+      <Filter>src\scene\tool_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\tool_practice_TileSheetTestConfiguration.h">
-      <Filter>src\scene\step99\tool_practice</Filter>
+      <Filter>src\scene\tool_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Position2GridIndexConverter.h">
       <Filter>src\cpg</Filter>
@@ -1549,6 +1552,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\input_practice_ConfigedKeysTestScene.h">
       <Filter>src\scene\input_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tool_practice_RootScene.h">
+      <Filter>src\scene\tool_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

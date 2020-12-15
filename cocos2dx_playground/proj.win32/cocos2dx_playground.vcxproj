@@ -342,6 +342,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_sprite_BasicScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_texture_PListScene.cpp" />
+    <ClCompile Include="..\Classes\tool_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\tool_practice_TileSheetTestConfiguration.cpp" />
     <ClCompile Include="..\Classes\tool_practice_TileSheetTestScene.cpp" />
     <ClCompile Include="..\Classes\ui_practice_ScrollViewGeneratorScene.cpp" />
@@ -573,6 +574,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h" />
     <ClInclude Include="..\Classes\step_typetype_sprite_BasicScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_texture_PListScene.h" />
+    <ClInclude Include="..\Classes\tool_practice_RootScene.h" />
     <ClInclude Include="..\Classes\tool_practice_TileSheetTestConfiguration.h" />
     <ClInclude Include="..\Classes\tool_practice_TileSheetTestScene.h" />
     <ClInclude Include="..\Classes\ui_practice_ScrollViewGeneratorScene.h" />

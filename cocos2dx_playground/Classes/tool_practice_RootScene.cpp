@@ -1,4 +1,4 @@
-#include "Step99_RootScene.h"
+#include "tool_practice_RootScene.h"
 
 #include <new>
 #include <numeric>
@@ -13,18 +13,14 @@
 #include "cpg_StringTable.h"
 
 #include "PlayGroundScene.h"
-
-#include "algorithm_practice_RootScene.h"
-
-#include "step02_fsm1test_BasicScene.h"
-#include "step02_fsm1test_AnimationControlScene.h"
-#include "step_rain_of_chaos_collision_CollectionScene.h"
+#include "tool_practice_TileSheetTestScene.h"
 
 USING_NS_CC;
 
-namespace step99
+namespace tool_practice
 {
-	RootScene::RootScene() : mKeyboardListener( nullptr ) {}
+	RootScene::RootScene() : mKeyboardListener( nullptr )
+	{}
 
 	Scene* RootScene::create()
 	{
@@ -49,8 +45,8 @@ namespace step99
 			return false;
 		}
 
-		const auto visibleSize = Director::getInstance()->getVisibleSize();
-		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		const auto visibleSize = _director->getVisibleSize();
+		const auto visibleOrigin = _director->getVisibleOrigin();
 
 		//
 		// Summury
@@ -63,23 +59,9 @@ namespace step99
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << algorithm_practice::RootScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
-			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[Q] : " << step02::fsm1test::BasicScene::getTitle();
-			ss << std::endl;
-			ss << "[W] : " << step02::fsm1test::AnimationControlScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[E] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
-			ss << "=============================";
+			ss << "[1] : " << tool_practice::TileSheetTestScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12 );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -91,7 +73,7 @@ namespace step99
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 0, 9, 61, 255 ) );
+			auto background_layer = LayerColor::create( Color4B( 51, 25, 73, 255 ) );
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
@@ -123,22 +105,10 @@ namespace step99
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			_director->replaceScene( PlayGroundScene::create() );
-			break;
-
+			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( algorithm_practice::RootScene::create() );
-			break;
-
-
-		case EventKeyboard::KeyCode::KEY_Q:
-			_director->replaceScene( step02::fsm1test::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
-		case EventKeyboard::KeyCode::KEY_W:
-			_director->replaceScene( step02::fsm1test::AnimationControlScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
-		case EventKeyboard::KeyCode::KEY_E:
-			_director->replaceScene( step_rain_of_chaos::collision::CollectionScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( tool_practice::TileSheetTestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
