@@ -11,6 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_flipflip_game_StageViewNode.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
@@ -46,6 +47,10 @@ namespace step_flipflip
 
 			const auto visibleSize = _director->getVisibleSize();
 			const auto visibleOrigin = _director->getVisibleOrigin();
+			const Vec2 visibleCenter(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f ,visibleSize.height * 0.5f )
+			);
 
 
 			//
@@ -76,14 +81,16 @@ namespace step_flipflip
 			}
 
 			//
-			// Test Node
+			// Stage View Node
 			//
 			{
+				auto stage_view_node = game::StageViewNode::create( 5, 4 );
+				stage_view_node->setPosition(
+					visibleCenter
+					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
+				);
+				addChild( stage_view_node );
 			}
-
-			//
-			// Setup
-			//
 
 			return true;
 		}
