@@ -23,6 +23,7 @@
 #include "step_flipflip_action_BasicScene.h"
 
 #include "step_flipflip_game_test_CardViewScene.h"
+#include "step_flipflip_game_test_CardSelectorNodeScene.h"
 #include "step_flipflip_game_test_StageViewScene.h"
 
 USING_NS_CC;
@@ -92,7 +93,9 @@ namespace step_flipflip
 			ss << std::endl;
 			ss << "[Q] " << step_flipflip::game_test::CardViewScene::getTitle();
 			ss << std::endl;
-			ss << "[W] " << step_flipflip::game_test::StageViewScene::getTitle();
+			ss << "[W] " << step_flipflip::game_test::CardSelectorNodeScene::getTitle();
+			ss << std::endl;
+			ss << "[E] " << step_flipflip::game_test::StageViewScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 11, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -170,6 +173,9 @@ namespace step_flipflip
 			_director->replaceScene( step_flipflip::game_test::CardViewScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_W:
+			_director->replaceScene( step_flipflip::game_test::CardSelectorNodeScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_E:
 			_director->replaceScene( step_flipflip::game_test::StageViewScene::create() );
 			break;
 
