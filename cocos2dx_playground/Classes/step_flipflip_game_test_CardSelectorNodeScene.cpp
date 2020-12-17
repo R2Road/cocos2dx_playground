@@ -10,11 +10,17 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "step_flipflip_game_CardSelectorNode.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const int TAG_SelectedIndicatorPosition = 20140416;
+}
 
 namespace step_flipflip
 {
@@ -65,6 +71,11 @@ namespace step_flipflip
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow] : Move Indicator";
+				ss << std::endl;
+				ss << "[SpaceBar] : Select";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -84,6 +95,21 @@ namespace step_flipflip
 			}
 
 			//
+			// Selected Indicator Position
+			//
+			{
+				auto label = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14 );
+				label->setTag( TAG_SelectedIndicatorPosition );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Card Selector Node
 			//
 			{
@@ -94,6 +120,11 @@ namespace step_flipflip
 				);
 				addChild( mCardSelectorNode );
 			}
+
+			//
+			// Setup
+			//
+			updateSelectedIndicatorPositionView();
 
 			return true;
 		}
@@ -117,6 +148,13 @@ namespace step_flipflip
 		}
 
 
+		void CardSelectorNodeScene::updateSelectedIndicatorPositionView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_SelectedIndicatorPosition ) );
+			label->setString( StringUtils::format( "Selected - X : %d, Y : %d", mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() ) );
+		}
+
+
 		void CardSelectorNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
@@ -136,6 +174,10 @@ namespace step_flipflip
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 				mCardSelectorNode->MoveIndicator( 0, -1 );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_SPACE:
+				updateSelectedIndicatorPositionView();
 				break;
 			}
 		}

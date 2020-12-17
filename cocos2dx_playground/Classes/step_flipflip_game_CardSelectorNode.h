@@ -18,6 +18,8 @@ namespace step_flipflip
 			bool init( const bool show_guide );
 
 		public:
+			int GetIndicatorX() const { return mCurrentX; }
+			int GetIndicatorY() const { return mCurrentY; }
 			void MoveIndicator( const int move_amount_x, const int move_amount_y );
 
 		private:
