@@ -12,10 +12,10 @@ namespace step_flipflip
 			CardSelectorNode( const int width, const int height );
 
 		public:
-			static CardSelectorNode* create( const int width, const int height );
+			static CardSelectorNode* create( const int width, const int height, const bool show_guide = false );
 
 		private:
-			bool init() override;
+			bool init( const bool show_guide );
 
 		public:
 			void MoveIndicator( const int move_amount_x, const int move_amount_y );

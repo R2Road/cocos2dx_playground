@@ -27,10 +27,10 @@ namespace step_flipflip
 			, mIndicator( nullptr )
 		{}
 
-		CardSelectorNode* CardSelectorNode::create( const int width, const int height )
+		CardSelectorNode* CardSelectorNode::create( const int width, const int height, const bool show_guide )
 		{
 			auto ret = new ( std::nothrow ) CardSelectorNode( width, height );
-			if( !ret || !ret->init() )
+			if( !ret || !ret->init( show_guide ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -43,7 +43,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool CardSelectorNode::init()
+		bool CardSelectorNode::init( const bool show_guide )
 		{
 			if( !Node::init() )
 			{
@@ -56,11 +56,12 @@ namespace step_flipflip
 			setContentSize( Size( CardAreaSize.width * mWidth, CardAreaSize.height * mHeight ) );
 
 			//
-			// Background
+			// Debug Guide
 			//
+			if( show_guide )
 			{
-				auto background_layer = LayerColor::create( Color4B::GREEN, getContentSize().width, getContentSize().height );
-				addChild( background_layer, std::numeric_limits<int>::min() );
+				auto layer = LayerColor::create( Color4B::GREEN, getContentSize().width, getContentSize().height );
+				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
 			//
