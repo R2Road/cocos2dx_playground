@@ -6,6 +6,8 @@
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 
+#include "step_flipflip_game_Constant.h"
+
 USING_NS_CC;
 
 namespace
@@ -68,8 +70,7 @@ namespace step_flipflip
 			// Build
 			//
 			{
-				mIndicator = Sprite::createWithSpriteFrameName( "scale9_guide_01_0.png" );
-				mIndicator->setContentSize( CardAreaSize );
+				mIndicator = Sprite::createWithSpriteFrameName( step_flipflip::game::GetSpriteFrameName_CardIndicator() );
 				addChild( mIndicator );
 			}
 
