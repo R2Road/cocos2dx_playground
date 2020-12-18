@@ -1,4 +1,4 @@
-#include "step_flipflip_game_test_StageViewScene.h"
+#include "step_flipflip_game_test_SelectAndFlipScene.h"
 
 #include <new>
 #include <numeric>
@@ -11,6 +11,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_flipflip_game_CardSelectorNode.h"
+#include "step_flipflip_game_Constant.h"
 #include "step_flipflip_game_StageViewNode.h"
 #include "step_flipflip_RootScene.h"
 
@@ -20,11 +22,12 @@ namespace step_flipflip
 {
 	namespace game_test
 	{
-		StageViewScene::StageViewScene() : mKeyboardListener( nullptr ) {}
+		SelectAndFlipScene::SelectAndFlipScene() : mKeyboardListener( nullptr ), mCardSelectorNode( nullptr )
+		{}
 
-		Scene* StageViewScene::create()
+		Scene* SelectAndFlipScene::create()
 		{
-			auto ret = new ( std::nothrow ) StageViewScene();
+			auto ret = new ( std::nothrow ) SelectAndFlipScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -38,7 +41,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool StageViewScene::init()
+		bool SelectAndFlipScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -84,7 +87,7 @@ namespace step_flipflip
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( 5, 4, true );
+				auto stage_view_node = game::StageViewNode::create( game::STAGE_CONFIG.Width, game::STAGE_CONFIG.Height );
 				stage_view_node->setPosition(
 					visibleCenter
 					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
@@ -92,19 +95,31 @@ namespace step_flipflip
 				addChild( stage_view_node );
 			}
 
+			//
+			// Card Selector Node
+			//
+			{
+				mCardSelectorNode = game::CardSelectorNode::create( game::STAGE_CONFIG.Width, game::STAGE_CONFIG.Height );
+				mCardSelectorNode->setPosition(
+					visibleCenter
+					- Vec2( mCardSelectorNode->getContentSize().width * 0.5f, mCardSelectorNode->getContentSize().height * 0.5f )
+				);
+				addChild( mCardSelectorNode, 1 );
+			}
+
 			return true;
 		}
 
-		void StageViewScene::onEnter()
+		void SelectAndFlipScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageViewScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( SelectAndFlipScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void StageViewScene::onExit()
+		void SelectAndFlipScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -114,12 +129,30 @@ namespace step_flipflip
 		}
 
 
-		void StageViewScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void SelectAndFlipScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
+			switch( keycode )
 			{
+			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				_director->replaceScene( step_flipflip::RootScene::create() );
 				return;
+
+			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+				mCardSelectorNode->MoveIndicator( -1, 0 );
+				break;
+			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+				mCardSelectorNode->MoveIndicator( 1, 0 );
+				break;
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+				mCardSelectorNode->MoveIndicator( 0, 1 );
+				break;
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+				mCardSelectorNode->MoveIndicator( 0, -1 );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_SPACE:
+				// do something~!
+				break;
 			}
 		}
 	}
