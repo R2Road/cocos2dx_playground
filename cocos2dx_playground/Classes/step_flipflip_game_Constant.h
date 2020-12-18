@@ -2,6 +2,8 @@
 
 #include <array>
 
+#include "math/CCGeometry.h"
+
 namespace step_flipflip
 {
 	namespace game
@@ -21,8 +23,9 @@ namespace step_flipflip
 		{
 			const int Width = 1;
 			const int Height = 1;
+			const cocos2d::Size CardAreaSize = cocos2d::Size( 10.f, 10.f );
 		};
-		const StageConfig STAGE_CONFIG { 5, 4 };
+		const StageConfig STAGE_CONFIG { 5, 4, cocos2d::Size( 40.f, 54.f ) };
 
 		const char* GetSpriteFrameName_CardIndicator();
 		const char* GetSpriteFrameName_CardBackSide();

@@ -6,6 +6,7 @@
 #include "2d/CCLayer.h"
 
 #include "step_flipflip_game_CardViewNode.h"
+#include "step_flipflip_game_Constant.h"
 
 USING_NS_CC;
 
@@ -39,12 +40,10 @@ namespace step_flipflip
 				return false;
 			}
 
-			const Size CardAreaSize( 40.f, 54.f );
-
 			//
 			// Content Size
 			//
-			setContentSize( Size( CardAreaSize.width * width, CardAreaSize.height * height ) );
+			setContentSize( Size( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * width, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * height ) );
 
 			//
 			// Background
@@ -58,7 +57,7 @@ namespace step_flipflip
 			// Build
 			//
 			{
-				const Vec2 pivot_position( CardAreaSize.width * 0.5f, CardAreaSize.height * 0.5f );
+				const Vec2 pivot_position( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * 0.5f, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * 0.5f );
 				for( int current_h = 0; height > current_h; ++current_h )
 				{
 					for( int current_w = 0; width > current_w; ++current_w )
@@ -66,7 +65,7 @@ namespace step_flipflip
 						auto card_view_node = CardViewNode::create( eCardType::A );
 						card_view_node->setPosition(
 							pivot_position
-							+ Vec2( CardAreaSize.width * current_w, CardAreaSize.height * current_h )
+							+ Vec2( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * current_w, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * current_h )
 						);
 						addChild( card_view_node );
 					}

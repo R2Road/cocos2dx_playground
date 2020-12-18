@@ -10,11 +10,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const Size CardAreaSize( 40.f, 54.f );
-}
-
 namespace step_flipflip
 {
 	namespace game
@@ -22,7 +17,7 @@ namespace step_flipflip
 		CardSelectorNode::CardSelectorNode( const int width, const int height ) :
 			mWidth( width )
 			, mHeight( height )
-			, mPivotPosition( CardAreaSize.width * 0.5f, CardAreaSize.height * 0.5f )
+			, mPivotPosition( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * 0.5f, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * 0.5f )
 
 			, mCurrentX( 0 )
 			, mCurrentY( 0 )
@@ -55,7 +50,7 @@ namespace step_flipflip
 			//
 			// Content Size
 			//
-			setContentSize( Size( CardAreaSize.width * mWidth, CardAreaSize.height * mHeight ) );
+			setContentSize( Size( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * mWidth, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * mHeight ) );
 
 			//
 			// Debug Guide
@@ -95,7 +90,7 @@ namespace step_flipflip
 
 			mIndicator->setPosition(
 				mPivotPosition
-				+ Vec2( CardAreaSize.width * mCurrentX, CardAreaSize.height * mCurrentY )
+				+ Vec2( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * mCurrentX, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * mCurrentY )
 			);
 		}
 	}
