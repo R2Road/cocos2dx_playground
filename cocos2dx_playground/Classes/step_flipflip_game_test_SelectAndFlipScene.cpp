@@ -99,7 +99,7 @@ namespace step_flipflip
 			// Card Selector Node
 			//
 			{
-				mCardSelectorNode = game::CardSelectorNode::create( game::STAGE_CONFIG.Width, game::STAGE_CONFIG.Height );
+				mCardSelectorNode = game::CardSelectorNode::create( game::STAGE_CONFIG );
 				mCardSelectorNode->setPosition(
 					visibleCenter
 					- Vec2( mCardSelectorNode->getContentSize().width * 0.5f, mCardSelectorNode->getContentSize().height * 0.5f )
