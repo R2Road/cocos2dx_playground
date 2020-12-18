@@ -13,6 +13,7 @@
 
 #include "step_flipflip_game_CardSelectorNode.h"
 #include "step_flipflip_game_Constant.h"
+#include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
 #include "step_flipflip_RootScene.h"
 
@@ -86,10 +87,16 @@ namespace step_flipflip
 			const game::StageConfig STAGE_CONFIG{ 6, 3, cocos2d::Size( 40.f, 54.f ) };
 
 			//
+			// Stage Data
+			//
+			game::StageData stage_data;
+			stage_data.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height );
+
+			//
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( STAGE_CONFIG );
+				auto stage_view_node = game::StageViewNode::create( STAGE_CONFIG, stage_data );
 				stage_view_node->setPosition(
 					visibleCenter
 					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )

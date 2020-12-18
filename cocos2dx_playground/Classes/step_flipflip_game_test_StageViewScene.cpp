@@ -93,21 +93,24 @@ namespace step_flipflip
 			game::StageData stage_data;
 			stage_data.Reset( stage_config.Width, stage_config.Height );
 
-			for( const auto& i : stage_data.GetContainer() )
-			{
-				CCLOG( "%d", static_cast<int>( i ) );
-			}
-
 			//
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( stage_config, true );
+				auto stage_view_node = game::StageViewNode::create( stage_config, stage_data, true );
 				stage_view_node->setPosition(
 					visibleCenter
 					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
 				);
 				addChild( stage_view_node );
+
+				for( int current_h = 0; stage_config.Height > current_h; ++current_h )
+				{
+					for( int current_w = 0; stage_config.Width > current_w; ++current_w )
+					{
+						stage_view_node->Flip( current_w, current_h );
+					}
+				}
 			}
 
 			return true;

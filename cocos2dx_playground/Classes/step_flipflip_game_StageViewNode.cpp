@@ -7,6 +7,7 @@
 
 #include "step_flipflip_game_CardViewNode.h"
 #include "step_flipflip_game_Constant.h"
+#include "step_flipflip_game_StageData.h"
 
 USING_NS_CC;
 
@@ -14,13 +15,13 @@ namespace step_flipflip
 {
 	namespace game
 	{
-		StageViewNode::StageViewNode() : mCardViewContainer()
+		StageViewNode::StageViewNode() : mIndexConverter( 1, 1 ), mCardViewContainer()
 		{}
 
-		StageViewNode* StageViewNode::create( const StageConfig& stage_config, const bool show_guide )
+		StageViewNode* StageViewNode::create( const StageConfig& stage_config, const StageData& stage_data, const bool show_guide )
 		{
 			auto ret = new ( std::nothrow ) StageViewNode();
-			if( !ret || !ret->init( stage_config, show_guide ) )
+			if( !ret || !ret->init( stage_config, stage_data, show_guide ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -33,7 +34,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool StageViewNode::init( const StageConfig& stage_config, const bool show_guide )
+		bool StageViewNode::init( const StageConfig& stage_config, const StageData& stage_data, const bool show_guide )
 		{
 			if( !Node::init() )
 			{
@@ -55,6 +56,11 @@ namespace step_flipflip
 			}
 
 			//
+			// Index Converter
+			//
+			mIndexConverter = cpg::GridIndexConverter( stage_config.Width, stage_config.Height);
+
+			//
 			// Build
 			//
 			{
@@ -63,17 +69,24 @@ namespace step_flipflip
 				{
 					for( int current_w = 0; stage_config.Width > current_w; ++current_w )
 					{
-						auto card_view_node = CardViewNode::create( eCardType::A );
+						auto card_view_node = CardViewNode::create( stage_data.Get( current_w, current_h ) );
 						card_view_node->setPosition(
 							pivot_position
 							+ Vec2( stage_config.CardAreaSize.width * current_w, stage_config.CardAreaSize.height * current_h )
 						);
 						addChild( card_view_node );
+
+						mCardViewContainer.push_back( card_view_node );
 					}
 				}
 			}
 
 			return true;
+		}
+
+		void StageViewNode::Flip( const int x, const int y )
+		{
+			mCardViewContainer[mIndexConverter.To_Linear( x, y )]->Flip();
 		}
 	}
 }
