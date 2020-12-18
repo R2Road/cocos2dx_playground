@@ -17,6 +17,7 @@ namespace step_flipflip
 			, E
 
 			, SIZE
+			, FIRST = A
 		};
 
 		struct StageConfig

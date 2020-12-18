@@ -12,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "step_flipflip_game_Constant.h"
+#include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
 #include "step_flipflip_RootScene.h"
 
@@ -82,10 +83,26 @@ namespace step_flipflip
 			}
 
 			//
+			// Stage Config
+			//
+			game::StageConfig stage_config{ 6, 5, Size( 40.f, 54.f ) };
+
+			//
+			// Stage Data
+			//
+			game::StageData stage_data;
+			stage_data.Reset( stage_config.Width, stage_config.Height );
+
+			for( const auto& i : stage_data.GetContainer() )
+			{
+				CCLOG( "%d", static_cast<int>( i ) );
+			}
+
+			//
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( game::StageConfig{ 6, 5, Size( 40.f, 54.f ) }, true );
+				auto stage_view_node = game::StageViewNode::create( stage_config, true );
 				stage_view_node->setPosition(
 					visibleCenter
 					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
