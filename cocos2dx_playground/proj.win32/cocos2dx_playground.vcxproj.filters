@@ -873,6 +873,9 @@
     <ClCompile Include="..\Classes\step_flipflip_game_CardSelectorNode.cpp">
       <Filter>src\scene\step_02_flipflip\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_game_test_SelectAndFlipScene.cpp">
+      <Filter>src\scene\step_02_flipflip\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1573,6 +1576,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_game_CardSelectorNode.h">
       <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_game_test_SelectAndFlipScene.h">
+      <Filter>src\scene\step_02_flipflip\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
