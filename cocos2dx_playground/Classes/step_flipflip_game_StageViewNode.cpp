@@ -17,10 +17,10 @@ namespace step_flipflip
 		StageViewNode::StageViewNode() : mCardViewContainer()
 		{}
 
-		StageViewNode* StageViewNode::create( const int width, const int height )
+		StageViewNode* StageViewNode::create( const int width, const int height, const bool show_guide )
 		{
 			auto ret = new ( std::nothrow ) StageViewNode();
-			if( !ret || !ret->init( width, height ) )
+			if( !ret || !ret->init( width, height, show_guide ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -33,7 +33,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool StageViewNode::init( const int width, const int height )
+		bool StageViewNode::init( const int width, const int height, const bool show_guide )
 		{
 			if( !Node::init() )
 			{
@@ -48,9 +48,10 @@ namespace step_flipflip
 			//
 			// Background
 			//
+			if( show_guide )
 			{
-				auto background_layer = LayerColor::create( Color4B::GREEN, getContentSize().width, getContentSize().height );
-				addChild( background_layer, std::numeric_limits<int>::min() );
+				auto layer = LayerColor::create( Color4B::GREEN, getContentSize().width, getContentSize().height );
+				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
 			//

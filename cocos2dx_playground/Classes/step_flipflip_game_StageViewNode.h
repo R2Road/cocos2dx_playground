@@ -20,10 +20,10 @@ namespace step_flipflip
 			StageViewNode();
 
 		public:
-			static StageViewNode* create( const int width, const int height );
+			static StageViewNode* create( const int width, const int height, const bool show_guide = false );
 
 		private:
-			bool init( const int width, const int height );
+			bool init( const int width, const int height, const bool show_guide );
 
 		private:
 			CardViewContainerT mCardViewContainer;
