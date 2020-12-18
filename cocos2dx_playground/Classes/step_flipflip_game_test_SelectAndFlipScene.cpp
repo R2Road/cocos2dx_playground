@@ -83,7 +83,7 @@ namespace step_flipflip
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
-			const game::StageConfig STAGE_CONFIG{ 5, 4, cocos2d::Size( 40.f, 54.f ) };
+			const game::StageConfig STAGE_CONFIG{ 6, 3, cocos2d::Size( 40.f, 54.f ) };
 
 			//
 			// Stage View Node
