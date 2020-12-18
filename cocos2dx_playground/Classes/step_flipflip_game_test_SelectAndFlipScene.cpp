@@ -83,11 +83,13 @@ namespace step_flipflip
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
+			const game::StageConfig STAGE_CONFIG{ 5, 4, cocos2d::Size( 40.f, 54.f ) };
+
 			//
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( game::STAGE_CONFIG );
+				auto stage_view_node = game::StageViewNode::create( STAGE_CONFIG );
 				stage_view_node->setPosition(
 					visibleCenter
 					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
@@ -99,7 +101,7 @@ namespace step_flipflip
 			// Card Selector Node
 			//
 			{
-				mCardSelectorNode = game::CardSelectorNode::create( game::STAGE_CONFIG );
+				mCardSelectorNode = game::CardSelectorNode::create( STAGE_CONFIG );
 				mCardSelectorNode->setPosition(
 					visibleCenter
 					- Vec2( mCardSelectorNode->getContentSize().width * 0.5f, mCardSelectorNode->getContentSize().height * 0.5f )
