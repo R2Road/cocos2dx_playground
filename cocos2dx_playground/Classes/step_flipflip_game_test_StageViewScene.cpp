@@ -11,6 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_flipflip_game_Constant.h"
 #include "step_flipflip_game_StageViewNode.h"
 #include "step_flipflip_RootScene.h"
 
@@ -84,7 +85,7 @@ namespace step_flipflip
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( 5, 4, true );
+				auto stage_view_node = game::StageViewNode::create( game::StageConfig{ 6, 5, Size( 40.f, 54.f ) }, true );
 				stage_view_node->setPosition(
 					visibleCenter
 					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )

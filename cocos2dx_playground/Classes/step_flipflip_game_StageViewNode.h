@@ -4,13 +4,13 @@
 
 #include "2d/CCNode.h"
 
-#include "step_flipflip_game_Constant.h"
-
 namespace step_flipflip
 {
 	namespace game
 	{
 		class CardViewNode;
+
+		struct StageConfig;
 
 		class StageViewNode : public cocos2d::Node
 		{
@@ -20,10 +20,10 @@ namespace step_flipflip
 			StageViewNode();
 
 		public:
-			static StageViewNode* create( const int width, const int height, const bool show_guide = false );
+			static StageViewNode* create( const StageConfig& stage_config, const bool show_guide = false );
 
 		private:
-			bool init( const int width, const int height, const bool show_guide );
+			bool init( const StageConfig& stage_config, const bool show_guide );
 
 		private:
 			CardViewContainerT mCardViewContainer;

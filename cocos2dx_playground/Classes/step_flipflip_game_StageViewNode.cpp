@@ -17,10 +17,10 @@ namespace step_flipflip
 		StageViewNode::StageViewNode() : mCardViewContainer()
 		{}
 
-		StageViewNode* StageViewNode::create( const int width, const int height, const bool show_guide )
+		StageViewNode* StageViewNode::create( const StageConfig& stage_config, const bool show_guide )
 		{
 			auto ret = new ( std::nothrow ) StageViewNode();
-			if( !ret || !ret->init( width, height, show_guide ) )
+			if( !ret || !ret->init( stage_config, show_guide ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -33,7 +33,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool StageViewNode::init( const int width, const int height, const bool show_guide )
+		bool StageViewNode::init( const StageConfig& stage_config, const bool show_guide )
 		{
 			if( !Node::init() )
 			{
@@ -43,7 +43,7 @@ namespace step_flipflip
 			//
 			// Content Size
 			//
-			setContentSize( Size( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * width, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * height ) );
+			setContentSize( Size( stage_config.CardAreaSize.width * stage_config.Width, stage_config.CardAreaSize.height * stage_config.Height ) );
 
 			//
 			// Background
@@ -58,15 +58,15 @@ namespace step_flipflip
 			// Build
 			//
 			{
-				const Vec2 pivot_position( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * 0.5f, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * 0.5f );
-				for( int current_h = 0; height > current_h; ++current_h )
+				const Vec2 pivot_position( stage_config.CardAreaSize.width * 0.5f, stage_config.CardAreaSize.height * 0.5f );
+				for( int current_h = 0; stage_config.Height > current_h; ++current_h )
 				{
-					for( int current_w = 0; width > current_w; ++current_w )
+					for( int current_w = 0; stage_config.Width > current_w; ++current_w )
 					{
 						auto card_view_node = CardViewNode::create( eCardType::A );
 						card_view_node->setPosition(
 							pivot_position
-							+ Vec2( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * current_w, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * current_h )
+							+ Vec2( stage_config.CardAreaSize.width * current_w, stage_config.CardAreaSize.height * current_h )
 						);
 						addChild( card_view_node );
 					}

@@ -87,7 +87,7 @@ namespace step_flipflip
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( game::STAGE_CONFIG.Width, game::STAGE_CONFIG.Height );
+				auto stage_view_node = game::StageViewNode::create( game::STAGE_CONFIG );
 				stage_view_node->setPosition(
 					visibleCenter
 					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
