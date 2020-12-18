@@ -4,6 +4,11 @@
 
 namespace step_flipflip
 {
+	namespace game
+	{
+		class StageViewNode;
+	}
+
 	namespace game_test
 	{
 		class StageViewScene : public cocos2d::Scene
@@ -27,6 +32,8 @@ namespace step_flipflip
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			game::StageViewNode* mStageViewNode;
 		};
 	}
 }
