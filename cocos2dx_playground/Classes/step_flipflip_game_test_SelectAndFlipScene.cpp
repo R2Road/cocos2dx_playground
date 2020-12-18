@@ -12,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "step_flipflip_game_CardSelectorNode.h"
+#include "step_flipflip_game_Constant.h"
 #include "step_flipflip_game_StageViewNode.h"
 #include "step_flipflip_RootScene.h"
 
@@ -86,7 +87,7 @@ namespace step_flipflip
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( 5, 4 );
+				auto stage_view_node = game::StageViewNode::create( game::STAGE_CONFIG.Width, game::STAGE_CONFIG.Height );
 				stage_view_node->setPosition(
 					visibleCenter
 					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
@@ -98,7 +99,7 @@ namespace step_flipflip
 			// Card Selector Node
 			//
 			{
-				mCardSelectorNode = game::CardSelectorNode::create( 5, 4 );
+				mCardSelectorNode = game::CardSelectorNode::create( game::STAGE_CONFIG.Width, game::STAGE_CONFIG.Height );
 				mCardSelectorNode->setPosition(
 					visibleCenter
 					- Vec2( mCardSelectorNode->getContentSize().width * 0.5f, mCardSelectorNode->getContentSize().height * 0.5f )
