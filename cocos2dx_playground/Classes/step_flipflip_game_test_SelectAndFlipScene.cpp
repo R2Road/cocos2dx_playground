@@ -23,7 +23,7 @@ namespace step_flipflip
 {
 	namespace game_test
 	{
-		SelectAndFlipScene::SelectAndFlipScene() : mKeyboardListener( nullptr ), mCardSelectorNode( nullptr )
+		SelectAndFlipScene::SelectAndFlipScene() : mKeyboardListener( nullptr ), mCardSelectorNode( nullptr ), mStageViewNode( nullptr )
 		{}
 
 		Scene* SelectAndFlipScene::create()
@@ -66,6 +66,11 @@ namespace step_flipflip
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow] : Move Indicator";
+				ss << std::endl;
+				ss << "[SpaceBar] : Flip";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -96,12 +101,12 @@ namespace step_flipflip
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( STAGE_CONFIG, stage_data );
-				stage_view_node->setPosition(
+				mStageViewNode = game::StageViewNode::create( STAGE_CONFIG, stage_data );
+				mStageViewNode->setPosition(
 					visibleCenter
-					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
+					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
 				);
-				addChild( stage_view_node );
+				addChild( mStageViewNode );
 			}
 
 			//
@@ -160,7 +165,7 @@ namespace step_flipflip
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE:
-				// do something~!
+				mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
 				break;
 			}
 		}
