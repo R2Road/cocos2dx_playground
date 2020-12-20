@@ -12,6 +12,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_flipflip_game_PlayScene.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
@@ -132,7 +133,7 @@ namespace step_flipflip
 
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
-				//_director->replaceScene( step_flipflip::game::PlayScene::create() );
+				_director->replaceScene( PlayScene::create() );
 				return;
 			}
 		}
