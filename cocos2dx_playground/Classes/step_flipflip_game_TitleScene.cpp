@@ -4,6 +4,7 @@
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
@@ -19,7 +20,7 @@ namespace step_flipflip
 {
 	namespace game
 	{
-		TitleScene::TitleScene() : mKeyboardListener( nullptr ), mRequestInputLabel( nullptr ), mElapsedTime( 0.f ) {}
+		TitleScene::TitleScene() : mKeyboardListener( nullptr ) {}
 
 		Scene* TitleScene::create()
 		{
@@ -85,18 +86,21 @@ namespace step_flipflip
 			// request input
 			//
 			{
-				mRequestInputLabel = Label::createWithTTF( "PRESS SPACE BAR", "fonts/NanumSquareR.ttf", 14 );
-				mRequestInputLabel->setPosition(
+				auto label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/NanumSquareR.ttf", 14 );
+				label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.23f
 				);
-				addChild( mRequestInputLabel, 1 );
-			}
+				addChild( label, 1 );
 
-			//
-			// Setup
-			//
-			schedule( schedule_selector( TitleScene::update4InputIndicator ) );
+				auto fadeOutAction = FadeOut::create( 0.8f );
+				auto fadeOutkDelay = DelayTime::create( 0.2f );
+				auto fadeInAction = FadeIn::create( 0.6f );
+				auto fadeInkDelay = DelayTime::create( 0.4f );
+				auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
+				auto blinkrepeat = RepeatForever::create( blinkSequence );
+				label->runAction( blinkrepeat );
+			}
 
 			return true;
 		}
@@ -117,22 +121,6 @@ namespace step_flipflip
 			mKeyboardListener = nullptr;
 
 			Scene::onExit();
-		}
-
-		void TitleScene::update4InputIndicator( float dt )
-		{
-			mElapsedTime += dt;
-
-			if( mRequestInputLabel->isVisible() && mElapsedTime > 0.8f )
-			{
-				mElapsedTime = 0.f;
-				mRequestInputLabel->setVisible( false );
-			}
-			else if( !mRequestInputLabel->isVisible() && mElapsedTime > 0.4f )
-			{
-				mElapsedTime = 0.f;
-				mRequestInputLabel->setVisible( true );
-			}
 		}
 
 		void TitleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

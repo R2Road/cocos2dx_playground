@@ -2,10 +2,6 @@
 
 #include "2d/CCScene.h"
 
-NS_CC_BEGIN
-	class Label;
-NS_CC_END
-
 namespace step_flipflip
 {
 	namespace game
@@ -26,16 +22,11 @@ namespace step_flipflip
 			void onEnter() override;
 			void onExit() override;
 
-			void update4InputIndicator( float dt );
-
 		private:
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-			cocos2d::Label* mRequestInputLabel;
-			float mElapsedTime;
 		};
 	}
 }
