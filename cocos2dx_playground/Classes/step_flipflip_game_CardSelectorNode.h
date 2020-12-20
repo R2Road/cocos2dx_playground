@@ -6,13 +6,15 @@ namespace step_flipflip
 {
 	namespace game
 	{
+		struct StageConfig;
+
 		class CardSelectorNode : public cocos2d::Node
 		{
 		private:
-			CardSelectorNode( const int width, const int height );
+			CardSelectorNode( const int width, const int height, const cocos2d::Size& card_area_size );
 
 		public:
-			static CardSelectorNode* create( const int width, const int height, const bool show_guide = false );
+			static CardSelectorNode* create( const StageConfig& stage_config, const bool show_guide = false );
 
 		private:
 			bool init( const bool show_guide );
@@ -25,6 +27,8 @@ namespace step_flipflip
 		private:
 			const int mWidth;
 			const int mHeight;
+			const cocos2d::Size mCardAreaSize;
+
 			const cocos2d::Vec2 mPivotPosition;
 
 			int mCurrentX;

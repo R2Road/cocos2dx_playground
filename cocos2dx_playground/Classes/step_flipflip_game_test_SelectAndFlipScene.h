@@ -7,6 +7,7 @@ namespace step_flipflip
 	namespace game
 	{
 		class CardSelectorNode;
+		class StageViewNode;
 	}
 
 	namespace game_test
@@ -34,6 +35,7 @@ namespace step_flipflip
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			game::CardSelectorNode* mCardSelectorNode;
+			game::StageViewNode* mStageViewNode;
 		};
 	}
 }

@@ -13,6 +13,7 @@
 
 #include "step_flipflip_game_CardSelectorNode.h"
 #include "step_flipflip_game_Constant.h"
+#include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
 #include "step_flipflip_RootScene.h"
 
@@ -22,7 +23,7 @@ namespace step_flipflip
 {
 	namespace game_test
 	{
-		SelectAndFlipScene::SelectAndFlipScene() : mKeyboardListener( nullptr ), mCardSelectorNode( nullptr )
+		SelectAndFlipScene::SelectAndFlipScene() : mKeyboardListener( nullptr ), mCardSelectorNode( nullptr ), mStageViewNode( nullptr )
 		{}
 
 		Scene* SelectAndFlipScene::create()
@@ -65,6 +66,11 @@ namespace step_flipflip
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[Arrow] : Move Indicator";
+				ss << std::endl;
+				ss << "[SpaceBar] : Flip";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -83,23 +89,31 @@ namespace step_flipflip
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 
+			const game::StageConfig STAGE_CONFIG{ 6, 3, cocos2d::Size( 40.f, 54.f ) };
+
+			//
+			// Stage Data
+			//
+			game::StageData stage_data;
+			stage_data.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height );
+
 			//
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( game::STAGE_CONFIG.Width, game::STAGE_CONFIG.Height );
-				stage_view_node->setPosition(
+				mStageViewNode = game::StageViewNode::create( STAGE_CONFIG, stage_data );
+				mStageViewNode->setPosition(
 					visibleCenter
-					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
+					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
 				);
-				addChild( stage_view_node );
+				addChild( mStageViewNode );
 			}
 
 			//
 			// Card Selector Node
 			//
 			{
-				mCardSelectorNode = game::CardSelectorNode::create( game::STAGE_CONFIG.Width, game::STAGE_CONFIG.Height );
+				mCardSelectorNode = game::CardSelectorNode::create( STAGE_CONFIG );
 				mCardSelectorNode->setPosition(
 					visibleCenter
 					- Vec2( mCardSelectorNode->getContentSize().width * 0.5f, mCardSelectorNode->getContentSize().height * 0.5f )
@@ -151,7 +165,7 @@ namespace step_flipflip
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE:
-				// do something~!
+				mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
 				break;
 			}
 		}

@@ -27,6 +27,8 @@
 #include "step_flipflip_game_test_StageViewScene.h"
 #include "step_flipflip_game_test_SelectAndFlipScene.h"
 
+#include "step_flipflip_game_TitleScene.h"
+
 USING_NS_CC;
 
 namespace step_flipflip
@@ -99,8 +101,14 @@ namespace step_flipflip
 			ss << "[E] " << step_flipflip::game_test::StageViewScene::getTitle();
 			ss << std::endl;
 			ss << "[R] " << step_flipflip::game_test::SelectAndFlipScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[SPACE] " << step_flipflip::game::TitleScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 11, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -183,6 +191,10 @@ namespace step_flipflip
 			break;
 		case EventKeyboard::KeyCode::KEY_R:
 			_director->replaceScene( step_flipflip::game_test::SelectAndFlipScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_SPACE:
+			_director->replaceScene( step_flipflip::game::TitleScene::create() );
 			break;
 
 		default:

@@ -1,4 +1,4 @@
-#include "step_clickclick_game_TitleScene.h"
+#include "step_flipflip_game_TitleScene.h"
 
 #include <new>
 #include <numeric>
@@ -12,15 +12,12 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "cpg_StringTable.h"
-
-#include "step_clickclick_game_ExplainScene.h"
-#include "step_clickclick_game_ResultScene.h"
-#include "step_clickclick_RootScene.h"
+#include "step_flipflip_game_PlayScene.h"
+#include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
 
-namespace step_clickclick
+namespace step_flipflip
 {
 	namespace game
 	{
@@ -58,10 +55,8 @@ namespace step_clickclick
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << "[F1] : Result Scene Test";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8 );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -75,7 +70,7 @@ namespace step_clickclick
 			// Title
 			//
 			{
-				auto title = Sprite::create( "textures/step_clickclick/step_clickclick_title.png" );
+				auto title = Sprite::create( "textures/step_typetype/step_typetype_title.png" );
 				title->getTexture()->setAliasTexParameters();
 				title->setScaleX( visibleSize.width / title->getContentSize().width );
 				title->setScaleY( visibleSize.height / title->getContentSize().height );
@@ -91,12 +86,12 @@ namespace step_clickclick
 			// request input
 			//
 			{
-				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", cpg::StringTable::GetFontPath(), 14 );
-				request_input_label->setPosition(
+				auto label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/NanumSquareR.ttf", 14 );
+				label->setPosition(
 					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.18f
+					, visibleOrigin.y + visibleSize.height * 0.23f
 				);
-				addChild( request_input_label, 1 );
+				addChild( label, 1 );
 
 				auto fadeOutAction = FadeOut::create( 0.8f );
 				auto fadeOutkDelay = DelayTime::create( 0.2f );
@@ -104,7 +99,7 @@ namespace step_clickclick
 				auto fadeInkDelay = DelayTime::create( 0.4f );
 				auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
 				auto blinkrepeat = RepeatForever::create( blinkSequence );
-				request_input_label->runAction( blinkrepeat );
+				label->runAction( blinkrepeat );
 			}
 
 			return true;
@@ -132,19 +127,13 @@ namespace step_clickclick
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				_director->replaceScene( step_clickclick::RootScene::create() );
+				_director->replaceScene( step_flipflip::RootScene::create() );
 				return;
 			}
 
 			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
-				_director->replaceScene( step_clickclick::game::ExplainScene::create() );
-				return;
-			}
-
-			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
-			{
-				_director->replaceScene( step_clickclick::game::ResultScene::create( 10101010 ) );
+				_director->replaceScene( PlayScene::create() );
 				return;
 			}
 		}

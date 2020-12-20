@@ -14,19 +14,20 @@ namespace step_flipflip
 {
 	namespace game
 	{
-		CardSelectorNode::CardSelectorNode( const int width, const int height ) :
+		CardSelectorNode::CardSelectorNode( const int width, const int height, const Size& card_area_size ) :
 			mWidth( width )
 			, mHeight( height )
-			, mPivotPosition( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * 0.5f, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * 0.5f )
+			, mCardAreaSize( card_area_size )
+			, mPivotPosition( card_area_size.width * 0.5f, card_area_size.height * 0.5f )
 
 			, mCurrentX( 0 )
 			, mCurrentY( 0 )
 			, mIndicator( nullptr )
 		{}
 
-		CardSelectorNode* CardSelectorNode::create( const int width, const int height, const bool show_guide )
+		CardSelectorNode* CardSelectorNode::create( const StageConfig& stage_config, const bool show_guide )
 		{
-			auto ret = new ( std::nothrow ) CardSelectorNode( width, height );
+			auto ret = new ( std::nothrow ) CardSelectorNode( stage_config.Width, stage_config.Height, stage_config.CardAreaSize );
 			if( !ret || !ret->init( show_guide ) )
 			{
 				delete ret;
@@ -50,7 +51,7 @@ namespace step_flipflip
 			//
 			// Content Size
 			//
-			setContentSize( Size( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * mWidth, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * mHeight ) );
+			setContentSize( Size( mCardAreaSize.width * mWidth, mCardAreaSize.height * mHeight ) );
 
 			//
 			// Debug Guide
@@ -90,7 +91,7 @@ namespace step_flipflip
 
 			mIndicator->setPosition(
 				mPivotPosition
-				+ Vec2( step_flipflip::game::STAGE_CONFIG.CardAreaSize.width * mCurrentX, step_flipflip::game::STAGE_CONFIG.CardAreaSize.height * mCurrentY )
+				+ Vec2( mCardAreaSize.width * mCurrentX, mCardAreaSize.height * mCurrentY )
 			);
 		}
 	}

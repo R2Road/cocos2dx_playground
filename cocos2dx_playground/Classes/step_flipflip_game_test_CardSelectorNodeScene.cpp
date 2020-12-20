@@ -13,6 +13,7 @@
 #include "base/ccUTF8.h"
 
 #include "step_flipflip_game_CardSelectorNode.h"
+#include "step_flipflip_game_Constant.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
@@ -113,7 +114,7 @@ namespace step_flipflip
 			// Card Selector Node
 			//
 			{
-				mCardSelectorNode = game::CardSelectorNode::create( 5, 4, true );
+				mCardSelectorNode = game::CardSelectorNode::create( game::StageConfig{ 5, 4, cocos2d::Size( 40.f, 54.f ) }, true );
 				mCardSelectorNode->setPosition(
 					visibleCenter
 					- Vec2( mCardSelectorNode->getContentSize().width * 0.5f, mCardSelectorNode->getContentSize().height * 0.5f )

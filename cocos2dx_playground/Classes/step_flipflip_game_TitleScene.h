@@ -6,18 +6,13 @@ namespace step_flipflip
 {
 	namespace game
 	{
-		class StageViewNode;
-	}
-
-	namespace game_test
-	{
-		class StageViewScene : public cocos2d::Scene
+		class TitleScene : public cocos2d::Scene
 		{
 		private:
-			StageViewScene();
+			TitleScene();
 
 		public:
-			static const char* getTitle() { return "Game Test : Stage View"; }
+			static const char* getTitle() { return "Game : Flip Flip"; }
 			static cocos2d::Scene* create();
 
 		private:
@@ -32,8 +27,6 @@ namespace step_flipflip
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-			game::StageViewNode* mStageViewNode;
 		};
 	}
 }

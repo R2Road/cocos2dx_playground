@@ -11,16 +11,23 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "step_flipflip_game_Constant.h"
+#include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
 
+namespace
+{
+	step_flipflip::game::StageConfig stage_config{ 6, 5, Size( 40.f, 54.f ) };
+}
+
 namespace step_flipflip
 {
 	namespace game_test
 	{
-		StageViewScene::StageViewScene() : mKeyboardListener( nullptr ) {}
+		StageViewScene::StageViewScene() : mKeyboardListener( nullptr ), mStageViewNode( nullptr ) {}
 
 		Scene* StageViewScene::create()
 		{
@@ -62,6 +69,9 @@ namespace step_flipflip
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[SPACE] : Flip All";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -81,15 +91,21 @@ namespace step_flipflip
 			}
 
 			//
+			// Stage Data
+			//
+			game::StageData stage_data;
+			stage_data.Reset( stage_config.Width, stage_config.Height );
+
+			//
 			// Stage View Node
 			//
 			{
-				auto stage_view_node = game::StageViewNode::create( 5, 4, true );
-				stage_view_node->setPosition(
+				mStageViewNode = game::StageViewNode::create( stage_config, stage_data, true );
+				mStageViewNode->setPosition(
 					visibleCenter
-					- Vec2( stage_view_node->getContentSize().width * 0.5f, stage_view_node->getContentSize().height * 0.5f )
+					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
 				);
-				addChild( stage_view_node );
+				addChild( mStageViewNode );
 			}
 
 			return true;
@@ -120,6 +136,17 @@ namespace step_flipflip
 			{
 				_director->replaceScene( step_flipflip::RootScene::create() );
 				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
+			{
+				for( int current_h = 0; stage_config.Height > current_h; ++current_h )
+				{
+					for( int current_w = 0; stage_config.Width > current_w; ++current_w )
+					{
+						mStageViewNode->Flip( current_w, current_h );
+					}
+				}
 			}
 		}
 	}

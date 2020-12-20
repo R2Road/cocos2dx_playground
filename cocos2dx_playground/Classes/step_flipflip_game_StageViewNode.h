@@ -4,28 +4,34 @@
 
 #include "2d/CCNode.h"
 
-#include "step_flipflip_game_Constant.h"
+#include "cpg_GridIndexConverter.h"
 
 namespace step_flipflip
 {
 	namespace game
 	{
 		class CardViewNode;
+		struct StageConfig;
+		class StageData;
 
 		class StageViewNode : public cocos2d::Node
 		{
 		private:
-			using CardViewContainerT = std::vector<CardViewNode>;
+			using CardViewContainerT = std::vector<CardViewNode*>;
 
 			StageViewNode();
 
 		public:
-			static StageViewNode* create( const int width, const int height, const bool show_guide = false );
+			static StageViewNode* create( const StageConfig& stage_config, const StageData& stage_data, const bool show_guide = false );
 
 		private:
-			bool init( const int width, const int height, const bool show_guide );
+			bool init( const StageConfig& stage_config, const StageData& stage_data, const bool show_guide );
+
+		public:
+			void Flip( const int x, const int y );
 
 		private:
+			cpg::GridIndexConverter mIndexConverter;
 			CardViewContainerT mCardViewContainer;
 		};
 	}
