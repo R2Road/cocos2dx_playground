@@ -62,7 +62,6 @@ namespace step_clickclick
 				ss << "[F1] : Result Scene Test";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
-				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x

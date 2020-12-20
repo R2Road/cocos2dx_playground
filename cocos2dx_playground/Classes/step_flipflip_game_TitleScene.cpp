@@ -56,7 +56,6 @@ namespace step_flipflip
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8 );
-				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
