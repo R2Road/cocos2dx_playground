@@ -70,7 +70,7 @@ namespace step_flipflip
 			// Title
 			//
 			{
-				auto title = Sprite::create( "textures/step_typetype/step_typetype_title.png" );
+				auto title = Sprite::create( "textures/step_flipflip/step_flipflip_title.png" );
 				title->getTexture()->setAliasTexParameters();
 				title->setScaleX( visibleSize.width / title->getContentSize().width );
 				title->setScaleY( visibleSize.height / title->getContentSize().height );
