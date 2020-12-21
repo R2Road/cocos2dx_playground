@@ -345,6 +345,24 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">step_flipflip/step_flipflip_title_card_0.png</key>
+            <key type="filename">step_flipflip/step_flipflip_title_card_1.png</key>
+            <key type="filename">step_flipflip/step_flipflip_title_card_2.png</key>
+            <key type="filename">step_flipflip/step_flipflip_title_card_3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,20,26,40</rect>
+                <key>scale9Paddings</key>
+                <rect>13,20,26,40</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">step_mole/step_mole_effect_attack_01_0.png</key>
             <key type="filename">step_mole/step_mole_effect_attack_01_1.png</key>
             <key type="filename">step_mole/step_mole_effect_attack_01_2.png</key>
@@ -782,6 +800,10 @@
             <filename>step_flipflip/step_flipflip_card_front_2.png</filename>
             <filename>step_flipflip/step_flipflip_card_back_0.png</filename>
             <filename>step_flipflip/step_flipflip_card_indicator.png</filename>
+            <filename>step_flipflip/step_flipflip_title_card_0.png</filename>
+            <filename>step_flipflip/step_flipflip_title_card_1.png</filename>
+            <filename>step_flipflip/step_flipflip_title_card_2.png</filename>
+            <filename>step_flipflip/step_flipflip_title_card_3.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
