@@ -3,6 +3,7 @@
 #include <new>
 #include <numeric>
 #include <sstream>
+#include <vector>
 
 #include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
@@ -67,18 +68,18 @@ namespace step_flipflip
 
 
 			//
-			// Title
+			// Title Background
 			//
 			{
-				auto title = Sprite::create( "textures/step_flipflip/step_flipflip_title.png" );
-				title->getTexture()->setAliasTexParameters();
-				title->setScaleX( visibleSize.width / title->getContentSize().width );
-				title->setScaleY( visibleSize.height / title->getContentSize().height );
-				title->setPosition( Vec2(
+				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_title.png" );
+				sprite->getTexture()->setAliasTexParameters();
+				sprite->setScaleX( visibleSize.width / sprite->getContentSize().width );
+				sprite->setScaleY( visibleSize.height / sprite->getContentSize().height );
+				sprite->setPosition( Vec2(
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
-				addChild( title, 0 );
+				addChild( sprite, std::numeric_limits<int>::min() );
 			}
 
 
@@ -91,7 +92,7 @@ namespace step_flipflip
 					visibleOrigin.x + visibleSize.width * 0.5f
 					, visibleOrigin.y + visibleSize.height * 0.23f
 				);
-				addChild( label, 1 );
+				addChild( label, std::numeric_limits<int>::max() );
 
 				auto fadeOutAction = FadeOut::create( 0.8f );
 				auto fadeOutkDelay = DelayTime::create( 0.2f );
