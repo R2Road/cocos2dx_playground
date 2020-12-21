@@ -9,6 +9,7 @@
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -17,6 +18,20 @@
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const std::vector<std::pair<char*, char*>> Title_Word_Sprite_Frames = {
+		{ "step_flipflip_title_card_0.png", "step_flipflip_card_front_0.png" }
+		, { "step_flipflip_title_card_1.png", "step_flipflip_card_front_1.png" }
+		, { "step_flipflip_title_card_2.png", "step_flipflip_card_front_2.png" }
+		, { "step_flipflip_title_card_3.png", "step_flipflip_card_front_3.png" }
+		, { "step_flipflip_title_card_0.png", "step_flipflip_card_front_4.png" }
+		, { "step_flipflip_title_card_1.png", "step_flipflip_card_front_0.png" }
+		, { "step_flipflip_title_card_2.png", "step_flipflip_card_front_1.png" }
+		, { "step_flipflip_title_card_3.png", "step_flipflip_card_front_2.png" }
+	};
+}
 
 namespace step_flipflip
 {
@@ -80,6 +95,89 @@ namespace step_flipflip
 					, visibleOrigin.y + visibleSize.height * 0.5f
 				) );
 				addChild( sprite, std::numeric_limits<int>::min() );
+			}
+
+
+			//
+			// Title Words
+			//
+			{
+				const Vec2 pivotPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.54f )
+				);
+
+				const float WordWidth = 42.f;
+				const float WordSpacing = 2.f;
+				const float WordBlockWidth = WordWidth + WordSpacing;
+
+				const float WordsWidth = ( WordBlockWidth ) * 3;
+				const float WordsMargin = 20.f;
+
+
+				int i = 0;
+				for( const auto& w : Title_Word_Sprite_Frames )
+				{
+					auto sprite = Sprite::createWithSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( w.first ) );
+					if( 4 > i )
+					{
+						sprite->setPosition(
+							pivotPosition
+							+ Vec2( -WordsMargin, 20.f )
+							+ Vec2( -WordsWidth, 20.f )
+							+ Vec2( i * WordBlockWidth, 0.f )
+						);
+					}
+					else
+					{
+						sprite->setPosition(
+							pivotPosition
+							+ Vec2( WordsMargin, -20.f )
+							+ Vec2( ( i - 4 ) * WordBlockWidth, 0.f )
+						);
+					}
+					addChild( sprite );
+
+					//
+					// Action
+					//
+					{
+						// Part 1
+						auto delay_time_1 = DelayTime::create( 3.f );
+
+						auto scale_to_1 = ScaleTo::create( 0.1f, 0.f, 1.f );
+
+						auto animation_object_1 = Animation::create();
+						animation_object_1->setDelayPerUnit( 0.01f );
+						animation_object_1->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( w.second ) );
+						auto animate_1 = Animate::create( animation_object_1 );
+
+						auto scale_to_2 = ScaleTo::create( 0.1f, 1.f, 1.f );
+
+						// Part 2
+						auto delay_time_2 = DelayTime::create( 0.6f );
+
+						auto scale_to_3 = ScaleTo::create( 0.1f, 0.f, 1.f );
+
+						auto animation_object_2 = Animation::create();
+						animation_object_2->setDelayPerUnit( 0.01f );
+						animation_object_2->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( w.first ) );
+						auto animate_2 = Animate::create( animation_object_2 );
+
+						auto scale_to_4 = ScaleTo::create( 0.1f, 1.f, 1.f );
+
+						// Run
+						auto sequence = Sequence::create(
+							delay_time_1, scale_to_1, animate_1, scale_to_2
+							, delay_time_2, scale_to_3, animate_2, scale_to_4
+							, nullptr
+						);
+						auto repeat_forever = RepeatForever::create( sequence );
+						sprite->runAction( repeat_forever );
+					}
+
+					++i;
+				}
 			}
 
 
