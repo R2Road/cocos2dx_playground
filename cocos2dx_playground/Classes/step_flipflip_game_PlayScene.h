@@ -30,6 +30,7 @@ namespace step_flipflip
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			int mAudioID_forBGM;
 
 			CardSelectorNode* mCardSelectorNode;
 			StageViewNode* mStageViewNode;

@@ -6,6 +6,7 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "audio/include/AudioEngine.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -25,6 +26,8 @@ namespace step_flipflip
 	{
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
+			, mAudioID_forBGM( -1 )
+
 			, mCardSelectorNode( nullptr )
 			, mStageViewNode( nullptr )
 		{}
@@ -76,6 +79,23 @@ namespace step_flipflip
 			}
 
 			//
+			// BGM License
+			//
+			{
+				auto label = Label::createWithTTF(
+					"BGM : Somewhere in the Elevator\nAuthor : Peachtea@You're Perfect Studio\nLicense : CC-BY 4.0\nFrom : https://opengameart.org/"
+					, "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::RIGHT
+				);
+				label->setColor( Color3B::GREEN );
+				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				label->setPosition( Vec2(
+					visibleOrigin.x + visibleSize.width
+					, visibleOrigin.y + visibleSize.height
+				) );
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Stage Setup
 			//
 			const game::StageConfig STAGE_CONFIG{ 6, 3, cocos2d::Size( 40.f, 54.f ) };
@@ -113,6 +133,8 @@ namespace step_flipflip
 		{
 			Scene::onEnter();
 
+			mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
+
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
@@ -120,6 +142,8 @@ namespace step_flipflip
 		}
 		void PlayScene::onExit()
 		{
+			experimental::AudioEngine::stop( mAudioID_forBGM );
+
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
