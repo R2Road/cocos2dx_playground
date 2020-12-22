@@ -6,6 +6,9 @@ namespace step_flipflip
 {
 	namespace game
 	{
+		class CardSelectorNode;
+		class StageViewNode;
+
 		class PlayScene : public cocos2d::Scene
 		{
 		private:
@@ -27,6 +30,10 @@ namespace step_flipflip
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+			int mAudioID_forBGM;
+
+			CardSelectorNode* mCardSelectorNode;
+			StageViewNode* mStageViewNode;
 		};
 	}
 }
