@@ -158,6 +158,26 @@ namespace step_flipflip
 				_director->replaceScene( TitleScene::create() );
 				return;
 			}
+
+			switch( keycode )
+			{
+			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+				mCardSelectorNode->MoveIndicator( -1, 0 );
+				break;
+			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+				mCardSelectorNode->MoveIndicator( 1, 0 );
+				break;
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+				mCardSelectorNode->MoveIndicator( 0, 1 );
+				break;
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+				mCardSelectorNode->MoveIndicator( 0, -1 );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_SPACE:
+				mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+				break;
+			}
 		}
 	}
 }
