@@ -26,6 +26,8 @@ namespace step_flipflip
 			bool init( const eCardType card_type );
 
 		public:
+			bool IsOpen() const { return mbFrontSide; }
+
 			void Flip();
 
 		private:

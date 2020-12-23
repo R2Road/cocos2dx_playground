@@ -84,6 +84,16 @@ namespace step_flipflip
 			return true;
 		}
 
+		void StageViewNode::HideAll()
+		{
+			for( auto& c : mCardViewContainer )
+			{
+				if( c->IsOpen() )
+				{
+					c->Flip();
+				}
+			}
+		}
 		void StageViewNode::Flip( const int x, const int y )
 		{
 			mCardViewContainer[mIndexConverter.To_Linear( x, y )]->Flip();
