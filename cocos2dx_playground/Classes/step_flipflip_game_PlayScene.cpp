@@ -225,18 +225,28 @@ namespace step_flipflip
 				++mStep;
 				break;
 			case eStep::Game_DecideCard:
-				mFlipedCount = 0;
-				if( mStageData.Get( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.Get( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
+				mElapsedTime += dt;
+				if( 1.f < mElapsedTime )
 				{
-					mStep = eStep::Game_Success;
-				}
-				else
-				{
-					mStep = eStep::Game_Failed;
+					mElapsedTime = 0.f;
+
+					mFlipedCount = 0;
+					if( mStageData.Get( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.Get( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
+					{
+						mStep = eStep::Game_Success;
+					}
+					else
+					{
+						mStep = eStep::Game_Failed;
+					}
 				}
 				break;
 			case eStep::Game_Failed:
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
+				for( auto& p : mFlipedPoints )
+				{
+					mStageViewNode->Flip( p.X, p.Y );
+				}
 				mStep = eStep::Game_ShowIndicator;
 				break;
 			case eStep::Game_Success:
