@@ -18,6 +18,7 @@ namespace step_flipflip
 				ShowHint,
 				Sleep4ShowHint,
 				HideHint,
+				Sleep4HideHint,
 				Game,
 			};
 

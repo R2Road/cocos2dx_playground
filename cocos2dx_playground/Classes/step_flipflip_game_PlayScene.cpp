@@ -138,6 +138,7 @@ namespace step_flipflip
 			//
 			// Setup
 			//
+			mCardSelectorNode->setVisible( false );
 			schedule( schedule_selector( PlayScene::Update4GameStart ) );
 
 			return true;
@@ -195,8 +196,17 @@ namespace step_flipflip
 				mStageViewNode->HideAll();
 				++mStep;
 				break;
+			case eStep::Sleep4HideHint:
+				mElapsedTime += dt;
+				if( 1.f < mElapsedTime )
+				{
+					++mStep;
+					mElapsedTime = 0.f;
+				}
+				break;
 
 			case eStep::Game:
+				mCardSelectorNode->setVisible( true );
 				++mStep;
 				break;
 			}
