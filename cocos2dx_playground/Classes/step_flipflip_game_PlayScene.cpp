@@ -41,7 +41,14 @@ namespace step_flipflip
 			, mStep( eStep::Enter )
 			, mElapsedTime( 0.f )
 			, mbInputEnable( false )
-		{}
+			, mFlipedCount( 0 )
+			, mFlipedPoints()
+		{
+			for( auto& p : mFlipedPoints )
+			{
+				p.Clear();
+			}
+		}
 
 		Scene* PlayScene::create()
 		{
@@ -211,6 +218,19 @@ namespace step_flipflip
 				mbInputEnable = true;
 				++mStep;
 				break;
+
+			//case eStep::Game_SelectCard:
+			case eStep::Game_HideIndicator:
+				mCardSelectorNode->setVisible( false );
+				++mStep;
+				break;
+			case eStep::Game_DecideCard:
+				++mStep;
+				break;
+			case eStep::Game_ShowIndicator:
+				mCardSelectorNode->setVisible( true );
+				++mStep;
+				break;
 			}
 		}
 
@@ -242,6 +262,12 @@ namespace step_flipflip
 
 				case EventKeyboard::KeyCode::KEY_SPACE:
 					mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+					mFlipedPoints[mFlipedCount] = { mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() };
+					++mFlipedCount;
+					if( 2 <= mFlipedCount )
+					{
+						mStep = eStep::Game_HideIndicator;
+					}
 					break;
 				}
 			}

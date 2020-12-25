@@ -20,7 +20,11 @@ namespace step_flipflip
 				HideHint,
 				Sleep4HideHint,
 				Game_Start,
+
 				Game_SelectCard,
+				Game_HideIndicator,
+				Game_DecideCard,
+				Game_ShowIndicator,
 			};
 
 			PlayScene();
@@ -51,6 +55,18 @@ namespace step_flipflip
 			int mStep;
 			float mElapsedTime;
 			bool mbInputEnable;
+			int mFlipedCount;
+			struct Point
+			{
+				int X = -1;
+				int Y = -1;
+
+				void Clear() {
+					X = -1;
+					Y = -1;
+				}
+			};
+			Point mFlipedPoints[2];
 		};
 	}
 }
