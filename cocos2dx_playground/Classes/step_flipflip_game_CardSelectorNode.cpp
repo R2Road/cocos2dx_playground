@@ -58,7 +58,7 @@ namespace step_flipflip
 			//
 			if( show_guide )
 			{
-				auto layer = LayerColor::create( Color4B::GRAY, getContentSize().width, getContentSize().height );
+				auto layer = LayerColor::create( Color4B::BLACK, getContentSize().width, getContentSize().height );
 				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
