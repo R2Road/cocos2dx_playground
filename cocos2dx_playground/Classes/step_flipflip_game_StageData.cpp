@@ -1,8 +1,8 @@
 #include "step_flipflip_game_StageData.h"
 
+#include <chrono>
 #include <cstdlib> // div
-
-
+#include <random>
 
 USING_NS_CC;
 
@@ -18,7 +18,7 @@ namespace step_flipflip
 			return mContainer[mIndexConverter.To_Linear( x, y )];
 		}
 
-		bool StageData::Reset( const int width, const int height )
+		bool StageData::Reset( const int width, const int height, const int shuffle_count )
 		{
 			CCASSERT( 0 < width, "0 >= width" );
 			CCASSERT( 0 < height, "0 >= height" );
@@ -56,6 +56,18 @@ namespace step_flipflip
 				if( end_card_type == current_card_type )
 				{
 					current_card_type = static_cast<int>( eCardType::FIRST );
+				}
+			}
+
+			// Shuffle x 2
+			if( 0 < shuffle_count )
+			{
+				const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+				std::default_random_engine random_engine( seed );
+
+				for( int i = 0; shuffle_count > i; ++i )
+				{
+					std::shuffle( mContainer.begin(), mContainer.end(), random_engine );
 				}
 			}
 

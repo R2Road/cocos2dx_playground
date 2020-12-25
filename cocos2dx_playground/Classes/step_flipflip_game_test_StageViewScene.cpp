@@ -132,7 +132,7 @@ namespace step_flipflip
 			// Stage Data
 			//
 			game::StageData stage_data;
-			stage_data.Reset( stage_config.Width, stage_config.Height );
+			stage_data.Reset( stage_config.Width, stage_config.Height, 3 );
 
 			//
 			// Stage View Node

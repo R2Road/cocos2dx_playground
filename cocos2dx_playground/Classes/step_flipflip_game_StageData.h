@@ -21,7 +21,7 @@ namespace step_flipflip
 			const ContainerT& GetContainer() const { return mContainer; }
 			eCardType Get( const int x, const int y ) const;
 
-			bool Reset( const int width, const int height );
+			bool Reset( const int width, const int height, const int shuffle_count );
 
 		private:
 			cpg::GridIndexConverter mIndexConverter;
