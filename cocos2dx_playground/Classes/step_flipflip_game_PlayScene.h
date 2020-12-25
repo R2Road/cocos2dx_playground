@@ -12,6 +12,16 @@ namespace step_flipflip
 		class PlayScene : public cocos2d::Scene
 		{
 		private:
+			enum eStep
+			{
+				Enter,
+				ShowHint,
+				Sleep4ShowHint,
+				HideHint,
+				Sleep4HideHint,
+				Game,
+			};
+
 			PlayScene();
 
 		public:
@@ -25,6 +35,8 @@ namespace step_flipflip
 			void onEnter() override;
 			void onExit() override;
 
+			void Update4GameStart( float dt );
+
 		private:
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
@@ -34,6 +46,9 @@ namespace step_flipflip
 
 			CardSelectorNode* mCardSelectorNode;
 			StageViewNode* mStageViewNode;
+
+			int mStep;
+			float mElapsedTime;
 		};
 	}
 }

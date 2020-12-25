@@ -51,7 +51,7 @@ namespace step_flipflip
 			//
 			if( show_guide )
 			{
-				auto layer = LayerColor::create( Color4B::GREEN, getContentSize().width, getContentSize().height );
+				auto layer = LayerColor::create( Color4B::BLACK, getContentSize().width, getContentSize().height );
 				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
@@ -84,6 +84,16 @@ namespace step_flipflip
 			return true;
 		}
 
+		void StageViewNode::HideAll()
+		{
+			for( auto& c : mCardViewContainer )
+			{
+				if( c->IsOpen() )
+				{
+					c->Flip();
+				}
+			}
+		}
 		void StageViewNode::Flip( const int x, const int y )
 		{
 			mCardViewContainer[mIndexConverter.To_Linear( x, y )]->Flip();

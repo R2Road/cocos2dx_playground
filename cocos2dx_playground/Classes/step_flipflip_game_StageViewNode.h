@@ -28,6 +28,7 @@ namespace step_flipflip
 			bool init( const StageConfig& stage_config, const StageData& stage_data, const bool show_guide );
 
 		public:
+			void HideAll();
 			void Flip( const int x, const int y );
 
 		private:

@@ -11,6 +11,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_Random.h"
+
 #include "step_flipflip_game_CardSelectorNode.h"
 #include "step_flipflip_game_Constant.h"
 #include "step_flipflip_game_StageData.h"
@@ -19,6 +21,11 @@
 #include "step_flipflip_game_TitleScene.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const step_flipflip::game::StageConfig STAGE_CONFIG{ 6, 3, cocos2d::Size( 40.f, 54.f ) };
+}
 
 namespace step_flipflip
 {
@@ -30,6 +37,9 @@ namespace step_flipflip
 
 			, mCardSelectorNode( nullptr )
 			, mStageViewNode( nullptr )
+
+			, mStep( eStep::Enter )
+			, mElapsedTime( 0.f )
 		{}
 
 		Scene* PlayScene::create()
@@ -98,9 +108,8 @@ namespace step_flipflip
 			//
 			// Stage Setup
 			//
-			const game::StageConfig STAGE_CONFIG{ 6, 3, cocos2d::Size( 40.f, 54.f ) };
 			game::StageData stage_data;
-			stage_data.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height );
+			stage_data.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height, 1 );
 
 			//
 			// Stage View Node
@@ -125,6 +134,12 @@ namespace step_flipflip
 				);
 				addChild( mCardSelectorNode, 1 );
 			}
+
+			//
+			// Setup
+			//
+			mCardSelectorNode->setVisible( false );
+			schedule( schedule_selector( PlayScene::Update4GameStart ) );
 
 			return true;
 		}
@@ -151,12 +166,82 @@ namespace step_flipflip
 			Scene::onExit();
 		}
 
+
+		void PlayScene::Update4GameStart( float dt )
+		{
+			switch( mStep )
+			{
+			case eStep::Enter:
+				++mStep;
+				break;
+
+			case eStep::ShowHint:
+				for( int current_h = 0; STAGE_CONFIG.Height > current_h; ++current_h )
+				{
+					mStageViewNode->Flip( cpg::Random::GetInt( 0, STAGE_CONFIG.Width - 1 ), current_h );
+				}
+				++mStep;
+				mElapsedTime = 0.f;
+				break;
+			case eStep::Sleep4ShowHint:
+				mElapsedTime += dt;
+				if( 2.f < mElapsedTime )
+				{
+					++mStep;
+					mElapsedTime = 0.f;
+				}
+				break;
+
+			case eStep::HideHint:
+				mStageViewNode->HideAll();
+				++mStep;
+				break;
+			case eStep::Sleep4HideHint:
+				mElapsedTime += dt;
+				if( 1.f < mElapsedTime )
+				{
+					++mStep;
+					mElapsedTime = 0.f;
+				}
+				break;
+
+			case eStep::Game:
+				mCardSelectorNode->setVisible( true );
+				++mStep;
+				break;
+			}
+		}
+
+
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
 				_director->replaceScene( TitleScene::create() );
 				return;
+			}
+
+			if( eStep::Game == mStep )
+			{
+				switch( keycode )
+				{
+				case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+					mCardSelectorNode->MoveIndicator( -1, 0 );
+					break;
+				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+					mCardSelectorNode->MoveIndicator( 1, 0 );
+					break;
+				case EventKeyboard::KeyCode::KEY_UP_ARROW:
+					mCardSelectorNode->MoveIndicator( 0, 1 );
+					break;
+				case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+					mCardSelectorNode->MoveIndicator( 0, -1 );
+					break;
+
+				case EventKeyboard::KeyCode::KEY_SPACE:
+					mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+					break;
+				}
 			}
 		}
 	}
