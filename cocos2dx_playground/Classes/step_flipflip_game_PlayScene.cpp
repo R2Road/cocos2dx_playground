@@ -225,11 +225,27 @@ namespace step_flipflip
 				++mStep;
 				break;
 			case eStep::Game_DecideCard:
-				++mStep;
+				mFlipedCount = 0;
+				if( mStageData.Get( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.Get( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
+				{
+					mStep = eStep::Game_Success;
+				}
+				else
+				{
+					mStep = eStep::Game_Failed;
+				}
+				break;
+			case eStep::Game_Failed:
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
+				mStep = eStep::Game_ShowIndicator;
+				break;
+			case eStep::Game_Success:
+				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
+				mStep = eStep::Game_ShowIndicator;
 				break;
 			case eStep::Game_ShowIndicator:
 				mCardSelectorNode->setVisible( true );
-				++mStep;
+				mStep = eStep::Game_SelectCard;
 				break;
 			}
 		}
