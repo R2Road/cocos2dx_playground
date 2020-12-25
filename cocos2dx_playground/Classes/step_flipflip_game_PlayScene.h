@@ -2,6 +2,8 @@
 
 #include "2d/CCScene.h"
 
+#include "step_flipflip_game_StageData.h"
+
 namespace step_flipflip
 {
 	namespace game
@@ -49,6 +51,7 @@ namespace step_flipflip
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			int mAudioID_forBGM;
 
+			game::StageData mStageData;
 			CardSelectorNode* mCardSelectorNode;
 			StageViewNode* mStageViewNode;
 

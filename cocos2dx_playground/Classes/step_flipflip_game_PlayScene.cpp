@@ -35,6 +35,7 @@ namespace step_flipflip
 			mKeyboardListener( nullptr )
 			, mAudioID_forBGM( -1 )
 
+			, mStageData()
 			, mCardSelectorNode( nullptr )
 			, mStageViewNode( nullptr )
 
@@ -116,14 +117,13 @@ namespace step_flipflip
 			//
 			// Stage Setup
 			//
-			game::StageData stage_data;
-			stage_data.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height, 1 );
+			mStageData.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height, 1 );
 
 			//
 			// Stage View Node
 			//
 			{
-				mStageViewNode = game::StageViewNode::create( STAGE_CONFIG, stage_data );
+				mStageViewNode = game::StageViewNode::create( STAGE_CONFIG, mStageData );
 				mStageViewNode->setPosition(
 					visibleCenter
 					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
