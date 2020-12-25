@@ -25,6 +25,7 @@ namespace step_flipflip
 
 				Game_SelectCard,
 				Game_HideIndicator,
+				Game_Wait4DecideCard,
 				Game_DecideCard,
 				Game_Failed,
 				Game_Success,

@@ -224,9 +224,15 @@ namespace step_flipflip
 				mCardSelectorNode->setVisible( false );
 				++mStep;
 				break;
+			case eStep::Game_Wait4DecideCard:
+				if( !mStageViewNode->isFlipping() )
+				{
+					++mStep;
+				}
+				break;
 			case eStep::Game_DecideCard:
 				mElapsedTime += dt;
-				if( 1.f < mElapsedTime )
+				if( 0.3f < mElapsedTime )
 				{
 					mElapsedTime = 0.f;
 
