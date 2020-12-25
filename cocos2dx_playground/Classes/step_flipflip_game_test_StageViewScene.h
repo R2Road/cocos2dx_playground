@@ -28,6 +28,7 @@ namespace step_flipflip
 			void onExit() override;
 
 		private:
+			void BuildStageView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:

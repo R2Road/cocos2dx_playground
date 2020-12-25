@@ -72,6 +72,9 @@ namespace step_flipflip
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[SPACE] : Flip All";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[R] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -91,22 +94,9 @@ namespace step_flipflip
 			}
 
 			//
-			// Stage Data
+			// Setup
 			//
-			game::StageData stage_data;
-			stage_data.Reset( stage_config.Width, stage_config.Height );
-
-			//
-			// Stage View Node
-			//
-			{
-				mStageViewNode = game::StageViewNode::create( stage_config, stage_data, true );
-				mStageViewNode->setPosition(
-					visibleCenter
-					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
-				);
-				addChild( mStageViewNode );
-			}
+			BuildStageView();
 
 			return true;
 		}
@@ -130,6 +120,35 @@ namespace step_flipflip
 		}
 
 
+		void StageViewScene::BuildStageView()
+		{
+			if( mStageViewNode )
+			{
+				removeChild( mStageViewNode );
+				mStageViewNode = nullptr;
+			}
+
+			//
+			// Stage Data
+			//
+			game::StageData stage_data;
+			stage_data.Reset( stage_config.Width, stage_config.Height );
+
+			//
+			// Stage View Node
+			//
+			{
+				mStageViewNode = game::StageViewNode::create( stage_config, stage_data, true );
+				mStageViewNode->setPosition(
+					_director->getVisibleOrigin()
+					+ Vec2( _director->getVisibleSize().width * 0.5f, _director->getVisibleSize().height * 0.5f )
+					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
+				);
+				addChild( mStageViewNode );
+			}
+		}
+
+
 		void StageViewScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
@@ -147,6 +166,13 @@ namespace step_flipflip
 						mStageViewNode->Flip( current_w, current_h );
 					}
 				}
+
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_R == keycode )
+			{
+				BuildStageView();
 			}
 		}
 	}
