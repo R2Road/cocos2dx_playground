@@ -22,7 +22,7 @@ USING_NS_CC;
 
 namespace
 {
-	step_flipflip::game::StageConfig stage_config{ 6, 5, Size( 40.f, 54.f ) };
+	step_flipflip::game::StageConfig stage_config{ 7, 4, Size( 40.f, 54.f ) };
 }
 
 namespace step_flipflip
@@ -79,12 +79,13 @@ namespace step_flipflip
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[SPACE] : Flip All";
-				ss << std::endl;
-				ss << std::endl;
 				ss << "[Arrow U/D] : Shuffle Count Up/Down";
 				ss << std::endl;
+				ss << std::endl;
 				ss << "[R] : Reset";
+				ss << std::endl;
+				ss << std::endl;
+				ss << "[SPACE] : Flip All";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
