@@ -223,7 +223,7 @@ namespace step_flipflip
 				return;
 			}
 
-			if( eStep::Game == mStep )
+			if( eStep::Game_SelectCard == mStep )
 			{
 				switch( keycode )
 				{

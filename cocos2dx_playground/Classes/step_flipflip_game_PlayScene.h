@@ -20,7 +20,7 @@ namespace step_flipflip
 				HideHint,
 				Sleep4HideHint,
 				Game_Start,
-				Game,
+				Game_SelectCard,
 			};
 
 			PlayScene();
