@@ -121,7 +121,7 @@ namespace step_flipflip
 			// Setup
 			//
 			updateShuffleCountView();
-			BuildStageView();
+			buildStageView();
 
 			return true;
 		}
@@ -145,7 +145,7 @@ namespace step_flipflip
 		}
 
 
-		void StageViewScene::BuildStageView()
+		void StageViewScene::buildStageView()
 		{
 			if( mStageViewNode )
 			{
@@ -208,7 +208,7 @@ namespace step_flipflip
 				break;
 
 			case EventKeyboard::KeyCode::KEY_R:
-				BuildStageView();
+				buildStageView();
 				break;
 			}
 		}
