@@ -40,6 +40,7 @@ namespace step_flipflip
 
 			, mStep( eStep::Enter )
 			, mElapsedTime( 0.f )
+			, mbInputEnable( false )
 		{}
 
 		Scene* PlayScene::create()
@@ -205,8 +206,9 @@ namespace step_flipflip
 				}
 				break;
 
-			case eStep::Game:
+			case eStep::Game_Start:
 				mCardSelectorNode->setVisible( true );
+				mbInputEnable = true;
 				++mStep;
 				break;
 			}

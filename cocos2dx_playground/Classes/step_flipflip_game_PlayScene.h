@@ -19,6 +19,7 @@ namespace step_flipflip
 				Sleep4ShowHint,
 				HideHint,
 				Sleep4HideHint,
+				Game_Start,
 				Game,
 			};
 
@@ -49,6 +50,7 @@ namespace step_flipflip
 
 			int mStep;
 			float mElapsedTime;
+			bool mbInputEnable;
 		};
 	}
 }
