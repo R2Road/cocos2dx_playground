@@ -2,6 +2,10 @@
 
 #include "2d/CCScene.h"
 
+NS_CC_BEGIN
+	class Label;
+NS_CC_END
+
 namespace step_flipflip
 {
 	namespace game
@@ -29,12 +33,15 @@ namespace step_flipflip
 
 		private:
 			void BuildStageView();
+			void updateShuffleCountView();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			game::StageViewNode* mStageViewNode;
+			int mShuffleCount;
+			cocos2d::Label* mShuffleCountLabel;
 		};
 	}
 }

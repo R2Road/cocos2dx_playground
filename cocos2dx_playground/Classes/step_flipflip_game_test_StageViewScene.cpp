@@ -1,5 +1,6 @@
 #include "step_flipflip_game_test_StageViewScene.h"
 
+#include <algorithm>
 #include <new>
 #include <numeric>
 #include <sstream>
@@ -10,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "step_flipflip_game_Constant.h"
 #include "step_flipflip_game_StageData.h"
@@ -27,7 +29,13 @@ namespace step_flipflip
 {
 	namespace game_test
 	{
-		StageViewScene::StageViewScene() : mKeyboardListener( nullptr ), mStageViewNode( nullptr ) {}
+		StageViewScene::StageViewScene() :
+			mKeyboardListener( nullptr )
+
+			, mStageViewNode( nullptr )
+			, mShuffleCount( 0 )
+			, mShuffleCountLabel( nullptr )
+		{}
 
 		Scene* StageViewScene::create()
 		{
@@ -74,6 +82,8 @@ namespace step_flipflip
 				ss << "[SPACE] : Flip All";
 				ss << std::endl;
 				ss << std::endl;
+				ss << "[Arrow U/D] : Shuffle Count Up/Down";
+				ss << std::endl;
 				ss << "[R] : Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
@@ -94,8 +104,23 @@ namespace step_flipflip
 			}
 
 			//
+			// Shuffle Count View
+			//
+			{
+				mShuffleCountLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::LEFT );
+				mShuffleCountLabel->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				mShuffleCountLabel->setColor( Color3B::GREEN );
+				mShuffleCountLabel->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
+				addChild( mShuffleCountLabel, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Setup
 			//
+			updateShuffleCountView();
 			BuildStageView();
 
 			return true;
@@ -132,7 +157,7 @@ namespace step_flipflip
 			// Stage Data
 			//
 			game::StageData stage_data;
-			stage_data.Reset( stage_config.Width, stage_config.Height, 3 );
+			stage_data.Reset( stage_config.Width, stage_config.Height, mShuffleCount );
 
 			//
 			// Stage View Node
@@ -147,6 +172,10 @@ namespace step_flipflip
 				addChild( mStageViewNode );
 			}
 		}
+		void StageViewScene::updateShuffleCountView()
+		{
+			mShuffleCountLabel->setString( StringUtils::format( "Shuffle Count : %d", mShuffleCount ) );
+		}
 
 
 		void StageViewScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
@@ -157,8 +186,9 @@ namespace step_flipflip
 				return;
 			}
 
-			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
+			switch( keycode )
 			{
+			case EventKeyboard::KeyCode::KEY_SPACE:
 				for( int current_h = 0; stage_config.Height > current_h; ++current_h )
 				{
 					for( int current_w = 0; stage_config.Width > current_w; ++current_w )
@@ -166,13 +196,20 @@ namespace step_flipflip
 						mStageViewNode->Flip( current_w, current_h );
 					}
 				}
+				break;
 
-				return;
-			}
+			case EventKeyboard::KeyCode::KEY_UP_ARROW:
+				++mShuffleCount;
+				updateShuffleCountView();
+				break;
+			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+				mShuffleCount = std::max( 0, mShuffleCount - 1 );
+				updateShuffleCountView();
+				break;
 
-			if( EventKeyboard::KeyCode::KEY_R == keycode )
-			{
+			case EventKeyboard::KeyCode::KEY_R:
 				BuildStageView();
+				break;
 			}
 		}
 	}
