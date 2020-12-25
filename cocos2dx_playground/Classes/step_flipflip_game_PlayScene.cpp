@@ -221,24 +221,27 @@ namespace step_flipflip
 				return;
 			}
 
-			switch( keycode )
+			if( eStep::Game == mStep )
 			{
-			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-				mCardSelectorNode->MoveIndicator( -1, 0 );
-				break;
-			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-				mCardSelectorNode->MoveIndicator( 1, 0 );
-				break;
-			case EventKeyboard::KeyCode::KEY_UP_ARROW:
-				mCardSelectorNode->MoveIndicator( 0, 1 );
-				break;
-			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-				mCardSelectorNode->MoveIndicator( 0, -1 );
-				break;
+				switch( keycode )
+				{
+				case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+					mCardSelectorNode->MoveIndicator( -1, 0 );
+					break;
+				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+					mCardSelectorNode->MoveIndicator( 1, 0 );
+					break;
+				case EventKeyboard::KeyCode::KEY_UP_ARROW:
+					mCardSelectorNode->MoveIndicator( 0, 1 );
+					break;
+				case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+					mCardSelectorNode->MoveIndicator( 0, -1 );
+					break;
 
-			case EventKeyboard::KeyCode::KEY_SPACE:
-				mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
-				break;
+				case EventKeyboard::KeyCode::KEY_SPACE:
+					mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+					break;
+				}
 			}
 		}
 	}
