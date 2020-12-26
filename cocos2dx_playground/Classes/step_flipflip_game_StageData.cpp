@@ -18,7 +18,7 @@ namespace step_flipflip
 			return mContainer[mIndexConverter.To_Linear( x, y )];
 		}
 
-		bool StageData::Reset( const int width, const int height, const int shuffle_count )
+		bool StageData::Reset( const int width, const int height, const int shuffle_limit )
 		{
 			CCASSERT( 0 < width, "0 >= width" );
 			CCASSERT( 0 < height, "0 >= height" );
@@ -59,13 +59,13 @@ namespace step_flipflip
 				}
 			}
 
-			// Shuffle x 2
-			if( 0 < shuffle_count )
+			// Shuffle x n
+			if( 0 < shuffle_limit )
 			{
 				const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 				std::default_random_engine random_engine( seed );
 
-				for( int i = 0; shuffle_count > i; ++i )
+				for( int current_count = 0; shuffle_limit > current_count; ++current_count )
 				{
 					std::shuffle( mContainer.begin(), mContainer.end(), random_engine );
 				}

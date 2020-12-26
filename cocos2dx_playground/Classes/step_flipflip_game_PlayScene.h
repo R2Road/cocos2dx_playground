@@ -2,6 +2,8 @@
 
 #include "2d/CCScene.h"
 
+#include "step_flipflip_game_StageData.h"
+
 namespace step_flipflip
 {
 	namespace game
@@ -19,7 +21,15 @@ namespace step_flipflip
 				Sleep4ShowHint,
 				HideHint,
 				Sleep4HideHint,
-				Game,
+				Game_Start,
+
+				Game_SelectCard,
+				Game_HideIndicator,
+				Game_Wait4DecideCard,
+				Game_DecideCard,
+				Game_Failed,
+				Game_Success,
+				Game_ShowIndicator,
 			};
 
 			PlayScene();
@@ -44,11 +54,25 @@ namespace step_flipflip
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			int mAudioID_forBGM;
 
+			game::StageData mStageData;
 			CardSelectorNode* mCardSelectorNode;
 			StageViewNode* mStageViewNode;
 
 			int mStep;
 			float mElapsedTime;
+			bool mbInputEnable;
+			int mFlipedCount;
+			struct Point
+			{
+				int X = -1;
+				int Y = -1;
+
+				void Clear() {
+					X = -1;
+					Y = -1;
+				}
+			};
+			Point mFlipedPoints[2];
 		};
 	}
 }

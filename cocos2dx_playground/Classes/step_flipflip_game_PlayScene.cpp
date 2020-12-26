@@ -35,12 +35,21 @@ namespace step_flipflip
 			mKeyboardListener( nullptr )
 			, mAudioID_forBGM( -1 )
 
+			, mStageData()
 			, mCardSelectorNode( nullptr )
 			, mStageViewNode( nullptr )
 
 			, mStep( eStep::Enter )
 			, mElapsedTime( 0.f )
-		{}
+			, mbInputEnable( false )
+			, mFlipedCount( 0 )
+			, mFlipedPoints()
+		{
+			for( auto& p : mFlipedPoints )
+			{
+				p.Clear();
+			}
+		}
 
 		Scene* PlayScene::create()
 		{
@@ -108,14 +117,13 @@ namespace step_flipflip
 			//
 			// Stage Setup
 			//
-			game::StageData stage_data;
-			stage_data.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height, 1 );
+			mStageData.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height, 1 );
 
 			//
 			// Stage View Node
 			//
 			{
-				mStageViewNode = game::StageViewNode::create( STAGE_CONFIG, stage_data );
+				mStageViewNode = game::StageViewNode::create( STAGE_CONFIG, mStageData );
 				mStageViewNode->setPosition(
 					visibleCenter
 					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
@@ -205,9 +213,55 @@ namespace step_flipflip
 				}
 				break;
 
-			case eStep::Game:
+			case eStep::Game_Start:
 				mCardSelectorNode->setVisible( true );
+				mbInputEnable = true;
 				++mStep;
+				break;
+
+			//case eStep::Game_SelectCard:
+			case eStep::Game_HideIndicator:
+				mCardSelectorNode->setVisible( false );
+				++mStep;
+				break;
+			case eStep::Game_Wait4DecideCard:
+				if( !mStageViewNode->isFlipping() )
+				{
+					++mStep;
+				}
+				break;
+			case eStep::Game_DecideCard:
+				mElapsedTime += dt;
+				if( 0.3f < mElapsedTime )
+				{
+					mElapsedTime = 0.f;
+
+					mFlipedCount = 0;
+					if( mStageData.Get( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.Get( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
+					{
+						mStep = eStep::Game_Success;
+					}
+					else
+					{
+						mStep = eStep::Game_Failed;
+					}
+				}
+				break;
+			case eStep::Game_Failed:
+				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
+				for( auto& p : mFlipedPoints )
+				{
+					mStageViewNode->Flip( p.X, p.Y );
+				}
+				mStep = eStep::Game_ShowIndicator;
+				break;
+			case eStep::Game_Success:
+				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
+				mStep = eStep::Game_ShowIndicator;
+				break;
+			case eStep::Game_ShowIndicator:
+				mCardSelectorNode->setVisible( true );
+				mStep = eStep::Game_SelectCard;
 				break;
 			}
 		}
@@ -221,7 +275,7 @@ namespace step_flipflip
 				return;
 			}
 
-			if( eStep::Game == mStep )
+			if( eStep::Game_SelectCard == mStep )
 			{
 				switch( keycode )
 				{
@@ -240,6 +294,12 @@ namespace step_flipflip
 
 				case EventKeyboard::KeyCode::KEY_SPACE:
 					mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+					mFlipedPoints[mFlipedCount] = { mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() };
+					++mFlipedCount;
+					if( 2 <= mFlipedCount )
+					{
+						mStep = eStep::Game_HideIndicator;
+					}
 					break;
 				}
 			}

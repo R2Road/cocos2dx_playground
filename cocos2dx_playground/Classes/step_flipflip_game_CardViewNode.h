@@ -27,6 +27,7 @@ namespace step_flipflip
 
 		public:
 			bool IsOpen() const { return mbFrontSide; }
+			bool IsFlipping() const;
 
 			void Flip();
 

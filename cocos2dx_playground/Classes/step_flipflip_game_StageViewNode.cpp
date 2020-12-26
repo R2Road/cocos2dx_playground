@@ -15,7 +15,11 @@ namespace step_flipflip
 {
 	namespace game
 	{
-		StageViewNode::StageViewNode() : mIndexConverter( 1, 1 ), mCardViewContainer()
+		StageViewNode::StageViewNode() :
+			mIndexConverter( 1, 1 )
+			, mCardViewContainer()
+			, mLastFlipedX( -1 )
+			, mLastFlipedY( -1 )
 		{}
 
 		StageViewNode* StageViewNode::create( const StageConfig& stage_config, const StageData& stage_data, const bool show_guide )
@@ -96,7 +100,14 @@ namespace step_flipflip
 		}
 		void StageViewNode::Flip( const int x, const int y )
 		{
-			mCardViewContainer[mIndexConverter.To_Linear( x, y )]->Flip();
+			mLastFlipedX = x;
+			mLastFlipedY = y;
+
+			mCardViewContainer[mIndexConverter.To_Linear( mLastFlipedX, mLastFlipedY )]->Flip();
+		}
+		bool StageViewNode::isFlipping()
+		{
+			return mCardViewContainer[mIndexConverter.To_Linear( mLastFlipedX, mLastFlipedY )]->IsFlipping();
 		}
 	}
 }

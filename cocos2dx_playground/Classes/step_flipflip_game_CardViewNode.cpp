@@ -107,9 +107,14 @@ namespace step_flipflip
 			return true;
 		}
 
+		bool CardViewNode::IsFlipping() const
+		{
+			return nullptr != mView->getActionByTag( TAG_Action );
+		}
+
 		void CardViewNode::Flip()
 		{
-			if( mView->getActionByTag( TAG_Action ) )
+			if( IsFlipping() )
 			{
 				return;
 			}

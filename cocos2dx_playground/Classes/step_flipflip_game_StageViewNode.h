@@ -30,10 +30,14 @@ namespace step_flipflip
 		public:
 			void HideAll();
 			void Flip( const int x, const int y );
+			bool isFlipping();
 
 		private:
 			cpg::GridIndexConverter mIndexConverter;
 			CardViewContainerT mCardViewContainer;
+
+			int mLastFlipedX;
+			int mLastFlipedY;
 		};
 	}
 }
