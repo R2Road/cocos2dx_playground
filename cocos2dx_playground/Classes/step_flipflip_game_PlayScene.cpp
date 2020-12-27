@@ -257,10 +257,6 @@ namespace step_flipflip
 				mStep = eStep::Game_ShowIndicator;
 				break;
 			case eStep::Game_Success:
-				for( auto& p : mFlipedPoints )
-				{
-					mStageData.SetStatus( eCardStatus::Done, p.X, p.Y );
-				}
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				mStep = eStep::Game_ShowIndicator;
 				break;

@@ -24,7 +24,6 @@ namespace step_flipflip
 		{
 			Close,
 			Open,
-			Done,
 		};
 
 		struct StageConfig
