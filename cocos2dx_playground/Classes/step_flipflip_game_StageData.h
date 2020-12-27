@@ -24,7 +24,6 @@ namespace step_flipflip
 
 			StageData();
 
-			const ContainerT& GetContainer() const { return mContainer; }
 			eCardType Get( const int x, const int y ) const;
 
 			eCardStatus GetStatus( const int x, const int y ) const;
