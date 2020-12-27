@@ -14,7 +14,13 @@ namespace step_flipflip
 		class StageData
 		{
 		public:
-			using ContainerT = std::vector<eCardType>;
+			struct CardInfo
+			{
+				eCardType Type = eCardType::A;
+				eCardStatus Status = eCardStatus::Hide;
+			};
+
+			using ContainerT = std::vector<CardInfo>;
 
 			StageData();
 

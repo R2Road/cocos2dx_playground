@@ -15,7 +15,7 @@ namespace step_flipflip
 
 		eCardType StageData::Get( const int x, const int y ) const
 		{
-			return mContainer[mIndexConverter.To_Linear( x, y )];
+			return mContainer[mIndexConverter.To_Linear( x, y )].Type;
 		}
 
 		bool StageData::Reset( const int width, const int height, const int shuffle_limit )
@@ -47,9 +47,9 @@ namespace step_flipflip
 			std::size_t i = 0;
 			while( container_size > i )
 			{
-				mContainer[i] = static_cast<eCardType>( current_card_type );
+				mContainer[i].Type = static_cast<eCardType>( current_card_type );
 				++i;
-				mContainer[i] = static_cast<eCardType>( current_card_type );
+				mContainer[i].Type = static_cast<eCardType>( current_card_type );
 				++i;
 
 				++current_card_type;
