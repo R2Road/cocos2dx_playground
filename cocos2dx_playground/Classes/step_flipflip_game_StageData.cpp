@@ -18,6 +18,15 @@ namespace step_flipflip
 			return mContainer[mIndexConverter.To_Linear( x, y )].Type;
 		}
 
+		eCardStatus StageData::GetStatus( const int x, const int y ) const
+		{
+			return mContainer[mIndexConverter.To_Linear( x, y )].Status;
+		}
+		void StageData::SetStatus( const eCardStatus status, const int x, const int y )
+		{
+			mContainer[mIndexConverter.To_Linear( x, y )].Status = status;
+		}
+
 		bool StageData::Reset( const int width, const int height, const int shuffle_limit )
 		{
 			CCASSERT( 0 < width, "0 >= width" );

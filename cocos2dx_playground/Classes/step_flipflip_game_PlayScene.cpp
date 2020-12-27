@@ -251,11 +251,16 @@ namespace step_flipflip
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				for( auto& p : mFlipedPoints )
 				{
+					mStageData.SetStatus( eCardStatus::Close, p.X, p.Y );
 					mStageViewNode->Flip( p.X, p.Y );
 				}
 				mStep = eStep::Game_ShowIndicator;
 				break;
 			case eStep::Game_Success:
+				for( auto& p : mFlipedPoints )
+				{
+					mStageData.SetStatus( eCardStatus::Done, p.X, p.Y );
+				}
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				mStep = eStep::Game_ShowIndicator;
 				break;
@@ -293,12 +298,21 @@ namespace step_flipflip
 					break;
 
 				case EventKeyboard::KeyCode::KEY_SPACE:
-					mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
-					mFlipedPoints[mFlipedCount] = { mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() };
-					++mFlipedCount;
-					if( 2 <= mFlipedCount )
+					if( eCardStatus::Close == mStageData.GetStatus( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() ) )
 					{
-						mStep = eStep::Game_HideIndicator;
+						mStageData.SetStatus( eCardStatus::Open, mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+
+						mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+						mFlipedPoints[mFlipedCount] = { mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() };
+						++mFlipedCount;
+						if( 2 <= mFlipedCount )
+						{
+							mStep = eStep::Game_HideIndicator;
+						}
+					}
+					else
+					{
+						experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 					}
 					break;
 				}

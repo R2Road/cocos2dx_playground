@@ -17,7 +17,7 @@ namespace step_flipflip
 			struct CardInfo
 			{
 				eCardType Type = eCardType::A;
-				eCardStatus Status = eCardStatus::Hide;
+				eCardStatus Status = eCardStatus::Close;
 			};
 
 			using ContainerT = std::vector<CardInfo>;
@@ -26,6 +26,9 @@ namespace step_flipflip
 
 			const ContainerT& GetContainer() const { return mContainer; }
 			eCardType Get( const int x, const int y ) const;
+
+			eCardStatus GetStatus( const int x, const int y ) const;
+			void SetStatus( const eCardStatus status, const int x, const int y );
 
 			bool Reset( const int width, const int height, const int shuffle_limit );
 

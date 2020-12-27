@@ -22,9 +22,9 @@ namespace step_flipflip
 
 		enum class eCardStatus
 		{
-			Hide,
-			Show,
 			Close,
+			Open,
+			Done,
 		};
 
 		struct StageConfig
