@@ -13,7 +13,7 @@ namespace step_flipflip
 		StageData::StageData() : mIndexConverter( 1, 1 ), mContainer()
 		{}
 
-		eCardType StageData::Get( const int x, const int y ) const
+		eCardType StageData::GetType( const int x, const int y ) const
 		{
 			return mContainer[mIndexConverter.To_Linear( x, y )].Type;
 		}

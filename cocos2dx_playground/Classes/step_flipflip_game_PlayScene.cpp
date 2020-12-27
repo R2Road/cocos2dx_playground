@@ -237,7 +237,7 @@ namespace step_flipflip
 					mElapsedTime = 0.f;
 
 					mFlipedCount = 0;
-					if( mStageData.Get( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.Get( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
+					if( mStageData.GetType( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.GetType( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
 					{
 						mStep = eStep::Game_Success;
 					}

@@ -73,7 +73,7 @@ namespace step_flipflip
 				{
 					for( int current_w = 0; stage_config.Width > current_w; ++current_w )
 					{
-						auto card_view_node = CardViewNode::create( stage_data.Get( current_w, current_h ) );
+						auto card_view_node = CardViewNode::create( stage_data.GetType( current_w, current_h ) );
 						card_view_node->setPosition(
 							pivot_position
 							+ Vec2( stage_config.CardAreaSize.width * current_w, stage_config.CardAreaSize.height * current_h )

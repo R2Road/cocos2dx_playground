@@ -24,7 +24,7 @@ namespace step_flipflip
 
 			StageData();
 
-			eCardType Get( const int x, const int y ) const;
+			eCardType GetType( const int x, const int y ) const;
 
 			eCardStatus GetStatus( const int x, const int y ) const;
 			void SetStatus( const eCardStatus status, const int x, const int y );
