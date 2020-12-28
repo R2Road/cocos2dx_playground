@@ -57,7 +57,7 @@ namespace step_flipflip
 			// Background
 			//
 			{
-				mLayer = LayerColor::create( Color4B::BLUE, visibleSize.width, 50.f );
+				mLayer = LayerColor::create( Color4B::BLUE, visibleSize.width, 40.f );
 				mLayer->setPosition( -mLayer->getContentSize().width * 0.5f, -mLayer->getContentSize().height * 0.5f );
 				mLayer->setCascadeOpacityEnabled( true );
 				addChild( mLayer, std::numeric_limits<int>::min() );
