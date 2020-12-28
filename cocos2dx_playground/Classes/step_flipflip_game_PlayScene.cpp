@@ -156,8 +156,6 @@ namespace step_flipflip
 		{
 			Scene::onEnter();
 
-			mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
-
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PlayScene::onKeyPressed, this );
@@ -212,6 +210,7 @@ namespace step_flipflip
 				break;
 
 			case eStep::Game_Start:
+				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
 				mCardSelectorNode->setVisible( true );
 				mbInputEnable = true;
 				++mStep;
