@@ -22,7 +22,7 @@ namespace step_flipflip
 		public:
 			int GetIndicatorX() const { return mCurrentX; }
 			int GetIndicatorY() const { return mCurrentY; }
-			void MoveIndicator( const int move_amount_x, const int move_amount_y );
+			void MoveIndicator( const int move_amount_x, const int move_amount_y, const bool bPlay_SFX );
 
 		private:
 			const int mWidth;

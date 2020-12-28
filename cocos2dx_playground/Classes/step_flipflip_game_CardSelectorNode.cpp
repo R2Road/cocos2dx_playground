@@ -3,6 +3,7 @@
 #include <new>
 #include <numeric>
 
+#include "audio/include/AudioEngine.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 
@@ -73,12 +74,12 @@ namespace step_flipflip
 			//
 			// Setup
 			//
-			MoveIndicator( 0, 0 );
+			MoveIndicator( 0, 0, false );
 
 			return true;
 		}
 
-		void CardSelectorNode::MoveIndicator( const int move_amount_x, const int move_amount_y )
+		void CardSelectorNode::MoveIndicator( const int move_amount_x, const int move_amount_y, const bool bPlay_SFX )
 		{
 			mCurrentX = std::max(
 				std::min( mCurrentX + move_amount_x, mWidth - 1 )
@@ -93,6 +94,11 @@ namespace step_flipflip
 				mPivotPosition
 				+ Vec2( mCardAreaSize.width * mCurrentX, mCardAreaSize.height * mCurrentY )
 			);
+
+			if( bPlay_SFX )
+			{
+				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
+			}
 		}
 	}
 }

@@ -152,16 +152,16 @@ namespace step_flipflip
 				return;
 
 			case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-				mCardSelectorNode->MoveIndicator( -1, 0 );
+				mCardSelectorNode->MoveIndicator( -1, 0, true );
 				break;
 			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-				mCardSelectorNode->MoveIndicator( 1, 0 );
+				mCardSelectorNode->MoveIndicator( 1, 0, true );
 				break;
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
-				mCardSelectorNode->MoveIndicator( 0, 1 );
+				mCardSelectorNode->MoveIndicator( 0, 1, true );
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-				mCardSelectorNode->MoveIndicator( 0, -1 );
+				mCardSelectorNode->MoveIndicator( 0, -1, true );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE:
