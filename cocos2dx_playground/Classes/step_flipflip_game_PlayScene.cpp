@@ -43,7 +43,6 @@ namespace step_flipflip
 
 			, mStep( eStep::Enter )
 			, mElapsedTime( 0.f )
-			, mbInputEnable( false )
 			, mFlipedCount( 0 )
 			, mFlipedPoints()
 		{
@@ -242,7 +241,6 @@ namespace step_flipflip
 			case eStep::Game_Start:
 				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
 				mCardSelectorNode->setVisible( true );
-				mbInputEnable = true;
 				++mStep;
 				break;
 

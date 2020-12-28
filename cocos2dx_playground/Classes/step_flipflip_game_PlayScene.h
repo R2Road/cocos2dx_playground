@@ -64,7 +64,6 @@ namespace step_flipflip
 
 			int mStep;
 			float mElapsedTime;
-			bool mbInputEnable;
 			int mFlipedCount;
 			struct Point
 			{
