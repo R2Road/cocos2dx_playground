@@ -885,6 +885,12 @@
     <ClCompile Include="..\Classes\step_flipflip_game_PlayScene.cpp">
       <Filter>src\scene\step_02_flipflip\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_game_test_MessageViewNodeScene.cpp">
+      <Filter>src\scene\step_02_flipflip\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_flipflip_game_MessageViewNode.cpp">
+      <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1596,6 +1602,12 @@
       <Filter>src\scene\step_02_flipflip\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_game_PlayScene.h">
+      <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_game_test_MessageViewNodeScene.h">
+      <Filter>src\scene\step_02_flipflip\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_flipflip_game_MessageViewNode.h">
       <Filter>src\scene\step_02_flipflip\game</Filter>
     </ClInclude>
   </ItemGroup>
