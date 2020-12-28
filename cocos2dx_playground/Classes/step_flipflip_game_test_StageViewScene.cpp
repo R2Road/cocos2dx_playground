@@ -22,7 +22,7 @@ USING_NS_CC;
 
 namespace
 {
-	step_flipflip::game::StageConfig stage_config{ 7, 4, Size( 40.f, 54.f ) };
+	step_flipflip::game::StageConfig stage_config{ 8, 4, Size( 36.f, 50.f ) };
 }
 
 namespace step_flipflip
