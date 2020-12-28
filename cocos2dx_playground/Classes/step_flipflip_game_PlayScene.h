@@ -18,12 +18,16 @@ namespace step_flipflip
 			enum eStep
 			{
 				Enter,
+
 				Message4Hint,
 				Sleep4Message4Hint,
 				ShowHint,
 				Sleep4ShowHint,
 				HideHint,
 				Sleep4HideHint,
+
+				Message4Game,
+				Sleep4Message4Game,
 				Game_Start,
 
 				Game_SelectCard,

@@ -238,6 +238,21 @@ namespace step_flipflip
 				}
 				break;
 
+			case eStep::Message4Game:
+				mMessageViewNode->ShowMessage( "Find The Same Card Pair" );
+				++mStep;
+				break;
+			case eStep::Sleep4Message4Game:
+				if( !mMessageViewNode->isMessaging() )
+				{
+					mElapsedTime += dt;
+					if( 0.5f < mElapsedTime )
+					{
+						++mStep;
+						mElapsedTime = 0.f;
+					}
+				}
+				break;
 			case eStep::Game_Start:
 				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
 				mCardSelectorNode->setVisible( true );
