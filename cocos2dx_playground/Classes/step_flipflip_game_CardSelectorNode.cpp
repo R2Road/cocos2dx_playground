@@ -3,9 +3,9 @@
 #include <new>
 #include <numeric>
 
-#include "audio/include/AudioEngine.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
+#include "audio/include/AudioEngine.h"
 
 #include "step_flipflip_game_Constant.h"
 
