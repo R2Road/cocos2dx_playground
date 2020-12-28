@@ -21,8 +21,8 @@ namespace step_flipflip
 			, mCardAreaSize( card_area_size )
 			, mPivotPosition( card_area_size.width * 0.5f, card_area_size.height * 0.5f )
 
-			, mCurrentX( 0 )
-			, mCurrentY( 0 )
+			, mCurrentX( -1 )
+			, mCurrentY( -1 )
 			, mIndicator( nullptr )
 		{}
 
@@ -81,6 +81,9 @@ namespace step_flipflip
 
 		void CardSelectorNode::MoveIndicator( const int move_amount_x, const int move_amount_y, const bool bPlay_SFX )
 		{
+			const auto last_x = mCurrentX;
+			const auto last_y = mCurrentY;
+
 			mCurrentX = std::max(
 				std::min( mCurrentX + move_amount_x, mWidth - 1 )
 				, 0
@@ -90,14 +93,24 @@ namespace step_flipflip
 				, 0
 			);
 
-			mIndicator->setPosition(
-				mPivotPosition
-				+ Vec2( mCardAreaSize.width * mCurrentX, mCardAreaSize.height * mCurrentY )
-			);
-
-			if( bPlay_SFX )
+			if( last_x != mCurrentX || last_y != mCurrentY )
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
+				mIndicator->setPosition(
+					mPivotPosition
+					+ Vec2( mCardAreaSize.width * mCurrentX, mCardAreaSize.height * mCurrentY )
+				);
+
+				if( bPlay_SFX )
+				{
+					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
+				}
+			}
+			else
+			{
+				if( bPlay_SFX )
+				{
+					experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
+				}
 			}
 		}
 	}
