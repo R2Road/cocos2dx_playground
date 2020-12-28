@@ -205,11 +205,9 @@ namespace step_flipflip
 				++mStep;
 				break;
 			case eStep::Sleep4HideHint:
-				mElapsedTime += dt;
-				if( 1.f < mElapsedTime )
+				if( !mStageViewNode->isFlipping() )
 				{
 					++mStep;
-					mElapsedTime = 0.f;
 				}
 				break;
 
