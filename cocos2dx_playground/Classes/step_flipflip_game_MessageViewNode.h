@@ -5,7 +5,6 @@
 NS_CC_BEGIN
 	class Action;
 	class Label;
-	class Layer;
 NS_CC_END
 
 namespace step_flipflip
@@ -30,7 +29,7 @@ namespace step_flipflip
 			void ShowMessage( const char* str );
 
 		private:
-			cocos2d::Layer* mLayer;
+			cocos2d::Node* mLayer;
 			cocos2d::Label* mLabel;
 			cocos2d::Action* mFadeInOutAction;
 		};
