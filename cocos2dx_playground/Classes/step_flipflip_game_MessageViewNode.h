@@ -32,7 +32,7 @@ namespace step_flipflip
 		private:
 			cocos2d::Layer* mLayer;
 			cocos2d::Label* mLabel;
-			cocos2d::Action* mBlinkAction;
+			cocos2d::Action* mFadeInOutAction;
 		};
 	}
 }

@@ -21,11 +21,11 @@ namespace step_flipflip
 		MessageViewNode::MessageViewNode() :
 			mLayer( nullptr )
 			, mLabel( nullptr )
-			, mBlinkAction( nullptr )
+			, mFadeInOutAction( nullptr )
 		{}
 		MessageViewNode::~MessageViewNode()
 		{
-			mBlinkAction->release();
+			mFadeInOutAction->release();
 		}
 
 		MessageViewNode* MessageViewNode::create()
@@ -79,8 +79,8 @@ namespace step_flipflip
 				auto fadeInAction = FadeIn::create( 0.4f );
 				auto fadeInkDelay = DelayTime::create( 1.2f );
 				auto fadeOutAction = FadeOut::create( 0.1f );
-				mBlinkAction = Sequence::create( fadeInAction, fadeInkDelay, fadeOutAction, nullptr );
-				mBlinkAction->retain();
+				mFadeInOutAction = Sequence::create( fadeInAction, fadeInkDelay, fadeOutAction, nullptr );
+				mFadeInOutAction->retain();
 			}
 
 			//
@@ -104,7 +104,7 @@ namespace step_flipflip
 			}
 
 			mLabel->setString( str );
-			mLayer->runAction( mBlinkAction );
+			mLayer->runAction( mFadeInOutAction );
 		}
 	}
 }
