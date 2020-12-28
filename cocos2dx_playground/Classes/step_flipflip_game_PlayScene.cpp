@@ -15,6 +15,7 @@
 
 #include "step_flipflip_game_CardSelectorNode.h"
 #include "step_flipflip_game_Constant.h"
+#include "step_flipflip_game_MessageViewNode.h"
 #include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
 
@@ -37,6 +38,7 @@ namespace step_flipflip
 
 			, mStageData()
 			, mCardSelectorNode( nullptr )
+			, mMessageViewNode( nullptr )
 			, mStageViewNode( nullptr )
 
 			, mStep( eStep::Enter )
@@ -144,6 +146,15 @@ namespace step_flipflip
 			}
 
 			//
+			// Message View Node
+			//
+			{
+				mMessageViewNode = game::MessageViewNode::create();
+				mMessageViewNode->setPosition( visibleCenter );
+				addChild( mMessageViewNode, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Setup
 			//
 			mCardSelectorNode->setVisible( false );
@@ -181,13 +192,22 @@ namespace step_flipflip
 				++mStep;
 				break;
 
+			case eStep::Message4Hint:
+				mMessageViewNode->ShowMessage( "Hint" );
+				++mStep;
+				break;
+			case eStep::Sleep4Message4Hint:
+				if( !mMessageViewNode->isMessaging() )
+				{
+					++mStep;
+				}
+				break;
 			case eStep::ShowHint:
 				for( int current_h = 0; STAGE_CONFIG.Height > current_h; ++current_h )
 				{
 					mStageViewNode->Flip( cpg::Random::GetInt( 0, STAGE_CONFIG.Width - 1 ), current_h );
 				}
 				++mStep;
-				mElapsedTime = 0.f;
 				break;
 			case eStep::Sleep4ShowHint:
 				mElapsedTime += dt;

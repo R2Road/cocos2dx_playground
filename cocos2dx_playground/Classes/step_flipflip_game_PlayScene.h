@@ -9,6 +9,7 @@ namespace step_flipflip
 	namespace game
 	{
 		class CardSelectorNode;
+		class MessageViewNode;
 		class StageViewNode;
 
 		class PlayScene : public cocos2d::Scene
@@ -17,6 +18,8 @@ namespace step_flipflip
 			enum eStep
 			{
 				Enter,
+				Message4Hint,
+				Sleep4Message4Hint,
 				ShowHint,
 				Sleep4ShowHint,
 				HideHint,
@@ -56,6 +59,7 @@ namespace step_flipflip
 
 			game::StageData mStageData;
 			CardSelectorNode* mCardSelectorNode;
+			MessageViewNode* mMessageViewNode;
 			StageViewNode* mStageViewNode;
 
 			int mStep;
