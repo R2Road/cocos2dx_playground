@@ -205,11 +205,9 @@ namespace step_flipflip
 				++mStep;
 				break;
 			case eStep::Sleep4HideHint:
-				mElapsedTime += dt;
-				if( 1.f < mElapsedTime )
+				if( !mStageViewNode->isFlipping() )
 				{
 					++mStep;
-					mElapsedTime = 0.f;
 				}
 				break;
 
@@ -237,7 +235,7 @@ namespace step_flipflip
 					mElapsedTime = 0.f;
 
 					mFlipedCount = 0;
-					if( mStageData.Get( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.Get( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
+					if( mStageData.GetType( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.GetType( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
 					{
 						mStep = eStep::Game_Success;
 					}
@@ -251,6 +249,7 @@ namespace step_flipflip
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				for( auto& p : mFlipedPoints )
 				{
+					mStageData.SetStatus( eCardStatus::Close, p.X, p.Y );
 					mStageViewNode->Flip( p.X, p.Y );
 				}
 				mStep = eStep::Game_ShowIndicator;
@@ -293,12 +292,21 @@ namespace step_flipflip
 					break;
 
 				case EventKeyboard::KeyCode::KEY_SPACE:
-					mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
-					mFlipedPoints[mFlipedCount] = { mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() };
-					++mFlipedCount;
-					if( 2 <= mFlipedCount )
+					if( eCardStatus::Close == mStageData.GetStatus( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() ) )
 					{
-						mStep = eStep::Game_HideIndicator;
+						mStageData.SetStatus( eCardStatus::Open, mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+
+						mStageViewNode->Flip( mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() );
+						mFlipedPoints[mFlipedCount] = { mCardSelectorNode->GetIndicatorX(), mCardSelectorNode->GetIndicatorY() };
+						++mFlipedCount;
+						if( 2 <= mFlipedCount )
+						{
+							mStep = eStep::Game_HideIndicator;
+						}
+					}
+					else
+					{
+						experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 					}
 					break;
 				}

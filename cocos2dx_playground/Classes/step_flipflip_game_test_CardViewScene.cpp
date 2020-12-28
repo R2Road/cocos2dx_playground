@@ -61,7 +61,7 @@ namespace step_flipflip
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Flip";
+				ss << "[SPACE] : Flip";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -126,7 +126,7 @@ namespace step_flipflip
 				return;
 			}
 
-			if( EventKeyboard::KeyCode::KEY_A == keycode )
+			if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 			{
 				mCardViewNode->Flip();
 			}

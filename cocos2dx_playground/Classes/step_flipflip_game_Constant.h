@@ -20,6 +20,12 @@ namespace step_flipflip
 			, FIRST = A
 		};
 
+		enum class eCardStatus
+		{
+			Close,
+			Open,
+		};
+
 		struct StageConfig
 		{
 			const int Width = 1;
