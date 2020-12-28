@@ -60,11 +60,12 @@
 ## 목차 | Contents
 - [step](https://github.com/R2Road/cocos2dx_playground/wiki)
   - [typetype](https://github.com/R2Road/cocos2dx_playground/wiki/TypeType)
+  - flipflip( in progress )
   - clickclick
   - path finder
   - [mole](https://github.com/R2Road/cocos2dx_playground/wiki/Step-:-Mole)
   - rain of chaos
-  - defender( in progress )
+  - defender( sleep )
   
 - ui practice
   - Mouse Cursor
@@ -94,6 +95,16 @@
   - Collection 04
   - Collection 05
   - Collection 06
+
+- input practice
+  - Game Pad Test
+  - Key Allow
+  - Allowed Key Test
+  - Key Config
+  - Configed Key Test
+
+- tool practice
+  - Tile Sheet Test
 
 - [ui research](https://github.com/R2Road/cocos2dx_playground/wiki/UI-Research)
   - Button Research - On Mouse Over
