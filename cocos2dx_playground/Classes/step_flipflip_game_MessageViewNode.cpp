@@ -3,6 +3,7 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
@@ -18,8 +19,14 @@ namespace step_flipflip
 	namespace game
 	{
 		MessageViewNode::MessageViewNode() :
-			mLabel( nullptr )
+			mLayer( nullptr )
+			, mLabel( nullptr )
+			, mBlinkAction( nullptr )
 		{}
+		MessageViewNode::~MessageViewNode()
+		{
+			mBlinkAction->release();
+		}
 
 		MessageViewNode* MessageViewNode::create()
 		{
@@ -50,9 +57,10 @@ namespace step_flipflip
 			// Background
 			//
 			{
-				auto layer = LayerColor::create( Color4B( 0, 0, 0, 50 ), visibleSize.width, 50.f );
-				layer->setPosition( -layer->getContentSize().width * 0.5f, -layer->getContentSize().height * 0.5f );
-				addChild( layer, std::numeric_limits<int>::min() );
+				mLayer = LayerColor::create( Color4B::BLACK, visibleSize.width, 50.f );
+				mLayer->setPosition( -mLayer->getContentSize().width * 0.5f, -mLayer->getContentSize().height * 0.5f );
+				mLayer->setCascadeOpacityEnabled( true );
+				addChild( mLayer, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -60,16 +68,44 @@ namespace step_flipflip
 			//
 			{
 				mLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
-				addChild( mLabel );
+				mLabel->setPosition( mLayer->getContentSize().width * 0.5f, mLayer->getContentSize().height * 0.5f );
+				mLayer->addChild( mLabel );
 			}
+
+			//
+			// Blink Action
+			//
+			{
+				auto fadeInAction = FadeIn::create( 0.6f );
+				auto fadeInkDelay = DelayTime::create( 0.4f );
+				auto fadeOutAction = FadeOut::create( 0.8f );
+				auto fadeOutkDelay = DelayTime::create( 0.2f );
+				mBlinkAction = Sequence::create( fadeInAction, fadeInkDelay, fadeOutAction, fadeOutkDelay, nullptr );
+				mBlinkAction->retain();
+			}
+
+			//
+			// Setup
+			//
+			mLayer->setOpacity( 0u );
 
 			return true;
 		}
 
 		
+		bool MessageViewNode::isMessaging() const
+		{
+			return 0u < mLayer->getNumberOfRunningActions();
+		}
 		void MessageViewNode::ShowMessage( const char* str )
 		{
+			if( isMessaging() )
+			{
+				return;
+			}
+
 			mLabel->setString( str );
+			mLayer->runAction( mBlinkAction );
 		}
 	}
 }
