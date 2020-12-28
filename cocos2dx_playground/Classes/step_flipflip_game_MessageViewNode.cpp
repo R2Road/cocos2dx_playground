@@ -76,9 +76,9 @@ namespace step_flipflip
 			// Blink Action
 			//
 			{
-				auto fadeInAction = FadeIn::create( 0.6f );
+				auto fadeInAction = FadeIn::create( 0.5f );
 				auto fadeInkDelay = DelayTime::create( 1.f );
-				auto fadeOutAction = FadeOut::create( 0.3f );
+				auto fadeOutAction = FadeOut::create( 0.2f );
 				mBlinkAction = Sequence::create( fadeInAction, fadeInkDelay, fadeOutAction, nullptr );
 				mBlinkAction->retain();
 			}
