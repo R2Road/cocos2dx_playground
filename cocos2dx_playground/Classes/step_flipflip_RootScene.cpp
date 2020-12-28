@@ -81,12 +81,9 @@ namespace step_flipflip
 			ss << std::endl;
 			ss << "[4] " << step_flipflip::scale::BasicScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
 			ss << "[5] " << step_flipflip::opacity::BasicScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
 			ss << "[6] " << step_flipflip::sprite_frame::BasicScene::getTitle();
-			ss << std::endl;
 			ss << std::endl;
 			ss << "[7] " << step_flipflip::action::BasicScene::getTitle();
 			ss << std::endl;
