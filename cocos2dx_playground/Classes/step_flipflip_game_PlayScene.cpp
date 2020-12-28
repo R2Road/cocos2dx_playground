@@ -266,15 +266,15 @@ namespace step_flipflip
 					mFlipedCount = 0;
 					if( mStageData.GetType( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.GetType( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
 					{
-						mStep = eStep::Game_Success;
+						mStep = eStep::Game_SelectSuccess;
 					}
 					else
 					{
-						mStep = eStep::Game_Failed;
+						mStep = eStep::Game_SelectFailed;
 					}
 				}
 				break;
-			case eStep::Game_Failed:
+			case eStep::Game_SelectFailed:
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				for( auto& p : mFlipedPoints )
 				{
@@ -283,7 +283,7 @@ namespace step_flipflip
 				}
 				mStep = eStep::Game_ShowIndicator;
 				break;
-			case eStep::Game_Success:
+			case eStep::Game_SelectSuccess:
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				mStep = eStep::Game_ShowIndicator;
 				break;

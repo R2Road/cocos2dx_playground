@@ -30,8 +30,8 @@ namespace step_flipflip
 				Game_HideIndicator,
 				Game_Wait4DecideCard,
 				Game_DecideCard,
-				Game_Failed,
-				Game_Success,
+				Game_SelectFailed,
+				Game_SelectSuccess,
 				Game_ShowIndicator,
 			};
 
