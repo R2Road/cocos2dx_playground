@@ -189,7 +189,12 @@ namespace step_flipflip
 			switch( mStep )
 			{
 			case eStep::Enter:
-				++mStep;
+				mElapsedTime += dt;
+				if( 0.5f < mElapsedTime )
+				{
+					++mStep;
+					mElapsedTime = 0.f;
+				}
 				break;
 
 			case eStep::Message4Hint:
@@ -199,7 +204,12 @@ namespace step_flipflip
 			case eStep::Sleep4Message4Hint:
 				if( !mMessageViewNode->isMessaging() )
 				{
-					++mStep;
+					mElapsedTime += dt;
+					if( 0.5f < mElapsedTime )
+					{
+						++mStep;
+						mElapsedTime = 0.f;
+					}
 				}
 				break;
 			case eStep::ShowHint:

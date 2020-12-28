@@ -57,7 +57,7 @@ namespace step_flipflip
 			// Background
 			//
 			{
-				mLayer = LayerColor::create( Color4B::BLACK, visibleSize.width, 50.f );
+				mLayer = LayerColor::create( Color4B::BLUE, visibleSize.width, 50.f );
 				mLayer->setPosition( -mLayer->getContentSize().width * 0.5f, -mLayer->getContentSize().height * 0.5f );
 				mLayer->setCascadeOpacityEnabled( true );
 				addChild( mLayer, std::numeric_limits<int>::min() );
@@ -77,10 +77,9 @@ namespace step_flipflip
 			//
 			{
 				auto fadeInAction = FadeIn::create( 0.6f );
-				auto fadeInkDelay = DelayTime::create( 0.4f );
-				auto fadeOutAction = FadeOut::create( 0.8f );
-				auto fadeOutkDelay = DelayTime::create( 0.2f );
-				mBlinkAction = Sequence::create( fadeInAction, fadeInkDelay, fadeOutAction, fadeOutkDelay, nullptr );
+				auto fadeInkDelay = DelayTime::create( 1.f );
+				auto fadeOutAction = FadeOut::create( 0.3f );
+				mBlinkAction = Sequence::create( fadeInAction, fadeInkDelay, fadeOutAction, nullptr );
 				mBlinkAction->retain();
 			}
 
