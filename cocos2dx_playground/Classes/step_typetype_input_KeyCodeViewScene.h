@@ -2,6 +2,10 @@
 
 #include "2d/CCScene.h"
 
+NS_CC_BEGIN
+	class Label;
+NS_CC_END
+
 namespace step_typetype
 {
 	namespace input
@@ -29,8 +33,10 @@ namespace step_typetype
 			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
-			int mPressedKeyCount;
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			int mPressedKeyCount;
+			cocos2d::Label* mKeyVodeView;
 		};
 	}
 }

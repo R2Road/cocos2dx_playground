@@ -19,7 +19,12 @@ namespace step_typetype
 {
 	namespace input
 	{
-		KeyCodeViewScene::KeyCodeViewScene() : mPressedKeyCount( 0 ), mKeyboardListener( nullptr ) {}
+		KeyCodeViewScene::KeyCodeViewScene() :
+			mKeyboardListener( nullptr )
+
+			, mPressedKeyCount( 0 )
+			, mKeyVodeView( nullptr )
+		{}
 
 		Scene* KeyCodeViewScene::create()
 		{
@@ -82,14 +87,14 @@ namespace step_typetype
 			// KeyCode View
 			//
 			{
-				auto label = Label::createWithTTF( "Press Key", "fonts/NanumSquareR.ttf", 14 );
-				label->setTag( TAG_KeyCodeViewNode );
-				label->setColor( Color3B::GREEN );
-				label->setPosition(
+				mKeyVodeView = Label::createWithTTF( "Press Key", "fonts/NanumSquareR.ttf", 14 );
+				mKeyVodeView->setTag( TAG_KeyCodeViewNode );
+				mKeyVodeView->setColor( Color3B::GREEN );
+				mKeyVodeView->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
-				addChild( label );
+				addChild( mKeyVodeView );
 
 				clearKeyCodeView();
 			}
@@ -118,13 +123,11 @@ namespace step_typetype
 
 		void KeyCodeViewScene::updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode )
 		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_KeyCodeViewNode ) );
-			label->setString( std::to_string( static_cast<int>( keycode ) ) );
+			mKeyVodeView->setString( std::to_string( static_cast<int>( keycode ) ) );
 		}
 		void KeyCodeViewScene::clearKeyCodeView()
 		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_KeyCodeViewNode ) );
-			label->setString( "Press Key" );
+			mKeyVodeView->setString( "Press Key" );
 		}
 
 		void KeyCodeViewScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
