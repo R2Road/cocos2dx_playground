@@ -60,7 +60,7 @@
 ## 목차 | Contents
 - [step](https://github.com/R2Road/cocos2dx_playground/wiki)
   - [typetype](https://github.com/R2Road/cocos2dx_playground/wiki/TypeType)
-  - flipflip( in progress )
+  - flipflip
   - clickclick
   - path finder
   - [mole](https://github.com/R2Road/cocos2dx_playground/wiki/Step-:-Mole)
