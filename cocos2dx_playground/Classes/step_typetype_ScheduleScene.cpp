@@ -71,8 +71,8 @@ namespace step_typetype
 		}
 
 	private:
-		Label* mViewLabel = nullptr;
-		float mElapsedtime = 0.f;
+		Label* mViewLabel;
+		float mElapsedtime;
 	};
 
 	ScheduleScene::ScheduleScene() :
