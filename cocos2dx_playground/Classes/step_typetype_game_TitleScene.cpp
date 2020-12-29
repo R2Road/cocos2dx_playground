@@ -13,6 +13,7 @@
 
 #include "step_typetype_RootScene.h"
 #include "step_typetype_game_PlayScene.h"
+#include "step_typetype_game_ResultScene.h"
 
 USING_NS_CC;
 
@@ -54,8 +55,10 @@ namespace step_typetype
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << "[F1] : " << ResultScene::getTitle();
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 8 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
@@ -141,6 +144,12 @@ namespace step_typetype
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
 				_director->replaceScene( step_typetype::RootScene::create() );
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
+			{
+				_director->replaceScene( ResultScene::create( 123.456f ) );
 				return;
 			}
 
