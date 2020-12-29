@@ -10,7 +10,7 @@ namespace step_flipflip
 		RootScene();
 
 	public:
-		static const char* getTitle() { return "Step : FlipFlip( In Progress )"; }
+		static const char* getTitle() { return "Step : FlipFlip"; }
 		static cocos2d::Scene* create();
 
 	private:
