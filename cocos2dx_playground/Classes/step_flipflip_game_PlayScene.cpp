@@ -46,6 +46,8 @@ namespace step_flipflip
 			, mElapsedTime( 0.f )
 			, mFlipedCount( 0 )
 			, mFlipedPoints()
+
+			, mPlayTime( 0.f )
 		{
 			for( auto& p : mFlipedPoints )
 			{
@@ -186,6 +188,11 @@ namespace step_flipflip
 
 		void PlayScene::Update4GameStart( float dt )
 		{
+			if( eStep::Game_ShowIndicator <= mStep )
+			{
+				mPlayTime += dt;
+			}
+
 			switch( mStep )
 			{
 			case eStep::Enter:
@@ -324,7 +331,7 @@ namespace step_flipflip
 				break;
 
 			case eStep::Game_Result:
-				_director->replaceScene( ResultScene::create( 0.f ) );
+				_director->replaceScene( ResultScene::create( mPlayTime ) );
 				return;
 			}
 		}
