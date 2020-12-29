@@ -10,11 +10,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const int TAG_KeyCodeViewNode = 20140416;
-}
-
 namespace step_typetype
 {
 	namespace input
@@ -88,15 +83,12 @@ namespace step_typetype
 			//
 			{
 				mKeyVodeView = Label::createWithTTF( "Press Key", "fonts/NanumSquareR.ttf", 14 );
-				mKeyVodeView->setTag( TAG_KeyCodeViewNode );
 				mKeyVodeView->setColor( Color3B::GREEN );
 				mKeyVodeView->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
 				addChild( mKeyVodeView );
-
-				clearKeyCodeView();
 			}
 
 			return true;
@@ -121,14 +113,6 @@ namespace step_typetype
 			Scene::onExit();
 		}
 
-		void KeyCodeViewScene::updateKeyCodeView( cocos2d::EventKeyboard::KeyCode keycode )
-		{
-			mKeyVodeView->setString( std::to_string( static_cast<int>( keycode ) ) );
-		}
-		void KeyCodeViewScene::clearKeyCodeView()
-		{
-			mKeyVodeView->setString( "Press Key" );
-		}
 
 		void KeyCodeViewScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
@@ -140,7 +124,7 @@ namespace step_typetype
 			else
 			{
 				++mPressedKeyCount;
-				updateKeyCodeView( keycode );
+				mKeyVodeView->setString( std::to_string( static_cast<int>( keycode ) ) );
 			}
 		}
 		void KeyCodeViewScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
@@ -150,7 +134,7 @@ namespace step_typetype
 				mPressedKeyCount = std::max( 0, mPressedKeyCount - 1 );
 				if( 0 == mPressedKeyCount )
 				{
-					clearKeyCodeView();
+					mKeyVodeView->setString( "Press Key" );
 				}
 			}
 		}
