@@ -193,6 +193,14 @@ namespace step_flipflip
 
 		void BasicScene::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
+			//
+			// First Input is Key Release~!!!
+			//
+			if( 0 == mOpacityFlags )
+			{
+				return;
+			}
+
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_UP_ARROW:
