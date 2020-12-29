@@ -19,6 +19,7 @@
 #include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
 
+#include "step_flipflip_game_ResultScene.h"
 #include "step_flipflip_game_TitleScene.h"
 
 USING_NS_CC;
@@ -45,6 +46,9 @@ namespace step_flipflip
 			, mElapsedTime( 0.f )
 			, mFlipedCount( 0 )
 			, mFlipedPoints()
+
+			, mPlayTime( 0.f )
+			, mFailedCount( 0 )
 		{
 			for( auto& p : mFlipedPoints )
 			{
@@ -185,6 +189,11 @@ namespace step_flipflip
 
 		void PlayScene::Update4GameStart( float dt )
 		{
+			if( eStep::Game_ShowIndicator <= mStep )
+			{
+				mPlayTime += dt;
+			}
+
 			switch( mStep )
 			{
 			case eStep::Enter:
@@ -238,6 +247,14 @@ namespace step_flipflip
 				}
 				break;
 
+			case eStep::Wait4Message4Game:
+				mElapsedTime += dt;
+				if( 0.5f < mElapsedTime )
+				{
+					++mStep;
+					mElapsedTime = 0.f;
+				}
+				break;
 			case eStep::Message4Game:
 				mMessageViewNode->ShowMessage( "Find The Same Card Pair" );
 				++mStep;
@@ -253,12 +270,15 @@ namespace step_flipflip
 					}
 				}
 				break;
-			case eStep::Game_Start:
+			case eStep::BGM_Start:
 				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
-				mCardSelectorNode->setVisible( true );
 				++mStep;
 				break;
 
+			case eStep::Game_ShowIndicator:
+				mCardSelectorNode->setVisible( true );
+				mStep = eStep::Game_SelectCard;
+				break;
 			//case eStep::Game_SelectCard:
 			case eStep::Game_HideIndicator:
 				mCardSelectorNode->setVisible( false );
@@ -284,6 +304,7 @@ namespace step_flipflip
 					else
 					{
 						mStep = eStep::Game_SelectFailed;
+						++mFailedCount;
 					}
 				}
 				break;
@@ -294,16 +315,26 @@ namespace step_flipflip
 					mStageData.SetStatus( eCardStatus::Close, p.X, p.Y );
 					mStageViewNode->Flip( p.X, p.Y );
 				}
-				mStep = eStep::Game_ShowIndicator;
+				mStep = eStep::Game_ClearCheck;
 				break;
 			case eStep::Game_SelectSuccess:
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
-				mStep = eStep::Game_ShowIndicator;
+				mStep = eStep::Game_ClearCheck;
 				break;
-			case eStep::Game_ShowIndicator:
-				mCardSelectorNode->setVisible( true );
-				mStep = eStep::Game_SelectCard;
+			case eStep::Game_ClearCheck:
+				if( 0 < mStageData.GetClosedCardsCount() )
+				{
+					mStep = eStep::Game_ShowIndicator;
+				}
+				else
+				{
+					mStep = eStep::Game_Result;
+				}
 				break;
+
+			case eStep::Game_Result:
+				_director->replaceScene( ResultScene::create( mPlayTime, mFailedCount ) );
+				return;
 			}
 		}
 
@@ -350,6 +381,7 @@ namespace step_flipflip
 					{
 						experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 					}
+					CCLOG( "Closed Cards Count : %d", mStageData.GetClosedCardsCount() );
 					break;
 				}
 			}

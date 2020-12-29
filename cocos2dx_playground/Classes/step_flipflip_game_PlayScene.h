@@ -26,17 +26,20 @@ namespace step_flipflip
 				HideHint,
 				Sleep4HideHint,
 
+				Wait4Message4Game,
 				Message4Game,
 				Sleep4Message4Game,
-				Game_Start,
+				BGM_Start,
 
+				Game_ShowIndicator,
 				Game_SelectCard,
 				Game_HideIndicator,
 				Game_Wait4DecideCard,
 				Game_DecideCard,
 				Game_SelectFailed,
 				Game_SelectSuccess,
-				Game_ShowIndicator,
+				Game_ClearCheck,
+				Game_Result,
 			};
 
 			PlayScene();
@@ -80,6 +83,9 @@ namespace step_flipflip
 				}
 			};
 			Point mFlipedPoints[2];
+
+			float mPlayTime;
+			int mFailedCount;
 		};
 	}
 }

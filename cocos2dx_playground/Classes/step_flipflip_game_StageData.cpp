@@ -10,7 +10,7 @@ namespace step_flipflip
 {
 	namespace game
 	{
-		StageData::StageData() : mIndexConverter( 1, 1 ), mContainer()
+		StageData::StageData() : mIndexConverter( 1, 1 ), mContainer(), mClosedCardsCount( 0 )
 		{}
 
 		eCardType StageData::GetType( const int x, const int y ) const
@@ -24,7 +24,22 @@ namespace step_flipflip
 		}
 		void StageData::SetStatus( const eCardStatus status, const int x, const int y )
 		{
+			const auto linear_index = mIndexConverter.To_Linear( x, y );
+			if( status == mContainer[mIndexConverter.To_Linear( x, y )].Status )
+			{
+				return;
+			}
+
 			mContainer[mIndexConverter.To_Linear( x, y )].Status = status;
+
+			if( eCardStatus::Open == status )
+			{
+				--mClosedCardsCount;
+			}
+			else
+			{
+				++mClosedCardsCount;
+			}
 		}
 
 		bool StageData::Reset( const int width, const int height, const int shuffle_limit )
@@ -79,6 +94,11 @@ namespace step_flipflip
 					std::shuffle( mContainer.begin(), mContainer.end(), random_engine );
 				}
 			}
+
+			//
+			// Setup Closed Cards Count
+			//
+			mClosedCardsCount = mContainer.size();
 
 			return true;
 		}
