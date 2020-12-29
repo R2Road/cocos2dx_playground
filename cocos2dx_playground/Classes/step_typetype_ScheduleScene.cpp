@@ -148,7 +148,7 @@ namespace step_typetype
 		}
 
 		//
-		// Label - Update
+		// Schedule View - Update
 		//
 		{
 			mScheduleView4Update = ScheduleView::create( "Update" );
@@ -160,7 +160,7 @@ namespace step_typetype
 		}
 
 		//
-		// Label - Custome Update
+		// Schedule View - Custome Update
 		//
 		{
 			mScheduleView4CustomeUpdate = ScheduleView::create( "Custome Update" );
@@ -172,7 +172,7 @@ namespace step_typetype
 		}
 
 		//
-		// Label - Lambda Update
+		// Schedule View - Lambda Update
 		//
 		{
 			mScheduleView4Lambda = ScheduleView::create( "Lambda Update" );
