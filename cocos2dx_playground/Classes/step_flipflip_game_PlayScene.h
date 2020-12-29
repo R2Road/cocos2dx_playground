@@ -38,6 +38,8 @@ namespace step_flipflip
 				Game_DecideCard,
 				Game_SelectFailed,
 				Game_SelectSuccess,
+				Game_ClearCheck,
+				Game_Result,
 			};
 
 			PlayScene();

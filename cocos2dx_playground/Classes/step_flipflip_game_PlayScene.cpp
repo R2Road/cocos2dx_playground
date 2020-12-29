@@ -305,11 +305,25 @@ namespace step_flipflip
 					mStageData.SetStatus( eCardStatus::Close, p.X, p.Y );
 					mStageViewNode->Flip( p.X, p.Y );
 				}
-				mStep = eStep::Game_ShowIndicator;
+				mStep = eStep::Game_ClearCheck;
 				break;
 			case eStep::Game_SelectSuccess:
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
-				mStep = eStep::Game_ShowIndicator;
+				mStep = eStep::Game_ClearCheck;
+				break;
+			case eStep::Game_ClearCheck:
+				if( 0 < mStageData.GetClosedCardsCount() )
+				{
+					mStep = eStep::Game_ShowIndicator;
+				}
+				else
+				{
+					mStep = eStep::Game_Result;
+				}
+				break;
+
+			case eStep::Game_Result:
+				// Do something
 				break;
 			}
 		}
