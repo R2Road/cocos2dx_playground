@@ -18,6 +18,63 @@ USING_NS_CC;
 
 namespace step_typetype
 {
+	class ScheduleView : public Node
+	{
+	private:
+		ScheduleView() : ViewLabel( nullptr ), Elapsedtime( 0.f ) {}
+	public:
+		static ScheduleView* create( const char* view_name )
+		{
+			auto ret = new ( std::nothrow ) ScheduleView();
+			if( !ret || !ret->init( view_name ) )
+			{
+				delete ret;
+				ret = nullptr;
+			}
+			else
+			{
+				ret->autorelease();
+			}
+
+			return ret;
+		}
+
+	private:
+		bool init( const char* view_name )
+		{
+			if( !Node::init() )
+			{
+				return false;
+			}
+
+			setName( view_name );
+
+			ViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+			ViewLabel->setColor( Color3B::GREEN );
+			addChild( ViewLabel );
+
+			UpdateSchedule( 0.f );
+
+			return true;
+		}
+
+	public:
+		void UpdateSchedule( float dt )
+		{
+			Elapsedtime += dt;
+			if( 10.f < Elapsedtime )
+			{
+				Elapsedtime = 0.f;
+			}
+			
+			ViewLabel->setString( StringUtils::format( "%s\n%.2f", getName().c_str(), Elapsedtime ) );
+		}
+
+	private:
+		Label* ViewLabel = nullptr;
+		float Elapsedtime = 0.f;
+	};
+
 	ScheduleScene::ScheduleScene() :
 		mKeyboardListener( nullptr )
 
@@ -94,48 +151,36 @@ namespace step_typetype
 		// Label - Update
 		//
 		{
-			mScheduleView_forUpdate.ViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-			mScheduleView_forUpdate.ViewLabel->setName( "Update" );
-			mScheduleView_forUpdate.ViewLabel->setColor( Color3B::GREEN );
-			mScheduleView_forUpdate.ViewLabel->setPosition(
+			mScheduleView_forUpdate = ScheduleView::create( "Update" );
+			mScheduleView_forUpdate->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
 			);
-			addChild( mScheduleView_forUpdate.ViewLabel );
-
-			updateLabel( mScheduleView_forUpdate);
+			addChild( mScheduleView_forUpdate );
 		}
 
 		//
 		// Label - Custome Update
 		//
 		{
-			mScheduleView_forCustomeUpdate.ViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-			mScheduleView_forCustomeUpdate.ViewLabel->setName( "Custome Update" );
-			mScheduleView_forCustomeUpdate.ViewLabel->setColor( Color3B::GREEN );
-			mScheduleView_forCustomeUpdate.ViewLabel->setPosition(
+			mScheduleView_forCustomeUpdate = ScheduleView::create( "Custome Update" );
+			mScheduleView_forCustomeUpdate->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 			);
-			addChild( mScheduleView_forCustomeUpdate.ViewLabel );
-
-			updateLabel( mScheduleView_forCustomeUpdate );
+			addChild( mScheduleView_forCustomeUpdate );
 		}
 
 		//
 		// Label - Lambda Update
 		//
 		{
-			mScheduleView_forLambda.ViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-			mScheduleView_forLambda.ViewLabel->setName( "Lambda Update" );
-			mScheduleView_forLambda.ViewLabel->setColor( Color3B::GREEN );
-			mScheduleView_forLambda.ViewLabel->setPosition(
+			mScheduleView_forLambda = ScheduleView::create( "Lambda Update" );
+			mScheduleView_forLambda->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
 			);
-			addChild( mScheduleView_forLambda.ViewLabel );
-
-			updateLabel( mScheduleView_forLambda );
+			addChild( mScheduleView_forLambda );
 		}
 
 		//
@@ -152,12 +197,7 @@ namespace step_typetype
 			schedule(
 				[this]( float dt )
 				{
-					mScheduleView_forLambda.Elapsedtime += dt;
-					if( 10.f < mScheduleView_forLambda.Elapsedtime )
-					{
-						mScheduleView_forLambda.Elapsedtime = 0.f;
-					}
-					updateLabel( mScheduleView_forLambda );
+					mScheduleView_forLambda->UpdateSchedule( dt );
 				}
 				, 0.5f
 				, "Update for Lambda"
@@ -184,31 +224,19 @@ namespace step_typetype
 
 		Scene::onExit();
 	}
+
+
 	void ScheduleScene::update( float dt )
 	{
-		mScheduleView_forUpdate.Elapsedtime += dt;
-		if( 10.f < mScheduleView_forUpdate.Elapsedtime )
-		{
-			mScheduleView_forUpdate.Elapsedtime = 0.f;
-		}
-		updateLabel( mScheduleView_forUpdate );
+		mScheduleView_forUpdate->UpdateSchedule( dt );
 
 		Node::update( dt );
 	}
 	void ScheduleScene::customeUpdate( float dt )
 	{
-		mScheduleView_forCustomeUpdate.Elapsedtime += dt;
-		if( 10.f < mScheduleView_forCustomeUpdate.Elapsedtime )
-		{
-			mScheduleView_forCustomeUpdate.Elapsedtime = 0.f;
-		}
-		updateLabel( mScheduleView_forCustomeUpdate );
+		mScheduleView_forCustomeUpdate->UpdateSchedule( dt );
 	}
 
-	void ScheduleScene::updateLabel( ScheduleView& schedule_view )
-	{
-		schedule_view.ViewLabel->setString( StringUtils::format( "%s\n%.2f", schedule_view.ViewLabel->getName().c_str(), schedule_view.Elapsedtime ) );
-	}
 
 	void ScheduleScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
