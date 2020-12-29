@@ -21,10 +21,10 @@ namespace step_flipflip
 	{
 		ResultScene::ResultScene() : mKeyboardListener( nullptr ) {}
 
-		Scene* ResultScene::create( const double clear_time )
+		Scene* ResultScene::create( const double clear_time, const int failed_count )
 		{
 			auto ret = new ( std::nothrow ) ResultScene();
-			if( !ret || !ret->init( clear_time ) )
+			if( !ret || !ret->init( clear_time, failed_count ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -37,7 +37,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool ResultScene::init( const double clear_time )
+		bool ResultScene::init( const double clear_time, const int failed_count )
 		{
 			if( !Scene::init() )
 			{
@@ -80,7 +80,7 @@ namespace step_flipflip
 				label->setColor( Color3B::BLACK );
 				label->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.62f )
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.7f )
 				);
 				addChild( label );
 			}
@@ -93,8 +93,21 @@ namespace step_flipflip
 				label->setColor( Color3B::BLACK );
 				label->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.32f )
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
+				addChild( label );
+			}
+
+			//
+			// Failed Count
+			//
+			{
+				auto label = Label::createWithTTF( StringUtils::format( "Failed Count : %d", failed_count ), "fonts/NanumSquareR.ttf", 32 );
+				label->setColor( Color3B::BLACK );
+				label->setPosition( Vec2(
+					visibleOrigin.x + ( visibleSize.width * 0.5f )
+					, visibleOrigin.y + ( visibleSize.height * 0.3f )
+				) );
 				addChild( label );
 			}
 

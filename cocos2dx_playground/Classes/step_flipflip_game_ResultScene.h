@@ -13,10 +13,10 @@ namespace step_flipflip
 
 		public:
 			static const char* getTitle() { return "Game : Result"; }
-			static cocos2d::Scene* create( const double clear_time );
+			static cocos2d::Scene* create( const double clear_time, const int failed_count );
 
 		private:
-			bool init( const double clear_time );
+			bool init( const double clear_time, const int failed_count );
 
 		public:
 			void onEnter() override;

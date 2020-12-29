@@ -48,6 +48,7 @@ namespace step_flipflip
 			, mFlipedPoints()
 
 			, mPlayTime( 0.f )
+			, mFailedCount( 0 )
 		{
 			for( auto& p : mFlipedPoints )
 			{
@@ -303,6 +304,7 @@ namespace step_flipflip
 					else
 					{
 						mStep = eStep::Game_SelectFailed;
+						++mFailedCount;
 					}
 				}
 				break;
@@ -331,7 +333,7 @@ namespace step_flipflip
 				break;
 
 			case eStep::Game_Result:
-				_director->replaceScene( ResultScene::create( mPlayTime ) );
+				_director->replaceScene( ResultScene::create( mPlayTime, mFailedCount ) );
 				return;
 			}
 		}

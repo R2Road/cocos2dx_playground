@@ -235,7 +235,7 @@ namespace step_flipflip
 
 			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
 			{
-				_director->replaceScene( ResultScene::create( 123.456f ) );
+				_director->replaceScene( ResultScene::create( 123.456f, 300 ) );
 				return;
 			}
 

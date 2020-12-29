@@ -85,6 +85,7 @@ namespace step_flipflip
 			Point mFlipedPoints[2];
 
 			float mPlayTime;
+			int mFailedCount;
 		};
 	}
 }
