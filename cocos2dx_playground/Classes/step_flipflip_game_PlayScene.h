@@ -31,13 +31,13 @@ namespace step_flipflip
 				Sleep4Message4Game,
 				Game_Start,
 
+				Game_ShowIndicator,
 				Game_SelectCard,
 				Game_HideIndicator,
 				Game_Wait4DecideCard,
 				Game_DecideCard,
 				Game_SelectFailed,
 				Game_SelectSuccess,
-				Game_ShowIndicator,
 			};
 
 			PlayScene();

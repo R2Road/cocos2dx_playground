@@ -263,10 +263,13 @@ namespace step_flipflip
 				break;
 			case eStep::Game_Start:
 				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
-				mCardSelectorNode->setVisible( true );
 				++mStep;
 				break;
 
+			case eStep::Game_ShowIndicator:
+				mCardSelectorNode->setVisible( true );
+				mStep = eStep::Game_SelectCard;
+				break;
 			//case eStep::Game_SelectCard:
 			case eStep::Game_HideIndicator:
 				mCardSelectorNode->setVisible( false );
@@ -307,10 +310,6 @@ namespace step_flipflip
 			case eStep::Game_SelectSuccess:
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				mStep = eStep::Game_ShowIndicator;
-				break;
-			case eStep::Game_ShowIndicator:
-				mCardSelectorNode->setVisible( true );
-				mStep = eStep::Game_SelectCard;
 				break;
 			}
 		}
