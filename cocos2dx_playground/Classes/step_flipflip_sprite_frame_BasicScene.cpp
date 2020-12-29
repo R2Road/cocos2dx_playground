@@ -86,10 +86,10 @@ namespace step_flipflip
 			//
 			{
 				mTestNode = Sprite::createWithSpriteFrameName( "step_flipflip_card_back_0.png" );
-				mTestNode->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
+				mTestNode->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( mTestNode );
 			}
 

@@ -114,10 +114,10 @@ namespace step_flipflip
 			//
 			{
 				auto sprite = Sprite::create( TEXTURE_Path );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.3f )
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.5f )
+				);
 				addChild( sprite );
 
 				auto label = Label::createWithTTF( "Texture 4 PList", "fonts/NanumSquareR.ttf", 12 );
@@ -135,10 +135,10 @@ namespace step_flipflip
 			//
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_dummy4plist_front_0.png" );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.7f )
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.5f )
+				);
 				addChild( sprite );
 
 				auto label = Label::createWithTTF( "Sprite With PList", "fonts/NanumSquareR.ttf", 12 );

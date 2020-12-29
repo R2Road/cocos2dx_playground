@@ -106,10 +106,10 @@ namespace step_flipflip
 			//
 			{
 				auto sprite = Sprite::create( TEXTURE_Path );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.3f )
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.5f )
+				);
 				addChild( sprite );
 			}
 
@@ -122,10 +122,10 @@ namespace step_flipflip
 					, "fonts/NanumSquareR.ttf", 14, Size::ZERO, TextHAlignment::RIGHT
 				);
 				label->setColor( Color3B::YELLOW );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.7f )
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.5f )
+				);
 				addChild( label );
 			}
 
