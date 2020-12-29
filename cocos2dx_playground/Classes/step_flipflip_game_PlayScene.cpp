@@ -261,7 +261,7 @@ namespace step_flipflip
 					}
 				}
 				break;
-			case eStep::Game_Start:
+			case eStep::BGM_Start:
 				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
 				++mStep;
 				break;

@@ -29,7 +29,7 @@ namespace step_flipflip
 				Wait4Message4Game,
 				Message4Game,
 				Sleep4Message4Game,
-				Game_Start,
+				BGM_Start,
 
 				Game_ShowIndicator,
 				Game_SelectCard,
