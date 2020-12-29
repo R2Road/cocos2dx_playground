@@ -1,6 +1,5 @@
 #include "step_typetype_ScheduleScene.h"
 
-#include <algorithm>
 #include <new>
 #include <numeric>
 #include <sstream>
