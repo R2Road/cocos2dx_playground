@@ -26,6 +26,7 @@
 #include "step_flipflip_game_test_CardSelectorNodeScene.h"
 #include "step_flipflip_game_test_StageViewScene.h"
 #include "step_flipflip_game_test_SelectAndFlipScene.h"
+#include "step_flipflip_game_test_MessageViewNodeScene.h"
 
 #include "step_flipflip_game_TitleScene.h"
 
@@ -81,12 +82,9 @@ namespace step_flipflip
 			ss << std::endl;
 			ss << "[4] " << step_flipflip::scale::BasicScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
 			ss << "[5] " << step_flipflip::opacity::BasicScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
 			ss << "[6] " << step_flipflip::sprite_frame::BasicScene::getTitle();
-			ss << std::endl;
 			ss << std::endl;
 			ss << "[7] " << step_flipflip::action::BasicScene::getTitle();
 			ss << std::endl;
@@ -101,6 +99,9 @@ namespace step_flipflip
 			ss << "[E] " << step_flipflip::game_test::StageViewScene::getTitle();
 			ss << std::endl;
 			ss << "[R] " << step_flipflip::game_test::SelectAndFlipScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[A] " << step_flipflip::game_test::MessageViewNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -191,6 +192,10 @@ namespace step_flipflip
 			break;
 		case EventKeyboard::KeyCode::KEY_R:
 			_director->replaceScene( step_flipflip::game_test::SelectAndFlipScene::create() );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_A:
+			_director->replaceScene( step_flipflip::game_test::MessageViewNodeScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:

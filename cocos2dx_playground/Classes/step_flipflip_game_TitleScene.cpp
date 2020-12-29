@@ -27,9 +27,9 @@ namespace
 		, { "step_flipflip_title_card_2.png", "step_flipflip_card_front_2.png" }
 		, { "step_flipflip_title_card_3.png", "step_flipflip_card_front_3.png" }
 		, { "step_flipflip_title_card_0.png", "step_flipflip_card_front_4.png" }
-		, { "step_flipflip_title_card_1.png", "step_flipflip_card_front_0.png" }
-		, { "step_flipflip_title_card_2.png", "step_flipflip_card_front_1.png" }
-		, { "step_flipflip_title_card_3.png", "step_flipflip_card_front_2.png" }
+		, { "step_flipflip_title_card_1.png", "step_flipflip_card_front_5.png" }
+		, { "step_flipflip_title_card_2.png", "step_flipflip_card_front_0.png" }
+		, { "step_flipflip_title_card_3.png", "step_flipflip_card_front_1.png" }
 	};
 }
 

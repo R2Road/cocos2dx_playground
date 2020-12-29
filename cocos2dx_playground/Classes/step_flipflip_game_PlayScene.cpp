@@ -15,6 +15,7 @@
 
 #include "step_flipflip_game_CardSelectorNode.h"
 #include "step_flipflip_game_Constant.h"
+#include "step_flipflip_game_MessageViewNode.h"
 #include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
 
@@ -37,11 +38,11 @@ namespace step_flipflip
 
 			, mStageData()
 			, mCardSelectorNode( nullptr )
+			, mMessageViewNode( nullptr )
 			, mStageViewNode( nullptr )
 
 			, mStep( eStep::Enter )
 			, mElapsedTime( 0.f )
-			, mbInputEnable( false )
 			, mFlipedCount( 0 )
 			, mFlipedPoints()
 		{
@@ -144,6 +145,15 @@ namespace step_flipflip
 			}
 
 			//
+			// Message View Node
+			//
+			{
+				mMessageViewNode = game::MessageViewNode::create();
+				mMessageViewNode->setPosition( visibleCenter );
+				addChild( mMessageViewNode, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Setup
 			//
 			mCardSelectorNode->setVisible( false );
@@ -155,8 +165,6 @@ namespace step_flipflip
 		void PlayScene::onEnter()
 		{
 			Scene::onEnter();
-
-			mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
@@ -180,16 +188,35 @@ namespace step_flipflip
 			switch( mStep )
 			{
 			case eStep::Enter:
-				++mStep;
+				mElapsedTime += dt;
+				if( 0.5f < mElapsedTime )
+				{
+					++mStep;
+					mElapsedTime = 0.f;
+				}
 				break;
 
+			case eStep::Message4Hint:
+				mMessageViewNode->ShowMessage( "Hint" );
+				++mStep;
+				break;
+			case eStep::Sleep4Message4Hint:
+				if( !mMessageViewNode->isMessaging() )
+				{
+					mElapsedTime += dt;
+					if( 0.5f < mElapsedTime )
+					{
+						++mStep;
+						mElapsedTime = 0.f;
+					}
+				}
+				break;
 			case eStep::ShowHint:
 				for( int current_h = 0; STAGE_CONFIG.Height > current_h; ++current_h )
 				{
 					mStageViewNode->Flip( cpg::Random::GetInt( 0, STAGE_CONFIG.Width - 1 ), current_h );
 				}
 				++mStep;
-				mElapsedTime = 0.f;
 				break;
 			case eStep::Sleep4ShowHint:
 				mElapsedTime += dt;
@@ -211,9 +238,24 @@ namespace step_flipflip
 				}
 				break;
 
+			case eStep::Message4Game:
+				mMessageViewNode->ShowMessage( "Find The Same Card Pair" );
+				++mStep;
+				break;
+			case eStep::Sleep4Message4Game:
+				if( !mMessageViewNode->isMessaging() )
+				{
+					mElapsedTime += dt;
+					if( 0.5f < mElapsedTime )
+					{
+						++mStep;
+						mElapsedTime = 0.f;
+					}
+				}
+				break;
 			case eStep::Game_Start:
+				mAudioID_forBGM = experimental::AudioEngine::play2d( "sounds/bgm/Somewhere_in_the_Elevator.ogg", true, 0.1f );
 				mCardSelectorNode->setVisible( true );
-				mbInputEnable = true;
 				++mStep;
 				break;
 
@@ -237,15 +279,15 @@ namespace step_flipflip
 					mFlipedCount = 0;
 					if( mStageData.GetType( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.GetType( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
 					{
-						mStep = eStep::Game_Success;
+						mStep = eStep::Game_SelectSuccess;
 					}
 					else
 					{
-						mStep = eStep::Game_Failed;
+						mStep = eStep::Game_SelectFailed;
 					}
 				}
 				break;
-			case eStep::Game_Failed:
+			case eStep::Game_SelectFailed:
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				for( auto& p : mFlipedPoints )
 				{
@@ -254,7 +296,7 @@ namespace step_flipflip
 				}
 				mStep = eStep::Game_ShowIndicator;
 				break;
-			case eStep::Game_Success:
+			case eStep::Game_SelectSuccess:
 				experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				mStep = eStep::Game_ShowIndicator;
 				break;
@@ -279,16 +321,16 @@ namespace step_flipflip
 				switch( keycode )
 				{
 				case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-					mCardSelectorNode->MoveIndicator( -1, 0 );
+					mCardSelectorNode->MoveIndicator( -1, 0, true );
 					break;
 				case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-					mCardSelectorNode->MoveIndicator( 1, 0 );
+					mCardSelectorNode->MoveIndicator( 1, 0, true );
 					break;
 				case EventKeyboard::KeyCode::KEY_UP_ARROW:
-					mCardSelectorNode->MoveIndicator( 0, 1 );
+					mCardSelectorNode->MoveIndicator( 0, 1, true );
 					break;
 				case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-					mCardSelectorNode->MoveIndicator( 0, -1 );
+					mCardSelectorNode->MoveIndicator( 0, -1, true );
 					break;
 
 				case EventKeyboard::KeyCode::KEY_SPACE:

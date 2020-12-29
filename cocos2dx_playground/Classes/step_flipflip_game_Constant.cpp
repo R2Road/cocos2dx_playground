@@ -12,6 +12,7 @@ namespace
 		, "step_flipflip_card_front_2.png"
 		, "step_flipflip_card_front_3.png"
 		, "step_flipflip_card_front_4.png"
+		, "step_flipflip_card_front_5.png"
 	};
 }
 

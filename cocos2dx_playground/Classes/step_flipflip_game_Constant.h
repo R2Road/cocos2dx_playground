@@ -15,6 +15,7 @@ namespace step_flipflip
 			, C
 			, D
 			, E
+			, F
 
 			, SIZE
 			, FIRST = A
