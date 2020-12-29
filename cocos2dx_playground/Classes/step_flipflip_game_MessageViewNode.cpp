@@ -67,7 +67,7 @@ namespace step_flipflip
 			// Label
 			//
 			{
-				mLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 10 );
+				mLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 14 );
 				mLabel->setPosition( mLayer->getContentSize().width * 0.5f, mLayer->getContentSize().height * 0.5f );
 				mLayer->addChild( mLabel );
 			}
