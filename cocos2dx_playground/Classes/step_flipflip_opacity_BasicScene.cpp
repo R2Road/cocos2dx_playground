@@ -105,10 +105,10 @@ namespace step_flipflip
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_flipflip_card_front_0.png" );
 				sprite->setOpacity( GLubyte( 150 ) );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( sprite );
 
 				mTestNode = sprite;
