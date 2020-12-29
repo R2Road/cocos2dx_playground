@@ -358,6 +358,7 @@ namespace step_flipflip
 					{
 						experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 					}
+					CCLOG( "Closed Cards Count : %d", mStageData.GetClosedCardsCount() );
 					break;
 				}
 			}
