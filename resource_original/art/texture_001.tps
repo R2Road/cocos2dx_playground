@@ -316,6 +316,7 @@
             <key type="filename">step_flipflip/step_flipflip_card_front_2.png</key>
             <key type="filename">step_flipflip/step_flipflip_card_front_3.png</key>
             <key type="filename">step_flipflip/step_flipflip_card_front_4.png</key>
+            <key type="filename">step_flipflip/step_flipflip_card_front_5.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -804,6 +805,7 @@
             <filename>step_flipflip/step_flipflip_title_card_1.png</filename>
             <filename>step_flipflip/step_flipflip_title_card_2.png</filename>
             <filename>step_flipflip/step_flipflip_title_card_3.png</filename>
+            <filename>step_flipflip/step_flipflip_card_front_5.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
