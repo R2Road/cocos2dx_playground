@@ -15,6 +15,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "step_flipflip_game_PlayScene.h"
+#include "step_flipflip_game_ResultScene.h"
 #include "step_flipflip_RootScene.h"
 
 USING_NS_CC;
@@ -71,8 +72,10 @@ namespace step_flipflip
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
+				ss << std::endl;
+				ss << "[F1] : " << ResultScene::getTitle();
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 6 );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
 					visibleOrigin.x
@@ -227,6 +230,12 @@ namespace step_flipflip
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
 				_director->replaceScene( step_flipflip::RootScene::create() );
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_F1 == keycode )
+			{
+				_director->replaceScene( ResultScene::create( 123.456f ) );
 				return;
 			}
 

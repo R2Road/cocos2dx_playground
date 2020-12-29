@@ -19,6 +19,7 @@
 #include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
 
+#include "step_flipflip_game_ResultScene.h"
 #include "step_flipflip_game_TitleScene.h"
 
 USING_NS_CC;
@@ -323,8 +324,8 @@ namespace step_flipflip
 				break;
 
 			case eStep::Game_Result:
-				// Do something
-				break;
+				_director->replaceScene( ResultScene::create( 0.f ) );
+				return;
 			}
 		}
 

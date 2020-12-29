@@ -201,6 +201,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_flipflip_game_Constant.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_game_MessageViewNode.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_game_PlayScene.cpp" />
+    <ClCompile Include="..\Classes\step_flipflip_game_ResultScene.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_game_StageData.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_game_StageViewNode.cpp" />
     <ClCompile Include="..\Classes\step_flipflip_game_test_CardSelectorNodeScene.cpp" />
@@ -434,6 +435,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_flipflip_game_Constant.h" />
     <ClInclude Include="..\Classes\step_flipflip_game_MessageViewNode.h" />
     <ClInclude Include="..\Classes\step_flipflip_game_PlayScene.h" />
+    <ClInclude Include="..\Classes\step_flipflip_game_ResultScene.h" />
     <ClInclude Include="..\Classes\step_flipflip_game_StageData.h" />
     <ClInclude Include="..\Classes\step_flipflip_game_StageViewNode.h" />
     <ClInclude Include="..\Classes\step_flipflip_game_test_CardSelectorNodeScene.h" />
