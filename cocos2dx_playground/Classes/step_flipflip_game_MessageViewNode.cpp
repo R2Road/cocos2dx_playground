@@ -77,7 +77,7 @@ namespace step_flipflip
 			//
 			{
 				auto fadeInAction = FadeIn::create( 0.4f );
-				auto fadeInkDelay = DelayTime::create( 1.2f );
+				auto fadeInkDelay = DelayTime::create( 1.5f );
 				auto fadeOutAction = FadeOut::create( 0.1f );
 				mFadeInOutAction = Sequence::create( fadeInAction, fadeInkDelay, fadeOutAction, nullptr );
 				mFadeInOutAction->retain();
