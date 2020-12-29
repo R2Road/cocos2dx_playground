@@ -2,10 +2,6 @@
 
 #include "2d/CCScene.h"
 
-NS_CC_BEGIN;
-	class Label;
-NS_CC_END;
-
 namespace step_flipflip
 {
 	namespace action
