@@ -77,10 +77,10 @@ namespace step_flipflip
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 6 );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -93,10 +93,10 @@ namespace step_flipflip
 				sprite->getTexture()->setAliasTexParameters();
 				sprite->setScaleX( visibleSize.width / sprite->getContentSize().width );
 				sprite->setScaleY( visibleSize.height / sprite->getContentSize().height );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( sprite, std::numeric_limits<int>::min() );
 			}
 
@@ -190,8 +190,8 @@ namespace step_flipflip
 			{
 				auto label = Label::createWithTTF( "PRESS SPACE BAR", "fonts/NanumSquareR.ttf", 14 );
 				label->setPosition(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.23f
+					visibleOrigin
+					+  Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.23f )
 				);
 				addChild( label, std::numeric_limits<int>::max() );
 
