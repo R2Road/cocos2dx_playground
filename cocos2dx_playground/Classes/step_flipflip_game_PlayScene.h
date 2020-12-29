@@ -26,6 +26,7 @@ namespace step_flipflip
 				HideHint,
 				Sleep4HideHint,
 
+				Wait4Message4Game,
 				Message4Game,
 				Sleep4Message4Game,
 				Game_Start,

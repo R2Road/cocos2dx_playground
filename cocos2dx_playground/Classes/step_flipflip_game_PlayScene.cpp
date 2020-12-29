@@ -238,6 +238,14 @@ namespace step_flipflip
 				}
 				break;
 
+			case eStep::Wait4Message4Game:
+				mElapsedTime += dt;
+				if( 0.5f < mElapsedTime )
+				{
+					++mStep;
+					mElapsedTime = 0.f;
+				}
+				break;
 			case eStep::Message4Game:
 				mMessageViewNode->ShowMessage( "Find The Same Card Pair" );
 				++mStep;
