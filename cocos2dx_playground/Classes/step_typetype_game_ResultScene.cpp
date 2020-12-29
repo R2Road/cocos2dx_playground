@@ -54,13 +54,13 @@ namespace step_typetype
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::BLACK );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -78,10 +78,10 @@ namespace step_typetype
 			{
 				auto label = Label::createWithTTF( "Game Clear", "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.65f )
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.62f )
+				);
 				addChild( label );
 			}
 
@@ -91,10 +91,10 @@ namespace step_typetype
 			{
 				auto label = Label::createWithTTF( StringUtils::format( "Clear Time : %.2lf", clear_time ), "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.35f )
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.38f )
+				);
 				addChild( label );
 			}
 

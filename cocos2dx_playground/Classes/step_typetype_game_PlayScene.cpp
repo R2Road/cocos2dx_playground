@@ -4,9 +4,9 @@
 #include <numeric>
 #include <sstream>
 
-#include "audio/include/AudioEngine.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "audio/include/AudioEngine.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -47,7 +47,6 @@ namespace step_typetype
 			}
 			else
 			{
-				ret->scheduleUpdate();
 				ret->autorelease();
 			}
 
@@ -72,12 +71,12 @@ namespace step_typetype
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -99,10 +98,10 @@ namespace step_typetype
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -111,10 +110,10 @@ namespace step_typetype
 			//
 			{
 				mStageView = StageView::create( STAGE_MAX_LENGTH, StageViewConfig{ false, true } );
-				mStageView->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
+				mStageView->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( mStageView );
 			}
 
@@ -126,15 +125,20 @@ namespace step_typetype
 				label->setTag( TAG_NextStageIndicator );
 				label->setColor( Color3B::GREEN );
 				label->setVisible( false );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( label, 1 );
 			}
 
+			//
+			// Setup
+			//
 			mStage.Reset( mCurrentStageLength );
 			mStageView->Reset( mStage );
+
+			scheduleUpdate();
 
 			return true;
 		}
