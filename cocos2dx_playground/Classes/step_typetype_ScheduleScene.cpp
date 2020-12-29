@@ -75,10 +75,10 @@ namespace step_typetype
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPosition( Vec2(
-				visibleOrigin.x
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
 
@@ -98,8 +98,8 @@ namespace step_typetype
 			mScheduleView_forUpdate.ViewLabel->setName( "Update" );
 			mScheduleView_forUpdate.ViewLabel->setColor( Color3B::GREEN );
 			mScheduleView_forUpdate.ViewLabel->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.25f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
 			);
 			addChild( mScheduleView_forUpdate.ViewLabel );
 
@@ -114,8 +114,8 @@ namespace step_typetype
 			mScheduleView_forCustomeUpdate.ViewLabel->setName( "Custome Update" );
 			mScheduleView_forCustomeUpdate.ViewLabel->setColor( Color3B::GREEN );
 			mScheduleView_forCustomeUpdate.ViewLabel->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 			);
 			addChild( mScheduleView_forCustomeUpdate.ViewLabel );
 
@@ -130,8 +130,8 @@ namespace step_typetype
 			mScheduleView_forLambda.ViewLabel->setName( "Lambda Update" );
 			mScheduleView_forLambda.ViewLabel->setColor( Color3B::GREEN );
 			mScheduleView_forLambda.ViewLabel->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.75f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
 			);
 			addChild( mScheduleView_forLambda.ViewLabel );
 
