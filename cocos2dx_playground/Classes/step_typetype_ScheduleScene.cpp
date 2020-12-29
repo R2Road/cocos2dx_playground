@@ -78,9 +78,9 @@ namespace step_typetype
 	ScheduleScene::ScheduleScene() :
 		mKeyboardListener( nullptr )
 
-		, mScheduleView_forUpdate()
-		, mScheduleView_forCustomeUpdate()
-		, mScheduleView_forLambda()
+		, mScheduleView4Update()
+		, mScheduleView4CustomeUpdate()
+		, mScheduleView4Lambda()
 	{}
 
 	Scene* ScheduleScene::create()
@@ -151,36 +151,36 @@ namespace step_typetype
 		// Label - Update
 		//
 		{
-			mScheduleView_forUpdate = ScheduleView::create( "Update" );
-			mScheduleView_forUpdate->setPosition(
+			mScheduleView4Update = ScheduleView::create( "Update" );
+			mScheduleView4Update->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
 			);
-			addChild( mScheduleView_forUpdate );
+			addChild( mScheduleView4Update );
 		}
 
 		//
 		// Label - Custome Update
 		//
 		{
-			mScheduleView_forCustomeUpdate = ScheduleView::create( "Custome Update" );
-			mScheduleView_forCustomeUpdate->setPosition(
+			mScheduleView4CustomeUpdate = ScheduleView::create( "Custome Update" );
+			mScheduleView4CustomeUpdate->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 			);
-			addChild( mScheduleView_forCustomeUpdate );
+			addChild( mScheduleView4CustomeUpdate );
 		}
 
 		//
 		// Label - Lambda Update
 		//
 		{
-			mScheduleView_forLambda = ScheduleView::create( "Lambda Update" );
-			mScheduleView_forLambda->setPosition(
+			mScheduleView4Lambda = ScheduleView::create( "Lambda Update" );
+			mScheduleView4Lambda->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
 			);
-			addChild( mScheduleView_forLambda );
+			addChild( mScheduleView4Lambda );
 		}
 
 		//
@@ -197,7 +197,7 @@ namespace step_typetype
 			schedule(
 				[this]( float dt )
 				{
-					mScheduleView_forLambda->UpdateSchedule( dt );
+					mScheduleView4Lambda->UpdateSchedule( dt );
 				}
 				, 0.5f
 				, "Update for Lambda"
@@ -228,13 +228,13 @@ namespace step_typetype
 
 	void ScheduleScene::update( float dt )
 	{
-		mScheduleView_forUpdate->UpdateSchedule( dt );
+		mScheduleView4Update->UpdateSchedule( dt );
 
 		Node::update( dt );
 	}
 	void ScheduleScene::customeUpdate( float dt )
 	{
-		mScheduleView_forCustomeUpdate->UpdateSchedule( dt );
+		mScheduleView4CustomeUpdate->UpdateSchedule( dt );
 	}
 
 

@@ -32,8 +32,8 @@ namespace step_typetype
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		ScheduleView* mScheduleView_forUpdate;
-		ScheduleView* mScheduleView_forCustomeUpdate;
-		ScheduleView* mScheduleView_forLambda;
+		ScheduleView* mScheduleView4Update;
+		ScheduleView* mScheduleView4CustomeUpdate;
+		ScheduleView* mScheduleView4Lambda;
 	};
 }
