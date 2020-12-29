@@ -21,7 +21,7 @@ namespace step_typetype
 	class ScheduleView : public Node
 	{
 	private:
-		ScheduleView() : ViewLabel( nullptr ), Elapsedtime( 0.f ) {}
+		ScheduleView() : mViewLabel( nullptr ), mElapsedtime( 0.f ) {}
 	public:
 		static ScheduleView* create( const char* view_name )
 		{
@@ -49,9 +49,9 @@ namespace step_typetype
 
 			setName( view_name );
 
-			ViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
-			ViewLabel->setColor( Color3B::GREEN );
-			addChild( ViewLabel );
+			mViewLabel = Label::createWithTTF( "", "fonts/NanumSquareR.ttf", 12, Size::ZERO, TextHAlignment::CENTER );
+			mViewLabel->setColor( Color3B::GREEN );
+			addChild( mViewLabel );
 
 			UpdateSchedule( 0.f );
 
@@ -61,18 +61,18 @@ namespace step_typetype
 	public:
 		void UpdateSchedule( float dt )
 		{
-			Elapsedtime += dt;
-			if( 10.f < Elapsedtime )
+			mElapsedtime += dt;
+			if( 10.f < mElapsedtime )
 			{
-				Elapsedtime = 0.f;
+				mElapsedtime = 0.f;
 			}
 			
-			ViewLabel->setString( StringUtils::format( "%s\n%.2f", getName().c_str(), Elapsedtime ) );
+			mViewLabel->setString( StringUtils::format( "%s\n%.2f", getName().c_str(), mElapsedtime ) );
 		}
 
 	private:
-		Label* ViewLabel = nullptr;
-		float Elapsedtime = 0.f;
+		Label* mViewLabel = nullptr;
+		float mElapsedtime = 0.f;
 	};
 
 	ScheduleScene::ScheduleScene() :
