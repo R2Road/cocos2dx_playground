@@ -4,9 +4,9 @@
 #include <numeric>
 #include <sstream>
 
-#include "audio/include/AudioEngine.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "audio/include/AudioEngine.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -63,10 +63,10 @@ namespace step_typetype
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -88,10 +88,10 @@ namespace step_typetype
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -101,11 +101,11 @@ namespace step_typetype
 			{
 				auto label = Label::createWithTTF( "Press Space Bar : Play FX", "fonts/NanumSquareR.ttf", 14 );
 				label->setColor( Color3B::GREEN );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
-				addChild( label, 0 );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
+				addChild( label );
 			}
 
 			return true;
