@@ -57,10 +57,10 @@ namespace step_flipflip
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::BLACK );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -105,8 +105,8 @@ namespace step_flipflip
 				auto label = Label::createWithTTF( StringUtils::format( "Failed Count : %d", failed_count ), "fonts/NanumSquareR.ttf", 32 );
 				label->setColor( Color3B::BLACK );
 				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.3f )
 				) );
 				addChild( label );
 			}
@@ -136,7 +136,7 @@ namespace step_flipflip
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				_director->replaceScene( game::TitleScene::create() );
+				_director->replaceScene( TitleScene::create() );
 				return;
 			}
 		}
