@@ -16,6 +16,11 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const char* STRING_Name_LambdaSchedule = "Update for Lambda";
+}
+
 namespace step_typetype
 {
 	class ScheduleView : public Node
@@ -200,7 +205,7 @@ namespace step_typetype
 					mScheduleView4Lambda->UpdateSchedule( dt );
 				}
 				, 0.5f
-				, "Update for Lambda"
+				, STRING_Name_LambdaSchedule
 			);
 		}
 
@@ -264,9 +269,9 @@ namespace step_typetype
 		}
 		if( EventKeyboard::KeyCode::KEY_3 == keycode )
 		{
-			if( isScheduled( "Update for Lambda" ) )
+			if( isScheduled( STRING_Name_LambdaSchedule ) )
 			{
-				unschedule( "Update for Lambda" );
+				unschedule( STRING_Name_LambdaSchedule );
 			}
 		}
 	}
