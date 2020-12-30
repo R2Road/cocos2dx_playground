@@ -3,8 +3,6 @@
 #include "2d/CCScene.h"
 
 #include "step_clickclick_game_Constant.h"
-#include "step_clickclick_game_Block.h"
-
 
 namespace step_clickclick
 {
