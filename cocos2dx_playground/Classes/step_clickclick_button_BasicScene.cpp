@@ -191,23 +191,14 @@ namespace step_clickclick
 			touch_position_label->setString( StringUtils::format( "x : %f, y : %f", touch_position.x, touch_position.y ) );
 		}
 
-		void BasicScene::updateForExit( float /*dt*/ )
-		{
-			_director->replaceScene( step_clickclick::RootScene::create() );
-		}
+
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				_director->replaceScene( step_clickclick::RootScene::create() );
 				return;
 			}
-
-			if( isScheduled( schedule_selector( BasicScene::updateForExit ) ) )
-			{
-				return;
-			}
-
-			scheduleOnce( schedule_selector( BasicScene::updateForExit ), 0.f );
 		}
 	}
 }
