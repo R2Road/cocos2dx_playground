@@ -26,7 +26,7 @@ USING_NS_CC;
 
 namespace step_clickclick
 {
-	namespace game
+	namespace game_test
 	{
 		namespace
 		{
@@ -145,7 +145,7 @@ namespace step_clickclick
 				mStageView = step_clickclick::game::StageView::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &StageTestScene::onGameProcess, this, std::placeholders::_1 )
-					, StageViewConfig{ true, true }
+					, game::StageViewConfig{ true, true }
 				);
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
@@ -197,7 +197,7 @@ namespace step_clickclick
 
 		void StageTestScene::onGameProcess( const int block_linear_index )
 		{
-			Processor::Do( mStage.get(), mStageView, block_linear_index, &mScore );
+			game::Processor::Do( mStage.get(), mStageView, block_linear_index, &mScore );
 			updateScoreView();
 		}
 

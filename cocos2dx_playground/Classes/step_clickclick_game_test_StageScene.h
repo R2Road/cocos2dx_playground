@@ -12,7 +12,10 @@ namespace step_clickclick
 	{
 		using StageUp = std::unique_ptr<class Stage>;
 		class StageView;
+	}
 
+	namespace game_test
+	{
 		class StageTestScene : public cocos2d::Scene
 		{
 		private:
@@ -38,8 +41,8 @@ namespace step_clickclick
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			StageUp mStage;
-			StageView* mStageView;
+			game::StageUp mStage;
+			game::StageView* mStageView;
 			const cpg::GridIndexConverter mGridIndexConverter;
 
 			int mScore;
