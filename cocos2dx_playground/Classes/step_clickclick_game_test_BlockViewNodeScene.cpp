@@ -131,7 +131,7 @@ namespace step_clickclick
 				mBlockViewNode = step_clickclick::game::BlockViewNode::create(
 					0
 					, BlockSize
-					, std::bind( &BlockViewNodeScene::onGameProcess, this, std::placeholders::_1 )
+					, std::bind( &BlockViewNodeScene::onBlock, this, std::placeholders::_1 )
 				);
 				mBlockViewNode->setPosition(
 					visibleOrigin
@@ -168,8 +168,10 @@ namespace step_clickclick
 		}
 
 
-		void BlockViewNodeScene::onGameProcess( const int block_linear_index )
+		void BlockViewNodeScene::onBlock( const int block_index )
 		{
+			CCLOG( "onBlock : %d", block_index );
+
 			const int last_life = mBlockLife;
 			switch( mTestActionType )
 			{
