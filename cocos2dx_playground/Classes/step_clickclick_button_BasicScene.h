@@ -37,6 +37,7 @@ namespace step_clickclick
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			cocos2d::Label* mButtonStatusLabel;
+			cocos2d::Label* mTouchInfoLabel;
 		};
 	}
 }

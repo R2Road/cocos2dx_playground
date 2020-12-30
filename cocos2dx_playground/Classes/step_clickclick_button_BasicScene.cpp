@@ -17,11 +17,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const int TAG_TouchPosition = 20160528;
-}
-
 namespace step_clickclick
 {
 	namespace button
@@ -104,15 +99,13 @@ namespace step_clickclick
 			// Touch Info View
 			//
 			{
-				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
-				label->setTag( TAG_TouchPosition );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				label->setPosition( Vec2(
+				mTouchInfoLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
+				mTouchInfoLabel->setColor( Color3B::GREEN );
+				mTouchInfoLabel->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.6f )
 				) );
-				addChild( label );
+				addChild( mTouchInfoLabel );
 			}
 
 			//
@@ -187,8 +180,7 @@ namespace step_clickclick
 		}
 		void BasicScene::updateView_TouchPosition( const cocos2d::Vec2 touch_position )
 		{
-			auto touch_position_label = static_cast<Label*>( getChildByTag( TAG_TouchPosition ) );
-			touch_position_label->setString( StringUtils::format( "x : %f, y : %f", touch_position.x, touch_position.y ) );
+			mTouchInfoLabel->setString( StringUtils::format( "x : %f, y : %f", touch_position.x, touch_position.y ) );
 		}
 
 
