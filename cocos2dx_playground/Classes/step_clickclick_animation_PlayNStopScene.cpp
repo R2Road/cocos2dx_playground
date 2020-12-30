@@ -116,7 +116,7 @@ namespace step_clickclick
 			//
 			{
 				auto animation_object = Animation::create();
-				animation_object->setDelayPerUnit( 0.2f );
+				animation_object->setDelayPerUnit( 0.1f );
 				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
 				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
 				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );

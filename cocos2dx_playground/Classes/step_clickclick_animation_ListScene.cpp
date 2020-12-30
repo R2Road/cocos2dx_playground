@@ -32,7 +32,7 @@ namespace
 
 		, {
 			cpg::animation::eIndex::run
-			, 0.2f
+			, 0.1f
 			, std::vector<std::string>{ "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
 		}
 
