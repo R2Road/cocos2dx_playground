@@ -24,19 +24,19 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const int MAX_STAGE_WIDTH = 7;
+	const int MAX_STAGE_HEIGHT = 7;
+
+	const int TAG_StageSizeView = 20140416;
+	const int TAG_ScoreView = 9999;
+}
+
 namespace step_clickclick
 {
 	namespace game_test
 	{
-		namespace
-		{
-			const int MAX_STAGE_WIDTH = 7;
-			const int MAX_STAGE_HEIGHT = 7;
-
-			const int TAG_StageSizeView = 20140416;
-			const int TAG_ScoreView = 9999;
-		}
-
 		GameProcessorScene::GameProcessorScene() :
 			mKeyboardListener( nullptr )
 			, mStage()
