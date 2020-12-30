@@ -900,6 +900,12 @@
     <ClCompile Include="..\Classes\step_clickclick_game_Constant.cpp">
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_EffectManagerNode.cpp">
+      <Filter>src\scene\step_03_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_test_EffectManagerNodeScene.cpp">
+      <Filter>src\scene\step_03_clickclick\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1623,6 +1629,12 @@
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_test_GameProcessorScene.h">
+      <Filter>src\scene\step_03_clickclick\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_EffectManagerNode.h">
+      <Filter>src\scene\step_03_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_test_EffectManagerNodeScene.h">
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClInclude>
   </ItemGroup>
