@@ -7,7 +7,7 @@
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 
-#include "step_clickclick_game_BlockView.h"
+#include "step_clickclick_game_BlockViewNode.h"
 #include "step_clickclick_game_Stage.h"
 
 USING_NS_CC;
@@ -87,14 +87,14 @@ namespace step_clickclick
 
 			// Buttons
 			int linear_index = 0;
-			BlockView* block_view = nullptr;
+			BlockViewNode* block_view = nullptr;
 			for( int ty = 0; ty < mStageHeight; ++ty )
 			{
 				for( int tx = 0; tx < mStageWidth; ++tx )
 				{
 					linear_index = mGridIndexConverter.To_Linear( tx, ty );
 
-					block_view = BlockView::create( linear_index, BlockSize, on_block_callback );
+					block_view = BlockViewNode::create( linear_index, BlockSize, on_block_callback );
 					block_view->setPosition(
 						pivot_position
 						+ Vec2( BlockSize.width * 0.5f, BlockSize.height * 0.5f )

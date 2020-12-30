@@ -1,4 +1,4 @@
-#include "step_clickclick_game_BlockView.h"
+#include "step_clickclick_game_BlockViewNode.h"
 
 #include <new>
 
@@ -22,7 +22,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		BlockView::BlockView( const OnBlockCallback& on_block_callback ) :
+		BlockViewNode::BlockViewNode( const OnBlockCallback& on_block_callback ) :
 			mButtonNode( nullptr )
 			, mViewNode( nullptr )
 			, mLabelNode( nullptr )
@@ -30,9 +30,9 @@ namespace step_clickclick
 			, mOnBlockCallback( on_block_callback )
 		{}
 
-		BlockView* BlockView::create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback )
+		BlockViewNode* BlockViewNode::create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback )
 		{
-			auto ret = new ( std::nothrow ) BlockView( on_block_callback );
+			auto ret = new ( std::nothrow ) BlockViewNode( on_block_callback );
 			if( !ret || !ret->init( linear_index, block_size ) )
 			{
 				delete ret;
@@ -46,7 +46,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool BlockView::init( const int linear_index, const cocos2d::Size block_size )
+		bool BlockViewNode::init( const int linear_index, const cocos2d::Size block_size )
 		{
 			if( !Node::init() )
 			{
@@ -58,7 +58,7 @@ namespace step_clickclick
 			button->setTag( linear_index );
 			button->setScale9Enabled( true );
 			button->setContentSize( block_size );
-			button->addTouchEventListener( CC_CALLBACK_2( BlockView::onBlock, this ) );
+			button->addTouchEventListener( CC_CALLBACK_2( BlockViewNode::onBlock, this ) );
 			addChild( button );
 			mButtonNode = button;
 
@@ -84,7 +84,7 @@ namespace step_clickclick
 			return true;
 		}
 
-		void BlockView::Reset( eBlockType type, const int life )
+		void BlockViewNode::Reset( eBlockType type, const int life )
 		{
 			mLabelNode->setString( std::to_string( life ) );
 
@@ -105,13 +105,13 @@ namespace step_clickclick
 			}
 			mViewNode->setSpriteFrame( view_frame );
 		}
-		void BlockView::SetVisible( const bool visible )
+		void BlockViewNode::SetVisible( const bool visible )
 		{
 			mButtonNode->setVisible( visible );
 			mViewNode->setVisible( visible );
 			mLabelNode->setVisible( visible );
 		}
-		void BlockView::UpdateLife( const int last_life, const int current_life )
+		void BlockViewNode::UpdateLife( const int last_life, const int current_life )
 		{
 			if( 0 == current_life )
 			{
@@ -133,7 +133,7 @@ namespace step_clickclick
 			}
 		}
 
-		void BlockView::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void BlockViewNode::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
 			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 			{

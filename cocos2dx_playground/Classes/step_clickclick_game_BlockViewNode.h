@@ -17,16 +17,16 @@ namespace step_clickclick
 	{
 		class EffectView;
 
-		class BlockView : public cocos2d::Node
+		class BlockViewNode : public cocos2d::Node
 		{
 		public:
 			using OnBlockCallback = std::function<void( int )>;
 
 		private:
-			BlockView( const OnBlockCallback& on_block_callback );
+			BlockViewNode( const OnBlockCallback& on_block_callback );
 
 		public:
-			static BlockView* create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback );
+			static BlockViewNode* create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback );
 
 		private:
 			bool init( const int linear_index, const cocos2d::Size block_size );

@@ -17,7 +17,7 @@
 
 #include "step_clickclick_RootScene.h"
 
-#include "step_clickclick_game_BlockView.h"
+#include "step_clickclick_game_BlockViewNode.h"
 
 USING_NS_CC;
 
@@ -165,10 +165,10 @@ namespace step_clickclick
 					, 0.f
 				);
 
-				step_clickclick::game::BlockView* block_view = nullptr;
+				step_clickclick::game::BlockViewNode* block_view = nullptr;
 				for( int i = 0; BlockCount > i; ++i )
 				{
-					block_view = step_clickclick::game::BlockView::create( i, BlockSize, std::bind( &BlockScene::onGameProcess, this, std::placeholders::_1 ) );
+					block_view = step_clickclick::game::BlockViewNode::create( i, BlockSize, std::bind( &BlockScene::onGameProcess, this, std::placeholders::_1 ) );
 					block_view->setTag( i );
 					block_view->setPosition(
 						BlockStartPosition
@@ -230,7 +230,7 @@ namespace step_clickclick
 				assert( false );
 			}
 
-			auto block_view = static_cast<step_clickclick::game::BlockView*>( getChildByTag( block_linear_index ) );
+			auto block_view = static_cast<step_clickclick::game::BlockViewNode*>( getChildByTag( block_linear_index ) );
 			block_view->UpdateLife( last_life, target_block_data.GetLife() );
 		}
 

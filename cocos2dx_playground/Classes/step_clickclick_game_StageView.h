@@ -17,7 +17,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class BlockView;
+		class BlockViewNode;
 
 		class Stage;
 
@@ -49,7 +49,7 @@ namespace step_clickclick
 			const int mStageWidth;
 			const int mStageHeight;
 			const cpg::GridIndexConverter mGridIndexConverter;
-			std::vector<BlockView*> mBlockViews;
+			std::vector<BlockViewNode*> mBlockViews;
 		};
 	}
 }

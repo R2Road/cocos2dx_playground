@@ -13,7 +13,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class BlockView;
+		class BlockViewNode;
 	}
 
 	namespace game_test
@@ -55,7 +55,7 @@ namespace step_clickclick
 			eTestActionType mTestActionType;
 
 			std::vector<step_clickclick::game::Block> mBlockContainer;
-			std::vector<step_clickclick::game::BlockView*> mBlockViewContainer;
+			std::vector<step_clickclick::game::BlockViewNode*> mBlockViewContainer;
 		};
 	}
 }
