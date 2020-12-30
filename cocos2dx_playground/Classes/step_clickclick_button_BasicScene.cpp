@@ -67,10 +67,10 @@ namespace step_clickclick
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -88,10 +88,10 @@ namespace step_clickclick
 			{
 				mButtonStatusLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
 				mButtonStatusLabel->setColor( Color3B::GREEN );
-				mButtonStatusLabel->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.7f )
-				) );
+				mButtonStatusLabel->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.7f )
+				);
 				addChild( mButtonStatusLabel );
 			}
 
@@ -101,10 +101,10 @@ namespace step_clickclick
 			{
 				mTouchInfoLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
 				mTouchInfoLabel->setColor( Color3B::GREEN );
-				mTouchInfoLabel->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.6f )
-				) );
+				mTouchInfoLabel->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.6f )
+				);
 				addChild( mTouchInfoLabel );
 			}
 
@@ -115,23 +115,24 @@ namespace step_clickclick
 				auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->setContentSize( Size( 50.f, 50.f ) );
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
+				button->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.3f )
+				);
 				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
 				addChild( button );
 
-				auto label = Label::createWithTTF( "Click Here ===>>>", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Click Here ===>>>", cpg::StringTable::GetFontPath(), 12 );
 				label->setColor( Color3B::RED );
 				label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
-				label->setPosition( button->getPosition() - Vec2( button->getContentSize().width * 0.7f, 0.f ) );
+				label->setPosition(
+					button->getPosition()
+					- Vec2( button->getContentSize().width * 0.7f, 0.f )
+				);
 				addChild( label );
 
 				onButton( button, cocos2d::ui::Widget::TouchEventType::ENDED );
 			}
-
-			
 
 			return true;
 		}
@@ -153,6 +154,7 @@ namespace step_clickclick
 
 			Scene::onExit();
 		}
+
 
 		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 		{
