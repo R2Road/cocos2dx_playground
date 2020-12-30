@@ -9,6 +9,9 @@ namespace step_clickclick
 			Single,
 			Same,
 			Different,
+
+			FIRST = Single,
+			END = Different,
 		};
 	}
 }

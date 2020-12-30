@@ -179,9 +179,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\shader_practice_SimpleTestScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_Block.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_EffectView.cpp" />
-    <ClCompile Include="..\Classes\step_clickclick_game_test_BlockScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_BlockViewNode.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_Processor.cpp" />
+    <ClCompile Include="..\Classes\step_clickclick_game_test_BlockViewNodeScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_test_EffectViewScene.cpp" />
     <ClCompile Include="..\Classes\step_clickclick_game_test_StageViewNodeScene.cpp" />
     <ClCompile Include="..\Classes\step_defender_chipmunk_ContactScene.cpp" />
@@ -413,9 +413,9 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\shader_practice_SimpleTestScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_Block.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_EffectView.h" />
-    <ClInclude Include="..\Classes\step_clickclick_game_test_BlockScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_BlockViewNode.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_Processor.h" />
+    <ClInclude Include="..\Classes\step_clickclick_game_test_BlockViewNodeScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_test_EffectViewScene.h" />
     <ClInclude Include="..\Classes\step_clickclick_game_test_StageViewNodeScene.h" />
     <ClInclude Include="..\Classes\step_defender_chipmunk_ContactScene.h" />

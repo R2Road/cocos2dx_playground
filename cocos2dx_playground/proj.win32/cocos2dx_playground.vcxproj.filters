@@ -558,9 +558,6 @@
     <ClCompile Include="..\Classes\step_mole_game_test_SpawnScene.cpp">
       <Filter>src\scene\step_05_mole\game_test</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_test_BlockScene.cpp">
-      <Filter>src\scene\step_03_clickclick\game_test</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.cpp">
       <Filter>src\scene\step_06_rain_of_chaos\game_test</Filter>
     </ClCompile>
@@ -896,6 +893,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_BlockViewNode.cpp">
       <Filter>src\scene\step_03_clickclick\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_test_BlockViewNodeScene.cpp">
+      <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1271,9 +1271,6 @@
     <ClInclude Include="..\Classes\step_mole_game_test_SpawnScene.h">
       <Filter>src\scene\step_05_mole\game_test</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_test_BlockScene.h">
-      <Filter>src\scene\step_03_clickclick\game_test</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_BackgroundNodeScene.h">
       <Filter>src\scene\step_06_rain_of_chaos\game_test</Filter>
     </ClInclude>
@@ -1621,6 +1618,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_BlockViewNode.h">
       <Filter>src\scene\step_03_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_test_BlockViewNodeScene.h">
+      <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

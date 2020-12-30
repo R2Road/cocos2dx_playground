@@ -20,7 +20,7 @@
 #include "step_clickclick_button_BasicScene.h"
 
 #include "step_clickclick_game_test_EffectViewScene.h"
-#include "step_clickclick_game_test_BlockScene.h"
+#include "step_clickclick_game_test_BlockViewNodeScene.h"
 #include "step_clickclick_game_test_StageViewNodeScene.h"
 #include "step_clickclick_game_test_StageScene.h"
 
@@ -71,9 +71,10 @@ namespace step_clickclick
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : " << step_clickclick::game_test::EffectViewScene::getTitle();
+			ss << "[Q] : " << step_clickclick::game_test::EffectViewScene::getTitle();
 			ss << std::endl;
-			ss << "[S] : " << step_clickclick::game_test::BlockScene::getTitle();
+			ss << "[W] : " << step_clickclick::game_test::BlockViewNodeScene::getTitle();
+			ss << std::endl;
 			ss << std::endl;
 			ss << "[D] : " << step_clickclick::game_test::StageViewNodeScene::getTitle();
 			ss << std::endl;
@@ -144,12 +145,13 @@ namespace step_clickclick
 			_director->replaceScene( step_clickclick::button::BasicScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_A:
+		case EventKeyboard::KeyCode::KEY_Q:
 			_director->replaceScene( step_clickclick::game_test::EffectViewScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_S:
-			_director->replaceScene( step_clickclick::game_test::BlockScene::create() );
+		case EventKeyboard::KeyCode::KEY_W:
+			_director->replaceScene( step_clickclick::game_test::BlockViewNodeScene::create() );
 			break;
+
 		case EventKeyboard::KeyCode::KEY_D:
 			_director->replaceScene( step_clickclick::game_test::StageViewNodeScene::create() );
 			break;

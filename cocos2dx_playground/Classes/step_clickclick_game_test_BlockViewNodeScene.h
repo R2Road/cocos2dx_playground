@@ -1,8 +1,5 @@
 #pragma once
 
-#include <memory>
-#include <vector>
-
 #include "2d/CCScene.h"
 
 #include "step_clickclick_game_Constant.h"
@@ -18,7 +15,7 @@ namespace step_clickclick
 
 	namespace game_test
 	{
-		class BlockScene : public cocos2d::Scene
+		class BlockViewNodeScene : public cocos2d::Scene
 		{
 		private:
 			enum class eTestActionType
@@ -28,10 +25,10 @@ namespace step_clickclick
 				Die,
 			};
 
-			BlockScene();
+			BlockViewNodeScene();
 
 		public:
-			static const char* getTitle() { return "Game Test : Block"; }
+			static const char* getTitle() { return "Game Test : Block View Node"; }
 			static cocos2d::Scene* create();
 
 		private:
@@ -43,19 +40,17 @@ namespace step_clickclick
 
 		private:
 			void onGameProcess( const int block_linear_index );
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
-
 			void updateTestAction( const eTestActionType test_action_type );
-			void updateSelectedBlockTypeView( const step_clickclick::game::eBlockType block_type );
 
-			void ResetBlockContainer();
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			eTestActionType mTestActionType;
 
-			std::vector<step_clickclick::game::Block> mBlockContainer;
-			std::vector<step_clickclick::game::BlockViewNode*> mBlockViewContainer;
+			step_clickclick::game::eBlockType mBlockType;
+			int mBlockLife;
+			step_clickclick::game::BlockViewNode* mBlockViewNode;
 		};
 	}
 }
