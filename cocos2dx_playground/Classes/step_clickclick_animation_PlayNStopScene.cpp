@@ -83,10 +83,10 @@ namespace step_clickclick
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
@@ -104,12 +104,11 @@ namespace step_clickclick
 			{
 				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 				animation_node->setScale( _director->getContentScaleFactor() );
-				animation_node->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
-				) );
+				animation_node->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( animation_node );
 			}
 
