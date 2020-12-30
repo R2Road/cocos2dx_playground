@@ -897,6 +897,9 @@
     <ClCompile Include="..\Classes\step_clickclick_game_test_GameProcessorScene.cpp">
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_Constant.cpp">
+      <Filter>src\scene\step_03_clickclick\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

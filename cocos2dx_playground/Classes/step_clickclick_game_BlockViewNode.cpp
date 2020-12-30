@@ -99,22 +99,9 @@ namespace step_clickclick
 		{
 			mLifeLabel->setString( std::to_string( life ) );
 
-			SpriteFrame* view_frame = nullptr;
-			switch( type )
-			{
-			case eBlockType::Single:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_block_single.png" );
-				break;
-			case eBlockType::Same:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_block_together.png" );
-				break;
-			case eBlockType::Different:
-				view_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( "step_clickclick_block_different.png" );
-				break;
-			default:
-				CCASSERT( false, "Invalid Block Type" );
-			}
-			mViewNode->setSpriteFrame( view_frame );
+			const auto sprite_frame_name = ConvertBlockType2SpriteFrameName( type );
+			auto sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name );
+			mViewNode->setSpriteFrame( sprite_frame );
 		}
 		void BlockViewNode::SetVisible( const bool visible )
 		{

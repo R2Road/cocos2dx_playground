@@ -10,8 +10,11 @@ namespace step_clickclick
 			Same,
 			Different,
 
+			SIZE,
 			FIRST = Single,
 			END = Different,
 		};
+
+		const char* ConvertBlockType2SpriteFrameName( const eBlockType block_type );
 	}
 }
