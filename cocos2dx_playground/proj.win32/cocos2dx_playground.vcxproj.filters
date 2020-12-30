@@ -894,6 +894,9 @@
     <ClCompile Include="..\Classes\step_flipflip_game_ResultScene.cpp">
       <Filter>src\scene\step_02_flipflip\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_test_StageViewNodeScene.cpp">
+      <Filter>src\scene\step_03_clickclick\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1615,6 +1618,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_flipflip_game_ResultScene.h">
       <Filter>src\scene\step_02_flipflip\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_test_StageViewNodeScene.h">
+      <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
