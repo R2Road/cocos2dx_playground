@@ -236,7 +236,7 @@ namespace step_clickclick
 
 		void PlayScene::onGameProcess( const int block_linear_index )
 		{
-			Processor::Do( mStage.get(), mStageView, block_linear_index, &mScore );
+			Processor::Do( mStage.get(), mStageView, mEffectManagerNode, block_linear_index, &mScore );
 
 			//
 			// Score Update

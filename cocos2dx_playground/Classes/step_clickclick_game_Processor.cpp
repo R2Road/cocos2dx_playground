@@ -9,6 +9,25 @@
 #include "step_clickclick_game_Stage.h"
 #include "step_clickclick_game_StageView.h"
 
+namespace
+{
+	void ProcessEffect( step_clickclick::game::EffectManagerNode* effect_manager_node, const int block_index, const int last_life, const int current_life )
+	{
+		if( 0 == current_life )
+		{
+			effect_manager_node->PlayEffect( block_index, step_clickclick::game::eEffectIndex::Die );
+		}
+		else if( last_life < current_life )
+		{
+			effect_manager_node->PlayEffect( block_index, step_clickclick::game::eEffectIndex::Increase );
+		}
+		else
+		{
+			effect_manager_node->PlayEffect( block_index, step_clickclick::game::eEffectIndex::Decrease );
+		}
+	}
+}
+
 namespace step_clickclick
 {
 	namespace game
@@ -78,24 +97,7 @@ namespace step_clickclick
 					stage_view->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
 				}
 
-				//if( 0 == current_life )
-				//{
-				//	SetVisible( false );
-				//	mEffectNode->PlayEffect( eEffectIndex::Die );
-				//}
-				//else
-				//{
-				//	mLifeLabel->setString( std::to_string( current_life ) );
-
-				//	if( last_life < current_life )
-				//	{
-				//		mEffectNode->PlayEffect( eEffectIndex::Increase );
-				//	}
-				//	else
-				//	{
-				//		mEffectNode->PlayEffect( eEffectIndex::Decrease );
-				//	}
-				//}
+				ProcessEffect( effect_manager_node, pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
 			}
 			else if( eBlockType::Same == pivot_block_data.GetType() )
 			{
@@ -140,6 +142,7 @@ namespace step_clickclick
 						}
 
 						stage_view->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						ProcessEffect( effect_manager_node, target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
 			}
@@ -184,6 +187,7 @@ namespace step_clickclick
 						}
 
 						stage_view->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						ProcessEffect( effect_manager_node, target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
 			}

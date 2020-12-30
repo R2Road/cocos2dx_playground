@@ -10,7 +10,6 @@
 
 #include "cpg_StringTable.h"
 
-#include "step_clickclick_game_EffectView.h"
 #include "step_clickclick_game_Stage.h"
 
 USING_NS_CC;
@@ -25,7 +24,6 @@ namespace step_clickclick
 			, mButtonNode( nullptr )
 			, mViewNode( nullptr )
 			, mLifeLabel( nullptr )
-			, mEffectNode( nullptr )
 
 			, mOnBlockCallback( on_block_callback )
 		{}
@@ -84,14 +82,6 @@ namespace step_clickclick
 				addChild( mLifeLabel, 2 );
 			}
 
-			//
-			// effect
-			//
-			{
-				mEffectNode = EffectView::create();
-				addChild( mEffectNode, 3 );
-			}
-
 			return true;
 		}
 
@@ -116,20 +106,10 @@ namespace step_clickclick
 			if( 0 == current_life )
 			{
 				SetVisible( false );
-				mEffectNode->PlayEffect( eEffectIndex::Die );
 			}
 			else
 			{
 				mLifeLabel->setString( std::to_string( current_life ) );
-
-				if( last_life < current_life )
-				{
-					mEffectNode->PlayEffect( eEffectIndex::Increase );
-				}
-				else
-				{
-					mEffectNode->PlayEffect( eEffectIndex::Decrease );
-				}
 			}
 		}
 

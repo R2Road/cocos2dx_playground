@@ -14,8 +14,6 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class EffectView;
-
 		class BlockViewNode : public cocos2d::Node
 		{
 		public:
@@ -44,7 +42,6 @@ namespace step_clickclick
 			cocos2d::Node* mButtonNode;
 			cocos2d::Sprite* mViewNode;
 			cocos2d::Label* mLifeLabel;
-			EffectView* mEffectNode;
 
 			const OnBlockCallback mOnBlockCallback;
 		};

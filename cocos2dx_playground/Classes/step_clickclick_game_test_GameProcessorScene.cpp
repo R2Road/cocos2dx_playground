@@ -188,7 +188,7 @@ namespace step_clickclick
 
 		void GameProcessorScene::onGameProcess( const int block_linear_index )
 		{
-			game::Processor::Do( mStage.get(), mStageView, block_linear_index, &mScore );
+			game::Processor::Do( mStage.get(), mStageView, mEffectManagerNode, block_linear_index, &mScore );
 			updateScoreView();
 		}
 
