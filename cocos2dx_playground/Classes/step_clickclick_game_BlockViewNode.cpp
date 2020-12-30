@@ -2,13 +2,10 @@
 
 #include <new>
 
-#include "2d/CCActionInterval.h"
-#include "2d/CCAnimation.h"
 #include "2d/CCLabel.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
-#include "base/ccMacros.h"
 #include "ui/UIButton.h"
 
 #include "cpg_StringTable.h"
