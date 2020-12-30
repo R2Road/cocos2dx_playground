@@ -24,7 +24,6 @@ namespace
 	const int TAG_AnimationNode = 20140416;
 
 	const int TAG_Action_Animation_Run_Once = 111;
-	const int TAG_Action_Animation_Run_Repeat = 222;
 }
 
 namespace step_clickclick
@@ -34,13 +33,11 @@ namespace step_clickclick
 		PlayNStopScene::PlayNStopScene() :
 			mKeyboardListener( nullptr )
 			, mNormalAction( nullptr )
-			, mRepeatAction( nullptr )
 		{}
 
 		PlayNStopScene::~PlayNStopScene()
 		{
 			mNormalAction->release();
-			mRepeatAction->release();
 		}
 
 		Scene* PlayNStopScene::create()
@@ -80,11 +77,9 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[A] : Play Animation - Once";
+				ss << "[A] : Play Animation";
 				ss << std::endl;
-				ss << "[S] : Play Animation - Loop";
-				ss << std::endl;
-				ss << "[SpaceBar] : Stop Animation";
+				ss << "[S] : Stop Animation";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -130,18 +125,14 @@ namespace step_clickclick
 					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
 					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
 					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
 					mNormalAction = Animate::create( animation_object );
 					mNormalAction->setTag( TAG_Action_Animation_Run_Once );
 					mNormalAction->retain();
-				}
-
-				// Repeat Action
-				{
-					mRepeatAction = RepeatForever::create( static_cast<Animate*>( mNormalAction->clone() ) );
-
-					mRepeatAction->setTag( TAG_Action_Animation_Run_Repeat );
-					mRepeatAction->retain();
 				}
 			}
 
@@ -178,23 +169,11 @@ namespace step_clickclick
 			{
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				animation_node->stopActionByTag( TAG_Action_Animation_Run_Once );
-				animation_node->stopActionByTag( TAG_Action_Animation_Run_Repeat );
 				animation_node->runAction( mNormalAction );
 			}
 			break;
 
-			case EventKeyboard::KeyCode::KEY_S: // Play Repeat
-			{
-				auto animation_node = getChildByTag( TAG_AnimationNode );
-				if( !animation_node->getActionByTag( TAG_Action_Animation_Run_Repeat ) )
-				{
-					animation_node->stopActionByTag( TAG_Action_Animation_Run_Once );
-					animation_node->runAction( mRepeatAction );
-				}
-			}
-			break;
-
-			case EventKeyboard::KeyCode::KEY_SPACE: // Stop
+			case EventKeyboard::KeyCode::KEY_S: // Stop
 			{
 				auto animation_node = getChildByTag( TAG_AnimationNode );
 				if( 0 < animation_node->getNumberOfRunningActions() )

@@ -30,7 +30,6 @@ namespace step_clickclick
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			cocos2d::Action* mNormalAction;
-			cocos2d::Action* mRepeatAction;
 		};
 	}
 }
