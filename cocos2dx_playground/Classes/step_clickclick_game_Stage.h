@@ -24,7 +24,7 @@ namespace step_clickclick
 			void init();
 
 		public:
-			void Setup( const int width, const int height );
+			void Setup( const int width, const int height, const int shuffle_limit );
 
 			int GetWidth() const { return mStageWidth; }
 			int GetHeight() const { return mStageHeight; }

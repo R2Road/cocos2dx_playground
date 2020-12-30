@@ -135,7 +135,7 @@ namespace step_clickclick
 			//
 			{
 				mStage = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 			}
 
 			//
@@ -223,7 +223,7 @@ namespace step_clickclick
 				);
 				updateStageSizeView();
 
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 				mStageView->Setup( *mStage );
 				mScore = 0;
 				updateScoreView();
@@ -242,14 +242,14 @@ namespace step_clickclick
 				);
 				updateStageSizeView();
 
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 				mStageView->Setup( *mStage );
 				mScore = 0;
 				updateScoreView();
 				break;
 
 			case EventKeyboard::KeyCode::KEY_R: // Reset
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 				mStageView->Setup( *mStage );
 				mScore = 0;
 				updateScoreView();

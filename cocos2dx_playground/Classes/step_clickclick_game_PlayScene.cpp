@@ -126,7 +126,7 @@ namespace step_clickclick
 			//
 			{
 				mStage = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 			}
 
 			//
@@ -303,7 +303,7 @@ namespace step_clickclick
 			case NextStepData::eStep::hide_clear_indicator:
 				getChildByTag( TAG_ClearView )->setVisible( false );
 				getChildByTag( TAG_CountView )->setVisible( false );
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 				mStageView->Setup( *mStage );
 				++mNextStepData.Step;
 				break;

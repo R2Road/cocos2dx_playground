@@ -35,9 +35,11 @@ namespace step_clickclick
 		StageViewNodeScene::StageViewNodeScene() :
 			mKeyboardListener( nullptr )
 
+			, mShuffleCountLabel( nullptr )
 			, mStageViewNode( nullptr )
 			, mStageSizeLabel( nullptr )
 			, mSelectedBlockIndexLabel( nullptr )
+			, mShuffleCount( 0 )
 			, mCurrentStageWidth( 1 )
 			, mCurrentStageHeight( 1 )
 		{}
@@ -79,9 +81,12 @@ namespace step_clickclick
 				ss << "[ESC] Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow R/L] Stage Width Increase/Decrease";
+				ss << "[A/S] Shuffle Count Up/Down";
 				ss << std::endl;
-				ss << "[Arrow U/D] Stage Height Increase/Decrease";
+				ss << std::endl;
+				ss << "[Arrow R/L] Stage Width Up/Down";
+				ss << std::endl;
+				ss << "[Arrow U/D] Stage Height Up/Down";
 				ss << std::endl;
 				ss << std::endl;
 				ss << "[SPACE] Setup";
@@ -114,6 +119,20 @@ namespace step_clickclick
 			}
 
 			//
+			// Shuffle Count View
+			//
+			{
+				mShuffleCountLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::RIGHT );
+				mShuffleCountLabel->setColor( Color3B::GREEN );
+				mShuffleCountLabel->setAnchorPoint( Vec2( 1.f, 1.f ) );
+				mShuffleCountLabel->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
+				addChild( mShuffleCountLabel, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Stage Size View
 			//
 			{
@@ -122,7 +141,7 @@ namespace step_clickclick
 				mStageSizeLabel->setAnchorPoint( Vec2( 1.f, 1.f ) );
 				mStageSizeLabel->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width, visibleSize.height )
+					+ Vec2( visibleSize.width, visibleSize.height * 0.9f )
 				);
 				addChild( mStageSizeLabel, std::numeric_limits<int>::max() );
 			}
@@ -160,6 +179,7 @@ namespace step_clickclick
 			//
 			// Setup
 			//
+			updateShuffleCountView();
 			updateStageSizeView();
 			onBlockSelected( 0 );
 
@@ -185,6 +205,10 @@ namespace step_clickclick
 		}
 
 
+		void StageViewNodeScene::updateShuffleCountView()
+		{
+			mShuffleCountLabel->setString( StringUtils::format( "Shuffle Count : %d", mShuffleCount ) );
+		}
 		void StageViewNodeScene::updateStageSizeView()
 		{
 			mStageSizeLabel->setString( StringUtils::format( "Stage Size\nW : %d\nH : %d", mCurrentStageWidth, mCurrentStageHeight ) );
@@ -206,7 +230,7 @@ namespace step_clickclick
 			case EventKeyboard::KeyCode::KEY_SPACE:
 			{
 				auto stage_data = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
-				stage_data->Setup( mCurrentStageWidth, mCurrentStageHeight );
+				stage_data->Setup( mCurrentStageWidth, mCurrentStageHeight, mShuffleCount );
 
 				mStageViewNode->Setup( *stage_data );
 			}
@@ -227,6 +251,15 @@ namespace step_clickclick
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW: // Decrease
 				mCurrentStageHeight = std::max( 1, mCurrentStageHeight - 2 );
 				updateStageSizeView();
+				break;
+
+			case EventKeyboard::KeyCode::KEY_A:
+				++mShuffleCount;
+				updateShuffleCountView();
+				break;
+			case EventKeyboard::KeyCode::KEY_S:
+				mShuffleCount = std::max( 0, mShuffleCount - 1 );
+				updateShuffleCountView();
 				break;
 
 			default:

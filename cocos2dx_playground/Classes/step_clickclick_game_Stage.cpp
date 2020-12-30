@@ -70,7 +70,7 @@ namespace step_clickclick
 			}
 		}
 
-		void Stage::Setup( const int width, const int height )
+		void Stage::Setup( const int width, const int height, const int shuffle_limit )
 		{
 			CHECK_ODD_NUMBER( width );
 			CHECK_ODD_NUMBER( height );
@@ -116,8 +116,10 @@ namespace step_clickclick
 				// Shuffle x 2
 				const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 				std::default_random_engine random_engine( seed );
-				std::shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
-				std::shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
+				for( int i = 0; shuffle_limit > i; ++i )
+				{
+					std::shuffle( block_type_list.begin(), block_type_list.end(), random_engine );
+				}
 			}
 
 			//

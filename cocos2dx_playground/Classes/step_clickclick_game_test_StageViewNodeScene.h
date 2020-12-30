@@ -32,6 +32,7 @@ namespace step_clickclick
 			void onExit() override;
 
 		private:
+			void updateShuffleCountView();
 			void updateStageSizeView();
 			void onBlockSelected( const int block_linear_index );
 
@@ -41,8 +42,10 @@ namespace step_clickclick
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			game::StageView* mStageViewNode;
+			cocos2d::Label* mShuffleCountLabel;
 			cocos2d::Label* mStageSizeLabel;
 			cocos2d::Label* mSelectedBlockIndexLabel;
+			int mShuffleCount;
 			int mCurrentStageWidth;
 			int mCurrentStageHeight;
 		};
