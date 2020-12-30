@@ -75,11 +75,10 @@ namespace step_clickclick
 			ss << std::endl;
 			ss << "[W] : " << step_clickclick::game_test::BlockViewNodeScene::getTitle();
 			ss << std::endl;
+			ss << "[E] : " << step_clickclick::game_test::StageViewNodeScene::getTitle();
 			ss << std::endl;
-			ss << "[D] : " << step_clickclick::game_test::StageViewNodeScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
-			ss << "[E] : " << step_clickclick::game::StageTestScene::getTitle();
+			ss << "[A] : " << step_clickclick::game::StageTestScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -151,12 +150,11 @@ namespace step_clickclick
 		case EventKeyboard::KeyCode::KEY_W:
 			_director->replaceScene( step_clickclick::game_test::BlockViewNodeScene::create() );
 			break;
-
-		case EventKeyboard::KeyCode::KEY_D:
+		case EventKeyboard::KeyCode::KEY_E:
 			_director->replaceScene( step_clickclick::game_test::StageViewNodeScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_E:
+		case EventKeyboard::KeyCode::KEY_A:
 			_director->replaceScene( step_clickclick::game::StageTestScene::create() );
 			break;
 
