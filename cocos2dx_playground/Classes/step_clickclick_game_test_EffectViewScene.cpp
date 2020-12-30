@@ -65,19 +65,19 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Run Increase Effect";
+				ss << "[1] : Run Effect - Increase";
 				ss << std::endl;
-				ss << "[2] : Run Decrease Effect";
+				ss << "[2] : Run Effect - Decrease";
 				ss << std::endl;
-				ss << "[3] : Run Die Effect";
+				ss << "[3] : Run Effect - Die";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -94,10 +94,10 @@ namespace step_clickclick
 			//
 			{
 				mEffectView = game::EffectView::create();
-				mEffectView->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
+				mEffectView->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( mEffectView );
 
 				// Pivot
