@@ -90,10 +90,10 @@ namespace step_clickclick
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -122,13 +122,11 @@ namespace step_clickclick
 					, std::bind( &GameProcessorScene::onGameProcess, this, std::placeholders::_1 )
 					, game::StageViewConfig{ true, true }
 				);
-				mStageView->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
+				mStageView->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( mStageView );
-
-				mStageView->Setup( *mStage );
 			}
 
 			//
@@ -138,15 +136,19 @@ namespace step_clickclick
 				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
 				label->setTag( TAG_ScoreView );
 				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + 4.f
-				) );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
-
-				updateScoreView();
 			}
+
+			//
+			// Setup
+			//
+			mStageView->Setup( *mStage );
+			updateScoreView();
 
 			return true;
 		}
