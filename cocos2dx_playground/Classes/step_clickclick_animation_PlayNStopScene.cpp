@@ -21,8 +21,6 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_AnimationNode = 20140416;
-
 	const int TAG_Action_Animation_Run_Once = 111;
 }
 
@@ -32,6 +30,8 @@ namespace step_clickclick
 	{
 		PlayNStopScene::PlayNStopScene() :
 			mKeyboardListener( nullptr )
+
+			, mAnimationNode( nullptr )
 			, mNormalAction( nullptr )
 		{}
 
@@ -102,14 +102,13 @@ namespace step_clickclick
 			// Animation Node
 			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setScale( _director->getContentScaleFactor() );
-				animation_node->setPosition(
+				mAnimationNode = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				mAnimationNode->setScale( _director->getContentScaleFactor() );
+				mAnimationNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
-				addChild( animation_node );
+				addChild( mAnimationNode );
 			}
 
 			//
@@ -166,18 +165,18 @@ namespace step_clickclick
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Once
 			{
-				auto animation_node = getChildByTag( TAG_AnimationNode );
-				animation_node->stopActionByTag( TAG_Action_Animation_Run_Once );
-				animation_node->runAction( mNormalAction );
+				if( !mAnimationNode->getActionByTag( TAG_Action_Animation_Run_Once ) )
+				{
+					mAnimationNode->runAction( mNormalAction );
+				}
 			}
 			break;
 
 			case EventKeyboard::KeyCode::KEY_S: // Stop
 			{
-				auto animation_node = getChildByTag( TAG_AnimationNode );
-				if( 0 < animation_node->getNumberOfRunningActions() )
+				if( 0 < mAnimationNode->getNumberOfRunningActions() )
 				{
-					animation_node->stopAllActions();
+					mAnimationNode->stopAllActions();
 				}
 			}
 			break;
