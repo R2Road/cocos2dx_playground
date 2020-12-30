@@ -2,7 +2,7 @@
 
 #include "2d/CCNode.h"
 
-#include "step_clickclick_game_EffectView.h"
+#include "step_clickclick_game_Constant.h"
 
 namespace step_clickclick
 {
@@ -26,7 +26,7 @@ namespace step_clickclick
 			bool init( const Config config, const int width, const int height );
 
 		public:
-			void PlayEffect( const int index, const EffectView::eAnimationIndex animation_index );
+			void PlayEffect( const int index, const eAnimationIndex animation_index );
 		};
 	}
 }

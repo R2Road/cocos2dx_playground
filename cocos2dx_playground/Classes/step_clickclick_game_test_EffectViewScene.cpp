@@ -139,13 +139,13 @@ namespace step_clickclick
 				break;
 
 			case EventKeyboard::KeyCode::KEY_1:
-				mEffectView->PlayEffect( game::EffectView::eAnimationIndex::Increase );
+				mEffectView->PlayEffect( game::eAnimationIndex::Increase );
 				break;
 			case EventKeyboard::KeyCode::KEY_2:
-				mEffectView->PlayEffect( game::EffectView::eAnimationIndex::Decrease );
+				mEffectView->PlayEffect( game::eAnimationIndex::Decrease );
 				break;
 			case EventKeyboard::KeyCode::KEY_3:
-				mEffectView->PlayEffect( game::EffectView::eAnimationIndex::Die );
+				mEffectView->PlayEffect( game::eAnimationIndex::Die );
 				break;
 
 			default:

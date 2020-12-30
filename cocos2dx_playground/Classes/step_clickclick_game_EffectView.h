@@ -4,6 +4,8 @@
 
 #include "2d/CCNode.h"
 
+#include "step_clickclick_game_Constant.h"
+
 NS_CC_BEGIN
 	class Action;
 NS_CC_END
@@ -14,13 +16,6 @@ namespace step_clickclick
 	{
 		class EffectView : public cocos2d::Node
 		{
-		public:
-			enum eAnimationIndex
-			{
-				Increase
-				, Decrease
-				, Die
-			};
 		private:
 			EffectView();
 

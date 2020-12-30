@@ -144,7 +144,7 @@ namespace step_clickclick
 				{
 					for( int x = 0; EFFECT_MANAGER_WIDTH > x; ++x )
 					{
-						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::EffectView::eAnimationIndex::Increase );
+						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::eAnimationIndex::Increase );
 					}
 				}
 				break;
@@ -153,7 +153,7 @@ namespace step_clickclick
 				{
 					for( int x = 0; EFFECT_MANAGER_WIDTH > x; ++x )
 					{
-						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::EffectView::eAnimationIndex::Decrease );
+						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::eAnimationIndex::Decrease );
 					}
 				}
 				break;
@@ -162,7 +162,7 @@ namespace step_clickclick
 				{
 					for( int x = 0; EFFECT_MANAGER_WIDTH > x; ++x )
 					{
-						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::EffectView::eAnimationIndex::Die );
+						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::eAnimationIndex::Die );
 					}
 				}
 				break;

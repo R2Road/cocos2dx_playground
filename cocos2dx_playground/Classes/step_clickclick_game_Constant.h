@@ -16,5 +16,13 @@ namespace step_clickclick
 		};
 
 		const char* ConvertBlockType2SpriteFrameName( const eBlockType block_type );
+
+
+		enum eAnimationIndex
+		{
+			Increase
+			, Decrease
+			, Die
+		};
 	}
 }
