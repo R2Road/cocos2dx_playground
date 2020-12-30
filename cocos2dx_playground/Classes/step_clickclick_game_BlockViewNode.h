@@ -22,13 +22,13 @@ namespace step_clickclick
 			using OnBlockCallback = std::function<void( int )>;
 
 		private:
-			BlockViewNode( const OnBlockCallback& on_block_callback );
+			BlockViewNode( const int index, const OnBlockCallback& on_block_callback );
 
 		public:
-			static BlockViewNode* create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback );
+			static BlockViewNode* create( const int index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback );
 
 		private:
-			bool init( const int linear_index, const cocos2d::Size block_size );
+			bool init( const cocos2d::Size block_size );
 
 		public:
 			void Reset( eBlockType type, const int life );
@@ -39,6 +39,8 @@ namespace step_clickclick
 			void onBlock( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		private:
+			const int mIndex;
+
 			cocos2d::Node* mButtonNode;
 			cocos2d::Sprite* mViewNode;
 			cocos2d::Label* mLifeLabel;

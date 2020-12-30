@@ -22,18 +22,21 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		BlockViewNode::BlockViewNode( const OnBlockCallback& on_block_callback ) :
-			mButtonNode( nullptr )
+		BlockViewNode::BlockViewNode( const int index, const OnBlockCallback& on_block_callback ) :
+			mIndex( index )
+
+			, mButtonNode( nullptr )
 			, mViewNode( nullptr )
 			, mLifeLabel( nullptr )
 			, mEffectNode( nullptr )
+
 			, mOnBlockCallback( on_block_callback )
 		{}
 
-		BlockViewNode* BlockViewNode::create( const int linear_index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback )
+		BlockViewNode* BlockViewNode::create( const int index, const cocos2d::Size block_size, const OnBlockCallback& on_block_callback )
 		{
-			auto ret = new ( std::nothrow ) BlockViewNode( on_block_callback );
-			if( !ret || !ret->init( linear_index, block_size ) )
+			auto ret = new ( std::nothrow ) BlockViewNode( index, on_block_callback );
+			if( !ret || !ret->init( block_size ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -46,7 +49,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool BlockViewNode::init( const int linear_index, const cocos2d::Size block_size )
+		bool BlockViewNode::init( const cocos2d::Size block_size )
 		{
 			if( !Node::init() )
 			{
@@ -58,7 +61,6 @@ namespace step_clickclick
 			//
 			{
 				auto button = ui::Button::create( "guide_empty.png", "guide_empty.png", "guide_empty.png", ui::Widget::TextureResType::PLIST );
-				button->setTag( linear_index );
 				button->setScale9Enabled( true );
 				button->setContentSize( block_size );
 				button->addTouchEventListener( CC_CALLBACK_2( BlockViewNode::onBlock, this ) );
@@ -149,7 +151,7 @@ namespace step_clickclick
 		{
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				mOnBlockCallback( mButtonNode->getTag() );
+				mOnBlockCallback( mIndex );
 			}
 		}
 	}
