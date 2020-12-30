@@ -2,7 +2,6 @@
 
 #include "2d/CCNode.h"
 #include "ui/UIWidget.h"
-#include "math/CCGeometry.h"
 
 #include "step_clickclick_game_Constant.h"
 
@@ -42,7 +41,7 @@ namespace step_clickclick
 		private:
 			cocos2d::Node* mButtonNode;
 			cocos2d::Sprite* mViewNode;
-			cocos2d::Label* mLabelNode;
+			cocos2d::Label* mLifeLabel;
 			EffectView* mEffectNode;
 
 			const OnBlockCallback mOnBlockCallback;

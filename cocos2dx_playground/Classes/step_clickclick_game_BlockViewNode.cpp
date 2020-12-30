@@ -25,7 +25,7 @@ namespace step_clickclick
 		BlockViewNode::BlockViewNode( const OnBlockCallback& on_block_callback ) :
 			mButtonNode( nullptr )
 			, mViewNode( nullptr )
-			, mLabelNode( nullptr )
+			, mLifeLabel( nullptr )
 			, mEffectNode( nullptr )
 			, mOnBlockCallback( on_block_callback )
 		{}
@@ -53,40 +53,52 @@ namespace step_clickclick
 				return false;
 			}
 
+			//
 			// button
-			auto button = ui::Button::create( "guide_empty.png", "guide_empty.png", "guide_empty.png", ui::Widget::TextureResType::PLIST );
-			button->setTag( linear_index );
-			button->setScale9Enabled( true );
-			button->setContentSize( block_size );
-			button->addTouchEventListener( CC_CALLBACK_2( BlockViewNode::onBlock, this ) );
-			addChild( button );
-			mButtonNode = button;
+			//
+			{
+				auto button = ui::Button::create( "guide_empty.png", "guide_empty.png", "guide_empty.png", ui::Widget::TextureResType::PLIST );
+				button->setTag( linear_index );
+				button->setScale9Enabled( true );
+				button->setContentSize( block_size );
+				button->addTouchEventListener( CC_CALLBACK_2( BlockViewNode::onBlock, this ) );
+				addChild( button );
 
+				mButtonNode = button;
+			}
+
+			//
 			// view
-			mViewNode = Sprite::create();
-			mViewNode->setScale( _director->getContentScaleFactor() );
-			mViewNode->setPosition( button->getPosition() );
-			addChild( mViewNode, 1 );
+			//
+			{
+				mViewNode = Sprite::create();
+				mViewNode->setScale( _director->getContentScaleFactor() );
+				addChild( mViewNode, 1 );
+			}
 
+			//
 			// label
-			mLabelNode = Label::createWithTTF( "0", cpg::StringTable::GetFontPath(), 10 );
-			mLabelNode->getFontAtlas()->setAliasTexParameters();
-			mLabelNode->setColor( Color3B::WHITE );
-			mLabelNode->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-			mLabelNode->setPosition( button->getPosition() );
-			addChild( mLabelNode, 2 );
+			//
+			{
+				mLifeLabel = Label::createWithTTF( "0", cpg::StringTable::GetFontPath(), 10 );
+				mLifeLabel->getFontAtlas()->setAliasTexParameters();
+				addChild( mLifeLabel, 2 );
+			}
 
+			//
 			// effect
-			mEffectNode = EffectView::create();
-			mEffectNode->setPosition( button->getPosition() );
-			addChild( mEffectNode, 3 );
+			//
+			{
+				mEffectNode = EffectView::create();
+				addChild( mEffectNode, 3 );
+			}
 
 			return true;
 		}
 
 		void BlockViewNode::Reset( eBlockType type, const int life )
 		{
-			mLabelNode->setString( std::to_string( life ) );
+			mLifeLabel->setString( std::to_string( life ) );
 
 			SpriteFrame* view_frame = nullptr;
 			switch( type )
@@ -109,7 +121,7 @@ namespace step_clickclick
 		{
 			mButtonNode->setVisible( visible );
 			mViewNode->setVisible( visible );
-			mLabelNode->setVisible( visible );
+			mLifeLabel->setVisible( visible );
 		}
 		void BlockViewNode::UpdateLife( const int last_life, const int current_life )
 		{
@@ -120,7 +132,7 @@ namespace step_clickclick
 			}
 			else
 			{
-				mLabelNode->setString( std::to_string( current_life ) );
+				mLifeLabel->setString( std::to_string( current_life ) );
 
 				if( last_life < current_life )
 				{
@@ -133,15 +145,12 @@ namespace step_clickclick
 			}
 		}
 
-		void BlockViewNode::onBlock( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		void BlockViewNode::onBlock( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 		{
-			if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				return;
+				mOnBlockCallback( mButtonNode->getTag() );
 			}
-
-			auto button_node = static_cast<Node*>( sender );
-			mOnBlockCallback( button_node->getTag() );
 		}
-	} // namespace game
-} // namespace step_clickclick
+	}
+}
