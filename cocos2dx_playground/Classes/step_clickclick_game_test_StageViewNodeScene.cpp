@@ -241,7 +241,7 @@ namespace step_clickclick
 				break;
 
 			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW: // Increase
-				mCurrentStageWidth += 2;
+				mCurrentStageWidth = std::min( MAX_STAGE_WIDTH, mCurrentStageWidth + 2 );
 				updateStageSizeView();
 				stageSetup();
 				break;
@@ -251,7 +251,7 @@ namespace step_clickclick
 				stageSetup();
 				break;
 			case EventKeyboard::KeyCode::KEY_UP_ARROW: // Increase
-				mCurrentStageHeight += 2;
+				mCurrentStageHeight = std::min( MAX_STAGE_HEIGHT, mCurrentStageHeight + 2 );;
 				updateStageSizeView();
 				stageSetup();
 				break;
