@@ -29,7 +29,6 @@ namespace
 	const int MAX_STAGE_WIDTH = 7;
 	const int MAX_STAGE_HEIGHT = 7;
 
-	const int TAG_StageSizeView = 20140416;
 	const int TAG_ScoreView = 9999;
 }
 
@@ -44,8 +43,6 @@ namespace step_clickclick
 			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
 
 			, mScore( 0 )
-			, mCurrentStageWidth( 3 )
-			, mCurrentStageHeight( 3 )
 		{}
 
 		Scene* GameProcessorScene::create()
@@ -85,11 +82,6 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Arrow Up] : Increase Stage Size And Reset";
-				ss << std::endl;
-				ss << "[Arrow Down] : Decrease Stage Size And Reset";
-				ss << std::endl;
-				ss << std::endl;
 				ss << "[Mouse] : Click : Play";
 				ss << std::endl;
 				ss << std::endl;
@@ -114,28 +106,11 @@ namespace step_clickclick
 			}
 
 			//
-			// Stage Length View
-			//
-			{
-				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
-				label->setTag( TAG_StageSizeView );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
-				addChild( label, std::numeric_limits<int>::max() );
-
-				updateStageSizeView();
-			}
-
-			//
 			// Stage
 			//
 			{
 				mStage = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
+				mStage->Setup( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT, 2 );
 			}
 
 			//
@@ -210,46 +185,8 @@ namespace step_clickclick
 				_director->replaceScene( step_clickclick::RootScene::create() );
 				return;
 
-			case EventKeyboard::KeyCode::KEY_UP_ARROW: // Increase
-				mCurrentStageWidth = (
-					MAX_STAGE_WIDTH >= mCurrentStageWidth + 2
-					? mCurrentStageWidth + 2
-					: MAX_STAGE_WIDTH
-				);
-				mCurrentStageHeight = (
-					MAX_STAGE_WIDTH >= mCurrentStageHeight + 2
-					? mCurrentStageHeight + 2
-					: MAX_STAGE_HEIGHT
-				);
-				updateStageSizeView();
-
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
-				mStageView->Setup( *mStage );
-				mScore = 0;
-				updateScoreView();
-				break;
-
-			case EventKeyboard::KeyCode::KEY_DOWN_ARROW: // Decrease
-				mCurrentStageWidth = (
-					3 <= mCurrentStageWidth - 2
-					? mCurrentStageWidth - 2
-					: 3
-				);
-				mCurrentStageHeight = (
-					3 <= mCurrentStageHeight - 2
-					? mCurrentStageHeight - 2
-					: 3
-				);
-				updateStageSizeView();
-
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
-				mStageView->Setup( *mStage );
-				mScore = 0;
-				updateScoreView();
-				break;
-
 			case EventKeyboard::KeyCode::KEY_R: // Reset
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
+				mStage->Setup( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT, 2 );
 				mStageView->Setup( *mStage );
 				mScore = 0;
 				updateScoreView();
@@ -258,12 +195,6 @@ namespace step_clickclick
 			default:
 				CCLOG( "Key Code : %d", keycode );
 			}
-		}
-
-		void GameProcessorScene::updateStageSizeView()
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_StageSizeView ) );
-			label->setString( StringUtils::format( "Stage Size    X : %d, Y : %d", mCurrentStageWidth, mCurrentStageHeight ) );
 		}
 
 		void GameProcessorScene::updateScoreView()
