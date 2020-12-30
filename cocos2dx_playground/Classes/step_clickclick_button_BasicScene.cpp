@@ -19,7 +19,6 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_ButtonStatus = 20140416;
 	const int TAG_TouchPosition = 20160528;
 }
 
@@ -27,7 +26,10 @@ namespace step_clickclick
 {
 	namespace button
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr )
+		BasicScene::BasicScene() :
+			mKeyboardListener( nullptr )
+
+			, mButtonStatusLabel( nullptr )
 		{}
 
 		Scene* BasicScene::create()
@@ -89,15 +91,13 @@ namespace step_clickclick
 			// Button Status View
 			//
 			{
-				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
-				label->setTag( TAG_ButtonStatus );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				label->setPosition( Vec2(
+				mButtonStatusLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
+				mButtonStatusLabel->setColor( Color3B::GREEN );
+				mButtonStatusLabel->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.7f )
 				) );
-				addChild( label );
+				addChild( mButtonStatusLabel );
 			}
 
 			//
@@ -167,28 +167,23 @@ namespace step_clickclick
 
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				updateView_ButtonStatus( "Press" );
+				mButtonStatusLabel->setString( "Press" );
 				updateView_TouchPosition( button->getTouchBeganPosition() );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				updateView_ButtonStatus( "Move" );
+				mButtonStatusLabel->setString( "Move" );
 				updateView_TouchPosition( button->getTouchMovePosition() );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
-				updateView_ButtonStatus( "Release" );
+				mButtonStatusLabel->setString( "Release" );
 				updateView_TouchPosition( button->getTouchEndPosition() );
 			}
 			else if( ui::Widget::TouchEventType::CANCELED == touch_event_type )
 			{
-				updateView_ButtonStatus( "Release( Cancel )" );
+				mButtonStatusLabel->setString( "Release( Cancel )" );
 			}
-		}
-		void BasicScene::updateView_ButtonStatus( const char* status_string )
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_ButtonStatus ) );
-			label->setString( status_string );
 		}
 		void BasicScene::updateView_TouchPosition( const cocos2d::Vec2 touch_position )
 		{
