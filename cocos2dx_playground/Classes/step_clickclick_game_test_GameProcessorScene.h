@@ -22,7 +22,7 @@ namespace step_clickclick
 			GameProcessorScene();
 
 		public:
-			static const char* getTitle() { return "Game Test : Stage"; }
+			static const char* getTitle() { return "Game Test : Game Processor"; }
 			static cocos2d::Scene* create();
 
 		private:
