@@ -73,11 +73,11 @@ namespace step_clickclick
 				ss << "[ESC] : Return to Root";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[1] : Run Effect - Increase";
+				ss << "[Q] : Run Effect - Increase";
 				ss << std::endl;
-				ss << "[2] : Run Effect - Decrease";
+				ss << "[W] : Run Effect - Decrease";
 				ss << std::endl;
-				ss << "[3] : Run Effect - Die";
+				ss << "[E] : Run Effect - Die";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setColor( Color3B::WHITE );
