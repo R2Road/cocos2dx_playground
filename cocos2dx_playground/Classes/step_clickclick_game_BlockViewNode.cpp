@@ -116,7 +116,7 @@ namespace step_clickclick
 			if( 0 == current_life )
 			{
 				SetVisible( false );
-				mEffectNode->PlayEffect( eAnimationIndex::Die );
+				mEffectNode->PlayEffect( eEffectIndex::Die );
 			}
 			else
 			{
@@ -124,11 +124,11 @@ namespace step_clickclick
 
 				if( last_life < current_life )
 				{
-					mEffectNode->PlayEffect( eAnimationIndex::Increase );
+					mEffectNode->PlayEffect( eEffectIndex::Increase );
 				}
 				else
 				{
-					mEffectNode->PlayEffect( eAnimationIndex::Decrease );
+					mEffectNode->PlayEffect( eEffectIndex::Decrease );
 				}
 			}
 		}

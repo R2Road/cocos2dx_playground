@@ -26,7 +26,7 @@ namespace step_clickclick
 			bool init( const Config config, const int width, const int height );
 
 		public:
-			void PlayEffect( const int index, const eAnimationIndex animation_index );
+			void PlayEffect( const int index, const eEffectIndex effect_index );
 		};
 	}
 }

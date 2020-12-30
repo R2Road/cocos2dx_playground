@@ -70,10 +70,10 @@ namespace step_clickclick
 				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
 
 				auto animate_action = Animate::create( animation_object );
-				animate_action->setTag( eAnimationIndex::Increase );
+				animate_action->setTag( eEffectIndex::Increase );
 				animate_action->retain();
 
-				mAnimationActions[eAnimationIndex::Increase] = animate_action;
+				mAnimationActions[eEffectIndex::Increase] = animate_action;
 			}
 
 			// decrease animation
@@ -88,10 +88,10 @@ namespace step_clickclick
 				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
 				
 				auto animate_action = Animate::create( animation_object );
-				animate_action->setTag( eAnimationIndex::Decrease );
+				animate_action->setTag( eEffectIndex::Decrease );
 				animate_action->retain();
 
-				mAnimationActions[eAnimationIndex::Decrease] = animate_action;
+				mAnimationActions[eEffectIndex::Decrease] = animate_action;
 			}
 
 			// die animation
@@ -105,20 +105,20 @@ namespace step_clickclick
 				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "empty_2x2.png" ) );
 				
 				auto animate_action = Animate::create( animation_object );
-				animate_action->setTag( eAnimationIndex::Die );
+				animate_action->setTag( eEffectIndex::Die );
 				animate_action->retain();
 
-				mAnimationActions[eAnimationIndex::Die] = animate_action;
+				mAnimationActions[eEffectIndex::Die] = animate_action;
 			}
 
 			return true;
 		}
 
-		void EffectView::PlayEffect( const eAnimationIndex animation_index )
+		void EffectView::PlayEffect( const eEffectIndex effect_index )
 		{
 			for( auto& a : mAnimationActions )
 			{
-				if( animation_index == a->getTag() )
+				if( effect_index == a->getTag() )
 				{
 					mEffectNode->stopAllActions();
 					mEffectNode->runAction( a );

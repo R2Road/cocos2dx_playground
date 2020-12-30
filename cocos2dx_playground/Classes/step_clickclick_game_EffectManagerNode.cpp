@@ -90,10 +90,10 @@ namespace step_clickclick
 		}
 
 
-		void EffectManagerNode::PlayEffect( const int index, const eAnimationIndex animation_index )
+		void EffectManagerNode::PlayEffect( const int index, const eEffectIndex effect_index )
 		{
 			auto effect_view_node = static_cast<EffectView*>( getChildByTag( index ) );
-			effect_view_node->PlayEffect( animation_index );
+			effect_view_node->PlayEffect( effect_index );
 		}
 	}
 }

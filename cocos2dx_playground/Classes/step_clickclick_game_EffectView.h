@@ -28,7 +28,7 @@ namespace step_clickclick
 			bool init() override;
 
 		public:
-			void PlayEffect( const eAnimationIndex animation_index );
+			void PlayEffect( const eEffectIndex effect_index );
 
 		private:
 			cocos2d::Node* mEffectNode;
