@@ -7,8 +7,8 @@
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 
-#include "step_clickclick_game_EffectView.h"
 #include "cpg_GridIndexConverter.h"
+#include "step_clickclick_game_EffectViewNode.h"
 
 USING_NS_CC;
 
@@ -66,14 +66,14 @@ namespace step_clickclick
 			//
 			cpg::GridIndexConverter grid_index_converter( width, height );
 			int linear_index = 0;
-			EffectView* effect_view_node = nullptr;
+			EffectViewNode* effect_view_node = nullptr;
 			for( int ty = 0; ty < height; ++ty )
 			{
 				for( int tx = 0; tx < width; ++tx )
 				{
 					linear_index = grid_index_converter.To_Linear( tx, ty );
 
-					effect_view_node = EffectView::create();
+					effect_view_node = EffectViewNode::create();
 					effect_view_node->setTag( linear_index );
 					effect_view_node->setPosition(
 						pivot_position
@@ -90,7 +90,7 @@ namespace step_clickclick
 
 		void EffectManagerNode::PlayEffect( const int index, const eEffectIndex effect_index )
 		{
-			auto effect_view_node = static_cast<EffectView*>( getChildByTag( index ) );
+			auto effect_view_node = static_cast<EffectViewNode*>( getChildByTag( index ) );
 			effect_view_node->PlayEffect( effect_index );
 		}
 	}

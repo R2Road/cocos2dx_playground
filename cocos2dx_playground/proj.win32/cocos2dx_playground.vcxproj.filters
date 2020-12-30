@@ -750,9 +750,6 @@
     <ClCompile Include="..\Classes\step_clickclick_animation_ListScene.cpp">
       <Filter>src\scene\step_03_clickclick\animation</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_EffectView.cpp">
-      <Filter>src\scene\step_03_clickclick\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_test_EffectViewScene.cpp">
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClCompile>
@@ -905,6 +902,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_test_EffectManagerNodeScene.cpp">
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_EffectViewNode.cpp">
+      <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1484,9 +1484,6 @@
     <ClInclude Include="..\Classes\step_clickclick_animation_ListScene.h">
       <Filter>src\scene\step_03_clickclick\animation</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_EffectView.h">
-      <Filter>src\scene\step_03_clickclick\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_test_EffectViewScene.h">
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClInclude>
@@ -1636,6 +1633,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_test_EffectManagerNodeScene.h">
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_EffectViewNode.h">
+      <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

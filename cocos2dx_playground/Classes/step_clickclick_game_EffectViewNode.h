@@ -14,15 +14,15 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class EffectView : public cocos2d::Node
+		class EffectViewNode : public cocos2d::Node
 		{
 		private:
-			EffectView();
+			EffectViewNode();
 
 		public:
-			~EffectView();
+			~EffectViewNode();
 
-			static EffectView* create();
+			static EffectViewNode* create();
 
 		private:
 			bool init() override;

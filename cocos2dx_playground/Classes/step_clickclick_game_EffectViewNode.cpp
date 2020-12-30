@@ -1,4 +1,4 @@
-#include "step_clickclick_game_EffectView.h"
+#include "step_clickclick_game_EffectViewNode.h"
 
 #include <new>
 
@@ -15,12 +15,12 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		EffectView::EffectView() :
+		EffectViewNode::EffectViewNode() :
 			mEffectNode( nullptr )
 			, mAnimationActions()
 		{}
 
-		EffectView::~EffectView()
+		EffectViewNode::~EffectViewNode()
 		{
 			for( auto& a : mAnimationActions )
 			{
@@ -28,9 +28,9 @@ namespace step_clickclick
 			}
 		}
 
-		EffectView* EffectView::create()
+		EffectViewNode* EffectViewNode::create()
 		{
-			auto ret = new ( std::nothrow ) EffectView();
+			auto ret = new ( std::nothrow ) EffectViewNode();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -44,7 +44,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool EffectView::init()
+		bool EffectViewNode::init()
 		{
 			if( !Node::init() )
 			{
@@ -114,7 +114,7 @@ namespace step_clickclick
 			return true;
 		}
 
-		void EffectView::PlayEffect( const eEffectIndex effect_index )
+		void EffectViewNode::PlayEffect( const eEffectIndex effect_index )
 		{
 			for( auto& a : mAnimationActions )
 			{

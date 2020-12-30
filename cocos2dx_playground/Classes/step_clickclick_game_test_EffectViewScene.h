@@ -7,7 +7,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class EffectView;
+		class EffectViewNode;
 	}
 
 	namespace game_test
@@ -33,7 +33,7 @@ namespace step_clickclick
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			game::EffectView* mEffectView;
+			game::EffectViewNode* mEffectViewNode;
 		};
 	}
 }

@@ -15,7 +15,7 @@
 
 #include "step_clickclick_RootScene.h"
 
-#include "step_clickclick_game_EffectView.h"
+#include "step_clickclick_game_EffectViewNode.h"
 
 USING_NS_CC;
 
@@ -25,7 +25,7 @@ namespace step_clickclick
 	{
 		EffectViewScene::EffectViewScene() :
 			mKeyboardListener( nullptr )
-			, mEffectView( nullptr )
+			, mEffectViewNode( nullptr )
 		{}
 
 		Scene* EffectViewScene::create()
@@ -93,18 +93,18 @@ namespace step_clickclick
 			// Effect View
 			//
 			{
-				mEffectView = game::EffectView::create();
-				mEffectView->setPosition(
+				mEffectViewNode = game::EffectViewNode::create();
+				mEffectViewNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
-				addChild( mEffectView );
+				addChild( mEffectViewNode );
 
 				// Pivot
 				{
 					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 					pivot->setScale( _director->getContentScaleFactor() );
-					mEffectView->addChild( pivot, std::numeric_limits<int>::min() );
+					mEffectViewNode->addChild( pivot, std::numeric_limits<int>::min() );
 				}
 			}
 
@@ -139,13 +139,13 @@ namespace step_clickclick
 				break;
 
 			case EventKeyboard::KeyCode::KEY_Q:
-				mEffectView->PlayEffect( game::eEffectIndex::Increase );
+				mEffectViewNode->PlayEffect( game::eEffectIndex::Increase );
 				break;
 			case EventKeyboard::KeyCode::KEY_W:
-				mEffectView->PlayEffect( game::eEffectIndex::Decrease );
+				mEffectViewNode->PlayEffect( game::eEffectIndex::Decrease );
 				break;
 			case EventKeyboard::KeyCode::KEY_E:
-				mEffectView->PlayEffect( game::eEffectIndex::Die );
+				mEffectViewNode->PlayEffect( game::eEffectIndex::Die );
 				break;
 
 			default:
