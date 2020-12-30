@@ -114,7 +114,7 @@ namespace step_clickclick
 
 			for( auto& b : mBlockViews )
 			{
-				b->SetVisible( false );
+				b->setVisible( false );
 			}
 
 			for( const auto& b : stage_data.GetBlockDatas() )

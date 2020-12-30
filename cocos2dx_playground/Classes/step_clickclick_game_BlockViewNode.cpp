@@ -93,19 +93,13 @@ namespace step_clickclick
 			auto sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name );
 			mViewNode->setSpriteFrame( sprite_frame );
 
-			SetVisible( life > 0 );
-		}
-		void BlockViewNode::SetVisible( const bool visible )
-		{
-			mButtonNode->setVisible( visible );
-			mViewNode->setVisible( visible );
-			mLifeLabel->setVisible( visible );
+			setVisible( life > 0 );
 		}
 		void BlockViewNode::UpdateLife( const int last_life, const int current_life )
 		{
 			if( 0 == current_life )
 			{
-				SetVisible( false );
+				setVisible( false );
 			}
 			else
 			{
