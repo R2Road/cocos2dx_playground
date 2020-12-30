@@ -177,31 +177,7 @@ namespace step_clickclick
 
 			Scene::onExit();
 		}
-
-		void ListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
-		{
-			switch( keycode )
-			{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				_director->replaceScene( step_clickclick::RootScene::create() );
-				return;
-
-			case EventKeyboard::KeyCode::KEY_A:
-				playAnimation( cpg::animation::eIndex::idle );
-				break;
-
-			case EventKeyboard::KeyCode::KEY_S:
-				playAnimation( cpg::animation::eIndex::run );
-				break;
-
-			case EventKeyboard::KeyCode::KEY_D:
-				playAnimation( cpg::animation::eIndex::win );
-				break;
-
-			default:
-				CCLOG( "Key Code : %d", keycode );
-			}
-		}
+		
 
 		void ListScene::playAnimation( const cpg::animation::eIndex animation_index )
 		{
@@ -228,6 +204,32 @@ namespace step_clickclick
 			}
 
 			return nullptr;
+		}
+
+
+		void ListScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		{
+			switch( keycode )
+			{
+			case EventKeyboard::KeyCode::KEY_ESCAPE:
+				_director->replaceScene( step_clickclick::RootScene::create() );
+				return;
+
+			case EventKeyboard::KeyCode::KEY_A:
+				playAnimation( cpg::animation::eIndex::idle );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_S:
+				playAnimation( cpg::animation::eIndex::run );
+				break;
+
+			case EventKeyboard::KeyCode::KEY_D:
+				playAnimation( cpg::animation::eIndex::win );
+				break;
+
+			default:
+				CCLOG( "Key Code : %d", keycode );
+			}
 		}
 	}
 }

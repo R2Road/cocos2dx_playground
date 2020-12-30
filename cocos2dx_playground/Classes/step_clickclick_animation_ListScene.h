@@ -29,10 +29,10 @@ namespace step_clickclick
 			void onExit() override;
 
 		private:
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
-
 			void playAnimation( const cpg::animation::eIndex animation_index );
 			cocos2d::Action* getAnimationAction( const cpg::animation::eIndex animation_index ) const;
+
+			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
