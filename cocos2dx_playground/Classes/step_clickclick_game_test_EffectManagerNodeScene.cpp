@@ -131,6 +131,18 @@ namespace step_clickclick
 		}
 
 
+		void EffectManagerNodeScene::PlayAllEffect( const game::eEffectIndex effect_index )
+		{
+			for( int y = 0; EFFECT_MANAGER_HEIGHT > y; ++y )
+			{
+				for( int x = 0; EFFECT_MANAGER_WIDTH > x; ++x )
+				{
+					mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), effect_index );
+				}
+			}
+		}
+
+
 		void EffectManagerNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
@@ -140,31 +152,13 @@ namespace step_clickclick
 				return;
 
 			case EventKeyboard::KeyCode::KEY_Q:
-				for( int y = 0; EFFECT_MANAGER_HEIGHT > y; ++y )
-				{
-					for( int x = 0; EFFECT_MANAGER_WIDTH > x; ++x )
-					{
-						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::eEffectIndex::Increase );
-					}
-				}
+				PlayAllEffect( game::eEffectIndex::Increase );
 				break;
 			case EventKeyboard::KeyCode::KEY_W:
-				for( int y = 0; EFFECT_MANAGER_HEIGHT > y; ++y )
-				{
-					for( int x = 0; EFFECT_MANAGER_WIDTH > x; ++x )
-					{
-						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::eEffectIndex::Decrease );
-					}
-				}
+				PlayAllEffect( game::eEffectIndex::Decrease );
 				break;
 			case EventKeyboard::KeyCode::KEY_E:
-				for( int y = 0; EFFECT_MANAGER_HEIGHT > y; ++y )
-				{
-					for( int x = 0; EFFECT_MANAGER_WIDTH > x; ++x )
-					{
-						mEffectManagerNode->PlayEffect( mGridIndexConverter.To_Linear( x, y ), game::eEffectIndex::Die );
-					}
-				}
+				PlayAllEffect( game::eEffectIndex::Die );
 				break;
 
 			default:

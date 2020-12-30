@@ -3,6 +3,7 @@
 #include "2d/CCScene.h"
 
 #include "cpg_GridIndexConverter.h"
+#include "step_clickclick_game_Constant.h"
 
 namespace step_clickclick
 {
@@ -30,6 +31,8 @@ namespace step_clickclick
 			void onExit() override;
 
 		private:
+			void PlayAllEffect( const game::eEffectIndex effect_index );
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
