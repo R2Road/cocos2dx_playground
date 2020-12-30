@@ -16,6 +16,8 @@ namespace step_clickclick
 			ListScene();
 
 		public:
+			~ListScene();
+
 			static const char* getTitle() { return "Animation : List"; }
 			static cocos2d::Scene* create();
 
@@ -30,7 +32,6 @@ namespace step_clickclick
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 			void playAnimation( const cpg::animation::eIndex animation_index );
-			void stopAnimation();
 			cocos2d::Action* getAnimationAction( const cpg::animation::eIndex animation_index ) const;
 
 		private:

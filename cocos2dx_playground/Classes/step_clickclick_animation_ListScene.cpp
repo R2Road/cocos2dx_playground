@@ -53,6 +53,15 @@ namespace step_clickclick
 		ListScene::ListScene() : mKeyboardListener( nullptr ), mAnimationActions()
 		{}
 
+		ListScene::~ListScene()
+		{
+			for( auto a : mAnimationActions )
+			{
+				a->release();
+			}
+			mAnimationActions.clear();
+		}
+
 		Scene* ListScene::create()
 		{
 			auto ret = new ( std::nothrow ) ListScene();
@@ -95,15 +104,13 @@ namespace step_clickclick
 				ss << "[S] : Play Animation - Run";
 				ss << std::endl;
 				ss << "[D] : Play Animation - Win";
-				ss << std::endl;
-				ss << "[SpaceBar] : Stop Animation";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
@@ -137,18 +144,17 @@ namespace step_clickclick
 			{
 				auto animation_object = Animation::create();
 				animation_object->setDelayPerUnit( animation_info.delay );
+
 				for( const auto& sprite_frame_name : animation_info.SpriteFrameNames )
 				{
 					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name ) );
 				}
 
 				auto animate_action = Animate::create( animation_object );
+				animate_action->setTag( static_cast<int>( animation_info.Index ) );
+				animate_action->retain();
 
-				auto repeat_action = RepeatForever::create( animate_action );
-				repeat_action->setTag( static_cast<int>( animation_info.Index ) );
-				repeat_action->retain();
-
-				mAnimationActions.push_back( repeat_action );
+				mAnimationActions.push_back( animate_action );
 			}
 
 			return true;
@@ -168,12 +174,6 @@ namespace step_clickclick
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
 			mKeyboardListener = nullptr;
-
-			for( auto a : mAnimationActions )
-			{
-				a->release();
-			}
-			mAnimationActions.clear();
 
 			Scene::onExit();
 		}
@@ -198,10 +198,6 @@ namespace step_clickclick
 				playAnimation( cpg::animation::eIndex::win );
 				break;
 
-			case EventKeyboard::KeyCode::KEY_SPACE: // Stop
-				stopAnimation();
-				break;
-
 			default:
 				CCLOG( "Key Code : %d", keycode );
 			}
@@ -220,13 +216,6 @@ namespace step_clickclick
 
 			animation_node->stopAllActions();
 			animation_node->runAction( animation_action );
-		}
-		void ListScene::stopAnimation()
-		{
-			auto animation_node = getChildByTag( TAG_AnimationNode );
-			assert( animation_node );
-
-			animation_node->stopAllActions();
 		}
 		cocos2d::Action* ListScene::getAnimationAction( const cpg::animation::eIndex animation_index ) const
 		{
