@@ -43,11 +43,9 @@ namespace step_clickclick
 				return false;
 			}
 
-			const Size BlockSize( 32.f, 32.f );
-			const Size MarginSize( 2.f, 2.f );
 			const Size StageSize(
-				( width * BlockSize.width ) + ( ( width - 1 ) * MarginSize.width )
-				,( height * BlockSize.height ) + ( ( height - 1 ) * MarginSize.height )
+				( width * BlockSize.width ) + ( ( width - 1 ) * BlockMarginSize.width )
+				,( height * BlockSize.height ) + ( ( height - 1 ) * BlockMarginSize.height )
 			);
 			const Vec2 pivot_position( StageSize.width * -0.5f, StageSize.height * -0.5f );
 
@@ -80,7 +78,7 @@ namespace step_clickclick
 					effect_view_node->setPosition(
 						pivot_position
 						+ Vec2( BlockSize.width * 0.5f, BlockSize.height * 0.5f )
-						+ Vec2( tx * ( BlockSize.width + MarginSize.width ), ty * ( BlockSize.height + MarginSize.height ) )
+						+ Vec2( tx * ( BlockSize.width + BlockMarginSize.width ), ty * ( BlockSize.height + BlockMarginSize.height ) )
 					);
 					addChild( effect_view_node );
 				}
