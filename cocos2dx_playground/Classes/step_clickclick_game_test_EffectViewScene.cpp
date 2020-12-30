@@ -6,6 +6,7 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -98,6 +99,13 @@ namespace step_clickclick
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
 				addChild( mEffectView );
+
+				// Pivot
+				{
+					auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
+					pivot->setScale( _director->getContentScaleFactor() );
+					mEffectView->addChild( pivot, std::numeric_limits<int>::min() );
+				}
 			}
 
 			return true;
