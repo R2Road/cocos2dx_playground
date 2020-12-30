@@ -4,6 +4,8 @@ namespace step_clickclick
 {
 	namespace game
 	{
+		class EffectManagerNode;
+
 		class Stage;
 		class StageView;
 
@@ -13,7 +15,7 @@ namespace step_clickclick
 			Processor() = delete;
 
 		public:
-			static void Do( Stage* stage, StageView* stage_view, const int block_linear_index, int* out_score );
+			static void Do( Stage* stage, StageView* stage_view, EffectManagerNode* effect_manager_node, const int block_linear_index, int* out_score );
 		};
 	}
 }

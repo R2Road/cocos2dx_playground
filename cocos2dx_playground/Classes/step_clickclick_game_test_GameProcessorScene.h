@@ -10,6 +10,8 @@ namespace step_clickclick
 {
 	namespace game
 	{
+		class EffectManagerNode;
+
 		using StageUp = std::unique_ptr<class Stage>;
 		class StageView;
 	}
@@ -42,6 +44,7 @@ namespace step_clickclick
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			game::StageUp mStage;
 			game::StageView* mStageView;
+			game::EffectManagerNode* mEffectManagerNode;
 			const cpg::GridIndexConverter mGridIndexConverter;
 
 			int mScore;

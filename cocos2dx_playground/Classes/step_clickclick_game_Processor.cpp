@@ -5,6 +5,7 @@
 
 #include "audio/include/AudioEngine.h"
 
+#include "step_clickclick_game_EffectManagerNode.h"
 #include "step_clickclick_game_Stage.h"
 #include "step_clickclick_game_StageView.h"
 
@@ -12,7 +13,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		void Processor::Do( Stage* stage, StageView* stage_view, const int block_linear_index, int* out_score )
+		void Processor::Do( Stage* stage, StageView* stage_view, EffectManagerNode* effect_manager_node, const int block_linear_index, int* out_score )
 		{
 			const auto& pivot_block_data = stage->GetBlockData( block_linear_index );
 			const auto pivot_block_point_index = stage->ConvertLinearIndex2PointIndex( pivot_block_data.GetIndex() );
@@ -76,6 +77,25 @@ namespace step_clickclick
 					stage->DieBlock( pivot_block_data.GetIndex() );
 					stage_view->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
 				}
+
+				//if( 0 == current_life )
+				//{
+				//	SetVisible( false );
+				//	mEffectNode->PlayEffect( eEffectIndex::Die );
+				//}
+				//else
+				//{
+				//	mLifeLabel->setString( std::to_string( current_life ) );
+
+				//	if( last_life < current_life )
+				//	{
+				//		mEffectNode->PlayEffect( eEffectIndex::Increase );
+				//	}
+				//	else
+				//	{
+				//		mEffectNode->PlayEffect( eEffectIndex::Decrease );
+				//	}
+				//}
 			}
 			else if( eBlockType::Same == pivot_block_data.GetType() )
 			{

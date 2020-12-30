@@ -8,6 +8,8 @@ namespace step_clickclick
 {
 	namespace game
 	{
+		class EffectManagerNode;
+
 		using StageUp = std::unique_ptr<class Stage>;
 		class StageView;
 
@@ -41,6 +43,7 @@ namespace step_clickclick
 
 			StageUp mStage;
 			StageView* mStageView;
+			EffectManagerNode* mEffectManagerNode;
 
 			int mScore;
 			int mCurrentStageWidth;

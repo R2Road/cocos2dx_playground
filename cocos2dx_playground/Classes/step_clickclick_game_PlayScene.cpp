@@ -18,6 +18,7 @@
 #include "step_clickclick_game_TitleScene.h"
 #include "step_clickclick_game_ResultScene.h"
 
+#include "step_clickclick_game_EffectManagerNode.h"
 #include "step_clickclick_game_Processor.h"
 #include "step_clickclick_game_Stage.h"
 #include "step_clickclick_game_StageView.h"
@@ -44,6 +45,7 @@ namespace step_clickclick
 
 			, mStage()
 			, mStageView( nullptr )
+			, mEffectManagerNode( nullptr )
 
 			, mScore( 0 )
 			, mCurrentStageWidth( 3 )
@@ -145,6 +147,18 @@ namespace step_clickclick
 				addChild( mStageView );
 
 				mStageView->Setup( *mStage );
+			}
+
+			//
+			// Effect Manager Node
+			//
+			{
+				mEffectManagerNode = game::EffectManagerNode::create( game::EffectManagerNode::Config{ false }, MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
+				mEffectManagerNode->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
+				addChild( mEffectManagerNode );
 			}
 
 			//
