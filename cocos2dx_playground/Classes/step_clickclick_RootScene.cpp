@@ -76,6 +76,7 @@ namespace step_clickclick
 			ss << std::endl;
 			ss << "[W] : " << step_clickclick::game_test::EffectManagerNodeScene::getTitle();
 			ss << std::endl;
+			ss << std::endl;
 			ss << "[E] : " << step_clickclick::game_test::BlockViewNodeScene::getTitle();
 			ss << std::endl;
 			ss << "[R] : " << step_clickclick::game_test::StageViewNodeScene::getTitle();
