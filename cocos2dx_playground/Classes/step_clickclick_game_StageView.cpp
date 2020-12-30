@@ -127,7 +127,6 @@ namespace step_clickclick
 				}
 
 				mBlockViews[b.GetIndex()]->Reset( b.GetType(), b.GetLife() );
-				mBlockViews[b.GetIndex()]->SetVisible( true );
 			}
 		}
 

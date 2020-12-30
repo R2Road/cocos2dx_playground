@@ -259,7 +259,6 @@ namespace step_clickclick
 			case EventKeyboard::KeyCode::KEY_R:
 				mBlockLife = 10;
 				mBlockViewNode->Reset( mBlockType, mBlockLife );
-				mBlockViewNode->SetVisible( true );
 				break;
 
 			default:

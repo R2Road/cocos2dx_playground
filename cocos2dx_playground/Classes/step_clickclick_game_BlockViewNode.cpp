@@ -102,6 +102,8 @@ namespace step_clickclick
 			const auto sprite_frame_name = ConvertBlockType2SpriteFrameName( type );
 			auto sprite_frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( sprite_frame_name );
 			mViewNode->setSpriteFrame( sprite_frame );
+
+			SetVisible( life > 0 );
 		}
 		void BlockViewNode::SetVisible( const bool visible )
 		{
