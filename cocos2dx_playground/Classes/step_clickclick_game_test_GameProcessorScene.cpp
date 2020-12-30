@@ -176,6 +176,12 @@ namespace step_clickclick
 			updateScoreView();
 		}
 
+		void GameProcessorScene::updateScoreView()
+		{
+			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
+			label->setString( StringUtils::format( "Score : %d", mScore ) );
+		}
+
 
 		void GameProcessorScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
@@ -196,11 +202,5 @@ namespace step_clickclick
 				CCLOG( "Key Code : %d", keycode );
 			}
 		}
-
-		void GameProcessorScene::updateScoreView()
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
-			label->setString( StringUtils::format( "Score : %d", mScore ) );
-		}
-	} // namespace game
-} // namespace step_clickclick
+	}
+}
