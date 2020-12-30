@@ -21,7 +21,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_Action_Animation_Run_Once = 111;
+	const int TAG_Action_Animation = 20140416;
 }
 
 namespace step_clickclick
@@ -32,12 +32,12 @@ namespace step_clickclick
 			mKeyboardListener( nullptr )
 
 			, mAnimationNode( nullptr )
-			, mNormalAction( nullptr )
+			, mAnimationAction( nullptr )
 		{}
 
 		PlayNStopScene::~PlayNStopScene()
 		{
-			mNormalAction->release();
+			mAnimationAction->release();
 		}
 
 		Scene* PlayNStopScene::create()
@@ -115,23 +115,20 @@ namespace step_clickclick
 			// Animation
 			//
 			{
-				// Normal Action
-				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+				auto animation_object = Animation::create();
+				animation_object->setDelayPerUnit( 0.2f );
+				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
-					mNormalAction = Animate::create( animation_object );
-					mNormalAction->setTag( TAG_Action_Animation_Run_Once );
-					mNormalAction->retain();
-				}
+				mAnimationAction = Animate::create( animation_object );
+				mAnimationAction->setTag( TAG_Action_Animation );
+				mAnimationAction->retain();
 			}
 
 			return true;
@@ -165,9 +162,9 @@ namespace step_clickclick
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Once
 			{
-				if( !mAnimationNode->getActionByTag( TAG_Action_Animation_Run_Once ) )
+				if( !mAnimationNode->getActionByTag( TAG_Action_Animation ) )
 				{
-					mAnimationNode->runAction( mNormalAction );
+					mAnimationNode->runAction( mAnimationAction );
 				}
 			}
 			break;

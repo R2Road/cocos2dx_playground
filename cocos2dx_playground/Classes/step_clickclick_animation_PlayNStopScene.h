@@ -31,7 +31,7 @@ namespace step_clickclick
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			cocos2d::Node* mAnimationNode;
-			cocos2d::Action* mNormalAction;
+			cocos2d::Action* mAnimationAction;
 		};
 	}
 }
