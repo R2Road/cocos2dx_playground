@@ -37,7 +37,7 @@ namespace step_clickclick
 			const int TAG_ScoreView = 9999;
 		}
 
-		StageTestScene::StageTestScene() :
+		GameProcessorScene::GameProcessorScene() :
 			mKeyboardListener( nullptr )
 			, mStage()
 			, mStageView( nullptr )
@@ -48,9 +48,9 @@ namespace step_clickclick
 			, mCurrentStageHeight( 3 )
 		{}
 
-		Scene* StageTestScene::create()
+		Scene* GameProcessorScene::create()
 		{
-			auto ret = new ( std::nothrow ) StageTestScene();
+			auto ret = new ( std::nothrow ) GameProcessorScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -64,7 +64,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool StageTestScene::init()
+		bool GameProcessorScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -144,7 +144,7 @@ namespace step_clickclick
 			{
 				mStageView = step_clickclick::game::StageView::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
-					, std::bind( &StageTestScene::onGameProcess, this, std::placeholders::_1 )
+					, std::bind( &GameProcessorScene::onGameProcess, this, std::placeholders::_1 )
 					, game::StageViewConfig{ true, true }
 				);
 				mStageView->setPosition( Vec2(
@@ -176,16 +176,16 @@ namespace step_clickclick
 			return true;
 		}
 
-		void StageTestScene::onEnter()
+		void GameProcessorScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageTestScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( GameProcessorScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void StageTestScene::onExit()
+		void GameProcessorScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -195,14 +195,14 @@ namespace step_clickclick
 		}
 
 
-		void StageTestScene::onGameProcess( const int block_linear_index )
+		void GameProcessorScene::onGameProcess( const int block_linear_index )
 		{
 			game::Processor::Do( mStage.get(), mStageView, block_linear_index, &mScore );
 			updateScoreView();
 		}
 
 
-		void StageTestScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void GameProcessorScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{
@@ -260,13 +260,13 @@ namespace step_clickclick
 			}
 		}
 
-		void StageTestScene::updateStageSizeView()
+		void GameProcessorScene::updateStageSizeView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_StageSizeView ) );
 			label->setString( StringUtils::format( "Stage Size    X : %d, Y : %d", mCurrentStageWidth, mCurrentStageHeight ) );
 		}
 
-		void StageTestScene::updateScoreView()
+		void GameProcessorScene::updateScoreView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
 			label->setString( StringUtils::format( "Score : %d", mScore ) );

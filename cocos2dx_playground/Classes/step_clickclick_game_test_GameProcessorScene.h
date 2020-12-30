@@ -16,10 +16,10 @@ namespace step_clickclick
 
 	namespace game_test
 	{
-		class StageTestScene : public cocos2d::Scene
+		class GameProcessorScene : public cocos2d::Scene
 		{
 		private:
-			StageTestScene();
+			GameProcessorScene();
 
 		public:
 			static const char* getTitle() { return "Game Test : Stage"; }
