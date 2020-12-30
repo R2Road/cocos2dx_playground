@@ -1,5 +1,7 @@
 #include "step_flipflip_game_Constant.h"
 
+#include <cassert>
+
 namespace
 {
 	const char* CardIndicatorSpriteFrameName = "step_flipflip_card_indicator.png";
@@ -30,7 +32,10 @@ namespace step_flipflip
 		}
 		const char* GetSpriteFrameName_CardFrontSide(const eCardType card_type )
 		{
-			return CardFrontSpriteFrameNames[static_cast<std::size_t>( card_type )];
+			const auto index = static_cast<std::size_t>( card_type );
+			assert( static_cast<std::size_t>( eCardType::FIRST ) <= index && index < static_cast<std::size_t>( eCardType::SIZE ) );
+
+			return CardFrontSpriteFrameNames[index];
 		}
 
 		const std::array<char*, static_cast<std::size_t>( step_flipflip::game::eCardType::SIZE )>& GetSpriteFrameNameContainer_CardFrontSide()
