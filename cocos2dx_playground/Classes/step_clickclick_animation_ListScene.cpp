@@ -23,8 +23,6 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_AnimationNode = 20140416;
-
 	const std::vector<cpg::animation::Info> AnimationInfos = {
 		{
 			cpg::animation::eIndex::idle
@@ -50,7 +48,11 @@ namespace step_clickclick
 {
 	namespace animation
 	{
-		ListScene::ListScene() : mKeyboardListener( nullptr ), mAnimationActions()
+		ListScene::ListScene() :
+			mKeyboardListener( nullptr )
+
+			, mAnimationNode( nullptr )
+			, mAnimationActions()
 		{}
 
 		ListScene::~ListScene()
@@ -126,14 +128,13 @@ namespace step_clickclick
 			// Animation Node
 			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "actor001_win_01.png" );
-				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setScale( _director->getContentScaleFactor() );
-				animation_node->setPosition( Vec2(
+				mAnimationNode = Sprite::createWithSpriteFrameName( "actor001_win_01.png" );
+				mAnimationNode->setScale( _director->getContentScaleFactor() );
+				mAnimationNode->setPosition( Vec2(
 					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
 					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
 				) );
-				addChild( animation_node, 0 );
+				addChild( mAnimationNode, 0 );
 			}
 
 			//
@@ -181,17 +182,14 @@ namespace step_clickclick
 
 		void ListScene::playAnimation( const cpg::animation::eIndex animation_index )
 		{
-			auto animation_node = getChildByTag( TAG_AnimationNode );
-			assert( animation_node );
-
 			auto animation_action = getAnimationAction( animation_index );
 			if( !animation_action )
 			{
 				return;
 			}
 
-			animation_node->stopAllActions();
-			animation_node->runAction( animation_action );
+			mAnimationNode->stopAllActions();
+			mAnimationNode->runAction( animation_action );
 		}
 		cocos2d::Action* ListScene::getAnimationAction( const cpg::animation::eIndex animation_index ) const
 		{

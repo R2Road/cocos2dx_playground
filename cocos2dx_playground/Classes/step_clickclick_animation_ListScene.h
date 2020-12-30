@@ -36,6 +36,8 @@ namespace step_clickclick
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			cocos2d::Node* mAnimationNode;
 			std::vector<cocos2d::Action*> mAnimationActions;
 		};
 	}
