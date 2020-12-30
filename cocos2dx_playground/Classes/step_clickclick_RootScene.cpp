@@ -22,7 +22,7 @@
 #include "step_clickclick_game_test_EffectViewScene.h"
 #include "step_clickclick_game_test_BlockViewNodeScene.h"
 #include "step_clickclick_game_test_StageViewNodeScene.h"
-#include "step_clickclick_game_test_StageScene.h"
+#include "step_clickclick_game_test_GameProcessorScene.h"
 
 #include "step_clickclick_game_TitleScene.h"
 

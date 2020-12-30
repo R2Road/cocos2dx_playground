@@ -543,9 +543,6 @@
     <ClCompile Include="..\Classes\step_typetype_game_test_StageScene.cpp">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_test_StageScene.cpp">
-      <Filter>src\scene\step_03_clickclick\game_test</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_test_HittingNodeScene.cpp">
       <Filter>src\scene\step_05_mole\game_test</Filter>
     </ClCompile>
@@ -895,6 +892,9 @@
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_test_BlockViewNodeScene.cpp">
+      <Filter>src\scene\step_03_clickclick\game_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_test_GameProcessorScene.cpp">
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1255,9 +1255,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_test_StageScene.h">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_test_StageScene.h">
-      <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_test_HittingNodeScene.h">
       <Filter>src\scene\step_05_mole\game_test</Filter>
@@ -1620,6 +1617,9 @@
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_test_BlockViewNodeScene.h">
+      <Filter>src\scene\step_03_clickclick\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_test_GameProcessorScene.h">
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClInclude>
   </ItemGroup>
