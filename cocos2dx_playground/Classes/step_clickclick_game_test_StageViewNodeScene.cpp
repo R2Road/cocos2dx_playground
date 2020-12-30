@@ -219,6 +219,15 @@ namespace step_clickclick
 		}
 
 
+		void StageViewNodeScene::stageSetup()
+		{
+			auto stage_data = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
+			stage_data->Setup( mCurrentStageWidth, mCurrentStageHeight, mShuffleCount );
+
+			mStageViewNode->Setup( *stage_data );
+		}
+
+
 		void StageViewNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
@@ -228,29 +237,28 @@ namespace step_clickclick
 				break;
 
 			case EventKeyboard::KeyCode::KEY_SPACE:
-			{
-				auto stage_data = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
-				stage_data->Setup( mCurrentStageWidth, mCurrentStageHeight, mShuffleCount );
-
-				mStageViewNode->Setup( *stage_data );
-			}
-			break;
+				stageSetup();
+				break;
 
 			case EventKeyboard::KeyCode::KEY_RIGHT_ARROW: // Increase
 				mCurrentStageWidth += 2;
 				updateStageSizeView();
+				stageSetup();
 				break;
 			case EventKeyboard::KeyCode::KEY_LEFT_ARROW: // Decrease
 				mCurrentStageWidth = std::max( 1, mCurrentStageWidth - 2 );
 				updateStageSizeView();
+				stageSetup();
 				break;
 			case EventKeyboard::KeyCode::KEY_UP_ARROW: // Increase
 				mCurrentStageHeight += 2;
 				updateStageSizeView();
+				stageSetup();
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW: // Decrease
 				mCurrentStageHeight = std::max( 1, mCurrentStageHeight - 2 );
 				updateStageSizeView();
+				stageSetup();
 				break;
 
 			case EventKeyboard::KeyCode::KEY_A:

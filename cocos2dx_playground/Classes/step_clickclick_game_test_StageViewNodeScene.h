@@ -36,6 +36,8 @@ namespace step_clickclick
 			void updateStageSizeView();
 			void onBlockSelected( const int block_linear_index );
 
+			void stageSetup();
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
