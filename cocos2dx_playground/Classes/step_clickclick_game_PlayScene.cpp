@@ -25,20 +25,20 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const int TAG_ScoreView = 20140416;
+	const int TAG_ClearView = 20160528;
+	const int TAG_CountView = 9999;
+
+	const int MAX_STAGE_WIDTH = 9;
+	const int MAX_STAGE_HEIGHT = 9;
+}
+
 namespace step_clickclick
 {
 	namespace game
 	{
-		namespace
-		{
-			const int TAG_ScoreView = 20140416;
-			const int TAG_ClearView = 20160528;
-			const int TAG_CountView = 9999;
-
-			const int MAX_STAGE_WIDTH = 9;
-			const int MAX_STAGE_HEIGHT = 9;
-		}
-
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
 			, mAudioID_forBGM( -1 )
