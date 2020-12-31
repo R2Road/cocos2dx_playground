@@ -1,6 +1,5 @@
 #include "step_clickclick_game_EffectManagerNode.h"
 
-#include <functional>
 #include <new>
 #include <numeric>
 
@@ -49,16 +48,14 @@ namespace step_clickclick
 			);
 			const Vec2 pivot_position( StageSize.width * -0.5f, StageSize.height * -0.5f );
 
-			setContentSize( StageSize );
-
 			//
 			// Background
 			//
 			if( config.bShowBackground )
 			{
-				auto pivot = LayerColor::create( Color4B::GRAY, getContentSize().width, getContentSize().height );
-				pivot->setPosition( pivot_position );
-				addChild( pivot, std::numeric_limits<int>::min() );
+				auto layer = LayerColor::create( Color4B::GRAY, StageSize.width, StageSize.height );
+				layer->setPosition( pivot_position );
+				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
 			//
