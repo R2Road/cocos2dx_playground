@@ -32,7 +32,7 @@ namespace step_clickclick
 			, mBlockViews()
 		{}
 
-		StageView* StageView::create( const int width, const int height, const OnBlockCallback& on_block_callback, const StageViewConfig config )
+		StageView* StageView::create( const int width, const int height, const OnBlockCallback& on_block_callback, const Config config )
 		{
 			//
 			// Must odd number
@@ -54,7 +54,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool StageView::init( const StageViewConfig config, const OnBlockCallback& on_block_callback )
+		bool StageView::init( const Config config, const OnBlockCallback& on_block_callback )
 		{
 			if( !Node::init() )
 			{

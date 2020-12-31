@@ -138,7 +138,7 @@ namespace step_clickclick
 				mStageView = step_clickclick::game::StageView::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &PlayScene::onGameProcess, this, std::placeholders::_1 )
-					, StageView::StageViewConfig{ false, false }
+					, StageView::Config{ false, false }
 				);
 				mStageView->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
