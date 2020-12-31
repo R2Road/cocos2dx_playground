@@ -16,8 +16,7 @@ namespace step_clickclick
 	namespace game
 	{
 		EffectManagerNode::EffectManagerNode()
-		{
-		}
+		{}
 
 		EffectManagerNode* EffectManagerNode::create( const Config config, const int width, const int height )
 		{
