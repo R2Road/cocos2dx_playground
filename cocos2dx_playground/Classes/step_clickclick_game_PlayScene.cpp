@@ -339,12 +339,11 @@ namespace step_clickclick
 
 		void PlayScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
-			if( EventKeyboard::KeyCode::KEY_ESCAPE != keycode )
+			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
+				_director->replaceScene( step_clickclick::game::TitleScene::create() );
 				return;
 			}
-
-			_director->replaceScene( step_clickclick::game::TitleScene::create() );
 		}
 	} // namespace game
 } // namespace step_clickclick
