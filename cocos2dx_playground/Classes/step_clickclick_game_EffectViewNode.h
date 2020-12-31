@@ -31,7 +31,7 @@ namespace step_clickclick
 			void PlayEffect( const eEffectIndex effect_index );
 
 		private:
-			cocos2d::Node* mEffectNode;
+			cocos2d::Node* mSpriteNode;
 			std::array<cocos2d::Action*, 3u> mAnimationActions;
 		};
 	}

@@ -7,7 +7,6 @@
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
-#include "base/ccMacros.h"
 
 USING_NS_CC;
 
@@ -16,7 +15,7 @@ namespace step_clickclick
 	namespace game
 	{
 		EffectViewNode::EffectViewNode() :
-			mEffectNode( nullptr )
+			mSpriteNode( nullptr )
 			, mAnimationActions()
 		{}
 
@@ -54,11 +53,15 @@ namespace step_clickclick
 			//
 			// View
 			//
-			mEffectNode = Sprite::create();
-			mEffectNode->setScale( _director->getContentScaleFactor() );
-			addChild( mEffectNode );
+			{
+				mSpriteNode = Sprite::create();
+				mSpriteNode->setScale( _director->getContentScaleFactor() );
+				addChild( mSpriteNode );
+			}
 
-			// increase animation
+			//
+			// Action : Increase Animation
+			//
 			{
 				auto animation_object = Animation::create();
 				animation_object->setDelayPerUnit( 0.07f );
@@ -76,7 +79,9 @@ namespace step_clickclick
 				mAnimationActions[eEffectIndex::Increase] = animate_action;
 			}
 
-			// decrease animation
+			//
+			// Action : Decrease Animation
+			//
 			{
 				auto animation_object = Animation::create();
 				animation_object->setDelayPerUnit( 0.07f );
@@ -94,7 +99,9 @@ namespace step_clickclick
 				mAnimationActions[eEffectIndex::Decrease] = animate_action;
 			}
 
-			// die animation
+			//
+			// Action : Die Animation
+			//
 			{
 				auto animation_object = Animation::create();
 				animation_object->setDelayPerUnit( 0.07f );
@@ -120,8 +127,8 @@ namespace step_clickclick
 			{
 				if( effect_index == a->getTag() )
 				{
-					mEffectNode->stopAllActions();
-					mEffectNode->runAction( a );
+					mSpriteNode->stopAllActions();
+					mSpriteNode->runAction( a );
 					break;
 				}
 			}
