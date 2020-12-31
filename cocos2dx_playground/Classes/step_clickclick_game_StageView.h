@@ -21,15 +21,15 @@ namespace step_clickclick
 
 		class Stage;
 
-		struct StageViewConfig
-		{
-			bool bShowPivot = false;
-			bool bShowBackgroundGuide = false;
-		};
-
 		class StageView : public cocos2d::Node
 		{
 		public:
+			struct StageViewConfig
+			{
+				bool bShowPivot = false;
+				bool bShowBackgroundGuide = false;
+			};
+
 			using OnBlockCallback = std::function<void( int )>;
 
 		private:
