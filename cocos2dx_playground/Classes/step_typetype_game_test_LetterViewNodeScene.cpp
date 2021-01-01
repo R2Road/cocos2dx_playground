@@ -16,13 +16,21 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const char CHAR_first = 'A';
+	const char CHAR_end = 'Z';
+}
+
 namespace step_typetype
 {
 	namespace game_test
 	{
 		LetterViewNodeScene::LetterViewNodeScene() :
 			mKeyboardListener( nullptr )
+
 			, mLetterViewNode( nullptr )
+			, mCurrentCharacter( CHAR_first )
 		{}
 
 		Scene* LetterViewNodeScene::create()
@@ -99,7 +107,7 @@ namespace step_typetype
 			//
 			// Setup
 			//
-			mLetterViewNode->Reset( 'S' );
+			mLetterViewNode->Reset( mCurrentCharacter );
 
 			return true;
 		}
@@ -131,8 +139,16 @@ namespace step_typetype
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
-				mLetterViewNode->Reset( 'S' );
-				return;
+			{
+				++mCurrentCharacter;
+				if( CHAR_end < mCurrentCharacter )
+				{
+					mCurrentCharacter = CHAR_first;
+				}
+
+				mLetterViewNode->Reset( mCurrentCharacter );
+			}
+			return;
 			case EventKeyboard::KeyCode::KEY_S:
 				mLetterViewNode->Die();
 				return;

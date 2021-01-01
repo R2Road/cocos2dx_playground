@@ -34,6 +34,7 @@ namespace step_typetype
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			game::LetterViewNode* mLetterViewNode;
+			char mCurrentCharacter;
 		};
 	}
 }
