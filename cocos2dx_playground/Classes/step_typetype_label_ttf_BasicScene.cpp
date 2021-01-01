@@ -79,7 +79,7 @@ namespace step_typetype
 					label->setColor( Color3B::GREEN );
 					label->setPosition(
 						visibleOrigin
-						+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.25f )
+						+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.25f )
 					);
 					addChild( label );
 				}
@@ -92,7 +92,7 @@ namespace step_typetype
 					label->setColor( Color3B::BLUE );
 					label->setPosition(
 						visibleOrigin
-						+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.5f )
+						+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 					);
 					addChild( label );
 				}
@@ -105,70 +105,8 @@ namespace step_typetype
 					label->setColor( Color3B::RED );
 					label->setPosition(
 						visibleOrigin
-						+ Vec2( visibleSize.width * 0.25f, visibleSize.height * 0.75f )
+						+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.75f )
 					);
-					addChild( label );
-				}
-			}
-
-			//
-			// Dimensions
-			//
-			{
-				const char* label_string = "Dimensions( 20, 200 ) \n ----------------------------- \n";
-
-				auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size( 20, 200 ) );
-				label->setColor( Color3B::GREEN );
-				label->setPosition(
-					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
-				);
-				addChild( label );
-			}
-
-			//
-			// Overflow
-			//
-			{
-				// Clamp
-				{
-					const char* label_string = "Overflow : Clamp \n ----------------------------- \n Dimensions( 70, 20 )";
-
-					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size( 70, 20 ) );
-					label->setColor( Color3B::YELLOW );
-					label->setPosition(
-						visibleOrigin
-						+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.75f )
-					);
-					label->setOverflow( Label::Overflow::CLAMP );
-					addChild( label );
-				}
-
-				// Shrink
-				{
-					const char* label_string = "Overflow : Shrink \n ----------------------------- \n Dimensions( 70, 20 )";
-
-					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size( 70, 20 ) );
-					label->setColor( Color3B::YELLOW );
-					label->setPosition(
-						visibleOrigin
-						+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.5f )
-					);
-					label->setOverflow( Label::Overflow::SHRINK );
-					addChild( label );
-				}
-
-				// Resize Height
-				{
-					const char* label_string = "Overflow : Resize Height \n ----------------------------- \n Dimensions( 70, 20 )";
-
-					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size( 70, 20 ) );
-					label->setColor( Color3B::YELLOW );
-					label->setPosition(
-						visibleOrigin
-						+ Vec2( visibleSize.width * 0.75f, visibleSize.height * 0.25f )
-					);
-					label->setOverflow( Label::Overflow::RESIZE_HEIGHT );
 					addChild( label );
 				}
 			}

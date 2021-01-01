@@ -6,13 +6,13 @@ namespace step_typetype
 {
 	namespace label_ttf
 	{
-		class BasicScene : public cocos2d::Scene
+		class ETCScene : public cocos2d::Scene
 		{
 		private:
-			BasicScene();
+			ETCScene();
 
 		public:
-			static const char* getTitle() { return "Label TTF : Align"; }
+			static const char* getTitle() { return "Label TTF : ETC"; }
 			static cocos2d::Scene* create();
 
 		private:

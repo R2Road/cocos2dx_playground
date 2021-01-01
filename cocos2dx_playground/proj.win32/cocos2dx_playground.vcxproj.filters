@@ -906,6 +906,9 @@
     <ClCompile Include="..\Classes\step_clickclick_game_StageViewNode.cpp">
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_label_ttf_ETCScene.cpp">
+      <Filter>src\scene\step_01_typetype\label</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1636,6 +1639,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_StageViewNode.h">
       <Filter>src\scene\step_03_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_label_ttf_ETCScene.h">
+      <Filter>src\scene\step_01_typetype\label</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
