@@ -741,9 +741,6 @@
     <ClCompile Include="..\Classes\step_typetype_game_test_LetterViewScene.cpp">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_game_LetterView.cpp">
-      <Filter>src\scene\step_01_typetype\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_animation_ListScene.cpp">
       <Filter>src\scene\step_03_clickclick\animation</Filter>
     </ClCompile>
@@ -908,6 +905,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_label_ttf_AlignScene.cpp">
       <Filter>src\scene\step_01_typetype\label</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_LetterViewNode.cpp">
+      <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1478,9 +1478,6 @@
     <ClInclude Include="..\Classes\step_typetype_game_test_LetterViewScene.h">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_game_LetterView.h">
-      <Filter>src\scene\step_01_typetype\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_animation_ListScene.h">
       <Filter>src\scene\step_03_clickclick\animation</Filter>
     </ClInclude>
@@ -1642,6 +1639,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_label_ttf_AlignScene.h">
       <Filter>src\scene\step_01_typetype\label</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_LetterViewNode.h">
+      <Filter>src\scene\step_01_typetype\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-#include "step_typetype_game_LetterView.h"
+#include "step_typetype_game_LetterViewNode.h"
 
 #include <new>
 
@@ -11,12 +11,12 @@ namespace step_typetype
 {
 	namespace game
 	{
-		LetterView::LetterView() : mLabel( nullptr )
+		LetterViewNode::LetterViewNode() : mLabel( nullptr )
 		{}
 
-		LetterView* LetterView::create()
+		LetterViewNode* LetterViewNode::create()
 		{
-			auto ret = new ( std::nothrow ) LetterView();
+			auto ret = new ( std::nothrow ) LetterViewNode();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -30,7 +30,7 @@ namespace step_typetype
 			return ret;
 		}
 
-		bool LetterView::init()
+		bool LetterViewNode::init()
 		{
 			if( !Node::init() )
 			{
@@ -43,13 +43,13 @@ namespace step_typetype
 			return true;
 		}
 
-		void LetterView::Reset( const char letter )
+		void LetterViewNode::Reset( const char letter )
 		{
 			mLabel->setString( StringUtils::format( "%c", letter ) );
 			mLabel->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 			mLabel->setColor( Color3B::WHITE );
 		}
-		void LetterView::Die()
+		void LetterViewNode::Die()
 		{
 			mLabel->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 			mLabel->setColor( Color3B( 100u, 100u, 100u ) );

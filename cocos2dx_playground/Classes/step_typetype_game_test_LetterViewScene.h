@@ -6,7 +6,7 @@ namespace step_typetype
 {
 	namespace game
 	{
-		class LetterView;
+		class LetterViewNode;
 	}
 
 	namespace game_test
@@ -33,7 +33,7 @@ namespace step_typetype
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			game::LetterView* mLetterView;
+			game::LetterViewNode* mLetterViewNode;
 		};
 	}
 }

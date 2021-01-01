@@ -10,13 +10,13 @@ namespace step_typetype
 {
 	namespace game
 	{
-		class LetterView : public cocos2d::Node
+		class LetterViewNode : public cocos2d::Node
 		{
 		private:
-			LetterView();
+			LetterViewNode();
 
 		public:
-			static LetterView* create();
+			static LetterViewNode* create();
 
 		private:
 			bool init() override;

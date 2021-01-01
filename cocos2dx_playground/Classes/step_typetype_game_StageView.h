@@ -8,7 +8,7 @@ namespace step_typetype
 {
 	namespace game
 	{
-		class LetterView;
+		class LetterViewNode;
 		class Stage;
 
 		struct StageViewConfig
@@ -20,7 +20,7 @@ namespace step_typetype
 		class StageView : public cocos2d::Node
 		{
 		private:
-			using ContainerT = std::vector<LetterView*>;
+			using ContainerT = std::vector<LetterViewNode*>;
 
 			StageView( const std::size_t max_length );
 

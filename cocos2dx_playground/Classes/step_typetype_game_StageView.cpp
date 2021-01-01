@@ -8,7 +8,7 @@
 #include "2d/CCSprite.h"
 #include "base/ccUTF8.h"
 
-#include "step_typetype_game_LetterView.h"
+#include "step_typetype_game_LetterViewNode.h"
 #include "step_typetype_game_Stage.h"
 #include "step_typetype_RootScene.h"
 
@@ -100,7 +100,7 @@ namespace step_typetype
 			//
 			for( auto& letter : mLetters )
 			{
-				letter = LetterView::create();
+				letter = LetterViewNode::create();
 				addChild( letter );
 			}
 
@@ -146,14 +146,14 @@ namespace step_typetype
 			//
 			// Setup Letters
 			//
-			LetterView* letter_view = nullptr;
+			LetterViewNode* letter_view_node = nullptr;
 			for( std::size_t i = 0; i < stage.GetLength(); ++i )
 			{
-				letter_view = mLetters[i];
+				letter_view_node = mLetters[i];
 
-				letter_view->setVisible( true );
-				letter_view->Reset( stage.GetLetter( i ) );
-				letter_view->setPosition(
+				letter_view_node->setVisible( true );
+				letter_view_node->Reset( stage.GetLetter( i ) );
+				letter_view_node->setPosition(
 					letter_pivot_position
 					+ Vec2( ( i * letter_size.width ), 0.f )
 				);

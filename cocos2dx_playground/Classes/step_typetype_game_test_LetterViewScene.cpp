@@ -10,7 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "step_typetype_game_LetterView.h"
+#include "step_typetype_game_LetterViewNode.h"
 
 #include "step_typetype_RootScene.h"
 
@@ -22,7 +22,7 @@ namespace step_typetype
 	{
 		LetterViewScene::LetterViewScene() :
 			mKeyboardListener( nullptr )
-			, mLetterView( nullptr )
+			, mLetterViewNode( nullptr )
 		{}
 
 		Scene* LetterViewScene::create()
@@ -88,18 +88,18 @@ namespace step_typetype
 			// Letter View
 			//
 			{
-				mLetterView = game::LetterView::create();
-				mLetterView->setPosition( Vec2(
+				mLetterViewNode = game::LetterViewNode::create();
+				mLetterViewNode->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				addChild( mLetterView );
+				addChild( mLetterViewNode );
 			}
 
 			//
 			// Setup
 			//
-			mLetterView->Reset( 'S' );
+			mLetterViewNode->Reset( 'S' );
 
 			return true;
 		}
@@ -131,10 +131,10 @@ namespace step_typetype
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
-				mLetterView->Reset( 'S' );
+				mLetterViewNode->Reset( 'S' );
 				return;
 			case EventKeyboard::KeyCode::KEY_S:
-				mLetterView->Die();
+				mLetterViewNode->Die();
 				return;
 			}
 		}
