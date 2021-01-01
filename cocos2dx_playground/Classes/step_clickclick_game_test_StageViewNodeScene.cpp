@@ -18,7 +18,7 @@
 #include "step_clickclick_RootScene.h"
 
 #include "step_clickclick_game_Stage.h"
-#include "step_clickclick_game_StageView.h"
+#include "step_clickclick_game_StageViewNode.h"
 
 USING_NS_CC;
 

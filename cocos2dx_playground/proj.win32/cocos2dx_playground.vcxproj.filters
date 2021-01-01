@@ -285,9 +285,6 @@
     <ClCompile Include="..\Classes\step_clickclick_game_TitleScene.cpp">
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_clickclick_game_StageView.cpp">
-      <Filter>src\scene\step_03_clickclick\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_clickclick_game_PlayScene.cpp">
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClCompile>
@@ -906,6 +903,9 @@
     <ClCompile Include="..\Classes\step_clickclick_game_EffectViewNode.cpp">
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_clickclick_game_StageViewNode.cpp">
+      <Filter>src\scene\step_03_clickclick\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -990,9 +990,6 @@
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_Constant.h">
-      <Filter>src\scene\step_03_clickclick\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_clickclick_game_StageView.h">
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_PlayScene.h">
@@ -1635,6 +1632,9 @@
       <Filter>src\scene\step_03_clickclick\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_clickclick_game_EffectViewNode.h">
+      <Filter>src\scene\step_03_clickclick\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_clickclick_game_StageViewNode.h">
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,7 +21,7 @@
 #include "step_clickclick_game_EffectManagerNode.h"
 #include "step_clickclick_game_Processor.h"
 #include "step_clickclick_game_Stage.h"
-#include "step_clickclick_game_StageView.h"
+#include "step_clickclick_game_StageViewNode.h"
 
 USING_NS_CC;
 

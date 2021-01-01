@@ -1,4 +1,4 @@
-#include "step_clickclick_game_StageView.h"
+#include "step_clickclick_game_StageViewNode.h"
 
 #include <functional>
 #include <new>
