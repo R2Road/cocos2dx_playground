@@ -19,7 +19,7 @@ namespace step_typetype
 			StageScene();
 
 		public:
-			static const char* getTitle() { return "Game Test : Stage"; }
+			static const char* getTitle() { return "Game Test : Stage View Node"; }
 			static cocos2d::Scene* create();
 
 		private:
@@ -39,7 +39,7 @@ namespace step_typetype
 
 			std::size_t mCurrentStageLength;
 			game::Stage mStage;
-			game::StageViewNode* mStageView;
+			game::StageViewNode* mStageViewNode;
 		};
 	}
 }

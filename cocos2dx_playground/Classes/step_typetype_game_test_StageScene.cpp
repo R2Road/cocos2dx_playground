@@ -32,7 +32,7 @@ namespace step_typetype
 			mKeyboardListener( nullptr )
 			, mCurrentStageLength( 4 )
 			, mStage( STAGE_MAX_LENGTH )
-			, mStageView( nullptr )
+			, mStageViewNode( nullptr )
 		{}
 
 		Scene* StageScene::create()
@@ -123,16 +123,16 @@ namespace step_typetype
 			// Stage View
 			//
 			{
-				mStageView = game::StageViewNode::create( STAGE_MAX_LENGTH, game::StageViewConfig{ true, true } );
-				mStageView->setPosition( Vec2(
+				mStageViewNode = game::StageViewNode::create( STAGE_MAX_LENGTH, game::StageViewConfig{ true, true } );
+				mStageViewNode->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				addChild( mStageView );
+				addChild( mStageViewNode );
 			}
 
 			mStage.Reset( mCurrentStageLength );
-			mStageView->Reset( mStage );
+			mStageViewNode->Reset( mStage );
 
 			return true;
 		}
@@ -175,7 +175,7 @@ namespace step_typetype
 					updateStageLengthView();
 
 					mStage.Reset( mCurrentStageLength );
-					mStageView->Reset( mStage );
+					mStageViewNode->Reset( mStage );
 				}
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW: // decrease stage size + reset
@@ -188,14 +188,14 @@ namespace step_typetype
 					updateStageLengthView();
 
 					mStage.Reset( mCurrentStageLength );
-					mStageView->Reset( mStage );
+					mStageViewNode->Reset( mStage );
 				}
 				break;
 				
 			case EventKeyboard::KeyCode::KEY_R: // stage reset
 				{
 					mStage.Reset( mCurrentStageLength );
-					mStageView->Reset( mStage );
+					mStageViewNode->Reset( mStage );
 				}
 				break;
 
@@ -206,7 +206,7 @@ namespace step_typetype
 					const auto target_letter = mStage.GetLetter( target_letter_pos );
 					mStage.RequestLetterDie( target_letter );
 
-					mStageView->RequestLetterDie( target_letter_pos );
+					mStageViewNode->RequestLetterDie( target_letter_pos );
 
 					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 					return;

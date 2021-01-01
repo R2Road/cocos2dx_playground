@@ -35,7 +35,7 @@ namespace step_typetype
 
 			std::size_t mCurrentStageLength;
 			Stage mStage;
-			StageViewNode* mStageView;
+			StageViewNode* mStageViewNode;
 			double mElapsedTime;
 			int mAudioID_forBGM;
 		};

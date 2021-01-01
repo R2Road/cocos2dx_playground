@@ -32,7 +32,7 @@ namespace step_typetype
 			mKeyboardListener( nullptr )
 			, mCurrentStageLength( 4 )
 			, mStage( STAGE_MAX_LENGTH )
-			, mStageView( nullptr )
+			, mStageViewNode( nullptr )
 			, mElapsedTime( 0 )
 			, mAudioID_forBGM( -1 )
 		{}
@@ -106,15 +106,15 @@ namespace step_typetype
 			}
 
 			//
-			// Stage View
+			// Stage View Node
 			//
 			{
-				mStageView = StageViewNode::create( STAGE_MAX_LENGTH, StageViewConfig{ false, true } );
-				mStageView->setPosition(
+				mStageViewNode = StageViewNode::create( STAGE_MAX_LENGTH, StageViewConfig{ false, true } );
+				mStageViewNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
-				addChild( mStageView );
+				addChild( mStageViewNode );
 			}
 
 			//
@@ -136,7 +136,7 @@ namespace step_typetype
 			// Setup
 			//
 			mStage.Reset( mCurrentStageLength );
-			mStageView->Reset( mStage );
+			mStageViewNode->Reset( mStage );
 
 			scheduleUpdate();
 
@@ -188,7 +188,7 @@ namespace step_typetype
 					const auto target_letter_pos = mStage.GetIndicator_Current();
 					if( mStage.RequestLetterDie( target_letter_code ) )
 					{
-						mStageView->RequestLetterDie( target_letter_pos );
+						mStageViewNode->RequestLetterDie( target_letter_pos );
 						experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 
 						if( mStage.IsStageClear() )
@@ -210,7 +210,7 @@ namespace step_typetype
 				if( mCurrentStageLength < mStage.GetLength_MAX() ) // go next stage
 				{
 					mStage.Reset( mCurrentStageLength );
-					mStageView->Reset( mStage );
+					mStageViewNode->Reset( mStage );
 
 					getChildByTag( TAG_NextStageIndicator )->setVisible( false );
 				}
