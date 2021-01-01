@@ -36,7 +36,7 @@ namespace step_clickclick
 			StageViewNode( const int width, const int height );
 
 		public:
-			static StageViewNode* create( const int width, const int height, const OnBlockCallback& on_block_callback, const Config config = Config() );
+			static StageViewNode* create( const Config config, const int width, const int height, const OnBlockCallback& on_block_callback );
 
 		private:
 			bool init( const Config config, const OnBlockCallback& on_block_callback );
