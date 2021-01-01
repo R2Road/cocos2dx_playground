@@ -306,9 +306,6 @@
     <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_game_StageView.cpp">
-      <Filter>src\scene\step_01_typetype\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_game_TitleScene.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
@@ -909,6 +906,9 @@
     <ClCompile Include="..\Classes\step_typetype_game_test_LetterViewNodeScene.cpp">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_StageViewNode.cpp">
+      <Filter>src\scene\step_01_typetype\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1014,9 +1014,6 @@
       <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_Stage.h">
-      <Filter>src\scene\step_01_typetype\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_game_StageView.h">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_TitleScene.h">
@@ -1642,6 +1639,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_test_LetterViewNodeScene.h">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_StageViewNode.h">
+      <Filter>src\scene\step_01_typetype\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

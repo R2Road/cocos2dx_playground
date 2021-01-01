@@ -13,7 +13,7 @@
 #include "base/ccUTF8.h"
 
 #include "step_typetype_game_ResultScene.h"
-#include "step_typetype_game_StageView.h"
+#include "step_typetype_game_StageViewNode.h"
 #include "step_typetype_game_TitleScene.h"
 
 USING_NS_CC;
@@ -109,7 +109,7 @@ namespace step_typetype
 			// Stage View
 			//
 			{
-				mStageView = StageView::create( STAGE_MAX_LENGTH, StageViewConfig{ false, true } );
+				mStageView = StageViewNode::create( STAGE_MAX_LENGTH, StageViewConfig{ false, true } );
 				mStageView->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )

@@ -17,15 +17,15 @@ namespace step_typetype
 			bool bShowBackgroundGuide = false;
 		};
 
-		class StageView : public cocos2d::Node
+		class StageViewNode : public cocos2d::Node
 		{
 		private:
 			using ContainerT = std::vector<LetterViewNode*>;
 
-			StageView( const std::size_t max_length );
+			StageViewNode( const std::size_t max_length );
 
 		public:
-			static StageView* create( const std::size_t max_length, const StageViewConfig config = StageViewConfig() );
+			static StageViewNode* create( const std::size_t max_length, const StageViewConfig config = StageViewConfig() );
 
 		private:
 			bool init( const StageViewConfig config );

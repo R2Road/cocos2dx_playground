@@ -1,4 +1,4 @@
-#include "step_typetype_game_StageView.h"
+#include "step_typetype_game_StageViewNode.h"
 
 #include <algorithm>
 #include <new>
@@ -24,14 +24,14 @@ namespace step_typetype
 {
 	namespace game
 	{
-		StageView::StageView( const std::size_t max_length ) :
+		StageViewNode::StageViewNode( const std::size_t max_length ) :
 			mLetters( max_length, nullptr )
 			, mIndicator( nullptr )
 		{}
 
-		StageView* StageView::create( const std::size_t max_length, const StageViewConfig config )
+		StageViewNode* StageViewNode::create( const std::size_t max_length, const StageViewConfig config )
 		{
-			auto ret = new ( std::nothrow ) StageView( max_length );
+			auto ret = new ( std::nothrow ) StageViewNode( max_length );
 			if( !ret || !ret->init( config ) )
 			{
 				delete ret;
@@ -45,7 +45,7 @@ namespace step_typetype
 			return ret;
 		}
 
-		bool StageView::init( const StageViewConfig config )
+		bool StageViewNode::init( const StageViewConfig config )
 		{
 			if( !Node::init() )
 			{
@@ -117,7 +117,7 @@ namespace step_typetype
 			return true;
 		}
 
-		void StageView::Reset( const Stage& stage )
+		void StageViewNode::Reset( const Stage& stage )
 		{
 			assert( stage.GetLength() <= mLetters.size() );
 
@@ -167,7 +167,7 @@ namespace step_typetype
 				mIndicator->setVisible( true );
 			}
 		}
-		void StageView::RequestLetterDie( const std::size_t target_pos )
+		void StageViewNode::RequestLetterDie( const std::size_t target_pos )
 		{
 			assert( mLetters.size() > target_pos );
 

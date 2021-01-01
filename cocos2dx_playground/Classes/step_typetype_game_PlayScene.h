@@ -8,7 +8,7 @@ namespace step_typetype
 {
 	namespace game
 	{
-		class StageView;
+		class StageViewNode;
 
 		class PlayScene : public cocos2d::Scene	
 		{
@@ -35,7 +35,7 @@ namespace step_typetype
 
 			std::size_t mCurrentStageLength;
 			Stage mStage;
-			StageView* mStageView;
+			StageViewNode* mStageView;
 			double mElapsedTime;
 			int mAudioID_forBGM;
 		};
