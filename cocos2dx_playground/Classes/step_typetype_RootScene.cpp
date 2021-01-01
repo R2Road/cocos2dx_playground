@@ -20,7 +20,7 @@
 
 #include "step_typetype_ScheduleScene.h"
 
-#include "step_typetype_game_test_LetterViewScene.h"
+#include "step_typetype_game_test_LetterViewNodeScene.h"
 #include "step_typetype_game_test_StageScene.h"
 #include "step_typetype_game_TitleScene.h"
 
@@ -89,7 +89,7 @@ namespace step_typetype
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] " << step_typetype::game_test::LetterViewScene::getTitle();
+			ss << "[A] " << step_typetype::game_test::LetterViewNodeScene::getTitle();
 			ss << std::endl;
 			ss << "[S] " << step_typetype::game_test::StageScene::getTitle();
 			ss << std::endl;
@@ -172,7 +172,7 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			_director->replaceScene( step_typetype::game_test::LetterViewScene::create() );
+			_director->replaceScene( step_typetype::game_test::LetterViewNodeScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
 			_director->replaceScene( step_typetype::game_test::StageScene::create() );

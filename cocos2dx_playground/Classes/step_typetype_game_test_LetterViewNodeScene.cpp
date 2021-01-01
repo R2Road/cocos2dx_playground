@@ -1,4 +1,4 @@
-#include "step_typetype_game_test_LetterViewScene.h"
+#include "step_typetype_game_test_LetterViewNodeScene.h"
 
 #include <new>
 #include <numeric>
@@ -20,14 +20,14 @@ namespace step_typetype
 {
 	namespace game_test
 	{
-		LetterViewScene::LetterViewScene() :
+		LetterViewNodeScene::LetterViewNodeScene() :
 			mKeyboardListener( nullptr )
 			, mLetterViewNode( nullptr )
 		{}
 
-		Scene* LetterViewScene::create()
+		Scene* LetterViewNodeScene::create()
 		{
-			auto ret = new ( std::nothrow ) LetterViewScene();
+			auto ret = new ( std::nothrow ) LetterViewNodeScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -41,7 +41,7 @@ namespace step_typetype
 			return ret;
 		}
 
-		bool LetterViewScene::init()
+		bool LetterViewNodeScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -104,16 +104,16 @@ namespace step_typetype
 			return true;
 		}
 
-		void LetterViewScene::onEnter()
+		void LetterViewNodeScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( LetterViewScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( LetterViewNodeScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void LetterViewScene::onExit()
+		void LetterViewNodeScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -122,7 +122,7 @@ namespace step_typetype
 			Scene::onExit();
 		}
 
-		void LetterViewScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void LetterViewNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{

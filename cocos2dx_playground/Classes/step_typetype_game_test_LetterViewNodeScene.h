@@ -11,13 +11,13 @@ namespace step_typetype
 
 	namespace game_test
 	{
-		class LetterViewScene : public cocos2d::Scene	
+		class LetterViewNodeScene : public cocos2d::Scene	
 		{
 		private:
-			LetterViewScene();
+			LetterViewNodeScene();
 
 		public:
-			static const char* getTitle() { return "Game Test : Letter View"; }
+			static const char* getTitle() { return "Game Test : Letter View Node"; }
 			static cocos2d::Scene* create();
 
 		private:
