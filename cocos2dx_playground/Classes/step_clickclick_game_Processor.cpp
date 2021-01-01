@@ -32,7 +32,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		void Processor::Do( Stage* stage, StageView* stage_view, EffectManagerNode* effect_manager_node, const int block_linear_index, int* out_score )
+		void Processor::Do( Stage* stage, StageViewNode* stage_view_node, EffectManagerNode* effect_manager_node, const int block_linear_index, int* out_score )
 		{
 			const auto& pivot_block_data = stage->GetBlockData( block_linear_index );
 			const auto pivot_block_point_index = stage->ConvertLinearIndex2PointIndex( pivot_block_data.GetIndex() );
@@ -87,14 +87,14 @@ namespace step_clickclick
 					++*out_score;
 
 					stage->DecreaseBlockLife( pivot_block_data.GetIndex() );
-					stage_view->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
+					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
 				}
 				else
 				{
 					*out_score = std::max( 0, *out_score - pivot_block_data.GetLife() );
 
 					stage->DieBlock( pivot_block_data.GetIndex() );
-					stage_view->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
+					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
 				}
 
 				ProcessEffect( effect_manager_node, pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
@@ -141,7 +141,7 @@ namespace step_clickclick
 							stage->DecreaseBlockLife( target_block_data.GetIndex() );
 						}
 
-						stage_view->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						stage_view_node->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 						ProcessEffect( effect_manager_node, target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
@@ -186,7 +186,7 @@ namespace step_clickclick
 							stage->DieBlock( target_block_data.GetIndex() );
 						}
 
-						stage_view->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						stage_view_node->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 						ProcessEffect( effect_manager_node, target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}

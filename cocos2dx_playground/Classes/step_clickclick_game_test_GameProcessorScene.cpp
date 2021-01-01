@@ -40,7 +40,7 @@ namespace step_clickclick
 		GameProcessorScene::GameProcessorScene() :
 			mKeyboardListener( nullptr )
 			, mStage()
-			, mStageView( nullptr )
+			, mStageViewNode( nullptr )
 			, mEffectManagerNode( nullptr )
 			, mGridIndexConverter( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT )
 
@@ -119,16 +119,16 @@ namespace step_clickclick
 			// StageView
 			//
 			{
-				mStageView = step_clickclick::game::StageView::create(
+				mStageViewNode = step_clickclick::game::StageViewNode::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &GameProcessorScene::onGameProcess, this, std::placeholders::_1 )
-					, game::StageView::Config{ true, true }
+					, game::StageViewNode::Config{ true, true }
 				);
-				mStageView->setPosition(
+				mStageViewNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
-				addChild( mStageView );
+				addChild( mStageViewNode );
 			}
 
 			//
@@ -161,7 +161,7 @@ namespace step_clickclick
 			//
 			// Setup
 			//
-			mStageView->Setup( *mStage );
+			mStageViewNode->Setup( *mStage );
 			updateScoreView();
 
 			return true;
@@ -188,7 +188,7 @@ namespace step_clickclick
 
 		void GameProcessorScene::onGameProcess( const int block_linear_index )
 		{
-			game::Processor::Do( mStage.get(), mStageView, mEffectManagerNode, block_linear_index, &mScore );
+			game::Processor::Do( mStage.get(), mStageViewNode, mEffectManagerNode, block_linear_index, &mScore );
 			updateScoreView();
 		}
 
@@ -209,7 +209,7 @@ namespace step_clickclick
 
 			case EventKeyboard::KeyCode::KEY_R: // Reset
 				mStage->Setup( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT, 2 );
-				mStageView->Setup( *mStage );
+				mStageViewNode->Setup( *mStage );
 				mScore = 0;
 				updateScoreView();
 				break;

@@ -21,7 +21,7 @@ namespace step_clickclick
 
 		class Stage;
 
-		class StageView : public cocos2d::Node
+		class StageViewNode : public cocos2d::Node
 		{
 		public:
 			struct Config
@@ -33,10 +33,10 @@ namespace step_clickclick
 			using OnBlockCallback = std::function<void( int )>;
 
 		private:
-			StageView( const int width, const int height );
+			StageViewNode( const int width, const int height );
 
 		public:
-			static StageView* create( const int width, const int height, const OnBlockCallback& on_block_callback, const Config config = Config() );
+			static StageViewNode* create( const int width, const int height, const OnBlockCallback& on_block_callback, const Config config = Config() );
 
 		private:
 			bool init( const Config config, const OnBlockCallback& on_block_callback );

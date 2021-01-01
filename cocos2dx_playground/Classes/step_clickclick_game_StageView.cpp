@@ -25,14 +25,14 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		StageView::StageView( const int width, const int height ) :
+		StageViewNode::StageViewNode( const int width, const int height ) :
 			mStageWidth( width )
 			, mStageHeight( height )
 			, mGridIndexConverter( mStageWidth, mStageHeight )
 			, mBlockViews()
 		{}
 
-		StageView* StageView::create( const int width, const int height, const OnBlockCallback& on_block_callback, const Config config )
+		StageViewNode* StageViewNode::create( const int width, const int height, const OnBlockCallback& on_block_callback, const Config config )
 		{
 			//
 			// Must odd number
@@ -40,7 +40,7 @@ namespace step_clickclick
 			CHECK_ODD_NUMBER( width );
 			CHECK_ODD_NUMBER( height );
 
-			auto ret = new ( std::nothrow ) StageView( width, height );
+			auto ret = new ( std::nothrow ) StageViewNode( width, height );
 			if( !ret || !ret->init( config, on_block_callback ) )
 			{
 				delete ret;
@@ -54,7 +54,7 @@ namespace step_clickclick
 			return ret;
 		}
 
-		bool StageView::init( const Config config, const OnBlockCallback& on_block_callback )
+		bool StageViewNode::init( const Config config, const OnBlockCallback& on_block_callback )
 		{
 			if( !Node::init() )
 			{
@@ -115,7 +115,7 @@ namespace step_clickclick
 			return true;
 		}
 
-		void StageView::Setup( const Stage& stage_data )
+		void StageViewNode::Setup( const Stage& stage_data )
 		{
 			assert( mStageWidth == stage_data.GetWidth() );
 			assert( mStageHeight == stage_data.GetHeight() );
@@ -136,7 +136,7 @@ namespace step_clickclick
 			}
 		}
 
-		void StageView::UpdateBlock( const int linear_index, const int last_life, const int current_life )
+		void StageViewNode::UpdateBlock( const int linear_index, const int last_life, const int current_life )
 		{
 			mBlockViews[linear_index]->UpdateLife( last_life, current_life );
 		}

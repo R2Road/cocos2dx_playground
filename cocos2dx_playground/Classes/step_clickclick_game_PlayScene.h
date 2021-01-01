@@ -11,7 +11,7 @@ namespace step_clickclick
 		class EffectManagerNode;
 
 		using StageUp = std::unique_ptr<class Stage>;
-		class StageView;
+		class StageViewNode;
 
 		class PlayScene : public cocos2d::Scene
 		{
@@ -42,7 +42,7 @@ namespace step_clickclick
 			int mAudioID_forBGM;
 
 			StageUp mStage;
-			StageView* mStageView;
+			StageViewNode* mStageViewNode;
 			EffectManagerNode* mEffectManagerNode;
 
 			int mScore;

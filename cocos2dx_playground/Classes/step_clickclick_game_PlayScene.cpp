@@ -44,7 +44,7 @@ namespace step_clickclick
 			, mAudioID_forBGM( -1 )
 
 			, mStage()
-			, mStageView( nullptr )
+			, mStageViewNode( nullptr )
 			, mEffectManagerNode( nullptr )
 
 			, mScore( 0 )
@@ -135,18 +135,18 @@ namespace step_clickclick
 			// StageView
 			//
 			{
-				mStageView = step_clickclick::game::StageView::create(
+				mStageViewNode = step_clickclick::game::StageViewNode::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &PlayScene::onGameProcess, this, std::placeholders::_1 )
-					, StageView::Config{ false, false }
+					, StageViewNode::Config{ false, false }
 				);
-				mStageView->setPosition( Vec2(
+				mStageViewNode->setPosition( Vec2(
 					visibleOrigin.x + ( visibleSize.width * 0.5f )
 					, visibleOrigin.y + ( visibleSize.height * 0.5f )
 				) );
-				addChild( mStageView );
+				addChild( mStageViewNode );
 
-				mStageView->Setup( *mStage );
+				mStageViewNode->Setup( *mStage );
 			}
 
 			//
@@ -236,7 +236,7 @@ namespace step_clickclick
 
 		void PlayScene::onGameProcess( const int block_linear_index )
 		{
-			Processor::Do( mStage.get(), mStageView, mEffectManagerNode, block_linear_index, &mScore );
+			Processor::Do( mStage.get(), mStageViewNode, mEffectManagerNode, block_linear_index, &mScore );
 
 			//
 			// Score Update
@@ -272,7 +272,7 @@ namespace step_clickclick
 				mNextStepData.ElapsedTime_forEntry += dt;
 				if( mNextStepData.LimitTime_forEntry < mNextStepData.ElapsedTime_forEntry )
 				{
-					mStageView->setVisible( false );
+					mStageViewNode->setVisible( false );
 					mNextStepData.ElapsedTime_forEntry = 0.f;
 
 					++mNextStepData.Step;
@@ -318,11 +318,11 @@ namespace step_clickclick
 				getChildByTag( TAG_ClearView )->setVisible( false );
 				getChildByTag( TAG_CountView )->setVisible( false );
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
-				mStageView->Setup( *mStage );
+				mStageViewNode->Setup( *mStage );
 				++mNextStepData.Step;
 				break;
 			case NextStepData::eStep::reset:
-				mStageView->setVisible( true );
+				mStageViewNode->setVisible( true );
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 				mNextStepData.Step = NextStepData::eStep::wait_for_entry;
 				break;

@@ -10,7 +10,7 @@ namespace step_clickclick
 {
 	namespace game
 	{
-		class StageView;
+		class StageViewNode;
 	}
 
 	namespace game_test
@@ -43,7 +43,7 @@ namespace step_clickclick
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			game::StageView* mStageViewNode;
+			game::StageViewNode* mStageViewNode;
 			cocos2d::Label* mShuffleCountLabel;
 			cocos2d::Label* mStageSizeLabel;
 			cocos2d::Label* mSelectedBlockIndexLabel;

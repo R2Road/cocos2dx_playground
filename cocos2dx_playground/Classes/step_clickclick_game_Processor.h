@@ -7,7 +7,7 @@ namespace step_clickclick
 		class EffectManagerNode;
 
 		class Stage;
-		class StageView;
+		class StageViewNode;
 
 		class Processor
 		{
@@ -15,7 +15,7 @@ namespace step_clickclick
 			Processor() = delete;
 
 		public:
-			static void Do( Stage* stage, StageView* stage_view, EffectManagerNode* effect_manager_node, const int block_linear_index, int* out_score );
+			static void Do( Stage* stage, StageViewNode* stage_view_node, EffectManagerNode* effect_manager_node, const int block_linear_index, int* out_score );
 		};
 	}
 }

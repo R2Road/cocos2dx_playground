@@ -164,10 +164,10 @@ namespace step_clickclick
 			// Stage View
 			//
 			{
-				mStageViewNode = game::StageView::create(
+				mStageViewNode = game::StageViewNode::create(
 					MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT
 					, std::bind( &StageViewNodeScene::onBlockSelected, this, std::placeholders::_1 )
-					, game::StageView::Config{ true, true }
+					, game::StageViewNode::Config{ true, true }
 				);
 				mStageViewNode->setPosition(
 					visibleOrigin
