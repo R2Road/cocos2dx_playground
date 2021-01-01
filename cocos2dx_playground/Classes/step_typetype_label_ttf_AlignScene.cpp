@@ -89,7 +89,7 @@ namespace step_typetype
 					const char* label_string = "Test Label \n ----------------------------- \n Align Left";
 
 					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::LEFT );
-					label->setColor( Color3B::BLUE );
+					label->setColor( Color3B( 0, 186, 255 ) );
 					label->setPosition(
 						visibleOrigin
 						+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
@@ -102,7 +102,7 @@ namespace step_typetype
 					const char* label_string = "Test Label \n ----------------------------- \n Align Right";
 
 					auto label = Label::createWithTTF( label_string, "fonts/NanumSquareR.ttf", 9, Size::ZERO, TextHAlignment::RIGHT );
-					label->setColor( Color3B::RED );
+					label->setColor( Color3B( 255, 132, 175 ) );
 					label->setPosition(
 						visibleOrigin
 						+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.75f )
