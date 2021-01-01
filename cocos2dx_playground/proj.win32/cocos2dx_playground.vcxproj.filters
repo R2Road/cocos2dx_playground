@@ -765,9 +765,6 @@
     <ClCompile Include="..\Classes\cpg_StringTable.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_label_ttf_BasicScene.cpp">
-      <Filter>src\scene\step_01_typetype\label</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp">
       <Filter>src\cpgui</Filter>
     </ClCompile>
@@ -907,6 +904,9 @@
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_label_ttf_ETCScene.cpp">
+      <Filter>src\scene\step_01_typetype\label</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_label_ttf_AlignScene.cpp">
       <Filter>src\scene\step_01_typetype\label</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1502,9 +1502,6 @@
     <ClInclude Include="..\Classes\cpg_StringTable.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_label_ttf_BasicScene.h">
-      <Filter>src\scene\step_01_typetype\label</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h">
       <Filter>src\cpgui</Filter>
     </ClInclude>
@@ -1641,6 +1638,9 @@
       <Filter>src\scene\step_03_clickclick\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_label_ttf_ETCScene.h">
+      <Filter>src\scene\step_01_typetype\label</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_label_ttf_AlignScene.h">
       <Filter>src\scene\step_01_typetype\label</Filter>
     </ClInclude>
   </ItemGroup>

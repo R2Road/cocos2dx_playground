@@ -1,4 +1,4 @@
-#include "step_typetype_label_ttf_BasicScene.h"
+#include "step_typetype_label_ttf_AlignScene.h"
 
 #include <new>
 
@@ -12,11 +12,11 @@ namespace step_typetype
 {
 	namespace label_ttf
 	{
-		BasicScene::BasicScene() : mKeyboardListener( nullptr ) {}
+		AlignScene::AlignScene() : mKeyboardListener( nullptr ) {}
 
-		Scene* BasicScene::create()
+		Scene* AlignScene::create()
 		{
-			auto ret = new ( std::nothrow ) BasicScene();
+			auto ret = new ( std::nothrow ) AlignScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -30,7 +30,7 @@ namespace step_typetype
 			return ret;
 		}
 
-		bool BasicScene::init()
+		bool AlignScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -114,16 +114,16 @@ namespace step_typetype
 			return true;
 		}
 
-		void BasicScene::onEnter()
+		void AlignScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( AlignScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void BasicScene::onExit()
+		void AlignScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -132,7 +132,7 @@ namespace step_typetype
 			Scene::onExit();
 		}
 
-		void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void AlignScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{

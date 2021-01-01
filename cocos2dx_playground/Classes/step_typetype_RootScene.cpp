@@ -8,7 +8,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "step_typetype_label_ttf_BasicScene.h"
+#include "step_typetype_label_ttf_AlignScene.h"
 #include "step_typetype_label_ttf_ETCScene.h"
 
 #include "step_typetype_sprite_BasicScene.h"
@@ -67,7 +67,7 @@ namespace step_typetype
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] " << step_typetype::label_ttf::BasicScene::getTitle();
+			ss << "[1] " << step_typetype::label_ttf::AlignScene::getTitle();
 			ss << std::endl;
 			ss << "[2] " << step_typetype::label_ttf::ETCScene::getTitle();
 			ss << std::endl;
@@ -146,7 +146,7 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( step_typetype::label_ttf::BasicScene::create() );
+			_director->replaceScene( step_typetype::label_ttf::AlignScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_typetype::label_ttf::ETCScene::create() );
