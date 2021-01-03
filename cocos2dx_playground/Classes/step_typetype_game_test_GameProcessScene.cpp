@@ -87,10 +87,10 @@ namespace step_typetype
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -110,10 +110,10 @@ namespace step_typetype
 				label->setTag( TAG_StageLengthView );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 
 				updateStageLengthView();
@@ -124,10 +124,10 @@ namespace step_typetype
 			//
 			{
 				mStageViewNode = game::StageViewNode::create( STAGE_MAX_LENGTH, game::StageViewConfig{ true, true } );
-				mStageViewNode->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
+				mStageViewNode->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				addChild( mStageViewNode );
 			}
 
@@ -158,7 +158,7 @@ namespace step_typetype
 		void GameProcessScene::updateStageLengthView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_StageLengthView ) );
-			label->setString( StringUtils::format( "Stage Length : %d", mCurrentStageLength ) );
+			label->setString( StringUtils::format( "Stage Length : %d/%d", mCurrentStageLength, STAGE_MAX_LENGTH ) );
 		}
 
 		void GameProcessScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
