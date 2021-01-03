@@ -534,9 +534,6 @@
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.cpp">
       <Filter>src\scene\step_06_rain_of_chaos\game_test</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_game_test_StageScene.cpp">
-      <Filter>src\scene\step_01_typetype\game_test</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_mole_game_test_HittingNodeScene.cpp">
       <Filter>src\scene\step_05_mole\game_test</Filter>
     </ClCompile>
@@ -912,6 +909,9 @@
     <ClCompile Include="..\Classes\step_typetype_game_test_StageViewNodeScene.cpp">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_test_GameProcessScene.cpp">
+      <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1261,9 +1261,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_test_ActorMoveScene.h">
       <Filter>src\scene\step_06_rain_of_chaos\game_test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_game_test_StageScene.h">
-      <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_mole_game_test_HittingNodeScene.h">
       <Filter>src\scene\step_05_mole\game_test</Filter>
@@ -1647,6 +1644,9 @@
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_test_StageViewNodeScene.h">
+      <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_test_GameProcessScene.h">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClInclude>
   </ItemGroup>

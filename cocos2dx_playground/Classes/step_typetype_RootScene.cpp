@@ -22,7 +22,7 @@
 
 #include "step_typetype_game_test_LetterViewNodeScene.h"
 #include "step_typetype_game_test_StageViewNodeScene.h"
-#include "step_typetype_game_test_StageScene.h"
+#include "step_typetype_game_test_GameProcessScene.h"
 #include "step_typetype_game_TitleScene.h"
 
 USING_NS_CC;
@@ -95,7 +95,7 @@ namespace step_typetype
 			ss << "[W] " << step_typetype::game_test::StageViewNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] " << step_typetype::game_test::StageScene::getTitle();
+			ss << "[A] " << step_typetype::game_test::GameProcessScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -183,7 +183,7 @@ namespace step_typetype
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			_director->replaceScene( step_typetype::game_test::StageScene::create() );
+			_director->replaceScene( step_typetype::game_test::GameProcessScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:

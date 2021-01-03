@@ -1,4 +1,4 @@
-#include "step_typetype_game_test_StageScene.h"
+#include "step_typetype_game_test_GameProcessScene.h"
 
 #include <new>
 #include <numeric>
@@ -28,16 +28,16 @@ namespace step_typetype
 {
 	namespace game_test
 	{
-		StageScene::StageScene() :
+		GameProcessScene::GameProcessScene() :
 			mKeyboardListener( nullptr )
 			, mCurrentStageLength( 4 )
 			, mStage( STAGE_MAX_LENGTH )
 			, mStageViewNode( nullptr )
 		{}
 
-		Scene* StageScene::create()
+		Scene* GameProcessScene::create()
 		{
-			auto ret = new ( std::nothrow ) StageScene();
+			auto ret = new ( std::nothrow ) GameProcessScene();
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -51,7 +51,7 @@ namespace step_typetype
 			return ret;
 		}
 
-		bool StageScene::init()
+		bool GameProcessScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -137,16 +137,16 @@ namespace step_typetype
 			return true;
 		}
 
-		void StageScene::onEnter()
+		void GameProcessScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( StageScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( GameProcessScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void StageScene::onExit()
+		void GameProcessScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -155,13 +155,13 @@ namespace step_typetype
 			Scene::onExit();
 		}
 
-		void StageScene::updateStageLengthView()
+		void GameProcessScene::updateStageLengthView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_StageLengthView ) );
 			label->setString( StringUtils::format( "Stage Length : %d", mCurrentStageLength ) );
 		}
 
-		void StageScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void GameProcessScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			switch( keycode )
 			{

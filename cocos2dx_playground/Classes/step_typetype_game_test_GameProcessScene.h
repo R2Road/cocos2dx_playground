@@ -13,13 +13,13 @@ namespace step_typetype
 
 	namespace game_test
 	{
-		class StageScene : public cocos2d::Scene	
+		class GameProcessScene : public cocos2d::Scene	
 		{
 		private:
-			StageScene();
+			GameProcessScene();
 
 		public:
-			static const char* getTitle() { return "Game Test : Stage View Node"; }
+			static const char* getTitle() { return "Game Test : Game Process"; }
 			static cocos2d::Scene* create();
 
 		private:
