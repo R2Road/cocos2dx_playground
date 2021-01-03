@@ -184,12 +184,21 @@ namespace step_typetype
 		void StageViewNodeScene::updateStageLengthView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_StageLengthView ) );
-			label->setString( StringUtils::format( "Stage Length : %d", mCurrentStageLength ) );
+			label->setString( StringUtils::format( "Stage Length : %d/%d", mCurrentStageLength, STAGE_MAX_LENGTH ) );
 		}
 		void StageViewNodeScene::updateIndicatorPositionView()
 		{
 			auto label = static_cast<Label*>( getChildByTag( TAG_IndicatorPositionView ) );
 			label->setString( StringUtils::format( "Indicator Position : %d", mCurrentIndicatorPosition ) );
+
+			if( 0 > mCurrentIndicatorPosition || STAGE_MAX_LENGTH <= mCurrentIndicatorPosition )
+			{
+				label->setColor( Color3B::RED );
+			}
+			else
+			{
+				label->setColor( Color3B::GREEN );
+			}
 		}
 
 		void StageViewNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
