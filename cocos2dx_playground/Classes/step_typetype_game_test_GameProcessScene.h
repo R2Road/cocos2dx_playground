@@ -8,6 +8,7 @@ namespace step_typetype
 {
 	namespace game
 	{
+		class IndicatorViewNode;
 		class StageViewNode;
 	}
 
@@ -40,6 +41,7 @@ namespace step_typetype
 			std::size_t mCurrentStageLength;
 			game::Stage mStage;
 			game::StageViewNode* mStageViewNode;
+			game::IndicatorViewNode* mIndicatorViewNode;
 		};
 	}
 }

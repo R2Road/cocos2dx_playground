@@ -36,7 +36,6 @@ namespace step_typetype
 
 		private:
 			ContainerT mLetters;
-			cocos2d::Node* mIndicator;
 		};
 	}
 }

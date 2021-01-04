@@ -12,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "step_typetype_game_IndicatorViewNode.h"
 #include "step_typetype_game_StageViewNode.h"
 #include "step_typetype_RootScene.h"
 
@@ -33,6 +34,7 @@ namespace step_typetype
 			, mCurrentStageLength( 4 )
 			, mStage( STAGE_MAX_LENGTH )
 			, mStageViewNode( nullptr )
+			, mIndicatorViewNode( nullptr )
 		{}
 
 		Scene* GameProcessScene::create()
@@ -131,8 +133,21 @@ namespace step_typetype
 				addChild( mStageViewNode );
 			}
 
+			//
+			// Indicator View
+			//
+			{
+				mIndicatorViewNode = game::IndicatorViewNode::create( game::IndicatorViewNode::Config{ false, false } );
+				mIndicatorViewNode->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
+				addChild( mIndicatorViewNode, 1 );
+			}
+
 			mStage.Reset( mCurrentStageLength );
 			mStageViewNode->Reset( mStage );
+			mIndicatorViewNode->Reset( mCurrentStageLength );
 
 			return true;
 		}
@@ -176,6 +191,7 @@ namespace step_typetype
 
 					mStage.Reset( mCurrentStageLength );
 					mStageViewNode->Reset( mStage );
+					mIndicatorViewNode->Reset( mCurrentStageLength );
 				}
 				break;
 			case EventKeyboard::KeyCode::KEY_DOWN_ARROW: // decrease stage size + reset
@@ -189,6 +205,7 @@ namespace step_typetype
 
 					mStage.Reset( mCurrentStageLength );
 					mStageViewNode->Reset( mStage );
+					mIndicatorViewNode->Reset( mCurrentStageLength );
 				}
 				break;
 				
@@ -196,6 +213,7 @@ namespace step_typetype
 				{
 					mStage.Reset( mCurrentStageLength );
 					mStageViewNode->Reset( mStage );
+					mIndicatorViewNode->Reset( mCurrentStageLength );
 				}
 				break;
 
@@ -207,6 +225,7 @@ namespace step_typetype
 					mStage.RequestLetterDie( target_letter );
 
 					mStageViewNode->RequestLetterDie( target_letter_pos );
+					mIndicatorViewNode->SetIndicatorPosition( target_letter_pos + 1u );
 
 					experimental::AudioEngine::play2d( "sounds/fx/jump_001.ogg", false, 0.1f );
 					return;

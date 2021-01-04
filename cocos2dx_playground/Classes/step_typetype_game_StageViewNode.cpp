@@ -24,9 +24,7 @@ namespace step_typetype
 {
 	namespace game
 	{
-		StageViewNode::StageViewNode( const std::size_t max_length ) :
-			mLetters( max_length, nullptr )
-			, mIndicator( nullptr )
+		StageViewNode::StageViewNode( const std::size_t max_length ) : mLetters( max_length, nullptr )
 		{}
 
 		StageViewNode* StageViewNode::create( const std::size_t max_length, const StageViewConfig config )
@@ -104,16 +102,6 @@ namespace step_typetype
 				addChild( letter );
 			}
 
-			//
-			// Indicator
-			//
-			{
-				mIndicator = Sprite::create( "textures/step_typetype/step_typetype_letter_guide.png" );
-				mIndicator->setContentSize( letter_size );
-				mIndicator->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				addChild( mIndicator );
-			}
-
 			return true;
 		}
 
@@ -158,14 +146,6 @@ namespace step_typetype
 					+ Vec2( ( i * letter_size.width ), 0.f )
 				);
 			}
-
-			//
-			// Setup Indicator
-			//
-			{
-				mIndicator->setPosition( mLetters[0u]->getPosition() );
-				mIndicator->setVisible( true );
-			}
 		}
 		void StageViewNode::RequestLetterDie( const std::size_t target_pos )
 		{
@@ -175,19 +155,6 @@ namespace step_typetype
 			// Setup Letter
 			//
 			mLetters[target_pos]->Die();
-
-			//
-			// Setup Indicator
-			//
-			const auto indicator_pos = target_pos + 1u;
-			if( mLetters.size() > indicator_pos && mLetters[indicator_pos]->isVisible() )
-			{
-				mIndicator->setPosition( mLetters[indicator_pos]->getPosition() );
-			}
-			else
-			{
-				mIndicator->setVisible( false );
-			}
 		}
 	}
 }
