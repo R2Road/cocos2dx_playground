@@ -22,6 +22,7 @@
 
 #include "step_typetype_game_test_LetterViewNodeScene.h"
 #include "step_typetype_game_test_StageViewNodeScene.h"
+#include "step_typetype_game_test_IndicatorViewNodeScene.h"
 #include "step_typetype_game_test_GameProcessScene.h"
 #include "step_typetype_game_TitleScene.h"
 
@@ -91,6 +92,8 @@ namespace step_typetype
 			ss << "[Q] " << step_typetype::game_test::LetterViewNodeScene::getTitle();
 			ss << std::endl;
 			ss << "[W] " << step_typetype::game_test::StageViewNodeScene::getTitle();
+			ss << std::endl;
+			ss << "[E] " << step_typetype::game_test::IndicatorViewNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[A] " << step_typetype::game_test::GameProcessScene::getTitle();
@@ -178,6 +181,9 @@ namespace step_typetype
 			break;
 		case EventKeyboard::KeyCode::KEY_W:
 			_director->replaceScene( step_typetype::game_test::StageViewNodeScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_E:
+			_director->replaceScene( step_typetype::game_test::IndicatorViewNodeScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:

@@ -915,6 +915,12 @@
     <ClCompile Include="..\Classes\step_typetype_node_AnchorPointScene.cpp">
       <Filter>src\scene\step_01_typetype\node</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_IndicatorViewNode.cpp">
+      <Filter>src\scene\step_01_typetype\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_test_IndicatorViewNodeScene.cpp">
+      <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1651,6 +1657,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_node_AnchorPointScene.h">
       <Filter>src\scene\step_01_typetype\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_IndicatorViewNode.h">
+      <Filter>src\scene\step_01_typetype\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_test_IndicatorViewNodeScene.h">
+      <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

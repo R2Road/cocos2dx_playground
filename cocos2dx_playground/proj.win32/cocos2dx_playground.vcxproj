@@ -313,10 +313,12 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_pathfinder_json_LoadNSaveScene.cpp" />
     <ClCompile Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.cpp" />
     <ClCompile Include="..\Classes\step_mole_collision_ComponentScene.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_IndicatorViewNode.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_LetterViewNode.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_PlayScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_ResultScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp" />
+    <ClCompile Include="..\Classes\step_typetype_game_test_IndicatorViewNodeScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_test_LetterViewNodeScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_test_GameProcessScene.cpp" />
     <ClCompile Include="..\Classes\step_typetype_game_StageViewNode.cpp" />
@@ -560,10 +562,12 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_pathfinder_json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.h" />
     <ClInclude Include="..\Classes\step_mole_collision_ComponentScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_IndicatorViewNode.h" />
     <ClInclude Include="..\Classes\step_typetype_game_LetterViewNode.h" />
     <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_ResultScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_Stage.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_test_IndicatorViewNodeScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_test_LetterViewNodeScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_test_GameProcessScene.h" />
     <ClInclude Include="..\Classes\step_typetype_game_StageViewNode.h" />
