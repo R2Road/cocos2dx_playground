@@ -80,9 +80,7 @@ namespace step_typetype
 			ss << std::endl;
 			ss << "[5] " << step_typetype::sprite::AnchorPointScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
 			ss << "[6] " << step_typetype::sound::BasicScene::getTitle();
-			ss << std::endl;
 			ss << std::endl;
 			ss << "[7] " << step_typetype::ScheduleScene::getTitle();
 			ss << std::endl;
