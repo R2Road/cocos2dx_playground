@@ -4,7 +4,7 @@
 
 namespace step_typetype
 {
-	namespace sprite
+	namespace node
 	{
 		class AnchorPointScene : public cocos2d::Scene
 		{
@@ -12,7 +12,7 @@ namespace step_typetype
 			AnchorPointScene();
 
 		public:
-			static const char* getTitle() { return "Sprite : AnchorPoint"; }
+			static const char* getTitle() { return "Node : AnchorPoint"; }
 			static cocos2d::Scene* create();
 
 		private:

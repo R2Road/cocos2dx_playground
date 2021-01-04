@@ -1,4 +1,4 @@
-#include "step_typetype_sprite_AnchorPointScene.h"
+#include "step_typetype_node_AnchorPointScene.h"
 
 #include <new>
 #include <numeric>
@@ -12,7 +12,7 @@ USING_NS_CC;
 
 namespace step_typetype
 {
-	namespace sprite
+	namespace node
 	{
 		AnchorPointScene::AnchorPointScene() : mKeyboardListener( nullptr ) {}
 

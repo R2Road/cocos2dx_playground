@@ -208,6 +208,9 @@
     <Filter Include="src\scene\tool_practice">
       <UniqueIdentifier>{c7283c4e-210a-420f-a875-42d985335828}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\step_01_typetype\node">
+      <UniqueIdentifier>{0a56a1e2-b95b-458a-9af0-f346ee5db38e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -299,9 +302,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_input_KeyCodeViewScene.cpp">
       <Filter>src\scene\step_01_typetype\input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\step_typetype_sprite_AnchorPointScene.cpp">
-      <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_game_Stage.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
@@ -912,6 +912,9 @@
     <ClCompile Include="..\Classes\step_typetype_game_test_GameProcessScene.cpp">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_node_AnchorPointScene.cpp">
+      <Filter>src\scene\step_01_typetype\node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1012,9 +1015,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_input_KeyCodeViewScene.h">
       <Filter>src\scene\step_01_typetype\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\step_typetype_sprite_AnchorPointScene.h">
-      <Filter>src\scene\step_01_typetype\sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_Stage.h">
       <Filter>src\scene\step_01_typetype\game</Filter>
@@ -1648,6 +1648,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\step_typetype_game_test_GameProcessScene.h">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_node_AnchorPointScene.h">
+      <Filter>src\scene\step_01_typetype\node</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
