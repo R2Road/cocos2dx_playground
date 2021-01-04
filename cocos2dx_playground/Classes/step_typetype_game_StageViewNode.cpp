@@ -6,11 +6,9 @@
 
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "base/ccUTF8.h"
 
 #include "step_typetype_game_LetterViewNode.h"
 #include "step_typetype_game_Stage.h"
-#include "step_typetype_RootScene.h"
 
 USING_NS_CC;
 
@@ -149,7 +147,7 @@ namespace step_typetype
 		}
 		void StageViewNode::RequestLetterDie( const std::size_t target_pos )
 		{
-			assert( mLetters.size() > target_pos );
+			CCASSERT( mLetters.size() > target_pos, "Do Range Check : StageViewNode::RequestLetterDie" );
 
 			//
 			// Setup Letter
