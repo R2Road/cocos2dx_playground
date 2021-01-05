@@ -7,16 +7,11 @@
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 
+#include "step_typetype_game_Constant.h"
 #include "step_typetype_game_LetterViewNode.h"
 #include "step_typetype_game_Stage.h"
 
 USING_NS_CC;
-
-namespace
-{
-	const Size letter_size( 14.f, 14.f );
-	const Size margin_size( 2.f, 2.f );
-}
 
 namespace step_typetype
 {
@@ -53,11 +48,12 @@ namespace step_typetype
 			//
 			{
 				const Size node_size(
-					margin_size.width
-					+ ( mLetters.size() * letter_size.width )
-					+ margin_size.width
-					, margin_size.height
-					+ letter_size.height
+					GameConfig.MarginSize.width
+					+ ( mLetters.size() * GameConfig.LetterSize.width )
+					+ GameConfig.MarginSize.width
+					, GameConfig.MarginSize.height
+					+ GameConfig.LetterSize.height
+					+ GameConfig.MarginSize.height
 				);
 				setContentSize( node_size );
 			}
@@ -116,18 +112,18 @@ namespace step_typetype
 			}
 
 			const Size stage_size(
-				margin_size.width
-				+ ( stage.GetLength() * letter_size.width )
-				+ margin_size.width
-				, margin_size.height
-				+ letter_size.height
-				+ margin_size.height
+				GameConfig.MarginSize.width
+				+ ( stage.GetLength() * GameConfig.LetterSize.width )
+				+ GameConfig.MarginSize.width
+				, GameConfig.MarginSize.height
+				+ GameConfig.LetterSize.height
+				+ GameConfig.MarginSize.height
 			);
 			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
 			const Vec2 letter_pivot_position(
 				pivot_position
-				+ Vec2( margin_size.width, margin_size.height )
-				+ Vec2( ( letter_size.width * 0.5f ), 0.f )
+				+ Vec2( GameConfig.MarginSize.width, GameConfig.MarginSize.height )
+				+ Vec2( ( GameConfig.LetterSize.width * 0.5f ), 0.f )
 			);
 
 			//
@@ -142,7 +138,7 @@ namespace step_typetype
 				letter_view_node->Reset( stage.GetLetter( i ) );
 				letter_view_node->setPosition(
 					letter_pivot_position
-					+ Vec2( ( i * letter_size.width ), 0.f )
+					+ Vec2( ( i * GameConfig.LetterSize.width ), 0.f )
 				);
 			}
 		}

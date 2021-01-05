@@ -562,6 +562,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_pathfinder_json_LoadNSaveScene.h" />
     <ClInclude Include="..\Classes\step_pathfinder_tool_ui_TileSelectNode.h" />
     <ClInclude Include="..\Classes\step_mole_collision_ComponentScene.h" />
+    <ClInclude Include="..\Classes\step_typetype_game_Constant.h" />
     <ClInclude Include="..\Classes\step_typetype_game_IndicatorViewNode.h" />
     <ClInclude Include="..\Classes\step_typetype_game_LetterViewNode.h" />
     <ClInclude Include="..\Classes\step_typetype_game_PlayScene.h" />

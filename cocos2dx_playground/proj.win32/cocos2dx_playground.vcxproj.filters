@@ -1664,6 +1664,9 @@
     <ClInclude Include="..\Classes\step_typetype_game_test_IndicatorViewNodeScene.h">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\step_typetype_game_Constant.h">
+      <Filter>src\scene\step_01_typetype\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

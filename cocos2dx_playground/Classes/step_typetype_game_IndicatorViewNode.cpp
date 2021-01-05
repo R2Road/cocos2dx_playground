@@ -7,14 +7,13 @@
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 
+#include "step_typetype_game_Constant.h"
+
 USING_NS_CC;
 
 namespace
 {
 	const int TAG_Background = 20140416;
-
-	const Size letter_size( 14.f, 14.f );
-	const Size margin_size( 2.f, 2.f );
 }
 
 namespace step_typetype
@@ -79,7 +78,7 @@ namespace step_typetype
 			//
 			{
 				mIndicator = Sprite::create( "textures/step_typetype/step_typetype_letter_guide.png" );
-				mIndicator->setContentSize( letter_size );
+				mIndicator->setContentSize( GameConfig.LetterSize );
 				mIndicator->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				addChild( mIndicator );
 			}
@@ -90,12 +89,12 @@ namespace step_typetype
 		void IndicatorViewNode::Reset( const std::size_t current_stage_length )
 		{
 			const Size stage_size(
-				margin_size.width
-				+ ( current_stage_length * letter_size.width )
-				+ margin_size.width
-				, margin_size.height
-				+ letter_size.height
-				+ margin_size.height
+				GameConfig.MarginSize.width
+				+ ( current_stage_length * GameConfig.LetterSize.width )
+				+ GameConfig.MarginSize.width
+				, GameConfig.MarginSize.height
+				+ GameConfig.LetterSize.height
+				+ GameConfig.MarginSize.height
 			);
 			setContentSize( stage_size );
 
@@ -116,8 +115,8 @@ namespace step_typetype
 			const Vec2 pivot_position( getContentSize().width * -0.5f, getContentSize().height * -0.5f );
 			const Vec2 letter_pivot_position(
 				pivot_position
-				+ Vec2( margin_size.width, margin_size.height )
-				+ Vec2( letter_size.width * 0.5f, 0.f )
+				+ Vec2( GameConfig.MarginSize.width, GameConfig.MarginSize.height )
+				+ Vec2( GameConfig.LetterSize.width * 0.5f, 0.f )
 			);
 
 			//
@@ -126,7 +125,7 @@ namespace step_typetype
 			{
 				mIndicator->setPosition(
 					letter_pivot_position
-					+ Vec2( ( target_pos * letter_size.width ), 0.f )
+					+ Vec2( target_pos * GameConfig.LetterSize.width, 0.f )
 				);
 				mIndicator->setVisible( true );
 			}
