@@ -95,6 +95,7 @@ namespace step_typetype
 				+ margin_size.width
 				, margin_size.height
 				+ letter_size.height
+				+ margin_size.height
 			);
 			setContentSize( stage_size );
 
@@ -104,7 +105,7 @@ namespace step_typetype
 				background->setContentSize( getContentSize() );
 				background->setPosition( Vec2(
 					-getContentSize().width * 0.5f
-					, 1 -getContentSize().height * 0.5f
+					, -getContentSize().height * 0.5f
 				) );
 			}
 

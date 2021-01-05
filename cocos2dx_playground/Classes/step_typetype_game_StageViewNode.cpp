@@ -78,7 +78,7 @@ namespace step_typetype
 					auto background = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
 					background->setPosition( Vec2(
 						-getContentSize().width * 0.5f
-						, 1 -getContentSize().height * 0.5f
+						, -getContentSize().height * 0.5f
 					) );
 					addChild( background, std::numeric_limits<int>::min() );
 
@@ -121,6 +121,7 @@ namespace step_typetype
 				+ margin_size.width
 				, margin_size.height
 				+ letter_size.height
+				+ margin_size.height
 			);
 			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
 			const Vec2 letter_pivot_position(
