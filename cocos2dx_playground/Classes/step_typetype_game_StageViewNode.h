@@ -11,24 +11,25 @@ namespace step_typetype
 		class LetterViewNode;
 		class Stage;
 
-		struct StageViewConfig
-		{
-			bool bShowPivot = false;
-			bool bShowBackgroundGuide = false;
-		};
-
 		class StageViewNode : public cocos2d::Node
 		{
+		public:
+			struct Config
+			{
+				bool bShowPivot = false;
+				bool bShowBackgroundGuide = false;
+			};
+
 		private:
 			using ContainerT = std::vector<LetterViewNode*>;
 
 			StageViewNode( const std::size_t max_length );
 
 		public:
-			static StageViewNode* create( const std::size_t max_length, const StageViewConfig config = StageViewConfig() );
+			static StageViewNode* create( const std::size_t max_length, const Config config = Config() );
 
 		private:
-			bool init( const StageViewConfig config );
+			bool init( const Config config );
 
 		public:
 			void Reset( const Stage& stage );

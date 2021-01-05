@@ -135,7 +135,7 @@ namespace step_typetype
 			// Stage View
 			//
 			{
-				mStageViewNode = game::StageViewNode::create( STAGE_MAX_LENGTH, game::StageViewConfig{ true, true } );
+				mStageViewNode = game::StageViewNode::create( STAGE_MAX_LENGTH, game::StageViewNode::Config{ true, true } );
 				mStageViewNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )

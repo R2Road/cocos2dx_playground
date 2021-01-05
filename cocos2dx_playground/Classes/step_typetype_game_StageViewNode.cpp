@@ -25,7 +25,7 @@ namespace step_typetype
 		StageViewNode::StageViewNode( const std::size_t max_length ) : mLetters( max_length, nullptr )
 		{}
 
-		StageViewNode* StageViewNode::create( const std::size_t max_length, const StageViewConfig config )
+		StageViewNode* StageViewNode::create( const std::size_t max_length, const Config config )
 		{
 			auto ret = new ( std::nothrow ) StageViewNode( max_length );
 			if( !ret || !ret->init( config ) )
@@ -41,7 +41,7 @@ namespace step_typetype
 			return ret;
 		}
 
-		bool StageViewNode::init( const StageViewConfig config )
+		bool StageViewNode::init( const Config config )
 		{
 			if( !Node::init() )
 			{
