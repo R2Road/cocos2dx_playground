@@ -117,7 +117,7 @@ namespace step_typetype
 			const Vec2 letter_pivot_position(
 				pivot_position
 				+ Vec2( margin_size.width, margin_size.height )
-				+ Vec2( ( letter_size.width * 0.5f ), 0.f )
+				+ Vec2( letter_size.width * 0.5f, 0.f )
 			);
 
 			//
