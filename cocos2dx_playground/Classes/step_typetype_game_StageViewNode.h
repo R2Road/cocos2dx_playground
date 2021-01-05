@@ -26,7 +26,7 @@ namespace step_typetype
 			StageViewNode( const std::size_t max_length );
 
 		public:
-			static StageViewNode* create( const std::size_t max_length, const Config config = Config() );
+			static StageViewNode* create( const std::size_t max_length, const Config config );
 
 		private:
 			bool init( const Config config );
