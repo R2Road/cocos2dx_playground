@@ -31,13 +31,13 @@ namespace step_typetype
 		PlayScene::PlayScene() :
 			mKeyboardListener( nullptr )
 
-			, mCurrentStageLength( 4 )
+			, mCurrentStageLength( 4u )
 			, mStage( STAGE_MAX_LENGTH )
 			, mStageViewNode( nullptr )
 			, mIndicatorViewNode( nullptr )
 			, mNextStageIndicatorNode( nullptr )
 
-			, mElapsedTime( 0 )
+			, mElapsedTime( 0.f )
 			, mAudioID_forBGM( -1 )
 		{}
 
@@ -223,7 +223,7 @@ namespace step_typetype
 			}
 			else if( EventKeyboard::KeyCode::KEY_ENTER == keycode )
 			{
-				mCurrentStageLength += 2;
+				mCurrentStageLength += 2u;
 				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
 
 				if( mCurrentStageLength < mStage.GetLength_MAX() ) // go next stage
