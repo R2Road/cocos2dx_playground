@@ -47,14 +47,7 @@ namespace step_typetype
 			// Content Size
 			//
 			{
-				const Size node_size(
-					GameConfig.MarginSize.width
-					+ ( mLetters.size() * GameConfig.LetterSize.width )
-					+ GameConfig.MarginSize.width
-					, GameConfig.MarginSize.height
-					+ GameConfig.LetterSize.height
-					+ GameConfig.MarginSize.height
-				);
+				const auto node_size( CalculateStageSize( mLetters.size() ) );
 				setContentSize( node_size );
 			}
 
@@ -111,14 +104,7 @@ namespace step_typetype
 				l->setVisible( false );
 			}
 
-			const Size stage_size(
-				GameConfig.MarginSize.width
-				+ ( stage.GetLength() * GameConfig.LetterSize.width )
-				+ GameConfig.MarginSize.width
-				, GameConfig.MarginSize.height
-				+ GameConfig.LetterSize.height
-				+ GameConfig.MarginSize.height
-			);
+			const auto stage_size( CalculateStageSize( stage.GetLength() ) );
 			const Vec2 head_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
 			const Vec2 first_letter_position(
 				head_position

@@ -921,6 +921,9 @@
     <ClCompile Include="..\Classes\step_typetype_game_test_IndicatorViewNodeScene.cpp">
       <Filter>src\scene\step_01_typetype\game_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\step_typetype_game_Constant.cpp">
+      <Filter>src\scene\step_01_typetype\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

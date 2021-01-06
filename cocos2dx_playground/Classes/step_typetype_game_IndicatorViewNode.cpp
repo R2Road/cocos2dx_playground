@@ -88,14 +88,7 @@ namespace step_typetype
 
 		void IndicatorViewNode::Reset( const std::size_t current_stage_length )
 		{
-			const Size stage_size(
-				GameConfig.MarginSize.width
-				+ ( current_stage_length * GameConfig.LetterSize.width )
-				+ GameConfig.MarginSize.width
-				, GameConfig.MarginSize.height
-				+ GameConfig.LetterSize.height
-				+ GameConfig.MarginSize.height
-			);
+			const auto stage_size( step_typetype::game::CalculateStageSize( current_stage_length ) );
 			setContentSize( stage_size );
 
 			//
