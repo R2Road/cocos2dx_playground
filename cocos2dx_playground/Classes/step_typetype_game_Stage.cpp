@@ -27,7 +27,7 @@ namespace step_typetype
 				, 'Z', 'X', 'C', 'V'
 			};
 			const std::vector<char> RightHand = {
-				'U', 'I', 'O', 'P', 'Y'
+				'Y', 'U', 'I', 'O', 'P'
 				, 'H', 'J', 'K', 'L'
 				, 'B', 'N', 'M',
 			};
