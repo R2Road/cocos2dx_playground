@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "2d/CCNode.h"
 
 namespace step_typetype
