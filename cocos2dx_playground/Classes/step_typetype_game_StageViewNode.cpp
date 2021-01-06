@@ -61,29 +61,29 @@ namespace step_typetype
 			//
 			// Config Setup
 			//
+			if( config.bShowPivot )
 			{
+				auto pivot = Sprite::create( "textures/step_typetype/step_typetype_helper_pivot.png" );
+				pivot->setScale( 2.f );
+				addChild( pivot, std::numeric_limits<int>::max() );
+			}
+
+			//
+			// Background
+			//
+			{
+				auto layer = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
+				layer->setPosition( Vec2(
+					-getContentSize().width * 0.5f
+					, -getContentSize().height * 0.5f
+				) );
+				addChild( layer, std::numeric_limits<int>::min() );
+
 				if( config.bShowPivot )
 				{
 					auto pivot = Sprite::create( "textures/step_typetype/step_typetype_helper_pivot.png" );
 					pivot->setScale( 2.f );
-					addChild( pivot, std::numeric_limits<int>::max() );
-				}
-
-				if( config.bShowBackgroundGuide )
-				{
-					auto background = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-					background->setPosition( Vec2(
-						-getContentSize().width * 0.5f
-						, -getContentSize().height * 0.5f
-					) );
-					addChild( background, std::numeric_limits<int>::min() );
-
-					if( config.bShowPivot )
-					{
-						auto pivot = Sprite::create( "textures/step_typetype/step_typetype_helper_pivot.png" );
-						pivot->setScale( 2.f );
-						background->addChild( pivot );
-					}
+					layer->addChild( pivot );
 				}
 			}
 

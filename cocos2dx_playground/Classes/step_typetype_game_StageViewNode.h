@@ -17,7 +17,6 @@ namespace step_typetype
 			struct Config
 			{
 				bool bShowPivot = false;
-				bool bShowBackgroundGuide = false;
 			};
 
 		private:
