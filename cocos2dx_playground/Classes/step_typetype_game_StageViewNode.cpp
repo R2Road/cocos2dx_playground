@@ -119,9 +119,9 @@ namespace step_typetype
 				+ GameConfig.LetterSize.height
 				+ GameConfig.MarginSize.height
 			);
-			const Vec2 pivot_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
-			const Vec2 letter_pivot_position(
-				pivot_position
+			const Vec2 head_position( stage_size.width * -0.5f, stage_size.height * -0.5f );
+			const Vec2 first_letter_position(
+				head_position
 				+ Vec2( GameConfig.MarginSize.width, GameConfig.MarginSize.height )
 				+ Vec2( ( GameConfig.LetterSize.width * 0.5f ), 0.f )
 			);
@@ -137,7 +137,7 @@ namespace step_typetype
 				letter_view_node->setVisible( true );
 				letter_view_node->Reset( stage.GetLetter( i ) );
 				letter_view_node->setPosition(
-					letter_pivot_position
+					first_letter_position
 					+ Vec2( ( i * GameConfig.LetterSize.width ), 0.f )
 				);
 			}
