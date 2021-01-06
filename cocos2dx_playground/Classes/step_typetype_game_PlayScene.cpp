@@ -10,7 +10,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 
 #include "step_typetype_game_Constant.h"
 #include "step_typetype_game_IndicatorViewNode.h"
