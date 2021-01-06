@@ -38,6 +38,7 @@ namespace step_typetype
 			Stage mStage;
 			StageViewNode* mStageViewNode;
 			game::IndicatorViewNode* mIndicatorViewNode;
+			cocos2d::Node* mNextStageIndicatorNode;
 
 			double mElapsedTime;
 			int mAudioID_forBGM;

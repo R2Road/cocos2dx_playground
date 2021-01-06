@@ -21,7 +21,6 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_NextStageIndicator = 20140416;
 	const int STAGE_MAX_LENGTH = 20;
 }
 
@@ -36,6 +35,7 @@ namespace step_typetype
 			, mStage( STAGE_MAX_LENGTH )
 			, mStageViewNode( nullptr )
 			, mIndicatorViewNode( nullptr )
+			, mNextStageIndicatorNode( nullptr )
 
 			, mElapsedTime( 0 )
 			, mAudioID_forBGM( -1 )
@@ -137,15 +137,13 @@ namespace step_typetype
 			// Next Stage Indicator
 			//
 			{
-				auto label = Label::createWithTTF( "ENTER", "fonts/NanumSquareR.ttf", 10 );
-				label->setTag( TAG_NextStageIndicator );
-				label->setColor( Color3B::GREEN );
-				label->setVisible( false );
-				label->setPosition(
+				mNextStageIndicatorNode = Label::createWithTTF( "ENTER", "fonts/NanumSquareR.ttf", 10 );
+				mNextStageIndicatorNode->setColor( Color3B::GREEN );
+				mNextStageIndicatorNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
-				addChild( label, 1 );
+				addChild( mNextStageIndicatorNode, 2 );
 			}
 
 			//
@@ -154,6 +152,7 @@ namespace step_typetype
 			mStage.Reset( mCurrentStageLength );
 			mStageViewNode->Reset( mStage );
 			mIndicatorViewNode->Reset( mCurrentStageLength );
+			mNextStageIndicatorNode->setVisible( false );
 
 			scheduleUpdate();
 
@@ -213,7 +212,7 @@ namespace step_typetype
 						if( mStage.IsStageClear() )
 						{
 							mIndicatorViewNode->setVisible( false );
-							getChildByTag( TAG_NextStageIndicator )->setVisible( true );
+							mNextStageIndicatorNode->setVisible( true );
 						}
 					}
 					else
@@ -235,7 +234,7 @@ namespace step_typetype
 					mIndicatorViewNode->setVisible( true );
 					mIndicatorViewNode->Reset( mCurrentStageLength );
 
-					getChildByTag( TAG_NextStageIndicator )->setVisible( false );
+					mNextStageIndicatorNode->setVisible( false );
 				}
 				else // game clear
 				{
