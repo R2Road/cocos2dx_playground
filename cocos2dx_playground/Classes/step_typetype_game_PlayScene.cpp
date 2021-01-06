@@ -12,17 +12,13 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "step_typetype_game_Constant.h"
 #include "step_typetype_game_IndicatorViewNode.h"
 #include "step_typetype_game_ResultScene.h"
 #include "step_typetype_game_StageViewNode.h"
 #include "step_typetype_game_TitleScene.h"
 
 USING_NS_CC;
-
-namespace
-{
-	const int STAGE_MAX_LENGTH = 20;
-}
 
 namespace step_typetype
 {
@@ -32,7 +28,7 @@ namespace step_typetype
 			mKeyboardListener( nullptr )
 
 			, mCurrentStageLength( 4u )
-			, mStage( STAGE_MAX_LENGTH )
+			, mStage( GameConfig.StageMaxLength )
 			, mStageViewNode( nullptr )
 			, mIndicatorViewNode( nullptr )
 			, mNextStageIndicatorNode( nullptr )
@@ -113,7 +109,7 @@ namespace step_typetype
 			// Stage View Node
 			//
 			{
-				mStageViewNode = StageViewNode::create( STAGE_MAX_LENGTH, StageViewNode::Config{ false } );
+				mStageViewNode = StageViewNode::create( GameConfig.StageMaxLength, StageViewNode::Config{ false } );
 				mStageViewNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
