@@ -189,6 +189,9 @@ namespace step_typetype
 				return;
 			}
 
+			//
+			// Game Process
+			//
 			if( !mStage.IsStageClear() )
 			{
 				if( EventKeyboard::KeyCode::KEY_A <= keycode && EventKeyboard::KeyCode::KEY_Z >= keycode )
