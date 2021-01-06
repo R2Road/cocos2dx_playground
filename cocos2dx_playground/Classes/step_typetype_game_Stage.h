@@ -8,9 +8,10 @@ namespace step_typetype
 	{
 		class Stage
 		{
-		public:
+		private:
 			using ContainerT = std::vector<char>;
 
+		public:
 			Stage( const std::size_t max_length );
 
 			void Reset( const std::size_t length );
