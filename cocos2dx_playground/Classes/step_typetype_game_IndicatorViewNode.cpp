@@ -13,7 +13,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_Background = 20140416;
+	const int TAG_BackgroundGuide = 20140416;
 }
 
 namespace step_typetype
@@ -61,7 +61,7 @@ namespace step_typetype
 				if( config.bShowBackgroundGuide )
 				{
 					auto background = LayerColor::create( Color4B( 0u, 0u, 0u, 100u ), getContentSize().width, getContentSize().height );
-					background->setTag( TAG_Background );
+					background->setTag( TAG_BackgroundGuide );
 					addChild( background, std::numeric_limits<int>::min() );
 
 					if( config.bShowPivot )
@@ -98,23 +98,29 @@ namespace step_typetype
 			);
 			setContentSize( stage_size );
 
-			auto background = getChildByTag( TAG_Background );
-			if( background )
+			//
+			// Update Background Guide
+			//
+			auto background_guide = getChildByTag( TAG_BackgroundGuide );
+			if( background_guide )
 			{
-				background->setContentSize( getContentSize() );
-				background->setPosition( Vec2(
+				background_guide->setContentSize( getContentSize() );
+				background_guide->setPosition( Vec2(
 					-getContentSize().width * 0.5f
 					, -getContentSize().height * 0.5f
 				) );
 			}
 
+			//
+			// Update Indicator Position
+			//
 			SetIndicatorPosition( 0u );
 		}
 		void IndicatorViewNode::SetIndicatorPosition( const std::size_t target_pos )
 		{
-			const Vec2 pivot_position( getContentSize().width * -0.5f, getContentSize().height * -0.5f );
-			const Vec2 letter_pivot_position(
-				pivot_position
+			const Vec2 head_position( getContentSize().width * -0.5f, getContentSize().height * -0.5f );
+			const Vec2 first_letter_position(
+				head_position
 				+ Vec2( GameConfig.MarginSize.width, GameConfig.MarginSize.height )
 				+ Vec2( GameConfig.LetterSize.width * 0.5f, 0.f )
 			);
@@ -122,13 +128,10 @@ namespace step_typetype
 			//
 			// Setup Indicator
 			//
-			{
-				mIndicator->setPosition(
-					letter_pivot_position
-					+ Vec2( target_pos * GameConfig.LetterSize.width, 0.f )
-				);
-				mIndicator->setVisible( true );
-			}
+			mIndicator->setPosition(
+				first_letter_position
+				+ Vec2( target_pos * GameConfig.LetterSize.width, 0.f )
+			);
 		}
 	}
 }
