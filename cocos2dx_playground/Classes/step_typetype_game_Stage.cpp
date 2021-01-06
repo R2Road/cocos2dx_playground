@@ -10,15 +10,15 @@ namespace step_typetype
 	{
 		Stage::Stage( const std::size_t max_length ) : 
 			mLetters( max_length, 'A' )
-			, mIndicator_Current( 0 )
-			, mIndicator_End( 1 )
+			, mIndicator_Current( 0u )
+			, mIndicator_End( 1u )
 		{}
 
 		void Stage::Reset( const std::size_t length )
 		{
 			mLength = std::min( std::max( 1u, length ), mLetters.capacity() );
 
-			mIndicator_Current = 0;
+			mIndicator_Current = 0u;
 			mIndicator_End = mLength;
 
 			const std::vector<char> LeftHand = {
@@ -37,9 +37,9 @@ namespace step_typetype
 			std::uniform_int_distribution<> left_dist( 0, LeftHand.size() - 1 );
 			std::uniform_int_distribution<> right_dist( 0, RightHand.size() - 1 );
 
-			for( std::size_t i = 0; i < mLength; ++i )
+			for( std::size_t i = 0u; i < mLength; ++i )
 			{
-				if( 1 == i % 2 ) // odd number
+				if( 1u == i % 2u ) // odd number
 				{
 					mLetters[i] = static_cast<char>( LeftHand[left_dist( randomEngine )] );
 				}
