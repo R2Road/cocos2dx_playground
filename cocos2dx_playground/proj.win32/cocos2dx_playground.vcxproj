@@ -396,6 +396,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h" />
     <ClInclude Include="..\Classes\cpgui_ToolBarNode.h" />
     <ClInclude Include="..\Classes\cpg_Clamp.h" />
+    <ClInclude Include="..\Classes\cpg_Point.h" />
     <ClInclude Include="..\Classes\cpg_Position2GridIndexConverter.h" />
     <ClInclude Include="..\Classes\cpg_Random.h" />
     <ClInclude Include="..\Classes\cpg_Setting.h" />

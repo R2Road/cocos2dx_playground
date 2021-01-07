@@ -1670,6 +1670,9 @@
     <ClInclude Include="..\Classes\step_typetype_game_Constant.h">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Point.h">
+      <Filter>src\cpg</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
