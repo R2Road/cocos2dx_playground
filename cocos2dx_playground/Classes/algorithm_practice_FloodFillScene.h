@@ -37,6 +37,7 @@ namespace algorithm_practice
 		void onExit() override;
 
 	private:
+		void onToolSelect( const int tool_index );
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
@@ -48,5 +49,6 @@ namespace algorithm_practice
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 
 		step_defender::game::TileMapNode* mTileMapNode;
+		int mToolIndex;
 	};
 }

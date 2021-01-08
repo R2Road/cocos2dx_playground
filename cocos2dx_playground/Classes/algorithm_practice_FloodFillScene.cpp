@@ -14,6 +14,7 @@
 #include "ui/UIButton.h"
 
 #include "cpg_StringTable.h"
+#include "cpgui_ToolBarNode.h"
 
 #include "step_defender_game_Constant.h"
 #include "step_defender_game_TileMapNode.h"
@@ -36,6 +37,7 @@ namespace algorithm_practice
 		, mPosition2GridIndexConverter( 1, 1 )
 
 		, mTileMapNode( nullptr )
+		, mToolIndex( 0 )
 	{}
 
 	Scene* FloodFillScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -111,6 +113,26 @@ namespace algorithm_practice
 		}
 
 		//
+		// Tool Bar
+		//
+		{
+			auto tool_bar_node = cpgui::ToolBarNode::create();
+			addChild( tool_bar_node, std::numeric_limits<int>::max() );
+
+			tool_bar_node->AddTool( 0, "S", 10, std::bind( &FloodFillScene::onToolSelect, this, 0 ) );
+			tool_bar_node->AddTool( 1, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, 1 ) );
+
+			tool_bar_node->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+				+ Vec2( -tool_bar_node->getContentSize().width, -tool_bar_node->getContentSize().height )
+			);
+
+			// Set Indicator
+			tool_bar_node->SelectTool( mToolIndex );
+		}
+
+		//
 		// Tile Edit Node
 		//
 		{
@@ -169,6 +191,11 @@ namespace algorithm_practice
 	}
 
 
+	void FloodFillScene::onToolSelect( const int tool_index )
+	{
+		mToolIndex = tool_index;
+		CCLOG( "Tool Index : %d", mToolIndex );
+	}
 	void FloodFillScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
 		auto button = static_cast<ui::Button*>( sender );
