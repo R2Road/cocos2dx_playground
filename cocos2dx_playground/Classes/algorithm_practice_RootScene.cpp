@@ -58,7 +58,7 @@ namespace algorithm_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[Q] : " << algorithm_practice::FloodFillScene::getTitle();
+			ss << "[1] : " << algorithm_practice::FloodFillScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -111,7 +111,7 @@ namespace algorithm_practice
 			_director->replaceScene( step99::RootScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_Q:
+		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( FloodFillScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
