@@ -61,6 +61,16 @@ namespace algorithm_practice
 			return false;
 		}
 
+		const auto visibleOrigin = _director->getVisibleOrigin();
+		const auto visibleSize = _director->getVisibleSize();
+		const Vec2 visibleCenter(
+			visibleOrigin.x + ( visibleSize.width * 0.5f )
+			, visibleOrigin.y + ( visibleSize.height * 0.5f )
+		);
+
+		//
+		// Load Tile Config
+		//
 		if( !mConfiguration.Load() )
 		{
 			return false;
@@ -70,14 +80,6 @@ namespace algorithm_practice
 		// Setup Grid Index Converter
 		//
 		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
-
-
-		const auto visibleOrigin = _director->getVisibleOrigin();
-		const auto visibleSize = _director->getVisibleSize();
-		const Vec2 visibleCenter(
-			visibleOrigin.x + ( visibleSize.width * 0.5f )
-			, visibleOrigin.y + ( visibleSize.height * 0.5f )
-		);
 
 		//
 		// Summury
