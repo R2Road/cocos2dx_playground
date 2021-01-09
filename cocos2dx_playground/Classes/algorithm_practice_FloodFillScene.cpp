@@ -36,7 +36,7 @@ namespace algorithm_practice
 		, mPosition2GridIndexConverter( 1, 1 )
 
 		, mTileMapNode( nullptr )
-		, mToolIndex( 0 )
+		, mToolIndex( eToolIndex::Wall )
 	{}
 
 	Scene* FloodFillScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -118,8 +118,8 @@ namespace algorithm_practice
 			auto tool_bar_node = cpgui::ToolBarNode::create();
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( 0, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, 0 ) );
-			tool_bar_node->AddTool( 1, "R", 10, std::bind( &FloodFillScene::onToolSelect, this, 1 ) );
+			tool_bar_node->AddTool( eToolIndex::Wall, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Wall ) );
+			tool_bar_node->AddTool( eToolIndex::Remove, "R", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Remove ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin
@@ -220,15 +220,20 @@ namespace algorithm_practice
 			return;
 		}
 
-		// Do Something
-
-		if( 0 == mToolIndex )
+		//
+		// Put Tile
+		//
+		switch( mToolIndex )
 		{
+		case eToolIndex::Wall:
 			mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
-		}
-		else
-		{
+			break;
+		case eToolIndex::Remove:
 			mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+			break;
+
+		default:
+			CCASSERT( "Invalid Tool Index : %d", mToolIndex );
 		}
 	}
 

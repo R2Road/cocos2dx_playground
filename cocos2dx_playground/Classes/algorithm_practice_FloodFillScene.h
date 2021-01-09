@@ -23,6 +23,12 @@ namespace algorithm_practice
 	class FloodFillScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
+		enum eToolIndex
+		{
+			Wall,
+			Remove,
+		};
+
 		FloodFillScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
