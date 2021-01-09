@@ -222,6 +222,15 @@ namespace algorithm_practice
 		}
 
 		// Do Something
+
+		if( 0 == mToolIndex )
+		{
+			mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+		}
+		else
+		{
+			mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
+		}
 	}
 
 
