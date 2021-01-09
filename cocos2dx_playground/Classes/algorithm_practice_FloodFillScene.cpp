@@ -10,7 +10,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
 #include "cpg_StringTable.h"
@@ -72,10 +71,6 @@ namespace algorithm_practice
 		//
 		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
 
-		//
-		// Reload Texture
-		//
-		_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().TexturePath );
 
 		const auto visibleOrigin = _director->getVisibleOrigin();
 		const auto visibleSize = _director->getVisibleSize();
