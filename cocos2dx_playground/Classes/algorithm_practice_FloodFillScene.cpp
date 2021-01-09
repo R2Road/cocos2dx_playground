@@ -18,7 +18,6 @@
 
 #include "step_defender_game_Constant.h"
 #include "step_defender_game_TileMapNode.h"
-#include "step_defender_tool_TileSheetNode.h"
 
 USING_NS_CC;
 
