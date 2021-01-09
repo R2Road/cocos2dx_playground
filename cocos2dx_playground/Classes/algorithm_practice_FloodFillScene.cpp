@@ -118,8 +118,8 @@ namespace algorithm_practice
 			auto tool_bar_node = cpgui::ToolBarNode::create();
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( 0, "S", 10, std::bind( &FloodFillScene::onToolSelect, this, 0 ) );
-			tool_bar_node->AddTool( 1, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, 1 ) );
+			tool_bar_node->AddTool( 0, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, 0 ) );
+			tool_bar_node->AddTool( 1, "R", 10, std::bind( &FloodFillScene::onToolSelect, this, 1 ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin
@@ -224,11 +224,11 @@ namespace algorithm_practice
 
 		if( 0 == mToolIndex )
 		{
-			mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+			mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
 		}
 		else
 		{
-			mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
+			mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
 		}
 	}
 
