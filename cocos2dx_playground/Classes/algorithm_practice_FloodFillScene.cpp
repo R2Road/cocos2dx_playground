@@ -36,6 +36,7 @@ namespace algorithm_practice
 
 		, mTileMapNode( nullptr )
 		, mToolIndex( eToolIndex::Wall )
+		, mEntryPoint()
 	{}
 
 	Scene* FloodFillScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -117,6 +118,7 @@ namespace algorithm_practice
 
 			tool_bar_node->AddTool( eToolIndex::Wall, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Wall ) );
 			tool_bar_node->AddTool( eToolIndex::Remove, "R", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Remove ) );
+			tool_bar_node->AddTool( eToolIndex::Entry, "E", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Entry ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin
@@ -227,6 +229,9 @@ namespace algorithm_practice
 			break;
 		case eToolIndex::Remove:
 			mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+			break;
+		case eToolIndex::Entry:
+			mEntryPoint = point;
 			break;
 
 		default:

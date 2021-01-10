@@ -27,6 +27,7 @@ namespace algorithm_practice
 		{
 			Wall,
 			Remove,
+			Entry,
 		};
 
 		FloodFillScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
@@ -56,5 +57,6 @@ namespace algorithm_practice
 
 		step_defender::game::TileMapNode* mTileMapNode;
 		int mToolIndex;
+		cpg::Point mEntryPoint;
 	};
 }
