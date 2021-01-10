@@ -165,6 +165,7 @@ namespace algorithm_practice
 		// Setup
 		//
 		mTileMapNode->FillAll( 0, 4 );
+		mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 1, 2 );
 
 		return true;
 	}
@@ -231,7 +232,9 @@ namespace algorithm_practice
 			mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
 			break;
 		case eToolIndex::Entry:
+			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 4 );
 			mEntryPoint = point;
+			mTileMapNode->UpdateTile( point.x, point.y, 1, 2 );
 			break;
 
 		default:
