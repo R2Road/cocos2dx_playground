@@ -15,7 +15,7 @@ namespace cpg
 	}
 
 
-	Position2GridIndexConverter::Point Position2GridIndexConverter::Position2Point( const float x, const float y ) const
+	Point Position2GridIndexConverter::Position2Point( const float x, const float y ) const
 	{
 		return Point{
 			static_cast<int>( x / mBlockWidth )

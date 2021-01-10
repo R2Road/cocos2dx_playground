@@ -10,14 +10,13 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
 #include "cpg_StringTable.h"
+#include "cpgui_ToolBarNode.h"
 
 #include "step_defender_game_Constant.h"
 #include "step_defender_game_TileMapNode.h"
-#include "step_defender_tool_TileSheetNode.h"
 
 USING_NS_CC;
 
@@ -36,6 +35,8 @@ namespace algorithm_practice
 		, mPosition2GridIndexConverter( 1, 1 )
 
 		, mTileMapNode( nullptr )
+		, mToolIndex( eToolIndex::Wall )
+		, mEntryPoint()
 	{}
 
 	Scene* FloodFillScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -61,6 +62,16 @@ namespace algorithm_practice
 			return false;
 		}
 
+		const auto visibleOrigin = _director->getVisibleOrigin();
+		const auto visibleSize = _director->getVisibleSize();
+		const Vec2 visibleCenter(
+			visibleOrigin.x + ( visibleSize.width * 0.5f )
+			, visibleOrigin.y + ( visibleSize.height * 0.5f )
+		);
+
+		//
+		// Load Tile Config
+		//
 		if( !mConfiguration.Load() )
 		{
 			return false;
@@ -70,18 +81,6 @@ namespace algorithm_practice
 		// Setup Grid Index Converter
 		//
 		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
-
-		//
-		// Reload Texture
-		//
-		_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().TexturePath );
-
-		const auto visibleOrigin = _director->getVisibleOrigin();
-		const auto visibleSize = _director->getVisibleSize();
-		const Vec2 visibleCenter(
-			visibleOrigin.x + ( visibleSize.width * 0.5f )
-			, visibleOrigin.y + ( visibleSize.height * 0.5f )
-		);
 
 		//
 		// Summury
@@ -111,41 +110,62 @@ namespace algorithm_practice
 		}
 
 		//
-		// Tile Edit Node
+		// Tool Bar
 		//
 		{
-			auto root_node = LayerColor::create( Color4B::GRAY );
-			addChild( root_node, 0 );
-			{
-				// Tile Maps
-				{
-					mTileMapNode = step_defender::game::TileMapNode::create(
-						step_defender::game::TileMapNode::Config{ mConfiguration.GetWidth(), mConfiguration.GetHeight() }
-						, mConfiguration.GetTileSheetConfiguration()
-					);
-					mTileMapNode->setPosition( 4.f, 4.f );
-					root_node->addChild( mTileMapNode );
-				}
+			auto tool_bar_node = cpgui::ToolBarNode::create();
+			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-				root_node->setContentSize( mTileMapNode->getContentSize() + Size( 8.f, 8.f ) );
-				root_node->setPosition(
-					visibleCenter
-					- Vec2( root_node->getContentSize().width * 0.5f, root_node->getContentSize().height * 0.5f )
-				);
+			tool_bar_node->AddTool( eToolIndex::Wall, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Wall ) );
+			tool_bar_node->AddTool( eToolIndex::Remove, "R", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Remove ) );
+			tool_bar_node->AddTool( eToolIndex::Entry, "E", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Entry ) );
 
-				//
-				// Touch Node
-				//
-				{
-					auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-					button->setAnchorPoint( Vec2::ZERO );
-					button->setScale9Enabled( true );
-					button->setContentSize( root_node->getContentSize() );
-					button->addTouchEventListener( CC_CALLBACK_2( FloodFillScene::onUpdateTile, this ) );
-					root_node->addChild( button, std::numeric_limits<int>::max() );
-				}
-			}
+			tool_bar_node->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+				+ Vec2( -tool_bar_node->getContentSize().width, -tool_bar_node->getContentSize().height )
+			);
+
+			// Set Indicator
+			tool_bar_node->SelectTool( mToolIndex );
 		}
+
+		//
+		// Tile Maps
+		//
+		{
+			mTileMapNode = step_defender::game::TileMapNode::create(
+				step_defender::game::TileMapNode::Config{ mConfiguration.GetWidth(), mConfiguration.GetHeight() }
+				, mConfiguration.GetTileSheetConfiguration()
+			);
+			mTileMapNode->setPosition(
+				visibleCenter
+				- Vec2( mTileMapNode->getContentSize().width * 0.5f, mTileMapNode->getContentSize().height * 0.5f )
+			);
+			addChild( mTileMapNode );
+		}
+
+		//
+		// Touch Node
+		//
+		{
+			auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+			button->setAnchorPoint( Vec2::ZERO );
+			button->setScale9Enabled( true );
+			button->setContentSize( mTileMapNode->getContentSize() + Size( 4.f, 4.f ) );
+			button->setPosition(
+				visibleCenter
+				- Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f )
+			);
+			button->addTouchEventListener( CC_CALLBACK_2( FloodFillScene::onUpdateTile, this ) );
+			addChild( button, std::numeric_limits<int>::max() );
+		}
+
+		//
+		// Setup
+		//
+		mTileMapNode->FillAll( 0, 4 );
+		mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 1, 2 );
 
 		return true;
 	}
@@ -169,6 +189,11 @@ namespace algorithm_practice
 	}
 
 
+	void FloodFillScene::onToolSelect( const int tool_index )
+	{
+		mToolIndex = tool_index;
+		CCLOG( "Tool Index : %d", mToolIndex );
+	}
 	void FloodFillScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
 		auto button = static_cast<ui::Button*>( sender );
@@ -195,7 +220,26 @@ namespace algorithm_practice
 			return;
 		}
 
-		// Do Something
+		//
+		// Put Tile
+		//
+		switch( mToolIndex )
+		{
+		case eToolIndex::Wall:
+			mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
+			break;
+		case eToolIndex::Remove:
+			mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+			break;
+		case eToolIndex::Entry:
+			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 4 );
+			mEntryPoint = point;
+			mTileMapNode->UpdateTile( point.x, point.y, 1, 2 );
+			break;
+
+		default:
+			CCASSERT( "Invalid Tool Index : %d", mToolIndex );
+		}
 	}
 
 

@@ -23,6 +23,13 @@ namespace algorithm_practice
 	class FloodFillScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
+		enum eToolIndex
+		{
+			Wall,
+			Remove,
+			Entry,
+		};
+
 		FloodFillScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
@@ -37,6 +44,7 @@ namespace algorithm_practice
 		void onExit() override;
 
 	private:
+		void onToolSelect( const int tool_index );
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
@@ -48,5 +56,7 @@ namespace algorithm_practice
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 
 		step_defender::game::TileMapNode* mTileMapNode;
+		int mToolIndex;
+		cpg::Point mEntryPoint;
 	};
 }
