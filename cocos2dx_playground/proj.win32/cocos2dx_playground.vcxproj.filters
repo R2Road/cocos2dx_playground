@@ -1673,6 +1673,9 @@
     <ClInclude Include="..\Classes\cpg_Point.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Grid.h">
+      <Filter>src\cpg</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

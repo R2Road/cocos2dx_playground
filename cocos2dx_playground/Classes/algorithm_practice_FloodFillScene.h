@@ -1,10 +1,9 @@
 #pragma once
 
-#include <vector>
-
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
+#include "cpg_Grid.h"
 #include "cpg_Position2GridIndexConverter.h"
 #include "helper_BackToThePreviousScene.h"
 #include "tool_practice_TileSheetTestConfiguration.h"
@@ -27,6 +26,17 @@ namespace algorithm_practice
 			Wall,
 			Remove,
 			Entry,
+		};
+
+		struct GridValue
+		{
+			enum class eType
+			{
+				Road,
+				Wall,
+			};
+
+			eType Type = eType::Road;
 		};
 
 		FloodFillScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
@@ -54,6 +64,7 @@ namespace algorithm_practice
 
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 
+		cpg::Grid<GridValue> mGrid;
 		step_defender::game::TileMapNode* mTileMapNode;
 		int mToolIndex;
 		cpg::Point mEntryPoint;

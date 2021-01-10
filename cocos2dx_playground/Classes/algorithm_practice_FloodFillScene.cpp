@@ -22,6 +22,9 @@ USING_NS_CC;
 
 namespace
 {
+	const std::size_t GRID_WIDTH = 12;
+	const std::size_t GRID_HEIGHT = 12;
+
 	const int TAG_ToolBar = 20140416;
 }
 
@@ -34,6 +37,7 @@ namespace algorithm_practice
 
 		, mPosition2GridIndexConverter( 1, 1 )
 
+		, mGrid( GRID_WIDTH, GRID_HEIGHT )
 		, mTileMapNode( nullptr )
 		, mToolIndex( eToolIndex::Wall )
 		, mEntryPoint()
@@ -135,7 +139,7 @@ namespace algorithm_practice
 		//
 		{
 			mTileMapNode = step_defender::game::TileMapNode::create(
-				step_defender::game::TileMapNode::Config{ mConfiguration.GetWidth(), mConfiguration.GetHeight() }
+				step_defender::game::TileMapNode::Config{ GRID_WIDTH, GRID_HEIGHT }
 				, mConfiguration.GetTileSheetConfiguration()
 			);
 			mTileMapNode->setPosition(
@@ -215,7 +219,7 @@ namespace algorithm_practice
 		const auto point = mPosition2GridIndexConverter.Position2Point( pos.x, pos.y );
 		CCLOG( "A : %d, %d", point.x, point.y );
 
-		if( 0 > point.x || mConfiguration.GetWidth() <= point.x || 0 > point.y || mConfiguration.GetHeight() <= point.y )
+		if( 0 > point.x || GRID_WIDTH <= point.x || 0 > point.y || GRID_HEIGHT <= point.y )
 		{
 			return;
 		}
@@ -226,15 +230,25 @@ namespace algorithm_practice
 		switch( mToolIndex )
 		{
 		case eToolIndex::Wall:
-			mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
+			if( mEntryPoint != point )
+			{
+				mGrid.Set( point.x, point.y, GridValue{ GridValue::eType::Wall } );
+				mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
+			}
 			break;
 		case eToolIndex::Remove:
-			mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+			if( mEntryPoint != point )
+			{
+				mGrid.Set( point.x, point.y, GridValue{ GridValue::eType::Road } );
+				mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+			}
 			break;
 		case eToolIndex::Entry:
 			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 4 );
+
 			mEntryPoint = point;
-			mTileMapNode->UpdateTile( point.x, point.y, 1, 2 );
+			mGrid.Set( mEntryPoint.x, mEntryPoint.y, GridValue{ GridValue::eType::Road } );
+			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 1, 2 );
 			break;
 
 		default:
