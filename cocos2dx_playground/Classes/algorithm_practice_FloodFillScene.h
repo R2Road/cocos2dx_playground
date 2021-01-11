@@ -61,10 +61,9 @@ namespace algorithm_practice
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
 		tool_practice::TileSheetTestConfiguration mConfiguration;
-
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
-
 		cpg::Grid<GridValue> mGrid;
 		step_defender::game::TileMapNode* mTileMapNode;
 		int mToolIndex;
