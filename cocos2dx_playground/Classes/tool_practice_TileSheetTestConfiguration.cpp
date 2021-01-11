@@ -12,14 +12,14 @@ namespace tool_practice
 		, mTileSheetConfiguration( 16, 16, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" )
 	{}
 
-	bool TileSheetTestConfiguration::Load()
+	bool TileSheetTestConfiguration::Load( const char* config_file_path )
 	{
 		//
 		// Load Json
 		//
 		rapidjson::Document doc;
 		{
-			const std::string json_string( cocos2d::FileUtils::getInstance()->getStringFromFile( "datas/tool_practice/tile_sheet_test.json" ) );
+			const std::string json_string( cocos2d::FileUtils::getInstance()->getStringFromFile( config_file_path ) );
 			doc.Parse<0>( json_string.c_str() );
 		}
 

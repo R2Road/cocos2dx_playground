@@ -66,7 +66,7 @@ namespace tool_practice
 			return false;
 		}
 
-		if( !mConfiguration.Load() )
+		if( !mConfiguration.Load( "datas/tool_practice/tile_sheet_test.json" ) )
 		{
 			return false;
 		}

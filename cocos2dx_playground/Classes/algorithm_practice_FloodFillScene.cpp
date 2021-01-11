@@ -76,7 +76,7 @@ namespace algorithm_practice
 		//
 		// Load Tile Config
 		//
-		if( !mConfiguration.Load() )
+		if( !mConfiguration.Load( "datas/tool_practice/tile_sheet_test.json" ) )
 		{
 			return false;
 		}

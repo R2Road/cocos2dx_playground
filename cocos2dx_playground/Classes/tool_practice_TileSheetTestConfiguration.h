@@ -9,7 +9,7 @@ namespace tool_practice
 	public:
 		TileSheetTestConfiguration();
 
-		bool Load();
+		bool Load( const char* config_file_path );
 
 		int GetLayerCount() const { return mLayerCount; }
 		int GetWidth() const { return mWidth; }
