@@ -41,6 +41,8 @@ namespace algorithm_practice
 		, mTileMapNode( nullptr )
 		, mToolIndex( eToolIndex::Wall )
 		, mEntryPoint()
+
+		, mGridDebugViewNode( nullptr )
 	{}
 
 	Scene* FloodFillScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -166,10 +168,31 @@ namespace algorithm_practice
 		}
 
 		//
+		// Grid Debug View Node
+		//
+		{
+			tool_practice::TileSheetTestConfiguration tile_sheet_test_config;
+			tile_sheet_test_config.Load( "datas/tool_practice/tile_sheet_test_02.json" );
+
+			mGridDebugViewNode = step_defender::game::TileMapNode::create(
+				step_defender::game::TileMapNode::Config{ GRID_WIDTH, GRID_HEIGHT }
+				, tile_sheet_test_config.GetTileSheetConfiguration()
+			);
+			mGridDebugViewNode->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height )
+				- Vec2( mGridDebugViewNode->getContentSize().width * 0.5f, mGridDebugViewNode->getContentSize().height )
+				- Vec2( 0.f, 2.f )
+			);
+			addChild( mGridDebugViewNode );
+		}
+
+		//
 		// Setup
 		//
 		mTileMapNode->FillAll( 0, 4 );
 		mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 1, 2 );
+		mGridDebugViewNode->FillAll( 0, 0 );
 
 		return true;
 	}
@@ -234,6 +257,8 @@ namespace algorithm_practice
 			{
 				mGrid.Set( point.x, point.y, GridValue{ GridValue::eType::Wall } );
 				mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
+
+				onUpdateDebugView();
 			}
 			break;
 		case eToolIndex::Remove:
@@ -241,6 +266,8 @@ namespace algorithm_practice
 			{
 				mGrid.Set( point.x, point.y, GridValue{ GridValue::eType::Road } );
 				mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+
+				onUpdateDebugView();
 			}
 			break;
 		case eToolIndex::Entry:
@@ -249,10 +276,29 @@ namespace algorithm_practice
 			mEntryPoint = point;
 			mGrid.Set( mEntryPoint.x, mEntryPoint.y, GridValue{ GridValue::eType::Road } );
 			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 1, 2 );
+
+			onUpdateDebugView();
 			break;
 
 		default:
 			CCASSERT( "Invalid Tool Index : %d", mToolIndex );
+		}
+	}
+	void FloodFillScene::onUpdateDebugView()
+	{
+		for( std::size_t y = 0; GRID_HEIGHT > y; ++y )
+		{
+			for( std::size_t x = 0; GRID_WIDTH > x; ++x )
+			{
+				if( GridValue::eType::Road == mGrid.Get( x, y ).Type )
+				{
+					mGridDebugViewNode->UpdateTile( x, y, 0, 0 );
+				}
+				else
+				{
+					mGridDebugViewNode->UpdateTile( x, y, 1, 0 );
+				}
+			}
 		}
 	}
 
