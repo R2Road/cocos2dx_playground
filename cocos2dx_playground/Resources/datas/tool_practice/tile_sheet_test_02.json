@@ -1,0 +1,13 @@
+{
+  "layer":1
+
+  , "size":{ "w":16, "h":16 }
+
+  , "sheet":{
+    "tile_w":2
+    , "tile_h":2
+    , "tile_margin_w":1
+    , "tile_margin_h":1
+    , "texture":"textures/tool_practice/tool_practice_tilesheettest_02.png"
+  }
+}
