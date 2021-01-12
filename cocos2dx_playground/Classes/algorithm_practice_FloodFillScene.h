@@ -69,6 +69,7 @@ namespace algorithm_practice
 		int mToolIndex;
 		cpg::Point mEntryPoint;
 
+		cocos2d::Node* mEntryPointIndicatorNode;
 		step_defender::game::TileMapNode* mGridDebugViewNode;
 	};
 }

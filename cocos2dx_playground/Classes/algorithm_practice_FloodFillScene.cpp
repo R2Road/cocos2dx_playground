@@ -7,9 +7,11 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
 #include "cpg_StringTable.h"
@@ -42,6 +44,7 @@ namespace algorithm_practice
 		, mToolIndex( eToolIndex::Wall )
 		, mEntryPoint()
 
+		, mEntryPointIndicatorNode( nullptr )
 		, mGridDebugViewNode( nullptr )
 	{}
 
@@ -168,6 +171,28 @@ namespace algorithm_practice
 		}
 
 		//
+		// Entry Point Indicator
+		//
+		{
+			auto texture = TextureCache::getInstance()->getTextureForKey( mConfiguration.GetTileSheetConfiguration().TexturePath );
+
+			step_defender::game::TileSheetUtility tile_sheet_utility;
+			tile_sheet_utility.Setup(
+				mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight
+				, mConfiguration.GetTileSheetConfiguration().TileMargin_Width, mConfiguration.GetTileSheetConfiguration().TileMargin_Height
+				, texture->getContentSizeInPixels().height
+			);
+
+			auto sprite = Sprite::createWithTexture( texture );
+			sprite->setAnchorPoint( Vec2::ZERO );
+			sprite->setScale( _director->getContentScaleFactor() );
+			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 1, 2 ) );
+			addChild( sprite, 10 );
+
+			mEntryPointIndicatorNode = sprite;
+		}
+
+		//
 		// Grid Debug View Node
 		//
 		{
@@ -191,8 +216,12 @@ namespace algorithm_practice
 		// Setup
 		//
 		mTileMapNode->FillAll( 0, 4 );
-		mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 1, 2 );
 		mGridDebugViewNode->FillAll( 0, 0 );
+
+		mEntryPointIndicatorNode->setPosition(
+			mTileMapNode->getPosition()
+			+ Vec2( mConfiguration.GetTileSheetConfiguration().TileWidth * mEntryPoint.x, mConfiguration.GetTileSheetConfiguration().TileHeight * mEntryPoint.y )
+		);
 
 		return true;
 	}
@@ -271,11 +300,14 @@ namespace algorithm_practice
 			}
 			break;
 		case eToolIndex::Entry:
-			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 4 );
-
 			mEntryPoint = point;
 			mGrid.Set( mEntryPoint.x, mEntryPoint.y, GridValue{ GridValue::eType::Road } );
-			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 1, 2 );
+			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 4 );
+			
+			mEntryPointIndicatorNode->setPosition(
+				mTileMapNode->getPosition()
+				+ Vec2( mConfiguration.GetTileSheetConfiguration().TileWidth * mEntryPoint.x, mConfiguration.GetTileSheetConfiguration().TileHeight * mEntryPoint.y )
+			);
 
 			onUpdateDebugView();
 			break;
