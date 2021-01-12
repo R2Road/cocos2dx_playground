@@ -1,4 +1,4 @@
-#include "algorithm_practice_FloodFillScene.h"
+#include "algorithm_practice_floodfill_RootScene.h"
 
 #include <functional>
 #include <new>
@@ -30,9 +30,9 @@ namespace
 	const int TAG_ToolBar = 20140416;
 }
 
-namespace algorithm_practice
+namespace algorithm_practice_floodfill
 {
-	FloodFillScene::FloodFillScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	RootScene::RootScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 		, mConfiguration()
@@ -48,9 +48,9 @@ namespace algorithm_practice
 		, mGridDebugViewNode( nullptr )
 	{}
 
-	Scene* FloodFillScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* RootScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) FloodFillScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) RootScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -64,7 +64,7 @@ namespace algorithm_practice
 		return ret;
 	}
 
-	bool FloodFillScene::init()
+	bool RootScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -125,9 +125,9 @@ namespace algorithm_practice
 			auto tool_bar_node = cpgui::ToolBarNode::create();
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( eToolIndex::Wall, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Wall ) );
-			tool_bar_node->AddTool( eToolIndex::Road, "R", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Road ) );
-			tool_bar_node->AddTool( eToolIndex::Entry, "E", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Entry ) );
+			tool_bar_node->AddTool( eToolIndex::Wall, "W", 10, std::bind( &RootScene::onToolSelect, this, eToolIndex::Wall ) );
+			tool_bar_node->AddTool( eToolIndex::Road, "R", 10, std::bind( &RootScene::onToolSelect, this, eToolIndex::Road ) );
+			tool_bar_node->AddTool( eToolIndex::Entry, "E", 10, std::bind( &RootScene::onToolSelect, this, eToolIndex::Entry ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin
@@ -166,7 +166,7 @@ namespace algorithm_practice
 				visibleCenter
 				- Vec2( button->getContentSize().width * 0.5f, button->getContentSize().height * 0.5f )
 			);
-			button->addTouchEventListener( CC_CALLBACK_2( FloodFillScene::onUpdateTile, this ) );
+			button->addTouchEventListener( CC_CALLBACK_2( RootScene::onUpdateTile, this ) );
 			addChild( button, std::numeric_limits<int>::max() );
 		}
 
@@ -226,16 +226,16 @@ namespace algorithm_practice
 		return true;
 	}
 
-	void FloodFillScene::onEnter()
+	void RootScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( FloodFillScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void FloodFillScene::onExit()
+	void RootScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -245,12 +245,12 @@ namespace algorithm_practice
 	}
 
 
-	void FloodFillScene::onToolSelect( const int tool_index )
+	void RootScene::onToolSelect( const int tool_index )
 	{
 		mToolIndex = tool_index;
 		CCLOG( "Tool Index : %d", mToolIndex );
 	}
-	void FloodFillScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+	void RootScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
 		auto button = static_cast<ui::Button*>( sender );
 
@@ -316,7 +316,7 @@ namespace algorithm_practice
 			CCASSERT( "Invalid Tool Index : %d", mToolIndex );
 		}
 	}
-	void FloodFillScene::onUpdateDebugView()
+	void RootScene::onUpdateDebugView()
 	{
 		for( std::size_t y = 0; GRID_HEIGHT > y; ++y )
 		{
@@ -335,7 +335,7 @@ namespace algorithm_practice
 	}
 
 
-	void FloodFillScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+	void RootScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
 		{

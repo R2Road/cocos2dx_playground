@@ -810,9 +810,6 @@
     <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_FloodFillScene.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
     </ClCompile>
@@ -923,6 +920,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\step_typetype_game_Constant.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_RootScene.cpp">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1559,9 +1559,6 @@
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_FloodFillScene.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
       <Filter>src\scene\input_practice</Filter>
     </ClInclude>
@@ -1675,6 +1672,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_Grid.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_RootScene.h">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -16,9 +16,9 @@ namespace step_defender
 	}
 }
 
-namespace algorithm_practice
+namespace algorithm_practice_floodfill
 {
-	class FloodFillScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+	class RootScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
 		enum eToolIndex
@@ -39,7 +39,7 @@ namespace algorithm_practice
 			eType Type = eType::Road;
 		};
 
-		FloodFillScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		RootScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
 		static const char* getTitle() { return "Flood Fill"; }

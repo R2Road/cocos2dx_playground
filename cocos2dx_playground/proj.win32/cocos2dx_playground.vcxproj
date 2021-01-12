@@ -150,7 +150,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\algorithm_practice_FloodFillScene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_RootScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp" />
@@ -389,7 +389,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\algorithm_practice_FloodFillScene.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.h" />
