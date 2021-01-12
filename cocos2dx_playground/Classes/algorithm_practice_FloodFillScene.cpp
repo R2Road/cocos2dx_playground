@@ -126,7 +126,7 @@ namespace algorithm_practice
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
 			tool_bar_node->AddTool( eToolIndex::Wall, "W", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Wall ) );
-			tool_bar_node->AddTool( eToolIndex::Remove, "R", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Remove ) );
+			tool_bar_node->AddTool( eToolIndex::Road, "R", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Road ) );
 			tool_bar_node->AddTool( eToolIndex::Entry, "E", 10, std::bind( &FloodFillScene::onToolSelect, this, eToolIndex::Entry ) );
 
 			tool_bar_node->setPosition(
@@ -174,7 +174,7 @@ namespace algorithm_practice
 		// Entry Point Indicator
 		//
 		{
-			auto texture = TextureCache::getInstance()->getTextureForKey( mConfiguration.GetTileSheetConfiguration().TexturePath );
+			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mConfiguration.GetTileSheetConfiguration().TexturePath );
 
 			step_defender::game::TileSheetUtility tile_sheet_utility;
 			tile_sheet_utility.Setup(
@@ -290,7 +290,7 @@ namespace algorithm_practice
 				onUpdateDebugView();
 			}
 			break;
-		case eToolIndex::Remove:
+		case eToolIndex::Road:
 			if( mEntryPoint != point )
 			{
 				mGrid.Set( point.x, point.y, GridValue{ GridValue::eType::Road } );

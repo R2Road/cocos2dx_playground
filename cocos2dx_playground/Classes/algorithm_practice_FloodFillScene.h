@@ -24,7 +24,7 @@ namespace algorithm_practice
 		enum eToolIndex
 		{
 			Wall,
-			Remove,
+			Road,
 			Entry,
 		};
 
