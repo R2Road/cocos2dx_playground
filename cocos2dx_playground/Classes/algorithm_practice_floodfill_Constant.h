@@ -9,14 +9,14 @@ namespace algorithm_practice_floodfill
 		Entry,
 	};
 
+	enum class eGridType
+	{
+		Road,
+		Wall,
+	};
+
 	struct GridValue
 	{
-		enum class eType
-		{
-			Road,
-			Wall,
-		};
-
-		eType Type = eType::Road;
+		eGridType Type = eGridType::Road;
 	};
 }

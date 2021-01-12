@@ -284,7 +284,7 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Wall:
 			if( mEntryPoint != point )
 			{
-				mGrid.Set( point.x, point.y, GridValue{ GridValue::eType::Wall } );
+				mGrid.Set( point.x, point.y, GridValue{ eGridType::Wall } );
 				mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
 
 				onUpdateDebugView();
@@ -293,7 +293,7 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Road:
 			if( mEntryPoint != point )
 			{
-				mGrid.Set( point.x, point.y, GridValue{ GridValue::eType::Road } );
+				mGrid.Set( point.x, point.y, GridValue{ eGridType::Road } );
 				mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
 
 				onUpdateDebugView();
@@ -301,7 +301,7 @@ namespace algorithm_practice_floodfill
 			break;
 		case eToolIndex::Entry:
 			mEntryPoint = point;
-			mGrid.Set( mEntryPoint.x, mEntryPoint.y, GridValue{ GridValue::eType::Road } );
+			mGrid.Set( mEntryPoint.x, mEntryPoint.y, GridValue{ eGridType::Road } );
 			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 4 );
 			
 			mEntryPointIndicatorNode->setPosition(
@@ -322,7 +322,7 @@ namespace algorithm_practice_floodfill
 		{
 			for( std::size_t x = 0; GRID_WIDTH > x; ++x )
 			{
-				if( GridValue::eType::Road == mGrid.Get( x, y ).Type )
+				if( eGridType::Road == mGrid.Get( x, y ).Type )
 				{
 					mGridDebugViewNode->UpdateTile( x, y, 0, 0 );
 				}
