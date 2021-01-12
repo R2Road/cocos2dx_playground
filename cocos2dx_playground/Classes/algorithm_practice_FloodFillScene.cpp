@@ -99,7 +99,7 @@ namespace algorithm_practice
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[Mouse] : " << "Select Pivot";
+			ss << "[Mouse] : " << "Edit Grid";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
