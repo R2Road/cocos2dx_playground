@@ -81,7 +81,7 @@ namespace algorithm_practice_floodfill
 		//
 		// Load Tile Config
 		//
-		if( !mConfiguration.Load( "datas/tool_practice/tile_sheet_test.json" ) )
+		if( !mConfiguration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ) )
 		{
 			return false;
 		}
@@ -186,7 +186,7 @@ namespace algorithm_practice_floodfill
 			auto sprite = Sprite::createWithTexture( texture );
 			sprite->setAnchorPoint( Vec2::ZERO );
 			sprite->setScale( _director->getContentScaleFactor() );
-			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 1, 2 ) );
+			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
 			addChild( sprite, 10 );
 
 			mEntryPointIndicatorNode = sprite;
@@ -215,7 +215,7 @@ namespace algorithm_practice_floodfill
 		//
 		// Setup
 		//
-		mTileMapNode->FillAll( 0, 4 );
+		mTileMapNode->FillAll( 0, 0 );
 		mGridDebugViewNode->FillAll( 0, 0 );
 
 		mEntryPointIndicatorNode->setPosition(
@@ -285,7 +285,7 @@ namespace algorithm_practice_floodfill
 			if( mEntryPoint != point )
 			{
 				mGrid.Set( point.x, point.y, GridValue{ eGridType::Wall } );
-				mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
+				mTileMapNode->UpdateTile( point.x, point.y, 1, 0 );
 
 				onUpdateDebugView();
 			}
@@ -294,7 +294,7 @@ namespace algorithm_practice_floodfill
 			if( mEntryPoint != point )
 			{
 				mGrid.Set( point.x, point.y, GridValue{ eGridType::Road } );
-				mTileMapNode->UpdateTile( point.x, point.y, 0, 4 );
+				mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
 
 				onUpdateDebugView();
 			}
@@ -302,7 +302,7 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Entry:
 			mEntryPoint = point;
 			mGrid.Set( mEntryPoint.x, mEntryPoint.y, GridValue{ eGridType::Road } );
-			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 4 );
+			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 0 );
 			
 			mEntryPointIndicatorNode->setPosition(
 				mTileMapNode->getPosition()
