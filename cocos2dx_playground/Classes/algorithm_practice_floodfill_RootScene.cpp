@@ -35,7 +35,7 @@ namespace algorithm_practice_floodfill
 	RootScene::RootScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
-		, mConfiguration( 1, 1, 1, 1, "" )
+		, mTileSheetConfiguration( 1, 1, 1, 1, "" )
 
 		, mPosition2GridIndexConverter( 1, 1 )
 
@@ -81,14 +81,14 @@ namespace algorithm_practice_floodfill
 		//
 		// Load Tile Config
 		//
-		CCASSERT( mConfiguration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
+		CCASSERT( mTileSheetConfiguration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//
 		// Setup Grid Index Converter
 		//
 		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter(
-			mConfiguration.GetTileWidth()
-			, mConfiguration.GetTileHeight()
+			mTileSheetConfiguration.GetTileWidth()
+			, mTileSheetConfiguration.GetTileHeight()
 		);
 
 		//
@@ -145,7 +145,7 @@ namespace algorithm_practice_floodfill
 		{
 			mTileMapNode = step_defender::game::TileMapNode::create(
 				step_defender::game::TileMapNode::Config{ GRID_WIDTH, GRID_HEIGHT }
-				, mConfiguration
+				, mTileSheetConfiguration
 			);
 			mTileMapNode->setPosition(
 				visibleCenter
@@ -174,12 +174,12 @@ namespace algorithm_practice_floodfill
 		// Entry Point Indicator
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mConfiguration.GetTexturePath() );
+			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
 
 			step_defender::game::TileSheetUtility tile_sheet_utility;
 			tile_sheet_utility.Setup(
-				mConfiguration.GetTileWidth(), mConfiguration.GetTileHeight()
-				, mConfiguration.GetTileMargin_Width(), mConfiguration.GetTileMargin_Height()
+				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
+				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()
 				, texture->getContentSizeInPixels().height
 			);
 
@@ -220,7 +220,7 @@ namespace algorithm_practice_floodfill
 
 		mEntryPointIndicatorNode->setPosition(
 			mTileMapNode->getPosition()
-			+ Vec2( mConfiguration.GetTileWidth() * mEntryPoint.x, mConfiguration.GetTileHeight() * mEntryPoint.y )
+			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mEntryPoint.x, mTileSheetConfiguration.GetTileHeight() * mEntryPoint.y )
 		);
 
 		return true;
@@ -306,7 +306,7 @@ namespace algorithm_practice_floodfill
 			
 			mEntryPointIndicatorNode->setPosition(
 				mTileMapNode->getPosition()
-				+ Vec2( mConfiguration.GetTileWidth() * mEntryPoint.x, mConfiguration.GetTileHeight() * mEntryPoint.y )
+				+ Vec2( mTileSheetConfiguration.GetTileWidth() * mEntryPoint.x, mTileSheetConfiguration.GetTileHeight() * mEntryPoint.y )
 			);
 
 			onUpdateDebugView();

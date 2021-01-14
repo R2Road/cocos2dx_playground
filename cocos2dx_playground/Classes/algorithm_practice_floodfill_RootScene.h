@@ -45,7 +45,7 @@ namespace algorithm_practice_floodfill
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		cpg::TileSheetConfiguration mConfiguration;
+		cpg::TileSheetConfiguration mTileSheetConfiguration;
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 		cpg::Grid<GridValue> mGrid;
 		step_defender::game::TileMapNode* mTileMapNode;
