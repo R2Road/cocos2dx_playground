@@ -6,8 +6,8 @@
 #include "algorithm_practice_floodfill_Constant.h"
 #include "cpg_Grid.h"
 #include "cpg_Position2GridIndexConverter.h"
+#include "cpg_TileSheetConfiguration.h"
 #include "helper_BackToThePreviousScene.h"
-#include "tool_practice_TileSheetTestConfiguration.h"
 
 namespace step_defender
 {
@@ -45,7 +45,7 @@ namespace algorithm_practice_floodfill
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		tool_practice::TileSheetTestConfiguration mConfiguration;
+		cpg::TileSheetConfiguration mConfiguration;
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 		cpg::Grid<GridValue> mGrid;
 		step_defender::game::TileMapNode* mTileMapNode;

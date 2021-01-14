@@ -35,7 +35,7 @@ namespace algorithm_practice_floodfill
 	RootScene::RootScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
-		, mConfiguration()
+		, mConfiguration( 1, 1, 1, 1, "" )
 
 		, mPosition2GridIndexConverter( 1, 1 )
 
@@ -90,8 +90,8 @@ namespace algorithm_practice_floodfill
 		// Setup Grid Index Converter
 		//
 		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter(
-			mConfiguration.GetTileSheetConfiguration().GetTileWidth()
-			, mConfiguration.GetTileSheetConfiguration().GetTileHeight()
+			mConfiguration.GetTileWidth()
+			, mConfiguration.GetTileHeight()
 		);
 
 		//
@@ -148,7 +148,7 @@ namespace algorithm_practice_floodfill
 		{
 			mTileMapNode = step_defender::game::TileMapNode::create(
 				step_defender::game::TileMapNode::Config{ GRID_WIDTH, GRID_HEIGHT }
-				, mConfiguration.GetTileSheetConfiguration()
+				, mConfiguration
 			);
 			mTileMapNode->setPosition(
 				visibleCenter
@@ -177,12 +177,12 @@ namespace algorithm_practice_floodfill
 		// Entry Point Indicator
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mConfiguration.GetTileSheetConfiguration().GetTexturePath() );
+			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mConfiguration.GetTexturePath() );
 
 			step_defender::game::TileSheetUtility tile_sheet_utility;
 			tile_sheet_utility.Setup(
-				mConfiguration.GetTileSheetConfiguration().GetTileWidth(), mConfiguration.GetTileSheetConfiguration().GetTileHeight()
-				, mConfiguration.GetTileSheetConfiguration().GetTileMargin_Width(), mConfiguration.GetTileSheetConfiguration().GetTileMargin_Height()
+				mConfiguration.GetTileWidth(), mConfiguration.GetTileHeight()
+				, mConfiguration.GetTileMargin_Width(), mConfiguration.GetTileMargin_Height()
 				, texture->getContentSizeInPixels().height
 			);
 
@@ -199,12 +199,12 @@ namespace algorithm_practice_floodfill
 		// Grid Debug View Node
 		//
 		{
-			tool_practice::TileSheetTestConfiguration tile_sheet_test_config;
-			tile_sheet_test_config.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_02.json" );
+			cpg::TileSheetConfiguration tile_sheet_config( 1, 1, 1, 1, "" );
+			tile_sheet_config.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_02.json" );
 
 			mGridDebugViewNode = step_defender::game::TileMapNode::create(
 				step_defender::game::TileMapNode::Config{ GRID_WIDTH, GRID_HEIGHT }
-				, tile_sheet_test_config.GetTileSheetConfiguration()
+				, tile_sheet_config
 			);
 			mGridDebugViewNode->setPosition(
 				visibleOrigin
@@ -223,7 +223,7 @@ namespace algorithm_practice_floodfill
 
 		mEntryPointIndicatorNode->setPosition(
 			mTileMapNode->getPosition()
-			+ Vec2( mConfiguration.GetTileSheetConfiguration().GetTileWidth() * mEntryPoint.x, mConfiguration.GetTileSheetConfiguration().GetTileHeight() * mEntryPoint.y )
+			+ Vec2( mConfiguration.GetTileWidth() * mEntryPoint.x, mConfiguration.GetTileHeight() * mEntryPoint.y )
 		);
 
 		return true;
@@ -309,7 +309,7 @@ namespace algorithm_practice_floodfill
 			
 			mEntryPointIndicatorNode->setPosition(
 				mTileMapNode->getPosition()
-				+ Vec2( mConfiguration.GetTileSheetConfiguration().GetTileWidth() * mEntryPoint.x, mConfiguration.GetTileSheetConfiguration().GetTileHeight() * mEntryPoint.y )
+				+ Vec2( mConfiguration.GetTileWidth() * mEntryPoint.x, mConfiguration.GetTileHeight() * mEntryPoint.y )
 			);
 
 			onUpdateDebugView();

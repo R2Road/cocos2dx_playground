@@ -19,6 +19,8 @@ namespace cpg
 			, TexturePath( texture_path )
 		{}
 
+		bool Load( const char* config_file_path );
+
 		inline int GetTileWidth() const { return TileWidth; }
 		inline int GetTileHeight() const { return TileHeight; }
 
