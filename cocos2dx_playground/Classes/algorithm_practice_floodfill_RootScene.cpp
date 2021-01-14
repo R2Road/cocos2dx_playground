@@ -197,7 +197,7 @@ namespace algorithm_practice_floodfill
 		//
 		{
 			tool_practice::TileSheetTestConfiguration tile_sheet_test_config;
-			tile_sheet_test_config.Load( "datas/algorithm_practice/tile_sheet_test_02.json" );
+			tile_sheet_test_config.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_02.json" );
 
 			mGridDebugViewNode = step_defender::game::TileMapNode::create(
 				step_defender::game::TileMapNode::Config{ GRID_WIDTH, GRID_HEIGHT }

@@ -8,6 +8,6 @@
     , "tile_h":2
     , "tile_margin_w":1
     , "tile_margin_h":1
-    , "texture":"textures/algorithm_practice/tool_practice_tilesheettest_02.png"
+    , "texture":"textures/algorithm_practice/algorithm_practice_tilesheet_02.png"
   }
 }
