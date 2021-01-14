@@ -25,12 +25,12 @@ namespace step_defender
 			};
 
 		private:
-			TileMapNode( const Config& config, const TileSheetConfiguration& tile_sheet_config );
+			TileMapNode( const Config& config, const cpg::TileSheetConfiguration& tile_sheet_config );
 
 		public:
 			~TileMapNode();
 
-			static TileMapNode* create( const Config& config, const TileSheetConfiguration& tile_sheet_config );
+			static TileMapNode* create( const Config& config, const cpg::TileSheetConfiguration& tile_sheet_config );
 
 		private:
 			bool init() override;
@@ -45,7 +45,7 @@ namespace step_defender
 
 		private:
 			const Config mConfig;
-			const TileSheetConfiguration mTileSheetConfig;
+			const cpg::TileSheetConfiguration mTileSheetConfig;
 			TileSheetUtility mTileSheetUtility;
 
 			cocos2d::Sprite* mReusedSprite;

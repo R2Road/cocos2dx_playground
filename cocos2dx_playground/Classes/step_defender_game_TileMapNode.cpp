@@ -15,7 +15,7 @@ namespace step_defender
 {
 	namespace game
 	{
-		TileMapNode::TileMapNode( const Config& config, const TileSheetConfiguration& tile_sheet_config ) :
+		TileMapNode::TileMapNode( const Config& config, const cpg::TileSheetConfiguration& tile_sheet_config ) :
 			mConfig( config )
 			, mTileSheetConfig( tile_sheet_config )
 			, mTileSheetUtility()
@@ -27,7 +27,7 @@ namespace step_defender
 			CC_SAFE_RELEASE( mReusedSprite );
 		}
 
-		TileMapNode* TileMapNode::create( const Config& config, const TileSheetConfiguration& tile_sheet_config )
+		TileMapNode* TileMapNode::create( const Config& config, const cpg::TileSheetConfiguration& tile_sheet_config )
 		{
 			CCASSERT( 0 != config.MapWidth && 0 != config.MapHeight, "Failed - TileMapNode::create" );
 

@@ -116,7 +116,7 @@ namespace tool_practice
 			CCASSERT( 0 <= tile_margin_h_itr->value.GetInt(), "Invalid Tile Margin Height" );
 			CCASSERT( 0 < texture_itr->value.GetStringLength(), "Invalid Texture Path" );
 
-			mTileSheetConfiguration = step_defender::game::TileSheetConfiguration{
+			mTileSheetConfiguration = cpg::TileSheetConfiguration{
 				tile_w_itr->value.GetInt()
 				, tile_h_itr->value.GetInt()
 				, tile_margin_w_itr->value.GetInt()

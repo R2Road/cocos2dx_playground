@@ -28,10 +28,10 @@ namespace step_defender
 				int y = 0;
 			};
 
-			TileSheetNode( const game::TileSheetConfiguration& config );
+			TileSheetNode( const cpg::TileSheetConfiguration& config );
 
 		public:
-			static TileSheetNode* create( const game::TileSheetConfiguration& config );
+			static TileSheetNode* create( const cpg::TileSheetConfiguration& config );
 
 		private:
 			bool init() override;
@@ -44,7 +44,7 @@ namespace step_defender
 			void SetSelectCallback( const SelectCallback& callback ) { mSelectCallback = callback; }
 
 		private:
-			const game::TileSheetConfiguration mConfig;
+			const cpg::TileSheetConfiguration mConfig;
 			const cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 			SelectCallback mSelectCallback;
 
