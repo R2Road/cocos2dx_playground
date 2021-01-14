@@ -19,6 +19,18 @@ namespace cpg
 			, TexturePath( texture_path )
 		{}
 
+		inline int GetTileWidth() const { return TileWidth; }
+		inline int GetTileHeight() const { return TileHeight; }
+
+		inline int GetTileMargin_Width() const { return TileMargin_Width; }
+		inline int GetTileMargin_Height() const { return TileMargin_Height; }
+
+		inline int GetBlockWidth() const { return BlockWidth; }
+		inline int GetBlockHeight() const { return BlockHeight; }
+
+		const std::string& GetTexturePath() const { return TexturePath; }
+
+	private:
 		int TileWidth;
 		int TileHeight;
 

@@ -119,17 +119,21 @@ namespace step_defender
 			// Tile Sheet Utility
 			//
 			{
-				auto texture = _director->getTextureCache()->addImage( game::TileSheetConfig.TexturePath );
+				auto texture = _director->getTextureCache()->addImage( game::TileSheetConfig.GetTexturePath() );
 				CCASSERT( nullptr != texture, "Texture Nothing" );
 
-				mTileSheetUtility.Setup( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight, game::TileSheetConfig.TileMargin_Width, game::TileSheetConfig.TileMargin_Height, texture->getContentSizeInPixels().height );
+				mTileSheetUtility.Setup(
+					game::TileSheetConfig.GetTileWidth(), game::TileSheetConfig.GetTileHeight()
+					, game::TileSheetConfig.GetTileMargin_Width(), game::TileSheetConfig.GetTileMargin_Height()
+					, texture->getContentSizeInPixels().height
+				);
 			}
 
 			//
 			// Selected Tile View
 			//
 			{
-				auto texture = _director->getTextureCache()->getTextureForKey( game::TileSheetConfig.TexturePath );
+				auto texture = _director->getTextureCache()->getTextureForKey( game::TileSheetConfig.GetTexturePath() );
 				
 				auto sprite = Sprite::createWithTexture( texture );
 				sprite->setTag( TAG_SelectedTileView );

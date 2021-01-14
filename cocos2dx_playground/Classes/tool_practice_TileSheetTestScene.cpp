@@ -74,7 +74,10 @@ namespace tool_practice
 		//
 		// Setup Position 2 Grid Index Converter
 		//
-		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
+		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter(
+			mConfiguration.GetTileSheetConfiguration().GetTileWidth()
+			, mConfiguration.GetTileSheetConfiguration().GetTileHeight()
+		);
 
 		//
 		// Reload Texture
@@ -259,7 +262,7 @@ namespace tool_practice
 
 	void TileSheetTestScene::reloadTexture()
 	{
-		_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().TexturePath );
+		_director->getTextureCache()->reloadTexture( mConfiguration.GetTileSheetConfiguration().GetTexturePath() );
 	}
 
 

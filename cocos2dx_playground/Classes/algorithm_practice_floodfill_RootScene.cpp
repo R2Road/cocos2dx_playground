@@ -89,7 +89,10 @@ namespace algorithm_practice_floodfill
 		//
 		// Setup Grid Index Converter
 		//
-		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter( mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight );
+		mPosition2GridIndexConverter = cpg::Position2GridIndexConverter(
+			mConfiguration.GetTileSheetConfiguration().GetTileWidth()
+			, mConfiguration.GetTileSheetConfiguration().GetTileHeight()
+		);
 
 		//
 		// Summury
@@ -174,12 +177,12 @@ namespace algorithm_practice_floodfill
 		// Entry Point Indicator
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mConfiguration.GetTileSheetConfiguration().TexturePath );
+			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mConfiguration.GetTileSheetConfiguration().GetTexturePath() );
 
 			step_defender::game::TileSheetUtility tile_sheet_utility;
 			tile_sheet_utility.Setup(
-				mConfiguration.GetTileSheetConfiguration().TileWidth, mConfiguration.GetTileSheetConfiguration().TileHeight
-				, mConfiguration.GetTileSheetConfiguration().TileMargin_Width, mConfiguration.GetTileSheetConfiguration().TileMargin_Height
+				mConfiguration.GetTileSheetConfiguration().GetTileWidth(), mConfiguration.GetTileSheetConfiguration().GetTileHeight()
+				, mConfiguration.GetTileSheetConfiguration().GetTileMargin_Width(), mConfiguration.GetTileSheetConfiguration().GetTileMargin_Height()
 				, texture->getContentSizeInPixels().height
 			);
 
@@ -220,7 +223,7 @@ namespace algorithm_practice_floodfill
 
 		mEntryPointIndicatorNode->setPosition(
 			mTileMapNode->getPosition()
-			+ Vec2( mConfiguration.GetTileSheetConfiguration().TileWidth * mEntryPoint.x, mConfiguration.GetTileSheetConfiguration().TileHeight * mEntryPoint.y )
+			+ Vec2( mConfiguration.GetTileSheetConfiguration().GetTileWidth() * mEntryPoint.x, mConfiguration.GetTileSheetConfiguration().GetTileHeight() * mEntryPoint.y )
 		);
 
 		return true;
@@ -306,7 +309,7 @@ namespace algorithm_practice_floodfill
 			
 			mEntryPointIndicatorNode->setPosition(
 				mTileMapNode->getPosition()
-				+ Vec2( mConfiguration.GetTileSheetConfiguration().TileWidth * mEntryPoint.x, mConfiguration.GetTileSheetConfiguration().TileHeight * mEntryPoint.y )
+				+ Vec2( mConfiguration.GetTileSheetConfiguration().GetTileWidth() * mEntryPoint.x, mConfiguration.GetTileSheetConfiguration().GetTileHeight() * mEntryPoint.y )
 			);
 
 			onUpdateDebugView();

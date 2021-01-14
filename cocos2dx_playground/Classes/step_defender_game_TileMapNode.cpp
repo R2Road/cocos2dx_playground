@@ -47,7 +47,7 @@ namespace step_defender
 
 		bool TileMapNode::init()
 		{
-			auto texture = _director->getTextureCache()->addImage( mTileSheetConfig.TexturePath );
+			auto texture = _director->getTextureCache()->addImage( mTileSheetConfig.GetTexturePath() );
 			CCASSERT( nullptr != texture, "Texture Nothing" );
 			texture->setAliasTexParameters();
 
@@ -56,7 +56,7 @@ namespace step_defender
 				return false;
 			}
 
-			const Size ContentSize( mConfig.MapWidth * mTileSheetConfig.TileWidth, mConfig.MapHeight * mTileSheetConfig.TileHeight );
+			const Size ContentSize( mConfig.MapWidth * mTileSheetConfig.GetTileWidth(), mConfig.MapHeight * mTileSheetConfig.GetTileHeight() );
 			setContentSize( ContentSize );
 
 			//
@@ -64,8 +64,8 @@ namespace step_defender
 			//
 			{
 				mTileSheetUtility.Setup(
-					mTileSheetConfig.TileWidth, mTileSheetConfig.TileHeight
-					, mTileSheetConfig.TileMargin_Width, mTileSheetConfig.TileMargin_Height
+					mTileSheetConfig.GetTileWidth(), mTileSheetConfig.GetTileHeight()
+					, mTileSheetConfig.GetTileMargin_Width(), mTileSheetConfig.GetTileMargin_Height()
 					, texture->getContentSizeInPixels().height
 				);
 			}
@@ -91,8 +91,8 @@ namespace step_defender
 					{
 						mReusedSprite->setTextureRect( Rect::ZERO );
 						mReusedSprite->setPosition(
-							mTileSheetConfig.TileWidth * tx
-							, mTileSheetConfig.TileHeight * ty
+							mTileSheetConfig.GetTileWidth() * tx
+							, mTileSheetConfig.GetTileHeight() * ty
 						);
 						insertQuadFromSprite( mReusedSprite, tx + ( mConfig.MapWidth * ty ) );
 					}
@@ -134,8 +134,8 @@ namespace step_defender
 				{
 					mReusedSprite->setTextureRect( tile_rect );
 					mReusedSprite->setPosition(
-						mTileSheetConfig.TileWidth * tx
-						, mTileSheetConfig.TileHeight * ty
+						mTileSheetConfig.GetTileWidth() * tx
+						, mTileSheetConfig.GetTileHeight() * ty
 					);
 					updateQuadFromSprite( mReusedSprite, tx + ( mConfig.MapWidth * ty ) );
 				}
@@ -152,8 +152,8 @@ namespace step_defender
 
 			mReusedSprite->setTextureRect( tile_rect );
 			mReusedSprite->setPosition(
-				mTileSheetConfig.TileWidth * map_point_x
-				, mTileSheetConfig.TileHeight * map_point_y
+				mTileSheetConfig.GetTileWidth() * map_point_x
+				, mTileSheetConfig.GetTileHeight() * map_point_y
 			);
 			updateQuadFromSprite( mReusedSprite, map_point_x + ( mConfig.MapWidth * map_point_y ) );
 		}
@@ -166,8 +166,8 @@ namespace step_defender
 
 			mReusedSprite->setTextureRect( Rect::ZERO );
 			mReusedSprite->setPosition(
-				mTileSheetConfig.TileWidth * map_point_x
-				, mTileSheetConfig.TileHeight * map_point_y
+				mTileSheetConfig.GetTileWidth() * map_point_x
+				, mTileSheetConfig.GetTileHeight() * map_point_y
 			);
 			updateQuadFromSprite( mReusedSprite, map_point_x + ( mConfig.MapWidth * map_point_y ) );
 		}
