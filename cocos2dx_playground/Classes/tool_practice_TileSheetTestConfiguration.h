@@ -9,17 +9,17 @@ namespace tool_practice
 	public:
 		TileSheetTestConfiguration();
 
-		bool Load();
+		bool Load( const char* config_file_path );
 
 		int GetLayerCount() const { return mLayerCount; }
 		int GetWidth() const { return mWidth; }
 		int GetHeight() const { return mHeight; }
-		const step_defender::game::TileSheetConfiguration& GetTileSheetConfiguration() const { return mTileSheetConfiguration; }
+		const cpg::TileSheetConfiguration& GetTileSheetConfiguration() const { return mTileSheetConfiguration; }
 
 	private:
 		int mLayerCount;
 		int mWidth;
 		int mHeight;
-		step_defender::game::TileSheetConfiguration mTileSheetConfiguration;
+		cpg::TileSheetConfiguration mTileSheetConfiguration;
 	};
 }

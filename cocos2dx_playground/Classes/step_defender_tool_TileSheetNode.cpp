@@ -18,18 +18,18 @@ namespace step_defender
 {
 	namespace tool
 	{
-		TileSheetNode::TileSheetNode( const game::TileSheetConfiguration& config ) :
+		TileSheetNode::TileSheetNode( const cpg::TileSheetConfiguration& config ) :
 			mConfig( config )
-			, mPosition2GridIndexConverter( mConfig.BlockWidth, mConfig.BlockHeight )
+			, mPosition2GridIndexConverter( mConfig.GetBlockWidth(), mConfig.GetBlockHeight() )
 			, mSelectCallback( nullptr )
 
 			, mIndicator( nullptr )
 			, mLastSelectedPoint()
 		{}
 
-		TileSheetNode* TileSheetNode::create( const game::TileSheetConfiguration& config )
+		TileSheetNode* TileSheetNode::create( const cpg::TileSheetConfiguration& config )
 		{
-			CCASSERT( 0 < config.TileWidth && 0 < config.TileHeight, "Failed - TileSheetNode::create" );
+			CCASSERT( 0 < config.GetTileWidth() && 0 < config.GetTileHeight(), "Failed - TileSheetNode::create" );
 
 			auto ret = new ( std::nothrow ) TileSheetNode( config );
 			if( !ret || !ret->init() )
@@ -52,7 +52,7 @@ namespace step_defender
 				return false;
 			}
 
-			auto texture = _director->getTextureCache()->addImage( mConfig.TexturePath );
+			auto texture = _director->getTextureCache()->addImage( mConfig.GetTexturePath() );
 			CCASSERT( nullptr != texture, "Texture Nothing" );
 
 			texture->setAliasTexParameters();
@@ -102,7 +102,7 @@ namespace step_defender
 				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "scale9_guide_01_0.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale9Enabled( true );
-				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.BlockWidth, mConfig.BlockHeight ) ) );
+				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.GetBlockWidth(), mConfig.GetBlockHeight() ) ) );
 				sprite->setColor( Color3B::GREEN );
 				addChild( sprite, std::numeric_limits<int>::max() );
 

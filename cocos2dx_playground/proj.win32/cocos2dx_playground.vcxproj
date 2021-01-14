@@ -150,7 +150,8 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\algorithm_practice_FloodFillScene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Constant.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_RootScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp" />
@@ -160,6 +161,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_Random.cpp" />
     <ClCompile Include="..\Classes\cpg_Setting.cpp" />
     <ClCompile Include="..\Classes\cpg_StringTable.cpp" />
+    <ClCompile Include="..\Classes\cpg_TileSheetConfiguration.cpp" />
     <ClCompile Include="..\Classes\graph_practice_BasicScene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection01Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection02Scene.cpp" />
@@ -389,18 +391,21 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\algorithm_practice_FloodFillScene.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Constant.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.h" />
     <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h" />
     <ClInclude Include="..\Classes\cpgui_ToolBarNode.h" />
     <ClInclude Include="..\Classes\cpg_Clamp.h" />
+    <ClInclude Include="..\Classes\cpg_Grid.h" />
     <ClInclude Include="..\Classes\cpg_Point.h" />
     <ClInclude Include="..\Classes\cpg_Position2GridIndexConverter.h" />
     <ClInclude Include="..\Classes\cpg_Random.h" />
     <ClInclude Include="..\Classes\cpg_Setting.h" />
     <ClInclude Include="..\Classes\cpg_StringTable.h" />
+    <ClInclude Include="..\Classes\cpg_TileSheetConfiguration.h" />
     <ClInclude Include="..\Classes\graph_practice_BasicScene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection01Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection02Scene.h" />

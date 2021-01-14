@@ -1,0 +1,7 @@
+{
+  "tile_w":16
+  , "tile_h":16
+  , "tile_margin_w":1
+  , "tile_margin_h":1
+  , "texture":"textures/algorithm_practice/algorithm_practice_tilesheet_01.png"
+}

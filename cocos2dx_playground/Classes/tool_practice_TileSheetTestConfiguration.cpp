@@ -7,19 +7,19 @@ namespace tool_practice
 {
 	TileSheetTestConfiguration::TileSheetTestConfiguration() :
 		mLayerCount( 1 )
-		, mWidth( 10 )
-		, mHeight( 10 )
-		, mTileSheetConfiguration( 16, 16, 1, 1, "textures/step_defender/step_defender_tilesheet_01.png" )
+		, mWidth( 1 )
+		, mHeight( 1 )
+		, mTileSheetConfiguration( 1, 1, 1, 1, "" )
 	{}
 
-	bool TileSheetTestConfiguration::Load()
+	bool TileSheetTestConfiguration::Load( const char* config_file_path )
 	{
 		//
 		// Load Json
 		//
 		rapidjson::Document doc;
 		{
-			const std::string json_string( cocos2d::FileUtils::getInstance()->getStringFromFile( "datas/tool_practice/tile_sheet_test.json" ) );
+			const std::string json_string( cocos2d::FileUtils::getInstance()->getStringFromFile( config_file_path ) );
 			doc.Parse<0>( json_string.c_str() );
 		}
 
@@ -93,36 +93,7 @@ namespace tool_practice
 				return false;
 			}
 
-			const auto tile_w_itr = root_itr->value.FindMember( "tile_w" );
-			const auto tile_h_itr = root_itr->value.FindMember( "tile_h" );
-			const auto tile_margin_w_itr = root_itr->value.FindMember( "tile_margin_w" );
-			const auto tile_margin_h_itr = root_itr->value.FindMember( "tile_margin_h" );
-			const auto texture_itr = root_itr->value.FindMember( "texture" );
-			if(
-				root_itr->value.MemberEnd() == tile_w_itr
-				|| root_itr->value.MemberEnd() == tile_h_itr
-				|| root_itr->value.MemberEnd() == tile_margin_w_itr
-				|| root_itr->value.MemberEnd() == tile_margin_h_itr
-				|| root_itr->value.MemberEnd() == texture_itr
-			)
-			{
-				CCLOG( "check property of sheet" );
-				return false;
-			}
-
-			CCASSERT( 0 < tile_w_itr->value.GetInt(), "Invalid Tile Width" );
-			CCASSERT( 0 < tile_h_itr->value.GetInt(), "Invalid Tile Height" );
-			CCASSERT( 0 <= tile_margin_w_itr->value.GetInt(), "Invalid Tile Margin Width" );
-			CCASSERT( 0 <= tile_margin_h_itr->value.GetInt(), "Invalid Tile Margin Height" );
-			CCASSERT( 0 < texture_itr->value.GetStringLength(), "Invalid Texture Path" );
-
-			mTileSheetConfiguration = step_defender::game::TileSheetConfiguration{
-				tile_w_itr->value.GetInt()
-				, tile_h_itr->value.GetInt()
-				, tile_margin_w_itr->value.GetInt()
-				, tile_margin_h_itr->value.GetInt()
-				, texture_itr->value.GetString()
-			};
+			mTileSheetConfiguration.Load( root_itr->value.GetString() );
 		}
 
 		return true;

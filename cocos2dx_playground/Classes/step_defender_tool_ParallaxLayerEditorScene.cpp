@@ -42,7 +42,7 @@ namespace step_defender
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 			, mKeyCodeCollector()
-			, mPosition2GridIndexConverter( game::TileSheetConfig.TileWidth, game::TileSheetConfig.TileHeight )
+			, mPosition2GridIndexConverter( game::TileSheetConfig.GetTileWidth(), game::TileSheetConfig.GetTileHeight() )
 
 			, mRulerNode( nullptr )
 			, mParallaxNode( nullptr )
@@ -230,12 +230,12 @@ namespace step_defender
 				mParallaxNode = ParallaxNode::create();
 				addChild( mParallaxNode, 0 );
 
-				const auto height_div_result = std::div( static_cast<int>( game::WorldConfig.WorldSize.height ), game::TileSheetConfig.TileHeight );
+				const auto height_div_result = std::div( static_cast<int>( game::WorldConfig.WorldSize.height ), game::TileSheetConfig.GetTileHeight() );
 
 				for( const auto& c : game::ParallaxNodeConfigContainer )
 				{
 					const auto parallax_width = ( game::WorldConfig.WorldSize.width * c.Rate ) + visibleSize.width;
-					const auto width_div_result = std::div( static_cast<int>( parallax_width ), game::TileSheetConfig.TileWidth );
+					const auto width_div_result = std::div( static_cast<int>( parallax_width ), game::TileSheetConfig.GetTileWidth() );
 
 					auto tile_map_node = game::TileMapNode::create(
 						step_defender::game::TileMapNode::Config{

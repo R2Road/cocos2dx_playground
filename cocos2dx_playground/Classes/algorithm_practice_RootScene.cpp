@@ -12,7 +12,7 @@
 
 #include "cpg_StringTable.h"
 
-#include "algorithm_practice_FloodFillScene.h"
+#include "algorithm_practice_floodfill_RootScene.h"
 #include "Step99_RootScene.h"
 
 USING_NS_CC;
@@ -58,7 +58,7 @@ namespace algorithm_practice
 			ss << "[ESC] : Return to Playground";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << algorithm_practice::FloodFillScene::getTitle();
+			ss << "[1] : " << algorithm_practice_floodfill::RootScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -112,7 +112,7 @@ namespace algorithm_practice
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( FloodFillScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( algorithm_practice_floodfill::RootScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
