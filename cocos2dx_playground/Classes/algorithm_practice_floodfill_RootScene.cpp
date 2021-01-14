@@ -81,10 +81,7 @@ namespace algorithm_practice_floodfill
 		//
 		// Load Tile Config
 		//
-		if( !mConfiguration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ) )
-		{
-			return false;
-		}
+		CCASSERT( mConfiguration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//
 		// Setup Grid Index Converter
