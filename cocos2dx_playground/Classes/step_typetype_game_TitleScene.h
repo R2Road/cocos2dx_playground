@@ -26,6 +26,7 @@ namespace step_typetype
 			void onEnter() override;
 			void onExit() override;
 
+			void update4Letters( float dt );
 			void update4InputIndicator( float dt );
 
 		private:
@@ -34,8 +35,12 @@ namespace step_typetype
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			cocos2d::Label* mRequestInputLabel;
-			float mElapsedTime;
+			int mStep4Letters;
+			float mElapsedTime4Letters;
+			int mCurrentLetterTag;
+
+			cocos2d::Label* mInputIndicatorLabel;
+			float mElapsedTime4InputIndicator;
 		};
 	}
 }
