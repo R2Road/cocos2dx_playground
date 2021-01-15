@@ -87,6 +87,23 @@ namespace step_typetype
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
+
+			//
+			// Title Background
+			//
+			{
+				auto sprite = Sprite::create( "textures/step_typetype/step_typetype_title.png" );
+				sprite->getTexture()->setAliasTexParameters();
+				sprite->setScaleX( visibleSize.width / sprite->getContentSize().width );
+				sprite->setScaleY( visibleSize.height / sprite->getContentSize().height );
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
+				addChild( sprite, std::numeric_limits<int>::min() );
+			}
+
+
 			//
 			// Title
 			//
