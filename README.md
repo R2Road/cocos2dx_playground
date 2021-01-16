@@ -1,6 +1,6 @@
 # cocos2dx_playground
 <p float:left;">
-<img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/step_typetype_game_title.gif" width=30% height=30%></img>
+<img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/step_typetype_game_titlescene.gif" width=30% height=30%></img>
 <img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/step_flipflip_game_titlescene.gif" width=30% height=30%></img>
 <img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/step_mole_game_titlescene.gif" width=30% height=30%></img>
 </p>
