@@ -112,7 +112,7 @@ namespace algorithm_practice
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( algorithm_practice_floodfill::RootScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( algorithm_practice_floodfill::RootScene::create() );
 			break;
 
 		default:
