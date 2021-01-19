@@ -933,6 +933,12 @@
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_TestScene.cpp">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.cpp">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.cpp">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1692,6 +1698,12 @@
       <Filter>src\cpg</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_TestScene.h">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.h">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.h">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
   </ItemGroup>
