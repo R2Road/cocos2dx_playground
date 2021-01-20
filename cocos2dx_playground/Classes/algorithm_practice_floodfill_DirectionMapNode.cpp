@@ -89,17 +89,13 @@ namespace algorithm_practice_floodfill
 		//
 		{
 			int quad_index = -1;
+			const auto tile_rect = Rect::ZERO;
 			for( int ty = 0; mConfig.MapHeight > ty; ++ty )
 			{
 				for( int tx = 0; mConfig.MapWidth > tx; ++tx )
 				{
-					//
-					// 4 - Direction
-					//
-					for( int dir = 0; 4 > dir; ++dir )
+					for( int dir = 0; 5 > dir; ++dir )
 					{
-						const auto tile_rect = ConvertDirection2TileRect( static_cast<eDirectionType>( 1 << dir ) );
-
 						mReusedSprite->setTextureRect( tile_rect );
 						mReusedSprite->setPosition(
 							mTileSheetConfig.GetTileWidth() * tx
@@ -108,26 +104,6 @@ namespace algorithm_practice_floodfill
 
 						quad_index = ConvertPoint2QuadIndex( tx, ty, dir );
 						insertQuadFromSprite( mReusedSprite, quad_index );
-
-						CCLOG( "qi D : %d", quad_index );
-					}
-
-					//
-					// Pivot
-					//
-					{
-						const auto tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 0, 3 );
-
-						mReusedSprite->setTextureRect( tile_rect );
-						mReusedSprite->setPosition(
-							mTileSheetConfig.GetTileWidth() * tx
-							, mTileSheetConfig.GetTileHeight() * ty
-						);
-
-						quad_index = ConvertPoint2QuadIndex( tx, ty, 4 );
-						insertQuadFromSprite( mReusedSprite, quad_index );
-
-						CCLOG( "qi V : %d", quad_index );
 					}
 				}
 			}
