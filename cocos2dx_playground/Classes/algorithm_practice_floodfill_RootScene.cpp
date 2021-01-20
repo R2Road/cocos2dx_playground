@@ -70,7 +70,7 @@ namespace algorithm_practice_floodfill
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[SPACE] : " << "Test";
+			ss << "[SPACE] : " << TestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( visibleCenter );
