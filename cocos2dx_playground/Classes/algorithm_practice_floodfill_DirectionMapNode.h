@@ -46,7 +46,7 @@ namespace algorithm_practice_floodfill
 	private:
 		const Config mConfig;
 		cpg::TileSheetConfiguration mTileSheetConfig;
-		step_defender::game::TileSheetUtility mTileSheetUtility;
+		cpg::TileSheetUtility mTileSheetUtility;
 
 		cocos2d::Sprite* mReusedSprite;
 	};

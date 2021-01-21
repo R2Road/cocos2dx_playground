@@ -46,7 +46,7 @@ namespace step_defender
 		private:
 			const Config mConfig;
 			const cpg::TileSheetConfiguration mTileSheetConfig;
-			TileSheetUtility mTileSheetUtility;
+			cpg::TileSheetUtility mTileSheetUtility;
 
 			cocos2d::Sprite* mReusedSprite;
 		};

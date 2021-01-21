@@ -38,7 +38,7 @@ namespace step_defender
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			step_defender::tool::TileSheetNode* mTileSheetNode;
-			step_defender::game::TileSheetUtility mTileSheetUtility;
+			cpg::TileSheetUtility mTileSheetUtility;
 		};
 	}
 }

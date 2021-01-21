@@ -176,7 +176,7 @@ namespace algorithm_practice_floodfill
 		{
 			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
 
-			step_defender::game::TileSheetUtility tile_sheet_utility;
+			cpg::TileSheetUtility tile_sheet_utility;
 			tile_sheet_utility.Setup(
 				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
 				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()

@@ -2,30 +2,27 @@
 
 #include "math/CCGeometry.h"
 
-namespace step_defender
+namespace cpg
 {
-	namespace game
+	class TileSheetUtility
 	{
-		class TileSheetUtility
-		{
-		public:
-			TileSheetUtility();
+	public:
+		TileSheetUtility();
 
-			void Setup( const int tile_width, const int tile_height, const int tile_margin_width, const int tile_margin_height, const int tile_sheet_height );
+		void Setup( const int tile_width, const int tile_height, const int tile_margin_width, const int tile_margin_height, const int tile_sheet_height );
 
-			cocos2d::Rect ConvertTilePoint2TextureRect( const int x, const int y ) const;
+		cocos2d::Rect ConvertTilePoint2TextureRect( const int x, const int y ) const;
 
-		private:
-			int TileWidth;
-			int TileHeight;
+	private:
+		int TileWidth;
+		int TileHeight;
 
-			int TileMargin_Width;
-			int TileMargin_Height;
+		int TileMargin_Width;
+		int TileMargin_Height;
 
-			int BlockWidth;
-			int BlockHeight;
+		int BlockWidth;
+		int BlockHeight;
 
-			int TileSheetHeight;
-		};
-	}
+		int TileSheetHeight;
+	};
 }
