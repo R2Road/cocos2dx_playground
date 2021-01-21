@@ -19,6 +19,8 @@ namespace step_defender
 
 namespace algorithm_practice_floodfill
 {
+	class DirectionMapNode;
+
 	class TestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
@@ -54,5 +56,7 @@ namespace algorithm_practice_floodfill
 
 		cocos2d::Node* mEntryPointIndicatorNode;
 		step_defender::game::TileMapNode* mGridDebugViewNode;
+
+		DirectionMapNode* mDirectionMapNode;
 	};
 }

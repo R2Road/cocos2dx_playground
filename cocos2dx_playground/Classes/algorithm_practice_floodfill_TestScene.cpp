@@ -14,6 +14,8 @@
 #include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
+#include "algorithm_practice_floodfill_DirectionMapNode.h"
+
 #include "cpg_StringTable.h"
 #include "cpgui_ToolBarNode.h"
 
@@ -46,6 +48,8 @@ namespace algorithm_practice_floodfill
 
 		, mEntryPointIndicatorNode( nullptr )
 		, mGridDebugViewNode( nullptr )
+
+		, mDirectionMapNode( nullptr )
 	{}
 
 	Scene* TestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -152,6 +156,20 @@ namespace algorithm_practice_floodfill
 				- Vec2( mTileMapNode->getContentSize().width * 0.5f, mTileMapNode->getContentSize().height * 0.5f )
 			);
 			addChild( mTileMapNode );
+		}
+
+		//
+		// Direction Maps
+		//
+		{
+			mDirectionMapNode = DirectionMapNode::create( DirectionMapNode::Config{ GRID_WIDTH, GRID_HEIGHT } );
+			mDirectionMapNode->setPosition(
+				visibleCenter
+				- Vec2( mDirectionMapNode->getContentSize().width * 0.5f, mDirectionMapNode->getContentSize().height * 0.5f )
+			);
+			addChild( mDirectionMapNode );
+
+			mDirectionMapNode->UpdateTile( 0, 0, 0 );
 		}
 
 		//
