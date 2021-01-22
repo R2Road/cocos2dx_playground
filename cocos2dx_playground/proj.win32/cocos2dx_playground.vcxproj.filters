@@ -939,6 +939,9 @@
     <ClCompile Include="..\Classes\cpg_TileSheetUtility.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4Floodfill.cpp">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1705,6 +1708,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_TileSheetUtility.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4Floodfill.h">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

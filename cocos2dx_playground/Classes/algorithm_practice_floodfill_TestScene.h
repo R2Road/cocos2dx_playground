@@ -4,7 +4,7 @@
 #include "ui/UIWidget.h"
 
 #include "algorithm_practice_floodfill_Constant.h"
-#include "cpg_Grid.h"
+#include "algorithm_practice_floodfill_Grid4Floodfill.h"
 #include "cpg_Position2GridIndexConverter.h"
 #include "cpg_TileSheetConfiguration.h"
 #include "helper_BackToThePreviousScene.h"
@@ -49,7 +49,7 @@ namespace algorithm_practice_floodfill
 
 		cpg::TileSheetConfiguration mTileSheetConfiguration;
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
-		cpg::Grid<GridValue> mGrid;
+		Grid4Floodfill mGrid;
 		step_defender::game::TileMapNode* mTileMapNode;
 		int mToolIndex;
 		cpg::Point mEntryPoint;
