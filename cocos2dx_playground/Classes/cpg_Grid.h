@@ -20,6 +20,8 @@ namespace cpg
 			, mIndexConverter( width, height )
 		{}
 
+		virtual ~Grid() {}
+
 	public:
 		std::size_t GetWidth() const { return mWidth; }
 		std::size_t GetHeight() const { return mHeight; }
