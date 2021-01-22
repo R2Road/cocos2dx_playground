@@ -5,5 +5,9 @@
 
 namespace algorithm_practice_floodfill
 {
-	using Grid4Floodfill = cpg::Grid<GridValue>;
+	class Grid4Floodfill : public cpg::Grid<GridValue>
+	{
+	public:
+		explicit Grid4Floodfill( const std::size_t width, const std::size_t height );
+	};
 }
