@@ -1,6 +1,7 @@
 #include "algorithm_practice_floodfill_TestScene.h"
 
 #include <functional>
+#include <fstream>
 #include <new>
 #include <numeric>
 #include <sstream>
@@ -11,6 +12,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "cocos/platform/CCFileUtils.h"
 #include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
@@ -26,6 +28,8 @@ USING_NS_CC;
 
 namespace
 {
+	const char* FileName = "algorithm_practice_floodfill_test_scene.json";
+
 	const std::size_t GRID_WIDTH = 12;
 	const std::size_t GRID_HEIGHT = 12;
 
@@ -120,6 +124,19 @@ namespace algorithm_practice_floodfill
 		{
 			auto layer = LayerColor::create( Color4B( 8, 45, 48, 255 ) );
 			addChild( layer, std::numeric_limits<int>::min() );
+		}
+
+		//
+		// Load Grid
+		//
+		{
+			std::string file_path;
+			file_path = FileUtils::getInstance()->getWritablePath();
+			file_path += FileName;
+
+			const std::string json_string( FileUtils::getInstance()->getStringFromFile( file_path ) );
+
+			mGrid.LoadJsonString( json_string );
 		}
 
 		//
@@ -253,6 +270,26 @@ namespace algorithm_practice_floodfill
 	}
 	void TestScene::onExit()
 	{
+		//
+		// Save
+		//
+		{
+			std::string json_string;
+			mGrid.ExportJsonString( json_string );
+
+			std::string file_path = FileUtils::getInstance()->getWritablePath();
+			file_path += FileName;
+			std::ofstream fs( file_path, std::ios::out );
+			if( fs.fail() )
+			{
+				CCLOG( "Failed : Terrain Data Save" );
+				return;
+			}
+
+			fs << json_string.c_str() << std::endl;
+			fs.close();
+		}
+
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
 		mKeyboardListener = nullptr;
