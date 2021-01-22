@@ -168,8 +168,6 @@ namespace algorithm_practice_floodfill
 				- Vec2( mDirectionMapNode->getContentSize().width * 0.5f, mDirectionMapNode->getContentSize().height * 0.5f )
 			);
 			addChild( mDirectionMapNode );
-
-			mDirectionMapNode->UpdateTile( 0, 0, 0 );
 		}
 
 		//
