@@ -21,7 +21,7 @@ namespace algorithm_practice_floodfill
 		);
 
 		mEntryPoint = new_entry_point;
-		Set( mEntryPoint.x, mEntryPoint.y, Cell{ eGridType::Road } );
+		Set( mEntryPoint.x, mEntryPoint.y, Cell{ eCellType::Road } );
 	}
 
 	void Grid4Floodfill::ExportJsonString( std::string& out_json_string ) const
@@ -125,7 +125,7 @@ namespace algorithm_practice_floodfill
 			{
 				const auto& value = grid_itr->value[cur];
 
-				Set( cur, { static_cast<eGridType>( value.GetInt() ) } );
+				Set( cur, { static_cast<eCellType>( value.GetInt() ) } );
 			}
 		}
 

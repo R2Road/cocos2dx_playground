@@ -35,14 +35,14 @@ namespace
 
 	const int TAG_ToolBar = 20140416;
 
-	cpg::Point GetTilePoint( algorithm_practice_floodfill::eGridType grid_type )
+	cpg::Point GetTilePoint( algorithm_practice_floodfill::eCellType cell_type )
 	{
-		switch( grid_type )
+		switch( cell_type )
 		{
-		case algorithm_practice_floodfill::eGridType::Road:
+		case algorithm_practice_floodfill::eCellType::Road:
 			return cpg::Point{ 0, 0 };
 
-		case algorithm_practice_floodfill::eGridType::Wall:
+		case algorithm_practice_floodfill::eCellType::Wall:
 			return cpg::Point{ 1, 0 };
 
 		default:
@@ -358,9 +358,9 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Wall:
 			if( mGrid.GetEntryPoint() != point )
 			{
-				mGrid.Set( point.x, point.y, Cell{ eGridType::Wall } );
+				mGrid.Set( point.x, point.y, Cell{ eCellType::Wall } );
 
-				const auto tile_point = GetTilePoint( eGridType::Wall );
+				const auto tile_point = GetTilePoint( eCellType::Wall );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 				onUpdateDebugView();
@@ -369,9 +369,9 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Road:
 			if( mGrid.GetEntryPoint() != point )
 			{
-				mGrid.Set( point.x, point.y, Cell{ eGridType::Road } );
+				mGrid.Set( point.x, point.y, Cell{ eCellType::Road } );
 				
-				const auto tile_point = GetTilePoint( eGridType::Road );
+				const auto tile_point = GetTilePoint( eCellType::Road );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 				onUpdateDebugView();
@@ -381,7 +381,7 @@ namespace algorithm_practice_floodfill
 		{
 			mGrid.SetEntryPoint( point );
 
-			const auto tile_point = GetTilePoint( eGridType::Road );
+			const auto tile_point = GetTilePoint( eCellType::Road );
 			mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 			mEntryPointIndicatorNode->setPosition(
@@ -403,7 +403,7 @@ namespace algorithm_practice_floodfill
 		{
 			for( std::size_t x = 0; GRID_WIDTH > x; ++x )
 			{
-				if( eGridType::Road == mGrid.Get( x, y ).Type )
+				if( eCellType::Road == mGrid.Get( x, y ).Type )
 				{
 					mGridDebugViewNode->UpdateTile( x, y, 0, 0 );
 				}

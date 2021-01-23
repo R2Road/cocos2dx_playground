@@ -11,7 +11,7 @@ namespace algorithm_practice_floodfill
 		Entry,
 	};
 
-	enum class eGridType
+	enum class eCellType
 	{
 		Road,
 		Wall,
@@ -41,7 +41,7 @@ namespace algorithm_practice_floodfill
 
 	struct Cell
 	{
-		eGridType Type = eGridType::Road;
+		eCellType Type = eCellType::Road;
 		GridDirection Direction;
 	};
 }
