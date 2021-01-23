@@ -11,7 +11,7 @@ namespace algorithm_practice_floodfill
 	class Grid4Floodfill : public cpg::Grid<GridValue>
 	{
 	public:
-		explicit Grid4Floodfill( const std::size_t width, const std::size_t height );
+		explicit Grid4Floodfill();
 
 		const cpg::Point& GetEntryPoint() const { return mEntryPoint; }
 		void SetEntryPoint( const cpg::Point& new_entry_point );

@@ -9,8 +9,7 @@
 
 namespace algorithm_practice_floodfill
 {
-	Grid4Floodfill::Grid4Floodfill( const std::size_t width, const std::size_t height ) : cpg::Grid<GridValue>( width, height )
-		, mEntryPoint()
+	Grid4Floodfill::Grid4Floodfill() : mEntryPoint()
 	{}
 
 	void Grid4Floodfill::SetEntryPoint( const cpg::Point& new_entry_point )
@@ -28,10 +27,27 @@ namespace algorithm_practice_floodfill
 	void Grid4Floodfill::ExportJsonString( std::string& out_json_string ) const
 	{
 		rapidjson::Document document;
-		document.SetArray();
-		for( const auto& v : GetContainer() )
+		document.SetObject();
+
+		//
+		// Size
+		//
 		{
-			document.PushBack( static_cast<int>( v.Type ), document.GetAllocator() );
+			document.AddMember( "width", GetWidth(), document.GetAllocator() );
+			document.AddMember( "height", GetHeight(), document.GetAllocator() );
+		}
+
+		//
+		// Grid
+		//
+		{
+			rapidjson::Value grid_value;
+			grid_value.SetArray();
+			for( const auto& v : GetContainer() )
+			{
+				grid_value.PushBack( static_cast<int>( v.Type ), document.GetAllocator() );
+			}
+			document.AddMember( "grid", grid_value, document.GetAllocator() );
 		}
 
 		rapidjson::StringBuffer buffer;
@@ -58,17 +74,46 @@ namespace algorithm_practice_floodfill
 			return false;
 		}
 
-		if( !doc.IsArray() )
+		if( !doc.IsObject() )
 		{
 			CCLOG( "invalid data struct" );
 			return false;
 		}
 
-		for( rapidjson::SizeType cur = 0u, end = doc.Size(); cur < end; ++cur )
+		//
+		// Size
+		//
 		{
-			const auto& value = doc[cur];
+			int width = 1;
+			{
+				const auto temp_itr = doc.FindMember( "width" );
+				CCASSERT( doc.MemberEnd() != temp_itr, "property not found" );
+				width = temp_itr->value.GetInt();
+			}
 
-			Set( cur, { static_cast<eGridType>( value.GetInt() ) } );
+			int height = 1;
+			{
+				const auto temp_itr = doc.FindMember( "height" );
+				CCASSERT( doc.MemberEnd() != temp_itr, "property not found" );
+				height = temp_itr->value.GetInt();
+			}
+
+			Reset( width, height );
+		}
+
+		//
+		// Grid
+		//
+		{
+			const auto grid_itr = doc.FindMember( "grid" );
+			CCASSERT( doc.MemberEnd() != grid_itr, "property not found" );
+
+			for( rapidjson::SizeType cur = 0u, end = grid_itr->value.Size(); cur < end; ++cur )
+			{
+				const auto& value = grid_itr->value[cur];
+
+				Set( cur, { static_cast<eGridType>( value.GetInt() ) } );
+			}
 		}
 
 		return true;

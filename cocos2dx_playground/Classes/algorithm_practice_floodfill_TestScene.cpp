@@ -45,7 +45,7 @@ namespace algorithm_practice_floodfill
 
 		, mPosition2GridIndexConverter( 1, 1 )
 
-		, mGrid( GRID_WIDTH, GRID_HEIGHT )
+		, mGrid()
 		, mTileMapNode( nullptr )
 		, mToolIndex( eToolIndex::Wall )
 
@@ -135,7 +135,10 @@ namespace algorithm_practice_floodfill
 
 			const std::string json_string( FileUtils::getInstance()->getStringFromFile( file_path ) );
 
-			mGrid.LoadJsonString( json_string );
+			if( !mGrid.LoadJsonString( json_string ) )
+			{
+				mGrid.Reset( GRID_WIDTH, GRID_HEIGHT );
+			}
 		}
 
 		//

@@ -13,11 +13,11 @@ namespace cpg
 		using ValueT = T;
 		using ContainerT = std::vector<ValueT>;
 
-		Grid( const std::size_t width, const std::size_t height ) :
-			mWidth( width )
-			, mHeight( height )
-			, mContainer( width * height )
-			, mIndexConverter( width, height )
+		Grid() :
+			mWidth( 1 )
+			, mHeight( 1 )
+			, mContainer( 1 * 1 )
+			, mIndexConverter( 1, 1 )
 		{}
 
 		virtual ~Grid() {}
@@ -26,6 +26,17 @@ namespace cpg
 		std::size_t GetWidth() const { return mWidth; }
 		std::size_t GetHeight() const { return mHeight; }
 		const ContainerT& GetContainer() const { return mContainer; }
+
+		void Reset( const std::size_t new_width, const std::size_t new_height )
+		{
+			mWidth = new_width;
+			mHeight = new_height;
+
+			mContainer.clear();
+			mContainer.resize( mWidth *  mHeight );
+
+			mIndexConverter = cpg::GridIndexConverter( mWidth, mHeight );
+		}
 
 		const ValueT& Get( const std::size_t linear_idx ) const
 		{
