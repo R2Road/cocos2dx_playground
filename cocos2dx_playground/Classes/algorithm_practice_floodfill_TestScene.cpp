@@ -34,6 +34,21 @@ namespace
 	const std::size_t GRID_HEIGHT = 12;
 
 	const int TAG_ToolBar = 20140416;
+
+	cpg::Point GetTilePoint( algorithm_practice_floodfill::eGridType grid_type )
+	{
+		switch( grid_type )
+		{
+		case algorithm_practice_floodfill::eGridType::Road:
+			return cpg::Point{ 0, 0 };
+
+		case algorithm_practice_floodfill::eGridType::Wall:
+			return cpg::Point{ 1, 0 };
+
+		default:
+			return cpg::Point{ 0, 0 };
+		}
+	}
 }
 
 namespace algorithm_practice_floodfill
@@ -250,9 +265,17 @@ namespace algorithm_practice_floodfill
 		//
 		// Setup
 		//
-		mTileMapNode->FillAll( 0, 0 );
-		mGridDebugViewNode->FillAll( 0, 0 );
+		for( int gy = 0; mGrid.GetHeight() > gy; ++gy )
+		{
+			for( int gx = 0; mGrid.GetWidth() > gx; ++gx )
+			{
+				const auto& value = mGrid.Get( gx, gy );
+				const auto tile_point = GetTilePoint( value.Type );
 
+				mTileMapNode->UpdateTile( gx, gy, tile_point.x, tile_point.y );
+			}
+		}
+		onUpdateDebugView();
 		mEntryPointIndicatorNode->setPosition(
 			mTileMapNode->getPosition()
 			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid.GetEntryPoint().y )
@@ -336,7 +359,9 @@ namespace algorithm_practice_floodfill
 			if( mGrid.GetEntryPoint() != point )
 			{
 				mGrid.Set( point.x, point.y, GridValue{ eGridType::Wall } );
-				mTileMapNode->UpdateTile( point.x, point.y, 1, 0 );
+
+				const auto tile_point = GetTilePoint( eGridType::Wall );
+				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 				onUpdateDebugView();
 			}
@@ -345,22 +370,28 @@ namespace algorithm_practice_floodfill
 			if( mGrid.GetEntryPoint() != point )
 			{
 				mGrid.Set( point.x, point.y, GridValue{ eGridType::Road } );
-				mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
+				
+				const auto tile_point = GetTilePoint( eGridType::Road );
+				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 				onUpdateDebugView();
 			}
 			break;
 		case eToolIndex::Entry:
+		{
 			mGrid.SetEntryPoint( point );
-			mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
-			
+
+			const auto tile_point = GetTilePoint( eGridType::Road );
+			mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
+
 			mEntryPointIndicatorNode->setPosition(
 				mTileMapNode->getPosition()
 				+ Vec2( mTileSheetConfiguration.GetTileWidth() * point.x, mTileSheetConfiguration.GetTileHeight() * point.y )
 			);
 
 			onUpdateDebugView();
-			break;
+		}
+		break;
 
 		default:
 			CCASSERT( "Invalid Tool Index : %d", mToolIndex );
