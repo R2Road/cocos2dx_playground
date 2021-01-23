@@ -9,7 +9,7 @@
 
 namespace algorithm_practice_floodfill
 {
-	Grid4Floodfill::Grid4Floodfill() : mEntryPoint()
+	Grid4Floodfill::Grid4Floodfill() : mEntryPoint( { 0, 0 } )
 	{}
 
 	void Grid4Floodfill::SetEntryPoint( const cpg::Point& new_entry_point )
