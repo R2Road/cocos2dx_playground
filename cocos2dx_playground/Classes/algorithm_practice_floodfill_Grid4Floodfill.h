@@ -8,7 +8,7 @@
 
 namespace algorithm_practice_floodfill
 {
-	class Grid4Floodfill : public cpg::Grid<GridValue>
+	class Grid4Floodfill : public cpg::Grid<Cell>
 	{
 	public:
 		explicit Grid4Floodfill();

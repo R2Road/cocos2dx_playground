@@ -358,7 +358,7 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Wall:
 			if( mGrid.GetEntryPoint() != point )
 			{
-				mGrid.Set( point.x, point.y, GridValue{ eGridType::Wall } );
+				mGrid.Set( point.x, point.y, Cell{ eGridType::Wall } );
 
 				const auto tile_point = GetTilePoint( eGridType::Wall );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
@@ -369,7 +369,7 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Road:
 			if( mGrid.GetEntryPoint() != point )
 			{
-				mGrid.Set( point.x, point.y, GridValue{ eGridType::Road } );
+				mGrid.Set( point.x, point.y, Cell{ eGridType::Road } );
 				
 				const auto tile_point = GetTilePoint( eGridType::Road );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );

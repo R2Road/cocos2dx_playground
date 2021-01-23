@@ -39,7 +39,7 @@ namespace algorithm_practice_floodfill
 		char mCurrentDirection;
 	};
 
-	struct GridValue
+	struct Cell
 	{
 		eGridType Type = eGridType::Road;
 		GridDirection Direction;
