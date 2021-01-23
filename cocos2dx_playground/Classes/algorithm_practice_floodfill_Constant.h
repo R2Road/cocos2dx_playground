@@ -27,10 +27,10 @@ namespace algorithm_practice_floodfill
 		FIRST = Up,
 	};
 
-	class GridDirection
+	class CellDirection
 	{
 	public:
-		GridDirection();
+		CellDirection();
 
 		bool HasDirection() const { return 0 != mCurrentDirection; }
 		cpg::Point PopNextDirection();
@@ -42,6 +42,6 @@ namespace algorithm_practice_floodfill
 	struct Cell
 	{
 		eCellType Type = eCellType::Road;
-		GridDirection Direction;
+		CellDirection Direction;
 	};
 }

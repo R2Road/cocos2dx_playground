@@ -2,10 +2,10 @@
 
 namespace algorithm_practice_floodfill
 {
-	GridDirection::GridDirection() : mCurrentDirection( eDirectionType::FIRST )
+	CellDirection::CellDirection() : mCurrentDirection( eDirectionType::FIRST )
 	{}
 
-	cpg::Point GridDirection::PopNextDirection()
+	cpg::Point CellDirection::PopNextDirection()
 	{
 		cpg::Point out_point;
 
