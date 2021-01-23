@@ -26,6 +26,7 @@ namespace algorithm_practice_floodfill
 		document.Accept( writer );
 
 		out_json_string = buffer.GetString();
+		out_json_string += "\n";
 	}
 	bool Grid4Floodfill::LoadJsonString( const std::string& json_string )
 	{
