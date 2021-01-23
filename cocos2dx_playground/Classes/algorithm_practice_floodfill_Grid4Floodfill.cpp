@@ -50,6 +50,19 @@ namespace algorithm_practice_floodfill
 			document.AddMember( "grid", grid_value, document.GetAllocator() );
 		}
 
+		//
+		// Entry Point
+		//
+		{
+			rapidjson::Value entry_point_value;
+			entry_point_value.SetObject();
+
+			entry_point_value.AddMember( "x", mEntryPoint.x, document.GetAllocator() );
+			entry_point_value.AddMember( "y", mEntryPoint.y, document.GetAllocator() );
+
+			document.AddMember( "entry", entry_point_value, document.GetAllocator() );
+		}
+
 		rapidjson::StringBuffer buffer;
 		rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 		document.Accept( writer );
@@ -114,6 +127,19 @@ namespace algorithm_practice_floodfill
 
 				Set( cur, { static_cast<eGridType>( value.GetInt() ) } );
 			}
+		}
+
+		//
+		// Entry Point
+		//
+		{
+			const auto temp_itr = doc.FindMember( "entry" );
+			CCASSERT( doc.MemberEnd() != temp_itr, "property not found" );
+
+			const auto entry_point_x = temp_itr->value["x"].GetInt();
+			const auto entry_point_y = temp_itr->value["y"].GetInt();
+
+			SetEntryPoint( cpg::Point{ entry_point_x, entry_point_y } );
 		}
 
 		return true;
