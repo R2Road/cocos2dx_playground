@@ -52,7 +52,6 @@ namespace algorithm_practice_floodfill
 		Grid4Floodfill mGrid;
 		step_defender::game::TileMapNode* mTileMapNode;
 		int mToolIndex;
-		cpg::Point mEntryPoint;
 
 		cocos2d::Node* mEntryPointIndicatorNode;
 		step_defender::game::TileMapNode* mGridDebugViewNode;

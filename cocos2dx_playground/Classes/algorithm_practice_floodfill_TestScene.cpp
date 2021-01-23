@@ -48,7 +48,6 @@ namespace algorithm_practice_floodfill
 		, mGrid( GRID_WIDTH, GRID_HEIGHT )
 		, mTileMapNode( nullptr )
 		, mToolIndex( eToolIndex::Wall )
-		, mEntryPoint()
 
 		, mEntryPointIndicatorNode( nullptr )
 		, mGridDebugViewNode( nullptr )
@@ -253,7 +252,7 @@ namespace algorithm_practice_floodfill
 
 		mEntryPointIndicatorNode->setPosition(
 			mTileMapNode->getPosition()
-			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mEntryPoint.x, mTileSheetConfiguration.GetTileHeight() * mEntryPoint.y )
+			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid.GetEntryPoint().y )
 		);
 
 		return true;
@@ -331,7 +330,7 @@ namespace algorithm_practice_floodfill
 		switch( mToolIndex )
 		{
 		case eToolIndex::Wall:
-			if( mEntryPoint != point )
+			if( mGrid.GetEntryPoint() != point )
 			{
 				mGrid.Set( point.x, point.y, GridValue{ eGridType::Wall } );
 				mTileMapNode->UpdateTile( point.x, point.y, 1, 0 );
@@ -340,7 +339,7 @@ namespace algorithm_practice_floodfill
 			}
 			break;
 		case eToolIndex::Road:
-			if( mEntryPoint != point )
+			if( mGrid.GetEntryPoint() != point )
 			{
 				mGrid.Set( point.x, point.y, GridValue{ eGridType::Road } );
 				mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
@@ -349,13 +348,12 @@ namespace algorithm_practice_floodfill
 			}
 			break;
 		case eToolIndex::Entry:
-			mEntryPoint = point;
-			mGrid.Set( mEntryPoint.x, mEntryPoint.y, GridValue{ eGridType::Road } );
-			mTileMapNode->UpdateTile( mEntryPoint.x, mEntryPoint.y, 0, 0 );
+			mGrid.SetEntryPoint( point );
+			mTileMapNode->UpdateTile( point.x, point.y, 0, 0 );
 			
 			mEntryPointIndicatorNode->setPosition(
 				mTileMapNode->getPosition()
-				+ Vec2( mTileSheetConfiguration.GetTileWidth() * mEntryPoint.x, mTileSheetConfiguration.GetTileHeight() * mEntryPoint.y )
+				+ Vec2( mTileSheetConfiguration.GetTileWidth() * point.x, mTileSheetConfiguration.GetTileHeight() * point.y )
 			);
 
 			onUpdateDebugView();
