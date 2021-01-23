@@ -64,8 +64,6 @@ namespace algorithm_practice_floodfill
 			return false;
 		}
 
-		int x = 0;
-		int y = 0;
 		for( rapidjson::SizeType cur = 0u, end = doc.Size(); cur < end; ++cur )
 		{
 			const auto& value = doc[cur];
