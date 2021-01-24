@@ -52,7 +52,8 @@ namespace step_flipflip
 		{
 			for( auto& p : mFlipedPoints )
 			{
-				p.Clear();
+				p.x = -1;
+				p.y = -1;
 			}
 		}
 
@@ -297,7 +298,7 @@ namespace step_flipflip
 					mElapsedTime = 0.f;
 
 					mFlipedCount = 0;
-					if( mStageData.GetType( mFlipedPoints[0].X, mFlipedPoints[0].Y ) == mStageData.GetType( mFlipedPoints[1].X, mFlipedPoints[1].Y ) )
+					if( mStageData.GetType( mFlipedPoints[0].x, mFlipedPoints[0].y ) == mStageData.GetType( mFlipedPoints[1].x, mFlipedPoints[1].y ) )
 					{
 						mStep = eStep::Game_SelectSuccess;
 					}
@@ -312,8 +313,8 @@ namespace step_flipflip
 				experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				for( auto& p : mFlipedPoints )
 				{
-					mStageData.SetStatus( eCardStatus::Close, p.X, p.Y );
-					mStageViewNode->Flip( p.X, p.Y );
+					mStageData.SetStatus( eCardStatus::Close, p.x, p.y );
+					mStageViewNode->Flip( p.x, p.y );
 				}
 				mStep = eStep::Game_ClearCheck;
 				break;

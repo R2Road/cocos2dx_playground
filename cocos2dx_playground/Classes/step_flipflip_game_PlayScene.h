@@ -2,6 +2,7 @@
 
 #include "2d/CCScene.h"
 
+#include "cpg_Point.h"
 #include "step_flipflip_game_StageData.h"
 
 namespace step_flipflip
@@ -72,17 +73,7 @@ namespace step_flipflip
 			int mStep;
 			float mElapsedTime;
 			int mFlipedCount;
-			struct Point
-			{
-				int X = -1;
-				int Y = -1;
-
-				void Clear() {
-					X = -1;
-					Y = -1;
-				}
-			};
-			Point mFlipedPoints[2];
+			cpg::Point mFlipedPoints[2];
 
 			float mPlayTime;
 			int mFailedCount;
