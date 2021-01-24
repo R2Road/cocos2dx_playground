@@ -14,14 +14,16 @@ namespace step_defender
 
 namespace algorithm_practice_floodfill
 {
-	class RootScene : public cocos2d::Scene
+	class DirectionMapNode;
+
+	class DirectionMapNodeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
-		RootScene();
+		DirectionMapNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Flood Fill"; }
-		static cocos2d::Scene* create();
+		static const char* getTitle() { return "Direction Map Node"; }
+		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:
 		bool init() override;
@@ -35,5 +37,7 @@ namespace algorithm_practice_floodfill
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+		DirectionMapNode* mDirectionMapNode;
 	};
 }

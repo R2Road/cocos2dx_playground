@@ -5,6 +5,7 @@
 
 #include "ui/UIWidget.h"
 
+#include "cpg_Point.h"
 #include "cpg_Position2GridIndexConverter.h"
 #include "step_defender_game_Constant.h"
 
@@ -22,12 +23,6 @@ namespace step_defender
 			using SelectCallback = std::function<void( int x, int y )>;
 
 		private:
-			struct Point
-			{
-				int x = 0;
-				int y = 0;
-			};
-
 			TileSheetNode( const cpg::TileSheetConfiguration& config );
 
 		public:
@@ -49,7 +44,7 @@ namespace step_defender
 			SelectCallback mSelectCallback;
 
 			cocos2d::Node* mIndicator;
-			Point mLastSelectedPoint;
+			cpg::Point mLastSelectedPoint;
 		};
 	}
 }

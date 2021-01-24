@@ -1,5 +1,7 @@
 #pragma once
 
+#include "cpg_Point.h"
+
 namespace algorithm_practice_floodfill
 {
 	enum eToolIndex
@@ -9,14 +11,37 @@ namespace algorithm_practice_floodfill
 		Entry,
 	};
 
-	enum class eGridType
+	enum class eCellType
 	{
 		Road,
 		Wall,
 	};
 
-	struct GridValue
+	enum eDirectionType
 	{
-		eGridType Type = eGridType::Road;
+		Up = 1,
+		Right = 1 << 1,
+		Down = 1 << 2,
+		Left = 1 << 3,
+
+		FIRST = Up,
+	};
+
+	class CellDirection
+	{
+	public:
+		CellDirection();
+
+		bool HasDirection() const { return 0 != mCurrentDirection; }
+		cpg::Point PopNextDirection();
+
+	private:
+		char mCurrentDirection;
+	};
+
+	struct Cell
+	{
+		eCellType Type = eCellType::Road;
+		CellDirection Direction;
 	};
 }

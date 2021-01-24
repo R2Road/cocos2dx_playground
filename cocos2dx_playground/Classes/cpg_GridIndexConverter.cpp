@@ -9,15 +9,15 @@ namespace cpg
 		, mLinearEnd( To_Linear( width, height ) )
 	{}
 
-	GridIndexConverter::Point GridIndexConverter::To_Point( const int linear_index ) const
+	cpg::Point GridIndexConverter::To_Point( const int linear_index ) const
 	{
 		const int fixed_linear_index = std::min( std::max( 0, linear_index ), mLinearEnd );
 
 		const int y = fixed_linear_index / mWidth;
 		const int x = fixed_linear_index - ( y * mWidth );
-		return Point{ x, y };
+		return cpg::Point{ x, y };
 	}
-	int GridIndexConverter::To_Linear( const Point point_index ) const
+	int GridIndexConverter::To_Linear( const cpg::Point point_index ) const
 	{
 		return To_Linear( point_index.x, point_index.y);
 	}
