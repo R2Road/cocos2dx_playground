@@ -49,13 +49,7 @@ namespace step_flipflip
 
 			, mPlayTime( 0.f )
 			, mFailedCount( 0 )
-		{
-			for( auto& p : mFlipedPoints )
-			{
-				p.x = -1;
-				p.y = -1;
-			}
-		}
+		{}
 
 		Scene* PlayScene::create()
 		{
