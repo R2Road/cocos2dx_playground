@@ -265,9 +265,9 @@ namespace algorithm_practice_floodfill
 		//
 		// Setup
 		//
-		for( int gy = 0; mGrid.GetHeight() > gy; ++gy )
+		for( std::size_t gy = 0; mGrid.GetHeight() > gy; ++gy )
 		{
-			for( int gx = 0; mGrid.GetWidth() > gx; ++gx )
+			for( std::size_t gx = 0; mGrid.GetWidth() > gx; ++gx )
 			{
 				const auto& value = mGrid.Get( gx, gy );
 				const auto tile_point = GetTilePoint( value.Type );
