@@ -305,10 +305,7 @@ namespace algorithm_practice_floodfill
 			std::string file_path = FileUtils::getInstance()->getWritablePath();
 			file_path += FileName;
 
-			if( FileUtils::getInstance()->writeStringToFile( json_string, file_path ) )
-			{
-				CCLOG( "Failed : Terrain Data Save" );
-			}
+			CCASSERT( FileUtils::getInstance()->writeStringToFile( json_string, file_path ), "Failed : Terrain Data Save" );
 		}
 
 		assert( mKeyboardListener );
