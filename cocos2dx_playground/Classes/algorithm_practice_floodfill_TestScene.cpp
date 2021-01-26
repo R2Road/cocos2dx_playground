@@ -160,12 +160,12 @@ namespace algorithm_practice_floodfill
 		// Tool Bar
 		//
 		{
-			auto tool_bar_node = cpgui::ToolBarNode::create();
+			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 40.f, 20.f ) );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( eToolIndex::Wall, "W", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Wall ) );
-			tool_bar_node->AddTool( eToolIndex::Road, "R", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Road ) );
-			tool_bar_node->AddTool( eToolIndex::Entry, "E", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Entry ) );
+			tool_bar_node->AddTool( eToolIndex::Wall, "Wall", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Wall ) );
+			tool_bar_node->AddTool( eToolIndex::Road, "Road", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Road ) );
+			tool_bar_node->AddTool( eToolIndex::Entry, "Entry", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Entry ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin
