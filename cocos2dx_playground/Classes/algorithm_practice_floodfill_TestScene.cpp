@@ -178,6 +178,30 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
+		// Clear Button
+		//
+		{
+			auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+			button->setAnchorPoint( Vec2::ZERO );
+			button->setScale9Enabled( true );
+			button->setContentSize( Size( 40.f, 20.f ) );
+			button->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+				- Vec2( button->getContentSize().width, button->getContentSize().height )
+				- Vec2( 60.f, 0.f )
+			);
+			button->addTouchEventListener( CC_CALLBACK_2( TestScene::onGridClear, this ) );
+			addChild( button, std::numeric_limits<int>::max() );
+
+			// Title
+			{
+				auto label = Label::createWithTTF( "Clear", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+				button->setTitleLabel( label );
+			}
+		}
+
+		//
 		// Tile Maps
 		//
 		{
@@ -265,21 +289,7 @@ namespace algorithm_practice_floodfill
 		//
 		// Setup
 		//
-		for( std::size_t gy = 0; mGrid.GetHeight() > gy; ++gy )
-		{
-			for( std::size_t gx = 0; mGrid.GetWidth() > gx; ++gx )
-			{
-				const auto& value = mGrid.Get( gx, gy );
-				const auto tile_point = GetTilePoint( value.Type );
-
-				mTileMapNode->UpdateTile( gx, gy, tile_point.x, tile_point.y );
-			}
-		}
-		onUpdateDebugView();
-		mEntryPointIndicatorNode->setPosition(
-			mTileMapNode->getPosition()
-			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid.GetEntryPoint().y )
-		);
+		ResetView();
 
 		return true;
 	}
@@ -313,6 +323,48 @@ namespace algorithm_practice_floodfill
 		mKeyboardListener = nullptr;
 
 		Scene::onExit();
+	}
+
+
+	void TestScene::onGridClear( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+	{
+		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
+		{
+			return;
+		}
+
+		//
+		// Reset Grid
+		//
+		mGrid.SetEntryPoint( cpg::Point{ 0, 0 } );
+		for( auto& cell : mGrid )
+		{
+			cell.Type = eCellType::Road;
+			cell.Direction.Reset();
+		}
+
+		//
+		// Reset View
+		//
+		ResetView();
+	}
+	void TestScene::ResetView()
+	{
+		for( std::size_t gy = 0; mGrid.GetHeight() > gy; ++gy )
+		{
+			for( std::size_t gx = 0; mGrid.GetWidth() > gx; ++gx )
+			{
+				const auto& value = mGrid.Get( gx, gy );
+				const auto tile_point = GetTilePoint( value.Type );
+
+				mTileMapNode->UpdateTile( gx, gy, tile_point.x, tile_point.y );
+			}
+		}
+		onUpdateDebugView();
+		mEntryPointIndicatorNode->setPosition(
+			mTileMapNode->getPosition()
+			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid.GetEntryPoint().y )
+		);
 	}
 
 

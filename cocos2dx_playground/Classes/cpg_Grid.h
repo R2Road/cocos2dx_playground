@@ -12,6 +12,8 @@ namespace cpg
 	public:
 		using ValueT = T;
 		using ContainerT = std::vector<ValueT>;
+		using IteratorT = typename std::vector<ValueT>::iterator;
+		using ConstIteratorT = typename std::vector<ValueT>::const_iterator;
 
 		Grid() :
 			mWidth( 1 )
@@ -26,6 +28,14 @@ namespace cpg
 		std::size_t GetWidth() const { return mWidth; }
 		std::size_t GetHeight() const { return mHeight; }
 		const ContainerT& GetContainer() const { return mContainer; }
+
+		//
+		// Iteration
+		//
+		ConstIteratorT begin() const { return mContainer.begin(); }
+		ConstIteratorT end() const { return mContainer.end(); }
+		IteratorT begin() { return mContainer.begin(); }
+		IteratorT end() { return mContainer.end(); }
 
 		void Reset( const std::size_t new_width, const std::size_t new_height )
 		{

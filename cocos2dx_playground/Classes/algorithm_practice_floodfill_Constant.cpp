@@ -5,6 +5,11 @@ namespace algorithm_practice_floodfill
 	CellDirection::CellDirection() : mCurrentDirection( eDirectionType::FIRST )
 	{}
 
+	void CellDirection::Reset()
+	{
+		mCurrentDirection = eDirectionType::FIRST;
+	}
+
 	cpg::Point CellDirection::PopNextDirection()
 	{
 		cpg::Point out_point;
