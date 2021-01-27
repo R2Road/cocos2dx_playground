@@ -206,7 +206,7 @@ namespace algorithm_practice_floodfill
 			updateQuadFromSprite( mReusedSprite, ConvertPoint2QuadIndex( map_point_x, map_point_y, dir ) );
 		}
 	}
-	void DirectionMapNode::EraseTile( const int map_point_x, const int map_point_y )
+	void DirectionMapNode::ClearTile( const int map_point_x, const int map_point_y )
 	{
 		if( mConfig.MapWidth <= map_point_x || mConfig.MapHeight <= map_point_y )
 		{

@@ -41,7 +41,7 @@ namespace algorithm_practice_floodfill
 	public:
 		void Reset();
 		void UpdateTile( const int map_point_x, const int map_point_y, const char direction );
-		void EraseTile( const int map_point_x, const int map_point_y );
+		void ClearTile( const int map_point_x, const int map_point_y );
 
 	private:
 		const Config mConfig;

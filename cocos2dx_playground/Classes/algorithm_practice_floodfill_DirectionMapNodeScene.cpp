@@ -163,7 +163,7 @@ namespace algorithm_practice_floodfill
 			break;
 
 		case EventKeyboard::KeyCode::KEY_6:
-			mDirectionMapNode->EraseTile( 1, 1 );
+			mDirectionMapNode->ClearTile( 1, 1 );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
@@ -180,7 +180,7 @@ namespace algorithm_practice_floodfill
 			{
 				for( int tx = 0; GRID_WIDTH > tx; ++tx )
 				{
-					mDirectionMapNode->EraseTile( tx, ty );
+					mDirectionMapNode->ClearTile( tx, ty );
 				}
 			}
 			break;
