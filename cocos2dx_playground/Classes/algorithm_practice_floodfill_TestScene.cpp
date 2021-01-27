@@ -30,8 +30,8 @@ namespace
 {
 	const char* FileName = "algorithm_practice_floodfill_test_scene.json";
 
-	const std::size_t GRID_WIDTH = 12;
-	const std::size_t GRID_HEIGHT = 12;
+	const std::size_t GRID_WIDTH = 13;
+	const std::size_t GRID_HEIGHT = 13;
 
 	const int TAG_ToolBar = 20140416;
 
