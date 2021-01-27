@@ -9,20 +9,37 @@
 
 namespace algorithm_practice_floodfill
 {
-	Grid4Floodfill::Grid4Floodfill() : mEntryPoint( { 0, 0 } )
+	Grid4Floodfill::Grid4Floodfill() : mEntryPoint( { 0, 0 } ), mGrid()
 	{}
+
+	void Grid4Floodfill::Reset( const std::size_t new_width, const std::size_t new_height )
+	{
+		mGrid.Reset( new_width, new_height );
+	}
+
+
+	eCellType Grid4Floodfill::GetCellType( const std::size_t x, const std::size_t y )
+	{
+		return mGrid.Get( x, y ).Type;
+	}
+
 
 	void Grid4Floodfill::SetEntryPoint( const cpg::Point& new_entry_point )
 	{
 		CCASSERT(
-			0 <= new_entry_point.x && static_cast<int>( GetWidth() ) > new_entry_point.x
-			&& 0 <= new_entry_point.y && static_cast<int>( GetHeight() ) > new_entry_point.y
+			0 <= new_entry_point.x && static_cast<int>( mGrid.GetWidth() ) > new_entry_point.x
+			&& 0 <= new_entry_point.y && static_cast<int>( mGrid.GetHeight() ) > new_entry_point.y
 			, "Failed : Grid4Floodfill::SetEntryPoint"
 		);
 
 		mEntryPoint = new_entry_point;
-		Set( mEntryPoint.x, mEntryPoint.y, Cell{ eCellType::Road } );
+		mGrid.Set( mEntryPoint.x, mEntryPoint.y, Cell{ eCellType::Road } );
 	}
+	void Grid4Floodfill::SetCellType( const std::size_t x, const std::size_t y, const eCellType cell_type )
+	{
+		mGrid.Set( x, y, Cell{ cell_type } );
+	}
+
 
 	void Grid4Floodfill::ExportJsonString( std::string& out_json_string ) const
 	{
@@ -33,8 +50,8 @@ namespace algorithm_practice_floodfill
 		// Size
 		//
 		{
-			document.AddMember( "width", GetWidth(), document.GetAllocator() );
-			document.AddMember( "height", GetHeight(), document.GetAllocator() );
+			document.AddMember( "width", mGrid.GetWidth(), document.GetAllocator() );
+			document.AddMember( "height", mGrid.GetHeight(), document.GetAllocator() );
 		}
 
 		//
@@ -43,7 +60,7 @@ namespace algorithm_practice_floodfill
 		{
 			rapidjson::Value grid_value;
 			grid_value.SetArray();
-			for( const auto& v : *this )
+			for( const auto& v : mGrid )
 			{
 				grid_value.PushBack( static_cast<int>( v.Type ), document.GetAllocator() );
 			}
@@ -111,7 +128,7 @@ namespace algorithm_practice_floodfill
 				height = temp_itr->value.GetInt();
 			}
 
-			Reset( width, height );
+			mGrid.Reset( width, height );
 		}
 
 		//
@@ -125,7 +142,7 @@ namespace algorithm_practice_floodfill
 			{
 				const auto& value = grid_itr->value[cur];
 
-				Set( cur, { static_cast<eCellType>( value.GetInt() ) } );
+				mGrid.Set( cur, { static_cast<eCellType>( value.GetInt() ) } );
 			}
 		}
 

@@ -354,8 +354,8 @@ namespace algorithm_practice_floodfill
 		{
 			for( std::size_t gx = 0; mGrid.GetWidth() > gx; ++gx )
 			{
-				const auto& value = mGrid.Get( gx, gy );
-				const auto tile_point = GetTilePoint( value.Type );
+				const auto& cell_type = mGrid.GetCellType( gx, gy );
+				const auto tile_point = GetTilePoint( cell_type );
 
 				mTileMapNode->UpdateTile( gx, gy, tile_point.x, tile_point.y );
 			}
@@ -404,7 +404,7 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Wall:
 			if( mGrid.GetEntryPoint() != point )
 			{
-				mGrid.Set( point.x, point.y, Cell{ eCellType::Wall } );
+				mGrid.SetCellType( point.x, point.y, eCellType::Wall );
 
 				const auto tile_point = GetTilePoint( eCellType::Wall );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
@@ -415,7 +415,7 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Road:
 			if( mGrid.GetEntryPoint() != point )
 			{
-				mGrid.Set( point.x, point.y, Cell{ eCellType::Road } );
+				mGrid.SetCellType( point.x, point.y, eCellType::Road );
 				
 				const auto tile_point = GetTilePoint( eCellType::Road );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
@@ -445,7 +445,7 @@ namespace algorithm_practice_floodfill
 		{
 			for( std::size_t x = 0; GRID_WIDTH > x; ++x )
 			{
-				if( eCellType::Road == mGrid.Get( x, y ).Type )
+				if( eCellType::Road == mGrid.GetCellType( x, y ) )
 				{
 					mGridDebugViewNode->UpdateTile( x, y, 0, 0 );
 				}
