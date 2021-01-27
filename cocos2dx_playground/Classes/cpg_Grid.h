@@ -27,7 +27,6 @@ namespace cpg
 	public:
 		std::size_t GetWidth() const { return mWidth; }
 		std::size_t GetHeight() const { return mHeight; }
-		const ContainerT& GetContainer() const { return mContainer; }
 
 		//
 		// Iteration

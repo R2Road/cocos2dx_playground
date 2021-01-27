@@ -43,7 +43,7 @@ namespace algorithm_practice_floodfill
 		{
 			rapidjson::Value grid_value;
 			grid_value.SetArray();
-			for( const auto& v : GetContainer() )
+			for( const auto& v : *this )
 			{
 				grid_value.PushBack( static_cast<int>( v.Type ), document.GetAllocator() );
 			}
