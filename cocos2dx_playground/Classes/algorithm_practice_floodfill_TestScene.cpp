@@ -360,11 +360,8 @@ namespace algorithm_practice_floodfill
 				mTileMapNode->UpdateTile( gx, gy, tile_point.x, tile_point.y );
 			}
 		}
-		onUpdateDebugView();
-		mEntryPointIndicatorNode->setPosition(
-			mTileMapNode->getPosition()
-			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid.GetEntryPoint().y )
-		);
+		updateDebugView();
+		updateEntryPointView();
 	}
 
 
@@ -412,7 +409,7 @@ namespace algorithm_practice_floodfill
 				const auto tile_point = GetTilePoint( eCellType::Wall );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
-				onUpdateDebugView();
+				updateDebugView();
 			}
 			break;
 		case eToolIndex::Road:
@@ -423,22 +420,18 @@ namespace algorithm_practice_floodfill
 				const auto tile_point = GetTilePoint( eCellType::Road );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
-				onUpdateDebugView();
+				updateDebugView();
 			}
 			break;
 		case eToolIndex::Entry:
 		{
 			mGrid.SetEntryPoint( point );
+			updateEntryPointView();
 
 			const auto tile_point = GetTilePoint( eCellType::Road );
 			mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
-			mEntryPointIndicatorNode->setPosition(
-				mTileMapNode->getPosition()
-				+ Vec2( mTileSheetConfiguration.GetTileWidth() * point.x, mTileSheetConfiguration.GetTileHeight() * point.y )
-			);
-
-			onUpdateDebugView();
+			updateDebugView();
 		}
 		break;
 
@@ -446,7 +439,7 @@ namespace algorithm_practice_floodfill
 			CCASSERT( "Invalid Tool Index : %d", mToolIndex );
 		}
 	}
-	void TestScene::onUpdateDebugView()
+	void TestScene::updateDebugView()
 	{
 		for( std::size_t y = 0; GRID_HEIGHT > y; ++y )
 		{
@@ -463,6 +456,14 @@ namespace algorithm_practice_floodfill
 			}
 		}
 	}
+	void TestScene::updateEntryPointView()
+	{
+		mEntryPointIndicatorNode->setPosition(
+			mTileMapNode->getPosition()
+			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid.GetEntryPoint().y )
+		);
+	}
+
 
 
 	void TestScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )

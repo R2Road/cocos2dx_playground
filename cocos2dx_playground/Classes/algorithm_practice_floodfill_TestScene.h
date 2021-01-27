@@ -44,6 +44,7 @@ namespace algorithm_practice_floodfill
 		void onToolSelect( const int tool_index );
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 		void updateDebugView();
+		void updateEntryPointView();
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
