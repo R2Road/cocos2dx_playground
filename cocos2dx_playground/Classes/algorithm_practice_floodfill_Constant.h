@@ -29,10 +29,10 @@ namespace algorithm_practice_floodfill
 		ALL = Up | Right | Down | Left,
 	};
 
-	class CellDirection
+	class DirectionCell
 	{
 	public:
-		CellDirection();
+		DirectionCell();
 
 		void Clear() { mCurrentDirection = eDirectionType::None; };
 		void Begin( const eDirectionType parent_direction );

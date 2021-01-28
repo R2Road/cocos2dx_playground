@@ -2,19 +2,19 @@
 
 namespace algorithm_practice_floodfill
 {
-	CellDirection::CellDirection() : mTotalDirection( eDirectionType::None )
+	DirectionCell::DirectionCell() : mCurrentDirection( eDirectionType::None )
 	{}
 
-	void CellDirection::Begin( const eDirectionType parent_direction )
+	void DirectionCell::Begin( const eDirectionType parent_direction )
 	{
-		mTotalDirection = eDirectionType::ALL ^ parent_direction;
+		mCurrentDirection = eDirectionType::ALL ^ parent_direction;
 	}
 
-	cpg::Point CellDirection::PopNextDirection()
+	cpg::Point DirectionCell::PopNextDirection()
 	{
 		cpg::Point out_point;
 
-		switch( mTotalDirection )
+		switch( mCurrentDirection )
 		{
 		case eDirectionType::Up:
 			out_point = cpg::Point{ 0, 1 };
@@ -30,12 +30,12 @@ namespace algorithm_practice_floodfill
 			break;
 
 		default:
-			mTotalDirection = 0;
+			mCurrentDirection = 0;
 			out_point = cpg::Point{ 0, 0 };
 			break;
 		}
 
-		mTotalDirection = mTotalDirection << 1;
+		mCurrentDirection = mCurrentDirection << 1;
 		return out_point;
 	}
 }
