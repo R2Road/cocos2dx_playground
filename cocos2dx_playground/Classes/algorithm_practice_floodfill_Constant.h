@@ -38,10 +38,13 @@ namespace algorithm_practice_floodfill
 		void Begin( const eDirectionType parent_direction );
 
 		char GetTotalDirection() const { return mTotalDirection; }
+		eDirectionType GetCurrentDirection() const { return mCurrentDirection; }
+
 		bool HasDirection() const { return 0 != mTotalDirection; }
 		cpg::Point PopNextDirection();
 
 	private:
 		char mTotalDirection;
+		eDirectionType mCurrentDirection;
 	};
 }

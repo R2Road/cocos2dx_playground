@@ -2,12 +2,13 @@
 
 namespace algorithm_practice_floodfill
 {
-	DirectionCell::DirectionCell() : mTotalDirection( eDirectionType::None )
+	DirectionCell::DirectionCell() : mTotalDirection( eDirectionType::None ), mCurrentDirection( eDirectionType::FIRST )
 	{}
 
 	void DirectionCell::Begin( const eDirectionType parent_direction )
 	{
-		mTotalDirection = eDirectionType::ALL ^ parent_direction;
+		mTotalDirection = eDirectionType::ALL;
+		mCurrentDirection = parent_direction;
 	}
 
 	cpg::Point DirectionCell::PopNextDirection()
