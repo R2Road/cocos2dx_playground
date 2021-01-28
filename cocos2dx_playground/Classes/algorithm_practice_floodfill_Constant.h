@@ -32,6 +32,7 @@ namespace algorithm_practice_floodfill
 	public:
 		CellDirection();
 
+		void Clear() { mCurrentDirection = 0; };
 		void Reset();
 		bool HasDirection() const { return 0 != mCurrentDirection; }
 		cpg::Point PopNextDirection();

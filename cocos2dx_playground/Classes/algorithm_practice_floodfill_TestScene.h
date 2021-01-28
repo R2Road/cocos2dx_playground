@@ -69,5 +69,6 @@ namespace algorithm_practice_floodfill
 		DirectionMapNode* mDirectionMapNode;
 
 		eStep mStep;
+		cpg::Grid<CellDirection> mGrid4Direction;
 	};
 }

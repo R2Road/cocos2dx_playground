@@ -70,6 +70,7 @@ namespace algorithm_practice_floodfill
 		, mDirectionMapNode( nullptr )
 
 		, mStep( eStep::Entry )
+		, mGrid4Direction()
 	{}
 
 	Scene* TestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -151,6 +152,7 @@ namespace algorithm_practice_floodfill
 		// Load Grid
 		//
 		{
+			// Load TileMap Grid
 			std::string file_path;
 			file_path = FileUtils::getInstance()->getWritablePath();
 			file_path += FileName;
@@ -161,6 +163,9 @@ namespace algorithm_practice_floodfill
 			{
 				mGrid4TileMap.Reset( GRID_WIDTH, GRID_HEIGHT );
 			}
+
+			// Setup Direction Grid
+			mGrid4Direction.Reset( mGrid4TileMap.GetWidth(), mGrid4TileMap.GetHeight() );
 		}
 
 		//
@@ -344,10 +349,13 @@ namespace algorithm_practice_floodfill
 		// Reset Grid
 		//
 		mGrid4TileMap.SetEntryPoint( cpg::Point{ 0, 0 } );
-		for( auto& cell : mGrid4TileMap )
+		for( auto& t : mGrid4TileMap )
 		{
-			cell = eCellType::Road;
-			//cell.Direction.Reset();
+			t = eCellType::Road;
+		}
+		for( auto& d : mGrid4Direction )
+		{
+			d.Clear();
 		}
 
 		//
@@ -489,6 +497,10 @@ namespace algorithm_practice_floodfill
 		if( EventKeyboard::KeyCode::KEY_R == key_code )
 		{
 			mStep = eStep::Entry;
+			for( auto& d : mGrid4Direction )
+			{
+				d.Clear();
+			}
 			mDirectionMapNode->Reset();
 			return;
 		}
