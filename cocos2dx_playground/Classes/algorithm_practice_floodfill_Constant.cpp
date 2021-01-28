@@ -2,7 +2,7 @@
 
 namespace algorithm_practice_floodfill
 {
-	CellDirection::CellDirection() : mCurrentDirection( eDirectionType::FIRST )
+	CellDirection::CellDirection() : mCurrentDirection( eDirectionType::None )
 	{}
 
 	void CellDirection::Reset()

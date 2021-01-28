@@ -19,6 +19,7 @@ namespace algorithm_practice_floodfill
 
 	enum eDirectionType
 	{
+		None = 0,
 		Up = 1,
 		Right = 1 << 1,
 		Down = 1 << 2,
@@ -32,7 +33,7 @@ namespace algorithm_practice_floodfill
 	public:
 		CellDirection();
 
-		void Clear() { mCurrentDirection = 0; };
+		void Clear() { mCurrentDirection = eDirectionType::None; };
 		void Reset();
 		bool HasDirection() const { return 0 != mCurrentDirection; }
 		cpg::Point PopNextDirection();
