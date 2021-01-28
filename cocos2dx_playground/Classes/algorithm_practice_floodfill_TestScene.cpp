@@ -346,8 +346,8 @@ namespace algorithm_practice_floodfill
 		mGrid.SetEntryPoint( cpg::Point{ 0, 0 } );
 		for( auto& cell : mGrid )
 		{
-			cell.Type = eCellType::Road;
-			cell.Direction.Reset();
+			cell = eCellType::Road;
+			//cell.Direction.Reset();
 		}
 
 		//

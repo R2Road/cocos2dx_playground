@@ -20,7 +20,7 @@ namespace algorithm_practice_floodfill
 
 	eCellType Grid4Floodfill::GetCellType( const std::size_t x, const std::size_t y )
 	{
-		return mGrid.Get( x, y ).Type;
+		return mGrid.Get( x, y );
 	}
 
 
@@ -33,11 +33,11 @@ namespace algorithm_practice_floodfill
 		);
 
 		mEntryPoint = new_entry_point;
-		mGrid.Get( mEntryPoint.x, mEntryPoint.y ).Type = eCellType::Road;
+		mGrid.Set( mEntryPoint.x, mEntryPoint.y, eCellType::Road );
 	}
 	void Grid4Floodfill::SetCellType( const std::size_t x, const std::size_t y, const eCellType cell_type )
 	{
-		mGrid.Get( x, y ).Type = cell_type;
+		mGrid.Set( x, y, cell_type );
 	}
 
 
@@ -62,7 +62,7 @@ namespace algorithm_practice_floodfill
 			grid_value.SetArray();
 			for( const auto& v : mGrid )
 			{
-				grid_value.PushBack( static_cast<int>( v.Type ), document.GetAllocator() );
+				grid_value.PushBack( static_cast<int>( v ), document.GetAllocator() );
 			}
 			document.AddMember( "grid", grid_value, document.GetAllocator() );
 		}

@@ -11,7 +11,7 @@ namespace algorithm_practice_floodfill
 	class Grid4Floodfill
 	{
 	public:
-		using GridT = cpg::Grid<Cell>;
+		using GridT = cpg::Grid<eCellType>;
 
 		explicit Grid4Floodfill();
 
