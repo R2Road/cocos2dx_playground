@@ -71,6 +71,7 @@ namespace algorithm_practice_floodfill
 
 		, mStep( eStep::Entry )
 		, mGrid4Direction()
+		, mCurrentPoint()
 	{}
 
 	Scene* TestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -513,6 +514,8 @@ namespace algorithm_practice_floodfill
 				auto& direction_value = mGrid4Direction.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
 				direction_value.Begin( eDirectionType::None );
 				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, direction_value.GetTotalDirection() );
+
+				mCurrentPoint = mGrid4TileMap.GetEntryPoint();
 			}
 			else
 			{

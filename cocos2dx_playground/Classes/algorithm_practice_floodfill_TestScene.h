@@ -70,5 +70,6 @@ namespace algorithm_practice_floodfill
 
 		eStep mStep;
 		cpg::Grid<DirectionCell> mGrid4Direction;
+		cpg::Point mCurrentPoint;
 	};
 }
