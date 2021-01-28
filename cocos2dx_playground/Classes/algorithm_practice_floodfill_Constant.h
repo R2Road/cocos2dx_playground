@@ -41,7 +41,7 @@ namespace algorithm_practice_floodfill
 		eDirectionType GetCurrentDirection() const { return mCurrentDirection; }
 
 		bool HasDirection() const { return 0 != mTotalDirection; }
-		cpg::Point PopNextDirection();
+		cpg::Point PopDirection();
 
 	private:
 		char mTotalDirection;

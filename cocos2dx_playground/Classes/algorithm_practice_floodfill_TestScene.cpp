@@ -522,7 +522,11 @@ namespace algorithm_practice_floodfill
 				auto& direction_value = mGrid4Direction.Get( mCurrentPoint.x, mCurrentPoint.y );
 				if( direction_value.HasDirection() )
 				{
-					// do Something
+					const auto current_direction = direction_value.GetCurrentDirection();
+					const auto current_direction_point = direction_value.PopDirection();
+
+					// 1. check current direction enable
+					// 2. check next direction enable
 				}
 				else
 				{
