@@ -9,39 +9,39 @@
 
 namespace algorithm_practice_floodfill
 {
-	Grid4Floodfill::Grid4Floodfill() : mEntryPoint( { 0, 0 } ), mGrid()
+	Grid4TileMap::Grid4TileMap() : mEntryPoint( { 0, 0 } ), mGrid()
 	{}
 
-	void Grid4Floodfill::Reset( const std::size_t new_width, const std::size_t new_height )
+	void Grid4TileMap::Reset( const std::size_t new_width, const std::size_t new_height )
 	{
 		mGrid.Reset( new_width, new_height );
 	}
 
 
-	eCellType Grid4Floodfill::GetCellType( const std::size_t x, const std::size_t y )
+	eCellType Grid4TileMap::GetCellType( const std::size_t x, const std::size_t y )
 	{
 		return mGrid.Get( x, y );
 	}
 
 
-	void Grid4Floodfill::SetEntryPoint( const cpg::Point& new_entry_point )
+	void Grid4TileMap::SetEntryPoint( const cpg::Point& new_entry_point )
 	{
 		CCASSERT(
 			0 <= new_entry_point.x && static_cast<int>( mGrid.GetWidth() ) > new_entry_point.x
 			&& 0 <= new_entry_point.y && static_cast<int>( mGrid.GetHeight() ) > new_entry_point.y
-			, "Failed : Grid4Floodfill::SetEntryPoint"
+			, "Failed : Grid4TileMap::SetEntryPoint"
 		);
 
 		mEntryPoint = new_entry_point;
 		mGrid.Set( mEntryPoint.x, mEntryPoint.y, eCellType::Road );
 	}
-	void Grid4Floodfill::SetCellType( const std::size_t x, const std::size_t y, const eCellType cell_type )
+	void Grid4TileMap::SetCellType( const std::size_t x, const std::size_t y, const eCellType cell_type )
 	{
 		mGrid.Set( x, y, cell_type );
 	}
 
 
-	void Grid4Floodfill::ExportJsonString( std::string& out_json_string ) const
+	void Grid4TileMap::ExportJsonString( std::string& out_json_string ) const
 	{
 		rapidjson::Document document;
 		document.SetObject();
@@ -87,7 +87,7 @@ namespace algorithm_practice_floodfill
 		out_json_string = buffer.GetString();
 		out_json_string += "\n";
 	}
-	bool Grid4Floodfill::LoadJsonString( const std::string& json_string )
+	bool Grid4TileMap::LoadJsonString( const std::string& json_string )
 	{
 		rapidjson::Document doc;
 		doc.Parse<0>( json_string.c_str() );

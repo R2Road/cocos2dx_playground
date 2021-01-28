@@ -59,7 +59,7 @@ namespace algorithm_practice_floodfill
 
 		cpg::TileSheetConfiguration mTileSheetConfiguration;
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
-		Grid4Floodfill mGrid;
+		Grid4TileMap mGrid;
 		step_defender::game::TileMapNode* mTileMapNode;
 		int mToolIndex;
 

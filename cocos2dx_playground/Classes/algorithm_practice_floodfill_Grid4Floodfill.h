@@ -8,12 +8,12 @@
 
 namespace algorithm_practice_floodfill
 {
-	class Grid4Floodfill
+	class Grid4TileMap
 	{
 	public:
 		using GridT = cpg::Grid<eCellType>;
 
-		explicit Grid4Floodfill();
+		explicit Grid4TileMap();
 
 		void Reset( const std::size_t new_width, const std::size_t new_height );
 
