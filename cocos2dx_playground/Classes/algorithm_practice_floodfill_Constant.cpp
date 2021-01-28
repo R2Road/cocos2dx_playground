@@ -35,7 +35,6 @@ namespace algorithm_practice_floodfill
 			break;
 		}
 
-		RotateCurrentDirection( true );
 		return out_point;
 	}
 

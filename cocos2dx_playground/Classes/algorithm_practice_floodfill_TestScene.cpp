@@ -524,6 +524,7 @@ namespace algorithm_practice_floodfill
 				{
 					const auto current_direction = direction_value.GetCurrentDirection();
 					const auto current_direction_point = direction_value.PopDirection();
+					direction_value.RotateCurrentDirection( true );
 
 					// 1. check current direction enable
 					// 2. check next direction enable
