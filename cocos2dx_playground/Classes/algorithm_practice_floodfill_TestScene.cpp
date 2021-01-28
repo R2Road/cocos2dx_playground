@@ -519,7 +519,15 @@ namespace algorithm_practice_floodfill
 			}
 			else
 			{
-				// Do Something
+				auto& direction_value = mGrid4Direction.Get( mCurrentPoint.x, mCurrentPoint.y );
+				if( direction_value.HasDirection() )
+				{
+					// do Something
+				}
+				else
+				{
+					// do Something
+				}
 			}
 		}
 	}
