@@ -34,14 +34,14 @@ namespace algorithm_practice_floodfill
 	public:
 		DirectionCell();
 
-		void Clear() { mCurrentDirection = eDirectionType::None; };
+		void Clear() { mTotalDirection = eDirectionType::None; };
 		void Begin( const eDirectionType parent_direction );
 
-		char GetTotalDirection() const { return mCurrentDirection; }
-		bool HasDirection() const { return 0 != mCurrentDirection; }
+		char GetTotalDirection() const { return mTotalDirection; }
+		bool HasDirection() const { return 0 != mTotalDirection; }
 		cpg::Point PopNextDirection();
 
 	private:
-		char mCurrentDirection;
+		char mTotalDirection;
 	};
 }
