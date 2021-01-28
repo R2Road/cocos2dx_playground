@@ -10,10 +10,10 @@ namespace cpg
 	class Grid
 	{
 	public:
-		using ValueT = T;
-		using ContainerT = std::vector<ValueT>;
-		using IteratorT = typename std::vector<ValueT>::iterator;
-		using ConstIteratorT = typename std::vector<ValueT>::const_iterator;
+		using CellT = T;
+		using ContainerT = std::vector<CellT>;
+		using IteratorT = typename std::vector<CellT>::iterator;
+		using ConstIteratorT = typename std::vector<CellT>::const_iterator;
 
 		Grid() :
 			mWidth( 1 )
@@ -48,31 +48,31 @@ namespace cpg
 		//
 		// Getter
 		//
-		ValueT& Get( const std::size_t linear_idx )
+		CellT& Get( const std::size_t linear_idx )
 		{
 			if( linear_idx >= static_cast<int>( mContainer.size() ) )
 			{
-				static ValueT dummy;
+				static CellT dummy;
 				return dummy;
 			}
 
 			return mContainer[linear_idx];
 		}
-		ValueT& Get( const std::size_t x, const std::size_t y )
+		CellT& Get( const std::size_t x, const std::size_t y )
 		{
 			return Get( mIndexConverter.To_Linear( x, y ) );
 		}
-		const ValueT& Get( const std::size_t linear_idx ) const
+		const CellT& Get( const std::size_t linear_idx ) const
 		{
 			if( linear_idx >= static_cast<int>( mContainer.size() ) )
 			{
-				static ValueT dummy;
+				static CellT dummy;
 				return dummy;
 			}
 
 			return mContainer[linear_idx];
 		}
-		const ValueT& Get( const std::size_t x, const std::size_t y ) const
+		const CellT& Get( const std::size_t x, const std::size_t y ) const
 		{
 			return Get( mIndexConverter.To_Linear( x, y ) );
 		}
@@ -80,7 +80,7 @@ namespace cpg
 		//
 		// Setter
 		//
-		void Set( const std::size_t linear_idx, const ValueT& new_value )
+		void Set( const std::size_t linear_idx, const CellT& new_value )
 		{
 			if( linear_idx >= static_cast<int>( mContainer.size() ) )
 			{
@@ -89,7 +89,7 @@ namespace cpg
 
 			mContainer[linear_idx] = new_value;
 		}
-		void Set( const std::size_t x, const std::size_t y, const ValueT& new_value )
+		void Set( const std::size_t x, const std::size_t y, const CellT& new_value )
 		{
 			Set(
 				mIndexConverter.To_Linear( x, y )
