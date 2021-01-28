@@ -939,7 +939,7 @@
     <ClCompile Include="..\Classes\cpg_TileSheetUtility.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4Floodfill.cpp">
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.cpp">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1709,7 +1709,7 @@
     <ClInclude Include="..\Classes\cpg_TileSheetUtility.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4Floodfill.h">
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.h">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
   </ItemGroup>

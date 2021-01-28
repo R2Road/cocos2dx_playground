@@ -60,7 +60,7 @@ namespace algorithm_practice_floodfill
 
 		, mPosition2GridIndexConverter( 1, 1 )
 
-		, mGrid()
+		, mGrid4TileMap()
 		, mTileMapNode( nullptr )
 		, mToolIndex( eToolIndex::Wall )
 
@@ -157,9 +157,9 @@ namespace algorithm_practice_floodfill
 
 			const std::string json_string( FileUtils::getInstance()->getStringFromFile( file_path ) );
 
-			if( !mGrid.LoadJsonString( json_string ) )
+			if( !mGrid4TileMap.LoadJsonString( json_string ) )
 			{
-				mGrid.Reset( GRID_WIDTH, GRID_HEIGHT );
+				mGrid4TileMap.Reset( GRID_WIDTH, GRID_HEIGHT );
 			}
 		}
 
@@ -317,7 +317,7 @@ namespace algorithm_practice_floodfill
 		//
 		{
 			std::string json_string;
-			mGrid.ExportJsonString( json_string );
+			mGrid4TileMap.ExportJsonString( json_string );
 
 			std::string file_path = FileUtils::getInstance()->getWritablePath();
 			file_path += FileName;
@@ -343,8 +343,8 @@ namespace algorithm_practice_floodfill
 		//
 		// Reset Grid
 		//
-		mGrid.SetEntryPoint( cpg::Point{ 0, 0 } );
-		for( auto& cell : mGrid )
+		mGrid4TileMap.SetEntryPoint( cpg::Point{ 0, 0 } );
+		for( auto& cell : mGrid4TileMap )
 		{
 			cell = eCellType::Road;
 			//cell.Direction.Reset();
@@ -357,11 +357,11 @@ namespace algorithm_practice_floodfill
 	}
 	void TestScene::ResetView()
 	{
-		for( std::size_t gy = 0; mGrid.GetHeight() > gy; ++gy )
+		for( std::size_t gy = 0; mGrid4TileMap.GetHeight() > gy; ++gy )
 		{
-			for( std::size_t gx = 0; mGrid.GetWidth() > gx; ++gx )
+			for( std::size_t gx = 0; mGrid4TileMap.GetWidth() > gx; ++gx )
 			{
-				const auto& cell_type = mGrid.GetCellType( gx, gy );
+				const auto& cell_type = mGrid4TileMap.GetCellType( gx, gy );
 				const auto tile_point = GetTilePoint( cell_type );
 
 				mTileMapNode->UpdateTile( gx, gy, tile_point.x, tile_point.y );
@@ -414,9 +414,9 @@ namespace algorithm_practice_floodfill
 		switch( mToolIndex )
 		{
 		case eToolIndex::Wall:
-			if( mGrid.GetEntryPoint() != point )
+			if( mGrid4TileMap.GetEntryPoint() != point )
 			{
-				mGrid.SetCellType( point.x, point.y, eCellType::Wall );
+				mGrid4TileMap.SetCellType( point.x, point.y, eCellType::Wall );
 
 				const auto tile_point = GetTilePoint( eCellType::Wall );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
@@ -425,9 +425,9 @@ namespace algorithm_practice_floodfill
 			}
 			break;
 		case eToolIndex::Road:
-			if( mGrid.GetEntryPoint() != point )
+			if( mGrid4TileMap.GetEntryPoint() != point )
 			{
-				mGrid.SetCellType( point.x, point.y, eCellType::Road );
+				mGrid4TileMap.SetCellType( point.x, point.y, eCellType::Road );
 				
 				const auto tile_point = GetTilePoint( eCellType::Road );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
@@ -437,7 +437,7 @@ namespace algorithm_practice_floodfill
 			break;
 		case eToolIndex::Entry:
 		{
-			mGrid.SetEntryPoint( point );
+			mGrid4TileMap.SetEntryPoint( point );
 			updateEntryPointView();
 
 			const auto tile_point = GetTilePoint( eCellType::Road );
@@ -457,7 +457,7 @@ namespace algorithm_practice_floodfill
 		{
 			for( std::size_t x = 0; GRID_WIDTH > x; ++x )
 			{
-				if( eCellType::Road == mGrid.GetCellType( x, y ) )
+				if( eCellType::Road == mGrid4TileMap.GetCellType( x, y ) )
 				{
 					mGridDebugViewNode->UpdateTile( x, y, 0, 0 );
 				}
@@ -472,7 +472,7 @@ namespace algorithm_practice_floodfill
 	{
 		mEntryPointIndicatorNode->setPosition(
 			mTileMapNode->getPosition()
-			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid.GetEntryPoint().y )
+			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid4TileMap.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid4TileMap.GetEntryPoint().y )
 		);
 	}
 
@@ -498,7 +498,7 @@ namespace algorithm_practice_floodfill
 			if( eStep::Entry == mStep )
 			{
 				mStep = eStep::Loop;
-				mDirectionMapNode->UpdateTile( mGrid.GetEntryPoint().x, mGrid.GetEntryPoint().y, 0 );
+				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, 0 );
 			}
 			else
 			{
