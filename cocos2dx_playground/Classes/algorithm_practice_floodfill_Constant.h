@@ -26,6 +26,7 @@ namespace algorithm_practice_floodfill
 		Left = 1 << 3,
 
 		FIRST = Up,
+		ALL = Up | Right | Down | Left,
 	};
 
 	class CellDirection
@@ -35,6 +36,8 @@ namespace algorithm_practice_floodfill
 
 		void Clear() { mCurrentDirection = eDirectionType::None; };
 		void Begin( const eDirectionType parent_direction );
+
+		char GetTotalDirection() const { return mCurrentDirection; }
 		bool HasDirection() const { return 0 != mCurrentDirection; }
 		cpg::Point PopNextDirection();
 

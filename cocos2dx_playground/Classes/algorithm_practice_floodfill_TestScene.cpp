@@ -512,7 +512,7 @@ namespace algorithm_practice_floodfill
 				mStep = eStep::Loop;
 				auto& direction_value = mGrid4Direction.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
 				direction_value.Begin( eDirectionType::None );
-				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, 0 );
+				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, direction_value.GetTotalDirection() );
 			}
 			else
 			{
