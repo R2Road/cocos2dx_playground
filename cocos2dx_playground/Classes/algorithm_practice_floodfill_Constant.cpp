@@ -31,7 +31,6 @@ namespace algorithm_practice_floodfill
 			break;
 
 		default:
-			mTotalDirection = 0;
 			out_point = cpg::Point{ 0, 0 };
 			break;
 		}
