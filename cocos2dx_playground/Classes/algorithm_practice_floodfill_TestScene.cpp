@@ -68,6 +68,8 @@ namespace algorithm_practice_floodfill
 		, mGridDebugViewNode( nullptr )
 
 		, mDirectionMapNode( nullptr )
+
+		, mStep( eStep::Entry )
 	{}
 
 	Scene* TestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -122,6 +124,11 @@ namespace algorithm_practice_floodfill
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[Mouse] : " << "Edit Grid";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[R] : " << "Reset";
+			ss << std::endl;
+			ss << "[Space] : " << "Step";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -372,6 +379,11 @@ namespace algorithm_practice_floodfill
 	}
 	void TestScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
+		if( eStep::Entry != mStep )
+		{
+			return;
+		}
+
 		auto button = static_cast<ui::Button*>( sender );
 
 		Vec2 pos;
@@ -472,6 +484,26 @@ namespace algorithm_practice_floodfill
 		{
 			helper::BackToThePreviousScene::MoveBack();
 			return;
+		}
+
+		if( EventKeyboard::KeyCode::KEY_R == key_code )
+		{
+			mStep = eStep::Entry;
+			mDirectionMapNode->Reset();
+			return;
+		}
+
+		if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
+		{
+			if( eStep::Entry == mStep )
+			{
+				mStep = eStep::Loop;
+				mDirectionMapNode->UpdateTile( mGrid.GetEntryPoint().x, mGrid.GetEntryPoint().y, 0 );
+			}
+			else
+			{
+				// Do Something
+			}
 		}
 	}
 }

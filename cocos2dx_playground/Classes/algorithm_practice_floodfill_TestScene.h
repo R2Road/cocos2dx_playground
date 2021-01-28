@@ -24,6 +24,12 @@ namespace algorithm_practice_floodfill
 	class TestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
+		enum eStep
+		{
+			Entry,
+			Loop,
+		};
+
 		TestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
@@ -61,5 +67,7 @@ namespace algorithm_practice_floodfill
 		step_defender::game::TileMapNode* mGridDebugViewNode;
 
 		DirectionMapNode* mDirectionMapNode;
+
+		eStep mStep;
 	};
 }
