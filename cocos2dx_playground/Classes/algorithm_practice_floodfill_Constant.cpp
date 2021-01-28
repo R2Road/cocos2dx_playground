@@ -5,9 +5,9 @@ namespace algorithm_practice_floodfill
 	CellDirection::CellDirection() : mCurrentDirection( eDirectionType::None )
 	{}
 
-	void CellDirection::Reset()
+	void CellDirection::Begin( const eDirectionType parent_direction )
 	{
-		mCurrentDirection = eDirectionType::FIRST;
+		mCurrentDirection = eDirectionType::ALL ^ parent_direction;
 	}
 
 	cpg::Point CellDirection::PopNextDirection()

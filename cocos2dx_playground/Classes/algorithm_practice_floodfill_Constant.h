@@ -34,7 +34,7 @@ namespace algorithm_practice_floodfill
 		CellDirection();
 
 		void Clear() { mCurrentDirection = eDirectionType::None; };
-		void Reset();
+		void Begin( const eDirectionType parent_direction );
 		bool HasDirection() const { return 0 != mCurrentDirection; }
 		cpg::Point PopNextDirection();
 
