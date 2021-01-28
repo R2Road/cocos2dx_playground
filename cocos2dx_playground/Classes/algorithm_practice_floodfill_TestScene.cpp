@@ -523,8 +523,10 @@ namespace algorithm_practice_floodfill
 				if( direction_value.HasDirection() )
 				{
 					const auto current_direction = direction_value.GetCurrentDirection();
+
 					const auto current_direction_point = direction_value.PopDirection();
 					direction_value.RotateCurrentDirection( true );
+					mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, direction_value.GetTotalDirection() );
 
 					// 1. check current direction enable
 					// 2. check next direction enable

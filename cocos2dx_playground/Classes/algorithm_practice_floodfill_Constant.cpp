@@ -8,31 +8,48 @@ namespace algorithm_practice_floodfill
 	void DirectionCell::Begin( const eDirectionType parent_direction )
 	{
 		mTotalDirection = eDirectionType::ALL;
-		mCurrentDirection = parent_direction;
+
+		if( eDirectionType::None == parent_direction )
+		{
+			mCurrentDirection = eDirectionType::FIRST;
+		}
+		else
+		{
+			mCurrentDirection = parent_direction;
+		}
 	}
 
 	cpg::Point DirectionCell::PopDirection()
 	{
 		cpg::Point out_point;
 
-		switch( mCurrentDirection )
+		if( mTotalDirection & mCurrentDirection )
 		{
-		case eDirectionType::Up:
-			out_point = cpg::Point{ 0, 1 };
-			break;
-		case eDirectionType::Right:
-			out_point = cpg::Point{ 1, 0 };
-			break;
-		case eDirectionType::Down:
-			out_point = cpg::Point{ 0, -1 };
-			break;
-		case eDirectionType::Left:
-			out_point = cpg::Point{ -1, 0 };
-			break;
+			mTotalDirection ^= mCurrentDirection;
 
-		default:
+			switch( mCurrentDirection )
+			{
+			case eDirectionType::Up:
+				out_point = cpg::Point{ 0, 1 };
+				break;
+			case eDirectionType::Right:
+				out_point = cpg::Point{ 1, 0 };
+				break;
+			case eDirectionType::Down:
+				out_point = cpg::Point{ 0, -1 };
+				break;
+			case eDirectionType::Left:
+				out_point = cpg::Point{ -1, 0 };
+				break;
+
+			default:
+				out_point = cpg::Point{ 0, 0 };
+				break;
+			}
+		}
+		else
+		{
 			out_point = cpg::Point{ 0, 0 };
-			break;
 		}
 
 		return out_point;
