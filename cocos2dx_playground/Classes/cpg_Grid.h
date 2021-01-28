@@ -12,8 +12,8 @@ namespace cpg
 	public:
 		using CellT = T;
 		using ContainerT = std::vector<CellT>;
-		using IteratorT = typename std::vector<CellT>::iterator;
-		using ConstIteratorT = typename std::vector<CellT>::const_iterator;
+		using IteratorT = typename ContainerT::iterator;
+		using ConstIteratorT = typename ContainerT::const_iterator;
 
 		Grid() :
 			mWidth( 1 )
