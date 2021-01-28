@@ -45,11 +45,28 @@ namespace cpg
 			mIndexConverter = cpg::GridIndexConverter( mWidth, mHeight );
 		}
 
+		//
+		// Getter
+		//
+		ValueT& Get( const std::size_t linear_idx )
+		{
+			if( linear_idx >= static_cast<int>( mContainer.size() ) )
+			{
+				static ValueT dummy;
+				return dummy;
+			}
+
+			return mContainer[linear_idx];
+		}
+		ValueT& Get( const std::size_t x, const std::size_t y )
+		{
+			return Get( mIndexConverter.To_Linear( x, y ) );
+		}
 		const ValueT& Get( const std::size_t linear_idx ) const
 		{
 			if( linear_idx >= static_cast<int>( mContainer.size() ) )
 			{
-				static const ValueT dummy;
+				static ValueT dummy;
 				return dummy;
 			}
 
@@ -60,7 +77,9 @@ namespace cpg
 			return Get( mIndexConverter.To_Linear( x, y ) );
 		}
 
-
+		//
+		// Setter
+		//
 		void Set( const std::size_t linear_idx, const ValueT& new_value )
 		{
 			if( linear_idx >= static_cast<int>( mContainer.size() ) )

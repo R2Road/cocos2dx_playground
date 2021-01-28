@@ -33,11 +33,11 @@ namespace algorithm_practice_floodfill
 		);
 
 		mEntryPoint = new_entry_point;
-		mGrid.Set( mEntryPoint.x, mEntryPoint.y, Cell{ eCellType::Road } );
+		mGrid.Get( mEntryPoint.x, mEntryPoint.y ).Type = eCellType::Road;
 	}
 	void Grid4Floodfill::SetCellType( const std::size_t x, const std::size_t y, const eCellType cell_type )
 	{
-		mGrid.Set( x, y, Cell{ cell_type } );
+		mGrid.Get( x, y ).Type = cell_type;
 	}
 
 
