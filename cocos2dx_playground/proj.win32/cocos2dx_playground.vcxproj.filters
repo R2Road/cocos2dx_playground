@@ -942,6 +942,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.cpp">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.cpp">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1710,6 +1713,9 @@
       <Filter>src\cpg</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.h">
+      <Filter>src\scene\step99\algorithm_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.h">
       <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
   </ItemGroup>

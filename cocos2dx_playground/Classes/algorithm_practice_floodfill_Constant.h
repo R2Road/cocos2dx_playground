@@ -26,6 +26,7 @@ namespace algorithm_practice_floodfill
 		Left = 1 << 3,
 
 		FIRST = Up,
+		LAST = Left,
 		ALL = Up | Right | Down | Left,
 	};
 
@@ -42,6 +43,8 @@ namespace algorithm_practice_floodfill
 
 		bool HasDirection() const { return 0 != mTotalDirection; }
 		cpg::Point PopDirection();
+
+		void RotateCurrentDirection( const bool rotate_right );
 
 	private:
 		char mTotalDirection;

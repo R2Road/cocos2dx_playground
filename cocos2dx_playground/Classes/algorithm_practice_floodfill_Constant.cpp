@@ -11,11 +11,11 @@ namespace algorithm_practice_floodfill
 		mCurrentDirection = parent_direction;
 	}
 
-	cpg::Point DirectionCell::PopNextDirection()
+	cpg::Point DirectionCell::PopDirection()
 	{
 		cpg::Point out_point;
 
-		switch( mTotalDirection )
+		switch( mCurrentDirection )
 		{
 		case eDirectionType::Up:
 			out_point = cpg::Point{ 0, 1 };
@@ -36,7 +36,30 @@ namespace algorithm_practice_floodfill
 			break;
 		}
 
-		mTotalDirection = mTotalDirection << 1;
+		RotateCurrentDirection( true );
 		return out_point;
+	}
+
+	void DirectionCell::RotateCurrentDirection( const bool rotate_right = true )
+	{
+		char new_direction = 0;
+		if( rotate_right )
+		{
+			new_direction = mCurrentDirection << 1;
+			if( eDirectionType::LAST < new_direction )
+			{
+				new_direction = eDirectionType::FIRST;
+			}
+		}
+		else
+		{
+			new_direction = mCurrentDirection >> 1;
+			if( eDirectionType::None >= new_direction )
+			{
+				new_direction = eDirectionType::LAST;
+			}
+		}
+
+		mCurrentDirection = static_cast<eDirectionType>( new_direction );
 	}
 }
