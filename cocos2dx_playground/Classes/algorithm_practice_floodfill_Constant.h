@@ -40,10 +40,4 @@ namespace algorithm_practice_floodfill
 	private:
 		char mCurrentDirection;
 	};
-
-	struct Cell
-	{
-		eCellType Type = eCellType::Road;
-		CellDirection Direction;
-	};
 }
