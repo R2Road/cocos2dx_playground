@@ -528,8 +528,16 @@ namespace algorithm_practice_floodfill
 					direction_value.RotateCurrentDirection( true );
 					mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, direction_value.GetTotalDirection() );
 
-					// 1. check current direction enable
-					// 2. check next direction enable
+					auto new_point = mCurrentPoint + current_direction_point;
+
+					if( eCellType::Road == mGrid4TileMap.GetCellType( new_point.x, new_point.y ) )
+					{
+						mCurrentPoint = new_point;
+						
+						auto& next_direction_value = mGrid4Direction.Get( mCurrentPoint.x, mCurrentPoint.y );
+						next_direction_value.Begin( current_direction );
+						mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, next_direction_value.GetTotalDirection() );
+					}
 				}
 				else
 				{
