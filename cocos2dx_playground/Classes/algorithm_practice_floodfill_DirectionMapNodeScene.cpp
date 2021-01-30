@@ -147,16 +147,16 @@ namespace algorithm_practice_floodfill
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			mDirectionMapNode->UpdateTile( 1, 1, eDirectionType::Up );
+			mDirectionMapNode->UpdateTile( 1, 1, Direction4::eDirectionType::Up );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			mDirectionMapNode->UpdateTile( 1, 1, eDirectionType::Up | eDirectionType::Right );
+			mDirectionMapNode->UpdateTile( 1, 1, Direction4::eDirectionType::Up | Direction4::eDirectionType::Right );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			mDirectionMapNode->UpdateTile( 1, 1, eDirectionType::Up | eDirectionType::Right | eDirectionType::Down );
+			mDirectionMapNode->UpdateTile( 1, 1, Direction4::eDirectionType::Up | Direction4::eDirectionType::Right | Direction4::eDirectionType::Down );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			mDirectionMapNode->UpdateTile( 1, 1, eDirectionType::Up | eDirectionType::Right | eDirectionType::Down | eDirectionType::Left );
+			mDirectionMapNode->UpdateTile( 1, 1, Direction4::eDirectionType::Up | Direction4::eDirectionType::Right | Direction4::eDirectionType::Down | Direction4::eDirectionType::Left );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
 			mDirectionMapNode->UpdateTile( 1, 1, 0 );
@@ -171,7 +171,7 @@ namespace algorithm_practice_floodfill
 			{
 				for( int tx = 0; GRID_WIDTH > tx; ++tx )
 				{
-					mDirectionMapNode->UpdateTile( tx, ty, eDirectionType::Up | eDirectionType::Right | eDirectionType::Down | eDirectionType::Left );
+					mDirectionMapNode->UpdateTile( tx, ty, Direction4::eDirectionType::Up | Direction4::eDirectionType::Right | Direction4::eDirectionType::Down | Direction4::eDirectionType::Left );
 				}
 			}
 			break;

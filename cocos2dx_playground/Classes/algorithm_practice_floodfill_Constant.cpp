@@ -29,16 +29,16 @@ namespace algorithm_practice_floodfill
 	}
 
 
-	DirectionCell::DirectionCell() : mTotalDirection( eDirectionType::None ), mCurrentDirection( eDirectionType::FIRST )
+	DirectionCell::DirectionCell() : mTotalDirection( Direction4::eDirectionType::None ), mCurrentDirection( Direction4::eDirectionType::FIRST )
 	{}
 
-	void DirectionCell::Begin( const eDirectionType parent_direction )
+	void DirectionCell::Begin( const Direction4::eDirectionType parent_direction )
 	{
-		mTotalDirection = eDirectionType::ALL;
+		mTotalDirection = Direction4::eDirectionType::ALL;
 
-		if( eDirectionType::None == parent_direction )
+		if( Direction4::eDirectionType::None == parent_direction )
 		{
-			mCurrentDirection = eDirectionType::FIRST;
+			mCurrentDirection = Direction4::eDirectionType::FIRST;
 		}
 		else
 		{
@@ -56,16 +56,16 @@ namespace algorithm_practice_floodfill
 
 			switch( mCurrentDirection.GetState() )
 			{
-			case eDirectionType::Up:
+			case Direction4::eDirectionType::Up:
 				out_point = cpg::Point{ 0, 1 };
 				break;
-			case eDirectionType::Right:
+			case Direction4::eDirectionType::Right:
 				out_point = cpg::Point{ 1, 0 };
 				break;
-			case eDirectionType::Down:
+			case Direction4::eDirectionType::Down:
 				out_point = cpg::Point{ 0, -1 };
 				break;
-			case eDirectionType::Left:
+			case Direction4::eDirectionType::Left:
 				out_point = cpg::Point{ -1, 0 };
 				break;
 

@@ -17,22 +17,22 @@ namespace algorithm_practice_floodfill
 		Wall,
 	};
 
-	enum eDirectionType
-	{
-		None = 0,
-		Up = 1,
-		Right = 1 << 1,
-		Down = 1 << 2,
-		Left = 1 << 3,
-
-		FIRST = Up,
-		LAST = Left,
-		ALL = Up | Right | Down | Left,
-	};
-
 	class Direction4
 	{
 	public:
+		enum eDirectionType
+		{
+			None = 0,
+			Up = 1,
+			Right = 1 << 1,
+			Down = 1 << 2,
+			Left = 1 << 3,
+
+			FIRST = Up,
+			LAST = Left,
+			ALL = Up | Right | Down | Left,
+		};
+
 		Direction4();
 		Direction4( const eDirectionType state );
 
@@ -50,11 +50,11 @@ namespace algorithm_practice_floodfill
 	public:
 		DirectionCell();
 
-		void Clear() { mTotalDirection = eDirectionType::None; };
-		void Begin( const eDirectionType parent_direction );
+		void Clear() { mTotalDirection = Direction4::eDirectionType::None; };
+		void Begin( const Direction4::eDirectionType parent_direction );
 
 		char GetTotalDirection() const { return mTotalDirection; }
-		eDirectionType GetCurrentDirection() const { return mCurrentDirection.GetState(); }
+		Direction4::eDirectionType GetCurrentDirection() const { return mCurrentDirection.GetState(); }
 
 		bool HasDirection() const { return 0 != mTotalDirection; }
 		cpg::Point PopDirection();

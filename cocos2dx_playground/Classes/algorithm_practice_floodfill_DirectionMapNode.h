@@ -36,7 +36,7 @@ namespace algorithm_practice_floodfill
 		void updateColor() override;
 
 		std::size_t ConvertPoint2QuadIndex( const int point_x, const int point_y, const int offset ) const;
-		cocos2d::Rect ConvertDirection2TileRect( const eDirectionType direction_type ) const;
+		cocos2d::Rect ConvertDirection2TileRect( const Direction4::eDirectionType direction_type ) const;
 
 	public:
 		void Reset();
