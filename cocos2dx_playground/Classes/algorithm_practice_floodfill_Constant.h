@@ -51,10 +51,10 @@ namespace algorithm_practice_floodfill
 		DirectionCell();
 
 		void Clear() { mTotalDirection = Direction4::eState::None; };
-		void Begin( const Direction4::eState parent_direction );
+		void Begin( const Direction4 parent_direction );
 
 		char GetTotalDirection() const { return mTotalDirection; }
-		Direction4::eState GetCurrentDirection() const { return mCurrentDirection.GetState(); }
+		Direction4 GetCurrentDirection() const { return mCurrentDirection.GetState(); }
 
 		bool HasDirection() const { return 0 != mTotalDirection; }
 		cpg::Point PopDirection();

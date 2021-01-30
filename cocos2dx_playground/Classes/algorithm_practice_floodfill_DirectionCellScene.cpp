@@ -122,7 +122,7 @@ namespace algorithm_practice_floodfill
 
 	void DirectionCellScene::updateDirectionView()
 	{
-		switch( mDirectionCell.GetCurrentDirection() )
+		switch( mDirectionCell.GetCurrentDirection().GetState() )
 		{
 		case Direction4::eState::Up:
 			mDirectionView->setString( "Up" );

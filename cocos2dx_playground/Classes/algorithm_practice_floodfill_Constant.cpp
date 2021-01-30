@@ -32,11 +32,11 @@ namespace algorithm_practice_floodfill
 	DirectionCell::DirectionCell() : mTotalDirection( Direction4::eState::None ), mCurrentDirection( Direction4::eState::FIRST )
 	{}
 
-	void DirectionCell::Begin( const Direction4::eState parent_direction )
+	void DirectionCell::Begin( const Direction4 parent_direction )
 	{
 		mTotalDirection = Direction4::eState::ALL;
 
-		if( Direction4::eState::None == parent_direction )
+		if( Direction4::eState::None == parent_direction.GetState() )
 		{
 			mCurrentDirection = Direction4::eState::FIRST;
 		}
