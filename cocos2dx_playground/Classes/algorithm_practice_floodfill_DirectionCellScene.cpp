@@ -124,16 +124,16 @@ namespace algorithm_practice_floodfill
 	{
 		switch( mDirectionCell.GetCurrentDirection() )
 		{
-		case Direction4::eDirectionType::Up:
+		case Direction4::eState::Up:
 			mDirectionView->setString( "Up" );
 			break;
-		case Direction4::eDirectionType::Right:
+		case Direction4::eState::Right:
 			mDirectionView->setString( "Right" );
 			break;
-		case Direction4::eDirectionType::Down:
+		case Direction4::eState::Down:
 			mDirectionView->setString( "Down" );
 			break;
-		case Direction4::eDirectionType::Left:
+		case Direction4::eState::Left:
 			mDirectionView->setString( "Left" );
 			break;
 

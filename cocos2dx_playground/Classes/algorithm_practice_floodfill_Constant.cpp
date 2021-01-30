@@ -2,8 +2,8 @@
 
 namespace algorithm_practice_floodfill
 {
-	Direction4::Direction4() : mState( eDirectionType::Up ) {}
-	Direction4::Direction4( const eDirectionType state ) : mState( state ) {}
+	Direction4::Direction4() : mState( eState::Up ) {}
+	Direction4::Direction4( const eState state ) : mState( state ) {}
 
 	void Direction4::Rotate( const bool rotate_right )
 	{
@@ -11,34 +11,34 @@ namespace algorithm_practice_floodfill
 		if( rotate_right )
 		{
 			new_state = mState << 1;
-			if( eDirectionType::LAST < new_state )
+			if( eState::LAST < new_state )
 			{
-				new_state = eDirectionType::FIRST;
+				new_state = eState::FIRST;
 			}
 		}
 		else
 		{
 			new_state = mState >> 1;
-			if( eDirectionType::None >= new_state )
+			if( eState::None >= new_state )
 			{
-				new_state = eDirectionType::LAST;
+				new_state = eState::LAST;
 			}
 		}
 
-		mState = static_cast<eDirectionType>( new_state );
+		mState = static_cast<eState>( new_state );
 	}
 
 
-	DirectionCell::DirectionCell() : mTotalDirection( Direction4::eDirectionType::None ), mCurrentDirection( Direction4::eDirectionType::FIRST )
+	DirectionCell::DirectionCell() : mTotalDirection( Direction4::eState::None ), mCurrentDirection( Direction4::eState::FIRST )
 	{}
 
-	void DirectionCell::Begin( const Direction4::eDirectionType parent_direction )
+	void DirectionCell::Begin( const Direction4::eState parent_direction )
 	{
-		mTotalDirection = Direction4::eDirectionType::ALL;
+		mTotalDirection = Direction4::eState::ALL;
 
-		if( Direction4::eDirectionType::None == parent_direction )
+		if( Direction4::eState::None == parent_direction )
 		{
-			mCurrentDirection = Direction4::eDirectionType::FIRST;
+			mCurrentDirection = Direction4::eState::FIRST;
 		}
 		else
 		{
@@ -56,16 +56,16 @@ namespace algorithm_practice_floodfill
 
 			switch( mCurrentDirection.GetState() )
 			{
-			case Direction4::eDirectionType::Up:
+			case Direction4::eState::Up:
 				out_point = cpg::Point{ 0, 1 };
 				break;
-			case Direction4::eDirectionType::Right:
+			case Direction4::eState::Right:
 				out_point = cpg::Point{ 1, 0 };
 				break;
-			case Direction4::eDirectionType::Down:
+			case Direction4::eState::Down:
 				out_point = cpg::Point{ 0, -1 };
 				break;
-			case Direction4::eDirectionType::Left:
+			case Direction4::eState::Left:
 				out_point = cpg::Point{ -1, 0 };
 				break;
 
