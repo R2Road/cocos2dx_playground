@@ -30,6 +30,21 @@ namespace algorithm_practice_floodfill
 		ALL = Up | Right | Down | Left,
 	};
 
+	class Direction4
+	{
+	public:
+		Direction4();
+		Direction4( const eDirectionType state );
+
+		eDirectionType GetState() const { return mState; }
+		void SetState( eDirectionType state ) { mState = state; }
+
+		void Rotate( const bool rotate_right );
+
+	private:
+		eDirectionType mState;
+	};
+
 	class DirectionCell
 	{
 	public:
@@ -39,7 +54,7 @@ namespace algorithm_practice_floodfill
 		void Begin( const eDirectionType parent_direction );
 
 		char GetTotalDirection() const { return mTotalDirection; }
-		eDirectionType GetCurrentDirection() const { return mCurrentDirection; }
+		eDirectionType GetCurrentDirection() const { return mCurrentDirection.GetState(); }
 
 		bool HasDirection() const { return 0 != mTotalDirection; }
 		cpg::Point PopDirection();
@@ -48,6 +63,6 @@ namespace algorithm_practice_floodfill
 
 	private:
 		char mTotalDirection;
-		eDirectionType mCurrentDirection;
+		Direction4 mCurrentDirection;
 	};
 }

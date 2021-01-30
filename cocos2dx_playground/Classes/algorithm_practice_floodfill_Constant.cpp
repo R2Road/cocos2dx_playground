@@ -2,6 +2,33 @@
 
 namespace algorithm_practice_floodfill
 {
+	Direction4::Direction4() : mState( eDirectionType::Up ) {}
+	Direction4::Direction4( const eDirectionType state ) : mState( state ) {}
+
+	void Direction4::Rotate( const bool rotate_right )
+	{
+		char new_state = 0;
+		if( rotate_right )
+		{
+			new_state = mState << 1;
+			if( eDirectionType::LAST < new_state )
+			{
+				new_state = eDirectionType::FIRST;
+			}
+		}
+		else
+		{
+			new_state = mState >> 1;
+			if( eDirectionType::None >= new_state )
+			{
+				new_state = eDirectionType::LAST;
+			}
+		}
+
+		mState = static_cast<eDirectionType>( new_state );
+	}
+
+
 	DirectionCell::DirectionCell() : mTotalDirection( eDirectionType::None ), mCurrentDirection( eDirectionType::FIRST )
 	{}
 
@@ -23,11 +50,11 @@ namespace algorithm_practice_floodfill
 	{
 		cpg::Point out_point;
 
-		if( mTotalDirection & mCurrentDirection )
+		if( mTotalDirection & mCurrentDirection.GetState() )
 		{
-			mTotalDirection ^= mCurrentDirection;
+			mTotalDirection ^= mCurrentDirection.GetState();
 
-			switch( mCurrentDirection )
+			switch( mCurrentDirection.GetState() )
 			{
 			case eDirectionType::Up:
 				out_point = cpg::Point{ 0, 1 };
@@ -55,26 +82,8 @@ namespace algorithm_practice_floodfill
 		return out_point;
 	}
 
-	void DirectionCell::RotateCurrentDirection( const bool rotate_right = true )
+	void DirectionCell::RotateCurrentDirection( const bool rotate_right )
 	{
-		char new_direction = 0;
-		if( rotate_right )
-		{
-			new_direction = mCurrentDirection << 1;
-			if( eDirectionType::LAST < new_direction )
-			{
-				new_direction = eDirectionType::FIRST;
-			}
-		}
-		else
-		{
-			new_direction = mCurrentDirection >> 1;
-			if( eDirectionType::None >= new_direction )
-			{
-				new_direction = eDirectionType::LAST;
-			}
-		}
-
-		mCurrentDirection = static_cast<eDirectionType>( new_direction );
+		mCurrentDirection.Rotate( rotate_right );
 	}
 }
