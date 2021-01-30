@@ -34,8 +34,6 @@ namespace algorithm_practice_floodfill
 
 	void DirectionCell::Begin( const Direction4 parent_direction )
 	{
-		mTotalDirection = Direction4::eState::ALL;
-
 		if( Direction4::eState::None == parent_direction.GetState() )
 		{
 			mCurrentDirection = Direction4::eState::FIRST;
@@ -44,6 +42,13 @@ namespace algorithm_practice_floodfill
 		{
 			mCurrentDirection = parent_direction;
 		}
+
+		mTotalDirection = Direction4::eState::ALL;
+
+		auto temp_direction4 = parent_direction;
+		temp_direction4.Rotate( true );
+		temp_direction4.Rotate( true );
+		mTotalDirection ^= temp_direction4.GetState();
 	}
 
 	cpg::Point DirectionCell::PopDirection()
