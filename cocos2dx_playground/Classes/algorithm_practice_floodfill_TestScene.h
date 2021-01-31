@@ -4,7 +4,7 @@
 #include "ui/UIWidget.h"
 
 #include "algorithm_practice_floodfill_Constant.h"
-#include "algorithm_practice_floodfill_Grid4Floodfill.h"
+#include "algorithm_practice_floodfill_Grid4TileMap.h"
 #include "cpg_Position2GridIndexConverter.h"
 #include "cpg_TileSheetConfiguration.h"
 #include "helper_BackToThePreviousScene.h"
@@ -24,6 +24,12 @@ namespace algorithm_practice_floodfill
 	class TestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
+		enum eStep
+		{
+			Entry,
+			Loop,
+		};
+
 		TestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
@@ -38,9 +44,13 @@ namespace algorithm_practice_floodfill
 		void onExit() override;
 
 	private:
+		void onGridClear( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+		void ResetView();
+
 		void onToolSelect( const int tool_index );
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
-		void onUpdateDebugView();
+		void updateDebugView();
+		void updateEntryPointView();
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
@@ -49,7 +59,7 @@ namespace algorithm_practice_floodfill
 
 		cpg::TileSheetConfiguration mTileSheetConfiguration;
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
-		Grid4Floodfill mGrid;
+		Grid4TileMap mGrid4TileMap;
 		step_defender::game::TileMapNode* mTileMapNode;
 		int mToolIndex;
 
@@ -57,5 +67,9 @@ namespace algorithm_practice_floodfill
 		step_defender::game::TileMapNode* mGridDebugViewNode;
 
 		DirectionMapNode* mDirectionMapNode;
+
+		eStep mStep;
+		cpg::Grid<Cell4FloodFill> mGrid4FloodFill;
+		cpg::Point mCurrentPoint;
 	};
 }

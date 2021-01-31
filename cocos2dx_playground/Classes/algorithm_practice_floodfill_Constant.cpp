@@ -2,35 +2,57 @@
 
 namespace algorithm_practice_floodfill
 {
-	CellDirection::CellDirection() : mCurrentDirection( eDirectionType::FIRST )
+	Cell4FloodFill::Cell4FloodFill() : 
+		mValid( false )
+		, mParentPoint( { -1, -1 } )
+		, mTotalDirection( cpg::Direction4::eState::None )
+		, mCurrentDirection( cpg::Direction4::eState::FIRST )
 	{}
 
-	cpg::Point CellDirection::PopNextDirection()
+	void Cell4FloodFill::Begin( const cpg::Point parent_point, const cpg::Direction4 parent_direction )
 	{
-		cpg::Point out_point;
+		mValid = true;
 
-		switch( mCurrentDirection )
+		mParentPoint = parent_point;
+
+		if( cpg::Direction4::eState::None == parent_direction.GetState() )
 		{
-		case eDirectionType::Up:
-			out_point = cpg::Point{ 0, 1 };
-			break;
-		case eDirectionType::Right:
-			out_point = cpg::Point{ 1, 0 };
-			break;
-		case eDirectionType::Down:
-			out_point = cpg::Point{ 0, -1 };
-			break;
-		case eDirectionType::Left:
-			out_point = cpg::Point{ -1, 0 };
-			break;
-
-		default:
-			mCurrentDirection = 0;
-			out_point = cpg::Point{ 0, 0 };
-			break;
+			mCurrentDirection = cpg::Direction4::eState::FIRST;
+		}
+		else
+		{
+			mCurrentDirection = parent_direction;
 		}
 
-		mCurrentDirection = mCurrentDirection << 1;
-		return out_point;
+		mTotalDirection = cpg::Direction4::eState::ALL;
+
+		auto temp_direction4 = parent_direction;
+		temp_direction4.Rotate( true );
+		temp_direction4.Rotate( true );
+		mTotalDirection ^= temp_direction4.GetState();
+	}
+
+	cpg::Direction4 Cell4FloodFill::PopDirection()
+	{
+		cpg::Direction4 out_direction( cpg::Direction4::None );
+
+		if( HasDirection() )
+		{
+			while( 0 == ( mTotalDirection & mCurrentDirection.GetState() ) )
+			{
+				mCurrentDirection.Rotate( true );
+			}
+
+			mTotalDirection ^= mCurrentDirection.GetState();
+
+			out_direction = mCurrentDirection;
+		}
+
+		return out_direction;
+	}
+
+	void Cell4FloodFill::RotateCurrentDirection( const bool rotate_right )
+	{
+		mCurrentDirection.Rotate( rotate_right );
 	}
 }

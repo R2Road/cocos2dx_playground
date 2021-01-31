@@ -147,23 +147,23 @@ namespace algorithm_practice_floodfill
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			mDirectionMapNode->UpdateTile( 1, 1, eDirectionType::Up );
+			mDirectionMapNode->UpdateTile( 1, 1, cpg::Direction4::eState::Up );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			mDirectionMapNode->UpdateTile( 1, 1, eDirectionType::Up | eDirectionType::Right );
+			mDirectionMapNode->UpdateTile( 1, 1, cpg::Direction4::eState::Up | cpg::Direction4::eState::Right );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			mDirectionMapNode->UpdateTile( 1, 1, eDirectionType::Up | eDirectionType::Right | eDirectionType::Down );
+			mDirectionMapNode->UpdateTile( 1, 1, cpg::Direction4::eState::Up | cpg::Direction4::eState::Right | cpg::Direction4::eState::Down );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			mDirectionMapNode->UpdateTile( 1, 1, eDirectionType::Up | eDirectionType::Right | eDirectionType::Down | eDirectionType::Left );
+			mDirectionMapNode->UpdateTile( 1, 1, cpg::Direction4::eState::Up | cpg::Direction4::eState::Right | cpg::Direction4::eState::Down | cpg::Direction4::eState::Left );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
 			mDirectionMapNode->UpdateTile( 1, 1, 0 );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_6:
-			mDirectionMapNode->EraseTile( 1, 1 );
+			mDirectionMapNode->ClearTile( 1, 1 );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
@@ -171,7 +171,7 @@ namespace algorithm_practice_floodfill
 			{
 				for( int tx = 0; GRID_WIDTH > tx; ++tx )
 				{
-					mDirectionMapNode->UpdateTile( tx, ty, eDirectionType::Up | eDirectionType::Right | eDirectionType::Down | eDirectionType::Left );
+					mDirectionMapNode->UpdateTile( tx, ty, cpg::Direction4::eState::Up | cpg::Direction4::eState::Right | cpg::Direction4::eState::Down | cpg::Direction4::eState::Left );
 				}
 			}
 			break;
@@ -180,7 +180,7 @@ namespace algorithm_practice_floodfill
 			{
 				for( int tx = 0; GRID_WIDTH > tx; ++tx )
 				{
-					mDirectionMapNode->EraseTile( tx, ty );
+					mDirectionMapNode->ClearTile( tx, ty );
 				}
 			}
 			break;

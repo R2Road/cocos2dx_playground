@@ -30,8 +30,8 @@ namespace
 {
 	const char* FileName = "algorithm_practice_floodfill_test_scene.json";
 
-	const std::size_t GRID_WIDTH = 12;
-	const std::size_t GRID_HEIGHT = 12;
+	const std::size_t GRID_WIDTH = 13;
+	const std::size_t GRID_HEIGHT = 13;
 
 	const int TAG_ToolBar = 20140416;
 
@@ -60,7 +60,7 @@ namespace algorithm_practice_floodfill
 
 		, mPosition2GridIndexConverter( 1, 1 )
 
-		, mGrid()
+		, mGrid4TileMap()
 		, mTileMapNode( nullptr )
 		, mToolIndex( eToolIndex::Wall )
 
@@ -68,6 +68,10 @@ namespace algorithm_practice_floodfill
 		, mGridDebugViewNode( nullptr )
 
 		, mDirectionMapNode( nullptr )
+
+		, mStep( eStep::Entry )
+		, mGrid4FloodFill()
+		, mCurrentPoint()
 	{}
 
 	Scene* TestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -122,6 +126,11 @@ namespace algorithm_practice_floodfill
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[Mouse] : " << "Edit Grid";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[R] : " << "Reset";
+			ss << std::endl;
+			ss << "[Space] : " << "Step";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -144,28 +153,32 @@ namespace algorithm_practice_floodfill
 		// Load Grid
 		//
 		{
+			// Load TileMap Grid
 			std::string file_path;
 			file_path = FileUtils::getInstance()->getWritablePath();
 			file_path += FileName;
 
 			const std::string json_string( FileUtils::getInstance()->getStringFromFile( file_path ) );
 
-			if( !mGrid.LoadJsonString( json_string ) )
+			if( !mGrid4TileMap.LoadJsonString( json_string ) )
 			{
-				mGrid.Reset( GRID_WIDTH, GRID_HEIGHT );
+				mGrid4TileMap.Reset( GRID_WIDTH, GRID_HEIGHT );
 			}
+
+			// Setup Direction Grid
+			mGrid4FloodFill.Reset( mGrid4TileMap.GetWidth(), mGrid4TileMap.GetHeight() );
 		}
 
 		//
 		// Tool Bar
 		//
 		{
-			auto tool_bar_node = cpgui::ToolBarNode::create();
+			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 40.f, 20.f ) );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( eToolIndex::Wall, "W", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Wall ) );
-			tool_bar_node->AddTool( eToolIndex::Road, "R", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Road ) );
-			tool_bar_node->AddTool( eToolIndex::Entry, "E", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Entry ) );
+			tool_bar_node->AddTool( eToolIndex::Wall, "Wall", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Wall ) );
+			tool_bar_node->AddTool( eToolIndex::Road, "Road", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Road ) );
+			tool_bar_node->AddTool( eToolIndex::Entry, "Entry", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Entry ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin
@@ -175,6 +188,30 @@ namespace algorithm_practice_floodfill
 
 			// Set Indicator
 			tool_bar_node->SelectTool( mToolIndex );
+		}
+
+		//
+		// Clear Button
+		//
+		{
+			auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+			button->setAnchorPoint( Vec2::ZERO );
+			button->setScale9Enabled( true );
+			button->setContentSize( Size( 40.f, 20.f ) );
+			button->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+				- Vec2( button->getContentSize().width, button->getContentSize().height )
+				- Vec2( 60.f, 0.f )
+			);
+			button->addTouchEventListener( CC_CALLBACK_2( TestScene::onGridClear, this ) );
+			addChild( button, std::numeric_limits<int>::max() );
+
+			// Title
+			{
+				auto label = Label::createWithTTF( "Clear", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+				button->setTitleLabel( label );
+			}
 		}
 
 		//
@@ -265,21 +302,7 @@ namespace algorithm_practice_floodfill
 		//
 		// Setup
 		//
-		for( int gy = 0; mGrid.GetHeight() > gy; ++gy )
-		{
-			for( int gx = 0; mGrid.GetWidth() > gx; ++gx )
-			{
-				const auto& value = mGrid.Get( gx, gy );
-				const auto tile_point = GetTilePoint( value.Type );
-
-				mTileMapNode->UpdateTile( gx, gy, tile_point.x, tile_point.y );
-			}
-		}
-		onUpdateDebugView();
-		mEntryPointIndicatorNode->setPosition(
-			mTileMapNode->getPosition()
-			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid.GetEntryPoint().y )
-		);
+		ResetView();
 
 		return true;
 	}
@@ -300,15 +323,12 @@ namespace algorithm_practice_floodfill
 		//
 		{
 			std::string json_string;
-			mGrid.ExportJsonString( json_string );
+			mGrid4TileMap.ExportJsonString( json_string );
 
 			std::string file_path = FileUtils::getInstance()->getWritablePath();
 			file_path += FileName;
 
-			if( FileUtils::getInstance()->writeStringToFile( json_string, file_path ) )
-			{
-				CCLOG( "Failed : Terrain Data Save" );
-			}
+			CCASSERT( FileUtils::getInstance()->writeStringToFile( json_string, file_path ), "Failed : Terrain Data Save" );
 		}
 
 		assert( mKeyboardListener );
@@ -319,6 +339,48 @@ namespace algorithm_practice_floodfill
 	}
 
 
+	void TestScene::onGridClear( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+	{
+		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
+		{
+			return;
+		}
+
+		//
+		// Reset Grid
+		//
+		mGrid4TileMap.SetEntryPoint( cpg::Point{ 0, 0 } );
+		for( auto& t : mGrid4TileMap )
+		{
+			t = eCellType::Road;
+		}
+		for( auto& d : mGrid4FloodFill )
+		{
+			d.Clear();
+		}
+
+		//
+		// Reset View
+		//
+		ResetView();
+	}
+	void TestScene::ResetView()
+	{
+		for( std::size_t gy = 0; mGrid4TileMap.GetHeight() > gy; ++gy )
+		{
+			for( std::size_t gx = 0; mGrid4TileMap.GetWidth() > gx; ++gx )
+			{
+				const auto& cell_type = mGrid4TileMap.GetCellType( gx, gy );
+				const auto tile_point = GetTilePoint( cell_type );
+
+				mTileMapNode->UpdateTile( gx, gy, tile_point.x, tile_point.y );
+			}
+		}
+		updateDebugView();
+		updateEntryPointView();
+	}
+
+
 	void TestScene::onToolSelect( const int tool_index )
 	{
 		mToolIndex = tool_index;
@@ -326,6 +388,11 @@ namespace algorithm_practice_floodfill
 	}
 	void TestScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
+		if( eStep::Entry != mStep )
+		{
+			return;
+		}
+
 		auto button = static_cast<ui::Button*>( sender );
 
 		Vec2 pos;
@@ -356,40 +423,36 @@ namespace algorithm_practice_floodfill
 		switch( mToolIndex )
 		{
 		case eToolIndex::Wall:
-			if( mGrid.GetEntryPoint() != point )
+			if( mGrid4TileMap.GetEntryPoint() != point )
 			{
-				mGrid.Set( point.x, point.y, Cell{ eCellType::Wall } );
+				mGrid4TileMap.SetCellType( point.x, point.y, eCellType::Wall );
 
 				const auto tile_point = GetTilePoint( eCellType::Wall );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
-				onUpdateDebugView();
+				updateDebugView();
 			}
 			break;
 		case eToolIndex::Road:
-			if( mGrid.GetEntryPoint() != point )
+			if( mGrid4TileMap.GetEntryPoint() != point )
 			{
-				mGrid.Set( point.x, point.y, Cell{ eCellType::Road } );
+				mGrid4TileMap.SetCellType( point.x, point.y, eCellType::Road );
 				
 				const auto tile_point = GetTilePoint( eCellType::Road );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
-				onUpdateDebugView();
+				updateDebugView();
 			}
 			break;
 		case eToolIndex::Entry:
 		{
-			mGrid.SetEntryPoint( point );
+			mGrid4TileMap.SetEntryPoint( point );
+			updateEntryPointView();
 
 			const auto tile_point = GetTilePoint( eCellType::Road );
 			mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
-			mEntryPointIndicatorNode->setPosition(
-				mTileMapNode->getPosition()
-				+ Vec2( mTileSheetConfiguration.GetTileWidth() * point.x, mTileSheetConfiguration.GetTileHeight() * point.y )
-			);
-
-			onUpdateDebugView();
+			updateDebugView();
 		}
 		break;
 
@@ -397,13 +460,13 @@ namespace algorithm_practice_floodfill
 			CCASSERT( "Invalid Tool Index : %d", mToolIndex );
 		}
 	}
-	void TestScene::onUpdateDebugView()
+	void TestScene::updateDebugView()
 	{
 		for( std::size_t y = 0; GRID_HEIGHT > y; ++y )
 		{
 			for( std::size_t x = 0; GRID_WIDTH > x; ++x )
 			{
-				if( eCellType::Road == mGrid.Get( x, y ).Type )
+				if( eCellType::Road == mGrid4TileMap.GetCellType( x, y ) )
 				{
 					mGridDebugViewNode->UpdateTile( x, y, 0, 0 );
 				}
@@ -414,6 +477,14 @@ namespace algorithm_practice_floodfill
 			}
 		}
 	}
+	void TestScene::updateEntryPointView()
+	{
+		mEntryPointIndicatorNode->setPosition(
+			mTileMapNode->getPosition()
+			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid4TileMap.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid4TileMap.GetEntryPoint().y )
+		);
+	}
+
 
 
 	void TestScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
@@ -422,6 +493,63 @@ namespace algorithm_practice_floodfill
 		{
 			helper::BackToThePreviousScene::MoveBack();
 			return;
+		}
+
+		if( EventKeyboard::KeyCode::KEY_R == key_code )
+		{
+			mStep = eStep::Entry;
+			for( auto& d : mGrid4FloodFill )
+			{
+				d.Clear();
+			}
+			mDirectionMapNode->Reset();
+			return;
+		}
+
+		if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
+		{
+			if( eStep::Entry == mStep )
+			{
+				mStep = eStep::Loop;
+				auto& current_cell = mGrid4FloodFill.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
+				current_cell.Begin( { -1, -1 }, cpg::Direction4::eState::None );
+				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, current_cell.GetTotalDirection() );
+
+				mCurrentPoint = mGrid4TileMap.GetEntryPoint();
+			}
+			else
+			{
+				auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
+				if( current_cell.HasDirection() )
+				{
+					const auto current_direction = current_cell.PopDirection();
+					mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
+
+					auto new_point = mCurrentPoint + current_direction.GetPoint();
+					if( mGrid4FloodFill.Get( new_point.x, new_point.y ).IsValid() )
+					{
+						return;
+					}
+
+					if( !mGrid4FloodFill.IsIn( new_point.x, new_point.y ) )
+					{
+						return;
+					}
+
+					if( eCellType::Road == mGrid4TileMap.GetCellType( new_point.x, new_point.y ) )
+					{
+						auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
+						next_cell.Begin( mCurrentPoint, current_direction );
+						mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
+
+						mCurrentPoint = new_point;
+					}
+				}
+				else
+				{
+					mCurrentPoint = current_cell.GetParentPoint();
+				}
+			}
 		}
 	}
 }

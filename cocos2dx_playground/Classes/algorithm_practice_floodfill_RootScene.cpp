@@ -11,6 +11,8 @@
 #include "base/CCEventDispatcher.h"
 
 #include "algorithm_practice_floodfill_DirectionMapNodeScene.h"
+#include "algorithm_practice_floodfill_DirectionCellScene.h"
+
 #include "algorithm_practice_floodfill_TestScene.h"
 #include "algorithm_practice_RootScene.h"
 
@@ -66,6 +68,8 @@ namespace algorithm_practice_floodfill
 			ss << std::endl;
 			ss << "[1] : " << DirectionMapNodeScene::getTitle();
 			ss << std::endl;
+			ss << "[2] : " << DirectionCellScene::getTitle();
+			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
@@ -117,6 +121,9 @@ namespace algorithm_practice_floodfill
 
 			case EventKeyboard::KeyCode::KEY_1:
 				_director->replaceScene( algorithm_practice_floodfill::DirectionMapNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+				return;
+			case EventKeyboard::KeyCode::KEY_2:
+				_director->replaceScene( algorithm_practice_floodfill::DirectionCellScene::create( helper::CreateSceneMover<RootScene>() ) );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_SPACE:

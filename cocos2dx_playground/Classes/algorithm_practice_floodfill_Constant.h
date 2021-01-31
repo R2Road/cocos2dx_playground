@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cpg_Point.h"
+#include "cpg_Direction4.h"
 
 namespace algorithm_practice_floodfill
 {
@@ -17,31 +18,30 @@ namespace algorithm_practice_floodfill
 		Wall,
 	};
 
-	enum eDirectionType
-	{
-		Up = 1,
-		Right = 1 << 1,
-		Down = 1 << 2,
-		Left = 1 << 3,
-
-		FIRST = Up,
-	};
-
-	class CellDirection
+	class Cell4FloodFill
 	{
 	public:
-		CellDirection();
+		Cell4FloodFill();
 
-		bool HasDirection() const { return 0 != mCurrentDirection; }
-		cpg::Point PopNextDirection();
+		void Clear() { mValid = false; mParentPoint = { -1, -1 }; mTotalDirection = cpg::Direction4::eState::None; };
+		void Begin( const cpg::Point parent_point, const cpg::Direction4 parent_direction );
+
+		bool IsValid() const { return mValid; }
+
+		cpg::Point GetParentPoint() const { return mParentPoint; }
+
+		char GetTotalDirection() const { return mTotalDirection; }
+		cpg::Direction4 GetCurrentDirection() const { return mCurrentDirection.GetState(); }
+
+		bool HasDirection() const { return 0 != mTotalDirection; }
+		cpg::Direction4 PopDirection();
+
+		void RotateCurrentDirection( const bool rotate_right );
 
 	private:
-		char mCurrentDirection;
-	};
-
-	struct Cell
-	{
-		eCellType Type = eCellType::Road;
-		CellDirection Direction;
+		bool mValid;
+		cpg::Point mParentPoint;
+		char mTotalDirection;
+		cpg::Direction4 mCurrentDirection;
 	};
 }

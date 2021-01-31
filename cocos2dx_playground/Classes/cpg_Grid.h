@@ -10,8 +10,10 @@ namespace cpg
 	class Grid
 	{
 	public:
-		using ValueT = T;
-		using ContainerT = std::vector<ValueT>;
+		using CellT = T;
+		using ContainerT = std::vector<CellT>;
+		using IteratorT = typename ContainerT::iterator;
+		using ConstIteratorT = typename ContainerT::const_iterator;
 
 		Grid() :
 			mWidth( 1 )
@@ -20,12 +22,21 @@ namespace cpg
 			, mIndexConverter( 1, 1 )
 		{}
 
-		virtual ~Grid() {}
-
 	public:
 		std::size_t GetWidth() const { return mWidth; }
 		std::size_t GetHeight() const { return mHeight; }
-		const ContainerT& GetContainer() const { return mContainer; }
+		bool IsIn( const std::size_t x, const std::size_t y ) const
+		{
+			return ( GetWidth() > x && GetHeight() > y );
+		}
+
+		//
+		// Iteration
+		//
+		ConstIteratorT begin() const { return mContainer.begin(); }
+		ConstIteratorT end() const { return mContainer.end(); }
+		IteratorT begin() { return mContainer.begin(); }
+		IteratorT end() { return mContainer.end(); }
 
 		void Reset( const std::size_t new_width, const std::size_t new_height )
 		{
@@ -38,23 +49,42 @@ namespace cpg
 			mIndexConverter = cpg::GridIndexConverter( mWidth, mHeight );
 		}
 
-		const ValueT& Get( const std::size_t linear_idx ) const
+		//
+		// Getter
+		//
+		CellT& Get( const std::size_t linear_idx )
 		{
 			if( linear_idx >= static_cast<int>( mContainer.size() ) )
 			{
-				static const ValueT dummy;
+				static CellT dummy;
 				return dummy;
 			}
 
 			return mContainer[linear_idx];
 		}
-		const ValueT& Get( const std::size_t x, const std::size_t y ) const
+		CellT& Get( const std::size_t x, const std::size_t y )
+		{
+			return Get( mIndexConverter.To_Linear( x, y ) );
+		}
+		const CellT& Get( const std::size_t linear_idx ) const
+		{
+			if( linear_idx >= static_cast<int>( mContainer.size() ) )
+			{
+				static CellT dummy;
+				return dummy;
+			}
+
+			return mContainer[linear_idx];
+		}
+		const CellT& Get( const std::size_t x, const std::size_t y ) const
 		{
 			return Get( mIndexConverter.To_Linear( x, y ) );
 		}
 
-
-		void Set( const std::size_t linear_idx, const ValueT& new_value )
+		//
+		// Setter
+		//
+		void Set( const std::size_t linear_idx, const CellT& new_value )
 		{
 			if( linear_idx >= static_cast<int>( mContainer.size() ) )
 			{
@@ -63,7 +93,7 @@ namespace cpg
 
 			mContainer[linear_idx] = new_value;
 		}
-		void Set( const std::size_t x, const std::size_t y, const ValueT& new_value )
+		void Set( const std::size_t x, const std::size_t y, const CellT& new_value )
 		{
 			Set(
 				mIndexConverter.To_Linear( x, y )

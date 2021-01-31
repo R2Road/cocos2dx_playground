@@ -134,22 +134,22 @@ namespace algorithm_practice_floodfill
 	{
 		return ( ( ( point_x * 5 ) + offset ) ) + ( mConfig.MapWidth * 5 * point_y );
 	}
-	Rect DirectionMapNode::ConvertDirection2TileRect( const eDirectionType direction_type ) const
+	Rect DirectionMapNode::ConvertDirection2TileRect( const cpg::Direction4::eState direction_type ) const
 	{
 		cocos2d::Rect tile_rect;
 
 		switch( direction_type )
 		{
-		case eDirectionType::Up:
+		case cpg::Direction4::eState::Up:
 			tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 1, 3 );
 			break;
-		case eDirectionType::Right:
+		case cpg::Direction4::eState::Right:
 			tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 2, 3 );
 			break;
-		case eDirectionType::Down:
+		case cpg::Direction4::eState::Down:
 			tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 3, 3 );
 			break;
-		case eDirectionType::Left:
+		case cpg::Direction4::eState::Left:
 			tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 4, 3 );
 			break;
 		default:
@@ -163,7 +163,25 @@ namespace algorithm_practice_floodfill
 
 	void DirectionMapNode::Reset()
 	{
-		removeAllChildrenWithCleanup( false );
+		int quad_index = -1;
+		const auto tile_rect = Rect::ZERO;
+		for( int ty = 0; mConfig.MapHeight > ty; ++ty )
+		{
+			for( int tx = 0; mConfig.MapWidth > tx; ++tx )
+			{
+				for( int dir = 0; 5 > dir; ++dir )
+				{
+					mReusedSprite->setTextureRect( tile_rect );
+					mReusedSprite->setPosition(
+						mTileSheetConfig.GetTileWidth() * tx
+						, mTileSheetConfig.GetTileHeight() * ty
+					);
+
+					quad_index = ConvertPoint2QuadIndex( tx, ty, dir );
+					updateQuadFromSprite( mReusedSprite, quad_index );
+				}
+			}
+		}
 	}
 
 	void DirectionMapNode::UpdateTile( const int map_point_x, const int map_point_y, const char direction )
@@ -197,7 +215,7 @@ namespace algorithm_practice_floodfill
 		{
 			result_direction = direction & ( 1 << dir );
 
-			tile_rect = ConvertDirection2TileRect( static_cast<eDirectionType>( result_direction ) );
+			tile_rect = ConvertDirection2TileRect( static_cast<cpg::Direction4::eState>( result_direction ) );
 			mReusedSprite->setTextureRect( tile_rect );
 			mReusedSprite->setPosition(
 				mTileSheetConfig.GetTileWidth() * map_point_x
@@ -206,7 +224,7 @@ namespace algorithm_practice_floodfill
 			updateQuadFromSprite( mReusedSprite, ConvertPoint2QuadIndex( map_point_x, map_point_y, dir ) );
 		}
 	}
-	void DirectionMapNode::EraseTile( const int map_point_x, const int map_point_y )
+	void DirectionMapNode::ClearTile( const int map_point_x, const int map_point_y )
 	{
 		if( mConfig.MapWidth <= map_point_x || mConfig.MapHeight <= map_point_y )
 		{
