@@ -23,8 +23,10 @@ namespace algorithm_practice_floodfill
 	public:
 		Cell4FloodFill();
 
-		void Clear() { mParentPoint = { -1, -1 }, mTotalDirection = cpg::Direction4::eState::None; };
+		void Clear() { mValid = false; mParentPoint = { -1, -1 }; mTotalDirection = cpg::Direction4::eState::None; };
 		void Begin( const cpg::Point parent_point, const cpg::Direction4 parent_direction );
+
+		bool IsValid() const { return mValid; }
 
 		cpg::Point GetParentPoint() const { return mParentPoint; }
 
@@ -37,6 +39,7 @@ namespace algorithm_practice_floodfill
 		void RotateCurrentDirection( const bool rotate_right );
 
 	private:
+		bool mValid;
 		cpg::Point mParentPoint;
 		char mTotalDirection;
 		cpg::Direction4 mCurrentDirection;

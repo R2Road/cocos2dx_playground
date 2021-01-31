@@ -2,11 +2,17 @@
 
 namespace algorithm_practice_floodfill
 {
-	Cell4FloodFill::Cell4FloodFill() : mParentPoint( { -1, -1 } ), mTotalDirection( cpg::Direction4::eState::None ), mCurrentDirection( cpg::Direction4::eState::FIRST )
+	Cell4FloodFill::Cell4FloodFill() : 
+		mValid( false )
+		, mParentPoint( { -1, -1 } )
+		, mTotalDirection( cpg::Direction4::eState::None )
+		, mCurrentDirection( cpg::Direction4::eState::FIRST )
 	{}
 
 	void Cell4FloodFill::Begin( const cpg::Point parent_point, const cpg::Direction4 parent_direction )
 	{
+		mValid = true;
+
 		mParentPoint = parent_point;
 
 		if( cpg::Direction4::eState::None == parent_direction.GetState() )
