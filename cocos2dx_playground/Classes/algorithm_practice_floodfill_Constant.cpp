@@ -30,8 +30,13 @@ namespace algorithm_practice_floodfill
 	{
 		cpg::Point out_point;
 
-		if( mTotalDirection & mCurrentDirection.GetState() )
+		if( HasDirection() )
 		{
+			while( 0 == ( mTotalDirection & mCurrentDirection.GetState() ) )
+			{
+				mCurrentDirection.Rotate( true );
+			}
+
 			mTotalDirection ^= mCurrentDirection.GetState();
 
 			out_point = mCurrentDirection.GetPoint();

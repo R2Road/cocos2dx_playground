@@ -522,13 +522,12 @@ namespace algorithm_practice_floodfill
 				auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
 				if( current_cell.HasDirection() )
 				{
-					const auto current_direction = current_cell.GetCurrentDirection();
-
 					const auto current_direction_point = current_cell.PopDirection();
-					current_cell.RotateCurrentDirection( true );
 					mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
 
 					auto new_point = mCurrentPoint + current_direction_point;
+
+					const auto current_direction = current_cell.GetCurrentDirection();
 
 					if( eCellType::Road == mGrid4TileMap.GetCellType( new_point.x, new_point.y ) )
 					{
