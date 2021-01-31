@@ -526,6 +526,10 @@ namespace algorithm_practice_floodfill
 					mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
 
 					auto new_point = mCurrentPoint + current_direction.GetPoint();
+					if( !mGrid4FloodFill.IsIn( new_point.x, new_point.y ) )
+					{
+						return;
+					}
 
 					if( eCellType::Road == mGrid4TileMap.GetCellType( new_point.x, new_point.y ) )
 					{
