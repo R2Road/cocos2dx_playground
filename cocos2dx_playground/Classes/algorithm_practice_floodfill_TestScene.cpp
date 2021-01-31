@@ -70,7 +70,7 @@ namespace algorithm_practice_floodfill
 		, mDirectionMapNode( nullptr )
 
 		, mStep( eStep::Entry )
-		, mGrid4Direction()
+		, mGrid4FloodFill()
 		, mCurrentPoint()
 	{}
 
@@ -166,7 +166,7 @@ namespace algorithm_practice_floodfill
 			}
 
 			// Setup Direction Grid
-			mGrid4Direction.Reset( mGrid4TileMap.GetWidth(), mGrid4TileMap.GetHeight() );
+			mGrid4FloodFill.Reset( mGrid4TileMap.GetWidth(), mGrid4TileMap.GetHeight() );
 		}
 
 		//
@@ -354,7 +354,7 @@ namespace algorithm_practice_floodfill
 		{
 			t = eCellType::Road;
 		}
-		for( auto& d : mGrid4Direction )
+		for( auto& d : mGrid4FloodFill )
 		{
 			d.Clear();
 		}
@@ -498,7 +498,7 @@ namespace algorithm_practice_floodfill
 		if( EventKeyboard::KeyCode::KEY_R == key_code )
 		{
 			mStep = eStep::Entry;
-			for( auto& d : mGrid4Direction )
+			for( auto& d : mGrid4FloodFill )
 			{
 				d.Clear();
 			}
@@ -511,7 +511,7 @@ namespace algorithm_practice_floodfill
 			if( eStep::Entry == mStep )
 			{
 				mStep = eStep::Loop;
-				auto& direction_value = mGrid4Direction.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
+				auto& direction_value = mGrid4FloodFill.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
 				direction_value.Begin( cpg::Direction4::eState::None );
 				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, direction_value.GetTotalDirection() );
 
@@ -519,7 +519,7 @@ namespace algorithm_practice_floodfill
 			}
 			else
 			{
-				auto& direction_value = mGrid4Direction.Get( mCurrentPoint.x, mCurrentPoint.y );
+				auto& direction_value = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
 				if( direction_value.HasDirection() )
 				{
 					const auto current_direction = direction_value.GetCurrentDirection();
@@ -534,7 +534,7 @@ namespace algorithm_practice_floodfill
 					{
 						mCurrentPoint = new_point;
 						
-						auto& next_direction_value = mGrid4Direction.Get( mCurrentPoint.x, mCurrentPoint.y );
+						auto& next_direction_value = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
 						next_direction_value.Begin( current_direction );
 						mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, next_direction_value.GetTotalDirection() );
 					}
