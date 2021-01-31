@@ -29,4 +29,31 @@ namespace cpg
 
 		mState = static_cast<eState>( new_state );
 	}
+
+	cpg::Point Direction4::GetPoint() const
+	{
+		cpg::Point out_point;
+
+		switch( mState )
+		{
+		case cpg::Direction4::eState::Up:
+			out_point = cpg::Point{ 0, 1 };
+			break;
+		case cpg::Direction4::eState::Right:
+			out_point = cpg::Point{ 1, 0 };
+			break;
+		case cpg::Direction4::eState::Down:
+			out_point = cpg::Point{ 0, -1 };
+			break;
+		case cpg::Direction4::eState::Left:
+			out_point = cpg::Point{ -1, 0 };
+			break;
+
+		default:
+			out_point = cpg::Point{ 0, 0 };
+			break;
+		}
+
+		return out_point;
+	}
 }

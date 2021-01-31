@@ -34,25 +34,7 @@ namespace algorithm_practice_floodfill
 		{
 			mTotalDirection ^= mCurrentDirection.GetState();
 
-			switch( mCurrentDirection.GetState() )
-			{
-			case cpg::Direction4::eState::Up:
-				out_point = cpg::Point{ 0, 1 };
-				break;
-			case cpg::Direction4::eState::Right:
-				out_point = cpg::Point{ 1, 0 };
-				break;
-			case cpg::Direction4::eState::Down:
-				out_point = cpg::Point{ 0, -1 };
-				break;
-			case cpg::Direction4::eState::Left:
-				out_point = cpg::Point{ -1, 0 };
-				break;
-
-			default:
-				out_point = cpg::Point{ 0, 0 };
-				break;
-			}
+			out_point = mCurrentDirection.GetPoint();
 		}
 		else
 		{

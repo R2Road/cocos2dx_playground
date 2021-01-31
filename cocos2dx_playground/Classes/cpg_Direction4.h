@@ -28,6 +28,8 @@ namespace cpg
 
 		void Rotate( const bool rotate_right );
 
+		cpg::Point GetPoint() const;
+
 	private:
 		eState mState;
 	};
