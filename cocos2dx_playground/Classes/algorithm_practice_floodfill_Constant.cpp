@@ -2,10 +2,10 @@
 
 namespace algorithm_practice_floodfill
 {
-	DirectionCell::DirectionCell() : mTotalDirection( cpg::Direction4::eState::None ), mCurrentDirection( cpg::Direction4::eState::FIRST )
+	Cell4FloodFill::Cell4FloodFill() : mTotalDirection( cpg::Direction4::eState::None ), mCurrentDirection( cpg::Direction4::eState::FIRST )
 	{}
 
-	void DirectionCell::Begin( const cpg::Direction4 parent_direction )
+	void Cell4FloodFill::Begin( const cpg::Direction4 parent_direction )
 	{
 		if( cpg::Direction4::eState::None == parent_direction.GetState() )
 		{
@@ -24,7 +24,7 @@ namespace algorithm_practice_floodfill
 		mTotalDirection ^= temp_direction4.GetState();
 	}
 
-	cpg::Point DirectionCell::PopDirection()
+	cpg::Point Cell4FloodFill::PopDirection()
 	{
 		cpg::Point out_point;
 
@@ -60,7 +60,7 @@ namespace algorithm_practice_floodfill
 		return out_point;
 	}
 
-	void DirectionCell::RotateCurrentDirection( const bool rotate_right )
+	void Cell4FloodFill::RotateCurrentDirection( const bool rotate_right )
 	{
 		mCurrentDirection.Rotate( rotate_right );
 	}

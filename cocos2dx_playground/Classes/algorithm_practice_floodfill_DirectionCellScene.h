@@ -36,7 +36,7 @@ namespace algorithm_practice_floodfill
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		DirectionCell mDirectionCell;
+		Cell4FloodFill mDirectionCell;
 		cocos2d::Label* mDirectionView;
 	};
 }

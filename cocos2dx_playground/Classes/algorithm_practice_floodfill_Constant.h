@@ -18,10 +18,10 @@ namespace algorithm_practice_floodfill
 		Wall,
 	};
 
-	class DirectionCell
+	class Cell4FloodFill
 	{
 	public:
-		DirectionCell();
+		Cell4FloodFill();
 
 		void Clear() { mTotalDirection = cpg::Direction4::eState::None; };
 		void Begin( const cpg::Direction4 parent_direction );
