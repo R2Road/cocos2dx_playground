@@ -163,7 +163,25 @@ namespace algorithm_practice_floodfill
 
 	void DirectionMapNode::Reset()
 	{
-		removeAllChildrenWithCleanup( false );
+		int quad_index = -1;
+		const auto tile_rect = Rect::ZERO;
+		for( int ty = 0; mConfig.MapHeight > ty; ++ty )
+		{
+			for( int tx = 0; mConfig.MapWidth > tx; ++tx )
+			{
+				for( int dir = 0; 5 > dir; ++dir )
+				{
+					mReusedSprite->setTextureRect( tile_rect );
+					mReusedSprite->setPosition(
+						mTileSheetConfig.GetTileWidth() * tx
+						, mTileSheetConfig.GetTileHeight() * ty
+					);
+
+					quad_index = ConvertPoint2QuadIndex( tx, ty, dir );
+					updateQuadFromSprite( mReusedSprite, quad_index );
+				}
+			}
+		}
 	}
 
 	void DirectionMapNode::UpdateTile( const int map_point_x, const int map_point_y, const char direction )
