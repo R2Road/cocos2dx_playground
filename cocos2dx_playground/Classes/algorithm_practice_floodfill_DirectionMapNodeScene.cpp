@@ -147,16 +147,16 @@ namespace algorithm_practice_floodfill
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			mDirectionMapNode->UpdateTile( 1, 1, Direction4::eState::Up );
+			mDirectionMapNode->UpdateTile( 1, 1, cpg::Direction4::eState::Up );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			mDirectionMapNode->UpdateTile( 1, 1, Direction4::eState::Up | Direction4::eState::Right );
+			mDirectionMapNode->UpdateTile( 1, 1, cpg::Direction4::eState::Up | cpg::Direction4::eState::Right );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
-			mDirectionMapNode->UpdateTile( 1, 1, Direction4::eState::Up | Direction4::eState::Right | Direction4::eState::Down );
+			mDirectionMapNode->UpdateTile( 1, 1, cpg::Direction4::eState::Up | cpg::Direction4::eState::Right | cpg::Direction4::eState::Down );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			mDirectionMapNode->UpdateTile( 1, 1, Direction4::eState::Up | Direction4::eState::Right | Direction4::eState::Down | Direction4::eState::Left );
+			mDirectionMapNode->UpdateTile( 1, 1, cpg::Direction4::eState::Up | cpg::Direction4::eState::Right | cpg::Direction4::eState::Down | cpg::Direction4::eState::Left );
 			break;
 		case EventKeyboard::KeyCode::KEY_5:
 			mDirectionMapNode->UpdateTile( 1, 1, 0 );
@@ -171,7 +171,7 @@ namespace algorithm_practice_floodfill
 			{
 				for( int tx = 0; GRID_WIDTH > tx; ++tx )
 				{
-					mDirectionMapNode->UpdateTile( tx, ty, Direction4::eState::Up | Direction4::eState::Right | Direction4::eState::Down | Direction4::eState::Left );
+					mDirectionMapNode->UpdateTile( tx, ty, cpg::Direction4::eState::Up | cpg::Direction4::eState::Right | cpg::Direction4::eState::Down | cpg::Direction4::eState::Left );
 				}
 			}
 			break;

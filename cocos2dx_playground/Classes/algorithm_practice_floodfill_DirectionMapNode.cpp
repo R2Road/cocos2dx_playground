@@ -134,22 +134,22 @@ namespace algorithm_practice_floodfill
 	{
 		return ( ( ( point_x * 5 ) + offset ) ) + ( mConfig.MapWidth * 5 * point_y );
 	}
-	Rect DirectionMapNode::ConvertDirection2TileRect( const Direction4::eState direction_type ) const
+	Rect DirectionMapNode::ConvertDirection2TileRect( const cpg::Direction4::eState direction_type ) const
 	{
 		cocos2d::Rect tile_rect;
 
 		switch( direction_type )
 		{
-		case Direction4::eState::Up:
+		case cpg::Direction4::eState::Up:
 			tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 1, 3 );
 			break;
-		case Direction4::eState::Right:
+		case cpg::Direction4::eState::Right:
 			tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 2, 3 );
 			break;
-		case Direction4::eState::Down:
+		case cpg::Direction4::eState::Down:
 			tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 3, 3 );
 			break;
-		case Direction4::eState::Left:
+		case cpg::Direction4::eState::Left:
 			tile_rect = mTileSheetUtility.ConvertTilePoint2TextureRect( 4, 3 );
 			break;
 		default:
@@ -197,7 +197,7 @@ namespace algorithm_practice_floodfill
 		{
 			result_direction = direction & ( 1 << dir );
 
-			tile_rect = ConvertDirection2TileRect( static_cast<Direction4::eState>( result_direction ) );
+			tile_rect = ConvertDirection2TileRect( static_cast<cpg::Direction4::eState>( result_direction ) );
 			mReusedSprite->setTextureRect( tile_rect );
 			mReusedSprite->setPosition(
 				mTileSheetConfig.GetTileWidth() * map_point_x
