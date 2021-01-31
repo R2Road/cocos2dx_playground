@@ -26,9 +26,9 @@ namespace algorithm_practice_floodfill
 		mTotalDirection ^= temp_direction4.GetState();
 	}
 
-	cpg::Point Cell4FloodFill::PopDirection()
+	cpg::Direction4 Cell4FloodFill::PopDirection()
 	{
-		cpg::Point out_point;
+		cpg::Direction4 out_direction( cpg::Direction4::None );
 
 		if( HasDirection() )
 		{
@@ -39,14 +39,10 @@ namespace algorithm_practice_floodfill
 
 			mTotalDirection ^= mCurrentDirection.GetState();
 
-			out_point = mCurrentDirection.GetPoint();
-		}
-		else
-		{
-			out_point = cpg::Point{ 0, 0 };
+			out_direction = mCurrentDirection;
 		}
 
-		return out_point;
+		return out_direction;
 	}
 
 	void Cell4FloodFill::RotateCurrentDirection( const bool rotate_right )

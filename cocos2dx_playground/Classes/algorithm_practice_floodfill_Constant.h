@@ -32,7 +32,7 @@ namespace algorithm_practice_floodfill
 		cpg::Direction4 GetCurrentDirection() const { return mCurrentDirection.GetState(); }
 
 		bool HasDirection() const { return 0 != mTotalDirection; }
-		cpg::Point PopDirection();
+		cpg::Direction4 PopDirection();
 
 		void RotateCurrentDirection( const bool rotate_right );
 
