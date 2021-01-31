@@ -512,7 +512,7 @@ namespace algorithm_practice_floodfill
 			{
 				mStep = eStep::Loop;
 				auto& current_cell = mGrid4FloodFill.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
-				current_cell.Begin( cpg::Direction4::eState::None );
+				current_cell.Begin( { -1, -1 }, cpg::Direction4::eState::None );
 				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, current_cell.GetTotalDirection() );
 
 				mCurrentPoint = mGrid4TileMap.GetEntryPoint();
@@ -532,16 +532,16 @@ namespace algorithm_practice_floodfill
 
 					if( eCellType::Road == mGrid4TileMap.GetCellType( new_point.x, new_point.y ) )
 					{
+						auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
+						next_cell.Begin( mCurrentPoint, current_direction );
+						mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
+
 						mCurrentPoint = new_point;
-						
-						auto& next_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
-						next_cell.Begin( current_direction );
-						mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, next_cell.GetTotalDirection() );
 					}
 				}
 				else
 				{
-					// do Something
+					mCurrentPoint = current_cell.GetParentPoint();
 				}
 			}
 		}
