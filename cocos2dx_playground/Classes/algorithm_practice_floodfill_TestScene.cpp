@@ -552,7 +552,7 @@ namespace algorithm_practice_floodfill
 				mCurrentPointIndicatorNode->setVisible( true );
 				updateCurrentPointView();
 			}
-			else
+			else if( eStep::Loop == mStep )
 			{
 				auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
 				if( current_cell.HasDirection() )
@@ -585,6 +585,11 @@ namespace algorithm_practice_floodfill
 				{
 					mCurrentPoint = current_cell.GetParentPoint();
 					updateCurrentPointView();
+
+					if( -1 == mCurrentPoint.x )
+					{
+						mStep = eStep::End;
+					}
 				}
 			}
 		}

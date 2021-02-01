@@ -28,6 +28,7 @@ namespace algorithm_practice_floodfill
 		{
 			Entry,
 			Loop,
+			End,
 		};
 
 		TestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
