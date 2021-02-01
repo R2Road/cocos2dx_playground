@@ -69,6 +69,8 @@ namespace algorithm_practice_floodfill
 
 		eMode mMode;
 
+		cocos2d::Node* mUI4Edit;
+
 		cpg::TileSheetConfiguration mTileSheetConfiguration;
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;
 		Grid4TileMap mGrid4TileMap;

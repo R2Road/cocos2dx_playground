@@ -59,6 +59,8 @@ namespace algorithm_practice_floodfill
 
 		, mMode( eMode::Edit )
 
+		, mUI4Edit( nullptr )
+
 		, mTileSheetConfiguration( 1, 1, 1, 1, "" )
 
 		, mPosition2GridIndexConverter( 1, 1 )
@@ -193,47 +195,55 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
-		// Tool Bar - for Tool
+		// UI 4 Edit
 		//
 		{
-			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 40.f, 20.f ) );
-			addChild( tool_bar_node, std::numeric_limits<int>::max() );
+			mUI4Edit = Node::create();
+			addChild( mUI4Edit, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( eToolIndex::Wall, "Wall", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Wall ) );
-			tool_bar_node->AddTool( eToolIndex::Road, "Road", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Road ) );
-			tool_bar_node->AddTool( eToolIndex::Entry, "Entry", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Entry ) );
-
-			tool_bar_node->setPosition(
-				visibleOrigin
-				+ Vec2( visibleSize.width, visibleSize.height )
-				+ Vec2( -tool_bar_node->getContentSize().width, -tool_bar_node->getContentSize().height )
-			);
-
-			// Set Indicator
-			tool_bar_node->SelectTool( mToolIndex );
-		}
-
-		//
-		// Clear Button
-		//
-		{
-			auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-			button->setAnchorPoint( Vec2::ZERO );
-			button->setScale9Enabled( true );
-			button->setContentSize( Size( 40.f, 20.f ) );
-			button->setPosition(
-				visibleOrigin
-				+ Vec2( visibleSize.width, visibleSize.height )
-				- Vec2( button->getContentSize().width, button->getContentSize().height )
-				- Vec2( 60.f, 0.f )
-			);
-			button->addTouchEventListener( CC_CALLBACK_2( TestScene::onGridClear, this ) );
-			addChild( button, std::numeric_limits<int>::max() );
-
-			// Title
+			//
+			// Tool Bar - for Tool
+			//
 			{
-				auto label = Label::createWithTTF( "Clear", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
-				button->setTitleLabel( label );
+				auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 40.f, 20.f ) );
+				mUI4Edit->addChild( tool_bar_node );
+
+				tool_bar_node->AddTool( eToolIndex::Wall, "Wall", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Wall ) );
+				tool_bar_node->AddTool( eToolIndex::Road, "Road", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Road ) );
+				tool_bar_node->AddTool( eToolIndex::Entry, "Entry", 10, std::bind( &TestScene::onToolSelect, this, eToolIndex::Entry ) );
+
+				tool_bar_node->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+					+ Vec2( -tool_bar_node->getContentSize().width, -tool_bar_node->getContentSize().height )
+				);
+
+				// Set Indicator
+				tool_bar_node->SelectTool( mToolIndex );
+			}
+
+			//
+			// Clear Button
+			//
+			{
+				auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
+				button->setAnchorPoint( Vec2::ZERO );
+				button->setScale9Enabled( true );
+				button->setContentSize( Size( 40.f, 20.f ) );
+				button->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+					- Vec2( button->getContentSize().width, button->getContentSize().height )
+					- Vec2( 60.f, 0.f )
+				);
+				button->addTouchEventListener( CC_CALLBACK_2( TestScene::onGridClear, this ) );
+				mUI4Edit->addChild( button );
+
+				// Title
+				{
+					auto label = Label::createWithTTF( "Clear", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+					button->setTitleLabel( label );
+				}
 			}
 		}
 
@@ -348,6 +358,7 @@ namespace algorithm_practice_floodfill
 		//
 		// Setup
 		//
+		onModeSelect( mMode );
 		ResetView();
 
 		return true;
@@ -389,6 +400,23 @@ namespace algorithm_practice_floodfill
 	{
 		mMode = static_cast<eMode>( mode_index );
 		CCLOG( "Mode Index : %d", mode_index );
+
+		if( eMode::Edit == mMode )
+		{
+			mUI4Edit->setVisible( true );
+
+			for( auto& d : mGrid4FloodFill )
+			{
+				d.Clear();
+			}
+			mDirectionMapNode->Reset();
+
+			mCurrentPointIndicatorNode->setVisible( false );
+		}
+		else
+		{
+			mUI4Edit->setVisible( false );
+		}
 	}
 	void TestScene::onToolSelect( const int tool_index )
 	{
