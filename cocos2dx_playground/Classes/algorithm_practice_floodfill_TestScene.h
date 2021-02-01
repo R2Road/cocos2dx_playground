@@ -24,6 +24,12 @@ namespace algorithm_practice_floodfill
 	class TestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
+		enum eMode
+		{
+			Edit,
+			Process,
+		};
+
 		enum eStep
 		{
 			Entry,
@@ -48,6 +54,7 @@ namespace algorithm_practice_floodfill
 		void onGridClear( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 		void ResetView();
 
+		void onModeSelect( const int mode_index );
 		void onToolSelect( const int tool_index );
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 		void updateDebugView();
@@ -58,6 +65,8 @@ namespace algorithm_practice_floodfill
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+		eMode mMode;
 
 		cpg::TileSheetConfiguration mTileSheetConfiguration;
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;

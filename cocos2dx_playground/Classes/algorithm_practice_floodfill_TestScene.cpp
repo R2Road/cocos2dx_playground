@@ -56,6 +56,9 @@ namespace algorithm_practice_floodfill
 	TestScene::TestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+
+		, mMode( eMode::Edit )
+
 		, mTileSheetConfiguration( 1, 1, 1, 1, "" )
 
 		, mPosition2GridIndexConverter( 1, 1 )
@@ -171,7 +174,26 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
-		// Tool Bar
+		// Tool Bar - for Mode
+		//
+		{
+			auto tool_bar_node = cpgui::ToolBarNode::create();
+			addChild( tool_bar_node, std::numeric_limits<int>::max() );
+
+			tool_bar_node->AddTool( eToolIndex::Wall, "E", 10, std::bind( &TestScene::onModeSelect, this, eMode::Edit ) );
+			tool_bar_node->AddTool( eToolIndex::Road, "P", 10, std::bind( &TestScene::onModeSelect, this, eMode::Process ) );
+
+			tool_bar_node->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height * 0.5f )
+			);
+
+			// Set Indicator
+			tool_bar_node->SelectTool( mMode );
+		}
+
+		//
+		// Tool Bar - for Tool
 		//
 		{
 			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 40.f, 20.f ) );
@@ -405,6 +427,11 @@ namespace algorithm_practice_floodfill
 	}
 
 
+	void TestScene::onModeSelect( const int mode_index )
+	{
+		mMode = static_cast<eMode>( mode_index );
+		CCLOG( "Mode Index : %d", mode_index );
+	}
 	void TestScene::onToolSelect( const int tool_index )
 	{
 		mToolIndex = tool_index;
@@ -412,7 +439,7 @@ namespace algorithm_practice_floodfill
 	}
 	void TestScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
-		if( eStep::Entry != mStep )
+		if( eMode::Edit != mMode )
 		{
 			return;
 		}
