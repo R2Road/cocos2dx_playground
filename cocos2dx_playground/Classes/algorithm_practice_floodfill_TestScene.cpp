@@ -385,6 +385,18 @@ namespace algorithm_practice_floodfill
 	}
 
 
+	void TestScene::onModeSelect( const int mode_index )
+	{
+		mMode = static_cast<eMode>( mode_index );
+		CCLOG( "Mode Index : %d", mode_index );
+	}
+	void TestScene::onToolSelect( const int tool_index )
+	{
+		mToolIndex = tool_index;
+		CCLOG( "Tool Index : %d", mToolIndex );
+	}
+
+
 	void TestScene::onGridClear( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
 	{
 		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
@@ -427,16 +439,6 @@ namespace algorithm_practice_floodfill
 	}
 
 
-	void TestScene::onModeSelect( const int mode_index )
-	{
-		mMode = static_cast<eMode>( mode_index );
-		CCLOG( "Mode Index : %d", mode_index );
-	}
-	void TestScene::onToolSelect( const int tool_index )
-	{
-		mToolIndex = tool_index;
-		CCLOG( "Tool Index : %d", mToolIndex );
-	}
 	void TestScene::onUpdateTile( Ref* sender, ui::Widget::TouchEventType touch_event_type )
 	{
 		if( eMode::Edit != mMode )

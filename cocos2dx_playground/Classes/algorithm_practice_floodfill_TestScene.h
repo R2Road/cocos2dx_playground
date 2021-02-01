@@ -51,11 +51,12 @@ namespace algorithm_practice_floodfill
 		void onExit() override;
 
 	private:
+		void onModeSelect( const int mode_index );
+		void onToolSelect( const int tool_index );
+
 		void onGridClear( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 		void ResetView();
 
-		void onModeSelect( const int mode_index );
-		void onToolSelect( const int tool_index );
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 		void updateDebugView();
 		void updateEntryPointView();
