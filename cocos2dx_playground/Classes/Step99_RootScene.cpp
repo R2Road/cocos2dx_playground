@@ -14,8 +14,6 @@
 
 #include "PlayGroundScene.h"
 
-#include "algorithm_practice_RootScene.h"
-
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
@@ -61,9 +59,6 @@ namespace step99
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[1] : " << algorithm_practice::RootScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -124,12 +119,6 @@ namespace step99
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			_director->replaceScene( PlayGroundScene::create() );
 			break;
-
-
-		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( algorithm_practice::RootScene::create() );
-			break;
-
 
 		case EventKeyboard::KeyCode::KEY_Q:
 			_director->replaceScene( step02::fsm1test::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );

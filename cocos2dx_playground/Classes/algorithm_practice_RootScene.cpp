@@ -13,7 +13,7 @@
 #include "cpg_StringTable.h"
 
 #include "algorithm_practice_floodfill_RootScene.h"
-#include "Step99_RootScene.h"
+#include "PlayGroundScene.h"
 
 USING_NS_CC;
 
@@ -108,7 +108,7 @@ namespace algorithm_practice
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
-			_director->replaceScene( step99::RootScene::create() );
+			_director->replaceScene( PlayGroundScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:

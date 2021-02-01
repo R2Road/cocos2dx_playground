@@ -20,6 +20,7 @@
 #include "graph_practice_RootScene.h"
 #include "input_practice_RootScene.h"
 #include "tool_practice_RootScene.h"
+#include "algorithm_practice_RootScene.h"
 
 #include "ui_research_RootScene.h"
 #include "Step99_RootScene.h"
@@ -92,6 +93,8 @@ bool PlayGroundScene::init()
 		ss << "[R] : " << input_practice::RootScene::getTitle();
 		ss << std::endl;
 		ss << "[T] : " << tool_practice::RootScene::getTitle();
+		ss << std::endl;
+		ss << "[Y] : " << algorithm_practice::RootScene::getTitle();
 		ss << std::endl;
 		ss << std::endl;
 		ss << "=============================";
@@ -175,6 +178,9 @@ void PlayGroundScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*eve
 		break;
 	case EventKeyboard::KeyCode::KEY_T:
 		_director->replaceScene( tool_practice::RootScene::create() );
+		break;
+	case EventKeyboard::KeyCode::KEY_Y:
+		_director->replaceScene( algorithm_practice::RootScene::create() );
 		break;
 
 	case EventKeyboard::KeyCode::KEY_A:
