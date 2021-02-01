@@ -405,6 +405,8 @@ namespace algorithm_practice_floodfill
 		{
 			mUI4Edit->setVisible( true );
 
+			mStep = eStep::Entry;
+
 			for( auto& d : mGrid4FloodFill )
 			{
 				d.Clear();
@@ -583,69 +585,72 @@ namespace algorithm_practice_floodfill
 			return;
 		}
 
-		if( EventKeyboard::KeyCode::KEY_R == key_code )
+		if( eMode::Process == mMode )
 		{
-			mStep = eStep::Entry;
-			for( auto& d : mGrid4FloodFill )
+			if( EventKeyboard::KeyCode::KEY_R == key_code )
 			{
-				d.Clear();
-			}
-			mDirectionMapNode->Reset();
-
-			mCurrentPointIndicatorNode->setVisible( false );
-			return;
-		}
-
-		if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
-		{
-			if( eStep::Entry == mStep )
-			{
-				mStep = eStep::Loop;
-				auto& current_cell = mGrid4FloodFill.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
-				current_cell.Begin( { -1, -1 }, cpg::Direction4::eState::None );
-				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, current_cell.GetTotalDirection() );
-
-				mCurrentPoint = mGrid4TileMap.GetEntryPoint();
-				mCurrentPointIndicatorNode->setVisible( true );
-				updateCurrentPointView();
-			}
-			else if( eStep::Loop == mStep )
-			{
-				auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
-				if( current_cell.HasDirection() )
+				mStep = eStep::Entry;
+				for( auto& d : mGrid4FloodFill )
 				{
-					const auto current_direction = current_cell.PopDirection();
-					mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
-
-					auto new_point = mCurrentPoint + current_direction.GetPoint();
-					if( mGrid4FloodFill.Get( new_point.x, new_point.y ).IsValid() )
-					{
-						return;
-					}
-
-					if( !mGrid4FloodFill.IsIn( new_point.x, new_point.y ) )
-					{
-						return;
-					}
-
-					if( eCellType::Road == mGrid4TileMap.GetCellType( new_point.x, new_point.y ) )
-					{
-						auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
-						next_cell.Begin( mCurrentPoint, current_direction );
-						mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
-
-						mCurrentPoint = new_point;
-						updateCurrentPointView();
-					}
+					d.Clear();
 				}
-				else
-				{
-					mCurrentPoint = current_cell.GetParentPoint();
-					updateCurrentPointView();
+				mDirectionMapNode->Reset();
 
-					if( -1 == mCurrentPoint.x )
+				mCurrentPointIndicatorNode->setVisible( false );
+				return;
+			}
+
+			if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
+			{
+				if( eStep::Entry == mStep )
+				{
+					mStep = eStep::Loop;
+					auto& current_cell = mGrid4FloodFill.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
+					current_cell.Begin( { -1, -1 }, cpg::Direction4::eState::None );
+					mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, current_cell.GetTotalDirection() );
+
+					mCurrentPoint = mGrid4TileMap.GetEntryPoint();
+					mCurrentPointIndicatorNode->setVisible( true );
+					updateCurrentPointView();
+				}
+				else if( eStep::Loop == mStep )
+				{
+					auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
+					if( current_cell.HasDirection() )
 					{
-						mStep = eStep::End;
+						const auto current_direction = current_cell.PopDirection();
+						mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
+
+						auto new_point = mCurrentPoint + current_direction.GetPoint();
+						if( mGrid4FloodFill.Get( new_point.x, new_point.y ).IsValid() )
+						{
+							return;
+						}
+
+						if( !mGrid4FloodFill.IsIn( new_point.x, new_point.y ) )
+						{
+							return;
+						}
+
+						if( eCellType::Road == mGrid4TileMap.GetCellType( new_point.x, new_point.y ) )
+						{
+							auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
+							next_cell.Begin( mCurrentPoint, current_direction );
+							mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
+
+							mCurrentPoint = new_point;
+							updateCurrentPointView();
+						}
+					}
+					else
+					{
+						mCurrentPoint = current_cell.GetParentPoint();
+						updateCurrentPointView();
+
+						if( -1 == mCurrentPoint.x )
+						{
+							mStep = eStep::End;
+						}
 					}
 				}
 			}
