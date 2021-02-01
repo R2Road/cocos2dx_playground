@@ -72,6 +72,7 @@ namespace algorithm_practice_floodfill
 		, mStep( eStep::Entry )
 		, mGrid4FloodFill()
 		, mCurrentPoint()
+		, mCurrentPointIndicatorNode( nullptr )
 	{}
 
 	Scene* TestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -300,6 +301,29 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
+		// Current Point Indicator
+		//
+		{
+			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
+
+			cpg::TileSheetUtility tile_sheet_utility;
+			tile_sheet_utility.Setup(
+				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
+				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()
+				, texture->getContentSizeInPixels().height
+			);
+
+			auto sprite = Sprite::createWithTexture( texture );
+			sprite->setAnchorPoint( Vec2::ZERO );
+			sprite->setScale( _director->getContentScaleFactor() );
+			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 4 ) );
+			sprite->setVisible( false );
+			addChild( sprite, 11 );
+
+			mCurrentPointIndicatorNode = sprite;
+		}
+
+		//
 		// Setup
 		//
 		ResetView();
@@ -484,6 +508,13 @@ namespace algorithm_practice_floodfill
 			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid4TileMap.GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid4TileMap.GetEntryPoint().y )
 		);
 	}
+	void TestScene::updateCurrentPointView()
+	{
+		mCurrentPointIndicatorNode->setPosition(
+			mTileMapNode->getPosition()
+			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mCurrentPoint.x, mTileSheetConfiguration.GetTileHeight() * mCurrentPoint.y )
+		);
+	}
 
 
 
@@ -503,6 +534,8 @@ namespace algorithm_practice_floodfill
 				d.Clear();
 			}
 			mDirectionMapNode->Reset();
+
+			mCurrentPointIndicatorNode->setVisible( false );
 			return;
 		}
 
@@ -516,6 +549,8 @@ namespace algorithm_practice_floodfill
 				mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, current_cell.GetTotalDirection() );
 
 				mCurrentPoint = mGrid4TileMap.GetEntryPoint();
+				mCurrentPointIndicatorNode->setVisible( true );
+				updateCurrentPointView();
 			}
 			else
 			{
@@ -543,11 +578,13 @@ namespace algorithm_practice_floodfill
 						mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
 
 						mCurrentPoint = new_point;
+						updateCurrentPointView();
 					}
 				}
 				else
 				{
 					mCurrentPoint = current_cell.GetParentPoint();
+					updateCurrentPointView();
 				}
 			}
 		}
