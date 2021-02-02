@@ -39,22 +39,34 @@ namespace
 
 namespace algorithm_practice_floodfill
 {
-	EditorNode::EditorNode( const Config config, Grid4TileMap* const grid_4_tile_map, step_defender::game::TileMapNode* const tile_map_node, const cpg::TileSheetConfiguration& tile_sheet_configuration ) :
+	EditorNode::EditorNode(
+		const Config config
+		, Grid4TileMap* const grid_4_tile_map
+		, step_defender::game::TileMapNode* const tile_map_node
+		, Node* const entry_point_indocator_node
+		, const cpg::TileSheetConfiguration& tile_sheet_configuration
+	) :
 		mConfig( config )
 
 		, mGrid4TileMap( grid_4_tile_map )
 		, mTileMapNode( tile_map_node )
+		, mEntryPointIndicatorNode( entry_point_indocator_node )
 		, mPosition2GridIndexConverter( 1, 1 )
 		, mTileSheetConfiguration( tile_sheet_configuration )
 
 		, mToolIndex( eToolIndex::Wall )
-		, mEntryPointIndicatorNode( nullptr )
 		, mGridDebugViewNode( nullptr )
 	{}
 
-	EditorNode* EditorNode::create( const Config config, Grid4TileMap* const grid_4_tile_map, step_defender::game::TileMapNode* const tile_map_node, const cpg::TileSheetConfiguration& tile_sheet_configuration )
+	EditorNode* EditorNode::create(
+		const Config config
+		, Grid4TileMap* const grid_4_tile_map
+		, step_defender::game::TileMapNode* const tile_map_node
+		, Node* const entry_point_indocator_node
+		, const cpg::TileSheetConfiguration& tile_sheet_configuration
+	)
 	{
-		auto ret = new ( std::nothrow ) EditorNode( config, grid_4_tile_map, tile_map_node, tile_sheet_configuration );
+		auto ret = new ( std::nothrow ) EditorNode( config, grid_4_tile_map, tile_map_node, entry_point_indocator_node, tile_sheet_configuration );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -177,28 +189,6 @@ namespace algorithm_practice_floodfill
 				- Vec2( 0.f, 2.f )
 			);
 			addChild( mGridDebugViewNode );
-		}
-
-		//
-		// Entry Point Indicator
-		//
-		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
-
-			cpg::TileSheetUtility tile_sheet_utility;
-			tile_sheet_utility.Setup(
-				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
-				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()
-				, texture->getContentSizeInPixels().height
-			);
-
-			auto sprite = Sprite::createWithTexture( texture );
-			sprite->setAnchorPoint( Vec2::ZERO );
-			sprite->setScale( _director->getContentScaleFactor() );
-			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
-			addChild( sprite, 10 );
-
-			mEntryPointIndicatorNode = sprite;
 		}
 
 		//

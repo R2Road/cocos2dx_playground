@@ -66,6 +66,7 @@ namespace algorithm_practice_floodfill
 		Grid4TileMap mGrid4TileMap;
 
 		step_defender::game::TileMapNode* mTileMapNode;
+		cocos2d::Node* mEntryPointIndicatorNode;
 		DirectionMapNode* mDirectionMapNode;
 		EditorNode* mEditorNode;
 

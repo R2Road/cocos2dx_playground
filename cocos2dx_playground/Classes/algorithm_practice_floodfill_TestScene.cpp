@@ -49,6 +49,7 @@ namespace algorithm_practice_floodfill
 		, mGrid4TileMap()
 
 		, mTileMapNode( nullptr )
+		, mEntryPointIndicatorNode( nullptr )
 		, mDirectionMapNode( nullptr )
 		, mEditorNode( nullptr )
 
@@ -180,6 +181,28 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
+		// Entry Point Indicator
+		//
+		{
+			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
+
+			cpg::TileSheetUtility tile_sheet_utility;
+			tile_sheet_utility.Setup(
+				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
+				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()
+				, texture->getContentSizeInPixels().height
+			);
+
+			auto sprite = Sprite::createWithTexture( texture );
+			sprite->setAnchorPoint( Vec2::ZERO );
+			sprite->setScale( _director->getContentScaleFactor() );
+			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
+			addChild( sprite, 10 );
+
+			mEntryPointIndicatorNode = sprite;
+		}
+
+		//
 		// Direction Maps
 		//
 		{
@@ -195,7 +218,7 @@ namespace algorithm_practice_floodfill
 		// Editor Node
 		//
 		{
-			mEditorNode = EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mTileSheetConfiguration );
+			mEditorNode = EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mEntryPointIndicatorNode, mTileSheetConfiguration );
 			addChild( mEditorNode, 1 );
 		}
 
