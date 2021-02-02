@@ -71,6 +71,9 @@ namespace algorithm_practice_floodfill
 		//
 		{
 			std::stringstream ss;
+			ss << "+ " << getTitle();
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;

@@ -202,14 +202,17 @@
     <Filter Include="src\scene\step_02_flipflip\sprite_frame">
       <UniqueIdentifier>{a70260a5-6b93-4f29-b053-f8624067d4d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\scene\step99\algorithm_practice">
-      <UniqueIdentifier>{64c6c9c5-7f6d-461a-b00e-3e73d682654c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\scene\tool_practice">
       <UniqueIdentifier>{c7283c4e-210a-420f-a875-42d985335828}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\scene\step_01_typetype\node">
       <UniqueIdentifier>{0a56a1e2-b95b-458a-9af0-f346ee5db38e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\algorithm_practice">
+      <UniqueIdentifier>{64c6c9c5-7f6d-461a-b00e-3e73d682654c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\algorithm_practice\folldfill">
+      <UniqueIdentifier>{73d794a7-4179-4bd6-acb4-30926b93b29a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -805,7 +808,7 @@
       <Filter>src\cpg</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
+      <Filter>src\scene\algorithm_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp">
       <Filter>src\scene\input_practice</Filter>
@@ -918,35 +921,38 @@
     <ClCompile Include="..\Classes\step_typetype_game_Constant.cpp">
       <Filter>src\scene\step_01_typetype\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_RootScene.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Constant.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\cpg_TileSheetConfiguration.cpp">
       <Filter>src\cpg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_TestScene.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_TileSheetUtility.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.cpp">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\cpg_Direction4.cpp">
       <Filter>src\cpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Constant.cpp">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.cpp">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.cpp">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.cpp">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.cpp">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_RootScene.cpp">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_TestScene.cpp">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_EditorNode.cpp">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1578,7 +1584,7 @@
       <Filter>src\cpg</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
+      <Filter>src\scene\algorithm_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h">
       <Filter>src\scene\input_practice</Filter>
@@ -1694,35 +1700,38 @@
     <ClInclude Include="..\Classes\cpg_Grid.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_RootScene.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Constant.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\cpg_TileSheetConfiguration.h">
       <Filter>src\cpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_TestScene.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_TileSheetUtility.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.h">
-      <Filter>src\scene\step99\algorithm_practice</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\cpg_Direction4.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Constant.h">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.h">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.h">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.h">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.h">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_RootScene.h">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_TestScene.h">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_EditorNode.h">
+      <Filter>src\scene\algorithm_practice\folldfill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
