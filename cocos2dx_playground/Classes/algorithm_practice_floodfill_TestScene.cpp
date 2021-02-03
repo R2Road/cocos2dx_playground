@@ -22,7 +22,6 @@
 #include "cpg_TileSheetConfiguration.h"
 #include "cpgui_ToolBarNode.h"
 
-#include "step_defender_game_Constant.h"
 #include "step_defender_game_TileMapNode.h"
 
 USING_NS_CC;
