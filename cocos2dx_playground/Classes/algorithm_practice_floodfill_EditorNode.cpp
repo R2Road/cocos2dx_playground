@@ -101,10 +101,9 @@ namespace algorithm_practice_floodfill
 			std::stringstream ss;
 			ss << std::endl;
 			ss << std::endl;
-			ss << std::endl;
 			ss << "[Mouse] : " << "Edit Grid";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin
