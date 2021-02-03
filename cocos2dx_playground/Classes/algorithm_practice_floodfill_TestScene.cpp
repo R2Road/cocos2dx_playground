@@ -18,6 +18,7 @@
 
 #include "algorithm_practice_floodfill_DirectionMapNode.h"
 #include "algorithm_practice_floodfill_EditorNode.h"
+#include "algorithm_practice_floodfill_ProcessorNode.h"
 
 #include "cpg_StringTable.h"
 #include "cpgui_ToolBarNode.h"
@@ -52,6 +53,7 @@ namespace algorithm_practice_floodfill
 		, mEntryPointIndicatorNode( nullptr )
 		, mDirectionMapNode( nullptr )
 		, mEditorNode( nullptr )
+		, mProcessorNode( nullptr )
 
 		, mStep( eStep::Entry )
 		, mGrid4FloodFill()
@@ -100,11 +102,6 @@ namespace algorithm_practice_floodfill
 		{
 			std::stringstream ss;
 			ss << "[ESC] : Return to Root";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[R] : " << "Reset";
-			ss << std::endl;
-			ss << "[Space] : " << "Step";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -243,6 +240,14 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
+		// Processor Node
+		//
+		{
+			mProcessorNode = ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT } );
+			addChild( mProcessorNode, 2 );
+		}
+
+		//
 		// Setup
 		//
 		onModeSelect( mMode );
@@ -290,6 +295,7 @@ namespace algorithm_practice_floodfill
 		if( eMode::Edit == mMode )
 		{
 			mEditorNode->setVisible( true );
+			mProcessorNode->setVisible( false );
 
 			mStep = eStep::Entry;
 
@@ -304,6 +310,7 @@ namespace algorithm_practice_floodfill
 		else
 		{
 			mEditorNode->setVisible( false );
+			mProcessorNode->setVisible( true );
 		}
 	}
 

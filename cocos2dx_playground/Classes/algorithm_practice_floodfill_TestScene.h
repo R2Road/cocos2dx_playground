@@ -20,6 +20,7 @@ namespace algorithm_practice_floodfill
 {
 	class DirectionMapNode;
 	class EditorNode;
+	class ProcessorNode;
 
 	class TestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
@@ -69,6 +70,7 @@ namespace algorithm_practice_floodfill
 		cocos2d::Node* mEntryPointIndicatorNode;
 		DirectionMapNode* mDirectionMapNode;
 		EditorNode* mEditorNode;
+		ProcessorNode* mProcessorNode;
 
 		eStep mStep;
 		cpg::Grid<Cell4FloodFill> mGrid4FloodFill;

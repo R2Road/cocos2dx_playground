@@ -954,6 +954,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_EditorNode.cpp">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_ProcessorNode.cpp">
+      <Filter>src\scene\algorithm_practice\floodfill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1731,6 +1734,9 @@
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_EditorNode.h">
+      <Filter>src\scene\algorithm_practice\floodfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_ProcessorNode.h">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
   </ItemGroup>
