@@ -150,8 +150,8 @@ namespace algorithm_practice_floodfill
 			auto tool_bar_node = cpgui::ToolBarNode::create();
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( eToolIndex::Wall, "E", 10, std::bind( &TestScene::onModeSelect, this, eMode::Edit ) );
-			tool_bar_node->AddTool( eToolIndex::Road, "P", 10, std::bind( &TestScene::onModeSelect, this, eMode::Process ) );
+			tool_bar_node->AddTool( eMode::Edit, "E", 10, std::bind( &TestScene::onModeSelect, this, eMode::Edit ) );
+			tool_bar_node->AddTool( eMode::Process, "P", 10, std::bind( &TestScene::onModeSelect, this, eMode::Process ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin

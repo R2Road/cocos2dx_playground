@@ -28,6 +28,13 @@ namespace algorithm_practice_floodfill
 		};
 
 	private:
+		enum eToolIndex
+		{
+			Wall,
+			Road,
+			Entry,
+		};
+
 		EditorNode(
 			const Config config
 			, Grid4TileMap* const grid_4_tile_map
