@@ -14,7 +14,6 @@
 #include "base/CCEventDispatcher.h"
 #include "cocos/platform/CCFileUtils.h"
 #include "renderer/CCTextureCache.h"
-#include "ui/UIButton.h"
 
 #include "algorithm_practice_floodfill_DirectionMapNode.h"
 #include "algorithm_practice_floodfill_EditorNode.h"
