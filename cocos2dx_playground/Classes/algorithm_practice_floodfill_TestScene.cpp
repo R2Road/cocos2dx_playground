@@ -14,15 +14,14 @@
 #include "base/CCEventDispatcher.h"
 #include "cocos/platform/CCFileUtils.h"
 #include "renderer/CCTextureCache.h"
-#include "ui/UIButton.h"
 
-#include "algorithm_practice_floodfill_DirectionMapNode.h"
 #include "algorithm_practice_floodfill_EditorNode.h"
+#include "algorithm_practice_floodfill_ProcessorNode.h"
 
 #include "cpg_StringTable.h"
+#include "cpg_TileSheetConfiguration.h"
 #include "cpgui_ToolBarNode.h"
 
-#include "step_defender_game_Constant.h"
 #include "step_defender_game_TileMapNode.h"
 
 USING_NS_CC;
@@ -33,8 +32,6 @@ namespace
 
 	const std::size_t GRID_WIDTH = 13;
 	const std::size_t GRID_HEIGHT = 13;
-
-	const int TAG_ToolBar = 20140416;
 }
 
 namespace algorithm_practice_floodfill
@@ -45,18 +42,12 @@ namespace algorithm_practice_floodfill
 
 		, mMode( eMode::Edit )
 
-		, mTileSheetConfiguration( 1, 1, 1, 1, "" )
 		, mGrid4TileMap()
 
 		, mTileMapNode( nullptr )
 		, mEntryPointIndicatorNode( nullptr )
-		, mDirectionMapNode( nullptr )
 		, mEditorNode( nullptr )
-
-		, mStep( eStep::Entry )
-		, mGrid4FloodFill()
-		, mCurrentPoint()
-		, mCurrentPointIndicatorNode( nullptr )
+		, mProcessorNode( nullptr )
 	{}
 
 	Scene* TestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -92,7 +83,8 @@ namespace algorithm_practice_floodfill
 		//
 		// Load Tile Config
 		//
-		CCASSERT( mTileSheetConfiguration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
+		cpg::TileSheetConfiguration tile_sheet_configuration( 1, 1, 1, 1, "" );
+		CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//
 		// Summury
@@ -100,14 +92,6 @@ namespace algorithm_practice_floodfill
 		{
 			std::stringstream ss;
 			ss << "[ESC] : Return to Root";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[Mouse] : " << "Edit Grid";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[R] : " << "Reset";
-			ss << std::endl;
-			ss << "[Space] : " << "Step";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -141,9 +125,6 @@ namespace algorithm_practice_floodfill
 			{
 				mGrid4TileMap.Reset( GRID_WIDTH, GRID_HEIGHT );
 			}
-
-			// Setup Direction Grid
-			mGrid4FloodFill.Reset( mGrid4TileMap.GetWidth(), mGrid4TileMap.GetHeight() );
 		}
 
 		//
@@ -153,8 +134,8 @@ namespace algorithm_practice_floodfill
 			auto tool_bar_node = cpgui::ToolBarNode::create();
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
-			tool_bar_node->AddTool( eToolIndex::Wall, "E", 10, std::bind( &TestScene::onModeSelect, this, eMode::Edit ) );
-			tool_bar_node->AddTool( eToolIndex::Road, "P", 10, std::bind( &TestScene::onModeSelect, this, eMode::Process ) );
+			tool_bar_node->AddTool( eMode::Edit, "E", 10, std::bind( &TestScene::onModeSelect, this, eMode::Edit ) );
+			tool_bar_node->AddTool( eMode::Process, "P", 10, std::bind( &TestScene::onModeSelect, this, eMode::Process ) );
 
 			tool_bar_node->setPosition(
 				visibleOrigin
@@ -171,7 +152,7 @@ namespace algorithm_practice_floodfill
 		{
 			mTileMapNode = step_defender::game::TileMapNode::create(
 				step_defender::game::TileMapNode::Config{ GRID_WIDTH, GRID_HEIGHT }
-				, mTileSheetConfiguration
+				, tile_sheet_configuration
 			);
 			mTileMapNode->setPosition(
 				visibleCenter
@@ -184,12 +165,12 @@ namespace algorithm_practice_floodfill
 		// Entry Point Indicator
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
+			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( tile_sheet_configuration.GetTexturePath() );
 
 			cpg::TileSheetUtility tile_sheet_utility;
 			tile_sheet_utility.Setup(
-				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
-				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()
+				tile_sheet_configuration.GetTileWidth(), tile_sheet_configuration.GetTileHeight()
+				, tile_sheet_configuration.GetTileMargin_Width(), tile_sheet_configuration.GetTileMargin_Height()
 				, texture->getContentSizeInPixels().height
 			);
 
@@ -203,46 +184,19 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
-		// Direction Maps
-		//
-		{
-			mDirectionMapNode = DirectionMapNode::create( DirectionMapNode::Config{ GRID_WIDTH, GRID_HEIGHT } );
-			mDirectionMapNode->setPosition(
-				visibleCenter
-				- Vec2( mDirectionMapNode->getContentSize().width * 0.5f, mDirectionMapNode->getContentSize().height * 0.5f )
-			);
-			addChild( mDirectionMapNode );
-		}
-
-		//
 		// Editor Node
 		//
 		{
-			mEditorNode = EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mEntryPointIndicatorNode, mTileSheetConfiguration );
+			mEditorNode = EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mEntryPointIndicatorNode, tile_sheet_configuration );
 			addChild( mEditorNode, 1 );
-		}
+		}		
 
 		//
-		// Current Point Indicator
+		// Processor Node
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
-
-			cpg::TileSheetUtility tile_sheet_utility;
-			tile_sheet_utility.Setup(
-				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
-				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()
-				, texture->getContentSizeInPixels().height
-			);
-
-			auto sprite = Sprite::createWithTexture( texture );
-			sprite->setAnchorPoint( Vec2::ZERO );
-			sprite->setScale( _director->getContentScaleFactor() );
-			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 4 ) );
-			sprite->setVisible( false );
-			addChild( sprite, 11 );
-
-			mCurrentPointIndicatorNode = sprite;
+			mProcessorNode = ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, tile_sheet_configuration, &mGrid4TileMap );
+			addChild( mProcessorNode, 2 );
 		}
 
 		//
@@ -293,30 +247,13 @@ namespace algorithm_practice_floodfill
 		if( eMode::Edit == mMode )
 		{
 			mEditorNode->setVisible( true );
-
-			mStep = eStep::Entry;
-
-			for( auto& d : mGrid4FloodFill )
-			{
-				d.Clear();
-			}
-			mDirectionMapNode->Reset();
-
-			mCurrentPointIndicatorNode->setVisible( false );
+			mProcessorNode->setVisible( false );
 		}
 		else
 		{
 			mEditorNode->setVisible( false );
+			mProcessorNode->setVisible( true );
 		}
-	}
-
-
-	void TestScene::updateCurrentPointView()
-	{
-		mCurrentPointIndicatorNode->setPosition(
-			mTileMapNode->getPosition()
-			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mCurrentPoint.x, mTileSheetConfiguration.GetTileHeight() * mCurrentPoint.y )
-		);
 	}
 
 
@@ -326,77 +263,6 @@ namespace algorithm_practice_floodfill
 		{
 			helper::BackToThePreviousScene::MoveBack();
 			return;
-		}
-
-		if( eMode::Process == mMode )
-		{
-			if( EventKeyboard::KeyCode::KEY_R == key_code )
-			{
-				mStep = eStep::Entry;
-				for( auto& d : mGrid4FloodFill )
-				{
-					d.Clear();
-				}
-				mDirectionMapNode->Reset();
-
-				mCurrentPointIndicatorNode->setVisible( false );
-				return;
-			}
-
-			if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
-			{
-				if( eStep::Entry == mStep )
-				{
-					mStep = eStep::Loop;
-					auto& current_cell = mGrid4FloodFill.Get( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y );
-					current_cell.Begin( { -1, -1 }, cpg::Direction4::eState::None );
-					mDirectionMapNode->UpdateTile( mGrid4TileMap.GetEntryPoint().x, mGrid4TileMap.GetEntryPoint().y, current_cell.GetTotalDirection() );
-
-					mCurrentPoint = mGrid4TileMap.GetEntryPoint();
-					mCurrentPointIndicatorNode->setVisible( true );
-					updateCurrentPointView();
-				}
-				else if( eStep::Loop == mStep )
-				{
-					auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
-					if( current_cell.HasDirection() )
-					{
-						const auto current_direction = current_cell.PopDirection();
-						mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
-
-						auto new_point = mCurrentPoint + current_direction.GetPoint();
-						if( mGrid4FloodFill.Get( new_point.x, new_point.y ).IsValid() )
-						{
-							return;
-						}
-
-						if( !mGrid4FloodFill.IsIn( new_point.x, new_point.y ) )
-						{
-							return;
-						}
-
-						if( eCellType::Road == mGrid4TileMap.GetCellType( new_point.x, new_point.y ) )
-						{
-							auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
-							next_cell.Begin( mCurrentPoint, current_direction );
-							mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
-
-							mCurrentPoint = new_point;
-							updateCurrentPointView();
-						}
-					}
-					else
-					{
-						mCurrentPoint = current_cell.GetParentPoint();
-						updateCurrentPointView();
-
-						if( -1 == mCurrentPoint.x )
-						{
-							mStep = eStep::End;
-						}
-					}
-				}
-			}
 		}
 	}
 }

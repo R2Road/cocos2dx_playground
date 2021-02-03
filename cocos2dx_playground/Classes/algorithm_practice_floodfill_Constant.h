@@ -5,13 +5,6 @@
 
 namespace algorithm_practice_floodfill
 {
-	enum eToolIndex
-	{
-		Wall,
-		Road,
-		Entry,
-	};
-
 	enum class eCellType
 	{
 		Road,

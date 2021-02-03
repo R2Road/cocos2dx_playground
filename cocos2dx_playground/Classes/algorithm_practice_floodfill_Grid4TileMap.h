@@ -32,6 +32,7 @@ namespace algorithm_practice_floodfill
 		std::size_t GetHeight() const { return mGrid.GetHeight(); }
 		const cpg::Point& GetEntryPoint() const { return mEntryPoint; }
 		eCellType GetCellType( const std::size_t x, const std::size_t y );
+		eCellType GetCellType( const std::size_t x, const std::size_t y ) const;
 
 		//
 		// Setter
