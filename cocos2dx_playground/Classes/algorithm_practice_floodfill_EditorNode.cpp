@@ -2,6 +2,7 @@
 
 #include <new>
 #include <numeric>
+#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCSprite.h"
@@ -93,6 +94,26 @@ namespace algorithm_practice_floodfill
 			visibleOrigin.x + ( visibleSize.width * 0.5f )
 			, visibleOrigin.y + ( visibleSize.height * 0.5f )
 		);
+
+		//
+		// Summury
+		//
+		{
+			std::stringstream ss;
+			ss << std::endl;
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Mouse] : " << "Edit Grid";
+
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+				- Vec2( 0.f, 20.f )
+			);
+			addChild( label, std::numeric_limits<int>::max() );
+		}
 
 		//
 		// Setup Grid Index Converter

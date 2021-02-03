@@ -102,9 +102,6 @@ namespace algorithm_practice_floodfill
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[Mouse] : " << "Edit Grid";
-			ss << std::endl;
-			ss << std::endl;
 			ss << "[R] : " << "Reset";
 			ss << std::endl;
 			ss << "[Space] : " << "Step";
