@@ -32,8 +32,6 @@ namespace
 
 	const std::size_t GRID_WIDTH = 13;
 	const std::size_t GRID_HEIGHT = 13;
-
-	const int TAG_ToolBar = 20140416;
 }
 
 namespace algorithm_practice_floodfill
