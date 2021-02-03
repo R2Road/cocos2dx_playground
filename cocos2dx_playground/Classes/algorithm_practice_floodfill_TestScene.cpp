@@ -19,6 +19,7 @@
 #include "algorithm_practice_floodfill_ProcessorNode.h"
 
 #include "cpg_StringTable.h"
+#include "cpg_TileSheetConfiguration.h"
 #include "cpgui_ToolBarNode.h"
 
 #include "step_defender_game_Constant.h"
@@ -44,7 +45,6 @@ namespace algorithm_practice_floodfill
 
 		, mMode( eMode::Edit )
 
-		, mTileSheetConfiguration( 1, 1, 1, 1, "" )
 		, mGrid4TileMap()
 
 		, mTileMapNode( nullptr )
@@ -86,7 +86,8 @@ namespace algorithm_practice_floodfill
 		//
 		// Load Tile Config
 		//
-		CCASSERT( mTileSheetConfiguration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
+		cpg::TileSheetConfiguration tile_sheet_configuration( 1, 1, 1, 1, "" );
+		CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//
 		// Summury
@@ -154,7 +155,7 @@ namespace algorithm_practice_floodfill
 		{
 			mTileMapNode = step_defender::game::TileMapNode::create(
 				step_defender::game::TileMapNode::Config{ GRID_WIDTH, GRID_HEIGHT }
-				, mTileSheetConfiguration
+				, tile_sheet_configuration
 			);
 			mTileMapNode->setPosition(
 				visibleCenter
@@ -167,12 +168,12 @@ namespace algorithm_practice_floodfill
 		// Entry Point Indicator
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
+			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( tile_sheet_configuration.GetTexturePath() );
 
 			cpg::TileSheetUtility tile_sheet_utility;
 			tile_sheet_utility.Setup(
-				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
-				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()
+				tile_sheet_configuration.GetTileWidth(), tile_sheet_configuration.GetTileHeight()
+				, tile_sheet_configuration.GetTileMargin_Width(), tile_sheet_configuration.GetTileMargin_Height()
 				, texture->getContentSizeInPixels().height
 			);
 
@@ -189,7 +190,7 @@ namespace algorithm_practice_floodfill
 		// Editor Node
 		//
 		{
-			mEditorNode = EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mEntryPointIndicatorNode, mTileSheetConfiguration );
+			mEditorNode = EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mEntryPointIndicatorNode, tile_sheet_configuration );
 			addChild( mEditorNode, 1 );
 		}		
 
@@ -197,7 +198,7 @@ namespace algorithm_practice_floodfill
 		// Processor Node
 		//
 		{
-			mProcessorNode = ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, mTileSheetConfiguration, &mGrid4TileMap );
+			mProcessorNode = ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, tile_sheet_configuration, &mGrid4TileMap );
 			addChild( mProcessorNode, 2 );
 		}
 

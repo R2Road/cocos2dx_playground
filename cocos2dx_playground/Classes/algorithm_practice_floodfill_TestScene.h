@@ -4,7 +4,6 @@
 
 #include "algorithm_practice_floodfill_Constant.h"
 #include "algorithm_practice_floodfill_Grid4TileMap.h"
-#include "cpg_TileSheetConfiguration.h"
 #include "helper_BackToThePreviousScene.h"
 
 namespace step_defender
@@ -52,7 +51,6 @@ namespace algorithm_practice_floodfill
 
 		eMode mMode;
 
-		cpg::TileSheetConfiguration mTileSheetConfiguration;
 		Grid4TileMap mGrid4TileMap;
 
 		step_defender::game::TileMapNode* mTileMapNode;
