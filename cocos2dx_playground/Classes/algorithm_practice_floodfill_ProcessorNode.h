@@ -21,6 +21,11 @@ namespace algorithm_practice_floodfill
 		};
 
 	private:
+		enum eMode
+		{
+			Step,
+		};
+
 		enum eStep
 		{
 			Entry,
@@ -56,6 +61,7 @@ namespace algorithm_practice_floodfill
 		const cpg::TileSheetConfiguration mTileSheetConfiguration;
 		const Grid4TileMap* const mGrid4TileMap;
 
+		eMode mMode;
 		eStep mStep;
 		cpg::Grid<Cell4FloodFill> mGrid4FloodFill;
 		cpg::Point mCurrentPoint;

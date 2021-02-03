@@ -27,6 +27,7 @@ namespace algorithm_practice_floodfill
 		, mTileSheetConfiguration( tile_sheet_configuration )
 		, mGrid4TileMap( grid_4_tile_map )
 
+		, mMode( eMode::Step )
 		, mStep( eStep::Entry )
 		, mGrid4FloodFill()
 		, mCurrentPoint()
@@ -259,7 +260,10 @@ namespace algorithm_practice_floodfill
 
 		if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
 		{
-			algorithmStep();
+			if( eMode::Step == mMode )
+			{
+				algorithmStep();
+			}
 		}
 	}
 }
