@@ -2,8 +2,15 @@
 
 #include "2d/CCNode.h"
 
+#include "algorithm_practice_floodfill_Constant.h"
+#include "cpg_Grid.h"
+#include "cpg_TileSheetConfiguration.h"
+
 namespace algorithm_practice_floodfill
 {
+	class DirectionMapNode;
+	class Grid4TileMap;
+
 	class ProcessorNode : public cocos2d::Node
 	{
 	public:
@@ -14,15 +21,44 @@ namespace algorithm_practice_floodfill
 		};
 
 	private:
-		ProcessorNode( const Config config );
+		enum eStep
+		{
+			Entry,
+			Loop,
+			End,
+		};
+
+		ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map );
 
 	public:
-		static ProcessorNode* create( const Config config );
+		static ProcessorNode* create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map );
 
 	private:
 		bool init() override;
 
+		void onEnter() override;
+		void onExit() override;
+
+	public:
+		void setVisible( bool visible ) override;
+
 	private:
+		void updateCurrentPointView();
+
+		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
+
+	private:
+		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
 		const Config mConfig;
+		const cpg::TileSheetConfiguration mTileSheetConfiguration;
+		const Grid4TileMap* const mGrid4TileMap;
+
+		eStep mStep;
+		cpg::Grid<Cell4FloodFill> mGrid4FloodFill;
+		cpg::Point mCurrentPoint;
+
+		cocos2d::Node* mCurrentPointIndicatorNode;
+		DirectionMapNode* mDirectionMapNode;
 	};
 }

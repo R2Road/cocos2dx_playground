@@ -17,7 +17,6 @@ namespace step_defender
 
 namespace algorithm_practice_floodfill
 {
-	class DirectionMapNode;
 	class EditorNode;
 	class ProcessorNode;
 
@@ -28,13 +27,6 @@ namespace algorithm_practice_floodfill
 		{
 			Edit,
 			Process,
-		};
-
-		enum eStep
-		{
-			Entry,
-			Loop,
-			End,
 		};
 
 		TestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
@@ -53,8 +45,6 @@ namespace algorithm_practice_floodfill
 	private:
 		void onModeSelect( const int mode_index );	
 
-		void updateCurrentPointView();
-
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
 	private:
@@ -67,13 +57,7 @@ namespace algorithm_practice_floodfill
 
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::Node* mEntryPointIndicatorNode;
-		DirectionMapNode* mDirectionMapNode;
 		EditorNode* mEditorNode;
 		ProcessorNode* mProcessorNode;
-
-		eStep mStep;
-		cpg::Grid<Cell4FloodFill> mGrid4FloodFill;
-		cpg::Point mCurrentPoint;
-		cocos2d::Node* mCurrentPointIndicatorNode;
 	};
 }

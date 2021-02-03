@@ -22,6 +22,10 @@ namespace algorithm_practice_floodfill
 	{
 		return mGrid.Get( x, y );
 	}
+	eCellType Grid4TileMap::GetCellType( const std::size_t x, const std::size_t y ) const
+	{
+		return mGrid.Get( x, y );
+	}
 
 
 	void Grid4TileMap::SetEntryPoint( const cpg::Point& new_entry_point )
