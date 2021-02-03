@@ -33,6 +33,7 @@ namespace algorithm_practice_floodfill
 		, mGrid4FloodFill()
 		, mCurrentPoint()
 
+		, mToolBarNode( nullptr )
 		, mCurrentPointIndicatorNode( nullptr )
 		, mDirectionMapNode( nullptr )
 	{}
@@ -101,20 +102,20 @@ namespace algorithm_practice_floodfill
 		// Tool Bar - for Mode
 		//
 		{
-			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 80.f, 20.f ) );
-			addChild( tool_bar_node );
+			mToolBarNode = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 80.f, 20.f ) );
+			addChild( mToolBarNode );
 
-			tool_bar_node->AddTool( static_cast<int>( eMode::Step ), "Step Mode", 10, std::bind( &ProcessorNode::onModeSelect, this, static_cast<int>( eMode::Step ) ) );
-			tool_bar_node->AddTool( static_cast<int>( eMode::Loop ), "Loop Mode", 10, std::bind( &ProcessorNode::onModeSelect, this, static_cast<int>( eMode::Loop ) ) );
+			mToolBarNode->AddTool( static_cast<int>( eMode::Step ), "Step Mode", 10, std::bind( &ProcessorNode::onModeSelect, this, static_cast<int>( eMode::Step ) ) );
+			mToolBarNode->AddTool( static_cast<int>( eMode::Loop ), "Loop Mode", 10, std::bind( &ProcessorNode::onModeSelect, this, static_cast<int>( eMode::Loop ) ) );
 
-			tool_bar_node->setPosition(
+			mToolBarNode->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width, visibleSize.height )
-				+ Vec2( -tool_bar_node->getContentSize().width, -tool_bar_node->getContentSize().height )
+				+ Vec2( -mToolBarNode->getContentSize().width, -mToolBarNode->getContentSize().height )
 			);
 
 			// Set Indicator
-			tool_bar_node->SelectTool( static_cast<int>( mMode ) );
+			mToolBarNode->SelectTool( static_cast<int>( mMode ) );
 		}
 
 		//
@@ -182,6 +183,10 @@ namespace algorithm_practice_floodfill
 
 		if( !visible )
 		{
+			mMode = eMode::Step;
+			mToolBarNode->SelectTool( static_cast<int>( mMode ) );
+			unschedule( schedule_selector( ProcessorNode::algorithmLoop ) );
+
 			mStep = eStep::Entry;
 
 			for( auto& d : mGrid4FloodFill )
@@ -292,6 +297,8 @@ namespace algorithm_practice_floodfill
 
 		if( eStep::End == mStep )
 		{
+			mMode = eMode::Step;
+			mToolBarNode->SelectTool( static_cast<int>( mMode ) );
 			unschedule( schedule_selector( ProcessorNode::algorithmLoop ) );
 		}
 	}

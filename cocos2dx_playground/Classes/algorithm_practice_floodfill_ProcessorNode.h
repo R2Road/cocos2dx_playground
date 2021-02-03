@@ -6,6 +6,11 @@
 #include "cpg_Grid.h"
 #include "cpg_TileSheetConfiguration.h"
 
+namespace cpgui
+{
+	class ToolBarNode;
+}
+
 namespace algorithm_practice_floodfill
 {
 	class DirectionMapNode;
@@ -69,6 +74,7 @@ namespace algorithm_practice_floodfill
 		cpg::Grid<Cell4FloodFill> mGrid4FloodFill;
 		cpg::Point mCurrentPoint;
 
+		cpgui::ToolBarNode* mToolBarNode;
 		cocos2d::Node* mCurrentPointIndicatorNode;
 		DirectionMapNode* mDirectionMapNode;
 	};
