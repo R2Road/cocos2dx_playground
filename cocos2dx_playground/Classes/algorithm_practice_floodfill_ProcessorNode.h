@@ -21,9 +21,10 @@ namespace algorithm_practice_floodfill
 		};
 
 	private:
-		enum eMode
+		enum class eMode
 		{
 			Step,
+			Loop,
 		};
 
 		enum eStep
@@ -48,9 +49,11 @@ namespace algorithm_practice_floodfill
 		void setVisible( bool visible ) override;
 
 	private:
+		void onModeSelect( const int mode_index );
 		void updateCurrentPointView();
 
 		void algorithmStep();
+		void algorithmLoop( float dt );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 

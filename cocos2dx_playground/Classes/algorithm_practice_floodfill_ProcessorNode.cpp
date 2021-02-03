@@ -15,6 +15,7 @@
 #include "algorithm_practice_floodfill_Grid4TileMap.h"
 
 #include "cpg_StringTable.h"
+#include "cpgui_ToolBarNode.h"
 
 USING_NS_CC;
 
@@ -77,6 +78,7 @@ namespace algorithm_practice_floodfill
 			ss << "[R] : " << "Reset";
 			ss << std::endl;
 			ss << "[Space] : " << "Step";
+			ss << "[F1] : " << "Loop";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -93,6 +95,26 @@ namespace algorithm_practice_floodfill
 		//
 		{
 			mGrid4FloodFill.Reset( mConfig.MapWidth, mConfig.MapHeight );
+		}
+
+		//
+		// Tool Bar - for Mode
+		//
+		{
+			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 80.f, 20.f ) );
+			addChild( tool_bar_node );
+
+			tool_bar_node->AddTool( static_cast<int>( eMode::Step ), "Step Mode", 10, std::bind( &ProcessorNode::onModeSelect, this, static_cast<int>( eMode::Step ) ) );
+			tool_bar_node->AddTool( static_cast<int>( eMode::Loop ), "Loop Mode", 10, std::bind( &ProcessorNode::onModeSelect, this, static_cast<int>( eMode::Loop ) ) );
+
+			tool_bar_node->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+				+ Vec2( -tool_bar_node->getContentSize().width, -tool_bar_node->getContentSize().height )
+			);
+
+			// Set Indicator
+			tool_bar_node->SelectTool( static_cast<int>( mMode ) );
 		}
 
 		//
@@ -178,6 +200,29 @@ namespace algorithm_practice_floodfill
 	}
 
 
+	void ProcessorNode::onModeSelect( const int mode_index )
+	{
+		mMode = static_cast<eMode>( mode_index );
+		CCLOG( "Mode Index : %d", mode_index );
+
+		switch( mMode )
+		{
+		case eMode::Step:
+			if( isScheduled( schedule_selector( ProcessorNode::algorithmLoop ) ) )
+			{
+				unschedule( schedule_selector( ProcessorNode::algorithmLoop ) );
+			}
+			break;
+		case eMode::Loop:
+			if( !isScheduled( schedule_selector( ProcessorNode::algorithmLoop ) ) )
+			{
+				schedule( schedule_selector( ProcessorNode::algorithmLoop ) );
+			}
+			break;
+		}
+	}
+
+
 	void ProcessorNode::updateCurrentPointView()
 	{
 		mCurrentPointIndicatorNode->setPosition(
@@ -241,6 +286,15 @@ namespace algorithm_practice_floodfill
 			}
 		}
 	}
+	void ProcessorNode::algorithmLoop( float )
+	{
+		algorithmStep();
+
+		if( eStep::End == mStep )
+		{
+			unschedule( schedule_selector( ProcessorNode::algorithmLoop ) );
+		}
+	}
 
 
 	void ProcessorNode::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
@@ -263,6 +317,18 @@ namespace algorithm_practice_floodfill
 			if( eMode::Step == mMode )
 			{
 				algorithmStep();
+			}
+		}
+
+		if( EventKeyboard::KeyCode::KEY_F1 == key_code )
+		{
+			if( eMode::Step == mMode )
+			{
+				mMode = eMode::Loop;
+			}
+			else
+			{
+				mMode = eMode::Step;
 			}
 		}
 	}
