@@ -70,6 +70,7 @@ namespace algorithm_practice_floodfill
 		const Grid4TileMap* const mGrid4TileMap;
 
 		eMode mMode;
+		float mElapsedTime4Loop;
 		eStep mStep;
 		cpg::Grid<Cell4FloodFill> mGrid4FloodFill;
 		cpg::Point mCurrentPoint;

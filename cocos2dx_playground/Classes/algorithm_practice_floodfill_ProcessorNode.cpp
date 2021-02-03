@@ -29,6 +29,7 @@ namespace algorithm_practice_floodfill
 		, mGrid4TileMap( grid_4_tile_map )
 
 		, mMode( eMode::Step )
+		, mElapsedTime4Loop( 0.f )
 		, mStep( eStep::Entry )
 		, mGrid4FloodFill()
 		, mCurrentPoint()
@@ -291,15 +292,22 @@ namespace algorithm_practice_floodfill
 			}
 		}
 	}
-	void ProcessorNode::algorithmLoop( float )
+	void ProcessorNode::algorithmLoop( float dt )
 	{
-		algorithmStep();
+		mElapsedTime4Loop += dt;
 
-		if( eStep::End == mStep )
+		if( 0.02f < mElapsedTime4Loop )
 		{
-			mMode = eMode::Step;
-			mToolBarNode->SelectTool( static_cast<int>( mMode ) );
-			unschedule( schedule_selector( ProcessorNode::algorithmLoop ) );
+			mElapsedTime4Loop = 0.f;
+
+			algorithmStep();
+
+			if( eStep::End == mStep )
+			{
+				mMode = eMode::Step;
+				mToolBarNode->SelectTool( static_cast<int>( mMode ) );
+				unschedule( schedule_selector( ProcessorNode::algorithmLoop ) );
+			}
 		}
 	}
 
