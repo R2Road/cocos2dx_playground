@@ -186,6 +186,62 @@ namespace algorithm_practice_floodfill
 	}
 
 
+	void ProcessorNode::algorithmStep()
+	{
+		if( eStep::Entry == mStep )
+		{
+			mStep = eStep::Loop;
+			auto& current_cell = mGrid4FloodFill.Get( mGrid4TileMap->GetEntryPoint().x, mGrid4TileMap->GetEntryPoint().y );
+			current_cell.Begin( { -1, -1 }, cpg::Direction4::eState::None );
+			mDirectionMapNode->UpdateTile( mGrid4TileMap->GetEntryPoint().x, mGrid4TileMap->GetEntryPoint().y, current_cell.GetTotalDirection() );
+
+			mCurrentPoint = mGrid4TileMap->GetEntryPoint();
+			mCurrentPointIndicatorNode->setVisible( true );
+			updateCurrentPointView();
+		}
+		else if( eStep::Loop == mStep )
+		{
+			auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
+			if( current_cell.HasDirection() )
+			{
+				const auto current_direction = current_cell.PopDirection();
+				mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
+
+				auto new_point = mCurrentPoint + current_direction.GetPoint();
+				if( mGrid4FloodFill.Get( new_point.x, new_point.y ).IsValid() )
+				{
+					return;
+				}
+
+				if( !mGrid4FloodFill.IsIn( new_point.x, new_point.y ) )
+				{
+					return;
+				}
+
+				if( eCellType::Road == mGrid4TileMap->GetCellType( new_point.x, new_point.y ) )
+				{
+					auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
+					next_cell.Begin( mCurrentPoint, current_direction );
+					mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
+
+					mCurrentPoint = new_point;
+					updateCurrentPointView();
+				}
+			}
+			else
+			{
+				mCurrentPoint = current_cell.GetParentPoint();
+				updateCurrentPointView();
+
+				if( -1 == mCurrentPoint.x )
+				{
+					mStep = eStep::End;
+				}
+			}
+		}
+	}
+
+
 	void ProcessorNode::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_R == key_code )
@@ -203,57 +259,7 @@ namespace algorithm_practice_floodfill
 
 		if( EventKeyboard::KeyCode::KEY_SPACE == key_code )
 		{
-			if( eStep::Entry == mStep )
-			{
-				mStep = eStep::Loop;
-				auto& current_cell = mGrid4FloodFill.Get( mGrid4TileMap->GetEntryPoint().x, mGrid4TileMap->GetEntryPoint().y );
-				current_cell.Begin( { -1, -1 }, cpg::Direction4::eState::None );
-				mDirectionMapNode->UpdateTile( mGrid4TileMap->GetEntryPoint().x, mGrid4TileMap->GetEntryPoint().y, current_cell.GetTotalDirection() );
-
-				mCurrentPoint = mGrid4TileMap->GetEntryPoint();
-				mCurrentPointIndicatorNode->setVisible( true );
-				updateCurrentPointView();
-			}
-			else if( eStep::Loop == mStep )
-			{
-				auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
-				if( current_cell.HasDirection() )
-				{
-					const auto current_direction = current_cell.PopDirection();
-					mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
-
-					auto new_point = mCurrentPoint + current_direction.GetPoint();
-					if( mGrid4FloodFill.Get( new_point.x, new_point.y ).IsValid() )
-					{
-						return;
-					}
-
-					if( !mGrid4FloodFill.IsIn( new_point.x, new_point.y ) )
-					{
-						return;
-					}
-
-					if( eCellType::Road == mGrid4TileMap->GetCellType( new_point.x, new_point.y ) )
-					{
-						auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
-						next_cell.Begin( mCurrentPoint, current_direction );
-						mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
-
-						mCurrentPoint = new_point;
-						updateCurrentPointView();
-					}
-				}
-				else
-				{
-					mCurrentPoint = current_cell.GetParentPoint();
-					updateCurrentPointView();
-
-					if( -1 == mCurrentPoint.x )
-					{
-						mStep = eStep::End;
-					}
-				}
-			}
+			algorithmStep();
 		}
 	}
 }

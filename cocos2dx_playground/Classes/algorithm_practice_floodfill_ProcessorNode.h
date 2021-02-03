@@ -45,6 +45,8 @@ namespace algorithm_practice_floodfill
 	private:
 		void updateCurrentPointView();
 
+		void algorithmStep();
+
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
 	private:
