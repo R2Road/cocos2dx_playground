@@ -287,6 +287,7 @@ namespace algorithm_practice_floodfill
 				if( -1 == mCurrentPoint.x )
 				{
 					mStep = eStep::End;
+					mCurrentPointIndicatorNode->setVisible( false );
 				}
 			}
 		}
