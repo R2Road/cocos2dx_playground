@@ -112,7 +112,7 @@ namespace graph_practice
 					auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 					guide_view->setScale9Enabled( true );
 					guide_view->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-					guide_view->setContentSize( Size( 2.f, view_node->getContentSize().height ) );
+					guide_view->setContentSize( Size( 1.f, view_node->getContentSize().height ) );
 					guide_view->setColor( GuideColor );
 					guide_view->setPositionX( Spacing * i );
 					view_node->addChild( guide_view, -1 );
@@ -123,7 +123,7 @@ namespace graph_practice
 					auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 					guide_view->setScale9Enabled( true );
 					guide_view->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
-					guide_view->setContentSize( Size( view_node->getContentSize().height, 2.f ) );
+					guide_view->setContentSize( Size( view_node->getContentSize().height, 1.f ) );
 					guide_view->setColor( GuideColor );
 					guide_view->setPositionY( Spacing * i );
 					view_node->addChild( guide_view, -1 );
