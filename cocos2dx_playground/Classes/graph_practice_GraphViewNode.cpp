@@ -240,7 +240,7 @@ namespace graph_practice
 		mIndicatorBridgeXNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
 
 		mIndicatorBridgeYNode->setContentSize( Size( mIndicatorNode->getPositionX(), 1.f ) );
-		mIndicatorBridgeXNode->setScaleY( 0 <= mIndicatorNode->getPositionX() ? 1.f : -1.f );
+		mIndicatorBridgeYNode->setScaleY( 0 <= mIndicatorNode->getPositionX() ? 1.f : -1.f );
 		mIndicatorBridgeYNode->setPositionY( mIndicatorNode->getParent()->getContentSize().height * g_y );
 
 		mIndicatorY2Node->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_y );
