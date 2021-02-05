@@ -960,6 +960,9 @@
     <ClCompile Include="..\Classes\graph_practice_GraphAndNameNode.cpp">
       <Filter>src\scene\graph_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\graph_practice_test_GraphViewNodeScene.cpp">
+      <Filter>src\scene\graph_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1743,6 +1746,9 @@
       <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\graph_practice_GraphAndNameNode.h">
+      <Filter>src\scene\graph_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\graph_practice_test_GraphViewNodeScene.h">
       <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
   </ItemGroup>
