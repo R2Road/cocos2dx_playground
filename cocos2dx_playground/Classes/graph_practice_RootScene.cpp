@@ -19,6 +19,7 @@
 #include "graph_practice_Collection04Scene.h"
 #include "graph_practice_Collection05Scene.h"
 #include "graph_practice_Collection06Scene.h"
+#include "graph_practice_SineScene.h"
 #include "PlayGroundScene.h"
 
 USING_NS_CC;
@@ -79,6 +80,12 @@ namespace graph_practice
 			ss << "[5] : " << graph_practice::Collection05Scene::getTitle();
 			ss << std::endl;
 			ss << "[6] : " << graph_practice::Collection06Scene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] : " << graph_practice::SineScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -146,6 +153,10 @@ namespace graph_practice
 			return;
 		case EventKeyboard::KeyCode::KEY_6:
 			_director->replaceScene( graph_practice::Collection06Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			return;
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			_director->replaceScene( graph_practice::SineScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		default:

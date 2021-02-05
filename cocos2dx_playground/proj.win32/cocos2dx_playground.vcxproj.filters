@@ -957,6 +957,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_ProcessorNode.cpp">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\graph_practice_SineScene.cpp">
+      <Filter>src\scene\graph_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1738,6 +1741,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_ProcessorNode.h">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\graph_practice_SineScene.h">
+      <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
