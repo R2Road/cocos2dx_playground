@@ -12,13 +12,13 @@ namespace graph_practice
 		using EvaluatorFunc = std::function<float( float )>;
 
 	private:
-		GraphViewNode( const EvaluatorFunc& evaluator_func );
+		GraphViewNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
 
 	public:
-		static GraphViewNode* create( const char* title, const int width, const int height, const EvaluatorFunc& evaluator_func );
+		static GraphViewNode* create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
 
 	private:
-		bool init( const char* title, const int width, const int height );
+		bool init( const char* title );
 
 	public:
 		//
@@ -27,7 +27,9 @@ namespace graph_practice
 		void UpdateView( const float g_x );
 
 	private:
+		const cocos2d::Size mPartSize;
 		const EvaluatorFunc mEvaluatorFunc;
+
 		cocos2d::Node* mIndicatorNode;
 		cocos2d::Node* mIndicatorXNode;
 		cocos2d::Node* mIndicatorYNode;

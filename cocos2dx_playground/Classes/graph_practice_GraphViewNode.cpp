@@ -18,8 +18,10 @@ USING_NS_CC;
 
 namespace graph_practice
 {
-	GraphViewNode::GraphViewNode( const EvaluatorFunc& evaluator_func ) :
-		mEvaluatorFunc( evaluator_func )
+	GraphViewNode::GraphViewNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func ) :
+		mPartSize( std::max( 50, part_width ), std::max( 50, part_height ) )
+		, mEvaluatorFunc( evaluator_func )
+
 		, mIndicatorNode( nullptr )
 		, mIndicatorXNode( nullptr )
 		, mIndicatorYNode( nullptr )
@@ -28,10 +30,10 @@ namespace graph_practice
 		, mIndicatorY2Node( nullptr )
 	{}
 
-	GraphViewNode* GraphViewNode::create( const char* title, const int width, const int height, const EvaluatorFunc& evaluator_func )
+	GraphViewNode* GraphViewNode::create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
 	{
-		auto ret = new ( std::nothrow ) GraphViewNode( evaluator_func );
-		if( !ret || !ret->init( title, width, height ) )
+		auto ret = new ( std::nothrow ) GraphViewNode( part_width, part_height, evaluator_func );
+		if( !ret || !ret->init( title ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -44,14 +46,14 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool GraphViewNode::init( const char* title, const int width, const int height )
+	bool GraphViewNode::init( const char* title )
 	{
 		if( !Node::init() )
 		{
 			return false;
 		}
 
-		setContentSize( Size( std::max( 50, width ), std::max( 50, height ) ) );
+		setContentSize( mPartSize );
 
 		// Pivot
 		{
