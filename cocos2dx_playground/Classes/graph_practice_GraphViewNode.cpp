@@ -235,10 +235,12 @@ namespace graph_practice
 		mIndicatorXNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
 		mIndicatorYNode->setPositionY( mIndicatorNode->getParent()->getContentSize().height * g_y );
 
-		mIndicatorBridgeXNode->setContentSize( Size(1.f, mIndicatorNode->getPositionY() ) );
+		mIndicatorBridgeXNode->setContentSize( Size( 1.f, std::abs( mIndicatorNode->getPositionY() ) ) );
+		mIndicatorBridgeXNode->setScaleY( 0 <= mIndicatorNode->getPositionY() ? 1.f : -1.f );
 		mIndicatorBridgeXNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
 
 		mIndicatorBridgeYNode->setContentSize( Size( mIndicatorNode->getPositionX(), 1.f ) );
+		mIndicatorBridgeXNode->setScaleY( 0 <= mIndicatorNode->getPositionX() ? 1.f : -1.f );
 		mIndicatorBridgeYNode->setPositionY( mIndicatorNode->getParent()->getContentSize().height * g_y );
 
 		mIndicatorY2Node->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_y );
