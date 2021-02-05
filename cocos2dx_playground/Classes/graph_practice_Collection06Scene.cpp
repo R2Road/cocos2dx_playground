@@ -14,7 +14,7 @@
 #include "base/ccUTF8.h"
 
 #include "cpg_StringTable.h"
-#include "graph_practice_GraphViewNode.h"
+#include "graph_practice_GraphAndNameNode.h"
 
 USING_NS_CC;
 
@@ -125,7 +125,7 @@ namespace graph_practice
 		// Practice 1
 		//
 		{
-			auto graph_view_node = GraphViewNode::create( "Linear", GraphWidth, GraphHeight, []( float g_x )->float { return g_x; } );
+			auto graph_view_node = GraphAndNameNode::create( "Linear", GraphWidth, GraphHeight, []( float g_x )->float { return g_x; } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( graph_view_node->getContentSize().height * 0.5f )
@@ -139,7 +139,7 @@ namespace graph_practice
 		// Practice 2
 		//
 		{
-			auto graph_view_node = GraphViewNode::create( "bounceEase In", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::bounceEaseIn( g_x ); } );
+			auto graph_view_node = GraphAndNameNode::create( "bounceEase In", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::bounceEaseIn( g_x ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
@@ -153,7 +153,7 @@ namespace graph_practice
 		// Practice 3
 		//
 		{
-			auto graph_view_node = GraphViewNode::create( "bounceEase Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::bounceEaseOut( g_x ); } );
+			auto graph_view_node = GraphAndNameNode::create( "bounceEase Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::bounceEaseOut( g_x ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
@@ -167,7 +167,7 @@ namespace graph_practice
 		// Practice 4
 		//
 		{
-			auto graph_view_node = GraphViewNode::create( "bounceEase In Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::bounceEaseInOut( g_x ); } );
+			auto graph_view_node = GraphAndNameNode::create( "bounceEase In Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::bounceEaseInOut( g_x ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
@@ -183,7 +183,7 @@ namespace graph_practice
 		// Practice 5
 		//
 		{
-			auto graph_view_node = GraphViewNode::create( "ease In", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::easeIn( g_x, 2.f ); } );
+			auto graph_view_node = GraphAndNameNode::create( "ease In", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::easeIn( g_x, 2.f ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
@@ -197,7 +197,7 @@ namespace graph_practice
 		// Practice 6
 		//
 		{
-			auto graph_view_node = GraphViewNode::create( "ease Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::easeOut( g_x, 2.f ); } );
+			auto graph_view_node = GraphAndNameNode::create( "ease Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::easeOut( g_x, 2.f ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
@@ -211,7 +211,7 @@ namespace graph_practice
 		// Practice 7
 		//
 		{
-			auto graph_view_node = GraphViewNode::create( "ease In Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::easeInOut( g_x, 2.f ); } );
+			auto graph_view_node = GraphAndNameNode::create( "ease In Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::easeInOut( g_x, 2.f ); } );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )

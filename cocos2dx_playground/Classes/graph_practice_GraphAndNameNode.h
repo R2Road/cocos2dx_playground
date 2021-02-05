@@ -6,16 +6,16 @@
 
 namespace graph_practice
 {
-	class GraphViewNode : public cocos2d::Node
+	class GraphAndNameNode : public cocos2d::Node
 	{
 	public:
 		using EvaluatorFunc = std::function<float( float )>;
 
 	private:
-		GraphViewNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
+		GraphAndNameNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
 
 	public:
-		static GraphViewNode* create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
+		static GraphAndNameNode* create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
 
 	private:
 		bool init( const char* title );

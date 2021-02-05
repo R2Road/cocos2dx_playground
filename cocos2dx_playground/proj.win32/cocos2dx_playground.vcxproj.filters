@@ -441,9 +441,6 @@
     <ClCompile Include="..\Classes\graph_practice_BasicScene.cpp">
       <Filter>src\scene\graph_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\graph_practice_GraphViewNode.cpp">
-      <Filter>src\scene\graph_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\graph_practice_Collection01Scene.cpp">
       <Filter>src\scene\graph_practice</Filter>
     </ClCompile>
@@ -960,6 +957,9 @@
     <ClCompile Include="..\Classes\graph_practice_SineScene.cpp">
       <Filter>src\scene\graph_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\graph_practice_GraphAndNameNode.cpp">
+      <Filter>src\scene\graph_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1206,9 +1206,6 @@
       <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\graph_practice_BasicScene.h">
-      <Filter>src\scene\graph_practice</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\graph_practice_GraphViewNode.h">
       <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\graph_practice_Collection01Scene.h">
@@ -1743,6 +1740,9 @@
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\graph_practice_SineScene.h">
+      <Filter>src\scene\graph_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\graph_practice_GraphAndNameNode.h">
       <Filter>src\scene\graph_practice</Filter>
     </ClInclude>
   </ItemGroup>

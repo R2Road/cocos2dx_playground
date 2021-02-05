@@ -1,4 +1,4 @@
-#include "graph_practice_GraphViewNode.h"
+#include "graph_practice_GraphAndNameNode.h"
 
 #include <algorithm>
 #include <new>
@@ -18,7 +18,7 @@ USING_NS_CC;
 
 namespace graph_practice
 {
-	GraphViewNode::GraphViewNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func ) :
+	GraphAndNameNode::GraphAndNameNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func ) :
 		mPartSize( std::max( 50, part_width ), std::max( 50, part_height ) )
 		, mEvaluatorFunc( evaluator_func )
 
@@ -30,9 +30,9 @@ namespace graph_practice
 		, mIndicatorY2Node( nullptr )
 	{}
 
-	GraphViewNode* GraphViewNode::create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
+	GraphAndNameNode* GraphAndNameNode::create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
 	{
-		auto ret = new ( std::nothrow ) GraphViewNode( part_width, part_height, evaluator_func );
+		auto ret = new ( std::nothrow ) GraphAndNameNode( part_width, part_height, evaluator_func );
 		if( !ret || !ret->init( title ) )
 		{
 			delete ret;
@@ -46,7 +46,7 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool GraphViewNode::init( const char* title )
+	bool GraphAndNameNode::init( const char* title )
 	{
 		if( !Node::init() )
 		{
@@ -225,7 +225,7 @@ namespace graph_practice
 		return true;
 	}
 
-	void GraphViewNode::UpdateView( const float g_x )
+	void GraphAndNameNode::UpdateView( const float g_x )
 	{
 		const auto g_y = mEvaluatorFunc( g_x );
 
