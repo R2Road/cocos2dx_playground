@@ -15,7 +15,7 @@
 #include "base/ccUTF8.h"
 
 #include "cpg_StringTable.h"
-#include "graph_practice_GraphAndNameNode.h"
+#include "graph_practice_GraphViewNode.h"
 
 USING_NS_CC;
 
@@ -123,7 +123,7 @@ namespace graph_practice_test
 		// Practice
 		//
 		{
-			auto graph_view_node = graph_practice::GraphAndNameNode::create( "Sine", GraphWidth, GraphHeight, []( float g_x )->float { return std::sin( g_x ); } );
+			auto graph_view_node = graph_practice::GraphViewNode::create( "Sine", GraphWidth, GraphHeight, []( float g_x )->float { return std::sin( g_x ); } );
 			graph_view_node->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.25f, visibleOrigin.y + visibleSize.height * 0.5f )

@@ -8,7 +8,7 @@
 
 namespace graph_practice
 {
-	class GraphAndNameNode;
+	class GraphViewNode;
 }
 
 namespace graph_practice_test
@@ -42,6 +42,6 @@ namespace graph_practice_test
 		float mElapsedTime;
 		bool mbPause;
 
-		std::vector<graph_practice::GraphAndNameNode*> mGraphViewNodeContainer;
+		std::vector<graph_practice::GraphViewNode*> mGraphViewNodeContainer;
 	};
 }

@@ -178,6 +178,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\graph_practice_Collection05Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection06Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_GraphAndNameNode.cpp" />
+    <ClCompile Include="..\Classes\graph_practice_GraphViewNode.cpp" />
     <ClCompile Include="..\Classes\graph_practice_test_GraphViewNodeScene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_SineScene.cpp" />
@@ -432,6 +433,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\graph_practice_Collection05Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection06Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_GraphAndNameNode.h" />
+    <ClInclude Include="..\Classes\graph_practice_GraphViewNode.h" />
     <ClInclude Include="..\Classes\graph_practice_test_GraphViewNodeScene.h" />
     <ClInclude Include="..\Classes\graph_practice_RootScene.h" />
     <ClInclude Include="..\Classes\graph_practice_SineScene.h" />
