@@ -85,7 +85,7 @@ namespace graph_practice
 			//
 			{
 				auto background = LayerColor::create( Color4B( 44u, 44u, 44u, 255u ), view_node->getContentSize().width, view_node->getContentSize().height );
-				view_node->addChild( background, -2 );
+				view_node->addChild( background, std::numeric_limits<int>::min() );
 			}
 
 			//
@@ -105,7 +105,7 @@ namespace graph_practice
 						guide_view->setContentSize( Size( 1.f, view_node->getContentSize().height ) );
 						guide_view->setColor( GuideColor );
 						guide_view->setPositionX( Spacing * i );
-						view_node->addChild( guide_view, -1 );
+						view_node->addChild( guide_view, std::numeric_limits<int>::min() + 1 );
 					}
 				}
 
@@ -120,7 +120,7 @@ namespace graph_practice
 						guide_view->setContentSize( Size( view_node->getContentSize().height, 1.f ) );
 						guide_view->setColor( GuideColor );
 						guide_view->setPositionY( Spacing * i );
-						view_node->addChild( guide_view, -1 );
+						view_node->addChild( guide_view, std::numeric_limits<int>::min() + 1 );
 					}
 				}
 			}
