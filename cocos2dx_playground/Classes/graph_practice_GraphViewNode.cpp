@@ -53,8 +53,8 @@ namespace graph_practice
 			return false;
 		}
 
-		const int HeaderSize = 10;
-		setContentSize( mPartSize + Size( 0.f, HeaderSize ) );
+		const int HeaderHeight = 10;
+		setContentSize( mPartSize + Size( 0.f, HeaderHeight ) );
 
 		// Pivot
 		{
@@ -210,7 +210,7 @@ namespace graph_practice
 				mIndicatorY2Node = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorY2Node->setScale( 6.f );
 				mIndicatorY2Node->setColor( Color3B( 73, 179, 255 ) );
-				mIndicatorY2Node->setPositionY( view_node->getContentSize().height + ( HeaderSize * 0.5f ) );
+				mIndicatorY2Node->setPositionY( view_node->getContentSize().height + ( HeaderHeight * 0.5f ) );
 				view_node->addChild( mIndicatorY2Node, 2 );
 			}
 		}
