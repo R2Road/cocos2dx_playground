@@ -53,7 +53,8 @@ namespace graph_practice
 			return false;
 		}
 
-		setContentSize( mPartSize );
+		const int HeaderSize = 10;
+		setContentSize( mPartSize + Size( 0.f, HeaderSize ) );
 
 		// Pivot
 		{
@@ -71,17 +72,12 @@ namespace graph_practice
 			addChild( layer, std::numeric_limits<int>::min() );
 		}
 
-		const int HeaderSize = 10;
-
 		//
 		// Graph View
 		//
 		{
-			int ViewNodeSize = getContentSize().height - HeaderSize;
-			ViewNodeSize = getContentSize().width < ViewNodeSize ? getContentSize().width : ViewNodeSize;
-
 			auto view_node = Node::create();
-			view_node->setContentSize( Size( ViewNodeSize, ViewNodeSize ) );
+			view_node->setContentSize( mPartSize );
 			addChild( view_node );
 
 			//
@@ -97,27 +93,35 @@ namespace graph_practice
 			//
 			{
 				const Color3B GuideColor( 55u, 55u, 55u );
-				const float Spacing = ViewNodeSize * 0.1f;
-				for( int i = 1; 10 > i; ++i )
+
+				// Vertical
 				{
-					auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-					guide_view->setScale9Enabled( true );
-					guide_view->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-					guide_view->setContentSize( Size( 1.f, view_node->getContentSize().height ) );
-					guide_view->setColor( GuideColor );
-					guide_view->setPositionX( Spacing * i );
-					view_node->addChild( guide_view, -1 );
+					const float Spacing = mPartSize.width * 0.1f;
+					for( int i = 1; 10 > i; ++i )
+					{
+						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
+						guide_view->setScale9Enabled( true );
+						guide_view->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+						guide_view->setContentSize( Size( 1.f, view_node->getContentSize().height ) );
+						guide_view->setColor( GuideColor );
+						guide_view->setPositionX( Spacing * i );
+						view_node->addChild( guide_view, -1 );
+					}
 				}
 
-				for( int i = 1; 10 > i; ++i )
+				// Horizontal
 				{
-					auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-					guide_view->setScale9Enabled( true );
-					guide_view->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
-					guide_view->setContentSize( Size( view_node->getContentSize().height, 1.f ) );
-					guide_view->setColor( GuideColor );
-					guide_view->setPositionY( Spacing * i );
-					view_node->addChild( guide_view, -1 );
+					const float Spacing = mPartSize.height * 0.1f;
+					for( int i = 1; 10 > i; ++i )
+					{
+						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
+						guide_view->setScale9Enabled( true );
+						guide_view->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
+						guide_view->setContentSize( Size( view_node->getContentSize().height, 1.f ) );
+						guide_view->setColor( GuideColor );
+						guide_view->setPositionY( Spacing * i );
+						view_node->addChild( guide_view, -1 );
+					}
 				}
 			}
 
