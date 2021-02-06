@@ -116,7 +116,7 @@ namespace graph_practice
 					{
 						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 						guide_view->setScale9Enabled( true );
-						guide_view->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
+						guide_view->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 						guide_view->setContentSize( Size( view_node->getContentSize().height, 1.f ) );
 						guide_view->setColor( GuideColor );
 						guide_view->setPositionY( Spacing * i );
@@ -126,7 +126,7 @@ namespace graph_practice
 			}
 
 			//
-			// x, y
+			// Pivot View
 			//
 			{
 				auto x_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
@@ -153,7 +153,7 @@ namespace graph_practice
 			}
 
 			//
-			//
+			// Dot
 			//
 			{
 				auto batch_node = SpriteBatchNode::createWithTexture( _director->getTextureCache()->getTextureForKey( "textures/texture_001.png" ), 100u );
