@@ -268,7 +268,7 @@ namespace tool_practice
 
 	void TileSheetTestScene::onLayerSelect( const int layer_index )
 	{
-		CCASSERT( 0 <= layer_index && layer_index < mTileMapNodeContainer.size(), "Invalid Layer Index" );
+		CCASSERT( 0 <= layer_index && layer_index < static_cast<int>( mTileMapNodeContainer.size() ), "Invalid Layer Index" );
 		mTileMapNode = mTileMapNodeContainer[layer_index];
 
 		for( auto n : mTileMapNodeContainer )
