@@ -4,13 +4,6 @@
 
 #include "ui/UILayout.h"
 
-NS_CC_BEGIN
-namespace ui
-{
-	class Layout;
-}
-NS_CC_END
-
 namespace cpgui
 {
 	class ToolBarNode : public cocos2d::Node
