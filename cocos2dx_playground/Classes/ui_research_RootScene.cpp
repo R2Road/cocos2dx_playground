@@ -93,12 +93,6 @@ namespace ui_research
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[A] : " << cpgui::research_layout::ToolBarNodeScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
-			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[Z] : " << "Add Something";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
