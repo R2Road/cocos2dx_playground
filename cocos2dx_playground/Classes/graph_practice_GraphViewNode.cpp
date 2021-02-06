@@ -62,6 +62,15 @@ namespace graph_practice
 			addChild( pivot, std::numeric_limits<int>::max() );
 		}
 
+		//
+		// Background Guide
+		//
+		{
+			auto layer = LayerColor::create( Color4B::BLUE, getContentSize().width, getContentSize().height );
+			layer->setAnchorPoint( Vec2::ZERO );
+			addChild( layer, std::numeric_limits<int>::min() );
+		}
+
 		const int HeaderSize = 10;
 		const int HeaderMargin = 4;
 
