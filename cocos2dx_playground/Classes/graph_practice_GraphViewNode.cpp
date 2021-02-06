@@ -72,13 +72,12 @@ namespace graph_practice
 		}
 
 		const int HeaderSize = 10;
-		const int HeaderMargin = 4;
 
 		//
 		// Graph View
 		//
 		{
-			int ViewNodeSize = getContentSize().height - ( HeaderSize + HeaderMargin );
+			int ViewNodeSize = getContentSize().height - HeaderSize;
 			ViewNodeSize = getContentSize().width < ViewNodeSize ? getContentSize().width : ViewNodeSize;
 
 			auto view_node = Node::create();
@@ -207,7 +206,7 @@ namespace graph_practice
 				mIndicatorY2Node = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorY2Node->setScale( 6.f );
 				mIndicatorY2Node->setColor( Color3B( 73, 179, 255 ) );
-				mIndicatorY2Node->setPositionY( view_node->getContentSize().height + HeaderMargin + ( HeaderSize * 0.5f ) );
+				mIndicatorY2Node->setPositionY( view_node->getContentSize().height + ( HeaderSize * 0.5f ) );
 				view_node->addChild( mIndicatorY2Node, 2 );
 			}
 		}
