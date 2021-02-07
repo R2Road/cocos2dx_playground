@@ -79,7 +79,7 @@ namespace graph_practice
 		// Graph View
 		//
 		{
-			mGraphViewNode = graph_practice::GraphViewNode::create( { config.bShowPivot, config.bShowBackgroundGuide }, "Sine", part_width, part_height, evaluator_func );
+			mGraphViewNode = graph_practice::GraphViewNode::create( { config.bShowPivot, config.bShowBackgroundGuide }, part_width, part_height, evaluator_func );
 			addChild( mGraphViewNode );
 		}
 
