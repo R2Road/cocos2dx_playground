@@ -23,10 +23,10 @@ namespace graph_practice
 	GraphAndNameNode::GraphAndNameNode() : mGraphViewNode( nullptr )
 	{}
 
-	GraphAndNameNode* GraphAndNameNode::create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
+	GraphAndNameNode* GraphAndNameNode::create( const Config config, const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
 	{
 		auto ret = new ( std::nothrow ) GraphAndNameNode();
-		if( !ret || !ret->init( title, part_width, part_height, evaluator_func ) )
+		if( !ret || !ret->init( config, title, part_width, part_height, evaluator_func ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -39,7 +39,7 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool GraphAndNameNode::init( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
+	bool GraphAndNameNode::init( const Config config, const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
 	{
 		if( !Node::init() )
 		{
@@ -48,7 +48,10 @@ namespace graph_practice
 
 		setContentSize( Size( part_width, part_height ) );
 
+		//
 		// Pivot
+		//
+		if( config.bShowPivot )
 		{
 			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 			pivot->setScale( 2.f );
@@ -58,6 +61,7 @@ namespace graph_practice
 		//
 		// Background Guide
 		//
+		if( config.bShowBackgroundGuide)
 		{
 			auto layer = LayerColor::create( Color4B::MAGENTA, getContentSize().width, getContentSize().height );
 			layer->setAnchorPoint( Vec2::ZERO );
@@ -89,7 +93,7 @@ namespace graph_practice
 		// Graph View
 		//
 		{
-			mGraphViewNode = graph_practice::GraphViewNode::create( { true, true }, "Sine", ViewNodeSize, ViewNodeSize, evaluator_func );
+			mGraphViewNode = graph_practice::GraphViewNode::create( { config.bShowPivot, config.bShowBackgroundGuide }, "Sine", ViewNodeSize, ViewNodeSize, evaluator_func );
 			mGraphViewNode->setPosition(
 				( getContentSize().width * 0.5f ) - ( mGraphViewNode->getContentSize().width * 0.5f )
 				, ViewNodeY

@@ -87,7 +87,7 @@ namespace graph_practice
 		// Practice
 		//
 		{
-			auto graph_view_node = GraphAndNameNode::create( "Linear", 100, 100, []( float g_x )->float { return g_x; } );
+			auto graph_view_node = GraphAndNameNode::create( { true, true }, "Linear", 100, 100, []( float g_x )->float { return g_x; } );
 			graph_view_node->setTag( TAG_GraphViewNode );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( graph_view_node->getContentSize().width * 0.5f )

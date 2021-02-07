@@ -11,16 +11,22 @@ namespace graph_practice
 	class GraphAndNameNode : public cocos2d::Node
 	{
 	public:
+		struct Config
+		{
+			bool bShowPivot = false;
+			bool bShowBackgroundGuide = false;
+		};
+
 		using EvaluatorFunc = std::function<float( float )>;
 
 	private:
 		GraphAndNameNode();
 
 	public:
-		static GraphAndNameNode* create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
+		static GraphAndNameNode* create( const Config config, const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
 
 	private:
-		bool init( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
+		bool init( const Config config, const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
 
 	public:
 		//
