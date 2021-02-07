@@ -68,38 +68,33 @@ namespace graph_practice
 			addChild( layer, std::numeric_limits<int>::min() );
 		}
 
-		const int HeaderSize = 10;
-
-		int ViewNodeSize = 0;
-		int ViewNodeY = 0;
-		const int ViewNodeMargin = 4;
-
 		//
 		// Title
 		//
-		{
-			auto label = Label::createWithTTF( title, cpg::StringTable::GetFontPath(), 10 );
-			label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-			label->setPositionX( getContentSize().width * 0.5f );
-			addChild( label, std::numeric_limits<int>::max() );
-
-			ViewNodeY = static_cast<int>( label->getContentSize().height ) + ViewNodeMargin;
-
-			ViewNodeSize = getContentSize().height - ViewNodeY - ( HeaderSize + ViewNodeMargin );
-			ViewNodeSize = getContentSize().width < ViewNodeSize ? getContentSize().width : ViewNodeSize;
-		}
+		auto label = Label::createWithTTF( title, cpg::StringTable::GetFontPath(), 10 );
+		label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+		addChild( label, std::numeric_limits<int>::max() );
 
 		//
 		// Graph View
 		//
 		{
-			mGraphViewNode = graph_practice::GraphViewNode::create( { config.bShowPivot, config.bShowBackgroundGuide }, "Sine", ViewNodeSize, ViewNodeSize, evaluator_func );
-			mGraphViewNode->setPosition(
-				( getContentSize().width * 0.5f ) - ( mGraphViewNode->getContentSize().width * 0.5f )
-				, ViewNodeY
-			);
+			mGraphViewNode = graph_practice::GraphViewNode::create( { config.bShowPivot, config.bShowBackgroundGuide }, "Sine", part_width, part_height, evaluator_func );
 			addChild( mGraphViewNode );
 		}
+
+		//
+		// Align
+		//
+		const int LabelMargin = 4;
+		const int ViewNodeWidth = label->getContentSize().width > mGraphViewNode->getContentSize().width ? label->getContentSize().width : mGraphViewNode->getContentSize().width;
+		const int ViewNodeHeight = label->getContentSize().height + LabelMargin + mGraphViewNode->getContentSize().height;
+
+		label->setPositionX( ViewNodeWidth * 0.5f );
+		mGraphViewNode->setPosition(
+			( ViewNodeWidth * 0.5f ) - ( mGraphViewNode->getContentSize().width * 0.5f )
+			, label->getContentSize().height + LabelMargin
+		);
 
 		return true;
 	}

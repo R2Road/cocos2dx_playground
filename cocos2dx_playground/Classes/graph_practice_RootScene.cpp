@@ -72,24 +72,23 @@ namespace graph_practice
 			ss << std::endl;
 			ss << "[1] : " << graph_practice_test::GraphViewNodeScene::getTitle();
 			ss << std::endl;
+			ss << "[2] : " << graph_practice::BasicScene::getTitle();
+			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[Q] : " << graph_practice::BasicScene::getTitle();
+			ss << "[Q] : " << graph_practice::Collection01Scene::getTitle();
 			ss << std::endl;
+			ss << "[W] : " << graph_practice::Collection02Scene::getTitle();
 			ss << std::endl;
-			ss << "[W] : " << graph_practice::Collection01Scene::getTitle();
+			ss << "[E] : " << graph_practice::Collection03Scene::getTitle();
 			ss << std::endl;
-			ss << "[E] : " << graph_practice::Collection02Scene::getTitle();
+			ss << "[R] : " << graph_practice::Collection04Scene::getTitle();
 			ss << std::endl;
-			ss << "[R] : " << graph_practice::Collection03Scene::getTitle();
+			ss << "[T] : " << graph_practice::Collection05Scene::getTitle();
 			ss << std::endl;
-			ss << "[T] : " << graph_practice::Collection04Scene::getTitle();
-			ss << std::endl;
-			ss << "[Y] : " << graph_practice::Collection05Scene::getTitle();
-			ss << std::endl;
-			ss << "[U] : " << graph_practice::Collection06Scene::getTitle();
+			ss << "[Y] : " << graph_practice::Collection06Scene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -146,26 +145,26 @@ namespace graph_practice
 		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( graph_practice_test::GraphViewNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
-
-		case EventKeyboard::KeyCode::KEY_Q:
+		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( graph_practice::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
-		case EventKeyboard::KeyCode::KEY_W:
+
+		case EventKeyboard::KeyCode::KEY_Q:
 			_director->replaceScene( graph_practice::Collection01Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
-		case EventKeyboard::KeyCode::KEY_E:
+		case EventKeyboard::KeyCode::KEY_W:
 			_director->replaceScene( graph_practice::Collection02Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
-		case EventKeyboard::KeyCode::KEY_R:
+		case EventKeyboard::KeyCode::KEY_E:
 			_director->replaceScene( graph_practice::Collection03Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
-		case EventKeyboard::KeyCode::KEY_T:
+		case EventKeyboard::KeyCode::KEY_R:
 			_director->replaceScene( graph_practice::Collection04Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
-		case EventKeyboard::KeyCode::KEY_Y:
+		case EventKeyboard::KeyCode::KEY_T:
 			_director->replaceScene( graph_practice::Collection05Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
-		case EventKeyboard::KeyCode::KEY_U:
+		case EventKeyboard::KeyCode::KEY_Y:
 			_director->replaceScene( graph_practice::Collection06Scene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
