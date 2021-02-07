@@ -89,7 +89,7 @@ namespace graph_practice
 		// Graph View
 		//
 		{
-			mGraphViewNode = graph_practice::GraphViewNode::create( "Sine", ViewNodeSize, ViewNodeSize, evaluator_func );
+			mGraphViewNode = graph_practice::GraphViewNode::create( { true, true }, "Sine", ViewNodeSize, ViewNodeSize, evaluator_func );
 			mGraphViewNode->setPosition(
 				( getContentSize().width * 0.5f ) - ( mGraphViewNode->getContentSize().width * 0.5f )
 				, ViewNodeY

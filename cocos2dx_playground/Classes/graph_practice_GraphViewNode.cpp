@@ -30,10 +30,10 @@ namespace graph_practice
 		, mIndicatorY2Node( nullptr )
 	{}
 
-	GraphViewNode* GraphViewNode::create( const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
+	GraphViewNode* GraphViewNode::create( const Config config, const char* title, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
 	{
 		auto ret = new ( std::nothrow ) GraphViewNode( part_width, part_height, evaluator_func );
-		if( !ret || !ret->init( title ) )
+		if( !ret || !ret->init( config, title ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -46,7 +46,7 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool GraphViewNode::init( const char* title )
+	bool GraphViewNode::init( const Config config, const char* title )
 	{
 		if( !Node::init() )
 		{
@@ -57,6 +57,7 @@ namespace graph_practice
 		setContentSize( mPartSize + Size( 0.f, HeaderHeight ) );
 
 		// Pivot
+		if( config.bShowPivot )
 		{
 			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 			pivot->setScale( 2.f );
@@ -66,6 +67,7 @@ namespace graph_practice
 		//
 		// Background Guide
 		//
+		if( config.bShowBackgroundGuide )
 		{
 			auto layer = LayerColor::create( Color4B::BLUE, getContentSize().width, getContentSize().height );
 			layer->setAnchorPoint( Vec2::ZERO );
