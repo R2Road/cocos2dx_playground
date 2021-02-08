@@ -20,17 +20,17 @@ namespace
 	const int TAG_GraphViewNode = 20140416;
 }
 
-namespace graph_practice
+namespace graph_practice_test
 {
-	BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	GraphAndNameNodeScene::GraphAndNameNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 		, mElapsedTime( 0.f )
 	{}
 
-	Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* GraphAndNameNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) BasicScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) GraphAndNameNodeScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -44,7 +44,7 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool BasicScene::init()
+	bool GraphAndNameNodeScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -87,7 +87,7 @@ namespace graph_practice
 		// Practice
 		//
 		{
-			auto graph_view_node = GraphAndNameNode::create( { true, true }, "Linear", 100, 100, []( float g_x )->float { return g_x; } );
+			auto graph_view_node = graph_practice::GraphAndNameNode::create( { true, true }, "Linear", 100, 100, []( float g_x )->float { return g_x; } );
 			graph_view_node->setTag( TAG_GraphViewNode );
 			graph_view_node->setPosition(
 				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( graph_view_node->getContentSize().width * 0.5f )
@@ -99,16 +99,16 @@ namespace graph_practice
 		return true;
 	}
 
-	void BasicScene::onEnter()
+	void GraphAndNameNodeScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( GraphAndNameNodeScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void BasicScene::onExit()
+	void GraphAndNameNodeScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -116,7 +116,7 @@ namespace graph_practice
 
 		Scene::onExit();
 	}
-	void BasicScene::update( float dt )
+	void GraphAndNameNodeScene::update( float dt )
 	{
 		mElapsedTime += dt;
 		if( 1.f < mElapsedTime )
@@ -124,13 +124,13 @@ namespace graph_practice
 			mElapsedTime = 0.f;
 		}
 
-		static_cast<GraphAndNameNode*>( getChildByTag( TAG_GraphViewNode ) )->UpdateView( mElapsedTime );
+		static_cast<graph_practice::GraphAndNameNode*>( getChildByTag( TAG_GraphViewNode ) )->UpdateView( mElapsedTime );
 
 		Node::update( dt );
 	}
 
 
-	void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void GraphAndNameNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{

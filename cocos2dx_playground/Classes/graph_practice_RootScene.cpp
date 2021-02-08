@@ -72,7 +72,7 @@ namespace graph_practice
 			ss << std::endl;
 			ss << "[1] : " << graph_practice_test::GraphViewNodeScene::getTitle();
 			ss << std::endl;
-			ss << "[2] : " << graph_practice::BasicScene::getTitle();
+			ss << "[2] : " << graph_practice_test::GraphAndNameNodeScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -146,7 +146,7 @@ namespace graph_practice
 			_director->replaceScene( graph_practice_test::GraphViewNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		case EventKeyboard::KeyCode::KEY_2:
-			_director->replaceScene( graph_practice::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( graph_practice_test::GraphAndNameNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		case EventKeyboard::KeyCode::KEY_Q:

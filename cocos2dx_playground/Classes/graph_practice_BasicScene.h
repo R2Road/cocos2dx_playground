@@ -4,15 +4,15 @@
 
 #include "helper_BackToThePreviousScene.h"
 
-namespace graph_practice
+namespace graph_practice_test
 {
-	class BasicScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+	class GraphAndNameNodeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
-		BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		GraphAndNameNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Basic"; }
+		static const char* getTitle() { return "Test : Graph And Name Node"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:
