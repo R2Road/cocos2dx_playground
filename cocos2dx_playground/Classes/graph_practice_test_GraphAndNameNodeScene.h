@@ -4,6 +4,11 @@
 
 #include "helper_BackToThePreviousScene.h"
 
+namespace graph_practice
+{
+	class GraphAndNameNode;
+}
+
 namespace graph_practice_test
 {
 	class GraphAndNameNodeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
@@ -28,6 +33,8 @@ namespace graph_practice_test
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+		graph_practice::GraphAndNameNode* mGraphAndNameNode;
 		float mElapsedTime;
 	};
 }

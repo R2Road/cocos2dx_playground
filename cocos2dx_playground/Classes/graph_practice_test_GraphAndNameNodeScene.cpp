@@ -15,16 +15,13 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const int TAG_GraphViewNode = 20140416;
-}
-
 namespace graph_practice_test
 {
 	GraphAndNameNodeScene::GraphAndNameNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+
+		, mGraphAndNameNode( nullptr )
 		, mElapsedTime( 0.f )
 	{}
 
@@ -87,13 +84,12 @@ namespace graph_practice_test
 		// Practice
 		//
 		{
-			auto graph_view_node = graph_practice::GraphAndNameNode::create( { true, true }, "Linear", 100, 100, []( float g_x )->float { return g_x; } );
-			graph_view_node->setTag( TAG_GraphViewNode );
-			graph_view_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * 0.5f - ( graph_view_node->getContentSize().height * 0.5f )
+			mGraphAndNameNode = graph_practice::GraphAndNameNode::create( { true, true }, "Linear", 100, 100, []( float g_x )->float { return g_x; } );
+			mGraphAndNameNode->setPosition(
+				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( mGraphAndNameNode->getContentSize().width * 0.5f )
+				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphAndNameNode->getContentSize().height * 0.5f )
 			);
-			addChild( graph_view_node );
+			addChild( mGraphAndNameNode );
 		}
 
 		return true;
@@ -124,7 +120,7 @@ namespace graph_practice_test
 			mElapsedTime = 0.f;
 		}
 
-		static_cast<graph_practice::GraphAndNameNode*>( getChildByTag( TAG_GraphViewNode ) )->UpdateView( mElapsedTime );
+		mGraphAndNameNode->UpdateView( mElapsedTime );
 
 		Node::update( dt );
 	}
