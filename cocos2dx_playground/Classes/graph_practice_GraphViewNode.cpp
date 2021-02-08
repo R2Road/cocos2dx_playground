@@ -18,8 +18,8 @@ USING_NS_CC;
 
 namespace graph_practice
 {
-	GraphViewNode::GraphViewNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func ) :
-		mPartSize( std::max( 50, part_width ), std::max( 50, part_height ) )
+	GraphViewNode::GraphViewNode( const Config config, const EvaluatorFunc& evaluator_func ) :
+		mConfig( { std::max( 50, config.PartWidth ), std::max( 50, config.PartHeight ) } )
 		, mEvaluatorFunc( evaluator_func )
 
 		, mIndicatorNode( nullptr )
@@ -30,10 +30,10 @@ namespace graph_practice
 		, mIndicatorY2Node( nullptr )
 	{}
 
-	GraphViewNode* GraphViewNode::create( const DebugConfig config, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
+	GraphViewNode* GraphViewNode::create( const DebugConfig debug_config, const Config config, const EvaluatorFunc& evaluator_func )
 	{
-		auto ret = new ( std::nothrow ) GraphViewNode( part_width, part_height, evaluator_func );
-		if( !ret || !ret->init( config ) )
+		auto ret = new ( std::nothrow ) GraphViewNode( config, evaluator_func );
+		if( !ret || !ret->init( debug_config ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -46,7 +46,7 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool GraphViewNode::init( const DebugConfig config )
+	bool GraphViewNode::init( const DebugConfig debug_config )
 	{
 		if( !Node::init() )
 		{
@@ -54,10 +54,10 @@ namespace graph_practice
 		}
 
 		const int HeaderHeight = 10;
-		setContentSize( mPartSize + Size( 0.f, HeaderHeight ) );
+		setContentSize( Size( mConfig.PartWidth, mConfig.PartHeight ) + Size( 0.f, HeaderHeight ) );
 
 		// Pivot
-		if( config.bShowPivot )
+		if( debug_config.bShowPivot )
 		{
 			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 			pivot->setScale( 2.f );
@@ -67,7 +67,7 @@ namespace graph_practice
 		//
 		// Background Guide
 		//
-		if( config.bShowBackgroundGuide )
+		if( debug_config.bShowBackgroundGuide )
 		{
 			auto layer = LayerColor::create( Color4B::BLUE, getContentSize().width, getContentSize().height );
 			layer->setAnchorPoint( Vec2::ZERO );
@@ -79,7 +79,7 @@ namespace graph_practice
 		//
 		{
 			auto view_node = Node::create();
-			view_node->setContentSize( mPartSize );
+			view_node->setContentSize( Size( mConfig.PartWidth, mConfig.PartHeight ) );
 			addChild( view_node );
 
 			//
@@ -98,7 +98,7 @@ namespace graph_practice
 
 				// Vertical
 				{
-					const float Spacing = mPartSize.width * 0.1f;
+					const float Spacing = mConfig.PartWidth * 0.1f;
 					for( int i = 1; 10 > i; ++i )
 					{
 						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
@@ -113,7 +113,7 @@ namespace graph_practice
 
 				// Horizontal
 				{
-					const float Spacing = mPartSize.height * 0.1f;
+					const float Spacing = mConfig.PartHeight * 0.1f;
 					for( int i = 1; 10 > i; ++i )
 					{
 						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );

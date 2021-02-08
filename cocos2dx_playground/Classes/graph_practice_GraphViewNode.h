@@ -15,16 +15,22 @@ namespace graph_practice
 			bool bShowBackgroundGuide = false;
 		};
 
+		struct Config
+		{
+			int PartWidth = 50;
+			int PartHeight = 50;
+		};
+
 		using EvaluatorFunc = std::function<float( float )>;
 
 	private:
-		GraphViewNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
+		GraphViewNode( const Config config, const EvaluatorFunc& evaluator_func );
 
 	public:
-		static GraphViewNode* create( const DebugConfig config, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
+		static GraphViewNode* create( const DebugConfig debug_config, const Config config, const EvaluatorFunc& evaluator_func );
 
 	private:
-		bool init( const DebugConfig config );
+		bool init( const DebugConfig debug_config );
 
 	public:
 		//
@@ -33,7 +39,7 @@ namespace graph_practice
 		void UpdateView( const float g_x );
 
 	private:
-		const cocos2d::Size mPartSize;
+		const Config mConfig;
 		const EvaluatorFunc mEvaluatorFunc;
 
 		cocos2d::Node* mIndicatorNode;
