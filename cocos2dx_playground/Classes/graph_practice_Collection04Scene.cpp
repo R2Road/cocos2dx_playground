@@ -59,8 +59,6 @@ namespace graph_practice
 			return false;
 		}
 
-		scheduleUpdate();
-
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
@@ -221,6 +219,12 @@ namespace graph_practice
 			mGraphViewNodeContainer.push_back( graph_view_node );
 		}
 
+
+		//
+		// Setup
+		//
+		schedule( schedule_selector( Collection04Scene::update4Graph ) );
+
 		return true;
 	}
 
@@ -241,7 +245,7 @@ namespace graph_practice
 
 		Scene::onExit();
 	}
-	void Collection04Scene::update( float dt )
+	void Collection04Scene::update4Graph( float dt )
 	{
 		if( !mbPause )
 		{
@@ -256,8 +260,6 @@ namespace graph_practice
 				g->UpdateView( std::min( 1.f, mElapsedTime ) );
 			}
 		}
-
-		Node::update( dt );
 	}
 
 
