@@ -28,7 +28,7 @@ namespace graph_practice
 		void update( float dt ) override;
 
 	private:
-		void UpdateTimeScaleView();
+		void updateTimeScaleView();
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 

@@ -102,7 +102,7 @@ namespace graph_practice
 			) );
 			addChild( label, std::numeric_limits<int>::max() );
 
-			UpdateTimeScaleView();
+			updateTimeScaleView();
 		}
 
 		//
@@ -261,7 +261,7 @@ namespace graph_practice
 	}
 
 
-	void Collection01Scene::UpdateTimeScaleView()
+	void Collection01Scene::updateTimeScaleView()
 	{
 		static_cast<Label*>( getChildByTag( TAG_TileScaleView ) )->setString( StringUtils::format( "Time Scale : %.2f", mTimeScale ) );
 	}
@@ -278,12 +278,12 @@ namespace graph_practice
 		if( EventKeyboard::KeyCode::KEY_UP_ARROW == keycode )
 		{
 			mTimeScale = std::min( 10.f, mTimeScale + 0.1f );
-			UpdateTimeScaleView();
+			updateTimeScaleView();
 		}
 		if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == keycode )
 		{
 			mTimeScale = std::max( 0.1f, mTimeScale - 0.1f );
-			UpdateTimeScaleView();
+			updateTimeScaleView();
 		}
 		if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 		{
