@@ -65,10 +65,10 @@ namespace graph_practice_test
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPosition( Vec2(
-				visibleOrigin.x
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
 
@@ -86,8 +86,9 @@ namespace graph_practice_test
 		{
 			mGraphAndNameNode = graph_practice::GraphAndNameNode::create( { true, true }, "Linear", 100, 100, []( float g_x )->float { return g_x; } );
 			mGraphAndNameNode->setPosition(
-				visibleOrigin.x + ( visibleSize.width * 0.5f ) - ( mGraphAndNameNode->getContentSize().width * 0.5f )
-				, visibleOrigin.y + visibleSize.height * 0.5f - ( mGraphAndNameNode->getContentSize().height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				- Vec2( mGraphAndNameNode->getContentSize().width * 0.5f, mGraphAndNameNode->getContentSize().height * 0.5f )
 			);
 			addChild( mGraphAndNameNode );
 		}
@@ -115,12 +116,12 @@ namespace graph_practice_test
 	void GraphAndNameNodeScene::update( float dt )
 	{
 		mElapsedTime += dt;
-		if( 1.f < mElapsedTime )
+		if( 1.1f < mElapsedTime )
 		{
 			mElapsedTime = 0.f;
 		}
 
-		mGraphAndNameNode->UpdateView( mElapsedTime );
+		mGraphAndNameNode->UpdateView( std::min( 1.f, mElapsedTime ) );
 
 		Node::update( dt );
 	}
