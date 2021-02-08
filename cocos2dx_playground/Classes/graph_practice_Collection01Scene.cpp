@@ -116,8 +116,8 @@ namespace graph_practice
 		const int GraphHeight = 80;
 		const float StartRateX = 0.15f;
 		const float SpacingX = ( 1.0f - ( StartRateX * 2 ) ) / 3;
-		const float StartRateY = 0.23;
-		const float SpacingY = 0.5;
+		const float StartRateY = 0.23f;
+		const float SpacingY = 0.5f;
 
 		//
 		// Practice 1
