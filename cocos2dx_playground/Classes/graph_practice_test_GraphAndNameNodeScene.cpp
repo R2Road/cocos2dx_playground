@@ -48,8 +48,6 @@ namespace graph_practice_test
 			return false;
 		}
 
-		scheduleUpdate();
-
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
@@ -93,6 +91,11 @@ namespace graph_practice_test
 			addChild( mGraphAndNameNode );
 		}
 
+		//
+		// Setup
+		//
+		schedule( schedule_selector( GraphAndNameNodeScene::update4Graph ) );
+
 		return true;
 	}
 
@@ -113,7 +116,7 @@ namespace graph_practice_test
 
 		Scene::onExit();
 	}
-	void GraphAndNameNodeScene::update( float dt )
+	void GraphAndNameNodeScene::update4Graph( float dt )
 	{
 		mElapsedTime += dt;
 		if( 1.1f < mElapsedTime )
@@ -122,8 +125,6 @@ namespace graph_practice_test
 		}
 
 		mGraphAndNameNode->UpdateView( std::min( 1.f, mElapsedTime ) );
-
-		Node::update( dt );
 	}
 
 
