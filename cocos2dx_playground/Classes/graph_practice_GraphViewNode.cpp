@@ -30,7 +30,7 @@ namespace graph_practice
 		, mIndicatorY2Node( nullptr )
 	{}
 
-	GraphViewNode* GraphViewNode::create( const Config config, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
+	GraphViewNode* GraphViewNode::create( const DebugConfig config, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func )
 	{
 		auto ret = new ( std::nothrow ) GraphViewNode( part_width, part_height, evaluator_func );
 		if( !ret || !ret->init( config ) )
@@ -46,7 +46,7 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool GraphViewNode::init( const Config config )
+	bool GraphViewNode::init( const DebugConfig config )
 	{
 		if( !Node::init() )
 		{

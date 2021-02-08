@@ -9,7 +9,7 @@ namespace graph_practice
 	class GraphViewNode : public cocos2d::Node
 	{
 	public:
-		struct Config
+		struct DebugConfig
 		{
 			bool bShowPivot = false;
 			bool bShowBackgroundGuide = false;
@@ -21,10 +21,10 @@ namespace graph_practice
 		GraphViewNode( const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
 
 	public:
-		static GraphViewNode* create( const Config config, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
+		static GraphViewNode* create( const DebugConfig config, const int part_width, const int part_height, const EvaluatorFunc& evaluator_func );
 
 	private:
-		bool init( const Config config );
+		bool init( const DebugConfig config );
 
 	public:
 		//
