@@ -12,7 +12,7 @@
 
 #include "cpg_StringTable.h"
 
-#include "graph_practice_BasicScene.h"
+#include "graph_practice_test_GraphAndNameNodeScene.h"
 #include "graph_practice_Collection01Scene.h"
 #include "graph_practice_Collection02Scene.h"
 #include "graph_practice_Collection03Scene.h"
