@@ -6,7 +6,6 @@
 
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCLabel.h"
 #include "2d/CCSpriteBatchNode.h"
 #include "base/CCDirector.h"
 #include "renderer/CCTextureCache.h"
