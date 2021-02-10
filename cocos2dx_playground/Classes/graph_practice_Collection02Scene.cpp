@@ -257,7 +257,7 @@ namespace graph_practice
 
 			for( auto g : mGraphViewNodeContainer )
 			{
-				g->UpdateView( std::min( 1.f, mElapsedTime ) );
+				g->UpdateView( mElapsedTime );
 			}
 		}
 	}
