@@ -116,22 +116,38 @@ namespace graph_practice_test
 			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		
-		const int GraphWidth = 60;
-		const int GraphHeight = 60;
 
 		//
-		// Practice
+		// Practice x 1
 		//
 		{
 			auto graph_view_node = graph_practice::GraphViewNode::create(
 				{ true, true }
-				, { GraphWidth, GraphHeight, TimeLimit4Graph, 2.f }
+				, { 50, 50, TimeLimit4Graph, 1.5f }
 				, []( float g_x )->float { return std::sin( g_x ); }
 			);
 			graph_view_node->setPosition(
 				visibleOrigin
-				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f )
+				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.82f )
+				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
+			);
+			addChild( graph_view_node );
+
+			mGraphViewNodeContainer.push_back( graph_view_node );
+		}
+
+		//
+		// Practice x 2
+		//
+		{
+			auto graph_view_node = graph_practice::GraphViewNode::create(
+				{ true, true }
+				, { 30, 30, TimeLimit4Graph, 1.5f }
+			, []( float g_x )->float { return std::sin( g_x ); }
+			);
+			graph_view_node->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.32f )
 				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
