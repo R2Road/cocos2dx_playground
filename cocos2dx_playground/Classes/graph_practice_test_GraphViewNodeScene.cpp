@@ -126,7 +126,7 @@ namespace graph_practice_test
 		{
 			auto graph_view_node = graph_practice::GraphViewNode::create(
 				{ true, true }
-				, { GraphWidth, GraphHeight, TimeLimit4Graph, 1.f }
+				, { GraphWidth, GraphHeight, TimeLimit4Graph, 2.f }
 				, []( float g_x )->float { return std::sin( g_x ); }
 			);
 			graph_view_node->setPosition(
