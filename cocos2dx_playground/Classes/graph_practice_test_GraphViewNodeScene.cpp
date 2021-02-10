@@ -21,8 +21,8 @@ USING_NS_CC;
 
 namespace
 {
-	const float TimeLimit4Graph = 3.141592 * 2.f;
-	const float TimeLimit4Update = ( 3.141592 * 2.f ) + 0.1f;
+	const float TimeLimit4Graph = 3.141592f * 2.f;
+	const float TimeLimit4Update = ( 3.141592f * 2.f ) + 0.1f;
 	const int TAG_TileScaleView = 20140416;
 }
 
