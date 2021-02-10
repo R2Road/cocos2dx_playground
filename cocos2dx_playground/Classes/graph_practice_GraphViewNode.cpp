@@ -18,7 +18,7 @@ USING_NS_CC;
 namespace graph_practice
 {
 	GraphViewNode::GraphViewNode( const Config config, const EvaluatorFunc& evaluator_func ) :
-		mConfig( { std::max( 50, config.PartWidth ), std::max( 50, config.PartHeight ) } )
+		mConfig( { std::max( 50, config.PartWidth ), std::max( 50, config.PartHeight ), config.AllowedTimeX, config.AllowedTimeY } )
 		, mEvaluatorFunc( evaluator_func )
 
 		, mIndicatorNode( nullptr )
@@ -53,7 +53,8 @@ namespace graph_practice
 		}
 
 		const int HeaderHeight = 10;
-		setContentSize( Size( mConfig.PartWidth, mConfig.PartHeight ) + Size( 0.f, HeaderHeight ) );
+		const Size GraphSize = Size( mConfig.PartWidth * mConfig.AllowedTimeX, mConfig.PartHeight * mConfig.AllowedTimeY );
+		setContentSize( GraphSize + Size( 0.f, HeaderHeight ) );
 
 		// Pivot
 		if( debug_config.bShowPivot )
@@ -78,7 +79,7 @@ namespace graph_practice
 		//
 		{
 			auto view_node = Node::create();
-			view_node->setContentSize( Size( mConfig.PartWidth, mConfig.PartHeight ) );
+			view_node->setContentSize( Size( GraphSize.width, GraphSize.height ) );
 			addChild( view_node );
 
 			//
@@ -98,7 +99,8 @@ namespace graph_practice
 				// Vertical
 				{
 					const float Spacing = mConfig.PartWidth * 0.1f;
-					for( int i = 1; 10 > i; ++i )
+					const int guide_count = GraphSize.width / Spacing;
+					for( int i = 1; guide_count >= i; ++i )
 					{
 						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 						guide_view->setScale9Enabled( true );
@@ -113,12 +115,13 @@ namespace graph_practice
 				// Horizontal
 				{
 					const float Spacing = mConfig.PartHeight * 0.1f;
-					for( int i = 1; 10 > i; ++i )
+					const int guide_count = GraphSize.height / Spacing;
+					for( int i = 1; guide_count >= i; ++i )
 					{
 						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 						guide_view->setScale9Enabled( true );
 						guide_view->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-						guide_view->setContentSize( Size( view_node->getContentSize().height, 1.f ) );
+						guide_view->setContentSize( Size( view_node->getContentSize().width, 1.f ) );
 						guide_view->setColor( GuideColor );
 						guide_view->setPositionY( Spacing * i );
 						view_node->addChild( guide_view, std::numeric_limits<int>::min() + 1 );
@@ -144,10 +147,11 @@ namespace graph_practice
 				y_view->setColor( Color3B::GRAY );
 				view_node->addChild( y_view );
 
+				const float diagonal_view_size = std::min( view_node->getContentSize().width, view_node->getContentSize().height );
 				auto diagonal_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				diagonal_view->setScale9Enabled( true );
 				diagonal_view->setAnchorPoint( Vec2( 0.5f, 0.0f ) );
-				diagonal_view->setContentSize( Size( 2.f, sqrt( pow( view_node->getContentSize().width, 2 ) + pow( view_node->getContentSize().height, 2 ) ) ) );
+				diagonal_view->setContentSize( Size( 2.f, sqrt( pow( diagonal_view_size, 2 ) + pow( diagonal_view_size, 2 ) ) ) );
 				diagonal_view->setColor( Color3B::GRAY );
 				diagonal_view->setRotation( 45.f );
 				view_node->addChild( diagonal_view );
@@ -164,14 +168,15 @@ namespace graph_practice
 					shadow_view->setColor( Color3B::GREEN );
 					float g_x = 0.f;
 					float g_y = 0.f;
-					for( int i = 0; 100 > i; ++i )
+					int dot_count = mConfig.AllowedTimeX * 100;
+					for( int i = 0; dot_count > i; ++i )
 					{
 						g_x = 0.01f * i;
 						g_y = mEvaluatorFunc( g_x );
 
 						shadow_view->setPosition(
-							view_node->getContentSize().width * g_x
-							, view_node->getContentSize().height * g_y
+							mConfig.PartWidth * g_x
+							, mConfig.PartHeight * g_y
 						);
 
 						batch_node->insertQuadFromSprite( shadow_view, i );
@@ -221,24 +226,26 @@ namespace graph_practice
 
 	void GraphViewNode::UpdateView( const float g_x )
 	{
-		const auto g_y = mEvaluatorFunc( g_x );
+		const float fixed_g_x = std::min( g_x, mConfig.AllowedTimeX );
+
+		const auto g_y = mEvaluatorFunc( fixed_g_x );
 
 		mIndicatorNode->setPosition(
-			mIndicatorNode->getParent()->getContentSize().width * g_x
-			, mIndicatorNode->getParent()->getContentSize().height * g_y
+			mConfig.PartWidth * fixed_g_x
+			, mConfig.PartHeight * g_y
 		);
 
-		mIndicatorXNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
-		mIndicatorYNode->setPositionY( mIndicatorNode->getParent()->getContentSize().height * g_y );
+		mIndicatorXNode->setPositionX( mConfig.PartWidth * fixed_g_x );
+		mIndicatorYNode->setPositionY( mConfig.PartHeight * g_y );
 
 		mIndicatorBridgeXNode->setContentSize( Size( 1.f, std::abs( mIndicatorNode->getPositionY() ) ) );
 		mIndicatorBridgeXNode->setScaleY( 0 <= mIndicatorNode->getPositionY() ? 1.f : -1.f );
-		mIndicatorBridgeXNode->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_x );
+		mIndicatorBridgeXNode->setPositionX( mConfig.PartWidth * fixed_g_x );
 
 		mIndicatorBridgeYNode->setContentSize( Size( mIndicatorNode->getPositionX(), 1.f ) );
 		mIndicatorBridgeYNode->setScaleY( 0 <= mIndicatorNode->getPositionX() ? 1.f : -1.f );
-		mIndicatorBridgeYNode->setPositionY( mIndicatorNode->getParent()->getContentSize().height * g_y );
+		mIndicatorBridgeYNode->setPositionY( mConfig.PartHeight * g_y );
 
-		mIndicatorY2Node->setPositionX( mIndicatorNode->getParent()->getContentSize().width * g_y );
+		mIndicatorY2Node->setPositionX( mConfig.PartHeight * g_y );
 	}
 }

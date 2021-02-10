@@ -19,6 +19,8 @@ namespace graph_practice
 		{
 			int PartWidth = 50;
 			int PartHeight = 50;
+			float AllowedTimeX = 1.f;
+			float AllowedTimeY = 1.f;
 		};
 
 		using EvaluatorFunc = std::function<float( float )>;
