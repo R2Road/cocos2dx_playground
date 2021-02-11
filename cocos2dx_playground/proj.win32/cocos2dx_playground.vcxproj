@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_Setting.cpp" />
     <ClCompile Include="..\Classes\cpg_StringTable.cpp" />
     <ClCompile Include="..\Classes\cpg_TileSheetConfiguration.cpp" />
+    <ClCompile Include="..\Classes\graph_practice_CosineScene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_test_GraphAndNameNodeScene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection01Scene.cpp" />
     <ClCompile Include="..\Classes\graph_practice_Collection02Scene.cpp" />
@@ -425,6 +426,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_Setting.h" />
     <ClInclude Include="..\Classes\cpg_StringTable.h" />
     <ClInclude Include="..\Classes\cpg_TileSheetConfiguration.h" />
+    <ClInclude Include="..\Classes\graph_practice_CosineScene.h" />
     <ClInclude Include="..\Classes\graph_practice_test_GraphAndNameNodeScene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection01Scene.h" />
     <ClInclude Include="..\Classes\graph_practice_Collection02Scene.h" />

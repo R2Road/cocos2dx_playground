@@ -1,4 +1,4 @@
-#include "graph_practice_SineScene.h"
+#include "graph_practice_CosineScene.h"
 
 #include <cmath>
 #include <new>
@@ -29,7 +29,7 @@ namespace
 
 namespace graph_practice
 {
-	SineScene::SineScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	CosineScene::CosineScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
@@ -40,9 +40,9 @@ namespace graph_practice
 		, mGraphViewNode( nullptr )
 	{}
 
-	Scene* SineScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* CosineScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) SineScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) CosineScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -56,7 +56,7 @@ namespace graph_practice
 		return ret;
 	}
 
-	bool SineScene::init()
+	bool CosineScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -122,7 +122,7 @@ namespace graph_practice
 			mGraphViewNode = graph_practice::GraphViewNode::create(
 				{ false, false }
 				, { 50, 50, TimeLimit4Graph, 1.5f }
-			, []( float g_x )->float { return std::sin( g_x ); }
+			, []( float g_x )->float { return std::cos( g_x ); }
 			);
 			mGraphViewNode->setPosition(
 				visibleOrigin
@@ -135,21 +135,21 @@ namespace graph_practice
 		//
 		// Setup
 		//
-		schedule( schedule_selector( SineScene::update4Graph ) );
+		schedule( schedule_selector( CosineScene::update4Graph ) );
 
 		return true;
 	}
 
-	void SineScene::onEnter()
+	void CosineScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( SineScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CosineScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void SineScene::onExit()
+	void CosineScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -157,7 +157,7 @@ namespace graph_practice
 
 		Scene::onExit();
 	}
-	void SineScene::update4Graph( float dt )
+	void CosineScene::update4Graph( float dt )
 	{
 		if( !mbPause )
 		{
@@ -172,13 +172,13 @@ namespace graph_practice
 	}
 
 
-	void SineScene::updateTimeScaleView()
+	void CosineScene::updateTimeScaleView()
 	{
 		static_cast<Label*>( getChildByTag( TAG_TileScaleView ) )->setString( StringUtils::format( "Time Scale : %.2f", mTimeScale ) );
 	}
 
 
-	void SineScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void CosineScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{

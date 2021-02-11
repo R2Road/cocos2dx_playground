@@ -12,6 +12,7 @@
 
 #include "cpg_StringTable.h"
 
+#include "graph_practice_test_GraphViewNodeScene.h"
 #include "graph_practice_test_GraphAndNameNodeScene.h"
 #include "graph_practice_Collection01Scene.h"
 #include "graph_practice_Collection02Scene.h"
@@ -19,8 +20,8 @@
 #include "graph_practice_Collection04Scene.h"
 #include "graph_practice_Collection05Scene.h"
 #include "graph_practice_Collection06Scene.h"
-#include "graph_practice_test_GraphViewNodeScene.h"
 #include "graph_practice_SineScene.h"
+#include "graph_practice_CosineScene.h"
 #include "PlayGroundScene.h"
 
 USING_NS_CC;
@@ -95,6 +96,8 @@ namespace graph_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[A] : " << graph_practice::SineScene::getTitle();
+			ss << std::endl;
+			ss << "[S] : " << graph_practice::CosineScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition( Vec2(
@@ -170,6 +173,9 @@ namespace graph_practice
 
 		case EventKeyboard::KeyCode::KEY_A:
 			_director->replaceScene( graph_practice::SineScene::create( helper::CreateSceneMover<RootScene>() ) );
+			return;
+		case EventKeyboard::KeyCode::KEY_S:
+			_director->replaceScene( graph_practice::CosineScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		default:
