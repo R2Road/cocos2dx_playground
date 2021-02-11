@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "2d/CCScene.h"
 
 #include "helper_BackToThePreviousScene.h"
@@ -39,6 +37,6 @@ namespace graph_practice
 		float mElapsedTime;
 		bool mbPause;
 
-		std::vector<GraphViewNode*> mGraphViewNodeContainer;
+		GraphViewNode* mGraphViewNode;
 	};
 }

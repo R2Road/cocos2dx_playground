@@ -37,7 +37,7 @@ namespace graph_practice
 		, mElapsedTime( 0.f )
 		, mbPause( false )
 
-		, mGraphViewNodeContainer()
+		, mGraphViewNode( nullptr )
 	{}
 
 	Scene* SineScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -125,19 +125,17 @@ namespace graph_practice
 		// Practice
 		//
 		{
-			auto graph_view_node = graph_practice::GraphViewNode::create(
-				{ true, true }
+			mGraphViewNode = graph_practice::GraphViewNode::create(
+				{ false, false }
 				, { 50, 50, TimeLimit4Graph, 1.5f }
 			, []( float g_x )->float { return std::sin( g_x ); }
 			);
-			graph_view_node->setPosition(
+			mGraphViewNode->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f )
-				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
+				- Vec2( mGraphViewNode->getContentSize().width * 0.5f, mGraphViewNode->getContentSize().height * 0.5f )
 			);
-			addChild( graph_view_node );
-
-			mGraphViewNodeContainer.push_back( graph_view_node );
+			addChild( mGraphViewNode );
 		}
 
 		return true;
@@ -170,10 +168,7 @@ namespace graph_practice
 				mElapsedTime = 0.f;
 			}
 
-			for( auto g : mGraphViewNodeContainer )
-			{
-				g->UpdateView( mElapsedTime );
-			}
+			mGraphViewNode->UpdateView( mElapsedTime );
 		}
 
 		Node::update( dt );
