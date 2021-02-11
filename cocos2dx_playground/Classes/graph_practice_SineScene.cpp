@@ -63,8 +63,6 @@ namespace graph_practice
 			return false;
 		}
 
-		scheduleUpdate();
-
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
@@ -106,7 +104,7 @@ namespace graph_practice
 			) );
 			addChild( label, std::numeric_limits<int>::max() );
 
-			UpdateTimeScaleView();
+			updateTimeScaleView();
 		}
 
 		//
@@ -138,6 +136,11 @@ namespace graph_practice
 			addChild( mGraphViewNode );
 		}
 
+		//
+		// Setup
+		//
+		schedule( schedule_selector( SineScene::update4Graph ) );
+
 		return true;
 	}
 
@@ -158,7 +161,7 @@ namespace graph_practice
 
 		Scene::onExit();
 	}
-	void SineScene::update( float dt )
+	void SineScene::update4Graph( float dt )
 	{
 		if( !mbPause )
 		{
@@ -170,12 +173,10 @@ namespace graph_practice
 
 			mGraphViewNode->UpdateView( mElapsedTime );
 		}
-
-		Node::update( dt );
 	}
 
 
-	void SineScene::UpdateTimeScaleView()
+	void SineScene::updateTimeScaleView()
 	{
 		static_cast<Label*>( getChildByTag( TAG_TileScaleView ) )->setString( StringUtils::format( "Time Scale : %.2f", mTimeScale ) );
 	}
@@ -192,12 +193,12 @@ namespace graph_practice
 		if( EventKeyboard::KeyCode::KEY_UP_ARROW == keycode )
 		{
 			mTimeScale = std::min( 10.f, mTimeScale + 0.1f );
-			UpdateTimeScaleView();
+			updateTimeScaleView();
 		}
 		if( EventKeyboard::KeyCode::KEY_DOWN_ARROW == keycode )
 		{
 			mTimeScale = std::max( 0.1f, mTimeScale - 0.1f );
-			UpdateTimeScaleView();
+			updateTimeScaleView();
 		}
 		if( EventKeyboard::KeyCode::KEY_SPACE == keycode )
 		{
