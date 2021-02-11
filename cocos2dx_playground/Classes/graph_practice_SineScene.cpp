@@ -15,13 +15,15 @@
 #include "base/ccUTF8.h"
 
 #include "cpg_StringTable.h"
-#include "graph_practice_GraphAndNameNode.h"
+#include "graph_practice_GraphViewNode.h"
 
 USING_NS_CC;
 
 namespace
 {
-	const float TimeLimit = 9.f;
+	const float TimeLimit4Graph = 3.141592f * 2.f;
+	const float TimeLimit4Update = ( 3.141592f * 2.f ) + 0.1f;
+
 	const int TAG_TileScaleView = 20140416;
 }
 
@@ -123,10 +125,14 @@ namespace graph_practice
 		// Practice
 		//
 		{
-			auto graph_view_node = GraphAndNameNode::create( { false, false }, "Sine", GraphWidth, GraphHeight, []( float g_x )->float { return std::sin( g_x ); } );
+			auto graph_view_node = graph_practice::GraphViewNode::create(
+				{ true, true }
+				, { 50, 50, TimeLimit4Graph, 1.5f }
+			, []( float g_x )->float { return std::sin( g_x ); }
+			);
 			graph_view_node->setPosition(
 				visibleOrigin
-				+ Vec2( visibleSize.width * 0.25f, visibleOrigin.y + visibleSize.height * 0.5f )
+				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.5f )
 				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
@@ -159,14 +165,14 @@ namespace graph_practice
 		if( !mbPause )
 		{
 			mElapsedTime += ( dt * mTimeScale );
-			if( TimeLimit < mElapsedTime )
+			if( TimeLimit4Update < mElapsedTime )
 			{
 				mElapsedTime = 0.f;
 			}
 
 			for( auto g : mGraphViewNodeContainer )
 			{
-				g->UpdateView( std::min( TimeLimit, mElapsedTime ) );
+				g->UpdateView( mElapsedTime );
 			}
 		}
 

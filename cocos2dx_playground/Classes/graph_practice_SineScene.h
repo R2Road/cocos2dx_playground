@@ -8,7 +8,7 @@
 
 namespace graph_practice
 {
-	class GraphAndNameNode;
+	class GraphViewNode;
 
 	class SineScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
@@ -39,6 +39,6 @@ namespace graph_practice
 		float mElapsedTime;
 		bool mbPause;
 
-		std::vector<GraphAndNameNode*> mGraphViewNodeContainer;
+		std::vector<GraphViewNode*> mGraphViewNodeContainer;
 	};
 }
