@@ -17,7 +17,7 @@ USING_NS_CC;
 namespace graph_practice
 {
 	GraphViewNode::GraphViewNode( const Config config, const EvaluatorFunc& evaluator_func ) :
-		mConfig( { std::max( 50, config.PartWidth ), std::max( 50, config.PartHeight ), config.AllowedTimeX, config.AllowedTimeY } )
+		mConfig( { std::max( 20, config.PartWidth ), std::max( 20, config.PartHeight ), config.AllowedTimeX, config.AllowedTimeY } )
 		, mEvaluatorFunc( evaluator_func )
 
 		, mIndicatorNode( nullptr )

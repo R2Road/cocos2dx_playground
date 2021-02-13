@@ -126,7 +126,7 @@ namespace graph_practice_test
 			);
 			graph_view_node->setPosition(
 				visibleOrigin
-				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.82f )
+				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.75f )
 				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
@@ -140,12 +140,12 @@ namespace graph_practice_test
 		{
 			auto graph_view_node = graph_practice::GraphViewNode::create(
 				{ true, true }
-				, { 30, 30, TimeLimit4Graph, 1.5f }
+				, { 0, 0, TimeLimit4Graph, 1.5f }
 			, []( float g_x )->float { return ( 0.4f * g_x ) - 1.f; }
 			);
 			graph_view_node->setPosition(
 				visibleOrigin
-				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.32f )
+				+ Vec2( visibleSize.width * 0.5f, visibleOrigin.y + visibleSize.height * 0.3f )
 				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
