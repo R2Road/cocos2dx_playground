@@ -7,7 +7,6 @@
 #include "2d/CCDrawNode.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCSpriteBatchNode.h"
 #include "base/CCDirector.h"
 #include "renderer/CCTextureCache.h"
 #include "ui/UIScale9Sprite.h"
@@ -143,26 +142,23 @@ namespace graph_practice
 			// Dot
 			//
 			{
-				auto batch_node = SpriteBatchNode::createWithTexture( _director->getTextureCache()->getTextureForKey( "textures/texture_001.png" ), 100u );
-				view_node->addChild( batch_node, 1 );
+				auto draw_node = DrawNode::create();
+				view_node->addChild( draw_node, std::numeric_limits<int>::min() + 3 );
+
+				const float dot_radius = 0.33f;
+				const int dot_count = mConfig.AllowedTimeX * 100;
+				float g_x = 0.f;
+				float g_y = 0.f;
+				for( int i = 0; dot_count > i; ++i )
 				{
-					auto shadow_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-					shadow_view->setColor( Color3B::GREEN );
-					float g_x = 0.f;
-					float g_y = 0.f;
-					int dot_count = mConfig.AllowedTimeX * 100;
-					for( int i = 0; dot_count > i; ++i )
-					{
-						g_x = 0.01f * i;
-						g_y = mEvaluatorFunc( g_x );
+					g_x = 0.01f * i;
+					g_y = mEvaluatorFunc( g_x );
 
-						shadow_view->setPosition(
-							mConfig.PartWidth * g_x
-							, mConfig.PartHeight * g_y
-						);
-
-						batch_node->insertQuadFromSprite( shadow_view, i );
-					}
+					draw_node->drawDot(
+						Vec2( mConfig.PartWidth * g_x, mConfig.PartHeight * g_y )
+						, dot_radius
+						, Color4F( Color3B::GREEN )
+					);
 				}
 			}
 
