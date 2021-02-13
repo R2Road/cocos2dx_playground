@@ -145,18 +145,20 @@ namespace graph_practice
 			// Axis View
 			//
 			{
+				const Color4F AxisColor( 0.8f, 0.8f, 0.8f, 1.f );
+
 				auto draw_node = DrawNode::create( 2.f );
 				view_node->addChild( draw_node, std::numeric_limits<int>::min() + 2 );
 
 				// x
-				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( GraphSize.width, 0.f ), Color4F( Color3B::GRAY, 1.f ) );
+				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( GraphSize.width, 0.f ), AxisColor );
 
 				// y
-				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( 0.f, GraphSize.height ), Color4F( Color3B::GRAY, 1.f ) );
+				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( 0.f, GraphSize.height ), AxisColor );
 
 				// diagonal
 				const float diagonal_view_size = std::min( GraphSize.width, GraphSize.height );
-				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( diagonal_view_size, diagonal_view_size ), Color4F( Color3B::GRAY, 1.f ) );
+				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( diagonal_view_size, diagonal_view_size ), AxisColor );
 			}
 
 			//
