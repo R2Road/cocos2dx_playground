@@ -4,6 +4,7 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCDrawNode.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteBatchNode.h"
@@ -91,10 +92,13 @@ namespace graph_practice
 			}
 
 			//
-			// Guide
+			// Grid
 			//
 			{
 				const Color3B GuideColor( 55u, 55u, 55u );
+
+				auto draw_node = DrawNode::create();
+				view_node->addChild( draw_node, std::numeric_limits<int>::min() + 1 );
 
 				// Vertical
 				{
@@ -102,13 +106,7 @@ namespace graph_practice
 					const int guide_count = GraphSize.width / Spacing;
 					for( int i = 1; guide_count >= i; ++i )
 					{
-						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-						guide_view->setScale9Enabled( true );
-						guide_view->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-						guide_view->setContentSize( Size( 1.f, view_node->getContentSize().height ) );
-						guide_view->setColor( GuideColor );
-						guide_view->setPositionX( Spacing * i );
-						view_node->addChild( guide_view, std::numeric_limits<int>::min() + 1 );
+						draw_node->drawLine( Vec2( Spacing * i, 0.f ), Vec2( Spacing * i, GraphSize.height ), Color4F( GuideColor, 1.f ) );
 					}
 				}
 
@@ -118,13 +116,7 @@ namespace graph_practice
 					const int guide_count = GraphSize.height / Spacing;
 					for( int i = 1; guide_count >= i; ++i )
 					{
-						auto guide_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-						guide_view->setScale9Enabled( true );
-						guide_view->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-						guide_view->setContentSize( Size( view_node->getContentSize().width, 1.f ) );
-						guide_view->setColor( GuideColor );
-						guide_view->setPositionY( Spacing * i );
-						view_node->addChild( guide_view, std::numeric_limits<int>::min() + 1 );
+						draw_node->drawLine( Vec2( 0.f, Spacing * i ), Vec2( GraphSize.width, Spacing * i ), Color4F( GuideColor, 1.f ) );
 					}
 				}
 			}
