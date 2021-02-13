@@ -100,7 +100,7 @@ namespace graph_practice
 				auto draw_node = DrawNode::create();
 				view_node->addChild( draw_node, std::numeric_limits<int>::min() + 1 );
 
-				// Vertical
+				// Vertical : 1 per 1
 				{
 					const float Spacing = mConfig.PartWidth * 0.1f;
 					const int guide_count = GraphSize.width / Spacing;
@@ -110,7 +110,7 @@ namespace graph_practice
 					}
 				}
 
-				// Horizontal
+				// Horizontal : 1 per 1
 				{
 					const float Spacing = mConfig.PartHeight * 0.1f;
 					const int guide_count = GraphSize.height / Spacing;
@@ -120,7 +120,7 @@ namespace graph_practice
 					}
 				}
 
-				// Vertical
+				// Vertical : 10 per 1
 				{
 					const float Spacing = mConfig.PartWidth * 0.1f;
 					const int guide_count = GraphSize.width / Spacing;
@@ -130,7 +130,7 @@ namespace graph_practice
 					}
 				}
 
-				// Horizontal
+				// Horizontal : 10 per 1
 				{
 					const float Spacing = mConfig.PartHeight * 0.1f;
 					const int guide_count = GraphSize.height / Spacing;
