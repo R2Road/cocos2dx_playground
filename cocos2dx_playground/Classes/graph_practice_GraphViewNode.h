@@ -35,9 +35,6 @@ namespace graph_practice
 		bool init( const DebugConfig debug_config );
 
 	public:
-		//
-		// g_x : zero to one
-		//
 		void UpdateView( const float g_x );
 
 	private:
