@@ -145,7 +145,7 @@ namespace graph_practice
 				auto draw_node = DrawNode::create();
 				view_node->addChild( draw_node, std::numeric_limits<int>::min() + 3 );
 
-				const float dot_radius = 0.33f;
+				const float dot_radius = 0.4f;
 				const int dot_count = mConfig.AllowedTimeX * 100;
 				float g_x = 0.f;
 				float g_y = 0.f;
