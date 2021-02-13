@@ -169,33 +169,33 @@ namespace graph_practice
 				mIndicatorNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorNode->setScale( 6.f );
 				mIndicatorNode->setColor( Color3B( 73, 179, 255 ) );
-				view_node->addChild( mIndicatorNode, 4 );
+				view_node->addChild( mIndicatorNode, 2 );
 
 				mIndicatorXNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorXNode->setScale( 6.f );
 				mIndicatorXNode->setColor( Color3B::RED );
-				view_node->addChild( mIndicatorXNode, 3 );
+				view_node->addChild( mIndicatorXNode, 1 );
 
 				mIndicatorYNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorYNode->setScale( 6.f );
 				mIndicatorYNode->setColor( Color3B::RED );
-				view_node->addChild( mIndicatorYNode, 3 );
+				view_node->addChild( mIndicatorYNode, 1 );
 
 				mIndicatorBridgeXNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorBridgeXNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				mIndicatorBridgeXNode->setOpacity( 80u );
-				view_node->addChild( mIndicatorBridgeXNode, 2 );
+				view_node->addChild( mIndicatorBridgeXNode );
 
 				mIndicatorBridgeYNode = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorBridgeYNode->setAnchorPoint( Vec2( 0.0f, 0.5f ) );
 				mIndicatorBridgeYNode->setOpacity( 80u );
-				view_node->addChild( mIndicatorBridgeYNode, 2 );
+				view_node->addChild( mIndicatorBridgeYNode );
 
 				mIndicatorY2Node = Sprite::createWithSpriteFrameName( "white_2x2.png" );
 				mIndicatorY2Node->setScale( 6.f );
 				mIndicatorY2Node->setColor( Color3B( 73, 179, 255 ) );
 				mIndicatorY2Node->setPositionY( view_node->getContentSize().height + ( HeaderHeight * 0.5f ) );
-				view_node->addChild( mIndicatorY2Node, 2 );
+				view_node->addChild( mIndicatorY2Node );
 			}
 		}
 
