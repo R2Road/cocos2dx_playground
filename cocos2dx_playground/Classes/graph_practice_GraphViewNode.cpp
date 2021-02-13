@@ -120,7 +120,7 @@ namespace graph_practice
 					}
 				}
 
-				// Vertical : 10 per 1
+				// Vertical : 1 per 10
 				{
 					const float Spacing = mConfig.PartWidth * 0.1f;
 					const int guide_count = GraphSize.width / Spacing;
@@ -130,7 +130,7 @@ namespace graph_practice
 					}
 				}
 
-				// Horizontal : 10 per 1
+				// Horizontal : 1 per 10
 				{
 					const float Spacing = mConfig.PartHeight * 0.1f;
 					const int guide_count = GraphSize.height / Spacing;
