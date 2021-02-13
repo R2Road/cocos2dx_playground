@@ -1,6 +1,5 @@
 #include "graph_practice_test_GraphViewNodeScene.h"
 
-#include <cmath>
 #include <new>
 #include <numeric>
 #include <sstream>
@@ -8,7 +7,6 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCTweenFunction.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -124,7 +122,7 @@ namespace graph_practice_test
 			auto graph_view_node = graph_practice::GraphViewNode::create(
 				{ true, true }
 				, { 50, 50, TimeLimit4Graph, 1.5f }
-				, []( float g_x )->float { return std::sin( g_x ); }
+				, []( float g_x )->float { return ( 0.4f * g_x ) - 1.f; }
 			);
 			graph_view_node->setPosition(
 				visibleOrigin
@@ -143,7 +141,7 @@ namespace graph_practice_test
 			auto graph_view_node = graph_practice::GraphViewNode::create(
 				{ true, true }
 				, { 30, 30, TimeLimit4Graph, 1.5f }
-			, []( float g_x )->float { return std::sin( g_x ); }
+			, []( float g_x )->float { return ( 0.4f * g_x ) - 1.f; }
 			);
 			graph_view_node->setPosition(
 				visibleOrigin
