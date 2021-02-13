@@ -95,7 +95,7 @@ namespace graph_practice
 			//
 			{
 				const Color4F GridColor1( 0.23f, 0.23f, 0.23f, 1.f );
-				const Color4F GridColor2( 0.35f, 0.35f, 0.35f, 1.f );
+				const Color4F GridColor2( 0.3f, 0.3f, 0.3f, 1.f );
 
 				auto draw_node = DrawNode::create();
 				view_node->addChild( draw_node, std::numeric_limits<int>::min() + 1 );
