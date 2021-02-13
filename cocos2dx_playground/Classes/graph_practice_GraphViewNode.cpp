@@ -94,7 +94,7 @@ namespace graph_practice
 			// Grid
 			//
 			{
-				const Color3B GuideColor( 55u, 55u, 55u );
+				const Color4F GuideColor( 0.23f, 0.23f, 0.23f, 1.f );
 
 				auto draw_node = DrawNode::create();
 				view_node->addChild( draw_node, std::numeric_limits<int>::min() + 1 );
@@ -105,7 +105,7 @@ namespace graph_practice
 					const int guide_count = GraphSize.width / Spacing;
 					for( int i = 1; guide_count >= i; ++i )
 					{
-						draw_node->drawLine( Vec2( Spacing * i, 0.f ), Vec2( Spacing * i, GraphSize.height ), Color4F( GuideColor, 1.f ) );
+						draw_node->drawLine( Vec2( Spacing * i, 0.f ), Vec2( Spacing * i, GraphSize.height ), GuideColor );
 					}
 				}
 
@@ -115,7 +115,7 @@ namespace graph_practice
 					const int guide_count = GraphSize.height / Spacing;
 					for( int i = 1; guide_count >= i; ++i )
 					{
-						draw_node->drawLine( Vec2( 0.f, Spacing * i ), Vec2( GraphSize.width, Spacing * i ), Color4F( GuideColor, 1.f ) );
+						draw_node->drawLine( Vec2( 0.f, Spacing * i ), Vec2( GraphSize.width, Spacing * i ), GuideColor );
 					}
 				}
 			}
