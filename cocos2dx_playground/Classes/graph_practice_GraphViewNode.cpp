@@ -122,31 +122,21 @@ namespace graph_practice
 			}
 
 			//
-			// Pivot View
+			// Axis View
 			//
 			{
-				auto x_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-				x_view->setScale9Enabled( true );
-				x_view->setAnchorPoint( Vec2::ANCHOR_TOP_LEFT );
-				x_view->setContentSize( Size( view_node->getContentSize().width, 2.f ) );
-				x_view->setColor( Color3B::GRAY );
-				view_node->addChild( x_view );
+				auto draw_node = DrawNode::create( 2.f );
+				view_node->addChild( draw_node, std::numeric_limits<int>::min() + 2 );
 
-				auto y_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-				y_view->setScale9Enabled( true );
-				y_view->setAnchorPoint( Vec2::ANCHOR_BOTTOM_RIGHT );
-				y_view->setContentSize( Size( 2.f, view_node->getContentSize().height ) );
-				y_view->setColor( Color3B::GRAY );
-				view_node->addChild( y_view );
+				// x
+				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( GraphSize.width, 0.f ), Color4F( Color3B::GRAY, 1.f ) );
 
-				const float diagonal_view_size = std::min( view_node->getContentSize().width, view_node->getContentSize().height );
-				auto diagonal_view = ui::Scale9Sprite::createWithSpriteFrameName( "white_2x2.png" );
-				diagonal_view->setScale9Enabled( true );
-				diagonal_view->setAnchorPoint( Vec2( 0.5f, 0.0f ) );
-				diagonal_view->setContentSize( Size( 2.f, sqrt( pow( diagonal_view_size, 2 ) + pow( diagonal_view_size, 2 ) ) ) );
-				diagonal_view->setColor( Color3B::GRAY );
-				diagonal_view->setRotation( 45.f );
-				view_node->addChild( diagonal_view );
+				// y
+				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( 0.f, GraphSize.height ), Color4F( Color3B::GRAY, 1.f ) );
+
+				// diagonal
+				const float diagonal_view_size = std::min( GraphSize.width, GraphSize.height );
+				draw_node->drawLine( Vec2( 0.f, 0.f ), Vec2( diagonal_view_size, diagonal_view_size ), Color4F( Color3B::GRAY, 1.f ) );
 			}
 
 			//
