@@ -79,10 +79,10 @@ namespace graph_practice
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPosition( Vec2(
-				visibleOrigin.x
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
 
@@ -94,10 +94,10 @@ namespace graph_practice
 			label->setTag( TAG_TileScaleView );
 			label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label->setColor( Color3B::GREEN );
-			label->setPosition( Vec2(
-				visibleOrigin.x + visibleSize.width
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 
 			updateTimeScaleView();
@@ -125,8 +125,9 @@ namespace graph_practice
 		{
 			auto graph_view_node = GraphAndNameNode::create( { false, false }, "Linear", GraphWidth, GraphHeight, []( float g_x )->float { return g_x; } );
 			graph_view_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 0 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f ) - ( graph_view_node->getContentSize().height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * ( StartRateX + ( SpacingX * 0 ) ), visibleSize.height * 0.5f )
+				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -139,8 +140,9 @@ namespace graph_practice
 		{
 			auto graph_view_node = GraphAndNameNode::create( { false, false }, "expoEase In", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::expoEaseIn( g_x ); } );
 			graph_view_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ), visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) )
+				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -153,8 +155,9 @@ namespace graph_practice
 		{
 			auto graph_view_node = GraphAndNameNode::create( { false, false }, "expoEase Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::expoEaseOut( g_x ); } );
 			graph_view_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ), visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) )
+				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -167,8 +170,9 @@ namespace graph_practice
 		{
 			auto graph_view_node = GraphAndNameNode::create( { false, false }, "expoEase In Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::expoEaseInOut( g_x ); } );
 			graph_view_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ), visibleSize.height * ( StartRateY + ( SpacingY * 0 ) ) )
+				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -183,8 +187,9 @@ namespace graph_practice
 		{
 			auto graph_view_node = GraphAndNameNode::create( { false, false }, "circEase In", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::circEaseIn( g_x ); } );
 			graph_view_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * ( StartRateX + ( SpacingX * 1 ) ), visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) )
+				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -197,8 +202,9 @@ namespace graph_practice
 		{
 			auto graph_view_node = GraphAndNameNode::create( { false, false }, "circEase Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::circEaseOut( g_x ); } );
 			graph_view_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * ( StartRateX + ( SpacingX * 2 ) ), visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) )
+				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 
@@ -211,8 +217,9 @@ namespace graph_practice
 		{
 			auto graph_view_node = GraphAndNameNode::create( { false, false }, "circEase In Out", GraphWidth, GraphHeight, []( float g_x )->float { return tweenfunc::circEaseInOut( g_x ); } );
 			graph_view_node->setPosition(
-				visibleOrigin.x + ( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ) ) - ( graph_view_node->getContentSize().width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) ) - ( graph_view_node->getContentSize().height * 0.5f )
+				visibleOrigin
+				+ Vec2( visibleSize.width * ( StartRateX + ( SpacingX * 3 ) ), visibleSize.height * ( StartRateY + ( SpacingY * 1 ) ) )
+				- Vec2( graph_view_node->getContentSize().width * 0.5f, graph_view_node->getContentSize().height * 0.5f )
 			);
 			addChild( graph_view_node );
 

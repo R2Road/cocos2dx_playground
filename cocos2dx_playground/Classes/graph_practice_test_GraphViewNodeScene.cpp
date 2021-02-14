@@ -82,10 +82,10 @@ namespace graph_practice_test
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPosition( Vec2(
-				visibleOrigin.x
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
 
@@ -97,10 +97,10 @@ namespace graph_practice_test
 			label->setTag( TAG_TileScaleView );
 			label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label->setColor( Color3B::GREEN );
-			label->setPosition( Vec2(
-				visibleOrigin.x + visibleSize.width
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 
 			UpdateTimeScaleView();
