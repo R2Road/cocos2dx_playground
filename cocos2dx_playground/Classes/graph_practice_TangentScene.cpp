@@ -8,7 +8,6 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCTweenFunction.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
