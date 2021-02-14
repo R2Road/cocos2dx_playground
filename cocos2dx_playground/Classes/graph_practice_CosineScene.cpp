@@ -76,7 +76,7 @@ namespace graph_practice
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[Arrow Up/Down] : Time Scale Up/Down";
+			ss << "[Arrow U/D] : Time Scale U/D";
 			ss << std::endl;
 			ss << "[Space] : Pause/Resume";
 
