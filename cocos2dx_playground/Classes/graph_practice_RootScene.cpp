@@ -16,6 +16,7 @@
 #include "graph_practice_test_GraphAndNameNodeScene.h"
 #include "graph_practice_SineScene.h"
 #include "graph_practice_CosineScene.h"
+#include "graph_practice_TangentScene.h"
 #include "graph_practice_Collection01Scene.h"
 #include "graph_practice_Collection02Scene.h"
 #include "graph_practice_Collection03Scene.h"
@@ -82,6 +83,8 @@ namespace graph_practice
 			ss << "[Q] : " << graph_practice::SineScene::getTitle();
 			ss << std::endl;
 			ss << "[W] : " << graph_practice::CosineScene::getTitle();
+			ss << std::endl;
+			ss << "[E] : " << graph_practice::TangentScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -157,6 +160,9 @@ namespace graph_practice
 			return;
 		case EventKeyboard::KeyCode::KEY_W:
 			_director->replaceScene( graph_practice::CosineScene::create( helper::CreateSceneMover<RootScene>() ) );
+			return;
+		case EventKeyboard::KeyCode::KEY_E:
+			_director->replaceScene( graph_practice::TangentScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		case EventKeyboard::KeyCode::KEY_A:
