@@ -89,6 +89,10 @@ namespace step_clickclick
 
 			const auto visibleSize = _director->getVisibleSize();
 			const auto visibleOrigin = _director->getVisibleOrigin();
+			const Vec2 visibleCenter(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+			);
 
 			//
 			// Summury
@@ -130,10 +134,7 @@ namespace step_clickclick
 			{
 				mAnimationNode = Sprite::createWithSpriteFrameName( "actor001_win_01.png" );
 				mAnimationNode->setScale( _director->getContentScaleFactor() );
-				mAnimationNode->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
-				) );
+				mAnimationNode->setPosition( visibleCenter );
 				addChild( mAnimationNode, 0 );
 			}
 
