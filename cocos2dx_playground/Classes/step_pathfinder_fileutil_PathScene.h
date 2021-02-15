@@ -16,7 +16,10 @@ namespace step_pathfinder
 			static const char* getTitle() { return "FileUtil : Path"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 
