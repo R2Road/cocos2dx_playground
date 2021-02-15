@@ -112,7 +112,7 @@ namespace step_pathfinder
 					{
 						auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 						button->setScale9Enabled( true );
-						button->addTouchEventListener( []( cocos2d::Ref* /*sender*/, cocos2d::ui::Widget::TouchEventType touch_event_type ) {
+						button->addTouchEventListener( []( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type ) {
 							if( ui::Widget::TouchEventType::BEGAN != touch_event_type )
 							{
 								return;
@@ -186,7 +186,7 @@ namespace step_pathfinder
 			std::string json_string;
 			ContainerT json_datas;
 			{
-				std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+				std::string path( std::move( FileUtils::getInstance()->getWritablePath() ) );
 				path.append( FilePath_Step_Pathfinder_Json_LoadNSave );
 
 				makeDummyJsonFile( path.c_str() );
@@ -278,7 +278,7 @@ namespace step_pathfinder
 
 		void LoadNSaveScene::makeDummyJsonFile( const char* json_path ) const
 		{
-			if( cocos2d::FileUtils::getInstance()->isFileExist( json_path ) )
+			if( FileUtils::getInstance()->isFileExist( json_path ) )
 			{
 				return;
 			}
@@ -314,26 +314,26 @@ namespace step_pathfinder
 		}
 		bool LoadNSaveScene::loadJsonFile( const char* json_path, std::string& out_json_string, ContainerT& out_json_datas )
 		{
-			out_json_string = std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( json_path ) );
+			out_json_string = std::move( FileUtils::getInstance()->getStringFromFile( json_path ) );
 
 			rapidjson::Document doc;
 			doc.Parse<0>( out_json_string.c_str() );
 
 			if( doc.HasParseError() )
 			{
-				cocos2d::log( "json parse error" );
+				CCLOG( "json parse error" );
 				return false;
 			}
 
 			if( doc.IsNull() )
 			{
-				cocos2d::log( "json is empty" );
+				CCLOG( "json is empty" );
 				return false;
 			}
 
 			if( !doc.IsArray() )
 			{
-				cocos2d::log( "invalid data struct" );
+				CCLOG( "invalid data struct" );
 				return false;
 			}
 
