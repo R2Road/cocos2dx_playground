@@ -49,6 +49,10 @@ namespace step_clickclick
 
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
 		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		const Vec2 visibleCenter(
+			visibleOrigin.x + ( visibleSize.width * 0.5f )
+			, visibleOrigin.y + ( visibleSize.height * 0.5f )
+		);
 
 		//
 		// Summury
@@ -92,10 +96,7 @@ namespace step_clickclick
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-			label->setPosition( Vec2(
-				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
-			) );
+			label->setPosition( visibleCenter );
 			ret->addChild( label, std::numeric_limits<int>::max() );
 		}
 
