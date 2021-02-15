@@ -1,7 +1,5 @@
 #include "step_pathfinder_tool_TerrainSaveHelper.h"
 
-#include <fstream>
-
 #include "cocos/platform/CCFileUtils.h"
 #include "json/document.h"
 #include "json/stringbuffer.h"
@@ -29,15 +27,7 @@ namespace step_pathfinder
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 			document.Accept( writer );
 
-			std::ofstream fs( file_name, std::ios::out );
-			if( fs.fail() )
-			{
-				CCLOG( "Failed : Terrain Data Save" );
-				return;
-			}
-
-			fs << buffer.GetString() << std::endl;
-			fs.close();
+			cocos2d::FileUtils::getInstance()->writeStringToFile( buffer.GetString(), file_name );
 		}
 	}
 }
