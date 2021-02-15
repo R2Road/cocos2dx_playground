@@ -4,7 +4,6 @@
 #include <numeric>
 #include <sstream>
 #include <random>
-#include <fstream>
 #include <utility>
 
 #include "2d/CCLabel.h"
@@ -311,9 +310,7 @@ namespace step_pathfinder
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 			document.Accept( writer );
 
-			std::ofstream fs( json_path, std::ios::out );
-			fs << buffer.GetString() << std::endl;
-			fs.close();
+			FileUtils::getInstance()->writeStringToFile( buffer.GetString(), json_path );
 		}
 		bool LoadNSaveScene::loadJsonFile( const char* json_path, std::string& out_json_string, ContainerT& out_json_datas )
 		{
