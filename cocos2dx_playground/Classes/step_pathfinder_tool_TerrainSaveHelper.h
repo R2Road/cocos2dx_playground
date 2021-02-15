@@ -12,7 +12,7 @@ namespace step_pathfinder
 		class TerrainSaveHelper
 		{
 		public:
-			static void Save( const game::TerrainData& terrain_data, const char* file_name );
+			static void Save( const game::TerrainData& terrain_data, const char* file_path );
 		};
 	}
 }

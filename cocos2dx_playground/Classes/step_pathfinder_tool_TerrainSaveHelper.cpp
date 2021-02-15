@@ -11,7 +11,7 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		void TerrainSaveHelper::Save( const game::TerrainData& terrain_data, const char* file_name )
+		void TerrainSaveHelper::Save( const game::TerrainData& terrain_data, const char* file_path )
 		{
 			rapidjson::Document document;
 			document.SetArray();
@@ -27,7 +27,7 @@ namespace step_pathfinder
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 			document.Accept( writer );
 
-			cocos2d::FileUtils::getInstance()->writeStringToFile( buffer.GetString(), file_name );
+			cocos2d::FileUtils::getInstance()->writeStringToFile( buffer.GetString(), file_path );
 		}
 	}
 }
