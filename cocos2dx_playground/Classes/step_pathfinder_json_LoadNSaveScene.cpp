@@ -2,8 +2,8 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 #include <random>
+#include <sstream>
 #include <utility>
 
 #include "2d/CCLabel.h"
