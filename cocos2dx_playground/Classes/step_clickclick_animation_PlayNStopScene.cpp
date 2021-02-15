@@ -161,22 +161,18 @@ namespace step_clickclick
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play Once
-			{
 				if( !mAnimationNode->getActionByTag( TAG_Action_Animation ) )
 				{
 					mAnimationNode->runAction( mAnimationAction );
 				}
-			}
-			break;
+				break;
 
 			case EventKeyboard::KeyCode::KEY_S: // Stop
-			{
 				if( 0 < mAnimationNode->getNumberOfRunningActions() )
 				{
 					mAnimationNode->stopAllActions();
 				}
-			}
-			break;
+				break;
 
 			default:
 				CCLOG( "Key Code : %d", keycode );
