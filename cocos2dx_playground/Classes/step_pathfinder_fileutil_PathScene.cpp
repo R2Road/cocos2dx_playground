@@ -143,7 +143,7 @@ namespace step_pathfinder
 			{
 				// Title
 				{
-					auto label = Label::createWithTTF( "<Your Resource Path : for Tool>", cpg::StringTable::GetFontPath(), 14 );
+					auto label = Label::createWithTTF( "<Your Resource Path : Original Resources>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
 					label->setPosition( Vec2(
 						visibleOrigin.x + visibleSize.width * 0.1f
