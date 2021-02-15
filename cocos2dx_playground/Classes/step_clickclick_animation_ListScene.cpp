@@ -135,7 +135,7 @@ namespace step_clickclick
 				mAnimationNode = Sprite::createWithSpriteFrameName( "actor001_win_01.png" );
 				mAnimationNode->setScale( _director->getContentScaleFactor() );
 				mAnimationNode->setPosition( visibleCenter );
-				addChild( mAnimationNode, 0 );
+				addChild( mAnimationNode );
 			}
 
 			//
