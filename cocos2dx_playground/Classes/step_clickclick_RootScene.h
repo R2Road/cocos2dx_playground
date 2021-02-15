@@ -16,6 +16,7 @@ namespace step_clickclick
 		void onEnter() override;
 		void onExit() override;
 
+	private:
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:
