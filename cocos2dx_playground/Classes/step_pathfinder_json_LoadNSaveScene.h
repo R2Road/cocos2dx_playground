@@ -20,7 +20,10 @@ namespace step_pathfinder
 			static const char* getTitle() { return "Json : Load And Save"; }
 			static cocos2d::Scene* create();
 
+		private:
 			bool init() override;
+
+		public:
 			void onEnter() override;
 			void onExit() override;
 
