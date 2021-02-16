@@ -39,15 +39,28 @@ namespace step_pathfinder
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
 			ret->autorelease();
 		}
 
+		return ret;
+	}
+
+	bool RootScene::init()
+	{
+		if( !Scene::init() )
+		{
+			return false;
+		}
+
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
 		const auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+		const Vec2 visibleCenter(
+			visibleOrigin.x + ( visibleSize.width * 0.5f )
+			, visibleOrigin.y + ( visibleSize.height * 0.5f )
+		);
 
 		//
 		// Summury
@@ -88,11 +101,8 @@ namespace step_pathfinder
 			ss << "[SPACE] : " << step_pathfinder::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
-			label->setPosition( Vec2(
-				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
-			) );
-			ret->addChild( label, std::numeric_limits<int>::max() );
+			label->setPosition( visibleCenter );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -100,10 +110,10 @@ namespace step_pathfinder
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 41, 0, 61, 255 ) );
-			ret->addChild( background_layer, std::numeric_limits<int>::min() );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		return ret;
+		return true;
 	}
 
 	void RootScene::onEnter()

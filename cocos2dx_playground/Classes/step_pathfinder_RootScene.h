@@ -12,6 +12,10 @@ namespace step_pathfinder
 		static const char* getTitle() { return "Step : Path Finder"; }
 		static cocos2d::Scene* create();
 
+	private:
+		bool init() override;
+
+	public:
 		void onEnter() override;
 		void onExit() override;
 
