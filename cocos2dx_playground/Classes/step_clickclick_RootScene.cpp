@@ -40,11 +40,19 @@ namespace step_clickclick
 		{
 			delete ret;
 			ret = nullptr;
-			return nullptr;
 		}
 		else
 		{
 			ret->autorelease();
+		}
+
+		return ret;
+	}
+	bool RootScene::init()
+	{
+		if( !Scene::init() )
+		{
+			return false;
 		}
 
 		const auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -95,9 +103,8 @@ namespace step_clickclick
 			ss << "[SPACE] : " << step_clickclick::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
-			label->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
 			label->setPosition( visibleCenter );
-			ret->addChild( label, std::numeric_limits<int>::max() );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -105,10 +112,10 @@ namespace step_clickclick
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 0, 61, 33, 255 ) );
-			ret->addChild( background_layer, std::numeric_limits<int>::min() );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
-		return ret;
+		return true;
 	}
 
 	void RootScene::onEnter()
