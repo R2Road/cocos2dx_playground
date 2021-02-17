@@ -56,13 +56,13 @@ namespace step_clickclick
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
 				label->setColor( Color3B::BLACK );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -80,10 +80,10 @@ namespace step_clickclick
 			{
 				auto label = Label::createWithTTF( "Game Clear", cpg::StringTable::GetFontPath(), 32 );
 				label->setColor( Color3B::BLACK );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.65f )
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.62f )
+				);
 				addChild( label );
 			}
 
@@ -93,10 +93,10 @@ namespace step_clickclick
 			{
 				auto label = Label::createWithTTF( StringUtils::format( "Clear Score : %d", clear_score ), cpg::StringTable::GetFontPath(), 32 );
 				label->setColor( Color3B::BLACK );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.35f )
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.38f )
+				);
 				addChild( label );
 			}
 
