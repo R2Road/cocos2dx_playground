@@ -77,7 +77,7 @@ namespace step_typetype
 				ss << std::endl;
 				ss << "[F1] : " << ResultScene::getTitle();
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 6 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition( Vec2(
