@@ -90,10 +90,10 @@ namespace step_flipflip
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7 );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -107,10 +107,10 @@ namespace step_flipflip
 				);
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
