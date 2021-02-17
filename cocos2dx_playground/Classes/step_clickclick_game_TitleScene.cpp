@@ -51,6 +51,10 @@ namespace step_clickclick
 
 			const auto visibleSize = _director->getVisibleSize();
 			const auto visibleOrigin = _director->getVisibleOrigin();
+			const Vec2 visibleCenter(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+			);
 
 			//
 			// Summury
@@ -61,12 +65,12 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << "[F1] : Result Scene Test";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 6 );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -79,10 +83,7 @@ namespace step_clickclick
 				title->getTexture()->setAliasTexParameters();
 				title->setScaleX( visibleSize.width / title->getContentSize().width );
 				title->setScaleY( visibleSize.height / title->getContentSize().height );
-				title->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.5f
-				) );
+				title->setPosition( visibleCenter );
 				addChild( title, 0 );
 			}
 
@@ -93,8 +94,8 @@ namespace step_clickclick
 			{
 				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", cpg::StringTable::GetFontPath(), 14 );
 				request_input_label->setPosition(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.18f
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.18f )
 				);
 				addChild( request_input_label, 1 );
 
