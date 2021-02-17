@@ -88,7 +88,7 @@ namespace step_flipflip
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 7 );
+				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 6 );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition(
 					visibleOrigin
