@@ -58,13 +58,13 @@ namespace step_clickclick
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 6 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -74,10 +74,10 @@ namespace step_clickclick
 			//
 			{
 				auto label = Label::createWithTTF( "Chanllenge to Remove All Blocks", cpg::StringTable::GetFontPath(), 18 );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.86f
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.86f )
+				);
 				addChild( label );
 			}
 
@@ -87,10 +87,9 @@ namespace step_clickclick
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_single.png" );
 				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.3f
-					, visibleOrigin.y + visibleSize.height * 0.7f
-				) );
+				sprite->setPosition( 
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.7f ) );
 				addChild( sprite );
 
 				auto label = Label::createWithTTF( ":   Decrease MySelf", cpg::StringTable::GetFontPath(), 14 );
@@ -106,10 +105,10 @@ namespace step_clickclick
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_together.png" );
 				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.3f
-					, visibleOrigin.y + visibleSize.height * 0.52f
-				) );
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.52f )
+				);
 				addChild( sprite );
 
 				auto label = Label::createWithTTF( ":   3 X 3\n   Same Number Decrease\n   Different Number Increase", cpg::StringTable::GetFontPath(), 14 );
@@ -125,10 +124,10 @@ namespace step_clickclick
 			{
 				auto sprite = Sprite::createWithSpriteFrameName( "step_clickclick_block_different.png" );
 				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setPosition( Vec2(
-					visibleOrigin.x + visibleSize.width * 0.3f
-					, visibleOrigin.y + visibleSize.height * 0.34f
-				) );
+				sprite->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.34f )
+				);
 				addChild( sprite );
 
 				auto label = Label::createWithTTF( ":   3 X 3\n   Different Number Die\n   Same Number Increase", cpg::StringTable::GetFontPath(), 14 );
@@ -145,8 +144,8 @@ namespace step_clickclick
 			{
 				auto request_input_label = Label::createWithTTF( "PRESS SPACE BAR", cpg::StringTable::GetFontPath(), 14 );
 				request_input_label->setPosition(
-					visibleOrigin.x + visibleSize.width * 0.5f
-					, visibleOrigin.y + visibleSize.height * 0.18f
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.18f )
 				);
 				addChild( request_input_label, 1 );
 
