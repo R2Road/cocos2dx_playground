@@ -56,7 +56,7 @@ namespace step_clickclick
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 6 );
 				label->setColor( Color3B::BLACK );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition(

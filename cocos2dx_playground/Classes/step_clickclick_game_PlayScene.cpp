@@ -92,7 +92,7 @@ namespace step_clickclick
 				ss << std::endl;
 				ss << "[Mouse] : Click";
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 6 );
 				label->setColor( Color3B::WHITE );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 				label->setPosition(
