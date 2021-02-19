@@ -13,7 +13,7 @@ namespace step_clickclick
 			, mLife( 0 )
 		{}
 
-		void Block::Reset( eBlockType type, const int life )
+		void Block::Reset( const eBlockType type, const int life )
 		{
 			mBlockType = type;
 			mActive = true;

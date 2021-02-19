@@ -11,7 +11,7 @@ namespace step_clickclick
 		public:
 			Block( const int index );
 
-			void Reset( eBlockType type, const int life );
+			void Reset( const eBlockType type, const int life );
 
 			void DecreaseLife();
 			void IncreaseLife();
