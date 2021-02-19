@@ -29,7 +29,7 @@ namespace step_clickclick
 			bool init( const cocos2d::Size block_size );
 
 		public:
-			void Reset( eBlockType type, const int life );
+			void Reset( const eBlockType type, const int life );
 			void UpdateLife( const int last_life, const int current_life );
 
 		private:

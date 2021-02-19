@@ -85,7 +85,7 @@ namespace step_clickclick
 			return true;
 		}
 
-		void BlockViewNode::Reset( eBlockType type, const int life )
+		void BlockViewNode::Reset( const eBlockType type, const int life )
 		{
 			mLifeLabel->setString( std::to_string( life ) );
 
