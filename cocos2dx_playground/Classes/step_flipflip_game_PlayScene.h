@@ -67,7 +67,7 @@ namespace step_flipflip
 			int mAudioID_forBGM;
 
 			StageConfig mStageConfig;
-			game::StageData mStageData;
+			StageData mStageData;
 			CardSelectorNode* mCardSelectorNode;
 			MessageViewNode* mMessageViewNode;
 			StageViewNode* mStageViewNode;

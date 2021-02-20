@@ -118,7 +118,7 @@ namespace step_flipflip
 			// Stage View Node
 			//
 			{
-				mStageViewNode = game::StageViewNode::create( mStageConfig, mStageData );
+				mStageViewNode = StageViewNode::create( mStageConfig, mStageData );
 				mStageViewNode->setPosition(
 					visibleCenter
 					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
@@ -130,7 +130,7 @@ namespace step_flipflip
 			// Card Selector Node
 			//
 			{
-				mCardSelectorNode = game::CardSelectorNode::create( mStageConfig );
+				mCardSelectorNode = CardSelectorNode::create( mStageConfig );
 				mCardSelectorNode->setPosition(
 					visibleCenter
 					- Vec2( mCardSelectorNode->getContentSize().width * 0.5f, mCardSelectorNode->getContentSize().height * 0.5f )
@@ -142,7 +142,7 @@ namespace step_flipflip
 			// Message View Node
 			//
 			{
-				mMessageViewNode = game::MessageViewNode::create();
+				mMessageViewNode = MessageViewNode::create();
 				mMessageViewNode->setPosition( visibleCenter );
 				addChild( mMessageViewNode, std::numeric_limits<int>::max() );
 			}
