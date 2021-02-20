@@ -151,7 +151,7 @@ namespace step_flipflip
 			// Setup
 			//
 			mCardSelectorNode->setVisible( false );
-			schedule( schedule_selector( PlayScene::Update4Game ) );
+			schedule( schedule_selector( PlayScene::update4Game ) );
 
 			return true;
 		}
@@ -177,7 +177,7 @@ namespace step_flipflip
 		}
 
 
-		void PlayScene::Update4Game( float dt )
+		void PlayScene::update4Game( float dt )
 		{
 			if( eStep::Game_ShowIndicator <= mStep )
 			{

@@ -58,9 +58,8 @@ namespace step_flipflip
 			void onEnter() override;
 			void onExit() override;
 
-			void Update4Game( float dt );
-
 		private:
+			void update4Game( float dt );
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:
