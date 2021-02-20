@@ -14,7 +14,6 @@
 #include "cpg_Random.h"
 
 #include "step_flipflip_game_CardSelectorNode.h"
-#include "step_flipflip_game_Constant.h"
 #include "step_flipflip_game_MessageViewNode.h"
 #include "step_flipflip_game_StageData.h"
 #include "step_flipflip_game_StageViewNode.h"
@@ -24,11 +23,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const step_flipflip::game::StageConfig STAGE_CONFIG{ 6, 3, cocos2d::Size( 40.f, 54.f ) };
-}
-
 namespace step_flipflip
 {
 	namespace game
@@ -37,6 +31,7 @@ namespace step_flipflip
 			mKeyboardListener( nullptr )
 			, mAudioID_forBGM( -1 )
 
+			, mStageConfig( { 6, 3, cocos2d::Size( 40.f, 54.f ) } )
 			, mStageData()
 			, mCardSelectorNode( nullptr )
 			, mMessageViewNode( nullptr )
@@ -117,13 +112,13 @@ namespace step_flipflip
 			//
 			// Stage Setup
 			//
-			mStageData.Reset( STAGE_CONFIG.Width, STAGE_CONFIG.Height, 1 );
+			mStageData.Reset( mStageConfig.Width, mStageConfig.Height, 1 );
 
 			//
 			// Stage View Node
 			//
 			{
-				mStageViewNode = game::StageViewNode::create( STAGE_CONFIG, mStageData );
+				mStageViewNode = game::StageViewNode::create( mStageConfig, mStageData );
 				mStageViewNode->setPosition(
 					visibleCenter
 					- Vec2( mStageViewNode->getContentSize().width * 0.5f, mStageViewNode->getContentSize().height * 0.5f )
@@ -135,7 +130,7 @@ namespace step_flipflip
 			// Card Selector Node
 			//
 			{
-				mCardSelectorNode = game::CardSelectorNode::create( STAGE_CONFIG );
+				mCardSelectorNode = game::CardSelectorNode::create( mStageConfig );
 				mCardSelectorNode->setPosition(
 					visibleCenter
 					- Vec2( mCardSelectorNode->getContentSize().width * 0.5f, mCardSelectorNode->getContentSize().height * 0.5f )
@@ -216,9 +211,9 @@ namespace step_flipflip
 				}
 				break;
 			case eStep::ShowHint:
-				for( int current_h = 0; STAGE_CONFIG.Height > current_h; ++current_h )
+				for( int current_h = 0; mStageConfig.Height > current_h; ++current_h )
 				{
-					mStageViewNode->Flip( cpg::Random::GetInt( 0, STAGE_CONFIG.Width - 1 ), current_h );
+					mStageViewNode->Flip( cpg::Random::GetInt( 0, mStageConfig.Width - 1 ), current_h );
 				}
 				++mStep;
 				break;
