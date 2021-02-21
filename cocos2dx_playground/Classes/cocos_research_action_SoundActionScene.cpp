@@ -170,9 +170,21 @@ namespace cocos_research_action
 				mTestNode_1->setScale( _director->getContentScaleFactor() );
 				mTestNode_1->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.5f )
+					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.6f )
 				);
 				addChild( mTestNode_1 );
+			}
+
+			// Explain
+			{
+				auto label = Label::createWithTTF( "Play Sound\nwith\nCallFunc Action", cpg::StringTable::GetFontPath(), 12 );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					mTestNode_1->getPosition()
+					- Vec2( 0.f, 40.f )
+				);
+				addChild( label, 9999 );
 			}
 
 			// Action
@@ -215,9 +227,21 @@ namespace cocos_research_action
 				mTestNode_2->setScale( _director->getContentScaleFactor() );
 				mTestNode_2->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.5f )
+					+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.6f )
 				);
 				addChild( mTestNode_2 );
+			}
+
+			// Explain
+			{
+				auto label = Label::createWithTTF( "Play Sound\nwith\nSoundAction", cpg::StringTable::GetFontPath(), 12 );
+				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				label->setColor( Color3B::YELLOW );
+				label->setPosition(
+					mTestNode_2->getPosition()
+					- Vec2( 0.f, 40.f )
+				);
+				addChild( label, 9999 );
 			}
 
 			// Action
