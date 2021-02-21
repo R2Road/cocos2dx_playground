@@ -31,8 +31,8 @@ namespace cocos_research_action
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
-		, mAnimationNode( nullptr )
-		, mAnimationAction( nullptr )
+		, mTestNode( nullptr )
+		, mTestAction( nullptr )
 	{}
 
 	Scene* SoundActionScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -102,13 +102,13 @@ namespace cocos_research_action
 			// Animation Node
 			//
 			{
-				mAnimationNode = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-				mAnimationNode->setScale( _director->getContentScaleFactor() );
-				mAnimationNode->setPosition(
+				mTestNode = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				mTestNode->setScale( _director->getContentScaleFactor() );
+				mTestNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
 				);
-				addChild( mAnimationNode );
+				addChild( mTestNode );
 			}
 
 			//
@@ -139,9 +139,9 @@ namespace cocos_research_action
 					animate_action_2 = Animate::create( animation_object );
 				}
 
-				mAnimationAction = Sequence::create( animate_action_1, sound_action, animate_action_2, nullptr );
-				mAnimationAction->setTag( TAG_Action_Animation );
-				mAnimationAction->retain();
+				mTestAction = Sequence::create( animate_action_1, sound_action, animate_action_2, nullptr );
+				mTestAction->setTag( TAG_Action_Animation );
+				mTestAction->retain();
 			}
 		}
 		
@@ -176,16 +176,16 @@ namespace cocos_research_action
 			return;
 
 		case EventKeyboard::KeyCode::KEY_A: // Play Once
-			if( !mAnimationNode->getActionByTag( TAG_Action_Animation ) )
+			if( !mTestNode->getActionByTag( TAG_Action_Animation ) )
 			{
-				mAnimationNode->runAction( mAnimationAction );
+				mTestNode->runAction( mTestAction );
 			}
 			break;
 
 		case EventKeyboard::KeyCode::KEY_S: // Stop
-			if( 0 < mAnimationNode->getNumberOfRunningActions() )
+			if( 0 < mTestNode->getNumberOfRunningActions() )
 			{
-				mAnimationNode->stopAllActions();
+				mTestNode->stopAllActions();
 			}
 			break;
 

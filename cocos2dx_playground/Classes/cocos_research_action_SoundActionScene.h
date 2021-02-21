@@ -27,7 +27,7 @@ namespace cocos_research_action
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		cocos2d::Node* mAnimationNode;
-		cocos2d::Action* mAnimationAction;
+		cocos2d::Node* mTestNode;
+		cocos2d::Action* mTestAction;
 	};
 }
