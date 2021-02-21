@@ -110,7 +110,7 @@ namespace cocos_research_action
 		}
 
 		//
-		// Research 1
+		// Research 1 : Use CallFunc
 		//
 		{
 			// Node
@@ -169,7 +169,7 @@ namespace cocos_research_action
 		}
 
 		//
-		// Research 2
+		// Research 2 : Use SoundAction
 		//
 		{
 			// Node
