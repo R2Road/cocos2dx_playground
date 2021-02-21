@@ -24,7 +24,7 @@ namespace
 	class SpriteFrameAction : public ActionInterval
 	{
 	public:
-		SpriteFrameAction( SpriteFrame* sprite_frame ) : mSpriteFrame( sprite_frame ) {}
+		SpriteFrameAction( SpriteFrame* sprite_frame ) : mSpriteFrame( sprite_frame ), mbFirstFrame( false ) {}
 
 	private:
 		CC_DISALLOW_COPY_AND_ASSIGN( SpriteFrameAction );
@@ -57,18 +57,28 @@ namespace
 			CCASSERT( false, "reverse() not supported in SpriteFrameAction" );
 			return nullptr;
 		}
+		void startWithTarget( Node *target ) override
+		{
+			ActionInterval::startWithTarget( target );
+			mbFirstFrame = true;
+		}
 		void update( float time ) override
 		{
-			if( 0.f <= time )
+			if( mbFirstFrame )
 			{
+				mbFirstFrame = false;
+
 				auto blend = static_cast<Sprite*>( _target )->getBlendFunc();
 				static_cast<Sprite*>( _target )->setSpriteFrame( mSpriteFrame );
 				static_cast<Sprite*>( _target )->setBlendFunc( blend );
+
+				CCLOG( "SpriteFrameAction : Do" );
 			}
 		}
 
 	private:
 		SpriteFrame* mSpriteFrame;
+		bool mbFirstFrame;
 	};
 }
 
