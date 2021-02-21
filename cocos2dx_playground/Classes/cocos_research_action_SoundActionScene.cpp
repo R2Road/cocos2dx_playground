@@ -27,6 +27,12 @@ namespace
 
 	class SoundAction : public ActionInstant
 	{
+	private:
+		SoundAction( const char* sound_path ) : mSoundPath( sound_path )
+		{}
+
+		CC_DISALLOW_COPY_AND_ASSIGN( SoundAction );
+
 	public:
 		static SoundAction* create( const char* sound_path )
 		{
@@ -60,12 +66,6 @@ namespace
 
 			return a;
 		}
-
-	private:
-		SoundAction( const char* sound_path ) : mSoundPath( sound_path )
-		{}
-
-		CC_DISALLOW_COPY_AND_ASSIGN( SoundAction );
 
 	private:
 		const std::string mSoundPath;
