@@ -244,12 +244,14 @@ namespace cocos_research_action
 					);
 				}
 
-				mTestAction = Sequence::create(
+				auto sequence_action = Sequence::create(
 					phase_1
 					, phase_2
 					, phase_3
 					, nullptr
-				);
+				);				
+
+				mTestAction = RepeatForever::create( sequence_action );
 				mTestAction->setTag( TAG_Action_Animation );
 				mTestAction->retain();
 			}
