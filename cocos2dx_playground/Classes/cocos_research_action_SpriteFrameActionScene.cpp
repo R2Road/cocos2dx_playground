@@ -64,7 +64,7 @@ namespace
 		}
 		virtual void update( float time ) override
 		{
-			if( 1.0f <= time )
+			if( 0.f <= time )
 			{
 				auto blend = static_cast<Sprite*>( _target )->getBlendFunc();
 				static_cast<Sprite*>( _target )->setSpriteFrame( mSpriteFrame );
@@ -218,13 +218,13 @@ namespace cocos_research_action
 				Sequence* phase_3 = nullptr;
 				{
 					auto sprite_frame_action_1 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					auto sprite_frame_action_2 = SpriteFrameAction::create( 0.7f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_2 = SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
 					auto sprite_frame_action_3 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					auto sprite_frame_action_4 = SpriteFrameAction::create( 0.7f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_4 = SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 					auto sprite_frame_action_5 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					auto sprite_frame_action_6 = SpriteFrameAction::create( 0.7f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_6 = SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
 					auto sprite_frame_action_7 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					auto sprite_frame_action_8 = SpriteFrameAction::create( 0.7f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_8 = SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
 					phase_3 = Sequence::create(
 						sprite_frame_action_1
