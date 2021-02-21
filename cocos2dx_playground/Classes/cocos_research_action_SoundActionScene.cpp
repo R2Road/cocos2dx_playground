@@ -175,7 +175,7 @@ namespace cocos_research_action
 				addChild( mTestNode_1 );
 			}
 
-			// Animation
+			// Action
 			{
 				Animate* animate_action_1 = nullptr;
 				{
@@ -220,7 +220,7 @@ namespace cocos_research_action
 				addChild( mTestNode_2 );
 			}
 
-			// Animation
+			// Action
 			{
 				Animate* animate_action_1 = nullptr;
 				{
