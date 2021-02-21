@@ -2,6 +2,7 @@
 
 #include <new>
 #include <sstream>
+#include <string>
 
 #include "2d/CCActionInstant.h"
 #include "2d/CCActionInterval.h"
@@ -23,6 +24,57 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_Action_Animation = 20140416;
+
+	class SoundAction : public ActionInstant
+	{
+	public:
+		static SoundAction* create( const char* sound_path )
+		{
+			auto ret = new ( std::nothrow ) SoundAction( sound_path );
+			if( ret )
+			{
+				ret->autorelease();
+			}
+			else
+			{
+				CC_SAFE_DELETE( ret );
+			}
+
+			return ret;
+		}
+
+	public:
+		void execute()
+		{
+			experimental::AudioEngine::play2d( mSoundPath, false, 0.1f );
+		}
+
+		void update( float time ) override
+		{
+			ActionInstant::update( time );
+			this->execute();
+		}
+		SoundAction* reverse() const override
+		{
+			return this->clone();
+		}
+		SoundAction* clone() const override
+		{
+			auto a = new ( std::nothrow ) SoundAction( mSoundPath.c_str() );
+			a->autorelease();
+
+			return a;
+		}
+
+	private:
+		SoundAction( const char* sound_path ) : mSoundPath( sound_path )
+		{}
+
+		CC_DISALLOW_COPY_AND_ASSIGN( SoundAction );
+
+	private:
+		std::string mSoundPath;
+	};
 }
 
 namespace cocos_research_action
@@ -129,9 +181,7 @@ namespace cocos_research_action
 					animate_action_1 = Animate::create( animation_object );
 				}
 
-				auto sound_action = CallFunc::create( []() {
-					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
-				} );
+				auto sound_action = SoundAction::create( "sounds/fx/jump_001.ogg" );
 
 				Animate* animate_action_2 = nullptr;
 				{
