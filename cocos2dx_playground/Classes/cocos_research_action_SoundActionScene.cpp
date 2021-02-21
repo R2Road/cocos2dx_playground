@@ -3,12 +3,14 @@
 #include <new>
 #include <sstream>
 
+#include "2d/CCActionInstant.h"
 #include "2d/CCActionInterval.h"
 #include "2d/CCAnimation.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
+#include "audio/include/AudioEngine.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -113,18 +115,31 @@ namespace cocos_research_action
 			// Animation
 			//
 			{
-				auto animation_object = Animation::create();
-				animation_object->setDelayPerUnit( 0.1f );
-				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
-				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-				animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+				Animate* animate_action_1 = nullptr;
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.2f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
 
-				mAnimationAction = Animate::create( animation_object );
+					animate_action_1 = Animate::create( animation_object );
+				}
+
+				auto sound_action = CallFunc::create( []() {
+					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
+				} );
+
+				Animate* animate_action_2 = nullptr;
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.2f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+
+					animate_action_2 = Animate::create( animation_object );
+				}
+
+				mAnimationAction = Sequence::create( animate_action_1, sound_action, animate_action_2, nullptr );
 				mAnimationAction->setTag( TAG_Action_Animation );
 				mAnimationAction->retain();
 			}
