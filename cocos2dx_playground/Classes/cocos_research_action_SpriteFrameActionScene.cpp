@@ -25,7 +25,6 @@ namespace
 	{
 	public:
 		SpriteFrameAction( SpriteFrame* sprite_frame ) : mSpriteFrame( sprite_frame ) {}
-		virtual ~SpriteFrameAction() {}
 
 	private:
 		CC_DISALLOW_COPY_AND_ASSIGN( SpriteFrameAction );
@@ -33,7 +32,7 @@ namespace
 	public:
 		static SpriteFrameAction* create( float duration, SpriteFrame* sprite_frame )
 		{
-			SpriteFrameAction *ret = new ( std::nothrow ) SpriteFrameAction( sprite_frame );
+			auto ret = new ( std::nothrow ) SpriteFrameAction( sprite_frame );
 
 			if( ret && ret->initWithDuration( duration ) )
 			{
@@ -48,17 +47,17 @@ namespace
 		//
 		// Overrides
 		//
-		virtual SpriteFrameAction* clone() const override
+		SpriteFrameAction* clone() const override
 		{
 			// no copy constructor
 			return SpriteFrameAction::create( _duration, mSpriteFrame );
 		}
-		virtual SpriteFrameAction* reverse() const  override
+		SpriteFrameAction* reverse() const  override
 		{
 			CCASSERT( false, "reverse() not supported in SpriteFrameAction" );
 			return nullptr;
 		}
-		virtual void update( float time ) override
+		void update( float time ) override
 		{
 			if( 0.f <= time )
 			{
@@ -68,7 +67,7 @@ namespace
 			}
 		}
 
-	protected:
+	private:
 		SpriteFrame* mSpriteFrame;
 	};
 }
