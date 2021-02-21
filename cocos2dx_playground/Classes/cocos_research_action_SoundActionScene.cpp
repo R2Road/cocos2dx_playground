@@ -1,6 +1,7 @@
 #include "cocos_research_action_SoundActionScene.h"
 
 #include <new>
+#include <numeric>
 #include <sstream>
 #include <string>
 
@@ -149,7 +150,7 @@ namespace cocos_research_action
 				visibleOrigin.x
 				, visibleOrigin.y + visibleSize.height
 			) );
-			addChild( label, 9999 );
+			addChild( label, std::numeric_limits<int>::max() );
 		}
 			
 		//
@@ -157,7 +158,7 @@ namespace cocos_research_action
 		//
 		{
 			auto background_layer = LayerColor::create( Color4B( 5, 29, 81, 255 ) );
-			addChild( background_layer, 0 );
+			addChild( background_layer, std::numeric_limits<int>::min() );
 		}
 
 		//
@@ -184,7 +185,7 @@ namespace cocos_research_action
 					mTestNode_1->getPosition()
 					- Vec2( 0.f, 40.f )
 				);
-				addChild( label, 9999 );
+				addChild( label );
 			}
 
 			// Action
@@ -241,7 +242,7 @@ namespace cocos_research_action
 					mTestNode_2->getPosition()
 					- Vec2( 0.f, 40.f )
 				);
-				addChild( label, 9999 );
+				addChild( label );
 			}
 
 			// Action
