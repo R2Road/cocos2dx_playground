@@ -16,7 +16,6 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "base/ccUTF8.h"
 
 #include "cpg_StringTable.h"
 
