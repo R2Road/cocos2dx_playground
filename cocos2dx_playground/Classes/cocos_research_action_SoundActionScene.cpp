@@ -44,15 +44,10 @@ namespace
 		}
 
 	public:
-		void execute()
-		{
-			experimental::AudioEngine::play2d( mSoundPath, false, 0.1f );
-		}
-
 		void update( float time ) override
 		{
 			ActionInstant::update( time );
-			this->execute();
+			experimental::AudioEngine::play2d( mSoundPath, false, 0.1f );
 		}
 		SoundAction* reverse() const override
 		{
