@@ -11,6 +11,8 @@ namespace cocos_research_action
 		SoundActionScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
+		~SoundActionScene();
+
 		static const char* getTitle() { return "Sound Action"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 

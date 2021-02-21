@@ -90,6 +90,12 @@ namespace cocos_research_action
 		, mTestAction_2( nullptr )
 	{}
 
+	SoundActionScene::~SoundActionScene()
+	{
+		mTestAction_1->release();
+		mTestAction_2->release();
+	}
+
 	Scene* SoundActionScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
 		auto ret = new ( std::nothrow ) SoundActionScene( back_to_the_previous_scene_callback );
