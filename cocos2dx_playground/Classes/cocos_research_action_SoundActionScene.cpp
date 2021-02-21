@@ -31,8 +31,11 @@ namespace cocos_research_action
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
-		, mTestNode( nullptr )
-		, mTestAction( nullptr )
+		, mTestNode_1( nullptr )
+		, mTestNode_2( nullptr )
+
+		, mTestAction_1( nullptr )
+		, mTestAction_2( nullptr )
 	{}
 
 	Scene* SoundActionScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -73,9 +76,14 @@ namespace cocos_research_action
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[A] : Play Animation";
+			ss << "[Q] : Node 1 : Play";
 			ss << std::endl;
-			ss << "[S] : Stop Animation";
+			ss << "[W] : Node 1 : Stop";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[A] : Node 2 : Play";
+			ss << std::endl;
+			ss << "[S] : Node 2 : Stop";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -95,25 +103,21 @@ namespace cocos_research_action
 		}
 
 		//
-		// Research
+		// Research 1
 		//
 		{
-			//
-			// Animation Node
-			//
+			// Node
 			{
-				mTestNode = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
-				mTestNode->setScale( _director->getContentScaleFactor() );
-				mTestNode->setPosition(
+				mTestNode_1 = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
+				mTestNode_1->setScale( _director->getContentScaleFactor() );
+				mTestNode_1->setPosition(
 					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.5f )
 				);
-				addChild( mTestNode );
+				addChild( mTestNode_1 );
 			}
 
-			//
 			// Animation
-			//
 			{
 				Animate* animate_action_1 = nullptr;
 				{
@@ -139,9 +143,56 @@ namespace cocos_research_action
 					animate_action_2 = Animate::create( animation_object );
 				}
 
-				mTestAction = Sequence::create( animate_action_1, sound_action, animate_action_2, nullptr );
-				mTestAction->setTag( TAG_Action_Animation );
-				mTestAction->retain();
+				mTestAction_1 = Sequence::create( animate_action_1, sound_action, animate_action_2, nullptr );
+				mTestAction_1->setTag( TAG_Action_Animation );
+				mTestAction_1->retain();
+			}
+		}
+
+		//
+		// Research 2
+		//
+		{
+			// Node
+			{
+				mTestNode_2 = Sprite::createWithSpriteFrameName( "actor001_run_03.png" );
+				mTestNode_2->setScale( _director->getContentScaleFactor() );
+				mTestNode_2->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.5f )
+				);
+				addChild( mTestNode_2 );
+			}
+
+			// Animation
+			{
+				Animate* animate_action_1 = nullptr;
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.2f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+
+					animate_action_1 = Animate::create( animation_object );
+				}
+
+				auto sound_action = CallFunc::create( []() {
+					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
+				} );
+
+				Animate* animate_action_2 = nullptr;
+				{
+					auto animation_object = Animation::create();
+					animation_object->setDelayPerUnit( 0.2f );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+
+					animate_action_2 = Animate::create( animation_object );
+				}
+
+				mTestAction_2 = Sequence::create( animate_action_1, sound_action, animate_action_2, nullptr );
+				mTestAction_2->setTag( TAG_Action_Animation );
+				mTestAction_2->retain();
 			}
 		}
 		
@@ -175,17 +226,29 @@ namespace cocos_research_action
 			helper::BackToThePreviousScene::MoveBack();
 			return;
 
-		case EventKeyboard::KeyCode::KEY_A: // Play Once
-			if( !mTestNode->getActionByTag( TAG_Action_Animation ) )
+		case EventKeyboard::KeyCode::KEY_Q: // Play Once
+			if( !mTestNode_1->getActionByTag( TAG_Action_Animation ) )
 			{
-				mTestNode->runAction( mTestAction );
+				mTestNode_1->runAction( mTestAction_1 );
+			}
+			break;
+		case EventKeyboard::KeyCode::KEY_W: // Stop
+			if( 0 < mTestNode_1->getNumberOfRunningActions() )
+			{
+				mTestNode_1->stopAllActions();
 			}
 			break;
 
-		case EventKeyboard::KeyCode::KEY_S: // Stop
-			if( 0 < mTestNode->getNumberOfRunningActions() )
+		case EventKeyboard::KeyCode::KEY_A: // Play Once
+			if( !mTestNode_2->getActionByTag( TAG_Action_Animation ) )
 			{
-				mTestNode->stopAllActions();
+				mTestNode_2->runAction( mTestAction_2 );
+			}
+			break;
+		case EventKeyboard::KeyCode::KEY_S: // Stop
+			if( 0 < mTestNode_2->getNumberOfRunningActions() )
+			{
+				mTestNode_2->stopAllActions();
 			}
 			break;
 
