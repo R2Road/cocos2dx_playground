@@ -25,50 +25,55 @@ namespace
 {
 	const int TAG_Action_Animation = 20140416;
 
-	class SoundAction : public ActionInstant
+	class SpriteFrameAction : public ActionInterval
 	{
-	private:
-		SoundAction( const char* sound_path ) : mSoundPath( sound_path )
-		{}
+	public:
+		SpriteFrameAction( SpriteFrame* sprite_frame ) : mSpriteFrame( sprite_frame ) {}
+		virtual ~SpriteFrameAction() {}
 
-		CC_DISALLOW_COPY_AND_ASSIGN( SoundAction );
+	private:
+		CC_DISALLOW_COPY_AND_ASSIGN( SpriteFrameAction );
 
 	public:
-		static SoundAction* create( const char* sound_path )
+		static SpriteFrameAction* create( float duration, SpriteFrame* sprite_frame )
 		{
-			auto ret = new ( std::nothrow ) SoundAction( sound_path );
-			if( ret )
+			SpriteFrameAction *ret = new ( std::nothrow ) SpriteFrameAction( sprite_frame );
+
+			if( ret && ret->initWithDuration( duration ) )
 			{
 				ret->autorelease();
+				return ret;
 			}
-			else
+
+			delete ret;
+			return nullptr;
+		}
+
+		//
+		// Overrides
+		//
+		virtual SpriteFrameAction* clone() const override
+		{
+			// no copy constructor
+			return SpriteFrameAction::create( _duration, mSpriteFrame );
+		}
+		virtual SpriteFrameAction* reverse() const  override
+		{
+			CCASSERT( false, "reverse() not supported in SpriteFrameAction" );
+			return nullptr;
+		}
+		virtual void update( float time ) override
+		{
+			if( 1.0f <= time )
 			{
-				CC_SAFE_DELETE( ret );
+				auto blend = static_cast<Sprite*>( _target )->getBlendFunc();
+				static_cast<Sprite*>( _target )->setSpriteFrame( mSpriteFrame );
+				static_cast<Sprite*>( _target )->setBlendFunc( blend );
 			}
-
-			return ret;
 		}
 
-	public:
-		void update( float time ) override
-		{
-			ActionInstant::update( time );
-			experimental::AudioEngine::play2d( mSoundPath, false, 0.1f );
-		}
-		SoundAction* reverse() const override
-		{
-			return this->clone();
-		}
-		SoundAction* clone() const override
-		{
-			auto a = new ( std::nothrow ) SoundAction( mSoundPath.c_str() );
-			a->autorelease();
-
-			return a;
-		}
-
-	private:
-		const std::string mSoundPath;
+	protected:
+		SpriteFrame* mSpriteFrame;
 	};
 }
 
@@ -162,31 +167,84 @@ namespace cocos_research_action
 
 			// Action
 			{
-				Animate* animate_action_1 = nullptr;
+				Sequence* phase_1 = nullptr;
 				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_1 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_2 = SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_3 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_4 = SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_5 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_6 = SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_7 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_8 = SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
-					animate_action_1 = Animate::create( animation_object );
+					phase_1 = Sequence::create(
+						sprite_frame_action_1
+						, sprite_frame_action_2
+						, sprite_frame_action_3
+						, sprite_frame_action_4
+						, sprite_frame_action_5
+						, sprite_frame_action_6
+						, sprite_frame_action_7
+						, sprite_frame_action_8
+						, nullptr
+					);
 				}
 
-				auto sound_action = CallFunc::create( []() {
-					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
-				} );
-
-				Animate* animate_action_2 = nullptr;
+				Sequence* phase_2 = nullptr;
 				{
-					auto animation_object = Animation::create();
-					animation_object->setDelayPerUnit( 0.2f );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					animation_object->addSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_1 = SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_2 = SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_3 = SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_4 = SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_5 = SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_6 = SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_7 = SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_8 = SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
-					animate_action_2 = Animate::create( animation_object );
+					phase_2 = Sequence::create(
+						sprite_frame_action_1
+						, sprite_frame_action_2
+						, sprite_frame_action_3
+						, sprite_frame_action_4
+						, sprite_frame_action_5
+						, sprite_frame_action_6
+						, sprite_frame_action_7
+						, sprite_frame_action_8
+						, nullptr
+					);
 				}
 
-				mTestAction = Sequence::create( animate_action_1, sound_action, animate_action_2, nullptr );
+				Sequence* phase_3 = nullptr;
+				{
+					auto sprite_frame_action_1 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_2 = SpriteFrameAction::create( 0.7f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_3 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_4 = SpriteFrameAction::create( 0.7f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_5 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_6 = SpriteFrameAction::create( 0.7f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_7 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_8 = SpriteFrameAction::create( 0.7f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+
+					phase_3 = Sequence::create(
+						sprite_frame_action_1
+						, sprite_frame_action_2
+						, sprite_frame_action_3
+						, sprite_frame_action_4
+						, sprite_frame_action_5
+						, sprite_frame_action_6
+						, sprite_frame_action_7
+						, sprite_frame_action_8
+						, nullptr
+					);
+				}
+
+				mTestAction = Sequence::create(
+					phase_1
+					, phase_2
+					, phase_3
+					, nullptr
+				);
 				mTestAction->setTag( TAG_Action_Animation );
 				mTestAction->retain();
 			}
