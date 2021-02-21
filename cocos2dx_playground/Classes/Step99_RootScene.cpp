@@ -15,6 +15,8 @@
 #include "PlayGroundScene.h"
 
 #include "cocos_research_action_SoundActionScene.h"
+#include "cocos_research_action_SpriteFrameActionScene.h"
+
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
@@ -66,6 +68,8 @@ namespace step99
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[1] : " << cocos_research_action::SoundActionScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << cocos_research_action::SpriteFrameActionScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -129,6 +133,9 @@ namespace step99
 
 		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( cocos_research_action::SoundActionScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
+			_director->replaceScene( cocos_research_action::SpriteFrameActionScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_Q:
