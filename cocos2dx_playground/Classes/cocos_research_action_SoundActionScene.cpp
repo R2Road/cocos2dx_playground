@@ -74,7 +74,7 @@ namespace
 		CC_DISALLOW_COPY_AND_ASSIGN( SoundAction );
 
 	private:
-		std::string mSoundPath;
+		const std::string mSoundPath;
 	};
 }
 
