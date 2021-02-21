@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_Position2GridIndexConverter.cpp" />
     <ClCompile Include="..\Classes\cpg_Random.cpp" />
     <ClCompile Include="..\Classes\cpg_Setting.cpp" />
+    <ClCompile Include="..\Classes\cpg_SoundAction.cpp" />
     <ClCompile Include="..\Classes\cpg_StringTable.cpp" />
     <ClCompile Include="..\Classes\cpg_TileSheetConfiguration.cpp" />
     <ClCompile Include="..\Classes\graph_practice_CosineScene.cpp" />

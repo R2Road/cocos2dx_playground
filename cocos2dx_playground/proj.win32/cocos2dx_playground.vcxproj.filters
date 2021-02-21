@@ -981,6 +981,9 @@
     <ClCompile Include="..\Classes\cocos_research_action_SpriteFrameActionScene.cpp">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_SoundAction.cpp">
+      <Filter>src\cpg</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
