@@ -429,6 +429,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_Position2GridIndexConverter.h" />
     <ClInclude Include="..\Classes\cpg_Random.h" />
     <ClInclude Include="..\Classes\cpg_Setting.h" />
+    <ClInclude Include="..\Classes\cpg_SoundAction.h" />
     <ClInclude Include="..\Classes\cpg_StringTable.h" />
     <ClInclude Include="..\Classes\cpg_TileSheetConfiguration.h" />
     <ClInclude Include="..\Classes\graph_practice_CosineScene.h" />

@@ -1784,6 +1784,9 @@
     <ClInclude Include="..\Classes\cocos_research_action_SpriteFrameActionScene.h">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\cpg_SoundAction.h">
+      <Filter>src\cpg</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
