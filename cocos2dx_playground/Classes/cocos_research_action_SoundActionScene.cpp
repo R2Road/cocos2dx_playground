@@ -199,7 +199,9 @@ namespace cocos_research_action
 					animate_action_1 = Animate::create( animation_object );
 				}
 
-				auto sound_action = SoundAction::create( "sounds/fx/jump_001.ogg" );
+				auto sound_action = CallFunc::create( []() {
+					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
+				} );
 
 				Animate* animate_action_2 = nullptr;
 				{
@@ -256,9 +258,7 @@ namespace cocos_research_action
 					animate_action_1 = Animate::create( animation_object );
 				}
 
-				auto sound_action = CallFunc::create( []() {
-					experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
-				} );
+				auto sound_action = SoundAction::create( "sounds/fx/jump_001.ogg" );
 
 				Animate* animate_action_2 = nullptr;
 				{
