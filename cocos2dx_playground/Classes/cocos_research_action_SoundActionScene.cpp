@@ -106,7 +106,6 @@ namespace cocos_research_action
 		}
 		else
 		{
-			ret->scheduleUpdate();
 			ret->autorelease();
 		}
 
