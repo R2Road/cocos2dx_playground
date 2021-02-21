@@ -62,7 +62,7 @@ namespace
 			ActionInterval::startWithTarget( target );
 			mbFirstFrame = true;
 		}
-		void update( float time ) override
+		void update( float /*time*/ ) override
 		{
 			if( mbFirstFrame )
 			{
