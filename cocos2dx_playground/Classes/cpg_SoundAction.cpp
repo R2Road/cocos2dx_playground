@@ -37,9 +37,6 @@ namespace cpg
 	}
 	SoundAction* SoundAction::clone() const
 	{
-		auto a = new ( std::nothrow ) SoundAction( mSoundPath.c_str() );
-		a->autorelease();
-
-		return a;
+		return create( mSoundPath.c_str() );
 	}
 }
