@@ -197,8 +197,6 @@ namespace cocos_research_action
 
 			// Action
 			{
-				auto sound_action_1 = cpg::SoundAction::create( "sounds/fx/jump_001.ogg" );
-
 				Animate* animate_action_1 = nullptr;
 				{
 					auto animation_object = Animation::create();
@@ -209,7 +207,7 @@ namespace cocos_research_action
 					animate_action_1 = Animate::create( animation_object );
 				}
 
-				auto sound_action_2 = sound_action_1->clone(); // clone test
+				auto sound_action_1 = cpg::SoundAction::create( "sounds/fx/jump_001.ogg" );
 
 				Animate* animate_action_2 = nullptr;
 				{
@@ -221,9 +219,9 @@ namespace cocos_research_action
 					animate_action_2 = Animate::create( animation_object );
 				}
 
-				auto sound_action_3 = sound_action_1->reverse(); // reverse test
+				auto sound_action_2 = sound_action_1->clone(); // clone test
 
-				mTestAction_2 = Sequence::create( sound_action_1, animate_action_1, sound_action_2, animate_action_2, sound_action_3, nullptr );
+				mTestAction_2 = Sequence::create( animate_action_1, sound_action_1, animate_action_2, sound_action_2, nullptr );
 				mTestAction_2->setTag( TAG_Action_Animation );
 				mTestAction_2->retain();
 			}

@@ -33,7 +33,8 @@ namespace cpg
 	}
 	SoundAction* SoundAction::reverse() const
 	{
-		return this->clone();
+		CCASSERT( false, "reverse() not supported in SoundAction" );
+		return nullptr;
 	}
 	SoundAction* SoundAction::clone() const
 	{
