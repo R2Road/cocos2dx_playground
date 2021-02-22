@@ -984,6 +984,9 @@
     <ClCompile Include="..\Classes\cpg_SoundAction.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_SpriteFrameAction.cpp">
+      <Filter>src\cpg</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1788,6 +1791,9 @@
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_SoundAction.h">
+      <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_SpriteFrameAction.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,6 +13,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SpriteFrameAction.h"
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
@@ -20,65 +21,6 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_Action_Animation = 20140416;
-
-	class SpriteFrameAction : public ActionInterval
-	{
-	private:
-		SpriteFrameAction( SpriteFrame* sprite_frame ) : mSpriteFrame( sprite_frame ), mbFirstFrame( false ) {}
-
-		CC_DISALLOW_COPY_AND_ASSIGN( SpriteFrameAction );
-
-	public:
-		static SpriteFrameAction* create( float duration, SpriteFrame* sprite_frame )
-		{
-			auto ret = new ( std::nothrow ) SpriteFrameAction( sprite_frame );
-
-			if( ret && ret->initWithDuration( duration ) )
-			{
-				ret->autorelease();
-				return ret;
-			}
-
-			delete ret;
-			return nullptr;
-		}
-
-		//
-		// Overrides
-		//
-		SpriteFrameAction* clone() const override
-		{
-			// no copy constructor
-			return SpriteFrameAction::create( _duration, mSpriteFrame );
-		}
-		SpriteFrameAction* reverse() const  override
-		{
-			CCASSERT( false, "reverse() not supported in SpriteFrameAction" );
-			return nullptr;
-		}
-		void startWithTarget( Node *target ) override
-		{
-			ActionInterval::startWithTarget( target );
-			mbFirstFrame = true;
-		}
-		void update( float /*time*/ ) override
-		{
-			if( mbFirstFrame )
-			{
-				mbFirstFrame = false;
-
-				auto blend = static_cast<Sprite*>( _target )->getBlendFunc();
-				static_cast<Sprite*>( _target )->setSpriteFrame( mSpriteFrame );
-				static_cast<Sprite*>( _target )->setBlendFunc( blend );
-
-				CCLOG( "SpriteFrameAction : Do" );
-			}
-		}
-
-	private:
-		SpriteFrame* mSpriteFrame;
-		bool mbFirstFrame;
-	};
 }
 
 namespace cocos_research_action
@@ -173,14 +115,14 @@ namespace cocos_research_action
 			{
 				Sequence* phase_1 = nullptr;
 				{
-					auto sprite_frame_action_1 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					auto sprite_frame_action_2 = SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					auto sprite_frame_action_3 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					auto sprite_frame_action_4 = SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
-					auto sprite_frame_action_5 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					auto sprite_frame_action_6 = SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					auto sprite_frame_action_7 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					auto sprite_frame_action_8 = SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_1 = cpg::SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_2 = cpg::SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_3 = cpg::SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_4 = cpg::SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_5 = cpg::SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_6 = cpg::SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_7 = cpg::SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_8 = cpg::SpriteFrameAction::create( 0.3f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
 					phase_1 = Sequence::create(
 						sprite_frame_action_1
@@ -197,14 +139,14 @@ namespace cocos_research_action
 
 				Sequence* phase_2 = nullptr;
 				{
-					auto sprite_frame_action_1 = SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					auto sprite_frame_action_2 = SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					auto sprite_frame_action_3 = SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					auto sprite_frame_action_4 = SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
-					auto sprite_frame_action_5 = SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					auto sprite_frame_action_6 = SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					auto sprite_frame_action_7 = SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					auto sprite_frame_action_8 = SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_1 = cpg::SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_2 = cpg::SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_3 = cpg::SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_4 = cpg::SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_5 = cpg::SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_6 = cpg::SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_7 = cpg::SpriteFrameAction::create( 0.2f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_8 = cpg::SpriteFrameAction::create( 0.5f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
 					phase_2 = Sequence::create(
 						sprite_frame_action_1
@@ -221,14 +163,14 @@ namespace cocos_research_action
 
 				Sequence* phase_3 = nullptr;
 				{
-					auto sprite_frame_action_1 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					auto sprite_frame_action_2 = SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					auto sprite_frame_action_3 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					auto sprite_frame_action_4 = SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
-					auto sprite_frame_action_5 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
-					auto sprite_frame_action_6 = SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
-					auto sprite_frame_action_7 = SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
-					auto sprite_frame_action_8 = SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_1 = cpg::SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_2 = cpg::SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_3 = cpg::SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_4 = cpg::SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
+					auto sprite_frame_action_5 = cpg::SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_01.png" ) );
+					auto sprite_frame_action_6 = cpg::SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_02.png" ) );
+					auto sprite_frame_action_7 = cpg::SpriteFrameAction::create( 0.1f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_03.png" ) );
+					auto sprite_frame_action_8 = cpg::SpriteFrameAction::create( 0.8f, SpriteFrameCache::getInstance()->getSpriteFrameByName( "actor001_run_04.png" ) );
 
 					phase_3 = Sequence::create(
 						sprite_frame_action_1
