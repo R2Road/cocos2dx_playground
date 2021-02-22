@@ -20,11 +20,14 @@ namespace cpg
 		if( ret && ret->initWithDuration( duration ) )
 		{
 			ret->autorelease();
-			return ret;
 		}
-
-		delete ret;
-		return nullptr;
+		else
+		{
+			delete ret;
+			ret = nullptr;
+		}
+		
+		return ret;
 	}
 
 	SpriteFrameAction* SpriteFrameAction::clone() const
