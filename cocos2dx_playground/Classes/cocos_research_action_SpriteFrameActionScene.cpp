@@ -23,10 +23,9 @@ namespace
 
 	class SpriteFrameAction : public ActionInterval
 	{
-	public:
+	private:
 		SpriteFrameAction( SpriteFrame* sprite_frame ) : mSpriteFrame( sprite_frame ), mbFirstFrame( false ) {}
 
-	private:
 		CC_DISALLOW_COPY_AND_ASSIGN( SpriteFrameAction );
 
 	public:
