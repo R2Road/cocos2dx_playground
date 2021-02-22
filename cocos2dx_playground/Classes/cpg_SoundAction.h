@@ -11,7 +11,17 @@ namespace cpg
 	private:
 		SoundAction( const char* sound_path );
 
-		CC_DISALLOW_COPY_AND_ASSIGN( SoundAction );
+		//
+		// Non-Copyable
+		//
+		SoundAction( const SoundAction& ) = delete;
+		SoundAction( SoundAction&& ) = delete;
+
+		//
+		// Non-Assignable
+		//
+		SoundAction& operator =( const SoundAction& ) = delete;
+		SoundAction& operator =( SoundAction&& ) = delete;
 
 	public:
 		static SoundAction* create( const char* sound_path );
