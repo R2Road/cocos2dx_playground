@@ -15,7 +15,17 @@ namespace cpg
 	private:
 		SpriteFrameAction( cocos2d::SpriteFrame* sprite_frame );
 
-		CC_DISALLOW_COPY_AND_ASSIGN( SpriteFrameAction );
+		//
+		// Non-Copyable
+		//
+		SpriteFrameAction( const SpriteFrameAction& ) = delete;
+		SpriteFrameAction( SpriteFrameAction&& ) = delete;
+
+		//
+		// Non-Assignable
+		//
+		SpriteFrameAction& operator =( const SpriteFrameAction& ) = delete;
+		SpriteFrameAction& operator =( SpriteFrameAction&& ) = delete;
 
 	public:
 		static SpriteFrameAction* create( float duration, cocos2d::SpriteFrame* sprite_frame );
