@@ -4,6 +4,14 @@
 
 #include "2d/CCScene.h"
 
+namespace step_flipflip
+{
+	namespace game
+	{
+		class MessageViewNode;
+	}
+}
+
 namespace step_clickclick
 {
 	namespace game
@@ -32,7 +40,6 @@ namespace step_clickclick
 		private:
 			void onGameProcess( const int block_linear_index );
 			void updateScoreView();
-			void updateCountView( const float count );
 			void updateForNextStep( float dt );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
@@ -44,6 +51,7 @@ namespace step_clickclick
 			StageUp mStage;
 			StageViewNode* mStageViewNode;
 			EffectManagerNode* mEffectManagerNode;
+			step_flipflip::game::MessageViewNode* mMessageViewNode;
 
 			int mScore;
 			int mCurrentStageWidth;
@@ -64,8 +72,6 @@ namespace step_clickclick
 				int Step = eStep::wait_for_entry;
 				float ElapsedTime_forEntry = 0.f;
 				const float LimitTime_forEntry = 0.6f;
-				float ElapsedTime_forCount = 0.f;
-				const float LimitTime_forCount = 2.f;
 			};
 			NextStepData mNextStepData;
 		};

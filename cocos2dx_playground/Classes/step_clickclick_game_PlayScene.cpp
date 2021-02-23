@@ -23,13 +23,13 @@
 #include "step_clickclick_game_Stage.h"
 #include "step_clickclick_game_StageViewNode.h"
 
+#include "step_flipflip_game_MessageViewNode.h"
+
 USING_NS_CC;
 
 namespace
 {
 	const int TAG_ScoreView = 20140416;
-	const int TAG_ClearView = 20160528;
-	const int TAG_CountView = 9999;
 
 	const int MAX_STAGE_WIDTH = 9;
 	const int MAX_STAGE_HEIGHT = 9;
@@ -46,6 +46,7 @@ namespace step_clickclick
 			, mStage()
 			, mStageViewNode( nullptr )
 			, mEffectManagerNode( nullptr )
+			, mMessageViewNode( nullptr )
 
 			, mScore( 0 )
 			, mCurrentStageWidth( 3 )
@@ -180,33 +181,12 @@ namespace step_clickclick
 			}
 
 			//
-			// Clear View
+			// Message View Node
 			//
 			{
-				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 16 );
-				label->setTag( TAG_ClearView );
-				label->setVisible( false );
-				label->setPosition(
-					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.6f )
-				);
-				addChild( label, std::numeric_limits<int>::max() );
-			}
-
-			//
-			// Count View
-			//
-			{
-				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 16 );
-				label->setTag( TAG_CountView );
-				label->setVisible( false );
-				label->setPosition(
-					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.4f )
-				);
-				addChild( label, std::numeric_limits<int>::max() );
-
-				updateCountView( mNextStepData.LimitTime_forCount );
+				mMessageViewNode = step_flipflip::game::MessageViewNode::create( Color4B::BLUE );
+				mMessageViewNode->setPosition( visibleCenter );
+				addChild( mMessageViewNode, std::numeric_limits<int>::max() );
 			}
 
 			return true;
@@ -259,11 +239,6 @@ namespace step_clickclick
 			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
 			label->setString( StringUtils::format( "Score : %4d", mScore ) );
 		}
-		void PlayScene::updateCountView( const float count )
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-			label->setString( StringUtils::format( "%.1f", count ) );
-		}
 
 		void PlayScene::updateForNextStep( float dt )
 		{
@@ -281,13 +256,7 @@ namespace step_clickclick
 				break;
 			case NextStepData::eStep::show_clear_indicator:
 			{
-				auto clear_view_label = static_cast<Label*>( getChildByTag( TAG_ClearView ) );
-				clear_view_label->setString( "Stage Clear" );
-				clear_view_label->setVisible( true );
-
-				auto count_view_label = static_cast<Label*>( getChildByTag( TAG_CountView ) );
-				count_view_label->setVisible( true );
-				updateCountView( mNextStepData.LimitTime_forCount );
+				mMessageViewNode->ShowMessage( "Stage Clear" );
 
 				mCurrentStageWidth += 2;
 				mCurrentStageHeight += 2;
@@ -302,22 +271,12 @@ namespace step_clickclick
 			}
 			break;
 			case NextStepData::eStep::wait_for_count:
-				mNextStepData.ElapsedTime_forCount += dt;
-				if( mNextStepData.LimitTime_forCount < mNextStepData.ElapsedTime_forCount )
+				if( !mMessageViewNode->isMessaging() )
 				{
-					mNextStepData.ElapsedTime_forCount = 0.f;
-					updateCountView( 0.f );
-
 					++mNextStepData.Step;
-				}
-				else
-				{
-					updateCountView( mNextStepData.LimitTime_forCount - mNextStepData.ElapsedTime_forCount );
 				}
 				break;
 			case NextStepData::eStep::hide_clear_indicator:
-				getChildByTag( TAG_ClearView )->setVisible( false );
-				getChildByTag( TAG_CountView )->setVisible( false );
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 				mStageViewNode->Setup( *mStage );
 				++mNextStepData.Step;
