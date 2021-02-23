@@ -247,15 +247,10 @@ namespace step_clickclick
 			switch( mStep )
 			{
 			case eStep::StageClear:
-				mElapsedTime += dt;
-				if( 0.6f < mElapsedTime )
-				{
-					mStageViewNode->setVisible( false );
-					mElapsedTime = 0.f;
-
-					++mStep;
-				}
+				mStageViewNode->setVisible( false );
+				++mStep;
 				break;
+
 			case eStep::ShowClearIndicator:
 			{
 				mMessageViewNode->ShowMessage( "Stage Clear" );
