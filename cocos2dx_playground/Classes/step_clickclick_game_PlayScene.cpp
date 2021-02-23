@@ -52,7 +52,7 @@ namespace step_clickclick
 			, mCurrentStageWidth( 3 )
 			, mCurrentStageHeight( 3 )
 			
-			, mStep( eStep::wait_for_entry )
+			, mStep( eStep::StageClear )
 			, mElapsedTime( 0.f )
 		{}
 
@@ -246,7 +246,7 @@ namespace step_clickclick
 		{
 			switch( mStep )
 			{
-			case eStep::wait_for_entry:
+			case eStep::StageClear:
 				mElapsedTime += dt;
 				if( 0.6f < mElapsedTime )
 				{
@@ -256,7 +256,7 @@ namespace step_clickclick
 					++mStep;
 				}
 				break;
-			case eStep::show_clear_indicator:
+			case eStep::ShowClearIndicator:
 			{
 				mMessageViewNode->ShowMessage( "Stage Clear" );
 
@@ -268,28 +268,29 @@ namespace step_clickclick
 				}
 				else
 				{
-					mStep = eStep::game_clear;
+					mStep = eStep::GameClear;
 				}
 			}
 			break;
-			case eStep::wait_for_count:
+			case eStep::Wait4ClearIndicator:
 				if( !mMessageViewNode->isMessaging() )
 				{
 					++mStep;
 				}
 				break;
-			case eStep::hide_clear_indicator:
+			case eStep::HideClearIndicator:
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 				mStageViewNode->Setup( *mStage );
 				++mStep;
 				break;
-			case eStep::reset:
+
+			case eStep::Reset:
 				mStageViewNode->setVisible( true );
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
-				mStep = eStep::wait_for_entry;
+				mStep = eStep::StageClear;
 				break;
 
-			case eStep::game_clear:
+			case eStep::GameClear:
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 				_director->replaceScene( step_clickclick::game::ResultScene::create( mScore ) );
 				break;

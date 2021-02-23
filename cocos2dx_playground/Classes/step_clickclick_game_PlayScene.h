@@ -26,12 +26,14 @@ namespace step_clickclick
 		private:
 			enum eStep
 			{
-				wait_for_entry,
-				show_clear_indicator,
-				wait_for_count,
-				hide_clear_indicator,
-				reset,
-				game_clear,
+				StageClear,
+
+				ShowClearIndicator,
+				Wait4ClearIndicator,
+				HideClearIndicator,
+
+				Reset,
+				GameClear,
 			};
 
 			PlayScene();
@@ -67,7 +69,7 @@ namespace step_clickclick
 			int mCurrentStageWidth;
 			int mCurrentStageHeight;
 
-			int mStep = eStep::wait_for_entry;
+			int mStep = eStep::StageClear;
 			float mElapsedTime = 0.f;
 		};
 	}
