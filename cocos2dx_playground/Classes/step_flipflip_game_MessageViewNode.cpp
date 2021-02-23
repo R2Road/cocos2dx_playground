@@ -28,10 +28,10 @@ namespace step_flipflip
 			mFadeInOutAction->release();
 		}
 
-		MessageViewNode* MessageViewNode::create()
+		MessageViewNode* MessageViewNode::create( const Color4B& background_color )
 		{
 			auto ret = new ( std::nothrow ) MessageViewNode();
-			if( !ret || !ret->init() )
+			if( !ret || !ret->init( background_color ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -44,7 +44,7 @@ namespace step_flipflip
 			return ret;
 		}
 
-		bool MessageViewNode::init()
+		bool MessageViewNode::init( const Color4B& background_color )
 		{
 			if( !Node::init() )
 			{
@@ -57,7 +57,7 @@ namespace step_flipflip
 			// Background
 			//
 			{
-				mLayer = LayerColor::create( Color4B::BLUE, visibleSize.width, 40.f );
+				mLayer = LayerColor::create( background_color, visibleSize.width, 40.f );
 				mLayer->setPosition( -mLayer->getContentSize().width * 0.5f, -mLayer->getContentSize().height * 0.5f );
 				mLayer->setCascadeOpacityEnabled( true );
 				addChild( mLayer, std::numeric_limits<int>::min() );

@@ -19,10 +19,10 @@ namespace step_flipflip
 		public:
 			~MessageViewNode();
 
-			static MessageViewNode* create();
+			static MessageViewNode* create( const cocos2d::Color4B& background_color );
 
 		private:
-			bool init() override;
+			bool init( const cocos2d::Color4B& background_color );
 
 		public:
 			bool isMessaging() const;

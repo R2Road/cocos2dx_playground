@@ -142,7 +142,7 @@ namespace step_flipflip
 			// Message View Node
 			//
 			{
-				mMessageViewNode = MessageViewNode::create();
+				mMessageViewNode = MessageViewNode::create( Color4B::BLUE );
 				mMessageViewNode->setPosition( visibleCenter );
 				addChild( mMessageViewNode, std::numeric_limits<int>::max() );
 			}

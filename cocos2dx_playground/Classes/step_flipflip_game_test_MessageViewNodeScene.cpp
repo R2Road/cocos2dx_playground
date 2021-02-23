@@ -92,7 +92,7 @@ namespace step_flipflip
 			// Message View Node
 			//
 			{
-				mMessageViewNode = game::MessageViewNode::create();
+				mMessageViewNode = game::MessageViewNode::create( Color4B::GRAY );
 				mMessageViewNode->setPosition( visibleCenter );
 				addChild( mMessageViewNode );
 			}
