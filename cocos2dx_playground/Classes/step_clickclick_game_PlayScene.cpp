@@ -270,7 +270,12 @@ namespace step_clickclick
 			case eStep::Wait4ClearIndicator:
 				if( !mMessageViewNode->isMessaging() )
 				{
-					++mStep;
+					mElapsedTime += dt;
+					if( 0.5f < mElapsedTime )
+					{
+						++mStep;
+						mElapsedTime = 0.f;
+					}
 				}
 				break;
 			case eStep::HideClearIndicator:
