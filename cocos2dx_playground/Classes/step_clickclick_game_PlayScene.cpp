@@ -51,7 +51,9 @@ namespace step_clickclick
 			, mScore( 0 )
 			, mCurrentStageWidth( 3 )
 			, mCurrentStageHeight( 3 )
-			, mNextStepData()
+			
+			, mStep( eStep::wait_for_entry )
+			, mElapsedTime( 0.f )
 		{}
 
 		Scene* PlayScene::create()
@@ -242,19 +244,19 @@ namespace step_clickclick
 
 		void PlayScene::updateForNextStep( float dt )
 		{
-			switch( mNextStepData.Step )
+			switch( mStep )
 			{
-			case NextStepData::eStep::wait_for_entry:
-				mNextStepData.ElapsedTime_forEntry += dt;
-				if( mNextStepData.LimitTime_forEntry < mNextStepData.ElapsedTime_forEntry )
+			case eStep::wait_for_entry:
+				mElapsedTime += dt;
+				if( 0.6f < mElapsedTime )
 				{
 					mStageViewNode->setVisible( false );
-					mNextStepData.ElapsedTime_forEntry = 0.f;
+					mElapsedTime = 0.f;
 
-					++mNextStepData.Step;
+					++mStep;
 				}
 				break;
-			case NextStepData::eStep::show_clear_indicator:
+			case eStep::show_clear_indicator:
 			{
 				mMessageViewNode->ShowMessage( "Stage Clear" );
 
@@ -262,32 +264,32 @@ namespace step_clickclick
 				mCurrentStageHeight += 2;
 				if( MAX_STAGE_WIDTH >= mCurrentStageWidth )
 				{
-					++mNextStepData.Step;
+					++mStep;
 				}
 				else
 				{
-					mNextStepData.Step = NextStepData::eStep::game_clear;
+					mStep = eStep::game_clear;
 				}
 			}
 			break;
-			case NextStepData::eStep::wait_for_count:
+			case eStep::wait_for_count:
 				if( !mMessageViewNode->isMessaging() )
 				{
-					++mNextStepData.Step;
+					++mStep;
 				}
 				break;
-			case NextStepData::eStep::hide_clear_indicator:
+			case eStep::hide_clear_indicator:
 				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 				mStageViewNode->Setup( *mStage );
-				++mNextStepData.Step;
+				++mStep;
 				break;
-			case NextStepData::eStep::reset:
+			case eStep::reset:
 				mStageViewNode->setVisible( true );
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
-				mNextStepData.Step = NextStepData::eStep::wait_for_entry;
+				mStep = eStep::wait_for_entry;
 				break;
 
-			case NextStepData::eStep::game_clear:
+			case eStep::game_clear:
 				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 				_director->replaceScene( step_clickclick::game::ResultScene::create( mScore ) );
 				break;

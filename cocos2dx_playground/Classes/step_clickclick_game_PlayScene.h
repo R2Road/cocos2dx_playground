@@ -24,6 +24,16 @@ namespace step_clickclick
 		class PlayScene : public cocos2d::Scene
 		{
 		private:
+			enum eStep
+			{
+				wait_for_entry,
+				show_clear_indicator,
+				wait_for_count,
+				hide_clear_indicator,
+				reset,
+				game_clear,
+			};
+
 			PlayScene();
 
 		public:
@@ -57,23 +67,8 @@ namespace step_clickclick
 			int mCurrentStageWidth;
 			int mCurrentStageHeight;
 
-			struct NextStepData
-			{
-				enum eStep
-				{
-					wait_for_entry,
-					show_clear_indicator,
-					wait_for_count,
-					hide_clear_indicator,
-					reset,
-					game_clear,
-				};
-
-				int Step = eStep::wait_for_entry;
-				float ElapsedTime_forEntry = 0.f;
-				const float LimitTime_forEntry = 0.6f;
-			};
-			NextStepData mNextStepData;
+			int mStep = eStep::wait_for_entry;
+			float mElapsedTime = 0.f;
 		};
 	}
 }
