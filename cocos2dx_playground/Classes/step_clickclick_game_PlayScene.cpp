@@ -175,8 +175,6 @@ namespace step_clickclick
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height )
 				);
 				addChild( label, std::numeric_limits<int>::max() );
-
-				updateScoreView();
 			}
 
 			//
@@ -192,6 +190,7 @@ namespace step_clickclick
 			// Setup
 			//
 			mStageViewNode->setVisible( false );
+			updateScoreView();
 			schedule( schedule_selector( PlayScene::updateForNextStep ) );
 
 			return true;
