@@ -26,6 +26,10 @@ namespace step_clickclick
 		private:
 			enum eStep
 			{
+				Enter,
+
+				PlayGame,
+
 				StageClear,
 
 				ShowClearIndicator,

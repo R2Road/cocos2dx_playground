@@ -52,7 +52,7 @@ namespace step_clickclick
 			, mCurrentStageWidth( 3 )
 			, mCurrentStageHeight( 3 )
 			
-			, mStep( eStep::StageClear )
+			, mStep( eStep::Enter )
 			, mElapsedTime( 0.f )
 		{}
 
@@ -191,6 +191,11 @@ namespace step_clickclick
 				addChild( mMessageViewNode, std::numeric_limits<int>::max() );
 			}
 
+			//
+			// Setup
+			//
+			schedule( schedule_selector( PlayScene::updateForNextStep ) );
+
 			return true;
 		}
 
@@ -231,8 +236,7 @@ namespace step_clickclick
 			//
 			if( !mStage->HasActiveBlock() )
 			{
-				experimental::AudioEngine::play2d( "sounds/fx/powerup_001.ogg", false, 0.1f );
-				schedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
+				mStep = eStep::StageClear;
 			}
 		}
 
@@ -246,6 +250,17 @@ namespace step_clickclick
 		{
 			switch( mStep )
 			{
+			case eStep::Enter:
+				mElapsedTime += dt;
+				if( 0.5f < mElapsedTime )
+				{
+					++mStep;
+					mElapsedTime = 0.f;
+				}
+				break;
+
+			//case eStep::PlayGame: break;
+
 			case eStep::StageClear:
 				mStageViewNode->setVisible( false );
 				++mStep;
@@ -286,17 +301,12 @@ namespace step_clickclick
 
 			case eStep::Reset:
 				mStageViewNode->setVisible( true );
-				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
-				mStep = eStep::StageClear;
+				mStep = eStep::PlayGame;
 				break;
 
 			case eStep::GameClear:
-				unschedule( SEL_SCHEDULE( &PlayScene::updateForNextStep ) );
 				_director->replaceScene( step_clickclick::game::ResultScene::create( mScore ) );
 				break;
-
-			default:
-				assert( false );
 			}
 		}
 
