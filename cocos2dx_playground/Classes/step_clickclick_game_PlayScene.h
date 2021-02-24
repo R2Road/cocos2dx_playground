@@ -31,6 +31,7 @@ namespace step_clickclick
 				ShowLevelIndicator,
 				Wait4LevelIndicator,
 
+				StartGame,
 				PlayGame,
 
 				StageClear,

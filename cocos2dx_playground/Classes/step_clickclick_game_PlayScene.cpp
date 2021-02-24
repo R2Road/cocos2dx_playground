@@ -135,7 +135,6 @@ namespace step_clickclick
 			//
 			{
 				mStage = step_clickclick::game::Stage::create( MAX_STAGE_WIDTH, MAX_STAGE_HEIGHT );
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
 			}
 
 			//
@@ -149,8 +148,6 @@ namespace step_clickclick
 				);
 				mStageViewNode->setPosition( visibleCenter );
 				addChild( mStageViewNode );
-
-				mStageViewNode->Setup( *mStage );
 			}
 
 			//
@@ -274,6 +271,12 @@ namespace step_clickclick
 					}
 				}
 				break;
+			case eStep::StartGame:
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
+				mStageViewNode->Setup( *mStage );
+				mStageViewNode->setVisible( true );
+				++mStep;
+				break;
 
 			//case eStep::PlayGame: break;
 
@@ -311,9 +314,6 @@ namespace step_clickclick
 				break;
 
 			case eStep::Reset:
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
-				mStageViewNode->Setup( *mStage );
-				mStageViewNode->setVisible( true );
 				mStep = eStep::ShowLevelIndicator;
 				break;
 
