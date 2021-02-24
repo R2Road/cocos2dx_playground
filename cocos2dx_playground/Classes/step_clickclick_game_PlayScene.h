@@ -39,7 +39,6 @@ namespace step_clickclick
 				ShowClearIndicator,
 				Wait4ClearIndicator,
 
-				Reset,
 				GameClear,
 			};
 

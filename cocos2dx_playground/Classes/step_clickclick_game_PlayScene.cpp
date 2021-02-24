@@ -282,25 +282,23 @@ namespace step_clickclick
 
 			case eStep::StageClear:
 				mStageViewNode->setVisible( false );
-				++mStep;
-				break;
-
-			case eStep::ShowClearIndicator:
-			{
-				mMessageViewNode->ShowMessage( "Stage Clear" );
 
 				mCurrentStageWidth += 2;
 				mCurrentStageHeight += 2;
 				if( MAX_STAGE_WIDTH >= mCurrentStageWidth )
 				{
-					++mStep;
+					mStep = eStep::ShowLevelIndicator;
 				}
 				else
 				{
-					mStep = eStep::GameClear;
+					++mStep;
 				}
-			}
-			break;
+				break;
+
+			case eStep::ShowClearIndicator:
+				mMessageViewNode->ShowMessage( "Stage Clear" );
+				++mStep;
+				break;
 			case eStep::Wait4ClearIndicator:
 				if( !mMessageViewNode->isMessaging() )
 				{
@@ -311,10 +309,6 @@ namespace step_clickclick
 						mElapsedTime = 0.f;
 					}
 				}
-				break;
-
-			case eStep::Reset:
-				mStep = eStep::ShowLevelIndicator;
 				break;
 
 			case eStep::GameClear:
