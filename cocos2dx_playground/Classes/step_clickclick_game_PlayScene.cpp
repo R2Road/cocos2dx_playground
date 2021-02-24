@@ -257,7 +257,7 @@ namespace step_clickclick
 				break;
 
 			case eStep::ShowLevelIndicator:
-				mMessageViewNode->ShowMessage( StringUtils::format( "Level X" ).c_str() );
+				mMessageViewNode->ShowMessage( StringUtils::format( "%d X %d", mCurrentStageWidth, mCurrentStageHeight ).c_str() );
 				++mStep;
 				break;
 			case eStep::Wait4LevelIndicator:
