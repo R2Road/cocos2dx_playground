@@ -309,13 +309,10 @@ namespace step_clickclick
 					}
 				}
 				break;
-			case eStep::HideClearIndicator:
-				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
-				mStageViewNode->Setup( *mStage );
-				++mStep;
-				break;
 
 			case eStep::Reset:
+				mStage->Setup( mCurrentStageWidth, mCurrentStageHeight, 2 );
+				mStageViewNode->Setup( *mStage );
 				mStageViewNode->setVisible( true );
 				mStep = eStep::ShowLevelIndicator;
 				break;
