@@ -259,6 +259,22 @@ namespace step_clickclick
 				}
 				break;
 
+			case eStep::ShowLevelIndicator:
+				mMessageViewNode->ShowMessage( StringUtils::format( "Level X" ).c_str() );
+				++mStep;
+				break;
+			case eStep::Wait4LevelIndicator:
+				if( !mMessageViewNode->isMessaging() )
+				{
+					mElapsedTime += dt;
+					if( 0.5f < mElapsedTime )
+					{
+						++mStep;
+						mElapsedTime = 0.f;
+					}
+				}
+				break;
+
 			//case eStep::PlayGame: break;
 
 			case eStep::StageClear:
@@ -301,7 +317,7 @@ namespace step_clickclick
 
 			case eStep::Reset:
 				mStageViewNode->setVisible( true );
-				mStep = eStep::PlayGame;
+				mStep = eStep::ShowLevelIndicator;
 				break;
 
 			case eStep::GameClear:
