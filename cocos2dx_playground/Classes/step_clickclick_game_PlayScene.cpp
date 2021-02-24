@@ -191,6 +191,7 @@ namespace step_clickclick
 			//
 			// Setup
 			//
+			mStageViewNode->setVisible( false );
 			schedule( schedule_selector( PlayScene::updateForNextStep ) );
 
 			return true;
