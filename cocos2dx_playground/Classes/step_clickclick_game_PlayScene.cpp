@@ -49,8 +49,8 @@ namespace step_clickclick
 			, mMessageViewNode( nullptr )
 
 			, mScore( 0 )
-			, mCurrentStageWidth( 3 )
-			, mCurrentStageHeight( 3 )
+			, mCurrentStageWidth( 1 )
+			, mCurrentStageHeight( 1 )
 			
 			, mStep( eStep::Enter )
 			, mElapsedTime( 0.f )
