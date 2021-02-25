@@ -40,8 +40,6 @@ namespace step_clickclick
 
 			if( eBlockType::Single == pivot_block_data.GetType() )
 			{
-				cocos2d::experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
-
 				const int start_x = pivot_block_point_index.x - 1;
 				const int start_y = pivot_block_point_index.y - 1;
 				const int end_x = start_x + 3;
@@ -88,6 +86,8 @@ namespace step_clickclick
 
 					stage->DecreaseBlockLife( pivot_block_data.GetIndex() );
 					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
+
+					cocos2d::experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				}
 				else
 				{
@@ -95,6 +95,8 @@ namespace step_clickclick
 
 					stage->DieBlock( pivot_block_data.GetIndex() );
 					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
+
+					cocos2d::experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				}
 
 				ProcessEffect( effect_manager_node, pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
