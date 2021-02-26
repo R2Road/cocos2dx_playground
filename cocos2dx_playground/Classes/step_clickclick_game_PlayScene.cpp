@@ -92,8 +92,6 @@ namespace step_clickclick
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
-				ss << std::endl;
-				ss << "[Mouse] : Click";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 6 );
 				label->setColor( Color3B::WHITE );
