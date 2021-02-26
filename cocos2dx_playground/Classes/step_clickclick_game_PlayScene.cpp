@@ -31,8 +31,8 @@ namespace
 {
 	const int TAG_ScoreView = 20140416;
 
-	const int MAX_STAGE_WIDTH = 9;
-	const int MAX_STAGE_HEIGHT = 9;
+	const int MAX_STAGE_WIDTH = 7;
+	const int MAX_STAGE_HEIGHT = 7;
 }
 
 namespace step_clickclick
