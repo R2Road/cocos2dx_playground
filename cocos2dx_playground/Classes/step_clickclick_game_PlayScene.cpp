@@ -247,7 +247,7 @@ namespace step_clickclick
 			{
 			case eStep::Enter:
 				mElapsedTime += dt;
-				if( 0.5f < mElapsedTime )
+				if( 0.3f < mElapsedTime )
 				{
 					++mStep;
 					mElapsedTime = 0.f;
