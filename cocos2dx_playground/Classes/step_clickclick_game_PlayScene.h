@@ -57,7 +57,6 @@ namespace step_clickclick
 
 		private:
 			void onGameProcess( const int block_linear_index );
-			void updateScoreView();
 			void updateForNextStep( float dt );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );

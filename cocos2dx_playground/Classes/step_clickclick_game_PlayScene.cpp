@@ -29,8 +29,6 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_ScoreView = 20140416;
-
 	const int MAX_STAGE_WIDTH = 7;
 	const int MAX_STAGE_HEIGHT = 7;
 }
@@ -161,21 +159,6 @@ namespace step_clickclick
 			}
 
 			//
-			// Score View
-			//
-			{
-				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
-				label->setTag( TAG_ScoreView );
-				label->setColor( Color3B::RED );
-				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-				label->setPosition(
-					visibleOrigin
-					+ Vec2( visibleSize.width * 0.5f, visibleSize.height )
-				);
-				addChild( label, std::numeric_limits<int>::max() );
-			}
-
-			//
 			// Message View Node
 			//
 			{
@@ -188,7 +171,6 @@ namespace step_clickclick
 			// Setup
 			//
 			mStageViewNode->setVisible( false );
-			updateScoreView();
 			schedule( schedule_selector( PlayScene::updateForNextStep ) );
 
 			return true;
@@ -222,23 +204,12 @@ namespace step_clickclick
 			Processor::Do( mStage.get(), mStageViewNode, mEffectManagerNode, block_linear_index, &mScore );
 
 			//
-			// Score Update
-			//
-			updateScoreView();
-
-			//
 			// Stage Clear
 			//
 			if( !mStage->HasActiveBlock() )
 			{
 				mStep = eStep::StageClear;
 			}
-		}
-
-		void PlayScene::updateScoreView()
-		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_ScoreView ) );
-			label->setString( StringUtils::format( "Score : %4d", mScore ) );
 		}
 
 		void PlayScene::updateForNextStep( float dt )
