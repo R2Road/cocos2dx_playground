@@ -1,6 +1,5 @@
 #include "step_clickclick_game_Processor.h"
 
-#include <algorithm>
 #include <cassert>
 
 #include "audio/include/AudioEngine.h"
@@ -91,7 +90,7 @@ namespace step_clickclick
 				}
 				else
 				{
-					*out_score = std::max( 0, *out_score + pivot_block_data.GetLife() );
+					*out_score += pivot_block_data.GetLife();
 
 					stage->DieBlock( pivot_block_data.GetIndex() );
 					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), pivot_block_data.GetLife() );
@@ -182,7 +181,7 @@ namespace step_clickclick
 				{
 					last_life = pivot_block_data.GetLife();
 
-					*out_score = std::max( 0, *out_score + pivot_block_data.GetLife() );
+					*out_score += pivot_block_data.GetLife();
 
 					stage->DieBlock( pivot_block_data.GetIndex() );
 					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), pivot_block_data.GetLife() );
