@@ -112,6 +112,7 @@ namespace step_clickclick
 				const int end_x = start_x + 3;
 				const int end_y = start_y + 3;
 
+				bool has_neighbor = false;
 				for( int cur_y = start_y; cur_y < end_y; ++cur_y )
 				{
 					for( int cur_x = start_x; cur_x < end_x; ++cur_x )
@@ -122,30 +123,73 @@ namespace step_clickclick
 						}
 
 						const auto& target_block_data = stage->GetBlockData( cur_x, cur_y );
+
+						// is pivot
+						if( pivot_block_data.GetIndex() == target_block_data.GetIndex() )
+						{
+							continue;
+						}
+
 						if( !target_block_data.IsActive() )
 						{
 							continue;
 						}
 
-						if( eBlockType::Same == target_block_data.GetType() && pivot_life != target_block_data.GetLife() )
-						{
-							continue;
-						}
-
-						last_life = target_block_data.GetLife();
-						if( pivot_life != target_block_data.GetLife() )
-						{
-							stage->IncreaseBlockLife( target_block_data.GetIndex() );
-						}
-						else
-						{
-							*out_score += 3;
-							stage->DecreaseBlockLife( target_block_data.GetIndex() );
-						}
-
-						stage_view_node->UpdateBlock( target_block_data.GetIndex(), target_block_data.GetLife() );
-						ProcessEffect( effect_manager_node, target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						has_neighbor = true;
+						break;
 					}
+				}
+
+				if( has_neighbor )
+				{
+					for( int cur_y = start_y; cur_y < end_y; ++cur_y )
+					{
+						for( int cur_x = start_x; cur_x < end_x; ++cur_x )
+						{
+							if( !stage->isIn( cur_x, cur_y ) )
+							{
+								continue;
+							}
+
+							const auto& target_block_data = stage->GetBlockData( cur_x, cur_y );
+							if( !target_block_data.IsActive() )
+							{
+								continue;
+							}
+
+							if( eBlockType::Same == target_block_data.GetType() && pivot_life != target_block_data.GetLife() )
+							{
+								continue;
+							}
+
+							last_life = target_block_data.GetLife();
+							if( pivot_life != target_block_data.GetLife() )
+							{
+								stage->IncreaseBlockLife( target_block_data.GetIndex() );
+							}
+							else
+							{
+								*out_score += 3;
+								stage->DecreaseBlockLife( target_block_data.GetIndex() );
+							}
+
+							stage_view_node->UpdateBlock( target_block_data.GetIndex(), target_block_data.GetLife() );
+							ProcessEffect( effect_manager_node, target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						}
+					}
+				}
+				else
+				{
+					last_life = pivot_block_data.GetLife();
+
+					*out_score = std::max( 0, *out_score + pivot_block_data.GetLife() );
+
+					stage->DieBlock( pivot_block_data.GetIndex() );
+					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), pivot_block_data.GetLife() );
+
+					cocos2d::experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
+					
+					ProcessEffect( effect_manager_node, pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
 				}
 			}
 			else if( eBlockType::Different == pivot_block_data.GetType() )
