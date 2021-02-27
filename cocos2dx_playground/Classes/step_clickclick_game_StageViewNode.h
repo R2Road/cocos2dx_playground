@@ -43,7 +43,7 @@ namespace step_clickclick
 
 		public:
 			void Setup( const Stage& stage_data );
-			void UpdateBlock( const int linear_index, const int last_life, const int current_life );
+			void UpdateBlock( const int linear_index, const int current_life );
 
 		private:
 			const int mStageWidth;

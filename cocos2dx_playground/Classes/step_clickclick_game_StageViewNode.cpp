@@ -136,9 +136,9 @@ namespace step_clickclick
 			}
 		}
 
-		void StageViewNode::UpdateBlock( const int linear_index, const int last_life, const int current_life )
+		void StageViewNode::UpdateBlock( const int linear_index,const int current_life )
 		{
-			mBlockViews[linear_index]->UpdateLife( last_life, current_life );
+			mBlockViews[linear_index]->UpdateLife( current_life );
 		}
 	}
 }

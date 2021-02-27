@@ -95,7 +95,7 @@ namespace step_clickclick
 
 			setVisible( life > 0 );
 		}
-		void BlockViewNode::UpdateLife( const int last_life, const int current_life )
+		void BlockViewNode::UpdateLife( const int current_life )
 		{
 			if( 0 == current_life )
 			{

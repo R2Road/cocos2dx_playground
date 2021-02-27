@@ -172,7 +172,6 @@ namespace step_clickclick
 		{
 			CCLOG( "onBlock : %d", block_index );
 
-			const int last_life = mBlockLife;
 			switch( mTestActionType )
 			{
 			case eTestActionType::Increase:
@@ -189,7 +188,7 @@ namespace step_clickclick
 				assert( false );
 			}
 
-			mBlockViewNode->UpdateLife( last_life, mBlockLife );
+			mBlockViewNode->UpdateLife( mBlockLife );
 		}
 
 

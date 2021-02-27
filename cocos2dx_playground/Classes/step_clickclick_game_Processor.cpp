@@ -85,7 +85,7 @@ namespace step_clickclick
 					++*out_score;
 
 					stage->DecreaseBlockLife( pivot_block_data.GetIndex() );
-					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
+					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), pivot_block_data.GetLife() );
 
 					cocos2d::experimental::AudioEngine::play2d( "sounds/fx/damaged_001.ogg", false, 0.1f );
 				}
@@ -94,7 +94,7 @@ namespace step_clickclick
 					*out_score = std::max( 0, *out_score + pivot_block_data.GetLife() );
 
 					stage->DieBlock( pivot_block_data.GetIndex() );
-					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), last_life, pivot_block_data.GetLife() );
+					stage_view_node->UpdateBlock( pivot_block_data.GetIndex(), pivot_block_data.GetLife() );
 
 					cocos2d::experimental::AudioEngine::play2d( "sounds/fx/coin_001.ogg", false, 0.2f );
 				}
@@ -143,7 +143,7 @@ namespace step_clickclick
 							stage->DecreaseBlockLife( target_block_data.GetIndex() );
 						}
 
-						stage_view_node->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						stage_view_node->UpdateBlock( target_block_data.GetIndex(), target_block_data.GetLife() );
 						ProcessEffect( effect_manager_node, target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}
@@ -188,7 +188,7 @@ namespace step_clickclick
 							stage->DieBlock( target_block_data.GetIndex() );
 						}
 
-						stage_view_node->UpdateBlock( target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
+						stage_view_node->UpdateBlock( target_block_data.GetIndex(), target_block_data.GetLife() );
 						ProcessEffect( effect_manager_node, target_block_data.GetIndex(), last_life, target_block_data.GetLife() );
 					}
 				}

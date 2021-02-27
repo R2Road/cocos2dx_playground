@@ -30,7 +30,7 @@ namespace step_clickclick
 
 		public:
 			void Reset( const eBlockType type, const int life );
-			void UpdateLife( const int last_life, const int current_life );
+			void UpdateLife( const int current_life );
 
 		private:
 			void onBlock( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
