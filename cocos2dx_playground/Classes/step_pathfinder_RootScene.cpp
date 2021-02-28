@@ -154,7 +154,7 @@ namespace step_pathfinder
 			_director->replaceScene( step_pathfinder::json::LoadNSaveScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
-			_director->replaceScene( step_pathfinder::text_field::BasicScene::create() );
+			_director->replaceScene( step_pathfinder::text_field::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_Q:
