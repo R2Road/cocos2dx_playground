@@ -19,8 +19,6 @@
 #include "step_pathfinder_tool_TerrainEditHelper.h"
 #include "step_pathfinder_tool_ui_TileSelectNode.h"
 
-#include "step_pathfinder_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -32,17 +30,18 @@ namespace step_pathfinder
 {
 	namespace tool
 	{
-		TerrainToolScene::TerrainToolScene() :
-			mKeyboardListener( nullptr )
+		TerrainToolScene::TerrainToolScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
 			, mTerrainData()
 			, mCurrentTileType( step_pathfinder::game::eTileType::road )
 
 			, mTerrainViewer( nullptr )
 		{}
 
-		Scene* TerrainToolScene::create()
+		Scene* TerrainToolScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) TerrainToolScene();
+			auto ret = new ( std::nothrow ) TerrainToolScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -416,7 +415,7 @@ namespace step_pathfinder
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				_director->replaceScene( step_pathfinder::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
 		}

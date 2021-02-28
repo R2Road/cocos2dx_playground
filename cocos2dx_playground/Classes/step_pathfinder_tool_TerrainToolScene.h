@@ -3,6 +3,8 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
+#include "helper_BackToThePreviousScene.h"
+
 #include "step_pathfinder_game_TerrainData.h"
 
 namespace step_pathfinder
@@ -16,14 +18,14 @@ namespace step_pathfinder
 	{
 		class TerrainEditHelper;
 
-		class TerrainToolScene : public cocos2d::Scene
+		class TerrainToolScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
 		private:
-			TerrainToolScene();
+			TerrainToolScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
 			static const char* getTitle() { return "Tool : Terrain"; }
-			static cocos2d::Scene* create();
+			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		private:
 			bool init() override;

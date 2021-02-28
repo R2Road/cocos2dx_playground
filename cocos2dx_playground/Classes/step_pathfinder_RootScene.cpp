@@ -165,7 +165,7 @@ namespace step_pathfinder
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			_director->replaceScene( step_pathfinder::tool::TerrainToolScene::create() );
+			_director->replaceScene( step_pathfinder::tool::TerrainToolScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
