@@ -150,5 +150,5 @@ namespace step_pathfinder
 
 			mTileSelectCallback( static_cast<step_pathfinder::game::eTileType>( sender_node->getTag() ) );
 		}
-	} // namespace game
+	}
 }
