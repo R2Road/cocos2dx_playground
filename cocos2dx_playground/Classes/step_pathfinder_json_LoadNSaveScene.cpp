@@ -22,7 +22,6 @@
 #include "cpg_StringTable.h"
 
 #include "helper_Win32DirectoryOpen.h"
-#include "step_pathfinder_RootScene.h"
 
 USING_NS_CC;
 
@@ -35,11 +34,14 @@ namespace step_pathfinder
 {
 	namespace json
 	{
-		LoadNSaveScene::LoadNSaveScene() : mKeyboardListener( nullptr ) {}
+		LoadNSaveScene::LoadNSaveScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
+		{}
 
-		Scene* LoadNSaveScene::create()
+		Scene* LoadNSaveScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) LoadNSaveScene();
+			auto ret = new ( std::nothrow ) LoadNSaveScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -353,7 +355,7 @@ namespace step_pathfinder
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				_director->replaceScene( step_pathfinder::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
 		}
