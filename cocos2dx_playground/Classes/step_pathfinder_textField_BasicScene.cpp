@@ -64,10 +64,10 @@ namespace step_pathfinder
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -91,10 +91,10 @@ namespace step_pathfinder
 			//
 			{
 				auto summury_for_text_field = Label::createWithTTF( "Text Field Only : Has Some Problem\n Input Text > All Clear > Click Somewhere Else", cpg::StringTable::GetFontPath(), 12 );
-				summury_for_text_field->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.8f )
-				) );
+				summury_for_text_field->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.8f )
+				);
 				addChild( summury_for_text_field, 1 );
 
 				auto ui_text_field = ui::TextField::create( DUMMY_STRING, cpg::StringTable::GetFontPath(), 12 );
@@ -103,10 +103,10 @@ namespace step_pathfinder
 				ui_text_field->setMaxLengthEnabled( true );
 				ui_text_field->setCursorChar( TEXT_FIELD_CURSOR_CHAR );
 				ui_text_field->setCursorEnabled( true );
-				ui_text_field->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.7f )
-				) );
+				ui_text_field->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.7f )
+				);
 				addChild( ui_text_field, 0 );
 
 				auto background_guide = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
@@ -122,10 +122,10 @@ namespace step_pathfinder
 			//
 			{
 				auto summury_for_text_field = Label::createWithTTF( "Text Field + Button Support : Suggest", cpg::StringTable::GetFontPath(), 12 );
-				summury_for_text_field->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.4f )
-				) );
+				summury_for_text_field->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.4f )
+				);
 				addChild( summury_for_text_field, 1 );
 
 				auto ui_text_field = ui::TextField::create( DUMMY_STRING, cpg::StringTable::GetFontPath(), 12 );
@@ -135,10 +135,10 @@ namespace step_pathfinder
 				ui_text_field->setMaxLengthEnabled( true );
 				ui_text_field->setCursorChar( TEXT_FIELD_CURSOR_CHAR );
 				ui_text_field->setCursorEnabled( true );
-				ui_text_field->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
+				ui_text_field->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.3f )
+				);
 				addChild( ui_text_field, 0 );
 
 				auto guide_button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
