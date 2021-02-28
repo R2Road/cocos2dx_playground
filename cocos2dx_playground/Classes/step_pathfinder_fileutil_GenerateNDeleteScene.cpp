@@ -79,10 +79,10 @@ namespace step_pathfinder
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -104,10 +104,10 @@ namespace step_pathfinder
 				{
 					auto label = Label::createWithTTF( "<Target Path>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
-					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.8f
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.1f, visibleSize.height * 0.8f )
+					);
 					addChild( label );
 
 					// Open Folder
@@ -147,10 +147,10 @@ namespace step_pathfinder
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
-					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.8f
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.1f, visibleSize.height * 0.8f )
+					);
 					addChild( label );
 				}
 			}
@@ -163,10 +163,10 @@ namespace step_pathfinder
 				{
 					auto label = Label::createWithTTF( "<File Name>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
-					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.6f
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.1f, visibleSize.height * 0.6f )
+					);
 					addChild( label );
 				}
 
@@ -175,10 +175,10 @@ namespace step_pathfinder
 					auto label = Label::createWithTTF( FilePath_for_Generate_N_Delete, cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
-					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.6f
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.1f, visibleSize.height * 0.6f )
+					);
 					addChild( label );
 				}
 			}
@@ -191,10 +191,10 @@ namespace step_pathfinder
 				{
 					auto label = Label::createWithTTF( "<File Status>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 0.f, 0.f ) );
-					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.4f
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.1f, visibleSize.height * 0.4f )
+					);
 					addChild( label );
 				}
 
@@ -204,10 +204,10 @@ namespace step_pathfinder
 					label->setTag( TAG_FileStatus );
 					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 					label->setColor( Color3B::RED );
-					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width * 0.1f
-						, visibleOrigin.y + visibleSize.height * 0.4f
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.1f, visibleSize.height * 0.4f )
+					);
 					addChild( label );
 				}
 
@@ -223,10 +223,10 @@ namespace step_pathfinder
 				auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onGenerateButton, this ) );
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.3f )
-					, visibleOrigin.y + ( visibleSize.height * 0.2f )
-				) );
+				button->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.2f )
+				);
 				addChild( button );
 				{
 					auto label = Label::createWithTTF( "Generate", cpg::StringTable::GetFontPath(), 12 );
@@ -243,10 +243,10 @@ namespace step_pathfinder
 				auto button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 				button->setScale9Enabled( true );
 				button->addTouchEventListener( CC_CALLBACK_2( GenerateNDeleteScene::onDeleteButton, this ) );
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.7f )
-					, visibleOrigin.y + ( visibleSize.height * 0.2f )
-				) );
+				button->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.2f )
+				);
 				addChild( button );
 				{
 					auto label = Label::createWithTTF( "Delete", cpg::StringTable::GetFontPath(), 12 );
