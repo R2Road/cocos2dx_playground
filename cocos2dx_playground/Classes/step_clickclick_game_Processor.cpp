@@ -1,7 +1,5 @@
 #include "step_clickclick_game_Processor.h"
 
-#include <cassert>
-
 #include "audio/include/AudioEngine.h"
 
 #include "step_clickclick_game_EffectManagerNode.h"
