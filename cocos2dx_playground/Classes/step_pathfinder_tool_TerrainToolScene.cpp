@@ -77,10 +77,10 @@ namespace step_pathfinder
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -94,10 +94,10 @@ namespace step_pathfinder
 				{
 					auto label = Label::createWithTTF( "<Target Path>", cpg::StringTable::GetFontPath(), 14 );
 					label->setAnchorPoint( Vec2( 1.f, 0.f ) );
-					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width - 4.f
-						, visibleOrigin.y + visibleSize.height * 0.93f
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width - 4.f, visibleSize.height * 0.93f )
+					);
 					addChild( label );
 
 					// Open Folder
@@ -137,10 +137,10 @@ namespace step_pathfinder
 					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
 					label->setColor( Color3B::GREEN );
 					label->setMaxLineWidth( MAX_LINE_WIDTH );
-					label->setPosition( Vec2(
-						visibleOrigin.x + visibleSize.width - 4.f
-						, visibleOrigin.y + visibleSize.height * 0.93f
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width - 4.f, visibleSize.height * 0.93f )
+					);
 					addChild( label );
 				}
 			}
@@ -150,10 +150,10 @@ namespace step_pathfinder
 			//
 			{
 				mTerrainViewer = game::TerrainViewer::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ) );
-				mTerrainViewer->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.6f )
-				) );
+				mTerrainViewer->setPosition(
+					visibleOrigin
+					+ Vec2( ( visibleSize.width - mTerrainViewer->getContentSize().width ) * 0.5f, ( visibleSize.height - mTerrainViewer->getContentSize().height ) * 0.6f )
+				);
 				addChild( mTerrainViewer );
 
 				// apply terrain data
@@ -165,10 +165,10 @@ namespace step_pathfinder
 			//
 			{
 				auto terrain_edit_helper = TerrainEditHelper::create( mTerrainData.GetWidth(), mTerrainData.GetHeight(), Size( 32, 32 ), CC_CALLBACK_2( TerrainToolScene::onGrid, this ) );
-				terrain_edit_helper->setPosition( Vec2(
-					visibleOrigin.x + ( ( visibleSize.width - terrain_edit_helper->getContentSize().width ) * 0.5f )
-					, visibleOrigin.y + ( ( visibleSize.height - terrain_edit_helper->getContentSize().height ) * 0.6f )
-				) );
+				terrain_edit_helper->setPosition(
+					visibleOrigin
+					+ Vec2( ( visibleSize.width - terrain_edit_helper->getContentSize().width ) * 0.5f, ( visibleSize.height - terrain_edit_helper->getContentSize().height ) * 0.6f )
+				);
 				addChild( terrain_edit_helper, 1 );
 			}
 
@@ -209,10 +209,10 @@ namespace step_pathfinder
 				ui_text_field->setMaxLengthEnabled( true );
 				ui_text_field->setCursorChar( TEXT_FIELD_CURSOR_CHAR );
 				ui_text_field->setCursorEnabled( true );
-				ui_text_field->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.2f )
-				) );
+				ui_text_field->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.2f )
+				);
 				addChild( ui_text_field, 0 );
 
 				auto guide_button = ui::Button::create( "guide_01_2.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
@@ -252,10 +252,10 @@ namespace step_pathfinder
 					button->setContentSize( label->getContentSize() + BUTTON_MARGIN + BUTTON_MARGIN );
 				}
 
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.4f )
-					, visibleOrigin.y + ( visibleSize.height * 0.08f )
-				) );
+				button->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.4f, visibleSize.height * 0.08f )
+				);
 			}
 
 			//
@@ -274,10 +274,10 @@ namespace step_pathfinder
 					button->setContentSize( label->getContentSize() + BUTTON_MARGIN + BUTTON_MARGIN );
 				}
 
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.6f )
-					, visibleOrigin.y + ( visibleSize.height * 0.08f )
-				) );
+				button->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.6f, visibleSize.height * 0.08f )
+				);
 			}
 
 			return true;
