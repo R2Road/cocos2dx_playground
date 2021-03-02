@@ -3,6 +3,10 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
+NS_CC_BEGIN
+	class Label;
+NS_CC_END
+
 namespace step_mole
 {
 	namespace collision
@@ -34,6 +38,7 @@ namespace step_mole
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			
 			cocos2d::Node* mActorNode;
+			cocos2d::Label* mDistanceLabel;
 		};
 	}
 }

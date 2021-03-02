@@ -25,7 +25,6 @@ USING_NS_CC;
 namespace
 {
 	const int TAG_Bullet = 20200209;
-	const int TAG_Distance = 888;
 	const int TAG_CollisionIndicator = 999;
 
 	const int Z_Bullet = 100;
@@ -113,15 +112,14 @@ namespace step_mole
 			// Distance
 			//
 			{
-				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
-				label->setTag( TAG_Distance );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition(
+				mDistanceLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
+				mDistanceLabel->setColor( Color3B::GREEN );
+				mDistanceLabel->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				mDistanceLabel->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleMargin.height )
 				);
-				addChild( label, std::numeric_limits<int>::max() );
+				addChild( mDistanceLabel, std::numeric_limits<int>::max() );
 			}
 
 			//
@@ -317,8 +315,7 @@ namespace step_mole
 
 			const auto distance = bullet_node->getPosition().distance( mActorNode->getPosition() );
 
-			auto label = static_cast<Label*>( getChildByTag( TAG_Distance ) );
-			label->setString( StringUtils::format( "Distance : %.2f", distance ) );
+			mDistanceLabel->setString( StringUtils::format( "Distance : %.2f", distance ) );
 		}
 
 		void BasicScene::onButton( Ref* sender, ui::Widget::TouchEventType touch_event_type )
