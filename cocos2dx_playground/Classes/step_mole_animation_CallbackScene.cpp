@@ -17,8 +17,6 @@
 
 #include "cpg_StringTable.h"
 
-#include "step_mole_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -33,11 +31,15 @@ namespace step_mole
 {
 	namespace animation
 	{
-		CallbackScene::CallbackScene() : mKeyboardListener( nullptr ), mSequenceAction( nullptr ) {}
+		CallbackScene::CallbackScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
+			, mSequenceAction( nullptr )
+		{}
 
-		Scene* CallbackScene::create()
+		Scene* CallbackScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) CallbackScene();
+			auto ret = new ( std::nothrow ) CallbackScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -185,7 +187,7 @@ namespace step_mole
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				_director->replaceScene( step_mole::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A: // Play

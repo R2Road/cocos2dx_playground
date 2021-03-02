@@ -145,7 +145,7 @@ namespace step_mole
 			break;
 
 		case EventKeyboard::KeyCode::KEY_1:
-			_director->replaceScene( step_mole::animation::CallbackScene::create() );
+			_director->replaceScene( step_mole::animation::CallbackScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_mole::animation::ComponentScene::create() );
