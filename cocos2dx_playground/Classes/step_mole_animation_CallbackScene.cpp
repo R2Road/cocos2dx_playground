@@ -76,10 +76,10 @@ namespace step_mole
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
@@ -99,10 +99,10 @@ namespace step_mole
 				animation_node->setTag( TAG_AnimationNode );
 				animation_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 				animation_node->setScale( _director->getContentScaleFactor() );
-				animation_node->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
-				) );
+				animation_node->setPosition(
+					visibleOrigin
+					+ Vec2( static_cast<int>( visibleSize.width * 0.5f ), static_cast<int>( visibleSize.height * 0.5f ) )
+				);
 				addChild( animation_node );
 				{
 					auto animation_object = Animation::create();
@@ -147,10 +147,10 @@ namespace step_mole
 				label->setTag( TAG_AnimationStatusNode );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-				label->setPosition( Vec2(
-					static_cast<int>( visibleOrigin.x + ( visibleSize.width * 0.5f ) )
-					, static_cast<int>( visibleOrigin.y + ( visibleSize.height * 0.5f ) )
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( static_cast<int>( visibleSize.width * 0.5f ), static_cast<int>( visibleSize.height * 0.5f ) )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 
 				// setup string
