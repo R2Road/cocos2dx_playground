@@ -21,8 +21,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_AnimationNode = 20140416;
-	const int TAG_AnimationStatusNode = 20160528;
+	const int TAG_AnimationStatusNode = 20140416;
 
 	const int TAG_AnimationAction = 111;
 }
@@ -34,6 +33,7 @@ namespace step_mole
 		CallbackScene::CallbackScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mAnimationNode( nullptr )
 			, mSequenceAction( nullptr )
 		{}
 
@@ -97,15 +97,14 @@ namespace step_mole
 			// Animation
 			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
-				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				animation_node->setScale( _director->getContentScaleFactor() );
-				animation_node->setPosition(
+				mAnimationNode = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
+				mAnimationNode->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+				mAnimationNode->setScale( _director->getContentScaleFactor() );
+				mAnimationNode->setPosition(
 					visibleOrigin
 					+ Vec2( static_cast<int>( visibleSize.width * 0.5f ), static_cast<int>( visibleSize.height * 0.5f ) )
 				);
-				addChild( animation_node );
+				addChild( mAnimationNode );
 				{
 					auto animation_object = Animation::create();
 					animation_object->setDelayPerUnit( 0.06f );
@@ -192,10 +191,9 @@ namespace step_mole
 
 			case EventKeyboard::KeyCode::KEY_A: // Play
 			{
-				auto animation_node = getChildByTag( TAG_AnimationNode );
-				if( !animation_node->getActionByTag( mSequenceAction->getTag() ) )
+				if( !mAnimationNode->getActionByTag( mSequenceAction->getTag() ) )
 				{
-					animation_node->runAction( mSequenceAction );
+					mAnimationNode->runAction( mSequenceAction );
 				}
 			}
 			break;
