@@ -17,8 +17,6 @@
 
 #include "step_mole_animation_InfoContainer.h"
 
-#include "step_mole_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -30,12 +28,14 @@ namespace step_mole
 {
 	namespace animation
 	{
-		ComponentScene::ComponentScene() : mKeyboardListener( nullptr )
+		ComponentScene::ComponentScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
 		{}
 
-		Scene* ComponentScene::create()
+		Scene* ComponentScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) ComponentScene();
+			auto ret = new ( std::nothrow ) ComponentScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -145,7 +145,7 @@ namespace step_mole
 			switch( keycode )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				_director->replaceScene( step_mole::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
