@@ -92,10 +92,10 @@ namespace step_mole
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleMargin.width
-					, visibleOrigin.y + visibleSize.height - visibleMargin.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
@@ -115,10 +115,10 @@ namespace step_mole
 				label->setTag( TAG_Distance );
 				label->setColor( Color3B::GREEN );
 				label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + visibleMargin.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleMargin.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -130,10 +130,10 @@ namespace step_mole
 				button->setScale9Enabled( true );
 				button->setContentSize( visibleSize );
 				button->setOpacity( 150u );
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
+				button->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+				);
 				button->addTouchEventListener( CC_CALLBACK_2( BasicScene::onButton, this ) );
 				addChild( button );
 			}
@@ -144,10 +144,10 @@ namespace step_mole
 			{
 				auto actor_root_node = Node::create();
 				actor_root_node->setTag( TAG_Actor );
-				actor_root_node->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.3f )
-				) );
+				actor_root_node->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.3f )
+				);
 				{
 					// Pivot
 					{
@@ -218,10 +218,10 @@ namespace step_mole
 			{
 				auto bullet_root_node = Node::create();
 				bullet_root_node->setTag( TAG_Bullet );
-				bullet_root_node->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.7f )
-				) );
+				bullet_root_node->setPosition(
+					visibleOrigin
+					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.7f )
+				);
 				{
 					// Pivot
 					{
