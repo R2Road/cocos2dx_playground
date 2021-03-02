@@ -21,9 +21,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_AnimationStatusNode = 20140416;
-
-	const int TAG_AnimationAction = 111;
+	const int TAG_AnimationAction = 20140416;
 }
 
 namespace step_mole
@@ -35,6 +33,7 @@ namespace step_mole
 			, mKeyboardListener( nullptr )
 			, mAnimationNode( nullptr )
 			, mSequenceAction( nullptr )
+			, mAnimationStatusLabel( nullptr )
 		{}
 
 		Scene* CallbackScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -144,15 +143,14 @@ namespace step_mole
 			// Animation Status
 			//
 			{
-				auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
-				label->setTag( TAG_AnimationStatusNode );
-				label->setColor( Color3B::GREEN );
-				label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
-				label->setPosition(
+				mAnimationStatusLabel = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 12 );
+				mAnimationStatusLabel->setColor( Color3B::GREEN );
+				mAnimationStatusLabel->setAnchorPoint( Vec2( 0.5f, 1.f ) );
+				mAnimationStatusLabel->setPosition(
 					visibleOrigin
 					+ Vec2( static_cast<int>( visibleSize.width * 0.5f ), static_cast<int>( visibleSize.height * 0.5f ) )
 				);
-				addChild( label, std::numeric_limits<int>::max() );
+				addChild( mAnimationStatusLabel, std::numeric_limits<int>::max() );
 
 				// setup string
 				AnimationEndCallback();
@@ -205,13 +203,11 @@ namespace step_mole
 
 		void CallbackScene::AnimationStartCallback()
 		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_AnimationStatusNode ) );
-			label->setString( "Play" );
+			mAnimationStatusLabel->setString( "Play" );
 		}
 		void CallbackScene::AnimationEndCallback()
 		{
-			auto label = static_cast<Label*>( getChildByTag( TAG_AnimationStatusNode ) );
-			label->setString( "Stop" );
+			mAnimationStatusLabel->setString( "Stop" );
 		}
 	}
 }

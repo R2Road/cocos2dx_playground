@@ -4,6 +4,10 @@
 
 #include "helper_BackToThePreviousScene.h"
 
+NS_CC_BEGIN
+	class Label;
+NS_CC_END
+
 namespace step_mole
 {
 	namespace animation
@@ -35,6 +39,8 @@ namespace step_mole
 
 			cocos2d::Node* mAnimationNode;
 			cocos2d::Action* mSequenceAction;
+
+			cocos2d::Label* mAnimationStatusLabel;
 		};
 	}
 }
