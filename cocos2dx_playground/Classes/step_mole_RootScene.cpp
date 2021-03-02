@@ -152,7 +152,7 @@ namespace step_mole
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			_director->replaceScene( step_mole::collision::BasicScene::create() );
+			_director->replaceScene( step_mole::collision::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( step_mole::collision::ComponentScene::create() );

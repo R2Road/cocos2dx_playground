@@ -18,8 +18,6 @@
 
 #include "cpg_StringTable.h"
 
-#include "step_mole_RootScene.h"
-
 USING_NS_CC;
 
 namespace
@@ -45,16 +43,17 @@ namespace step_mole
 {
 	namespace collision
 	{
-		BasicScene::BasicScene() :
-			mKeyboardListener( nullptr )
+		BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
 			, mActorNode( nullptr )
 			, mBulletNode( nullptr )
 			, mDistanceLabel( nullptr )
 		{}
 
-		Scene* BasicScene::create()
+		Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) BasicScene();
+			auto ret = new ( std::nothrow ) BasicScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -338,7 +337,7 @@ namespace step_mole
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				_director->replaceScene( step_mole::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
 		}
