@@ -19,11 +19,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const int TAG_AnimationNode = 20140416;
-}
-
 namespace step_mole
 {
 	namespace animation
@@ -31,6 +26,7 @@ namespace step_mole
 		ComponentScene::ComponentScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mAnimationNode( nullptr )
 		{}
 
 		Scene* ComponentScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -105,18 +101,17 @@ namespace step_mole
 			// Animation Node
 			//
 			{
-				auto animation_node = Sprite::createWithSpriteFrameName( "step_mole_target_dmgd2_4.png" );
-				animation_node->setTag( TAG_AnimationNode );
-				animation_node->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
-				animation_node->setScale( _director->getContentScaleFactor() );
-				animation_node->setPosition(
+				mAnimationNode = Sprite::createWithSpriteFrameName( "step_mole_target_dmgd2_4.png" );
+				mAnimationNode->setAnchorPoint( Vec2( 0.5f, 0.5f ) );
+				mAnimationNode->setScale( _director->getContentScaleFactor() );
+				mAnimationNode->setPosition(
 					visibleOrigin
 					+ Vec2( static_cast<int>( visibleSize.width * 0.5f ), static_cast<int>( visibleSize.height * 0.5f ) )
 				);
-				addChild( animation_node );
+				addChild( mAnimationNode );
 
 
-				animation_node->addComponent( step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() ) );
+				mAnimationNode->addComponent( step_mole::AnimationComponent::create( step_mole::animation::GetObjectInfoContainer() ) );
 			}
 
 			return true;
@@ -178,12 +173,12 @@ namespace step_mole
 		}
 		void ComponentScene::PlayAnimation( const cpg::animation::eIndex animation_index )
 		{
-			auto animation_component = static_cast<step_mole::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
+			auto animation_component = static_cast<step_mole::AnimationComponent*>( mAnimationNode->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimation( animation_index );
 		}
 		void ComponentScene::PlayAnimationWithCallback()
 		{
-			auto animation_component = static_cast<step_mole::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
+			auto animation_component = static_cast<step_mole::AnimationComponent*>( mAnimationNode->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimationWithCallback(
 				cpg::animation::eIndex::damaged_1
 				, [animation_component]()
@@ -194,7 +189,7 @@ namespace step_mole
 		}
 		void ComponentScene::StopAnimation()
 		{
-			auto animation_component = static_cast<step_mole::AnimationComponent*>( getChildByTag( TAG_AnimationNode )->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
+			auto animation_component = static_cast<step_mole::AnimationComponent*>( mAnimationNode->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
 			animation_component->StopAnimation();
 		}
 	}

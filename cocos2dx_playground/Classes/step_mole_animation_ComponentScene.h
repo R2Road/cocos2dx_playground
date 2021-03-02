@@ -37,6 +37,8 @@ namespace step_mole
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			cocos2d::Node* mAnimationNode;
 		};
 	}
 }
