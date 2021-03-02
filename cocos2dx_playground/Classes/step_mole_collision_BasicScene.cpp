@@ -24,8 +24,7 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_Bullet = 20200209;
-	const int TAG_CollisionIndicator = 999;
+	const int TAG_CollisionIndicator = 20140419;
 
 	const int Z_Bullet = 100;
 	const int Z_Actor = 101;
@@ -49,6 +48,8 @@ namespace step_mole
 		BasicScene::BasicScene() :
 			mKeyboardListener( nullptr )
 			, mActorNode( nullptr )
+			, mBulletNode( nullptr )
+			, mDistanceLabel( nullptr )
 		{}
 
 		Scene* BasicScene::create()
@@ -215,9 +216,8 @@ namespace step_mole
 			// Bullet
 			//
 			{
-				auto bullet_root_node = Node::create();
-				bullet_root_node->setTag( TAG_Bullet );
-				bullet_root_node->setPosition(
+				mBulletNode = Node::create();
+				mBulletNode->setPosition(
 					visibleOrigin
 					+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.7f )
 				);
@@ -226,14 +226,13 @@ namespace step_mole
 					{
 						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 						pivot->setScale( 4.f );
-						bullet_root_node->addChild( pivot, std::numeric_limits<int>::max() );
+						mBulletNode->addChild( pivot, std::numeric_limits<int>::max() );
 					}
 
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "step_mole_target_wait_0.png" );
-					view_node->setTag( TAG_Bullet );
 					view_node->setScale( _director->getContentScaleFactor() );
-					bullet_root_node->addChild( view_node );
+					mBulletNode->addChild( view_node );
 					{
 						auto animation_object = Animation::create();
 						animation_object->setDelayPerUnit( 0.1f );
@@ -255,24 +254,24 @@ namespace step_mole
 						auto label = Label::createWithTTF( StringUtils::format( "%.2f", radius ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 						label->setAnchorPoint( Vec2( 0.f, 0.5f ) );
 						label->setPositionX( radius + margin.width );
-						bullet_root_node->addChild( label );
+						mBulletNode->addChild( label );
 					}
 
 					// Collision Guide
 					{
 						auto guide = Sprite::createWithSpriteFrameName( "guide_02_4.png" );
 						guide->setScale( radius / ( guide->getContentSize().width * 0.5f ) );
-						bullet_root_node->addChild( guide );
+						mBulletNode->addChild( guide );
 					}
 
 					// Radius Data
 					{
 						auto radius_data( new RadiusData( radius ) );
-						bullet_root_node->setUserObject( radius_data );
+						mBulletNode->setUserObject( radius_data );
 						radius_data->release();
 					}
 				}
-				addChild( bullet_root_node, Z_Bullet );
+				addChild( mBulletNode, Z_Bullet );
 			}
 
 			updateDistance();
@@ -299,21 +298,17 @@ namespace step_mole
 
 		void BasicScene::collisionCheck()
 		{
-			const auto bullet_root_node = getChildByTag( TAG_Bullet );
-
-			const float distance = mActorNode->getPosition().distance( bullet_root_node->getPosition() );
+			const float distance = mActorNode->getPosition().distance( mBulletNode->getPosition() );
 
 			const auto actor_radius_data = static_cast<RadiusData*>( mActorNode->getUserObject() );
-			const auto bullet_radius_data = static_cast<RadiusData*>( bullet_root_node->getUserObject() );
+			const auto bullet_radius_data = static_cast<RadiusData*>( mBulletNode->getUserObject() );
 			const float contact_limit_distance = actor_radius_data->GetRadius() + bullet_radius_data->GetRadius();
 
 			mActorNode->getChildByTag( TAG_CollisionIndicator )->setVisible( distance <= contact_limit_distance );
 		}
 		void BasicScene::updateDistance()
 		{
-			const auto bullet_node = static_cast<Label*>( getChildByTag( TAG_Bullet ) );
-
-			const auto distance = bullet_node->getPosition().distance( mActorNode->getPosition() );
+			const auto distance = mBulletNode->getPosition().distance( mActorNode->getPosition() );
 
 			mDistanceLabel->setString( StringUtils::format( "Distance : %.2f", distance ) );
 		}

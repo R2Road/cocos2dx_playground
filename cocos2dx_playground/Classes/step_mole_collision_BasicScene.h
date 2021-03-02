@@ -38,6 +38,7 @@ namespace step_mole
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 			
 			cocos2d::Node* mActorNode;
+			cocos2d::Node* mBulletNode;
 			cocos2d::Label* mDistanceLabel;
 		};
 	}
