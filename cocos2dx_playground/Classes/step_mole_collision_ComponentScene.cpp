@@ -26,7 +26,6 @@ USING_NS_CC;
 
 namespace
 {
-	const int TAG_Actor = 20140416;
 	const int Z_Bullet = 100;
 	const int Z_Actor = 101;
 }
@@ -38,6 +37,7 @@ namespace step_mole
 		ComponentScene::ComponentScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+			, mActorNode( nullptr )
 			, mCollisionComponentList()
 		{}
 
@@ -118,21 +118,20 @@ namespace step_mole
 			// Actor
 			//
 			{
-				auto actor_root = Node::create();
-				actor_root->setTag( TAG_Actor );
-				actor_root->setPosition( visibleCenter );
+				mActorNode = Node::create();
+				mActorNode->setPosition( visibleCenter );
 				{
 					// Pivot
 					{
 						auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
 						pivot->setScale( 4.f );
-						actor_root->addChild( pivot, std::numeric_limits<int>::max() );
+						mActorNode->addChild( pivot, std::numeric_limits<int>::max() );
 					}
 
 					// View
 					auto view_node = Sprite::createWithSpriteFrameName( "actor001_run_01.png" );
 					view_node->setScale( _director->getContentScaleFactor() );
-					actor_root->addChild( view_node );
+					mActorNode->addChild( view_node );
 					{
 						auto animation_object = Animation::create();
 						animation_object->setDelayPerUnit( 0.2f );
@@ -152,9 +151,9 @@ namespace step_mole
 					const float radius = ( view_node->getBoundingBox().size.height + margin.height ) * 0.5f;
 
 					// Collision Component
-					actor_root->addComponent( CircleCollisionComponent::create( radius, Vec2::ZERO, CircleCollisionComponentConfig{ true, true, true } ) );
+					mActorNode->addComponent( CircleCollisionComponent::create( radius, Vec2::ZERO, CircleCollisionComponentConfig{ true, true, true } ) );
 				}
-				addChild( actor_root, Z_Actor );
+				addChild( mActorNode, Z_Actor );
 			}
 
 			//
@@ -260,8 +259,7 @@ namespace step_mole
 
 		void ComponentScene::collisionCheck()
 		{
-			auto actor_root = getChildByTag( TAG_Actor );
-			auto actor_collision_component = static_cast<CircleCollisionComponent*>( actor_root->getComponent( CircleCollisionComponent::GetStaticName() ) );
+			auto actor_collision_component = static_cast<CircleCollisionComponent*>( mActorNode->getComponent( CircleCollisionComponent::GetStaticName() ) );
 
 			bool contact_success = false;
 			for( const auto& c : mCollisionComponentList )
@@ -283,19 +281,17 @@ namespace step_mole
 		{
 			auto button = static_cast<ui::Button*>( sender );
 
-			const auto actor_node = static_cast<Label*>( getChildByTag( TAG_Actor ) );
-
 			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 			{
-				actor_node->setPosition( button->getTouchBeganPosition() );
+				mActorNode->setPosition( button->getTouchBeganPosition() );
 			}
 			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 			{
-				actor_node->setPosition( button->getTouchMovePosition() );
+				mActorNode->setPosition( button->getTouchMovePosition() );
 			}
 			else if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 			{
-				actor_node->setPosition( button->getTouchEndPosition() );
+				mActorNode->setPosition( button->getTouchEndPosition() );
 			}
 
 			collisionCheck();

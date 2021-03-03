@@ -40,6 +40,7 @@ namespace step_mole
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
+			cocos2d::Node* mActorNode;
 			std::list<CircleCollisionComponent*> mCollisionComponentList;
 		};
 	}
