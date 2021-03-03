@@ -66,7 +66,10 @@ namespace step_mole
 
 			const auto visibleSize = _director->getVisibleSize();
 			const auto visibleOrigin = _director->getVisibleOrigin();
-			const Size visibleMargin( 4.f, 4.f );
+			const Vec2 visibleCenter(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+			);
 
 			//
 			// Summury
@@ -83,10 +86,10 @@ namespace step_mole
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x + visibleMargin.width
-					, visibleOrigin.y + visibleSize.height - visibleMargin.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 			
@@ -106,10 +109,7 @@ namespace step_mole
 				button->setScale9Enabled( true );
 				button->setContentSize( visibleSize );
 				button->setOpacity( 150u );
-				button->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
+				button->setPosition( visibleCenter );
 				button->addTouchEventListener( CC_CALLBACK_2( ComponentScene::onButton, this ) );
 				addChild( button );
 			}
@@ -120,10 +120,7 @@ namespace step_mole
 			{
 				auto actor_root = Node::create();
 				actor_root->setTag( TAG_Actor );
-				actor_root->setPosition( Vec2(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				) );
+				actor_root->setPosition( visibleCenter );
 				{
 					// Pivot
 					{
@@ -164,10 +161,6 @@ namespace step_mole
 			// Bullet
 			//
 			{
-				const Vec2 visibleCenter(
-					visibleOrigin.x + ( visibleSize.width * 0.5f )
-					, visibleOrigin.y + ( visibleSize.height * 0.5f )
-				);
 				const float negative_range = visibleSize.height * 0.3f;
 				const float position_margin = 10.f;
 
