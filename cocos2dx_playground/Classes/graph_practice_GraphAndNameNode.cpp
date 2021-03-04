@@ -11,6 +11,7 @@
 #include "renderer/CCTextureCache.h"
 
 #include "cpg_StringTable.h"
+#include "cpg_node_PivotNode.h"
 
 #include "graph_practice_GraphViewNode.h"
 
@@ -51,9 +52,7 @@ namespace graph_practice
 		//
 		if( config.bShowPivot )
 		{
-			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-			pivot->setScale( 2.f );
-			addChild( pivot, std::numeric_limits<int>::max() );
+			addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
 		}
 
 		//
