@@ -132,12 +132,12 @@ namespace algorithm_practice_floodfill
 			// Tool Bar - for Tool
 			//
 			{
-				auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 40.f, 20.f ) );
+				auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 70.f, 20.f ) );
 				mUI4Edit->addChild( tool_bar_node );
 
-				tool_bar_node->AddTool( eToolIndex::Wall, "Wall", 10, std::bind( &EditorNode::onToolSelect, this, eToolIndex::Wall ) );
-				tool_bar_node->AddTool( eToolIndex::Road, "Road", 10, std::bind( &EditorNode::onToolSelect, this, eToolIndex::Road ) );
-				tool_bar_node->AddTool( eToolIndex::Entry, "Entry", 10, std::bind( &EditorNode::onToolSelect, this, eToolIndex::Entry ) );
+				tool_bar_node->AddTool( eToolIndex::Wall, "Wall Tile", 10, std::bind( &EditorNode::onToolSelect, this, eToolIndex::Wall ) );
+				tool_bar_node->AddTool( eToolIndex::Road, "Road Tile", 10, std::bind( &EditorNode::onToolSelect, this, eToolIndex::Road ) );
+				tool_bar_node->AddTool( eToolIndex::Entry, "Entry Point", 10, std::bind( &EditorNode::onToolSelect, this, eToolIndex::Entry ) );
 
 				tool_bar_node->setPosition(
 					visibleOrigin
@@ -161,7 +161,7 @@ namespace algorithm_practice_floodfill
 					visibleOrigin
 					+ Vec2( visibleSize.width, visibleSize.height )
 					- Vec2( button->getContentSize().width, button->getContentSize().height )
-					- Vec2( 60.f, 0.f )
+					- Vec2( 80.f, 0.f )
 				);
 				button->addTouchEventListener( CC_CALLBACK_2( EditorNode::onGridClear, this ) );
 				mUI4Edit->addChild( button );
