@@ -183,7 +183,7 @@ namespace graph_practice
 					draw_node->drawDot(
 						Vec2( mConfig.PartWidth * g_x, mConfig.PartHeight * g_y )
 						, dot_radius
-						, Color4F( Color3B::GREEN )
+						, Color4F::GREEN
 					);
 				}
 			}
