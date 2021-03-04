@@ -12,6 +12,7 @@
 #include "ui/UIScale9Sprite.h"
 
 #include "cpg_StringTable.h"
+#include "cpg_node_PivotNode.h"
 
 USING_NS_CC;
 
@@ -61,8 +62,7 @@ namespace cpgui
 		// Pivot
 		//
 		{
-			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-			addChild( pivot, std::numeric_limits<int>::max() );
+			addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -143,8 +143,7 @@ namespace cpgui
 
 		// Pivot
 		{
-			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-			button->addChild( pivot, std::numeric_limits<int>::max() );
+			button->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
 		}
 
 		// Align
