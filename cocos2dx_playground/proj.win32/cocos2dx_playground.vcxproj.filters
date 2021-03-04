@@ -217,6 +217,9 @@
     <Filter Include="src\scene\step99\cocos_research">
       <UniqueIdentifier>{58c98b4e-9e2b-4c01-b04b-cc655fd03f67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\cpg_node">
+      <UniqueIdentifier>{4cae144a-375b-4e3d-839c-094979b51ad5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -986,6 +989,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_SpriteFrameAction.cpp">
       <Filter>src\cpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_node_PivotNode.cpp">
+      <Filter>src\cpg_node</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1795,6 +1801,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_SpriteFrameAction.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_node_PivotNode.h">
+      <Filter>src\cpg_node</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

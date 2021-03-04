@@ -11,6 +11,7 @@
 #include "ui/UIScale9Sprite.h"
 
 #include "cpg_StringTable.h"
+#include "cpg_node_PivotNode.h"
 
 USING_NS_CC;
 
@@ -58,13 +59,7 @@ namespace graph_practice
 		// Pivot
 		if( debug_config.bShowPivot )
 		{
-			auto draw_node = DrawNode::create();
-			draw_node->drawDot(
-				Vec2::ZERO
-				, 1.f
-				, Color4F::GREEN
-			);
-			addChild( draw_node, std::numeric_limits<int>::max() );
+			addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
 		}
 
 		//
