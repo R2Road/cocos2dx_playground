@@ -58,9 +58,13 @@ namespace graph_practice
 		// Pivot
 		if( debug_config.bShowPivot )
 		{
-			auto pivot = Sprite::createWithSpriteFrameName( "helper_pivot.png" );
-			pivot->setScale( 2.f );
-			addChild( pivot, std::numeric_limits<int>::max() );
+			auto draw_node = DrawNode::create();
+			draw_node->drawDot(
+				Vec2::ZERO
+				, 1.f
+				, Color4F::GREEN
+			);
+			addChild( draw_node, std::numeric_limits<int>::max() );
 		}
 
 		//
