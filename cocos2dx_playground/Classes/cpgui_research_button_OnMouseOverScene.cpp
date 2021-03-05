@@ -72,10 +72,10 @@ namespace cpgui
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-				label->setPosition( Vec2(
-					visibleOrigin.x
-					, visibleOrigin.y + visibleSize.height
-				) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -97,10 +97,10 @@ namespace cpgui
 					button->setTag( TAG_button );
 					button->setScale9Enabled( true );
 					button->setContentSize( Size( 100.f, 100.f ) );
-					button->setPosition( Vec2(
-						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.5f )
-					) );
+					button->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+					);
 					button->addTouchEventListener( CC_CALLBACK_2( OnMouseOverScene::onButton, this ) );
 					addChild( button );
 				}
@@ -111,10 +111,10 @@ namespace cpgui
 					label->setTag( TAG_MouseStatusLabel );
 					label->setAnchorPoint( Vec2( 0.5f, 1.f ) );
 					label->setColor( Color3B::GREEN );
-					label->setPosition( Vec2(
-						visibleOrigin.x + ( visibleSize.width * 0.5f )
-						, visibleOrigin.y + ( visibleSize.height * 0.8f )
-					) );
+					label->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.8f )
+					);
 					addChild( label, std::numeric_limits<int>::max() );
 
 					updateMouseStatusView( false );
