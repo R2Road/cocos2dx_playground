@@ -103,10 +103,10 @@ namespace graph_practice
 			ss << "[H] : " << graph_practice::Collection06Scene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
-			label->setPosition( Vec2(
-				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
 
