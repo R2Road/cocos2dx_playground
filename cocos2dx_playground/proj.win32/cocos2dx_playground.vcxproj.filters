@@ -750,9 +750,6 @@
     <ClCompile Include="..\Classes\cpg_StringTable.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp">
-      <Filter>src\cpgui</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_pathfinder_game_PlayerNode.cpp">
       <Filter>src\scene\step_04_pathfinder\game</Filter>
     </ClCompile>
@@ -991,6 +988,9 @@
       <Filter>src\cpg_node</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_ui_ToolBarNode.cpp">
+      <Filter>src\cpgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_ui_ScrollViewGenerator.cpp">
       <Filter>src\cpgui</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1559,9 +1559,6 @@
     <ClInclude Include="..\Classes\cpg_StringTable.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h">
-      <Filter>src\cpgui</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_pathfinder_game_PlayerNode.h">
       <Filter>src\scene\step_04_pathfinder\game</Filter>
     </ClInclude>
@@ -1803,6 +1800,9 @@
       <Filter>src\cpg_node</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_ui_ToolBarNode.h">
+      <Filter>src\cpgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_ui_ScrollViewGenerator.h">
       <Filter>src\cpgui</Filter>
     </ClInclude>
   </ItemGroup>

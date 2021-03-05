@@ -1,4 +1,4 @@
-#include "cpgui_ScrollViewGenerator.h"
+#include "cpg_ui_ScrollViewGenerator.h"
 
 #include "2d/CCLabel.h"
 #include "2d/CCSprite.h"

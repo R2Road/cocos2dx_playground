@@ -12,7 +12,7 @@
 #include "base/ccUTF8.h"
 
 #include "cpg_StringTable.h"
-#include "cpgui_ScrollViewGenerator.h"
+#include "cpg_ui_ScrollViewGenerator.h"
 
 USING_NS_CC;
 
