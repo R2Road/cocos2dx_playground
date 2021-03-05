@@ -166,7 +166,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_node_PivotNode.cpp" />
     <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp" />
     <ClCompile Include="..\Classes\cpgui_ScrollViewGenerator.cpp" />
-    <ClCompile Include="..\Classes\cpgui_ToolBarNode.cpp" />
+    <ClCompile Include="..\Classes\cpg_ui_ToolBarNode.cpp" />
     <ClCompile Include="..\Classes\cpg_Direction4.cpp" />
     <ClCompile Include="..\Classes\cpg_Position2GridIndexConverter.cpp" />
     <ClCompile Include="..\Classes\cpg_Random.cpp" />
@@ -425,7 +425,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_node_PivotNode.h" />
     <ClInclude Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.h" />
     <ClInclude Include="..\Classes\cpgui_ScrollViewGenerator.h" />
-    <ClInclude Include="..\Classes\cpgui_ToolBarNode.h" />
+    <ClInclude Include="..\Classes\cpg_ui_ToolBarNode.h" />
     <ClInclude Include="..\Classes\cpg_Clamp.h" />
     <ClInclude Include="..\Classes\cpg_Direction4.h" />
     <ClInclude Include="..\Classes\cpg_Grid.h" />

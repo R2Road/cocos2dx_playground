@@ -15,7 +15,7 @@
 #include "ui/UIButton.h"
 
 #include "cpg_StringTable.h"
-#include "cpgui_ToolBarNode.h"
+#include "cpg_ui_ToolBarNode.h"
 
 #include "step_defender_game_Constant.h"
 #include "step_defender_game_TileMapNode.h"

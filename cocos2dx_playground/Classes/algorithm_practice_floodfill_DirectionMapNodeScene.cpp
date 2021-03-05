@@ -16,7 +16,7 @@
 
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
-#include "cpgui_ToolBarNode.h"
+#include "cpg_ui_ToolBarNode.h"
 
 #include "algorithm_practice_floodfill_DirectionMapNode.h"
 

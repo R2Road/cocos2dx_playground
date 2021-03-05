@@ -20,7 +20,7 @@
 
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
-#include "cpgui_ToolBarNode.h"
+#include "cpg_ui_ToolBarNode.h"
 
 #include "step_defender_game_TileMapNode.h"
 

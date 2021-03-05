@@ -13,7 +13,7 @@
 
 #include "cpg_StringTable.h"
 
-#include "cpgui_ToolBarNode.h"
+#include "cpg_ui_ToolBarNode.h"
 
 USING_NS_CC;
 
