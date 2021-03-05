@@ -74,8 +74,9 @@ namespace cpgui
 				label->getFontAtlas()->setAliasTexParameters();
 				label->setAnchorPoint( Vec2( 0.0f, 1.0f ) );
 				label->setPosition(
-					0.f
-					, visible_size.height );
+					visible_origin
+					+ Vec2( 0.f, visible_size.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
@@ -99,8 +100,9 @@ namespace cpgui
 				tool_bar_node->AddTool( 3, "step_rain_of_chaos_actor_01_idle_2.png", []() { CCLOG( "3" ); } );
 
 				tool_bar_node->setPosition(
-					( getContentSize().width * 0.2f ) - ( tool_bar_node->getContentSize().width * 0.5f )
-					, ( getContentSize().height * 0.6f ) - ( tool_bar_node->getContentSize().height * 0.5f )
+					visible_origin
+					+ Vec2( getContentSize().width * 0.2f, getContentSize().height * 0.6f )
+					- Vec2( tool_bar_node->getContentSize().width * 0.5f, tool_bar_node->getContentSize().height * 0.5f )
 				);
 
 				// Set Indicator
@@ -119,8 +121,9 @@ namespace cpgui
 				tool_bar_node->AddTool( 3, "step_rain_of_chaos_actor_01_idle_2.png", []() { CCLOG( "3" ); } );
 
 				tool_bar_node->setPosition(
-					( getContentSize().width * 0.5f ) - ( tool_bar_node->getContentSize().width * 0.5f )
-					, ( getContentSize().height * 0.6f ) - ( tool_bar_node->getContentSize().height * 0.5f )
+					visible_origin
+					+ Vec2( getContentSize().width * 0.5f, getContentSize().height * 0.6f )
+					- Vec2( tool_bar_node->getContentSize().width * 0.5f, tool_bar_node->getContentSize().height * 0.5f )
 				);
 
 				// Set Indicator
@@ -139,8 +142,9 @@ namespace cpgui
 				tool_bar_node->AddTool( 3, "step_rain_of_chaos_actor_01_idle_2.png", []() { CCLOG( "3" ); } );
 
 				tool_bar_node->setPosition(
-					( getContentSize().width * 0.8f ) - ( tool_bar_node->getContentSize().width * 0.5f )
-					, ( getContentSize().height * 0.6f ) - ( tool_bar_node->getContentSize().height * 0.5f )
+					visible_origin
+					+ Vec2( getContentSize().width * 0.8f, getContentSize().height * 0.6f )
+					- Vec2( tool_bar_node->getContentSize().width * 0.5f, tool_bar_node->getContentSize().height * 0.5f )
 				);
 
 				// Set Indicator
@@ -155,8 +159,9 @@ namespace cpgui
 				tool_bar_node->setTag( TAG_Toolbar_FillNClear );
 				addChild( tool_bar_node );
 				tool_bar_node->setPosition(
-					( getContentSize().width * 0.5f ) - ( tool_bar_node->getContentSize().width * 0.5f )
-					, ( getContentSize().height * 0.1f ) - ( tool_bar_node->getContentSize().height * 0.5f )
+					visible_origin
+					+ Vec2( getContentSize().width * 0.5f, getContentSize().height * 0.1f )
+					- Vec2( tool_bar_node->getContentSize().width * 0.5f, tool_bar_node->getContentSize().height * 0.5f )
 				);
 			}
 
