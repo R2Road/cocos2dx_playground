@@ -82,10 +82,10 @@ namespace ui_practice
 		// - Visible Count : 0
 		//
 		{
-			const cpgui::ScrollViewGenerator::Config config{ 8u, 0u, Size( 100, 18 ) };
-			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
+			const cpg_ui::ScrollViewGenerator::Config config{ 8u, 0u, Size( 100, 18 ) };
+			cpg_ui::ScrollViewGenerator::ItemContainerT item_info_container;
 
-			auto scroll_view = cpgui::ScrollViewGenerator::Create(
+			auto scroll_view = cpg_ui::ScrollViewGenerator::Create(
 				config
 				, "Practice 1"
 				, item_info_container
@@ -122,10 +122,10 @@ namespace ui_practice
 		// - Visible Count : 10
 		//
 		{
-			const cpgui::ScrollViewGenerator::Config config{ 8u, 10u, Size( 100, 18 ) };
-			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
+			const cpg_ui::ScrollViewGenerator::Config config{ 8u, 10u, Size( 100, 18 ) };
+			cpg_ui::ScrollViewGenerator::ItemContainerT item_info_container;
 
-			auto scroll_view = cpgui::ScrollViewGenerator::Create(
+			auto scroll_view = cpg_ui::ScrollViewGenerator::Create(
 				config
 				, "Practice 2"
 				, item_info_container
@@ -162,15 +162,15 @@ namespace ui_practice
 		// - Visible Count : 10
 		//
 		{
-			const cpgui::ScrollViewGenerator::Config config{ 8u, 10u, Size( 100, 18 ) };
-			cpgui::ScrollViewGenerator::ItemContainerT item_info_container;
+			const cpg_ui::ScrollViewGenerator::Config config{ 8u, 10u, Size( 100, 18 ) };
+			cpg_ui::ScrollViewGenerator::ItemContainerT item_info_container;
 			item_info_container.emplace_back( -1, "-1" );
 			for( int i = 1; 40 > i; ++i )
 			{
 				item_info_container.emplace_back( i, std::to_string( i ) );
 			}
 
-			auto scroll_view = cpgui::ScrollViewGenerator::Create(
+			auto scroll_view = cpg_ui::ScrollViewGenerator::Create(
 				config
 				, ""
 				, item_info_container

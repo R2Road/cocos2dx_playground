@@ -5,7 +5,7 @@
 
 #include "ui/UIWidget.h"
 
-namespace cpgui
+namespace cpg_ui
 {
 	class ScrollViewGenerator
 	{

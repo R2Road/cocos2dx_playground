@@ -10,9 +10,9 @@
 
 USING_NS_CC;
 
-namespace cpgui
+namespace cpg_ui
 {
-	Node* CreateScrollViewItem( const ScrollViewGenerator::Config& config, const cpgui::ScrollViewGenerator::Item& item_info, const ui::Widget::ccWidgetTouchCallback& item_select_callback )
+	Node* CreateScrollViewItem( const ScrollViewGenerator::Config& config, const cpg_ui::ScrollViewGenerator::Item& item_info, const ui::Widget::ccWidgetTouchCallback& item_select_callback )
 	{
 		auto button = ui::Button::create( "guide_01_0.png", "guide_01_1.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
 		button->setTag( item_info.Tag );
