@@ -131,7 +131,7 @@ namespace algorithm_practice_floodfill
 		// Tool Bar - for Mode
 		//
 		{
-			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 60.f, 30.f ) );
+			auto tool_bar_node = cpg_ui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 60.f, 30.f ) );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
 			tool_bar_node->AddTool( eMode::Edit, "Editor", 10, std::bind( &TestScene::onModeSelect, this, eMode::Edit ) );

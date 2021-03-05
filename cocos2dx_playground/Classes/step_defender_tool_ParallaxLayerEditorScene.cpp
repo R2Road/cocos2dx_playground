@@ -115,7 +115,7 @@ namespace step_defender
 			// Layer Selector
 			//
 			{
-				auto tool_bar_node = cpgui::ToolBarNode::create();
+				auto tool_bar_node = cpg_ui::ToolBarNode::create();
 				addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
 				tool_bar_node->AddTool( 1, "1", 10, std::bind( &ParallaxLayerEditorScene::onLayerSelect, this, 0 ) );
@@ -135,7 +135,7 @@ namespace step_defender
 			// Tool Selector
 			//
 			{
-				auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
+				auto tool_bar_node = cpg_ui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
 				addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
 				tool_bar_node->AddTool( 0, "step_defender_tool_icon_01_0.png", std::bind( &ParallaxLayerEditorScene::onToolSelect, this, 0 ) );

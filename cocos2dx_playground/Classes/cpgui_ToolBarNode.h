@@ -4,7 +4,7 @@
 
 #include "ui/UILayout.h"
 
-namespace cpgui
+namespace cpg_ui
 {
 	class ToolBarNode : public cocos2d::Node
 	{

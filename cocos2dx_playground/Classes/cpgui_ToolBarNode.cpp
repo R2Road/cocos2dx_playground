@@ -23,7 +23,7 @@ namespace
 	const int TAG_ItemIndicator = 20000001;
 }
 
-namespace cpgui
+namespace cpg_ui
 {
 	ToolBarNode::ToolBarNode( const Size item_size, const Size item_margin ) :
 		mItemSize( item_size )

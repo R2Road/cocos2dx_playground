@@ -92,7 +92,7 @@ namespace cpgui
 			// Test Setup : Horizontal
 			//
 			{
-				auto tool_bar_node = cpgui::ToolBarNode::create();
+				auto tool_bar_node = cpg_ui::ToolBarNode::create();
 				addChild( tool_bar_node );
 
 				tool_bar_node->AddTool( 1, "step_rain_of_chaos_actor_01_idle_0.png", []() { CCLOG( "1" ); } );
@@ -113,7 +113,7 @@ namespace cpgui
 			// Test Setup : Vertical
 			//
 			{
-				auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
+				auto tool_bar_node = cpg_ui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
 				addChild( tool_bar_node );
 
 				tool_bar_node->AddTool( 1, "step_rain_of_chaos_actor_01_idle_0.png", []() { CCLOG( "1" ); } );
@@ -134,7 +134,7 @@ namespace cpgui
 			// Test Setup : Size, Margin
 			//
 			{
-				auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 40.f, 40.f ), Size( 4.f, 8.f ) );
+				auto tool_bar_node = cpg_ui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 40.f, 40.f ), Size( 4.f, 8.f ) );
 				addChild( tool_bar_node );
 
 				tool_bar_node->AddTool( 1, "step_rain_of_chaos_actor_01_idle_0.png", []() { CCLOG( "1" ); } );
@@ -155,7 +155,7 @@ namespace cpgui
 			// Test Setup : Fill, Clear
 			//
 			{
-				auto tool_bar_node = cpgui::ToolBarNode::create();
+				auto tool_bar_node = cpg_ui::ToolBarNode::create();
 				tool_bar_node->setTag( TAG_Toolbar_FillNClear );
 				addChild( tool_bar_node );
 				tool_bar_node->setPosition(
@@ -196,7 +196,7 @@ namespace cpgui
 
 			if( EventKeyboard::KeyCode::KEY_1 == keycode )
 			{
-				auto tool_bar_node = static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_Toolbar_FillNClear ) );
+				auto tool_bar_node = static_cast<cpg_ui::ToolBarNode*>( getChildByTag( TAG_Toolbar_FillNClear ) );
 
 				tool_bar_node->AddTool( 1, "step_rain_of_chaos_actor_01_idle_0.png", []() { CCLOG( "1" ); } );
 				tool_bar_node->AddTool( 2, "step_rain_of_chaos_actor_01_idle_1.png", []() { CCLOG( "2" ); } );
@@ -210,7 +210,7 @@ namespace cpgui
 
 			if( EventKeyboard::KeyCode::KEY_2 == keycode )
 			{
-				auto tool_bar_node = static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_Toolbar_FillNClear ) );
+				auto tool_bar_node = static_cast<cpg_ui::ToolBarNode*>( getChildByTag( TAG_Toolbar_FillNClear ) );
 				tool_bar_node->ClearTools();
 
 				tool_bar_node->setPosition(

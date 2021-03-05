@@ -102,7 +102,7 @@ namespace algorithm_practice_floodfill
 		// Tool Bar - for Mode
 		//
 		{
-			mToolBarNode = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 80.f, 20.f ) );
+			mToolBarNode = cpg_ui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 80.f, 20.f ) );
 			addChild( mToolBarNode );
 
 			mToolBarNode->AddTool( static_cast<int>( eMode::Step ), "Step Mode", 10, std::bind( &ProcessorNode::onModeSelect, this, static_cast<int>( eMode::Step ) ) );

@@ -140,7 +140,7 @@ namespace tool_practice
 		// Layer Selector
 		//
 		{
-			auto tool_bar_node = cpgui::ToolBarNode::create();
+			auto tool_bar_node = cpg_ui::ToolBarNode::create();
 			tool_bar_node->setTag( TAG_LayerSelector );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
@@ -162,7 +162,7 @@ namespace tool_practice
 		// Tool Selector
 		//
 		{
-			auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
+			auto tool_bar_node = cpg_ui::ToolBarNode::create( ui::Layout::Type::VERTICAL );
 			tool_bar_node->setTag( TAG_ToolSelector );
 			addChild( tool_bar_node, std::numeric_limits<int>::max() );
 
@@ -347,7 +347,7 @@ namespace tool_practice
 			if( target_layer_index < mConfiguration.GetLayerCount() )
 			{
 				onLayerSelect( target_layer_index );
-				static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( target_layer_index );
+				static_cast<cpg_ui::ToolBarNode*>( getChildByTag( TAG_LayerSelector ) )->SelectTool( target_layer_index );
 			}
 
 			return;
@@ -357,11 +357,11 @@ namespace tool_practice
 		{
 		case EventKeyboard::KeyCode::KEY_B:
 			onToolSelect( static_cast<int>( eToolIndex::Pick ) );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolSelector ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
+			static_cast<cpg_ui::ToolBarNode*>( getChildByTag( TAG_ToolSelector ) )->SelectTool( static_cast<int>( eToolIndex::Pick ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_E:
 			onToolSelect( static_cast<int>( eToolIndex::Erase ) );
-			static_cast<cpgui::ToolBarNode*>( getChildByTag( TAG_ToolSelector ) )->SelectTool( static_cast<int>( eToolIndex::Erase ) );
+			static_cast<cpg_ui::ToolBarNode*>( getChildByTag( TAG_ToolSelector ) )->SelectTool( static_cast<int>( eToolIndex::Erase ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_R :

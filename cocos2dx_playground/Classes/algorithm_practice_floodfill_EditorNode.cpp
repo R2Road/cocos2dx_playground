@@ -132,7 +132,7 @@ namespace algorithm_practice_floodfill
 			// Tool Bar - for Tool
 			//
 			{
-				auto tool_bar_node = cpgui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 70.f, 20.f ) );
+				auto tool_bar_node = cpg_ui::ToolBarNode::create( ui::Layout::Type::VERTICAL, Size( 70.f, 20.f ) );
 				mUI4Edit->addChild( tool_bar_node );
 
 				tool_bar_node->AddTool( eToolIndex::Wall, "Wall Tile", 10, std::bind( &EditorNode::onToolSelect, this, eToolIndex::Wall ) );
