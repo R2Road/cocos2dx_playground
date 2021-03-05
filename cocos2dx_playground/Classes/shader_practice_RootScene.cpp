@@ -68,10 +68,10 @@ namespace shader_practice
 			ss << "[3] : " << shader_practice::SimpleTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
-			label->setPosition( Vec2(
-				visibleOrigin.x + ( visibleSize.width * 0.5f )
-				, visibleOrigin.y + ( visibleSize.height * 0.5f )
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
 

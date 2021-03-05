@@ -73,10 +73,10 @@ namespace shader_practice
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPosition( Vec2(
-				visibleOrigin.x
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
 
@@ -95,10 +95,10 @@ namespace shader_practice
 			auto label_1 = Label::createWithTTF( CustomeShaderPath, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label_1->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label_1->setColor( Color3B::GREEN );
-			label_1->setPosition( Vec2(
-				visibleOrigin.x + visibleSize.width
-				, visibleOrigin.y + visibleSize.height
-			) );
+			label_1->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+			);
 			addChild( label_1, std::numeric_limits<int>::max() );
 
 			auto label_2 = Label::createWithTTF( "Custome Shader Path : ", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
@@ -118,8 +118,8 @@ namespace shader_practice
 			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
 			view_node->getTexture()->setAliasTexParameters();
 			view_node->setPosition(
-				visibleOrigin.x + visibleSize.width * 0.3f
-				, visibleOrigin.y + visibleSize.height * 0.45f
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.45f )
 			);
 			view_node->setScale( 2.f );
 			addChild( view_node );
@@ -156,8 +156,8 @@ namespace shader_practice
 			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
 			view_node->getTexture()->setAliasTexParameters();
 			view_node->setPosition(
-				visibleOrigin.x + visibleSize.width * 0.7f
-				, visibleOrigin.y + visibleSize.height * 0.45f
+				visibleOrigin
+				+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.45f )
 			);
 			view_node->setScale( 2.f );
 			addChild( view_node );
