@@ -993,7 +993,7 @@
     <ClCompile Include="..\Classes\ui_research_button_research_MouseRightClickScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpgui_research_button_OnMouseOverScene.cpp">
+    <ClCompile Include="..\Classes\ui_research_button_research_OnMouseOverScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1805,7 +1805,7 @@
     <ClInclude Include="..\Classes\ui_research_button_research_MouseRightClickScene.h">
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cpgui_research_button_OnMouseOverScene.h">
+    <ClInclude Include="..\Classes\ui_research_button_research_OnMouseOverScene.h">
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
   </ItemGroup>

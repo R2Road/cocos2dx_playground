@@ -14,7 +14,7 @@
 
 #include "PlayGroundScene.h"
 
-#include "cpgui_research_button_OnMouseOverScene.h"
+#include "ui_research_button_research_OnMouseOverScene.h"
 #include "ui_research_button_research_MouseRightClickScene.h"
 
 #include "ui_research_type_effect_BasicScene.h"
