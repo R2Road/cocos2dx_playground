@@ -9,9 +9,9 @@ NS_CC_BEGIN
 class EventListenerMouse;
 NS_CC_END
 
-namespace cpgui
+namespace ui_research
 {
-	namespace research_button
+	namespace button_research
 	{
 		class OnMouseOverScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 		{
