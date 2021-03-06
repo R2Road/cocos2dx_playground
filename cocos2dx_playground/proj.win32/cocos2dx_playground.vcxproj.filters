@@ -220,6 +220,9 @@
     <Filter Include="src\cpg_ui">
       <UniqueIdentifier>{426843c1-8679-4018-9029-295647a2bc02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\ui_research\button">
+      <UniqueIdentifier>{02398885-fe23-4d6a-8c69-7d332a92864d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -645,9 +648,6 @@
     <ClCompile Include="..\Classes\ui_practice_ScrollViewGeneratorScene.cpp">
       <Filter>src\scene\ui_practice</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_button_research_MouseRightClickScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.cpp">
       <Filter>src\scene\step_06_rain_of_chaos\game\enemyprocessor</Filter>
     </ClCompile>
@@ -712,9 +712,6 @@
       <Filter>src\scene\step_07_defender\tool</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\cpgui_research_button_OnMouseOverScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_defender_game_test_TileMapNodeScene.cpp">
@@ -992,6 +989,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_ui_ScrollViewGenerator.cpp">
       <Filter>src\cpg_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_button_research_MouseRightClickScene.cpp">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpgui_research_button_OnMouseOverScene.cpp">
+      <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1451,9 +1454,6 @@
     <ClInclude Include="..\Classes\ui_practice_ScrollViewGeneratorScene.h">
       <Filter>src\scene\ui_practice</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_button_research_MouseRightClickScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyProcessor_Move_CircularSector_Random_01.h">
       <Filter>src\scene\step_06_rain_of_chaos\game\enemyprocessor</Filter>
     </ClInclude>
@@ -1518,9 +1518,6 @@
       <Filter>src\scene\step_07_defender\tool</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\cpgui_research_button_OnMouseOverScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_defender_game_test_TileMapNodeScene.h">
@@ -1804,6 +1801,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_ui_ScrollViewGenerator.h">
       <Filter>src\cpg_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_button_research_MouseRightClickScene.h">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpgui_research_button_OnMouseOverScene.h">
+      <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
