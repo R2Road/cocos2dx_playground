@@ -4,11 +4,13 @@
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCCamera.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
-#include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventListenerMouse.h"
 
 #include "cpg_StringTable.h"
 
@@ -21,7 +23,7 @@ namespace
 	class EXButton : public ui::Widget
 	{
 	private:
-		EXButton() {}
+		EXButton() : mMouseEventListener( nullptr ), mbOnMouseOver( false ) {}
 
 	public:
 		static EXButton* EXButton::create( const Size& size )
@@ -66,6 +68,55 @@ namespace
 
 			return true;
 		}
+
+	public:
+		void onEnter()
+		{
+			ui::Widget::onEnter();
+
+			CCASSERT( !mMouseEventListener );
+			mMouseEventListener = EventListenerMouse::create();
+			mMouseEventListener->onMouseMove = [this]( EventMouse* event ) {
+
+				//
+				// 20210308
+				// This code originated from "Widget::onTouchBegan"
+				//
+
+				const auto camera = Camera::getVisitingCamera();
+				const auto current_hit_result = hitTest( Vec2( event->getCursorX(), event->getCursorY() ), camera, nullptr );
+
+				if( !mbOnMouseOver && current_hit_result )
+				{
+					mbOnMouseOver = current_hit_result;
+
+					event->stopPropagation();
+
+					CCLOG( "on mouse over" );
+				}
+				else if( mbOnMouseOver && !current_hit_result )
+				{
+					mbOnMouseOver = current_hit_result;
+
+					CCLOG( "on mouse leave" );
+				}
+			};
+			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mMouseEventListener, this );
+		}
+		void onExit()
+		{
+			mbOnMouseOver = false;
+
+			CCASSERT( mMouseEventListener, "" );
+			getEventDispatcher()->removeEventListener( mMouseEventListener );
+			mMouseEventListener = nullptr;
+
+			ui::Widget::onExit();
+		}
+
+	private:
+		EventListenerMouse* mMouseEventListener;
+		bool mbOnMouseOver;
 	};
 }
 
