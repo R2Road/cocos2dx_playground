@@ -16,6 +16,32 @@
 
 USING_NS_CC;
 
+namespace
+{
+	class EXButton : public ui::Widget
+	{
+	private:
+		EXButton() {}
+
+	public:
+		static EXButton* EXButton::create()
+		{
+			auto ret = new ( std::nothrow ) EXButton();
+			if( !ret || !ret->init() )
+			{
+				delete ret;
+				ret = nullptr;
+			}
+			else
+			{
+				ret->autorelease();
+			}
+
+			return ret;
+		}
+	};
+}
+
 namespace ui_research
 {
 	namespace button_research
@@ -86,23 +112,23 @@ namespace ui_research
 			// Research
 			//
 			{
-				auto widget = ui::Widget::create();
-				widget->setContentSize( Size( 100.f, 100.f ) );
-				widget->setTouchEnabled( true );
-				widget->setPosition( visibleCenter );
-				addChild( widget );
+				auto ex_button = EXButton::create();
+				ex_button->setContentSize( Size( 100.f, 100.f ) );
+				ex_button->setTouchEnabled( true );
+				ex_button->setPosition( visibleCenter );
+				addChild( ex_button );
 
-				widget->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
+				ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
 
 				// pivot
 				{
-					widget->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
+					ex_button->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
 				}
 
 				// area indicator
 				{
-					widget->addChild( LayerColor::create(
-						Color4B::BLUE, widget->getContentSize().width, widget->getContentSize().height )
+					ex_button->addChild( LayerColor::create(
+						Color4B::BLUE, ex_button->getContentSize().width, ex_button->getContentSize().height )
 						, std::numeric_limits<int>::min()
 					);
 				}
