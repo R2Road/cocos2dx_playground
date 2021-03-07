@@ -24,10 +24,10 @@ namespace
 		EXButton() {}
 
 	public:
-		static EXButton* EXButton::create()
+		static EXButton* EXButton::create( const Size& size )
 		{
 			auto ret = new ( std::nothrow ) EXButton();
-			if( !ret || !ret->init() )
+			if( !ret || !ret->init( size ) )
 			{
 				delete ret;
 				ret = nullptr;
@@ -38,6 +38,33 @@ namespace
 			}
 
 			return ret;
+		}
+
+	private:
+		bool init( const Size& size )
+		{
+			if( !ui::Widget::init() )
+			{
+				return false;
+			}
+
+			setContentSize( size );
+			setTouchEnabled( true );
+
+			// pivot
+			{
+				addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
+			}
+
+			// area indicator
+			{
+				addChild( LayerColor::create(
+					Color4B::BLUE, getContentSize().width, getContentSize().height )
+					, std::numeric_limits<int>::min()
+				);
+			}
+
+			return true;
 		}
 	};
 }
@@ -112,26 +139,11 @@ namespace ui_research
 			// Research
 			//
 			{
-				auto ex_button = EXButton::create();
-				ex_button->setContentSize( Size( 100.f, 100.f ) );
-				ex_button->setTouchEnabled( true );
+				auto ex_button = EXButton::create( Size( 100.f, 100.f ) );
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 
 				ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
-
-				// pivot
-				{
-					ex_button->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
-				}
-
-				// area indicator
-				{
-					ex_button->addChild( LayerColor::create(
-						Color4B::BLUE, ex_button->getContentSize().width, ex_button->getContentSize().height )
-						, std::numeric_limits<int>::min()
-					);
-				}
 			}
 
 			return true;
