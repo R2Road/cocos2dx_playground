@@ -1,6 +1,7 @@
 #pragma once
 
 #include "2d/CCScene.h"
+#include "ui/UIWidget.h"
 
 #include "helper_BackToThePreviousScene.h"
 
@@ -25,6 +26,8 @@ namespace ui_research
 			void onExit() override;
 
 		private:
+			void onTouchWidget( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 		private:

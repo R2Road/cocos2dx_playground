@@ -12,6 +12,8 @@
 
 #include "cpg_StringTable.h"
 
+#include "cpg_node_PivotNode.h"
+
 USING_NS_CC;
 
 namespace ui_research
@@ -48,6 +50,10 @@ namespace ui_research
 
 			const auto visibleSize = _director->getVisibleSize();
 			const auto visibleOrigin = _director->getVisibleOrigin();
+			const Vec2 visibleCenter(
+				visibleOrigin.x + ( visibleSize.width * 0.5f )
+				, visibleOrigin.y + ( visibleSize.height * 0.5f )
+			);
 
 			//
 			// Summury
@@ -80,6 +86,26 @@ namespace ui_research
 			// Research
 			//
 			{
+				auto widget = ui::Widget::create();
+				widget->setContentSize( Size( 100.f, 100.f ) );
+				widget->setTouchEnabled( true );
+				widget->setPosition( visibleCenter );
+				addChild( widget );
+
+				widget->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
+
+				// pivot
+				{
+					widget->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
+				}
+
+				// area indicator
+				{
+					widget->addChild( LayerColor::create(
+						Color4B::BLUE, widget->getContentSize().width, widget->getContentSize().height )
+						, std::numeric_limits<int>::min()
+					);
+				}
 			}
 
 			return true;
@@ -102,6 +128,24 @@ namespace ui_research
 
 			Scene::onExit();
 		}
+
+
+		void EXButtonScene::onTouchWidget( Ref* sender, ui::Widget::TouchEventType touch_event_type )
+		{
+			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+			{
+				CCLOG( "began" );
+			}
+			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+			{
+				CCLOG( "moved" );
+			}
+			else //if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
+			{
+				CCLOG( "ended" );
+			}
+		}
+
 
 		void EXButtonScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
