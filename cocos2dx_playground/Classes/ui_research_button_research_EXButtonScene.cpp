@@ -22,6 +22,16 @@ namespace
 {
 	class EXButton : public ui::Widget
 	{
+	public:
+		enum eButtonEvent
+		{
+			MouseOver,
+			MouseLeave,
+			Push,
+			Move,
+			Release
+		};
+
 	private:
 		EXButton() : mMouseEventListener( nullptr ), mbOnMouseOver( false ) {}
 
@@ -66,6 +76,28 @@ namespace
 				);
 			}
 
+			//
+			{
+				addTouchEventListener( [this]( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type )
+				{
+					if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
+					{
+						onButton( eButtonEvent::Push );
+						CCLOG( "push" );
+					}
+					else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
+					{
+						onButton( eButtonEvent::Move );
+						CCLOG( "move" );
+					}
+					else //if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
+					{
+						onButton( eButtonEvent::Release );
+						CCLOG( "release" );
+					}
+				} );
+			}
+
 			return true;
 		}
 
@@ -93,12 +125,13 @@ namespace
 					event->stopPropagation();
 
 					CCLOG( "on mouse over" );
+					onButton( eButtonEvent::MouseOver );
 				}
 				else if( mbOnMouseOver && !current_hit_result )
 				{
 					mbOnMouseOver = current_hit_result;
 
-					CCLOG( "on mouse leave" );
+					onButton( eButtonEvent::MouseLeave );
 				}
 			};
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mMouseEventListener, this );
@@ -112,6 +145,12 @@ namespace
 			mMouseEventListener = nullptr;
 
 			ui::Widget::onExit();
+		}
+
+	private:
+		void onButton( const eButtonEvent button_event )
+		{
+			CCLOG( "onButton %d", button_event );
 		}
 
 	private:
@@ -194,7 +233,7 @@ namespace ui_research
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 
-				ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
+				//ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
 			}
 
 			return true;
