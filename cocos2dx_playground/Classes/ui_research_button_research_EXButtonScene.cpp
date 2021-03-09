@@ -21,7 +21,7 @@ USING_NS_CC;
 
 namespace
 {
-	class EXButton : public ui::Widget
+	class EXButtonNode : public ui::Widget
 	{
 	public:
 		enum class eButtonEvent
@@ -42,7 +42,7 @@ namespace
 		};
 
 	private:
-		EXButton() :
+		EXButtonNode() :
 			mMouseEventListener( nullptr )
 			, mbOnMouseOver( false )
 
@@ -52,9 +52,9 @@ namespace
 		}
 
 	public:
-		static EXButton* EXButton::create( const Size& size )
+		static EXButtonNode* EXButtonNode::create( const Size& size )
 		{
-			auto ret = new ( std::nothrow ) EXButton();
+			auto ret = new ( std::nothrow ) EXButtonNode();
 			if( !ret || !ret->init( size ) )
 			{
 				delete ret;
@@ -297,13 +297,13 @@ namespace ui_research
 			// Research
 			//
 			{
-				auto ex_button = EXButton::create( Size( 100.f, 100.f ) );
+				auto ex_button = EXButtonNode::create( Size( 100.f, 100.f ) );
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				
-				ex_button->SetView( EXButton::eViewIndex::Normal, Sprite::createWithSpriteFrameName( "guide_01_0.png" ) );
-				ex_button->SetView( EXButton::eViewIndex::MouseOver, Sprite::createWithSpriteFrameName( "guide_01_1.png" ) );
-				ex_button->SetView( EXButton::eViewIndex::Push, Sprite::createWithSpriteFrameName( "guide_01_2.png" ) );
+				ex_button->SetView( EXButtonNode::eViewIndex::Normal, Sprite::createWithSpriteFrameName( "guide_01_0.png" ) );
+				ex_button->SetView( EXButtonNode::eViewIndex::MouseOver, Sprite::createWithSpriteFrameName( "guide_01_1.png" ) );
+				ex_button->SetView( EXButtonNode::eViewIndex::Push, Sprite::createWithSpriteFrameName( "guide_01_2.png" ) );
 
 				//ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
 			}
