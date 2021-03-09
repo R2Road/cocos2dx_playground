@@ -4,121 +4,19 @@
 #include <numeric>
 #include <sstream>
 
-#include "2d/CCCamera.h"
+#include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
-#include "base/CCEventListenerMouse.h"
-
-#include "cpg_StringTable.h"
+#include "ui/UIScale9Sprite.h"
 
 #include "cpg_node_PivotNode.h"
+#include "cpg_ui_EXButtonNode.h"
+#include "cpg_StringTable.h"
 
 USING_NS_CC;
-
-namespace
-{
-	class EXButton : public ui::Widget
-	{
-	private:
-		EXButton() : mMouseEventListener( nullptr ), mbOnMouseOver( false ) {}
-
-	public:
-		static EXButton* EXButton::create( const Size& size )
-		{
-			auto ret = new ( std::nothrow ) EXButton();
-			if( !ret || !ret->init( size ) )
-			{
-				delete ret;
-				ret = nullptr;
-			}
-			else
-			{
-				ret->autorelease();
-			}
-
-			return ret;
-		}
-
-	private:
-		bool init( const Size& size )
-		{
-			if( !ui::Widget::init() )
-			{
-				return false;
-			}
-
-			setContentSize( size );
-			setTouchEnabled( true );
-
-			// pivot
-			{
-				addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
-			}
-
-			// area indicator
-			{
-				addChild( LayerColor::create(
-					Color4B::BLUE, getContentSize().width, getContentSize().height )
-					, std::numeric_limits<int>::min()
-				);
-			}
-
-			return true;
-		}
-
-	public:
-		void onEnter()
-		{
-			ui::Widget::onEnter();
-
-			CCASSERT( !mMouseEventListener );
-			mMouseEventListener = EventListenerMouse::create();
-			mMouseEventListener->onMouseMove = [this]( EventMouse* event ) {
-
-				//
-				// 20210308
-				// This code originated from "Widget::onTouchBegan"
-				//
-
-				const auto camera = Camera::getVisitingCamera();
-				const auto current_hit_result = hitTest( Vec2( event->getCursorX(), event->getCursorY() ), camera, nullptr );
-
-				if( !mbOnMouseOver && current_hit_result )
-				{
-					mbOnMouseOver = current_hit_result;
-
-					event->stopPropagation();
-
-					CCLOG( "on mouse over" );
-				}
-				else if( mbOnMouseOver && !current_hit_result )
-				{
-					mbOnMouseOver = current_hit_result;
-
-					CCLOG( "on mouse leave" );
-				}
-			};
-			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mMouseEventListener, this );
-		}
-		void onExit()
-		{
-			mbOnMouseOver = false;
-
-			CCASSERT( mMouseEventListener, "" );
-			getEventDispatcher()->removeEventListener( mMouseEventListener );
-			mMouseEventListener = nullptr;
-
-			ui::Widget::onExit();
-		}
-
-	private:
-		EventListenerMouse* mMouseEventListener;
-		bool mbOnMouseOver;
-	};
-}
 
 namespace ui_research
 {
@@ -190,11 +88,75 @@ namespace ui_research
 			// Research
 			//
 			{
-				auto ex_button = EXButton::create( Size( 100.f, 100.f ) );
+				const Size button_size( 100.f, 100.f );
+
+				auto ex_button = cpg_ui::EXButtonNode::create( button_size );
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
+				
+				ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
 
-				ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
+				{
+					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_0.png" );
+					sprite->setAnchorPoint( Vec2::ZERO );
+					sprite->setContentSize( button_size );
+
+					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
+				}
+
+				{
+					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_1.png" );
+					sprite->setAnchorPoint( Vec2::ZERO );
+					sprite->setContentSize( button_size );
+					sprite->setVisible( false );
+					{
+						auto label = Label::createWithTTF( "PRESS SPACE BAR", cpg::StringTable::GetFontPath(), 10 );
+						label->setPosition( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f );
+						{
+							auto fadeOutAction = FadeOut::create( 0.8f );
+							auto fadeOutkDelay = DelayTime::create( 0.2f );
+							auto fadeInAction = FadeIn::create( 0.6f );
+							auto fadeInkDelay = DelayTime::create( 0.4f );
+							auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
+							auto blinkrepeat = RepeatForever::create( blinkSequence );
+							label->runAction( blinkrepeat );
+						}
+						sprite->addChild( label );
+					}
+
+					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, sprite );
+				}
+
+				{
+					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+					sprite->setVisible( false );
+					sprite->setAnchorPoint( Vec2::ZERO );
+					sprite->setContentSize( button_size );
+
+					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
+				}
+
+				ex_button->SetCallback( []( const cpg_ui::EXButtonNode::eButtonEvent button_event )
+				{
+					switch( button_event )
+					{
+					case cpg_ui::EXButtonNode::eButtonEvent::MouseOver:
+						CCLOG( "MouseOver" );
+						break;
+					case cpg_ui::EXButtonNode::eButtonEvent::MouseLeave:
+						CCLOG( "MouseLeave" );
+						break;
+					case cpg_ui::EXButtonNode::eButtonEvent::Push:
+						CCLOG( "Push" );
+						break;
+					case cpg_ui::EXButtonNode::eButtonEvent::Move:
+						CCLOG( "Move" );
+						break;
+					case cpg_ui::EXButtonNode::eButtonEvent::Release:
+						CCLOG( "Release" );
+						break;
+					}
+				} );
 			}
 
 			return true;
@@ -216,23 +178,6 @@ namespace ui_research
 			mKeyboardListener = nullptr;
 
 			Scene::onExit();
-		}
-
-
-		void EXButtonScene::onTouchWidget( Ref* sender, ui::Widget::TouchEventType touch_event_type )
-		{
-			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
-			{
-				CCLOG( "began" );
-			}
-			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
-			{
-				CCLOG( "moved" );
-			}
-			else //if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
-			{
-				CCLOG( "ended" );
-			}
 		}
 
 
