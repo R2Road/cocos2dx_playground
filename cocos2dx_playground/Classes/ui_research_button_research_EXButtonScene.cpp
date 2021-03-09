@@ -94,7 +94,7 @@ namespace ui_research
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				
-				ex_button->SetBackground( LayerColor::create( Color4B::MAGENTA, 100u, 100u ) );
+				ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
 
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_0.png" );
