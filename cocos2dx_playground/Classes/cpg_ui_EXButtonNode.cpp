@@ -22,6 +22,8 @@ namespace cpg_ui
 
 		, mViewNodes()
 		, mBackgroundNode( nullptr )
+
+		, mOnButtonCallback( nullptr )
 	{
 		memset( mViewNodes, 0, eViewIndex::SIZE * sizeof( Node* ) );
 	}
@@ -72,17 +74,14 @@ namespace cpg_ui
 				if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
 				{
 					onButton( eButtonEvent::Push );
-					CCLOG( "push" );
 				}
 				else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
 				{
 					onButton( eButtonEvent::Move );
-					CCLOG( "move" );
 				}
 				else //if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
 				{
 					onButton( eButtonEvent::Release );
-					CCLOG( "release" );
 				}
 			} );
 		}
@@ -112,7 +111,6 @@ namespace cpg_ui
 
 				event->stopPropagation();
 
-				CCLOG( "on mouse over" );
 				onButton( eButtonEvent::MouseOver );
 			}
 			else if( mbOnMouseOver && !current_hit_result )
@@ -187,6 +185,11 @@ namespace cpg_ui
 				showView( eViewIndex::Normal );
 			}
 			break;
+		}
+
+		if( mOnButtonCallback )
+		{
+			mOnButtonCallback( button_event );
 		}
 	}
 

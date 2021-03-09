@@ -136,7 +136,27 @@ namespace ui_research
 					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
 				}
 
-				//ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
+				ex_button->SetCallback( []( const cpg_ui::EXButtonNode::eButtonEvent button_event )
+				{
+					switch( button_event )
+					{
+					case cpg_ui::EXButtonNode::eButtonEvent::MouseOver:
+						CCLOG( "MouseOver" );
+						break;
+					case cpg_ui::EXButtonNode::eButtonEvent::MouseLeave:
+						CCLOG( "MouseLeave" );
+						break;
+					case cpg_ui::EXButtonNode::eButtonEvent::Push:
+						CCLOG( "Push" );
+						break;
+					case cpg_ui::EXButtonNode::eButtonEvent::Move:
+						CCLOG( "Move" );
+						break;
+					case cpg_ui::EXButtonNode::eButtonEvent::Release:
+						CCLOG( "Release" );
+						break;
+					}
+				} );
 			}
 
 			return true;
@@ -158,23 +178,6 @@ namespace ui_research
 			mKeyboardListener = nullptr;
 
 			Scene::onExit();
-		}
-
-
-		void EXButtonScene::onTouchWidget( Ref* sender, ui::Widget::TouchEventType touch_event_type )
-		{
-			if( ui::Widget::TouchEventType::BEGAN == touch_event_type )
-			{
-				CCLOG( "began" );
-			}
-			else if( ui::Widget::TouchEventType::MOVED == touch_event_type )
-			{
-				CCLOG( "moved" );
-			}
-			else //if( ui::Widget::TouchEventType::ENDED == touch_event_type || ui::Widget::TouchEventType::CANCELED == touch_event_type )
-			{
-				CCLOG( "ended" );
-			}
 		}
 
 

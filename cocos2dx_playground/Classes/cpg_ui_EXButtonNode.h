@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 #include "ui/UIWidget.h"
 
 NS_CC_BEGIN
@@ -28,6 +30,8 @@ namespace cpg_ui
 			SIZE,
 		};
 
+		using OnButtonCallback = std::function<void( const eButtonEvent )>;
+
 	private:
 		EXButtonNode();
 
@@ -43,6 +47,7 @@ namespace cpg_ui
 
 		void SetView( const eViewIndex view_index, Node* node );
 		void SetBackground( Node* node );
+		void SetCallback( const OnButtonCallback& callback ) { mOnButtonCallback = callback; }
 
 	private:
 		void onButton( const eButtonEvent button_event );
@@ -55,5 +60,7 @@ namespace cpg_ui
 
 		cocos2d::Node* mViewNodes[eViewIndex::SIZE];
 		cocos2d::Node* mBackgroundNode;
+
+		OnButtonCallback mOnButtonCallback;
 	};
 }
