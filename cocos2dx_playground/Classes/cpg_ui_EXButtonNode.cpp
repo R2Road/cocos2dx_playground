@@ -139,7 +139,7 @@ namespace cpg_ui
 	{
 		if( mViewNodes[view_index] )
 		{
-			removeChild( mViewNodes[view_index], view_index );
+			removeChild( mViewNodes[view_index] );
 		}
 
 		mViewNodes[view_index] = node;
