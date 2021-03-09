@@ -88,7 +88,9 @@ namespace ui_research
 			// Research
 			//
 			{
-				auto ex_button = cpg_ui::EXButtonNode::create( Size( 100.f, 100.f ) );
+				const Size button_size( 100.f, 100.f );
+
+				auto ex_button = cpg_ui::EXButtonNode::create( button_size );
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				
@@ -97,7 +99,7 @@ namespace ui_research
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_0.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( Size( 100.f, 100.f ) );
+					sprite->setContentSize( button_size );
 
 					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
 				}
@@ -105,7 +107,7 @@ namespace ui_research
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_1.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( Size( 100.f, 100.f ) );
+					sprite->setContentSize( button_size );
 					sprite->setVisible( false );
 					{
 						auto label = Label::createWithTTF( "PRESS SPACE BAR", cpg::StringTable::GetFontPath(), 10 );
@@ -129,7 +131,7 @@ namespace ui_research
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 					sprite->setVisible( false );
 					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( Size( 100.f, 100.f ) );
+					sprite->setContentSize( button_size );
 
 					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
 				}
