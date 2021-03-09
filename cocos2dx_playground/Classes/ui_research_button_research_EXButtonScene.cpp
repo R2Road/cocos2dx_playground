@@ -7,10 +7,10 @@
 #include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
+#include "ui/UIScale9Sprite.h"
 
 #include "cpg_node_PivotNode.h"
 #include "cpg_ui_EXButtonNode.h"
@@ -94,26 +94,45 @@ namespace ui_research
 				
 				ex_button->SetBackground( LayerColor::create( Color4B::MAGENTA, 100u, 100u ) );
 
-				ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, Sprite::createWithSpriteFrameName( "guide_01_0.png" ) );
-
 				{
-					auto label = Label::createWithTTF( "PRESS SPACE BAR", cpg::StringTable::GetFontPath(), 10 );
-					label->setVisible( false );
-					{
-						auto fadeOutAction = FadeOut::create( 0.8f );
-						auto fadeOutkDelay = DelayTime::create( 0.2f );
-						auto fadeInAction = FadeIn::create( 0.6f );
-						auto fadeInkDelay = DelayTime::create( 0.4f );
-						auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
-						auto blinkrepeat = RepeatForever::create( blinkSequence );
-						label->runAction( blinkrepeat );
-					}
+					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_0.png" );
+					sprite->setAnchorPoint( Vec2::ZERO );
+					sprite->setContentSize( Size( 100.f, 100.f ) );
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, label );
+					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
 				}
 
+				{
+					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_1.png" );
+					sprite->setAnchorPoint( Vec2::ZERO );
+					sprite->setContentSize( Size( 100.f, 100.f ) );
+					sprite->setVisible( false );
+					{
+						auto label = Label::createWithTTF( "PRESS SPACE BAR", cpg::StringTable::GetFontPath(), 10 );
+						label->setPosition( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f );
+						{
+							auto fadeOutAction = FadeOut::create( 0.8f );
+							auto fadeOutkDelay = DelayTime::create( 0.2f );
+							auto fadeInAction = FadeIn::create( 0.6f );
+							auto fadeInkDelay = DelayTime::create( 0.4f );
+							auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
+							auto blinkrepeat = RepeatForever::create( blinkSequence );
+							label->runAction( blinkrepeat );
+						}
+						sprite->addChild( label );
+					}
 
-				ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, Sprite::createWithSpriteFrameName( "guide_01_2.png" ) );
+					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, sprite );
+				}
+
+				{
+					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+					sprite->setVisible( false );
+					sprite->setAnchorPoint( Vec2::ZERO );
+					sprite->setContentSize( Size( 100.f, 100.f ) );
+
+					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
+				}
 
 				//ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
 			}
