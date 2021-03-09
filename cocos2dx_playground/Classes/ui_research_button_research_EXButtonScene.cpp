@@ -91,6 +91,7 @@ namespace ui_research
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				
+				ex_button->SetBackground( LayerColor::create( Color4B::MAGENTA, 100u, 100u ) );
 				ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, Sprite::createWithSpriteFrameName( "guide_01_0.png" ) );
 				ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, Sprite::createWithSpriteFrameName( "guide_01_1.png" ) );
 				ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, Sprite::createWithSpriteFrameName( "guide_01_2.png" ) );

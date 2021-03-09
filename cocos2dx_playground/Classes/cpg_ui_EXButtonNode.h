@@ -42,6 +42,7 @@ namespace cpg_ui
 		void onExit() override;
 
 		void SetView( const eViewIndex view_index, Node* node );
+		void SetBackground( Node* node );
 
 	private:
 		void onButton( const eButtonEvent button_event );
@@ -53,5 +54,6 @@ namespace cpg_ui
 		bool mbOnMouseOver;
 
 		cocos2d::Node* mViewNodes[eViewIndex::SIZE];
+		cocos2d::Node* mBackgroundNode;
 	};
 }

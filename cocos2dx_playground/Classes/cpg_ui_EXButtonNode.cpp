@@ -21,6 +21,7 @@ namespace cpg_ui
 		, mbOnMouseOver( false )
 
 		, mViewNodes()
+		, mBackgroundNode( nullptr )
 	{
 		memset( mViewNodes, 0, eViewIndex::SIZE * sizeof( Node* ) );
 	}
@@ -145,6 +146,19 @@ namespace cpg_ui
 		if( node )
 		{
 			addChild( node, view_index );
+		}
+	}
+	void EXButtonNode::SetBackground( Node* node )
+	{
+		if( mBackgroundNode )
+		{
+			removeChild( mBackgroundNode );
+		}
+
+		mBackgroundNode = node;
+		if( node )
+		{
+			addChild( node, std::numeric_limits<int>::min() );
 		}
 	}
 
