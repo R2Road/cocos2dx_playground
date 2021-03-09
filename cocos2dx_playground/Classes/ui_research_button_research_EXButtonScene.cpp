@@ -7,6 +7,7 @@
 #include "2d/CCCamera.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
@@ -31,9 +32,24 @@ namespace
 			Move,
 			Release
 		};
+		enum eViewIndex
+		{
+			Normal,
+			MouseOver,
+			Push,
+
+			SIZE,
+		};
 
 	private:
-		EXButton() : mMouseEventListener( nullptr ), mbOnMouseOver( false ) {}
+		EXButton() :
+			mMouseEventListener( nullptr )
+			, mbOnMouseOver( false )
+
+			, mViewNodes()
+		{
+			memset( mViewNodes, 0, eViewIndex::SIZE * sizeof( Node* ) );
+		}
 
 	public:
 		static EXButton* EXButton::create( const Size& size )
@@ -147,15 +163,67 @@ namespace
 			ui::Widget::onExit();
 		}
 
+		void SetView( const eViewIndex view_index, Node* node )
+		{
+			if( mViewNodes[view_index] )
+			{
+				removeChild( mViewNodes[view_index], view_index );
+			}
+
+			mViewNodes[view_index] = node;
+			if( node )
+			{
+				addChild( node, view_index );
+			}
+		}
+
 	private:
 		void onButton( const eButtonEvent button_event )
 		{
-			CCLOG( "onButton %d", button_event );
+			switch( button_event )
+			{
+			case eButtonEvent::MouseOver:
+				showView( eViewIndex::MouseOver );
+				break;
+			case eButtonEvent::MouseLeave:
+				showView( eViewIndex::Normal );
+				break;
+			case eButtonEvent::Push:
+				showView( eViewIndex::Push );
+				break;
+			case eButtonEvent::Move:
+				break;
+			case eButtonEvent::Release:
+				if( mbOnMouseOver )
+				{
+					showView( eViewIndex::MouseOver );
+				}
+				else
+				{
+					showView( eViewIndex::Normal );
+				}
+				break;
+			}
+		}
+
+		void showView( const eViewIndex view_index )
+		{
+			for( auto v : mViewNodes )
+			{
+				v->setVisible( false );
+			}
+
+			if( mViewNodes[view_index] )
+			{
+				mViewNodes[view_index]->setVisible( true );
+			}
 		}
 
 	private:
 		EventListenerMouse* mMouseEventListener;
 		bool mbOnMouseOver;
+
+		Node* mViewNodes[eViewIndex::SIZE];
 	};
 }
 
@@ -232,6 +300,10 @@ namespace ui_research
 				auto ex_button = EXButton::create( Size( 100.f, 100.f ) );
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
+				
+				ex_button->SetView( EXButton::eViewIndex::Normal, Sprite::createWithSpriteFrameName( "guide_01_0.png" ) );
+				ex_button->SetView( EXButton::eViewIndex::MouseOver, Sprite::createWithSpriteFrameName( "guide_01_1.png" ) );
+				ex_button->SetView( EXButton::eViewIndex::Push, Sprite::createWithSpriteFrameName( "guide_01_2.png" ) );
 
 				//ex_button->addTouchEventListener( CC_CALLBACK_2( EXButtonScene::onTouchWidget, this ) );
 			}
