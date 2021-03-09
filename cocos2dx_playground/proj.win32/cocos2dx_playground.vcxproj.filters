@@ -999,6 +999,9 @@
     <ClCompile Include="..\Classes\ui_research_button_research_EXButtonScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_ui_EXButtonNode.cpp">
+      <Filter>src\cpg_ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1813,6 +1816,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_button_research_EXButtonScene.h">
       <Filter>src\scene\ui_research\button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_ui_EXButtonNode.h">
+      <Filter>src\cpg_ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
