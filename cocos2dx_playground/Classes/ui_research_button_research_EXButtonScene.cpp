@@ -23,7 +23,7 @@ namespace
 	class EXButton : public ui::Widget
 	{
 	public:
-		enum eButtonEvent
+		enum class eButtonEvent
 		{
 			MouseOver,
 			MouseLeave,
