@@ -5,6 +5,7 @@
 #include <sstream>
 
 #include "2d/CCActionInterval.h"
+#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
@@ -82,6 +83,30 @@ namespace ui_research
 			{
 				auto background_layer = LayerColor::create( Color4B( 50, 75, 112, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
+			// Research x 1
+			//
+			{
+				Vec2 points[3] = { Vec2::ZERO, Vec2( 0.f, 60.f ), Vec2( 30.f, 60.f ) };
+
+				auto draw_node = DrawNode::create();
+				draw_node->drawPolygon( points, 3, Color4F::GREEN, 0.f, Color4F::GREEN );
+				draw_node->setPosition( visibleSize.width * 0.2f, visibleCenter.y );
+				addChild( draw_node );
+
+				// Pivot
+				{
+					auto pivot_node = cpg_node::PivotNode::create();
+					draw_node->addChild( pivot_node, std::numeric_limits<int>::max() );
+				}
+
+				{
+					auto rotate_action = RotateBy::create( 1.f, -360.f );
+					auto repeat_action = RepeatForever::create( rotate_action );
+					draw_node->runAction( repeat_action );
+				}
 			}
 
 			//
