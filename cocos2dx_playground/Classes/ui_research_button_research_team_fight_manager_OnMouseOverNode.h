@@ -14,10 +14,10 @@ namespace ui_research
 				OnMouseOverNode();
 
 			public:
-				static OnMouseOverNode* create();
+				static OnMouseOverNode* create( const cocos2d::Size& size );
 
 			private:
-				bool init() override;
+				bool init( const cocos2d::Size& size );
 
 				void update4Rotation( float dt );
 

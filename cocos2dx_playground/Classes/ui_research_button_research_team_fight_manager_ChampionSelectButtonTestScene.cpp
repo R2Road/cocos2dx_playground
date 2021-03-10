@@ -144,7 +144,7 @@ namespace ui_research
 
 					// Mouse Over
 					{
-						auto on_mouse_over_node = team_fight_manager::OnMouseOverNode::create();
+						auto on_mouse_over_node = team_fight_manager::OnMouseOverNode::create( button_size );
 						on_mouse_over_node->setVisible( false );
 
 						ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, on_mouse_over_node );

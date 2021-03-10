@@ -20,10 +20,10 @@ namespace ui_research
 			OnMouseOverNode::OnMouseOverNode() : mRotateNode( nullptr ), mElapsedTime( 0.f )
 			{}
 
-			OnMouseOverNode* OnMouseOverNode::create()
+			OnMouseOverNode* OnMouseOverNode::create( const cocos2d::Size& size )
 			{
 				auto ret = new ( std::nothrow ) OnMouseOverNode();
-				if( !ret || !ret->init() )
+				if( !ret || !ret->init( size ) )
 				{
 					delete ret;
 					ret = nullptr;
@@ -36,12 +36,12 @@ namespace ui_research
 				return ret;
 			}
 
-			bool OnMouseOverNode::init()
+			bool OnMouseOverNode::init( const cocos2d::Size& size )
 			{
 				//
 				// 
 				//
-				setContentSize( Size( 100.f, 100.f ) );
+				setContentSize( size );
 				setBackGroundColorType( ui::Layout::BackGroundColorType::SOLID );
 				setBackGroundColor( Color3B::GRAY );
 				setClippingEnabled( true );
@@ -58,7 +58,7 @@ namespace ui_research
 				// Polygon
 				//
 				{
-					const float required_height = std::sqrt( pow( 50.f, 2 ) + pow( 50.f, 2 ) );
+					const float required_height = std::sqrt( pow( size.width * 0.5f, 2 ) + pow( size.height * 0.5f, 2 ) );
 
 					Vec2 points[3] = { Vec2::ZERO, Vec2( -required_height, required_height ), Vec2( 0.f, required_height ) };
 
@@ -74,7 +74,7 @@ namespace ui_research
 				// Layer
 				//
 				{
-					auto layer = LayerColor::create( Color4B::BLACK, 98, 98 );
+					auto layer = LayerColor::create( Color4B::BLACK, size.width - 2.f, size.height - 2.f );
 					layer->setVisible( true );
 					layer->setPosition( 1.f, 1.f );
 					addChild( layer, 1 );
