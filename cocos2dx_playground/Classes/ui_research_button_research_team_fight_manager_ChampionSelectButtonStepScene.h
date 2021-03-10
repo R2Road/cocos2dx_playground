@@ -17,7 +17,7 @@ namespace ui_research
 				ChampionSelectButtonStepScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			public:
-				static const char* getTitle() { return "TFM Champion Select Button : Step"; }
+				static const char* getTitle() { return "TFM : Champion Select Button : Step"; }
 				static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 			private:
