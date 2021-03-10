@@ -8,19 +8,50 @@
 #include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCSprite.h"
+#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "ui/UILayout.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_animation_InfoContainer.h"
 #include "cpg_node_PivotNode.h"
 #include "cpg_ui_EXButtonNode.h"
 #include "cpg_StringTable.h"
 
+#include "step_mole_AnimationComponent.h"
+
 #include "ui_research_button_research_team_fight_manager_OnMouseOverNode.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const cpg::animation::InfoContainerT& GetCharacterAnimationInfoContainer()
+	{
+		static const cpg::animation::InfoContainerT animation_info_container = {
+			{
+				cpg::animation::eIndex::sleep
+				, 0.1f
+				, std::vector<std::string>{ "dummy_actor_001_slp_1_0.png" }
+			}
+			,{
+				cpg::animation::eIndex::idle
+				, 0.075f
+				, std::vector<std::string>{ "dummy_actor_001_idl_1_0.png", "dummy_actor_001_idl_1_1.png", "dummy_actor_001_idl_1_2.png", "dummy_actor_001_idl_1_3.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png" }
+			}
+			,{
+				cpg::animation::eIndex::run
+				, 0.075f
+				, std::vector<std::string>{ "dummy_actor_001_mov_1_0.png", "dummy_actor_001_mov_1_1.png", "dummy_actor_001_mov_1_2.png", "dummy_actor_001_mov_1_3.png" }
+			}
+		};
+
+		return animation_info_container;
+	}
+}
 
 namespace ui_research
 {
@@ -102,6 +133,7 @@ namespace ui_research
 
 					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
 
+					// Normal
 					{
 						auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_0.png" );
 						sprite->setAnchorPoint( Vec2::ZERO );
@@ -110,6 +142,7 @@ namespace ui_research
 						ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
 					}
 
+					// Mouse Over
 					{
 						auto on_mouse_over_node = team_fight_manager::OnMouseOverNode::create();
 						on_mouse_over_node->setVisible( false );
@@ -117,6 +150,7 @@ namespace ui_research
 						ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, on_mouse_over_node );
 					}
 
+					// Push
 					{
 						auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 						sprite->setVisible( false );
@@ -126,18 +160,35 @@ namespace ui_research
 						ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
 					}
 
-					ex_button->SetCallback( []( const cpg_ui::EXButtonNode::eButtonEvent button_event )
+					// Character
+					step_mole::AnimationComponent* animation_component = nullptr;
+					{
+						auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+						sprite->setScale( 6.f );
+						sprite->setPosition( ex_button->getContentSize().width * 0.5f, ex_button->getContentSize().height * 0.5f );
+						ex_button->addChild( sprite, 1 );
+
+						// Animation Component
+						animation_component = step_mole::AnimationComponent::create( GetCharacterAnimationInfoContainer() );
+						sprite->addComponent( animation_component );
+						animation_component->PlayAnimation( cpg::animation::eIndex::sleep );
+					}
+
+					ex_button->SetCallback( [animation_component]( const cpg_ui::EXButtonNode::eButtonEvent button_event )
 					{
 						switch( button_event )
 						{
 						case cpg_ui::EXButtonNode::eButtonEvent::MouseOver:
 							CCLOG( "MouseOver" );
+							animation_component->PlayAnimation( cpg::animation::eIndex::idle );
 							break;
 						case cpg_ui::EXButtonNode::eButtonEvent::MouseLeave:
 							CCLOG( "MouseLeave" );
+							animation_component->PlayAnimation( cpg::animation::eIndex::sleep );
 							break;
 						case cpg_ui::EXButtonNode::eButtonEvent::Push:
 							CCLOG( "Push" );
+							animation_component->PlayAnimation( cpg::animation::eIndex::run );
 							break;
 						case cpg_ui::EXButtonNode::eButtonEvent::Move:
 							CCLOG( "Move" );
