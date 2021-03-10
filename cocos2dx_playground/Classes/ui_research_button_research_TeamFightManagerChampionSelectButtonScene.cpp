@@ -136,7 +136,7 @@ namespace ui_research
 				{
 					const float required_height = std::sqrt( pow( 50.f, 2 ) + pow( 50.f, 2) );
 
-					Vec2 points[3] = { Vec2::ZERO, Vec2( 0.f, required_height ), Vec2( required_height, required_height ) };
+					Vec2 points[3] = { Vec2::ZERO, Vec2( -required_height, required_height ), Vec2( 0.f, required_height ) };
 
 					auto draw_node = DrawNode::create();
 					draw_node->drawPolygon( points, 3, Color4F::WHITE, 0.f, Color4F::WHITE );
