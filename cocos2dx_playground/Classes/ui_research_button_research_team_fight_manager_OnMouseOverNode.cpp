@@ -2,21 +2,12 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCActionInterval.h"
 #include "2d/CCDrawNode.h"
-#include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "base/CCDirector.h"
-#include "base/CCEventDispatcher.h"
-#include "base/CCEventListenerKeyboard.h"
-#include "ui/UILayout.h"
-#include "ui/UIScale9Sprite.h"
 
 #include "cpg_node_PivotNode.h"
-#include "cpg_ui_EXButtonNode.h"
-#include "cpg_StringTable.h"
 
 USING_NS_CC;
 
