@@ -1011,6 +1011,9 @@
     <ClCompile Include="..\Classes\ui_research_button_research_TeamFightManagerChampionSelectButtonStepScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_OnMouseOverNode.cpp">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1836,6 +1839,9 @@
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_button_research_TeamFightManagerChampionSelectButtonStepScene.h">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_OnMouseOverNode.h">
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
   </ItemGroup>

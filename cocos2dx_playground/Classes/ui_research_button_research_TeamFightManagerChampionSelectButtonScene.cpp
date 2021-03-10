@@ -18,6 +18,8 @@
 #include "cpg_ui_EXButtonNode.h"
 #include "cpg_StringTable.h"
 
+#include "ui_research_button_research_team_fight_manager_OnMouseOverNode.h"
+
 USING_NS_CC;
 
 namespace ui_research
@@ -87,7 +89,7 @@ namespace ui_research
 			}
 
 			//
-			// Research x 3
+			// Research
 			//
 			{
 				const Size button_size( 100.f, 100.f );
@@ -107,26 +109,10 @@ namespace ui_research
 				}
 
 				{
-					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_1.png" );
-					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( button_size );
-					sprite->setVisible( false );
-					{
-						auto label = Label::createWithTTF( "EX Button", cpg::StringTable::GetFontPath(), 10 );
-						label->setPosition( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f );
-						{
-							auto fadeOutAction = FadeOut::create( 0.8f );
-							auto fadeOutkDelay = DelayTime::create( 0.2f );
-							auto fadeInAction = FadeIn::create( 0.6f );
-							auto fadeInkDelay = DelayTime::create( 0.4f );
-							auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
-							auto blinkrepeat = RepeatForever::create( blinkSequence );
-							label->runAction( blinkrepeat );
-						}
-						sprite->addChild( label );
-					}
+					auto on_mouse_over_node = team_fight_manager::OnMouseOverNode::create();
+					on_mouse_over_node->setVisible( false );
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, sprite );
+					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, on_mouse_over_node );
 				}
 
 				{
