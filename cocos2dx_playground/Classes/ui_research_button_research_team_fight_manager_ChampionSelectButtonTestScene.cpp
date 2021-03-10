@@ -1,4 +1,4 @@
-#include "ui_research_button_research_TeamFightManagerChampionSelectButtonScene.h"
+#include "ui_research_button_research_team_fight_manager_ChampionSelectButtonTestScene.h"
 
 #include <new>
 #include <numeric>

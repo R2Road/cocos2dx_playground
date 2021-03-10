@@ -1002,9 +1002,6 @@
     <ClCompile Include="..\Classes\cpg_ui_EXButtonNode.cpp">
       <Filter>src\cpg_ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_button_research_TeamFightManagerChampionSelectButtonScene.cpp">
-      <Filter>src\scene\ui_research\button</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ui_research_button_research_RootScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
@@ -1012,6 +1009,9 @@
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonStepScene.cpp">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonTestScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1832,9 +1832,6 @@
     <ClInclude Include="..\Classes\cpg_ui_EXButtonNode.h">
       <Filter>src\cpg_ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_button_research_TeamFightManagerChampionSelectButtonScene.h">
-      <Filter>src\scene\ui_research\button</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ui_research_button_research_RootScene.h">
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
@@ -1842,6 +1839,9 @@
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonStepScene.h">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonTestScene.h">
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
   </ItemGroup>
