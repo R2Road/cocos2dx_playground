@@ -18,6 +18,7 @@
 #include "ui_research_button_research_MouseRightClickScene.h"
 #include "ui_research_button_research_EXButtonScene.h"
 #include "ui_research_button_research_TeamFightManagerChampionSelectButtonScene.h"
+#include "ui_research_button_research_TeamFightManagerChampionSelectButtonStepScene.h"
 #include "ui_research_RootScene.h"
 
 USING_NS_CC;
@@ -80,7 +81,9 @@ namespace ui_research
 				ss << "=============================";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Q] : " << ui_research::button_research::TeamFightManagerChampionSelectButtonScene::getTitle();
+				ss << "[Q] : " << ui_research::button_research::TeamFightManagerChampionSelectButtonStepScene::getTitle();
+				ss << std::endl;
+				ss << "[W] : " << ui_research::button_research::TeamFightManagerChampionSelectButtonScene::getTitle();
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
 				label->setPosition( visibleCenter );
@@ -128,6 +131,9 @@ namespace ui_research
 				return;
 
 			case EventKeyboard::KeyCode::KEY_Q:
+				_director->replaceScene( button_research::TeamFightManagerChampionSelectButtonStepScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
+				return;
+			case EventKeyboard::KeyCode::KEY_W:
 				_director->replaceScene( button_research::TeamFightManagerChampionSelectButtonScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
 				return;
 			}
