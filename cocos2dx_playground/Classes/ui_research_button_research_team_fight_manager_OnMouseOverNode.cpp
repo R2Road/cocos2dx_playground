@@ -26,8 +26,13 @@ namespace ui_research
 	{
 		namespace team_fight_manager
 		{
-			OnMouseOverNode::OnMouseOverNode()
+			OnMouseOverNode::OnMouseOverNode() : mRotateNode( nullptr ), mRotateAction( nullptr )
 			{}
+
+			OnMouseOverNode::~OnMouseOverNode()
+			{
+				CC_SAFE_RELEASE_NULL( mRotateAction );
+			}
 
 			OnMouseOverNode* OnMouseOverNode::create()
 			{
@@ -76,12 +81,13 @@ namespace ui_research
 					draw_node->setPosition( Vec2( getContentSize().width * 0.5f, getContentSize().height * 0.5f ) );
 					addChild( draw_node, 0 );
 
+					mRotateNode = draw_node;
+
 					// Action
 					{
 						auto rotate_action = RotateBy::create( 3.f, -360.f );
-						auto repeat_action = RepeatForever::create( rotate_action );
-						draw_node->runAction( repeat_action );
-
+						mRotateAction = RepeatForever::create( rotate_action );
+						mRotateAction->retain();
 					}
 				}
 
@@ -96,6 +102,20 @@ namespace ui_research
 				}
 
 				return true;
+			}
+
+			void OnMouseOverNode::setVisible( bool visible )
+			{
+				ui::Layout::setVisible( visible );
+
+				if( !visible )
+				{
+					mRotateNode->stopAllActions();
+				}
+				else
+				{
+					mRotateNode->runAction( mRotateAction );
+				}
 			}
 		}
 	}
