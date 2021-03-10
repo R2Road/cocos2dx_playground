@@ -11,6 +11,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
+#include "ui/UILayout.h"
 #include "ui/UIScale9Sprite.h"
 
 #include "cpg_node_PivotNode.h"
@@ -110,13 +111,62 @@ namespace ui_research
 			}
 
 			//
-			// Research
+			// Research x 2
+			//
+			{
+				auto layout = ui::Layout::create();
+				layout->setContentSize( Size( 100.f, 100.f ) );
+				layout->setBackGroundColorType( ui::Layout::BackGroundColorType::SOLID );
+				layout->setBackGroundColor( Color3B::GRAY );
+				layout->setClippingEnabled( true );
+				layout->setPosition(
+					visibleOrigin
+					+ visibleCenter
+					- Vec2( layout->getContentSize().width * 0.5f, layout->getContentSize().height * 0.5f )
+				);
+				addChild( layout );
+
+				// Pivot
+				{
+					auto pivot_node = cpg_node::PivotNode::create();
+					layout->addChild( pivot_node, std::numeric_limits<int>::max() );
+				}
+
+				// Polygon
+				{
+					const float required_height = std::sqrt( pow( 50.f, 2 ) + pow( 50.f, 2) );
+
+					Vec2 points[3] = { Vec2::ZERO, Vec2( 0.f, required_height ), Vec2( required_height, required_height ) };
+
+					auto draw_node = DrawNode::create();
+					draw_node->drawPolygon( points, 3, Color4F::WHITE, 0.f, Color4F::WHITE );
+					draw_node->setPosition( Vec2( layout->getContentSize().width * 0.5f, layout->getContentSize().height * 0.5f ) );
+					layout->addChild( draw_node, 0 );
+
+					{
+						auto rotate_action = RotateBy::create( 3.f, -360.f );
+						auto repeat_action = RepeatForever::create( rotate_action );
+						draw_node->runAction( repeat_action );
+					}
+				}
+
+				// Layer
+				{
+					auto layer = LayerColor::create( Color4B::BLACK, 98, 98 );
+					layer->setVisible( true );
+					layer->setPosition( 1.f, 1.f );
+					layout->addChild( layer, 1 );
+				}
+			}
+
+			//
+			// Research x 3
 			//
 			{
 				const Size button_size( 100.f, 100.f );
 
 				auto ex_button = cpg_ui::EXButtonNode::create( button_size );
-				ex_button->setPosition( visibleCenter );
+				ex_button->setPosition( Vec2( visibleSize.width * 0.75f, visibleCenter.y ) );
 				addChild( ex_button );
 				
 				ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
