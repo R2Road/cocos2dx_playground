@@ -402,6 +402,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\ui_research_button_research_EXButtonScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_button_research_MouseRightClickScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_button_research_OnMouseOverScene.cpp" />
+    <ClCompile Include="..\Classes\ui_research_button_research_RootScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_button_research_TeamFightManagerChampionSelectButtonScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_RootScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_text_field_BMFontScene.cpp" />
@@ -677,6 +678,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\ui_research_button_research_EXButtonScene.h" />
     <ClInclude Include="..\Classes\ui_research_button_research_MouseRightClickScene.h" />
     <ClInclude Include="..\Classes\ui_research_button_research_OnMouseOverScene.h" />
+    <ClInclude Include="..\Classes\ui_research_button_research_RootScene.h" />
     <ClInclude Include="..\Classes\ui_research_button_research_TeamFightManagerChampionSelectButtonScene.h" />
     <ClInclude Include="..\Classes\ui_research_RootScene.h" />
     <ClInclude Include="..\Classes\ui_research_text_field_BMFontScene.h" />

@@ -147,6 +147,7 @@ namespace ui_research
 						auto rotate_action = RotateBy::create( 3.f, -360.f );
 						auto repeat_action = RepeatForever::create( rotate_action );
 						draw_node->runAction( repeat_action );
+
 					}
 				}
 
