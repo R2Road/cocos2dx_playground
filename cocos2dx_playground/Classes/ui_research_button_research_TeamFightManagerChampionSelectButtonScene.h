@@ -15,7 +15,7 @@ namespace ui_research
 			TeamFightManagerChampionSelectButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Button Research : TFM Champion Select Button"; }
+			static const char* getTitle() { return "TFM Champion Select Button"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		private:

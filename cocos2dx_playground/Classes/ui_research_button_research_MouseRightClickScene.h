@@ -19,7 +19,7 @@ namespace ui_research
 			MouseRightClickScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Button Research : Mouse Right Click"; }
+			static const char* getTitle() { return "Mouse Right Click"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		private:

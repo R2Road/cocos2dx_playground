@@ -14,7 +14,7 @@ namespace ui_research
 			EXButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		public:
-			static const char* getTitle() { return "Button Research : EX Button"; }
+			static const char* getTitle() { return "EX Button"; }
 			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 		private:
