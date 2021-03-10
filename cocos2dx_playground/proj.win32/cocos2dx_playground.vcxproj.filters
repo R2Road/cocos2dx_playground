@@ -1008,10 +1008,10 @@
     <ClCompile Include="..\Classes\ui_research_button_research_RootScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_button_research_TeamFightManagerChampionSelectButtonStepScene.cpp">
+    <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_OnMouseOverNode.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_OnMouseOverNode.cpp">
+    <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonStepScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1838,10 +1838,10 @@
     <ClInclude Include="..\Classes\ui_research_button_research_RootScene.h">
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_button_research_TeamFightManagerChampionSelectButtonStepScene.h">
+    <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_OnMouseOverNode.h">
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_OnMouseOverNode.h">
+    <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonStepScene.h">
       <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
   </ItemGroup>

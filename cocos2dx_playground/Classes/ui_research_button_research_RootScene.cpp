@@ -18,7 +18,7 @@
 #include "ui_research_button_research_MouseRightClickScene.h"
 #include "ui_research_button_research_EXButtonScene.h"
 #include "ui_research_button_research_TeamFightManagerChampionSelectButtonScene.h"
-#include "ui_research_button_research_TeamFightManagerChampionSelectButtonStepScene.h"
+#include "ui_research_button_research_team_fight_manager_ChampionSelectButtonStepScene.h"
 #include "ui_research_RootScene.h"
 
 USING_NS_CC;
