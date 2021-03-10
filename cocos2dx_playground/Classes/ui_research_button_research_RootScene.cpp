@@ -83,7 +83,7 @@ namespace ui_research
 				ss << std::endl;
 				ss << "[Q] : " << ui_research::button_research::team_fight_manager::ChampionSelectButtonStepScene::getTitle();
 				ss << std::endl;
-				ss << "[W] : " << ui_research::button_research::TeamFightManagerChampionSelectButtonScene::getTitle();
+				ss << "[W] : " << ui_research::button_research::team_fight_manager::ChampionSelectButtonTestScene::getTitle();
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
 				label->setPosition( visibleCenter );
@@ -134,7 +134,7 @@ namespace ui_research
 				_director->replaceScene( button_research::team_fight_manager::ChampionSelectButtonStepScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
 				return;
 			case EventKeyboard::KeyCode::KEY_W:
-				_director->replaceScene( button_research::TeamFightManagerChampionSelectButtonScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
+				_director->replaceScene( button_research::team_fight_manager::ChampionSelectButtonTestScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
 				return;
 			}
 		}
