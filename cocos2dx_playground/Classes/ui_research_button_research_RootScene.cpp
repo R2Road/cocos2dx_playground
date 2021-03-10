@@ -81,7 +81,7 @@ namespace ui_research
 				ss << "=============================";
 				ss << std::endl;
 				ss << std::endl;
-				ss << "[Q] : " << ui_research::button_research::TeamFightManagerChampionSelectButtonStepScene::getTitle();
+				ss << "[Q] : " << ui_research::button_research::team_fight_manager::ChampionSelectButtonStepScene::getTitle();
 				ss << std::endl;
 				ss << "[W] : " << ui_research::button_research::TeamFightManagerChampionSelectButtonScene::getTitle();
 
@@ -131,7 +131,7 @@ namespace ui_research
 				return;
 
 			case EventKeyboard::KeyCode::KEY_Q:
-				_director->replaceScene( button_research::TeamFightManagerChampionSelectButtonStepScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
+				_director->replaceScene( button_research::team_fight_manager::ChampionSelectButtonStepScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
 				return;
 			case EventKeyboard::KeyCode::KEY_W:
 				_director->replaceScene( button_research::TeamFightManagerChampionSelectButtonScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
