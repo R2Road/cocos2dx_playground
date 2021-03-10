@@ -3,9 +3,9 @@
 #include <new>
 #include <numeric>
 
-#include "2d/CCActionInterval.h"
 #include "2d/CCDrawNode.h"
 #include "2d/CCLayer.h"
+#include "2d/CCTweenFunction.h"
 
 #include "cpg_node_PivotNode.h"
 
@@ -17,13 +17,8 @@ namespace ui_research
 	{
 		namespace team_fight_manager
 		{
-			OnMouseOverNode::OnMouseOverNode() : mRotateNode( nullptr ), mRotateAction( nullptr )
+			OnMouseOverNode::OnMouseOverNode() : mRotateNode( nullptr ), mElapsedTime( 0.f )
 			{}
-
-			OnMouseOverNode::~OnMouseOverNode()
-			{
-				CC_SAFE_RELEASE_NULL( mRotateAction );
-			}
 
 			OnMouseOverNode* OnMouseOverNode::create()
 			{
@@ -73,13 +68,6 @@ namespace ui_research
 					addChild( draw_node, 0 );
 
 					mRotateNode = draw_node;
-
-					// Action
-					{
-						auto rotate_action = RotateBy::create( 3.f, -360.f );
-						mRotateAction = RepeatForever::create( rotate_action );
-						mRotateAction->retain();
-					}
 				}
 
 				//
@@ -95,17 +83,31 @@ namespace ui_research
 				return true;
 			}
 
+			void OnMouseOverNode::update4Rotation( float dt )
+			{
+				mElapsedTime += dt;
+				if( 1.f < mElapsedTime )
+				{
+					mElapsedTime = mElapsedTime - static_cast<int>( mElapsedTime );
+				}
+
+				tweenfunc::quadraticIn( mElapsedTime );
+
+				mRotateNode->setRotation( -360.f * tweenfunc::quadraticInOut( mElapsedTime ) );
+			}
+
 			void OnMouseOverNode::setVisible( bool visible )
 			{
 				ui::Layout::setVisible( visible );
 
 				if( !visible )
 				{
-					mRotateNode->stopAllActions();
+					unschedule( schedule_selector( OnMouseOverNode::update4Rotation ) );
 				}
 				else
 				{
-					mRotateNode->runAction( mRotateAction );
+					mElapsedTime = 0.f;
+					schedule( schedule_selector( OnMouseOverNode::update4Rotation ) );
 				}
 			}
 		}

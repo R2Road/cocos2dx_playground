@@ -14,19 +14,19 @@ namespace ui_research
 				OnMouseOverNode();
 
 			public:
-				~OnMouseOverNode();
-
 				static OnMouseOverNode* create();
 
 			private:
 				bool init() override;
+
+				void update4Rotation( float dt );
 
 			public:
 				void setVisible( bool visible ) override;
 
 			private:
 				cocos2d::Node* mRotateNode;
-				cocos2d::Action* mRotateAction;
+				float mElapsedTime;
 			};
 		}
 	}
