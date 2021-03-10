@@ -135,32 +135,32 @@ namespace ui_research
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			_director->replaceScene( PlayGroundScene::create() );
-			break;
+			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( ui_research::button_research::RootScene::create() );
-			break;
+			return;
 
 		case EventKeyboard::KeyCode::KEY_Q:
 			_director->replaceScene( ui_research::type_effect::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
+			return;
 		case EventKeyboard::KeyCode::KEY_W:
 			_director->replaceScene( ui_research::type_effect::MultiByteScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
+			return;
 		case EventKeyboard::KeyCode::KEY_E:
 			_director->replaceScene( ui_research::type_effect::ColorScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
+			return;
 		case EventKeyboard::KeyCode::KEY_R:
 			_director->replaceScene( ui_research::type_effect::ShakeScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
+			return;
 
 		case EventKeyboard::KeyCode::KEY_T:
 			_director->replaceScene( ui_research::text_field::BMFontScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
+			return;
 
 		case EventKeyboard::KeyCode::KEY_A:
 			_director->replaceScene( cpgui::research_layout::ToolBarNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
-			break;
+			return;
 
 		default:
 			CCLOG( "Key Code : %d", keycode );
