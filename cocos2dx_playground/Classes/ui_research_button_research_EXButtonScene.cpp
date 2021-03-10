@@ -12,7 +12,6 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "cpg_node_PivotNode.h"
 #include "cpg_ui_EXButtonNode.h"
 #include "cpg_StringTable.h"
 
