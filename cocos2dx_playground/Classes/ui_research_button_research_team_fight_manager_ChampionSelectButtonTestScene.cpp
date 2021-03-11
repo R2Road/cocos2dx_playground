@@ -128,7 +128,10 @@ namespace ui_research
 					ex_button->setPosition( visibleCenter );
 					addChild( ex_button );
 
-					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, button_size.width, button_size.height ) );
+					// Background
+					{
+						ex_button->SetBackground( LayerColor::create( Color4B::BLACK, button_size.width, button_size.height ) );
+					}
 
 					// Normal
 					{
