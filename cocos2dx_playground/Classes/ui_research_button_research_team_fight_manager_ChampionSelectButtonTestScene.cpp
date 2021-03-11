@@ -4,12 +4,9 @@
 #include <numeric>
 #include <sstream>
 
-#include "2d/CCActionInterval.h"
-#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
-#include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
@@ -18,7 +15,6 @@
 #include "ui/UIScale9Sprite.h"
 
 #include "cpg_animation_InfoContainer.h"
-#include "cpg_node_PivotNode.h"
 #include "cpg_ui_EXButtonNode.h"
 #include "cpg_StringTable.h"
 
@@ -154,7 +150,7 @@ namespace ui_research
 					// Character
 					step_mole::AnimationComponent* animation_component = nullptr;
 					{
-						auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+						auto sprite = Sprite::createWithSpriteFrameName( "dummy_actor_001_slp_1_0.png" );
 						sprite->setScale( 6.f );
 						sprite->setPosition( ex_button->getContentSize().width * 0.5f, ex_button->getContentSize().height * 0.6f );
 						ex_button->addChild( sprite, 1 );
