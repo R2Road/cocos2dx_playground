@@ -125,13 +125,13 @@ namespace ui_research
 				// Research
 				//
 				{
-					const Size button_size( 100.f, 100.f );
+					const Size button_size( 60.f, 80.f );
 
 					auto ex_button = cpg_ui::EXButtonNode::create( button_size );
 					ex_button->setPosition( visibleCenter );
 					addChild( ex_button );
 
-					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
+					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, button_size.width, button_size.height ) );
 
 					// Normal
 					{
