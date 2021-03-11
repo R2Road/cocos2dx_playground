@@ -120,8 +120,10 @@ namespace ui_research
 				// Research x 2
 				//
 				{
+					const Size layout_size( 80.f, 80.f );
+
 					auto layout = ui::Layout::create();
-					layout->setContentSize( Size( 100.f, 100.f ) );
+					layout->setContentSize( layout_size );
 					layout->setBackGroundColorType( ui::Layout::BackGroundColorType::SOLID );
 					layout->setBackGroundColor( Color3B::GRAY );
 					layout->setClippingEnabled( false );
@@ -132,9 +134,15 @@ namespace ui_research
 					);
 					addChild( layout );
 
+					// Pivot
+					{
+						auto pivot_node = cpg_node::PivotNode::create();
+						layout->addChild( pivot_node, std::numeric_limits<int>::max() );
+					}
+
 					// Polygon
 					{
-						const float required_height = std::sqrt( pow( 50.f, 2 ) + pow( 50.f, 2 ) );
+						const float required_height = std::sqrt( pow( layout_size.width * 0.5f, 2 ) + pow( layout_size.height * 0.5f, 2 ) );
 
 						Vec2 points[3] = { Vec2::ZERO, Vec2( -required_height, required_height ), Vec2( 0.f, required_height ) };
 
@@ -147,7 +155,6 @@ namespace ui_research
 							auto rotate_action = RotateBy::create( 3.f, -360.f );
 							auto repeat_action = RepeatForever::create( rotate_action );
 							draw_node->runAction( repeat_action );
-
 						}
 					}
 				}
@@ -156,10 +163,12 @@ namespace ui_research
 				// Research x 3
 				//
 				{
+					const Size layout_size( 100.f, 100.f );
+
 					auto layout = ui::Layout::create();
-					layout->setContentSize( Size( 100.f, 100.f ) );
+					layout->setContentSize( layout_size );
 					layout->setBackGroundColorType( ui::Layout::BackGroundColorType::SOLID );
-					layout->setBackGroundColor( Color3B::GRAY );
+					layout->setBackGroundColor( Color3B::RED );
 					layout->setClippingEnabled( true );
 					layout->setPosition(
 						visibleOrigin
@@ -176,7 +185,7 @@ namespace ui_research
 
 					// Polygon
 					{
-						const float required_height = std::sqrt( pow( 50.f, 2 ) + pow( 50.f, 2 ) );
+						const float required_height = std::sqrt( pow( layout_size.width * 0.5f, 2 ) + pow( layout_size.height * 0.5f, 2 ) );
 
 						Vec2 points[3] = { Vec2::ZERO, Vec2( -required_height, required_height ), Vec2( 0.f, required_height ) };
 
@@ -195,7 +204,7 @@ namespace ui_research
 
 					// Layer
 					{
-						auto layer = LayerColor::create( Color4B::BLACK, 98, 98 );
+						auto layer = LayerColor::create( Color4B::BLACK, layout_size.width -2.f, layout_size.height - 2.f );
 						layer->setVisible( true );
 						layer->setPosition( 1.f, 1.f );
 						layout->addChild( layer, 1 );
