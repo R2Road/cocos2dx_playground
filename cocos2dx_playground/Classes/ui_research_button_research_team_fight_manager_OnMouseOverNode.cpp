@@ -43,7 +43,7 @@ namespace ui_research
 				//
 				setContentSize( size );
 				setBackGroundColorType( ui::Layout::BackGroundColorType::SOLID );
-				setBackGroundColor( Color3B::GRAY );
+				setBackGroundColor( Color3B( 218, 143, 133 ) );
 				setClippingEnabled( true );
 
 				//
