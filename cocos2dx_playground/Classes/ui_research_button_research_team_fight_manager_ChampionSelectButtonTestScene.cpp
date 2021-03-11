@@ -41,7 +41,7 @@ namespace
 			,{
 				cpg::animation::eIndex::idle
 				, 0.075f
-				, std::vector<std::string>{ "dummy_actor_001_idl_1_0.png", "dummy_actor_001_idl_1_1.png", "dummy_actor_001_idl_1_2.png", "dummy_actor_001_idl_1_3.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png" }
+				, std::vector<std::string>{ "dummy_actor_001_idl_1_0.png", "dummy_actor_001_idl_1_1.png", "dummy_actor_001_idl_1_2.png", "dummy_actor_001_idl_1_3.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png" }
 			}
 			,{
 				cpg::animation::eIndex::run
