@@ -120,11 +120,47 @@ namespace ui_research
 					layout->setContentSize( Size( 100.f, 100.f ) );
 					layout->setBackGroundColorType( ui::Layout::BackGroundColorType::SOLID );
 					layout->setBackGroundColor( Color3B::GRAY );
-					layout->setClippingEnabled( true );
+					layout->setClippingEnabled( false );
 					layout->setPosition(
 						visibleOrigin
 						+ visibleCenter
 						- Vec2( layout->getContentSize().width * 0.5f, layout->getContentSize().height * 0.5f )
+					);
+					addChild( layout );
+
+					// Polygon
+					{
+						const float required_height = std::sqrt( pow( 50.f, 2 ) + pow( 50.f, 2 ) );
+
+						Vec2 points[3] = { Vec2::ZERO, Vec2( -required_height, required_height ), Vec2( 0.f, required_height ) };
+
+						auto draw_node = DrawNode::create();
+						draw_node->drawPolygon( points, 3, Color4F::WHITE, 0.f, Color4F::WHITE );
+						draw_node->setPosition( Vec2( layout->getContentSize().width * 0.5f, layout->getContentSize().height * 0.5f ) );
+						layout->addChild( draw_node, 0 );
+
+						{
+							auto rotate_action = RotateBy::create( 3.f, -360.f );
+							auto repeat_action = RepeatForever::create( rotate_action );
+							draw_node->runAction( repeat_action );
+
+						}
+					}
+				}
+
+				//
+				// Research x 3
+				//
+				{
+					auto layout = ui::Layout::create();
+					layout->setContentSize( Size( 100.f, 100.f ) );
+					layout->setBackGroundColorType( ui::Layout::BackGroundColorType::SOLID );
+					layout->setBackGroundColor( Color3B::GRAY );
+					layout->setClippingEnabled( true );
+					layout->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.85f, visibleSize.height * 0.5f )
+						- Vec2( layout->getContentSize().width * 0.75f, layout->getContentSize().height * 0.5f )
 					);
 					addChild( layout );
 
