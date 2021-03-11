@@ -13,6 +13,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
+#include "base/ccUTF8.h"
 #include "ui/UILayout.h"
 #include "ui/UIScale9Sprite.h"
 
@@ -165,13 +166,24 @@ namespace ui_research
 					{
 						auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 						sprite->setScale( 6.f );
-						sprite->setPosition( ex_button->getContentSize().width * 0.5f, ex_button->getContentSize().height * 0.5f );
+						sprite->setPosition( ex_button->getContentSize().width * 0.5f, ex_button->getContentSize().height * 0.6f );
 						ex_button->addChild( sprite, 1 );
 
 						// Animation Component
 						animation_component = step_mole::AnimationComponent::create( GetCharacterAnimationInfoContainer() );
 						sprite->addComponent( animation_component );
 						animation_component->PlayAnimation( cpg::animation::eIndex::sleep );
+					}
+
+					// Name
+					{
+						const std::u32string u32_string = U"´ý´õ¹Ì";
+						std::string utf8_string;
+						StringUtils::UTF32ToUTF8( u32_string, utf8_string );
+
+						auto label = Label::createWithTTF( utf8_string, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
+						label->setPosition( ex_button->getContentSize().width * 0.5f, ex_button->getContentSize().height * 0.2f );
+						ex_button->addChild( label, 1 );
 					}
 
 					ex_button->SetCallback( [animation_component]( const cpg_ui::EXButtonNode::eButtonEvent button_event )
