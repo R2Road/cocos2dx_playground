@@ -96,7 +96,10 @@ namespace ui_research
 
 					auto draw_node = DrawNode::create();
 					draw_node->drawPolygon( points, 3, Color4F::GREEN, 0.f, Color4F::GREEN );
-					draw_node->setPosition( visibleSize.width * 0.2f, visibleCenter.y );
+					draw_node->setPosition(
+						visibleOrigin
+						+ Vec2( visibleSize.width * 0.2f, visibleSize.height * 0.5f )
+					);
 					addChild( draw_node );
 
 					// Pivot
@@ -105,6 +108,7 @@ namespace ui_research
 						draw_node->addChild( pivot_node, std::numeric_limits<int>::max() );
 					}
 
+					// Action
 					{
 						auto rotate_action = RotateBy::create( 1.f, -360.f );
 						auto repeat_action = RepeatForever::create( rotate_action );
