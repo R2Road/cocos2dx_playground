@@ -12,7 +12,6 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "cpg_node_PivotNode.h"
 #include "cpg_ui_EXButtonNode.h"
 #include "cpg_StringTable.h"
 
@@ -110,7 +109,7 @@ namespace ui_research
 					sprite->setContentSize( button_size );
 					sprite->setVisible( false );
 					{
-						auto label = Label::createWithTTF( "PRESS SPACE BAR", cpg::StringTable::GetFontPath(), 10 );
+						auto label = Label::createWithTTF( "EX Button", cpg::StringTable::GetFontPath(), 10 );
 						label->setPosition( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f );
 						{
 							auto fadeOutAction = FadeOut::create( 0.8f );

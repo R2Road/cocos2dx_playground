@@ -197,7 +197,10 @@ namespace cpg_ui
 	{
 		for( auto v : mViewNodes )
 		{
-			v->setVisible( false );
+			if( v )
+			{
+				v->setVisible( false );
+			}
 		}
 
 		if( mViewNodes[view_index] )

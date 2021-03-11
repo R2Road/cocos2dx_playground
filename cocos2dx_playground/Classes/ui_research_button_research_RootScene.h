@@ -2,20 +2,18 @@
 
 #include "2d/CCScene.h"
 
-#include "helper_BackToThePreviousScene.h"
-
 namespace ui_research
 {
 	namespace button_research
 	{
-		class EXButtonScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+		class RootScene : public cocos2d::Scene
 		{
 		private:
-			EXButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			RootScene();
 
 		public:
-			static const char* getTitle() { return "EX Button"; }
-			static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+			static const char* getTitle() { return "Button Research"; }
+			static cocos2d::Scene* create();
 
 		private:
 			bool init() override;
