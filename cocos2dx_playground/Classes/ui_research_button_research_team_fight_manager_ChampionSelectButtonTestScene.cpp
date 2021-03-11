@@ -151,16 +151,6 @@ namespace ui_research
 						ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, on_mouse_over_node );
 					}
 
-					// Push
-					{
-						auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
-						sprite->setVisible( false );
-						sprite->setAnchorPoint( Vec2::ZERO );
-						sprite->setContentSize( button_size );
-
-						ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
-					}
-
 					// Character
 					step_mole::AnimationComponent* animation_component = nullptr;
 					{
