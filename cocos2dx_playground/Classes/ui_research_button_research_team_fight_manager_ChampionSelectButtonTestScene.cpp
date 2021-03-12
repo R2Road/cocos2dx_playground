@@ -11,7 +11,6 @@
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/ccUTF8.h"
-#include "ui/UILayout.h"
 #include "ui/UIScale9Sprite.h"
 
 #include "cpg_animation_InfoContainer.h"
