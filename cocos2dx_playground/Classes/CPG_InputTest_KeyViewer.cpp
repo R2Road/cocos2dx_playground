@@ -14,10 +14,11 @@ namespace cpg
 	namespace input_test
 	{
 		const float view_margin = 4.f;
-		const int TAG_free_key = 9999;
 
 		KeyViewer::KeyViewer() :
 			mKeyViews()
+			, mFreeKeySprite( nullptr )
+
 			, mView_StartX( 0 )
 			, mView_Size()
 		{}
@@ -83,12 +84,11 @@ namespace cpg
 
 			// key free sprite
 			{
-				auto arrow_sprite = Sprite::createWithSpriteFrameName( "key_free.png" );
-				arrow_sprite->setTag( TAG_free_key );
-				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-				arrow_sprite->setPosition( mView_StartX, view_start_y );
-				arrow_sprite->setVisible( false );
-				addChild( arrow_sprite );
+				mFreeKeySprite = Sprite::createWithSpriteFrameName( "key_free.png" );
+				mFreeKeySprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+				mFreeKeySprite->setPosition( mView_StartX, view_start_y );
+				mFreeKeySprite->setVisible( false );
+				addChild( mFreeKeySprite );
 			}
 
 			return true;
@@ -118,14 +118,13 @@ namespace cpg
 			//
 			// Check : Key Visiblity
 			//
-			auto free_key_sprite = getChildByTag( TAG_free_key );
 			if( key_collector->hasChanged() && 0 == visible_sequence )
 			{
-				free_key_sprite->setVisible( true );
+				mFreeKeySprite->setVisible( true );
 			}
 			else
 			{
-				free_key_sprite->setVisible( false );
+				mFreeKeySprite->setVisible( false );
 			}
 		}
 	}
