@@ -102,14 +102,17 @@ namespace cpg
 			int visible_sequence = 0;
 			for( auto& v : mKeyViews )
 			{
-				v.mSprite->setVisible( key_collector->getKeyStatus( v.mKeyIndex ) );
-				if( !v.mSprite->isVisible() )
+				if( !key_collector->getKeyStatus( v.mKeyIndex ) )
 				{
-					continue;
+					v.mSprite->setVisible( false );
 				}
-				
-				v.mSprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * visible_sequence ) );
-				++visible_sequence;
+				else
+				{
+					v.mSprite->setVisible( true );
+					v.mSprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * visible_sequence ) );
+
+					++visible_sequence;
+				}
 			}
 
 			//
