@@ -96,6 +96,9 @@ namespace cpg
 
 		void KeyViewer::setup( const cpg::input::KeyCollectorSp key_collector )
 		{
+			//
+			// Show Collect Key
+			//
 			int v_i = 0;
 			for( auto& v : mKeyViews )
 			{
@@ -109,6 +112,9 @@ namespace cpg
 				++v_i;
 			}
 
+			//
+			// Check : Key Visiblity
+			//
 			auto free_key_sprite = getChildByTag( TAG_free_key );
 			if( key_collector->hasChanged() && 0 == v_i )
 			{
