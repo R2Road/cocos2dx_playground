@@ -99,7 +99,7 @@ namespace cpg
 			//
 			// Show Collect Key
 			//
-			int v_i = 0;
+			int visible_sequence = 0;
 			for( auto& v : mKeyViews )
 			{
 				v.mSprite->setVisible( key_collector->getKeyStatus( v.mKeyIndex ) );
@@ -108,18 +108,17 @@ namespace cpg
 					continue;
 				}
 				
-				v.mSprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * v_i ) );
-				++v_i;
+				v.mSprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * visible_sequence ) );
+				++visible_sequence;
 			}
 
 			//
 			// Check : Key Visiblity
 			//
 			auto free_key_sprite = getChildByTag( TAG_free_key );
-			if( key_collector->hasChanged() && 0 == v_i )
+			if( key_collector->hasChanged() && 0 == visible_sequence )
 			{
 				free_key_sprite->setVisible( true );
-				free_key_sprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * v_i ) );
 			}
 			else
 			{
