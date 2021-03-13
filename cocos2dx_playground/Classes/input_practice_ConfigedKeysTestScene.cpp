@@ -136,7 +136,7 @@ namespace input_practice
 			);
 			for( int i = 0; i < key_viewer_count; ++i )
 			{
-				key_viewer = cpg::input_test::KeyViewer::create( key_map_config_helper );
+				key_viewer = cpg::input_test::KeyViewer::create( { true, true }, key_map_config_helper );
 				key_viewer->setPosition( mKeyViewer_StartPosition );
 				key_viewer->setVisible( false );
 				addChild( key_viewer, 1 );

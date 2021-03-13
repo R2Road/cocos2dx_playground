@@ -21,13 +21,20 @@ namespace cpg
 
 		class KeyViewer : public cocos2d::Node
 		{
+		public:
+			struct Config
+			{
+				bool bShowPivot = false;
+				bool bShowBackground = false;
+			};
+
 		private:
 			KeyViewer();
 
 		public:
-			static KeyViewer* create( const KeyMapConfigHelper& key_map_config_helper );
+			static KeyViewer* create( const Config& config, const KeyMapConfigHelper& key_map_config_helper );
 
-			bool init( const KeyMapConfigHelper& key_map_config_helper );
+			bool init( const Config& config, const KeyMapConfigHelper& key_map_config_helper );
 
 			void setup( const cpg::input::KeyCollectorSp key_collector );
 
