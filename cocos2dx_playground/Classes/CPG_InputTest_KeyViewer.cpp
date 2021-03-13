@@ -2,6 +2,7 @@
 
 #include <new>
 
+#include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
 
@@ -67,6 +68,14 @@ namespace cpg
 			const Size total_margin( 3, 3 );
 			const Size total_size( content_size + total_margin + total_margin );
 			setContentSize( total_size );
+
+			//
+			// Background
+			//
+			{
+				auto layer = LayerColor::create( Color4B( 40, 40, 40, 255 ), getContentSize().width, getContentSize().height );
+				addChild( layer, std::numeric_limits<int>::min() );
+			}
 
 			const float view_start_y = total_size.height * 0.5f;
 			mView_StartX = total_margin.width;
