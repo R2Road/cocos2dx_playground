@@ -5,6 +5,8 @@
 #include "2d/CCSprite.h"
 #include "2d/CCSpriteFrameCache.h"
 
+#include "cpg_node_PivotNode.h"
+
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputTest_KeyMapConfigHelper.h"
 
@@ -45,6 +47,14 @@ namespace cpg
 			if( !Node::init() )
 			{
 				return false;
+			}
+
+			//
+			// Pivot
+			//
+			{
+				auto pivot_node = cpg_node::PivotNode::create();
+				addChild( pivot_node, std::numeric_limits<int>::max() );
 			}
 
 			mView_Size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
