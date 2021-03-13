@@ -40,7 +40,10 @@ namespace cpg
 
 		bool KeyViewer::init( const KeyMapConfigHelper& key_map_config_helper )
 		{
-			Node::init();
+			if( !Node::init() )
+			{
+				return false;
+			}
 
 			mView_Size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
 			const Size content_size(
@@ -59,7 +62,9 @@ namespace cpg
 			for( const auto& k : key_map_config_helper.getContainer() )
 			{
 				if( k.mSpriteFrameName.empty() )
+				{
 					continue;
+				}
 
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
@@ -96,7 +101,9 @@ namespace cpg
 			{
 				v.mSprite->setVisible( key_collector->getKeyStatus( v.mKeyIndex ) );
 				if( !v.mSprite->isVisible() )
+				{
 					continue;
+				}
 				
 				v.mSprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * v_i ) );
 				++v_i;
@@ -109,7 +116,9 @@ namespace cpg
 				free_key_sprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * v_i ) );
 			}
 			else
+			{
 				free_key_sprite->setVisible( false );
+			}
 		}
 	}
 }
