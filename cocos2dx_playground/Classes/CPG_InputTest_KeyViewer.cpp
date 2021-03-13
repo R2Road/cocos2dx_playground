@@ -55,11 +55,15 @@ namespace cpg
 
 			const Size total_margin( 3, 3 );
 			const Size total_size( content_size + total_margin + total_margin );
+			setContentSize( total_size );
+
 			const float view_start_y = total_size.height * 0.5f;
 			mView_StartX = total_margin.width;
 
+			//
+			// View : Keys
+			//
 			mKeyViews.reserve( key_map_config_helper.getContainer().size() );
-			int a_i = 0;
 			for( const auto& k : key_map_config_helper.getContainer() )
 			{
 				if( k.mSpriteFrameName.empty() )
@@ -69,20 +73,15 @@ namespace cpg
 
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
 				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
-				arrow_sprite->setPosition( Vec2(
-					mView_StartX + ( ( mView_Size.width + view_margin ) * a_i )
-					, view_start_y
-				) );
+				arrow_sprite->setPosition( mView_StartX, view_start_y );
 				addChild( arrow_sprite );
 
 				mKeyViews.emplace_back( k.mIdx, arrow_sprite );
-
-				++a_i;
 			}
 
-			setContentSize( total_size );
-
-			// key free sprite
+			//
+			// View : Free Key
+			//
 			{
 				mFreeKeySprite = Sprite::createWithSpriteFrameName( "key_free.png" );
 				mFreeKeySprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
