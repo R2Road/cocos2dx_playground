@@ -223,6 +223,9 @@
     <Filter Include="src\scene\ui_research\button">
       <UniqueIdentifier>{02398885-fe23-4d6a-8c69-7d332a92864d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\ui_research\type_effect">
+      <UniqueIdentifier>{99b4a5fe-b8f1-49ea-b80e-23b2e4d8eff4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -508,18 +511,6 @@
       <Filter>src\scene\step_04_pathfinder\game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ui_research_RootScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_type_effect_BasicScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_type_effect_MultiByteScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_type_effect_ColorScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ui_research_type_effect_ShakeScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.cpp">
@@ -1014,6 +1005,18 @@
     <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonTestScene.cpp">
       <Filter>src\scene\ui_research\button</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_type_effect_BasicScene.cpp">
+      <Filter>src\scene\ui_research\type_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_type_effect_ColorScene.cpp">
+      <Filter>src\scene\ui_research\type_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_type_effect_MultiByteScene.cpp">
+      <Filter>src\scene\ui_research\type_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_type_effect_ShakeScene.cpp">
+      <Filter>src\scene\ui_research\type_effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1320,18 +1323,6 @@
       <Filter>src\scene\step_04_pathfinder\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_RootScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_type_effect_BasicScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_type_effect_MultiByteScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_type_effect_ColorScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ui_research_type_effect_ShakeScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_BasicScene.h">
@@ -1843,6 +1834,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonTestScene.h">
       <Filter>src\scene\ui_research\button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_type_effect_BasicScene.h">
+      <Filter>src\scene\ui_research\type_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_type_effect_ColorScene.h">
+      <Filter>src\scene\ui_research\type_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_type_effect_MultiByteScene.h">
+      <Filter>src\scene\ui_research\type_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_type_effect_ShakeScene.h">
+      <Filter>src\scene\ui_research\type_effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
