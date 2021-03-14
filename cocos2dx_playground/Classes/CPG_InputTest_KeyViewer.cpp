@@ -115,7 +115,7 @@ namespace cpg
 			return true;
 		}
 
-		void KeyViewer::setup( const cpg::input::KeyCollectorSp key_collector )
+		void KeyViewer::Setup( const cpg::input::KeyCollectorSp key_collector )
 		{
 			//
 			// Show Collect Key

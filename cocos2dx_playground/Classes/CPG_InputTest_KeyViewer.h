@@ -38,7 +38,7 @@ namespace cpg
 			bool init( const Config& config, const KeyMapConfigHelper& key_map_config_helper );
 
 		public:
-			void setup( const cpg::input::KeyCollectorSp key_collector );
+			void Setup( const cpg::input::KeyCollectorSp key_collector );
 
 		private:
 			struct KeyViewData
