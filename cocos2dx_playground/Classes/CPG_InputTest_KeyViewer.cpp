@@ -17,13 +17,13 @@ namespace cpg
 {
 	namespace input_test
 	{
+		const Size total_margin( 3.f, 3.f );
 		const float view_margin = 4.f;
 
 		KeyViewer::KeyViewer() :
 			mKeyViews()
 			, mFreeKeySprite( nullptr )
 
-			, mView_StartX( 0 )
 			, mKeySize()
 		{}
 
@@ -66,7 +66,6 @@ namespace cpg
 				, mKeySize.height
 			);
 
-			const Size total_margin( 3, 3 );
 			const Size total_size( content_size + total_margin + total_margin );
 			setContentSize( total_size );
 
@@ -78,9 +77,6 @@ namespace cpg
 				auto layer = LayerColor::create( Color4B( 40, 40, 40, 255 ), getContentSize().width, getContentSize().height );
 				addChild( layer, std::numeric_limits<int>::min() );
 			}
-
-			const float view_start_y = total_margin.height;
-			mView_StartX = total_margin.width;
 
 			//
 			// View : Keys
@@ -95,7 +91,7 @@ namespace cpg
 
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
 				arrow_sprite->setAnchorPoint( Vec2::ZERO );
-				arrow_sprite->setPosition( mView_StartX, view_start_y );
+				arrow_sprite->setPosition( total_margin.width, total_margin.height );
 				addChild( arrow_sprite );
 
 				mKeyViews.emplace_back( k.mIdx, arrow_sprite );
@@ -107,7 +103,7 @@ namespace cpg
 			{
 				mFreeKeySprite = Sprite::createWithSpriteFrameName( "key_free.png" );
 				mFreeKeySprite->setAnchorPoint( Vec2::ZERO );
-				mFreeKeySprite->setPosition( mView_StartX, view_start_y );
+				mFreeKeySprite->setPosition( total_margin.width, total_margin.height );
 				mFreeKeySprite->setVisible( false );
 				addChild( mFreeKeySprite );
 			}
@@ -130,7 +126,10 @@ namespace cpg
 				else
 				{
 					v.mSprite->setVisible( true );
-					v.mSprite->setPositionX( mView_StartX + ( ( mKeySize.width + view_margin ) * visible_sequence ) );
+					v.mSprite->setPositionX(
+						total_margin.width
+						+ ( ( mKeySize.width + view_margin ) * visible_sequence )
+					);
 
 					++visible_sequence;
 				}

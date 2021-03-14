@@ -51,7 +51,6 @@ namespace cpg
 			std::vector<KeyViewData> mKeyViews;
 			cocos2d::Node* mFreeKeySprite;
 
-			float mView_StartX;
 			cocos2d::Size mKeySize;
 		};
 	}
