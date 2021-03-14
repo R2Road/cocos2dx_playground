@@ -13,13 +13,16 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const Size total_margin( 3.f, 3.f );
+	const float view_margin = 4.f;
+}
+
 namespace cpg
 {
 	namespace input_test
 	{
-		const Size total_margin( 3.f, 3.f );
-		const float view_margin = 4.f;
-
 		KeyViewer::KeyViewer() :
 			mKeyViews()
 			, mFreeKeySprite( nullptr )
