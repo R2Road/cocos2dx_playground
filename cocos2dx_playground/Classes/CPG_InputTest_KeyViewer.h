@@ -52,7 +52,7 @@ namespace cpg
 			cocos2d::Node* mFreeKeySprite;
 
 			float mView_StartX;
-			cocos2d::Size mView_Size;
+			cocos2d::Size mKeySize;
 		};
 	}
 }

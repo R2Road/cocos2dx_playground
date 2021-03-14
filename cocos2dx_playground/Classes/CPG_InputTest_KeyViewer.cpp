@@ -24,7 +24,7 @@ namespace cpg
 			, mFreeKeySprite( nullptr )
 
 			, mView_StartX( 0 )
-			, mView_Size()
+			, mKeySize()
 		{}
 
 		KeyViewer* KeyViewer::create( const Config& config, const KeyMapConfigHelper& key_map_config_helper )
@@ -59,11 +59,11 @@ namespace cpg
 				addChild( pivot_node, std::numeric_limits<int>::max() );
 			}
 
-			mView_Size = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
+			mKeySize = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
 			const Size content_size(
-				( mView_Size.width * key_map_config_helper.getContainer().size() )
+				( mKeySize.width * key_map_config_helper.getContainer().size() )
 				+ ( view_margin * std::max( 0, static_cast<int>( key_map_config_helper.getContainer().size() ) - 1 ) )
-				, mView_Size.height
+				, mKeySize.height
 			);
 
 			const Size total_margin( 3, 3 );
@@ -130,7 +130,7 @@ namespace cpg
 				else
 				{
 					v.mSprite->setVisible( true );
-					v.mSprite->setPositionX( mView_StartX + ( ( mView_Size.width + view_margin ) * visible_sequence ) );
+					v.mSprite->setPositionX( mView_StartX + ( ( mKeySize.width + view_margin ) * visible_sequence ) );
 
 					++visible_sequence;
 				}
