@@ -15,8 +15,8 @@ USING_NS_CC;
 
 namespace
 {
-	const Size total_margin( 3.f, 3.f );
-	const float view_margin = 4.f;
+	const Size Total_Margin( 3.f, 3.f );
+	const float Key_Margin = 4.f;
 }
 
 namespace cpg
@@ -65,11 +65,11 @@ namespace cpg
 			mKeySize = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
 			const Size content_size(
 				( mKeySize.width * key_map_config_helper.getContainer().size() )
-				+ ( view_margin * std::max( 0, static_cast<int>( key_map_config_helper.getContainer().size() ) - 1 ) )
+				+ ( Key_Margin * std::max( 0, static_cast<int>( key_map_config_helper.getContainer().size() ) - 1 ) )
 				, mKeySize.height
 			);
 
-			const Size total_size( content_size + total_margin + total_margin );
+			const Size total_size( content_size + Total_Margin + Total_Margin );
 			setContentSize( total_size );
 
 			//
@@ -94,7 +94,7 @@ namespace cpg
 
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
 				arrow_sprite->setAnchorPoint( Vec2::ZERO );
-				arrow_sprite->setPosition( total_margin.width, total_margin.height );
+				arrow_sprite->setPosition( Total_Margin.width, Total_Margin.height );
 				addChild( arrow_sprite );
 
 				mKeyViews.emplace_back( k.mIdx, arrow_sprite );
@@ -106,7 +106,7 @@ namespace cpg
 			{
 				mFreeKeySprite = Sprite::createWithSpriteFrameName( "key_free.png" );
 				mFreeKeySprite->setAnchorPoint( Vec2::ZERO );
-				mFreeKeySprite->setPosition( total_margin.width, total_margin.height );
+				mFreeKeySprite->setPosition( Total_Margin.width, Total_Margin.height );
 				mFreeKeySprite->setVisible( false );
 				addChild( mFreeKeySprite );
 			}
@@ -130,8 +130,8 @@ namespace cpg
 				{
 					v.mSprite->setVisible( true );
 					v.mSprite->setPositionX(
-						total_margin.width
-						+ ( ( mKeySize.width + view_margin ) * visible_sequence )
+						Total_Margin.width
+						+ ( ( mKeySize.width + Key_Margin ) * visible_sequence )
 					);
 
 					++visible_sequence;
