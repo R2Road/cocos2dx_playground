@@ -12,7 +12,7 @@ namespace cpg
 {
 	namespace input
 	{
-		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
+		class iKeyCollector;
 	}
 
 	namespace input_test
@@ -38,7 +38,7 @@ namespace cpg
 			bool init( const Config& config, const KeyMapConfigHelper& key_map_config_helper );
 
 		public:
-			void Setup( const cpg::input::KeyCollectorSp key_collector );
+			void Setup( const cpg::input::iKeyCollector& key_collector );
 
 		private:
 			struct KeyViewData

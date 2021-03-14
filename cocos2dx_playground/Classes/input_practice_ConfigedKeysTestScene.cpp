@@ -188,7 +188,7 @@ namespace input_practice
 
 				v->setVisible( true );
 				v->setPosition( mKeyViewer_StartPosition );
-				v->Setup( mInputCollector );
+				v->Setup( *mInputCollector );
 				break;
 			}
 		}

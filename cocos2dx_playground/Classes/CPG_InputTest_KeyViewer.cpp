@@ -114,7 +114,7 @@ namespace cpg
 			return true;
 		}
 
-		void KeyViewer::Setup( const cpg::input::KeyCollectorSp key_collector )
+		void KeyViewer::Setup( const cpg::input::iKeyCollector& key_collector )
 		{
 			//
 			// Show Collect Key
@@ -122,7 +122,7 @@ namespace cpg
 			int visible_sequence = 0;
 			for( auto& v : mKeyViews )
 			{
-				if( !key_collector->getKeyStatus( v.mKeyIndex ) )
+				if( !key_collector.getKeyStatus( v.mKeyIndex ) )
 				{
 					v.mSprite->setVisible( false );
 				}
@@ -141,7 +141,7 @@ namespace cpg
 			//
 			// Check : Key Visiblity
 			//
-			if( key_collector->hasChanged() && 0 == visible_sequence )
+			if( key_collector.hasChanged() && 0 == visible_sequence )
 			{
 				mFreeKeySprite->setVisible( true );
 			}
