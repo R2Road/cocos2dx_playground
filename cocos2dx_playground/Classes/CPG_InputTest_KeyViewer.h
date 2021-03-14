@@ -29,6 +29,14 @@ namespace cpg
 			};
 
 		private:
+			struct KeyViewData
+			{
+				KeyViewData( int key_index, cocos2d::Sprite* sprite ) : mKeyIndex( key_index ), mSprite( sprite ) {}
+
+				int mKeyIndex;
+				cocos2d::Sprite* mSprite;
+			};
+
 			KeyViewer();
 
 		public:
@@ -41,13 +49,6 @@ namespace cpg
 			void Setup( const cpg::input::iKeyCollector& key_collector );
 
 		private:
-			struct KeyViewData
-			{
-				KeyViewData( int key_index, cocos2d::Sprite* sprite ) : mKeyIndex( key_index ), mSprite( sprite ) {}
-
-				int mKeyIndex;
-				cocos2d::Sprite* mSprite;
-			};
 			std::vector<KeyViewData> mKeyViews;
 			cocos2d::Node* mFreeKeySprite;
 
