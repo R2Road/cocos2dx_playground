@@ -122,14 +122,14 @@ namespace cpg
 			int visible_sequence = 0;
 			for( auto& v : mKeyViews )
 			{
-				if( !key_collector.getKeyStatus( v.mKeyIndex ) )
+				if( !key_collector.getKeyStatus( v.KeyIndex ) )
 				{
-					v.mSprite->setVisible( false );
+					v.SpriteNode->setVisible( false );
 				}
 				else
 				{
-					v.mSprite->setVisible( true );
-					v.mSprite->setPositionX(
+					v.SpriteNode->setVisible( true );
+					v.SpriteNode->setPositionX(
 						Total_Margin.width
 						+ ( ( mKeySize.width + Key_Margin ) * visible_sequence )
 					);

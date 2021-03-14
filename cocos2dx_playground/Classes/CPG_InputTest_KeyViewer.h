@@ -31,10 +31,10 @@ namespace cpg
 		private:
 			struct KeyViewData
 			{
-				KeyViewData( int key_index, cocos2d::Sprite* sprite ) : mKeyIndex( key_index ), mSprite( sprite ) {}
+				KeyViewData( int key_index, cocos2d::Sprite* sprite_node ) : KeyIndex( key_index ), SpriteNode( sprite_node ) {}
 
-				int mKeyIndex;
-				cocos2d::Sprite* mSprite;
+				int KeyIndex;
+				cocos2d::Sprite* SpriteNode;
 			};
 
 			KeyViewer();
