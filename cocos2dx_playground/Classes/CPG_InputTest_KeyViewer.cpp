@@ -79,7 +79,7 @@ namespace cpg
 				addChild( layer, std::numeric_limits<int>::min() );
 			}
 
-			const float view_start_y = total_size.height * 0.5f;
+			const float view_start_y = total_margin.height;
 			mView_StartX = total_margin.width;
 
 			//
@@ -94,7 +94,7 @@ namespace cpg
 				}
 
 				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
-				arrow_sprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+				arrow_sprite->setAnchorPoint( Vec2::ZERO );
 				arrow_sprite->setPosition( mView_StartX, view_start_y );
 				addChild( arrow_sprite );
 
@@ -106,7 +106,7 @@ namespace cpg
 			//
 			{
 				mFreeKeySprite = Sprite::createWithSpriteFrameName( "key_free.png" );
-				mFreeKeySprite->setAnchorPoint( Vec2( 0.f, 0.5f ) );
+				mFreeKeySprite->setAnchorPoint( Vec2::ZERO );
 				mFreeKeySprite->setPosition( mView_StartX, view_start_y );
 				mFreeKeySprite->setVisible( false );
 				addChild( mFreeKeySprite );
