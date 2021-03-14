@@ -34,8 +34,10 @@ namespace cpg
 		public:
 			static KeyViewer* create( const Config& config, const KeyMapConfigHelper& key_map_config_helper );
 
+		private:
 			bool init( const Config& config, const KeyMapConfigHelper& key_map_config_helper );
 
+		public:
 			void setup( const cpg::input::KeyCollectorSp key_collector );
 
 		private:
