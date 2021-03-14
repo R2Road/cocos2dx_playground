@@ -92,12 +92,12 @@ namespace cpg
 					continue;
 				}
 
-				auto arrow_sprite = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
-				arrow_sprite->setAnchorPoint( Vec2::ZERO );
-				arrow_sprite->setPosition( Total_Margin.width, Total_Margin.height );
-				addChild( arrow_sprite );
+				auto key_sprite_node = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
+				key_sprite_node->setAnchorPoint( Vec2::ZERO );
+				key_sprite_node->setPosition( Total_Margin.width, Total_Margin.height );
+				addChild( key_sprite_node );
 
-				mKeyViews.emplace_back( k.mIdx, arrow_sprite );
+				mKeyViews.emplace_back( k.mIdx, key_sprite_node );
 			}
 
 			//
