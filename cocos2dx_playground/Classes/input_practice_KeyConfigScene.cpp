@@ -311,7 +311,7 @@ namespace input_practice
 	{
 		if( ui::Widget::TouchEventType::ENDED == touch_event_type )
 		{
-			mKeymapConfigHelper.save( input_practice::Setting::getKeyMapFileName().c_str() );
+			mKeymapConfigHelper.Save( input_practice::Setting::getKeyMapFileName().c_str() );
 
 			helper::BackToThePreviousScene::MoveBack();
 

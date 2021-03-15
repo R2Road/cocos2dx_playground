@@ -47,7 +47,7 @@ namespace cpg
 
 			return false;
 		}
-		void KeyMapConfigHelper::save( const char* key_map_file_name )
+		void KeyMapConfigHelper::Save( const char* key_map_file_name )
 		{
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 			path.append( key_map_file_name );
