@@ -24,7 +24,7 @@ namespace cpg
 
 		KeyMapConfigHelper::KeyMapConfigHelper() : mContainer() {}
 
-		bool KeyMapConfigHelper::Load( const char* key_map_file_name )
+		bool KeyMapConfigHelper::Load( const char* file_name )
 		{
 			if( !load_Resource() )
 			{
@@ -33,7 +33,7 @@ namespace cpg
 			}
 
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( key_map_file_name );
+			path.append( file_name );
 
 			if( load_Json( path.c_str() ) )
 				return true;
@@ -47,10 +47,10 @@ namespace cpg
 
 			return false;
 		}
-		void KeyMapConfigHelper::Save( const char* key_map_file_name )
+		void KeyMapConfigHelper::Save( const char* file_name )
 		{
 			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( key_map_file_name );
+			path.append( file_name );
 
 			save_Json( path.c_str() );
 		}
@@ -108,10 +108,10 @@ namespace cpg
 
 			return true;
 		}
-		bool KeyMapConfigHelper::load_Json( const char* key_map_path )
+		bool KeyMapConfigHelper::load_Json( const char* path )
 		{
 			// load json
-			const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( key_map_path );
+			const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( path );
 			rapidjson::Document doc;
 			doc.Parse<0>( regionStr.c_str() );
 
@@ -150,7 +150,7 @@ namespace cpg
 			return true;
 		}
 
-		void KeyMapConfigHelper::save_Json( const char* key_map_path ) const
+		void KeyMapConfigHelper::save_Json( const char* path ) const
 		{
 			rapidjson::Document document;
 			document.SetArray();
@@ -169,7 +169,7 @@ namespace cpg
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
 			document.Accept( writer );
 
-			std::ofstream fs( key_map_path, std::ios::out );
+			std::ofstream fs( path, std::ios::out );
 			fs << buffer.GetString() << std::endl;
 			fs.close();
 		}

@@ -33,15 +33,14 @@ namespace cpg
 
 			inline const ContainerT& GetContainer() const { return mContainer; }
 
-			bool Load( const char* key_map_file_name );
-			void Save( const char* key_map_file_name );
+			bool Load( const char* file_name );
+			void Save( const char* file_name );
 			void Set( const int key_index, const cocos2d::EventKeyboard::KeyCode new_keycode );
 
 		private:
 			bool load_Resource();
-			bool load_Json( const char* key_map_path );
-			void save_Json( const char* key_map_path ) const;
-
+			bool load_Json( const char* path );
+			void save_Json( const char* path ) const;	
 
 		private:
 			ContainerT mContainer;
