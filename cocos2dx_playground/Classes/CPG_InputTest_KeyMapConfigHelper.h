@@ -12,9 +12,9 @@ namespace cpg
 		class KeyMapConfigHelper
 		{
 		public:
-			struct KeyMapAndNamePiece
+			struct KeyInfo
 			{
-				KeyMapAndNamePiece( const char* name, const int idx, const cocos2d::EventKeyboard::KeyCode keycode, const char* sprite_frame_name ) :
+				KeyInfo( const char* name, const int idx, const cocos2d::EventKeyboard::KeyCode keycode, const char* sprite_frame_name ) :
 					mName( name )
 					, mIdx( idx )
 					, mKeycode( keycode )
@@ -26,7 +26,7 @@ namespace cpg
 				cocos2d::EventKeyboard::KeyCode mKeycode;
 				const std::string mSpriteFrameName;
 			};
-			using KeyMapAndName_Container = std::vector<KeyMapAndNamePiece>;
+			using KeyMapAndName_Container = std::vector<KeyInfo>;
 
 		public:
 			explicit KeyMapConfigHelper();
