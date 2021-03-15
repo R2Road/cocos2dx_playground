@@ -26,14 +26,14 @@ namespace cpg
 				cocos2d::EventKeyboard::KeyCode mKeycode;
 				const std::string mSpriteFrameName;
 			};
-			using KeyMapAndName_Container = std::vector<KeyInfo>;
+			using ContainerT = std::vector<KeyInfo>;
 
 		public:
 			explicit KeyMapConfigHelper();
 
 			const bool load( const char* key_map_file_name );
 			void save( const char* key_map_file_name );
-			inline const KeyMapAndName_Container& getContainer() const { return mContainer; }
+			inline const ContainerT& getContainer() const { return mContainer; }
 			void set( const int key_index, const cocos2d::EventKeyboard::KeyCode new_keycode );
 
 		private:
@@ -43,7 +43,7 @@ namespace cpg
 
 
 		private:
-			KeyMapAndName_Container mContainer;
+			ContainerT mContainer;
 		};
 	}
 }
