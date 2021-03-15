@@ -300,7 +300,7 @@ namespace input_practice
 			return;
 		}
 
-		mKeymapConfigHelper.set( mCurrentButtonNode->getTag(), keycode );
+		mKeymapConfigHelper.Set( mCurrentButtonNode->getTag(), keycode );
 
 		auto label = static_cast<Label*>( mCurrentButtonNode->getParent()->getChildByTag( TAG_KeyCode_Label ) );
 		label->setString( cpg::input::KeyCodeNames::get( keycode ) );
