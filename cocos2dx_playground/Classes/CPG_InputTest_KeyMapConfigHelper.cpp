@@ -10,18 +10,18 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const char* string_key_code = "key_code";
+	const char* string_name = "name";
+	const char* string_sprite_frame = "sprite_frame";
+	const char* string_empty = "o_o";
+}
+
 namespace cpg
 {
 	namespace input_test
 	{
-		namespace
-		{
-			const char* string_key_code = "key_code";
-			const char* string_name = "name";
-			const char* string_sprite_frame = "sprite_frame";
-			const char* string_empty = "o_o";
-		}
-
 		KeyMapConfigHelper::KeyMapConfigHelper() : mContainer() {}
 
 		bool KeyMapConfigHelper::Load( const char* file_name )
@@ -36,7 +36,9 @@ namespace cpg
 			path.append( file_name );
 
 			if( load_Json( path.c_str() ) )
+			{
 				return true;
+			}
 
 			// load default
 			if( load_Json( "datas/keyconfig/keymap_default.json" ) )
@@ -58,17 +60,20 @@ namespace cpg
 		void KeyMapConfigHelper::Set( const int key_index, const cocos2d::EventKeyboard::KeyCode new_keycode )
 		{
 			if( 0 > key_index || key_index >= static_cast<int>( mContainer.size() ) )
+			{
 				return;
+			}
 
 			mContainer[static_cast<std::size_t>( key_index )].CocosKeyCode = new_keycode;
 		}
 
 		bool KeyMapConfigHelper::load_Resource()
 		{
-			// load json
-			const std::string jsonStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( "datas/keyconfig/keymap_resource_for_config.json" ) ) );
 			rapidjson::Document doc;
-			doc.Parse<0>( jsonStr.c_str() );
+			{
+				const std::string json_string( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( "datas/keyconfig/keymap_resource_for_config.json" ) ) );
+				doc.Parse<0>( json_string.c_str() );
+			}
 
 			if( doc.HasParseError() )
 			{
