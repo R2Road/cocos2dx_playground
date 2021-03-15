@@ -24,7 +24,7 @@ namespace cpg
 
 		KeyMapConfigHelper::KeyMapConfigHelper() : mContainer() {}
 
-		const bool KeyMapConfigHelper::Load( const char* key_map_file_name )
+		bool KeyMapConfigHelper::Load( const char* key_map_file_name )
 		{
 			if( !load_Resource() )
 			{
@@ -63,7 +63,7 @@ namespace cpg
 			mContainer[static_cast<std::size_t>( key_index )].mKeycode = new_keycode;
 		}
 
-		const bool KeyMapConfigHelper::load_Resource()
+		bool KeyMapConfigHelper::load_Resource()
 		{
 			// load json
 			const std::string jsonStr( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( "datas/keyconfig/keymap_resource_for_config.json" ) ) );
@@ -108,7 +108,7 @@ namespace cpg
 
 			return true;
 		}
-		const bool KeyMapConfigHelper::load_Json( const char* key_map_path )
+		bool KeyMapConfigHelper::load_Json( const char* key_map_path )
 		{
 			// load json
 			const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( key_map_path );

@@ -31,14 +31,14 @@ namespace cpg
 		public:
 			explicit KeyMapConfigHelper();
 
-			const bool Load( const char* key_map_file_name );
+			bool Load( const char* key_map_file_name );
 			void Save( const char* key_map_file_name );
 			inline const ContainerT& GetContainer() const { return mContainer; }
 			void Set( const int key_index, const cocos2d::EventKeyboard::KeyCode new_keycode );
 
 		private:
-			const bool load_Resource();
-			const bool load_Json( const char* key_map_path );
+			bool load_Resource();
+			bool load_Json( const char* key_map_path );
 			void save_Json( const char* key_map_path ) const;
 
 
