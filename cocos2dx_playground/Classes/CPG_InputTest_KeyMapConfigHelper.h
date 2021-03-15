@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "cocos/base/CCEventKeyboard.h"
+#include "base/CCEventKeyboard.h"
 
 namespace cpg
 {
