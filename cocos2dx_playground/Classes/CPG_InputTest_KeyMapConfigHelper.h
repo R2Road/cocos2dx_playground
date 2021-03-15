@@ -41,6 +41,8 @@ namespace cpg
 			const bool load_Json( const char* key_map_path );
 			void save_Json( const char* key_map_path ) const;
 
+
+		private:
 			KeyMapAndName_Container mContainer;
 		};
 	}
