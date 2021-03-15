@@ -87,17 +87,17 @@ namespace cpg
 			mKeyViews.reserve( key_map_config_helper.GetContainer().size() );
 			for( const auto& k : key_map_config_helper.GetContainer() )
 			{
-				if( k.mSpriteFrameName.empty() )
+				if( k.SpriteFrameName.empty() )
 				{
 					continue;
 				}
 
-				auto key_sprite_node = Sprite::createWithSpriteFrameName( k.mSpriteFrameName );
+				auto key_sprite_node = Sprite::createWithSpriteFrameName( k.SpriteFrameName );
 				key_sprite_node->setAnchorPoint( Vec2::ZERO );
 				key_sprite_node->setPosition( Total_Margin.width, Total_Margin.height );
 				addChild( key_sprite_node );
 
-				mKeyViews.emplace_back( k.mIdx, key_sprite_node );
+				mKeyViews.emplace_back( k.Index, key_sprite_node );
 			}
 
 			//

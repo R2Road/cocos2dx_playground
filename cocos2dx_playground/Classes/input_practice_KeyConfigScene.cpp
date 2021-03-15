@@ -34,7 +34,7 @@ namespace
 		Size result_size;
 		for( const auto& h : helper.GetContainer() )
 		{
-			label->setString( h.mName );
+			label->setString( h.Name );
 
 			if( result_size.width < label->getContentSize().width )
 			{
@@ -217,10 +217,10 @@ namespace input_practice
 					int count = 0;
 					for( const auto& h : mKeymapConfigHelper.GetContainer() )
 					{
-						if( h.mName.empty() || h.mSpriteFrameName.empty() )
+						if( h.Name.empty() || h.SpriteFrameName.empty() )
 							continue;
 
-						auto control = createKeyConfigControl( size_of_key_config_control, h.mName, h.mIdx, h.mKeycode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, this ) );
+						auto control = createKeyConfigControl( size_of_key_config_control, h.Name, h.Index, h.CocosKeyCode, CC_CALLBACK_2( KeyConfigScene::onKeyConfigControl, this ) );
 						control->setPosition( Vec2(
 							start_x
 							, start_y + ( ( control->getContentSize().height + inner_margin ) * count )

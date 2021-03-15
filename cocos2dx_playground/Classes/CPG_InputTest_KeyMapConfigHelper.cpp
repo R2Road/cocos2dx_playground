@@ -60,7 +60,7 @@ namespace cpg
 			if( 0 > key_index || key_index >= static_cast<int>( mContainer.size() ) )
 				return;
 
-			mContainer[static_cast<std::size_t>( key_index )].mKeycode = new_keycode;
+			mContainer[static_cast<std::size_t>( key_index )].CocosKeyCode = new_keycode;
 		}
 
 		bool KeyMapConfigHelper::load_Resource()
@@ -144,7 +144,7 @@ namespace cpg
 				if( key_code_itr == cur->MemberEnd() )
 					continue;
 
-				keymap_cur->mKeycode = static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() );
+				keymap_cur->CocosKeyCode = static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() );
 			}
 
 			return true;
@@ -160,7 +160,7 @@ namespace cpg
 				rapidjson::Value val;
 				val.SetObject();
 
-				val.AddMember( rapidjson::Value::StringRefType( string_key_code ), static_cast<int>( h.mKeycode ), document.GetAllocator() );
+				val.AddMember( rapidjson::Value::StringRefType( string_key_code ), static_cast<int>( h.CocosKeyCode ), document.GetAllocator() );
 
 				document.PushBack( val, document.GetAllocator() );
 			}

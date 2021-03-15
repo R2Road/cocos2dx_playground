@@ -14,17 +14,17 @@ namespace cpg
 		public:
 			struct KeyInfo
 			{
-				KeyInfo( const char* name, const int idx, const cocos2d::EventKeyboard::KeyCode keycode, const char* sprite_frame_name ) :
-					mName( name )
-					, mIdx( idx )
-					, mKeycode( keycode )
-					, mSpriteFrameName( sprite_frame_name )
+				KeyInfo( const char* name, const int index, const cocos2d::EventKeyboard::KeyCode keycode, const char* sprite_frame_name ) :
+					Name( name )
+					, Index( index )
+					, CocosKeyCode( keycode )
+					, SpriteFrameName( sprite_frame_name )
 				{}
 
-				const std::string mName;
-				const int mIdx;
-				cocos2d::EventKeyboard::KeyCode mKeycode;
-				const std::string mSpriteFrameName;
+				const std::string Name;
+				const int Index;
+				cocos2d::EventKeyboard::KeyCode CocosKeyCode;
+				const std::string SpriteFrameName;
 			};
 			using ContainerT = std::vector<KeyInfo>;
 
