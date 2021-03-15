@@ -163,12 +163,12 @@ namespace cpg
 			rapidjson::Document document;
 			document.SetArray();
 
-			for( const auto h : mContainer )
+			for( const auto& i : mContainer )
 			{
 				rapidjson::Value val;
 				val.SetObject();
 
-				val.AddMember( rapidjson::Value::StringRefType( string_key_code ), static_cast<int>( h.CocosKeyCode ), document.GetAllocator() );
+				val.AddMember( rapidjson::Value::StringRefType( string_key_code ), static_cast<int>( i.CocosKeyCode ), document.GetAllocator() );
 
 				document.PushBack( val, document.GetAllocator() );
 			}
