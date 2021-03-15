@@ -110,10 +110,11 @@ namespace cpg
 		}
 		bool KeyMapConfigHelper::load_Json( const char* path )
 		{
-			// load json
-			const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( path );
 			rapidjson::Document doc;
-			doc.Parse<0>( regionStr.c_str() );
+			{
+				const std::string json_string( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) );
+				doc.Parse<0>( json_string.c_str() );
+			}
 
 			if( doc.HasParseError() )
 			{
@@ -142,7 +143,9 @@ namespace cpg
 			{
 				key_code_itr = cur->FindMember( string_key_code );
 				if( key_code_itr == cur->MemberEnd() )
+				{
 					continue;
+				}
 
 				keymap_cur->CocosKeyCode = static_cast<EventKeyboard::KeyCode>( key_code_itr->value.GetInt() );
 			}
