@@ -24,7 +24,7 @@ namespace cpg
 
 		KeyMapConfigHelper::KeyMapConfigHelper() : mContainer() {}
 
-		const bool KeyMapConfigHelper::load( const char* key_map_file_name )
+		const bool KeyMapConfigHelper::Load( const char* key_map_file_name )
 		{
 			if( !load_Resource() )
 			{

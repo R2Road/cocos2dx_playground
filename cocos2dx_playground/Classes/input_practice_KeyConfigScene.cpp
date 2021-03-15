@@ -178,7 +178,7 @@ namespace input_practice
 		//
 		{
 			mAllowedKeys = cpg::input::AllowedKeys::load( input_practice::Setting::getKeyAllowFileName().c_str() );
-			mKeymapConfigHelper.load( input_practice::Setting::getKeyMapFileName().c_str() );
+			mKeymapConfigHelper.Load( input_practice::Setting::getKeyMapFileName().c_str() );
 		}
 
 		//
