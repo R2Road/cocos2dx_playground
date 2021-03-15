@@ -64,8 +64,8 @@ namespace cpg
 
 			mKeySize = SpriteFrameCache::getInstance()->getSpriteFrameByName( "key_free.png" )->getOriginalSize();
 			const Size content_size(
-				( mKeySize.width * key_map_config_helper.getContainer().size() )
-				+ ( Key_Margin * std::max( 0, static_cast<int>( key_map_config_helper.getContainer().size() ) - 1 ) )
+				( mKeySize.width * key_map_config_helper.GetContainer().size() )
+				+ ( Key_Margin * std::max( 0, static_cast<int>( key_map_config_helper.GetContainer().size() ) - 1 ) )
 				, mKeySize.height
 			);
 
@@ -84,8 +84,8 @@ namespace cpg
 			//
 			// View : Keys
 			//
-			mKeyViews.reserve( key_map_config_helper.getContainer().size() );
-			for( const auto& k : key_map_config_helper.getContainer() )
+			mKeyViews.reserve( key_map_config_helper.GetContainer().size() );
+			for( const auto& k : key_map_config_helper.GetContainer() )
 			{
 				if( k.mSpriteFrameName.empty() )
 				{

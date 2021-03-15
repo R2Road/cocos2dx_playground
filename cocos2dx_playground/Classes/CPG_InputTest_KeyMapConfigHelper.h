@@ -33,7 +33,7 @@ namespace cpg
 
 			const bool Load( const char* key_map_file_name );
 			void Save( const char* key_map_file_name );
-			inline const ContainerT& getContainer() const { return mContainer; }
+			inline const ContainerT& GetContainer() const { return mContainer; }
 			void set( const int key_index, const cocos2d::EventKeyboard::KeyCode new_keycode );
 
 		private:

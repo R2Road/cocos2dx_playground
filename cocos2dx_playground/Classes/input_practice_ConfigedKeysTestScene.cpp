@@ -73,7 +73,7 @@ namespace input_practice
 			ss << "+ " << getTitle();
 			ss << "\n";
 			ss << "\n";
-			for( const auto& h : key_map_config_helper.getContainer() )
+			for( const auto& h : key_map_config_helper.GetContainer() )
 			{
 				ss << "[ " << h.mName << " : " << cpg::input::KeyCodeNames::get( h.mKeycode ) << " ]" << std::endl;
 			}

@@ -32,7 +32,7 @@ namespace
 
 		auto label = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10 );
 		Size result_size;
-		for( const auto& h : helper.getContainer() )
+		for( const auto& h : helper.GetContainer() )
 		{
 			label->setString( h.mName );
 
@@ -189,8 +189,8 @@ namespace input_practice
 			const Size side_margin( 8.f, 8.f );
 			const float inner_margin = 4.f;
 			const float total_height = (
-				( size_of_key_config_control.height * mKeymapConfigHelper.getContainer().size() )
-				+ ( inner_margin * std::max( 0, static_cast<int>( mKeymapConfigHelper.getContainer().size() ) - 1 )  )
+				( size_of_key_config_control.height * mKeymapConfigHelper.GetContainer().size() )
+				+ ( inner_margin * std::max( 0, static_cast<int>( mKeymapConfigHelper.GetContainer().size() ) - 1 )  )
 				+ ( side_margin.height * 2 )
 			);
 			const float start_x = visibleOrigin.x + ( visibleSize.width * 0.5f );
@@ -215,7 +215,7 @@ namespace input_practice
 				scroll_view->setInnerContainerSize( root_node->getContentSize() );
 				{
 					int count = 0;
-					for( const auto& h : mKeymapConfigHelper.getContainer() )
+					for( const auto& h : mKeymapConfigHelper.GetContainer() )
 					{
 						if( h.mName.empty() || h.mSpriteFrameName.empty() )
 							continue;
