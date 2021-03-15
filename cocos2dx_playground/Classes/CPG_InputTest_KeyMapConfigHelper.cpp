@@ -28,7 +28,7 @@ namespace cpg
 		{
 			if( !load_Resource() )
 			{
-				cocos2d::log( "Failed : KeyMapConfigHelper - load_Resource()" );
+				CCLOG( "Failed : KeyMapConfigHelper - load_Resource()" );
 				return false;
 			}
 
@@ -72,19 +72,19 @@ namespace cpg
 
 			if( doc.HasParseError() )
 			{
-				cocos2d::log( "json parse error" );
+				CCLOG( "json parse error" );
 				return false;
 			}
 
 			if( doc.IsNull() )
 			{
-				cocos2d::log( "json is empty" );
+				CCLOG( "json is empty" );
 				return false;
 			}
 
 			if( !doc.IsArray() )
 			{
-				cocos2d::log( "invalid data struct" );
+				CCLOG( "invalid data struct" );
 				return false;
 			}
 
@@ -117,19 +117,19 @@ namespace cpg
 
 			if( doc.HasParseError() )
 			{
-				cocos2d::log( "json parse error" );
+				CCLOG( "json parse error" );
 				return false;
 			}
 
 			if( doc.IsNull() )
 			{
-				cocos2d::log( "json is empty" );
+				CCLOG( "json is empty" );
 				return false;
 			}
 
 			if( !doc.IsArray() )
 			{
-				cocos2d::log( "invalid data struct" );
+				CCLOG( "invalid data struct" );
 				return false;
 			}
 
