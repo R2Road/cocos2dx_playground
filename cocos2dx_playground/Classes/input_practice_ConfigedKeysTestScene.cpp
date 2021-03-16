@@ -13,7 +13,7 @@
 #include "CPG_InputDelegator.h"
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
-#include "CPG_InputTest_KeyViewer.h"
+#include "cpg_input_KeyViewer.h"
 #include "CPG_InputTest_KeyMapConfigHelper.h"
 #include "CPG_Input_KeyCodeNames.h"
 
@@ -129,14 +129,14 @@ namespace input_practice
 		// key viewer
 		//
 		{
-			cpg::input_test::KeyViewer* key_viewer = nullptr;
+			cpg::input::KeyViewer* key_viewer = nullptr;
 			mKeyViewer_StartPosition.set(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.1f )
 			);
 			for( int i = 0; i < key_viewer_count; ++i )
 			{
-				key_viewer = cpg::input_test::KeyViewer::create( { true, true }, key_map_config_helper );
+				key_viewer = cpg::input::KeyViewer::create( { true, true }, key_map_config_helper );
 				key_viewer->setPosition( mKeyViewer_StartPosition );
 				key_viewer->setVisible( false );
 				addChild( key_viewer, 1 );
