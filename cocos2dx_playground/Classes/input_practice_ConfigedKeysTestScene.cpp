@@ -62,7 +62,7 @@ namespace input_practice
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
-		cpg::input_test::KeyMapConfigHelper key_map_config_helper;
+		cpg::input::KeyMapConfigHelper key_map_config_helper;
 		key_map_config_helper.Load( input_practice::Setting::getKeyMapFileName().c_str() );
 
 		//

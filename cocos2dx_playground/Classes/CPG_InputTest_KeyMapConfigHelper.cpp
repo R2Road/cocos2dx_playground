@@ -20,7 +20,7 @@ namespace
 
 namespace cpg
 {
-	namespace input_test
+	namespace input
 	{
 		KeyMapConfigHelper::KeyMapConfigHelper() : mContainer() {}
 

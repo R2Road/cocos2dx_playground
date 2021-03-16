@@ -10,14 +10,10 @@ NS_CC_END
 
 namespace cpg
 {
-	namespace input_test
-	{
-		class KeyMapConfigHelper;
-	}
-
 	namespace input
 	{
 		class iKeyCollector;
+		class KeyMapConfigHelper;
 
 		class KeyViewer : public cocos2d::Node
 		{
@@ -40,13 +36,13 @@ namespace cpg
 			KeyViewer();
 
 		public:
-			static KeyViewer* create( const Config& config, const input_test::KeyMapConfigHelper& key_map_config_helper );
+			static KeyViewer* create( const Config& config, const KeyMapConfigHelper& key_map_config_helper );
 
 		private:
-			bool init( const Config& config, const input_test::KeyMapConfigHelper& key_map_config_helper );
+			bool init( const Config& config, const KeyMapConfigHelper& key_map_config_helper );
 
 		public:
-			void Setup( const cpg::input::iKeyCollector& key_collector );
+			void Setup( const iKeyCollector& key_collector );
 
 		private:
 			std::vector<KeyViewData> mKeyViews;

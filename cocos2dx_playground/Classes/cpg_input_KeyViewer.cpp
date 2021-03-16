@@ -30,7 +30,7 @@ namespace cpg
 			, mKeySize()
 		{}
 
-		KeyViewer* KeyViewer::create( const Config& config, const input_test::KeyMapConfigHelper& key_map_config_helper )
+		KeyViewer* KeyViewer::create( const Config& config, const KeyMapConfigHelper& key_map_config_helper )
 		{
 			auto ret = new ( std::nothrow ) KeyViewer();
 			if( !ret || !ret->init( config, key_map_config_helper ) )
@@ -46,7 +46,7 @@ namespace cpg
 			return ret;
 		}
 
-		bool KeyViewer::init( const Config& config, const input_test::KeyMapConfigHelper& key_map_config_helper )
+		bool KeyViewer::init( const Config& config, const KeyMapConfigHelper& key_map_config_helper )
 		{
 			if( !Node::init() )
 			{
