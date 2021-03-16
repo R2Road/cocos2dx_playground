@@ -24,7 +24,6 @@
 
 #include "main.h"
 #include "AppDelegate.h"
-#include "cocos2d.h"
 
 #if defined( DEBUG ) || defined( _DEBUG )
 	#include <vld.h>
