@@ -258,9 +258,6 @@
     <ClCompile Include="..\Classes\EntryScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\PlayGroundScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
@@ -1017,6 +1014,9 @@
     <ClCompile Include="..\Classes\cpg_input_KeyViewer.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_KeyMapConfigHelper.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1048,9 +1048,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\EntryScene.h">
       <Filter>src\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputTest_KeyMapConfigHelper.h">
-      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PlayGroundScene.h">
       <Filter>src\scene</Filter>
@@ -1845,6 +1842,9 @@
       <Filter>src\scene\ui_research\type_effect</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyViewer.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_KeyMapConfigHelper.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>

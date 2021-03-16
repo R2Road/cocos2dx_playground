@@ -1,4 +1,4 @@
-#include "CPG_InputTest_KeyMapConfigHelper.h"
+#include "cpg_input_KeyMapConfigHelper.h"
 
 #include <utility>
 #include <fstream>

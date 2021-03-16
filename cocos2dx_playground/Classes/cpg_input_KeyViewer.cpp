@@ -9,7 +9,7 @@
 #include "cpg_node_PivotNode.h"
 
 #include "CPG_Input_BasicCollector.h"
-#include "CPG_InputTest_KeyMapConfigHelper.h"
+#include "cpg_input_KeyMapConfigHelper.h"
 
 USING_NS_CC;
 

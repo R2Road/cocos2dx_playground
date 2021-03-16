@@ -14,7 +14,7 @@
 #include "CPG_Input_BasicCollector.h"
 #include "CPG_InputKeyMap.h"
 #include "cpg_input_KeyViewer.h"
-#include "CPG_InputTest_KeyMapConfigHelper.h"
+#include "cpg_input_KeyMapConfigHelper.h"
 #include "CPG_Input_KeyCodeNames.h"
 
 #include "input_practice_RootScene.h"
