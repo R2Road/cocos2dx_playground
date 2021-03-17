@@ -5,13 +5,10 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-namespace cpg
+namespace cpg_input
 {
-	namespace input
-	{
-		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
-		class KeyViewer;
-	}
+	using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
+	class KeyViewer;
 }
 
 namespace input_practice
@@ -36,8 +33,8 @@ namespace input_practice
 		void update_forExit( float dt );
 
 	private:
-		cpg::input::KeyCollectorSp mInputCollector;
-		std::list<cpg::input::KeyViewer*> mKeyViewerList;
+		cpg_input::KeyCollectorSp mInputCollector;
+		std::list<cpg_input::KeyViewer*> mKeyViewerList;
 		cocos2d::Vec2 mKeyViewer_StartPosition;
 		cocos2d::Vec2 mKeyViewer_EndPosition;
 	};

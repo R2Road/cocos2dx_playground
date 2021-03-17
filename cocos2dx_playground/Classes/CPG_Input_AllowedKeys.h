@@ -2,19 +2,16 @@
 
 #include "step_rain_of_chaos_input_KeyCodeContainer.h"
 
-namespace cpg
+namespace cpg_input
 {
-	namespace input
+	class AllowedKeys
 	{
-		class AllowedKeys
-		{
-		public:
-			using Container = step_rain_of_chaos::input::KeyCodeContainerT;
+	public:
+		using Container = step_rain_of_chaos::input::KeyCodeContainerT;
 
-			AllowedKeys() = delete;
+		AllowedKeys() = delete;
 
-			static const Container load( const char* allowed_keys_file_name );
-			static void save( Container _container, const char* allowed_keys_file_name );
-		};
-	}
+		static const Container load( const char* allowed_keys_file_name );
+		static void save( Container _container, const char* allowed_keys_file_name );
+	};
 }

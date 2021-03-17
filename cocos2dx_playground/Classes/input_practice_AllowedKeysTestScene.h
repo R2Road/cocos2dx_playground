@@ -24,6 +24,11 @@ namespace cpg
 	}
 }
 
+namespace cpg_input
+{
+	class Delegator;
+}
+
 namespace input_practice
 {
 	class AllowedKeysTestScene : public cocos2d::Scene, private helper::BackToThePreviousScene
@@ -45,7 +50,7 @@ namespace input_practice
 		void onExitButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 	private:
-		cpg::input::Delegator* mInputDelegator;
+		cpg_input::Delegator* mInputDelegator;
 		cocos2d::Label* mKeyViewer;
 		std::string mKeyStrings;
 

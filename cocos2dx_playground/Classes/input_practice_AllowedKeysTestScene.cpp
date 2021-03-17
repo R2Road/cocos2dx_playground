@@ -103,7 +103,7 @@ namespace input_practice
 		// input
 		//
 		{
-			mInputDelegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			mInputDelegator = cpg_input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 			addChild( mInputDelegator, 0 );
 
 			mInputObserver = cpg::input_test::KeyboardInputObserver::create( input_practice::Setting::getKeyAllowFileName().c_str() );
@@ -138,7 +138,7 @@ namespace input_practice
 			{
 				if( mInputDelegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 				{
-					mKeyStrings += cpg::input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
+					mKeyStrings += cpg_input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
 					mKeyStrings += "\n";
 				}
 			}

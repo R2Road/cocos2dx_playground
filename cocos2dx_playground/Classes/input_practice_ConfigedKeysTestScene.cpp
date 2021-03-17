@@ -62,7 +62,7 @@ namespace input_practice
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
 
-		cpg::input::KeyMapConfigHelper key_map_config_helper;
+		cpg_input::KeyMapConfigHelper key_map_config_helper;
 		key_map_config_helper.Load( input_practice::Setting::getKeyMapFileName().c_str() );
 
 		//
@@ -75,7 +75,7 @@ namespace input_practice
 			ss << "\n";
 			for( const auto& h : key_map_config_helper.GetContainer() )
 			{
-				ss << "[ " << h.Name << " : " << cpg::input::KeyCodeNames::get( h.CocosKeyCode ) << " ]" << std::endl;
+				ss << "[ " << h.Name << " : " << cpg_input::KeyCodeNames::get( h.CocosKeyCode ) << " ]" << std::endl;
 			}
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
@@ -114,12 +114,12 @@ namespace input_practice
 		// input
 		//
 		{
-			auto input_delegator = cpg::input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			auto input_delegator = cpg_input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 			addChild( input_delegator, 0 );
 			{
-				const auto key_map = cpg::input::KeyMap::create( input_practice::Setting::getKeyMapFileName().c_str() );
+				const auto key_map = cpg_input::KeyMap::create( input_practice::Setting::getKeyMapFileName().c_str() );
 
-				mInputCollector = cpg::input::BasicCollector::create( key_map );
+				mInputCollector = cpg_input::BasicCollector::create( key_map );
 				input_delegator->addInputCollector( mInputCollector );
 			}
 		}
@@ -129,14 +129,14 @@ namespace input_practice
 		// key viewer
 		//
 		{
-			cpg::input::KeyViewer* key_viewer = nullptr;
+			cpg_input::KeyViewer* key_viewer = nullptr;
 			mKeyViewer_StartPosition.set(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.1f )
 			);
 			for( int i = 0; i < key_viewer_count; ++i )
 			{
-				key_viewer = cpg::input::KeyViewer::create( { true, true }, key_map_config_helper );
+				key_viewer = cpg_input::KeyViewer::create( { true, true }, key_map_config_helper );
 				key_viewer->setPosition( mKeyViewer_StartPosition );
 				key_viewer->setVisible( false );
 				addChild( key_viewer, 1 );

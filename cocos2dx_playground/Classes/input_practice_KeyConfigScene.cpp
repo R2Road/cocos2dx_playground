@@ -25,7 +25,7 @@ namespace
 	const int TAG_KeyIndicator = 20140416;
 	const int TAG_KeyCode_Label = 20160528;
 
-	const Size calculateSizeOfKeyConfigControl( cpg::input::KeyMapConfigHelper& helper )
+	const Size calculateSizeOfKeyConfigControl( cpg_input::KeyMapConfigHelper& helper )
 	{
 		const Size control_side_margin( 8.f, 4.f );
 		const float inner_horizontal_margin = 10.f;
@@ -47,7 +47,7 @@ namespace
 			}
 		}
 
-		label->setString( cpg::input::KeyCodeNames::get_longest() );
+		label->setString( cpg_input::KeyCodeNames::get_longest() );
 		if( result_size.width < label->getContentSize().width )
 		{
 			result_size.width = label->getContentSize().width;
@@ -72,7 +72,7 @@ namespace
 			key_name_label->setPositionX( -control_size.width * 0.25f );
 			root->addChild( key_name_label, 1 );
 
-			auto key_code_label = Label::createWithTTF( cpg::input::KeyCodeNames::get( key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
+			auto key_code_label = Label::createWithTTF( cpg_input::KeyCodeNames::get( key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 			key_code_label->setTag( TAG_KeyCode_Label );
 			key_code_label->setPositionX( control_size.width * 0.25f );
 			root->addChild( key_code_label, 1 );
@@ -177,7 +177,7 @@ namespace input_practice
 		// key info
 		//
 		{
-			mAllowedKeys = cpg::input::AllowedKeys::load( input_practice::Setting::getKeyAllowFileName().c_str() );
+			mAllowedKeys = cpg_input::AllowedKeys::load( input_practice::Setting::getKeyAllowFileName().c_str() );
 			mKeymapConfigHelper.Load( input_practice::Setting::getKeyMapFileName().c_str() );
 		}
 
@@ -303,7 +303,7 @@ namespace input_practice
 		mKeymapConfigHelper.Set( mCurrentButtonNode->getTag(), keycode );
 
 		auto label = static_cast<Label*>( mCurrentButtonNode->getParent()->getChildByTag( TAG_KeyCode_Label ) );
-		label->setString( cpg::input::KeyCodeNames::get( keycode ) );
+		label->setString( cpg_input::KeyCodeNames::get( keycode ) );
 	}
 
 

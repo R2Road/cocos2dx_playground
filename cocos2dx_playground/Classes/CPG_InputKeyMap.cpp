@@ -10,7 +10,7 @@ USING_NS_CC;
 namespace
 {
 	const char* string_key_code = "key_code";
-	const bool loadKeyMapJson( const char* key_map_path, cpg::input::KeyMap::KeyMapContainer& container )
+	const bool loadKeyMapJson( const char* key_map_path, cpg_input::KeyMap::KeyMapContainer& container )
 	{
 		// load json
 		rapidjson::Document doc;
@@ -58,55 +58,52 @@ namespace
 	}
 }
 
-namespace cpg
+namespace cpg_input
 {
-	namespace input
+	KeyMap::KeyMap( KeyMapContainer&& container ) : mContainer( std::move( container ) ) {}
+
+	KeyMapSp KeyMap::create_with_json( const char* key_map_path )
 	{
-		KeyMap::KeyMap( KeyMapContainer&& container ) : mContainer( std::move( container ) ) {}
-
-		KeyMapSp KeyMap::create_with_json( const char* key_map_path )
+		KeyMapContainer container;
+		if( !loadKeyMapJson( key_map_path, container ) )
 		{
-			KeyMapContainer container;
-			if( !loadKeyMapJson( key_map_path, container ) )
+			return get_dummy();
+		}
+
+		KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
+		return ret;
+	}
+
+	KeyMapSp KeyMap::create( const char* key_map_file_name )
+	{
+		std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
+		path.append( key_map_file_name );
+
+		return create_with_json( path.c_str() );
+	}
+
+	const KeyMapSp& KeyMap::get_default()
+	{
+		static const auto default = create_with_json( "datas/keyconfig/keymap_default.json" );
+		return default;
+	}
+
+	const KeyMapSp& KeyMap::get_dummy()
+	{
+		static const KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( KeyMapContainer( { KeyMapPiece{ cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE, 0 } } ) ) ) );
+		return ret;
+	}
+
+	int KeyMap::getKeyIndex( const cocos2d::EventKeyboard::KeyCode key_code ) const
+	{
+		for( const auto& k : mContainer )
+		{
+			if( k.keycode == key_code )
 			{
-				return get_dummy();
+				return k.idx;
 			}
-
-			KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( container ) ) );
-			return ret;
 		}
 
-		KeyMapSp KeyMap::create( const char* key_map_file_name )
-		{
-			std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
-			path.append( key_map_file_name );
-
-			return create_with_json( path.c_str() );
-		}
-
-		const KeyMapSp& KeyMap::get_default()
-		{
-			static const auto default = create_with_json( "datas/keyconfig/keymap_default.json" );
-			return default;
-		}
-
-		const KeyMapSp& KeyMap::get_dummy()
-		{
-			static const KeyMapSp ret( new ( std::nothrow ) KeyMap( std::move( KeyMapContainer( { KeyMapPiece{ cocos2d::EventKeyboard::KeyCode::KEY_ESCAPE, 0 } } ) ) ) );
-			return ret;
-		}
-
-		int KeyMap::getKeyIndex( const cocos2d::EventKeyboard::KeyCode key_code ) const
-		{
-			for( const auto& k : mContainer )
-			{
-				if( k.keycode == key_code )
-				{
-					return k.idx;
-				}
-			}
-
-			return 0;
-		}
+		return 0;
 	}
 }

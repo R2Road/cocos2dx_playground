@@ -29,7 +29,7 @@ namespace cpg
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			input::AllowedKeys::Container mAllowedKeys;
+			cpg_input::AllowedKeys::Container mAllowedKeys;
 			bool mbFound;
 		};
 	}

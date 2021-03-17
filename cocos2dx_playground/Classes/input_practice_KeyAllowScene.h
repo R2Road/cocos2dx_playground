@@ -32,6 +32,6 @@ namespace input_practice
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		cpg::input::AllowedKeys::Container mAllowedKeys;
+		cpg_input::AllowedKeys::Container mAllowedKeys;
 	};
 }

@@ -2,10 +2,7 @@
 
 USING_NS_CC;
 
-namespace cpg
+namespace cpg_input
 {
-	namespace input
-	{
-		iKeyCollector::iKeyCollector( const KeyMapSp& _key_map_container ) : mKeyMapContainer( _key_map_container ) {}
-	}
+	iKeyCollector::iKeyCollector( const KeyMapSp& _key_map_container ) : mKeyMapContainer( _key_map_container ) {}
 }

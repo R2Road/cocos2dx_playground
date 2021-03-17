@@ -29,7 +29,7 @@ namespace
 	const Size calculateSizeOfKeyAllowControl()
 	{
 		const Size key_allow_margin( 8.f, 4.f );
-		auto label = Label::createWithTTF( cpg::input::KeyCodeNames::get_longest(), cpg::StringTable::GetFontPath(), 10 );
+		auto label = Label::createWithTTF( cpg_input::KeyCodeNames::get_longest(), cpg::StringTable::GetFontPath(), 10 );
 		return Size(
 			std::ceilf( label->getContentSize().width + ( key_allow_margin.width * 2 ) )
 			, std::ceilf( label->getContentSize().height + ( key_allow_margin.height * 2 ) )
@@ -63,7 +63,7 @@ namespace
 			//
 			// Key Name
 			//
-			auto label = Label::createWithTTF( cpg::input::KeyCodeNames::get( target_key_code ), cpg::StringTable::GetFontPath(), 10 );
+			auto label = Label::createWithTTF( cpg_input::KeyCodeNames::get( target_key_code ), cpg::StringTable::GetFontPath(), 10 );
 			button->setTitleLabel( label );
 
 
@@ -143,7 +143,7 @@ namespace input_practice
 		//
 		// Load Allowed Keys
 		//
-		mAllowedKeys = cpg::input::AllowedKeys::load( input_practice::Setting::getKeyAllowFileName().c_str() );
+		mAllowedKeys = cpg_input::AllowedKeys::load( input_practice::Setting::getKeyAllowFileName().c_str() );
 
 
 
@@ -245,7 +245,7 @@ namespace input_practice
 			return;
 		}
 
-		cpg::input::AllowedKeys::save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
+		cpg_input::AllowedKeys::save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
 
 		helper::BackToThePreviousScene::MoveBack();
 	}

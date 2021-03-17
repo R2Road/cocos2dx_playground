@@ -36,8 +36,8 @@ namespace input_practice
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		cpg::input::AllowedKeys::Container mAllowedKeys;
-		cpg::input::KeyMapConfigHelper mKeymapConfigHelper;
+		cpg_input::AllowedKeys::Container mAllowedKeys;
+		cpg_input::KeyMapConfigHelper mKeymapConfigHelper;
 		cocos2d::Node* mCurrentButtonNode;
 	};
 }

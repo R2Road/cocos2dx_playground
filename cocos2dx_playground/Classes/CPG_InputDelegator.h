@@ -5,41 +5,38 @@
 #include "CPG_Input_AllowedKeys.h"
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
-namespace cpg
+namespace cpg_input
 {
-	namespace input
+	using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
+
+	class Delegator : public cocos2d::Node
 	{
-		using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
+	private:
+		Delegator();
 
-		class Delegator : public cocos2d::Node
-		{
-		private:
-			Delegator();
+	public:
+		static Delegator* create( const char* allowed_keys_file_name );
 
-		public:
-			static Delegator* create( const char* allowed_keys_file_name );
+	private:
+		bool init( const char* allowed_keys_file_name );
 
-		private:
-			bool init( const char* allowed_keys_file_name );
+	public:
+		void onEnter() override;
+		void update( float dt ) override;
+		void onExit() override;
 
-		public:
-			void onEnter() override;
-			void update( float dt ) override;
-			void onExit() override;
+	private:
+		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+		void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
-		private:
-			void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
-			void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
+	public:
+		inline const bool isActiveKey( const cocos2d::EventKeyboard::KeyCode keycode ) const { return mKeycodeCollector.isActiveKey( keycode ); }
+		void addInputCollector( KeyCollectorSp& new_key_collector );
 
-		public:
-			inline const bool isActiveKey( const cocos2d::EventKeyboard::KeyCode keycode ) const { return mKeycodeCollector.isActiveKey( keycode ); }
-			void addInputCollector( KeyCollectorSp& new_key_collector );
-
-		private:
-			cocos2d::EventListenerKeyboard* mKeyboardListener;
-			AllowedKeys::Container mAllowedKeys;
-			step_rain_of_chaos::input::KeyCodeCollector mKeycodeCollector;
-			KeyCollectorSp mInputCollector;
-		};
-	}
+	private:
+		cocos2d::EventListenerKeyboard* mKeyboardListener;
+		AllowedKeys::Container mAllowedKeys;
+		step_rain_of_chaos::input::KeyCodeCollector mKeycodeCollector;
+		KeyCollectorSp mInputCollector;
+	};
 }

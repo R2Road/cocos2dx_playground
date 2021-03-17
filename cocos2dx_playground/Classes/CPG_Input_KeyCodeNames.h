@@ -2,18 +2,15 @@
 
 #include "base/CCEventKeyboard.h"
 
-namespace cpg
+namespace cpg_input
 {
-	namespace input
+	class KeyCodeNames
 	{
-		class KeyCodeNames
-		{
-		private:
-			KeyCodeNames() = delete;
+	private:
+		KeyCodeNames() = delete;
 
-		public:
-			static const char* get( const cocos2d::EventKeyboard::KeyCode keycode );
-			static const char* get_longest();
-		};
-	}
+	public:
+		static const char* get( const cocos2d::EventKeyboard::KeyCode keycode );
+		static const char* get_longest();
+	};
 }
