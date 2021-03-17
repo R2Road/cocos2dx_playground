@@ -47,7 +47,7 @@ namespace
 			}
 		}
 
-		label->setString( cpg_input::KeyCodeNames::get_longest() );
+		label->setString( cpg_input::KeyCodeNames::Get_Longest() );
 		if( result_size.width < label->getContentSize().width )
 		{
 			result_size.width = label->getContentSize().width;
@@ -72,7 +72,7 @@ namespace
 			key_name_label->setPositionX( -control_size.width * 0.25f );
 			root->addChild( key_name_label, 1 );
 
-			auto key_code_label = Label::createWithTTF( cpg_input::KeyCodeNames::get( key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
+			auto key_code_label = Label::createWithTTF( cpg_input::KeyCodeNames::Get( key_code ), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 			key_code_label->setTag( TAG_KeyCode_Label );
 			key_code_label->setPositionX( control_size.width * 0.25f );
 			root->addChild( key_code_label, 1 );
@@ -303,7 +303,7 @@ namespace input_practice
 		mKeymapConfigHelper.Set( mCurrentButtonNode->getTag(), keycode );
 
 		auto label = static_cast<Label*>( mCurrentButtonNode->getParent()->getChildByTag( TAG_KeyCode_Label ) );
-		label->setString( cpg_input::KeyCodeNames::get( keycode ) );
+		label->setString( cpg_input::KeyCodeNames::Get( keycode ) );
 	}
 
 

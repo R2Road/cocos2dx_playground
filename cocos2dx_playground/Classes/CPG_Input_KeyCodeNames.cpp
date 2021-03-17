@@ -9,7 +9,7 @@ USING_NS_CC;
 
 namespace cpg_input
 {
-	const char* KeyCodeNames::get( const cocos2d::EventKeyboard::KeyCode keycode )
+	const char* KeyCodeNames::Get( const cocos2d::EventKeyboard::KeyCode keycode )
 	{
 		static const std::array<std::string, step_rain_of_chaos::input::KeyCodeContainerSize> temp_container( {
 			"NONE"
@@ -187,8 +187,8 @@ namespace cpg_input
 		return dummy;
 	}
 
-	const char* KeyCodeNames::get_longest()
+	const char* KeyCodeNames::Get_Longest()
 	{
-		return cpg_input::KeyCodeNames::get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS );
+		return cpg_input::KeyCodeNames::Get( EventKeyboard::KeyCode::KEY_RIGHT_PARENTHESIS );
 	}
 }

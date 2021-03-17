@@ -75,7 +75,7 @@ namespace input_practice
 			ss << "\n";
 			for( const auto& h : key_map_config_helper.GetContainer() )
 			{
-				ss << "[ " << h.Name << " : " << cpg_input::KeyCodeNames::get( h.CocosKeyCode ) << " ]" << std::endl;
+				ss << "[ " << h.Name << " : " << cpg_input::KeyCodeNames::Get( h.CocosKeyCode ) << " ]" << std::endl;
 			}
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

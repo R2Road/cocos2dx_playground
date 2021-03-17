@@ -138,7 +138,7 @@ namespace input_practice
 			{
 				if( mInputDelegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 				{
-					mKeyStrings += cpg_input::KeyCodeNames::get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
+					mKeyStrings += cpg_input::KeyCodeNames::Get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
 					mKeyStrings += "\n";
 				}
 			}

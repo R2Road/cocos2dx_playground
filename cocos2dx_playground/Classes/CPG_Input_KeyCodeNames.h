@@ -10,7 +10,7 @@ namespace cpg_input
 		KeyCodeNames() = delete;
 
 	public:
-		static const char* get( const cocos2d::EventKeyboard::KeyCode keycode );
-		static const char* get_longest();
+		static const char* Get( const cocos2d::EventKeyboard::KeyCode keycode );
+		static const char* Get_Longest();
 	};
 }
