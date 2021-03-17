@@ -243,9 +243,6 @@
     <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_KeyCodeNames.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
@@ -1017,6 +1014,9 @@
     <ClCompile Include="..\Classes\cpg_input_KeyMapConfigHelper.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_KeyCodeNames.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1032,9 +1032,6 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_KeyCodeNames.h">
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_InputDelegator.h">
@@ -1845,6 +1842,9 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyMapConfigHelper.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_KeyCodeNames.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>

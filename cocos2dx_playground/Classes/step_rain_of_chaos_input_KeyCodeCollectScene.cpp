@@ -11,7 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 
 #include "cpg_StringTable.h"
-#include "CPG_Input_KeyCodeNames.h"
+#include "cpg_input_KeyCodeNames.h"
 #include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;

@@ -16,7 +16,7 @@
 #include "ui/UIScrollView.h"
 
 #include "cpg_StringTable.h"
-#include "CPG_Input_KeyCodeNames.h"
+#include "cpg_input_KeyCodeNames.h"
 
 #include "input_practice_Setting.h"
 
