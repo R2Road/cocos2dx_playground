@@ -1,7 +1,6 @@
 #include "CPG_Input_KeyCodeNames.h"
 
 #include <array>
-#include <string>
 
 #include "step_rain_of_chaos_input_KeyCodeContainer.h"
 
@@ -11,7 +10,7 @@ namespace cpg_input
 {
 	const char* KeyCodeNames::Get( const cocos2d::EventKeyboard::KeyCode keycode )
 	{
-		static const std::array<std::string, step_rain_of_chaos::input::KeyCodeContainerSize> temp_container( {
+		static const std::array<char*, step_rain_of_chaos::input::KeyCodeContainerSize> STRINGs {
 			"NONE"
 			, "PAUSE"
 			, "SCROLL_LOCK"
@@ -178,10 +177,12 @@ namespace cpg_input
 			, "DPAD_CENTER"
 			, "ENTER"
 			, "PLAY"
-		} );
+		};
 
-		if( temp_container.size() > static_cast<std::size_t>( keycode ) )
-			return temp_container[static_cast<std::size_t>( keycode )].c_str();
+		if( STRINGs.size() > static_cast<std::size_t>( keycode ) )
+		{
+			return STRINGs[static_cast<std::size_t>( keycode )];
+		}
 
 		static const char* dummy = "";
 		return dummy;
