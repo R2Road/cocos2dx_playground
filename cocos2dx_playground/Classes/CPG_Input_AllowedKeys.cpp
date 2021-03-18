@@ -17,7 +17,7 @@ namespace cpg_input
 		void loadDefaultAllowedKeys( AllowedKeys::Container& container )
 		{
 			const std::initializer_list<bool> temp_container( {
-					false		// KEY_NONE,
+				false		// KEY_NONE,
 				, false		// KEY_PAUSE,
 				, false		// KEY_SCROLL_LOCK,
 				, false		// KEY_PRINT,
@@ -186,7 +186,7 @@ namespace cpg_input
 			} );
 
 			std::size_t i = 0;
-			for( auto a : temp_container )
+			for( const auto a : temp_container )
 			{
 				container[i] = a;
 				++i;
@@ -196,25 +196,27 @@ namespace cpg_input
 		const bool loadAllowedKeysJson( const char* path, AllowedKeys::Container& container )
 		{
 			// load json
-			const std::string regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( path );
 			rapidjson::Document doc;
-			doc.Parse<0>( regionStr.c_str() );
+			{
+				const std::string regionStr( cocos2d::FileUtils::getInstance()->getStringFromFile( path ) );
+				doc.Parse<0>( regionStr.c_str() );
+			}
 
 			if( doc.HasParseError() )
 			{
-				cocos2d::log( "json parse error" );
+				CCLOG( "json parse error" );
 				return false;
 			}
 
 			if( doc.IsNull() )
 			{
-				cocos2d::log( "json is empty" );
+				CCLOG( "json is empty" );
 				return false;
 			}
 
 			if( !doc.IsArray() )
 			{
-				cocos2d::log( "invalid data struct" );
+				CCLOG( "invalid data struct" );
 				return false;
 			}
 
@@ -224,7 +226,9 @@ namespace cpg_input
 			{
 				target_idx = static_cast<std::size_t>( cur->GetUint() );
 				if( container.size() <= target_idx )
+				{
 					continue;
+				}
 
 				container[target_idx] = true;
 			}
@@ -238,8 +242,12 @@ namespace cpg_input
 			document.SetArray();
 
 			for( std::size_t cur = 0; container.size() > cur; ++cur )
+			{
 				if( container[cur] )
+				{
 					document.PushBack( static_cast<int>( cur ), document.GetAllocator() );
+				}
+			}
 
 			rapidjson::StringBuffer buffer;
 			rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
