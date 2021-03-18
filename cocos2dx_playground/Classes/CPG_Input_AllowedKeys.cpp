@@ -253,7 +253,7 @@ namespace cpg_input
 		}
 	}
 
-	const AllowedKeys::Container AllowedKeys::load( const char* allowed_keys_file_name )
+	const AllowedKeys::Container AllowedKeys::Load( const char* allowed_keys_file_name )
 	{
 		Container container;
 
@@ -269,7 +269,7 @@ namespace cpg_input
 		return container;
 	}
 
-	void AllowedKeys::save( Container container, const char* allowed_keys_file_name )
+	void AllowedKeys::Save( Container container, const char* allowed_keys_file_name )
 	{
 		std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 		path.append( allowed_keys_file_name );

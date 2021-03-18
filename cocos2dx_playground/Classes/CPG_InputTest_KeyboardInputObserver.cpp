@@ -29,7 +29,7 @@ namespace cpg
 				ret->autorelease();
 			}
 
-			ret->mAllowedKeys = cpg_input::AllowedKeys::load( allowed_keys_file_name );
+			ret->mAllowedKeys = cpg_input::AllowedKeys::Load( allowed_keys_file_name );
 
 			ret->scheduleUpdateWithPriority( 1 );
 			return ret;

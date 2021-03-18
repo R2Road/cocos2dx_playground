@@ -143,7 +143,7 @@ namespace input_practice
 		//
 		// Load Allowed Keys
 		//
-		mAllowedKeys = cpg_input::AllowedKeys::load( input_practice::Setting::getKeyAllowFileName().c_str() );
+		mAllowedKeys = cpg_input::AllowedKeys::Load( input_practice::Setting::getKeyAllowFileName().c_str() );
 
 
 
@@ -245,7 +245,7 @@ namespace input_practice
 			return;
 		}
 
-		cpg_input::AllowedKeys::save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
+		cpg_input::AllowedKeys::Save( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
 
 		helper::BackToThePreviousScene::MoveBack();
 	}
