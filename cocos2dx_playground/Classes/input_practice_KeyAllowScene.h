@@ -3,7 +3,7 @@
 #include "2d/CCScene.h"
 #include "ui/UIWidget.h"
 
-#include "CPG_Input_AllowedKeys.h"
+#include "cpg_input_AllowedKeys.h"
 
 #include "helper_BackToThePreviousScene.h"
 

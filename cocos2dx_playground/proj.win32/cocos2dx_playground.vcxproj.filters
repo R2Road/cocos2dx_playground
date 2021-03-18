@@ -234,9 +234,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_AllowedKeys.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
@@ -1017,6 +1014,9 @@
     <ClCompile Include="..\Classes\cpg_input_KeyCodeNames.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1024,9 +1024,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_AllowedKeys.h">
-      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h">
       <Filter>src\input</Filter>
@@ -1845,6 +1842,9 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyCodeContainer.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>

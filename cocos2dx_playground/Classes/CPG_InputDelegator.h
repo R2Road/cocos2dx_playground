@@ -2,7 +2,7 @@
 
 #include "2d//CCNode.h"
 
-#include "CPG_Input_AllowedKeys.h"
+#include "cpg_input_AllowedKeys.h"
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 namespace cpg_input

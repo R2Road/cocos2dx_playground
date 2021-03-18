@@ -5,7 +5,7 @@
 
 #include "helper_BackToThePreviousScene.h"
 
-#include "CPG_Input_AllowedKeys.h"
+#include "cpg_input_AllowedKeys.h"
 #include "cpg_input_KeyMapConfigHelper.h"
 
 namespace input_practice
