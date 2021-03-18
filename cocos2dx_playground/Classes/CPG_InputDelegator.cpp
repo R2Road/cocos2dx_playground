@@ -41,7 +41,7 @@ namespace cpg_input
 			return false;
 		}
 
-		mAllowedKeys = AllowedKeys::Load( allowed_keys_file_name );
+		AllowedKeys::Load( mAllowedKeys, allowed_keys_file_name );
 
 		scheduleUpdateWithPriority( -1 );
 

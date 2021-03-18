@@ -143,7 +143,7 @@ namespace input_practice
 		//
 		// Load Allowed Keys
 		//
-		mAllowedKeys = cpg_input::AllowedKeys::Load( input_practice::Setting::getKeyAllowFileName().c_str() );
+		cpg_input::AllowedKeys::Load( mAllowedKeys, input_practice::Setting::getKeyAllowFileName().c_str() );
 
 
 

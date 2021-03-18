@@ -253,20 +253,18 @@ namespace cpg_input
 		}
 	}
 
-	const AllowedKeys::Container AllowedKeys::Load( const char* allowed_keys_file_name )
+	void AllowedKeys::Load( Container& container, const char* allowed_keys_file_name )
 	{
-		Container container;
-
 		std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 		path.append( allowed_keys_file_name );
 		if( loadAllowedKeysJson( path.c_str(), container ) )
-			return container;
+		{
+			return;
+		}
 
 		loadDefaultAllowedKeys( container );
 
 		saveAllowedKeysJson( path.c_str(), container );
-
-		return container;
 	}
 
 	void AllowedKeys::Save( const Container& container, const char* allowed_keys_file_name )

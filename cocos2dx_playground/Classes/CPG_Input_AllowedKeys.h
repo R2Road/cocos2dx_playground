@@ -13,7 +13,7 @@ namespace cpg_input
 		AllowedKeys() = delete;
 
 	public:
-		static const Container Load( const char* allowed_keys_file_name );
+		static void Load( Container& container, const char* allowed_keys_file_name );
 		static void Save( const Container& container, const char* allowed_keys_file_name );
 	};
 }
