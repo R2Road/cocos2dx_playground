@@ -72,13 +72,17 @@ namespace cpg
 		void KeyboardInputObserver::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( mAllowedKeys[static_cast<std::size_t>( keycode )] )
+			{
 				mbFound = true;
+			}
 		}
 
 		void KeyboardInputObserver::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( mAllowedKeys[static_cast<std::size_t>( keycode )] )
+			{
 				mbFound = true;
+			}
 		}
 	}
 }
