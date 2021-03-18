@@ -232,7 +232,7 @@ namespace cpg_input
 			return true;
 		}
 
-		const bool saveAllowedKeysJson( const char* key_map_path, AllowedKeys::Container& container )
+		const bool saveAllowedKeysJson( const char* key_map_path, const AllowedKeys::Container& container )
 		{
 			rapidjson::Document document;
 			document.SetArray();
@@ -269,7 +269,7 @@ namespace cpg_input
 		return container;
 	}
 
-	void AllowedKeys::Save( Container container, const char* allowed_keys_file_name )
+	void AllowedKeys::Save( const Container& container, const char* allowed_keys_file_name )
 	{
 		std::string path( std::move( cocos2d::FileUtils::getInstance()->getWritablePath() ) );
 		path.append( allowed_keys_file_name );

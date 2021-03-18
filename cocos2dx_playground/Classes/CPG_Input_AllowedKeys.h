@@ -14,6 +14,6 @@ namespace cpg_input
 
 	public:
 		static const Container Load( const char* allowed_keys_file_name );
-		static void Save( Container _container, const char* allowed_keys_file_name );
+		static void Save( const Container& container, const char* allowed_keys_file_name );
 	};
 }
