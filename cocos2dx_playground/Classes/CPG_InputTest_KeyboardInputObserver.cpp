@@ -18,21 +18,31 @@ namespace cpg
 		KeyboardInputObserver* KeyboardInputObserver::create( const char* allowed_keys_file_name )
 		{
 			auto ret = new ( std::nothrow ) KeyboardInputObserver();
-			if( !ret || !ret->init() )
+			if( !ret || !ret->init( allowed_keys_file_name ) )
 			{
 				delete ret;
 				ret = nullptr;
-				return nullptr;
 			}
 			else
 			{
 				ret->autorelease();
 			}
 
-			cpg_input::AllowedKeys::Load( ret->mAllowedKeys, allowed_keys_file_name );
-
-			ret->scheduleUpdateWithPriority( 1 );
 			return ret;
+		}
+
+		bool KeyboardInputObserver::init( const char* allowed_keys_file_name )
+		{
+			if( !Node::init() )
+			{
+				return false;
+			}
+
+			cpg_input::AllowedKeys::Load( mAllowedKeys, allowed_keys_file_name );
+
+			scheduleUpdateWithPriority( 1 );
+
+			return true;
 		}
 
 		void KeyboardInputObserver::onEnter()

@@ -16,6 +16,10 @@ namespace cpg
 		public:
 			static KeyboardInputObserver* create( const char* allowed_keys_file_name );
 
+		private:
+			bool init( const char* allowed_keys_file_name );
+
+		public:
 			void onEnter() override;
 			void update( float dt ) override;
 			void onExit() override;
