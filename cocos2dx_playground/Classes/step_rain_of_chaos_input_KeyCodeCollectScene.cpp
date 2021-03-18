@@ -141,7 +141,7 @@ namespace step_rain_of_chaos
 		void KeyCodeCollectScene::updateKeyViewer()
 		{
 			mKeyStrings.clear();
-			for( auto cur = step_rain_of_chaos::input::KeyCodeContainerFirst; cur < step_rain_of_chaos::input::KeyCodeContainerSize; ++cur )
+			for( auto cur = cpg_input::KeyCodeContainerFirst; cur < cpg_input::KeyCodeContainerSize; ++cur )
 			{
 				if( mKeyCodeCollector.isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 				{

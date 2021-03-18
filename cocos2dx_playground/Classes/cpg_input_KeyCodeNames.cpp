@@ -10,7 +10,7 @@ namespace cpg_input
 {
 	const char* KeyCodeNames::Get( const cocos2d::EventKeyboard::KeyCode keycode )
 	{
-		static const std::array<char*, step_rain_of_chaos::input::KeyCodeContainerSize> STRINGs {
+		static const std::array<char*, cpg_input::KeyCodeContainerSize> STRINGs {
 			"NONE"
 			, "PAUSE"
 			, "SCROLL_LOCK"

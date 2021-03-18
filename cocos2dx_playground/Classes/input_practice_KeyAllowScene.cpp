@@ -40,7 +40,7 @@ namespace
 	{
 		const auto row_count = std::div( static_cast<int>( visible_height ), static_cast<int>( item_height ) ).quot;
 
-		const auto div_result = std::div( step_rain_of_chaos::input::KeyCodeContainerSize, row_count );
+		const auto div_result = std::div( cpg_input::KeyCodeContainerSize, row_count );
 		const auto column_count = div_result.rem > 0 ? div_result.quot + 1 : div_result.quot;
 
 		return std::make_pair( column_count, row_count );
@@ -191,7 +191,7 @@ namespace input_practice
 			{
 				int grid_x = 0;
 				int grid_y = 0;
-				for( std::size_t cur = step_rain_of_chaos::input::KeyCodeContainerFirst; step_rain_of_chaos::input::KeyCodeContainerSize > cur; ++cur )
+				for( std::size_t cur = cpg_input::KeyCodeContainerFirst; cpg_input::KeyCodeContainerSize > cur; ++cur )
 				{
 					auto control = createKeyAllowControl(
 						control_size

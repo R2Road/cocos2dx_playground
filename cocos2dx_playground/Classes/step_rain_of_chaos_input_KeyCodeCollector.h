@@ -9,7 +9,7 @@ namespace step_rain_of_chaos
 		class KeyCodeCollector
 		{
 		public:
-			using ContainerT = step_rain_of_chaos::input::KeyCodeContainerT;
+			using ContainerT = cpg_input::KeyCodeContainerT;
 
 			KeyCodeCollector();
 
