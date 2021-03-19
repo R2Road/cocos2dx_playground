@@ -131,7 +131,7 @@ namespace input_practice
 	}
 	void AllowedKeysTestScene::update( float dt )
 	{
-		if( mInputObserver->inputFound() )
+		if( mInputObserver->FoundInput() )
 		{
 			mKeyStrings.clear();
 			for( std::size_t cur = 0; cur < cpg_input::KeyCodeContainerSize; ++cur )
