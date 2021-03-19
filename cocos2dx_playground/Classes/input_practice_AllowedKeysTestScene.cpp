@@ -106,7 +106,7 @@ namespace input_practice
 			mInputDelegator = cpg_input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 			addChild( mInputDelegator, 0 );
 
-			mInputObserver = cpg::input_test::KeyboardInputObserver::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			mInputObserver = cpg_input::KeyboardInputObserver::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 			addChild( mInputObserver, 1 );
 		}
 
