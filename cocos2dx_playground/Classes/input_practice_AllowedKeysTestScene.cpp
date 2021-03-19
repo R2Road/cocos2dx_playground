@@ -12,7 +12,7 @@
 #include "cpg_StringTable.h"
 
 #include "CPG_InputDelegator.h"
-#include "CPG_InputTest_KeyboardInputObserver.h"
+#include "cpg_input_KeyboardInputObserver.h"
 #include "cpg_input_KeyCodeNames.h"
 
 #include "input_practice_Setting.h"

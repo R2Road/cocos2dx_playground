@@ -1,4 +1,4 @@
-#include "CPG_InputTest_KeyboardInputObserver.h"
+#include "cpg_input_KeyboardInputObserver.h"
 
 #include <new>
 

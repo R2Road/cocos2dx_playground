@@ -1014,7 +1014,7 @@
     <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputTest_KeyboardInputObserver.cpp">
+    <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserver.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1844,7 +1844,7 @@
     <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h">
       <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputTest_KeyboardInputObserver.h">
+    <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserver.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>
