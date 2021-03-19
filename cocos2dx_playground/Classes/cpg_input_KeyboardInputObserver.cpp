@@ -2,7 +2,8 @@
 
 #include <new>
 
-#include "cocos2d.h"
+#include "base/CCEventDispatcher.h"
+#include "base/CCEventListenerKeyboard.h"
 
 USING_NS_CC;
 
