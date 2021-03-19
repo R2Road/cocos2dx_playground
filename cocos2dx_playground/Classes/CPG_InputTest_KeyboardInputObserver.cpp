@@ -11,8 +11,9 @@ namespace cpg
 	namespace input_test
 	{
 		KeyboardInputObserver::KeyboardInputObserver() :
-			mbFound( false )
+			mKeyboardListener( nullptr )
 			, mAllowedKeys()
+			, mbFound( false )
 		{}
 
 		KeyboardInputObserver* KeyboardInputObserver::create( const char* allowed_keys_file_name )
@@ -49,6 +50,7 @@ namespace cpg
 		{
 			Node::onEnter();
 
+			CCASSERT( !mKeyboardListener, "" );
 			mKeyboardListener = EventListenerKeyboard::create();
 			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( KeyboardInputObserver::onKeyPressed, this );
 			mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyboardInputObserver::onKeyReleased, this );
@@ -61,11 +63,10 @@ namespace cpg
 		}
 		void KeyboardInputObserver::onExit()
 		{
-			if( mKeyboardListener )
-			{
-				getEventDispatcher()->removeEventListener( mKeyboardListener );
-				mKeyboardListener = nullptr;
-			}
+			CCASSERT( mKeyboardListener, "" );
+			getEventDispatcher()->removeEventListener( mKeyboardListener );
+			mKeyboardListener = nullptr;
+
 			Node::onExit();
 		}
 
