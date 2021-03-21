@@ -12,7 +12,9 @@
 
 #include "cpg_StringTable.h"
 
+#include "algorithm_practice_astar_TestScene.h"
 #include "algorithm_practice_floodfill_RootScene.h"
+
 #include "PlayGroundScene.h"
 
 USING_NS_CC;
@@ -59,6 +61,8 @@ namespace algorithm_practice
 			ss << std::endl;
 			ss << std::endl;
 			ss << "[1] : " << algorithm_practice_floodfill::RootScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << algorithm_practice_astar::TestScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -113,6 +117,9 @@ namespace algorithm_practice
 
 		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( algorithm_practice_floodfill::RootScene::create() );
+			break;
+		case EventKeyboard::KeyCode::KEY_2:
+			_director->replaceScene( algorithm_practice_astar::TestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
