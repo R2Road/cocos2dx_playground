@@ -28,7 +28,7 @@ USING_NS_CC;
 
 namespace
 {
-	const char* FileName = "algorithm_practice_floodfill_test_scene.json";
+	const char* FileName = "algorithm_practice_astar_test_scene.json";
 
 	const std::size_t GRID_WIDTH = 13;
 	const std::size_t GRID_HEIGHT = 13;
