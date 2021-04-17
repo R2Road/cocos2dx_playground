@@ -14,6 +14,7 @@
 
 #include "algorithm_practice_astar_TestScene.h"
 #include "algorithm_practice_floodfill_RootScene.h"
+#include "algorithm_practice_loophero_RootScene.h"
 
 #include "PlayGroundScene.h"
 
@@ -63,6 +64,12 @@ namespace algorithm_practice
 			ss << "[1] : " << algorithm_practice_floodfill::RootScene::getTitle();
 			ss << std::endl;
 			ss << "[2] : " << algorithm_practice_astar::TestScene::getTitle();
+			ss << std::endl;
+			ss << std::endl;
+			ss << "=============================";
+			ss << std::endl;
+			ss << std::endl;
+			ss << "[Q] : " << algorithm_practice_loophero::RootScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -120,6 +127,10 @@ namespace algorithm_practice
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( algorithm_practice_astar::TestScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_Q:
+			_director->replaceScene( algorithm_practice_loophero::RootScene::create() );
 			break;
 
 		default:
