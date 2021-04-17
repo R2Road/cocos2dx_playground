@@ -150,6 +150,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\algorithm_practice_astar_TestScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_Constant.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.cpp" />
@@ -415,6 +416,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_TestScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_Constant.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.h" />

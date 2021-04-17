@@ -226,6 +226,9 @@
     <Filter Include="src\scene\ui_research\type_effect">
       <UniqueIdentifier>{99b4a5fe-b8f1-49ea-b80e-23b2e4d8eff4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\algorithm_practice\astar">
+      <UniqueIdentifier>{507b89b4-23af-4c97-a3bc-a44df4518df1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -1016,6 +1019,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserver.cpp">
       <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_astar_TestScene.cpp">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1846,6 +1852,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserver.h">
       <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_TestScene.h">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
