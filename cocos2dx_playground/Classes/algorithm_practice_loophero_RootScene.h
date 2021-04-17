@@ -20,7 +20,7 @@ namespace algorithm_practice_loophero
 		RootScene();
 
 	public:
-		static const char* getTitle() { return "Loop Hero"; }
+		static const char* getTitle() { return "Loop Hero( In Progress )"; }
 		static cocos2d::Scene* create();
 
 	private:
