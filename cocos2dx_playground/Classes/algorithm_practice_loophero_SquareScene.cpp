@@ -25,7 +25,7 @@ USING_NS_CC;
 
 namespace
 {
-	const std::size_t GRID_WIDTH = 13;
+	const std::size_t GRID_WIDTH = 21;
 	const std::size_t GRID_HEIGHT = 13;
 }
 
