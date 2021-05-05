@@ -37,6 +37,8 @@ namespace algorithm_practice_loophero
 
 		, mGrid4TileMap()
 		, mTileMapNode( nullptr )
+
+		, mWay()
 	{}
 
 	Scene* SquareScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -118,6 +120,39 @@ namespace algorithm_practice_loophero
 		// Setup
 		//
 		mTileMapNode->FillAll( 1, 0 );
+
+		int pivot_x = 6;
+		int pivot_y = 10;
+		for( int i = 0 ; 10 > i; ++i )
+		{
+			mWay.push_back( { pivot_x + i, pivot_y } );
+		}
+
+		pivot_x = mWay.rbegin()->x;
+		pivot_y = mWay.rbegin()->y - 1;
+		for( int i = 0; 7 > i; ++i )
+		{
+			mWay.push_back( { pivot_x, pivot_y - i } );
+		}
+
+		pivot_x = mWay.rbegin()->x - 1;
+		pivot_y = mWay.rbegin()->y;
+		for( int i = 0; 10 > i; ++i )
+		{
+			mWay.push_back( { pivot_x - i, pivot_y } );
+		}
+
+		pivot_x = mWay.rbegin()->x;
+		pivot_y = mWay.rbegin()->y + 1;
+		for( int i = 0; 7 > i; ++i )
+		{
+			mWay.push_back( { pivot_x, pivot_y + i } );
+		}
+
+		for( const auto& p : mWay )
+		{
+			mTileMapNode->UpdateTile( p.x, p.y, 0, 0 );
+		}
 
 		return true;
 	}
