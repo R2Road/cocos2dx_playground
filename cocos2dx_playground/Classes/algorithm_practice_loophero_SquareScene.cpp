@@ -82,6 +82,9 @@ namespace algorithm_practice_loophero
 		//
 		{
 			std::stringstream ss;
+			ss << "+ " << getTitle();
+			ss << std::endl;
+			ss << std::endl;
 			ss << "[ESC] : Return to Root";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
