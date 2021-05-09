@@ -153,6 +153,8 @@ namespace algorithm_practice_loophero
 			mTileMapNode->UpdateTile( p.x, p.y, 0, 0 );
 		}
 
+		CCASSERT( LOAD_LENGTH == mWay.size(), "Not Enough Way Length" );
+
 		return true;
 	}
 
