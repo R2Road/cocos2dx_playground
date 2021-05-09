@@ -1871,6 +1871,9 @@
     <ClInclude Include="..\Classes\algorithm_practice_loophero_SquareScene.h">
       <Filter>src\scene\algorithm_practice\loophero</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_loophero_Constant.h">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

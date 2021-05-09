@@ -428,6 +428,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_ProcessorNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_TestScene.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_loophero_Constant.h" />
     <ClInclude Include="..\Classes\algorithm_practice_loophero_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_loophero_SquareScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h" />

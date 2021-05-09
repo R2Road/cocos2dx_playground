@@ -21,13 +21,9 @@
 
 #include "step_defender_game_TileMapNode.h"
 
-USING_NS_CC;
+#include "algorithm_practice_loophero_Constant.h"
 
-namespace
-{
-	const std::size_t GRID_WIDTH = 21;
-	const std::size_t GRID_HEIGHT = 13;
-}
+USING_NS_CC;
 
 namespace algorithm_practice_loophero
 {
