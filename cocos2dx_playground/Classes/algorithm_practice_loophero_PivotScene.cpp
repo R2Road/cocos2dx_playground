@@ -119,11 +119,11 @@ namespace algorithm_practice_loophero
 		//
 		// Setup
 		//
-		mTileMapNode->FillAll( 1, 0 );
+		mTileMapNode->FillAll( 0, 0 );
 
 		for( const auto& p : PIVOT_LIST )
 		{
-			mTileMapNode->UpdateTile( p.x, p.y, 0, 0 );
+			mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
 		}
 
 		return true;

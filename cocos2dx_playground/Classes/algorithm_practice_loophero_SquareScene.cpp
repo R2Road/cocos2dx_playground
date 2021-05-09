@@ -15,6 +15,7 @@
 #include "cocos/platform/CCFileUtils.h"
 #include "renderer/CCTextureCache.h"
 
+#include "cpg_Random.h"
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
 #include "cpg_ui_ToolBarNode.h"
