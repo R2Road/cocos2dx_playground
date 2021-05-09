@@ -119,7 +119,7 @@ namespace algorithm_practice_loophero
 		//
 		// Setup
 		//
-		mTileMapNode->FillAll( 1, 0 );
+		mTileMapNode->FillAll( 0, 0 );
 
 		int pivot_x = 6;
 		int pivot_y = 10;
@@ -151,7 +151,7 @@ namespace algorithm_practice_loophero
 
 		for( const auto& p : mWay )
 		{
-			mTileMapNode->UpdateTile( p.x, p.y, 0, 0 );
+			mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
 		}
 
 		CCASSERT( LOAD_LENGTH == mWay.size(), "Not Enough Way Length" );
