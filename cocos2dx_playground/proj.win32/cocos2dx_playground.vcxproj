@@ -160,6 +160,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_ProcessorNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_RootScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_TestScene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_loophero_PivotScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_loophero_RootScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_loophero_SquareScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp" />
@@ -429,6 +430,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_TestScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_loophero_Constant.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_loophero_PivotScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_loophero_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_loophero_SquareScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h" />

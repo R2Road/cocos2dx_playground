@@ -10,6 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "algorithm_practice_loophero_PivotScene.h"
 #include "algorithm_practice_loophero_SquareScene.h"
 
 #include "algorithm_practice_RootScene.h"
@@ -64,7 +65,9 @@ namespace algorithm_practice_loophero
 			ss << "[ESC] : Return to Root";
 			ss << std::endl;
 			ss << std::endl;
-			ss << "[1] : " << algorithm_practice_loophero::SquareScene::getTitle();
+			ss << "[1] : " << algorithm_practice_loophero::PivotScene::getTitle();
+			ss << std::endl;
+			ss << "[2] : " << algorithm_practice_loophero::SquareScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -115,6 +118,10 @@ namespace algorithm_practice_loophero
 			return;
 
 		case EventKeyboard::KeyCode::KEY_1:
+			_director->replaceScene( PivotScene::create( helper::CreateSceneMover<RootScene>() ) );
+			return;
+
+		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( SquareScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		}
