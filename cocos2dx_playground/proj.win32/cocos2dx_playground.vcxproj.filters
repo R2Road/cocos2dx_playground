@@ -229,6 +229,9 @@
     <Filter Include="src\scene\algorithm_practice\astar">
       <UniqueIdentifier>{507b89b4-23af-4c97-a3bc-a44df4518df1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\algorithm_practice\loophero">
+      <UniqueIdentifier>{874ee69e-7f98-4a21-92cb-8866154e0dbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -1022,6 +1025,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_astar_TestScene.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_loophero_RootScene.cpp">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_loophero_SquareScene.cpp">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_loophero_PivotScene.cpp">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1855,6 +1867,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_TestScene.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_loophero_RootScene.h">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_loophero_SquareScene.h">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_loophero_Constant.h">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_loophero_PivotScene.h">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
