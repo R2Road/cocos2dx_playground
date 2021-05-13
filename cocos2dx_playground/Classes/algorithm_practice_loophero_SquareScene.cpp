@@ -131,7 +131,7 @@ namespace algorithm_practice_loophero
 			{
 				const int required_half_road_count = ( algorithm_practice_loophero::ROAD_LENGTH - algorithm_practice_loophero::ROAD_PIVOT_COUNT ) / 2;
 
-				const auto square_pivot_size = cpg::Random::GetInt( static_cast<int>( required_half_road_count * 0.4f ), static_cast<int>( required_half_road_count * 0.8f ) );
+				const auto square_pivot_size = cpg::Random::GetInt( static_cast<int>( required_half_road_count * 0.4f ), static_cast<int>( required_half_road_count * 0.9f ) );
 
 				const auto square_width = required_half_road_count - square_pivot_size > square_pivot_size ? required_half_road_count - square_pivot_size : square_pivot_size;
 				const auto square_height = required_half_road_count - square_width;
