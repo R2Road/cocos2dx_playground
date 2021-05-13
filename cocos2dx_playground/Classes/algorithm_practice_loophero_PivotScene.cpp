@@ -31,11 +31,7 @@ namespace algorithm_practice_loophero
 	PivotScene::PivotScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
-
-		, mGrid4TileMap()
 		, mTileMapNode( nullptr )
-
-		, mWay()
 	{}
 
 	Scene* PivotScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )

@@ -1,13 +1,8 @@
 #pragma once
 
-#include <list>
-
 #include "2d/CCScene.h"
 
-#include "algorithm_practice_floodfill_Grid4TileMap.h"
 #include "helper_BackToThePreviousScene.h"
-
-#include "cpg_Point.h"
 
 namespace step_defender
 {
@@ -40,10 +35,6 @@ namespace algorithm_practice_loophero
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
-
-		algorithm_practice_floodfill::Grid4TileMap mGrid4TileMap;
 		step_defender::game::TileMapNode* mTileMapNode;
-
-		std::list<cpg::Point> mWay;
 	};
 }
