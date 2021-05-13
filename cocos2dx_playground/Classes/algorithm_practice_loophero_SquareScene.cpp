@@ -36,7 +36,7 @@ namespace algorithm_practice_loophero
 		, mGrid4TileMap()
 		, mTileMapNode( nullptr )
 
-		, mWay()
+		, mRoad()
 	{}
 
 	Scene* SquareScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -160,18 +160,18 @@ namespace algorithm_practice_loophero
 				auto cur_point = start_point;
 				do
 				{
-					mWay.push_back( cur_point );
+					mRoad.push_back( cur_point );
 
 					cur_point += dir;
 				} while( end_point != cur_point );
 			}
 
-			for( const auto& p : mWay )
+			for( const auto& p : mRoad )
 			{
 				mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
 			}
 
-			CCASSERT( ROAD_LENGTH == mWay.size(), "Not Enough Way Length" );
+			CCASSERT( ROAD_LENGTH == mRoad.size(), "Not Enough Way Length" );
 		}
 
 		return true;

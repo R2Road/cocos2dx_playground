@@ -44,6 +44,6 @@ namespace algorithm_practice_loophero
 		algorithm_practice_floodfill::Grid4TileMap mGrid4TileMap;
 		step_defender::game::TileMapNode* mTileMapNode;
 
-		std::list<cpg::Point> mWay;
+		std::list<cpg::Point> mRoad;
 	};
 }
