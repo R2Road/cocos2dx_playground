@@ -33,9 +33,7 @@ namespace algorithm_practice_loophero
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
-		, mGrid4TileMap()
 		, mTileMapNode( nullptr )
-
 		, mRoad()
 	{}
 
