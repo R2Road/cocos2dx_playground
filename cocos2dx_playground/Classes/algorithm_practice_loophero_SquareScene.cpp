@@ -123,12 +123,12 @@ namespace algorithm_practice_loophero
 			mTileMapNode->FillAll( 3, 0 );
 
 			// 0. Ready
-			const int required_road_count = algorithm_practice_loophero::LOAD_LENGTH - algorithm_practice_loophero::LOAD_PIVOT_COUNT;
+			const int required_road_count = algorithm_practice_loophero::ROAD_LENGTH - algorithm_practice_loophero::ROAD_PIVOT_COUNT;
 
 			// 1. Make Pivot List
 			auto CurrentPivotList = algorithm_practice_loophero::PIVOT_LIST;
 			{
-				const int required_half_road_count = ( algorithm_practice_loophero::LOAD_LENGTH - algorithm_practice_loophero::LOAD_PIVOT_COUNT ) / 2;
+				const int required_half_road_count = ( algorithm_practice_loophero::ROAD_LENGTH - algorithm_practice_loophero::ROAD_PIVOT_COUNT ) / 2;
 
 				const auto square_pivot_size = cpg::Random::GetInt( static_cast<int>( required_half_road_count * 0.4f ), static_cast<int>( required_half_road_count * 0.8f ) );
 
