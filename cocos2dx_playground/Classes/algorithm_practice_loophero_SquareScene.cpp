@@ -1,7 +1,5 @@
 #include "algorithm_practice_loophero_SquareScene.h"
 
-#include <functional>
-#include <fstream>
 #include <new>
 #include <numeric>
 #include <sstream>
@@ -12,14 +10,11 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "cocos/platform/CCFileUtils.h"
-#include "renderer/CCTextureCache.h"
 
 #include "cpg_Clamp.h"
 #include "cpg_Random.h"
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
-#include "cpg_ui_ToolBarNode.h"
 
 #include "step_defender_game_TileMapNode.h"
 
