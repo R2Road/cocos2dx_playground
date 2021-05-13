@@ -35,6 +35,7 @@ namespace algorithm_practice_loophero
 		void onExit() override;
 
 	private:
+		void Build();
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
 	private:
