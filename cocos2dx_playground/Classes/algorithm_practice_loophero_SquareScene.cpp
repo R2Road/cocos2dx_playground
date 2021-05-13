@@ -10,6 +10,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "cpg_Clamp.h"
 #include "cpg_Random.h"
@@ -28,6 +29,7 @@ namespace algorithm_practice_loophero
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
+		, mSizeView( nullptr )
 		, mTileMapNode( nullptr )
 		, mRoad()
 	{}
@@ -99,6 +101,20 @@ namespace algorithm_practice_loophero
 		}
 
 		//
+		// Size View
+		//
+		{
+			mSizeView = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14, Size::ZERO, TextHAlignment::LEFT );
+			mSizeView->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			mSizeView->setColor( Color3B::GREEN );
+			mSizeView->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+			);
+			addChild( mSizeView, std::numeric_limits<int>::max() );
+		}
+
+		//
 		// Tile Maps
 		//
 		{
@@ -167,6 +183,8 @@ namespace algorithm_practice_loophero
 			CurrentPivotList[1].y += square_height;
 
 			CCLOG( "width : %d, height : %d", square_width, square_height );
+
+			mSizeView->setString( StringUtils::format( "W : %d, H : %d", square_width, square_height ) );
 		}
 
 		// 2. Make Road

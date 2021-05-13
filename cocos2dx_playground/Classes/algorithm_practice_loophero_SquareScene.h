@@ -8,6 +8,10 @@
 
 #include "cpg_Point.h"
 
+NS_CC_BEGIN
+	class Label;
+NS_CC_END
+
 namespace step_defender
 {
 	namespace game
@@ -41,6 +45,7 @@ namespace algorithm_practice_loophero
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
+		cocos2d::Label* mSizeView;
 		step_defender::game::TileMapNode* mTileMapNode;
 		std::list<cpg::Point> mRoad;
 	};
