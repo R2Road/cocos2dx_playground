@@ -119,42 +119,36 @@ namespace algorithm_practice_loophero
 		//
 		// Setup
 		//
-		mTileMapNode->FillAll( 0, 0 );
-
-		int pivot_x = 6;
-		int pivot_y = 10;
-		for( int i = 0 ; 10 > i; ++i )
 		{
-			mWay.push_back( { pivot_x + i, pivot_y } );
-		}
+			mTileMapNode->FillAll( 0, 0 );
 
-		pivot_x = mWay.rbegin()->x;
-		pivot_y = mWay.rbegin()->y - 1;
-		for( int i = 0; 7 > i; ++i )
-		{
-			mWay.push_back( { pivot_x, pivot_y - i } );
-		}
+			// 0. Ready
+			const int required_road_count = algorithm_practice_loophero::LOAD_LENGTH - algorithm_practice_loophero::LOAD_PIVOT_COUNT;
 
-		pivot_x = mWay.rbegin()->x - 1;
-		pivot_y = mWay.rbegin()->y;
-		for( int i = 0; 10 > i; ++i )
-		{
-			mWay.push_back( { pivot_x - i, pivot_y } );
-		}
+			// 1. Make Pivot List
+			auto CurrentPivotList = algorithm_practice_loophero::PIVOT_LIST;
+			{
+				const int required_half_road_count = ( algorithm_practice_loophero::LOAD_LENGTH - algorithm_practice_loophero::LOAD_PIVOT_COUNT ) / 2;
 
-		pivot_x = mWay.rbegin()->x;
-		pivot_y = mWay.rbegin()->y + 1;
-		for( int i = 0; 7 > i; ++i )
-		{
-			mWay.push_back( { pivot_x, pivot_y + i } );
-		}
+				const auto square_pivot_size = cpg::Random::GetInt( static_cast<int>( required_half_road_count * 0.4f ), static_cast<int>( required_half_road_count * 0.8f ) );
 
-		for( const auto& p : mWay )
-		{
-			mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
-		}
+				const auto square_width = required_half_road_count - square_pivot_size > square_pivot_size ? required_half_road_count - square_pivot_size : square_pivot_size;
+				const auto square_height = required_half_road_count - square_width;
 
-		CCASSERT( LOAD_LENGTH == mWay.size(), "Not Enough Way Length" );
+				CurrentPivotList[1].x += square_width;
+				CurrentPivotList[2].x += square_width;
+
+				CurrentPivotList[0].y += square_height;
+				CurrentPivotList[1].y += square_height;
+
+				CCLOG( "width : %d, height : %d", square_width, square_height );
+			}
+
+			for( const auto& p : CurrentPivotList )
+			{
+				mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
+			}
+		}
 
 		return true;
 	}
