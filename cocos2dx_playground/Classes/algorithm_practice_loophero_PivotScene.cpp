@@ -119,7 +119,7 @@ namespace algorithm_practice_loophero
 		//
 		// Setup
 		//
-		mTileMapNode->FillAll( 0, 0 );
+		mTileMapNode->FillAll( 3, 0 );
 
 		for( const auto& p : PIVOT_LIST )
 		{

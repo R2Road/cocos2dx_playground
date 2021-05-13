@@ -120,7 +120,7 @@ namespace algorithm_practice_loophero
 		// Setup
 		//
 		{
-			mTileMapNode->FillAll( 0, 0 );
+			mTileMapNode->FillAll( 3, 0 );
 
 			// 0. Ready
 			const int required_road_count = algorithm_practice_loophero::LOAD_LENGTH - algorithm_practice_loophero::LOAD_PIVOT_COUNT;
