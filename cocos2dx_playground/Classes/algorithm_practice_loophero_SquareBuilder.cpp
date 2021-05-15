@@ -54,7 +54,7 @@ namespace algorithm_practice_loophero
 			} while( end_point != cur_point );
 		}
 
-		// 3. Find Max X
+		// 3. Find Max Point
 		int max_x = 0;
 		int max_y = 0;
 		for( const auto& p : *out_container )
