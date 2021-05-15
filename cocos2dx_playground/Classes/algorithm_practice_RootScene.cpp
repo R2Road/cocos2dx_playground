@@ -65,11 +65,7 @@ namespace algorithm_practice
 			ss << std::endl;
 			ss << "[2] : " << algorithm_practice_astar::TestScene::getTitle();
 			ss << std::endl;
-			ss << std::endl;
-			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
-			ss << "[Q] : " << algorithm_practice_loophero::RootScene::getTitle();
+			ss << "[3] : " << algorithm_practice_loophero::RootScene::getTitle();
 			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
@@ -128,8 +124,7 @@ namespace algorithm_practice
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( algorithm_practice_astar::TestScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-
-		case EventKeyboard::KeyCode::KEY_Q:
+		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( algorithm_practice_loophero::RootScene::create() );
 			break;
 
