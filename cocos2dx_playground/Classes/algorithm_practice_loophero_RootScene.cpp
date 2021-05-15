@@ -12,6 +12,7 @@
 
 #include "algorithm_practice_loophero_PivotScene.h"
 #include "algorithm_practice_loophero_SquareScene.h"
+#include "algorithm_practice_loophero_TrimScene.h"
 
 #include "algorithm_practice_RootScene.h"
 
@@ -69,6 +70,8 @@ namespace algorithm_practice_loophero
 			ss << std::endl;
 			ss << "[2] : " << algorithm_practice_loophero::SquareScene::getTitle();
 			ss << std::endl;
+			ss << "[3] : " << algorithm_practice_loophero::TrimScene::getTitle();
+			ss << std::endl;
 			ss << std::endl;
 			ss << "=============================";
 			ss << std::endl;
@@ -123,6 +126,10 @@ namespace algorithm_practice_loophero
 
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( SquareScene::create( helper::CreateSceneMover<RootScene>() ) );
+			return;
+
+		case EventKeyboard::KeyCode::KEY_3:
+			_director->replaceScene( TrimScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 		}
 	}

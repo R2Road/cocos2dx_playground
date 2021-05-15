@@ -1038,6 +1038,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_loophero_SquareBuilder.cpp">
       <Filter>src\scene\algorithm_practice\loophero</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_loophero_TrimScene.cpp">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1884,6 +1887,9 @@
       <Filter>src\scene\algorithm_practice\loophero</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_loophero_SquareBuilder.h">
+      <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_loophero_TrimScene.h">
       <Filter>src\scene\algorithm_practice\loophero</Filter>
     </ClInclude>
   </ItemGroup>
