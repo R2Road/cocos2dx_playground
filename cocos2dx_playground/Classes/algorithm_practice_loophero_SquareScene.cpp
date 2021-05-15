@@ -209,6 +209,32 @@ namespace algorithm_practice_loophero
 			} while( end_point != cur_point );
 		}
 
+		// 3. Find Max X
+		int max_x = 0;
+		int max_y = 0;
+		for( const auto& p : mRoad )
+		{
+			if( p.x > max_x )
+			{
+				max_x = p.x;
+			}
+
+			if( p.y > max_y )
+			{
+				max_y = p.y;
+			}
+		}
+
+		// 4. Align
+		const int move_x = ( GRID_WIDTH - 1 - max_x ) / 2;
+		const int move_y = ( GRID_HEIGHT - 1 - max_y ) / 2;
+		for( auto& p : mRoad )
+		{
+			p.x += move_x;
+			p.y += move_y;
+		}
+
+		// Show
 		for( const auto& p : mRoad )
 		{
 			mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
