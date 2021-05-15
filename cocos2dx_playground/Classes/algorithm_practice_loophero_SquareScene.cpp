@@ -12,14 +12,13 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "cpg_Clamp.h"
-#include "cpg_Random.h"
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
 
 #include "step_defender_game_TileMapNode.h"
 
 #include "algorithm_practice_loophero_Constant.h"
+#include "algorithm_practice_loophero_SquareBuilder.h"
 
 USING_NS_CC;
 
@@ -163,84 +162,15 @@ namespace algorithm_practice_loophero
 	{
 		mTileMapNode->FillAll( 3, 0 );
 
-		// 0. Ready
-		const int required_road_count = algorithm_practice_loophero::ROAD_LENGTH - algorithm_practice_loophero::ROAD_PIVOT_COUNT;
-
-		// 1. Adjust Pivot List
-		auto CurrentPivotList = algorithm_practice_loophero::PIVOT_LIST;
-		{
-			const int required_half_road_count = ( algorithm_practice_loophero::ROAD_LENGTH - algorithm_practice_loophero::ROAD_PIVOT_COUNT ) / 2;
-
-			const auto square_pivot_size = cpg::Random::GetInt( static_cast<int>( required_half_road_count * 0.3f ), static_cast<int>( required_half_road_count * 0.9f ) );
-
-			const auto square_width = required_half_road_count - square_pivot_size > square_pivot_size ? required_half_road_count - square_pivot_size : square_pivot_size;
-			const auto square_height = required_half_road_count - square_width;
-
-			CurrentPivotList[1].x += square_width;
-			CurrentPivotList[2].x += square_width;
-
-			CurrentPivotList[0].y += square_height;
-			CurrentPivotList[1].y += square_height;
-
-			CCLOG( "width : %d, height : %d", square_width, square_height );
-
-			mSizeView->setString( StringUtils::format( "W : %d, H : %d", square_width, square_height ) );
-		}
-
-		// 2. Make Road
-		mRoad.clear();
-		for( int i = 0; ROAD_PIVOT_COUNT > i; ++i )
-		{
-			const auto start_point = CurrentPivotList[i];
-			const auto end_point = i + 1 < ROAD_PIVOT_COUNT ? CurrentPivotList[i + 1] : CurrentPivotList[0];
-
-			const auto start2end = end_point - start_point;
-			const cpg::Point dir{
-				cpg::clamp( start2end.x, -1, 1 )
-				, cpg::clamp( start2end.y, -1, 1 )
-			};
-
-			auto cur_point = start_point;
-			do
-			{
-				mRoad.push_back( cur_point );
-
-				cur_point += dir;
-			} while( end_point != cur_point );
-		}
-
-		// 3. Find Max X
-		int max_x = 0;
-		int max_y = 0;
-		for( const auto& p : mRoad )
-		{
-			if( p.x > max_x )
-			{
-				max_x = p.x;
-			}
-
-			if( p.y > max_y )
-			{
-				max_y = p.y;
-			}
-		}
-
-		// 4. Align
-		const int move_x = ( GRID_WIDTH - 1 - max_x ) / 2;
-		const int move_y = ( GRID_HEIGHT - 1 - max_y ) / 2;
-		for( auto& p : mRoad )
-		{
-			p.x += move_x;
-			p.y += move_y;
-		}
+		const auto square_size = SquareBuilder::Build( &mRoad );
 
 		// Show
+		mSizeView->setString( StringUtils::format( "W : %d, H : %d", square_size.x, square_size.y ) );
+
 		for( const auto& p : mRoad )
 		{
 			mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
 		}
-
-		CCASSERT( ROAD_LENGTH == mRoad.size(), "Not Enough Way Length" );
 	}
 
 
