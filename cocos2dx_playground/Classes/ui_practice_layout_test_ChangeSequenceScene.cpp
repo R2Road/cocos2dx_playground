@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -14,6 +13,7 @@
 #include "ui/UILayoutParameter.h"
 #include "ui/UIScrollView.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
@@ -66,13 +66,13 @@ namespace ui_practice
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[A] : Reverse";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[S] : Swap 1st N 2nd";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), FontSize, Size::ZERO, TextHAlignment::LEFT );

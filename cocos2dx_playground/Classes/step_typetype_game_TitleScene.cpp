@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 #include <vector>
 
 #include "2d/CCLabel.h"
@@ -12,6 +11,8 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+
+#include "cpg_SStream.h"
 
 #include "step_typetype_game_LetterViewNode.h"
 #include "step_typetype_game_PlayScene.h"
@@ -74,7 +75,7 @@ namespace step_typetype
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[F1] : " << ResultScene::getTitle();
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 6 );

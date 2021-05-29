@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "audio/include/AudioEngine.h"
 #include "2d/CCLabel.h"
@@ -11,6 +10,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
+
+#include "cpg_SStream.h"
 
 #include "step_typetype_game_IndicatorViewNode.h"
 #include "step_typetype_game_StageViewNode.h"
@@ -70,21 +71,21 @@ namespace step_typetype
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Arrow U] : Increase Stage Size And Reset";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[Arrow D] : Decrease Stage Size And Reset";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[A] : Auto Play Once : Success";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[S] : Auto Play Once : Failed";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[R] : Stage Reset";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );

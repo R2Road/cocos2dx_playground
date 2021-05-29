@@ -2,9 +2,10 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "cocos2d.h"
+
+#include "cpg_SStream.h"
 
 #include "PlayGroundScene.h"
 
@@ -64,44 +65,44 @@ namespace step_typetype
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] " << step_typetype::label_ttf::AlignScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[2] " << step_typetype::label_ttf::ETCScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[3] " << step_typetype::input::KeyCodeViewScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[4] " << step_typetype::sprite::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[5] " << step_typetype::node::AnchorPointScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[6] " << step_typetype::sound::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[7] " << step_typetype::ScheduleScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Q] " << step_typetype::game_test::LetterViewNodeScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[W] " << step_typetype::game_test::StageViewNodeScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[E] " << step_typetype::game_test::IndicatorViewNodeScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[A] " << step_typetype::game_test::GameProcessScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[SPACE] " << step_typetype::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );

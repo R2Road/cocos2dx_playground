@@ -2,9 +2,10 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "cocos2d.h"
+
+#include "cpg_SStream.h"
 
 #include "step_typetype_RootScene.h"
 
@@ -54,11 +55,11 @@ namespace step_typetype
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Keyboard] : Show Key Code";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );

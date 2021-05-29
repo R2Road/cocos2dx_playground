@@ -3,7 +3,6 @@
 #include <functional>
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -14,6 +13,7 @@
 #include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
 #include "cpg_ui_ToolBarNode.h"
@@ -72,18 +72,18 @@ namespace algorithm_practice_floodfill
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1-5] : " << "Show Direction";
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[6] : " << "Clear";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[SPACE] : " << "Fill All";
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[R] : " << "Clean All";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );

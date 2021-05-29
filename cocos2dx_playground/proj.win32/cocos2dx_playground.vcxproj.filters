@@ -1041,6 +1041,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_loophero_TrimScene.cpp">
       <Filter>src\scene\algorithm_practice\loophero</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_SStream.cpp">
+      <Filter>src\cpg</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1891,6 +1894,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_loophero_TrimScene.h">
       <Filter>src\scene\algorithm_practice\loophero</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_SStream.h">
+      <Filter>src\cpg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

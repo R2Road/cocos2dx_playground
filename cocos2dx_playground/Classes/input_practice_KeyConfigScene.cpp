@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "base/CCDirector.h"
@@ -13,6 +12,7 @@
 #include "ui/UIScale9Sprite.h"
 #include "ui/UIScrollView.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_input_KeyCodeNames.h"
 
@@ -138,8 +138,8 @@ namespace input_practice
 		{
 			std::stringstream ss;
 			ss << "+ Input : Key Config Scene";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "<Config File Path> : " << FileUtils::getInstance()->getWritablePath();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

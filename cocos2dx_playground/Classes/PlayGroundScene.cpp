@@ -1,10 +1,10 @@
 #include "PlayGroundScene.h"
 
 #include <new>
-#include <sstream>
 
 #include "cocos2d.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "step_typetype_RootScene.h"
@@ -61,47 +61,47 @@ bool PlayGroundScene::init()
 	{
 		std::stringstream ss;
 		ss << "+ Playground";
-		ss << std::endl;
-		ss << std::endl;
+		ss << cpg::linefeed;
+		ss << cpg::linefeed;
 		ss << "[ESC] : Shutdown";
-		ss << std::endl;
-		ss << std::endl;
+		ss << cpg::linefeed;
+		ss << cpg::linefeed;
 		ss << "[1] : " << step_typetype::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[2] : " << step_flipflip::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[3] : " << step_clickclick::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[4] : " << step_pathfinder::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[5] : " << step_mole::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[6] : " << step_rain_of_chaos::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[7] : " << step_defender::RootScene::getTitle();
-		ss << std::endl;
-		ss << std::endl;
+		ss << cpg::linefeed;
+		ss << cpg::linefeed;
 		ss << "=============================";
-		ss << std::endl;
-		ss << std::endl;
+		ss << cpg::linefeed;
+		ss << cpg::linefeed;
 		ss << "[Q] : " << ui_practice::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[W] : " << shader_practice::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[E] : " << graph_practice::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[R] : " << input_practice::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[T] : " << tool_practice::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[Y] : " << algorithm_practice::RootScene::getTitle();
-		ss << std::endl;
-		ss << std::endl;
+		ss << cpg::linefeed;
+		ss << cpg::linefeed;
 		ss << "=============================";
-		ss << std::endl;
-		ss << std::endl;
+		ss << cpg::linefeed;
+		ss << cpg::linefeed;
 		ss << "[A] : " << ui_research::RootScene::getTitle();
-		ss << std::endl;
+		ss << cpg::linefeed;
 		ss << "[S] : " << step99::RootScene::getTitle();
 
 		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

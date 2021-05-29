@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCSprite.h"
@@ -14,6 +13,7 @@
 #include "algorithm_practice_floodfill_DirectionMapNode.h"
 #include "algorithm_practice_floodfill_Grid4TileMap.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_ui_ToolBarNode.h"
 
@@ -74,11 +74,11 @@ namespace algorithm_practice_floodfill
 		//
 		{
 			std::stringstream ss;
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[R] : " << "Reset";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Space] : " << "Step";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );

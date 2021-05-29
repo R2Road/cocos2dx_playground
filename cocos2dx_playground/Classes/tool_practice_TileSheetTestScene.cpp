@@ -3,7 +3,6 @@
 #include <functional>
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -13,6 +12,7 @@
 #include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_ui_ToolBarNode.h"
 
@@ -97,8 +97,8 @@ namespace tool_practice
 		{
 			std::stringstream ss;
 			ss << "[ESC] : Return to Root";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 
 			ss << "[";
 			for( int i = 0; mConfiguration.GetLayerCount() > i; ++i )
@@ -112,11 +112,11 @@ namespace tool_practice
 			}
 			ss << "] : Layer Select";
 
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[B/E] : " << "Shortcut( Pick/Erase )";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[R] : " << "Reload Texture";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );

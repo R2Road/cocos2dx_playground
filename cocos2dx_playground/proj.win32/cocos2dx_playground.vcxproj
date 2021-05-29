@@ -171,6 +171,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cocos_research_action_SpriteFrameActionScene.cpp" />
     <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyCodeNames.cpp" />
+    <ClCompile Include="..\Classes\cpg_SStream.cpp" />
     <ClCompile Include="..\Classes\cpg_node_PivotNode.cpp" />
     <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp" />
     <ClCompile Include="..\Classes\cpg_ui_EXButtonNode.cpp" />
@@ -443,6 +444,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cocos_research_action_SpriteFrameActionScene.h" />
     <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyCodeNames.h" />
+    <ClInclude Include="..\Classes\cpg_SStream.h" />
     <ClInclude Include="..\Classes\cpg_node_PivotNode.h" />
     <ClInclude Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.h" />
     <ClInclude Include="..\Classes\cpg_ui_EXButtonNode.h" />

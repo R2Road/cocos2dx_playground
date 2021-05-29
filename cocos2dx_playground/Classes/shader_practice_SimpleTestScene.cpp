@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 #include <string>
 
 #include "2d/CCLabel.h"
@@ -19,6 +18,7 @@
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/ccShaders.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "shader_practice_GLUniformInfos.h"
 
@@ -180,8 +180,8 @@ namespace shader_practice
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );

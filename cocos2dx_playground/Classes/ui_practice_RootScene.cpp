@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +9,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "PlayGroundScene.h"
@@ -69,47 +69,47 @@ namespace ui_practice
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] : " << ui_practice::MouseCursorScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[2] : " << ui_practice::LayoutVerticalScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[3] : " << ui_practice::LayoutHorizontalScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[4] : " << ui_practice::RelativeLayoutScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[5] : " << ui_practice::LayoutNScrollViewScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[6] : " << ui_practice::layout_test::ChangeSequenceScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[7] : " << ui_practice::layout_test::VariousItemSizeScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[8] : " << ui_practice::ScrollViewGeneratorScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Q] : " << ui_practice::UIAndCamera::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[W] : " << ui_practice::Minimap::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[A] : " << ui_practice::SliderScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[S] : " << ui_practice::ToggleButtonScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[D] : " << ui_practice::RadioButtonScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

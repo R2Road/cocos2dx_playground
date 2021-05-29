@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +9,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "graph_practice_test_GraphViewNodeScene.h"
@@ -64,42 +64,42 @@ namespace graph_practice
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] : " << graph_practice_test::GraphViewNodeScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[2] : " << graph_practice_test::GraphAndNameNodeScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Q] : " << graph_practice::SineScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[W] : " << graph_practice::CosineScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[E] : " << graph_practice::TangentScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[A] : " << graph_practice::Collection01Scene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[S] : " << graph_practice::Collection02Scene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[D] : " << graph_practice::Collection03Scene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[F] : " << graph_practice::Collection04Scene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[G] : " << graph_practice::Collection05Scene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[H] : " << graph_practice::Collection06Scene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
