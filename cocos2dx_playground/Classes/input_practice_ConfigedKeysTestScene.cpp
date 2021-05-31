@@ -2,13 +2,13 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "base/CCDirector.h"
 #include "ui/UIButton.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "CPG_InputDelegator.h"
 #include "CPG_Input_BasicCollector.h"
@@ -71,8 +71,8 @@ namespace input_practice
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << "\n";
-			ss << "\n";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			for( const auto& h : key_map_config_helper.GetContainer() )
 			{
 				ss << "[ " << h.Name << " : " << cpg_input::KeyCodeNames::Get( h.CocosKeyCode ) << " ]" << std::endl;
