@@ -103,7 +103,7 @@ namespace algorithm_practice_loophero
 		// Size View
 		//
 		{
-			mSizeView = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14, Size::ZERO, TextHAlignment::LEFT );
+			mSizeView = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14, Size::ZERO, TextHAlignment::RIGHT );
 			mSizeView->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			mSizeView->setColor( Color3B::GREEN );
 			mSizeView->setPosition(
@@ -165,7 +165,12 @@ namespace algorithm_practice_loophero
 		const auto square_size = SquareBuilder::Build( &mRoad );
 
 		// Show
-		mSizeView->setString( StringUtils::format( "W : %d, H : %d", square_size.x, square_size.y ) );
+		mSizeView->setString( StringUtils::format(
+			"W : %d, H : %d\nTotal : %d"
+			, square_size.x
+			, square_size.y
+			, mRoad.size()
+		) );
 
 		for( const auto& p : mRoad )
 		{
