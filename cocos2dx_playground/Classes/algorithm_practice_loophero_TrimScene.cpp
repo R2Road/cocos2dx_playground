@@ -165,7 +165,12 @@ namespace algorithm_practice_loophero
 		const auto square_size = SquareBuilder::Build( &mRoad );
 
 		// Show
-		mSizeView->setString( StringUtils::format( "W : %d, H : %d", square_size.x, square_size.y ) );
+		mSizeView->setString( StringUtils::format(
+			"W : %d, H : %d\nTotal : %d"
+			, square_size.x
+			, square_size.y
+			, mRoad.size()
+		) );
 
 		for( const auto& p : mRoad )
 		{
