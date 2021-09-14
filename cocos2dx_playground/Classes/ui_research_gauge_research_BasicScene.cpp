@@ -9,6 +9,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
+#include "base/ccUTF8.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -33,6 +34,8 @@ namespace ui_research
 			, mGaugeMax( 85 )
 			, mGaugeMin( 0 )
 			, mGaugeCurrent( 85 )
+
+			, mGaugeStatisticsViewNode( nullptr )
 		{}
 
 		Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -93,16 +96,28 @@ namespace ui_research
 			{
 				mGaugeViewNode = DrawNode::create();
 				mGaugeViewNode->setPosition(
-					visibleCenter
+					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
 					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
 				);
 				addChild( mGaugeViewNode );
 			}
 
 			//
+			// Stat View
+			//
+			{
+				mGaugeStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+				mGaugeStatisticsViewNode->setPosition(
+					Vec2( visibleCenter.x, visibleSize.height * 0.6f )
+				);
+				addChild( mGaugeStatisticsViewNode );
+			}
+
+			//
 			//
 			//
 			updateGaugeView();
+			updateGaugeStatisticsView();
 
 			return true;
 		}
@@ -126,6 +141,14 @@ namespace ui_research
 		}
 
 
+		void BasicScene::updateGaugeStatisticsView()
+		{
+			mGaugeStatisticsViewNode->setString( StringUtils::format(
+				"%d / %d"
+				, mGaugeCurrent
+				, mGaugeMax
+			) );
+		}
 		void BasicScene::updateGaugeView()
 		{
 			const float gauge_rate = static_cast<float>( mGaugeCurrent ) / static_cast<float>( mGaugeMax );
@@ -150,10 +173,12 @@ namespace ui_research
 			case EventKeyboard::KeyCode::KEY_1:
 				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + 1 );
 				updateGaugeView();
+				updateGaugeStatisticsView();
 				return;
 			case EventKeyboard::KeyCode::KEY_2:
 				mGaugeCurrent = std::max( mGaugeMin, mGaugeCurrent - 1 );
 				updateGaugeView();
+				updateGaugeStatisticsView();
 				return;
 			}
 		}

@@ -6,6 +6,7 @@
 
 NS_CC_BEGIN
 	class DrawNode;
+	class Label;
 NS_CC_END
 
 namespace ui_research
@@ -29,6 +30,7 @@ namespace ui_research
 			void onExit() override;
 
 		private:
+			void updateGaugeStatisticsView();
 			void updateGaugeView();
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* key_event );
@@ -40,6 +42,8 @@ namespace ui_research
 			int mGaugeMax;
 			int mGaugeMin;
 			int mGaugeCurrent;
+
+			cocos2d::Label* mGaugeStatisticsViewNode;
 		};
 	}
 }
