@@ -1,4 +1,4 @@
-#include "ui_research_gauge_research_RootScene.h"
+#include "ui_research_gauge_research_BasicScene.h"
 
 #include <new>
 #include <numeric>
@@ -11,21 +11,20 @@
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
-#include "ui_research_RootScene.h"
-#include "ui_research_gauge_research_BasicScene.h"
-
 USING_NS_CC;
 
 namespace ui_research
 {
 	namespace gauge_research
 	{
-		RootScene::RootScene() : mKeyboardListener( nullptr )
+		BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
 		{}
 
-		Scene* RootScene::create()
+		Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) RootScene();
+			auto ret = new ( std::nothrow ) BasicScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -39,7 +38,7 @@ namespace ui_research
 			return ret;
 		}
 
-		bool RootScene::init()
+		bool BasicScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -62,33 +61,29 @@ namespace ui_research
 				ss << cpg::linefeed;
 				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << cpg::linefeed;
-				ss << cpg::linefeed;
-				ss << "[1] : " << ui_research::gauge_research::BasicScene::getTitle();
-				ss << cpg::linefeed;
-				ss << cpg::linefeed;
-				ss << "=============================";
-				ss << cpg::linefeed;
-				ss << cpg::linefeed;
 
-				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
-				label->setPosition( visibleCenter );
+				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+				label->setPosition(
+					visibleOrigin
+					+ Vec2( 0.f, visibleSize.height )
+				);
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
 			return true;
 		}
 
-		void RootScene::onEnter()
+		void BasicScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void RootScene::onExit()
+		void BasicScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -98,16 +93,12 @@ namespace ui_research
 		}
 
 
-		void RootScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*key_event*/ )
+		void BasicScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*key_event*/ )
 		{
 			switch( key_code )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				_director->replaceScene( ui_research::RootScene::create() );
-				return;
-
-			case EventKeyboard::KeyCode::KEY_1:
-				_director->replaceScene( ui_research::gauge_research::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
 		}
