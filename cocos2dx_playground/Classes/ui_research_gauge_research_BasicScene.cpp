@@ -14,6 +14,12 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const Color4F GaugeColor1( Color4F::GREEN );
+	const Size GaugeSize1( 100.f, 20.f );
+}
+
 namespace ui_research
 {
 	namespace gauge_research
@@ -75,15 +81,12 @@ namespace ui_research
 				addChild( label, std::numeric_limits<int>::max() );
 			}
 
-			const Color4F GaugeColor1( 0.23f, 0.23f, 0.23f, 1.f );
-			const Size GaugeSize1( 100.f, 20.f );
-
 			//
 			//
 			//
 			{
 				auto draw_node = DrawNode::create();
-				draw_node->drawSolidRect( Vec2::ZERO, Vec2( GaugeSize1.width, GaugeSize1.height ), Color4F::GREEN );
+				draw_node->drawSolidRect( Vec2::ZERO, Vec2( GaugeSize1.width, GaugeSize1.height ), GaugeColor1 );
 				draw_node->setPosition(
 					visibleCenter
 					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
