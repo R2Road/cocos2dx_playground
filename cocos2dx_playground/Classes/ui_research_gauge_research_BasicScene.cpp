@@ -27,6 +27,8 @@ namespace ui_research
 		BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
+
+			, mGaugeViewNode( nullptr )
 		{}
 
 		Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -85,13 +87,13 @@ namespace ui_research
 			//
 			//
 			{
-				auto draw_node = DrawNode::create();
-				draw_node->drawSolidRect( Vec2::ZERO, Vec2( GaugeSize1.width, GaugeSize1.height ), GaugeColor1 );
-				draw_node->setPosition(
+				mGaugeViewNode = DrawNode::create();
+				mGaugeViewNode->drawSolidRect( Vec2::ZERO, Vec2( GaugeSize1.width, GaugeSize1.height ), GaugeColor1 );
+				mGaugeViewNode->setPosition(
 					visibleCenter
 					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
 				);
-				addChild( draw_node );
+				addChild( mGaugeViewNode );
 			}
 
 			return true;

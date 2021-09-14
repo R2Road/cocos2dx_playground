@@ -4,6 +4,10 @@
 
 #include "helper_BackToThePreviousScene.h"
 
+NS_CC_BEGIN
+	class DrawNode;
+NS_CC_END
+
 namespace ui_research
 {
 	namespace gauge_research
@@ -29,6 +33,8 @@ namespace ui_research
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+			cocos2d::DrawNode* mGaugeViewNode;
 		};
 	}
 }
