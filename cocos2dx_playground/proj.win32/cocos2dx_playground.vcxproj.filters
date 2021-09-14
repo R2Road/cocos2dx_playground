@@ -232,6 +232,9 @@
     <Filter Include="src\scene\algorithm_practice\loophero">
       <UniqueIdentifier>{874ee69e-7f98-4a21-92cb-8866154e0dbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scene\ui_research\gauge">
+      <UniqueIdentifier>{72cbbecf-cae1-4fd9-948e-12037038e923}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -1043,6 +1046,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_SStream.cpp">
       <Filter>src\cpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_gauge_research_RootScene.cpp">
+      <Filter>src\scene\ui_research\gauge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1897,6 +1903,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_SStream.h">
       <Filter>src\cpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_gauge_research_RootScene.h">
+      <Filter>src\scene\ui_research\gauge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
