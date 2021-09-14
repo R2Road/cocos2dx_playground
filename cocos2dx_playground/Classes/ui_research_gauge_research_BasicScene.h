@@ -29,12 +29,17 @@ namespace ui_research
 			void onExit() override;
 
 		private:
+			void updateGaugeView();
+
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* key_event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 			cocos2d::DrawNode* mGaugeViewNode;
+			int mGaugeMax;
+			int mGaugeMin;
+			int mGaugeCurrent;
 		};
 	}
 }

@@ -1,5 +1,6 @@
 #include "ui_research_gauge_research_BasicScene.h"
 
+#include <algorithm>
 #include <new>
 #include <numeric>
 
@@ -29,6 +30,9 @@ namespace ui_research
 			, mKeyboardListener( nullptr )
 
 			, mGaugeViewNode( nullptr )
+			, mGaugeMax( 85 )
+			, mGaugeMin( 0 )
+			, mGaugeCurrent( 85 )
 		{}
 
 		Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -84,17 +88,21 @@ namespace ui_research
 			}
 
 			//
-			//
+			// Test Gauge
 			//
 			{
 				mGaugeViewNode = DrawNode::create();
-				mGaugeViewNode->drawSolidRect( Vec2::ZERO, Vec2( GaugeSize1.width, GaugeSize1.height ), GaugeColor1 );
 				mGaugeViewNode->setPosition(
 					visibleCenter
 					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
 				);
 				addChild( mGaugeViewNode );
 			}
+
+			//
+			//
+			//
+			updateGaugeView();
 
 			return true;
 		}
@@ -118,12 +126,34 @@ namespace ui_research
 		}
 
 
+		void BasicScene::updateGaugeView()
+		{
+			const float gauge_rate = static_cast<float>( mGaugeCurrent ) / static_cast<float>( mGaugeMax );
+
+			mGaugeViewNode->clear();
+			mGaugeViewNode->drawSolidRect(
+				Vec2::ZERO
+				, Vec2( GaugeSize1.width * gauge_rate, GaugeSize1.height )
+				, GaugeColor1
+			);
+		}
+
+
 		void BasicScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*key_event*/ )
 		{
 			switch( key_code )
 			{
 			case EventKeyboard::KeyCode::KEY_ESCAPE:
 				helper::BackToThePreviousScene::MoveBack();
+				return;
+
+			case EventKeyboard::KeyCode::KEY_1:
+				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + 1 );
+				updateGaugeView();
+				return;
+			case EventKeyboard::KeyCode::KEY_2:
+				mGaugeCurrent = std::max( mGaugeMin, mGaugeCurrent - 1 );
+				updateGaugeView();
 				return;
 			}
 		}
