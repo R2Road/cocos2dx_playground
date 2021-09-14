@@ -4,6 +4,7 @@
 #include <numeric>
 
 #include "2d/CCLabel.h"
+#include "2d/CCDrawNode.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
@@ -61,6 +62,9 @@ namespace ui_research
 				ss << cpg::linefeed;
 				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
+				ss << cpg::linefeed;
+				ss << "[1] : Increase 1" << cpg::linefeed;
+				ss << "[2] : Decrease 1" << cpg::linefeed;
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -69,6 +73,22 @@ namespace ui_research
 					+ Vec2( 0.f, visibleSize.height )
 				);
 				addChild( label, std::numeric_limits<int>::max() );
+			}
+
+			const Color4F GaugeColor1( 0.23f, 0.23f, 0.23f, 1.f );
+			const Size GaugeSize1( 100.f, 20.f );
+
+			//
+			//
+			//
+			{
+				auto draw_node = DrawNode::create();
+				draw_node->drawSolidRect( Vec2::ZERO, Vec2( GaugeSize1.width, GaugeSize1.height ), Color4F::GREEN );
+				draw_node->setPosition(
+					visibleCenter
+					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
+				);
+				addChild( draw_node );
 			}
 
 			return true;
