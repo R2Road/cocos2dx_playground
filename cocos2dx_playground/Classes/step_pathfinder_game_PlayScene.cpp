@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -11,6 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "step_pathfinder_game_PlayerNode.h"
@@ -78,7 +78,7 @@ namespace step_pathfinder
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Title";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[ARROW] : Move";
 
 

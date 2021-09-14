@@ -3,7 +3,6 @@
 #include <functional>
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -14,6 +13,7 @@
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_ui_ToolBarNode.h"
 
@@ -91,7 +91,7 @@ namespace step_defender
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[Arrow L/R] : Do Parralax";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );

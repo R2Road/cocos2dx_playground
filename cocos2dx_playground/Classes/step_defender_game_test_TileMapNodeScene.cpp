@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +9,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "step_defender_game_TileMapNode.h"
@@ -65,13 +65,13 @@ namespace step_defender
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[1] : Fill Ones";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[2] : Fill All";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

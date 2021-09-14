@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
@@ -12,6 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "ui_research_button_research_OnMouseOverScene.h"
@@ -66,23 +66,23 @@ namespace ui_research
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[1] : " << ui_research::button_research::OnMouseOverScene::getTitle();
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[2] : " << ui_research::button_research::MouseRightClickScene::getTitle();
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[3] : " << ui_research::button_research::EXButtonScene::getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "=============================";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Q] : " << ui_research::button_research::team_fight_manager::ChampionSelectButtonStepScene::getTitle();
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[W] : " << ui_research::button_research::team_fight_manager::ChampionSelectButtonTestScene::getTitle();
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );

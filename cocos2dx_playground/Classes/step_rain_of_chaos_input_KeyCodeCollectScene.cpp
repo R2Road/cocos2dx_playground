@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,8 +9,10 @@
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_input_KeyCodeNames.h"
+
 #include "step_rain_of_chaos_RootScene.h"
 
 USING_NS_CC;
@@ -55,11 +56,11 @@ namespace step_rain_of_chaos
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Keyboard] : Do Type";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -15,6 +14,7 @@
 
 #include "cpg_animation_InfoContainer.h"
 #include "cpg_ui_EXButtonNode.h"
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "step_mole_AnimationComponent.h"
@@ -96,8 +96,8 @@ namespace ui_research
 				{
 					std::stringstream ss;
 					ss << "+ " << getTitle();
-					ss << std::endl;
-					ss << std::endl;
+					ss << cpg::linefeed;
+					ss << cpg::linefeed;
 					ss << "[ESC] : Return to Root";
 
 					auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCActionInterval.h"
 #include "2d/CCLabel.h"
@@ -12,6 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "step_clickclick_game_ExplainScene.h"
@@ -62,7 +62,7 @@ namespace step_clickclick
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[F1] : Result Scene Test";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 6 );

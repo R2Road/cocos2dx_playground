@@ -3,7 +3,6 @@
 #include <new>
 #include <numeric>
 #include <random>
-#include <sstream>
 #include <utility>
 
 #include "2d/CCLabel.h"
@@ -19,6 +18,7 @@
 #include "json/stringbuffer.h"
 #include "json/writer.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "helper_Win32DirectoryOpen.h"
@@ -72,8 +72,8 @@ namespace step_pathfinder
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

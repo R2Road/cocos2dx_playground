@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +9,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
+
+#include "cpg_SStream.h"
 
 #include "step_typetype_game_Stage.h"
 #include "step_typetype_game_StageViewNode.h"
@@ -69,18 +70,18 @@ namespace step_typetype
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Arrow U/D] : Stage Size Up/Down And Reset";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[R] : Stage Reset";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Arrow L/R] : Move Indicator Left/Right";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[Space] : Letter Die";
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );

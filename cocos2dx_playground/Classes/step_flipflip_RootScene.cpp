@@ -2,13 +2,14 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+
+#include "cpg_SStream.h"
 
 #include "PlayGroundScene.h"
 
@@ -68,45 +69,45 @@ namespace step_flipflip
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] " << step_flipflip::texture::AliasScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[2] " << step_flipflip::texture::PListScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[3] " << step_flipflip::texture::PList4ThisProjectScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[4] " << step_flipflip::scale::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[5] " << step_flipflip::opacity::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[6] " << step_flipflip::sprite_frame::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[7] " << step_flipflip::action::BasicScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Q] " << step_flipflip::game_test::CardViewScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[W] " << step_flipflip::game_test::CardSelectorNodeScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[E] " << step_flipflip::game_test::StageViewScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[R] " << step_flipflip::game_test::SelectAndFlipScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[A] " << step_flipflip::game_test::MessageViewNodeScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[SPACE] " << step_flipflip::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 10, Size::ZERO, TextHAlignment::LEFT );

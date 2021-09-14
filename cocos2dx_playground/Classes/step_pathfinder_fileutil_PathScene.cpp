@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -11,6 +10,7 @@
 #include "base/CCEventDispatcher.h"
 #include "platform/CCFileUtils.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
@@ -56,8 +56,8 @@ namespace step_pathfinder
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );

@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 #include <vector>
 
 #include "2d/CCActionInterval.h"
@@ -13,6 +12,8 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+
+#include "cpg_SStream.h"
 
 #include "step_flipflip_game_PlayScene.h"
 #include "step_flipflip_game_ResultScene.h"
@@ -72,7 +73,7 @@ namespace step_flipflip
 			{
 				std::stringstream ss;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[F1] : " << ResultScene::getTitle();
 
 				auto label = Label::createWithTTF( ss.str(), "fonts/NanumSquareR.ttf", 6 );

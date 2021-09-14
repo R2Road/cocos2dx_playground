@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -12,6 +11,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "cpg_Animation_Info.h"
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "step_mole_AnimationComponent.h"
 
@@ -61,23 +61,23 @@ namespace step_mole
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[A] : Play Animation - Wait";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[S] : Play Animation - Wakeup";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[D] : Play Animation - Idle";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[F] : Play Animation - Sleep";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Q] : Play Animation With Callback";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[SpaceBar] : Stop Animation";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

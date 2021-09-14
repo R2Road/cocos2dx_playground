@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
@@ -12,6 +11,8 @@
 #include "ui/UIButton.h"
 #include "ui/UITextField.h"
 #include "ui/UIScale9Sprite.h"
+
+#include "cpg_SStream.h"
 
 USING_NS_CC;
 
@@ -57,8 +58,8 @@ namespace ui_research
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithBMFont( "fonts/script_KR.fnt", ss.str(), TextHAlignment::LEFT );

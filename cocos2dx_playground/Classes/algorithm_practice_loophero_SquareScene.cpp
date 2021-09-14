@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -12,14 +11,14 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
-#include "cpg_Clamp.h"
-#include "cpg_Random.h"
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
 
 #include "step_defender_game_TileMapNode.h"
 
 #include "algorithm_practice_loophero_Constant.h"
+#include "algorithm_practice_loophero_SquareBuilder.h"
 
 USING_NS_CC;
 
@@ -76,11 +75,11 @@ namespace algorithm_practice_loophero
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[R] : Reset";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
@@ -104,7 +103,7 @@ namespace algorithm_practice_loophero
 		// Size View
 		//
 		{
-			mSizeView = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14, Size::ZERO, TextHAlignment::LEFT );
+			mSizeView = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14, Size::ZERO, TextHAlignment::RIGHT );
 			mSizeView->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			mSizeView->setColor( Color3B::GREEN );
 			mSizeView->setPosition(
@@ -163,58 +162,20 @@ namespace algorithm_practice_loophero
 	{
 		mTileMapNode->FillAll( 3, 0 );
 
-		// 0. Ready
-		const int required_road_count = algorithm_practice_loophero::ROAD_LENGTH - algorithm_practice_loophero::ROAD_PIVOT_COUNT;
+		const auto square_size = SquareBuilder::Build( &mRoad );
 
-		// 1. Adjust Pivot List
-		auto CurrentPivotList = algorithm_practice_loophero::PIVOT_LIST;
-		{
-			const int required_half_road_count = ( algorithm_practice_loophero::ROAD_LENGTH - algorithm_practice_loophero::ROAD_PIVOT_COUNT ) / 2;
-
-			const auto square_pivot_size = cpg::Random::GetInt( static_cast<int>( required_half_road_count * 0.4f ), static_cast<int>( required_half_road_count * 0.9f ) );
-
-			const auto square_width = required_half_road_count - square_pivot_size > square_pivot_size ? required_half_road_count - square_pivot_size : square_pivot_size;
-			const auto square_height = required_half_road_count - square_width;
-
-			CurrentPivotList[1].x += square_width;
-			CurrentPivotList[2].x += square_width;
-
-			CurrentPivotList[0].y += square_height;
-			CurrentPivotList[1].y += square_height;
-
-			CCLOG( "width : %d, height : %d", square_width, square_height );
-
-			mSizeView->setString( StringUtils::format( "W : %d, H : %d", square_width, square_height ) );
-		}
-
-		// 2. Make Road
-		mRoad.clear();
-		for( int i = 0; ROAD_PIVOT_COUNT > i; ++i )
-		{
-			const auto start_point = CurrentPivotList[i];
-			const auto end_point = i + 1 < ROAD_PIVOT_COUNT ? CurrentPivotList[i + 1] : CurrentPivotList[0];
-
-			const auto start2end = end_point - start_point;
-			const cpg::Point dir{
-				cpg::clamp( start2end.x, -1, 1 )
-				, cpg::clamp( start2end.y, -1, 1 )
-			};
-
-			auto cur_point = start_point;
-			do
-			{
-				mRoad.push_back( cur_point );
-
-				cur_point += dir;
-			} while( end_point != cur_point );
-		}
+		// Show
+		mSizeView->setString( StringUtils::format(
+			"W : %d, H : %d\nTotal : %d"
+			, square_size.x
+			, square_size.y
+			, mRoad.size()
+		) );
 
 		for( const auto& p : mRoad )
 		{
 			mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
 		}
-
-		CCASSERT( ROAD_LENGTH == mRoad.size(), "Not Enough Way Length" );
 	}
 
 

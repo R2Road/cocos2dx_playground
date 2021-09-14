@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +9,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "PlayGroundScene.h"
@@ -68,36 +68,36 @@ namespace step_pathfinder
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] : " << step_pathfinder::fileutil::PathScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[2] : " << step_pathfinder::fileutil::GenerateNDeleteScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[3] : " << step_pathfinder::json::LoadNSaveScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[4] : " << step_pathfinder::text_field::BasicScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Q] : " << step_pathfinder::game_test::TerrainViewerScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[W] : " << step_pathfinder::game_test::PlayerMoveScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[A] : " << step_pathfinder::tool::TerrainToolScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[SPACE] : " << step_pathfinder::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );

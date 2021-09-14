@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -11,6 +10,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "step_mole_CircleCollisionComponentConfig.h"
@@ -69,16 +69,16 @@ namespace step_rain_of_chaos
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[1] : Move Speed Up";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[2] : Move Speed Down";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Arrow Key] : Move";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );

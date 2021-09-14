@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCActionInterval.h"
 #include "2d/CCAnimation.h"
@@ -15,6 +14,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "cpg_Animation_Info.h"
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "step_clickclick_RootScene.h"
@@ -100,15 +100,15 @@ namespace step_clickclick
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[A] : Play Animation - Idle";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[S] : Play Animation - Run";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[D] : Play Animation - Win";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

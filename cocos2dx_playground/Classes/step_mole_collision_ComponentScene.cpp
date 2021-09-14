@@ -4,7 +4,6 @@
 #include <numeric>
 #include <new>
 #include <random>
-#include <sstream>
 
 #include "2d/CCActionInterval.h"
 #include "2d/CCAnimation.h"
@@ -17,6 +16,7 @@
 #include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "step_mole_CircleCollisionComponent.h"
@@ -77,11 +77,11 @@ namespace step_mole
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Mouse] : Push and Drag";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

@@ -1,7 +1,6 @@
 #include "step02_fsm1test_AnimationControlScene.h"
 
 #include <new>
-#include <sstream>
 
 #include "2d/CCActionInterval.h"
 #include "2d/CCAnimation.h"
@@ -13,6 +12,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "fsm1_iState.h"
@@ -155,11 +155,11 @@ namespace step02
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Arrow Key] : Move Actor";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

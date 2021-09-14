@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -15,6 +14,7 @@
 #include "shader_practice_GLUniformInfosScene.h"
 #include "shader_practice_SimpleTestScene.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
@@ -56,15 +56,15 @@ namespace shader_practice
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] : " << shader_practice::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[2] : " << shader_practice::GLUniformInfosScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[3] : " << shader_practice::SimpleTestScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );

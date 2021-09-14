@@ -3,7 +3,6 @@
 #include <cmath>
 #include <new>
 #include <numeric>
-#include <sstream>
 #include <string>
 
 #include "2d/CCLabel.h"
@@ -13,6 +12,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "graph_practice_GraphViewNode.h"
 
@@ -71,13 +71,13 @@ namespace graph_practice
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Arrow U/D] : Time Scale U/D";
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[Space] : Pause/Resume";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );

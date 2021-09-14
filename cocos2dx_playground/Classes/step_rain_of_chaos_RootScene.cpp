@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +9,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "PlayGroundScene.h"
@@ -68,48 +68,48 @@ namespace step_rain_of_chaos
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] : " << step_rain_of_chaos::input::KeyCodeCollectScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[2] : " << step_rain_of_chaos::batch_node::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[3] : " << step_rain_of_chaos::batch_node::QuadScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[4] : " << step_rain_of_chaos::button::DragScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[5] : " << step_rain_of_chaos::draw_node::CircleScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[6] : " << ui_practice::LayoutVerticalScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Q] : " << step_rain_of_chaos::game_test::ActorMoveScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[W] : " << step_rain_of_chaos::game_test::BackgroundNodeScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[E] : " << step_rain_of_chaos::game_test::BulletLifeComponentScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[R] : " << step_rain_of_chaos::game_test::StageNodeScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[A] : " << step_rain_of_chaos::game_test::SpawnProcessorScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[S] : " << step_rain_of_chaos::game_test::EnemyProcessorScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[SPACE] : " << step_rain_of_chaos::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );

@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +9,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 #include "PlayGroundScene.h"
@@ -59,30 +59,30 @@ namespace step99
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] : " << cocos_research_action::SoundActionScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[2] : " << cocos_research_action::SpriteFrameActionScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Q] : " << step02::fsm1test::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[W] : " << step02::fsm1test::AnimationControlScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[E] : " << step_rain_of_chaos::collision::CollectionScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12 );

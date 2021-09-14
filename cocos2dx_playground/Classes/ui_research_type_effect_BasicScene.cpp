@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -14,6 +13,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
@@ -68,18 +68,18 @@ namespace ui_research
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[SPACE] : Start Type";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[A] : End Type";
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[Arrow Up] : Delay - Increase";
-				ss << std::endl;
+				ss << cpg::linefeed;
 				ss << "[Arrow Uown] : Delay - Decrease";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );

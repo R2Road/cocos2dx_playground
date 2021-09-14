@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 #include <string>
 
 #include "2d/CCActionInstant.h"
@@ -18,6 +17,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "cpg_SoundAction.h"
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
@@ -78,18 +78,18 @@ namespace cocos_research_action
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Q] : Node 1 : Play";
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[W] : Node 1 : Stop";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[A] : Node 2 : Play";
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[S] : Node 2 : Stop";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::LEFT );

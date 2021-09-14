@@ -1,4 +1,4 @@
-#include "algorithm_practice_loophero_PivotScene.h"
+#include "algorithm_practice_loophero_TrimScene.h"
 
 #include <new>
 #include <numeric>
@@ -9,6 +9,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "base/ccUTF8.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -17,20 +18,24 @@
 #include "step_defender_game_TileMapNode.h"
 
 #include "algorithm_practice_loophero_Constant.h"
+#include "algorithm_practice_loophero_SquareBuilder.h"
 
 USING_NS_CC;
 
 namespace algorithm_practice_loophero
 {
-	PivotScene::PivotScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	TrimScene::TrimScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+
+		, mSizeView( nullptr )
 		, mTileMapNode( nullptr )
+		, mRoad()
 	{}
 
-	Scene* PivotScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* TrimScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) PivotScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) TrimScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -44,7 +49,7 @@ namespace algorithm_practice_loophero
 		return ret;
 	}
 
-	bool PivotScene::init()
+	bool TrimScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -73,6 +78,9 @@ namespace algorithm_practice_loophero
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[R] : Reset";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -89,6 +97,20 @@ namespace algorithm_practice_loophero
 		{
 			auto layer = LayerColor::create( Color4B( 8, 45, 48, 255 ) );
 			addChild( layer, std::numeric_limits<int>::min() );
+		}
+
+		//
+		// Size View
+		//
+		{
+			mSizeView = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 14, Size::ZERO, TextHAlignment::LEFT );
+			mSizeView->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			mSizeView->setColor( Color3B::GREEN );
+			mSizeView->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+			);
+			addChild( mSizeView, std::numeric_limits<int>::max() );
 		}
 
 		//
@@ -109,26 +131,24 @@ namespace algorithm_practice_loophero
 		//
 		// Setup
 		//
-		mTileMapNode->FillAll( 3, 0 );
-
-		for( const auto& p : PIVOT_LIST )
 		{
-			mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
+			Build();
 		}
+			
 
 		return true;
 	}
 
-	void PivotScene::onEnter()
+	void TrimScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PivotScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TrimScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void PivotScene::onExit()
+	void TrimScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -138,12 +158,38 @@ namespace algorithm_practice_loophero
 	}
 
 
-	void PivotScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+	void TrimScene::Build()
+	{
+		mTileMapNode->FillAll( 3, 0 );
+
+		const auto square_size = SquareBuilder::Build( &mRoad );
+
+		// Show
+		mSizeView->setString( StringUtils::format(
+			"W : %d, H : %d\nTotal : %d"
+			, square_size.x
+			, square_size.y
+			, mRoad.size()
+		) );
+
+		for( const auto& p : mRoad )
+		{
+			mTileMapNode->UpdateTile( p.x, p.y, 2, 0 );
+		}
+	}
+
+
+	void TrimScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == key_code )
 		{
 			helper::BackToThePreviousScene::MoveBack();
 			return;
+		}
+
+		if( EventKeyboard::KeyCode::KEY_R == key_code )
+		{
+			Build();
 		}
 	}
 }

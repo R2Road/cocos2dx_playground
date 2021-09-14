@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -10,6 +9,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "helper_SceneMover.h"
 
@@ -66,36 +66,36 @@ namespace step_mole
 		{
 			std::stringstream ss;
 			ss << "+ " << getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Playground";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[1] : " << step_mole::animation::CallbackScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[2] : " << step_mole::animation::ComponentScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[3] : " << step_mole::collision::BasicScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[4] : " << step_mole::collision::ComponentScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[A] : " << step_mole::game_test::ObjectActionScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[S] : " << step_mole::game_test::SpawnScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[D] : " << step_mole::game_test::HittingNodeScene::getTitle();
-			ss << std::endl;
+			ss << cpg::linefeed;
 			ss << "[F] : " << step_mole::game_test::SpawnAndHitScene::getTitle();
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
-			ss << std::endl;
-			ss << std::endl;
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[SPACE] : " << step_mole::game::TitleScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );

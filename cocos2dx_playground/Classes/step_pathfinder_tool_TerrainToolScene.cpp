@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <sstream>
 
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
@@ -11,6 +10,7 @@
 #include "ui/UIButton.h"
 #include "ui/UITextField.h"
 
+#include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "helper_Win32DirectoryOpen.h"
 
@@ -71,8 +71,8 @@ namespace step_pathfinder
 			{
 				std::stringstream ss;
 				ss << "+ " << getTitle();
-				ss << std::endl;
-				ss << std::endl;
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 9, Size::ZERO, TextHAlignment::LEFT );
