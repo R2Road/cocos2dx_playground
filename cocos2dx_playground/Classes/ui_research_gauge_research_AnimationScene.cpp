@@ -21,7 +21,7 @@ namespace
 	const Color4F GaugeColor1( Color4F::GREEN );
 	const Color4F GaugeColor2( Color4F::ORANGE );
 
-	const Size GaugeSize1( 100.f, 20.f );
+	const Size GaugeSize( 100.f, 20.f );
 
 	const int GaugeAmountOfTotal = 85;
 	const int GaugeAmountOfChange = 20;
@@ -106,14 +106,14 @@ namespace ui_research
 				mGaugeViewNode = DrawNode::create();
 				mGaugeViewNode->setPosition(
 					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
-					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
+					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeViewNode, 1 );
 
 				mGaugeAnimationViewNode = DrawNode::create();
 				mGaugeAnimationViewNode->setPosition(
 					Vec2( visibleCenter.x, visibleSize.height * 0.43f )
-					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
+					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeAnimationViewNode, 0 );
 			}
@@ -172,7 +172,7 @@ namespace ui_research
 			mGaugeViewNode->clear();
 			mGaugeViewNode->drawSolidRect(
 				Vec2::ZERO
-				, Vec2( GaugeSize1.width * gauge_rate, GaugeSize1.height )
+				, Vec2( GaugeSize.width * gauge_rate, GaugeSize.height )
 				, GaugeColor1
 			);
 
@@ -189,7 +189,7 @@ namespace ui_research
 			mGaugeAnimationViewNode->clear();
 			mGaugeAnimationViewNode->drawSolidRect(
 				Vec2::ZERO
-				, Vec2( GaugeSize1.width * gauge_rate, GaugeSize1.height )
+				, Vec2( GaugeSize.width * gauge_rate, GaugeSize.height )
 				, GaugeColor2
 			);
 
