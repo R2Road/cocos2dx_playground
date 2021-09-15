@@ -80,11 +80,8 @@ namespace ui_research
 				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
 				ss << cpg::linefeed;
-				ss << "[1] : Decrease 1" << cpg::linefeed;
-				ss << "[2] : Increase 1" << cpg::linefeed;
-				ss << cpg::linefeed;
-				ss << "[Q] : Decrease 10" << cpg::linefeed;
-				ss << "[W] : Increase 10" << cpg::linefeed;
+				ss << "[1] : Decrease 10" << cpg::linefeed;
+				ss << "[2] : Increase 10" << cpg::linefeed;
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -176,22 +173,11 @@ namespace ui_research
 				return;
 
 			case EventKeyboard::KeyCode::KEY_1:
-				mGaugeCurrent = std::max( mGaugeMin, mGaugeCurrent - 1 );
-				updateGaugeView();
-				updateGaugeStatisticsView();
-				return;
-			case EventKeyboard::KeyCode::KEY_2:
-				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + 1 );
-				updateGaugeView();
-				updateGaugeStatisticsView();
-				return;
-
-			case EventKeyboard::KeyCode::KEY_Q:
 				mGaugeCurrent = std::max( mGaugeMin, mGaugeCurrent - 10 );
 				updateGaugeView();
 				updateGaugeStatisticsView();
 				return;
-			case EventKeyboard::KeyCode::KEY_W:
+			case EventKeyboard::KeyCode::KEY_2:
 				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + 10 );
 				updateGaugeView();
 				updateGaugeStatisticsView();
