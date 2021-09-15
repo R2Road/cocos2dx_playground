@@ -6,6 +6,7 @@
 
 NS_CC_BEGIN
 	class Label;
+	class Sprite;
 NS_CC_END
 
 namespace ui_research
@@ -39,7 +40,9 @@ namespace ui_research
 
 			cocos2d::Node* mGaugeViewNode1;
 			cocos2d::Node* mGaugeViewNode2;
-			cocos2d::Node* mGaugeViewNode3;
+			cocos2d::Sprite* mGaugeViewNode3;
+			cocos2d::Rect mGaugeViewNode3TextureRect;
+
 			const int mGaugeMax;
 			const int mGaugeMin;
 			int mGaugeCurrent;

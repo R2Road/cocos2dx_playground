@@ -37,6 +37,7 @@ namespace ui_research
 			, mGaugeViewNode1( nullptr )
 			, mGaugeViewNode2( nullptr )
 			, mGaugeViewNode3( nullptr )
+			, mGaugeViewNode3TextureRect()
 
 			, mGaugeMax( GaugeAmountOfTotal )
 			, mGaugeMin( 0 )
@@ -162,6 +163,8 @@ namespace ui_research
 				);
 				addChild( mGaugeViewNode3 );
 
+				mGaugeViewNode3TextureRect = mGaugeViewNode3->getTextureRect();
+
 				// Guide
 				{
 					auto sprite_node = Sprite::createWithSpriteFrameName( "dummy_gauge_guide_001_0.png" );
@@ -176,12 +179,12 @@ namespace ui_research
 
 				// explain
 				{
-					auto label = Label::createWithTTF( "Sprite ===>>>", cpg::StringTable::GetFontPath(), 10 );
+					auto label = Label::createWithTTF( "Sprite + Change Texture Rect ===>>>", cpg::StringTable::GetFontPath(), 10 );
 					label->setColor( Color3B::GREEN );
 					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
 					label->setPosition(
 						mGaugeViewNode3->getPosition()
-						+ Vec2( -4.f, mGaugeViewNode3->getContentSize().height * 0.5f )
+						+ Vec2( -4.f, mGaugeViewNode3->getBoundingBox().size.height * 0.5f )
 					);
 					addChild( label );
 				}
@@ -241,6 +244,13 @@ namespace ui_research
 			mGaugeViewNode1->setContentSize( Size( GaugeSize.width * gauge_rate, GaugeSize.height ) );
 
 			mGaugeViewNode2->setContentSize( Size( GaugeSize.width * gauge_rate, GaugeSize.height ) );
+
+			mGaugeViewNode3->setTextureRect( Rect(
+				mGaugeViewNode3TextureRect.getMinX()
+				, mGaugeViewNode3TextureRect.getMinY()
+				, mGaugeViewNode3TextureRect.size.width * gauge_rate
+				, mGaugeViewNode3TextureRect.size.height
+			) );
 		}
 
 
