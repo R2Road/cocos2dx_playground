@@ -39,6 +39,7 @@ namespace ui_research
 
 			cocos2d::Node* mGaugeViewNode1;
 			cocos2d::Node* mGaugeViewNode2;
+			cocos2d::Node* mGaugeViewNode3;
 			const int mGaugeMax;
 			const int mGaugeMin;
 			int mGaugeCurrent;

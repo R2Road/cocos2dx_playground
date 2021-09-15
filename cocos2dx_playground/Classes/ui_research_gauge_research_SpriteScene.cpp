@@ -36,6 +36,7 @@ namespace ui_research
 
 			, mGaugeViewNode1( nullptr )
 			, mGaugeViewNode2( nullptr )
+			, mGaugeViewNode3( nullptr )
 
 			, mGaugeMax( GaugeAmountOfTotal )
 			, mGaugeMin( 0 )
@@ -97,7 +98,7 @@ namespace ui_research
 			}
 
 			//
-			// Test Gauge
+			// Test Gauge 1
 			//
 			{
 				mGaugeViewNode1 = Sprite::createWithSpriteFrameName( "s9_normal_3.png" );
@@ -108,6 +109,8 @@ namespace ui_research
 					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeViewNode1 );
+
+				// explain
 				{
 					auto label = Label::createWithTTF( "Sprite ===>>>", cpg::StringTable::GetFontPath(), 10 );
 					label->setColor( Color3B::GREEN );
@@ -118,8 +121,12 @@ namespace ui_research
 					);
 					addChild( label );
 				}
+			}
 
-
+			//
+			// Test Gauge 2
+			//
+			{
 				mGaugeViewNode2 = ui::Scale9Sprite::createWithSpriteFrameName( "s9_guide_01_0.png" );
 				mGaugeViewNode2->setAnchorPoint( Vec2::ZERO );
 				mGaugeViewNode2->setContentSize( GaugeSize );
@@ -128,6 +135,8 @@ namespace ui_research
 					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeViewNode2 );
+
+				// explain
 				{
 					auto label = Label::createWithTTF( "UI Scale9Sprite ===>>>", cpg::StringTable::GetFontPath(), 10 );
 					label->setColor( Color3B::GREEN );
@@ -135,6 +144,44 @@ namespace ui_research
 					label->setPosition(
 						mGaugeViewNode2->getPosition()
 						+ Vec2( -4.f, mGaugeViewNode2->getContentSize().height * 0.5f )
+					);
+					addChild( label );
+				}
+			}
+
+			//
+			// Test Gauge 3
+			//
+			{
+				mGaugeViewNode3 = Sprite::createWithSpriteFrameName( "dummy_gauge_body_001_0.png" );
+				mGaugeViewNode3->setAnchorPoint( Vec2::ZERO );
+				mGaugeViewNode3->setScale( _director->getContentScaleFactor() );
+				mGaugeViewNode3->setPosition(
+					Vec2( visibleCenter.x, visibleSize.height * 0.3f )
+					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
+				);
+				addChild( mGaugeViewNode3 );
+
+				// Guide
+				{
+					auto sprite_node = Sprite::createWithSpriteFrameName( "dummy_gauge_guide_001_0.png" );
+					sprite_node->setAnchorPoint( Vec2::ZERO );
+					sprite_node->setScale( _director->getContentScaleFactor() );
+					sprite_node->setPosition(
+						mGaugeViewNode3->getPosition()
+						- Vec2( 2.f, 2.f )
+					);
+					addChild( sprite_node );
+				}
+
+				// explain
+				{
+					auto label = Label::createWithTTF( "Sprite ===>>>", cpg::StringTable::GetFontPath(), 10 );
+					label->setColor( Color3B::GREEN );
+					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+					label->setPosition(
+						mGaugeViewNode3->getPosition()
+						+ Vec2( -4.f, mGaugeViewNode3->getContentSize().height * 0.5f )
 					);
 					addChild( label );
 				}
