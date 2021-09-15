@@ -585,6 +585,36 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">ui/dummy_gauge/dummy_gauge_body_001_0.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>25,4,50,8</rect>
+                <key>scale9Paddings</key>
+                <rect>25,4,50,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">ui/dummy_gauge/dummy_gauge_guide_001_0.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>26,5,52,10</rect>
+                <key>scale9Paddings</key>
+                <rect>26,5,52,10</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">ui/slice9/s9_normal_0.png</key>
             <key type="filename">ui/slice9/s9_normal_1.png</key>
             <key type="filename">ui/slice9/s9_normal_2.png</key>
@@ -864,6 +894,8 @@
             <filename>ui/slice9/s9_normal_3.png</filename>
             <filename>ui/slice9/s9_normal_4.png</filename>
             <filename>ui/slice9/s9_guide_01_0.png</filename>
+            <filename>ui/dummy_gauge/dummy_gauge_guide_001_0.png</filename>
+            <filename>ui/dummy_gauge/dummy_gauge_body_001_0.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
