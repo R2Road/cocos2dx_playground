@@ -218,7 +218,7 @@ namespace ui_research
 
 			if( mGaugeCurrent > mGaugeAnimationCurrent )
 			{
-				mGaugeAnimationCurrent = std::min( mGaugeCurrent, mGaugeAnimationCurrent + 1 );
+				mGaugeAnimationCurrent = mGaugeCurrent;
 			}
 			else //if( mGaugeCurrent < mGaugeAnimationCurrent )
 			{
