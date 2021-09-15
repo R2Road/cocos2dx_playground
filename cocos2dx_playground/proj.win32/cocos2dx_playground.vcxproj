@@ -413,6 +413,10 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonTestScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonStepScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_button_research_team_fight_manager_OnMouseOverNode.cpp" />
+    <ClCompile Include="..\Classes\ui_research_gauge_research_AnimationScene.cpp" />
+    <ClCompile Include="..\Classes\ui_research_gauge_research_BasicScene.cpp" />
+    <ClCompile Include="..\Classes\ui_research_gauge_research_RootScene.cpp" />
+    <ClCompile Include="..\Classes\ui_research_gauge_research_SpriteScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_RootScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_text_field_BMFontScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_type_effect_BasicScene.cpp" />
@@ -699,6 +703,10 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonTestScene.h" />
     <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_ChampionSelectButtonStepScene.h" />
     <ClInclude Include="..\Classes\ui_research_button_research_team_fight_manager_OnMouseOverNode.h" />
+    <ClInclude Include="..\Classes\ui_research_gauge_research_AnimationScene.h" />
+    <ClInclude Include="..\Classes\ui_research_gauge_research_BasicScene.h" />
+    <ClInclude Include="..\Classes\ui_research_gauge_research_RootScene.h" />
+    <ClInclude Include="..\Classes\ui_research_gauge_research_SpriteScene.h" />
     <ClInclude Include="..\Classes\ui_research_RootScene.h" />
     <ClInclude Include="..\Classes\ui_research_text_field_BMFontScene.h" />
     <ClInclude Include="..\Classes\ui_research_type_effect_BasicScene.h" />

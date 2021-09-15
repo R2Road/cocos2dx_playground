@@ -16,6 +16,8 @@
 
 #include "ui_research_button_research_RootScene.h"
 
+#include "ui_research_gauge_research_RootScene.h"
+
 #include "ui_research_type_effect_BasicScene.h"
 #include "ui_research_type_effect_MultiByteScene.h"
 #include "ui_research_type_effect_ColorScene.h"
@@ -69,6 +71,8 @@ namespace ui_research
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[1] : " << ui_research::button_research::RootScene::getTitle();
+			ss << cpg::linefeed;
+			ss << "[2] : " << ui_research::gauge_research::RootScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "=============================";
@@ -139,6 +143,9 @@ namespace ui_research
 
 		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( ui_research::button_research::RootScene::create() );
+			return;
+		case EventKeyboard::KeyCode::KEY_2:
+			_director->replaceScene( ui_research::gauge_research::RootScene::create() );
 			return;
 
 		case EventKeyboard::KeyCode::KEY_Q:
