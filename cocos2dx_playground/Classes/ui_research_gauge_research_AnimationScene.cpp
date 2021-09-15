@@ -19,6 +19,8 @@ USING_NS_CC;
 namespace
 {
 	const Color4F GaugeColor1( Color4F::GREEN );
+	const Color4F GaugeColor2( Color4F::ORANGE );
+
 	const Size GaugeSize1( 100.f, 20.f );
 }
 
@@ -34,6 +36,8 @@ namespace ui_research
 			, mGaugeMax( 85 )
 			, mGaugeMin( 0 )
 			, mGaugeCurrent( 85 )
+
+			, mGaugeAnimationViewNode( nullptr )
 
 			, mGaugeStatisticsViewNode( nullptr )
 		{}
@@ -102,11 +106,18 @@ namespace ui_research
 					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
 					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
 				);
-				addChild( mGaugeViewNode );
+				addChild( mGaugeViewNode, 1 );
+
+				mGaugeAnimationViewNode = DrawNode::create();
+				mGaugeAnimationViewNode->setPosition(
+					Vec2( visibleCenter.x, visibleSize.height * 0.43f )
+					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
+				);
+				addChild( mGaugeAnimationViewNode, 0 );
 			}
 
 			//
-			// Stat View
+			// Test Gauge Stat View
 			//
 			{
 				mGaugeStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
@@ -161,6 +172,13 @@ namespace ui_research
 				Vec2::ZERO
 				, Vec2( GaugeSize1.width * gauge_rate, GaugeSize1.height )
 				, GaugeColor1
+			);
+
+			mGaugeAnimationViewNode->clear();
+			mGaugeAnimationViewNode->drawSolidRect(
+				Vec2::ZERO
+				, Vec2( GaugeSize1.width * gauge_rate, GaugeSize1.height )
+				, GaugeColor2
 			);
 		}
 

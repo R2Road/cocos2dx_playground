@@ -43,6 +43,8 @@ namespace ui_research
 			int mGaugeMin;
 			int mGaugeCurrent;
 
+			cocos2d::DrawNode* mGaugeAnimationViewNode;
+
 			cocos2d::Label* mGaugeStatisticsViewNode;
 		};
 	}
