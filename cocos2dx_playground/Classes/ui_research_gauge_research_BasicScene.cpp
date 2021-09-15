@@ -18,7 +18,7 @@ USING_NS_CC;
 
 namespace
 {
-	const Color4F GaugeColor1( Color4F::GREEN );
+	const Color4F GaugeColor( Color4F::GREEN );
 	const Size GaugeSize( 100.f, 20.f );
 }
 
@@ -160,7 +160,7 @@ namespace ui_research
 			mGaugeViewNode->drawSolidRect(
 				Vec2::ZERO
 				, Vec2( GaugeSize.width * gauge_rate, GaugeSize.height )
-				, GaugeColor1
+				, GaugeColor
 			);
 		}
 
