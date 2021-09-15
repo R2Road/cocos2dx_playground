@@ -23,6 +23,7 @@ namespace
 
 	const Size GaugeSize1( 100.f, 20.f );
 
+	const int GaugeAmountOfTotal = 85;
 	const int GaugeAmountOfChange = 20;
 }
 
@@ -35,10 +36,10 @@ namespace ui_research
 			, mKeyboardListener( nullptr )
 
 			, mGaugeViewNode( nullptr )
-			, mGaugeMax( 85 )
+			, mGaugeMax( GaugeAmountOfTotal )
 			, mGaugeMin( 0 )
-			, mGaugeCurrent( 85 )
-			, mGaugeAnimationCurrent( 85 )
+			, mGaugeCurrent( GaugeAmountOfTotal )
+			, mGaugeAnimationCurrent( GaugeAmountOfTotal )
 
 			, mGaugeAnimationViewNode( nullptr )
 
