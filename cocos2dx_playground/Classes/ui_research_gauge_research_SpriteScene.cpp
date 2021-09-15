@@ -106,7 +106,7 @@ namespace ui_research
 				mGaugeViewNode1->setAnchorPoint( Vec2::ZERO );
 				mGaugeViewNode1->setContentSize( GaugeSize );
 				mGaugeViewNode1->setPosition(
-					Vec2( visibleCenter.x, visibleSize.height * 0.5f )
+					Vec2( visibleCenter.x, visibleSize.height * 0.6f )
 					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeViewNode1 );
@@ -132,7 +132,7 @@ namespace ui_research
 				mGaugeViewNode2->setAnchorPoint( Vec2::ZERO );
 				mGaugeViewNode2->setContentSize( GaugeSize );
 				mGaugeViewNode2->setPosition(
-					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
+					Vec2( visibleCenter.x, visibleSize.height * 0.5f )
 					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeViewNode2 );
@@ -158,7 +158,7 @@ namespace ui_research
 				mGaugeViewNode3->setAnchorPoint( Vec2::ZERO );
 				mGaugeViewNode3->setScale( _director->getContentScaleFactor() );
 				mGaugeViewNode3->setPosition(
-					Vec2( visibleCenter.x, visibleSize.height * 0.3f )
+					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
 					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeViewNode3 );
@@ -196,7 +196,7 @@ namespace ui_research
 			{
 				mGaugeStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				mGaugeStatisticsViewNode->setPosition(
-					Vec2( visibleCenter.x, visibleSize.height * 0.6f )
+					Vec2( visibleCenter.x, visibleSize.height * 0.7f )
 				);
 				addChild( mGaugeStatisticsViewNode );
 			}
