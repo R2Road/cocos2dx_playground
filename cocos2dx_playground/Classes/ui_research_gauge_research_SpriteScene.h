@@ -5,7 +5,6 @@
 #include "helper_BackToThePreviousScene.h"
 
 NS_CC_BEGIN
-	class Sprite;
 	class Label;
 NS_CC_END
 
@@ -38,7 +37,7 @@ namespace ui_research
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			cocos2d::Sprite* mGaugeViewNode;
+			cocos2d::Node* mGaugeViewNode;
 			const int mGaugeMax;
 			const int mGaugeMin;
 			int mGaugeCurrent;
