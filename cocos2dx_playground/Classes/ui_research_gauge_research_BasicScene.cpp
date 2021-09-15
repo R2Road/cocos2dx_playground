@@ -22,6 +22,7 @@ namespace
 	const Size GaugeSize( 100.f, 20.f );
 
 	const int GaugeAmountOfTotal = 85;
+	const int GaugeAmountOfChange = 10;
 }
 
 namespace ui_research
@@ -80,8 +81,8 @@ namespace ui_research
 				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
 				ss << cpg::linefeed;
-				ss << "[1] : Decrease 10" << cpg::linefeed;
-				ss << "[2] : Increase 10" << cpg::linefeed;
+				ss << "[1] : Decrease " << GaugeAmountOfChange << cpg::linefeed;
+				ss << "[2] : Increase " << GaugeAmountOfChange << cpg::linefeed;
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -173,12 +174,12 @@ namespace ui_research
 				return;
 
 			case EventKeyboard::KeyCode::KEY_1:
-				mGaugeCurrent = std::max( mGaugeMin, mGaugeCurrent - 10 );
+				mGaugeCurrent = std::max( mGaugeMin, mGaugeCurrent - GaugeAmountOfChange );
 				updateGaugeView();
 				updateGaugeStatisticsView();
 				return;
 			case EventKeyboard::KeyCode::KEY_2:
-				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + 10 );
+				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + GaugeAmountOfChange );
 				updateGaugeView();
 				updateGaugeStatisticsView();
 				return;
