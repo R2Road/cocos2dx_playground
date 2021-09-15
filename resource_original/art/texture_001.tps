@@ -585,6 +585,25 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">ui/slice9/s9_normal_0.png</key>
+            <key type="filename">ui/slice9/s9_normal_1.png</key>
+            <key type="filename">ui/slice9/s9_normal_2.png</key>
+            <key type="filename">ui/slice9/s9_normal_3.png</key>
+            <key type="filename">ui/slice9/s9_normal_4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,3,6,6</rect>
+                <key>scale9Paddings</key>
+                <rect>3,3,6,6</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">ui/toggle_button/toggle_button_01_0.png</key>
             <key type="filename">ui/toggle_button/toggle_button_01_1.png</key>
             <struct type="IndividualSpriteSettings">
@@ -840,6 +859,11 @@
             <filename>etc/dummy_actor_001/dummy_actor_001_idl_1_2.png</filename>
             <filename>etc/dummy_actor_001/dummy_actor_001_idl_1_3.png</filename>
             <filename>etc/dummy_actor_001/dummy_actor_001_idl_1_4.png</filename>
+            <filename>ui/slice9/s9_normal_0.png</filename>
+            <filename>ui/slice9/s9_normal_1.png</filename>
+            <filename>ui/slice9/s9_normal_2.png</filename>
+            <filename>ui/slice9/s9_normal_3.png</filename>
+            <filename>ui/slice9/s9_normal_4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
