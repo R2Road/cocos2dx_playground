@@ -23,7 +23,7 @@ namespace
 
 	const Size GaugeSize1( 100.f, 20.f );
 
-	const int GaugeAmountOfChange = 10;
+	const int GaugeAmountOfChange = 20;
 }
 
 namespace ui_research
