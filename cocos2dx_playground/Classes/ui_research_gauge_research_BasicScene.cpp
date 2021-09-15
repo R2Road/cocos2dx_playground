@@ -19,7 +19,7 @@ USING_NS_CC;
 namespace
 {
 	const Color4F GaugeColor1( Color4F::GREEN );
-	const Size GaugeSize1( 100.f, 20.f );
+	const Size GaugeSize( 100.f, 20.f );
 }
 
 namespace ui_research
@@ -100,7 +100,7 @@ namespace ui_research
 				mGaugeViewNode = DrawNode::create();
 				mGaugeViewNode->setPosition(
 					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
-					- Vec2( GaugeSize1.width * 0.5f, GaugeSize1.height * 0.5f )
+					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeViewNode );
 			}
@@ -159,7 +159,7 @@ namespace ui_research
 			mGaugeViewNode->clear();
 			mGaugeViewNode->drawSolidRect(
 				Vec2::ZERO
-				, Vec2( GaugeSize1.width * gauge_rate, GaugeSize1.height )
+				, Vec2( GaugeSize.width * gauge_rate, GaugeSize.height )
 				, GaugeColor1
 			);
 		}
