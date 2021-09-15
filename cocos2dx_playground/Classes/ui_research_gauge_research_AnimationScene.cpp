@@ -40,6 +40,7 @@ namespace ui_research
 			, mGaugeAnimationViewNode( nullptr )
 
 			, mGaugeStatisticsViewNode( nullptr )
+			, mGaugeAnimationStatisticsViewNode( nullptr )
 		{}
 
 		Scene* AnimationScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -121,10 +122,18 @@ namespace ui_research
 			//
 			{
 				mGaugeStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+				mGaugeStatisticsViewNode->setColor( Color3B( GaugeColor1 ) );
 				mGaugeStatisticsViewNode->setPosition(
 					Vec2( visibleCenter.x, visibleSize.height * 0.6f )
 				);
 				addChild( mGaugeStatisticsViewNode );
+
+				mGaugeAnimationStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+				mGaugeAnimationStatisticsViewNode->setColor( Color3B( GaugeColor2 ) );
+				mGaugeAnimationStatisticsViewNode->setPosition(
+					Vec2( visibleCenter.x, visibleSize.height * 0.63f )
+				);
+				addChild( mGaugeAnimationStatisticsViewNode );
 			}
 
 			//
@@ -158,6 +167,12 @@ namespace ui_research
 		void AnimationScene::updateGaugeStatisticsView()
 		{
 			mGaugeStatisticsViewNode->setString( StringUtils::format(
+				"%d / %d"
+				, mGaugeCurrent
+				, mGaugeMax
+			) );
+
+			mGaugeAnimationStatisticsViewNode->setString( StringUtils::format(
 				"%d / %d"
 				, mGaugeCurrent
 				, mGaugeMax

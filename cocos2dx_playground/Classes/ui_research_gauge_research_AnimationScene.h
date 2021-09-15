@@ -46,6 +46,7 @@ namespace ui_research
 			cocos2d::DrawNode* mGaugeAnimationViewNode;
 
 			cocos2d::Label* mGaugeStatisticsViewNode;
+			cocos2d::Label* mGaugeAnimationStatisticsViewNode;
 		};
 	}
 }
