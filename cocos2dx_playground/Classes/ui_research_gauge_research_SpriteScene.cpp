@@ -33,7 +33,7 @@ namespace ui_research
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 
-			, mGaugeViewNode( nullptr )
+			, mGaugeViewNode1( nullptr )
 			, mGaugeMax( GaugeAmountOfTotal )
 			, mGaugeMin( 0 )
 			, mGaugeCurrent( GaugeAmountOfTotal )
@@ -97,14 +97,14 @@ namespace ui_research
 			// Test Gauge
 			//
 			{
-				mGaugeViewNode = Sprite::createWithSpriteFrameName( "s9_normal_3.png" );
-				mGaugeViewNode->setAnchorPoint( Vec2::ZERO );
-				mGaugeViewNode->setContentSize( GaugeSize );
-				mGaugeViewNode->setPosition(
+				mGaugeViewNode1 = Sprite::createWithSpriteFrameName( "s9_normal_3.png" );
+				mGaugeViewNode1->setAnchorPoint( Vec2::ZERO );
+				mGaugeViewNode1->setContentSize( GaugeSize );
+				mGaugeViewNode1->setPosition(
 					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
 					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
-				addChild( mGaugeViewNode );
+				addChild( mGaugeViewNode1 );
 			}
 
 			//
@@ -158,7 +158,7 @@ namespace ui_research
 		{
 			const float gauge_rate = static_cast<float>( mGaugeCurrent ) / static_cast<float>( mGaugeMax );
 
-			mGaugeViewNode->setContentSize( Size( GaugeSize.width * gauge_rate, GaugeSize.height ) );
+			mGaugeViewNode1->setContentSize( Size( GaugeSize.width * gauge_rate, GaugeSize.height ) );
 		}
 
 

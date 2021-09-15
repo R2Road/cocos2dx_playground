@@ -37,7 +37,7 @@ namespace ui_research
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			cocos2d::Node* mGaugeViewNode;
+			cocos2d::Node* mGaugeViewNode1;
 			const int mGaugeMax;
 			const int mGaugeMin;
 			int mGaugeCurrent;
