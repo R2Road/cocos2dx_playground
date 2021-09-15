@@ -10,6 +10,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/ccUTF8.h"
+#include "ui/UIScale9Sprite.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -34,6 +35,8 @@ namespace ui_research
 			, mKeyboardListener( nullptr )
 
 			, mGaugeViewNode1( nullptr )
+			, mGaugeViewNode2( nullptr )
+
 			, mGaugeMax( GaugeAmountOfTotal )
 			, mGaugeMin( 0 )
 			, mGaugeCurrent( GaugeAmountOfTotal )
@@ -101,10 +104,40 @@ namespace ui_research
 				mGaugeViewNode1->setAnchorPoint( Vec2::ZERO );
 				mGaugeViewNode1->setContentSize( GaugeSize );
 				mGaugeViewNode1->setPosition(
-					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
+					Vec2( visibleCenter.x, visibleSize.height * 0.5f )
 					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
 				);
 				addChild( mGaugeViewNode1 );
+				{
+					auto label = Label::createWithTTF( "Sprite ===>>>", cpg::StringTable::GetFontPath(), 10 );
+					label->setColor( Color3B::GREEN );
+					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+					label->setPosition(
+						mGaugeViewNode1->getPosition()
+						+ Vec2( -4.f, mGaugeViewNode1->getContentSize().height * 0.5f )
+					);
+					addChild( label );
+				}
+
+
+				mGaugeViewNode2 = ui::Scale9Sprite::createWithSpriteFrameName( "s9_guide_01_0.png" );
+				mGaugeViewNode2->setAnchorPoint( Vec2::ZERO );
+				mGaugeViewNode2->setContentSize( GaugeSize );
+				mGaugeViewNode2->setPosition(
+					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
+					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
+				);
+				addChild( mGaugeViewNode2 );
+				{
+					auto label = Label::createWithTTF( "UI Scale9Sprite ===>>>", cpg::StringTable::GetFontPath(), 10 );
+					label->setColor( Color3B::GREEN );
+					label->setAnchorPoint( Vec2( 1.f, 0.5f ) );
+					label->setPosition(
+						mGaugeViewNode2->getPosition()
+						+ Vec2( -4.f, mGaugeViewNode2->getContentSize().height * 0.5f )
+					);
+					addChild( label );
+				}
 			}
 
 			//
@@ -159,6 +192,8 @@ namespace ui_research
 			const float gauge_rate = static_cast<float>( mGaugeCurrent ) / static_cast<float>( mGaugeMax );
 
 			mGaugeViewNode1->setContentSize( Size( GaugeSize.width * gauge_rate, GaugeSize.height ) );
+
+			mGaugeViewNode2->setContentSize( Size( GaugeSize.width * gauge_rate, GaugeSize.height ) );
 		}
 
 
