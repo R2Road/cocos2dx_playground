@@ -12,6 +12,7 @@
 #include "cpg_StringTable.h"
 
 #include "ui_research_RootScene.h"
+#include "ui_research_gauge_research_AnimationScene.h"
 #include "ui_research_gauge_research_BasicScene.h"
 
 USING_NS_CC;
@@ -66,6 +67,8 @@ namespace ui_research
 				ss << cpg::linefeed;
 				ss << "[1] : " << ui_research::gauge_research::BasicScene::getTitle();
 				ss << cpg::linefeed;
+				ss << "[2] : " << ui_research::gauge_research::AnimationScene::getTitle();
+				ss << cpg::linefeed;
 				ss << cpg::linefeed;
 				ss << "=============================";
 				ss << cpg::linefeed;
@@ -108,6 +111,9 @@ namespace ui_research
 
 			case EventKeyboard::KeyCode::KEY_1:
 				_director->replaceScene( ui_research::gauge_research::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
+				return;
+			case EventKeyboard::KeyCode::KEY_2:
+				_director->replaceScene( ui_research::gauge_research::AnimationScene::create( helper::CreateSceneMover<RootScene>() ) );
 				return;
 			}
 		}
