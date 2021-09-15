@@ -20,6 +20,8 @@ namespace
 {
 	const Color4F GaugeColor( Color4F::GREEN );
 	const Size GaugeSize( 100.f, 20.f );
+
+	const int GaugeAmountOfTotal = 85;
 }
 
 namespace ui_research
@@ -31,9 +33,9 @@ namespace ui_research
 			, mKeyboardListener( nullptr )
 
 			, mGaugeViewNode( nullptr )
-			, mGaugeMax( 85 )
+			, mGaugeMax( GaugeAmountOfTotal )
 			, mGaugeMin( 0 )
-			, mGaugeCurrent( 85 )
+			, mGaugeCurrent( GaugeAmountOfTotal )
 
 			, mGaugeStatisticsViewNode( nullptr )
 		{}
