@@ -30,8 +30,11 @@ namespace ui_research
 			void onExit() override;
 
 		private:
-			void updateGaugeStatisticsView();
 			void updateGaugeView();
+			void updateGaugeAnimationView();
+
+			void requestUpdateGaugeAnimation();
+			void update4GaugeAnimation( float delta_time );
 
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* key_event );
 
@@ -42,6 +45,7 @@ namespace ui_research
 			int mGaugeMax;
 			int mGaugeMin;
 			int mGaugeCurrent;
+			int mGaugeAnimationCurrent;
 
 			cocos2d::DrawNode* mGaugeAnimationViewNode;
 

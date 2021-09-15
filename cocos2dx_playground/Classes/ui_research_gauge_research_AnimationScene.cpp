@@ -36,6 +36,7 @@ namespace ui_research
 			, mGaugeMax( 85 )
 			, mGaugeMin( 0 )
 			, mGaugeCurrent( 85 )
+			, mGaugeAnimationCurrent( 85 )
 
 			, mGaugeAnimationViewNode( nullptr )
 
@@ -137,7 +138,7 @@ namespace ui_research
 			//
 			//
 			updateGaugeView();
-			updateGaugeStatisticsView();
+			updateGaugeAnimationView();
 
 			return true;
 		}
@@ -161,20 +162,6 @@ namespace ui_research
 		}
 
 
-		void AnimationScene::updateGaugeStatisticsView()
-		{
-			mGaugeStatisticsViewNode->setString( StringUtils::format(
-				"%d / %d"
-				, mGaugeCurrent
-				, mGaugeMax
-			) );
-
-			mGaugeAnimationStatisticsViewNode->setString( StringUtils::format(
-				"%d / %d"
-				, mGaugeCurrent
-				, mGaugeMax
-			) );
-		}
 		void AnimationScene::updateGaugeView()
 		{
 			const float gauge_rate = static_cast<float>( mGaugeCurrent ) / static_cast<float>( mGaugeMax );
@@ -186,12 +173,56 @@ namespace ui_research
 				, GaugeColor1
 			);
 
+			mGaugeStatisticsViewNode->setString( StringUtils::format(
+				"%d / %d"
+				, mGaugeCurrent
+				, mGaugeMax
+			) );
+		}
+		void AnimationScene::updateGaugeAnimationView()
+		{
+			const float gauge_rate = static_cast<float>( mGaugeAnimationCurrent ) / static_cast<float>( mGaugeMax );
+
 			mGaugeAnimationViewNode->clear();
 			mGaugeAnimationViewNode->drawSolidRect(
 				Vec2::ZERO
 				, Vec2( GaugeSize1.width * gauge_rate, GaugeSize1.height )
 				, GaugeColor2
 			);
+
+			mGaugeAnimationStatisticsViewNode->setString( StringUtils::format(
+				"%d / %d"
+				, mGaugeAnimationCurrent
+				, mGaugeMax
+			) );
+		}
+
+
+		void AnimationScene::requestUpdateGaugeAnimation()
+		{
+			if( !isScheduled( schedule_selector( AnimationScene::update4GaugeAnimation ) ) )
+			{
+				schedule( schedule_selector( AnimationScene::update4GaugeAnimation ) );
+			}
+		}
+		void AnimationScene::update4GaugeAnimation( float delta_time )
+		{
+			if( mGaugeCurrent == mGaugeAnimationCurrent )
+			{
+				unschedule( schedule_selector( AnimationScene::update4GaugeAnimation ) );
+				return;
+			}
+
+			if( mGaugeCurrent > mGaugeAnimationCurrent )
+			{
+				mGaugeAnimationCurrent = std::min( mGaugeCurrent, mGaugeAnimationCurrent + 1 );
+			}
+			else //if( mGaugeCurrent < mGaugeAnimationCurrent )
+			{
+				mGaugeAnimationCurrent = std::max( mGaugeCurrent, mGaugeAnimationCurrent - 1 );
+			}
+
+			updateGaugeAnimationView();
 		}
 
 
@@ -206,12 +237,12 @@ namespace ui_research
 			case EventKeyboard::KeyCode::KEY_1:
 				mGaugeCurrent = std::max( mGaugeMin, mGaugeCurrent - 10 );
 				updateGaugeView();
-				updateGaugeStatisticsView();
+				requestUpdateGaugeAnimation();
 				return;
 			case EventKeyboard::KeyCode::KEY_2:
 				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + 10 );
 				updateGaugeView();
-				updateGaugeStatisticsView();
+				requestUpdateGaugeAnimation();
 				return;
 			}
 		}
