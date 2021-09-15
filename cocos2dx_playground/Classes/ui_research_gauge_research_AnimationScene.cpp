@@ -208,7 +208,7 @@ namespace ui_research
 				schedule( schedule_selector( AnimationScene::update4GaugeAnimation ) );
 			}
 		}
-		void AnimationScene::update4GaugeAnimation( float delta_time )
+		void AnimationScene::update4GaugeAnimation( float /*delta_time*/ )
 		{
 			if( mGaugeCurrent == mGaugeAnimationCurrent )
 			{
