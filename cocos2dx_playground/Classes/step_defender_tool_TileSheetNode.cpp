@@ -99,7 +99,7 @@ namespace step_defender
 			// Indicator
 			//
 			{
-				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "scale9_guide_01_0.png" );
+				auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "s9_guide_01_0.png" );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale9Enabled( true );
 				sprite->setContentSize( CC_SIZE_PIXELS_TO_POINTS( Size( mConfig.GetBlockWidth(), mConfig.GetBlockHeight() ) ) );

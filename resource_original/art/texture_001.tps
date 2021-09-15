@@ -507,7 +507,7 @@
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_5.png</key>
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_6.png</key>
             <key type="filename">step_rain_of_chaos/step_rain_of_chaos_actor_01_idle_7.png</key>
-            <key type="filename">ui/scale9_guide/scale9_guide_01_0.png</key>
+            <key type="filename">ui/slice9/s9_guide_01_0.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -834,7 +834,6 @@
             <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_5.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_6.png</filename>
             <filename>step_rain_of_chaos/step_rain_of_chaos_enemy_01_idle_7.png</filename>
-            <filename>ui/scale9_guide/scale9_guide_01_0.png</filename>
             <filename>step_defender/step_defender_tool_icon_01_0.png</filename>
             <filename>step_defender/step_defender_tool_icon_01_1.png</filename>
             <filename>step_flipflip/step_flipflip_card_front_3.png</filename>
@@ -864,6 +863,7 @@
             <filename>ui/slice9/s9_normal_2.png</filename>
             <filename>ui/slice9/s9_normal_3.png</filename>
             <filename>ui/slice9/s9_normal_4.png</filename>
+            <filename>ui/slice9/s9_guide_01_0.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
