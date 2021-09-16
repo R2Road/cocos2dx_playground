@@ -21,7 +21,7 @@ namespace cpg_ui
 		bool init();
 
 	public:
-		void UpdateGauge( const int change_amount );
+		void UpdateCurrent( const int new_current );
 
 	private:
 		void updateGaugeView();

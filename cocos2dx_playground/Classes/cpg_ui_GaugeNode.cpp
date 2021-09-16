@@ -103,9 +103,9 @@ namespace cpg_ui
 	}
 
 
-	void GaugeNode::UpdateGauge( const int change_amount )
+	void GaugeNode::UpdateCurrent( const int new_current )
 	{
-		mGaugeCurrent = std::min( mGaugeMax, std::max( 0, mGaugeCurrent + change_amount ) );
+		mGaugeCurrent = std::min( mGaugeMax, std::max( 0, new_current ) );
 
 		updateGaugeView();
 		requestUpdateGaugeAnimation();

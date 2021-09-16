@@ -40,6 +40,9 @@ namespace ui_research
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
+			int mGaugeMax;
+			int mGaugeCurrent;
+
 			cpg_ui::GaugeNode* mGaugeNode;
 		};
 	}

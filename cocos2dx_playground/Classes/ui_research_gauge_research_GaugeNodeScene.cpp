@@ -34,6 +34,9 @@ namespace ui_research
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 
+			, mGaugeMax( 85 )
+			, mGaugeCurrent( 85 )
+
 			, mGaugeNode( nullptr )
 		{}
 
@@ -131,10 +134,12 @@ namespace ui_research
 				return;
 
 			case EventKeyboard::KeyCode::KEY_1:
-				mGaugeNode->UpdateGauge( -GaugeAmountOfChange );
+				mGaugeCurrent = std::max( 0, mGaugeCurrent - GaugeAmountOfChange );
+				mGaugeNode->UpdateCurrent( mGaugeCurrent );
 				return;
 			case EventKeyboard::KeyCode::KEY_2:
-				mGaugeNode->UpdateGauge( GaugeAmountOfChange );
+				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + GaugeAmountOfChange );
+				mGaugeNode->UpdateCurrent( mGaugeCurrent );
 				return;
 			}
 		}
