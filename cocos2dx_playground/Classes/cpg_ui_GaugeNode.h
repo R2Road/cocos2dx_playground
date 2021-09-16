@@ -1,0 +1,47 @@
+#pragma once
+
+#include "2d/CCNode.h"
+
+NS_CC_BEGIN
+	class DrawNode;
+	class Label;
+NS_CC_END
+
+namespace cpg_ui
+{
+	class GaugeNode : public cocos2d::Node
+	{
+	private:
+		GaugeNode( const cocos2d::Size max_size, const int max_amount );
+
+	public:
+		static GaugeNode* create( const cocos2d::Size max_size, const int max_amount );
+
+	private:
+		bool init();
+
+	public:
+		void UpdateGauge( const int change_amount );
+
+	private:
+		void updateGaugeView();
+		void updateGaugeAnimationView();
+
+		void requestUpdateGaugeAnimation();
+		void update4GaugeAnimation( float delta_time );
+
+	private:
+		const cocos2d::Size mMaxSize;
+
+		int mGaugeMax;
+		int mGaugeMin;
+		int mGaugeCurrent;
+		int mGaugeAnimationCurrent;
+
+		cocos2d::DrawNode* mGaugeViewNode;
+		cocos2d::DrawNode* mGaugeAnimationViewNode;
+
+		cocos2d::Label* mGaugeStatisticsViewNode;
+		cocos2d::Label* mGaugeAnimationStatisticsViewNode;
+	};
+}

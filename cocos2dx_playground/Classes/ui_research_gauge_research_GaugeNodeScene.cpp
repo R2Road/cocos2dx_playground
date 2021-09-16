@@ -5,12 +5,12 @@
 #include <numeric>
 
 #include "2d/CCLabel.h"
-#include "2d/CCDrawNode.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/ccUTF8.h"
 
+#include "cpg_ui_GaugeNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
@@ -23,7 +23,6 @@ namespace
 
 	const Size GaugeSize( 100.f, 20.f );
 
-	const int GaugeAmountOfTotal = 85;
 	const int GaugeAmountOfChange = 20;
 }
 
@@ -35,16 +34,7 @@ namespace ui_research
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 
-			, mGaugeViewNode( nullptr )
-			, mGaugeMax( GaugeAmountOfTotal )
-			, mGaugeMin( 0 )
-			, mGaugeCurrent( GaugeAmountOfTotal )
-			, mGaugeAnimationCurrent( GaugeAmountOfTotal )
-
-			, mGaugeAnimationViewNode( nullptr )
-
-			, mGaugeStatisticsViewNode( nullptr )
-			, mGaugeAnimationStatisticsViewNode( nullptr )
+			, mGaugeNode( nullptr )
 		{}
 
 		Scene* GaugeNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -103,45 +93,12 @@ namespace ui_research
 			// Test Gauge
 			//
 			{
-				mGaugeViewNode = DrawNode::create();
-				mGaugeViewNode->setPosition(
-					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
-					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
-				);
-				addChild( mGaugeViewNode, 1 );
-
-				mGaugeAnimationViewNode = DrawNode::create();
-				mGaugeAnimationViewNode->setPosition(
-					Vec2( visibleCenter.x, visibleSize.height * 0.43f )
-					- Vec2( GaugeSize.width * 0.5f, GaugeSize.height * 0.5f )
-				);
-				addChild( mGaugeAnimationViewNode, 0 );
-			}
-
-			//
-			// Test Gauge Stat View
-			//
-			{
-				mGaugeStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
-				mGaugeStatisticsViewNode->setColor( Color3B( GaugeColor1 ) );
-				mGaugeStatisticsViewNode->setPosition(
+				mGaugeNode = cpg_ui::GaugeNode::create( GaugeSize, 85 );
+				mGaugeNode->setPosition(
 					Vec2( visibleCenter.x, visibleSize.height * 0.6f )
 				);
-				addChild( mGaugeStatisticsViewNode );
-
-				mGaugeAnimationStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
-				mGaugeAnimationStatisticsViewNode->setColor( Color3B( GaugeColor2 ) );
-				mGaugeAnimationStatisticsViewNode->setPosition(
-					Vec2( visibleCenter.x, visibleSize.height * 0.63f )
-				);
-				addChild( mGaugeAnimationStatisticsViewNode );
+				addChild( mGaugeNode );
 			}
-
-			//
-			//
-			//
-			updateGaugeView();
-			updateGaugeAnimationView();
 
 			return true;
 		}
@@ -165,70 +122,6 @@ namespace ui_research
 		}
 
 
-		void GaugeNodeScene::updateGaugeView()
-		{
-			const float gauge_rate = static_cast<float>( mGaugeCurrent ) / static_cast<float>( mGaugeMax );
-
-			mGaugeViewNode->clear();
-			mGaugeViewNode->drawSolidRect(
-				Vec2::ZERO
-				, Vec2( GaugeSize.width * gauge_rate, GaugeSize.height )
-				, GaugeColor1
-			);
-
-			mGaugeStatisticsViewNode->setString( StringUtils::format(
-				"%d / %d"
-				, mGaugeCurrent
-				, mGaugeMax
-			) );
-		}
-		void GaugeNodeScene::updateGaugeAnimationView()
-		{
-			const float gauge_rate = static_cast<float>( mGaugeAnimationCurrent ) / static_cast<float>( mGaugeMax );
-
-			mGaugeAnimationViewNode->clear();
-			mGaugeAnimationViewNode->drawSolidRect(
-				Vec2::ZERO
-				, Vec2( GaugeSize.width * gauge_rate, GaugeSize.height )
-				, GaugeColor2
-			);
-
-			mGaugeAnimationStatisticsViewNode->setString( StringUtils::format(
-				"%d / %d"
-				, mGaugeAnimationCurrent
-				, mGaugeMax
-			) );
-		}
-
-
-		void GaugeNodeScene::requestUpdateGaugeAnimation()
-		{
-			if( !isScheduled( schedule_selector( GaugeNodeScene::update4GaugeAnimation ) ) )
-			{
-				schedule( schedule_selector( GaugeNodeScene::update4GaugeAnimation ) );
-			}
-		}
-		void GaugeNodeScene::update4GaugeAnimation( float /*delta_time*/ )
-		{
-			if( mGaugeCurrent == mGaugeAnimationCurrent )
-			{
-				unschedule( schedule_selector( GaugeNodeScene::update4GaugeAnimation ) );
-				return;
-			}
-
-			if( mGaugeCurrent > mGaugeAnimationCurrent )
-			{
-				mGaugeAnimationCurrent = mGaugeCurrent;
-			}
-			else //if( mGaugeCurrent < mGaugeAnimationCurrent )
-			{
-				mGaugeAnimationCurrent = std::max( mGaugeCurrent, mGaugeAnimationCurrent - 1 );
-			}
-
-			updateGaugeAnimationView();
-		}
-
-
 		void GaugeNodeScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*key_event*/ )
 		{
 			switch( key_code )
@@ -238,14 +131,10 @@ namespace ui_research
 				return;
 
 			case EventKeyboard::KeyCode::KEY_1:
-				mGaugeCurrent = std::max( mGaugeMin, mGaugeCurrent - GaugeAmountOfChange );
-				updateGaugeView();
-				requestUpdateGaugeAnimation();
+				mGaugeNode->UpdateGauge( -GaugeAmountOfChange );
 				return;
 			case EventKeyboard::KeyCode::KEY_2:
-				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + GaugeAmountOfChange );
-				updateGaugeView();
-				requestUpdateGaugeAnimation();
+				mGaugeNode->UpdateGauge( GaugeAmountOfChange );
 				return;
 			}
 		}

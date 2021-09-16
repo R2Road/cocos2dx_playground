@@ -9,6 +9,11 @@ NS_CC_BEGIN
 	class Label;
 NS_CC_END
 
+namespace cpg_ui
+{
+	class GaugeNode;
+}
+
 namespace ui_research
 {
 	namespace gauge_research
@@ -30,27 +35,12 @@ namespace ui_research
 			void onExit() override;
 
 		private:
-			void updateGaugeView();
-			void updateGaugeAnimationView();
-
-			void requestUpdateGaugeAnimation();
-			void update4GaugeAnimation( float delta_time );
-
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* key_event );
 
 		private:
 			cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-			cocos2d::DrawNode* mGaugeViewNode;
-			int mGaugeMax;
-			int mGaugeMin;
-			int mGaugeCurrent;
-			int mGaugeAnimationCurrent;
-
-			cocos2d::DrawNode* mGaugeAnimationViewNode;
-
-			cocos2d::Label* mGaugeStatisticsViewNode;
-			cocos2d::Label* mGaugeAnimationStatisticsViewNode;
+			cpg_ui::GaugeNode* mGaugeNode;
 		};
 	}
 }

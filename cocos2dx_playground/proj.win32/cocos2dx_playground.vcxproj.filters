@@ -1062,6 +1062,9 @@
     <ClCompile Include="..\Classes\ui_research_gauge_research_GaugeNodeScene.cpp">
       <Filter>src\scene\ui_research\gauge</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_ui_GaugeNode.cpp">
+      <Filter>src\cpg_ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1930,6 +1933,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_gauge_research_GaugeNodeScene.h">
       <Filter>src\scene\ui_research\gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_ui_GaugeNode.h">
+      <Filter>src\cpg_ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
