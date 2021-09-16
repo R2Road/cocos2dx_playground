@@ -84,12 +84,12 @@ namespace cpg_ui
 		{
 			mGaugeStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			mGaugeStatisticsViewNode->setColor( Color3B( GaugeColor1 ) );
-			mGaugeStatisticsViewNode->setPositionY( 10.f );
+			mGaugeStatisticsViewNode->setPositionY( 40.f );
 			addChild( mGaugeStatisticsViewNode );
 
 			mGaugeAnimationStatisticsViewNode = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			mGaugeAnimationStatisticsViewNode->setColor( Color3B( GaugeColor2 ) );
-			mGaugeAnimationStatisticsViewNode->setPositionY( 20.f );
+			mGaugeAnimationStatisticsViewNode->setPositionY( 50.f );
 			addChild( mGaugeAnimationStatisticsViewNode );
 		}
 
@@ -103,6 +103,13 @@ namespace cpg_ui
 	}
 
 
+	void GaugeNode::UpdateMax( const int new_max )
+	{
+		mGaugeMax = new_max;
+		mGaugeAnimationCurrent = std::min( mGaugeMax, mGaugeAnimationCurrent );
+
+		UpdateCurrent( mGaugeCurrent );
+	}
 	void GaugeNode::UpdateCurrent( const int new_current )
 	{
 		mGaugeCurrent = std::min( mGaugeMax, std::max( 0, new_current ) );
@@ -160,16 +167,17 @@ namespace cpg_ui
 		if( mGaugeCurrent == mGaugeAnimationCurrent )
 		{
 			unschedule( schedule_selector( GaugeNode::update4GaugeAnimation ) );
-			return;
 		}
-
-		if( mGaugeCurrent > mGaugeAnimationCurrent )
+		else
 		{
-			mGaugeAnimationCurrent = mGaugeCurrent;
-		}
-		else //if( mGaugeCurrent < mGaugeAnimationCurrent )
-		{
-			mGaugeAnimationCurrent = std::max( mGaugeCurrent, mGaugeAnimationCurrent - 1 );
+			if( mGaugeCurrent > mGaugeAnimationCurrent )
+			{
+				mGaugeAnimationCurrent = mGaugeCurrent;
+			}
+			else //if( mGaugeCurrent < mGaugeAnimationCurrent )
+			{
+				mGaugeAnimationCurrent = std::max( mGaugeCurrent, mGaugeAnimationCurrent - 1 );
+			}
 		}
 
 		updateGaugeAnimationView();

@@ -21,6 +21,7 @@ namespace cpg_ui
 		bool init();
 
 	public:
+		void UpdateMax( const int new_max );
 		void UpdateCurrent( const int new_current );
 
 	private:

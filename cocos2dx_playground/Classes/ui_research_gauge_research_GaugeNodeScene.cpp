@@ -24,6 +24,7 @@ namespace
 	const Size GaugeSize( 100.f, 20.f );
 
 	const int GaugeAmountOfChange = 20;
+	const int GaugeMaxAmountOfChange = 10;
 }
 
 namespace ui_research
@@ -77,11 +78,10 @@ namespace ui_research
 				std::stringstream ss;
 				ss << "+ " << getTitle();
 				ss << cpg::linefeed;
-				ss << cpg::linefeed;
 				ss << "[ESC] : Return to Root";
-				ss << cpg::linefeed;
-				ss << "[1] : Decrease " << GaugeAmountOfChange << cpg::linefeed;
-				ss << "[2] : Increase " << GaugeAmountOfChange << cpg::linefeed;
+				ss << cpg::linefeed << cpg::linefeed;
+				ss << "[1/2] : Decrease/Increase Current " << GaugeAmountOfChange << cpg::linefeed;
+				ss << "[Q/W] : Decrease/Increase Max " << GaugeAmountOfChange << cpg::linefeed;
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 				label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -140,6 +140,15 @@ namespace ui_research
 			case EventKeyboard::KeyCode::KEY_2:
 				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + GaugeAmountOfChange );
 				mGaugeNode->UpdateCurrent( mGaugeCurrent );
+				return;
+
+			case EventKeyboard::KeyCode::KEY_Q:
+				mGaugeMax = std::max( 0, mGaugeMax - GaugeMaxAmountOfChange );
+				mGaugeNode->UpdateMax( mGaugeMax );
+				return;
+			case EventKeyboard::KeyCode::KEY_W:
+				mGaugeMax = mGaugeMax + GaugeMaxAmountOfChange;
+				mGaugeNode->UpdateMax( mGaugeMax );
 				return;
 			}
 		}
