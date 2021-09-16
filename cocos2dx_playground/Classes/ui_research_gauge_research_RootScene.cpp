@@ -16,6 +16,8 @@
 #include "ui_research_gauge_research_BasicScene.h"
 #include "ui_research_gauge_research_SpriteScene.h"
 
+#include "ui_research_gauge_research_GaugeNodeScene.h"
+
 USING_NS_CC;
 
 namespace ui_research
@@ -76,6 +78,9 @@ namespace ui_research
 				ss << "=============================";
 				ss << cpg::linefeed;
 				ss << cpg::linefeed;
+				ss << "[Q] : " << ui_research::gauge_research::GaugeNodeScene::getTitle();
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 
 				auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
 				label->setPosition( visibleCenter );
@@ -120,6 +125,10 @@ namespace ui_research
 				return;
 			case EventKeyboard::KeyCode::KEY_3:
 				_director->replaceScene( ui_research::gauge_research::SpriteScene::create( helper::CreateSceneMover<RootScene>() ) );
+				return;
+
+			case EventKeyboard::KeyCode::KEY_Q:
+				_director->replaceScene( ui_research::gauge_research::GaugeNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 				return;
 			}
 		}
