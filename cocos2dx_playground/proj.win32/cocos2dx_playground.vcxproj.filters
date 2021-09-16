@@ -1059,6 +1059,9 @@
     <ClCompile Include="..\Classes\ui_research_gauge_research_SpriteScene.cpp">
       <Filter>src\scene\ui_research\gauge</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_gauge_research_GaugeNodeScene.cpp">
+      <Filter>src\scene\ui_research\gauge</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1923,6 +1926,9 @@
       <Filter>src\scene\ui_research\gauge</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_gauge_research_SpriteScene.h">
+      <Filter>src\scene\ui_research\gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_gauge_research_GaugeNodeScene.h">
       <Filter>src\scene\ui_research\gauge</Filter>
     </ClInclude>
   </ItemGroup>
