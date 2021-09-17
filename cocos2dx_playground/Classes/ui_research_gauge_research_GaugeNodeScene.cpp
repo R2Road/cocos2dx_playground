@@ -94,7 +94,7 @@ namespace ui_research
 			// Test Gauge
 			//
 			{
-				mGaugeNode = cpg_ui::GaugeNode::create( GaugeSize, 85 );
+				mGaugeNode = cpg_ui::GaugeNode::create( GaugeSize );
 				mGaugeNode->setPosition(
 					Vec2( visibleCenter.x, visibleSize.height * 0.4f )
 				);

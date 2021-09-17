@@ -22,7 +22,7 @@ namespace
 
 namespace cpg_ui
 {
-	GaugeNode::GaugeNode( const cocos2d::Size max_size, const int max_amount ) :
+	GaugeNode::GaugeNode( const cocos2d::Size max_size ) :
 		mMaxSize( max_size )
 
 		, mCurrentRate( 1.f )
@@ -35,9 +35,9 @@ namespace cpg_ui
 		, mGaugeAnimationStatisticsViewNode( nullptr )
 	{}
 
-	GaugeNode* GaugeNode::create( const cocos2d::Size max_size, const int max_amount )
+	GaugeNode* GaugeNode::create( const cocos2d::Size max_size )
 	{
-		auto ret = new ( std::nothrow ) GaugeNode( max_size, max_amount );
+		auto ret = new ( std::nothrow ) GaugeNode( max_size );
 		if( !ret || !ret->init() )
 		{
 			CC_SAFE_DELETE( ret );
