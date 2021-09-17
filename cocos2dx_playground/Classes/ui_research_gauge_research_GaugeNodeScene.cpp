@@ -18,9 +18,6 @@ USING_NS_CC;
 
 namespace
 {
-	const Color4F GaugeColor1( Color4F::GREEN );
-	const Color4F GaugeColor2( Color4F::ORANGE );
-
 	const Size GaugeSize( 100.f, 20.f );
 
 	const int GaugeAmountOfChange = 20;
