@@ -125,6 +125,11 @@ namespace ui_research
 		}
 
 
+		void GaugeNodeScene::updateGauge()
+		{
+			const float gauge_rate = static_cast<float>( mGaugeCurrent ) / static_cast<float>( mGaugeMax );
+			mGaugeNode->UpdateCurrent( gauge_rate );
+		}
 		void GaugeNodeScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*key_event*/ )
 		{
 			switch( key_code )
@@ -135,20 +140,20 @@ namespace ui_research
 
 			case EventKeyboard::KeyCode::KEY_1:
 				mGaugeCurrent = std::max( 0, mGaugeCurrent - GaugeAmountOfChange );
-				mGaugeNode->UpdateCurrent( mGaugeCurrent );
+				updateGauge();
 				return;
 			case EventKeyboard::KeyCode::KEY_2:
 				mGaugeCurrent = std::min( mGaugeMax, mGaugeCurrent + GaugeAmountOfChange );
-				mGaugeNode->UpdateCurrent( mGaugeCurrent );
+				updateGauge();
 				return;
 
 			case EventKeyboard::KeyCode::KEY_Q:
 				mGaugeMax = std::max( 0, mGaugeMax - GaugeMaxAmountOfChange );
-				mGaugeNode->UpdateMax( mGaugeMax );
+				updateGauge();
 				return;
 			case EventKeyboard::KeyCode::KEY_W:
 				mGaugeMax = mGaugeMax + GaugeMaxAmountOfChange;
-				mGaugeNode->UpdateMax( mGaugeMax );
+				updateGauge();
 				return;
 			}
 		}

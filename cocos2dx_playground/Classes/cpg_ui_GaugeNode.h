@@ -21,8 +21,7 @@ namespace cpg_ui
 		bool init();
 
 	public:
-		void UpdateMax( const int new_max );
-		void UpdateCurrent( const int new_current );
+		void UpdateCurrent( const float new_rate );
 
 	private:
 		void updateGaugeView();
@@ -34,10 +33,8 @@ namespace cpg_ui
 	private:
 		const cocos2d::Size mMaxSize;
 
-		int mGaugeMax;
-		int mGaugeMin;
-		int mGaugeCurrent;
-		int mGaugeAnimationCurrent;
+		float mCurrentRate;
+		float mAnimationRate;
 
 		cocos2d::DrawNode* mGaugeViewNode;
 		cocos2d::DrawNode* mGaugeAnimationViewNode;

@@ -35,6 +35,7 @@ namespace ui_research
 			void onExit() override;
 
 		private:
+			void updateGauge();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* key_event );
 
 		private:
