@@ -12,7 +12,7 @@ namespace cpg_ui
 	class GaugeNode : public cocos2d::Node
 	{
 	private:
-		GaugeNode( const cocos2d::Size max_size, const int max_amount );
+		GaugeNode( const cocos2d::Size max_size );
 
 	public:
 		static GaugeNode* create( const cocos2d::Size max_size );
