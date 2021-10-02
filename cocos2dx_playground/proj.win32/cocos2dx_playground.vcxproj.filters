@@ -1065,6 +1065,9 @@
     <ClCompile Include="..\Classes\cpg_ui_GaugeNode.cpp">
       <Filter>src\cpg_ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_button_research_ChargeButtonScene.cpp">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1936,6 +1939,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_ui_GaugeNode.h">
       <Filter>src\cpg_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_button_research_ChargeButtonScene.h">
+      <Filter>src\scene\ui_research\button</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
