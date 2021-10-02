@@ -11,7 +11,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "cpg_ui_EXButtonNode.h"
+#include "cpg_ui_ChargeButtonNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
@@ -89,7 +89,7 @@ namespace ui_research
 			{
 				const Size button_size( 100.f, 100.f );
 
-				auto ex_button = cpg_ui::EXButtonNode::create( button_size );
+				auto ex_button = cpg_ui::ChargeButtonNode::create( button_size );
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				
@@ -100,7 +100,7 @@ namespace ui_research
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
+					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::Normal, sprite );
 				}
 
 				{
@@ -123,7 +123,7 @@ namespace ui_research
 						sprite->addChild( label );
 					}
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, sprite );
+					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::MouseOver, sprite );
 				}
 
 				{
@@ -132,26 +132,26 @@ namespace ui_research
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
+					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::Push, sprite );
 				}
 
-				ex_button->SetCallback( []( const cpg_ui::EXButtonNode::eButtonEvent button_event )
+				ex_button->SetCallback( []( const cpg_ui::ChargeButtonNode::eButtonEvent button_event )
 				{
 					switch( button_event )
 					{
-					case cpg_ui::EXButtonNode::eButtonEvent::MouseOver:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::MouseOver:
 						CCLOG( "MouseOver" );
 						break;
-					case cpg_ui::EXButtonNode::eButtonEvent::MouseLeave:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::MouseLeave:
 						CCLOG( "MouseLeave" );
 						break;
-					case cpg_ui::EXButtonNode::eButtonEvent::Push:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::Push:
 						CCLOG( "Push" );
 						break;
-					case cpg_ui::EXButtonNode::eButtonEvent::Move:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::Move:
 						CCLOG( "Move" );
 						break;
-					case cpg_ui::EXButtonNode::eButtonEvent::Release:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::Release:
 						CCLOG( "Release" );
 						break;
 					}
