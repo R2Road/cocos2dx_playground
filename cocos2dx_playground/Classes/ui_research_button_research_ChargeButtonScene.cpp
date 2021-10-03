@@ -186,12 +186,12 @@ namespace ui_research
 
 				// Pushed View
 				{
-					auto sprite = PushedViewNode::create( button_size );
-					sprite->setVisible( false );
-					sprite->setAnchorPoint( Vec2::ZERO );
-					sprite->setContentSize( button_size );
+					auto view_node = PushedViewNode::create( button_size );
+					view_node->setVisible( false );
+					view_node->setAnchorPoint( Vec2::ZERO );
+					view_node->setContentSize( button_size );
 
-					ex_button->SetPushedView( sprite );
+					ex_button->SetPushedView( view_node );
 				}
 
 				ex_button->SetCallback( []( const cpg_ui::ChargeButtonNode::eButtonEvent button_event )
