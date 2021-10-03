@@ -213,6 +213,9 @@ namespace ui_research
 					case cpg_ui::ChargeButtonNode::eButtonEvent::Release:
 						CCLOG( "Release" );
 						break;
+					case cpg_ui::ChargeButtonNode::eButtonEvent::Charged:
+						CCLOG( "Charged" );
+						break;
 					}
 				} );
 			}

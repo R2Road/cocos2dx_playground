@@ -28,7 +28,8 @@ namespace cpg_ui
 			MouseLeave,
 			Push,
 			Move,
-			Release
+			Release,
+			Charged,
 		};
 		enum eViewIndex
 		{

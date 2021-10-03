@@ -1,5 +1,6 @@
 #include "cpg_ui_ChargeButtonNode.h"
 
+#include <cstdlib>
 #include <new>
 #include <numeric>
 
@@ -235,6 +236,12 @@ namespace cpg_ui
 	{
 		mCharge = std::min( 1.f, mCharge += dt );
 		updatePushedView( mCharge );
+
+		if( 0.000001 > std::abs( 1.f - mCharge ) )
+		{
+			mOnButtonCallback( eButtonEvent::Charged );
+			unschedule( schedule_selector( ChargeButtonNode::update4Charge ) );
+		}
 	}
 	void ChargeButtonNode::setPushedViewVisible( const bool visible )
 	{
