@@ -141,6 +141,16 @@ namespace ui_research
 			}
 
 			//
+			//
+			//
+			auto button_status_label = Label::createWithTTF( "-", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			button_status_label->setPosition(
+				Vec2( visibleCenter.x, 0.f )
+				+ Vec2( 0.f, visibleSize.height * 0.7f )
+			);
+			addChild( button_status_label, std::numeric_limits<int>::max() );
+
+			//
 			// Research
 			//
 			{
@@ -194,7 +204,7 @@ namespace ui_research
 					ex_button->SetPushedView( view_node );
 				}
 
-				ex_button->SetCallback( []( const cpg_ui::ChargeButtonNode::eButtonEvent button_event )
+				ex_button->SetCallback( [button_status_label]( const cpg_ui::ChargeButtonNode::eButtonEvent button_event )
 				{
 					switch( button_event )
 					{
@@ -206,15 +216,18 @@ namespace ui_research
 						break;
 					case cpg_ui::ChargeButtonNode::eButtonEvent::Push:
 						CCLOG( "Push" );
+						button_status_label->setString( "Charging" );
 						break;
 					case cpg_ui::ChargeButtonNode::eButtonEvent::Move:
 						CCLOG( "Move" );
 						break;
 					case cpg_ui::ChargeButtonNode::eButtonEvent::Release:
 						CCLOG( "Release" );
+						button_status_label->setString( "-" );
 						break;
 					case cpg_ui::ChargeButtonNode::eButtonEvent::Charged:
 						CCLOG( "Charged" );
+						button_status_label->setString( "Charged" );
 						break;
 					}
 				} );
