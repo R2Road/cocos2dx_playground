@@ -93,8 +93,12 @@ namespace ui_research
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				
-				ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
+				// Background
+				{
+					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
+				}
 
+				// Normal View
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_0.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
@@ -103,6 +107,7 @@ namespace ui_research
 					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
 				}
 
+				// Mouse Over View
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_1.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
@@ -126,6 +131,7 @@ namespace ui_research
 					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, sprite );
 				}
 
+				// Push View
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
 					sprite->setVisible( false );
