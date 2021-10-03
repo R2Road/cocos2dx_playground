@@ -138,9 +138,16 @@ namespace cpg_ui
 
 	void ChargeButtonNode::SetPushedView( ChargeButtonPushedNode* pushed_node )
 	{
-		SetView( eViewIndex::Push, pushed_node );
+		if( mPushedNode )
+		{
+			removeChild( mPushedNode );
+		}
 
 		mPushedNode = pushed_node;
+		if( mPushedNode )
+		{
+			addChild( mPushedNode, 10 );
+		}
 	}
 	void ChargeButtonNode::SetView( const eViewIndex view_index, Node* node )
 	{
@@ -181,6 +188,7 @@ namespace cpg_ui
 			break;
 		case eButtonEvent::Push:
 			showView( eViewIndex::Push );
+			setPushedViewVisible( true );
 			mCharge = 0.f;
 			updatePushedView( mCharge );
 			schedule( schedule_selector( ChargeButtonNode::update4Charge ) );
@@ -188,6 +196,7 @@ namespace cpg_ui
 		case eButtonEvent::Move:
 			break;
 		case eButtonEvent::Release:
+			setPushedViewVisible( false );
 			unschedule( schedule_selector( ChargeButtonNode::update4Charge ) );
 			if( mbOnMouseOver )
 			{
@@ -226,6 +235,13 @@ namespace cpg_ui
 	{
 		mCharge = std::min( 1.f, mCharge += dt );
 		updatePushedView( mCharge );
+	}
+	void ChargeButtonNode::setPushedViewVisible( const bool visible )
+	{
+		if( mPushedNode )
+		{
+			mPushedNode->setVisible( visible );
+		}
 	}
 	void ChargeButtonNode::updatePushedView( const float charge_rate )
 	{

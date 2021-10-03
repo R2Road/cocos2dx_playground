@@ -65,6 +65,7 @@ namespace cpg_ui
 		void showView( const eViewIndex view_index );
 		
 		void update4Charge( const float dt );
+		void setPushedViewVisible( const bool visible );
 		void updatePushedView( const float charge_rate );
 
 	private:

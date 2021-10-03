@@ -170,25 +170,21 @@ namespace ui_research
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
 					sprite->setVisible( false );
-					{
-						auto label = Label::createWithTTF( "EX Button", cpg::StringTable::GetFontPath(), 10 );
-						label->setPosition( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f );
-						{
-							auto fadeOutAction = FadeOut::create( 0.8f );
-							auto fadeOutkDelay = DelayTime::create( 0.2f );
-							auto fadeInAction = FadeIn::create( 0.6f );
-							auto fadeInkDelay = DelayTime::create( 0.4f );
-							auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
-							auto blinkrepeat = RepeatForever::create( blinkSequence );
-							label->runAction( blinkrepeat );
-						}
-						sprite->addChild( label );
-					}
 
 					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::MouseOver, sprite );
 				}
 
 				// Push View
+				{
+					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+					sprite->setVisible( false );
+					sprite->setAnchorPoint( Vec2::ZERO );
+					sprite->setContentSize( button_size );
+
+					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::Push, sprite );
+				}
+
+				// Pushed View
 				{
 					auto sprite = PushedViewNode::create( button_size );
 					sprite->setVisible( false );
