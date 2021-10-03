@@ -146,7 +146,7 @@ namespace cpg_ui
 		mPushedNode = pushed_node;
 		if( mPushedNode )
 		{
-			addChild( mPushedNode, 10 );
+			addChild( mPushedNode, -1 );
 		}
 	}
 	void ChargeButtonNode::SetView( const eViewIndex view_index, Node* node )
