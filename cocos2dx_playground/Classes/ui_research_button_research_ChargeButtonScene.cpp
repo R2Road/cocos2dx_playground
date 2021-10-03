@@ -146,7 +146,7 @@ namespace ui_research
 			{
 				const Size button_size( 100.f, 100.f );
 
-				auto ex_button = cpg_ui::ChargeButtonNode::create( button_size );
+				auto ex_button = cpg_ui::ChargeButtonNode::create( button_size, 2.f );
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				

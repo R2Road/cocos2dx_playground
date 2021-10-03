@@ -43,10 +43,10 @@ namespace cpg_ui
 		using OnButtonCallback = std::function<void( const eButtonEvent )>;
 
 	private:
-		ChargeButtonNode();
+		ChargeButtonNode( const float time_limit );
 
 	public:
-		static ChargeButtonNode* ChargeButtonNode::create( const cocos2d::Size& size );
+		static ChargeButtonNode* ChargeButtonNode::create( const cocos2d::Size& size, const float time_limit );
 
 	private:
 		bool init( const cocos2d::Size& size );
@@ -79,6 +79,7 @@ namespace cpg_ui
 
 		OnButtonCallback mOnButtonCallback;
 
+		const float mTimelimit;
 		float mCharge;
 	};
 }

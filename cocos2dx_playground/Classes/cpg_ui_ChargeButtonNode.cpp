@@ -17,7 +17,7 @@ USING_NS_CC;
 
 namespace cpg_ui
 {
-	ChargeButtonNode::ChargeButtonNode() :
+	ChargeButtonNode::ChargeButtonNode( const float time_limit ) :
 		mMouseEventListener( nullptr )
 		, mbOnMouseOver( false )
 
@@ -27,14 +27,15 @@ namespace cpg_ui
 
 		, mOnButtonCallback( nullptr )
 
+		, mTimelimit( time_limit )
 		, mCharge( 0.f )
 	{
 		memset( mViewNodes, 0, eViewIndex::SIZE * sizeof( Node* ) );
 	}
 
-	ChargeButtonNode* ChargeButtonNode::create( const Size& size )
+	ChargeButtonNode* ChargeButtonNode::create( const Size& size, const float time_limit )
 	{
-		auto ret = new ( std::nothrow ) ChargeButtonNode();
+		auto ret = new ( std::nothrow ) ChargeButtonNode( time_limit );
 		if( !ret || !ret->init( size ) )
 		{
 			delete ret;
@@ -234,10 +235,10 @@ namespace cpg_ui
 
 	void ChargeButtonNode::update4Charge( const float dt )
 	{
-		mCharge = std::min( 1.f, mCharge += dt );
-		updatePushedView( mCharge );
+		mCharge = std::min( mTimelimit, mCharge += dt );
+		updatePushedView( mCharge / mTimelimit );
 
-		if( 0.000001 > std::abs( 1.f - mCharge ) )
+		if( 0.000001 > std::abs( mTimelimit - mCharge ) )
 		{
 			mOnButtonCallback( eButtonEvent::Charged );
 			unschedule( schedule_selector( ChargeButtonNode::update4Charge ) );
