@@ -133,6 +133,12 @@ namespace cpg_ui
 		ui::Widget::onExit();
 	}
 
+	void ChargeButtonNode::SetPushedView( ChargeButtonPushedNode* pushed_node )
+	{
+		SetView( eViewIndex::Push, pushed_node );
+
+		mPushedNode = pushed_node;
+	}
 	void ChargeButtonNode::SetView( const eViewIndex view_index, Node* node )
 	{
 		if( mViewNodes[view_index] )
@@ -172,6 +178,7 @@ namespace cpg_ui
 			break;
 		case eButtonEvent::Push:
 			showView( eViewIndex::Push );
+			mPushedNode->SetChargeRate( 0.5f );
 			break;
 		case eButtonEvent::Move:
 			break;

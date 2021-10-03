@@ -10,6 +10,15 @@ NS_CC_END
 
 namespace cpg_ui
 {
+	class ChargeButtonPushedNode : public cocos2d::Node
+	{
+	protected:
+		ChargeButtonPushedNode() {}
+
+	public:
+		virtual void SetChargeRate( const float charge_rate ) = 0;
+	};
+
 	class ChargeButtonNode : public cocos2d::ui::Widget
 	{
 	public:
@@ -45,6 +54,7 @@ namespace cpg_ui
 		void onEnter() override;
 		void onExit() override;
 
+		void SetPushedView( ChargeButtonPushedNode* pushed_node );
 		void SetView( const eViewIndex view_index, Node* node );
 		void SetBackground( Node* node );
 		void SetCallback( const OnButtonCallback& callback ) { mOnButtonCallback = callback; }
@@ -59,6 +69,7 @@ namespace cpg_ui
 		bool mbOnMouseOver;
 
 		cocos2d::Node* mViewNodes[eViewIndex::SIZE];
+		ChargeButtonPushedNode* mPushedNode;
 		cocos2d::Node* mBackgroundNode;
 
 		OnButtonCallback mOnButtonCallback;

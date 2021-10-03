@@ -1,5 +1,6 @@
 #include "ui_research_button_research_ChargeButtonScene.h"
 
+#include <algorithm>
 #include <new>
 #include <numeric>
 
@@ -11,11 +12,67 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "ui/UIScale9Sprite.h"
 
+#include "cpg_Clamp.h"
 #include "cpg_ui_ChargeButtonNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
+
+namespace
+{
+	class PushedViewNode : public cpg_ui::ChargeButtonPushedNode
+	{
+	private:
+		PushedViewNode() : mViewNode( nullptr ) {}
+
+	public:
+		static PushedViewNode* create( const cocos2d::Size& size )
+		{
+			auto ret = new ( std::nothrow ) PushedViewNode();
+			if( !ret || !ret->init( size ) )
+			{
+				delete ret;
+				ret = nullptr;
+			}
+			else
+			{
+				ret->autorelease();
+			}
+
+			return ret;
+		}
+
+		bool init( const cocos2d::Size& button_size )
+		{
+			if( !cpg_ui::ChargeButtonPushedNode::init() )
+			{
+				return false;
+			}
+
+			// View
+			mViewNode = LayerColor::create( Color4B::RED, button_size.width, button_size.height );
+			mViewNode->setAnchorPoint( Vec2::ZERO );
+			mViewNode->setContentSize( button_size );
+			addChild( mViewNode );
+
+			// Setup
+			SetChargeRate( 0.f );
+
+			return true;
+		}
+
+		void SetChargeRate( const float charge_rate ) override
+		{
+			mViewNode->setOpacity( static_cast<unsigned int>(
+				255.f * cpg::clamp( charge_rate, 0.f, 1.f )
+			) ) ;
+		}
+
+	private:
+		Node* mViewNode;
+	};
+}
 
 namespace ui_research
 {
@@ -93,8 +150,12 @@ namespace ui_research
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				
-				ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
+				// Background
+				{
+					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
+				}
 
+				// Normal View
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_0.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
@@ -103,6 +164,7 @@ namespace ui_research
 					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::Normal, sprite );
 				}
 
+				// Mouse Over View
 				{
 					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_1.png" );
 					sprite->setAnchorPoint( Vec2::ZERO );
@@ -126,13 +188,14 @@ namespace ui_research
 					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::MouseOver, sprite );
 				}
 
+				// Push View
 				{
-					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+					auto sprite = PushedViewNode::create( button_size );
 					sprite->setVisible( false );
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
 
-					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::Push, sprite );
+					ex_button->SetPushedView( sprite );
 				}
 
 				ex_button->SetCallback( []( const cpg_ui::ChargeButtonNode::eButtonEvent button_event )
