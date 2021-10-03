@@ -17,6 +17,8 @@
 #include "ui_research_button_research_OnMouseOverScene.h"
 #include "ui_research_button_research_MouseRightClickScene.h"
 #include "ui_research_button_research_EXButtonScene.h"
+#include "ui_research_button_research_ChargeButtonScene.h"
+
 #include "ui_research_button_research_team_fight_manager_ChampionSelectButtonStepScene.h"
 #include "ui_research_button_research_team_fight_manager_ChampionSelectButtonTestScene.h"
 #include "ui_research_RootScene.h"
@@ -78,6 +80,9 @@ namespace ui_research
 				ss << "[3] : " << ui_research::button_research::EXButtonScene::getTitle();
 				ss << cpg::linefeed;
 				ss << cpg::linefeed;
+				ss << "[4] : " << ui_research::button_research::ChargeButtonScene::getTitle();
+				ss << cpg::linefeed;
+				ss << cpg::linefeed;
 				ss << "=============================";
 				ss << cpg::linefeed;
 				ss << cpg::linefeed;
@@ -128,6 +133,10 @@ namespace ui_research
 				return;
 			case EventKeyboard::KeyCode::KEY_3:
 				_director->replaceScene( button_research::EXButtonScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
+				return;
+
+			case EventKeyboard::KeyCode::KEY_4:
+				_director->replaceScene( button_research::ChargeButtonScene::create( helper::CreateSceneMover<button_research::RootScene>() ) );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_Q:
