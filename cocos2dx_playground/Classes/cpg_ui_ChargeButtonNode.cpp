@@ -21,9 +21,12 @@ namespace cpg_ui
 		, mbOnMouseOver( false )
 
 		, mViewNodes()
+		, mPushedNode( nullptr )
 		, mBackgroundNode( nullptr )
 
 		, mOnButtonCallback( nullptr )
+
+		, mCharge( 0.f )
 	{
 		memset( mViewNodes, 0, eViewIndex::SIZE * sizeof( Node* ) );
 	}
@@ -178,11 +181,14 @@ namespace cpg_ui
 			break;
 		case eButtonEvent::Push:
 			showView( eViewIndex::Push );
-			mPushedNode->SetChargeRate( 0.5f );
+			mCharge = 0.f;
+			updatePushedView( mCharge );
+			schedule( schedule_selector( ChargeButtonNode::update4Charge ) );
 			break;
 		case eButtonEvent::Move:
 			break;
 		case eButtonEvent::Release:
+			unschedule( schedule_selector( ChargeButtonNode::update4Charge ) );
 			if( mbOnMouseOver )
 			{
 				showView( eViewIndex::MouseOver );
@@ -213,6 +219,19 @@ namespace cpg_ui
 		if( mViewNodes[view_index] )
 		{
 			mViewNodes[view_index]->setVisible( true );
+		}
+	}
+
+	void ChargeButtonNode::update4Charge( const float dt )
+	{
+		mCharge = std::min( 1.f, mCharge += dt );
+		updatePushedView( mCharge );
+	}
+	void ChargeButtonNode::updatePushedView( const float charge_rate )
+	{
+		if( mPushedNode )
+		{
+			mPushedNode->SetChargeRate( charge_rate );
 		}
 	}
 }

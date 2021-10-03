@@ -63,6 +63,9 @@ namespace cpg_ui
 		void onButton( const eButtonEvent button_event );
 
 		void showView( const eViewIndex view_index );
+		
+		void update4Charge( const float dt );
+		void updatePushedView( const float charge_rate );
 
 	private:
 		cocos2d::EventListenerMouse* mMouseEventListener;
@@ -73,5 +76,7 @@ namespace cpg_ui
 		cocos2d::Node* mBackgroundNode;
 
 		OnButtonCallback mOnButtonCallback;
+
+		float mCharge;
 	};
 }
