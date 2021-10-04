@@ -54,7 +54,6 @@ namespace
 
 			// View
 			mViewNode = LayerColor::create( Color4B::RED, button_size.width, button_size.height );
-			mViewNode->setAnchorPoint( Vec2::ZERO );
 			mViewNode->setContentSize( button_size );
 			addChild( mViewNode );
 
@@ -200,7 +199,6 @@ namespace ui_research
 				{
 					auto view_node = PushedViewNode::create( button_size - Size( 10.f, 10.f ) );
 					view_node->setVisible( false );
-					view_node->setAnchorPoint( Vec2::ZERO );
 					view_node->setPosition( 5.f, 5.f );
 
 					ex_button->SetPushedView( view_node );
