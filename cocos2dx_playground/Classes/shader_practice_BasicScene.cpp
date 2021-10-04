@@ -23,8 +23,6 @@ USING_NS_CC;
 
 namespace
 {
-	const int FontSize = 12;
-
 	const char* CustomeShaderPath = "shaders/shader_practice_BasicScene.fsh";
 }
 
@@ -126,7 +124,7 @@ namespace shader_practice
 
 			// Explain
 			{
-				auto label = Label::createWithTTF( "cocos2d-x Default Shader", cpg::StringTable::GetFontPath(), FontSize, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "cocos2d-x Default Shader", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					view_node->getPosition()
@@ -180,7 +178,7 @@ namespace shader_practice
 
 			// Explain
 			{
-				auto label = Label::createWithTTF( "Custome Shader", cpg::StringTable::GetFontPath(), FontSize, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "Custome Shader", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					view_node->getPosition()
