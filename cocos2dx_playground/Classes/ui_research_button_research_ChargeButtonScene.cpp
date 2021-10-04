@@ -72,6 +72,8 @@ namespace
 			mViewNode->setOpacity( static_cast<unsigned int>(
 				255.f * cpg::clamp( charge_rate, 0.f, 1.f )
 			) ) ;
+
+			mViewNode->setContentSize( Size( getContentSize().width, getContentSize().height * charge_rate ) );
 		}
 
 	private:
