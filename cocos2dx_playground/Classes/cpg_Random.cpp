@@ -18,7 +18,7 @@ namespace cpg
 		std::uniform_int_distribution<> dist( std::min( min, max ), std::max( min, max ) );
 		return dist( getRandomEngine() );
 	}
-	int Random::GetInt_ZeroToOne()
+	int Random::GetInt_0To1()
 	{
 		return GetInt( 0, 1 );
 	}
@@ -31,7 +31,7 @@ namespace cpg
 
 	bool Random::GetBool()
 	{
-		return 0 == GetInt_ZeroToOne();
+		return 0 == GetInt_0To1();
 	}
 }
 
