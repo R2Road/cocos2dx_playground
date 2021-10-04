@@ -205,6 +205,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\input_practice_GamePadTestScene.cpp" />
     <ClCompile Include="..\Classes\input_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\shader_practice_BasicScene.cpp" />
+    <ClCompile Include="..\Classes\shader_practice_CCRandom01Scene.cpp" />
     <ClCompile Include="..\Classes\shader_practice_CCTimeScene.cpp" />
     <ClCompile Include="..\Classes\shader_practice_GLUniformInfos.cpp" />
     <ClCompile Include="..\Classes\shader_practice_GLUniformInfosScene.cpp" />
@@ -492,6 +493,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\input_practice_GamePadTestScene.h" />
     <ClInclude Include="..\Classes\input_practice_RootScene.h" />
     <ClInclude Include="..\Classes\shader_practice_BasicScene.h" />
+    <ClInclude Include="..\Classes\shader_practice_CCRandom01Scene.h" />
     <ClInclude Include="..\Classes\shader_practice_CCTimeScene.h" />
     <ClInclude Include="..\Classes\shader_practice_GLUniformInfos.h" />
     <ClInclude Include="..\Classes\shader_practice_GLUniformInfosScene.h" />
