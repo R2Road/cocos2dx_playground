@@ -84,6 +84,16 @@ namespace ui_research
 			}
 
 			//
+			// Button Status View
+			//
+			auto button_status_label = Label::createWithTTF( "-", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			button_status_label->setPosition(
+				Vec2( visibleCenter.x, 0.f )
+				+ Vec2( 0.f, visibleSize.height * 0.7f )
+			);
+			addChild( button_status_label, std::numeric_limits<int>::max() );
+
+			//
 			// Research
 			//
 			{
@@ -141,24 +151,29 @@ namespace ui_research
 					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
 				}
 
-				ex_button->SetCallback( []( const cpg_ui::EXButtonNode::eButtonEvent button_event )
+				ex_button->SetCallback( [button_status_label]( const cpg_ui::EXButtonNode::eButtonEvent button_event )
 				{
 					switch( button_event )
 					{
 					case cpg_ui::EXButtonNode::eButtonEvent::MouseOver:
 						CCLOG( "MouseOver" );
+						button_status_label->setString( "MouseOver" );
 						break;
 					case cpg_ui::EXButtonNode::eButtonEvent::MouseLeave:
 						CCLOG( "MouseLeave" );
+						button_status_label->setString( "MouseLeave" );
 						break;
 					case cpg_ui::EXButtonNode::eButtonEvent::Push:
 						CCLOG( "Push" );
+						button_status_label->setString( "Push" );
 						break;
 					case cpg_ui::EXButtonNode::eButtonEvent::Move:
 						CCLOG( "Move" );
+						button_status_label->setString( "Move" );
 						break;
 					case cpg_ui::EXButtonNode::eButtonEvent::Release:
 						CCLOG( "Release" );
+						button_status_label->setString( "Release" );
 						break;
 					}
 				} );
