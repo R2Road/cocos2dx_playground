@@ -169,6 +169,7 @@ namespace ui_research
 
 			case EventKeyboard::KeyCode::KEY_Q:
 				mGaugeMax = std::max( 0, mGaugeMax - GaugeMaxAmountOfChange );
+				mGaugeCurrent = std::min( mGaugeCurrent, mGaugeMax );
 				updateGauge();
 				return;
 			case EventKeyboard::KeyCode::KEY_W:
