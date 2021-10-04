@@ -7,13 +7,14 @@ namespace cpg
 {
 	const Setting::Data Setting::Load()
 	{
-		// default
 		Data ret;
 
 		// load json
-		const std::string& regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( "config/setting.json" );
 		rapidjson::Document doc;
-		doc.Parse<0>( regionStr.c_str() );
+		{
+			const auto json_string( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( "config/setting.json" ) ) );
+			doc.Parse<0>( json_string.c_str() );
+		}
 
 		if( doc.HasParseError() )
 		{
@@ -36,7 +37,9 @@ namespace cpg
 				&& x_itr->value.IsInt()
 				&& frame_resolution_itr->value.MemberEnd() != y_itr
 				&& y_itr->value.IsInt() )
+			{
 				ret.mFrameResolution.setSize( x_itr->value.GetInt(), y_itr->value.GetInt() );
+			}
 		}
 
 		const auto design_resolution_itr = doc.FindMember( "design_resolution" );
@@ -48,12 +51,16 @@ namespace cpg
 				&& x_itr->value.IsInt()
 				&& frame_resolution_itr->value.MemberEnd() != y_itr
 				&& y_itr->value.IsInt() )
+			{
 				ret.mDesignResolution.setSize( x_itr->value.GetInt(), y_itr->value.GetInt() );
+			}
 		}
 
 		const auto display_stats_itr = doc.FindMember( "display_stats" );
 		if( doc.MemberEnd() != display_stats_itr )
+		{
 			ret.mShowDisplayStats = display_stats_itr->value.GetBool();
+		}
 
 		return ret;
 	}
