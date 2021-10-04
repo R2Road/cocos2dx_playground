@@ -11,7 +11,7 @@ namespace cpg
 		, mShowDisplayStats( show_display_stats )
 	{}
 
-	const Setting Setting::load()
+	const Setting Setting::Load()
 	{
 		// default
 		cocos2d::Size frame_resolution( 1024, 768 );
