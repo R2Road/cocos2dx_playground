@@ -148,7 +148,7 @@ namespace ui_research
 			}
 
 			//
-			//
+			// Button Status View
 			//
 			auto button_status_label = Label::createWithTTF( "-", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			button_status_label->setPosition(
