@@ -22,7 +22,7 @@
 #include "step_defender_chipmunk_MoveScene.h"
 #include "step_defender_chipmunk_ContactScene.h"
 
-#include "cpgui_research_layout_ToolBarNodeScene.h"
+#include "ui_research_layout_research_ToolBarNodeScene.h"
 
 #include "step_defender_tool_test_TileSheetNodeScene.h"
 #include "step_defender_game_test_TileMapNodeScene.h"

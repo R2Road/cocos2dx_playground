@@ -25,7 +25,7 @@
 
 #include "ui_research_text_field_BMFontScene.h"
 
-#include "cpgui_research_layout_ToolBarNodeScene.h"
+#include "ui_research_layout_research_ToolBarNodeScene.h"
 
 USING_NS_CC;
 
