@@ -87,6 +87,7 @@ namespace ui_research
 			// Button Status View
 			//
 			auto button_status_label = Label::createWithTTF( "-", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			button_status_label->setColor( Color3B::GREEN );
 			button_status_label->setPosition(
 				Vec2( visibleCenter.x, 0.f )
 				+ Vec2( 0.f, visibleSize.height * 0.7f )
