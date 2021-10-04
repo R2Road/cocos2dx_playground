@@ -1071,6 +1071,9 @@
     <ClCompile Include="..\Classes\cpg_ui_ChargeButtonNode.cpp">
       <Filter>src\cpg_ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\shader_practice_CCTimeScene.cpp">
+      <Filter>src\scene\shader_practice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1948,6 +1951,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_ui_ChargeButtonNode.h">
       <Filter>src\cpg_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\shader_practice_CCTimeScene.h">
+      <Filter>src\scene\shader_practice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

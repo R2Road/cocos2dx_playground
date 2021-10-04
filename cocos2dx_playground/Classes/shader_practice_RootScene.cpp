@@ -13,6 +13,7 @@
 #include "shader_practice_BasicScene.h"
 #include "shader_practice_GLUniformInfosScene.h"
 #include "shader_practice_SimpleTestScene.h"
+#include "shader_practice_CCTimeScene.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -66,6 +67,8 @@ namespace shader_practice
 			ss << "[2] : " << shader_practice::GLUniformInfosScene::getTitle();
 			ss << cpg::linefeed;
 			ss << "[3] : " << shader_practice::SimpleTestScene::getTitle();
+			ss << cpg::linefeed;
+			ss << "[4] : " << shader_practice::CCTimeScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition(
@@ -121,6 +124,9 @@ namespace shader_practice
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( shader_practice::SimpleTestScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_4:
+			_director->replaceScene( shader_practice::CCTimeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
