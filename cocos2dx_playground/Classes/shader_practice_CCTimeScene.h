@@ -23,6 +23,7 @@ namespace shader_practice
 		void onExit() override;
 
 	private:
+		void AddView( const char* view_name, const cocos2d::Vec2 view_position, const char* fragment_shader_path );
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:

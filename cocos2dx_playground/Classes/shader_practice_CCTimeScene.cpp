@@ -112,55 +112,11 @@ namespace shader_practice
 			addChild( label_2, std::numeric_limits<int>::max() );
 		}
 
-
 		//
-		// Practice : Load N Caching
 		//
-		{
-			// Load
-			const auto shader_source = FileUtils::getInstance()->getStringFromFile( FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
-			auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
-
-			// Caching
-			GLProgramCache::getInstance()->addGLProgram( gl_program, "shader_practice_CCTimeScene" );
-		}
-		//
-		// Practice : Apply Custome Shader
 		//
 		{
-			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
-			view_node->getTexture()->setAliasTexParameters();
-			view_node->setPosition( visibleCenter );
-			view_node->setScale( 2.f );
-			addChild( view_node );
-			{
-				//
-				// Get Cached Program
-				//
-				auto gl_program = GLProgramCache::getInstance()->getGLProgram( "shader_practice_CCTimeScene" );
-
-				//
-				// Create GLProgramState
-				//
-				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
-
-				//
-				// Apply
-				//
-				view_node->setGLProgramState( gl_program_state );
-			}
-
-			// Explain
-			{
-				auto label = Label::createWithTTF( "Color Change with Custome Shader and CCTime[1]", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
-				label->setColor( Color3B::GREEN );
-				label->setPosition(
-					view_node->getPosition()
-					+ Vec2( 0.f, view_node->getContentSize().height * 0.5f )
-					+ Vec2( 0.f, 50.f )
-				);
-				addChild( label, std::numeric_limits<int>::max() );
-			}
+			AddView( "CC_Time[1]", visibleCenter, CustomeShaderPath );
 		}
 
 		return true;
@@ -182,6 +138,60 @@ namespace shader_practice
 		mKeyboardListener = nullptr;
 
 		Scene::onExit();
+	}
+
+
+	void CCTimeScene::AddView( const char* view_name, const cocos2d::Vec2 view_position, const char* fragment_shader_path )
+	{
+		//
+		// Practice : Load N Caching
+		//
+		{
+			// Load
+			const auto shader_source = FileUtils::getInstance()->getStringFromFile( FileUtils::getInstance()->fullPathForFilename( fragment_shader_path ) );
+			auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
+
+			// Caching
+			GLProgramCache::getInstance()->addGLProgram( gl_program, fragment_shader_path );
+		}
+		//
+		// Practice : Apply Custome Shader
+		//
+		{
+			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
+			view_node->getTexture()->setAliasTexParameters();
+			view_node->setPosition( view_position );
+			view_node->setScale( 2.f );
+			addChild( view_node );
+			{
+				//
+				// Get Cached Program
+				//
+				auto gl_program = GLProgramCache::getInstance()->getGLProgram( fragment_shader_path );
+
+				//
+				// Create GLProgramState
+				//
+				auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
+
+				//
+				// Apply
+				//
+				view_node->setGLProgramState( gl_program_state );
+			}
+
+			// Explain
+			{
+				auto label = Label::createWithTTF( view_name, cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
+				label->setColor( Color3B::GREEN );
+				label->setPosition(
+					view_node->getPosition()
+					+ Vec2( 0.f, view_node->getContentSize().height * 0.5f )
+					+ Vec2( 0.f, 50.f )
+				);
+				addChild( label, std::numeric_limits<int>::max() );
+			}
+		}
 	}
 
 
