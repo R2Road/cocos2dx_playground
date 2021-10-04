@@ -13,6 +13,7 @@
 #include "ui/UIScale9Sprite.h"
 
 #include "cpg_Clamp.h"
+#include "cpg_node_PivotNode.h"
 #include "cpg_ui_ChargeButtonNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -51,6 +52,9 @@ namespace
 			}
 
 			setContentSize( button_size );
+
+			// Pivot
+			addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::min() );
 
 			// View
 			mViewNode = LayerColor::create( Color4B::RED, button_size.width, button_size.height );
