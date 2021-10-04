@@ -23,7 +23,10 @@ USING_NS_CC;
 
 namespace
 {
-	const char* CustomeShaderPath = "shaders/shader_practice_CCTimeScene.fsh";
+	const char* CustomeShaderPath_0 = "shaders/shader_practice_CCTimeScene_0.fsh";
+	const char* CustomeShaderPath_1 = "shaders/shader_practice_CCTimeScene_1.fsh";
+	const char* CustomeShaderPath_2 = "shaders/shader_practice_CCTimeScene_2.fsh";
+	const char* CustomeShaderPath_3 = "shaders/shader_practice_CCTimeScene_3.fsh";
 }
 
 namespace shader_practice
@@ -94,7 +97,7 @@ namespace shader_practice
 		// Custome Shader Path
 		//
 		{
-			auto label_1 = Label::createWithTTF( CustomeShaderPath, cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label_1 = Label::createWithTTF( "shaders/shader_practice_CCTimeScene_N.fsh", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
 			label_1->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			label_1->setColor( Color3B::GREEN );
 			label_1->setPosition(
@@ -116,7 +119,10 @@ namespace shader_practice
 		//
 		//
 		{
-			AddView( "CC_Time[1]", visibleCenter, CustomeShaderPath );
+			AddView( "CC_Time[0]\nTime / 10", Vec2( visibleSize.width * 0.2f, visibleCenter.y ), CustomeShaderPath_0 );
+			AddView( "CC_Time[1]\nTime", Vec2( visibleSize.width * 0.4f, visibleCenter.y ), CustomeShaderPath_1 );
+			AddView( "CC_Time[2]\nTime * 2", Vec2( visibleSize.width * 0.6f, visibleCenter.y ), CustomeShaderPath_2 );
+			AddView( "CC_Time[3]\nTime * 4", Vec2( visibleSize.width * 0.8f, visibleCenter.y ), CustomeShaderPath_3 );
 		}
 
 		return true;
