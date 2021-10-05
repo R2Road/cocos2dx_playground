@@ -252,9 +252,6 @@
     <ClCompile Include="..\Classes\CPG_InputDelegator.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\EntryScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
@@ -1077,6 +1074,9 @@
     <ClCompile Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_Input_KeyMap.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1092,9 +1092,6 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_InputDelegator.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputKeyMap.h">
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\EntryScene.h">
@@ -1960,6 +1957,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.h">
       <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_Input_KeyMap.h">
+      <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
