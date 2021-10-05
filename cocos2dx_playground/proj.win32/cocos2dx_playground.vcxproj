@@ -281,7 +281,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.cpp" />
     <ClCompile Include="..\Classes\step_mole_CircleCollisionComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_GridIndexConverter.cpp" />
-    <ClCompile Include="..\Classes\CPG_InputDelegator.cpp" />
+    <ClCompile Include="..\Classes\cpg_input_Delegator.cpp" />
     <ClCompile Include="..\Classes\cpg_Input_KeyMap.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyViewer.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserver.cpp" />
@@ -572,7 +572,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_rain_of_chaos_batch_node_QuadScene.h" />
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponent.h" />
     <ClInclude Include="..\Classes\cpg_GridIndexConverter.h" />
-    <ClInclude Include="..\Classes\CPG_InputDelegator.h" />
+    <ClInclude Include="..\Classes\cpg_input_Delegator.h" />
     <ClInclude Include="..\Classes\cpg_Input_KeyMap.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyViewer.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserver.h" />

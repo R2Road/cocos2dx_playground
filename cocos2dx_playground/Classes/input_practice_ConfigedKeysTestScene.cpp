@@ -10,7 +10,7 @@
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
-#include "CPG_InputDelegator.h"
+#include "cpg_input_Delegator.h"
 #include "CPG_Input_BasicCollector.h"
 #include "cpg_Input_KeyMap.h"
 #include "cpg_input_KeyViewer.h"

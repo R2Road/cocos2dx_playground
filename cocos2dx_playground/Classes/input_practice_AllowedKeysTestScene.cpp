@@ -11,7 +11,7 @@
 
 #include "cpg_StringTable.h"
 
-#include "CPG_InputDelegator.h"
+#include "cpg_input_Delegator.h"
 #include "cpg_input_KeyboardInputObserver.h"
 #include "cpg_input_KeyCodeNames.h"
 

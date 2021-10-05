@@ -1,4 +1,4 @@
-#include "CPG_InputDelegator.h"
+#include "cpg_input_Delegator.h"
 
 #include <new>
 
