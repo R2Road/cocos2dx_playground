@@ -171,6 +171,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cocos_research_action_SpriteFrameActionScene.cpp" />
     <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyCodeNames.cpp" />
+    <ClCompile Include="..\Classes\cpg_input_KeyMap.cpp" />
     <ClCompile Include="..\Classes\cpg_SStream.cpp" />
     <ClCompile Include="..\Classes\cpg_node_PivotNode.cpp" />
     <ClCompile Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.cpp" />
@@ -282,7 +283,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\step_mole_CircleCollisionComponent.cpp" />
     <ClCompile Include="..\Classes\cpg_GridIndexConverter.cpp" />
     <ClCompile Include="..\Classes\cpg_input_Delegator.cpp" />
-    <ClCompile Include="..\Classes\cpg_Input_KeyMap.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyViewer.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserver.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp" />
@@ -454,6 +454,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cocos_research_action_SpriteFrameActionScene.h" />
     <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyCodeNames.h" />
+    <ClInclude Include="..\Classes\cpg_input_KeyMap.h" />
     <ClInclude Include="..\Classes\cpg_SStream.h" />
     <ClInclude Include="..\Classes\cpg_node_PivotNode.h" />
     <ClInclude Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.h" />
@@ -573,7 +574,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\step_mole_CircleCollisionComponent.h" />
     <ClInclude Include="..\Classes\cpg_GridIndexConverter.h" />
     <ClInclude Include="..\Classes\cpg_input_Delegator.h" />
-    <ClInclude Include="..\Classes\cpg_Input_KeyMap.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyViewer.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserver.h" />
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />

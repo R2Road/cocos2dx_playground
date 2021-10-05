@@ -1,6 +1,6 @@
 #include "CPG_Input_BasicCollector.h"
 
-#include "cpg_Input_KeyMap.h"
+#include "cpg_input_KeyMap.h"
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
 
 USING_NS_CC;

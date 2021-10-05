@@ -12,7 +12,7 @@
 #include "cpg_StringTable.h"
 #include "cpg_input_Delegator.h"
 #include "CPG_Input_BasicCollector.h"
-#include "cpg_Input_KeyMap.h"
+#include "cpg_input_KeyMap.h"
 #include "cpg_input_KeyViewer.h"
 #include "cpg_input_KeyMapConfigHelper.h"
 #include "cpg_input_KeyCodeNames.h"
