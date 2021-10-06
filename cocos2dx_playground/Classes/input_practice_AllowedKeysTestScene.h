@@ -14,7 +14,7 @@ NS_CC_END
 namespace cpg_input
 {
 	class DelegatorNode;
-	class KeyboardInputObserver;
+	class KeyboardInputObserverNode;
 }
 
 namespace input_practice
@@ -42,6 +42,6 @@ namespace input_practice
 		cocos2d::Label* mKeyViewer;
 		std::string mKeyStrings;
 
-		cpg_input::KeyboardInputObserver* mInputObserver;
+		cpg_input::KeyboardInputObserverNode* mKeyboardInputObserverNode;
 	};
 }

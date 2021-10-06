@@ -1011,9 +1011,6 @@
     <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserver.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_astar_TestScene.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
@@ -1075,6 +1072,9 @@
       <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_input_DelegatorNode.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserverNode.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1892,9 +1892,6 @@
     <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h">
       <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserver.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_TestScene.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
@@ -1959,6 +1956,9 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_DelegatorNode.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserverNode.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>

@@ -285,7 +285,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_GridIndexConverter.cpp" />
     <ClCompile Include="..\Classes\cpg_input_DelegatorNode.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyViewer.cpp" />
-    <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserver.cpp" />
+    <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserverNode.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletLifeComponent.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletManager.cpp" />
@@ -576,7 +576,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_GridIndexConverter.h" />
     <ClInclude Include="..\Classes\cpg_input_DelegatorNode.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyViewer.h" />
-    <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserver.h" />
+    <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserverNode.h" />
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletLifeComponent.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletManager.h" />

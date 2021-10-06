@@ -12,7 +12,7 @@
 #include "cpg_StringTable.h"
 
 #include "cpg_input_DelegatorNode.h"
-#include "cpg_input_KeyboardInputObserver.h"
+#include "cpg_input_KeyboardInputObserverNode.h"
 #include "cpg_input_KeyCodeNames.h"
 
 #include "input_practice_Setting.h"
@@ -31,7 +31,7 @@ namespace input_practice
 		, mInputDelegatorNode( nullptr )
 		, mKeyViewer( nullptr )
 		, mKeyStrings( 200, 0 )
-		, mInputObserver( nullptr )
+		, mKeyboardInputObserverNode( nullptr )
 	{}
 
 	Scene* AllowedKeysTestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -106,8 +106,8 @@ namespace input_practice
 			mInputDelegatorNode = cpg_input::DelegatorNode::create( input_practice::Setting::getKeyAllowFileName().c_str() );
 			addChild( mInputDelegatorNode, 0 );
 
-			mInputObserver = cpg_input::KeyboardInputObserver::create( input_practice::Setting::getKeyAllowFileName().c_str() );
-			addChild( mInputObserver, 1 );
+			mKeyboardInputObserverNode = cpg_input::KeyboardInputObserverNode::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			addChild( mKeyboardInputObserverNode, 1 );
 		}
 
 		//
@@ -131,7 +131,7 @@ namespace input_practice
 	}
 	void AllowedKeysTestScene::update( float dt )
 	{
-		if( mInputObserver->FoundInput() )
+		if( mKeyboardInputObserverNode->FoundInput() )
 		{
 			mKeyStrings.clear();
 			for( std::size_t cur = 0; cur < cpg_input::KeyCodeContainerSize; ++cur )

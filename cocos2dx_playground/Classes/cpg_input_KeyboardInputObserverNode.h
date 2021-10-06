@@ -6,13 +6,13 @@
 
 namespace cpg_input
 {
-	class KeyboardInputObserver : public cocos2d::Node
+	class KeyboardInputObserverNode : public cocos2d::Node
 	{
 	private:
-		KeyboardInputObserver();
+		KeyboardInputObserverNode();
 
 	public:
-		static KeyboardInputObserver* create( const char* allowed_keys_file_name );
+		static KeyboardInputObserverNode* create( const char* allowed_keys_file_name );
 
 	private:
 		bool init( const char* allowed_keys_file_name );
