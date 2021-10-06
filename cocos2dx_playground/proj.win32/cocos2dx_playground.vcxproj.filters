@@ -1068,13 +1068,13 @@
     <ClCompile Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpg_input_Delegator.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\cpg_input_KeyMap.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\cpg_input_iKeyCollector.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_DelegatorNode.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1952,13 +1952,13 @@
     <ClInclude Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.h">
       <Filter>src\scene\ui_research</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cpg_input_Delegator.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyMap.h">
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_iKeyCollector.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_DelegatorNode.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>

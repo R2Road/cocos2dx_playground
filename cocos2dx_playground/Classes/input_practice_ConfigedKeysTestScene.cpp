@@ -10,7 +10,7 @@
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
-#include "cpg_input_Delegator.h"
+#include "cpg_input_DelegatorNode.h"
 #include "CPG_Input_BasicCollector.h"
 #include "cpg_input_KeyMap.h"
 #include "cpg_input_KeyViewer.h"
@@ -114,13 +114,13 @@ namespace input_practice
 		// input
 		//
 		{
-			auto input_delegator = cpg_input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
-			addChild( input_delegator, 0 );
+			auto input_delegator_node = cpg_input::DelegatorNode::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			addChild( input_delegator_node, 0 );
 			{
 				const auto key_map = cpg_input::KeyMap::create( input_practice::Setting::getKeyMapFileName().c_str() );
 
 				mInputCollector = cpg_input::BasicCollector::create( key_map );
-				input_delegator->addInputCollector( mInputCollector );
+				input_delegator_node->addInputCollector( mInputCollector );
 			}
 		}
 

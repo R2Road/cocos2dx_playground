@@ -1,4 +1,4 @@
-#include "cpg_input_Delegator.h"
+#include "cpg_input_DelegatorNode.h"
 
 #include <new>
 
@@ -11,16 +11,16 @@ USING_NS_CC;
 
 namespace cpg_input
 {
-	Delegator::Delegator() :
+	DelegatorNode::DelegatorNode() :
 		mKeyboardListener( nullptr )
 		, mAllowedKeys()
 		, mKeycodeCollector()
 		, mInputCollector( nullptr )
 	{}
 
-	Delegator* Delegator::create( const char* allowed_keys_file_name )
+	DelegatorNode* DelegatorNode::create( const char* allowed_keys_file_name )
 	{
-		auto ret = new ( std::nothrow ) Delegator();
+		auto ret = new ( std::nothrow ) DelegatorNode();
 		if( !ret || !ret->init( allowed_keys_file_name ) )
 		{
 			delete ret;
@@ -34,7 +34,7 @@ namespace cpg_input
 		return ret;
 	}
 
-	bool Delegator::init( const char* allowed_keys_file_name )
+	bool DelegatorNode::init( const char* allowed_keys_file_name )
 	{
 		if( !Node::init() )
 		{
@@ -48,17 +48,17 @@ namespace cpg_input
 		return true;
 	}
 
-	void Delegator::onEnter()
+	void DelegatorNode::onEnter()
 	{
 		Node::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( Delegator::onKeyPressed, this );
-		mKeyboardListener->onKeyReleased = CC_CALLBACK_2( Delegator::onKeyReleased, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( DelegatorNode::onKeyPressed, this );
+		mKeyboardListener->onKeyReleased = CC_CALLBACK_2( DelegatorNode::onKeyReleased, this );
 		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 	}
-	void Delegator::update( float dt )
+	void DelegatorNode::update( float dt )
 	{
 		if( mInputCollector )
 		{
@@ -69,7 +69,7 @@ namespace cpg_input
 
 		Node::update( dt );
 	}
-	void Delegator::onExit()
+	void DelegatorNode::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -78,7 +78,7 @@ namespace cpg_input
 		Node::onExit();
 	}
 
-	void Delegator::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void DelegatorNode::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( !mAllowedKeys[static_cast<std::size_t>( keycode )] )
 		{
@@ -88,7 +88,7 @@ namespace cpg_input
 		mKeycodeCollector.onKeyPressed( keycode );
 	}
 
-	void Delegator::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void DelegatorNode::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( !mAllowedKeys[static_cast<std::size_t>( keycode )] )
 		{
@@ -98,7 +98,7 @@ namespace cpg_input
 		mKeycodeCollector.onKeyReleased( keycode );
 	}
 
-	void Delegator::addInputCollector( KeyCollectorSp& new_key_collector )
+	void DelegatorNode::addInputCollector( KeyCollectorSp& new_key_collector )
 	{
 		mInputCollector = new_key_collector;
 	}
