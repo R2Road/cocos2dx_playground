@@ -246,9 +246,6 @@
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\EntryScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
@@ -1077,6 +1074,9 @@
     <ClCompile Include="..\Classes\cpg_input_KeyMap.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_iKeyCollector.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1086,9 +1086,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h">
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\EntryScene.h">
@@ -1959,6 +1956,9 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyMap.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_iKeyCollector.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>

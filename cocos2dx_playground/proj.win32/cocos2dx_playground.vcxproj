@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cocos_research_action_SoundActionScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SpriteFrameActionScene.cpp" />
     <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp" />
+    <ClCompile Include="..\Classes\cpg_input_iKeyCollector.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyCodeNames.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyMap.cpp" />
     <ClCompile Include="..\Classes\cpg_SStream.cpp" />
@@ -286,7 +287,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_input_KeyViewer.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserver.cpp" />
     <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp" />
-    <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletLifeComponent.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_BulletManager.cpp" />
     <ClCompile Include="..\Classes\step_rain_of_chaos_game_EnemyNode.cpp" />
@@ -453,6 +453,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cocos_research_action_SoundActionScene.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SpriteFrameActionScene.h" />
     <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h" />
+    <ClInclude Include="..\Classes\cpg_input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyCodeNames.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyMap.h" />
     <ClInclude Include="..\Classes\cpg_SStream.h" />
@@ -577,7 +578,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_input_KeyViewer.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserver.h" />
     <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h" />
-    <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletLifeComponent.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_BulletManager.h" />
     <ClInclude Include="..\Classes\step_rain_of_chaos_game_EnemyNode.h" />

@@ -1,4 +1,4 @@
-#include "CPG_Input_iKeyCollector.h"
+#include "cpg_input_iKeyCollector.h"
 
 USING_NS_CC;
 
