@@ -5,7 +5,7 @@
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventListenerKeyboard.h"
 
-#include "CPG_Input_BasicCollector.h"
+#include "cpg_input_BasicKeyCollector.h"
 
 USING_NS_CC;
 

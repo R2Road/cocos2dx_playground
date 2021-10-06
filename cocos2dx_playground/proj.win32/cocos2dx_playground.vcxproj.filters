@@ -243,9 +243,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\EntryScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
@@ -1077,6 +1074,9 @@
     <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserverNode.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_BasicKeyCollector.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1084,9 +1084,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h">
-      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\EntryScene.h">
       <Filter>src\scene</Filter>
@@ -1959,6 +1956,9 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserverNode.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_BasicKeyCollector.h">
       <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>

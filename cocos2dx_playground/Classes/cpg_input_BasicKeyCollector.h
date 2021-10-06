@@ -15,13 +15,13 @@ namespace step_rain_of_chaos
 
 namespace cpg_input
 {
-	class BasicCollector : public iKeyCollector
+	class BasicKeyCollector : public iKeyCollector
 	{
 	private:
 		using KeyStatusContainer = std::bitset<31u>;
 		using KeyHistory = std::array<KeyStatusContainer, 10u>;
 
-		BasicCollector( const KeyMapSp& key_map_container );
+		BasicKeyCollector( const KeyMapSp& key_map_container );
 
 	public:
 		static KeyCollectorSp create( const KeyMapSp& key_map_container );
