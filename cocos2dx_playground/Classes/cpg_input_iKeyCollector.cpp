@@ -1,6 +1,4 @@
-#include "CPG_Input_iKeyCollector.h"
-
-USING_NS_CC;
+#include "cpg_input_iKeyCollector.h"
 
 namespace cpg_input
 {

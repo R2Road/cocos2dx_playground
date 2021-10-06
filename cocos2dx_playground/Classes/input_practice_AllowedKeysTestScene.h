@@ -11,18 +11,10 @@ NS_CC_BEGIN
 	class Label;
 NS_CC_END
 
-namespace cpg
-{
-	namespace input
-	{
-		class Delegator;
-	}
-}
-
 namespace cpg_input
 {
-	class Delegator;
-	class KeyboardInputObserver;
+	class DelegatorNode;
+	class KeyboardInputObserverNode;
 }
 
 namespace input_practice
@@ -46,10 +38,10 @@ namespace input_practice
 		void onExitButton( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 	private:
-		cpg_input::Delegator* mInputDelegator;
+		cpg_input::DelegatorNode* mInputDelegatorNode;
 		cocos2d::Label* mKeyViewer;
 		std::string mKeyStrings;
 
-		cpg_input::KeyboardInputObserver* mInputObserver;
+		cpg_input::KeyboardInputObserverNode* mKeyboardInputObserverNode;
 	};
 }

@@ -58,7 +58,7 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
-	const auto my_setting = cpg::Setting::load();
+	const auto my_setting = cpg::Setting::Load();
 
     // initialize director
     auto director = Director::getInstance();

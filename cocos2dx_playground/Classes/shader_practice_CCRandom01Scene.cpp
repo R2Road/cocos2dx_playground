@@ -1,4 +1,4 @@
-#include "shader_practice_BasicScene.h"
+#include "shader_practice_CCRandom01Scene.h"
 
 #include <new>
 #include <numeric>
@@ -23,19 +23,19 @@ USING_NS_CC;
 
 namespace
 {
-	const char* CustomeShaderPath = "shaders/shader_practice_BasicScene.fsh";
+	const char* CustomeShaderPath = "shaders/shader_practice_CCRandom01Scene.fsh";
 }
 
 namespace shader_practice
 {
-	BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	CCRandom01Scene::CCRandom01Scene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 	{}
 
-	Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* CCRandom01Scene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) BasicScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) CCRandom01Scene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -49,7 +49,7 @@ namespace shader_practice
 		return ret;
 	}
 
-	bool BasicScene::init()
+	bool CCRandom01Scene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -58,6 +58,10 @@ namespace shader_practice
 
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
+		const Vec2 visibleCenter(
+			visibleOrigin.x + ( visibleSize.width * 0.5f )
+			, visibleOrigin.y + ( visibleSize.height * 0.5f )
+		);
 
 		//
 		// Summury
@@ -108,34 +112,6 @@ namespace shader_practice
 			addChild( label_2, std::numeric_limits<int>::max() );
 		}
 
-
-		//
-		// Default
-		//
-		{
-			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
-			view_node->getTexture()->setAliasTexParameters();
-			view_node->setPosition(
-				visibleOrigin
-				+ Vec2( visibleSize.width * 0.3f, visibleSize.height * 0.45f )
-			);
-			view_node->setScale( 2.f );
-			addChild( view_node );
-
-			// Explain
-			{
-				auto label = Label::createWithTTF( "cocos2d-x Default Shader", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
-				label->setColor( Color3B::GREEN );
-				label->setPosition(
-					view_node->getPosition()
-					+ Vec2( 0.f, view_node->getContentSize().height * 0.5f )
-					+ Vec2( 0.f, 50.f )
-				);
-				addChild( label, std::numeric_limits<int>::max() );
-			}
-		}
-
-
 		//
 		// Practice : Load N Caching
 		//
@@ -145,7 +121,7 @@ namespace shader_practice
 			auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
 
 			// Caching
-			GLProgramCache::getInstance()->addGLProgram( gl_program, "shader_practice_BasicScene" );
+			GLProgramCache::getInstance()->addGLProgram( gl_program, CustomeShaderPath );
 		}
 		//
 		// Practice : Apply Custome Shader
@@ -153,17 +129,14 @@ namespace shader_practice
 		{
 			auto view_node = Sprite::create( "textures/step_typetype/step_typetype_dummy_01.png" );
 			view_node->getTexture()->setAliasTexParameters();
-			view_node->setPosition(
-				visibleOrigin
-				+ Vec2( visibleSize.width * 0.7f, visibleSize.height * 0.45f )
-			);
+			view_node->setPosition( visibleCenter );
 			view_node->setScale( 2.f );
 			addChild( view_node );
 			{
 				//
 				// Get Cached Program
 				//
-				auto gl_program = GLProgramCache::getInstance()->getGLProgram( "shader_practice_BasicScene" );
+				auto gl_program = GLProgramCache::getInstance()->getGLProgram( CustomeShaderPath );
 
 				//
 				// Create GLProgramState
@@ -178,7 +151,7 @@ namespace shader_practice
 
 			// Explain
 			{
-				auto label = Label::createWithTTF( "Custome Shader", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
+				auto label = Label::createWithTTF( "CC_Random01", cpg::StringTable::GetFontPath(), 12, Size::ZERO, TextHAlignment::CENTER );
 				label->setColor( Color3B::GREEN );
 				label->setPosition(
 					view_node->getPosition()
@@ -192,16 +165,16 @@ namespace shader_practice
 		return true;
 	}
 
-	void BasicScene::onEnter()
+	void CCRandom01Scene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CCRandom01Scene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void BasicScene::onExit()
+	void CCRandom01Scene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -211,7 +184,7 @@ namespace shader_practice
 	}
 
 
-	void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void CCRandom01Scene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 		{

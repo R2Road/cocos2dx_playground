@@ -1,4 +1,4 @@
-#include "cpg_input_KeyboardInputObserver.h"
+#include "cpg_input_KeyboardInputObserverNode.h"
 
 #include <new>
 
@@ -9,15 +9,15 @@ USING_NS_CC;
 
 namespace cpg_input
 {
-	KeyboardInputObserver::KeyboardInputObserver() :
+	KeyboardInputObserverNode::KeyboardInputObserverNode() :
 		mKeyboardListener( nullptr )
 		, mAllowedKeys()
 		, mbFound( false )
 	{}
 
-	KeyboardInputObserver* KeyboardInputObserver::create( const char* allowed_keys_file_name )
+	KeyboardInputObserverNode* KeyboardInputObserverNode::create( const char* allowed_keys_file_name )
 	{
-		auto ret = new ( std::nothrow ) KeyboardInputObserver();
+		auto ret = new ( std::nothrow ) KeyboardInputObserverNode();
 		if( !ret || !ret->init( allowed_keys_file_name ) )
 		{
 			delete ret;
@@ -31,7 +31,7 @@ namespace cpg_input
 		return ret;
 	}
 
-	bool KeyboardInputObserver::init( const char* allowed_keys_file_name )
+	bool KeyboardInputObserverNode::init( const char* allowed_keys_file_name )
 	{
 		if( !Node::init() )
 		{
@@ -45,22 +45,22 @@ namespace cpg_input
 		return true;
 	}
 
-	void KeyboardInputObserver::onEnter()
+	void KeyboardInputObserverNode::onEnter()
 	{
 		Node::onEnter();
 
 		CCASSERT( !mKeyboardListener, "" );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( KeyboardInputObserver::onKeyPressed, this );
-		mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyboardInputObserver::onKeyReleased, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( KeyboardInputObserverNode::onKeyPressed, this );
+		mKeyboardListener->onKeyReleased = CC_CALLBACK_2( KeyboardInputObserverNode::onKeyReleased, this );
 		getEventDispatcher()->addEventListenerWithFixedPriority( mKeyboardListener, 1 );
 	}
-	void KeyboardInputObserver::update( float dt )
+	void KeyboardInputObserverNode::update( float dt )
 	{
 		mbFound = false;
 		Node::update( dt );
 	}
-	void KeyboardInputObserver::onExit()
+	void KeyboardInputObserverNode::onExit()
 	{
 		CCASSERT( mKeyboardListener, "" );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -69,7 +69,7 @@ namespace cpg_input
 		Node::onExit();
 	}
 
-	void KeyboardInputObserver::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void KeyboardInputObserverNode::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( mAllowedKeys[static_cast<std::size_t>( keycode )] )
 		{
@@ -77,7 +77,7 @@ namespace cpg_input
 		}
 	}
 
-	void KeyboardInputObserver::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void KeyboardInputObserverNode::onKeyReleased( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		if( mAllowedKeys[static_cast<std::size_t>( keycode )] )
 		{

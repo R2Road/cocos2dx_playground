@@ -1,5 +1,6 @@
-#include "ui_research_button_research_EXButtonScene.h"
+#include "ui_research_button_research_ChargeButtonScene.h"
 
+#include <algorithm>
 #include <new>
 #include <numeric>
 
@@ -11,24 +12,87 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "ui/UIScale9Sprite.h"
 
-#include "cpg_ui_EXButtonNode.h"
+#include "cpg_Clamp.h"
+#include "cpg_node_PivotNode.h"
+#include "cpg_ui_ChargeButtonNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
 
+namespace
+{
+	class PushedViewNode : public cpg_ui::ChargeButtonPushedNode
+	{
+	private:
+		PushedViewNode() : mViewNode( nullptr ) {}
+
+	public:
+		static PushedViewNode* create( const cocos2d::Size& size )
+		{
+			auto ret = new ( std::nothrow ) PushedViewNode();
+			if( !ret || !ret->init( size ) )
+			{
+				delete ret;
+				ret = nullptr;
+			}
+			else
+			{
+				ret->autorelease();
+			}
+
+			return ret;
+		}
+
+		bool init( const cocos2d::Size& button_size )
+		{
+			if( !cpg_ui::ChargeButtonPushedNode::init() )
+			{
+				return false;
+			}
+
+			setContentSize( button_size );
+
+			// Pivot
+			addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::min() );
+
+			// View
+			mViewNode = LayerColor::create( Color4B::RED, button_size.width, button_size.height );
+			mViewNode->setContentSize( button_size );
+			addChild( mViewNode );
+
+			// Setup
+			SetChargeRate( 0.f );
+
+			return true;
+		}
+
+		void SetChargeRate( const float charge_rate ) override
+		{
+			mViewNode->setOpacity( static_cast<unsigned int>(
+				255.f * cpg::clamp( charge_rate, 0.f, 1.f )
+			) ) ;
+
+			mViewNode->setContentSize( Size( getContentSize().width, getContentSize().height * charge_rate ) );
+		}
+
+	private:
+		Node* mViewNode;
+	};
+}
+
 namespace ui_research
 {
 	namespace button_research
 	{
-		EXButtonScene::EXButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		ChargeButtonScene::ChargeButtonScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 			, mKeyboardListener( nullptr )
 		{}
 
-		Scene* EXButtonScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+		Scene* ChargeButtonScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) EXButtonScene( back_to_the_previous_scene_callback );
+			auto ret = new ( std::nothrow ) ChargeButtonScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -42,7 +106,7 @@ namespace ui_research
 			return ret;
 		}
 
-		bool EXButtonScene::init()
+		bool ChargeButtonScene::init()
 		{
 			if( !Scene::init() )
 			{
@@ -100,7 +164,7 @@ namespace ui_research
 			{
 				const Size button_size( 100.f, 100.f );
 
-				auto ex_button = cpg_ui::EXButtonNode::create( button_size );
+				auto ex_button = cpg_ui::ChargeButtonNode::create( button_size, 2.f );
 				ex_button->setPosition( visibleCenter );
 				addChild( ex_button );
 				
@@ -115,7 +179,7 @@ namespace ui_research
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
+					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::Normal, sprite );
 				}
 
 				// Mouse Over View
@@ -124,22 +188,8 @@ namespace ui_research
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
 					sprite->setVisible( false );
-					{
-						auto label = Label::createWithTTF( "EX Button", cpg::StringTable::GetFontPath(), 10 );
-						label->setPosition( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f );
-						{
-							auto fadeOutAction = FadeOut::create( 0.8f );
-							auto fadeOutkDelay = DelayTime::create( 0.2f );
-							auto fadeInAction = FadeIn::create( 0.6f );
-							auto fadeInkDelay = DelayTime::create( 0.4f );
-							auto blinkSequence = Sequence::create( fadeOutAction, fadeOutkDelay, fadeInAction, fadeInkDelay, nullptr );
-							auto blinkrepeat = RepeatForever::create( blinkSequence );
-							label->runAction( blinkrepeat );
-						}
-						sprite->addChild( label );
-					}
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, sprite );
+					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::MouseOver, sprite );
 				}
 
 				// Push View
@@ -149,32 +199,42 @@ namespace ui_research
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
+					ex_button->SetView( cpg_ui::ChargeButtonNode::eViewIndex::Push, sprite );
 				}
 
-				ex_button->SetCallback( [button_status_label]( const cpg_ui::EXButtonNode::eButtonEvent button_event )
+				// Pushed View
+				{
+					auto view_node = PushedViewNode::create( button_size - Size( 10.f, 10.f ) );
+					view_node->setVisible( false );
+					view_node->setPosition( 5.f, 5.f );
+
+					ex_button->SetPushedView( view_node );
+				}
+
+				ex_button->SetCallback( [button_status_label]( const cpg_ui::ChargeButtonNode::eButtonEvent button_event )
 				{
 					switch( button_event )
 					{
-					case cpg_ui::EXButtonNode::eButtonEvent::MouseOver:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::MouseOver:
 						CCLOG( "MouseOver" );
-						button_status_label->setString( "MouseOver" );
 						break;
-					case cpg_ui::EXButtonNode::eButtonEvent::MouseLeave:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::MouseLeave:
 						CCLOG( "MouseLeave" );
-						button_status_label->setString( "MouseLeave" );
 						break;
-					case cpg_ui::EXButtonNode::eButtonEvent::Push:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::Push:
 						CCLOG( "Push" );
-						button_status_label->setString( "Push" );
+						button_status_label->setString( "Charging" );
 						break;
-					case cpg_ui::EXButtonNode::eButtonEvent::Move:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::Move:
 						CCLOG( "Move" );
-						button_status_label->setString( "Move" );
 						break;
-					case cpg_ui::EXButtonNode::eButtonEvent::Release:
+					case cpg_ui::ChargeButtonNode::eButtonEvent::Release:
 						CCLOG( "Release" );
-						button_status_label->setString( "Release" );
+						button_status_label->setString( "-" );
+						break;
+					case cpg_ui::ChargeButtonNode::eButtonEvent::Charged:
+						CCLOG( "Charged" );
+						button_status_label->setString( "Charged" );
 						break;
 					}
 				} );
@@ -183,16 +243,16 @@ namespace ui_research
 			return true;
 		}
 
-		void EXButtonScene::onEnter()
+		void ChargeButtonScene::onEnter()
 		{
 			Scene::onEnter();
 
 			assert( !mKeyboardListener );
 			mKeyboardListener = EventListenerKeyboard::create();
-			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( EXButtonScene::onKeyPressed, this );
+			mKeyboardListener->onKeyPressed = CC_CALLBACK_2( ChargeButtonScene::onKeyPressed, this );
 			getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 		}
-		void EXButtonScene::onExit()
+		void ChargeButtonScene::onExit()
 		{
 			assert( mKeyboardListener );
 			getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -202,7 +262,7 @@ namespace ui_research
 		}
 
 
-		void EXButtonScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+		void ChargeButtonScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{

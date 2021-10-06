@@ -12,17 +12,16 @@ namespace cpg_ui
 	class GaugeNode : public cocos2d::Node
 	{
 	private:
-		GaugeNode( const cocos2d::Size max_size, const int max_amount );
+		GaugeNode( const cocos2d::Size max_size );
 
 	public:
-		static GaugeNode* create( const cocos2d::Size max_size, const int max_amount );
+		static GaugeNode* create( const cocos2d::Size max_size );
 
 	private:
 		bool init();
 
 	public:
-		void UpdateMax( const int new_max );
-		void UpdateCurrent( const int new_current );
+		void UpdateCurrent( const float new_rate );
 
 	private:
 		void updateGaugeView();
@@ -34,10 +33,8 @@ namespace cpg_ui
 	private:
 		const cocos2d::Size mMaxSize;
 
-		int mGaugeMax;
-		int mGaugeMin;
-		int mGaugeCurrent;
-		int mGaugeAnimationCurrent;
+		float mCurrentRate;
+		float mAnimationRate;
 
 		cocos2d::DrawNode* mGaugeViewNode;
 		cocos2d::DrawNode* mGaugeAnimationViewNode;

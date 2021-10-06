@@ -6,14 +6,18 @@ namespace cpg
 {
 	class Setting
 	{
+	public:
+		struct Data
+		{
+			cocos2d::Size mFrameResolution = { 1024, 768 };
+			cocos2d::Size mDesignResolution = { 480, 320 };
+			bool mShowDisplayStats = true;
+		};
+
 	private:
-		explicit Setting( const cocos2d::Size frame_resolution, const cocos2d::Size design_resolution, const bool show_display_stats );
+		Setting() = delete;
 
 	public:
-		static const Setting load();
-
-		const cocos2d::Size mFrameResolution;
-		const cocos2d::Size mDesignResolution;
-		const bool mShowDisplayStats;
+		static const Data Load();
 	};
 }

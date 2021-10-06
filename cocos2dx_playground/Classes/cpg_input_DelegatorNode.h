@@ -9,13 +9,13 @@ namespace cpg_input
 {
 	using KeyCollectorSp = std::shared_ptr<class iKeyCollector>;
 
-	class Delegator : public cocos2d::Node
+	class DelegatorNode : public cocos2d::Node
 	{
 	private:
-		Delegator();
+		DelegatorNode();
 
 	public:
-		static Delegator* create( const char* allowed_keys_file_name );
+		static DelegatorNode* create( const char* allowed_keys_file_name );
 
 	private:
 		bool init( const char* allowed_keys_file_name );

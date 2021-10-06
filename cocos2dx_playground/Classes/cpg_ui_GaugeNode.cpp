@@ -22,13 +22,11 @@ namespace
 
 namespace cpg_ui
 {
-	GaugeNode::GaugeNode( const cocos2d::Size max_size, const int max_amount ) :
+	GaugeNode::GaugeNode( const cocos2d::Size max_size ) :
 		mMaxSize( max_size )
 
-		, mGaugeMax( max_amount )
-		, mGaugeMin( 0 )
-		, mGaugeCurrent( max_amount )
-		, mGaugeAnimationCurrent( max_amount )
+		, mCurrentRate( 1.f )
+		, mAnimationRate( 1.f )
 
 		, mGaugeViewNode( nullptr )
 		, mGaugeAnimationViewNode( nullptr )
@@ -37,9 +35,9 @@ namespace cpg_ui
 		, mGaugeAnimationStatisticsViewNode( nullptr )
 	{}
 
-	GaugeNode* GaugeNode::create( const cocos2d::Size max_size, const int max_amount )
+	GaugeNode* GaugeNode::create( const cocos2d::Size max_size )
 	{
-		auto ret = new ( std::nothrow ) GaugeNode( max_size, max_amount );
+		auto ret = new ( std::nothrow ) GaugeNode( max_size );
 		if( !ret || !ret->init() )
 		{
 			CC_SAFE_DELETE( ret );
@@ -103,16 +101,9 @@ namespace cpg_ui
 	}
 
 
-	void GaugeNode::UpdateMax( const int new_max )
+	void GaugeNode::UpdateCurrent( float new_rate )
 	{
-		mGaugeMax = new_max;
-		mGaugeAnimationCurrent = std::min( mGaugeMax, mGaugeAnimationCurrent );
-
-		UpdateCurrent( mGaugeCurrent );
-	}
-	void GaugeNode::UpdateCurrent( const int new_current )
-	{
-		mGaugeCurrent = std::min( mGaugeMax, std::max( 0, new_current ) );
+		mCurrentRate = std::min( 1.f, std::max( 0.f, new_rate ) );
 
 		updateGaugeView();
 		requestUpdateGaugeAnimation();
@@ -121,36 +112,30 @@ namespace cpg_ui
 
 	void GaugeNode::updateGaugeView()
 	{
-		const float gauge_rate = static_cast<float>( mGaugeCurrent ) / static_cast<float>( mGaugeMax );
-
 		mGaugeViewNode->clear();
 		mGaugeViewNode->drawSolidRect(
 			Vec2::ZERO
-			, Vec2( mMaxSize.width * gauge_rate, mMaxSize.height )
+			, Vec2( mMaxSize.width * mCurrentRate, mMaxSize.height )
 			, GaugeColor1
 		);
 
 		mGaugeStatisticsViewNode->setString( StringUtils::format(
-			"%d / %d"
-			, mGaugeCurrent
-			, mGaugeMax
+			"%.2f / 1"
+			, mCurrentRate
 		) );
 	}
 	void GaugeNode::updateGaugeAnimationView()
 	{
-		const float gauge_rate = static_cast<float>( mGaugeAnimationCurrent ) / static_cast<float>( mGaugeMax );
-
 		mGaugeAnimationViewNode->clear();
 		mGaugeAnimationViewNode->drawSolidRect(
 			Vec2::ZERO
-			, Vec2( mMaxSize.width * gauge_rate, mMaxSize.height )
+			, Vec2( mMaxSize.width * mAnimationRate, mMaxSize.height )
 			, GaugeColor2
 		);
 
 		mGaugeAnimationStatisticsViewNode->setString( StringUtils::format(
-			"%d / %d"
-			, mGaugeAnimationCurrent
-			, mGaugeMax
+			"%.2f / 1"
+			, mAnimationRate
 		) );
 	}
 
@@ -164,20 +149,15 @@ namespace cpg_ui
 	}
 	void GaugeNode::update4GaugeAnimation( float /*delta_time*/ )
 	{
-		if( mGaugeCurrent == mGaugeAnimationCurrent )
+		if( mCurrentRate >= mAnimationRate )
 		{
+			mAnimationRate = mCurrentRate;
+
 			unschedule( schedule_selector( GaugeNode::update4GaugeAnimation ) );
 		}
-		else
+		else if( mCurrentRate < mAnimationRate )
 		{
-			if( mGaugeCurrent > mGaugeAnimationCurrent )
-			{
-				mGaugeAnimationCurrent = mGaugeCurrent;
-			}
-			else //if( mGaugeCurrent < mGaugeAnimationCurrent )
-			{
-				mGaugeAnimationCurrent = std::max( mGaugeCurrent, mGaugeAnimationCurrent - 1 );
-			}
+			mAnimationRate = std::max( mCurrentRate, mAnimationRate - 0.02f );
 		}
 
 		updateGaugeAnimationView();

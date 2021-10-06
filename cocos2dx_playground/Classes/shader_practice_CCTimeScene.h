@@ -6,13 +6,13 @@
 
 namespace shader_practice
 {
-	class GLUniformInfosScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+	class CCTimeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
-		GLUniformInfosScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		CCTimeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "GL Uniform Infos"; }
+		static const char* getTitle() { return "CCTime"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:
@@ -23,6 +23,7 @@ namespace shader_practice
 		void onExit() override;
 
 	private:
+		void AddView( const char* view_name, const cocos2d::Vec2 view_position, const char* fragment_shader_path );
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:

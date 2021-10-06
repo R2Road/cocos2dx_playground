@@ -11,8 +11,8 @@
 
 #include "cpg_StringTable.h"
 
-#include "CPG_InputDelegator.h"
-#include "cpg_input_KeyboardInputObserver.h"
+#include "cpg_input_DelegatorNode.h"
+#include "cpg_input_KeyboardInputObserverNode.h"
 #include "cpg_input_KeyCodeNames.h"
 
 #include "input_practice_Setting.h"
@@ -28,10 +28,10 @@ namespace input_practice
 {
 	AllowedKeysTestScene::AllowedKeysTestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
-		, mInputDelegator( nullptr )
+		, mInputDelegatorNode( nullptr )
 		, mKeyViewer( nullptr )
 		, mKeyStrings( 200, 0 )
-		, mInputObserver( nullptr )
+		, mKeyboardInputObserverNode( nullptr )
 	{}
 
 	Scene* AllowedKeysTestScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -103,11 +103,11 @@ namespace input_practice
 		// input
 		//
 		{
-			mInputDelegator = cpg_input::Delegator::create( input_practice::Setting::getKeyAllowFileName().c_str() );
-			addChild( mInputDelegator, 0 );
+			mInputDelegatorNode = cpg_input::DelegatorNode::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			addChild( mInputDelegatorNode, 0 );
 
-			mInputObserver = cpg_input::KeyboardInputObserver::create( input_practice::Setting::getKeyAllowFileName().c_str() );
-			addChild( mInputObserver, 1 );
+			mKeyboardInputObserverNode = cpg_input::KeyboardInputObserverNode::create( input_practice::Setting::getKeyAllowFileName().c_str() );
+			addChild( mKeyboardInputObserverNode, 1 );
 		}
 
 		//
@@ -131,12 +131,12 @@ namespace input_practice
 	}
 	void AllowedKeysTestScene::update( float dt )
 	{
-		if( mInputObserver->FoundInput() )
+		if( mKeyboardInputObserverNode->FoundInput() )
 		{
 			mKeyStrings.clear();
 			for( std::size_t cur = 0; cur < cpg_input::KeyCodeContainerSize; ++cur )
 			{
-				if( mInputDelegator->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
+				if( mInputDelegatorNode->isActiveKey( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) ) )
 				{
 					mKeyStrings += cpg_input::KeyCodeNames::Get( static_cast<cocos2d::EventKeyboard::KeyCode>( cur ) );
 					mKeyStrings += "\n";

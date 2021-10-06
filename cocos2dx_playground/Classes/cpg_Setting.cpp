@@ -5,34 +5,27 @@
 
 namespace cpg
 {
-	Setting::Setting( const cocos2d::Size frame_resolution, const cocos2d::Size design_resolution, const bool show_display_stats ) :
-		mFrameResolution( frame_resolution )
-		, mDesignResolution( design_resolution )
-		, mShowDisplayStats( show_display_stats )
-	{}
-
-	const Setting Setting::load()
+	const Setting::Data Setting::Load()
 	{
-		// default
-		cocos2d::Size frame_resolution( 1024, 768 );
-		cocos2d::Size design_resolution( 480, 320 );
-		bool show_display_stats = true;
+		Data ret;
 
 		// load json
-		const std::string& regionStr = cocos2d::FileUtils::getInstance()->getStringFromFile( "config/setting.json" );
 		rapidjson::Document doc;
-		doc.Parse<0>( regionStr.c_str() );
+		{
+			const auto json_string( std::move( cocos2d::FileUtils::getInstance()->getStringFromFile( "config/setting.json" ) ) );
+			doc.Parse<0>( json_string.c_str() );
+		}
 
 		if( doc.HasParseError() )
 		{
 			cocos2d::log( "json parse error" );
-			return Setting( frame_resolution, design_resolution, show_display_stats );
+			return ret;
 		}
 
 		if( doc.IsNull() )
 		{
 			cocos2d::log( "json is empty" );
-			return Setting( frame_resolution, design_resolution, show_display_stats );
+			return ret;
 		}
 
 		const auto frame_resolution_itr = doc.FindMember( "frame_resolution" );
@@ -44,7 +37,9 @@ namespace cpg
 				&& x_itr->value.IsInt()
 				&& frame_resolution_itr->value.MemberEnd() != y_itr
 				&& y_itr->value.IsInt() )
-				frame_resolution.setSize( x_itr->value.GetInt(), y_itr->value.GetInt() );
+			{
+				ret.mFrameResolution.setSize( x_itr->value.GetInt(), y_itr->value.GetInt() );
+			}
 		}
 
 		const auto design_resolution_itr = doc.FindMember( "design_resolution" );
@@ -56,13 +51,17 @@ namespace cpg
 				&& x_itr->value.IsInt()
 				&& frame_resolution_itr->value.MemberEnd() != y_itr
 				&& y_itr->value.IsInt() )
-				design_resolution.setSize( x_itr->value.GetInt(), y_itr->value.GetInt() );
+			{
+				ret.mDesignResolution.setSize( x_itr->value.GetInt(), y_itr->value.GetInt() );
+			}
 		}
 
 		const auto display_stats_itr = doc.FindMember( "display_stats" );
 		if( doc.MemberEnd() != display_stats_itr )
-			show_display_stats = display_stats_itr->value.GetBool();
+		{
+			ret.mShowDisplayStats = display_stats_itr->value.GetBool();
+		}
 
-		return Setting( frame_resolution, design_resolution, show_display_stats );
+		return ret;
 	}
 }

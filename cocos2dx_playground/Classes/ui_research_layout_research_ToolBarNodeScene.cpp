@@ -1,4 +1,4 @@
-#include "cpgui_research_layout_ToolBarNodeScene.h"
+#include "ui_research_layout_research_ToolBarNodeScene.h"
 
 #include <new> // std::nothrow
 #include <numeric>

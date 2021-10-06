@@ -4,10 +4,6 @@
 
 #include "2d/CCNode.h"
 
-NS_CC_BEGIN
-class Sprite;
-NS_CC_END
-
 namespace cpg_input
 {
 	class iKeyCollector;
@@ -25,10 +21,10 @@ namespace cpg_input
 	private:
 		struct KeyViewData
 		{
-			KeyViewData( int key_index, cocos2d::Sprite* sprite_node ) : KeyIndex( key_index ), SpriteNode( sprite_node ) {}
+			KeyViewData( int key_index, cocos2d::Node* sprite_node ) : KeyIndex( key_index ), SpriteNode( sprite_node ) {}
 
 			int KeyIndex;
-			cocos2d::Sprite* SpriteNode;
+			cocos2d::Node* SpriteNode;
 		};
 
 		KeyViewer();

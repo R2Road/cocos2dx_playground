@@ -5,7 +5,6 @@
 #include "helper_BackToThePreviousScene.h"
 
 NS_CC_BEGIN
-	class DrawNode;
 	class Label;
 NS_CC_END
 
@@ -35,6 +34,7 @@ namespace ui_research
 			void onExit() override;
 
 		private:
+			void updateGauge();
 			void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* key_event );
 
 		private:
@@ -44,6 +44,7 @@ namespace ui_research
 			int mGaugeCurrent;
 
 			cpg_ui::GaugeNode* mGaugeNode;
+			cocos2d::Label* mStatisticsViewNode;
 		};
 	}
 }

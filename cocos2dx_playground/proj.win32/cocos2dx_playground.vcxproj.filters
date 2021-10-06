@@ -243,18 +243,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_BasicCollector.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_Input_iKeyCollector.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputDelegator.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CPG_InputKeyMap.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\EntryScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
@@ -696,9 +684,6 @@
     <ClCompile Include="..\Classes\step_defender_tool_ParallaxLayerEditorScene.cpp">
       <Filter>src\scene\step_07_defender\tool</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.cpp">
-      <Filter>src\scene\ui_research</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\step_defender_game_test_TileMapNodeScene.cpp">
       <Filter>src\scene\step_07_defender\game_test</Filter>
     </ClCompile>
@@ -1023,9 +1008,6 @@
     <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserver.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_astar_TestScene.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
@@ -1065,6 +1047,36 @@
     <ClCompile Include="..\Classes\cpg_ui_GaugeNode.cpp">
       <Filter>src\cpg_ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_button_research_ChargeButtonScene.cpp">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_ui_ChargeButtonNode.cpp">
+      <Filter>src\cpg_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\shader_practice_CCTimeScene.cpp">
+      <Filter>src\scene\shader_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\shader_practice_CCRandom01Scene.cpp">
+      <Filter>src\scene\shader_practice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.cpp">
+      <Filter>src\scene\ui_research</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_KeyMap.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_iKeyCollector.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_DelegatorNode.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_KeyboardInputObserverNode.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cpg_input_BasicKeyCollector.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1072,18 +1084,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_BasicCollector.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_Input_iKeyCollector.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputDelegator.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CPG_InputKeyMap.h">
-      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\EntryScene.h">
       <Filter>src\scene</Filter>
@@ -1556,9 +1556,6 @@
     <ClInclude Include="..\Classes\step_defender_tool_ParallaxLayerEditorScene.h">
       <Filter>src\scene\step_07_defender\tool</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cpgui_research_layout_ToolBarNodeScene.h">
-      <Filter>src\scene\ui_research</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\step_defender_game_test_TileMapNodeScene.h">
       <Filter>src\scene\step_07_defender\game_test</Filter>
     </ClInclude>
@@ -1892,9 +1889,6 @@
     <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h">
       <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserver.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_TestScene.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
@@ -1936,6 +1930,36 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_ui_GaugeNode.h">
       <Filter>src\cpg_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_button_research_ChargeButtonScene.h">
+      <Filter>src\scene\ui_research\button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_ui_ChargeButtonNode.h">
+      <Filter>src\cpg_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\shader_practice_CCTimeScene.h">
+      <Filter>src\scene\shader_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\shader_practice_CCRandom01Scene.h">
+      <Filter>src\scene\shader_practice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.h">
+      <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_KeyMap.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_iKeyCollector.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_DelegatorNode.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_KeyboardInputObserverNode.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cpg_input_BasicKeyCollector.h">
+      <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
