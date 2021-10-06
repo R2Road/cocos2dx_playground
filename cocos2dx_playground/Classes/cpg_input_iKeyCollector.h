@@ -27,9 +27,9 @@ namespace cpg_input
 		virtual void collect( const step_rain_of_chaos::input::KeyCodeCollector& key_code_collector ) = 0;
 		virtual void update_forHistory() = 0;
 
-		virtual const bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const = 0;
-		virtual const bool getKeyStatus( const int target_key_index ) const = 0;
-		virtual const bool hasChanged() const = 0;
+		virtual bool getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const = 0;
+		virtual bool getKeyStatus( const int target_key_index ) const = 0;
+		virtual bool hasChanged() const = 0;
 
 	protected:
 		const KeyMapSp mKeyMapContainer;

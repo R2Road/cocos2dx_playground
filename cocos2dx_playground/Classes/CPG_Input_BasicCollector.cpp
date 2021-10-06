@@ -39,7 +39,7 @@ namespace cpg_input
 		}
 	}
 
-	const bool BasicCollector::getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const
+	bool BasicCollector::getKeyStatus( const cocos2d::EventKeyboard::KeyCode keycode ) const
 	{
 		for( auto& k : mKeyMapContainer->mContainer )
 			if( keycode == k.keycode )
@@ -47,14 +47,14 @@ namespace cpg_input
 
 		return false;
 	}
-	const bool BasicCollector::getKeyStatus( const int target_key_index ) const
+	bool BasicCollector::getKeyStatus( const int target_key_index ) const
 	{
 		if( 0 > target_key_index || static_cast<std::size_t>( target_key_index ) >= ( *mCurrent_KeyStatus_Container ).size() )
 			return false;
 
 		return ( *mCurrent_KeyStatus_Container )[target_key_index];
 	}
-	const bool BasicCollector::hasChanged() const
+	bool BasicCollector::hasChanged() const
 	{
 		return mLast_KeyStatus_Container->to_ulong() != mCurrent_KeyStatus_Container->to_ulong();
 	}
