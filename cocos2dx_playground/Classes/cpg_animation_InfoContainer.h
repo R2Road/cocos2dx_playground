@@ -4,10 +4,7 @@
 
 #include "cpg_Animation_Info.h"
 
-namespace cpg
+namespace cpg_animation
 {
-	namespace animation
-	{
-		using InfoContainerT = std::vector<cpg::animation::Info>;
-	}
+	using InfoContainerT = std::vector<cpg_animation::Info>;
 }

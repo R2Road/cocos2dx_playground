@@ -1,8 +1,5 @@
 #include "cpg_animation_InfoContainer.h"
 
-namespace cpg
+namespace cpg_animation
 {
-	namespace animation
-	{
-	}
 }

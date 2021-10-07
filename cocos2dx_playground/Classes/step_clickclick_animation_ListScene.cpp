@@ -23,21 +23,21 @@ USING_NS_CC;
 
 namespace
 {
-	const std::vector<cpg::animation::Info> AnimationInfos = {
+	const std::vector<cpg_animation::Info> AnimationInfos = {
 		{
-			cpg::animation::eIndex::idle
+			cpg_animation::eIndex::idle
 			, 0.06f
 			, std::vector<std::string>{ "actor001_idle_01.png", "actor001_idle_02.png", "actor001_idle_01.png", "actor001_idle_03.png" }
 		}
 
 		, {
-			cpg::animation::eIndex::run
+			cpg_animation::eIndex::run
 			, 0.1f
 			, std::vector<std::string>{ "actor001_run_01.png", "actor001_run_02.png", "actor001_run_03.png", "actor001_run_04.png" }
 		}
 
 		, {
-			cpg::animation::eIndex::win
+			cpg_animation::eIndex::win
 			, 0.1f
 			, std::vector<std::string>{ "actor001_win_01.png", "actor001_win_02.png" }
 		}
@@ -181,7 +181,7 @@ namespace step_clickclick
 		}
 		
 
-		void ListScene::playAnimation( const cpg::animation::eIndex animation_index )
+		void ListScene::playAnimation( const cpg_animation::eIndex animation_index )
 		{
 			auto animation_action = getAnimationAction( animation_index );
 			if( !animation_action )
@@ -192,7 +192,7 @@ namespace step_clickclick
 			mAnimationNode->stopAllActions();
 			mAnimationNode->runAction( animation_action );
 		}
-		cocos2d::Action* ListScene::getAnimationAction( const cpg::animation::eIndex animation_index ) const
+		cocos2d::Action* ListScene::getAnimationAction( const cpg_animation::eIndex animation_index ) const
 		{
 			for( auto a : mAnimationActions )
 			{
@@ -215,15 +215,15 @@ namespace step_clickclick
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
-				playAnimation( cpg::animation::eIndex::idle );
+				playAnimation( cpg_animation::eIndex::idle );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_S:
-				playAnimation( cpg::animation::eIndex::run );
+				playAnimation( cpg_animation::eIndex::run );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_D:
-				playAnimation( cpg::animation::eIndex::win );
+				playAnimation( cpg_animation::eIndex::win );
 				break;
 
 			default:

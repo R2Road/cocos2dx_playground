@@ -144,19 +144,19 @@ namespace step_mole
 				return;
 
 			case EventKeyboard::KeyCode::KEY_A:
-				PlayAnimation( cpg::animation::eIndex::wait );
+				PlayAnimation( cpg_animation::eIndex::wait );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_S:
-				PlayAnimation( cpg::animation::eIndex::wakeup );
+				PlayAnimation( cpg_animation::eIndex::wakeup );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_D:
-				PlayAnimation( cpg::animation::eIndex::idle );
+				PlayAnimation( cpg_animation::eIndex::idle );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_F:
-				PlayAnimation( cpg::animation::eIndex::sleep );
+				PlayAnimation( cpg_animation::eIndex::sleep );
 				break;
 
 			case EventKeyboard::KeyCode::KEY_Q: // Play With Callback
@@ -171,7 +171,7 @@ namespace step_mole
 				CCLOG( "Key Code : %d", keycode );
 			}
 		}
-		void ComponentScene::PlayAnimation( const cpg::animation::eIndex animation_index )
+		void ComponentScene::PlayAnimation( const cpg_animation::eIndex animation_index )
 		{
 			auto animation_component = static_cast<step_mole::AnimationComponent*>( mAnimationNode->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimation( animation_index );
@@ -180,10 +180,10 @@ namespace step_mole
 		{
 			auto animation_component = static_cast<step_mole::AnimationComponent*>( mAnimationNode->getComponent( step_mole::AnimationComponent::GetStaticName() ) );
 			animation_component->PlayAnimationWithCallback(
-				cpg::animation::eIndex::damaged_1
+				cpg_animation::eIndex::damaged_1
 				, [animation_component]()
 				{
-					animation_component->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_2, []() {} );
+					animation_component->PlayAnimationWithCallback( cpg_animation::eIndex::damaged_2, []() {} );
 				}
 			);
 		}

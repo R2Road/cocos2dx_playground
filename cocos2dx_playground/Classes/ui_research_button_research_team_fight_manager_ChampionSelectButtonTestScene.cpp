@@ -25,21 +25,21 @@ USING_NS_CC;
 
 namespace
 {
-	const cpg::animation::InfoContainerT& GetCharacterAnimationInfoContainer()
+	const cpg_animation::InfoContainerT& GetCharacterAnimationInfoContainer()
 	{
-		static const cpg::animation::InfoContainerT animation_info_container = {
+		static const cpg_animation::InfoContainerT animation_info_container = {
 			{
-				cpg::animation::eIndex::sleep
+				cpg_animation::eIndex::sleep
 				, 0.1f
 				, std::vector<std::string>{ "dummy_actor_001_slp_1_0.png" }
 			}
 			,{
-				cpg::animation::eIndex::idle
+				cpg_animation::eIndex::idle
 				, 0.075f
 				, std::vector<std::string>{ "dummy_actor_001_idl_1_0.png", "dummy_actor_001_idl_1_1.png", "dummy_actor_001_idl_1_2.png", "dummy_actor_001_idl_1_3.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png", "dummy_actor_001_idl_1_4.png" }
 			}
 			,{
-				cpg::animation::eIndex::run
+				cpg_animation::eIndex::run
 				, 0.075f
 				, std::vector<std::string>{ "dummy_actor_001_mov_1_0.png", "dummy_actor_001_mov_1_1.png", "dummy_actor_001_mov_1_2.png", "dummy_actor_001_mov_1_3.png" }
 			}
@@ -160,7 +160,7 @@ namespace ui_research
 						// Animation Component
 						animation_component = step_mole::AnimationComponent::create( GetCharacterAnimationInfoContainer() );
 						sprite->addComponent( animation_component );
-						animation_component->PlayAnimation( cpg::animation::eIndex::sleep );
+						animation_component->PlayAnimation( cpg_animation::eIndex::sleep );
 					}
 
 					// Name
@@ -180,15 +180,15 @@ namespace ui_research
 						{
 						case cpg_ui::EXButtonNode::eButtonEvent::MouseOver:
 							CCLOG( "MouseOver" );
-							animation_component->PlayAnimation( cpg::animation::eIndex::idle );
+							animation_component->PlayAnimation( cpg_animation::eIndex::idle );
 							break;
 						case cpg_ui::EXButtonNode::eButtonEvent::MouseLeave:
 							CCLOG( "MouseLeave" );
-							animation_component->PlayAnimation( cpg::animation::eIndex::sleep );
+							animation_component->PlayAnimation( cpg_animation::eIndex::sleep );
 							break;
 						case cpg_ui::EXButtonNode::eButtonEvent::Push:
 							CCLOG( "Push" );
-							animation_component->PlayAnimation( cpg::animation::eIndex::run );
+							animation_component->PlayAnimation( cpg_animation::eIndex::run );
 							break;
 						case cpg_ui::EXButtonNode::eButtonEvent::Move:
 							CCLOG( "Move" );

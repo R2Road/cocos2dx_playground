@@ -105,20 +105,20 @@ namespace step_mole
 		case eState::Wait:
 		{
 			mCircleCollisionComponent->setEnabled( false );
-			mAnimationComponent->PlayAnimation( cpg::animation::eIndex::wait );
+			mAnimationComponent->PlayAnimation( cpg_animation::eIndex::wait );
 		}
 		break;
 
 		case eState::Wakeup:
 		{
 			mCircleCollisionComponent->setEnabled( true );
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::wakeup, std::bind( &ObjectComponent::ChangeState, this, eState::Action ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg_animation::eIndex::wakeup, std::bind( &ObjectComponent::ChangeState, this, eState::Action ) );
 		}
 		break;
 
 		case eState::Action:
 		{
-			mAnimationComponent->PlayAnimation( cpg::animation::eIndex::idle );
+			mAnimationComponent->PlayAnimation( cpg_animation::eIndex::idle );
 			_owner->scheduleOnce(
 				[this]( float )
 				{
@@ -132,7 +132,7 @@ namespace step_mole
 
 		case eState::Sleep:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::sleep, std::bind( &ObjectComponent::ChangeState, this, eState::Exit ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg_animation::eIndex::sleep, std::bind( &ObjectComponent::ChangeState, this, eState::Exit ) );
 		}
 		break;
 
@@ -141,12 +141,12 @@ namespace step_mole
 			_owner->unschedule( "change_state" );
 
 			mCircleCollisionComponent->setEnabled( false );
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_1, std::bind( &ObjectComponent::ChangeState, this, eState::Damaged_2 ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg_animation::eIndex::damaged_1, std::bind( &ObjectComponent::ChangeState, this, eState::Damaged_2 ) );
 		}
 		break;
 		case eState::Damaged_2:
 		{
-			mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_2, std::bind( &ObjectComponent::ChangeState, this, eState::Exit ) );
+			mAnimationComponent->PlayAnimationWithCallback( cpg_animation::eIndex::damaged_2, std::bind( &ObjectComponent::ChangeState, this, eState::Exit ) );
 		}
 		break;
 
