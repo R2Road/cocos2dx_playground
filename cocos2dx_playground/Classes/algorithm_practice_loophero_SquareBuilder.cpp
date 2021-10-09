@@ -18,6 +18,16 @@ namespace algorithm_practice_loophero
 		auto CurrentPivotList = algorithm_practice_loophero::PIVOT_LIST;
 		cpg::Point square_size;
 		{
+			//
+			// # "required_half_road_count" contained '+' area
+			// # we need 'width" and 'height'
+			//
+			//  p+++++++++++p
+			//  +           -
+			//  +           -
+			//  +           -
+			//  p-----------p
+			//
 			const int required_half_road_count = ( algorithm_practice_loophero::ROAD_LENGTH - algorithm_practice_loophero::ROAD_PIVOT_COUNT ) / 2;
 
 			const auto square_width_without_pivot = cpg::Random::GetInt( static_cast<int>( required_half_road_count * 0.3f ), static_cast<int>( required_half_road_count * 0.9f ) );
