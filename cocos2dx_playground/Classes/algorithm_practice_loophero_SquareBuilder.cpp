@@ -47,9 +47,21 @@ namespace algorithm_practice_loophero
 		for( int i = 0; ROAD_PIVOT_COUNT > i; ++i )
 		{
 			const auto start_point = CurrentPivotList[i];
+
+			//
+			// # i + 1 mean
+			// # chain of pivot
+			//
+			// 0 > 1 > 2 > 3 > 0
+			//
 			const auto end_point = i + 1 < ROAD_PIVOT_COUNT ? CurrentPivotList[i + 1] : CurrentPivotList[0];
 
+
 			const auto start2end = end_point - start_point;
+
+			//
+			// Normalize??
+			//
 			const cpg::Point dir{
 				cpg::clamp( start2end.x, -1, 1 )
 				, cpg::clamp( start2end.y, -1, 1 )
