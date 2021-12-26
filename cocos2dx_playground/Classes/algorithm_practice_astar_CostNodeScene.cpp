@@ -1,4 +1,4 @@
-#include "algorithm_practice_astar_RootScene.h"
+#include "algorithm_practice_astar_CostNodeScene.h"
 
 #include <new>
 #include <numeric>
@@ -9,10 +9,6 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "algorithm_practice_astar_CostNodeScene.h"
-#include "algorithm_practice_astar_TestScene.h"
-#include "algorithm_practice_RootScene.h"
-
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
@@ -20,12 +16,14 @@ USING_NS_CC;
 
 namespace algorithm_practice_astar
 {
-	RootScene::RootScene() : mKeyboardListener( nullptr )
+	CostNodeScene::CostNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+		, mKeyboardListener( nullptr )
 	{}
 
-	Scene* RootScene::create()
+	Scene* CostNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) RootScene();
+		auto ret = new ( std::nothrow ) CostNodeScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -39,7 +37,7 @@ namespace algorithm_practice_astar
 		return ret;
 	}
 
-	bool RootScene::init()
+	bool CostNodeScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -62,21 +60,16 @@ namespace algorithm_practice_astar
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
-			ss << cpg::linefeed;
-			ss << cpg::linefeed;
-			ss << "[1] : " << CostNodeScene::getTitle();
-			ss << cpg::linefeed;
-			ss << cpg::linefeed;
-			ss << "=============================";
-			ss << cpg::linefeed;
-			ss << cpg::linefeed;
-			ss << "[SPACE] : " << TestScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10 );
-			label->setPosition( visibleCenter );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+			label->setPosition(
+				visibleOrigin
+				+ Vec2( 0.f, visibleSize.height )
+			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
-			
+
 		//
 		// Background
 		//
@@ -85,19 +78,25 @@ namespace algorithm_practice_astar
 			addChild( layer, std::numeric_limits<int>::min() );
 		}
 
+		//
+		// CostNode
+		//
+		{
+		}
+
 		return true;
 	}
 
-	void RootScene::onEnter()
+	void CostNodeScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( RootScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( CostNodeScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void RootScene::onExit()
+	void CostNodeScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -106,21 +105,14 @@ namespace algorithm_practice_astar
 		Scene::onExit();
 	}
 
-	void RootScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+
+	void CostNodeScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 	{
 		switch( key_code )
 		{
-			case EventKeyboard::KeyCode::KEY_ESCAPE:
-				_director->replaceScene( algorithm_practice::RootScene::create() );
-				return;
-
-			case EventKeyboard::KeyCode::KEY_1:
-				_director->replaceScene( CostNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
-				return;
-
-			case EventKeyboard::KeyCode::KEY_SPACE:
-				_director->replaceScene( TestScene::create( helper::CreateSceneMover<RootScene>() ) );
-				return;
+		case EventKeyboard::KeyCode::KEY_ESCAPE:
+			helper::BackToThePreviousScene::MoveBack();
+			return;
 		}
 	}
 }

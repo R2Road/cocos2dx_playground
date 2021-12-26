@@ -1080,6 +1080,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_astar_RootScene.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_astar_CostNodeScene.cpp">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1965,6 +1968,9 @@
       <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_RootScene.h">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_CostNodeScene.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
   </ItemGroup>
