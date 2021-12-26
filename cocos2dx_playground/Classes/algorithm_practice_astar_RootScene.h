@@ -2,8 +2,6 @@
 
 #include "2d/CCScene.h"
 
-#include "helper_BackToThePreviousScene.h"
-
 namespace algorithm_practice_astar
 {
 	class RootScene : public cocos2d::Scene
