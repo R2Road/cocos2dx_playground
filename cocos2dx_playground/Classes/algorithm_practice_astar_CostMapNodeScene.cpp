@@ -11,6 +11,7 @@
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
+#include "cpg_TileSheetConfiguration.h"
 
 USING_NS_CC;
 
@@ -69,6 +70,12 @@ namespace algorithm_practice_astar
 			);
 			addChild( label, std::numeric_limits<int>::max() );
 		}
+
+		//
+		// Load Tile Config
+		//
+		cpg::TileSheetConfiguration tile_sheet_configuration( 1, 1, 1, 1, "" );
+		CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//
 		// Background
