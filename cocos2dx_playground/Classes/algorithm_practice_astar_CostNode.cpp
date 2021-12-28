@@ -16,10 +16,10 @@ namespace algorithm_practice_astar
 	CostNode::CostNode()
 	{}
 
-	Node* CostNode::create()
+	Node* CostNode::create( const cocos2d::Size node_size )
 	{
 		auto ret = new ( std::nothrow ) CostNode();
-		if( !ret || !ret->init() )
+		if( !ret || !ret->init( node_size ) )
 		{
 			delete ret;
 			ret = nullptr;
@@ -32,12 +32,14 @@ namespace algorithm_practice_astar
 		return ret;
 	}
 
-	bool CostNode::init()
+	bool CostNode::init( const cocos2d::Size node_size )
 	{
 		if( !Node::init() )
 		{
 			return false;
 		}
+
+		setContentSize( node_size );
 
 		//
 		// Debug

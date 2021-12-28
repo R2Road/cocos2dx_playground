@@ -84,8 +84,7 @@ namespace algorithm_practice_astar
 		// CostNode
 		//
 		{
-			auto node = CostNode::create();
-			node->setContentSize( Size( 16.f, 16.f ) );
+			auto node = CostNode::create( Size( 16.f, 16.f ) );
 			node->setPosition( visibleCenter );
 			addChild( node );
 		}
