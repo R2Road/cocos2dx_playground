@@ -6,6 +6,19 @@ namespace cpg
 {
 	struct TileSheetConfiguration
 	{
+		TileSheetConfiguration() :
+			TileWidth( 1 )
+			, TileHeight( 1 )
+
+			, TileMargin_Width( 1 )
+			, TileMargin_Height( 1 )
+
+			, BlockWidth( TileMargin_Width + TileWidth + TileMargin_Width )
+			, BlockHeight( TileMargin_Height + TileHeight + TileMargin_Height )
+
+			, TexturePath( "" )
+		{}
+
 		TileSheetConfiguration( int tile_width, int tile_height, int tile_margin_width, int tile_margin_height, const char* texture_path ) :
 			TileWidth( tile_width )
 			, TileHeight( tile_height )

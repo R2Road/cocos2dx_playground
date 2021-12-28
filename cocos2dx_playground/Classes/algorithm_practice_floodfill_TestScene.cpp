@@ -83,7 +83,7 @@ namespace algorithm_practice_floodfill
 		//
 		// Load Tile Config
 		//
-		cpg::TileSheetConfiguration tile_sheet_configuration( 1, 1, 1, 1, "" );
+		cpg::TileSheetConfiguration tile_sheet_configuration;
 		CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//

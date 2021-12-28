@@ -194,7 +194,7 @@ namespace algorithm_practice_floodfill
 		// Grid Debug View Node
 		//
 		{
-			cpg::TileSheetConfiguration tile_sheet_config( 1, 1, 1, 1, "" );
+			cpg::TileSheetConfiguration tile_sheet_config;
 			CCASSERT( tile_sheet_config.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_02.json" ), "Failed - Load Tile Sheet Configuration" );
 
 			mGridDebugViewNode = step_defender::game::TileMapNode::create(

@@ -15,7 +15,7 @@ namespace algorithm_practice_floodfill
 {
 	DirectionMapNode::DirectionMapNode( const Config& config ) :
 		mConfig( config )
-		, mTileSheetConfig( 1, 1, 1, 1, "" )
+		, mTileSheetConfig()
 		, mTileSheetUtility()
 		, mReusedSprite( nullptr )
 	{}
