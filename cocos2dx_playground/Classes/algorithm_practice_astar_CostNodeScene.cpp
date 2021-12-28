@@ -22,6 +22,8 @@ namespace algorithm_practice_astar
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 		, mCostNode( nullptr )
+		, mCost2Start( 0 )
+		, mCost2End( 10 )
 	{}
 
 	Scene* CostNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -118,6 +120,12 @@ namespace algorithm_practice_astar
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			helper::BackToThePreviousScene::MoveBack();
+			return;
+
+		case EventKeyboard::KeyCode::KEY_1:
+			mCost2Start += 1;
+			mCost2End += 1;
+			mCostNode->SetCost( mCost2Start, mCost2End );
 			return;
 		}
 	}

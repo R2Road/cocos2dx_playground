@@ -13,7 +13,10 @@ USING_NS_CC;
 
 namespace algorithm_practice_astar
 {
-	CostNode::CostNode()
+	CostNode::CostNode() :
+		mLabel_Cost2Start( nullptr )
+		, mLabel_Cost2End( nullptr )
+		, mLabel_TotalCost( nullptr )
 	{}
 
 	CostNode* CostNode::create( const cocos2d::Size node_size )
@@ -51,32 +54,39 @@ namespace algorithm_practice_astar
 		// Left Top
 		//
 		{
-			auto label = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::LEFT );
-			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-			label->setPositionY( getContentSize().height );
-			addChild( label );
+			mLabel_Cost2Start = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::LEFT );
+			mLabel_Cost2Start->setAnchorPoint( Vec2( 0.f, 1.f ) );
+			mLabel_Cost2Start->setPositionY( getContentSize().height );
+			addChild( mLabel_Cost2Start );
 		}
 
 		//
 		// Right Top
 		//
 		{
-			auto label = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::RIGHT );
-			label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-			label->setPosition( getContentSize().width, getContentSize().height );
-			addChild( label );
+			mLabel_Cost2End = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::RIGHT );
+			mLabel_Cost2End->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			mLabel_Cost2End->setPosition( getContentSize().width, getContentSize().height );
+			addChild( mLabel_Cost2End );
 		}
 
 		//
 		// Center Bottom
 		//
 		{
-			auto label = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::CENTER );
-			label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-			label->setPositionX( getContentSize().width * 0.5f );
-			addChild( label );
+			mLabel_TotalCost = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::CENTER );
+			mLabel_TotalCost->setAnchorPoint( Vec2( 0.5f, 0.f ) );
+			mLabel_TotalCost->setPositionX( getContentSize().width * 0.5f );
+			addChild( mLabel_TotalCost );
 		}
 
 		return true;
+	}
+
+	void CostNode::SetCost( const int cost_2_start, const int cost_2_end )
+	{
+		mLabel_Cost2Start->setString( std::to_string( cost_2_start ) );
+		mLabel_Cost2End->setString( std::to_string( cost_2_end ) );
+		mLabel_TotalCost->setString( std::to_string( cost_2_start + cost_2_end ) );
 	}
 }

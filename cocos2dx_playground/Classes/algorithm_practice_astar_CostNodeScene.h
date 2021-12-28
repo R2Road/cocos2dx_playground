@@ -31,5 +31,7 @@ namespace algorithm_practice_astar
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 		CostNode* mCostNode;
+		int mCost2Start;
+		int mCost2End;
 	};
 }
