@@ -9,6 +9,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "cpg_node_PivotNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
@@ -82,6 +83,13 @@ namespace algorithm_practice_astar
 		// CostNode
 		//
 		{
+			auto node = Node::create();
+			node->setContentSize( Size( 16.f, 16.f ) );
+			node->setPosition( visibleCenter );
+			addChild( node );
+			{
+				node->addChild( cpg_node::PivotNode::create() );
+			}
 		}
 
 		return true;
