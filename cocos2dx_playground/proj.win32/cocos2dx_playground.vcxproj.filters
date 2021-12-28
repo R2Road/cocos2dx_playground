@@ -1086,6 +1086,9 @@
     <ClCompile Include="..\Classes\cpg_node_GuideRectNode.cpp">
       <Filter>src\cpg_node</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_astar_CostNode.cpp">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1978,6 +1981,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\cpg_node_GuideRectNode.h">
       <Filter>src\cpg_node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_CostNode.h">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

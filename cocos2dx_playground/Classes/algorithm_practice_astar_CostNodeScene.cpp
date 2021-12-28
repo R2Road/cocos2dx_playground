@@ -9,8 +9,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
-#include "cpg_node_PivotNode.h"
-#include "cpg_node_GuideRectNode.h"
+#include "algorithm_practice_astar_CostNode.h"
+
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
@@ -84,47 +84,10 @@ namespace algorithm_practice_astar
 		// CostNode
 		//
 		{
-			auto node = Node::create();
+			auto node = CostNode::create();
 			node->setContentSize( Size( 16.f, 16.f ) );
 			node->setPosition( visibleCenter );
 			addChild( node );
-			{
-				//
-				// Debug
-				//
-				node->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
-				node->addChild( cpg_node::GuideRectNode::create( node ), std::numeric_limits<int>::max() );
-
-				//
-				// Left Top
-				//
-				{
-					auto label = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::LEFT );
-					label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-					label->setPositionY( node->getContentSize().height );
-					node->addChild( label );
-				}
-
-				//
-				// Right Top
-				//
-				{
-					auto label = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::RIGHT );
-					label->setAnchorPoint( Vec2( 1.f, 1.f ) );
-					label->setPosition( node->getContentSize().width, node->getContentSize().height );
-					node->addChild( label );
-				}
-
-				//
-				// Center Bottom
-				//
-				{
-					auto label = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::CENTER );
-					label->setAnchorPoint( Vec2( 0.5f, 0.f ) );
-					label->setPositionX( node->getContentSize().width * 0.5f );
-					node->addChild( label );
-				}
-			}
 		}
 
 		return true;
