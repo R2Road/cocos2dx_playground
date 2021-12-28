@@ -10,6 +10,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "algorithm_practice_astar_CostNodeScene.h"
+#include "algorithm_practice_astar_CostMapNodeScene.h"
 #include "algorithm_practice_astar_TestScene.h"
 #include "algorithm_practice_RootScene.h"
 
@@ -66,6 +67,8 @@ namespace algorithm_practice_astar
 			ss << cpg::linefeed;
 			ss << "[1] : " << CostNodeScene::getTitle();
 			ss << cpg::linefeed;
+			ss << "[2] : " << CostMapNodeScene::getTitle();
+			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "=============================";
 			ss << cpg::linefeed;
@@ -116,6 +119,9 @@ namespace algorithm_practice_astar
 
 			case EventKeyboard::KeyCode::KEY_1:
 				_director->replaceScene( CostNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+				return;
+			case EventKeyboard::KeyCode::KEY_2:
+				_director->replaceScene( CostMapNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_SPACE:

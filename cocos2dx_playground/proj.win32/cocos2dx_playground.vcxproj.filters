@@ -1089,6 +1089,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_astar_CostNode.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_astar_CostMapNodeScene.cpp">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1983,6 +1986,9 @@
       <Filter>src\cpg_node</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_CostNode.h">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_CostMapNodeScene.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
   </ItemGroup>
