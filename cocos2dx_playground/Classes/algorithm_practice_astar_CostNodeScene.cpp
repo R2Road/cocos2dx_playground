@@ -10,6 +10,7 @@
 #include "base/CCEventDispatcher.h"
 
 #include "cpg_node_PivotNode.h"
+#include "cpg_node_GuideRectNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
@@ -89,6 +90,7 @@ namespace algorithm_practice_astar
 			addChild( node );
 			{
 				node->addChild( cpg_node::PivotNode::create() );
+				node->addChild( cpg_node::GuideRectNode::create( node ) );
 			}
 		}
 

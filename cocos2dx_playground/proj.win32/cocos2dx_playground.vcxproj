@@ -175,6 +175,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_input_iKeyCollector.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyCodeNames.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyMap.cpp" />
+    <ClCompile Include="..\Classes\cpg_node_GuideRectNode.cpp" />
     <ClCompile Include="..\Classes\cpg_SStream.cpp" />
     <ClCompile Include="..\Classes\cpg_node_PivotNode.cpp" />
     <ClCompile Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.cpp" />
@@ -460,6 +461,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyCodeNames.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyMap.h" />
+    <ClInclude Include="..\Classes\cpg_node_GuideRectNode.h" />
     <ClInclude Include="..\Classes\cpg_SStream.h" />
     <ClInclude Include="..\Classes\cpg_node_PivotNode.h" />
     <ClInclude Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.h" />
