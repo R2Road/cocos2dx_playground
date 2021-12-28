@@ -10,7 +10,7 @@ namespace algorithm_practice_astar
 		CostNode();
 
 	public:
-		static cocos2d::Node* create( const cocos2d::Size node_size );
+		static CostNode* create( const cocos2d::Size node_size );
 
 	private:
 		bool init( const cocos2d::Size node_size );

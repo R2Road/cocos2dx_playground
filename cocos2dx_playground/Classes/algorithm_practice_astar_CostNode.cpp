@@ -16,7 +16,7 @@ namespace algorithm_practice_astar
 	CostNode::CostNode()
 	{}
 
-	Node* CostNode::create( const cocos2d::Size node_size )
+	CostNode* CostNode::create( const cocos2d::Size node_size )
 	{
 		auto ret = new ( std::nothrow ) CostNode();
 		if( !ret || !ret->init( node_size ) )

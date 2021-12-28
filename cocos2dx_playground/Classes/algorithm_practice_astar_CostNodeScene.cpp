@@ -21,6 +21,7 @@ namespace algorithm_practice_astar
 	CostNodeScene::CostNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+		, mCostNode( nullptr )
 	{}
 
 	Scene* CostNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -84,9 +85,9 @@ namespace algorithm_practice_astar
 		// CostNode
 		//
 		{
-			auto node = CostNode::create( Size( 16.f, 16.f ) );
-			node->setPosition( visibleCenter );
-			addChild( node );
+			mCostNode = CostNode::create( Size( 16.f, 16.f ) );
+			mCostNode->setPosition( visibleCenter );
+			addChild( mCostNode );
 		}
 
 		return true;

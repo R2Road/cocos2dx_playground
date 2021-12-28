@@ -6,6 +6,8 @@
 
 namespace algorithm_practice_astar
 {
+	class CostNode;
+
 	class CostNodeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
@@ -27,5 +29,7 @@ namespace algorithm_practice_astar
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+		CostNode* mCostNode;
 	};
 }
