@@ -13,8 +13,8 @@ namespace cpg
 			, TileMargin_Width( tile_margin_width )
 			, TileMargin_Height( tile_margin_height )
 
-			, BlockWidth( TileMargin_Width + TileWidth +TileMargin_Width )
-			, BlockHeight( TileMargin_Height + TileHeight +TileMargin_Height )
+			, BlockWidth( TileMargin_Width + TileWidth + TileMargin_Width )
+			, BlockHeight( TileMargin_Height + TileHeight + TileMargin_Height )
 
 			, TexturePath( texture_path )
 		{}
