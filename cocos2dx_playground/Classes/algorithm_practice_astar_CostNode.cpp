@@ -3,6 +3,7 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 
 #include "cpg_node_PivotNode.h"
@@ -14,7 +15,8 @@ USING_NS_CC;
 namespace algorithm_practice_astar
 {
 	CostNode::CostNode() :
-		mLabel_Cost2Start( nullptr )
+		mStatusNode( nullptr )
+		, mLabel_Cost2Start( nullptr )
 		, mLabel_Cost2End( nullptr )
 		, mLabel_TotalCost( nullptr )
 	{}
@@ -49,6 +51,14 @@ namespace algorithm_practice_astar
 		//
 		addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
 		addChild( cpg_node::GuideRectNode::create( this ), std::numeric_limits<int>::max() );
+
+		//
+		// Background
+		//
+		{
+			mStatusNode = DrawNode::create();
+			addChild( mStatusNode, std::numeric_limits<int>::min() );
+		}
 
 		//
 		// Left Top
@@ -88,5 +98,13 @@ namespace algorithm_practice_astar
 		mLabel_Cost2Start->setString( std::to_string( cost_2_start ) );
 		mLabel_Cost2End->setString( std::to_string( cost_2_end ) );
 		mLabel_TotalCost->setString( std::to_string( cost_2_start + cost_2_end ) );
+	}
+	void CostNode::SetStatus( const bool bOpen )
+	{
+		(
+			bOpen
+			? mStatusNode->drawSolidRect( Vec2::ZERO, Vec2( getContentSize().width, getContentSize().height ), Color4F::BLUE )
+			: mStatusNode->drawSolidRect( Vec2::ZERO, Vec2( getContentSize().width, getContentSize().height ), Color4F::BLACK )
+		);
 	}
 }

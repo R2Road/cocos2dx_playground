@@ -65,6 +65,14 @@ namespace algorithm_practice_astar
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[1] : Update Cost";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[2] : Open";
+			ss << cpg::linefeed;
+			ss << "[3] : Close";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -126,6 +134,13 @@ namespace algorithm_practice_astar
 			mCost2Start += 1;
 			mCost2End += 1;
 			mCostNode->SetCost( mCost2Start, mCost2End );
+			return;
+
+		case EventKeyboard::KeyCode::KEY_2:
+			mCostNode->SetStatus( true );
+			return;
+		case EventKeyboard::KeyCode::KEY_3:
+			mCostNode->SetStatus( false );
 			return;
 		}
 	}
