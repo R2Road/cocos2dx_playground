@@ -64,7 +64,7 @@ namespace algorithm_practice_astar
 		// Left Top
 		//
 		{
-			mLabel_Cost2Start = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::LEFT );
+			mLabel_Cost2Start = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::LEFT );
 			mLabel_Cost2Start->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			mLabel_Cost2Start->setPositionY( getContentSize().height );
 			addChild( mLabel_Cost2Start );
@@ -74,7 +74,7 @@ namespace algorithm_practice_astar
 		// Right Top
 		//
 		{
-			mLabel_Cost2End = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::RIGHT );
+			mLabel_Cost2End = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::RIGHT );
 			mLabel_Cost2End->setAnchorPoint( Vec2( 1.f, 1.f ) );
 			mLabel_Cost2End->setPosition( getContentSize().width, getContentSize().height );
 			addChild( mLabel_Cost2End );
@@ -84,7 +84,7 @@ namespace algorithm_practice_astar
 		// Center Bottom
 		//
 		{
-			mLabel_TotalCost = Label::createWithTTF( "999", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::CENTER );
+			mLabel_TotalCost = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::CENTER );
 			mLabel_TotalCost->setAnchorPoint( Vec2( 0.5f, 0.f ) );
 			mLabel_TotalCost->setPositionX( getContentSize().width * 0.5f );
 			addChild( mLabel_TotalCost );
