@@ -25,7 +25,8 @@ namespace algorithm_practice_astar
 		void onExit() override;
 
 	private:
-		void moveIndicator();
+		void requestMoveIndicator( const int move_x, const int move_y );
+		void moveIndicator( const int new_x, const int new_y );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
@@ -33,5 +34,8 @@ namespace algorithm_practice_astar
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 		CostMapNode* mCostMapNode;
 		cocos2d::Node* mIndicatorNode;
+
+		int mIndicatorPointX;
+		int mIndicatorPointY;
 	};
 }

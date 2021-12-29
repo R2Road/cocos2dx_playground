@@ -12,6 +12,7 @@
 
 #include "algorithm_practice_astar_CostMapNode.h"
 
+#include "cpg_Clamp.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
@@ -29,6 +30,9 @@ namespace algorithm_practice_astar
 		, mKeyboardListener( nullptr )
 		, mCostMapNode( nullptr )
 		, mIndicatorNode( nullptr )
+
+		, mIndicatorPointX( 0 )
+		, mIndicatorPointY( 0 )
 	{}
 
 	Scene* CostMapNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -114,7 +118,7 @@ namespace algorithm_practice_astar
 		//
 		//
 		//
-		moveIndicator();
+		moveIndicator( 0, 0 );
 
 		return true;
 	}
@@ -138,9 +142,19 @@ namespace algorithm_practice_astar
 	}
 
 
-	void CostMapNodeScene::moveIndicator()
+	void CostMapNodeScene::requestMoveIndicator( const int move_x, const int move_y )
 	{
-		mIndicatorNode->setPosition( mCostMapNode->getPosition() );
+		moveIndicator( mIndicatorPointX + move_x, mIndicatorPointY + move_y );
+	}
+	void CostMapNodeScene::moveIndicator( const int new_x, const int new_y )
+	{
+		mIndicatorPointX = cpg::clamp( new_x, 0, 10 - 1 );
+		mIndicatorPointY = cpg::clamp( new_y, 0, 10 - 1 );
+
+		mIndicatorNode->setPosition(
+			mCostMapNode->getPosition()
+			+ Vec2( CostNodeSize.width * mIndicatorPointX, CostNodeSize.height * mIndicatorPointY )
+		);
 	}
 
 
@@ -150,6 +164,19 @@ namespace algorithm_practice_astar
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			helper::BackToThePreviousScene::MoveBack();
+			return;
+
+		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+			requestMoveIndicator( -1, 0 );
+			return;
+		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			requestMoveIndicator( 1, 0 );
+			return;
+		case EventKeyboard::KeyCode::KEY_UP_ARROW:
+			requestMoveIndicator( 0, 1 );
+			return;
+		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+			requestMoveIndicator( 0, -1 );
 			return;
 		}
 	}
