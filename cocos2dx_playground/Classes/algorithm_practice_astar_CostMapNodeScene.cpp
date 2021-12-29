@@ -20,6 +20,11 @@ USING_NS_CC;
 
 namespace
 {
+	const struct
+	{
+		int w = 10;
+		int h = 10;
+	} CostMapBlockAmount;
 	const Size CostNodeSize( 16.f, 16.f );
 }
 
@@ -96,7 +101,7 @@ namespace algorithm_practice_astar
 		// CostMapNode
 		//
 		{
-			mCostMapNode = CostMapNode::create( 10, 10, CostNodeSize );
+			mCostMapNode = CostMapNode::create( CostMapBlockAmount.w, CostMapBlockAmount.h, CostNodeSize );
 			mCostMapNode->setPosition(
 				visibleCenter
 				- Vec2( mCostMapNode->getContentSize().width * 0.5f, mCostMapNode->getContentSize().height * 0.5f )
@@ -148,8 +153,8 @@ namespace algorithm_practice_astar
 	}
 	void CostMapNodeScene::moveIndicator( const int new_x, const int new_y )
 	{
-		mIndicatorPointX = cpg::clamp( new_x, 0, 10 - 1 );
-		mIndicatorPointY = cpg::clamp( new_y, 0, 10 - 1 );
+		mIndicatorPointX = cpg::clamp( new_x, 0, CostMapBlockAmount.w - 1 );
+		mIndicatorPointY = cpg::clamp( new_y, 0, CostMapBlockAmount.h - 1 );
 
 		mIndicatorNode->setPosition(
 			mCostMapNode->getPosition()
