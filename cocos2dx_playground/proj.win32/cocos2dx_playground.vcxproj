@@ -438,6 +438,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_Cell4AStar.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_CostMapNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_CostMapNodeScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_CostNode.h" />

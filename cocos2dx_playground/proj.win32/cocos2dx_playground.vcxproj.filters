@@ -1997,6 +1997,9 @@
     <ClInclude Include="..\Classes\algorithm_practice_Grid4TileMap.h">
       <Filter>src\scene\algorithm_practice</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_Cell4AStar.h">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
