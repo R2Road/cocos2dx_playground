@@ -2,12 +2,17 @@
 
 #include <string>
 
-#include "algorithm_practice_floodfill_Constant.h"
 #include "cpg_Grid.h"
 #include "cpg_Point.h"
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice
 {
+	enum class eCellType
+	{
+		Road,
+		Wall,
+	};
+
 	class Grid4TileMap
 	{
 	public:

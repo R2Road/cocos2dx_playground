@@ -14,10 +14,13 @@ namespace step_defender
 	}
 }
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice
 {
 	class Grid4TileMap;
+}
 
+namespace algorithm_practice_floodfill
+{
 	class EditorNode : public cocos2d::Node
 	{
 	public:
@@ -37,7 +40,7 @@ namespace algorithm_practice_floodfill
 
 		EditorNode(
 			const Config config
-			, Grid4TileMap* const grid_4_tile_map
+			, algorithm_practice::Grid4TileMap* const grid_4_tile_map
 			, step_defender::game::TileMapNode* const tile_map_node
 			, cocos2d::Node* const entry_point_indocator_node
 			, const cpg::TileSheetConfiguration& tile_sheet_configuration
@@ -46,7 +49,7 @@ namespace algorithm_practice_floodfill
 	public:
 		static EditorNode* create(
 			const Config config
-			, Grid4TileMap* const grid_4_tile_map
+			, algorithm_practice::Grid4TileMap* const grid_4_tile_map
 			, step_defender::game::TileMapNode* const tile_map_node
 			, cocos2d::Node* const entry_point_indocator_node
 			, const cpg::TileSheetConfiguration& tile_sheet_configuration
@@ -67,7 +70,7 @@ namespace algorithm_practice_floodfill
 	private:
 		const Config mConfig;
 
-		Grid4TileMap* const mGrid4TileMap;
+		algorithm_practice::Grid4TileMap* const mGrid4TileMap;
 		step_defender::game::TileMapNode* const mTileMapNode;
 		cocos2d::Node* const mEntryPointIndicatorNode;
 		cpg::Position2GridIndexConverter mPosition2GridIndexConverter;

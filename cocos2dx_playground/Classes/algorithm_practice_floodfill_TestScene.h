@@ -51,7 +51,7 @@ namespace algorithm_practice_floodfill
 
 		eMode mMode;
 
-		Grid4TileMap mGrid4TileMap;
+		algorithm_practice::Grid4TileMap mGrid4TileMap;
 
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::Node* mEntryPointIndicatorNode;

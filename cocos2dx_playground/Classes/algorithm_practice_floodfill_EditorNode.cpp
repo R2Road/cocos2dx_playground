@@ -21,14 +21,14 @@ USING_NS_CC;
 
 namespace
 {
-	cpg::Point GetTilePoint( algorithm_practice_floodfill::eCellType cell_type )
+	cpg::Point GetTilePoint( algorithm_practice::eCellType cell_type )
 	{
 		switch( cell_type )
 		{
-		case algorithm_practice_floodfill::eCellType::Road:
+		case algorithm_practice::eCellType::Road:
 			return cpg::Point{ 0, 0 };
 
-		case algorithm_practice_floodfill::eCellType::Wall:
+		case algorithm_practice::eCellType::Wall:
 			return cpg::Point{ 1, 0 };
 
 		default:
@@ -41,7 +41,7 @@ namespace algorithm_practice_floodfill
 {
 	EditorNode::EditorNode(
 		const Config config
-		, Grid4TileMap* const grid_4_tile_map
+		, algorithm_practice::Grid4TileMap* const grid_4_tile_map
 		, step_defender::game::TileMapNode* const tile_map_node
 		, Node* const entry_point_indocator_node
 		, const cpg::TileSheetConfiguration& tile_sheet_configuration
@@ -60,7 +60,7 @@ namespace algorithm_practice_floodfill
 
 	EditorNode* EditorNode::create(
 		const Config config
-		, Grid4TileMap* const grid_4_tile_map
+		, algorithm_practice::Grid4TileMap* const grid_4_tile_map
 		, step_defender::game::TileMapNode* const tile_map_node
 		, Node* const entry_point_indocator_node
 		, const cpg::TileSheetConfiguration& tile_sheet_configuration
@@ -237,7 +237,7 @@ namespace algorithm_practice_floodfill
 		mGrid4TileMap->SetEntryPoint( cpg::Point{ 0, 0 } );
 		for( auto& t : *mGrid4TileMap )
 		{
-			t = eCellType::Road;
+			t = algorithm_practice::eCellType::Road;
 		}
 
 		//
@@ -281,9 +281,9 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Wall:
 			if( mGrid4TileMap->GetEntryPoint() != point )
 			{
-				mGrid4TileMap->SetCellType( point.x, point.y, eCellType::Wall );
+				mGrid4TileMap->SetCellType( point.x, point.y, algorithm_practice::eCellType::Wall );
 
-				const auto tile_point = GetTilePoint( eCellType::Wall );
+				const auto tile_point = GetTilePoint( algorithm_practice::eCellType::Wall );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 				updateDebugView();
@@ -292,9 +292,9 @@ namespace algorithm_practice_floodfill
 		case eToolIndex::Road:
 			if( mGrid4TileMap->GetEntryPoint() != point )
 			{
-				mGrid4TileMap->SetCellType( point.x, point.y, eCellType::Road );
+				mGrid4TileMap->SetCellType( point.x, point.y, algorithm_practice::eCellType::Road );
 
-				const auto tile_point = GetTilePoint( eCellType::Road );
+				const auto tile_point = GetTilePoint( algorithm_practice::eCellType::Road );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 				updateDebugView();
@@ -305,7 +305,7 @@ namespace algorithm_practice_floodfill
 			mGrid4TileMap->SetEntryPoint( point );
 			updateEntryPointView();
 
-			const auto tile_point = GetTilePoint( eCellType::Road );
+			const auto tile_point = GetTilePoint( algorithm_practice::eCellType::Road );
 			mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 			updateDebugView();
@@ -339,7 +339,7 @@ namespace algorithm_practice_floodfill
 		{
 			for( int gx = 0; mConfig.MapWidth > gx; ++gx )
 			{
-				if( eCellType::Road == mGrid4TileMap->GetCellType( gx, gy ) )
+				if( algorithm_practice::eCellType::Road == mGrid4TileMap->GetCellType( gx, gy ) )
 				{
 					mGridDebugViewNode->UpdateTile( gx, gy, 0, 0 );
 				}

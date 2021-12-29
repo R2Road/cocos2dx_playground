@@ -5,12 +5,6 @@
 
 namespace algorithm_practice_floodfill
 {
-	enum class eCellType
-	{
-		Road,
-		Wall,
-	};
-
 	class Cell4FloodFill
 	{
 	public:
