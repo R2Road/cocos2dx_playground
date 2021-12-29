@@ -111,6 +111,11 @@ namespace algorithm_practice_astar
 			mIndicatorNode = draw_node;
 		}
 
+		//
+		//
+		//
+		moveIndicator();
+
 		return true;
 	}
 
@@ -130,6 +135,12 @@ namespace algorithm_practice_astar
 		mKeyboardListener = nullptr;
 
 		Scene::onExit();
+	}
+
+
+	void CostMapNodeScene::moveIndicator()
+	{
+		mIndicatorNode->setPosition( mCostMapNode->getPosition() );
 	}
 
 

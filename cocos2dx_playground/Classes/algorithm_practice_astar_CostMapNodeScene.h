@@ -25,6 +25,8 @@ namespace algorithm_practice_astar
 		void onExit() override;
 
 	private:
+		void moveIndicator();
+
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
 
 	private:
