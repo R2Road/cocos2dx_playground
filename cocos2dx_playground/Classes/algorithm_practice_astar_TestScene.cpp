@@ -15,7 +15,7 @@
 #include "cocos/platform/CCFileUtils.h"
 #include "renderer/CCTextureCache.h"
 
-#include "algorithm_practice_floodfill_EditorNode.h"
+#include "algorithm_practice_astar_EditorNode.h"
 #include "algorithm_practice_astar_ProcessorNode.h"
 
 #include "cpg_StringTable.h"
@@ -46,6 +46,7 @@ namespace algorithm_practice_astar
 
 		, mTileMapNode( nullptr )
 		, mEntryPointIndicatorNode( nullptr )
+		, mExitPointIndicatorNode( nullptr )
 		, mEditorNode( nullptr )
 		, mProcessorNode( nullptr )
 	{}
@@ -162,7 +163,7 @@ namespace algorithm_practice_astar
 		}
 
 		//
-		// Entry Point Indicator
+		// Entry N Exit Point Indicator
 		//
 		{
 			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( tile_sheet_configuration.GetTexturePath() );
@@ -174,20 +175,39 @@ namespace algorithm_practice_astar
 				, texture->getContentSizeInPixels().height
 			);
 
-			auto sprite = Sprite::createWithTexture( texture );
-			sprite->setAnchorPoint( Vec2::ZERO );
-			sprite->setScale( _director->getContentScaleFactor() );
-			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
-			addChild( sprite, 10 );
+			{
+				auto sprite = Sprite::createWithTexture( texture );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
+				addChild( sprite, 10 );
 
-			mEntryPointIndicatorNode = sprite;
+				mEntryPointIndicatorNode = sprite;
+			}
+
+			{
+				auto sprite = Sprite::createWithTexture( texture );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 3, 0 ) );
+				addChild( sprite, 10 );
+
+				mExitPointIndicatorNode = sprite;
+			}
 		}
 
 		//
 		// Editor Node
 		//
 		{
-			mEditorNode = algorithm_practice_floodfill::EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mEntryPointIndicatorNode, tile_sheet_configuration );
+			mEditorNode = algorithm_practice_astar::EditorNode::create(
+				{ GRID_WIDTH, GRID_HEIGHT }
+				, &mGrid4TileMap
+				, mTileMapNode
+				, mEntryPointIndicatorNode
+				, mExitPointIndicatorNode
+				, tile_sheet_configuration
+			);
 			addChild( mEditorNode, 1 );
 		}		
 

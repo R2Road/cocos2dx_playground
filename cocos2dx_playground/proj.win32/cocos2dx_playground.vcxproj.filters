@@ -1098,6 +1098,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_astar_ProcessorNode.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_astar_EditorNode.cpp">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -2004,6 +2007,9 @@
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_ProcessorNode.h">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_EditorNode.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
   </ItemGroup>

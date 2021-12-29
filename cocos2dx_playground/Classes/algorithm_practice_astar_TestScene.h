@@ -15,12 +15,8 @@ namespace step_defender
 
 namespace algorithm_practice_astar
 {
-	class ProcessorNode;
-}
-
-namespace algorithm_practice_floodfill
-{
 	class EditorNode;
+	class ProcessorNode;
 }
 
 namespace algorithm_practice_astar
@@ -61,7 +57,8 @@ namespace algorithm_practice_astar
 
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::Node* mEntryPointIndicatorNode;
-		algorithm_practice_floodfill::EditorNode* mEditorNode;
+		cocos2d::Node* mExitPointIndicatorNode;
+		algorithm_practice_astar::EditorNode* mEditorNode;
 		algorithm_practice_astar::ProcessorNode* mProcessorNode;
 	};
 }
