@@ -185,11 +185,10 @@ namespace algorithm_practice_astar
 			return;
 
 		case EventKeyboard::KeyCode::KEY_SPACE:
-			mCostMapNode->SetCost( mIndicatorPointX, mIndicatorPointY, 11, 111 );
-			mCostMapNode->SetStatus( mIndicatorPointX, mIndicatorPointY, true );
+			mCostMapNode->Open( mIndicatorPointX, mIndicatorPointY, 11, 111 );
 			return;
 		case EventKeyboard::KeyCode::KEY_Z:
-			mCostMapNode->SetStatus( mIndicatorPointX, mIndicatorPointY, false );
+			mCostMapNode->Close( mIndicatorPointX, mIndicatorPointY );
 			return;
 		}
 	}
