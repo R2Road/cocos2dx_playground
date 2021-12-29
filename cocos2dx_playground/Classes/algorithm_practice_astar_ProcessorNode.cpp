@@ -22,7 +22,7 @@ USING_NS_CC;
 
 namespace algorithm_practice_astar
 {
-	ProcessorNode::ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map ) :
+	ProcessorNode::ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map ) :
 		mKeyboardListener( nullptr )
 
 		, mConfig( config )
@@ -42,7 +42,7 @@ namespace algorithm_practice_astar
 		, mCostMapNode( nullptr )
 	{}
 
-	ProcessorNode* ProcessorNode::create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map )
+	ProcessorNode* ProcessorNode::create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map )
 	{
 		auto ret = new ( std::nothrow ) ProcessorNode( config, tile_sheet_configuration, grid_4_tile_map );
 		if( !ret || !ret->init() )

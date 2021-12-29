@@ -2,7 +2,7 @@
 
 #include "2d/CCScene.h"
 
-#include "algorithm_practice_Grid4TileMap.h"
+#include "algorithm_practice_astar_Grid4TileMap.h"
 #include "helper_BackToThePreviousScene.h"
 
 namespace step_defender
@@ -53,7 +53,7 @@ namespace algorithm_practice_astar
 
 		eMode mMode;
 
-		algorithm_practice::Grid4TileMap mGrid4TileMap;
+		Grid4TileMap mGrid4TileMap;
 
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::Node* mEntryPointIndicatorNode;

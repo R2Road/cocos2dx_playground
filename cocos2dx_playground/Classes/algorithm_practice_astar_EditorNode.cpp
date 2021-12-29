@@ -9,7 +9,7 @@
 #include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
-#include "algorithm_practice_Grid4TileMap.h"
+#include "algorithm_practice_astar_Grid4TileMap.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -21,14 +21,14 @@ USING_NS_CC;
 
 namespace
 {
-	cpg::Point GetTilePoint( algorithm_practice::eCellType cell_type )
+	cpg::Point GetTilePoint( algorithm_practice_astar::eCellType cell_type )
 	{
 		switch( cell_type )
 		{
-		case algorithm_practice::eCellType::Road:
+		case algorithm_practice_astar::eCellType::Road:
 			return cpg::Point{ 0, 0 };
 
-		case algorithm_practice::eCellType::Wall:
+		case algorithm_practice_astar::eCellType::Wall:
 			return cpg::Point{ 1, 0 };
 
 		default:
@@ -41,7 +41,7 @@ namespace algorithm_practice_astar
 {
 	EditorNode::EditorNode(
 		const Config config
-		, algorithm_practice::Grid4TileMap* const grid_4_tile_map
+		, Grid4TileMap* const grid_4_tile_map
 		, step_defender::game::TileMapNode* const tile_map_node
 		, Node* const entry_point_indocator_node
 		, Node* const exit_point_indocator_node
@@ -62,7 +62,7 @@ namespace algorithm_practice_astar
 
 	EditorNode* EditorNode::create(
 		const Config config
-		, algorithm_practice::Grid4TileMap* const grid_4_tile_map
+		, Grid4TileMap* const grid_4_tile_map
 		, step_defender::game::TileMapNode* const tile_map_node
 		, Node* const entry_point_indocator_node
 		, Node* const exit_point_indocator_node
@@ -239,9 +239,10 @@ namespace algorithm_practice_astar
 		// Reset Grid
 		//
 		mGrid4TileMap->SetEntryPoint( cpg::Point{ 0, 0 } );
+		mGrid4TileMap->SetExitPoint( cpg::Point{ 1, 0 } );
 		for( auto& t : *mGrid4TileMap )
 		{
-			t = algorithm_practice::eCellType::Road;
+			t = eCellType::Road;
 		}
 
 		//
@@ -285,9 +286,9 @@ namespace algorithm_practice_astar
 		case eToolIndex::Wall:
 			if( mGrid4TileMap->GetEntryPoint() != point )
 			{
-				mGrid4TileMap->SetCellType( point.x, point.y, algorithm_practice::eCellType::Wall );
+				mGrid4TileMap->SetCellType( point.x, point.y, eCellType::Wall );
 
-				const auto tile_point = GetTilePoint( algorithm_practice::eCellType::Wall );
+				const auto tile_point = GetTilePoint( eCellType::Wall );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 				updateDebugView();
@@ -296,36 +297,39 @@ namespace algorithm_practice_astar
 		case eToolIndex::Road:
 			if( mGrid4TileMap->GetEntryPoint() != point )
 			{
-				mGrid4TileMap->SetCellType( point.x, point.y, algorithm_practice::eCellType::Road );
+				mGrid4TileMap->SetCellType( point.x, point.y, eCellType::Road );
 
-				const auto tile_point = GetTilePoint( algorithm_practice::eCellType::Road );
+				const auto tile_point = GetTilePoint( eCellType::Road );
 				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
 				updateDebugView();
 			}
 			break;
 		case eToolIndex::Entry:
-		{
-			mGrid4TileMap->SetEntryPoint( point );
-			updateEntryPointView();
+			if( mGrid4TileMap->GetExitPoint() != point )
+			{
 
-			const auto tile_point = GetTilePoint( algorithm_practice::eCellType::Road );
-			mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
+				mGrid4TileMap->SetEntryPoint( point );
+				updateEntryPointView();
 
-			updateDebugView();
-		}
-		break;
+				const auto tile_point = GetTilePoint( eCellType::Road );
+				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
+
+				updateDebugView();
+			}
+			break;
 		case eToolIndex::Exit:
-		{
-			mGrid4TileMap->SetEntryPoint( point );
-			updateEntryPointView();
+			if( mGrid4TileMap->GetEntryPoint() != point )
+			{
+				mGrid4TileMap->SetExitPoint( point );
+				updateExitPointView();
 
-			const auto tile_point = GetTilePoint( algorithm_practice::eCellType::Road );
-			mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
+				const auto tile_point = GetTilePoint( eCellType::Road );
+				mTileMapNode->UpdateTile( point.x, point.y, tile_point.x, tile_point.y );
 
-			updateDebugView();
-		}
-		break;
+				updateDebugView();
+			}
+			break;
 
 		default:
 			CCASSERT( "Invalid Tool Index : %d", mToolIndex );
@@ -347,6 +351,7 @@ namespace algorithm_practice_astar
 		}
 		updateDebugView();
 		updateEntryPointView();
+		updateExitPointView();
 	}
 	void EditorNode::updateDebugView()
 	{
@@ -354,7 +359,7 @@ namespace algorithm_practice_astar
 		{
 			for( int gx = 0; mConfig.MapWidth > gx; ++gx )
 			{
-				if( algorithm_practice::eCellType::Road == mGrid4TileMap->GetCellType( gx, gy ) )
+				if( eCellType::Road == mGrid4TileMap->GetCellType( gx, gy ) )
 				{
 					mGridDebugViewNode->UpdateTile( gx, gy, 0, 0 );
 				}
@@ -370,6 +375,13 @@ namespace algorithm_practice_astar
 		mEntryPointIndicatorNode->setPosition(
 			mTileMapNode->getPosition()
 			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid4TileMap->GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid4TileMap->GetEntryPoint().y )
+		);
+	}
+	void EditorNode::updateExitPointView()
+	{
+		mExitPointIndicatorNode->setPosition(
+			mTileMapNode->getPosition()
+			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid4TileMap->GetExitPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid4TileMap->GetExitPoint().y )
 		);
 	}
 }

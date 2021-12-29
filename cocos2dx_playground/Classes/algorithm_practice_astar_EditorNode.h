@@ -14,13 +14,10 @@ namespace step_defender
 	}
 }
 
-namespace algorithm_practice
-{
-	class Grid4TileMap;
-}
-
 namespace algorithm_practice_astar
 {
+	class Grid4TileMap;
+
 	class EditorNode : public cocos2d::Node
 	{
 	public:
@@ -41,7 +38,7 @@ namespace algorithm_practice_astar
 
 		EditorNode(
 			const Config config
-			, algorithm_practice::Grid4TileMap* const grid_4_tile_map
+			, Grid4TileMap* const grid_4_tile_map
 			, step_defender::game::TileMapNode* const tile_map_node
 			, cocos2d::Node* const entry_point_indocator_node
 			, cocos2d::Node* const exit_point_indocator_node
@@ -51,7 +48,7 @@ namespace algorithm_practice_astar
 	public:
 		static EditorNode* create(
 			const Config config
-			, algorithm_practice::Grid4TileMap* const grid_4_tile_map
+			, Grid4TileMap* const grid_4_tile_map
 			, step_defender::game::TileMapNode* const tile_map_node
 			, cocos2d::Node* const entry_point_indocator_node
 			, cocos2d::Node* const exit_point_indocator_node
@@ -68,12 +65,13 @@ namespace algorithm_practice_astar
 		void resetView();
 		void updateDebugView();
 		void updateEntryPointView();
+		void updateExitPointView();
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
 	private:
 		const Config mConfig;
 
-		algorithm_practice::Grid4TileMap* const mGrid4TileMap;
+		Grid4TileMap* const mGrid4TileMap;
 		step_defender::game::TileMapNode* const mTileMapNode;
 		cocos2d::Node* const mEntryPointIndicatorNode;
 		cocos2d::Node* const mExitPointIndicatorNode;
