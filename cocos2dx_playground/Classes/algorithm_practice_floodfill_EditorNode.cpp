@@ -4,7 +4,6 @@
 #include <numeric>
 
 #include "2d/CCLabel.h"
-#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
