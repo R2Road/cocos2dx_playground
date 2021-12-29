@@ -93,6 +93,10 @@ namespace algorithm_practice_astar
 		//
 		{
 			mCostMapNode = CostMapNode::create( 10, 10, CostNodeSize );
+			mCostMapNode->setPosition(
+				visibleCenter
+				- Vec2( mCostMapNode->getContentSize().width * 0.5f, mCostMapNode->getContentSize().height * 0.5f )
+			);
 			addChild( mCostMapNode );
 		}
 
