@@ -22,6 +22,7 @@ namespace algorithm_practice_astar
 	CostMapNodeScene::CostMapNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+		, mCostMapNode( nullptr )
 	{}
 
 	Scene* CostMapNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -93,7 +94,8 @@ namespace algorithm_practice_astar
 		{
 			const Size CostNodeSize( 16.f, 16.f );
 
-			addChild( CostMapNode::create( 10, 10, CostNodeSize ), std::numeric_limits<int>::min() );
+			mCostMapNode = CostMapNode::create( 10, 10, CostNodeSize );
+			addChild( mCostMapNode, std::numeric_limits<int>::min() );
 		}
 
 		return true;
