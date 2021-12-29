@@ -9,6 +9,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "algorithm_practice_astar_CostNode.h"
+
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
@@ -89,6 +91,17 @@ namespace algorithm_practice_astar
 		// CostMapNode
 		//
 		{
+			const Size CostNodeSize( 16.f, 16.f );
+
+			for( int y = 0; 10 > y; ++y )
+			{
+				for( int x = 0; 10 > x; ++x )
+				{
+					auto cost_node = CostNode::create( CostNodeSize );
+					cost_node->setPosition( x * CostNodeSize.width, y * CostNodeSize.height );
+					addChild( cost_node );
+				}
+			}
 		}
 
 		return true;
