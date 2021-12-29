@@ -79,6 +79,13 @@ namespace algorithm_practice_astar
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[Arrow] : Move Indicator";
+			ss << cpg::linefeed;
+			ss << "[SPACE] : Open";
+			ss << cpg::linefeed;
+			ss << "[Z] : Close";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
