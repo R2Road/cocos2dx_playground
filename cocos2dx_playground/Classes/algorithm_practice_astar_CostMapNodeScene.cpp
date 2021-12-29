@@ -28,6 +28,7 @@ namespace algorithm_practice_astar
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 		, mCostMapNode( nullptr )
+		, mIndicatorNode( nullptr )
 	{}
 
 	Scene* CostMapNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
