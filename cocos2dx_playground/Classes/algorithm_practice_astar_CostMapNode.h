@@ -21,6 +21,10 @@ namespace algorithm_practice_astar
 	private:
 		bool init( const std::size_t map_width, const std::size_t map_height, const cocos2d::Size cost_node_size );
 
+	public:
+		void SetCost( const int target_x, const int target_y, const int cost_2_start, const int cost_2_end );
+		void SetStatus( const int target_x, const int target_y, const bool bOpen );
+
 	private:
 		const cpg::GridIndexConverter mIndexConverter;
 		std::vector<CostNode*> mContainer;

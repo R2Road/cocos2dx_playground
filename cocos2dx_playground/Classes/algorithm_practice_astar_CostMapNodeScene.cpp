@@ -183,6 +183,14 @@ namespace algorithm_practice_astar
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 			requestMoveIndicator( 0, -1 );
 			return;
+
+		case EventKeyboard::KeyCode::KEY_SPACE:
+			mCostMapNode->SetCost( mIndicatorPointX, mIndicatorPointY, 11, 111 );
+			mCostMapNode->SetStatus( mIndicatorPointX, mIndicatorPointY, true );
+			return;
+		case EventKeyboard::KeyCode::KEY_Z:
+			mCostMapNode->SetStatus( mIndicatorPointX, mIndicatorPointY, false );
+			return;
 		}
 	}
 }

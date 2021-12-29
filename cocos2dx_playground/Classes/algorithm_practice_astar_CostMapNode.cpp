@@ -69,4 +69,25 @@ namespace algorithm_practice_astar
 
 		return true;
 	}
+
+	void CostMapNode::SetCost( const int target_x, const int target_y, const int cost_2_start, const int cost_2_end )
+	{
+		const int linear_index = mIndexConverter.To_Linear( target_x, target_y );
+		if( linear_index >= mContainer.size() )
+		{
+			return;
+		}
+
+		mContainer[linear_index]->SetCost( cost_2_start, cost_2_end );
+	}
+	void CostMapNode::SetStatus( const int target_x, const int target_y, const bool bOpen )
+	{
+		const int linear_index = mIndexConverter.To_Linear( target_x, target_y );
+		if( linear_index >= mContainer.size() )
+		{
+			return;
+		}
+
+		mContainer[linear_index]->SetStatus( bOpen );
+	}
 }
