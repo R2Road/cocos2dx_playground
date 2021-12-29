@@ -5,7 +5,6 @@
 
 #include "algorithm_practice_astar_CostNode.h"
 
-#include "cpg_GridIndexConverter.h"
 #include "cpg_node_PivotNode.h"
 #include "cpg_node_GuideRectNode.h"
 
@@ -13,12 +12,14 @@ USING_NS_CC;
 
 namespace algorithm_practice_astar
 {
-	CostMapNode::CostMapNode() : mContainer()
+	CostMapNode::CostMapNode( const std::size_t map_width, const std::size_t map_height ) :
+		mIndexConverter( map_width, map_height )
+		, mContainer()
 	{}
 
 	CostMapNode* CostMapNode::create( const std::size_t map_width, const std::size_t map_height, const cocos2d::Size cost_node_size )
 	{
-		auto ret = new ( std::nothrow ) CostMapNode();
+		auto ret = new ( std::nothrow ) CostMapNode( map_width, map_height );
 		if( !ret || !ret->init( map_width, map_height, cost_node_size ) )
 		{
 			delete ret;
@@ -53,8 +54,6 @@ namespace algorithm_practice_astar
 		{
 			mContainer.resize( map_width * map_height );
 
-			cpg::GridIndexConverter index_converter( map_width, map_height );
-
 			for( int y = 0; map_width > y; ++y )
 			{
 				for( int x = 0; map_height > x; ++x )
@@ -63,7 +62,7 @@ namespace algorithm_practice_astar
 					cost_node->setPosition( x * cost_node_size.width, y * cost_node_size.height );
 					addChild( cost_node );
 
-					mContainer[index_converter.To_Linear( x, y )] = cost_node;
+					mContainer[mIndexConverter.To_Linear( x, y )] = cost_node;
 				}
 			}
 		}
