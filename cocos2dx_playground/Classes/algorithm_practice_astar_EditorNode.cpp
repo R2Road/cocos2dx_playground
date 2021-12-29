@@ -5,7 +5,6 @@
 
 #include "2d/CCLabel.h"
 #include "base/CCDirector.h"
-#include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
 #include "algorithm_practice_astar_Grid4TileMap.h"
