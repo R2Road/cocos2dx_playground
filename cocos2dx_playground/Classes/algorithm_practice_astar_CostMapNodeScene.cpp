@@ -86,6 +86,9 @@ namespace algorithm_practice_astar
 			ss << "[SPACE] : Open";
 			ss << cpg::linefeed;
 			ss << "[Z] : Close";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[R] : Reset";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -196,6 +199,10 @@ namespace algorithm_practice_astar
 			return;
 		case EventKeyboard::KeyCode::KEY_Z:
 			mCostMapNode->Close( mIndicatorPointX, mIndicatorPointY );
+			return;
+
+		case EventKeyboard::KeyCode::KEY_R:
+			mCostMapNode->Reset();
 			return;
 		}
 	}

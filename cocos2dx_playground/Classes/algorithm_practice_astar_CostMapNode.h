@@ -24,6 +24,7 @@ namespace algorithm_practice_astar
 	public:
 		void Open( const int target_x, const int target_y, const int cost_2_start, const int cost_2_end );
 		void Close( const int target_x, const int target_y );
+		void Reset();
 
 	private:
 		const cpg::GridIndexConverter mIndexConverter;

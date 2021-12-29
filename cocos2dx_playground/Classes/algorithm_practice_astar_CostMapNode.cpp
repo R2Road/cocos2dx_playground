@@ -60,6 +60,7 @@ namespace algorithm_practice_astar
 				{
 					auto cost_node = CostNode::create( cost_node_size );
 					cost_node->setPosition( x * cost_node_size.width, y * cost_node_size.height );
+					cost_node->setVisible( false );
 					addChild( cost_node );
 
 					mContainer[mIndexConverter.To_Linear( x, y )] = cost_node;
@@ -80,6 +81,7 @@ namespace algorithm_practice_astar
 
 		mContainer[linear_index]->SetCost( cost_2_start, cost_2_end );
 		mContainer[linear_index]->SetStatus( true );
+		mContainer[linear_index]->setVisible( true );
 	}
 	void CostMapNode::Close( const int target_x, const int target_y )
 	{
@@ -90,5 +92,12 @@ namespace algorithm_practice_astar
 		}
 
 		mContainer[linear_index]->SetStatus( false );
+	}
+	void CostMapNode::Reset()
+	{
+		for( auto n : mContainer )
+		{
+			n->setVisible( false );
+		}
 	}
 }
