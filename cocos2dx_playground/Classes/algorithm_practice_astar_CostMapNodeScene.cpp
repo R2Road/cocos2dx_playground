@@ -3,6 +3,7 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
@@ -15,6 +16,11 @@
 #include "cpg_StringTable.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const Size CostNodeSize( 16.f, 16.f );
+}
 
 namespace algorithm_practice_astar
 {
@@ -85,10 +91,19 @@ namespace algorithm_practice_astar
 		// CostMapNode
 		//
 		{
-			const Size CostNodeSize( 16.f, 16.f );
-
 			mCostMapNode = CostMapNode::create( 10, 10, CostNodeSize );
-			addChild( mCostMapNode, std::numeric_limits<int>::min() );
+			addChild( mCostMapNode );
+		}
+
+		//
+		// Indicator
+		//
+		{
+			auto draw_node = DrawNode::create();
+			draw_node->drawRect( Vec2::ZERO, Vec2( CostNodeSize.width, CostNodeSize.height ), Color4F::RED );
+			addChild( draw_node, 1 );
+
+			mIndicatorNode = draw_node;
 		}
 
 		return true;

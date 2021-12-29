@@ -30,5 +30,6 @@ namespace algorithm_practice_astar
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 		CostMapNode* mCostMapNode;
+		cocos2d::Node* mIndicatorNode;
 	};
 }
