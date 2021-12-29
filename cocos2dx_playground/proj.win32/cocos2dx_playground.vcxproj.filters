@@ -1095,6 +1095,9 @@
     <ClCompile Include="..\Classes\algorithm_practice_Grid4TileMap.cpp">
       <Filter>src\scene\algorithm_practice</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_astar_ProcessorNode.cpp">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -1998,6 +2001,9 @@
       <Filter>src\scene\algorithm_practice</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_NodeAStar.h">
+      <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_ProcessorNode.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
   </ItemGroup>

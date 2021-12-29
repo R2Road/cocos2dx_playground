@@ -2,7 +2,6 @@
 
 #include "2d/CCScene.h"
 
-#include "algorithm_practice_floodfill_Constant.h"
 #include "algorithm_practice_Grid4TileMap.h"
 #include "helper_BackToThePreviousScene.h"
 
@@ -14,10 +13,14 @@ namespace step_defender
 	}
 }
 
+namespace algorithm_practice_astar
+{
+	class ProcessorNode;
+}
+
 namespace algorithm_practice_floodfill
 {
 	class EditorNode;
-	class ProcessorNode;
 }
 
 namespace algorithm_practice_astar
@@ -59,6 +62,6 @@ namespace algorithm_practice_astar
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::Node* mEntryPointIndicatorNode;
 		algorithm_practice_floodfill::EditorNode* mEditorNode;
-		algorithm_practice_floodfill::ProcessorNode* mProcessorNode;
+		algorithm_practice_astar::ProcessorNode* mProcessorNode;
 	};
 }

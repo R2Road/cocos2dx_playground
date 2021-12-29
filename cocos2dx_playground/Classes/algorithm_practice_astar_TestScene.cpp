@@ -16,7 +16,7 @@
 #include "renderer/CCTextureCache.h"
 
 #include "algorithm_practice_floodfill_EditorNode.h"
-#include "algorithm_practice_floodfill_ProcessorNode.h"
+#include "algorithm_practice_astar_ProcessorNode.h"
 
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
@@ -195,7 +195,7 @@ namespace algorithm_practice_astar
 		// Processor Node
 		//
 		{
-			mProcessorNode = algorithm_practice_floodfill::ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, tile_sheet_configuration, &mGrid4TileMap );
+			mProcessorNode = algorithm_practice_astar::ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, tile_sheet_configuration, &mGrid4TileMap );
 			addChild( mProcessorNode, 2 );
 		}
 

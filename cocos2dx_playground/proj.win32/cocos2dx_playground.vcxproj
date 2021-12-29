@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\algorithm_practice_astar_CostMapNodeScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_CostNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_CostNodeScene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_ProcessorNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_RootScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_TestScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_Constant.cpp" />
@@ -443,6 +444,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\algorithm_practice_astar_CostMapNodeScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_CostNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_CostNodeScene.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_ProcessorNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_TestScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_Constant.h" />
