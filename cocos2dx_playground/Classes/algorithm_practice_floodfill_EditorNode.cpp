@@ -9,7 +9,7 @@
 #include "renderer/CCTextureCache.h"
 #include "ui/UIButton.h"
 
-#include "algorithm_practice_floodfill_Grid4TileMap.h"
+#include "algorithm_practice_Grid4TileMap.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
