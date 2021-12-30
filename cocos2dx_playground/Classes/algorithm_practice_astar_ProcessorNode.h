@@ -1,8 +1,10 @@
 #pragma once
 
+#include <list>
+
 #include "2d/CCNode.h"
 
-#include "algorithm_practice_floodfill_Constant.h"
+#include "algorithm_practice_astar_NodeAStar.h"
 #include "cpg_Grid.h"
 #include "cpg_TileSheetConfiguration.h"
 
@@ -11,14 +13,18 @@ namespace cpg_ui
 	class ToolBarNode;
 }
 
-namespace algorithm_practice
+namespace step_defender
 {
-	class Grid4TileMap;
+	namespace game
+	{
+		class TileMapNode;
+	}
 }
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice_astar
 {
-	class DirectionMapNode;
+	class CostMapNode;
+	class Grid4TileMap;
 
 	class ProcessorNode : public cocos2d::Node
 	{
@@ -40,13 +46,14 @@ namespace algorithm_practice_floodfill
 		{
 			Entry,
 			Loop,
+			Result,
 			End,
 		};
 
-		ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map );
+		ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map );
 
 	public:
-		static ProcessorNode* create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map );
+		static ProcessorNode* create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map );
 
 	private:
 		bool init() override;
@@ -71,16 +78,22 @@ namespace algorithm_practice_floodfill
 
 		const Config mConfig;
 		const cpg::TileSheetConfiguration mTileSheetConfiguration;
-		const algorithm_practice::Grid4TileMap* const mGrid4TileMap;
+		const Grid4TileMap* const mGrid4TileMap;
 
 		eMode mMode;
 		float mElapsedTime4Loop;
 		eStep mStep;
-		cpg::Grid<Cell4FloodFill> mGrid4FloodFill;
+
+
+		using Node4AStarContainerT = std::list<Node4AStar>;
+		Node4AStarContainerT mOpenList;
+		Node4AStarContainerT mCloseList;
+		Node4AStarContainerT mUpdateList;
 		cpg::Point mCurrentPoint;
 
 		cpg_ui::ToolBarNode* mToolBarNode;
 		cocos2d::Node* mCurrentPointIndicatorNode;
-		DirectionMapNode* mDirectionMapNode;
+		CostMapNode* mCostMapNode;
+		step_defender::game::TileMapNode* mPathNode;
 	};
 }

@@ -15,8 +15,8 @@
 #include "cocos/platform/CCFileUtils.h"
 #include "renderer/CCTextureCache.h"
 
-#include "algorithm_practice_floodfill_EditorNode.h"
-#include "algorithm_practice_floodfill_ProcessorNode.h"
+#include "algorithm_practice_astar_EditorNode.h"
+#include "algorithm_practice_astar_ProcessorNode.h"
 
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
@@ -46,6 +46,7 @@ namespace algorithm_practice_astar
 
 		, mTileMapNode( nullptr )
 		, mEntryPointIndicatorNode( nullptr )
+		, mExitPointIndicatorNode( nullptr )
 		, mEditorNode( nullptr )
 		, mProcessorNode( nullptr )
 	{}
@@ -83,7 +84,7 @@ namespace algorithm_practice_astar
 		//
 		// Load Tile Config
 		//
-		cpg::TileSheetConfiguration tile_sheet_configuration( 1, 1, 1, 1, "" );
+		cpg::TileSheetConfiguration tile_sheet_configuration;
 		CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//
@@ -162,7 +163,7 @@ namespace algorithm_practice_astar
 		}
 
 		//
-		// Entry Point Indicator
+		// Entry N Exit Point Indicator
 		//
 		{
 			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( tile_sheet_configuration.GetTexturePath() );
@@ -174,20 +175,41 @@ namespace algorithm_practice_astar
 				, texture->getContentSizeInPixels().height
 			);
 
-			auto sprite = Sprite::createWithTexture( texture );
-			sprite->setAnchorPoint( Vec2::ZERO );
-			sprite->setScale( _director->getContentScaleFactor() );
-			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
-			addChild( sprite, 10 );
+			{
+				auto sprite = Sprite::createWithTexture( texture );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
+				sprite->setColor( Color3B( 255u, 97u, 178u ) );
+				addChild( sprite, 10 );
 
-			mEntryPointIndicatorNode = sprite;
+				mEntryPointIndicatorNode = sprite;
+			}
+
+			{
+				auto sprite = Sprite::createWithTexture( texture );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				sprite->setScale( _director->getContentScaleFactor() );
+				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
+				sprite->setColor( Color3B( 162u, 255u, 203u ) );
+				addChild( sprite, 10 );
+
+				mExitPointIndicatorNode = sprite;
+			}
 		}
 
 		//
 		// Editor Node
 		//
 		{
-			mEditorNode = algorithm_practice_floodfill::EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mEntryPointIndicatorNode, tile_sheet_configuration );
+			mEditorNode = algorithm_practice_astar::EditorNode::create(
+				{ GRID_WIDTH, GRID_HEIGHT }
+				, &mGrid4TileMap
+				, mTileMapNode
+				, mEntryPointIndicatorNode
+				, mExitPointIndicatorNode
+				, tile_sheet_configuration
+			);
 			addChild( mEditorNode, 1 );
 		}		
 
@@ -195,7 +217,7 @@ namespace algorithm_practice_astar
 		// Processor Node
 		//
 		{
-			mProcessorNode = algorithm_practice_floodfill::ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, tile_sheet_configuration, &mGrid4TileMap );
+			mProcessorNode = algorithm_practice_astar::ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, tile_sheet_configuration, &mGrid4TileMap );
 			addChild( mProcessorNode, 2 );
 		}
 

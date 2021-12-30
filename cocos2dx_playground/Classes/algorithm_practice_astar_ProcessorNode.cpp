@@ -1,4 +1,4 @@
-#include "algorithm_practice_floodfill_ProcessorNode.h"
+#include "algorithm_practice_astar_ProcessorNode.h"
 
 #include <new>
 #include <numeric>
@@ -10,18 +10,22 @@
 #include "base/CCEventDispatcher.h"
 #include "renderer/CCTextureCache.h"
 
-#include "algorithm_practice_floodfill_DirectionMapNode.h"
-#include "algorithm_practice_Grid4TileMap.h"
+#include "algorithm_practice_astar_CostMapNode.h"
+#include "algorithm_practice_astar_Grid4TileMap.h"
 
+#include "cpg_Direction8.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
+#include "cpg_TileSheetUtility.h"
 #include "cpg_ui_ToolBarNode.h"
+
+#include "step_defender_game_TileMapNode.h"
 
 USING_NS_CC;
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice_astar
 {
-	ProcessorNode::ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map ) :
+	ProcessorNode::ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map ) :
 		mKeyboardListener( nullptr )
 
 		, mConfig( config )
@@ -31,15 +35,19 @@ namespace algorithm_practice_floodfill
 		, mMode( eMode::Step )
 		, mElapsedTime4Loop( 0.f )
 		, mStep( eStep::Entry )
-		, mGrid4FloodFill()
+
+		, mOpenList()
+		, mCloseList()
+		, mUpdateList()
 		, mCurrentPoint()
 
 		, mToolBarNode( nullptr )
 		, mCurrentPointIndicatorNode( nullptr )
-		, mDirectionMapNode( nullptr )
+		, mCostMapNode( nullptr )
+		, mPathNode( nullptr )
 	{}
 
-	ProcessorNode* ProcessorNode::create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map )
+	ProcessorNode* ProcessorNode::create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map )
 	{
 		auto ret = new ( std::nothrow ) ProcessorNode( config, tile_sheet_configuration, grid_4_tile_map );
 		if( !ret || !ret->init() )
@@ -92,13 +100,6 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
-		// Setup Direction Grid
-		//
-		{
-			mGrid4FloodFill.Reset( mConfig.MapWidth, mConfig.MapHeight );
-		}
-
-		//
 		// Tool Bar - for Mode
 		//
 		{
@@ -123,7 +124,7 @@ namespace algorithm_practice_floodfill
 		//
 		{
 			auto draw_node = DrawNode::create();
-			draw_node->drawDot( Vec2( mTileSheetConfiguration.GetTileWidth() * 0.5f, mTileSheetConfiguration.GetTileHeight() * 0.5f ), 1.6f, Color4F::GREEN );
+			draw_node->drawRect( Vec2::ZERO, Vec2( mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight() ), Color4F::RED );
 			draw_node->setVisible( false );
 			addChild( draw_node, 1 );
 
@@ -131,15 +132,30 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
-		// Direction Maps
+		// CostMapNode
 		//
 		{
-			mDirectionMapNode = DirectionMapNode::create( DirectionMapNode::Config{ mConfig.MapWidth, mConfig.MapHeight } );
-			mDirectionMapNode->setPosition(
+			mCostMapNode = CostMapNode::create( mConfig.MapWidth, mConfig.MapHeight, Size( mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight() ) );
+			mCostMapNode->setPosition(
 				visibleCenter
-				- Vec2( mDirectionMapNode->getContentSize().width * 0.5f, mDirectionMapNode->getContentSize().height * 0.5f )
+				- Vec2( mCostMapNode->getContentSize().width * 0.5f, mCostMapNode->getContentSize().height * 0.5f )
 			);
-			addChild( mDirectionMapNode );
+			addChild( mCostMapNode );
+		}
+
+		//
+		// Tile Maps
+		//
+		{
+			mPathNode = step_defender::game::TileMapNode::create(
+				step_defender::game::TileMapNode::Config{ mConfig.MapWidth, mConfig.MapHeight }
+				, mTileSheetConfiguration
+			);
+			mPathNode->setPosition(
+				visibleCenter
+				- Vec2( mPathNode->getContentSize().width * 0.5f, mPathNode->getContentSize().height * 0.5f )
+			);
+			addChild( mPathNode, 99 );
 		}
 
 		return true;
@@ -178,11 +194,11 @@ namespace algorithm_practice_floodfill
 
 			mStep = eStep::Entry;
 
-			for( auto& d : mGrid4FloodFill )
-			{
-				d.Clear();
-			}
-			mDirectionMapNode->Reset();
+			mOpenList.clear();
+			mCloseList.clear();
+
+			mCostMapNode->Reset();
+			mPathNode->Reset();
 
 			mCurrentPointIndicatorNode->setVisible( false );
 		}
@@ -220,7 +236,7 @@ namespace algorithm_practice_floodfill
 	void ProcessorNode::updateCurrentPointView()
 	{
 		mCurrentPointIndicatorNode->setPosition(
-			mDirectionMapNode->getPosition()
+			mCostMapNode->getPosition()
 			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mCurrentPoint.x, mTileSheetConfiguration.GetTileHeight() * mCurrentPoint.y )
 		);
 	}
@@ -230,55 +246,129 @@ namespace algorithm_practice_floodfill
 	{
 		if( eStep::Entry == mStep )
 		{
-			mStep = eStep::Loop;
-			auto& current_cell = mGrid4FloodFill.Get( mGrid4TileMap->GetEntryPoint().x, mGrid4TileMap->GetEntryPoint().y );
-			current_cell.Begin( { -1, -1 }, cpg::Direction4::eState::None );
-			mDirectionMapNode->UpdateTile( mGrid4TileMap->GetEntryPoint().x, mGrid4TileMap->GetEntryPoint().y, current_cell.GetTotalDirection() );
+			//
+			// Algorithm
+			//
+			Node4AStar new_node{ mGrid4TileMap->GetEntryPoint(), cpg::Point{ -1, -1 }, mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
+			mOpenList.push_back( new_node );
 
-			mCurrentPoint = mGrid4TileMap->GetEntryPoint();
-			mCurrentPointIndicatorNode->setVisible( true );
-			updateCurrentPointView();
+			//
+			// ETC
+			//
+			mCostMapNode->Open( new_node.GetPoint().x, new_node.GetPoint().y, new_node.GetCost2Start(), new_node.GetCost2End() );
+			mStep = eStep::Loop;
 		}
 		else if( eStep::Loop == mStep )
 		{
-			auto& current_cell = mGrid4FloodFill.Get( mCurrentPoint.x, mCurrentPoint.y );
-			if( current_cell.HasDirection() )
+			//
+			// Algorithm
+			//
+			if( mOpenList.empty() )
 			{
-				const auto current_direction = current_cell.PopDirection();
-				mDirectionMapNode->UpdateTile( mCurrentPoint.x, mCurrentPoint.y, current_cell.GetTotalDirection() );
+				mStep = eStep::End;
+				return;
+			}
 
-				auto new_point = mCurrentPoint + current_direction.GetPoint();
-				if( mGrid4FloodFill.Get( new_point.x, new_point.y ).IsValid() )
+			// Select Min
+			Node4AStarContainerT::iterator min_itr = mOpenList.begin();
+			for( auto cur = ( ++mOpenList.begin() ), end = mOpenList.end(); end != cur; ++cur )
+			{
+				if( min_itr->GetCost2End() > cur->GetCost2End() )
 				{
-					return;
-				}
-
-				if( !mGrid4FloodFill.IsIn( new_point.x, new_point.y ) )
-				{
-					return;
-				}
-
-				if( algorithm_practice::eCellType::Road == mGrid4TileMap->GetCellType( new_point.x, new_point.y ) )
-				{
-					auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
-					next_cell.Begin( mCurrentPoint, current_direction );
-					mDirectionMapNode->UpdateTile( new_point.x, new_point.y, next_cell.GetTotalDirection() );
-
-					mCurrentPoint = new_point;
-					updateCurrentPointView();
+					min_itr = cur;
 				}
 			}
-			else
-			{
-				mCurrentPoint = current_cell.GetParentPoint();
-				updateCurrentPointView();
 
-				if( -1 == mCurrentPoint.x )
+			// Move
+			min_itr->Close();
+			const Node4AStar current_node = *min_itr;
+			mCloseList.push_back( current_node );
+			mOpenList.erase( min_itr );
+			mUpdateList.push_back( current_node );
+
+			// Found Exit
+			if( mGrid4TileMap->GetExitPoint() == current_node.GetPoint() )
+			{
+				mStep = eStep::Result;
+				return;
+			}
+
+			// Collect Open List
+			cpg::Direction8 dir8;
+			cpg::Point temp_point;
+			for( int i = 0; 8 > i; ++i, dir8.Rotate( true ) )
+			{
+				temp_point = current_node.GetPoint() + dir8.GetPoint();
+
+				if( !mGrid4TileMap->IsIn( temp_point.x, temp_point.y ) )
 				{
-					mStep = eStep::End;
-					mCurrentPointIndicatorNode->setVisible( false );
+					continue;
+				}
+
+				if( eCellType::Road != mGrid4TileMap->GetCellType( temp_point.x, temp_point.y ) )
+				{
+					continue;
+				}
+
+				if( mOpenList.end() != std::find_if( mOpenList.begin(), mOpenList.end(), [temp_point]( const Node4AStar& other_node )->bool {
+					return other_node.GetPoint() == temp_point;
+				} ) )
+				{
+					continue;
+				}
+
+				if( mCloseList.end() != std::find_if( mCloseList.begin(), mCloseList.end(), [temp_point]( const Node4AStar& other_node )->bool {
+					return other_node.GetPoint() == temp_point;
+				} ) )
+				{
+					continue;
+				}
+
+				Node4AStar new_node{ temp_point, current_node.GetPoint(), mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
+				mOpenList.push_back( new_node );
+				mUpdateList.push_back( new_node );
+			}
+
+			//
+			// ETC
+			//
+			for( const auto& u : mUpdateList )
+			{
+				if( Node4AStar::eStatus::Open == u.GetStatus() )
+				{
+					mCostMapNode->Open( u.GetPoint().x, u.GetPoint().y, u.GetCost2Start(), u.GetCost2End() );
+				}
+				else
+				{
+					mCostMapNode->Close( u.GetPoint().x, u.GetPoint().y );
 				}
 			}
+			mUpdateList.clear();
+		}
+		else if( eStep::Result == mStep )
+		{
+			std::list<cpg::Point> result;
+
+			auto current_itr = std::find_if( mCloseList.begin(), mCloseList.end(), [target_point = mGrid4TileMap->GetExitPoint()]( const Node4AStar& other_node )->bool {
+				return other_node.GetPoint() == target_point;
+			} );
+			result.push_back( current_itr->GetPoint() );
+
+			while( -1 != current_itr->GetPreviousPoint().x )
+			{
+				result.push_back( current_itr->GetPreviousPoint() );
+
+				current_itr = std::find_if( mCloseList.begin(), mCloseList.end(), [target_point = current_itr->GetPreviousPoint()]( const Node4AStar& other_node )->bool {
+					return other_node.GetPoint() == target_point;
+				} );
+			}
+
+			for( const auto& p : result )
+			{
+				mPathNode->UpdateTile( p.x, p.y, 0, 4 );
+			}
+
+			mStep = eStep::End;
 		}
 	}
 	void ProcessorNode::algorithmLoop( float dt )
@@ -306,11 +396,12 @@ namespace algorithm_practice_floodfill
 		if( EventKeyboard::KeyCode::KEY_R == key_code )
 		{
 			mStep = eStep::Entry;
-			for( auto& d : mGrid4FloodFill )
-			{
-				d.Clear();
-			}
-			mDirectionMapNode->Reset();
+
+			mOpenList.clear();
+			mCloseList.clear();
+
+			mCostMapNode->Reset();
+			mPathNode->Reset();
 
 			mCurrentPointIndicatorNode->setVisible( false );
 			return;

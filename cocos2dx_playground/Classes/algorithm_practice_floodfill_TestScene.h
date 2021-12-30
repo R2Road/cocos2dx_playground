@@ -3,7 +3,7 @@
 #include "2d/CCScene.h"
 
 #include "algorithm_practice_floodfill_Constant.h"
-#include "algorithm_practice_floodfill_Grid4TileMap.h"
+#include "algorithm_practice_Grid4TileMap.h"
 #include "helper_BackToThePreviousScene.h"
 
 namespace step_defender
@@ -51,7 +51,7 @@ namespace algorithm_practice_floodfill
 
 		eMode mMode;
 
-		Grid4TileMap mGrid4TileMap;
+		algorithm_practice::Grid4TileMap mGrid4TileMap;
 
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::Node* mEntryPointIndicatorNode;

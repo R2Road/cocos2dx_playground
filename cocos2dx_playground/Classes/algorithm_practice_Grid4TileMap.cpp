@@ -1,4 +1,4 @@
-#include "algorithm_practice_floodfill_Grid4TileMap.h"
+#include "algorithm_practice_Grid4TileMap.h"
 
 #include <fstream>
 
@@ -7,7 +7,7 @@
 #include "json/stringbuffer.h"
 #include "json/writer.h"
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice
 {
 	Grid4TileMap::Grid4TileMap() : mEntryPoint( { 0, 0 } ), mGrid()
 	{}

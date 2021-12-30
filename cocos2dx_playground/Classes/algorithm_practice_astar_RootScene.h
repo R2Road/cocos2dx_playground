@@ -2,7 +2,7 @@
 
 #include "2d/CCScene.h"
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice_astar
 {
 	class RootScene : public cocos2d::Scene
 	{
@@ -10,7 +10,7 @@ namespace algorithm_practice_floodfill
 		RootScene();
 
 	public:
-		static const char* getTitle() { return "Flood Fill"; }
+		static const char* getTitle() { return "AStar"; }
 		static cocos2d::Scene* create();
 
 	private:

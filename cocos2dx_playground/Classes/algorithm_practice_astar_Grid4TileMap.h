@@ -2,12 +2,17 @@
 
 #include <string>
 
-#include "algorithm_practice_floodfill_Constant.h"
 #include "cpg_Grid.h"
 #include "cpg_Point.h"
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice_astar
 {
+	enum class eCellType
+	{
+		Road,
+		Wall,
+	};
+
 	class Grid4TileMap
 	{
 	public:
@@ -30,14 +35,18 @@ namespace algorithm_practice_floodfill
 		//
 		std::size_t GetWidth() const { return mGrid.GetWidth(); }
 		std::size_t GetHeight() const { return mGrid.GetHeight(); }
+		bool IsIn( const std::size_t x, const std::size_t y ) const { return mGrid.IsIn( x, y ); }
+
 		const cpg::Point& GetEntryPoint() const { return mEntryPoint; }
+		const cpg::Point& GetExitPoint() const { return mExitPoint; }
 		eCellType GetCellType( const std::size_t x, const std::size_t y );
 		eCellType GetCellType( const std::size_t x, const std::size_t y ) const;
 
 		//
 		// Setter
 		//
-		void SetEntryPoint( const cpg::Point& new_entry_point );
+		void SetEntryPoint( const cpg::Point& new_point );
+		void SetExitPoint( const cpg::Point& new_point );
 		void SetCellType( const std::size_t x, const std::size_t y, const eCellType cell_type );
 
 		//
@@ -48,6 +57,7 @@ namespace algorithm_practice_floodfill
 
 	private:
 		cpg::Point mEntryPoint;
+		cpg::Point mExitPoint;
 		GridT mGrid;
 	};
 }
