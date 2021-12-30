@@ -35,6 +35,8 @@ namespace algorithm_practice_astar
 		//
 		std::size_t GetWidth() const { return mGrid.GetWidth(); }
 		std::size_t GetHeight() const { return mGrid.GetHeight(); }
+		bool IsIn( const std::size_t x, const std::size_t y ) const { return mGrid.IsIn( x, y ); }
+
 		const cpg::Point& GetEntryPoint() const { return mEntryPoint; }
 		const cpg::Point& GetExitPoint() const { return mExitPoint; }
 		eCellType GetCellType( const std::size_t x, const std::size_t y );

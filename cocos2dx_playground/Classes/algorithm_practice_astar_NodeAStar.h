@@ -28,6 +28,7 @@ namespace algorithm_practice_astar
 		//
 		// Getter
 		//
+		eStatus GetStatus() const { return mStatus; }
 		cpg::Point GetPoint() const { return mCurrentPoint; }
 		int GetCost2Start() const { return mCost2Start; }
 		int GetCost2End() const { return mCost2End; }

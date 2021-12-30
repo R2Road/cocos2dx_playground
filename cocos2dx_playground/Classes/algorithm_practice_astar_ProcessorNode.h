@@ -79,6 +79,7 @@ namespace algorithm_practice_astar
 		using Node4AStarContainerT = std::list<Node4AStar>;
 		Node4AStarContainerT mOpenList;
 		Node4AStarContainerT mCloseList;
+		Node4AStarContainerT mUpdateList;
 		cpg::Point mCurrentPoint;
 
 		cpg_ui::ToolBarNode* mToolBarNode;

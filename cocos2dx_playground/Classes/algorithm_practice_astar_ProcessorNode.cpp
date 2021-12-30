@@ -13,6 +13,7 @@
 #include "algorithm_practice_astar_CostMapNode.h"
 #include "algorithm_practice_astar_Grid4TileMap.h"
 
+#include "cpg_Direction8.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetUtility.h"
@@ -35,6 +36,7 @@ namespace algorithm_practice_astar
 
 		, mOpenList()
 		, mCloseList()
+		, mUpdateList()
 		, mCurrentPoint()
 
 		, mToolBarNode( nullptr )
@@ -256,15 +258,59 @@ namespace algorithm_practice_astar
 				}
 			}
 
+			// Move
+			min_itr->Close();
 			const Node4AStar current_node = *min_itr;
 			mCloseList.push_back( current_node );
 			mOpenList.erase( min_itr );
+			mUpdateList.push_back( current_node );
 
+			// Collect Open List
+			cpg::Direction8 dir8;
+			cpg::Point temp_point;
+			for( int i = 0; 8 > i; ++i, dir8.Rotate( true ) )
+			{
+				temp_point = current_node.GetPoint() + dir8.GetPoint();
 
+				if( !mGrid4TileMap->IsIn( temp_point.x, temp_point.y ) )
+				{
+					continue;
+				}
+
+				if( mOpenList.end() != std::find_if( mOpenList.begin(), mOpenList.end(), [temp_point]( const Node4AStar& other_node )->bool {
+					return other_node.GetPoint() == temp_point;
+				} ) )
+				{
+					continue;
+				}
+
+				if( mCloseList.end() != std::find_if( mCloseList.begin(), mCloseList.end(), [temp_point]( const Node4AStar& other_node )->bool {
+					return other_node.GetPoint() == temp_point;
+				} ) )
+				{
+					continue;
+				}
+
+				Node4AStar new_node{ temp_point, mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
+				mOpenList.push_back( new_node );
+				mUpdateList.push_back( new_node );
+			}
 
 			//
 			// ETC
 			//
+			for( const auto& u : mUpdateList )
+			{
+				if( Node4AStar::eStatus::Open == u.GetStatus() )
+				{
+					mCostMapNode->Open( u.GetPoint().x, u.GetPoint().y, u.GetCost2Start(), u.GetCost2End() );
+				}
+				else
+				{
+					mCostMapNode->Close( u.GetPoint().x, u.GetPoint().y );
+				}
+			}
+			mUpdateList.clear();
 		}
 	}
 	void ProcessorNode::algorithmLoop( float dt )
