@@ -1,6 +1,5 @@
 #include "algorithm_practice_astar_Direction8Scene.h"
 
-#include <functional>
 #include <new>
 #include <numeric>
 

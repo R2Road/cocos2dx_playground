@@ -1,6 +1,5 @@
 #include "algorithm_practice_floodfill_Direction4Scene.h"
 
-#include <functional>
 #include <new>
 #include <numeric>
 
