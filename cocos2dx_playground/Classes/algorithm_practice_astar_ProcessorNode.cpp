@@ -230,7 +230,7 @@ namespace algorithm_practice_astar
 			//
 			// Algorithm
 			//
-			Node4AStar new_node{ mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
+			Node4AStar new_node{ mGrid4TileMap->GetEntryPoint(), cpg::Point{ -1, -1 }, mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
 			mOpenList.push_back( new_node );
 
 			//
@@ -259,12 +259,6 @@ namespace algorithm_practice_astar
 					min_itr = cur;
 				}
 			}
-			// Found Exit
-			if( mGrid4TileMap->GetExitPoint() == min_itr->GetPoint() )
-			{
-				mStep = eStep::End;
-				return;
-			}
 
 			// Move
 			min_itr->Close();
@@ -272,6 +266,13 @@ namespace algorithm_practice_astar
 			mCloseList.push_back( current_node );
 			mOpenList.erase( min_itr );
 			mUpdateList.push_back( current_node );
+
+			// Found Exit
+			if( mGrid4TileMap->GetExitPoint() == current_node.GetPoint() )
+			{
+				mStep = eStep::Result;
+				return;
+			}
 
 			// Collect Open List
 			cpg::Direction8 dir8;
@@ -304,7 +305,7 @@ namespace algorithm_practice_astar
 					continue;
 				}
 
-				Node4AStar new_node{ temp_point, mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
+				Node4AStar new_node{ temp_point, current_node.GetPoint(), mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
 				mOpenList.push_back( new_node );
 				mUpdateList.push_back( new_node );
 			}
@@ -324,6 +325,25 @@ namespace algorithm_practice_astar
 				}
 			}
 			mUpdateList.clear();
+		}
+		else if( eStep::Result == mStep )
+		{
+			std::list<cpg::Point> result;
+
+			auto current_itr = std::find_if( mCloseList.begin(), mCloseList.end(), [target_point = mGrid4TileMap->GetExitPoint()]( const Node4AStar& other_node )->bool {
+				return other_node.GetPoint() == target_point;
+			} );
+
+			while( -1 != current_itr->GetPreviousPoint().x )
+			{
+				result.push_back( current_itr->GetPreviousPoint() );
+
+				current_itr = std::find_if( mCloseList.begin(), mCloseList.end(), [target_point = current_itr->GetPreviousPoint()]( const Node4AStar& other_node )->bool {
+					return other_node.GetPoint() == target_point;
+				} );
+			}
+
+			mStep = eStep::End;
 		}
 	}
 	void ProcessorNode::algorithmLoop( float dt )

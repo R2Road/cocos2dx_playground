@@ -17,9 +17,10 @@ namespace algorithm_practice_astar
 			Close,
 		};
 
-		Node4AStar( const cpg::Point current_point, const cpg::Point start_point, const cpg::Point end_point ) :
+		Node4AStar( const cpg::Point current_point, const cpg::Point previous_point, const cpg::Point start_point, const cpg::Point end_point ) :
 			mStatus( eStatus::Open )
 			, mCurrentPoint( current_point )
+			, mPreviousPoint( previous_point )
 			, mCost2Start( calculateCost( current_point, start_point ) )
 			, mCost2End( calculateCost( current_point, end_point ) )
 			, mTotalCost( mCost2Start + mCost2End )
@@ -30,6 +31,7 @@ namespace algorithm_practice_astar
 		//
 		eStatus GetStatus() const { return mStatus; }
 		cpg::Point GetPoint() const { return mCurrentPoint; }
+		cpg::Point GetPreviousPoint() const { return mPreviousPoint; }
 		int GetCost2Start() const { return mCost2Start; }
 		int GetCost2End() const { return mCost2End; }
 		int GetTotalCost() const { return mTotalCost; }
@@ -68,6 +70,7 @@ namespace algorithm_practice_astar
 	private:
 		eStatus mStatus;
 		cpg::Point mCurrentPoint;
+		cpg::Point mPreviousPoint;
 		int mCost2Start;
 		int mCost2End;
 		int mTotalCost;

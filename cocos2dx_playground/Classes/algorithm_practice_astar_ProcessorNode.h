@@ -38,6 +38,7 @@ namespace algorithm_practice_astar
 		{
 			Entry,
 			Loop,
+			Result,
 			End,
 		};
 
