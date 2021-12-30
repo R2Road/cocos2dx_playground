@@ -40,8 +40,8 @@ namespace algorithm_practice_floodfill
 
 	public:
 		void Reset();
-		void UpdateTile( const int map_point_x, const int map_point_y, const char direction );
-		void ClearTile( const int map_point_x, const int map_point_y );
+		void UpdateTile( const int point_x, const int point_y, const char direction );
+		void ClearTile( const int point_x, const int point_y );
 
 	private:
 		const Config mConfig;
