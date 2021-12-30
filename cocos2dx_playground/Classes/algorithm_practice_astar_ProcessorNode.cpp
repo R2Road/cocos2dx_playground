@@ -4,11 +4,9 @@
 #include <numeric>
 
 #include "2d/CCLabel.h"
-#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "renderer/CCTextureCache.h"
 
 #include "algorithm_practice_astar_CostMapNode.h"
 #include "algorithm_practice_astar_Grid4TileMap.h"
