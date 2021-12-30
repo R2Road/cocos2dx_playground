@@ -180,6 +180,7 @@ namespace algorithm_practice_astar
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale( _director->getContentScaleFactor() );
 				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
+				sprite->setColor( Color3B( 255u, 97u, 178u ) );
 				addChild( sprite, 10 );
 
 				mEntryPointIndicatorNode = sprite;
@@ -189,7 +190,8 @@ namespace algorithm_practice_astar
 				auto sprite = Sprite::createWithTexture( texture );
 				sprite->setAnchorPoint( Vec2::ZERO );
 				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 3, 0 ) );
+				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
+				sprite->setColor( Color3B( 162u, 255u, 203u ) );
 				addChild( sprite, 10 );
 
 				mExitPointIndicatorNode = sprite;
