@@ -5,6 +5,8 @@
 
 #include "2d/CCLabel.h"
 #include "base/CCDirector.h"
+#include "base/CCEventListenerKeyboard.h"
+#include "base/CCEventDispatcher.h"
 #include "ui/UIButton.h"
 
 #include "algorithm_practice_floodfill_Grid4TileMap.h"
@@ -44,7 +46,9 @@ namespace algorithm_practice_floodfill
 		, Node* const entry_point_indocator_node
 		, const cpg::TileSheetConfiguration& tile_sheet_configuration
 	) :
-		mConfig( config )
+		mKeyboardListener( nullptr )
+
+		, mConfig( config )
 
 		, mGrid4TileMap( grid_4_tile_map )
 		, mTileMapNode( tile_map_node )
@@ -99,6 +103,9 @@ namespace algorithm_practice_floodfill
 			std::stringstream ss;
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
+			ss << "[R] : " << "Reset";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "[Mouse] : " << "Edit Grid";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
@@ -146,30 +153,6 @@ namespace algorithm_practice_floodfill
 				// Set Indicator
 				tool_bar_node->SelectTool( mToolIndex );
 			}
-
-			//
-			// Clear Button
-			//
-			{
-				auto button = ui::Button::create( "guide_01_0.png", "guide_01_4.png", "guide_01_2.png", ui::Widget::TextureResType::PLIST );
-				button->setAnchorPoint( Vec2::ZERO );
-				button->setScale9Enabled( true );
-				button->setContentSize( Size( 40.f, 20.f ) );
-				button->setPosition(
-					visibleOrigin
-					+ Vec2( visibleSize.width, visibleSize.height )
-					- Vec2( button->getContentSize().width, button->getContentSize().height )
-					- Vec2( 80.f, 0.f )
-				);
-				button->addTouchEventListener( CC_CALLBACK_2( EditorNode::onGridClear, this ) );
-				mUI4Edit->addChild( button );
-
-				// Title
-				{
-					auto label = Label::createWithTTF( "Clear", cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
-					button->setTitleLabel( label );
-				}
-			}
 		}
 
 		//
@@ -216,19 +199,44 @@ namespace algorithm_practice_floodfill
 		return true;
 	}
 
+	void EditorNode::onEnter()
+	{
+		Node::onEnter();
+
+		assert( !mKeyboardListener );
+		mKeyboardListener = EventListenerKeyboard::create();
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( EditorNode::onKeyPressed, this );
+		mKeyboardListener->setEnabled( isVisible() );
+		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
+	}
+	void EditorNode::onExit()
+	{
+		assert( mKeyboardListener );
+		getEventDispatcher()->removeEventListener( mKeyboardListener );
+		mKeyboardListener = nullptr;
+
+		Node::onExit();
+	}
+
+
+	void EditorNode::setVisible( bool visible )
+	{
+		Node::setVisible( visible );
+
+		if( mKeyboardListener )
+		{
+			mKeyboardListener->setEnabled( visible );
+		}
+	}
+
 
 	void EditorNode::onToolSelect( const int tool_index )
 	{
 		mToolIndex = tool_index;
 		CCLOG( "Tool Index : %d", mToolIndex );
 	}
-	void EditorNode::onGridClear( Ref* /*sender*/, ui::Widget::TouchEventType touch_event_type )
+	void EditorNode::onGridClear()
 	{
-		if( ui::Widget::TouchEventType::ENDED != touch_event_type )
-		{
-			return;
-		}
-
 		//
 		// Reset Grid
 		//
@@ -354,5 +362,14 @@ namespace algorithm_practice_floodfill
 			mTileMapNode->getPosition()
 			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mGrid4TileMap->GetEntryPoint().x, mTileSheetConfiguration.GetTileHeight() * mGrid4TileMap->GetEntryPoint().y )
 		);
+	}
+
+
+	void EditorNode::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+	{
+		if( EventKeyboard::KeyCode::KEY_R == key_code )
+		{
+			onGridClear();
+		}
 	}
 }
