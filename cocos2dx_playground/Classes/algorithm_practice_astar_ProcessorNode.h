@@ -75,8 +75,10 @@ namespace algorithm_practice_astar
 		float mElapsedTime4Loop;
 		eStep mStep;
 
-		std::list<Node4AStar> mOpenList;
-		std::list<Node4AStar> mCloseList;
+
+		using Node4AStarContainerT = std::list<Node4AStar>;
+		Node4AStarContainerT mOpenList;
+		Node4AStarContainerT mCloseList;
 		cpg::Point mCurrentPoint;
 
 		cpg_ui::ToolBarNode* mToolBarNode;
