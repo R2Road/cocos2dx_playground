@@ -64,7 +64,7 @@ namespace algorithm_practice_astar
 		// Left Top
 		//
 		{
-			mLabel_Cost2Start = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 4, Size::ZERO, TextHAlignment::LEFT );
+			mLabel_Cost2Start = Label::createWithTTF( "", cpg::StringTable::GetFontPath(), 4 );
 			mLabel_Cost2Start->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			mLabel_Cost2Start->setPositionY( getContentSize().height );
 			addChild( mLabel_Cost2Start );

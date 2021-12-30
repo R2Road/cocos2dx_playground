@@ -72,7 +72,7 @@ namespace algorithm_practice
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10 );
 			label->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
