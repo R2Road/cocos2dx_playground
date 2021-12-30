@@ -17,6 +17,8 @@
 #include "cocos_research_action_SoundActionScene.h"
 #include "cocos_research_action_SpriteFrameActionScene.h"
 
+#include "step_typetype_label_ttf_ETCScene.h"
+
 #include "step02_fsm1test_BasicScene.h"
 #include "step02_fsm1test_AnimationControlScene.h"
 #include "step_rain_of_chaos_collision_CollectionScene.h"
@@ -72,6 +74,9 @@ namespace step99
 			ss << "[2] : " << cocos_research_action::SpriteFrameActionScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
+			ss << "[3] " << step_typetype::label_ttf::ETCScene::getTitle();
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
@@ -85,7 +90,7 @@ namespace step99
 			ss << cpg::linefeed;
 			ss << "=============================";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 12 );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10 );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
@@ -136,6 +141,10 @@ namespace step99
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( cocos_research_action::SpriteFrameActionScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_3:
+			_director->replaceScene( step_typetype::label_ttf::ETCScene::create() );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_Q:

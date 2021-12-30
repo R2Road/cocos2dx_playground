@@ -10,7 +10,6 @@
 #include "PlayGroundScene.h"
 
 #include "step_typetype_label_ttf_AlignScene.h"
-#include "step_typetype_label_ttf_ETCScene.h"
 
 #include "step_typetype_sprite_BasicScene.h"
 #include "step_typetype_node_AnchorPointScene.h"
@@ -72,19 +71,17 @@ namespace step_typetype
 			ss << cpg::linefeed;
 			ss << "[1] " << step_typetype::label_ttf::AlignScene::getTitle();
 			ss << cpg::linefeed;
-			ss << "[2] " << step_typetype::label_ttf::ETCScene::getTitle();
+			ss << cpg::linefeed;
+			ss << "[2] " << step_typetype::input::KeyCodeViewScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
-			ss << "[3] " << step_typetype::input::KeyCodeViewScene::getTitle();
+			ss << "[3] " << step_typetype::sprite::BasicScene::getTitle();
 			ss << cpg::linefeed;
+			ss << "[4] " << step_typetype::node::AnchorPointScene::getTitle();
 			ss << cpg::linefeed;
-			ss << "[4] " << step_typetype::sprite::BasicScene::getTitle();
+			ss << "[5] " << step_typetype::sound::BasicScene::getTitle();
 			ss << cpg::linefeed;
-			ss << "[5] " << step_typetype::node::AnchorPointScene::getTitle();
-			ss << cpg::linefeed;
-			ss << "[6] " << step_typetype::sound::BasicScene::getTitle();
-			ss << cpg::linefeed;
-			ss << "[7] " << step_typetype::ScheduleScene::getTitle();
+			ss << "[6] " << step_typetype::ScheduleScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "=============================";
@@ -154,26 +151,23 @@ namespace step_typetype
 		case EventKeyboard::KeyCode::KEY_1:
 			_director->replaceScene( step_typetype::label_ttf::AlignScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_2:
-			_director->replaceScene( step_typetype::label_ttf::ETCScene::create() );
-			break;
 
-		case EventKeyboard::KeyCode::KEY_3:
+		case EventKeyboard::KeyCode::KEY_2:
 			_director->replaceScene( step_typetype::input::KeyCodeViewScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_4:
+		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( step_typetype::sprite::BasicScene::create() );
 			break;
-		case EventKeyboard::KeyCode::KEY_5:
+		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( step_typetype::node::AnchorPointScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_6:
+		case EventKeyboard::KeyCode::KEY_5:
 			_director->replaceScene( step_typetype::sound::BasicScene::create() );
 			break;
 
-		case EventKeyboard::KeyCode::KEY_7:
+		case EventKeyboard::KeyCode::KEY_6:
 			_director->replaceScene( step_typetype::ScheduleScene::create() );
 			break;
 
