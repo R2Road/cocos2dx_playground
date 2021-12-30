@@ -246,9 +246,11 @@ namespace algorithm_practice_astar
 			//
 			if( mOpenList.empty() )
 			{
+				mStep = eStep::End;
 				return;
 			}
 
+			// Select Min
 			Node4AStarContainerT::iterator min_itr = mOpenList.begin();
 			for( auto cur = ( ++mOpenList.begin() ), end = mOpenList.end(); end != cur; ++cur )
 			{
@@ -256,6 +258,12 @@ namespace algorithm_practice_astar
 				{
 					min_itr = cur;
 				}
+			}
+			// Found Exit
+			if( mGrid4TileMap->GetExitPoint() == min_itr->GetPoint() )
+			{
+				mStep = eStep::End;
+				return;
 			}
 
 			// Move
