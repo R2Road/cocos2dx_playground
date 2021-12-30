@@ -1,7 +1,6 @@
 #include "algorithm_practice_astar_TestScene.h"
 
 #include <functional>
-#include <fstream>
 #include <new>
 #include <numeric>
 #include <sstream>
