@@ -19,6 +19,8 @@
 #include "cpg_TileSheetUtility.h"
 #include "cpg_ui_ToolBarNode.h"
 
+#include "step_defender_game_TileMapNode.h"
+
 USING_NS_CC;
 
 namespace algorithm_practice_astar
@@ -42,6 +44,7 @@ namespace algorithm_practice_astar
 		, mToolBarNode( nullptr )
 		, mCurrentPointIndicatorNode( nullptr )
 		, mCostMapNode( nullptr )
+		, mPathNode( nullptr )
 	{}
 
 	ProcessorNode* ProcessorNode::create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map )
@@ -140,6 +143,21 @@ namespace algorithm_practice_astar
 			addChild( mCostMapNode );
 		}
 
+		//
+		// Tile Maps
+		//
+		{
+			mPathNode = step_defender::game::TileMapNode::create(
+				step_defender::game::TileMapNode::Config{ mConfig.MapWidth, mConfig.MapHeight }
+				, mTileSheetConfiguration
+			);
+			mPathNode->setPosition(
+				visibleCenter
+				- Vec2( mPathNode->getContentSize().width * 0.5f, mPathNode->getContentSize().height * 0.5f )
+			);
+			addChild( mPathNode, 99 );
+		}
+
 		return true;
 	}
 
@@ -180,6 +198,7 @@ namespace algorithm_practice_astar
 			mCloseList.clear();
 
 			mCostMapNode->Reset();
+			mPathNode->Reset();
 
 			mCurrentPointIndicatorNode->setVisible( false );
 		}
@@ -333,6 +352,7 @@ namespace algorithm_practice_astar
 			auto current_itr = std::find_if( mCloseList.begin(), mCloseList.end(), [target_point = mGrid4TileMap->GetExitPoint()]( const Node4AStar& other_node )->bool {
 				return other_node.GetPoint() == target_point;
 			} );
+			result.push_back( current_itr->GetPoint() );
 
 			while( -1 != current_itr->GetPreviousPoint().x )
 			{
@@ -341,6 +361,11 @@ namespace algorithm_practice_astar
 				current_itr = std::find_if( mCloseList.begin(), mCloseList.end(), [target_point = current_itr->GetPreviousPoint()]( const Node4AStar& other_node )->bool {
 					return other_node.GetPoint() == target_point;
 				} );
+			}
+
+			for( const auto& p : result )
+			{
+				mPathNode->UpdateTile( p.x, p.y, 0, 4 );
 			}
 
 			mStep = eStep::End;
@@ -376,6 +401,7 @@ namespace algorithm_practice_astar
 			mCloseList.clear();
 
 			mCostMapNode->Reset();
+			mPathNode->Reset();
 
 			mCurrentPointIndicatorNode->setVisible( false );
 			return;

@@ -13,6 +13,14 @@ namespace cpg_ui
 	class ToolBarNode;
 }
 
+namespace step_defender
+{
+	namespace game
+	{
+		class TileMapNode;
+	}
+}
+
 namespace algorithm_practice_astar
 {
 	class CostMapNode;
@@ -86,5 +94,6 @@ namespace algorithm_practice_astar
 		cpg_ui::ToolBarNode* mToolBarNode;
 		cocos2d::Node* mCurrentPointIndicatorNode;
 		CostMapNode* mCostMapNode;
+		step_defender::game::TileMapNode* mPathNode;
 	};
 }
