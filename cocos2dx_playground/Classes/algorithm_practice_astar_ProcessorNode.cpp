@@ -252,7 +252,7 @@ namespace algorithm_practice_astar
 			Node4AStarContainerT::iterator min_itr = mOpenList.begin();
 			for( auto cur = ( ++mOpenList.begin() ), end = mOpenList.end(); end != cur; ++cur )
 			{
-				if( min_itr->GetTotalCost() > cur->GetTotalCost() )
+				if( min_itr->GetCost2End() > cur->GetCost2End() )
 				{
 					min_itr = cur;
 				}
