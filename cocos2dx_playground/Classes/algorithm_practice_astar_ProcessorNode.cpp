@@ -42,7 +42,6 @@ namespace algorithm_practice_astar
 		, mCurrentPoint()
 
 		, mToolBarNode( nullptr )
-		, mCurrentPointIndicatorNode( nullptr )
 		, mCostMapNode( nullptr )
 		, mPathNode( nullptr )
 	{}
@@ -120,18 +119,6 @@ namespace algorithm_practice_astar
 		}
 
 		//
-		// Current Point Indicator
-		//
-		{
-			auto draw_node = DrawNode::create();
-			draw_node->drawRect( Vec2::ZERO, Vec2( mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight() ), Color4F::RED );
-			draw_node->setVisible( false );
-			addChild( draw_node, 1 );
-
-			mCurrentPointIndicatorNode = draw_node;
-		}
-
-		//
 		// CostMapNode
 		//
 		{
@@ -199,8 +186,6 @@ namespace algorithm_practice_astar
 
 			mCostMapNode->Reset();
 			mPathNode->Reset();
-
-			mCurrentPointIndicatorNode->setVisible( false );
 		}
 
 		if( mKeyboardListener )
@@ -230,15 +215,6 @@ namespace algorithm_practice_astar
 			}
 			break;
 		}
-	}
-
-
-	void ProcessorNode::updateCurrentPointView()
-	{
-		mCurrentPointIndicatorNode->setPosition(
-			mCostMapNode->getPosition()
-			+ Vec2( mTileSheetConfiguration.GetTileWidth() * mCurrentPoint.x, mTileSheetConfiguration.GetTileHeight() * mCurrentPoint.y )
-		);
 	}
 
 
@@ -402,8 +378,6 @@ namespace algorithm_practice_astar
 
 			mCostMapNode->Reset();
 			mPathNode->Reset();
-
-			mCurrentPointIndicatorNode->setVisible( false );
 			return;
 		}
 

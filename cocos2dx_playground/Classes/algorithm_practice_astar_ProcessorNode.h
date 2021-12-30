@@ -66,7 +66,6 @@ namespace algorithm_practice_astar
 
 	private:
 		void onModeSelect( const int mode_index );
-		void updateCurrentPointView();
 
 		void algorithmStep();
 		void algorithmLoop( float dt );
@@ -84,7 +83,6 @@ namespace algorithm_practice_astar
 		float mElapsedTime4Loop;
 		eStep mStep;
 
-
 		using Node4AStarContainerT = std::list<Node4AStar>;
 		Node4AStarContainerT mOpenList;
 		Node4AStarContainerT mCloseList;
@@ -92,7 +90,6 @@ namespace algorithm_practice_astar
 		cpg::Point mCurrentPoint;
 
 		cpg_ui::ToolBarNode* mToolBarNode;
-		cocos2d::Node* mCurrentPointIndicatorNode;
 		CostMapNode* mCostMapNode;
 		step_defender::game::TileMapNode* mPathNode;
 	};
