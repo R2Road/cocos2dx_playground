@@ -225,12 +225,16 @@ namespace algorithm_practice_astar
 	{
 		if( eStep::Entry == mStep )
 		{
+			//
+			// Algorithm
+			//
 			Node4AStar new_node{ mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
-
 			mOpenList.push_back( new_node );
 
+			//
+			// ETC
+			//
 			mCostMapNode->Open( new_node.GetPoint().x, new_node.GetPoint().y, new_node.GetCost2Start(), new_node.GetCost2End() );
-
 			mStep = eStep::Loop;
 		}
 		else if( eStep::Loop == mStep )
