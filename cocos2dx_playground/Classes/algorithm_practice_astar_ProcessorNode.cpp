@@ -86,7 +86,7 @@ namespace algorithm_practice_astar
 			ss << cpg::linefeed;
 			ss << "[Space] : " << "Step";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11 );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin
