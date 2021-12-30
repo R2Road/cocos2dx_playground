@@ -6,19 +6,20 @@
 
 #include "cpg_SStream.h"
 
-#include "step_typetype_RootScene.h"
-
 USING_NS_CC;
 
 namespace step_typetype
 {
 	namespace label_ttf
 	{
-		ETCScene::ETCScene() : mKeyboardListener( nullptr ) {}
+		ETCScene::ETCScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+			helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
+			, mKeyboardListener( nullptr )
+		{}
 
-		Scene* ETCScene::create()
+		Scene* ETCScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 		{
-			auto ret = new ( std::nothrow ) ETCScene();
+			auto ret = new ( std::nothrow ) ETCScene( back_to_the_previous_scene_callback );
 			if( !ret || !ret->init() )
 			{
 				delete ret;
@@ -156,7 +157,7 @@ namespace step_typetype
 		{
 			if( EventKeyboard::KeyCode::KEY_ESCAPE == keycode )
 			{
-				_director->replaceScene( step_typetype::RootScene::create() );
+				helper::BackToThePreviousScene::MoveBack();
 				return;
 			}
 		}

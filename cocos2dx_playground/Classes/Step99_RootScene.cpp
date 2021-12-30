@@ -144,7 +144,7 @@ namespace step99
 			break;
 
 		case EventKeyboard::KeyCode::KEY_3:
-			_director->replaceScene( step_typetype::label_ttf::ETCScene::create() );
+			_director->replaceScene( step_typetype::label_ttf::ETCScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		case EventKeyboard::KeyCode::KEY_Q:
