@@ -1,4 +1,4 @@
-#include "algorithm_practice_floodfill_DirectionCellScene.h"
+#include "algorithm_practice_floodfill_Direction4Scene.h"
 
 #include <functional>
 #include <new>
@@ -17,7 +17,7 @@ USING_NS_CC;
 
 namespace algorithm_practice_floodfill
 {
-	DirectionCellScene::DirectionCellScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	Direction4Scene::Direction4Scene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
@@ -25,9 +25,9 @@ namespace algorithm_practice_floodfill
 		, mDirectionView( nullptr )
 	{}
 
-	Scene* DirectionCellScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* Direction4Scene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) DirectionCellScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) Direction4Scene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -41,7 +41,7 @@ namespace algorithm_practice_floodfill
 		return ret;
 	}
 
-	bool DirectionCellScene::init()
+	bool Direction4Scene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -104,16 +104,16 @@ namespace algorithm_practice_floodfill
 		return true;
 	}
 
-	void DirectionCellScene::onEnter()
+	void Direction4Scene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( DirectionCellScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( Direction4Scene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void DirectionCellScene::onExit()
+	void Direction4Scene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -123,7 +123,7 @@ namespace algorithm_practice_floodfill
 	}
 
 
-	void DirectionCellScene::updateDirectionView()
+	void Direction4Scene::updateDirectionView()
 	{
 		switch( mDirection4.GetState() )
 		{
@@ -147,7 +147,7 @@ namespace algorithm_practice_floodfill
 	}
 
 
-	void DirectionCellScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+	void Direction4Scene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 	{
 		switch( key_code )
 		{

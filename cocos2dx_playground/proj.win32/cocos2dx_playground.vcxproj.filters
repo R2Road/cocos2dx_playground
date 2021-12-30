@@ -891,9 +891,6 @@
     <ClCompile Include="..\Classes\cpg_Direction4.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.cpp">
-      <Filter>src\scene\algorithm_practice\floodfill</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.cpp">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClCompile>
@@ -1105,6 +1102,9 @@
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.cpp">
+      <Filter>src\scene\algorithm_practice\floodfill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Direction4Scene.cpp">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1799,9 +1799,6 @@
     <ClInclude Include="..\Classes\cpg_Direction4.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.h">
-      <Filter>src\scene\algorithm_practice\floodfill</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.h">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
@@ -2025,6 +2022,9 @@
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.h">
+      <Filter>src\scene\algorithm_practice\floodfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Direction4Scene.h">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
   </ItemGroup>
