@@ -239,7 +239,32 @@ namespace algorithm_practice_astar
 		}
 		else if( eStep::Loop == mStep )
 		{
-			// Do Something
+			//
+			// Algorithm
+			//
+			if( mOpenList.empty() )
+			{
+				return;
+			}
+
+			Node4AStarContainerT::iterator min_itr = mOpenList.begin();
+			for( auto cur = ( ++mOpenList.begin() ), end = mOpenList.end(); end != cur; ++cur )
+			{
+				if( min_itr->GetTotalCost() > cur->GetTotalCost() )
+				{
+					min_itr = cur;
+				}
+			}
+
+			const Node4AStar current_node = *min_itr;
+			mCloseList.push_back( current_node );
+			mOpenList.erase( min_itr );
+
+
+
+			//
+			// ETC
+			//
 		}
 	}
 	void ProcessorNode::algorithmLoop( float dt )

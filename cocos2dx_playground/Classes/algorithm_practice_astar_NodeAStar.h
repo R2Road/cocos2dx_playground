@@ -31,6 +31,7 @@ namespace algorithm_practice_astar
 		cpg::Point GetPoint() const { return mCurrentPoint; }
 		int GetCost2Start() const { return mCost2Start; }
 		int GetCost2End() const { return mCost2End; }
+		int GetTotalCost() const { return mTotalCost; }
 
 		void Clear()
 		{
