@@ -39,4 +39,13 @@ namespace cpg
 		_Ostr << cpg::tab << cpg::tab << cpg::tab;
 		return ( _Ostr );
 	}
+
+
+
+	template<class _Elem, class _Traits>
+	inline std::basic_ostream<_Elem, _Traits>& blank5( std::basic_ostream<_Elem, _Traits>& _Ostr )
+	{
+		_Ostr << "     ";
+		return ( _Ostr );
+	}
 }

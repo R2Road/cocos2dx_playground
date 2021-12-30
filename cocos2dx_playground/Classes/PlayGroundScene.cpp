@@ -61,9 +61,9 @@ bool PlayGroundScene::init()
 	{
 		std::stringstream ss;
 		ss << "# Message" << cpg::linefeed;
-		ss << cpg::tab2 << "> InProgress : Step 07" << cpg::linefeed;
-		ss << cpg::tab2 << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
-		ss << cpg::tab2 << "> To Do : Prerender Sequence Test" << cpg::linefeed;
+		ss << cpg::blank5 << "> InProgress : Step 07" << cpg::linefeed;
+		ss << cpg::blank5 << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
+		ss << cpg::blank5 << "> To Do : Prerender Sequence Test" << cpg::linefeed;
 		ss << cpg::linefeed;
 		ss << "=============================";
 		ss << cpg::linefeed;
