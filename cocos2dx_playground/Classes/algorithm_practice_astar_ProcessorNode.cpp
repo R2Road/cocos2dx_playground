@@ -11,7 +11,7 @@
 #include "renderer/CCTextureCache.h"
 
 #include "algorithm_practice_astar_CostMapNode.h"
-#include "algorithm_practice_Grid4TileMap.h"
+#include "algorithm_practice_astar_Grid4TileMap.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -225,7 +225,13 @@ namespace algorithm_practice_astar
 	{
 		if( eStep::Entry == mStep )
 		{
-			// Do Something
+			Node4AStar new_node{ mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetEntryPoint(), mGrid4TileMap->GetExitPoint() };
+
+			mOpenList.push_back( new_node );
+
+			mCostMapNode->Open( new_node.GetPoint().x, new_node.GetPoint().y, new_node.GetCost2Start(), new_node.GetCost2End() );
+
+			mStep = eStep::Loop;
 		}
 		else if( eStep::Loop == mStep )
 		{

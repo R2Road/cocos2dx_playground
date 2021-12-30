@@ -17,12 +17,20 @@ namespace algorithm_practice_astar
 			Close,
 		};
 
-		Node4AStar() :
-			mStatus( eStatus::None )
-			, mCost2Start( 0 )
-			, mCost2End( 0 )
-			, mTotalCost( 0 )
+		Node4AStar( const cpg::Point current_point, const cpg::Point start_point, const cpg::Point end_point ) :
+			mStatus( eStatus::Open )
+			, mCurrentPoint( current_point )
+			, mCost2Start( calculateCost( current_point, start_point ) )
+			, mCost2End( calculateCost( current_point, end_point ) )
+			, mTotalCost( mCost2Start + mCost2End )
 		{}
+
+		//
+		// Getter
+		//
+		cpg::Point GetPoint() const { return mCurrentPoint; }
+		int GetCost2Start() const { return mCost2Start; }
+		int GetCost2End() const { return mCost2End; }
 
 		void Clear()
 		{
@@ -36,13 +44,6 @@ namespace algorithm_practice_astar
 			return eStatus::None != mStatus;
 		}
 
-		void Open( const cpg::Point current_point, const cpg::Point start_point, const cpg::Point end_point )
-		{
-			mStatus = eStatus::Open;
-
-			mCost2Start = calculateCost( current_point, start_point );
-			mCost2End = calculateCost( current_point, end_point );
-		}
 		void Close()
 		{
 			mStatus = eStatus::Close;
@@ -64,6 +65,7 @@ namespace algorithm_practice_astar
 
 	private:
 		eStatus mStatus;
+		cpg::Point mCurrentPoint;
 		int mCost2Start;
 		int mCost2End;
 		int mTotalCost;
