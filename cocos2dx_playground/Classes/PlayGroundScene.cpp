@@ -64,6 +64,7 @@ bool PlayGroundScene::init()
 		ss << cpg::blank5 << "> InProgress : Step 07" << cpg::linefeed;
 		ss << cpg::blank5 << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
 		ss << cpg::blank5 << "> To Do : Prerender Sequence Test" << cpg::linefeed;
+		ss << cpg::blank5 << "> To Do : Step 01 Update" << cpg::linefeed;
 		ss << cpg::linefeed;
 		ss << "=============================";
 		ss << cpg::linefeed;
