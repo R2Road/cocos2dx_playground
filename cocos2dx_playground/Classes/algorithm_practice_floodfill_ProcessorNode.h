@@ -11,14 +11,10 @@ namespace cpg_ui
 	class ToolBarNode;
 }
 
-namespace algorithm_practice
-{
-	class Grid4TileMap;
-}
-
 namespace algorithm_practice_floodfill
 {
 	class DirectionMapNode;
+	class Grid4TileMap;
 
 	class ProcessorNode : public cocos2d::Node
 	{
@@ -43,10 +39,10 @@ namespace algorithm_practice_floodfill
 			End,
 		};
 
-		ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map );
+		ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map );
 
 	public:
-		static ProcessorNode* create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map );
+		static ProcessorNode* create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map );
 
 	private:
 		bool init() override;
@@ -71,7 +67,7 @@ namespace algorithm_practice_floodfill
 
 		const Config mConfig;
 		const cpg::TileSheetConfiguration mTileSheetConfiguration;
-		const algorithm_practice::Grid4TileMap* const mGrid4TileMap;
+		const Grid4TileMap* const mGrid4TileMap;
 
 		eMode mMode;
 		float mElapsedTime4Loop;

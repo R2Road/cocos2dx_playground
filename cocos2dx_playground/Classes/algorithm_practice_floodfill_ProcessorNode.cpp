@@ -11,7 +11,7 @@
 #include "renderer/CCTextureCache.h"
 
 #include "algorithm_practice_floodfill_DirectionMapNode.h"
-#include "algorithm_practice_Grid4TileMap.h"
+#include "algorithm_practice_floodfill_Grid4TileMap.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -21,7 +21,7 @@ USING_NS_CC;
 
 namespace algorithm_practice_floodfill
 {
-	ProcessorNode::ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map ) :
+	ProcessorNode::ProcessorNode( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map ) :
 		mKeyboardListener( nullptr )
 
 		, mConfig( config )
@@ -39,7 +39,7 @@ namespace algorithm_practice_floodfill
 		, mDirectionMapNode( nullptr )
 	{}
 
-	ProcessorNode* ProcessorNode::create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const algorithm_practice::Grid4TileMap* const grid_4_tile_map )
+	ProcessorNode* ProcessorNode::create( const Config config, const cpg::TileSheetConfiguration& tile_sheet_configuration, const Grid4TileMap* const grid_4_tile_map )
 	{
 		auto ret = new ( std::nothrow ) ProcessorNode( config, tile_sheet_configuration, grid_4_tile_map );
 		if( !ret || !ret->init() )
@@ -258,7 +258,7 @@ namespace algorithm_practice_floodfill
 					return;
 				}
 
-				if( algorithm_practice::eCellType::Road == mGrid4TileMap->GetCellType( new_point.x, new_point.y ) )
+				if( eCellType::Road == mGrid4TileMap->GetCellType( new_point.x, new_point.y ) )
 				{
 					auto& next_cell = mGrid4FloodFill.Get( new_point.x, new_point.y );
 					next_cell.Begin( mCurrentPoint, current_direction );

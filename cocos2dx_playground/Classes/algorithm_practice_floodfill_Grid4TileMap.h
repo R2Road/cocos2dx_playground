@@ -5,7 +5,7 @@
 #include "cpg_Grid.h"
 #include "cpg_Point.h"
 
-namespace algorithm_practice
+namespace algorithm_practice_floodfill
 {
 	enum class eCellType
 	{

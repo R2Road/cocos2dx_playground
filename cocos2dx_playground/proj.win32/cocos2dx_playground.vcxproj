@@ -164,7 +164,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_EditorNode.cpp" />
-    <ClCompile Include="..\Classes\algorithm_practice_Grid4TileMap.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_ProcessorNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_RootScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_TestScene.cpp" />
@@ -458,7 +458,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_EditorNode.h" />
-    <ClInclude Include="..\Classes\algorithm_practice_Grid4TileMap.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_ProcessorNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_TestScene.h" />

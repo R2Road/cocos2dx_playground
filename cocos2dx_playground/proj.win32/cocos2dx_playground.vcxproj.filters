@@ -1089,9 +1089,6 @@
     <ClCompile Include="..\Classes\algorithm_practice_astar_CostMapNode.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_Grid4TileMap.cpp">
-      <Filter>src\scene\algorithm_practice</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_astar_ProcessorNode.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClCompile>
@@ -1106,6 +1103,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_astar_Direction8Scene.cpp">
       <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.cpp">
+      <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2003,9 +2003,6 @@
     <ClInclude Include="..\Classes\algorithm_practice_astar_CostMapNode.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_Grid4TileMap.h">
-      <Filter>src\scene\algorithm_practice</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_NodeAStar.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
@@ -2025,6 +2022,9 @@
       <Filter>src\scene\algorithm_practice\astar</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_Cell4FloodFill.h">
+      <Filter>src\scene\algorithm_practice\floodfill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Grid4TileMap.h">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
   </ItemGroup>
