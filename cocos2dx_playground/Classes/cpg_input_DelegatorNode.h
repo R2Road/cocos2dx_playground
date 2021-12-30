@@ -1,6 +1,6 @@
 #pragma once
 
-#include "2d//CCNode.h"
+#include "2d/CCNode.h"
 
 #include "cpg_input_AllowedKeys.h"
 #include "step_rain_of_chaos_input_KeyCodeCollector.h"
