@@ -285,6 +285,11 @@ namespace algorithm_practice_astar
 					continue;
 				}
 
+				if( eCellType::Road != mGrid4TileMap->GetCellType( temp_point.x, temp_point.y ) )
+				{
+					continue;
+				}
+
 				if( mOpenList.end() != std::find_if( mOpenList.begin(), mOpenList.end(), [temp_point]( const Node4AStar& other_node )->bool {
 					return other_node.GetPoint() == temp_point;
 				} ) )
