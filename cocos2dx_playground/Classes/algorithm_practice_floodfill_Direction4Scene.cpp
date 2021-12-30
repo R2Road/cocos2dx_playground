@@ -4,6 +4,7 @@
 #include <new>
 #include <numeric>
 
+#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
@@ -23,6 +24,7 @@ namespace algorithm_practice_floodfill
 
 		, mDirection4()
 		, mDirectionView( nullptr )
+		, mDirectionIndicator( nullptr )
 	{}
 
 	Scene* Direction4Scene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -97,6 +99,15 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
+		// Indicator
+		//
+		{
+			mDirectionIndicator = DrawNode::create();
+			mDirectionIndicator->setPosition( visibleCenter );
+			addChild( mDirectionIndicator );
+		}
+
+		//
 		// Setup
 		//
 		updateDirectionView();
@@ -144,6 +155,9 @@ namespace algorithm_practice_floodfill
 			mDirectionView->setString( "WTF" );
 			break;
 		}
+
+		mDirectionIndicator->clear();
+		mDirectionIndicator->drawDot( Vec2( mDirection4.GetPoint().x * 40.f, mDirection4.GetPoint().y * 40.f ), 3.f, Color4F::GREEN );
 	}
 
 

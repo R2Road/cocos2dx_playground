@@ -7,6 +7,7 @@
 #include "cpg_Direction4.h"
 
 NS_CC_BEGIN
+	class DrawNode;
 	class Label;
 NS_CC_END
 
@@ -38,5 +39,6 @@ namespace algorithm_practice_floodfill
 
 		cpg::Direction4 mDirection4;
 		cocos2d::Label* mDirectionView;
+		cocos2d::DrawNode* mDirectionIndicator;
 	};
 }
