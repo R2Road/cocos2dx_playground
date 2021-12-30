@@ -4,7 +4,7 @@
 
 #include "helper_BackToThePreviousScene.h"
 
-#include "algorithm_practice_floodfill_Cell4FloodFill.h"
+#include "cpg_Direction4.h"
 
 NS_CC_BEGIN
 	class Label;
@@ -36,7 +36,7 @@ namespace algorithm_practice_floodfill
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		Cell4FloodFill mDirectionCell;
+		cpg::Direction4 mDirection4;
 		cocos2d::Label* mDirectionView;
 	};
 }

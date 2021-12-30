@@ -21,7 +21,7 @@ namespace algorithm_practice_floodfill
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
-		, mDirectionCell()
+		, mDirection4()
 		, mDirectionView( nullptr )
 	{}
 
@@ -125,7 +125,7 @@ namespace algorithm_practice_floodfill
 
 	void DirectionCellScene::updateDirectionView()
 	{
-		switch( mDirectionCell.GetCurrentDirection().GetState() )
+		switch( mDirection4.GetState() )
 		{
 		case cpg::Direction4::eState::Up:
 			mDirectionView->setString( "Up" );
@@ -156,11 +156,11 @@ namespace algorithm_practice_floodfill
 			return;
 
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-			mDirectionCell.RotateCurrentDirection( false );
+			mDirection4.Rotate( false );
 			updateDirectionView();
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			mDirectionCell.RotateCurrentDirection( true );
+			mDirection4.Rotate( true );
 			updateDirectionView();
 			break;
 		}
