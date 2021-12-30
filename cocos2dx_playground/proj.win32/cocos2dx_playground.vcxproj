@@ -160,7 +160,6 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\algorithm_practice_astar_ProcessorNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_RootScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_TestScene.cpp" />
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Constant.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.cpp" />

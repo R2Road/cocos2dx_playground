@@ -891,9 +891,6 @@
     <ClCompile Include="..\Classes\cpg_Direction4.cpp">
       <Filter>src\cpg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Constant.cpp">
-      <Filter>src\scene\algorithm_practice\floodfill</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.cpp">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClCompile>
