@@ -81,7 +81,7 @@ namespace algorithm_practice_floodfill
 			ss << cpg::linefeed;
 			ss << "[Space] : " << "Step";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin

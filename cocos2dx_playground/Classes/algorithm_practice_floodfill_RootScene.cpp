@@ -77,7 +77,7 @@ namespace algorithm_practice_floodfill
 			ss << cpg::linefeed;
 			ss << "[SPACE] : " << TestScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10 );
 			label->setPosition( visibleCenter );
 			addChild( label, std::numeric_limits<int>::max() );
 		}

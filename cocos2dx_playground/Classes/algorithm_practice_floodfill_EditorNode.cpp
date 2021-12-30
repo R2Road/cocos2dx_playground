@@ -101,7 +101,7 @@ namespace algorithm_practice_floodfill
 			ss << cpg::linefeed;
 			ss << "[Mouse] : " << "Edit Grid";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath() );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin
