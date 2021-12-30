@@ -66,7 +66,7 @@ namespace step_typetype
 			// Background
 			//
 			{
-				auto background_layer = LayerColor::create( Color4B( 79, 10, 5, 255 ) );
+				auto background_layer = LayerColor::create( Color4B( 5, 29, 81, 255 ) );
 				addChild( background_layer, std::numeric_limits<int>::min() );
 			}
 			
