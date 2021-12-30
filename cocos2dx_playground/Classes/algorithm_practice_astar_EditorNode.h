@@ -58,8 +58,15 @@ namespace algorithm_practice_astar
 	private:
 		bool init() override;
 
+		void onEnter() override;
+		void onExit() override;
+
+	public:
+		void setVisible( bool visible ) override;
+
+	private:
 		void onToolSelect( const int tool_index );
-		void onGridClear( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
+		void onGridClear();
 
 	private:
 		void resetView();
@@ -68,7 +75,11 @@ namespace algorithm_practice_astar
 		void updateExitPointView();
 		void onUpdateTile( cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType touch_event_type );
 
+		void onKeyPressed( cocos2d::EventKeyboard::KeyCode key_code, cocos2d::Event* event );
+
 	private:
+		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
 		const Config mConfig;
 
 		Grid4TileMap* const mGrid4TileMap;
