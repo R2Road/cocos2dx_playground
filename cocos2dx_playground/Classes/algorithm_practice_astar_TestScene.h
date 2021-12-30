@@ -33,7 +33,7 @@ namespace algorithm_practice_astar
 		TestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Test( To Do )"; }
+		static const char* getTitle() { return "Test"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:
