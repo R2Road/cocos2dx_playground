@@ -453,7 +453,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\algorithm_practice_astar_ProcessorNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_TestScene.h" />
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Constant.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Cell4FloodFill.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.h" />

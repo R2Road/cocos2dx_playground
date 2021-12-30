@@ -4,7 +4,7 @@
 
 #include "helper_BackToThePreviousScene.h"
 
-#include "algorithm_practice_floodfill_Constant.h"
+#include "algorithm_practice_floodfill_Cell4FloodFill.h"
 
 NS_CC_BEGIN
 	class Label;

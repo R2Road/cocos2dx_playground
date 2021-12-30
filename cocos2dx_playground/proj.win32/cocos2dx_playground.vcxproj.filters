@@ -1799,9 +1799,6 @@
     <ClInclude Include="..\Classes\cpg_Direction4.h">
       <Filter>src\cpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Constant.h">
-      <Filter>src\scene\algorithm_practice\floodfill</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.h">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
@@ -2026,6 +2023,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\algorithm_practice_astar_Direction8Scene.h">
       <Filter>src\scene\algorithm_practice\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Cell4FloodFill.h">
+      <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

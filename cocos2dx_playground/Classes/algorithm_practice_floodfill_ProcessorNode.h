@@ -2,7 +2,7 @@
 
 #include "2d/CCNode.h"
 
-#include "algorithm_practice_floodfill_Constant.h"
+#include "algorithm_practice_floodfill_Cell4FloodFill.h"
 #include "cpg_Grid.h"
 #include "cpg_TileSheetConfiguration.h"
 
