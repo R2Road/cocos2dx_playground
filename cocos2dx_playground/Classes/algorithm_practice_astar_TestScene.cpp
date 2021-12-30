@@ -6,14 +6,13 @@
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "cocos/platform/CCFileUtils.h"
-#include "renderer/CCTextureCache.h"
 
 #include "algorithm_practice_astar_EditorNode.h"
 #include "algorithm_practice_astar_ProcessorNode.h"
@@ -166,35 +165,20 @@ namespace algorithm_practice_astar
 		// Entry N Exit Point Indicator
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( tile_sheet_configuration.GetTexturePath() );
-
-			cpg::TileSheetUtility tile_sheet_utility;
-			tile_sheet_utility.Setup(
-				tile_sheet_configuration.GetTileWidth(), tile_sheet_configuration.GetTileHeight()
-				, tile_sheet_configuration.GetTileMargin_Width(), tile_sheet_configuration.GetTileMargin_Height()
-				, texture->getContentSizeInPixels().height
-			);
-
 			{
-				auto sprite = Sprite::createWithTexture( texture );
-				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
-				sprite->setColor( Color3B( 255u, 97u, 178u ) );
-				addChild( sprite, 10 );
+				auto draw_node = DrawNode::create();
+				draw_node->drawRect( Vec2( 1.f, 1.f ), Vec2( tile_sheet_configuration.GetTileWidth() - 1, tile_sheet_configuration.GetTileHeight() - 1 ), Color4F( Color3B( 255u, 97u, 178u ), 1.f ) );
+				addChild( draw_node, 10 );
 
-				mEntryPointIndicatorNode = sprite;
+				mEntryPointIndicatorNode = draw_node;
 			}
 
 			{
-				auto sprite = Sprite::createWithTexture( texture );
-				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setScale( _director->getContentScaleFactor() );
-				sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
-				sprite->setColor( Color3B( 162u, 255u, 203u ) );
-				addChild( sprite, 10 );
+				auto draw_node = DrawNode::create();
+				draw_node->drawRect( Vec2( 1.f, 1.f ), Vec2( tile_sheet_configuration.GetTileWidth() - 1, tile_sheet_configuration.GetTileHeight() - 1 ), Color4F( Color3B( 162u, 255u, 203u ), 1.f ) );
+				addChild( draw_node, 10 );
 
-				mExitPointIndicatorNode = sprite;
+				mExitPointIndicatorNode = draw_node;
 			}
 		}
 
