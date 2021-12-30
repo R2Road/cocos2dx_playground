@@ -11,6 +11,7 @@
 
 #include "algorithm_practice_astar_CostNodeScene.h"
 #include "algorithm_practice_astar_CostMapNodeScene.h"
+#include "algorithm_practice_astar_Direction8Scene.h"
 #include "algorithm_practice_astar_TestScene.h"
 #include "algorithm_practice_RootScene.h"
 
@@ -70,6 +71,9 @@ namespace algorithm_practice_astar
 			ss << "[2] : " << CostMapNodeScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
+			ss << "[3] : " << Direction8Scene::getTitle();
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
 			ss << "=============================";
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
@@ -122,6 +126,9 @@ namespace algorithm_practice_astar
 				return;
 			case EventKeyboard::KeyCode::KEY_2:
 				_director->replaceScene( CostMapNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+				return;
+			case EventKeyboard::KeyCode::KEY_3:
+				_director->replaceScene( Direction8Scene::create( helper::CreateSceneMover<RootScene>() ) );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_SPACE:

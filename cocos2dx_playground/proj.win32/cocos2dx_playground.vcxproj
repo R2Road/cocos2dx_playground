@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\algorithm_practice_astar_CostMapNodeScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_CostNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_CostNodeScene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_Direction8Scene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_EditorNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_Grid4TileMap.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_ProcessorNode.cpp" />
@@ -177,6 +178,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SoundActionScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SpriteFrameActionScene.cpp" />
+    <ClCompile Include="..\Classes\cpg_Direction8.cpp" />
     <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp" />
     <ClCompile Include="..\Classes\cpg_input_iKeyCollector.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyCodeNames.cpp" />
@@ -441,6 +443,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_Direction8Scene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_EditorNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_Grid4TileMap.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_NodeAStar.h" />
@@ -470,6 +473,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SoundActionScene.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SpriteFrameActionScene.h" />
+    <ClInclude Include="..\Classes\cpg_Direction8.h" />
     <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h" />
     <ClInclude Include="..\Classes\cpg_input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyCodeNames.h" />
