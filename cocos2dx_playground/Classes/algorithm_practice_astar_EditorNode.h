@@ -68,8 +68,7 @@ namespace algorithm_practice_astar
 		void onToolSelect( const int tool_index );
 		void onGridClear();
 
-	private:
-		void resetView();
+	void resetView();
 		void updateDebugView();
 		void updateEntryPointView();
 		void updateExitPointView();
