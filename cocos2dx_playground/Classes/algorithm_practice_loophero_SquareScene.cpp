@@ -82,7 +82,7 @@ namespace algorithm_practice_loophero
 			ss << cpg::linefeed;
 			ss << "[R] : Reset";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin
