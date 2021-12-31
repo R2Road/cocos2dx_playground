@@ -9,6 +9,13 @@ namespace cocos_research_render
 	class SequenceScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
+		enum class eStep
+		{
+			Wait,
+			Move,
+			End,
+		};
+
 		SequenceScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
