@@ -115,21 +115,21 @@ namespace cocos_research_update
 		Scene::onExit();
 	}
 
-	void SequenceScene::update( float dt )
+	void SequenceScene::update( float )
 	{
 		mUpdateLog += "priority ==== SequenceScene::update\n";
 
 		// Scene::update( dt ); - not need, update 4 component
 	}
-	void SequenceScene::test_Update( float dt )
+	void SequenceScene::test_Update( float )
 	{
 		mUpdateLog += "custom selectors ==== SequenceScene::test_Update\n";
 	}
-	void SequenceScene::test_UpdateOnce( float dt )
+	void SequenceScene::test_UpdateOnce( float )
 	{
 		mUpdateLog += "custom selectors ==== SequenceScene::test_UpdateOnce\n";
 	}
-	void SequenceScene::test_UpdateEnd( float dt )
+	void SequenceScene::test_UpdateEnd( float )
 	{
 		mUpdateLog += "custom selectors ==== SequenceScene::test_UpdateEnd\n";
 
