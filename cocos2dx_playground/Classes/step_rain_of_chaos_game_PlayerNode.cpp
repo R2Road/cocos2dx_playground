@@ -72,7 +72,7 @@ namespace step_rain_of_chaos
 					// Animation Component
 					auto animation_component = step_mole::AnimationComponent::create( animation_info_container );
 					view_node->addComponent( animation_component );
-					animation_component->PlayAnimation( cpg::animation::eIndex::idle );
+					animation_component->PlayAnimation( cpg_animation::eIndex::idle );
 				}
 			}
 

@@ -1,22 +1,20 @@
 #include "algorithm_practice_astar_TestScene.h"
 
 #include <functional>
-#include <fstream>
 #include <new>
 #include <numeric>
 #include <sstream>
 
+#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "cocos/platform/CCFileUtils.h"
-#include "renderer/CCTextureCache.h"
 
-#include "algorithm_practice_floodfill_EditorNode.h"
-#include "algorithm_practice_floodfill_ProcessorNode.h"
+#include "algorithm_practice_astar_EditorNode.h"
+#include "algorithm_practice_astar_ProcessorNode.h"
 
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
@@ -46,6 +44,7 @@ namespace algorithm_practice_astar
 
 		, mTileMapNode( nullptr )
 		, mEntryPointIndicatorNode( nullptr )
+		, mExitPointIndicatorNode( nullptr )
 		, mEditorNode( nullptr )
 		, mProcessorNode( nullptr )
 	{}
@@ -83,7 +82,7 @@ namespace algorithm_practice_astar
 		//
 		// Load Tile Config
 		//
-		cpg::TileSheetConfiguration tile_sheet_configuration( 1, 1, 1, 1, "" );
+		cpg::TileSheetConfiguration tile_sheet_configuration;
 		CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//
@@ -93,7 +92,7 @@ namespace algorithm_practice_astar
 			std::stringstream ss;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin
@@ -162,32 +161,38 @@ namespace algorithm_practice_astar
 		}
 
 		//
-		// Entry Point Indicator
+		// Entry N Exit Point Indicator
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( tile_sheet_configuration.GetTexturePath() );
+			{
+				auto draw_node = DrawNode::create();
+				draw_node->drawRect( Vec2( 1.f, 1.f ), Vec2( tile_sheet_configuration.GetTileWidth() - 1, tile_sheet_configuration.GetTileHeight() - 1 ), Color4F( Color3B( 255u, 97u, 178u ), 1.f ) );
+				addChild( draw_node, 10 );
 
-			cpg::TileSheetUtility tile_sheet_utility;
-			tile_sheet_utility.Setup(
-				tile_sheet_configuration.GetTileWidth(), tile_sheet_configuration.GetTileHeight()
-				, tile_sheet_configuration.GetTileMargin_Width(), tile_sheet_configuration.GetTileMargin_Height()
-				, texture->getContentSizeInPixels().height
-			);
+				mEntryPointIndicatorNode = draw_node;
+			}
 
-			auto sprite = Sprite::createWithTexture( texture );
-			sprite->setAnchorPoint( Vec2::ZERO );
-			sprite->setScale( _director->getContentScaleFactor() );
-			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 2 ) );
-			addChild( sprite, 10 );
+			{
+				auto draw_node = DrawNode::create();
+				draw_node->drawRect( Vec2( 1.f, 1.f ), Vec2( tile_sheet_configuration.GetTileWidth() - 1, tile_sheet_configuration.GetTileHeight() - 1 ), Color4F( Color3B( 162u, 255u, 203u ), 1.f ) );
+				addChild( draw_node, 10 );
 
-			mEntryPointIndicatorNode = sprite;
+				mExitPointIndicatorNode = draw_node;
+			}
 		}
 
 		//
 		// Editor Node
 		//
 		{
-			mEditorNode = algorithm_practice_floodfill::EditorNode::create( { GRID_WIDTH, GRID_HEIGHT }, &mGrid4TileMap, mTileMapNode, mEntryPointIndicatorNode, tile_sheet_configuration );
+			mEditorNode = algorithm_practice_astar::EditorNode::create(
+				{ GRID_WIDTH, GRID_HEIGHT }
+				, &mGrid4TileMap
+				, mTileMapNode
+				, mEntryPointIndicatorNode
+				, mExitPointIndicatorNode
+				, tile_sheet_configuration
+			);
 			addChild( mEditorNode, 1 );
 		}		
 
@@ -195,7 +200,7 @@ namespace algorithm_practice_astar
 		// Processor Node
 		//
 		{
-			mProcessorNode = algorithm_practice_floodfill::ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, tile_sheet_configuration, &mGrid4TileMap );
+			mProcessorNode = algorithm_practice_astar::ProcessorNode::create( { GRID_WIDTH, GRID_HEIGHT }, tile_sheet_configuration, &mGrid4TileMap );
 			addChild( mProcessorNode, 2 );
 		}
 

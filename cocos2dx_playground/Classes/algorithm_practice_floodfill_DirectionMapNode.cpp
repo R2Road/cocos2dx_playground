@@ -15,7 +15,7 @@ namespace algorithm_practice_floodfill
 {
 	DirectionMapNode::DirectionMapNode( const Config& config ) :
 		mConfig( config )
-		, mTileSheetConfig( 1, 1, 1, 1, "" )
+		, mTileSheetConfig()
 		, mTileSheetUtility()
 		, mReusedSprite( nullptr )
 	{}
@@ -184,9 +184,9 @@ namespace algorithm_practice_floodfill
 		}
 	}
 
-	void DirectionMapNode::UpdateTile( const int map_point_x, const int map_point_y, const char direction )
+	void DirectionMapNode::UpdateTile( const int point_x, const int point_y, const char direction )
 	{
-		if( mConfig.MapWidth <= map_point_x || mConfig.MapHeight <= map_point_y )
+		if( mConfig.MapWidth <= point_x || mConfig.MapHeight <= point_y )
 		{
 			return;
 		}
@@ -201,10 +201,10 @@ namespace algorithm_practice_floodfill
 
 			mReusedSprite->setTextureRect( tile_rect );
 			mReusedSprite->setPosition(
-				mTileSheetConfig.GetTileWidth() * map_point_x
-				, mTileSheetConfig.GetTileHeight() * map_point_y
+				mTileSheetConfig.GetTileWidth() * point_x
+				, mTileSheetConfig.GetTileHeight() * point_y
 			);
-			updateQuadFromSprite( mReusedSprite, ConvertPoint2QuadIndex( map_point_x, map_point_y, 4 ) );
+			updateQuadFromSprite( mReusedSprite, ConvertPoint2QuadIndex( point_x, point_y, 4 ) );
 		}
 
 		//
@@ -218,15 +218,15 @@ namespace algorithm_practice_floodfill
 			tile_rect = ConvertDirection2TileRect( static_cast<cpg::Direction4::eState>( result_direction ) );
 			mReusedSprite->setTextureRect( tile_rect );
 			mReusedSprite->setPosition(
-				mTileSheetConfig.GetTileWidth() * map_point_x
-				, mTileSheetConfig.GetTileHeight() * map_point_y
+				mTileSheetConfig.GetTileWidth() * point_x
+				, mTileSheetConfig.GetTileHeight() * point_y
 			);
-			updateQuadFromSprite( mReusedSprite, ConvertPoint2QuadIndex( map_point_x, map_point_y, dir ) );
+			updateQuadFromSprite( mReusedSprite, ConvertPoint2QuadIndex( point_x, point_y, dir ) );
 		}
 	}
-	void DirectionMapNode::ClearTile( const int map_point_x, const int map_point_y )
+	void DirectionMapNode::ClearTile( const int point_x, const int point_y )
 	{
-		if( mConfig.MapWidth <= map_point_x || mConfig.MapHeight <= map_point_y )
+		if( mConfig.MapWidth <= point_x || mConfig.MapHeight <= point_y )
 		{
 			return;
 		}
@@ -237,11 +237,11 @@ namespace algorithm_practice_floodfill
 		{
 			mReusedSprite->setTextureRect( tile_rect );
 			mReusedSprite->setPosition(
-				mTileSheetConfig.GetTileWidth() * map_point_x
-				, mTileSheetConfig.GetTileHeight() * map_point_y
+				mTileSheetConfig.GetTileWidth() * point_x
+				, mTileSheetConfig.GetTileHeight() * point_y
 			);
 
-			quad_index = ConvertPoint2QuadIndex( map_point_x, map_point_y, dir );
+			quad_index = ConvertPoint2QuadIndex( point_x, point_y, dir );
 			updateQuadFromSprite( mReusedSprite, quad_index );
 		}
 	}

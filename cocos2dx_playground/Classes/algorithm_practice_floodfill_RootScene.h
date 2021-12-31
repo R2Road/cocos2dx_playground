@@ -2,16 +2,6 @@
 
 #include "2d/CCScene.h"
 
-#include "helper_BackToThePreviousScene.h"
-
-namespace step_defender
-{
-	namespace game
-	{
-		class TileMapNode;
-	}
-}
-
 namespace algorithm_practice_floodfill
 {
 	class RootScene : public cocos2d::Scene

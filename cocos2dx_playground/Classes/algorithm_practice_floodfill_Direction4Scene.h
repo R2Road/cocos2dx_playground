@@ -4,21 +4,22 @@
 
 #include "helper_BackToThePreviousScene.h"
 
-#include "algorithm_practice_floodfill_Constant.h"
+#include "cpg_Direction4.h"
 
 NS_CC_BEGIN
+	class DrawNode;
 	class Label;
 NS_CC_END
 
 namespace algorithm_practice_floodfill
 {
-	class DirectionCellScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+	class Direction4Scene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
-		DirectionCellScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		Direction4Scene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Direction Cell"; }
+		static const char* getTitle() { return "Direction4"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:
@@ -36,7 +37,8 @@ namespace algorithm_practice_floodfill
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
-		Cell4FloodFill mDirectionCell;
+		cpg::Direction4 mDirection4;
 		cocos2d::Label* mDirectionView;
+		cocos2d::DrawNode* mDirectionIndicator;
 	};
 }

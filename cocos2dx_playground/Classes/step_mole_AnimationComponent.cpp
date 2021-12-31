@@ -25,7 +25,7 @@ namespace step_mole
 	}
 
 
-	AnimationComponent* AnimationComponent::create( const cpg::animation::InfoContainerT& animation_info_container )
+	AnimationComponent* AnimationComponent::create( const cpg_animation::InfoContainerT& animation_info_container )
 	{
 		auto ret = new ( std::nothrow ) AnimationComponent();
 		if( !ret || !ret->init( animation_info_container ) )
@@ -41,7 +41,7 @@ namespace step_mole
 		return ret;
 	}
 
-	void AnimationComponent::PlayAnimation( const cpg::animation::eIndex animation_index )
+	void AnimationComponent::PlayAnimation( const cpg_animation::eIndex animation_index )
 	{
 		auto animation_action = getAnimationAction( animation_index );
 		if( !animation_action )
@@ -56,7 +56,7 @@ namespace step_mole
 		repeat_action->setTag( static_cast<int>( animation_index ) );
 		getOwner()->runAction( repeat_action );
 	}
-	void AnimationComponent::PlayAnimationWithCallback( const cpg::animation::eIndex animation_index, const AnimationCallback animation_callback )
+	void AnimationComponent::PlayAnimationWithCallback( const cpg_animation::eIndex animation_index, const AnimationCallback animation_callback )
 	{
 		auto animation_action = getAnimationAction( animation_index );
 		if( !animation_action )
@@ -76,7 +76,7 @@ namespace step_mole
 		getOwner()->stopAllActions();
 	}
 
-	bool AnimationComponent::init( const cpg::animation::InfoContainerT& animation_info_container )
+	bool AnimationComponent::init( const cpg_animation::InfoContainerT& animation_info_container )
 	{
 		if( !Component::init() )
 		{
@@ -101,7 +101,7 @@ namespace step_mole
 
 		return true;
 	}
-	Animate* AnimationComponent::getAnimationAction( const cpg::animation::eIndex animation_index )
+	Animate* AnimationComponent::getAnimationAction( const cpg_animation::eIndex animation_index )
 	{
 		for( auto a : mAnimationActions )
 		{

@@ -1,9 +1,9 @@
-#include "algorithm_practice_floodfill_DirectionCellScene.h"
+#include "algorithm_practice_astar_Direction8Scene.h"
 
-#include <functional>
 #include <new>
 #include <numeric>
 
+#include "2d/CCDrawNode.h"
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
 #include "base/CCDirector.h"
@@ -15,19 +15,20 @@
 
 USING_NS_CC;
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice_astar
 {
-	DirectionCellScene::DirectionCellScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	Direction8Scene::Direction8Scene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
-		, mDirectionCell()
+		, mDirection8()
 		, mDirectionView( nullptr )
+		, mDirectionIndicator( nullptr )
 	{}
 
-	Scene* DirectionCellScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* Direction8Scene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) DirectionCellScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) Direction8Scene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -41,7 +42,7 @@ namespace algorithm_practice_floodfill
 		return ret;
 	}
 
-	bool DirectionCellScene::init()
+	bool Direction8Scene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -70,7 +71,7 @@ namespace algorithm_practice_floodfill
 			ss << cpg::linefeed;
 			ss << "[Arrow L] : " << "Rotate Left";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin
@@ -97,6 +98,15 @@ namespace algorithm_practice_floodfill
 		}
 
 		//
+		// Indicator
+		//
+		{
+			mDirectionIndicator = DrawNode::create();
+			mDirectionIndicator->setPosition( visibleCenter );
+			addChild( mDirectionIndicator );
+		}
+
+		//
 		// Setup
 		//
 		updateDirectionView();
@@ -104,16 +114,16 @@ namespace algorithm_practice_floodfill
 		return true;
 	}
 
-	void DirectionCellScene::onEnter()
+	void Direction8Scene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( DirectionCellScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( Direction8Scene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void DirectionCellScene::onExit()
+	void Direction8Scene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -123,31 +133,46 @@ namespace algorithm_practice_floodfill
 	}
 
 
-	void DirectionCellScene::updateDirectionView()
+	void Direction8Scene::updateDirectionView()
 	{
-		switch( mDirectionCell.GetCurrentDirection().GetState() )
+		switch( mDirection8.GetState() )
 		{
-		case cpg::Direction4::eState::Up:
+		case cpg::Direction8::eState::Up:
 			mDirectionView->setString( "Up" );
 			break;
-		case cpg::Direction4::eState::Right:
+		case cpg::Direction8::eState::UpRight:
+			mDirectionView->setString( "Up Right" );
+			break;
+		case cpg::Direction8::eState::Right:
 			mDirectionView->setString( "Right" );
 			break;
-		case cpg::Direction4::eState::Down:
+		case cpg::Direction8::eState::DownRight:
+			mDirectionView->setString( "Down Right" );
+			break;
+		case cpg::Direction8::eState::Down:
 			mDirectionView->setString( "Down" );
 			break;
-		case cpg::Direction4::eState::Left:
+		case cpg::Direction8::eState::DownLeft:
+			mDirectionView->setString( "Down Left" );
+			break;
+		case cpg::Direction8::eState::Left:
 			mDirectionView->setString( "Left" );
+			break;
+		case cpg::Direction8::eState::UpLeft:
+			mDirectionView->setString( "Up Left" );
 			break;
 
 		default:
 			mDirectionView->setString( "WTF" );
 			break;
 		}
+
+		mDirectionIndicator->clear();
+		mDirectionIndicator->drawDot( Vec2( mDirection8.GetPoint().x * 40.f, mDirection8.GetPoint().y * 40.f ), 3.f, Color4F::GREEN );
 	}
 
 
-	void DirectionCellScene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
+	void Direction8Scene::onKeyPressed( EventKeyboard::KeyCode key_code, Event* /*event*/ )
 	{
 		switch( key_code )
 		{
@@ -156,11 +181,11 @@ namespace algorithm_practice_floodfill
 			return;
 
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-			mDirectionCell.RotateCurrentDirection( false );
+			mDirection8.Rotate( false );
 			updateDirectionView();
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			mDirectionCell.RotateCurrentDirection( true );
+			mDirection8.Rotate( true );
 			updateDirectionView();
 			break;
 		}

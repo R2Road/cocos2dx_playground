@@ -1,26 +1,23 @@
 #pragma once
 
-namespace cpg
+namespace cpg_animation
 {
-	namespace animation
+	enum class eIndex
 	{
-		enum class eIndex
-		{
-			none = 0,
+		none = 0,
 
-			wait,
-			wakeup,
-			run,
-			idle,
-			attack_1,
-			win,
+		wait,
+		wakeup,
+		run,
+		idle,
+		attack_1,
+		win,
 
-			sleep,
-			damaged_1,
-			damaged_2,
+		sleep,
+		damaged_1,
+		damaged_2,
 
-			SIZE,
-			FIRST = none,
-		};
-	}
+		SIZE,
+		FIRST = none,
+	};
 }

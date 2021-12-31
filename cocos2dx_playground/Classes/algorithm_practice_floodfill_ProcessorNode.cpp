@@ -81,7 +81,7 @@ namespace algorithm_practice_floodfill
 			ss << cpg::linefeed;
 			ss << "[Space] : " << "Step";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin
@@ -122,23 +122,12 @@ namespace algorithm_practice_floodfill
 		// Current Point Indicator
 		//
 		{
-			auto texture = Director::getInstance()->getTextureCache()->getTextureForKey( mTileSheetConfiguration.GetTexturePath() );
+			auto draw_node = DrawNode::create();
+			draw_node->drawDot( Vec2( mTileSheetConfiguration.GetTileWidth() * 0.5f, mTileSheetConfiguration.GetTileHeight() * 0.5f ), 1.6f, Color4F::GREEN );
+			draw_node->setVisible( false );
+			addChild( draw_node, 1 );
 
-			cpg::TileSheetUtility tile_sheet_utility;
-			tile_sheet_utility.Setup(
-				mTileSheetConfiguration.GetTileWidth(), mTileSheetConfiguration.GetTileHeight()
-				, mTileSheetConfiguration.GetTileMargin_Width(), mTileSheetConfiguration.GetTileMargin_Height()
-				, texture->getContentSizeInPixels().height
-			);
-
-			auto sprite = Sprite::createWithTexture( texture );
-			sprite->setAnchorPoint( Vec2::ZERO );
-			sprite->setScale( _director->getContentScaleFactor() );
-			sprite->setTextureRect( tile_sheet_utility.ConvertTilePoint2TextureRect( 0, 4 ) );
-			sprite->setVisible( false );
-			addChild( sprite, 1 );
-
-			mCurrentPointIndicatorNode = sprite;
+			mCurrentPointIndicatorNode = draw_node;
 		}
 
 		//

@@ -2,8 +2,7 @@
 
 #include "2d/CCScene.h"
 
-#include "algorithm_practice_floodfill_Constant.h"
-#include "algorithm_practice_floodfill_Grid4TileMap.h"
+#include "algorithm_practice_astar_Grid4TileMap.h"
 #include "helper_BackToThePreviousScene.h"
 
 namespace step_defender
@@ -14,7 +13,7 @@ namespace step_defender
 	}
 }
 
-namespace algorithm_practice_floodfill
+namespace algorithm_practice_astar
 {
 	class EditorNode;
 	class ProcessorNode;
@@ -34,7 +33,7 @@ namespace algorithm_practice_astar
 		TestScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Test( To Do )"; }
+		static const char* getTitle() { return "Test"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:
@@ -54,11 +53,12 @@ namespace algorithm_practice_astar
 
 		eMode mMode;
 
-		algorithm_practice_floodfill::Grid4TileMap mGrid4TileMap;
+		Grid4TileMap mGrid4TileMap;
 
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::Node* mEntryPointIndicatorNode;
-		algorithm_practice_floodfill::EditorNode* mEditorNode;
-		algorithm_practice_floodfill::ProcessorNode* mProcessorNode;
+		cocos2d::Node* mExitPointIndicatorNode;
+		algorithm_practice_astar::EditorNode* mEditorNode;
+		algorithm_practice_astar::ProcessorNode* mProcessorNode;
 	};
 }

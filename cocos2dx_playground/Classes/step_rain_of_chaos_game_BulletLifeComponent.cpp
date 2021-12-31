@@ -105,13 +105,13 @@ namespace step_rain_of_chaos
 			case eState::Wakeup:
 			{
 				mCircleCollisionComponent->setEnabled( true );
-				mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::wakeup, std::bind( &BulletLifeComponent::ChangeState, this, eState::Move ) );
+				mAnimationComponent->PlayAnimationWithCallback( cpg_animation::eIndex::wakeup, std::bind( &BulletLifeComponent::ChangeState, this, eState::Move ) );
 			}
 			break;
 
 			case eState::Move:
 			{
-				mAnimationComponent->PlayAnimation( cpg::animation::eIndex::idle );
+				mAnimationComponent->PlayAnimation( cpg_animation::eIndex::idle );
 				_owner->schedule(
 					[this]( float delta_time )
 					{
@@ -131,7 +131,7 @@ namespace step_rain_of_chaos
 				_owner->unschedule( "Move" );
 
 				mCircleCollisionComponent->setEnabled( false );
-				mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::sleep, std::bind( &BulletLifeComponent::ChangeState, this, eState::Exit ) );
+				mAnimationComponent->PlayAnimationWithCallback( cpg_animation::eIndex::sleep, std::bind( &BulletLifeComponent::ChangeState, this, eState::Exit ) );
 			}
 			break;
 
@@ -140,12 +140,12 @@ namespace step_rain_of_chaos
 				_owner->unschedule( "Move" );
 
 				mCircleCollisionComponent->setEnabled( false );
-				mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_1, std::bind( &BulletLifeComponent::ChangeState, this, eState::Boom_2 ) );
+				mAnimationComponent->PlayAnimationWithCallback( cpg_animation::eIndex::damaged_1, std::bind( &BulletLifeComponent::ChangeState, this, eState::Boom_2 ) );
 			}
 			break;
 			case eState::Boom_2:
 			{
-				mAnimationComponent->PlayAnimationWithCallback( cpg::animation::eIndex::damaged_2, std::bind( &BulletLifeComponent::ChangeState, this, eState::Exit ) );
+				mAnimationComponent->PlayAnimationWithCallback( cpg_animation::eIndex::damaged_2, std::bind( &BulletLifeComponent::ChangeState, this, eState::Exit ) );
 			}
 			break;
 

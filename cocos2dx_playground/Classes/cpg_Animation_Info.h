@@ -5,19 +5,16 @@
 
 #include "cpg_Animation_Index.h"
 
-namespace cpg
+namespace cpg_animation
 {
-	namespace animation
+	struct Info
 	{
-		struct Info
-		{
-			Info( cpg::animation::eIndex index, float delay, std::vector<std::string>&& sprite_frame_names )
-				: Index( index ), delay( delay ), SpriteFrameNames( std::move( sprite_frame_names ) )
-			{}
+		Info( cpg_animation::eIndex index, float delay, std::vector<std::string>&& sprite_frame_names )
+			: Index( index ), delay( delay ), SpriteFrameNames( std::move( sprite_frame_names ) )
+		{}
 
-			cpg::animation::eIndex Index;
-			float delay;
-			std::vector<std::string> SpriteFrameNames;
-		};
-	}
+		cpg_animation::eIndex Index;
+		float delay;
+		std::vector<std::string> SpriteFrameNames;
+	};
 }

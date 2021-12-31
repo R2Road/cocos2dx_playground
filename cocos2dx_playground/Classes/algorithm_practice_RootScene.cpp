@@ -12,7 +12,7 @@
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 
-#include "algorithm_practice_astar_TestScene.h"
+#include "algorithm_practice_astar_RootScene.h"
 #include "algorithm_practice_floodfill_RootScene.h"
 #include "algorithm_practice_loophero_RootScene.h"
 
@@ -63,7 +63,7 @@ namespace algorithm_practice
 			ss << cpg::linefeed;
 			ss << "[1] : " << algorithm_practice_floodfill::RootScene::getTitle();
 			ss << cpg::linefeed;
-			ss << "[2] : " << algorithm_practice_astar::TestScene::getTitle();
+			ss << "[2] : " << algorithm_practice_astar::RootScene::getTitle();
 			ss << cpg::linefeed;
 			ss << "[3] : " << algorithm_practice_loophero::RootScene::getTitle();
 			ss << cpg::linefeed;
@@ -72,7 +72,7 @@ namespace algorithm_practice
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10 );
 			label->setPosition(
 				visibleOrigin
 				+ Vec2( visibleSize.width * 0.5f, visibleSize.height * 0.5f )
@@ -122,7 +122,7 @@ namespace algorithm_practice
 			_director->replaceScene( algorithm_practice_floodfill::RootScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_2:
-			_director->replaceScene( algorithm_practice_astar::TestScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( algorithm_practice_astar::RootScene::create() );
 			break;
 		case EventKeyboard::KeyCode::KEY_3:
 			_director->replaceScene( algorithm_practice_loophero::RootScene::create() );

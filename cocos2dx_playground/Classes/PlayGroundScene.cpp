@@ -60,6 +60,15 @@ bool PlayGroundScene::init()
 	//
 	{
 		std::stringstream ss;
+		ss << "# Message" << cpg::linefeed;
+		ss << cpg::blank5 << "> InProgress : Step 07" << cpg::linefeed;
+		ss << cpg::blank5 << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
+		ss << cpg::blank5 << "> To Do : Prerender Sequence Test" << cpg::linefeed;
+		ss << cpg::blank5 << "> To Do : Step 01 Update" << cpg::linefeed;
+		ss << cpg::linefeed;
+		ss << "=============================";
+		ss << cpg::linefeed;
+		ss << cpg::linefeed;
 		ss << "+ Playground";
 		ss << cpg::linefeed;
 		ss << cpg::linefeed;
@@ -104,7 +113,7 @@ bool PlayGroundScene::init()
 		ss << cpg::linefeed;
 		ss << "[S] : " << step99::RootScene::getTitle();
 
-		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::LEFT );
 		label->setPosition( Vec2(
 			visibleOrigin.x + ( visibleSize.width * 0.5f )
 			, visibleOrigin.y + ( visibleSize.height * 0.5f )

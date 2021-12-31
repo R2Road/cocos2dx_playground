@@ -9,8 +9,8 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 
+#include "algorithm_practice_floodfill_Direction4Scene.h"
 #include "algorithm_practice_floodfill_DirectionMapNodeScene.h"
-#include "algorithm_practice_floodfill_DirectionCellScene.h"
 
 #include "algorithm_practice_floodfill_TestScene.h"
 #include "algorithm_practice_RootScene.h"
@@ -68,7 +68,8 @@ namespace algorithm_practice_floodfill
 			ss << cpg::linefeed;
 			ss << "[1] : " << DirectionMapNodeScene::getTitle();
 			ss << cpg::linefeed;
-			ss << "[2] : " << DirectionCellScene::getTitle();
+			ss << cpg::linefeed;
+			ss << "[2] : " << Direction4Scene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "=============================";
@@ -76,7 +77,7 @@ namespace algorithm_practice_floodfill
 			ss << cpg::linefeed;
 			ss << "[SPACE] : " << TestScene::getTitle();
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10 );
 			label->setPosition( visibleCenter );
 			addChild( label, std::numeric_limits<int>::max() );
 		}
@@ -123,7 +124,7 @@ namespace algorithm_practice_floodfill
 				_director->replaceScene( algorithm_practice_floodfill::DirectionMapNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 				return;
 			case EventKeyboard::KeyCode::KEY_2:
-				_director->replaceScene( algorithm_practice_floodfill::DirectionCellScene::create( helper::CreateSceneMover<RootScene>() ) );
+				_director->replaceScene( algorithm_practice_floodfill::Direction4Scene::create( helper::CreateSceneMover<RootScene>() ) );
 				return;
 
 			case EventKeyboard::KeyCode::KEY_SPACE:

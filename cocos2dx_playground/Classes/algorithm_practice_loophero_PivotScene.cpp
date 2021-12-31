@@ -61,7 +61,7 @@ namespace algorithm_practice_loophero
 		//
 		// Load Tile Config
 		//
-		cpg::TileSheetConfiguration tile_sheet_configuration( 1, 1, 1, 1, "" );
+		cpg::TileSheetConfiguration tile_sheet_configuration;
 		CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 		//
@@ -74,7 +74,7 @@ namespace algorithm_practice_loophero
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin

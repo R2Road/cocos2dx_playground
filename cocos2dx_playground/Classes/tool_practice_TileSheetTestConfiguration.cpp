@@ -9,7 +9,7 @@ namespace tool_practice
 		mLayerCount( 1 )
 		, mWidth( 1 )
 		, mHeight( 1 )
-		, mTileSheetConfiguration( 1, 1, 1, 1, "" )
+		, mTileSheetConfiguration()
 	{}
 
 	bool TileSheetTestConfiguration::Load( const char* config_file_path )

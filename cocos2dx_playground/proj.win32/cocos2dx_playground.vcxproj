@@ -150,9 +150,17 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\algorithm_practice_astar_CostMapNode.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_CostMapNodeScene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_CostNode.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_CostNodeScene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_Direction8Scene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_EditorNode.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_Grid4TileMap.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_ProcessorNode.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_astar_RootScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_astar_TestScene.cpp" />
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Constant.cpp" />
-    <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.cpp" />
+    <ClCompile Include="..\Classes\algorithm_practice_floodfill_Direction4Scene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_EditorNode.cpp" />
@@ -169,10 +177,12 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SoundActionScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SpriteFrameActionScene.cpp" />
+    <ClCompile Include="..\Classes\cpg_Direction8.cpp" />
     <ClCompile Include="..\Classes\cpg_input_AllowedKeys.cpp" />
     <ClCompile Include="..\Classes\cpg_input_iKeyCollector.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyCodeNames.cpp" />
     <ClCompile Include="..\Classes\cpg_input_KeyMap.cpp" />
+    <ClCompile Include="..\Classes\cpg_node_GuideRectNode.cpp" />
     <ClCompile Include="..\Classes\cpg_SStream.cpp" />
     <ClCompile Include="..\Classes\cpg_node_PivotNode.cpp" />
     <ClCompile Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.cpp" />
@@ -432,9 +442,19 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\algorithm_practice_astar_Direction8Scene.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_EditorNode.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_Grid4TileMap.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_NodeAStar.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_CostMapNode.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_CostMapNodeScene.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_CostNode.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_CostNodeScene.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_ProcessorNode.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_astar_RootScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_astar_TestScene.h" />
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Constant.h" />
-    <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionCellScene.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Cell4FloodFill.h" />
+    <ClInclude Include="..\Classes\algorithm_practice_floodfill_Direction4Scene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNode.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_DirectionMapNodeScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_EditorNode.h" />
@@ -452,10 +472,12 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SoundActionScene.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SpriteFrameActionScene.h" />
+    <ClInclude Include="..\Classes\cpg_Direction8.h" />
     <ClInclude Include="..\Classes\cpg_input_AllowedKeys.h" />
     <ClInclude Include="..\Classes\cpg_input_iKeyCollector.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyCodeNames.h" />
     <ClInclude Include="..\Classes\cpg_input_KeyMap.h" />
+    <ClInclude Include="..\Classes\cpg_node_GuideRectNode.h" />
     <ClInclude Include="..\Classes\cpg_SStream.h" />
     <ClInclude Include="..\Classes\cpg_node_PivotNode.h" />
     <ClInclude Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.h" />

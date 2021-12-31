@@ -4,9 +4,9 @@
 
 #include "2d/CCSpriteBatchNode.h"
 
-#include "algorithm_practice_floodfill_Constant.h"
-#include "step_defender_game_Constant.h"
+#include "cpg_Direction4.h"
 #include "cpg_TileSheetUtility.h"
+#include "cpg_TileSheetConfiguration.h"
 
 NS_CC_BEGIN
 class Sprite;
@@ -40,8 +40,8 @@ namespace algorithm_practice_floodfill
 
 	public:
 		void Reset();
-		void UpdateTile( const int map_point_x, const int map_point_y, const char direction );
-		void ClearTile( const int map_point_x, const int map_point_y );
+		void UpdateTile( const int point_x, const int point_y, const char direction );
+		void ClearTile( const int point_x, const int point_y );
 
 	private:
 		const Config mConfig;
