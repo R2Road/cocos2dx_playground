@@ -63,6 +63,9 @@ namespace cocos_research_update
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[SPACE] : Test Update 4 Me";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -88,12 +91,6 @@ namespace cocos_research_update
 			mLabel4Log = Label::createWithTTF( "Waiting", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::CENTER );
 			mLabel4Log->setPosition( visibleCenter );
 			addChild( mLabel4Log );
-
-			schedule( schedule_selector( SequenceScene::test_Update ) );
-			scheduleOnce( schedule_selector( SequenceScene::test_UpdateOnce ), 0.f );
-			scheduleUpdate();
-
-			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
 		}
 
 
@@ -152,6 +149,14 @@ namespace cocos_research_update
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			helper::BackToThePreviousScene::MoveBack();
+			return;
+
+		case EventKeyboard::KeyCode::KEY_SPACE:
+			schedule( schedule_selector( SequenceScene::test_Update ) );
+			scheduleOnce( schedule_selector( SequenceScene::test_UpdateOnce ), 0.f );
+			scheduleUpdate();
+
+			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
 			return;
 
 		default:
