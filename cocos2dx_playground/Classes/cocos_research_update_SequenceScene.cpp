@@ -19,6 +19,9 @@ namespace cocos_research_update
 	SequenceScene::SequenceScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+
+		, mLabel4Log( nullptr )
+		, mUpdateLog()
 	{}
 
 	Scene* SequenceScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -82,6 +85,15 @@ namespace cocos_research_update
 		// Research
 		//
 		{
+			mLabel4Log = Label::createWithTTF( "Waiting", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::CENTER );
+			mLabel4Log->setPosition( visibleCenter );
+			addChild( mLabel4Log );
+
+			schedule( schedule_selector( SequenceScene::test_Update ) );
+			scheduleOnce( schedule_selector( SequenceScene::test_UpdateOnce ), 0.f );
+			scheduleUpdate();
+
+			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
 		}
 
 
@@ -104,6 +116,34 @@ namespace cocos_research_update
 		mKeyboardListener = nullptr;
 
 		Scene::onExit();
+	}
+
+	void SequenceScene::update( float dt )
+	{
+		mUpdateLog += "priority ==== SequenceScene::update\n";
+
+		// Scene::update( dt ); - not need, update 4 component
+	}
+	void SequenceScene::test_Update( float dt )
+	{
+		mUpdateLog += "custom selectors ==== SequenceScene::test_Update\n";
+	}
+	void SequenceScene::test_UpdateOnce( float dt )
+	{
+		mUpdateLog += "custom selectors ==== SequenceScene::test_UpdateOnce\n";
+	}
+	void SequenceScene::test_UpdateEnd( float dt )
+	{
+		mUpdateLog += "custom selectors ==== SequenceScene::test_UpdateEnd\n";
+
+		mUpdateLog += "\n\nscheduleUpdate is priority 0";
+		mUpdateLog += "\n\ncustom selectors is follow insert sequence";
+
+		mLabel4Log->setString( mUpdateLog );
+
+		mUpdateLog.clear();
+
+		unscheduleAllCallbacks();
 	}
 
 	void SequenceScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )

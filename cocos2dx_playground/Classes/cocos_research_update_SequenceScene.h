@@ -1,8 +1,14 @@
 #pragma once
 
+#include <string>
+
 #include "2d/CCScene.h"
 
 #include "helper_BackToThePreviousScene.h"
+
+NS_CC_BEGIN
+	class Label;
+NS_CC_END
 
 namespace cocos_research_update
 {
@@ -21,11 +27,19 @@ namespace cocos_research_update
 	public:
 		void onEnter() override;
 		void onExit() override;
+		void update( float dt ) override;
 
 	private:
+		void test_Update( float dt );
+		void test_UpdateOnce( float dt );
+		void test_UpdateEnd( float dt );
+
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
+
+		cocos2d::Label* mLabel4Log;
+		std::string mUpdateLog;
 	};
 }
