@@ -1110,6 +1110,9 @@
     <ClCompile Include="..\Classes\cocos_research_render_SequenceScene.cpp">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cocos_research_update_SequenceScene.cpp">
+      <Filter>src\scene\step99\cocos_research</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -2031,6 +2034,9 @@
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cocos_research_render_SequenceScene.h">
+      <Filter>src\scene\step99\cocos_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cocos_research_update_SequenceScene.h">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClInclude>
   </ItemGroup>
