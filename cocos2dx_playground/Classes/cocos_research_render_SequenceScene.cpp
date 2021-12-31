@@ -2,7 +2,6 @@
 
 #include <new>
 #include <numeric>
-#include <string>
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
@@ -12,6 +11,9 @@
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
+#include "cpg_TileSheetConfiguration.h"
+
+#include "step_defender_game_TileMapNode.h"
 
 USING_NS_CC;
 
@@ -20,6 +22,8 @@ namespace cocos_research_render
 	SequenceScene::SequenceScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
+
+		, mTileMapNode( nullptr )
 	{}
 
 	Scene* SequenceScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -47,6 +51,10 @@ namespace cocos_research_render
 
 		const auto visibleSize = _director->getVisibleSize();
 		const auto visibleOrigin = _director->getVisibleOrigin();
+		const Vec2 visibleCenter(
+			visibleOrigin.x + ( visibleSize.width * 0.5f )
+			, visibleOrigin.y + ( visibleSize.height * 0.5f )
+		);
 
 		//
 		// Summury
@@ -58,7 +66,7 @@ namespace cocos_research_render
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::LEFT );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
 			label->setPosition(
 				visibleOrigin
@@ -79,7 +87,33 @@ namespace cocos_research_render
 		// Research
 		//
 		{
-		}		
+			//
+			// Load Tile Config
+			//
+			cpg::TileSheetConfiguration tile_sheet_configuration;
+			CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
+
+			//
+			// Tile Maps
+			//
+			{
+				mTileMapNode = step_defender::game::TileMapNode::create(
+					step_defender::game::TileMapNode::Config{ 6u, 6u }
+					, tile_sheet_configuration
+				);
+				mTileMapNode->setPosition( Vec2(
+					0.f
+					, visibleCenter.y - mTileMapNode->getContentSize().height * 0.5f
+				) );
+				addChild( mTileMapNode );
+			}
+		}
+
+		//
+		//
+		//
+		mTileMapNode->FillAll( 4, 0 );
+
 
 		return true;
 	}
@@ -108,6 +142,10 @@ namespace cocos_research_render
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			helper::BackToThePreviousScene::MoveBack();
+			return;
+
+		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			mTileMapNode->setPositionX( mTileMapNode->getPositionX() + 30.f );
 			return;
 
 		default:
