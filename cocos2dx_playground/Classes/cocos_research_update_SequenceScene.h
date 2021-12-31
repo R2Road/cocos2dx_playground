@@ -43,5 +43,7 @@ namespace cocos_research_update
 		std::string mUpdateLog;
 
 		cocos2d::Node* mTestNode;
+
+		bool mbInputBlock;
 	};
 }

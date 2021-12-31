@@ -58,6 +58,8 @@ namespace cocos_research_update
 		, mUpdateLog()
 
 		, mTestNode( nullptr )
+
+		, mbInputBlock( false )
 	{}
 
 	Scene* SequenceScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -186,10 +188,17 @@ namespace cocos_research_update
 
 		unscheduleAllCallbacks();
 		mTestNode->unscheduleAllCallbacks();
+
+		mbInputBlock = false;
 	}
 
 	void SequenceScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
+		if( mbInputBlock )
+		{
+			return;
+		}
+
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
@@ -202,6 +211,7 @@ namespace cocos_research_update
 			scheduleUpdate();
 
 			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
+			mbInputBlock = true;
 			return;
 
 		case EventKeyboard::KeyCode::KEY_Z:
@@ -209,6 +219,7 @@ namespace cocos_research_update
 			mTestNode->scheduleUpdate();
 
 			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
+			mbInputBlock = true;
 			return;
 
 		case EventKeyboard::KeyCode::KEY_X:
@@ -216,6 +227,7 @@ namespace cocos_research_update
 			scheduleUpdate();
 
 			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
+			mbInputBlock = true;
 			return;
 
 		default:
