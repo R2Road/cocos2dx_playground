@@ -41,5 +41,7 @@ namespace cocos_research_update
 
 		cocos2d::Label* mLabel4Log;
 		std::string mUpdateLog;
+
+		cocos2d::Node* mTestNode;
 	};
 }

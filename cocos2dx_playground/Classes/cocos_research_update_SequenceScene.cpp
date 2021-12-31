@@ -14,6 +14,40 @@
 
 USING_NS_CC;
 
+namespace
+{
+	class TestChildNode : public cocos2d::Node
+	{
+	private:
+		TestChildNode( std::string& update_log ) : mUpdateLog( update_log ) {}
+
+	public:
+		static Node* create( std::string& update_log )
+		{
+			auto ret = new ( std::nothrow ) TestChildNode( update_log );
+			if( !ret || !ret->init() )
+			{
+				delete ret;
+				ret = nullptr;
+			}
+			else
+			{
+				ret->autorelease();
+			}
+
+			return ret;
+		}
+
+		void update( float )
+		{
+			mUpdateLog += "priority ==== TestChildNode::update\n";
+		}
+
+	private:
+		std::string& mUpdateLog;
+	};
+}
+
 namespace cocos_research_update
 {
 	SequenceScene::SequenceScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
@@ -22,6 +56,8 @@ namespace cocos_research_update
 
 		, mLabel4Log( nullptr )
 		, mUpdateLog()
+
+		, mTestNode( nullptr )
 	{}
 
 	Scene* SequenceScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -66,6 +102,11 @@ namespace cocos_research_update
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[SPACE] : Test Update 4 Me";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[Z] : Test Update With Child Node : Scene First";
+			ss << cpg::linefeed;
+			ss << "[X] : Test Update With Child Node : Child First";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -91,6 +132,9 @@ namespace cocos_research_update
 			mLabel4Log = Label::createWithTTF( "Waiting", cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::CENTER );
 			mLabel4Log->setPosition( visibleCenter );
 			addChild( mLabel4Log );
+
+			mTestNode = TestChildNode::create( mUpdateLog );
+			addChild( mTestNode );
 		}
 
 
@@ -141,6 +185,7 @@ namespace cocos_research_update
 		mUpdateLog.clear();
 
 		unscheduleAllCallbacks();
+		mTestNode->unscheduleAllCallbacks();
 	}
 
 	void SequenceScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
@@ -154,6 +199,20 @@ namespace cocos_research_update
 		case EventKeyboard::KeyCode::KEY_SPACE:
 			schedule( schedule_selector( SequenceScene::test_Update ) );
 			scheduleOnce( schedule_selector( SequenceScene::test_UpdateOnce ), 0.f );
+			scheduleUpdate();
+
+			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
+			return;
+
+		case EventKeyboard::KeyCode::KEY_Z:
+			scheduleUpdate();
+			mTestNode->scheduleUpdate();
+
+			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
+			return;
+
+		case EventKeyboard::KeyCode::KEY_X:
+			mTestNode->scheduleUpdate();
 			scheduleUpdate();
 
 			scheduleOnce( schedule_selector( SequenceScene::test_UpdateEnd ), 0.f );
