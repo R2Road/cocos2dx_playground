@@ -14,13 +14,13 @@ namespace step_defender
 
 namespace cocos_research_render
 {
-	class SequenceScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+	class PrerenderScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
-		SequenceScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		PrerenderScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Render Sequence"; }
+		static const char* getTitle() { return "Pre-Render"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:

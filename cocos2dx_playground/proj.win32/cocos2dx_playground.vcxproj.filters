@@ -1107,10 +1107,10 @@
     <ClCompile Include="..\Classes\algorithm_practice_floodfill_Direction4Scene.cpp">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cocos_research_render_SequenceScene.cpp">
+    <ClCompile Include="..\Classes\cocos_research_update_SequenceScene.cpp">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\cocos_research_update_SequenceScene.cpp">
+    <ClCompile Include="..\Classes\cocos_research_render_PrerenderScene.cpp">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClCompile>
   </ItemGroup>
@@ -2033,10 +2033,10 @@
     <ClInclude Include="..\Classes\algorithm_practice_floodfill_Direction4Scene.h">
       <Filter>src\scene\algorithm_practice\floodfill</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cocos_research_render_SequenceScene.h">
+    <ClInclude Include="..\Classes\cocos_research_update_SequenceScene.h">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\cocos_research_update_SequenceScene.h">
+    <ClInclude Include="..\Classes\cocos_research_render_PrerenderScene.h">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClInclude>
   </ItemGroup>

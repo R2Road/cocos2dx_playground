@@ -1,4 +1,4 @@
-#include "cocos_research_render_SequenceScene.h"
+#include "cocos_research_render_PrerenderScene.h"
 
 #include <new>
 #include <numeric>
@@ -19,16 +19,16 @@ USING_NS_CC;
 
 namespace cocos_research_render
 {
-	SequenceScene::SequenceScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	PrerenderScene::PrerenderScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
 		, mTileMapNode( nullptr )
 	{}
 
-	Scene* SequenceScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* PrerenderScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) SequenceScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) PrerenderScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -42,7 +42,7 @@ namespace cocos_research_render
 		return ret;
 	}
 
-	bool SequenceScene::init()
+	bool PrerenderScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -118,16 +118,16 @@ namespace cocos_research_render
 		return true;
 	}
 
-	void SequenceScene::onEnter()
+	void PrerenderScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( SequenceScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PrerenderScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void SequenceScene::onExit()
+	void PrerenderScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -136,7 +136,7 @@ namespace cocos_research_render
 		Scene::onExit();
 	}
 
-	void SequenceScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void PrerenderScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		switch( keycode )
 		{
