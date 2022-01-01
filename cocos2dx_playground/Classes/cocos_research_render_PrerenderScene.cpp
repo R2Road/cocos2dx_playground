@@ -138,7 +138,7 @@ namespace cocos_research_render
 				) );
 				root_node->setPosition( Vec2(
 					( visibleSize.width * 0.25f ) - ( root_node->getContentSize().width * 0.5f )
-					, visibleCenter.y - root_node->getContentSize().height * 0.5f
+					, visibleCenter.y - ( root_node->getContentSize().height * 0.5f )
 				) );
 				addChild( root_node );
 
@@ -178,7 +178,10 @@ namespace cocos_research_render
 
 					auto sprite = Sprite::createWithTexture( mRenderTextureNode->getSprite()->getTexture() );
 					sprite->setAnchorPoint( Vec2( 0, 1 ) );
-					sprite->setPositionX( visibleCenter.x );
+					sprite->setPosition( Vec2(
+						( visibleSize.width * 0.75f ) - ( sprite->getContentSize().width * 0.5f )
+						, visibleCenter.y - ( sprite->getContentSize().height * 0.5f )
+					) );
 					sprite->setScaleY( -1 );
 					addChild( sprite );
 					{
