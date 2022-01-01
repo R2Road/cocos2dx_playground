@@ -4,6 +4,10 @@
 
 #include "helper_BackToThePreviousScene.h"
 
+NS_CC_BEGIN
+	class RenderTexture;
+NS_CC_END
+
 namespace step_defender
 {
 	namespace game
@@ -39,6 +43,7 @@ namespace cocos_research_render
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 		step_defender::game::TileMapNode* mTileMapNode;
+		cocos2d::RenderTexture* mRenderTextureNode;
 
 		bool mbInputBlock;
 	};

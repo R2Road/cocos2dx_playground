@@ -5,6 +5,8 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
+#include "2d/CCRenderTexture.h"
+#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
@@ -24,6 +26,7 @@ namespace cocos_research_render
 		, mKeyboardListener( nullptr )
 
 		, mTileMapNode( nullptr )
+		, mRenderTextureNode( nullptr )
 
 		, mbInputBlock( false )
 	{}
@@ -67,6 +70,9 @@ namespace cocos_research_render
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[SPACE] : Do";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -109,6 +115,26 @@ namespace cocos_research_render
 				) );
 				addChild( mTileMapNode );
 			}
+
+			//
+			//
+			//
+			{
+				mRenderTextureNode = RenderTexture::create( visibleSize.width * 0.5f, visibleSize.height );
+				mRenderTextureNode->setContentSize( Size( visibleSize.width * 0.5f, visibleSize.height ) );
+				mRenderTextureNode->setVisible( false );
+				mRenderTextureNode->setAutoDraw( false );
+				mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
+				mRenderTextureNode->setClearColor( Color4F( 1.0f, 0.0f, 0.0f, 0.5f ) );
+				mRenderTextureNode->getSprite()->getTexture()->setAliasTexParameters();
+				addChild( mRenderTextureNode );
+
+				auto sprite = Sprite::createWithTexture( mRenderTextureNode->getSprite()->getTexture() );
+				sprite->setAnchorPoint( Vec2::ZERO );
+				sprite->setScaleY( -1 );
+				sprite->setPosition( visibleCenter.x, visibleOrigin.y + visibleSize.height );
+				addChild( sprite );
+			}
 		}
 
 		//
@@ -142,8 +168,22 @@ namespace cocos_research_render
 	{
 		mTileMapNode->setPositionX( mTileMapNode->getPositionX() + 30.f );
 
-		unscheduleAllCallbacks();
 
+		//
+		//
+		//
+		{
+			mRenderTextureNode->beginWithClear( mRenderTextureNode->getClearColor().r, mRenderTextureNode->getClearColor().g, mRenderTextureNode->getClearColor().b, mRenderTextureNode->getClearColor().a );
+			mTileMapNode->visit(
+				_director->getRenderer()
+				, _director->getMatrix( cocos2d::MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW )
+				, true
+			);
+			mRenderTextureNode->end();
+		}
+
+
+		unscheduleAllCallbacks();
 		mbInputBlock = false;
 	}
 
