@@ -10,11 +10,7 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
-#include "platform/CCFileUtils.h"
-#include "renderer/CCGLProgram.h"
-#include "renderer/CCGLProgramCache.h"
 #include "renderer/CCRenderer.h"
-#include "renderer/ccShaders.h"
 
 #include "cpg_node_PivotNode.h"
 #include "cpg_SStream.h"
@@ -36,13 +32,11 @@ namespace cocos_research_render
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
-		, mActorNode( nullptr )
 		, mTileMapNode( nullptr )
 		, mRenderTextureNode( nullptr )
+		, mCaptureAreaNode( nullptr )
 
 		, mbInputBlock( false )
-
-		, mCaptureAreaNode( nullptr )
 	{}
 
 	Scene* PrerenderScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -158,15 +152,6 @@ namespace cocos_research_render
 				}
 
 				{
-					auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
-					sprite->getTexture()->setAntiAliasTexParameters();
-					sprite->setPosition( tile_sheet_configuration.GetTileWidth() * 3u, tile_sheet_configuration.GetTileHeight() * 3u );
-					root_node->addChild( sprite, 1 );
-
-					mActorNode = sprite;
-				}
-
-				{
 					mRenderTextureNode = RenderTexture::create( root_node->getContentSize().width, root_node->getContentSize().height );
 					mRenderTextureNode->setVisible( false );
 					mRenderTextureNode->setAutoDraw( false );
@@ -174,23 +159,16 @@ namespace cocos_research_render
 					mRenderTextureNode->setClearColor( Color4F::ORANGE );
 					mRenderTextureNode->getSprite()->getTexture()->setAliasTexParameters();
 					addChild( mRenderTextureNode );
+				}
 
+				{
 					auto sprite = Sprite::createWithTexture( mRenderTextureNode->getSprite()->getTexture() );
-					sprite->setAnchorPoint( Vec2( 0, 1 ) );
 					sprite->setPosition( Vec2(
-						( visibleSize.width * 0.75f ) - ( sprite->getContentSize().width * 0.5f )
-						, visibleCenter.y - ( sprite->getContentSize().height * 0.5f )
+						visibleSize.width * 0.75f
+						, visibleCenter.y
 					) );
-					sprite->setScaleY( -1 );
+					sprite->setFlippedY( true );
 					addChild( sprite );
-					{
-						// Load
-						const auto shader_source = FileUtils::getInstance()->getStringFromFile( FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
-						auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
-						auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
-
-						sprite->setGLProgramState( gl_program_state );
-					}
 				}
 
 				{
