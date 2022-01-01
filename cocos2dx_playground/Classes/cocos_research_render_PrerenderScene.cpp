@@ -114,15 +114,13 @@ namespace cocos_research_render
 			}
 
 			//
-			// Load Tile Config
-			//
-			cpg::TileSheetConfiguration tile_sheet_configuration;
-			CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
-
-			//
-			// Tile Maps
+			// Tile Map
 			//
 			{
+				// Load Tile Config
+				cpg::TileSheetConfiguration tile_sheet_configuration;
+				CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
+
 				mTileMapNode = step_defender::game::TileMapNode::create(
 					step_defender::game::TileMapNode::Config{ 6u, 6u }
 					, tile_sheet_configuration
