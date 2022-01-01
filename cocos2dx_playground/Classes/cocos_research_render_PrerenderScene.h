@@ -31,11 +31,15 @@ namespace cocos_research_render
 		void onExit() override;
 
 	private:
+		void test_UpdateEnd( float dt );
+
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );
 
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 		step_defender::game::TileMapNode* mTileMapNode;
+
+		bool mbInputBlock;
 	};
 }

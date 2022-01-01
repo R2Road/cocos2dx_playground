@@ -24,6 +24,8 @@ namespace cocos_research_render
 		, mKeyboardListener( nullptr )
 
 		, mTileMapNode( nullptr )
+
+		, mbInputBlock( false )
 	{}
 
 	Scene* PrerenderScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -136,6 +138,15 @@ namespace cocos_research_render
 		Scene::onExit();
 	}
 
+	void PrerenderScene::test_UpdateEnd( float )
+	{
+		mTileMapNode->setPositionX( mTileMapNode->getPositionX() + 30.f );
+
+		unscheduleAllCallbacks();
+
+		mbInputBlock = false;
+	}
+
 	void PrerenderScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		switch( keycode )
@@ -144,9 +155,13 @@ namespace cocos_research_render
 			helper::BackToThePreviousScene::MoveBack();
 			return;
 
-		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			mTileMapNode->setPositionX( mTileMapNode->getPositionX() + 30.f );
+		case EventKeyboard::KeyCode::KEY_SPACE:
+			scheduleOnce( schedule_selector( PrerenderScene::test_UpdateEnd ), 0.f );
+			mbInputBlock = true;
 			return;
+
+		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			
 
 		default:
 			CCLOG( "Key Code : %d", keycode );
