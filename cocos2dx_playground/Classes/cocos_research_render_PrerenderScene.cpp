@@ -13,8 +13,10 @@
 #include "platform/CCFileUtils.h"
 #include "renderer/CCGLProgram.h"
 #include "renderer/CCGLProgramCache.h"
+#include "renderer/CCRenderer.h"
 #include "renderer/ccShaders.h"
 
+#include "cpg_node_PivotNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
 #include "cpg_TileSheetConfiguration.h"
@@ -39,6 +41,8 @@ namespace cocos_research_render
 		, mRenderTextureNode( nullptr )
 
 		, mbInputBlock( false )
+
+		, mCaptureAreaNode( nullptr )
 	{}
 
 	Scene* PrerenderScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -82,7 +86,9 @@ namespace cocos_research_render
 			ss << "[ESC] : Return to Root";
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
-			ss << "[SPACE] : Do";
+			ss << "[SPACE] : Capture";
+			ss << cpg::linefeed;
+			ss << "[Arrow] : Move Capture Area";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -115,7 +121,7 @@ namespace cocos_research_render
 			}
 
 			//
-			// Render Node
+			// Research
 			//
 			{
 				const step_defender::game::TileMapNode::Config stage_config{ 6u, 6u };
@@ -125,6 +131,7 @@ namespace cocos_research_render
 				CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 				auto root_node = Node::create();
+				root_node->setTag( 10 );
 				root_node->setContentSize( Size(
 					tile_sheet_configuration.GetTileWidth() * stage_config.MapWidth
 					, tile_sheet_configuration.GetTileHeight() * stage_config.MapHeight
@@ -134,6 +141,10 @@ namespace cocos_research_render
 					, visibleCenter.y - root_node->getContentSize().height * 0.5f
 				) );
 				addChild( root_node );
+
+				{
+					root_node->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
+				}
 
 				{
 					mTileMapNode = step_defender::game::TileMapNode::create(
@@ -152,32 +163,36 @@ namespace cocos_research_render
 
 					mActorNode = sprite;
 				}
-			}
 
-			//
-			//
-			//
-			{
-				mRenderTextureNode = RenderTexture::create( visibleSize.width * 0.5f, visibleSize.height );
-				mRenderTextureNode->setContentSize( Size( visibleSize.width * 0.5f, visibleSize.height ) );
-				mRenderTextureNode->setVisible( false );
-				mRenderTextureNode->setAutoDraw( false );
-				mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
-				mRenderTextureNode->getSprite()->getTexture()->setAliasTexParameters();
-				addChild( mRenderTextureNode );
-
-				auto sprite = Sprite::createWithTexture( mRenderTextureNode->getSprite()->getTexture() );
-				sprite->setAnchorPoint( Vec2::ZERO );
-				sprite->setScaleY( -1 );
-				sprite->setPosition( visibleCenter.x, visibleOrigin.y + visibleSize.height );
-				addChild( sprite );
 				{
-					// Load
-					const auto shader_source = FileUtils::getInstance()->getStringFromFile( FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
-					auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
-					auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
+					mRenderTextureNode = RenderTexture::create( root_node->getContentSize().width, root_node->getContentSize().height );
+					mRenderTextureNode->setVisible( false );
+					mRenderTextureNode->setAutoDraw( false );
+					mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
+					mRenderTextureNode->setClearColor( Color4F::ORANGE );
+					mRenderTextureNode->getSprite()->getTexture()->setAliasTexParameters();
+					addChild( mRenderTextureNode );
 
-					sprite->setGLProgramState( gl_program_state );
+					auto sprite = Sprite::createWithTexture( mRenderTextureNode->getSprite()->getTexture() );
+					sprite->setAnchorPoint( Vec2( 0, 1 ) );
+					sprite->setPositionX( visibleCenter.x );
+					sprite->setScaleY( -1 );
+					addChild( sprite );
+					{
+						// Load
+						const auto shader_source = FileUtils::getInstance()->getStringFromFile( FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
+						auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
+						auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
+
+						sprite->setGLProgramState( gl_program_state );
+					}
+				}
+
+				{
+					mCaptureAreaNode = DrawNode::create();
+					mCaptureAreaNode->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
+					mCaptureAreaNode->setPosition( root_node->getPosition() );
+					addChild( mCaptureAreaNode, 100 );
 				}
 			}
 		}
@@ -205,13 +220,22 @@ namespace cocos_research_render
 
 	void PrerenderScene::test_UpdateEnd( float )
 	{
-		mTileMapNode->setPositionX( mTileMapNode->getPositionX() + 30.f );
-
-
 		//
 		//
 		//
 		{
+			const auto last_position = mTileMapNode->getPosition();
+			auto temp_position = mTileMapNode->getParent()->convertToWorldSpace( mTileMapNode->getPosition() );
+			temp_position -= mCaptureAreaNode->getPosition();
+
+			//
+			// Move 2 Capture Position
+			//
+			mTileMapNode->setPosition( temp_position );
+
+			//
+			// Capture
+			//
 			mRenderTextureNode->beginWithClear( mRenderTextureNode->getClearColor().r, mRenderTextureNode->getClearColor().g, mRenderTextureNode->getClearColor().b, mRenderTextureNode->getClearColor().a );
 			mTileMapNode->visit(
 				_director->getRenderer()
@@ -219,6 +243,16 @@ namespace cocos_research_render
 				, true
 			);
 			mRenderTextureNode->end();
+			_director->getRenderer()->render(); // Need~!~!~!
+
+
+			//
+			// Rollback
+			// - for "dirty"
+			//
+			mTileMapNode->setPosition( last_position );
+			mTileMapNode->setScaleX( -mTileMapNode->getScaleX() );
+			mTileMapNode->setScaleX( -mTileMapNode->getScaleX() );
 		}
 
 
@@ -240,7 +274,17 @@ namespace cocos_research_render
 			return;
 
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			
+			mCaptureAreaNode->setPositionX( mCaptureAreaNode->getPositionX() + 10.f );
+			return;
+		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+			mCaptureAreaNode->setPositionX( mCaptureAreaNode->getPositionX() - 10.f );
+			return;
+		case EventKeyboard::KeyCode::KEY_UP_ARROW:
+			mCaptureAreaNode->setPositionY( mCaptureAreaNode->getPositionY() + 10.f );
+			return;
+		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+			mCaptureAreaNode->setPositionY( mCaptureAreaNode->getPositionY() - 10.f );
+			return;
 
 		default:
 			CCLOG( "Key Code : %d", keycode );
