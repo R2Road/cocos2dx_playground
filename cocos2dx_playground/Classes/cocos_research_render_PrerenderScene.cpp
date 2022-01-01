@@ -149,6 +149,8 @@ namespace cocos_research_render
 					sprite->getTexture()->setAntiAliasTexParameters();
 					sprite->setPosition( tile_sheet_configuration.GetTileWidth() * 3u, tile_sheet_configuration.GetTileHeight() * 3u );
 					root_node->addChild( sprite, 1 );
+
+					mActorNode = sprite;
 				}
 			}
 
