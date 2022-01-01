@@ -153,6 +153,9 @@ namespace cocos_research_render
 					);
 					mTileMapNode->FillAll( 4, 0 );
 					root_node->addChild( mTileMapNode );
+
+					mTileMapNode->UpdateTile( 0, 0, 2, 0 );
+					mTileMapNode->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
 				}
 
 				{
