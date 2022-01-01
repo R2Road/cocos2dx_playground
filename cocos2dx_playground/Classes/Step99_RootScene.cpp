@@ -17,6 +17,7 @@
 #include "cocos_research_action_SoundActionScene.h"
 #include "cocos_research_action_SpriteFrameActionScene.h"
 #include "cocos_research_render_PrerenderScene.h"
+#include "cocos_research_render_Prerender2Scene.h"
 #include "cocos_research_update_SequenceScene.h"
 
 #include "step_typetype_label_ttf_ETCScene.h"
@@ -79,6 +80,8 @@ namespace step99
 			ss << "[3] : " << cocos_research_update::SequenceScene::getTitle();
 			ss << cpg::linefeed;
 			ss << "[4] : " << cocos_research_render::PrerenderScene::getTitle();
+			ss << cpg::linefeed;
+			ss << "[5] : " << cocos_research_render::Prerender2Scene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[5] " << step_typetype::label_ttf::ETCScene::getTitle();
@@ -156,8 +159,11 @@ namespace step99
 		case EventKeyboard::KeyCode::KEY_4:
 			_director->replaceScene( cocos_research_render::PrerenderScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
-
 		case EventKeyboard::KeyCode::KEY_5:
+			_director->replaceScene( cocos_research_render::Prerender2Scene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+
+		case EventKeyboard::KeyCode::KEY_6:
 			_director->replaceScene( step_typetype::label_ttf::ETCScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 

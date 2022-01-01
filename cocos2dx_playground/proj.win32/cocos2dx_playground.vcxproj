@@ -175,6 +175,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\algorithm_practice_loophero_TrimScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\cocos_research_render_Prerender2Scene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_render_PrerenderScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SoundActionScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SpriteFrameActionScene.cpp" />
@@ -472,6 +473,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\algorithm_practice_loophero_TrimScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\cocos_research_render_Prerender2Scene.h" />
     <ClInclude Include="..\Classes\cocos_research_render_PrerenderScene.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SoundActionScene.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SpriteFrameActionScene.h" />
