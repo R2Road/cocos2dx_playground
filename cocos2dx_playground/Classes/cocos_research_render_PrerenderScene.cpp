@@ -34,6 +34,7 @@ namespace cocos_research_render
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
+		, mActorNode( nullptr )
 		, mTileMapNode( nullptr )
 		, mRenderTextureNode( nullptr )
 
@@ -114,22 +115,41 @@ namespace cocos_research_render
 			}
 
 			//
-			// Tile Map
+			// Render Node
 			//
 			{
+				const step_defender::game::TileMapNode::Config stage_config{ 6u, 6u };
+
 				// Load Tile Config
 				cpg::TileSheetConfiguration tile_sheet_configuration;
 				CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
-				mTileMapNode = step_defender::game::TileMapNode::create(
-					step_defender::game::TileMapNode::Config{ 6u, 6u }
-					, tile_sheet_configuration
-				);
-				mTileMapNode->setPosition( Vec2(
-					0.f
-					, visibleCenter.y - mTileMapNode->getContentSize().height * 0.5f
+				auto root_node = Node::create();
+				root_node->setContentSize( Size(
+					tile_sheet_configuration.GetTileWidth() * stage_config.MapWidth
+					, tile_sheet_configuration.GetTileHeight() * stage_config.MapHeight
 				) );
-				addChild( mTileMapNode );
+				root_node->setPosition( Vec2(
+					( visibleSize.width * 0.25f ) - ( root_node->getContentSize().width * 0.5f )
+					, visibleCenter.y - root_node->getContentSize().height * 0.5f
+				) );
+				addChild( root_node );
+
+				{
+					mTileMapNode = step_defender::game::TileMapNode::create(
+						stage_config
+						, tile_sheet_configuration
+					);
+					mTileMapNode->FillAll( 4, 0 );
+					root_node->addChild( mTileMapNode );
+				}
+
+				{
+					auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
+					sprite->getTexture()->setAntiAliasTexParameters();
+					sprite->setPosition( tile_sheet_configuration.GetTileWidth() * 3u, tile_sheet_configuration.GetTileHeight() * 3u );
+					root_node->addChild( sprite, 1 );
+				}
 			}
 
 			//
@@ -159,12 +179,6 @@ namespace cocos_research_render
 				}
 			}
 		}
-
-		//
-		//
-		//
-		mTileMapNode->FillAll( 4, 0 );
-
 
 		return true;
 	}

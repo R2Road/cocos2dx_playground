@@ -42,6 +42,7 @@ namespace cocos_research_render
 	private:
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
+		cocos2d::Node* mActorNode;
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::RenderTexture* mRenderTextureNode;
 
