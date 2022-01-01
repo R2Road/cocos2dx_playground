@@ -5,7 +5,6 @@
 #include "helper_BackToThePreviousScene.h"
 
 NS_CC_BEGIN
-	class DrawNode;
 	class RenderTexture;
 NS_CC_END
 
@@ -45,7 +44,7 @@ namespace cocos_research_render
 
 		step_defender::game::TileMapNode* mTileMapNode;
 		cocos2d::RenderTexture* mRenderTextureNode;
-		cocos2d::DrawNode* mCaptureAreaNode;
+		cocos2d::Node* mCaptureAreaNode;
 
 		bool mbInputBlock;
 	};

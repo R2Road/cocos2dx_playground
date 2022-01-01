@@ -172,10 +172,12 @@ namespace cocos_research_render
 				}
 
 				{
-					mCaptureAreaNode = DrawNode::create();
-					mCaptureAreaNode->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
-					mCaptureAreaNode->setPosition( root_node->getPosition() );
-					addChild( mCaptureAreaNode, 100 );
+					auto draw_node = DrawNode::create();
+					draw_node->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
+					draw_node->setPosition( root_node->getPosition() );
+					addChild( draw_node, 100 );
+
+					mCaptureAreaNode = draw_node;
 				}
 			}
 		}
