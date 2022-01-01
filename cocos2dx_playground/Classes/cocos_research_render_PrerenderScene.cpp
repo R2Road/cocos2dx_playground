@@ -131,7 +131,6 @@ namespace cocos_research_render
 				CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
 				auto root_node = Node::create();
-				root_node->setTag( 10 );
 				root_node->setContentSize( Size(
 					tile_sheet_configuration.GetTileWidth() * stage_config.MapWidth
 					, tile_sheet_configuration.GetTileHeight() * stage_config.MapHeight
