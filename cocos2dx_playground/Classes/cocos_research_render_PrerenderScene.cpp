@@ -10,6 +10,10 @@
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "platform/CCFileUtils.h"
+#include "renderer/CCGLProgram.h"
+#include "renderer/CCGLProgramCache.h"
+#include "renderer/ccShaders.h"
 
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -18,6 +22,11 @@
 #include "step_defender_game_TileMapNode.h"
 
 USING_NS_CC;
+
+namespace
+{
+	const char* CustomeShaderPath = "shaders/shader_DarkScale.fsh";
+}
 
 namespace cocos_research_render
 {
@@ -125,7 +134,7 @@ namespace cocos_research_render
 				mRenderTextureNode->setVisible( false );
 				mRenderTextureNode->setAutoDraw( false );
 				mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
-				mRenderTextureNode->setClearColor( Color4F( 1.0f, 0.0f, 0.0f, 0.5f ) );
+				mRenderTextureNode->setClearColor( Color4F( 0.0f, 1.0f, 0.0f, 0.5f ) );
 				mRenderTextureNode->getSprite()->getTexture()->setAliasTexParameters();
 				addChild( mRenderTextureNode );
 
@@ -134,6 +143,14 @@ namespace cocos_research_render
 				sprite->setScaleY( -1 );
 				sprite->setPosition( visibleCenter.x, visibleOrigin.y + visibleSize.height );
 				addChild( sprite );
+				{
+					// Load
+					const auto shader_source = FileUtils::getInstance()->getStringFromFile( FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
+					auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_noMVP_vert, shader_source.c_str() );
+					auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
+
+					sprite->setGLProgramState( gl_program_state );
+				}
 			}
 		}
 
