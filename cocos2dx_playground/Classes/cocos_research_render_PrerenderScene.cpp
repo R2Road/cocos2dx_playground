@@ -115,83 +115,78 @@ namespace cocos_research_render
 		// Research
 		//
 		{
+			const step_defender::game::TileMapNode::Config stage_config{ 6u, 6u };
+
+			// Load Tile Config
+			cpg::TileSheetConfiguration tile_sheet_configuration;
+			CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
+
+			auto root_node = Node::create();
+			root_node->setContentSize( Size(
+				tile_sheet_configuration.GetTileWidth() * stage_config.MapWidth
+				, tile_sheet_configuration.GetTileHeight() * stage_config.MapHeight
+			) );
+			root_node->setPosition( Vec2(
+				( visibleSize.width * 0.25f ) - ( root_node->getContentSize().width * 0.5f )
+				, visibleCenter.y - ( root_node->getContentSize().height * 0.5f )
+			) );
+			addChild( root_node );
+
 			//
-			// Research
+			// Pivot
 			//
 			{
-				const step_defender::game::TileMapNode::Config stage_config{ 6u, 6u };
+				root_node->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
+			}
 
-				// Load Tile Config
-				cpg::TileSheetConfiguration tile_sheet_configuration;
-				CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
+			//
+			// Tile Map
+			//
+			{
+				mTileMapNode = step_defender::game::TileMapNode::create(
+					stage_config
+					, tile_sheet_configuration
+				);
+				mTileMapNode->FillAll( 4, 0 );
+				root_node->addChild( mTileMapNode );
 
-				auto root_node = Node::create();
-				root_node->setContentSize( Size(
-					tile_sheet_configuration.GetTileWidth() * stage_config.MapWidth
-					, tile_sheet_configuration.GetTileHeight() * stage_config.MapHeight
-				) );
-				root_node->setPosition( Vec2(
-					( visibleSize.width * 0.25f ) - ( root_node->getContentSize().width * 0.5f )
-					, visibleCenter.y - ( root_node->getContentSize().height * 0.5f )
-				) );
-				addChild( root_node );
+				mTileMapNode->UpdateTile( 0, 0, 2, 0 );
+				mTileMapNode->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
+			}
 
-				//
-				// Pivot
-				//
-				{
-					root_node->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
-				}
+			//
+			// Util 4 Capture
+			//
+			{
+				mRenderTextureNode = RenderTexture::create( root_node->getContentSize().width, root_node->getContentSize().height );
+				mRenderTextureNode->setVisible( false );
+				mRenderTextureNode->setAutoDraw( false );
+				mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
+				mRenderTextureNode->setClearColor( Color4F::ORANGE );
+				mRenderTextureNode->getSprite()->getTexture()->setAliasTexParameters();
+				addChild( mRenderTextureNode );
+			}
 
-				//
-				// Tile Map
-				//
-				{
-					mTileMapNode = step_defender::game::TileMapNode::create(
-						stage_config
-						, tile_sheet_configuration
-					);
-					mTileMapNode->FillAll( 4, 0 );
-					root_node->addChild( mTileMapNode );
+			//
+			// Show Captured Image
+			//
+			{
+				auto sprite = Sprite::createWithTexture( mRenderTextureNode->getSprite()->getTexture() );
+				sprite->setPosition( Vec2( visibleSize.width * 0.75f, visibleCenter.y ) );
+				sprite->setFlippedY( true );
+				addChild( sprite );
+			}
 
-					mTileMapNode->UpdateTile( 0, 0, 2, 0 );
-					mTileMapNode->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
-				}
+			//
+			// Capture Arrea
+			//
+			{
+				auto draw_node = DrawNode::create();
+				draw_node->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
+				draw_node->setPosition( root_node->getPosition() );
+				addChild( draw_node, 100 );
 
-				//
-				// Util 4 Capture
-				//
-				{
-					mRenderTextureNode = RenderTexture::create( root_node->getContentSize().width, root_node->getContentSize().height );
-					mRenderTextureNode->setVisible( false );
-					mRenderTextureNode->setAutoDraw( false );
-					mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
-					mRenderTextureNode->setClearColor( Color4F::ORANGE );
-					mRenderTextureNode->getSprite()->getTexture()->setAliasTexParameters();
-					addChild( mRenderTextureNode );
-				}
-
-				//
-				// Show Captured Image
-				//
-				{
-					auto sprite = Sprite::createWithTexture( mRenderTextureNode->getSprite()->getTexture() );
-					sprite->setPosition( Vec2( visibleSize.width * 0.75f, visibleCenter.y ) );
-					sprite->setFlippedY( true );
-					addChild( sprite );
-				}
-
-				//
-				// Capture Arrea
-				//
-				{
-					auto draw_node = DrawNode::create();
-					draw_node->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
-					draw_node->setPosition( root_node->getPosition() );
-					addChild( draw_node, 100 );
-
-					mCaptureAreaNode = draw_node;
-				}
+				mCaptureAreaNode = draw_node;
 			}
 		}
 
