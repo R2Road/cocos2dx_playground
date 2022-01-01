@@ -231,7 +231,7 @@ namespace cocos_research_render
 			mTileMapNode->setPosition( temp_position );
 
 			//
-			// Capture
+			// Add Render Command 4 Capture
 			//
 			mRenderTextureNode->beginWithClear( mRenderTextureNode->getClearColor().r, mRenderTextureNode->getClearColor().g, mRenderTextureNode->getClearColor().b, mRenderTextureNode->getClearColor().a );
 			mTileMapNode->visit(
@@ -240,16 +240,19 @@ namespace cocos_research_render
 				, true
 			);
 			mRenderTextureNode->end();
+
+			//
+			// Forced Render
+			//
 			_director->getRenderer()->render(); // Important~!~!~!
 
 
 			//
 			// Rollback
-			// - for "dirty"
 			//
 			mTileMapNode->setPosition( last_position );
-			mTileMapNode->setScaleX( -mTileMapNode->getScaleX() );
-			mTileMapNode->setScaleX( -mTileMapNode->getScaleX() );
+			mTileMapNode->setScaleX( -mTileMapNode->getScaleX() ); // - for "dirty"
+			mTileMapNode->setScaleX( -mTileMapNode->getScaleX() ); // - for "dirty"
 		}
 
 
