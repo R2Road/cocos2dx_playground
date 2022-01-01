@@ -97,23 +97,24 @@ namespace cocos_research_render
 		// Background
 		//
 		{
-			auto background_layer = LayerColor::create( Color4B( 5, 29, 81, 255 ) );
-			addChild( background_layer, std::numeric_limits<int>::min() );
+			// Left
+			{
+				auto background_layer = LayerColor::create( Color4B( 5, 29, 81, 255 ), visibleSize.width * 0.5f, visibleSize.height );
+				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			// Right
+			{
+				auto background_layer = LayerColor::create( Color4B::BLACK, visibleSize.width * 0.5f, visibleSize.height );
+				background_layer->setPositionX( visibleCenter.x );
+				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
 		}
 
 		//
 		// Research
 		//
 		{
-			//
-			// Background
-			//
-			{
-				auto background_layer = LayerColor::create( Color4B::BLACK, visibleSize.width * 0.5f, visibleSize.height );
-				background_layer->setPositionX( visibleCenter.x );
-				addChild( background_layer, std::numeric_limits<int>::min() );
-			}
-
 			//
 			// Research
 			//
