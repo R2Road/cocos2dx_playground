@@ -105,6 +105,15 @@ namespace cocos_research_render
 		//
 		{
 			//
+			// Background
+			//
+			{
+				auto background_layer = LayerColor::create( Color4B::BLACK, visibleSize.width * 0.5f, visibleSize.height );
+				background_layer->setPositionX( visibleCenter.x );
+				addChild( background_layer, std::numeric_limits<int>::min() );
+			}
+
+			//
 			// Load Tile Config
 			//
 			cpg::TileSheetConfiguration tile_sheet_configuration;
@@ -134,7 +143,6 @@ namespace cocos_research_render
 				mRenderTextureNode->setVisible( false );
 				mRenderTextureNode->setAutoDraw( false );
 				mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
-				mRenderTextureNode->setClearColor( Color4F( 0.0f, 1.0f, 0.0f, 0.5f ) );
 				mRenderTextureNode->getSprite()->getTexture()->setAliasTexParameters();
 				addChild( mRenderTextureNode );
 
