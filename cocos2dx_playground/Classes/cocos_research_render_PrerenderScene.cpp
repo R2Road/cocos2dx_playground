@@ -135,10 +135,16 @@ namespace cocos_research_render
 				) );
 				addChild( root_node );
 
+				//
+				// Pivot
+				//
 				{
 					root_node->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
 				}
 
+				//
+				// Tile Map
+				//
 				{
 					mTileMapNode = step_defender::game::TileMapNode::create(
 						stage_config
@@ -151,6 +157,9 @@ namespace cocos_research_render
 					mTileMapNode->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
 				}
 
+				//
+				// Util 4 Capture
+				//
 				{
 					mRenderTextureNode = RenderTexture::create( root_node->getContentSize().width, root_node->getContentSize().height );
 					mRenderTextureNode->setVisible( false );
@@ -161,16 +170,19 @@ namespace cocos_research_render
 					addChild( mRenderTextureNode );
 				}
 
+				//
+				// Show Captured Image
+				//
 				{
 					auto sprite = Sprite::createWithTexture( mRenderTextureNode->getSprite()->getTexture() );
-					sprite->setPosition( Vec2(
-						visibleSize.width * 0.75f
-						, visibleCenter.y
-					) );
+					sprite->setPosition( Vec2( visibleSize.width * 0.75f, visibleCenter.y ) );
 					sprite->setFlippedY( true );
 					addChild( sprite );
 				}
 
+				//
+				// Capture Arrea
+				//
 				{
 					auto draw_node = DrawNode::create();
 					draw_node->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
@@ -228,7 +240,7 @@ namespace cocos_research_render
 				, true
 			);
 			mRenderTextureNode->end();
-			_director->getRenderer()->render(); // Need~!~!~!
+			_director->getRenderer()->render(); // Important~!~!~!
 
 
 			//
