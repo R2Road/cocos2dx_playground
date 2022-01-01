@@ -81,7 +81,7 @@ namespace step99
 			ss << "[4] : " << cocos_research_render::PrerenderScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
-			ss << "[4] " << step_typetype::label_ttf::ETCScene::getTitle();
+			ss << "[5] " << step_typetype::label_ttf::ETCScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "=============================";
