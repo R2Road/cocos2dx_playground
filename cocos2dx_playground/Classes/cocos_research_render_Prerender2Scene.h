@@ -8,14 +8,6 @@ NS_CC_BEGIN
 	class RenderTexture;
 NS_CC_END
 
-namespace step_defender
-{
-	namespace game
-	{
-		class TileMapNode;
-	}
-}
-
 namespace cocos_research_render
 {
 	class Prerender2Scene : public cocos2d::Scene, private helper::BackToThePreviousScene
@@ -43,7 +35,7 @@ namespace cocos_research_render
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 		cocos2d::Node* mActorNode;
-		step_defender::game::TileMapNode* mTileMapNode;
+		cocos2d::Node* mCaptureTargetNode;
 		cocos2d::RenderTexture* mRenderTextureNode;
 
 		bool mbInputBlock;

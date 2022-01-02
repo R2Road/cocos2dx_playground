@@ -33,7 +33,7 @@ namespace cocos_research_render
 		, mKeyboardListener( nullptr )
 
 		, mActorNode( nullptr )
-		, mTileMapNode( nullptr )
+		, mCaptureTargetNode( nullptr )
 		, mRenderTextureNode( nullptr )
 
 		, mbInputBlock( false )
@@ -122,37 +122,37 @@ namespace cocos_research_render
 			cpg::TileSheetConfiguration tile_sheet_configuration;
 			CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
-			auto root_node = Node::create();
-			root_node->setContentSize( Size(
+			mCaptureTargetNode = Node::create();
+			mCaptureTargetNode->setContentSize( Size(
 				tile_sheet_configuration.GetTileWidth() * stage_config.MapWidth
 				, tile_sheet_configuration.GetTileHeight() * stage_config.MapHeight
 			) );
-			root_node->setPosition( Vec2(
-				( visibleSize.width * 0.25f ) - ( root_node->getContentSize().width * 0.5f )
-				, visibleCenter.y - ( root_node->getContentSize().height * 0.5f )
+			mCaptureTargetNode->setPosition( Vec2(
+				( visibleSize.width * 0.25f ) - ( mCaptureTargetNode->getContentSize().width * 0.5f )
+				, visibleCenter.y - ( mCaptureTargetNode->getContentSize().height * 0.5f )
 			) );
-			addChild( root_node );
+			addChild( mCaptureTargetNode );
 
 			//
 			// Pivot
 			//
 			{
-				root_node->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
+				mCaptureTargetNode->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
 			}
 
 			//
 			// Tile Map
 			//
 			{
-				mTileMapNode = step_defender::game::TileMapNode::create(
+				auto tile_map_node = step_defender::game::TileMapNode::create(
 					stage_config
 					, tile_sheet_configuration
 				);
-				mTileMapNode->FillAll( 4, 0 );
-				root_node->addChild( mTileMapNode );
+				tile_map_node->FillAll( 4, 0 );
+				mCaptureTargetNode->addChild( tile_map_node );
 
-				mTileMapNode->UpdateTile( 0, 0, 2, 0 );
-				mTileMapNode->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
+				tile_map_node->UpdateTile( 0, 0, 2, 0 );
+				tile_map_node->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
 			}
 
 			//
@@ -162,7 +162,7 @@ namespace cocos_research_render
 				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
 				sprite->getTexture()->setAntiAliasTexParameters();
 				sprite->setPosition( tile_sheet_configuration.GetTileWidth() * 3u, tile_sheet_configuration.GetTileHeight() * 3u );
-				root_node->addChild( sprite, 1 );
+				mCaptureTargetNode->addChild( sprite, 1 );
 
 				mActorNode = sprite;
 			}
@@ -171,7 +171,7 @@ namespace cocos_research_render
 			// Util 4 Capture
 			//
 			{
-				mRenderTextureNode = RenderTexture::create( root_node->getContentSize().width, root_node->getContentSize().height );
+				mRenderTextureNode = RenderTexture::create( mCaptureTargetNode->getContentSize().width, mCaptureTargetNode->getContentSize().height );
 				mRenderTextureNode->setVisible( false );
 				mRenderTextureNode->setAutoDraw( false );
 				mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
@@ -196,8 +196,8 @@ namespace cocos_research_render
 			//
 			{
 				auto draw_node = DrawNode::create();
-				draw_node->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
-				draw_node->setPosition( root_node->getPosition() );
+				draw_node->drawRect( Vec2::ZERO, Vec2( mCaptureTargetNode->getContentSize().width, mCaptureTargetNode->getContentSize().height ), Color4F::GREEN );
+				draw_node->setPosition( mCaptureTargetNode->getPosition() );
 				addChild( draw_node, 100 );
 
 				mCapturePivot = draw_node->getPosition();
@@ -231,20 +231,20 @@ namespace cocos_research_render
 		//
 		//
 		{
-			const auto last_position = mTileMapNode->getPosition();
-			auto temp_position = mTileMapNode->getParent()->convertToWorldSpace( mTileMapNode->getPosition() );
+			const auto last_position = mCaptureTargetNode->getPosition();
+			auto temp_position = mCaptureTargetNode->getParent()->convertToWorldSpace( mCaptureTargetNode->getPosition() );
 			temp_position -= mCapturePivot;
 
 			//
 			// Move 2 Capture Position
 			//
-			mTileMapNode->setPosition( temp_position );
+			mCaptureTargetNode->setPosition( temp_position );
 
 			//
 			// Capture
 			//
 			mRenderTextureNode->beginWithClear( mRenderTextureNode->getClearColor().r, mRenderTextureNode->getClearColor().g, mRenderTextureNode->getClearColor().b, mRenderTextureNode->getClearColor().a );
-			mTileMapNode->visit(
+			mCaptureTargetNode->visit(
 				_director->getRenderer()
 				, _director->getMatrix( cocos2d::MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW )
 				, true
@@ -260,9 +260,9 @@ namespace cocos_research_render
 			//
 			// Rollback
 			//
-			mTileMapNode->setPosition( last_position );
-			mTileMapNode->setScaleX( -mTileMapNode->getScaleX() ); // - for "dirty"
-			mTileMapNode->setScaleX( -mTileMapNode->getScaleX() ); // - for "dirty"
+			mCaptureTargetNode->setPosition( last_position );
+			mCaptureTargetNode->setScaleX( -mCaptureTargetNode->getScaleX() ); // - for "dirty"
+			mCaptureTargetNode->setScaleX( -mCaptureTargetNode->getScaleX() ); // - for "dirty"
 		}
 
 
