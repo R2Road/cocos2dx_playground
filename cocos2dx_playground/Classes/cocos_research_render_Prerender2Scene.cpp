@@ -285,6 +285,11 @@ namespace cocos_research_render
 
 	void Prerender2Scene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
+		if( mbInputBlock )
+		{
+			return;
+		}
+
 		switch( keycode )
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
