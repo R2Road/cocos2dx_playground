@@ -84,7 +84,7 @@ namespace cocos_research_render
 			ss << cpg::linefeed;
 			ss << "[SPACE] : Capture";
 			ss << cpg::linefeed;
-			ss << "[Arrow] : Move Capture Area";
+			ss << "[Arrow] : Move Actor";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -283,16 +283,16 @@ namespace cocos_research_render
 			return;
 
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			mCaptureAreaNode->setPositionX( mCaptureAreaNode->getPositionX() + 10.f );
+			mActorNode->setPositionX( mActorNode->getPositionX() + 10.f );
 			return;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-			mCaptureAreaNode->setPositionX( mCaptureAreaNode->getPositionX() - 10.f );
+			mActorNode->setPositionX( mActorNode->getPositionX() - 10.f );
 			return;
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
-			mCaptureAreaNode->setPositionY( mCaptureAreaNode->getPositionY() + 10.f );
+			mActorNode->setPositionY( mActorNode->getPositionY() + 10.f );
 			return;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-			mCaptureAreaNode->setPositionY( mCaptureAreaNode->getPositionY() - 10.f );
+			mActorNode->setPositionY( mActorNode->getPositionY() - 10.f );
 			return;
 
 		default:
