@@ -37,6 +37,9 @@ namespace cocos_research_render
 		, mCaptureAreaNode( nullptr )
 
 		, mbInputBlock( false )
+
+		, mMoveAmountX( 10 )
+		, mMoveAmountY( 10 )
 	{}
 
 	Scene* PrerenderScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -188,6 +191,12 @@ namespace cocos_research_render
 
 				mCaptureAreaNode = draw_node;
 			}
+
+			//
+			//
+			//
+			mMoveAmountX = tile_sheet_configuration.GetTileWidth();
+			mMoveAmountY = tile_sheet_configuration.GetTileHeight();
 		}
 
 		return true;
@@ -270,16 +279,16 @@ namespace cocos_research_render
 			return;
 
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			mCaptureAreaNode->setPositionX( mCaptureAreaNode->getPositionX() + 10.f );
+			mCaptureAreaNode->setPositionX( mCaptureAreaNode->getPositionX() + mMoveAmountX );
 			return;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-			mCaptureAreaNode->setPositionX( mCaptureAreaNode->getPositionX() - 10.f );
+			mCaptureAreaNode->setPositionX( mCaptureAreaNode->getPositionX() - mMoveAmountX );
 			return;
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
-			mCaptureAreaNode->setPositionY( mCaptureAreaNode->getPositionY() + 10.f );
+			mCaptureAreaNode->setPositionY( mCaptureAreaNode->getPositionY() + mMoveAmountY );
 			return;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-			mCaptureAreaNode->setPositionY( mCaptureAreaNode->getPositionY() - 10.f );
+			mCaptureAreaNode->setPositionY( mCaptureAreaNode->getPositionY() - mMoveAmountY );
 			return;
 
 		default:

@@ -47,5 +47,7 @@ namespace cocos_research_render
 		cocos2d::Node* mCaptureAreaNode;
 
 		bool mbInputBlock;
+		int mMoveAmountX;
+		int mMoveAmountY;
 	};
 }
