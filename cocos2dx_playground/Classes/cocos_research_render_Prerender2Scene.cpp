@@ -37,8 +37,7 @@ namespace cocos_research_render
 		, mRenderTextureNode( nullptr )
 
 		, mbInputBlock( false )
-
-		, mCaptureAreaNode( nullptr )
+		, mCapturePivot()
 	{}
 
 	Scene* Prerender2Scene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -196,10 +195,12 @@ namespace cocos_research_render
 			// Capture Arrea
 			//
 			{
-				mCaptureAreaNode = DrawNode::create();
-				mCaptureAreaNode->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
-				mCaptureAreaNode->setPosition( root_node->getPosition() );
-				addChild( mCaptureAreaNode, 100 );
+				auto draw_node = DrawNode::create();
+				draw_node->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
+				draw_node->setPosition( root_node->getPosition() );
+				addChild( draw_node, 100 );
+
+				mCapturePivot = draw_node->getPosition();
 			}
 		}
 
@@ -232,7 +233,7 @@ namespace cocos_research_render
 		{
 			const auto last_position = mTileMapNode->getPosition();
 			auto temp_position = mTileMapNode->getParent()->convertToWorldSpace( mTileMapNode->getPosition() );
-			temp_position -= mCaptureAreaNode->getPosition();
+			temp_position -= mCapturePivot;
 
 			//
 			// Move 2 Capture Position
