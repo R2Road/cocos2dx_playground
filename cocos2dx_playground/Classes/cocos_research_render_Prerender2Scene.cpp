@@ -148,10 +148,10 @@ namespace cocos_research_render
 					stage_config
 					, tile_sheet_configuration
 				);
-				tile_map_node->FillAll( 4, 0 );
+				tile_map_node->FillAll( 2, 0 );
 				mCaptureTargetNode->addChild( tile_map_node );
 
-				tile_map_node->UpdateTile( 0, 0, 2, 0 );
+				tile_map_node->UpdateTile( 0, 0, 4, 0 );
 				tile_map_node->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
 			}
 
