@@ -27,6 +27,7 @@ namespace cocos_research_render
 		void onExit() override;
 
 	private:
+		void requestCapture();
 		void test_UpdateEnd( float dt );
 
 		void onKeyPressed( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event );

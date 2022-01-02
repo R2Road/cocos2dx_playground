@@ -83,9 +83,7 @@ namespace cocos_research_render
 			ss << "[ESC] : Return to Root";
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
-			ss << "[SPACE] : Capture";
-			ss << cpg::linefeed;
-			ss << "[Arrow] : Move Actor";
+			ss << "[Arrow] : Move Actor + Capture";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -238,6 +236,11 @@ namespace cocos_research_render
 		Scene::onExit();
 	}
 
+	void Prerender2Scene::requestCapture()
+	{
+		scheduleOnce( schedule_selector( Prerender2Scene::test_UpdateEnd ), 0.f );
+		mbInputBlock = true;
+	}
 	void Prerender2Scene::test_UpdateEnd( float )
 	{
 		//
@@ -296,22 +299,21 @@ namespace cocos_research_render
 			helper::BackToThePreviousScene::MoveBack();
 			return;
 
-		case EventKeyboard::KeyCode::KEY_SPACE:
-			scheduleOnce( schedule_selector( Prerender2Scene::test_UpdateEnd ), 0.f );
-			mbInputBlock = true;
-			return;
-
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 			mActorNode->setPositionX( mActorNode->getPositionX() + 5.f );
+			requestCapture();
 			return;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 			mActorNode->setPositionX( mActorNode->getPositionX() - 5.f );
+			requestCapture();
 			return;
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
 			mActorNode->setPositionY( mActorNode->getPositionY() + 5.f );
+			requestCapture();
 			return;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 			mActorNode->setPositionY( mActorNode->getPositionY() - 5.f );
+			requestCapture();
 			return;
 
 		default:
