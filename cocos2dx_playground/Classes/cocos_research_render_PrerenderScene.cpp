@@ -136,10 +136,10 @@ namespace cocos_research_render
 					( visibleSize.width * 0.25f ) - ( mTileMapNode->getContentSize().width * 0.5f )
 					, visibleCenter.y - ( mTileMapNode->getContentSize().height * 0.5f )
 				) );
-				mTileMapNode->FillAll( 4, 0 );
+				mTileMapNode->FillAll( 2, 0 );
 				addChild( mTileMapNode );
 
-				mTileMapNode->UpdateTile( 0, 0, 2, 0 );
+				mTileMapNode->UpdateTile( 0, 0, 4, 0 );
 				mTileMapNode->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
 			}
 
