@@ -284,16 +284,16 @@ namespace cocos_research_render
 			return;
 
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-			mActorNode->setPositionX( mActorNode->getPositionX() + 10.f );
+			mActorNode->setPositionX( mActorNode->getPositionX() + 5.f );
 			return;
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-			mActorNode->setPositionX( mActorNode->getPositionX() - 10.f );
+			mActorNode->setPositionX( mActorNode->getPositionX() - 5.f );
 			return;
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
-			mActorNode->setPositionY( mActorNode->getPositionY() + 10.f );
+			mActorNode->setPositionY( mActorNode->getPositionY() + 5.f );
 			return;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-			mActorNode->setPositionY( mActorNode->getPositionY() - 10.f );
+			mActorNode->setPositionY( mActorNode->getPositionY() - 5.f );
 			return;
 
 		default:
