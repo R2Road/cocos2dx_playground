@@ -19,6 +19,8 @@
 
 #include "step_defender_game_TileMapNode.h"
 
+#include "cocos_research_render_CameraNode.h"
+
 USING_NS_CC;
 
 namespace
@@ -201,6 +203,17 @@ namespace cocos_research_render
 				addChild( draw_node, 100 );
 
 				mCapturePivot = draw_node->getPosition();
+			}
+
+			//
+			// Camera
+			//
+			{
+				auto camera_node = CameraNode::create();
+				camera_node->SetCenterWorldPosition( mCaptureTargetNode->getPosition() + Vec2( mCaptureTargetNode->getContentSize().width * 0.5f, mCaptureTargetNode->getContentSize().height * 0.5f ) );
+				camera_node->SetMainLayer( mCaptureTargetNode );
+				camera_node->SetPivotNode( mActorNode );
+				mCaptureTargetNode->addChild( camera_node );
 			}
 		}
 
