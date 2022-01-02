@@ -20,6 +20,7 @@
 <p float:left;">
 <img src="https://raw.githubusercontent.com/R2Road/cocos2dx_playground/master/wiki/step_rain_of_chaos_game_test_spawnprocessor_01.gif" width=30% height=3%></img>
 <img src="https://raw.githubusercontent.com/R2Road/cocos2dx_playground/master/wiki/algorithm_practice_floodfill.gif" width=30% height=3%></img>
+<img src="https://github.com/R2Road/cocos2dx_playground/blob/master/wiki/cocos_research_render_PrerenderScene.gif" width=30% height=3%></img>
 </p>
  
 ## 주의사항 | Warning
