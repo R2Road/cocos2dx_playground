@@ -182,7 +182,7 @@ namespace cocos_research_render
 				auto draw_node = DrawNode::create();
 				draw_node->drawRect( Vec2::ZERO, Vec2( mTileMapNode->getContentSize().width, mTileMapNode->getContentSize().height ), Color4F::GREEN );
 				draw_node->setPosition( mTileMapNode->getPosition() );
-				addChild( draw_node, 100 );
+				addChild( draw_node, 1 );
 
 				mCaptureAreaNode = draw_node;
 			}
