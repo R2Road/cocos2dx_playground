@@ -141,6 +141,29 @@ namespace cocos_research_render
 			}
 
 			//
+			// Actor
+			//
+			{
+				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
+				sprite->getTexture()->setAntiAliasTexParameters();
+				sprite->setPosition( tile_sheet_configuration.GetTileWidth() * 3u, tile_sheet_configuration.GetTileHeight() * 3u );
+				mCaptureTargetNode->addChild( sprite, 1 );
+
+				mActorNode = sprite;
+			}
+
+			//
+			// Camera
+			//
+			{
+				auto camera_node = CameraNode::create();
+				camera_node->SetCenterWorldPosition( mCaptureTargetNode->getPosition() + Vec2( mCaptureTargetNode->getContentSize().width * 0.5f, mCaptureTargetNode->getContentSize().height * 0.5f ) );
+				camera_node->SetMainLayer( mCaptureTargetNode );
+				camera_node->SetPivotNode( mActorNode );
+				mCaptureTargetNode->addChild( camera_node );
+			}
+
+			//
 			// Tile Map
 			//
 			{
@@ -153,18 +176,6 @@ namespace cocos_research_render
 
 				tile_map_node->UpdateTile( 0, 0, 4, 0 );
 				tile_map_node->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
-			}
-
-			//
-			// Actor
-			//
-			{
-				auto sprite = Sprite::create( "textures/step_flipflip/step_flipflip_dummy_01.png" );
-				sprite->getTexture()->setAntiAliasTexParameters();
-				sprite->setPosition( tile_sheet_configuration.GetTileWidth() * 3u, tile_sheet_configuration.GetTileHeight() * 3u );
-				mCaptureTargetNode->addChild( sprite, 1 );
-
-				mActorNode = sprite;
 			}
 
 			//
@@ -201,17 +212,6 @@ namespace cocos_research_render
 				addChild( draw_node, 100 );
 
 				mCapturePivot = draw_node->getPosition();
-			}
-
-			//
-			// Camera
-			//
-			{
-				auto camera_node = CameraNode::create();
-				camera_node->SetCenterWorldPosition( mCaptureTargetNode->getPosition() + Vec2( mCaptureTargetNode->getContentSize().width * 0.5f, mCaptureTargetNode->getContentSize().height * 0.5f ) );
-				camera_node->SetMainLayer( mCaptureTargetNode );
-				camera_node->SetPivotNode( mActorNode );
-				mCaptureTargetNode->addChild( camera_node );
 			}
 		}
 
