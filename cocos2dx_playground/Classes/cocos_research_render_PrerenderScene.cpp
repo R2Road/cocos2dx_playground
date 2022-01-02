@@ -124,24 +124,6 @@ namespace cocos_research_render
 			cpg::TileSheetConfiguration tile_sheet_configuration;
 			CCASSERT( tile_sheet_configuration.Load( "datas/algorithm_practice/algorithm_practice_tile_sheet_config_01.json" ), "Failed - Load Tile Sheet Configuration" );
 
-			auto root_node = Node::create();
-			root_node->setContentSize( Size(
-				tile_sheet_configuration.GetTileWidth() * stage_config.MapWidth
-				, tile_sheet_configuration.GetTileHeight() * stage_config.MapHeight
-			) );
-			root_node->setPosition( Vec2(
-				( visibleSize.width * 0.25f ) - ( root_node->getContentSize().width * 0.5f )
-				, visibleCenter.y - ( root_node->getContentSize().height * 0.5f )
-			) );
-			addChild( root_node );
-
-			//
-			// Pivot
-			//
-			{
-				root_node->addChild( cpg_node::PivotNode::create(), std::numeric_limits<int>::max() );
-			}
-
 			//
 			// Tile Map
 			//
@@ -150,18 +132,31 @@ namespace cocos_research_render
 					stage_config
 					, tile_sheet_configuration
 				);
+				mTileMapNode->setPosition( Vec2(
+					( visibleSize.width * 0.25f ) - ( mTileMapNode->getContentSize().width * 0.5f )
+					, visibleCenter.y - ( mTileMapNode->getContentSize().height * 0.5f )
+				) );
 				mTileMapNode->FillAll( 4, 0 );
-				root_node->addChild( mTileMapNode );
+				addChild( mTileMapNode );
 
 				mTileMapNode->UpdateTile( 0, 0, 2, 0 );
 				mTileMapNode->UpdateTile( stage_config.MapWidth - 1, stage_config.MapHeight - 1, 1, 0 );
 			}
 
 			//
+			// Pivot
+			//
+			{
+				auto pivot_node = cpg_node::PivotNode::create();
+				pivot_node->setPosition( mTileMapNode->getPosition() );
+				addChild( pivot_node, std::numeric_limits<int>::max() );
+			}
+
+			//
 			// Util 4 Capture
 			//
 			{
-				mRenderTextureNode = RenderTexture::create( root_node->getContentSize().width, root_node->getContentSize().height );
+				mRenderTextureNode = RenderTexture::create( mTileMapNode->getContentSize().width, mTileMapNode->getContentSize().height );
 				mRenderTextureNode->setVisible( false );
 				mRenderTextureNode->setAutoDraw( false );
 				mRenderTextureNode->setClearFlags( GL_COLOR_BUFFER_BIT );
@@ -185,8 +180,8 @@ namespace cocos_research_render
 			//
 			{
 				auto draw_node = DrawNode::create();
-				draw_node->drawRect( Vec2::ZERO, Vec2( root_node->getContentSize().width, root_node->getContentSize().height ), Color4F::GREEN );
-				draw_node->setPosition( root_node->getPosition() );
+				draw_node->drawRect( Vec2::ZERO, Vec2( mTileMapNode->getContentSize().width, mTileMapNode->getContentSize().height ), Color4F::GREEN );
+				draw_node->setPosition( mTileMapNode->getPosition() );
 				addChild( draw_node, 100 );
 
 				mCaptureAreaNode = draw_node;
