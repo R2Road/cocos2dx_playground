@@ -60,15 +60,6 @@ bool PlayGroundScene::init()
 	//
 	{
 		std::stringstream ss;
-		ss << "# Message" << cpg::linefeed;
-		ss << cpg::blank5 << "> InProgress : Step 07" << cpg::linefeed;
-		ss << cpg::blank5 << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
-		ss << cpg::blank5 << "> To Do : Prerender Sequence Test" << cpg::linefeed;
-		ss << cpg::blank5 << "> To Do : Step 01 Update" << cpg::linefeed;
-		ss << cpg::linefeed;
-		ss << "=============================";
-		ss << cpg::linefeed;
-		ss << cpg::linefeed;
 		ss << "+ Playground";
 		ss << cpg::linefeed;
 		ss << cpg::linefeed;
@@ -118,6 +109,23 @@ bool PlayGroundScene::init()
 			visibleOrigin.x + ( visibleSize.width * 0.5f )
 			, visibleOrigin.y + ( visibleSize.height * 0.5f )
 		) );
+		addChild( label );
+	}
+
+	//
+	// Message
+	//
+	{
+		std::stringstream ss;
+		ss << "# Message" << cpg::linefeed;
+		ss << "> InProgress : Step 07" << cpg::linefeed;
+		ss << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
+		ss << "> To Do : Prerender Sequence Test" << cpg::linefeed;
+		ss << "> To Do : Step 01 Update" << cpg::linefeed;
+
+		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
+		label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+		label->setPositionY( visibleOrigin.y + visibleSize.height );
 		addChild( label );
 	}
 
