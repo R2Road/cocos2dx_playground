@@ -54,6 +54,10 @@ bool PlayGroundScene::init()
 
 	const auto visibleSize = _director->getVisibleSize();
 	const auto visibleOrigin = _director->getVisibleOrigin();
+	const Vec2 visibleCenter(
+		visibleOrigin.x + ( visibleSize.width * 0.5f )
+		, visibleOrigin.y + ( visibleSize.height * 0.5f )
+	);
 
 	//
 	// Summury
@@ -104,11 +108,8 @@ bool PlayGroundScene::init()
 		ss << cpg::linefeed;
 		ss << "[S] : " << step99::RootScene::getTitle();
 
-		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8, Size::ZERO, TextHAlignment::LEFT );
-		label->setPosition( Vec2(
-			visibleOrigin.x + ( visibleSize.width * 0.5f )
-			, visibleOrigin.y + ( visibleSize.height * 0.5f )
-		) );
+		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
+		label->setPosition( visibleCenter );
 		addChild( label );
 	}
 
