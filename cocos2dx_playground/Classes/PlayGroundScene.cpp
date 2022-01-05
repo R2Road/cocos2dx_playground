@@ -121,7 +121,6 @@ bool PlayGroundScene::init()
 		ss << "# Message" << cpg::linefeed;
 		ss << "> InProgress : Step 07" << cpg::linefeed;
 		ss << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
-		ss << "> To Do : Prerender Sequence Test" << cpg::linefeed;
 		ss << "> To Do : Step 01 Update" << cpg::linefeed;
 
 		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
