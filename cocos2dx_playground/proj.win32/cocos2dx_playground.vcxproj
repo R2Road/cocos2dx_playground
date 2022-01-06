@@ -175,6 +175,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\algorithm_practice_loophero_TrimScene.cpp" />
     <ClCompile Include="..\Classes\algorithm_practice_RootScene.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\cocos_research_image_BasicScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_particle_BasicScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_render_CameraNode.cpp" />
     <ClCompile Include="..\Classes\cocos_research_render_Prerender2Scene.cpp" />
@@ -475,6 +476,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\algorithm_practice_loophero_TrimScene.h" />
     <ClInclude Include="..\Classes\algorithm_practice_RootScene.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\cocos_research_image_BasicScene.h" />
     <ClInclude Include="..\Classes\cocos_research_particle_BasicScene.h" />
     <ClInclude Include="..\Classes\cocos_research_render_CameraNode.h" />
     <ClInclude Include="..\Classes\cocos_research_render_Prerender2Scene.h" />

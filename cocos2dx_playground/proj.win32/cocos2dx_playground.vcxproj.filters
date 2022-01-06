@@ -1122,6 +1122,9 @@
     <ClCompile Include="..\Classes\cocos_research_particle_BasicScene.cpp">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cocos_research_image_BasicScene.cpp">
+      <Filter>src\scene\step99\cocos_research</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -2055,6 +2058,9 @@
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cocos_research_particle_BasicScene.h">
+      <Filter>src\scene\step99\cocos_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cocos_research_image_BasicScene.h">
       <Filter>src\scene\step99\cocos_research</Filter>
     </ClInclude>
   </ItemGroup>
