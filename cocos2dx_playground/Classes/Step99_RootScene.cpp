@@ -107,7 +107,7 @@ namespace step99
 			ss << cpg::linefeed;
 			ss << "=============================";
 
-			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 10 );
+			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setPosition( Vec2(
 				visibleOrigin.x + ( visibleSize.width * 0.5f )
 				, visibleOrigin.y + ( visibleSize.height * 0.5f )
