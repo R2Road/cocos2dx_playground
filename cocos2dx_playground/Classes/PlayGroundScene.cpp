@@ -119,10 +119,10 @@ bool PlayGroundScene::init()
 	{
 		std::stringstream ss;
 		ss << "# Message" << cpg::linefeed;
-		ss << "> To Do : Step 07" << cpg::linefeed;
+		ss << "> InProgress : Particle" << cpg::linefeed;
 		ss << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
+		ss << "> To Do : Step 07" << cpg::linefeed;
 		ss << "> To Do : Step 01 Update" << cpg::linefeed;
-		ss << "> To Do : Particle" << cpg::linefeed;
 
 		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
 		label->setAnchorPoint( Vec2( 0.f, 1.f ) );
