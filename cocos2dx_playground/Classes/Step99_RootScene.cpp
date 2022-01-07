@@ -16,6 +16,7 @@
 
 #include "cocos_research_action_SoundActionScene.h"
 #include "cocos_research_action_SpriteFrameActionScene.h"
+#include "cocos_research_image_BasicScene.h"
 #include "cocos_research_image_PNGScene.h"
 #include "cocos_research_particle_BasicScene.h"
 #include "cocos_research_render_PrerenderScene.h"
@@ -103,9 +104,11 @@ namespace step99
 			ss << "=============================";
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
-			ss << "[A] : " << cocos_research_image::PNGScene::getTitle();
+			ss << "[A] : " << cocos_research_image::BasicScene::getTitle();
 			ss << cpg::linefeed;
-			ss << "[S] : " << cocos_research_particle::BasicScene::getTitle();
+			ss << "[S] : " << cocos_research_image::PNGScene::getTitle();
+			ss << cpg::linefeed;
+			ss << "[D] : " << cocos_research_particle::BasicScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "=============================";
@@ -188,9 +191,12 @@ namespace step99
 			break;
 
 		case EventKeyboard::KeyCode::KEY_A:
-			_director->replaceScene( cocos_research_image::PNGScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( cocos_research_image::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
+			_director->replaceScene( cocos_research_image::PNGScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_D:
 			_director->replaceScene( cocos_research_particle::BasicScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
