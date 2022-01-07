@@ -1,4 +1,4 @@
-#include "cocos_research_image_BasicScene.h"
+#include "cocos_research_image_PNGScene.h"
 
 #include <array>
 #include <new>
@@ -76,14 +76,14 @@ namespace
 
 namespace cocos_research_image
 {
-	BasicScene::BasicScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	PNGScene::PNGScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 	{}
 
-	Scene* BasicScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* PNGScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) BasicScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) PNGScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -97,7 +97,7 @@ namespace cocos_research_image
 		return ret;
 	}
 
-	bool BasicScene::init()
+	bool PNGScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -148,7 +148,7 @@ namespace cocos_research_image
 			Image* image = new ( std::nothrow ) Image();
 			image->initWithImageData( temp_png_data, sizeof( temp_png_data ) );
 
-			Texture2D* texture = _director->getTextureCache()->addImage( image, "cocos_research_image_BasicScene" );
+			Texture2D* texture = _director->getTextureCache()->addImage( image, "cocos_research_image_PNGScene" );
 			CC_SAFE_RELEASE( image );
 
 			auto sprite_node = Sprite::createWithTexture( texture );
@@ -166,16 +166,16 @@ namespace cocos_research_image
 		return true;
 	}
 
-	void BasicScene::onEnter()
+	void PNGScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( BasicScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( PNGScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void BasicScene::onExit()
+	void PNGScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -184,7 +184,7 @@ namespace cocos_research_image
 		Scene::onExit();
 	}
 
-	void BasicScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void PNGScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		switch( keycode )
 		{
