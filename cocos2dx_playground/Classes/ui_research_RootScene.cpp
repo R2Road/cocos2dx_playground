@@ -25,6 +25,7 @@
 
 #include "ui_research_text_field_BMFontScene.h"
 
+#include "ui_research_layout_research_OptionBarNodeScene.h"
 #include "ui_research_layout_research_ToolBarNodeScene.h"
 
 USING_NS_CC;
@@ -94,6 +95,8 @@ namespace ui_research
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[A] : " << cpgui::research_layout::ToolBarNodeScene::getTitle();
+			ss << cpg::linefeed;
+			ss << "[S] : " << cpgui::research_layout::OptionBarNodeScene::getTitle();
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 11, Size::ZERO, TextHAlignment::LEFT );
 			label->setPosition(
@@ -167,6 +170,9 @@ namespace ui_research
 
 		case EventKeyboard::KeyCode::KEY_A:
 			_director->replaceScene( cpgui::research_layout::ToolBarNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			return;
+		case EventKeyboard::KeyCode::KEY_S:
+			_director->replaceScene( cpgui::research_layout::OptionBarNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
 			return;
 
 		default:

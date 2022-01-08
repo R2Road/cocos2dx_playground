@@ -192,6 +192,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cpg_node_GuideRectNode.cpp" />
     <ClCompile Include="..\Classes\cpg_SStream.cpp" />
     <ClCompile Include="..\Classes\cpg_node_PivotNode.cpp" />
+    <ClCompile Include="..\Classes\ui_research_layout_research_OptionBarNodeScene.cpp" />
     <ClCompile Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.cpp" />
     <ClCompile Include="..\Classes\cpg_ui_ChargeButtonNode.cpp" />
     <ClCompile Include="..\Classes\cpg_ui_EXButtonNode.cpp" />
@@ -494,6 +495,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cpg_node_GuideRectNode.h" />
     <ClInclude Include="..\Classes\cpg_SStream.h" />
     <ClInclude Include="..\Classes\cpg_node_PivotNode.h" />
+    <ClInclude Include="..\Classes\ui_research_layout_research_OptionBarNodeScene.h" />
     <ClInclude Include="..\Classes\ui_research_layout_research_ToolBarNodeScene.h" />
     <ClInclude Include="..\Classes\cpg_ui_ChargeButtonNode.h" />
     <ClInclude Include="..\Classes\cpg_ui_EXButtonNode.h" />
