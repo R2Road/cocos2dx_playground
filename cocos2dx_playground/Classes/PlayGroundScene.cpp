@@ -60,6 +60,23 @@ bool PlayGroundScene::init()
 	);
 
 	//
+	// Message
+	//
+	{
+		std::stringstream ss;
+		ss << "# Message" << cpg::linefeed;
+		ss << "> InProgress : Particle" << cpg::linefeed;
+		ss << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
+		ss << "> To Do : Step 07" << cpg::linefeed;
+		ss << "> To Do : Step 01 Update" << cpg::linefeed;
+
+		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
+		label->setAnchorPoint( Vec2( 0.f, 1.f ) );
+		label->setPositionY( visibleOrigin.y + visibleSize.height );
+		addChild( label );
+	}
+
+	//
 	// Summury
 	//
 	{
@@ -110,23 +127,6 @@ bool PlayGroundScene::init()
 
 		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 		label->setPosition( visibleCenter );
-		addChild( label );
-	}
-
-	//
-	// Message
-	//
-	{
-		std::stringstream ss;
-		ss << "# Message" << cpg::linefeed;
-		ss << "> InProgress : Particle" << cpg::linefeed;
-		ss << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
-		ss << "> To Do : Step 07" << cpg::linefeed;
-		ss << "> To Do : Step 01 Update" << cpg::linefeed;
-
-		auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 7 );
-		label->setAnchorPoint( Vec2( 0.f, 1.f ) );
-		label->setPositionY( visibleOrigin.y + visibleSize.height );
 		addChild( label );
 	}
 
