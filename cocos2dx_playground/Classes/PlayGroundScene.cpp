@@ -67,6 +67,7 @@ bool PlayGroundScene::init()
 		ss << "# Message" << cpg::linefeed;
 		ss << "> InProgress : Particle" << cpg::linefeed;
 		ss << "> InProgress : Algorithm : LoopHero" << cpg::linefeed;
+		ss << "> To Do : UI Research : Option Bar Node" << cpg::linefeed;
 		ss << "> To Do : Step 07" << cpg::linefeed;
 		ss << "> To Do : Step 01 Update" << cpg::linefeed;
 
