@@ -29,6 +29,13 @@ namespace cpg
 
 		mState = static_cast<eState>( new_state );
 	}
+	void Direction8::Rotate( const bool rotate_right, const int count )
+	{
+		for( int i = 0; count > i; ++i )
+		{
+			Rotate( rotate_right );
+		}
+	}
 
 	cpg::Point Direction8::GetPoint() const
 	{

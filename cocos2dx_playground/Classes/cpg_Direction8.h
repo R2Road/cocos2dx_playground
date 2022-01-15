@@ -31,6 +31,7 @@ namespace cpg
 		void SetState( eState state ) { mState = state; }
 
 		void Rotate( const bool rotate_right );
+		void Rotate( const bool rotate_right, const int count );
 
 		cpg::Point GetPoint() const;
 
