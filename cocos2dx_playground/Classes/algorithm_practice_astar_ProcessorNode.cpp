@@ -270,7 +270,8 @@ namespace algorithm_practice_astar
 			// Collect Open List
 			cpg::Direction8 dir8;
 			cpg::Point temp_point;
-			for( int i = 0; 8 > i; ++i, dir8.Rotate( true ) )
+			for( int i = 0; 8 > i; ++i, dir8.Rotate( true ) ) // 8way mode
+			//for( int i = 0; 4 > i; ++i, dir8.Rotate( true, 2 ) ) // 4way mode
 			{
 				temp_point = current_node.GetPoint() + dir8.GetPoint();
 
