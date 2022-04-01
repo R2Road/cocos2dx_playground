@@ -218,6 +218,7 @@
             </struct>
             <key type="filename">animation/actor001/actor001_win_01.png</key>
             <key type="filename">animation/actor001/actor001_win_02.png</key>
+            <key type="filename">item/item_sword_01_0.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -896,6 +897,7 @@
             <filename>ui/slice9/s9_guide_01_0.png</filename>
             <filename>ui/dummy_gauge/dummy_gauge_guide_001_0.png</filename>
             <filename>ui/dummy_gauge/dummy_gauge_body_001_0.png</filename>
+            <filename>item/item_sword_01_0.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
