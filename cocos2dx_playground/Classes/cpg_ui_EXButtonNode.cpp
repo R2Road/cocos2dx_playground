@@ -21,6 +21,7 @@ namespace cpg_ui
 		, mbOnMouseOver( false )
 
 		, mViewNodes()
+		, mContentViewNode( nullptr )
 		, mBackgroundNode( nullptr )
 
 		, mOnButtonCallback( nullptr )
@@ -144,6 +145,19 @@ namespace cpg_ui
 		if( node )
 		{
 			addChild( node, view_index );
+		}
+	}
+	void EXButtonNode::SetContentView( Node* node )
+	{
+		if( mContentViewNode )
+		{
+			removeChild( mContentViewNode );
+		}
+
+		mContentViewNode = node;
+		if( node )
+		{
+			addChild( node, eViewIndex::Normal - 1 );
 		}
 	}
 	void EXButtonNode::SetBackground( Node* node )

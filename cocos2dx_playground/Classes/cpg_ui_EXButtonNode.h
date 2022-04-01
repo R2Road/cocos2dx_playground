@@ -46,6 +46,7 @@ namespace cpg_ui
 		void onExit() override;
 
 		void SetView( const eViewIndex view_index, Node* node );
+		void SetContentView( Node* node );
 		void SetBackground( Node* node );
 		void SetCallback( const OnButtonCallback& callback ) { mOnButtonCallback = callback; }
 
@@ -59,6 +60,7 @@ namespace cpg_ui
 		bool mbOnMouseOver;
 
 		cocos2d::Node* mViewNodes[eViewIndex::SIZE];
+		cocos2d::Node* mContentViewNode;
 		cocos2d::Node* mBackgroundNode;
 
 		OnButtonCallback mOnButtonCallback;

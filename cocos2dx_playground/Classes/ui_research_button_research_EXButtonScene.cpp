@@ -98,7 +98,7 @@ namespace ui_research
 			// Research
 			//
 			{
-				const Size button_size( 100.f, 100.f );
+				const Size button_size( 60.f, 100.f );
 
 				auto ex_button = cpg_ui::EXButtonNode::create( button_size );
 				ex_button->setPosition( visibleCenter );
@@ -106,7 +106,16 @@ namespace ui_research
 				
 				// Background
 				{
-					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 100u, 100u ) );
+					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 60u, 100u ) );
+				}
+
+				// Content View
+				{
+					auto sprite = Sprite::createWithSpriteFrameName( "item_sword_01_0.png" );
+					sprite->setPosition( button_size.width * 0.5f, button_size.height * 0.5f );
+					sprite->setScale( 6.f );
+
+					ex_button->SetContentView( sprite );
 				}
 
 				// Normal View
@@ -125,7 +134,7 @@ namespace ui_research
 					sprite->setContentSize( button_size );
 					sprite->setVisible( false );
 					{
-						auto label = Label::createWithTTF( "EX Button", cpg::StringTable::GetFontPath(), 10 );
+						auto label = Label::createWithTTF( "Sword\nOf\nDummy", cpg::StringTable::GetFontPath(), 10, Size::ZERO, TextHAlignment::CENTER );
 						label->setPosition( sprite->getContentSize().width * 0.5f, sprite->getContentSize().height * 0.5f );
 						{
 							auto fadeOutAction = FadeOut::create( 0.8f );
@@ -144,10 +153,11 @@ namespace ui_research
 
 				// Push View
 				{
-					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_2.png" );
+					auto sprite = ui::Scale9Sprite::createWithSpriteFrameName( "guide_01_0.png" );
 					sprite->setVisible( false );
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
+					sprite->setColor( Color3B::YELLOW );
 
 					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
 				}
