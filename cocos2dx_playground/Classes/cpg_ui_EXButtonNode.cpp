@@ -160,7 +160,7 @@ namespace cpg_ui
 			addChild( node, eViewIndex::Normal - 1 );
 		}
 	}
-	void EXButtonNode::SetBackground( Node* node )
+	void EXButtonNode::SetView_Background( Node* node )
 	{
 		if( mBackgroundNode )
 		{

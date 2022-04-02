@@ -106,7 +106,7 @@ namespace ui_research
 				
 				// Background
 				{
-					ex_button->SetBackground( LayerColor::create( Color4B::BLACK, 60u, 100u ) );
+					ex_button->SetView_Background( LayerColor::create( Color4B::BLACK, 60u, 100u ) );
 				}
 
 				// Content View
