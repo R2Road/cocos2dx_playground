@@ -46,7 +46,7 @@ namespace cpg_ui
 		void onExit() override;
 
 		void SetView( const eViewIndex view_index, Node* node );
-		void SetContentView( Node* node );
+		void SetView_Content( Node* node );
 		void SetView_Background( Node* node );
 		void SetCallback( const OnButtonCallback& callback ) { mOnButtonCallback = callback; }
 

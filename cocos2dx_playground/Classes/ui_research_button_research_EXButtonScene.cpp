@@ -115,7 +115,7 @@ namespace ui_research
 					sprite->setPosition( button_size.width * 0.5f, button_size.height * 0.5f );
 					sprite->setScale( 6.f );
 
-					ex_button->SetContentView( sprite );
+					ex_button->SetView_Content( sprite );
 				}
 
 				// Normal View

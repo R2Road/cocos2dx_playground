@@ -147,7 +147,7 @@ namespace cpg_ui
 			addChild( node, view_index );
 		}
 	}
-	void EXButtonNode::SetContentView( Node* node )
+	void EXButtonNode::SetView_Content( Node* node )
 	{
 		if( mContentViewNode )
 		{
