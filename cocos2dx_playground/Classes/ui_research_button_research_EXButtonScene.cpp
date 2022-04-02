@@ -124,7 +124,7 @@ namespace ui_research
 					sprite->setAnchorPoint( Vec2::ZERO );
 					sprite->setContentSize( button_size );
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
+					ex_button->SetView_Button( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
 				}
 
 				// Mouse Over View
@@ -148,7 +148,7 @@ namespace ui_research
 						sprite->addChild( label );
 					}
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, sprite );
+					ex_button->SetView_Button( cpg_ui::EXButtonNode::eViewIndex::MouseOver, sprite );
 				}
 
 				// Push View
@@ -159,7 +159,7 @@ namespace ui_research
 					sprite->setContentSize( button_size );
 					sprite->setColor( Color3B::YELLOW );
 
-					ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
+					ex_button->SetView_Button( cpg_ui::EXButtonNode::eViewIndex::Push, sprite );
 				}
 
 				ex_button->SetCallback( [button_status_label]( const cpg_ui::EXButtonNode::eButtonEvent button_event )

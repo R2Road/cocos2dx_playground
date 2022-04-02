@@ -134,7 +134,7 @@ namespace cpg_ui
 		ui::Widget::onExit();
 	}
 
-	void EXButtonNode::SetView( const eViewIndex view_index, Node* node )
+	void EXButtonNode::SetView_Button( const eViewIndex view_index, Node* node )
 	{
 		if( mViewNodes[view_index] )
 		{

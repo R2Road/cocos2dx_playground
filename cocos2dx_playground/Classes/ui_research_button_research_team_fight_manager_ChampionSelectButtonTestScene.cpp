@@ -138,7 +138,7 @@ namespace ui_research
 						sprite->setAnchorPoint( Vec2::ZERO );
 						sprite->setContentSize( button_size );
 
-						ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
+						ex_button->SetView_Button( cpg_ui::EXButtonNode::eViewIndex::Normal, sprite );
 					}
 
 					// Mouse Over
@@ -146,7 +146,7 @@ namespace ui_research
 						auto on_mouse_over_node = team_fight_manager::OnMouseOverNode::create( button_size );
 						on_mouse_over_node->setVisible( false );
 
-						ex_button->SetView( cpg_ui::EXButtonNode::eViewIndex::MouseOver, on_mouse_over_node );
+						ex_button->SetView_Button( cpg_ui::EXButtonNode::eViewIndex::MouseOver, on_mouse_over_node );
 					}
 
 					// Character
