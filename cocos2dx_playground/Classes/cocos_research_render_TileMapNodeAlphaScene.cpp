@@ -27,8 +27,8 @@ USING_NS_CC;
 
 namespace
 {
-	const char* CustomeShaderPath = "shaders/cocos_research_render_SpriteBatchNodeAlphaScene.fsh";
-	const char* CustomeShaderName = "shaders/cocos_research_render_SpriteBatchNodeAlphaScene";
+	const char* CustomeShaderPath = "shaders/cocos_research_render_TileMapNodeAlphaScene.fsh";
+	const char* CustomeShaderName = "shaders/cocos_research_render_TileMapNodeAlphaScene";
 }
 
 namespace cocos_research_render
