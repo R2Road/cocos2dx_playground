@@ -21,11 +21,6 @@
 
 USING_NS_CC;
 
-namespace
-{
-	const char* CustomeShaderPath = "shaders/shader_DarkScale.fsh";
-}
-
 namespace cocos_research_render
 {
 	PrerenderScene::PrerenderScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
