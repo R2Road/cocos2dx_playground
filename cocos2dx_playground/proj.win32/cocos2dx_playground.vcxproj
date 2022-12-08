@@ -183,6 +183,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\cocos_research_render_PrerenderScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SoundActionScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_action_SpriteFrameActionScene.cpp" />
+    <ClCompile Include="..\Classes\cocos_research_render_SpriteBatchNodeAlphaScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_render_TileMapNodeAlphaScene.cpp" />
     <ClCompile Include="..\Classes\cocos_research_update_SequenceScene.cpp" />
     <ClCompile Include="..\Classes\cpg_Direction8.cpp" />
@@ -487,6 +488,7 @@ xcopy "$(ProjectDir)..\vld\bin\Win32\*.*" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\cocos_research_render_PrerenderScene.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SoundActionScene.h" />
     <ClInclude Include="..\Classes\cocos_research_action_SpriteFrameActionScene.h" />
+    <ClInclude Include="..\Classes\cocos_research_render_SpriteBatchNodeAlphaScene.h" />
     <ClInclude Include="..\Classes\cocos_research_render_TileMapNodeAlphaScene.h" />
     <ClInclude Include="..\Classes\cocos_research_update_SequenceScene.h" />
     <ClInclude Include="..\Classes\cpg_Direction8.h" />

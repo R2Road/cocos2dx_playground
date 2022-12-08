@@ -22,6 +22,7 @@
 #include "cocos_research_render_PrerenderScene.h"
 #include "cocos_research_render_Prerender2Scene.h"
 #include "cocos_research_update_SequenceScene.h"
+#include "cocos_research_render_SpriteBatchNodeAlphaScene.h"
 #include "cocos_research_render_TileMapNodeAlphaScene.h"
 
 #include "step_typetype_label_ttf_ETCScene.h"
@@ -117,6 +118,8 @@ namespace step99
 			ss << cpg::linefeed;
 			ss << "[Z] : " << cocos_research_render::TileMapNodeAlphaScene::getTitle();
 			ss << cpg::linefeed;
+			ss << "[X] : " << cocos_research_render::SpriteBatchNodeAlphaScene::getTitle();
+			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "=============================";
 
@@ -209,6 +212,9 @@ namespace step99
 
 		case EventKeyboard::KeyCode::KEY_Z:
 			_director->replaceScene( cocos_research_render::TileMapNodeAlphaScene::create( helper::CreateSceneMover<RootScene>() ) );
+			break;
+		case EventKeyboard::KeyCode::KEY_X:
+			_director->replaceScene( cocos_research_render::SpriteBatchNodeAlphaScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:
