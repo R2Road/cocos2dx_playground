@@ -1131,6 +1131,9 @@
     <ClCompile Include="..\Classes\ui_research_layout_research_OptionBarNodeScene.cpp">
       <Filter>src\scene\ui_research</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\cocos_research_render_SpriteBatchNodeScene.cpp">
+      <Filter>src\scene\step99\cocos_research</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -2074,6 +2077,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ui_research_layout_research_OptionBarNodeScene.h">
       <Filter>src\scene\ui_research</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cocos_research_render_SpriteBatchNodeScene.h">
+      <Filter>src\scene\step99\cocos_research</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
