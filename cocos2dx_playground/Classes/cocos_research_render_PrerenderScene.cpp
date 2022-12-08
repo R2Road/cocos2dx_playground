@@ -171,7 +171,7 @@ namespace cocos_research_render
 			}
 
 			//
-			// Capture Arrea
+			// Capture Area
 			//
 			{
 				auto draw_node = DrawNode::create();

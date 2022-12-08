@@ -110,7 +110,7 @@ namespace cocos_research_render
 		//
 		// Research
 		//
-	{
+		{
 			const step_defender::game::TileMapNode::Config stage_config{ 6u, 6u };
 
 			// Load Tile Config
@@ -198,7 +198,7 @@ namespace cocos_research_render
 			}
 
 			//
-			// Capture Arrea
+			// Capture Area
 			//
 			{
 				auto draw_node = DrawNode::create();
