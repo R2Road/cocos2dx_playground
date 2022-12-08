@@ -28,6 +28,7 @@ USING_NS_CC;
 namespace
 {
 	const char* CustomeShaderPath = "shaders/cocos_research_render_SpriteBatchNodeAlphaScene.fsh";
+	const char* CustomeShaderName = "shaders/cocos_research_render_SpriteBatchNodeAlphaScene";
 }
 
 namespace cocos_research_render
@@ -122,7 +123,7 @@ namespace cocos_research_render
 			auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_vert, shader_source.c_str() );
 
 			// Caching
-			GLProgramCache::getInstance()->addGLProgram( gl_program, "cocos_research_render_SpriteBatchNodeAlphaScene" );
+			GLProgramCache::getInstance()->addGLProgram( gl_program, CustomeShaderName );
 		}
 
 		//
@@ -153,7 +154,7 @@ namespace cocos_research_render
 					//
 					// Get Cached Program
 					//
-					auto gl_program = GLProgramCache::getInstance()->getGLProgram( "cocos_research_render_SpriteBatchNodeAlphaScene" );
+					auto gl_program = GLProgramCache::getInstance()->getGLProgram( CustomeShaderName );
 
 					//
 					// Create GLProgramState
