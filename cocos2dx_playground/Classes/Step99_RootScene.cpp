@@ -21,8 +21,8 @@
 #include "cocos_research_particle_BasicScene.h"
 #include "cocos_research_render_PrerenderScene.h"
 #include "cocos_research_render_Prerender2Scene.h"
-#include "cocos_research_render_SpriteBatchNodeScene.h"
 #include "cocos_research_update_SequenceScene.h"
+#include "cocos_research_render_TileMapNodeAlphaScene.h"
 
 #include "step_typetype_label_ttf_ETCScene.h"
 
@@ -115,7 +115,7 @@ namespace step99
 			ss << "=============================";
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
-			ss << "[Z] : " << cocos_research_render::SpriteBatchNodeScene::getTitle();
+			ss << "[Z] : " << cocos_research_render::TileMapNodeAlphaScene::getTitle();
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "=============================";
@@ -208,7 +208,7 @@ namespace step99
 			break;
 
 		case EventKeyboard::KeyCode::KEY_Z:
-			_director->replaceScene( cocos_research_render::SpriteBatchNodeScene::create( helper::CreateSceneMover<RootScene>() ) );
+			_director->replaceScene( cocos_research_render::TileMapNodeAlphaScene::create( helper::CreateSceneMover<RootScene>() ) );
 			break;
 
 		default:

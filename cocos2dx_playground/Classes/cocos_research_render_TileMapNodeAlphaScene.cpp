@@ -1,4 +1,4 @@
-#include "cocos_research_render_SpriteBatchNodeScene.h"
+#include "cocos_research_render_TileMapNodeAlphaScene.h"
 
 #include <new>
 #include <numeric>
@@ -32,7 +32,7 @@ namespace
 
 namespace cocos_research_render
 {
-	SpriteBatchNodeScene::SpriteBatchNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
+	TileMapNodeAlphaScene::TileMapNodeAlphaScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
 		helper::BackToThePreviousScene( back_to_the_previous_scene_callback )
 		, mKeyboardListener( nullptr )
 
@@ -40,9 +40,9 @@ namespace cocos_research_render
 		, mTileMapOpacityLabel( nullptr )
 	{}
 
-	Scene* SpriteBatchNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
+	Scene* TileMapNodeAlphaScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
 	{
-		auto ret = new ( std::nothrow ) SpriteBatchNodeScene( back_to_the_previous_scene_callback );
+		auto ret = new ( std::nothrow ) TileMapNodeAlphaScene( back_to_the_previous_scene_callback );
 		if( !ret || !ret->init() )
 		{
 			delete ret;
@@ -56,7 +56,7 @@ namespace cocos_research_render
 		return ret;
 	}
 
-	bool SpriteBatchNodeScene::init()
+	bool TileMapNodeAlphaScene::init()
 	{
 		if( !Scene::init() )
 		{
@@ -186,16 +186,16 @@ namespace cocos_research_render
 		return true;
 	}
 
-	void SpriteBatchNodeScene::onEnter()
+	void TileMapNodeAlphaScene::onEnter()
 	{
 		Scene::onEnter();
 
 		assert( !mKeyboardListener );
 		mKeyboardListener = EventListenerKeyboard::create();
-		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( SpriteBatchNodeScene::onKeyPressed, this );
+		mKeyboardListener->onKeyPressed = CC_CALLBACK_2( TileMapNodeAlphaScene::onKeyPressed, this );
 		getEventDispatcher()->addEventListenerWithSceneGraphPriority( mKeyboardListener, this );
 	}
-	void SpriteBatchNodeScene::onExit()
+	void TileMapNodeAlphaScene::onExit()
 	{
 		assert( mKeyboardListener );
 		getEventDispatcher()->removeEventListener( mKeyboardListener );
@@ -204,7 +204,7 @@ namespace cocos_research_render
 		Scene::onExit();
 	}
 
-	void SpriteBatchNodeScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
+	void TileMapNodeAlphaScene::onKeyPressed( EventKeyboard::KeyCode keycode, Event* /*event*/ )
 	{
 		switch( keycode )
 		{

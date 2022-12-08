@@ -18,13 +18,13 @@ namespace step_defender
 
 namespace cocos_research_render
 {
-	class SpriteBatchNodeScene : public cocos2d::Scene, private helper::BackToThePreviousScene
+	class TileMapNodeAlphaScene : public cocos2d::Scene, private helper::BackToThePreviousScene
 	{
 	private:
-		SpriteBatchNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
+		TileMapNodeAlphaScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	public:
-		static const char* getTitle() { return "Sprite Batch Node"; }
+		static const char* getTitle() { return "TileMapNode Alpha"; }
 		static cocos2d::Scene* create( const helper::FuncSceneMover& back_to_the_previous_scene_callback );
 
 	private:
