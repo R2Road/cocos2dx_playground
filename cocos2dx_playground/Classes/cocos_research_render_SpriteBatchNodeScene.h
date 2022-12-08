@@ -5,7 +5,7 @@
 #include "helper_BackToThePreviousScene.h"
 
 NS_CC_BEGIN
-	class RenderTexture;
+	class Label;
 NS_CC_END
 
 namespace step_defender
@@ -41,5 +41,6 @@ namespace cocos_research_render
 		cocos2d::EventListenerKeyboard* mKeyboardListener;
 
 		step_defender::game::TileMapNode* mTileMapNode;
+		cocos2d::Label* mTileMapOpacityLabel;
 	};
 }

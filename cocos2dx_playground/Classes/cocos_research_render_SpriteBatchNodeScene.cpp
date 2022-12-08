@@ -5,13 +5,17 @@
 
 #include "2d/CCLabel.h"
 #include "2d/CCLayer.h"
-#include "2d/CCRenderTexture.h"
-#include "2d/CCSprite.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventDispatcher.h"
 #include "renderer/CCRenderer.h"
 
+#include "platform/CCFileUtils.h"
+#include "renderer/CCGLProgram.h"
+#include "renderer/CCGLProgramCache.h"
+#include "renderer/ccShaders.h"
+
+#include "cpg_Clamp.h"
 #include "cpg_node_PivotNode.h"
 #include "cpg_SStream.h"
 #include "cpg_StringTable.h"
@@ -21,6 +25,11 @@
 
 USING_NS_CC;
 
+namespace
+{
+	const char* CustomeShaderPath = "shaders/cocos_research_render_SpriteBatchNodeAlphaScene.fsh";
+}
+
 namespace cocos_research_render
 {
 	SpriteBatchNodeScene::SpriteBatchNodeScene( const helper::FuncSceneMover& back_to_the_previous_scene_callback ) :
@@ -28,6 +37,7 @@ namespace cocos_research_render
 		, mKeyboardListener( nullptr )
 
 		, mTileMapNode( nullptr )
+		, mTileMapOpacityLabel( nullptr )
 	{}
 
 	Scene* SpriteBatchNodeScene::create( const helper::FuncSceneMover& back_to_the_previous_scene_callback )
@@ -69,6 +79,9 @@ namespace cocos_research_render
 			ss << cpg::linefeed;
 			ss << cpg::linefeed;
 			ss << "[ESC] : Return to Root";
+			ss << cpg::linefeed;
+			ss << cpg::linefeed;
+			ss << "[W/S] : Alpha Up/Down";
 
 			auto label = Label::createWithTTF( ss.str(), cpg::StringTable::GetFontPath(), 8 );
 			label->setAnchorPoint( Vec2( 0.f, 1.f ) );
@@ -77,6 +90,39 @@ namespace cocos_research_render
 				+ Vec2( 0.f, visibleSize.height )
 			);
 			addChild( label, std::numeric_limits<int>::max() );
+		}
+
+		//
+		// Background
+		//
+		{
+			auto background_layer = LayerColor::create( Color4B( 37, 18, 53, 255 ) );
+			addChild( background_layer, std::numeric_limits<int>::min() );
+		}
+
+		//
+		// 
+		//
+		{
+			mTileMapOpacityLabel = Label::createWithTTF( "---", cpg::StringTable::GetFontPath(), 8 );
+			mTileMapOpacityLabel->setAnchorPoint( Vec2( 1.f, 1.f ) );
+			mTileMapOpacityLabel->setPosition(
+				visibleOrigin
+				+ Vec2( visibleSize.width, visibleSize.height )
+			);
+			addChild( mTileMapOpacityLabel, std::numeric_limits<int>::max() );
+		}
+
+		//
+		// Practice : Load and Caching
+		//
+		{
+			// Load
+			const auto shader_source = FileUtils::getInstance()->getStringFromFile( FileUtils::getInstance()->fullPathForFilename( CustomeShaderPath ) );
+			auto gl_program = GLProgram::createWithByteArrays( ccPositionTextureColor_vert, shader_source.c_str() );
+
+			// Caching
+			GLProgramCache::getInstance()->addGLProgram( gl_program, "cocos_research_render_SpriteBatchNodeAlphaScene" );
 		}
 
 		//
@@ -103,6 +149,22 @@ namespace cocos_research_render
 				) );
 				mTileMapNode->FillAll( 4, 0 );
 				addChild( mTileMapNode );
+				{
+					//
+					// Get Cached Program
+					//
+					auto gl_program = GLProgramCache::getInstance()->getGLProgram( "cocos_research_render_SpriteBatchNodeAlphaScene" );
+
+					//
+					// Create GLProgramState
+					//
+					auto gl_program_state = GLProgramState::getOrCreateWithGLProgram( gl_program );
+
+					//
+					// Apply
+					//
+					mTileMapNode->setGLProgramState( gl_program_state );
+				}
 			}
 
 			//
@@ -115,6 +177,11 @@ namespace cocos_research_render
 			}
 
 		}
+
+		//
+		//
+		//
+		mTileMapOpacityLabel->setString( std::to_string( mTileMapNode->getOpacity() ) );
 
 		return true;
 	}
@@ -143,6 +210,15 @@ namespace cocos_research_render
 		{
 		case EventKeyboard::KeyCode::KEY_ESCAPE:
 			helper::BackToThePreviousScene::MoveBack();
+			return;
+
+		case EventKeyboard::KeyCode::KEY_W:
+			mTileMapNode->setOpacity( cpg::clamp( static_cast<int>( mTileMapNode->getOpacity() ) + 10, 0, 255 ) );
+			mTileMapOpacityLabel->setString( std::to_string( mTileMapNode->getOpacity() ) );
+			return;
+		case EventKeyboard::KeyCode::KEY_S:
+			mTileMapNode->setOpacity( cpg::clamp( static_cast<int>( mTileMapNode->getOpacity() ) - 10, 0, 255 ) );
+			mTileMapOpacityLabel->setString( std::to_string( mTileMapNode->getOpacity() ) );
 			return;
 
 		default:
